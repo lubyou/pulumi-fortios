@@ -3,7 +3,7 @@ module github.com/pulumi/pulumi-fortios/provider
 go 1.19
 
 replace (
-	github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20220725190814-23001ad6ec03
+	github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20220824175045-450992f2f5b9
 	github.com/terraform-providers/terraform-provider-fortios => ../terraform-provider-fortios
 )
 
