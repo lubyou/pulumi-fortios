@@ -13,13 +13,11 @@ env:
 
   TRAVIS_OS_NAME: linux
 
-  DOTNETVERSION: |
-    6.0.x
-    3.1.301
+  DOTNETVERSION: 3.1.301
   GOVERSION: 1.19.x
-  JAVAVERSION: "11"
+  JAVAVERSION: 11
   NODEVERSION: 16.x
-  PYTHONVERSION: "3.9"
+  PYTHONVERSION: 3.9
 
 name: master
 on: workflow_dispatch
