@@ -83,7 +83,7 @@ jobs:
       - name: Tar provider binaries
         run: tar -zcf ${{ github.workspace }}/bin/provider.tar.gz -C ${{ github.workspace }}/bin/ pulumi-resource-${{ env.PROVIDER }} pulumi-tfgen-${{ env.PROVIDER }}
       - name: Upload artifacts
-        if: ${{ !env.ACT }}
+#        if: ${{ !env.ACT }}
         uses: actions/upload-artifact@v2
         with:
           name: ${{ env.PROVIDER }}-provider.tar.gz
@@ -107,6 +107,7 @@ jobs:
         if: ${{ !env.ACT }}
         run: git fetch --prune --unshallow --tags
       - name: Install Go
+        if: matrix.language == 'go'
         uses: actions/setup-go@v2
         with:
           go-version: ${{ env.GOVERSION }}
@@ -117,20 +118,23 @@ jobs:
       - name: Install Pulumi CLI
         uses: pulumi/setup-pulumi@v2
       - name: Setup Node
+        if: matrix.language == 'nodejs'
         uses: actions/setup-node@v2
         with:
           node-version: ${{ env.NODEVERSION }}
           registry-url: https://registry.npmjs.org
       - name: Setup DotNet
+        if: matrix.language == 'dotnet'
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: ${{ env.DOTNETVERSION }}
       - name: Setup Python
+        if: matrix.language == 'python'
         uses: actions/setup-python@v2
         with:
           python-version: ${{ env.PYTHONVERSION }}
       - name: Download provider + tfgen binaries
-        if: ${{ !env.ACT }}
+        # if: ${{ !env.ACT }}
         uses: actions/download-artifact@v2
         with:
           name: ${{ env.PROVIDER }}-provider.tar.gz
@@ -142,14 +146,14 @@ jobs:
       - name: Build SDK
         run: make build_${{ matrix.language }}
       - name: Check worktree clean
-        if: ${{ !env.ACT }}
+        # if: ${{ !env.ACT }}
         run: ./ci-scripts/ci/check-worktree-is-clean
       - name: Compress SDK folder
         run:
           tar -zcf sdk/${{ matrix.language }}.tar.gz -C sdk/${{ matrix.language }}
           .
       - name: Upload artifacts
-        if: ${{ !env.ACT }}
+        # if: ${{ !env.ACT }}
         uses: actions/upload-artifact@v2
         with:
           name: ${{ matrix.language  }}-sdk.tar.gz
@@ -233,6 +237,7 @@ jobs:
 
   publish:
     name: publish
+    if: ${{ !env.ACT }}
     #needs: test
     needs: build_sdk
     runs-on: ubuntu-latest
@@ -264,6 +269,7 @@ jobs:
 
   publish_sdk:
     name: publish_sdk
+    if: ${{ !env.ACT }}
     needs:
       - build_sdk
       - publish
