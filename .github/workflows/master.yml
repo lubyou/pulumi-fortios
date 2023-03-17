@@ -237,7 +237,9 @@ jobs:
 
   publish:
     name: publish
-    if: ${{ !env.ACT }}
+    # env isnt avaiable for job.if
+    # https://docs.github.com/en/actions/learn-github-actions/contexts#context-availability
+    # if: ${{ !env.ACT }}
     #needs: test
     needs: build_sdk
     runs-on: ubuntu-latest
@@ -269,7 +271,9 @@ jobs:
 
   publish_sdk:
     name: publish_sdk
-    if: ${{ !env.ACT }}
+    # env isnt avaiable for job.if
+    # https://docs.github.com/en/actions/learn-github-actions/contexts#context-availability
+    # if: ${{ !env.ACT }}
     needs:
       - build_sdk
       - publish
