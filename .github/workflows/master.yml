@@ -106,8 +106,8 @@ jobs:
       - name: Unshallow clone for tags
         if: ${{ !env.ACT }}
         run: git fetch --prune --unshallow --tags
+      # go is always needed
       - name: Install Go
-        if: matrix.language == 'go'
         uses: actions/setup-go@v2
         with:
           go-version: ${{ env.GOVERSION }}
