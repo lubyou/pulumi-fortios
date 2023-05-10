@@ -50,7 +50,7 @@ export function getVersion(): string {
 
 /** @internal */
 export function resourceOptsDefaults(): any {
-    return { version: getVersion(), pluginDownloadURL: "https://s3.vnci.io/pulumi/releases/plugins" };
+    return { version: getVersion(), pluginDownloadURL: "github://api.github.com/lubyou/pulumi-fortios" };
 }
 
 /** @internal */

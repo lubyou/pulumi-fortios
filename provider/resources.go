@@ -69,8 +69,9 @@ func Provider() tfbridge.ProviderInfo {
 		// PluginDownloadURL is an optional URL used to download the Provider
 		// for use in Pulumi programs
 		// e.g https://github.com/org/pulumi-provider-name/releases/
-		PluginDownloadURL: "https://s3.vnci.io/pulumi/releases/plugins",
-		Description:       "A Pulumi package for creating and managing fortios cloud resources.",
+		PluginDownloadURL: "github://api.github.com/lubyou/pulumi-fortios",
+
+		Description: "A Pulumi package for creating and managing fortios cloud resources.",
 		// category/cloud tag helps with categorizing the package in the Pulumi Registry.
 		// For all available categories, see `Keywords` in
 		// https://www.pulumi.com/docs/guides/pulumi-packages/schema/#package.

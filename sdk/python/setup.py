@@ -15,7 +15,7 @@ class InstallPluginCommand(install):
     def run(self):
         install.run(self)
         try:
-            check_call(['pulumi', 'plugin', 'install', 'resource', 'fortios', PLUGIN_VERSION, '--server', 'https://s3.vnci.io/pulumi/releases/plugins'])
+            check_call(['pulumi', 'plugin', 'install', 'resource', 'fortios', PLUGIN_VERSION, '--server', 'github://api.github.com/lubyou/pulumi-fortios'])
         except OSError as error:
             if error.errno == errno.ENOENT:
                 print(f"""
