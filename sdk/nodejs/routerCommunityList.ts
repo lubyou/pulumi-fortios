@@ -35,6 +35,7 @@ export class RouterCommunityList extends pulumi.CustomResource {
     }
 
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly rules!: pulumi.Output<outputs.RouterCommunityListRule[] | undefined>;
     public readonly type!: pulumi.Output<string>;
@@ -54,6 +55,7 @@ export class RouterCommunityList extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as RouterCommunityListState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["rules"] = state ? state.rules : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
@@ -64,6 +66,7 @@ export class RouterCommunityList extends pulumi.CustomResource {
                 throw new Error("Missing required property 'type'");
             }
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["rules"] = args ? args.rules : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
@@ -79,6 +82,7 @@ export class RouterCommunityList extends pulumi.CustomResource {
  */
 export interface RouterCommunityListState {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     rules?: pulumi.Input<pulumi.Input<inputs.RouterCommunityListRule>[]>;
     type?: pulumi.Input<string>;
@@ -90,6 +94,7 @@ export interface RouterCommunityListState {
  */
 export interface RouterCommunityListArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     rules?: pulumi.Input<pulumi.Input<inputs.RouterCommunityListRule>[]>;
     type: pulumi.Input<string>;

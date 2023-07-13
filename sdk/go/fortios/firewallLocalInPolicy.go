@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,6 +20,7 @@ type FirewallLocalInPolicy struct {
 	DstaddrNegate       pulumi.StringOutput                     `pulumi:"dstaddrNegate"`
 	Dstaddrs            FirewallLocalInPolicyDstaddrArrayOutput `pulumi:"dstaddrs"`
 	DynamicSortSubtable pulumi.StringPtrOutput                  `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                  `pulumi:"getAllTables"`
 	HaMgmtIntfOnly      pulumi.StringOutput                     `pulumi:"haMgmtIntfOnly"`
 	Intf                pulumi.StringOutput                     `pulumi:"intf"`
 	Policyid            pulumi.IntOutput                        `pulumi:"policyid"`
@@ -30,6 +32,7 @@ type FirewallLocalInPolicy struct {
 	Status              pulumi.StringOutput                     `pulumi:"status"`
 	Uuid                pulumi.StringOutput                     `pulumi:"uuid"`
 	Vdomparam           pulumi.StringPtrOutput                  `pulumi:"vdomparam"`
+	VirtualPatch        pulumi.StringOutput                     `pulumi:"virtualPatch"`
 }
 
 // NewFirewallLocalInPolicy registers a new resource with the given unique name, arguments, and options.
@@ -48,7 +51,7 @@ func NewFirewallLocalInPolicy(ctx *pulumi.Context,
 	if args.Srcaddrs == nil {
 		return nil, errors.New("invalid value for required argument 'Srcaddrs'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallLocalInPolicy
 	err := ctx.RegisterResource("fortios:index/firewallLocalInPolicy:FirewallLocalInPolicy", name, args, &resource, opts...)
 	if err != nil {
@@ -76,6 +79,7 @@ type firewallLocalInPolicyState struct {
 	DstaddrNegate       *string                        `pulumi:"dstaddrNegate"`
 	Dstaddrs            []FirewallLocalInPolicyDstaddr `pulumi:"dstaddrs"`
 	DynamicSortSubtable *string                        `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                        `pulumi:"getAllTables"`
 	HaMgmtIntfOnly      *string                        `pulumi:"haMgmtIntfOnly"`
 	Intf                *string                        `pulumi:"intf"`
 	Policyid            *int                           `pulumi:"policyid"`
@@ -87,6 +91,7 @@ type firewallLocalInPolicyState struct {
 	Status              *string                        `pulumi:"status"`
 	Uuid                *string                        `pulumi:"uuid"`
 	Vdomparam           *string                        `pulumi:"vdomparam"`
+	VirtualPatch        *string                        `pulumi:"virtualPatch"`
 }
 
 type FirewallLocalInPolicyState struct {
@@ -95,6 +100,7 @@ type FirewallLocalInPolicyState struct {
 	DstaddrNegate       pulumi.StringPtrInput
 	Dstaddrs            FirewallLocalInPolicyDstaddrArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	HaMgmtIntfOnly      pulumi.StringPtrInput
 	Intf                pulumi.StringPtrInput
 	Policyid            pulumi.IntPtrInput
@@ -106,6 +112,7 @@ type FirewallLocalInPolicyState struct {
 	Status              pulumi.StringPtrInput
 	Uuid                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
+	VirtualPatch        pulumi.StringPtrInput
 }
 
 func (FirewallLocalInPolicyState) ElementType() reflect.Type {
@@ -118,6 +125,7 @@ type firewallLocalInPolicyArgs struct {
 	DstaddrNegate       *string                        `pulumi:"dstaddrNegate"`
 	Dstaddrs            []FirewallLocalInPolicyDstaddr `pulumi:"dstaddrs"`
 	DynamicSortSubtable *string                        `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                        `pulumi:"getAllTables"`
 	HaMgmtIntfOnly      *string                        `pulumi:"haMgmtIntfOnly"`
 	Intf                *string                        `pulumi:"intf"`
 	Policyid            *int                           `pulumi:"policyid"`
@@ -129,6 +137,7 @@ type firewallLocalInPolicyArgs struct {
 	Status              *string                        `pulumi:"status"`
 	Uuid                *string                        `pulumi:"uuid"`
 	Vdomparam           *string                        `pulumi:"vdomparam"`
+	VirtualPatch        *string                        `pulumi:"virtualPatch"`
 }
 
 // The set of arguments for constructing a FirewallLocalInPolicy resource.
@@ -138,6 +147,7 @@ type FirewallLocalInPolicyArgs struct {
 	DstaddrNegate       pulumi.StringPtrInput
 	Dstaddrs            FirewallLocalInPolicyDstaddrArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	HaMgmtIntfOnly      pulumi.StringPtrInput
 	Intf                pulumi.StringPtrInput
 	Policyid            pulumi.IntPtrInput
@@ -149,6 +159,7 @@ type FirewallLocalInPolicyArgs struct {
 	Status              pulumi.StringPtrInput
 	Uuid                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
+	VirtualPatch        pulumi.StringPtrInput
 }
 
 func (FirewallLocalInPolicyArgs) ElementType() reflect.Type {
@@ -258,6 +269,10 @@ func (o FirewallLocalInPolicyOutput) DynamicSortSubtable() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v *FirewallLocalInPolicy) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
 }
 
+func (o FirewallLocalInPolicyOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallLocalInPolicy) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 func (o FirewallLocalInPolicyOutput) HaMgmtIntfOnly() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallLocalInPolicy) pulumi.StringOutput { return v.HaMgmtIntfOnly }).(pulumi.StringOutput)
 }
@@ -300,6 +315,10 @@ func (o FirewallLocalInPolicyOutput) Uuid() pulumi.StringOutput {
 
 func (o FirewallLocalInPolicyOutput) Vdomparam() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FirewallLocalInPolicy) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallLocalInPolicyOutput) VirtualPatch() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallLocalInPolicy) pulumi.StringOutput { return v.VirtualPatch }).(pulumi.StringOutput)
 }
 
 type FirewallLocalInPolicyArrayOutput struct{ *pulumi.OutputState }

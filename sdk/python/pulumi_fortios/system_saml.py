@@ -22,6 +22,7 @@ class SystemSamlArgs:
                  default_profile: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  entity_id: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  idp_cert: Optional[pulumi.Input[str]] = None,
                  idp_entity_id: Optional[pulumi.Input[str]] = None,
                  idp_single_logout_url: Optional[pulumi.Input[str]] = None,
@@ -51,6 +52,8 @@ class SystemSamlArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if entity_id is not None:
             pulumi.set(__self__, "entity_id", entity_id)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if idp_cert is not None:
             pulumi.set(__self__, "idp_cert", idp_cert)
         if idp_entity_id is not None:
@@ -133,6 +136,15 @@ class SystemSamlArgs:
     @entity_id.setter
     def entity_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "entity_id", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="idpCert")
@@ -270,6 +282,7 @@ class _SystemSamlState:
                  default_profile: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  entity_id: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  idp_cert: Optional[pulumi.Input[str]] = None,
                  idp_entity_id: Optional[pulumi.Input[str]] = None,
                  idp_single_logout_url: Optional[pulumi.Input[str]] = None,
@@ -299,6 +312,8 @@ class _SystemSamlState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if entity_id is not None:
             pulumi.set(__self__, "entity_id", entity_id)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if idp_cert is not None:
             pulumi.set(__self__, "idp_cert", idp_cert)
         if idp_entity_id is not None:
@@ -381,6 +396,15 @@ class _SystemSamlState:
     @entity_id.setter
     def entity_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "entity_id", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="idpCert")
@@ -520,6 +544,7 @@ class SystemSaml(pulumi.CustomResource):
                  default_profile: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  entity_id: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  idp_cert: Optional[pulumi.Input[str]] = None,
                  idp_entity_id: Optional[pulumi.Input[str]] = None,
                  idp_single_logout_url: Optional[pulumi.Input[str]] = None,
@@ -569,6 +594,7 @@ class SystemSaml(pulumi.CustomResource):
                  default_profile: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  entity_id: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  idp_cert: Optional[pulumi.Input[str]] = None,
                  idp_entity_id: Optional[pulumi.Input[str]] = None,
                  idp_single_logout_url: Optional[pulumi.Input[str]] = None,
@@ -598,6 +624,7 @@ class SystemSaml(pulumi.CustomResource):
             __props__.__dict__["default_profile"] = default_profile
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["entity_id"] = entity_id
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["idp_cert"] = idp_cert
             __props__.__dict__["idp_entity_id"] = idp_entity_id
             __props__.__dict__["idp_single_logout_url"] = idp_single_logout_url
@@ -628,6 +655,7 @@ class SystemSaml(pulumi.CustomResource):
             default_profile: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             entity_id: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             idp_cert: Optional[pulumi.Input[str]] = None,
             idp_entity_id: Optional[pulumi.Input[str]] = None,
             idp_single_logout_url: Optional[pulumi.Input[str]] = None,
@@ -660,6 +688,7 @@ class SystemSaml(pulumi.CustomResource):
         __props__.__dict__["default_profile"] = default_profile
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["entity_id"] = entity_id
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["idp_cert"] = idp_cert
         __props__.__dict__["idp_entity_id"] = idp_entity_id
         __props__.__dict__["idp_single_logout_url"] = idp_single_logout_url
@@ -705,6 +734,11 @@ class SystemSaml(pulumi.CustomResource):
     @pulumi.getter(name="entityId")
     def entity_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "entity_id")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="idpCert")

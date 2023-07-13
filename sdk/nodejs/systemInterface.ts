@@ -59,6 +59,7 @@ export class SystemInterface extends pulumi.CustomResource {
     public readonly clientOptions!: pulumi.Output<outputs.SystemInterfaceClientOption[] | undefined>;
     public readonly color!: pulumi.Output<number>;
     public readonly dedicatedTo!: pulumi.Output<string>;
+    public readonly defaultPurdueLevel!: pulumi.Output<string>;
     public readonly defaultgw!: pulumi.Output<string>;
     public readonly description!: pulumi.Output<string | undefined>;
     public readonly detectedPeerMtu!: pulumi.Output<number>;
@@ -70,6 +71,7 @@ export class SystemInterface extends pulumi.CustomResource {
     public readonly deviceNetscan!: pulumi.Output<string>;
     public readonly deviceUserIdentification!: pulumi.Output<string>;
     public readonly devindex!: pulumi.Output<number>;
+    public readonly dhcpBroadcastFlag!: pulumi.Output<string>;
     public readonly dhcpClasslessRouteAddition!: pulumi.Output<string>;
     public readonly dhcpClientIdentifier!: pulumi.Output<string>;
     public readonly dhcpRelayAgentOption!: pulumi.Output<string>;
@@ -81,6 +83,7 @@ export class SystemInterface extends pulumi.CustomResource {
     public readonly dhcpRelayService!: pulumi.Output<string>;
     public readonly dhcpRelayType!: pulumi.Output<string>;
     public readonly dhcpRenewTime!: pulumi.Output<number>;
+    public readonly dhcpSmartRelay!: pulumi.Output<string>;
     public readonly dhcpSnoopingServerLists!: pulumi.Output<outputs.SystemInterfaceDhcpSnoopingServerList[] | undefined>;
     public readonly discRetryTimeout!: pulumi.Output<number>;
     public readonly disconnectThreshold!: pulumi.Output<number>;
@@ -116,6 +119,7 @@ export class SystemInterface extends pulumi.CustomResource {
     public readonly fortilinkStacking!: pulumi.Output<string>;
     public readonly forwardDomain!: pulumi.Output<number>;
     public readonly forwardErrorCorrection!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly gwdetect!: pulumi.Output<string>;
     public readonly haPriority!: pulumi.Output<number>;
     public readonly icmpAcceptRedirect!: pulumi.Output<string>;
@@ -296,6 +300,7 @@ export class SystemInterface extends pulumi.CustomResource {
             resourceInputs["clientOptions"] = state ? state.clientOptions : undefined;
             resourceInputs["color"] = state ? state.color : undefined;
             resourceInputs["dedicatedTo"] = state ? state.dedicatedTo : undefined;
+            resourceInputs["defaultPurdueLevel"] = state ? state.defaultPurdueLevel : undefined;
             resourceInputs["defaultgw"] = state ? state.defaultgw : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["detectedPeerMtu"] = state ? state.detectedPeerMtu : undefined;
@@ -307,6 +312,7 @@ export class SystemInterface extends pulumi.CustomResource {
             resourceInputs["deviceNetscan"] = state ? state.deviceNetscan : undefined;
             resourceInputs["deviceUserIdentification"] = state ? state.deviceUserIdentification : undefined;
             resourceInputs["devindex"] = state ? state.devindex : undefined;
+            resourceInputs["dhcpBroadcastFlag"] = state ? state.dhcpBroadcastFlag : undefined;
             resourceInputs["dhcpClasslessRouteAddition"] = state ? state.dhcpClasslessRouteAddition : undefined;
             resourceInputs["dhcpClientIdentifier"] = state ? state.dhcpClientIdentifier : undefined;
             resourceInputs["dhcpRelayAgentOption"] = state ? state.dhcpRelayAgentOption : undefined;
@@ -318,6 +324,7 @@ export class SystemInterface extends pulumi.CustomResource {
             resourceInputs["dhcpRelayService"] = state ? state.dhcpRelayService : undefined;
             resourceInputs["dhcpRelayType"] = state ? state.dhcpRelayType : undefined;
             resourceInputs["dhcpRenewTime"] = state ? state.dhcpRenewTime : undefined;
+            resourceInputs["dhcpSmartRelay"] = state ? state.dhcpSmartRelay : undefined;
             resourceInputs["dhcpSnoopingServerLists"] = state ? state.dhcpSnoopingServerLists : undefined;
             resourceInputs["discRetryTimeout"] = state ? state.discRetryTimeout : undefined;
             resourceInputs["disconnectThreshold"] = state ? state.disconnectThreshold : undefined;
@@ -353,6 +360,7 @@ export class SystemInterface extends pulumi.CustomResource {
             resourceInputs["fortilinkStacking"] = state ? state.fortilinkStacking : undefined;
             resourceInputs["forwardDomain"] = state ? state.forwardDomain : undefined;
             resourceInputs["forwardErrorCorrection"] = state ? state.forwardErrorCorrection : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["gwdetect"] = state ? state.gwdetect : undefined;
             resourceInputs["haPriority"] = state ? state.haPriority : undefined;
             resourceInputs["icmpAcceptRedirect"] = state ? state.icmpAcceptRedirect : undefined;
@@ -524,6 +532,7 @@ export class SystemInterface extends pulumi.CustomResource {
             resourceInputs["clientOptions"] = args ? args.clientOptions : undefined;
             resourceInputs["color"] = args ? args.color : undefined;
             resourceInputs["dedicatedTo"] = args ? args.dedicatedTo : undefined;
+            resourceInputs["defaultPurdueLevel"] = args ? args.defaultPurdueLevel : undefined;
             resourceInputs["defaultgw"] = args ? args.defaultgw : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["detectedPeerMtu"] = args ? args.detectedPeerMtu : undefined;
@@ -535,6 +544,7 @@ export class SystemInterface extends pulumi.CustomResource {
             resourceInputs["deviceNetscan"] = args ? args.deviceNetscan : undefined;
             resourceInputs["deviceUserIdentification"] = args ? args.deviceUserIdentification : undefined;
             resourceInputs["devindex"] = args ? args.devindex : undefined;
+            resourceInputs["dhcpBroadcastFlag"] = args ? args.dhcpBroadcastFlag : undefined;
             resourceInputs["dhcpClasslessRouteAddition"] = args ? args.dhcpClasslessRouteAddition : undefined;
             resourceInputs["dhcpClientIdentifier"] = args ? args.dhcpClientIdentifier : undefined;
             resourceInputs["dhcpRelayAgentOption"] = args ? args.dhcpRelayAgentOption : undefined;
@@ -546,6 +556,7 @@ export class SystemInterface extends pulumi.CustomResource {
             resourceInputs["dhcpRelayService"] = args ? args.dhcpRelayService : undefined;
             resourceInputs["dhcpRelayType"] = args ? args.dhcpRelayType : undefined;
             resourceInputs["dhcpRenewTime"] = args ? args.dhcpRenewTime : undefined;
+            resourceInputs["dhcpSmartRelay"] = args ? args.dhcpSmartRelay : undefined;
             resourceInputs["dhcpSnoopingServerLists"] = args ? args.dhcpSnoopingServerLists : undefined;
             resourceInputs["discRetryTimeout"] = args ? args.discRetryTimeout : undefined;
             resourceInputs["disconnectThreshold"] = args ? args.disconnectThreshold : undefined;
@@ -581,6 +592,7 @@ export class SystemInterface extends pulumi.CustomResource {
             resourceInputs["fortilinkStacking"] = args ? args.fortilinkStacking : undefined;
             resourceInputs["forwardDomain"] = args ? args.forwardDomain : undefined;
             resourceInputs["forwardErrorCorrection"] = args ? args.forwardErrorCorrection : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["gwdetect"] = args ? args.gwdetect : undefined;
             resourceInputs["haPriority"] = args ? args.haPriority : undefined;
             resourceInputs["icmpAcceptRedirect"] = args ? args.icmpAcceptRedirect : undefined;
@@ -759,6 +771,7 @@ export interface SystemInterfaceState {
     clientOptions?: pulumi.Input<pulumi.Input<inputs.SystemInterfaceClientOption>[]>;
     color?: pulumi.Input<number>;
     dedicatedTo?: pulumi.Input<string>;
+    defaultPurdueLevel?: pulumi.Input<string>;
     defaultgw?: pulumi.Input<string>;
     description?: pulumi.Input<string>;
     detectedPeerMtu?: pulumi.Input<number>;
@@ -770,6 +783,7 @@ export interface SystemInterfaceState {
     deviceNetscan?: pulumi.Input<string>;
     deviceUserIdentification?: pulumi.Input<string>;
     devindex?: pulumi.Input<number>;
+    dhcpBroadcastFlag?: pulumi.Input<string>;
     dhcpClasslessRouteAddition?: pulumi.Input<string>;
     dhcpClientIdentifier?: pulumi.Input<string>;
     dhcpRelayAgentOption?: pulumi.Input<string>;
@@ -781,6 +795,7 @@ export interface SystemInterfaceState {
     dhcpRelayService?: pulumi.Input<string>;
     dhcpRelayType?: pulumi.Input<string>;
     dhcpRenewTime?: pulumi.Input<number>;
+    dhcpSmartRelay?: pulumi.Input<string>;
     dhcpSnoopingServerLists?: pulumi.Input<pulumi.Input<inputs.SystemInterfaceDhcpSnoopingServerList>[]>;
     discRetryTimeout?: pulumi.Input<number>;
     disconnectThreshold?: pulumi.Input<number>;
@@ -816,6 +831,7 @@ export interface SystemInterfaceState {
     fortilinkStacking?: pulumi.Input<string>;
     forwardDomain?: pulumi.Input<number>;
     forwardErrorCorrection?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     gwdetect?: pulumi.Input<string>;
     haPriority?: pulumi.Input<number>;
     icmpAcceptRedirect?: pulumi.Input<string>;
@@ -988,6 +1004,7 @@ export interface SystemInterfaceArgs {
     clientOptions?: pulumi.Input<pulumi.Input<inputs.SystemInterfaceClientOption>[]>;
     color?: pulumi.Input<number>;
     dedicatedTo?: pulumi.Input<string>;
+    defaultPurdueLevel?: pulumi.Input<string>;
     defaultgw?: pulumi.Input<string>;
     description?: pulumi.Input<string>;
     detectedPeerMtu?: pulumi.Input<number>;
@@ -999,6 +1016,7 @@ export interface SystemInterfaceArgs {
     deviceNetscan?: pulumi.Input<string>;
     deviceUserIdentification?: pulumi.Input<string>;
     devindex?: pulumi.Input<number>;
+    dhcpBroadcastFlag?: pulumi.Input<string>;
     dhcpClasslessRouteAddition?: pulumi.Input<string>;
     dhcpClientIdentifier?: pulumi.Input<string>;
     dhcpRelayAgentOption?: pulumi.Input<string>;
@@ -1010,6 +1028,7 @@ export interface SystemInterfaceArgs {
     dhcpRelayService?: pulumi.Input<string>;
     dhcpRelayType?: pulumi.Input<string>;
     dhcpRenewTime?: pulumi.Input<number>;
+    dhcpSmartRelay?: pulumi.Input<string>;
     dhcpSnoopingServerLists?: pulumi.Input<pulumi.Input<inputs.SystemInterfaceDhcpSnoopingServerList>[]>;
     discRetryTimeout?: pulumi.Input<number>;
     disconnectThreshold?: pulumi.Input<number>;
@@ -1045,6 +1064,7 @@ export interface SystemInterfaceArgs {
     fortilinkStacking?: pulumi.Input<string>;
     forwardDomain?: pulumi.Input<number>;
     forwardErrorCorrection?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     gwdetect?: pulumi.Input<string>;
     haPriority?: pulumi.Input<number>;
     icmpAcceptRedirect?: pulumi.Input<string>;

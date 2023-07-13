@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemSmsServer(ctx *pulumi.Context, args *LookupSystemSmsServerArgs, opts ...pulumi.InvokeOption) (*LookupSystemSmsServerResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemSmsServerResult
 	err := ctx.Invoke("fortios:index/getSystemSmsServer:GetSystemSmsServer", args, &rv, opts...)
 	if err != nil {

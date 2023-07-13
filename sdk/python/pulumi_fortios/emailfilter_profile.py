@@ -20,6 +20,7 @@ class EmailfilterProfileArgs:
                  external: Optional[pulumi.Input[str]] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
                  file_filter: Optional[pulumi.Input['EmailfilterProfileFileFilterArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gmail: Optional[pulumi.Input['EmailfilterProfileGmailArgs']] = None,
                  imap: Optional[pulumi.Input['EmailfilterProfileImapArgs']] = None,
                  mapi: Optional[pulumi.Input['EmailfilterProfileMapiArgs']] = None,
@@ -53,6 +54,8 @@ class EmailfilterProfileArgs:
             pulumi.set(__self__, "feature_set", feature_set)
         if file_filter is not None:
             pulumi.set(__self__, "file_filter", file_filter)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gmail is not None:
             pulumi.set(__self__, "gmail", gmail)
         if imap is not None:
@@ -133,6 +136,15 @@ class EmailfilterProfileArgs:
     @file_filter.setter
     def file_filter(self, value: Optional[pulumi.Input['EmailfilterProfileFileFilterArgs']]):
         pulumi.set(self, "file_filter", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -340,6 +352,7 @@ class _EmailfilterProfileState:
                  external: Optional[pulumi.Input[str]] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
                  file_filter: Optional[pulumi.Input['EmailfilterProfileFileFilterArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gmail: Optional[pulumi.Input['EmailfilterProfileGmailArgs']] = None,
                  imap: Optional[pulumi.Input['EmailfilterProfileImapArgs']] = None,
                  mapi: Optional[pulumi.Input['EmailfilterProfileMapiArgs']] = None,
@@ -373,6 +386,8 @@ class _EmailfilterProfileState:
             pulumi.set(__self__, "feature_set", feature_set)
         if file_filter is not None:
             pulumi.set(__self__, "file_filter", file_filter)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gmail is not None:
             pulumi.set(__self__, "gmail", gmail)
         if imap is not None:
@@ -453,6 +468,15 @@ class _EmailfilterProfileState:
     @file_filter.setter
     def file_filter(self, value: Optional[pulumi.Input['EmailfilterProfileFileFilterArgs']]):
         pulumi.set(self, "file_filter", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -662,6 +686,7 @@ class EmailfilterProfile(pulumi.CustomResource):
                  external: Optional[pulumi.Input[str]] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
                  file_filter: Optional[pulumi.Input[pulumi.InputType['EmailfilterProfileFileFilterArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gmail: Optional[pulumi.Input[pulumi.InputType['EmailfilterProfileGmailArgs']]] = None,
                  imap: Optional[pulumi.Input[pulumi.InputType['EmailfilterProfileImapArgs']]] = None,
                  mapi: Optional[pulumi.Input[pulumi.InputType['EmailfilterProfileMapiArgs']]] = None,
@@ -717,6 +742,7 @@ class EmailfilterProfile(pulumi.CustomResource):
                  external: Optional[pulumi.Input[str]] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
                  file_filter: Optional[pulumi.Input[pulumi.InputType['EmailfilterProfileFileFilterArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gmail: Optional[pulumi.Input[pulumi.InputType['EmailfilterProfileGmailArgs']]] = None,
                  imap: Optional[pulumi.Input[pulumi.InputType['EmailfilterProfileImapArgs']]] = None,
                  mapi: Optional[pulumi.Input[pulumi.InputType['EmailfilterProfileMapiArgs']]] = None,
@@ -752,6 +778,7 @@ class EmailfilterProfile(pulumi.CustomResource):
             __props__.__dict__["external"] = external
             __props__.__dict__["feature_set"] = feature_set
             __props__.__dict__["file_filter"] = file_filter
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["gmail"] = gmail
             __props__.__dict__["imap"] = imap
             __props__.__dict__["mapi"] = mapi
@@ -788,6 +815,7 @@ class EmailfilterProfile(pulumi.CustomResource):
             external: Optional[pulumi.Input[str]] = None,
             feature_set: Optional[pulumi.Input[str]] = None,
             file_filter: Optional[pulumi.Input[pulumi.InputType['EmailfilterProfileFileFilterArgs']]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             gmail: Optional[pulumi.Input[pulumi.InputType['EmailfilterProfileGmailArgs']]] = None,
             imap: Optional[pulumi.Input[pulumi.InputType['EmailfilterProfileImapArgs']]] = None,
             mapi: Optional[pulumi.Input[pulumi.InputType['EmailfilterProfileMapiArgs']]] = None,
@@ -826,6 +854,7 @@ class EmailfilterProfile(pulumi.CustomResource):
         __props__.__dict__["external"] = external
         __props__.__dict__["feature_set"] = feature_set
         __props__.__dict__["file_filter"] = file_filter
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["gmail"] = gmail
         __props__.__dict__["imap"] = imap
         __props__.__dict__["mapi"] = mapi
@@ -869,6 +898,11 @@ class EmailfilterProfile(pulumi.CustomResource):
     @pulumi.getter(name="fileFilter")
     def file_filter(self) -> pulumi.Output['outputs.EmailfilterProfileFileFilter']:
         return pulumi.get(self, "file_filter")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

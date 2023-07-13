@@ -28,12 +28,14 @@ export interface GetSystemVxlanArgs {
  */
 export interface GetSystemVxlanResult {
     readonly dstport: number;
+    readonly evpnId: number;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
     readonly interface: string;
     readonly ipVersion: string;
+    readonly learnFromTraffic: string;
     readonly multicastTtl: number;
     readonly name: string;
     readonly remoteIp6s: outputs.GetSystemVxlanRemoteIp6[];

@@ -24,6 +24,7 @@ class SystemAdminArgs:
                  email_to: Optional[pulumi.Input[str]] = None,
                  force_password_change: Optional[pulumi.Input[str]] = None,
                  fortitoken: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  guest_auth: Optional[pulumi.Input[str]] = None,
                  guest_lang: Optional[pulumi.Input[str]] = None,
                  guest_usergroups: Optional[pulumi.Input[Sequence[pulumi.Input['SystemAdminGuestUsergroupArgs']]]] = None,
@@ -97,6 +98,8 @@ class SystemAdminArgs:
             pulumi.set(__self__, "force_password_change", force_password_change)
         if fortitoken is not None:
             pulumi.set(__self__, "fortitoken", fortitoken)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if guest_auth is not None:
             pulumi.set(__self__, "guest_auth", guest_auth)
         if guest_lang is not None:
@@ -277,6 +280,15 @@ class SystemAdminArgs:
     @fortitoken.setter
     def fortitoken(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fortitoken", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="guestAuth")
@@ -776,6 +788,7 @@ class _SystemAdminState:
                  email_to: Optional[pulumi.Input[str]] = None,
                  force_password_change: Optional[pulumi.Input[str]] = None,
                  fortitoken: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  guest_auth: Optional[pulumi.Input[str]] = None,
                  guest_lang: Optional[pulumi.Input[str]] = None,
                  guest_usergroups: Optional[pulumi.Input[Sequence[pulumi.Input['SystemAdminGuestUsergroupArgs']]]] = None,
@@ -849,6 +862,8 @@ class _SystemAdminState:
             pulumi.set(__self__, "force_password_change", force_password_change)
         if fortitoken is not None:
             pulumi.set(__self__, "fortitoken", fortitoken)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if guest_auth is not None:
             pulumi.set(__self__, "guest_auth", guest_auth)
         if guest_lang is not None:
@@ -1029,6 +1044,15 @@ class _SystemAdminState:
     @fortitoken.setter
     def fortitoken(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fortitoken", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="guestAuth")
@@ -1530,6 +1554,7 @@ class SystemAdmin(pulumi.CustomResource):
                  email_to: Optional[pulumi.Input[str]] = None,
                  force_password_change: Optional[pulumi.Input[str]] = None,
                  fortitoken: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  guest_auth: Optional[pulumi.Input[str]] = None,
                  guest_lang: Optional[pulumi.Input[str]] = None,
                  guest_usergroups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAdminGuestUsergroupArgs']]]]] = None,
@@ -1621,6 +1646,7 @@ class SystemAdmin(pulumi.CustomResource):
                  email_to: Optional[pulumi.Input[str]] = None,
                  force_password_change: Optional[pulumi.Input[str]] = None,
                  fortitoken: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  guest_auth: Optional[pulumi.Input[str]] = None,
                  guest_lang: Optional[pulumi.Input[str]] = None,
                  guest_usergroups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAdminGuestUsergroupArgs']]]]] = None,
@@ -1692,6 +1718,7 @@ class SystemAdmin(pulumi.CustomResource):
             __props__.__dict__["email_to"] = email_to
             __props__.__dict__["force_password_change"] = force_password_change
             __props__.__dict__["fortitoken"] = fortitoken
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["guest_auth"] = guest_auth
             __props__.__dict__["guest_lang"] = guest_lang
             __props__.__dict__["guest_usergroups"] = guest_usergroups
@@ -1766,6 +1793,7 @@ class SystemAdmin(pulumi.CustomResource):
             email_to: Optional[pulumi.Input[str]] = None,
             force_password_change: Optional[pulumi.Input[str]] = None,
             fortitoken: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             guest_auth: Optional[pulumi.Input[str]] = None,
             guest_lang: Optional[pulumi.Input[str]] = None,
             guest_usergroups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAdminGuestUsergroupArgs']]]]] = None,
@@ -1840,6 +1868,7 @@ class SystemAdmin(pulumi.CustomResource):
         __props__.__dict__["email_to"] = email_to
         __props__.__dict__["force_password_change"] = force_password_change
         __props__.__dict__["fortitoken"] = fortitoken
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["guest_auth"] = guest_auth
         __props__.__dict__["guest_lang"] = guest_lang
         __props__.__dict__["guest_usergroups"] = guest_usergroups
@@ -1935,6 +1964,11 @@ class SystemAdmin(pulumi.CustomResource):
     @pulumi.getter
     def fortitoken(self) -> pulumi.Output[str]:
         return pulumi.get(self, "fortitoken")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="guestAuth")

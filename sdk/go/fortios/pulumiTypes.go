@@ -7,8 +7,11 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
+
+var _ = internal.GetEnvOrDefault
 
 type AntivirusProfileCifs struct {
 	ArchiveBlock       *string `pulumi:"archiveBlock"`
@@ -21181,6 +21184,7 @@ type FirewallAccessProxy6ApiGateway6 struct {
 	SslDhBits                *string                                         `pulumi:"sslDhBits"`
 	SslMaxVersion            *string                                         `pulumi:"sslMaxVersion"`
 	SslMinVersion            *string                                         `pulumi:"sslMinVersion"`
+	SslRenegotiation         *string                                         `pulumi:"sslRenegotiation"`
 	SslVpnWebPortal          *string                                         `pulumi:"sslVpnWebPortal"`
 	UrlMap                   *string                                         `pulumi:"urlMap"`
 	UrlMapType               *string                                         `pulumi:"urlMapType"`
@@ -21219,6 +21223,7 @@ type FirewallAccessProxy6ApiGateway6Args struct {
 	SslDhBits                pulumi.StringPtrInput                                   `pulumi:"sslDhBits"`
 	SslMaxVersion            pulumi.StringPtrInput                                   `pulumi:"sslMaxVersion"`
 	SslMinVersion            pulumi.StringPtrInput                                   `pulumi:"sslMinVersion"`
+	SslRenegotiation         pulumi.StringPtrInput                                   `pulumi:"sslRenegotiation"`
 	SslVpnWebPortal          pulumi.StringPtrInput                                   `pulumi:"sslVpnWebPortal"`
 	UrlMap                   pulumi.StringPtrInput                                   `pulumi:"urlMap"`
 	UrlMapType               pulumi.StringPtrInput                                   `pulumi:"urlMapType"`
@@ -21362,6 +21367,10 @@ func (o FirewallAccessProxy6ApiGateway6Output) SslMinVersion() pulumi.StringPtrO
 	return o.ApplyT(func(v FirewallAccessProxy6ApiGateway6) *string { return v.SslMinVersion }).(pulumi.StringPtrOutput)
 }
 
+func (o FirewallAccessProxy6ApiGateway6Output) SslRenegotiation() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallAccessProxy6ApiGateway6) *string { return v.SslRenegotiation }).(pulumi.StringPtrOutput)
+}
+
 func (o FirewallAccessProxy6ApiGateway6Output) SslVpnWebPortal() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FirewallAccessProxy6ApiGateway6) *string { return v.SslVpnWebPortal }).(pulumi.StringPtrOutput)
 }
@@ -21496,6 +21505,7 @@ type FirewallAccessProxy6ApiGateway6Realserver struct {
 	AddrType             *string                                               `pulumi:"addrType"`
 	Address              *string                                               `pulumi:"address"`
 	Domain               *string                                               `pulumi:"domain"`
+	ExternalAuth         *string                                               `pulumi:"externalAuth"`
 	HealthCheck          *string                                               `pulumi:"healthCheck"`
 	HealthCheckProto     *string                                               `pulumi:"healthCheckProto"`
 	HolddownInterval     *string                                               `pulumi:"holddownInterval"`
@@ -21508,6 +21518,8 @@ type FirewallAccessProxy6ApiGateway6Realserver struct {
 	SshHostKeyValidation *string                                               `pulumi:"sshHostKeyValidation"`
 	SshHostKeys          []FirewallAccessProxy6ApiGateway6RealserverSshHostKey `pulumi:"sshHostKeys"`
 	Status               *string                                               `pulumi:"status"`
+	TranslateHost        *string                                               `pulumi:"translateHost"`
+	TunnelEncryption     *string                                               `pulumi:"tunnelEncryption"`
 	Type                 *string                                               `pulumi:"type"`
 	Weight               *int                                                  `pulumi:"weight"`
 }
@@ -21527,6 +21539,7 @@ type FirewallAccessProxy6ApiGateway6RealserverArgs struct {
 	AddrType             pulumi.StringPtrInput                                         `pulumi:"addrType"`
 	Address              pulumi.StringPtrInput                                         `pulumi:"address"`
 	Domain               pulumi.StringPtrInput                                         `pulumi:"domain"`
+	ExternalAuth         pulumi.StringPtrInput                                         `pulumi:"externalAuth"`
 	HealthCheck          pulumi.StringPtrInput                                         `pulumi:"healthCheck"`
 	HealthCheckProto     pulumi.StringPtrInput                                         `pulumi:"healthCheckProto"`
 	HolddownInterval     pulumi.StringPtrInput                                         `pulumi:"holddownInterval"`
@@ -21539,6 +21552,8 @@ type FirewallAccessProxy6ApiGateway6RealserverArgs struct {
 	SshHostKeyValidation pulumi.StringPtrInput                                         `pulumi:"sshHostKeyValidation"`
 	SshHostKeys          FirewallAccessProxy6ApiGateway6RealserverSshHostKeyArrayInput `pulumi:"sshHostKeys"`
 	Status               pulumi.StringPtrInput                                         `pulumi:"status"`
+	TranslateHost        pulumi.StringPtrInput                                         `pulumi:"translateHost"`
+	TunnelEncryption     pulumi.StringPtrInput                                         `pulumi:"tunnelEncryption"`
 	Type                 pulumi.StringPtrInput                                         `pulumi:"type"`
 	Weight               pulumi.IntPtrInput                                            `pulumi:"weight"`
 }
@@ -21606,6 +21621,10 @@ func (o FirewallAccessProxy6ApiGateway6RealserverOutput) Domain() pulumi.StringP
 	return o.ApplyT(func(v FirewallAccessProxy6ApiGateway6Realserver) *string { return v.Domain }).(pulumi.StringPtrOutput)
 }
 
+func (o FirewallAccessProxy6ApiGateway6RealserverOutput) ExternalAuth() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallAccessProxy6ApiGateway6Realserver) *string { return v.ExternalAuth }).(pulumi.StringPtrOutput)
+}
+
 func (o FirewallAccessProxy6ApiGateway6RealserverOutput) HealthCheck() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FirewallAccessProxy6ApiGateway6Realserver) *string { return v.HealthCheck }).(pulumi.StringPtrOutput)
 }
@@ -21654,6 +21673,14 @@ func (o FirewallAccessProxy6ApiGateway6RealserverOutput) SshHostKeys() FirewallA
 
 func (o FirewallAccessProxy6ApiGateway6RealserverOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FirewallAccessProxy6ApiGateway6Realserver) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAccessProxy6ApiGateway6RealserverOutput) TranslateHost() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallAccessProxy6ApiGateway6Realserver) *string { return v.TranslateHost }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAccessProxy6ApiGateway6RealserverOutput) TunnelEncryption() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallAccessProxy6ApiGateway6Realserver) *string { return v.TunnelEncryption }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallAccessProxy6ApiGateway6RealserverOutput) Type() pulumi.StringPtrOutput {
@@ -21905,6 +21932,7 @@ type FirewallAccessProxy6ApiGateway struct {
 	SslDhBits                *string                                        `pulumi:"sslDhBits"`
 	SslMaxVersion            *string                                        `pulumi:"sslMaxVersion"`
 	SslMinVersion            *string                                        `pulumi:"sslMinVersion"`
+	SslRenegotiation         *string                                        `pulumi:"sslRenegotiation"`
 	SslVpnWebPortal          *string                                        `pulumi:"sslVpnWebPortal"`
 	UrlMap                   *string                                        `pulumi:"urlMap"`
 	UrlMapType               *string                                        `pulumi:"urlMapType"`
@@ -21943,6 +21971,7 @@ type FirewallAccessProxy6ApiGatewayArgs struct {
 	SslDhBits                pulumi.StringPtrInput                                  `pulumi:"sslDhBits"`
 	SslMaxVersion            pulumi.StringPtrInput                                  `pulumi:"sslMaxVersion"`
 	SslMinVersion            pulumi.StringPtrInput                                  `pulumi:"sslMinVersion"`
+	SslRenegotiation         pulumi.StringPtrInput                                  `pulumi:"sslRenegotiation"`
 	SslVpnWebPortal          pulumi.StringPtrInput                                  `pulumi:"sslVpnWebPortal"`
 	UrlMap                   pulumi.StringPtrInput                                  `pulumi:"urlMap"`
 	UrlMapType               pulumi.StringPtrInput                                  `pulumi:"urlMapType"`
@@ -22086,6 +22115,10 @@ func (o FirewallAccessProxy6ApiGatewayOutput) SslMinVersion() pulumi.StringPtrOu
 	return o.ApplyT(func(v FirewallAccessProxy6ApiGateway) *string { return v.SslMinVersion }).(pulumi.StringPtrOutput)
 }
 
+func (o FirewallAccessProxy6ApiGatewayOutput) SslRenegotiation() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallAccessProxy6ApiGateway) *string { return v.SslRenegotiation }).(pulumi.StringPtrOutput)
+}
+
 func (o FirewallAccessProxy6ApiGatewayOutput) SslVpnWebPortal() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FirewallAccessProxy6ApiGateway) *string { return v.SslVpnWebPortal }).(pulumi.StringPtrOutput)
 }
@@ -22220,6 +22253,7 @@ type FirewallAccessProxy6ApiGatewayRealserver struct {
 	AddrType             *string                                              `pulumi:"addrType"`
 	Address              *string                                              `pulumi:"address"`
 	Domain               *string                                              `pulumi:"domain"`
+	ExternalAuth         *string                                              `pulumi:"externalAuth"`
 	HealthCheck          *string                                              `pulumi:"healthCheck"`
 	HealthCheckProto     *string                                              `pulumi:"healthCheckProto"`
 	HolddownInterval     *string                                              `pulumi:"holddownInterval"`
@@ -22232,6 +22266,8 @@ type FirewallAccessProxy6ApiGatewayRealserver struct {
 	SshHostKeyValidation *string                                              `pulumi:"sshHostKeyValidation"`
 	SshHostKeys          []FirewallAccessProxy6ApiGatewayRealserverSshHostKey `pulumi:"sshHostKeys"`
 	Status               *string                                              `pulumi:"status"`
+	TranslateHost        *string                                              `pulumi:"translateHost"`
+	TunnelEncryption     *string                                              `pulumi:"tunnelEncryption"`
 	Type                 *string                                              `pulumi:"type"`
 	Weight               *int                                                 `pulumi:"weight"`
 }
@@ -22251,6 +22287,7 @@ type FirewallAccessProxy6ApiGatewayRealserverArgs struct {
 	AddrType             pulumi.StringPtrInput                                        `pulumi:"addrType"`
 	Address              pulumi.StringPtrInput                                        `pulumi:"address"`
 	Domain               pulumi.StringPtrInput                                        `pulumi:"domain"`
+	ExternalAuth         pulumi.StringPtrInput                                        `pulumi:"externalAuth"`
 	HealthCheck          pulumi.StringPtrInput                                        `pulumi:"healthCheck"`
 	HealthCheckProto     pulumi.StringPtrInput                                        `pulumi:"healthCheckProto"`
 	HolddownInterval     pulumi.StringPtrInput                                        `pulumi:"holddownInterval"`
@@ -22263,6 +22300,8 @@ type FirewallAccessProxy6ApiGatewayRealserverArgs struct {
 	SshHostKeyValidation pulumi.StringPtrInput                                        `pulumi:"sshHostKeyValidation"`
 	SshHostKeys          FirewallAccessProxy6ApiGatewayRealserverSshHostKeyArrayInput `pulumi:"sshHostKeys"`
 	Status               pulumi.StringPtrInput                                        `pulumi:"status"`
+	TranslateHost        pulumi.StringPtrInput                                        `pulumi:"translateHost"`
+	TunnelEncryption     pulumi.StringPtrInput                                        `pulumi:"tunnelEncryption"`
 	Type                 pulumi.StringPtrInput                                        `pulumi:"type"`
 	Weight               pulumi.IntPtrInput                                           `pulumi:"weight"`
 }
@@ -22330,6 +22369,10 @@ func (o FirewallAccessProxy6ApiGatewayRealserverOutput) Domain() pulumi.StringPt
 	return o.ApplyT(func(v FirewallAccessProxy6ApiGatewayRealserver) *string { return v.Domain }).(pulumi.StringPtrOutput)
 }
 
+func (o FirewallAccessProxy6ApiGatewayRealserverOutput) ExternalAuth() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallAccessProxy6ApiGatewayRealserver) *string { return v.ExternalAuth }).(pulumi.StringPtrOutput)
+}
+
 func (o FirewallAccessProxy6ApiGatewayRealserverOutput) HealthCheck() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FirewallAccessProxy6ApiGatewayRealserver) *string { return v.HealthCheck }).(pulumi.StringPtrOutput)
 }
@@ -22378,6 +22421,14 @@ func (o FirewallAccessProxy6ApiGatewayRealserverOutput) SshHostKeys() FirewallAc
 
 func (o FirewallAccessProxy6ApiGatewayRealserverOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FirewallAccessProxy6ApiGatewayRealserver) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAccessProxy6ApiGatewayRealserverOutput) TranslateHost() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallAccessProxy6ApiGatewayRealserver) *string { return v.TranslateHost }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAccessProxy6ApiGatewayRealserverOutput) TunnelEncryption() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallAccessProxy6ApiGatewayRealserver) *string { return v.TunnelEncryption }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallAccessProxy6ApiGatewayRealserverOutput) Type() pulumi.StringPtrOutput {
@@ -22629,6 +22680,7 @@ type FirewallAccessProxyApiGateway6 struct {
 	SslDhBits                *string                                        `pulumi:"sslDhBits"`
 	SslMaxVersion            *string                                        `pulumi:"sslMaxVersion"`
 	SslMinVersion            *string                                        `pulumi:"sslMinVersion"`
+	SslRenegotiation         *string                                        `pulumi:"sslRenegotiation"`
 	SslVpnWebPortal          *string                                        `pulumi:"sslVpnWebPortal"`
 	UrlMap                   *string                                        `pulumi:"urlMap"`
 	UrlMapType               *string                                        `pulumi:"urlMapType"`
@@ -22667,6 +22719,7 @@ type FirewallAccessProxyApiGateway6Args struct {
 	SslDhBits                pulumi.StringPtrInput                                  `pulumi:"sslDhBits"`
 	SslMaxVersion            pulumi.StringPtrInput                                  `pulumi:"sslMaxVersion"`
 	SslMinVersion            pulumi.StringPtrInput                                  `pulumi:"sslMinVersion"`
+	SslRenegotiation         pulumi.StringPtrInput                                  `pulumi:"sslRenegotiation"`
 	SslVpnWebPortal          pulumi.StringPtrInput                                  `pulumi:"sslVpnWebPortal"`
 	UrlMap                   pulumi.StringPtrInput                                  `pulumi:"urlMap"`
 	UrlMapType               pulumi.StringPtrInput                                  `pulumi:"urlMapType"`
@@ -22810,6 +22863,10 @@ func (o FirewallAccessProxyApiGateway6Output) SslMinVersion() pulumi.StringPtrOu
 	return o.ApplyT(func(v FirewallAccessProxyApiGateway6) *string { return v.SslMinVersion }).(pulumi.StringPtrOutput)
 }
 
+func (o FirewallAccessProxyApiGateway6Output) SslRenegotiation() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallAccessProxyApiGateway6) *string { return v.SslRenegotiation }).(pulumi.StringPtrOutput)
+}
+
 func (o FirewallAccessProxyApiGateway6Output) SslVpnWebPortal() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FirewallAccessProxyApiGateway6) *string { return v.SslVpnWebPortal }).(pulumi.StringPtrOutput)
 }
@@ -22944,6 +23001,7 @@ type FirewallAccessProxyApiGateway6Realserver struct {
 	AddrType             *string                                              `pulumi:"addrType"`
 	Address              *string                                              `pulumi:"address"`
 	Domain               *string                                              `pulumi:"domain"`
+	ExternalAuth         *string                                              `pulumi:"externalAuth"`
 	HealthCheck          *string                                              `pulumi:"healthCheck"`
 	HealthCheckProto     *string                                              `pulumi:"healthCheckProto"`
 	HolddownInterval     *string                                              `pulumi:"holddownInterval"`
@@ -22956,6 +23014,8 @@ type FirewallAccessProxyApiGateway6Realserver struct {
 	SshHostKeyValidation *string                                              `pulumi:"sshHostKeyValidation"`
 	SshHostKeys          []FirewallAccessProxyApiGateway6RealserverSshHostKey `pulumi:"sshHostKeys"`
 	Status               *string                                              `pulumi:"status"`
+	TranslateHost        *string                                              `pulumi:"translateHost"`
+	TunnelEncryption     *string                                              `pulumi:"tunnelEncryption"`
 	Type                 *string                                              `pulumi:"type"`
 	Weight               *int                                                 `pulumi:"weight"`
 }
@@ -22975,6 +23035,7 @@ type FirewallAccessProxyApiGateway6RealserverArgs struct {
 	AddrType             pulumi.StringPtrInput                                        `pulumi:"addrType"`
 	Address              pulumi.StringPtrInput                                        `pulumi:"address"`
 	Domain               pulumi.StringPtrInput                                        `pulumi:"domain"`
+	ExternalAuth         pulumi.StringPtrInput                                        `pulumi:"externalAuth"`
 	HealthCheck          pulumi.StringPtrInput                                        `pulumi:"healthCheck"`
 	HealthCheckProto     pulumi.StringPtrInput                                        `pulumi:"healthCheckProto"`
 	HolddownInterval     pulumi.StringPtrInput                                        `pulumi:"holddownInterval"`
@@ -22987,6 +23048,8 @@ type FirewallAccessProxyApiGateway6RealserverArgs struct {
 	SshHostKeyValidation pulumi.StringPtrInput                                        `pulumi:"sshHostKeyValidation"`
 	SshHostKeys          FirewallAccessProxyApiGateway6RealserverSshHostKeyArrayInput `pulumi:"sshHostKeys"`
 	Status               pulumi.StringPtrInput                                        `pulumi:"status"`
+	TranslateHost        pulumi.StringPtrInput                                        `pulumi:"translateHost"`
+	TunnelEncryption     pulumi.StringPtrInput                                        `pulumi:"tunnelEncryption"`
 	Type                 pulumi.StringPtrInput                                        `pulumi:"type"`
 	Weight               pulumi.IntPtrInput                                           `pulumi:"weight"`
 }
@@ -23054,6 +23117,10 @@ func (o FirewallAccessProxyApiGateway6RealserverOutput) Domain() pulumi.StringPt
 	return o.ApplyT(func(v FirewallAccessProxyApiGateway6Realserver) *string { return v.Domain }).(pulumi.StringPtrOutput)
 }
 
+func (o FirewallAccessProxyApiGateway6RealserverOutput) ExternalAuth() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallAccessProxyApiGateway6Realserver) *string { return v.ExternalAuth }).(pulumi.StringPtrOutput)
+}
+
 func (o FirewallAccessProxyApiGateway6RealserverOutput) HealthCheck() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FirewallAccessProxyApiGateway6Realserver) *string { return v.HealthCheck }).(pulumi.StringPtrOutput)
 }
@@ -23102,6 +23169,14 @@ func (o FirewallAccessProxyApiGateway6RealserverOutput) SshHostKeys() FirewallAc
 
 func (o FirewallAccessProxyApiGateway6RealserverOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FirewallAccessProxyApiGateway6Realserver) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAccessProxyApiGateway6RealserverOutput) TranslateHost() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallAccessProxyApiGateway6Realserver) *string { return v.TranslateHost }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAccessProxyApiGateway6RealserverOutput) TunnelEncryption() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallAccessProxyApiGateway6Realserver) *string { return v.TunnelEncryption }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallAccessProxyApiGateway6RealserverOutput) Type() pulumi.StringPtrOutput {
@@ -23353,6 +23428,7 @@ type FirewallAccessProxyApiGateway struct {
 	SslDhBits                *string                                       `pulumi:"sslDhBits"`
 	SslMaxVersion            *string                                       `pulumi:"sslMaxVersion"`
 	SslMinVersion            *string                                       `pulumi:"sslMinVersion"`
+	SslRenegotiation         *string                                       `pulumi:"sslRenegotiation"`
 	SslVpnWebPortal          *string                                       `pulumi:"sslVpnWebPortal"`
 	UrlMap                   *string                                       `pulumi:"urlMap"`
 	UrlMapType               *string                                       `pulumi:"urlMapType"`
@@ -23391,6 +23467,7 @@ type FirewallAccessProxyApiGatewayArgs struct {
 	SslDhBits                pulumi.StringPtrInput                                 `pulumi:"sslDhBits"`
 	SslMaxVersion            pulumi.StringPtrInput                                 `pulumi:"sslMaxVersion"`
 	SslMinVersion            pulumi.StringPtrInput                                 `pulumi:"sslMinVersion"`
+	SslRenegotiation         pulumi.StringPtrInput                                 `pulumi:"sslRenegotiation"`
 	SslVpnWebPortal          pulumi.StringPtrInput                                 `pulumi:"sslVpnWebPortal"`
 	UrlMap                   pulumi.StringPtrInput                                 `pulumi:"urlMap"`
 	UrlMapType               pulumi.StringPtrInput                                 `pulumi:"urlMapType"`
@@ -23532,6 +23609,10 @@ func (o FirewallAccessProxyApiGatewayOutput) SslMinVersion() pulumi.StringPtrOut
 	return o.ApplyT(func(v FirewallAccessProxyApiGateway) *string { return v.SslMinVersion }).(pulumi.StringPtrOutput)
 }
 
+func (o FirewallAccessProxyApiGatewayOutput) SslRenegotiation() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallAccessProxyApiGateway) *string { return v.SslRenegotiation }).(pulumi.StringPtrOutput)
+}
+
 func (o FirewallAccessProxyApiGatewayOutput) SslVpnWebPortal() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FirewallAccessProxyApiGateway) *string { return v.SslVpnWebPortal }).(pulumi.StringPtrOutput)
 }
@@ -23666,6 +23747,7 @@ type FirewallAccessProxyApiGatewayRealserver struct {
 	AddrType             *string                                             `pulumi:"addrType"`
 	Address              *string                                             `pulumi:"address"`
 	Domain               *string                                             `pulumi:"domain"`
+	ExternalAuth         *string                                             `pulumi:"externalAuth"`
 	HealthCheck          *string                                             `pulumi:"healthCheck"`
 	HealthCheckProto     *string                                             `pulumi:"healthCheckProto"`
 	HolddownInterval     *string                                             `pulumi:"holddownInterval"`
@@ -23678,6 +23760,8 @@ type FirewallAccessProxyApiGatewayRealserver struct {
 	SshHostKeyValidation *string                                             `pulumi:"sshHostKeyValidation"`
 	SshHostKeys          []FirewallAccessProxyApiGatewayRealserverSshHostKey `pulumi:"sshHostKeys"`
 	Status               *string                                             `pulumi:"status"`
+	TranslateHost        *string                                             `pulumi:"translateHost"`
+	TunnelEncryption     *string                                             `pulumi:"tunnelEncryption"`
 	Type                 *string                                             `pulumi:"type"`
 	Weight               *int                                                `pulumi:"weight"`
 }
@@ -23697,6 +23781,7 @@ type FirewallAccessProxyApiGatewayRealserverArgs struct {
 	AddrType             pulumi.StringPtrInput                                       `pulumi:"addrType"`
 	Address              pulumi.StringPtrInput                                       `pulumi:"address"`
 	Domain               pulumi.StringPtrInput                                       `pulumi:"domain"`
+	ExternalAuth         pulumi.StringPtrInput                                       `pulumi:"externalAuth"`
 	HealthCheck          pulumi.StringPtrInput                                       `pulumi:"healthCheck"`
 	HealthCheckProto     pulumi.StringPtrInput                                       `pulumi:"healthCheckProto"`
 	HolddownInterval     pulumi.StringPtrInput                                       `pulumi:"holddownInterval"`
@@ -23709,6 +23794,8 @@ type FirewallAccessProxyApiGatewayRealserverArgs struct {
 	SshHostKeyValidation pulumi.StringPtrInput                                       `pulumi:"sshHostKeyValidation"`
 	SshHostKeys          FirewallAccessProxyApiGatewayRealserverSshHostKeyArrayInput `pulumi:"sshHostKeys"`
 	Status               pulumi.StringPtrInput                                       `pulumi:"status"`
+	TranslateHost        pulumi.StringPtrInput                                       `pulumi:"translateHost"`
+	TunnelEncryption     pulumi.StringPtrInput                                       `pulumi:"tunnelEncryption"`
 	Type                 pulumi.StringPtrInput                                       `pulumi:"type"`
 	Weight               pulumi.IntPtrInput                                          `pulumi:"weight"`
 }
@@ -23776,6 +23863,10 @@ func (o FirewallAccessProxyApiGatewayRealserverOutput) Domain() pulumi.StringPtr
 	return o.ApplyT(func(v FirewallAccessProxyApiGatewayRealserver) *string { return v.Domain }).(pulumi.StringPtrOutput)
 }
 
+func (o FirewallAccessProxyApiGatewayRealserverOutput) ExternalAuth() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallAccessProxyApiGatewayRealserver) *string { return v.ExternalAuth }).(pulumi.StringPtrOutput)
+}
+
 func (o FirewallAccessProxyApiGatewayRealserverOutput) HealthCheck() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FirewallAccessProxyApiGatewayRealserver) *string { return v.HealthCheck }).(pulumi.StringPtrOutput)
 }
@@ -23824,6 +23915,14 @@ func (o FirewallAccessProxyApiGatewayRealserverOutput) SshHostKeys() FirewallAcc
 
 func (o FirewallAccessProxyApiGatewayRealserverOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FirewallAccessProxyApiGatewayRealserver) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAccessProxyApiGatewayRealserverOutput) TranslateHost() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallAccessProxyApiGatewayRealserver) *string { return v.TranslateHost }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAccessProxyApiGatewayRealserverOutput) TunnelEncryption() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallAccessProxyApiGatewayRealserver) *string { return v.TunnelEncryption }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallAccessProxyApiGatewayRealserverOutput) Type() pulumi.StringPtrOutput {
@@ -25360,6 +25459,100 @@ func (o FirewallAddressTaggingTagArrayOutput) Index(i pulumi.IntInput) FirewallA
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallAddressTaggingTag {
 		return vs[0].([]FirewallAddressTaggingTag)[vs[1].(int)]
 	}).(FirewallAddressTaggingTagOutput)
+}
+
+type FirewallAddrgrp6ExcludeMember struct {
+	Name *string `pulumi:"name"`
+}
+
+// FirewallAddrgrp6ExcludeMemberInput is an input type that accepts FirewallAddrgrp6ExcludeMemberArgs and FirewallAddrgrp6ExcludeMemberOutput values.
+// You can construct a concrete instance of `FirewallAddrgrp6ExcludeMemberInput` via:
+//
+//	FirewallAddrgrp6ExcludeMemberArgs{...}
+type FirewallAddrgrp6ExcludeMemberInput interface {
+	pulumi.Input
+
+	ToFirewallAddrgrp6ExcludeMemberOutput() FirewallAddrgrp6ExcludeMemberOutput
+	ToFirewallAddrgrp6ExcludeMemberOutputWithContext(context.Context) FirewallAddrgrp6ExcludeMemberOutput
+}
+
+type FirewallAddrgrp6ExcludeMemberArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (FirewallAddrgrp6ExcludeMemberArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FirewallAddrgrp6ExcludeMember)(nil)).Elem()
+}
+
+func (i FirewallAddrgrp6ExcludeMemberArgs) ToFirewallAddrgrp6ExcludeMemberOutput() FirewallAddrgrp6ExcludeMemberOutput {
+	return i.ToFirewallAddrgrp6ExcludeMemberOutputWithContext(context.Background())
+}
+
+func (i FirewallAddrgrp6ExcludeMemberArgs) ToFirewallAddrgrp6ExcludeMemberOutputWithContext(ctx context.Context) FirewallAddrgrp6ExcludeMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FirewallAddrgrp6ExcludeMemberOutput)
+}
+
+// FirewallAddrgrp6ExcludeMemberArrayInput is an input type that accepts FirewallAddrgrp6ExcludeMemberArray and FirewallAddrgrp6ExcludeMemberArrayOutput values.
+// You can construct a concrete instance of `FirewallAddrgrp6ExcludeMemberArrayInput` via:
+//
+//	FirewallAddrgrp6ExcludeMemberArray{ FirewallAddrgrp6ExcludeMemberArgs{...} }
+type FirewallAddrgrp6ExcludeMemberArrayInput interface {
+	pulumi.Input
+
+	ToFirewallAddrgrp6ExcludeMemberArrayOutput() FirewallAddrgrp6ExcludeMemberArrayOutput
+	ToFirewallAddrgrp6ExcludeMemberArrayOutputWithContext(context.Context) FirewallAddrgrp6ExcludeMemberArrayOutput
+}
+
+type FirewallAddrgrp6ExcludeMemberArray []FirewallAddrgrp6ExcludeMemberInput
+
+func (FirewallAddrgrp6ExcludeMemberArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FirewallAddrgrp6ExcludeMember)(nil)).Elem()
+}
+
+func (i FirewallAddrgrp6ExcludeMemberArray) ToFirewallAddrgrp6ExcludeMemberArrayOutput() FirewallAddrgrp6ExcludeMemberArrayOutput {
+	return i.ToFirewallAddrgrp6ExcludeMemberArrayOutputWithContext(context.Background())
+}
+
+func (i FirewallAddrgrp6ExcludeMemberArray) ToFirewallAddrgrp6ExcludeMemberArrayOutputWithContext(ctx context.Context) FirewallAddrgrp6ExcludeMemberArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FirewallAddrgrp6ExcludeMemberArrayOutput)
+}
+
+type FirewallAddrgrp6ExcludeMemberOutput struct{ *pulumi.OutputState }
+
+func (FirewallAddrgrp6ExcludeMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FirewallAddrgrp6ExcludeMember)(nil)).Elem()
+}
+
+func (o FirewallAddrgrp6ExcludeMemberOutput) ToFirewallAddrgrp6ExcludeMemberOutput() FirewallAddrgrp6ExcludeMemberOutput {
+	return o
+}
+
+func (o FirewallAddrgrp6ExcludeMemberOutput) ToFirewallAddrgrp6ExcludeMemberOutputWithContext(ctx context.Context) FirewallAddrgrp6ExcludeMemberOutput {
+	return o
+}
+
+func (o FirewallAddrgrp6ExcludeMemberOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallAddrgrp6ExcludeMember) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type FirewallAddrgrp6ExcludeMemberArrayOutput struct{ *pulumi.OutputState }
+
+func (FirewallAddrgrp6ExcludeMemberArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FirewallAddrgrp6ExcludeMember)(nil)).Elem()
+}
+
+func (o FirewallAddrgrp6ExcludeMemberArrayOutput) ToFirewallAddrgrp6ExcludeMemberArrayOutput() FirewallAddrgrp6ExcludeMemberArrayOutput {
+	return o
+}
+
+func (o FirewallAddrgrp6ExcludeMemberArrayOutput) ToFirewallAddrgrp6ExcludeMemberArrayOutputWithContext(ctx context.Context) FirewallAddrgrp6ExcludeMemberArrayOutput {
+	return o
+}
+
+func (o FirewallAddrgrp6ExcludeMemberArrayOutput) Index(i pulumi.IntInput) FirewallAddrgrp6ExcludeMemberOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallAddrgrp6ExcludeMember {
+		return vs[0].([]FirewallAddrgrp6ExcludeMember)[vs[1].(int)]
+	}).(FirewallAddrgrp6ExcludeMemberOutput)
 }
 
 type FirewallAddrgrp6Member struct {
@@ -33084,6 +33277,100 @@ func (o FirewallInternetServiceGroupMemberArrayOutput) Index(i pulumi.IntInput) 
 	}).(FirewallInternetServiceGroupMemberOutput)
 }
 
+type FirewallInternetServiceSubappSubApp struct {
+	Id *int `pulumi:"id"`
+}
+
+// FirewallInternetServiceSubappSubAppInput is an input type that accepts FirewallInternetServiceSubappSubAppArgs and FirewallInternetServiceSubappSubAppOutput values.
+// You can construct a concrete instance of `FirewallInternetServiceSubappSubAppInput` via:
+//
+//	FirewallInternetServiceSubappSubAppArgs{...}
+type FirewallInternetServiceSubappSubAppInput interface {
+	pulumi.Input
+
+	ToFirewallInternetServiceSubappSubAppOutput() FirewallInternetServiceSubappSubAppOutput
+	ToFirewallInternetServiceSubappSubAppOutputWithContext(context.Context) FirewallInternetServiceSubappSubAppOutput
+}
+
+type FirewallInternetServiceSubappSubAppArgs struct {
+	Id pulumi.IntPtrInput `pulumi:"id"`
+}
+
+func (FirewallInternetServiceSubappSubAppArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FirewallInternetServiceSubappSubApp)(nil)).Elem()
+}
+
+func (i FirewallInternetServiceSubappSubAppArgs) ToFirewallInternetServiceSubappSubAppOutput() FirewallInternetServiceSubappSubAppOutput {
+	return i.ToFirewallInternetServiceSubappSubAppOutputWithContext(context.Background())
+}
+
+func (i FirewallInternetServiceSubappSubAppArgs) ToFirewallInternetServiceSubappSubAppOutputWithContext(ctx context.Context) FirewallInternetServiceSubappSubAppOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceSubappSubAppOutput)
+}
+
+// FirewallInternetServiceSubappSubAppArrayInput is an input type that accepts FirewallInternetServiceSubappSubAppArray and FirewallInternetServiceSubappSubAppArrayOutput values.
+// You can construct a concrete instance of `FirewallInternetServiceSubappSubAppArrayInput` via:
+//
+//	FirewallInternetServiceSubappSubAppArray{ FirewallInternetServiceSubappSubAppArgs{...} }
+type FirewallInternetServiceSubappSubAppArrayInput interface {
+	pulumi.Input
+
+	ToFirewallInternetServiceSubappSubAppArrayOutput() FirewallInternetServiceSubappSubAppArrayOutput
+	ToFirewallInternetServiceSubappSubAppArrayOutputWithContext(context.Context) FirewallInternetServiceSubappSubAppArrayOutput
+}
+
+type FirewallInternetServiceSubappSubAppArray []FirewallInternetServiceSubappSubAppInput
+
+func (FirewallInternetServiceSubappSubAppArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FirewallInternetServiceSubappSubApp)(nil)).Elem()
+}
+
+func (i FirewallInternetServiceSubappSubAppArray) ToFirewallInternetServiceSubappSubAppArrayOutput() FirewallInternetServiceSubappSubAppArrayOutput {
+	return i.ToFirewallInternetServiceSubappSubAppArrayOutputWithContext(context.Background())
+}
+
+func (i FirewallInternetServiceSubappSubAppArray) ToFirewallInternetServiceSubappSubAppArrayOutputWithContext(ctx context.Context) FirewallInternetServiceSubappSubAppArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceSubappSubAppArrayOutput)
+}
+
+type FirewallInternetServiceSubappSubAppOutput struct{ *pulumi.OutputState }
+
+func (FirewallInternetServiceSubappSubAppOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FirewallInternetServiceSubappSubApp)(nil)).Elem()
+}
+
+func (o FirewallInternetServiceSubappSubAppOutput) ToFirewallInternetServiceSubappSubAppOutput() FirewallInternetServiceSubappSubAppOutput {
+	return o
+}
+
+func (o FirewallInternetServiceSubappSubAppOutput) ToFirewallInternetServiceSubappSubAppOutputWithContext(ctx context.Context) FirewallInternetServiceSubappSubAppOutput {
+	return o
+}
+
+func (o FirewallInternetServiceSubappSubAppOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v FirewallInternetServiceSubappSubApp) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+type FirewallInternetServiceSubappSubAppArrayOutput struct{ *pulumi.OutputState }
+
+func (FirewallInternetServiceSubappSubAppArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FirewallInternetServiceSubappSubApp)(nil)).Elem()
+}
+
+func (o FirewallInternetServiceSubappSubAppArrayOutput) ToFirewallInternetServiceSubappSubAppArrayOutput() FirewallInternetServiceSubappSubAppArrayOutput {
+	return o
+}
+
+func (o FirewallInternetServiceSubappSubAppArrayOutput) ToFirewallInternetServiceSubappSubAppArrayOutputWithContext(ctx context.Context) FirewallInternetServiceSubappSubAppArrayOutput {
+	return o
+}
+
+func (o FirewallInternetServiceSubappSubAppArrayOutput) Index(i pulumi.IntInput) FirewallInternetServiceSubappSubAppOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallInternetServiceSubappSubApp {
+		return vs[0].([]FirewallInternetServiceSubappSubApp)[vs[1].(int)]
+	}).(FirewallInternetServiceSubappSubAppOutput)
+}
+
 type FirewallLocalInPolicy6Dstaddr struct {
 	Name *string `pulumi:"name"`
 }
@@ -39594,6 +39881,100 @@ func (o FirewallPolicyNtlmEnabledBrowserArrayOutput) Index(i pulumi.IntInput) Fi
 	}).(FirewallPolicyNtlmEnabledBrowserOutput)
 }
 
+type FirewallPolicyPcpPoolname struct {
+	Name *string `pulumi:"name"`
+}
+
+// FirewallPolicyPcpPoolnameInput is an input type that accepts FirewallPolicyPcpPoolnameArgs and FirewallPolicyPcpPoolnameOutput values.
+// You can construct a concrete instance of `FirewallPolicyPcpPoolnameInput` via:
+//
+//	FirewallPolicyPcpPoolnameArgs{...}
+type FirewallPolicyPcpPoolnameInput interface {
+	pulumi.Input
+
+	ToFirewallPolicyPcpPoolnameOutput() FirewallPolicyPcpPoolnameOutput
+	ToFirewallPolicyPcpPoolnameOutputWithContext(context.Context) FirewallPolicyPcpPoolnameOutput
+}
+
+type FirewallPolicyPcpPoolnameArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (FirewallPolicyPcpPoolnameArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FirewallPolicyPcpPoolname)(nil)).Elem()
+}
+
+func (i FirewallPolicyPcpPoolnameArgs) ToFirewallPolicyPcpPoolnameOutput() FirewallPolicyPcpPoolnameOutput {
+	return i.ToFirewallPolicyPcpPoolnameOutputWithContext(context.Background())
+}
+
+func (i FirewallPolicyPcpPoolnameArgs) ToFirewallPolicyPcpPoolnameOutputWithContext(ctx context.Context) FirewallPolicyPcpPoolnameOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FirewallPolicyPcpPoolnameOutput)
+}
+
+// FirewallPolicyPcpPoolnameArrayInput is an input type that accepts FirewallPolicyPcpPoolnameArray and FirewallPolicyPcpPoolnameArrayOutput values.
+// You can construct a concrete instance of `FirewallPolicyPcpPoolnameArrayInput` via:
+//
+//	FirewallPolicyPcpPoolnameArray{ FirewallPolicyPcpPoolnameArgs{...} }
+type FirewallPolicyPcpPoolnameArrayInput interface {
+	pulumi.Input
+
+	ToFirewallPolicyPcpPoolnameArrayOutput() FirewallPolicyPcpPoolnameArrayOutput
+	ToFirewallPolicyPcpPoolnameArrayOutputWithContext(context.Context) FirewallPolicyPcpPoolnameArrayOutput
+}
+
+type FirewallPolicyPcpPoolnameArray []FirewallPolicyPcpPoolnameInput
+
+func (FirewallPolicyPcpPoolnameArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FirewallPolicyPcpPoolname)(nil)).Elem()
+}
+
+func (i FirewallPolicyPcpPoolnameArray) ToFirewallPolicyPcpPoolnameArrayOutput() FirewallPolicyPcpPoolnameArrayOutput {
+	return i.ToFirewallPolicyPcpPoolnameArrayOutputWithContext(context.Background())
+}
+
+func (i FirewallPolicyPcpPoolnameArray) ToFirewallPolicyPcpPoolnameArrayOutputWithContext(ctx context.Context) FirewallPolicyPcpPoolnameArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FirewallPolicyPcpPoolnameArrayOutput)
+}
+
+type FirewallPolicyPcpPoolnameOutput struct{ *pulumi.OutputState }
+
+func (FirewallPolicyPcpPoolnameOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FirewallPolicyPcpPoolname)(nil)).Elem()
+}
+
+func (o FirewallPolicyPcpPoolnameOutput) ToFirewallPolicyPcpPoolnameOutput() FirewallPolicyPcpPoolnameOutput {
+	return o
+}
+
+func (o FirewallPolicyPcpPoolnameOutput) ToFirewallPolicyPcpPoolnameOutputWithContext(ctx context.Context) FirewallPolicyPcpPoolnameOutput {
+	return o
+}
+
+func (o FirewallPolicyPcpPoolnameOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallPolicyPcpPoolname) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type FirewallPolicyPcpPoolnameArrayOutput struct{ *pulumi.OutputState }
+
+func (FirewallPolicyPcpPoolnameArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FirewallPolicyPcpPoolname)(nil)).Elem()
+}
+
+func (o FirewallPolicyPcpPoolnameArrayOutput) ToFirewallPolicyPcpPoolnameArrayOutput() FirewallPolicyPcpPoolnameArrayOutput {
+	return o
+}
+
+func (o FirewallPolicyPcpPoolnameArrayOutput) ToFirewallPolicyPcpPoolnameArrayOutputWithContext(ctx context.Context) FirewallPolicyPcpPoolnameArrayOutput {
+	return o
+}
+
+func (o FirewallPolicyPcpPoolnameArrayOutput) Index(i pulumi.IntInput) FirewallPolicyPcpPoolnameOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallPolicyPcpPoolname {
+		return vs[0].([]FirewallPolicyPcpPoolname)[vs[1].(int)]
+	}).(FirewallPolicyPcpPoolnameOutput)
+}
+
 type FirewallPolicyPoolname6 struct {
 	Name *string `pulumi:"name"`
 }
@@ -40816,6 +41197,100 @@ func (o FirewallPolicyZtnaEmsTagArrayOutput) Index(i pulumi.IntInput) FirewallPo
 	}).(FirewallPolicyZtnaEmsTagOutput)
 }
 
+type FirewallPolicyZtnaEmsTagSecondary struct {
+	Name *string `pulumi:"name"`
+}
+
+// FirewallPolicyZtnaEmsTagSecondaryInput is an input type that accepts FirewallPolicyZtnaEmsTagSecondaryArgs and FirewallPolicyZtnaEmsTagSecondaryOutput values.
+// You can construct a concrete instance of `FirewallPolicyZtnaEmsTagSecondaryInput` via:
+//
+//	FirewallPolicyZtnaEmsTagSecondaryArgs{...}
+type FirewallPolicyZtnaEmsTagSecondaryInput interface {
+	pulumi.Input
+
+	ToFirewallPolicyZtnaEmsTagSecondaryOutput() FirewallPolicyZtnaEmsTagSecondaryOutput
+	ToFirewallPolicyZtnaEmsTagSecondaryOutputWithContext(context.Context) FirewallPolicyZtnaEmsTagSecondaryOutput
+}
+
+type FirewallPolicyZtnaEmsTagSecondaryArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (FirewallPolicyZtnaEmsTagSecondaryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FirewallPolicyZtnaEmsTagSecondary)(nil)).Elem()
+}
+
+func (i FirewallPolicyZtnaEmsTagSecondaryArgs) ToFirewallPolicyZtnaEmsTagSecondaryOutput() FirewallPolicyZtnaEmsTagSecondaryOutput {
+	return i.ToFirewallPolicyZtnaEmsTagSecondaryOutputWithContext(context.Background())
+}
+
+func (i FirewallPolicyZtnaEmsTagSecondaryArgs) ToFirewallPolicyZtnaEmsTagSecondaryOutputWithContext(ctx context.Context) FirewallPolicyZtnaEmsTagSecondaryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FirewallPolicyZtnaEmsTagSecondaryOutput)
+}
+
+// FirewallPolicyZtnaEmsTagSecondaryArrayInput is an input type that accepts FirewallPolicyZtnaEmsTagSecondaryArray and FirewallPolicyZtnaEmsTagSecondaryArrayOutput values.
+// You can construct a concrete instance of `FirewallPolicyZtnaEmsTagSecondaryArrayInput` via:
+//
+//	FirewallPolicyZtnaEmsTagSecondaryArray{ FirewallPolicyZtnaEmsTagSecondaryArgs{...} }
+type FirewallPolicyZtnaEmsTagSecondaryArrayInput interface {
+	pulumi.Input
+
+	ToFirewallPolicyZtnaEmsTagSecondaryArrayOutput() FirewallPolicyZtnaEmsTagSecondaryArrayOutput
+	ToFirewallPolicyZtnaEmsTagSecondaryArrayOutputWithContext(context.Context) FirewallPolicyZtnaEmsTagSecondaryArrayOutput
+}
+
+type FirewallPolicyZtnaEmsTagSecondaryArray []FirewallPolicyZtnaEmsTagSecondaryInput
+
+func (FirewallPolicyZtnaEmsTagSecondaryArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FirewallPolicyZtnaEmsTagSecondary)(nil)).Elem()
+}
+
+func (i FirewallPolicyZtnaEmsTagSecondaryArray) ToFirewallPolicyZtnaEmsTagSecondaryArrayOutput() FirewallPolicyZtnaEmsTagSecondaryArrayOutput {
+	return i.ToFirewallPolicyZtnaEmsTagSecondaryArrayOutputWithContext(context.Background())
+}
+
+func (i FirewallPolicyZtnaEmsTagSecondaryArray) ToFirewallPolicyZtnaEmsTagSecondaryArrayOutputWithContext(ctx context.Context) FirewallPolicyZtnaEmsTagSecondaryArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FirewallPolicyZtnaEmsTagSecondaryArrayOutput)
+}
+
+type FirewallPolicyZtnaEmsTagSecondaryOutput struct{ *pulumi.OutputState }
+
+func (FirewallPolicyZtnaEmsTagSecondaryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FirewallPolicyZtnaEmsTagSecondary)(nil)).Elem()
+}
+
+func (o FirewallPolicyZtnaEmsTagSecondaryOutput) ToFirewallPolicyZtnaEmsTagSecondaryOutput() FirewallPolicyZtnaEmsTagSecondaryOutput {
+	return o
+}
+
+func (o FirewallPolicyZtnaEmsTagSecondaryOutput) ToFirewallPolicyZtnaEmsTagSecondaryOutputWithContext(ctx context.Context) FirewallPolicyZtnaEmsTagSecondaryOutput {
+	return o
+}
+
+func (o FirewallPolicyZtnaEmsTagSecondaryOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallPolicyZtnaEmsTagSecondary) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type FirewallPolicyZtnaEmsTagSecondaryArrayOutput struct{ *pulumi.OutputState }
+
+func (FirewallPolicyZtnaEmsTagSecondaryArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FirewallPolicyZtnaEmsTagSecondary)(nil)).Elem()
+}
+
+func (o FirewallPolicyZtnaEmsTagSecondaryArrayOutput) ToFirewallPolicyZtnaEmsTagSecondaryArrayOutput() FirewallPolicyZtnaEmsTagSecondaryArrayOutput {
+	return o
+}
+
+func (o FirewallPolicyZtnaEmsTagSecondaryArrayOutput) ToFirewallPolicyZtnaEmsTagSecondaryArrayOutputWithContext(ctx context.Context) FirewallPolicyZtnaEmsTagSecondaryArrayOutput {
+	return o
+}
+
+func (o FirewallPolicyZtnaEmsTagSecondaryArrayOutput) Index(i pulumi.IntInput) FirewallPolicyZtnaEmsTagSecondaryOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallPolicyZtnaEmsTagSecondary {
+		return vs[0].([]FirewallPolicyZtnaEmsTagSecondary)[vs[1].(int)]
+	}).(FirewallPolicyZtnaEmsTagSecondaryOutput)
+}
+
 type FirewallPolicyZtnaGeoTag struct {
 	Name *string `pulumi:"name"`
 }
@@ -41892,6 +42367,7 @@ type FirewallProfileProtocolOptionsHttp struct {
 	TunnelNonHttp                *string `pulumi:"tunnelNonHttp"`
 	UncompressedNestLimit        *int    `pulumi:"uncompressedNestLimit"`
 	UncompressedOversizeLimit    *int    `pulumi:"uncompressedOversizeLimit"`
+	UnknownContentEncoding       *string `pulumi:"unknownContentEncoding"`
 	UnknownHttpVersion           *string `pulumi:"unknownHttpVersion"`
 	VerifyDnsForPolicyMatching   *string `pulumi:"verifyDnsForPolicyMatching"`
 }
@@ -41938,6 +42414,7 @@ type FirewallProfileProtocolOptionsHttpArgs struct {
 	TunnelNonHttp                pulumi.StringPtrInput `pulumi:"tunnelNonHttp"`
 	UncompressedNestLimit        pulumi.IntPtrInput    `pulumi:"uncompressedNestLimit"`
 	UncompressedOversizeLimit    pulumi.IntPtrInput    `pulumi:"uncompressedOversizeLimit"`
+	UnknownContentEncoding       pulumi.StringPtrInput `pulumi:"unknownContentEncoding"`
 	UnknownHttpVersion           pulumi.StringPtrInput `pulumi:"unknownHttpVersion"`
 	VerifyDnsForPolicyMatching   pulumi.StringPtrInput `pulumi:"verifyDnsForPolicyMatching"`
 }
@@ -42137,6 +42614,10 @@ func (o FirewallProfileProtocolOptionsHttpOutput) UncompressedNestLimit() pulumi
 
 func (o FirewallProfileProtocolOptionsHttpOutput) UncompressedOversizeLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v FirewallProfileProtocolOptionsHttp) *int { return v.UncompressedOversizeLimit }).(pulumi.IntPtrOutput)
+}
+
+func (o FirewallProfileProtocolOptionsHttpOutput) UnknownContentEncoding() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallProfileProtocolOptionsHttp) *string { return v.UnknownContentEncoding }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallProfileProtocolOptionsHttpOutput) UnknownHttpVersion() pulumi.StringPtrOutput {
@@ -42439,6 +42920,15 @@ func (o FirewallProfileProtocolOptionsHttpPtrOutput) UncompressedOversizeLimit()
 		}
 		return v.UncompressedOversizeLimit
 	}).(pulumi.IntPtrOutput)
+}
+
+func (o FirewallProfileProtocolOptionsHttpPtrOutput) UnknownContentEncoding() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallProfileProtocolOptionsHttp) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UnknownContentEncoding
+	}).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallProfileProtocolOptionsHttpPtrOutput) UnknownHttpVersion() pulumi.StringPtrOutput {
@@ -45571,6 +46061,382 @@ func (o FirewallProxyPolicyGroupArrayOutput) Index(i pulumi.IntInput) FirewallPr
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallProxyPolicyGroup {
 		return vs[0].([]FirewallProxyPolicyGroup)[vs[1].(int)]
 	}).(FirewallProxyPolicyGroupOutput)
+}
+
+type FirewallProxyPolicyInternetService6Custom struct {
+	Name *string `pulumi:"name"`
+}
+
+// FirewallProxyPolicyInternetService6CustomInput is an input type that accepts FirewallProxyPolicyInternetService6CustomArgs and FirewallProxyPolicyInternetService6CustomOutput values.
+// You can construct a concrete instance of `FirewallProxyPolicyInternetService6CustomInput` via:
+//
+//	FirewallProxyPolicyInternetService6CustomArgs{...}
+type FirewallProxyPolicyInternetService6CustomInput interface {
+	pulumi.Input
+
+	ToFirewallProxyPolicyInternetService6CustomOutput() FirewallProxyPolicyInternetService6CustomOutput
+	ToFirewallProxyPolicyInternetService6CustomOutputWithContext(context.Context) FirewallProxyPolicyInternetService6CustomOutput
+}
+
+type FirewallProxyPolicyInternetService6CustomArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (FirewallProxyPolicyInternetService6CustomArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FirewallProxyPolicyInternetService6Custom)(nil)).Elem()
+}
+
+func (i FirewallProxyPolicyInternetService6CustomArgs) ToFirewallProxyPolicyInternetService6CustomOutput() FirewallProxyPolicyInternetService6CustomOutput {
+	return i.ToFirewallProxyPolicyInternetService6CustomOutputWithContext(context.Background())
+}
+
+func (i FirewallProxyPolicyInternetService6CustomArgs) ToFirewallProxyPolicyInternetService6CustomOutputWithContext(ctx context.Context) FirewallProxyPolicyInternetService6CustomOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FirewallProxyPolicyInternetService6CustomOutput)
+}
+
+// FirewallProxyPolicyInternetService6CustomArrayInput is an input type that accepts FirewallProxyPolicyInternetService6CustomArray and FirewallProxyPolicyInternetService6CustomArrayOutput values.
+// You can construct a concrete instance of `FirewallProxyPolicyInternetService6CustomArrayInput` via:
+//
+//	FirewallProxyPolicyInternetService6CustomArray{ FirewallProxyPolicyInternetService6CustomArgs{...} }
+type FirewallProxyPolicyInternetService6CustomArrayInput interface {
+	pulumi.Input
+
+	ToFirewallProxyPolicyInternetService6CustomArrayOutput() FirewallProxyPolicyInternetService6CustomArrayOutput
+	ToFirewallProxyPolicyInternetService6CustomArrayOutputWithContext(context.Context) FirewallProxyPolicyInternetService6CustomArrayOutput
+}
+
+type FirewallProxyPolicyInternetService6CustomArray []FirewallProxyPolicyInternetService6CustomInput
+
+func (FirewallProxyPolicyInternetService6CustomArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FirewallProxyPolicyInternetService6Custom)(nil)).Elem()
+}
+
+func (i FirewallProxyPolicyInternetService6CustomArray) ToFirewallProxyPolicyInternetService6CustomArrayOutput() FirewallProxyPolicyInternetService6CustomArrayOutput {
+	return i.ToFirewallProxyPolicyInternetService6CustomArrayOutputWithContext(context.Background())
+}
+
+func (i FirewallProxyPolicyInternetService6CustomArray) ToFirewallProxyPolicyInternetService6CustomArrayOutputWithContext(ctx context.Context) FirewallProxyPolicyInternetService6CustomArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FirewallProxyPolicyInternetService6CustomArrayOutput)
+}
+
+type FirewallProxyPolicyInternetService6CustomOutput struct{ *pulumi.OutputState }
+
+func (FirewallProxyPolicyInternetService6CustomOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FirewallProxyPolicyInternetService6Custom)(nil)).Elem()
+}
+
+func (o FirewallProxyPolicyInternetService6CustomOutput) ToFirewallProxyPolicyInternetService6CustomOutput() FirewallProxyPolicyInternetService6CustomOutput {
+	return o
+}
+
+func (o FirewallProxyPolicyInternetService6CustomOutput) ToFirewallProxyPolicyInternetService6CustomOutputWithContext(ctx context.Context) FirewallProxyPolicyInternetService6CustomOutput {
+	return o
+}
+
+func (o FirewallProxyPolicyInternetService6CustomOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallProxyPolicyInternetService6Custom) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type FirewallProxyPolicyInternetService6CustomArrayOutput struct{ *pulumi.OutputState }
+
+func (FirewallProxyPolicyInternetService6CustomArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FirewallProxyPolicyInternetService6Custom)(nil)).Elem()
+}
+
+func (o FirewallProxyPolicyInternetService6CustomArrayOutput) ToFirewallProxyPolicyInternetService6CustomArrayOutput() FirewallProxyPolicyInternetService6CustomArrayOutput {
+	return o
+}
+
+func (o FirewallProxyPolicyInternetService6CustomArrayOutput) ToFirewallProxyPolicyInternetService6CustomArrayOutputWithContext(ctx context.Context) FirewallProxyPolicyInternetService6CustomArrayOutput {
+	return o
+}
+
+func (o FirewallProxyPolicyInternetService6CustomArrayOutput) Index(i pulumi.IntInput) FirewallProxyPolicyInternetService6CustomOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallProxyPolicyInternetService6Custom {
+		return vs[0].([]FirewallProxyPolicyInternetService6Custom)[vs[1].(int)]
+	}).(FirewallProxyPolicyInternetService6CustomOutput)
+}
+
+type FirewallProxyPolicyInternetService6CustomGroup struct {
+	Name *string `pulumi:"name"`
+}
+
+// FirewallProxyPolicyInternetService6CustomGroupInput is an input type that accepts FirewallProxyPolicyInternetService6CustomGroupArgs and FirewallProxyPolicyInternetService6CustomGroupOutput values.
+// You can construct a concrete instance of `FirewallProxyPolicyInternetService6CustomGroupInput` via:
+//
+//	FirewallProxyPolicyInternetService6CustomGroupArgs{...}
+type FirewallProxyPolicyInternetService6CustomGroupInput interface {
+	pulumi.Input
+
+	ToFirewallProxyPolicyInternetService6CustomGroupOutput() FirewallProxyPolicyInternetService6CustomGroupOutput
+	ToFirewallProxyPolicyInternetService6CustomGroupOutputWithContext(context.Context) FirewallProxyPolicyInternetService6CustomGroupOutput
+}
+
+type FirewallProxyPolicyInternetService6CustomGroupArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (FirewallProxyPolicyInternetService6CustomGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FirewallProxyPolicyInternetService6CustomGroup)(nil)).Elem()
+}
+
+func (i FirewallProxyPolicyInternetService6CustomGroupArgs) ToFirewallProxyPolicyInternetService6CustomGroupOutput() FirewallProxyPolicyInternetService6CustomGroupOutput {
+	return i.ToFirewallProxyPolicyInternetService6CustomGroupOutputWithContext(context.Background())
+}
+
+func (i FirewallProxyPolicyInternetService6CustomGroupArgs) ToFirewallProxyPolicyInternetService6CustomGroupOutputWithContext(ctx context.Context) FirewallProxyPolicyInternetService6CustomGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FirewallProxyPolicyInternetService6CustomGroupOutput)
+}
+
+// FirewallProxyPolicyInternetService6CustomGroupArrayInput is an input type that accepts FirewallProxyPolicyInternetService6CustomGroupArray and FirewallProxyPolicyInternetService6CustomGroupArrayOutput values.
+// You can construct a concrete instance of `FirewallProxyPolicyInternetService6CustomGroupArrayInput` via:
+//
+//	FirewallProxyPolicyInternetService6CustomGroupArray{ FirewallProxyPolicyInternetService6CustomGroupArgs{...} }
+type FirewallProxyPolicyInternetService6CustomGroupArrayInput interface {
+	pulumi.Input
+
+	ToFirewallProxyPolicyInternetService6CustomGroupArrayOutput() FirewallProxyPolicyInternetService6CustomGroupArrayOutput
+	ToFirewallProxyPolicyInternetService6CustomGroupArrayOutputWithContext(context.Context) FirewallProxyPolicyInternetService6CustomGroupArrayOutput
+}
+
+type FirewallProxyPolicyInternetService6CustomGroupArray []FirewallProxyPolicyInternetService6CustomGroupInput
+
+func (FirewallProxyPolicyInternetService6CustomGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FirewallProxyPolicyInternetService6CustomGroup)(nil)).Elem()
+}
+
+func (i FirewallProxyPolicyInternetService6CustomGroupArray) ToFirewallProxyPolicyInternetService6CustomGroupArrayOutput() FirewallProxyPolicyInternetService6CustomGroupArrayOutput {
+	return i.ToFirewallProxyPolicyInternetService6CustomGroupArrayOutputWithContext(context.Background())
+}
+
+func (i FirewallProxyPolicyInternetService6CustomGroupArray) ToFirewallProxyPolicyInternetService6CustomGroupArrayOutputWithContext(ctx context.Context) FirewallProxyPolicyInternetService6CustomGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FirewallProxyPolicyInternetService6CustomGroupArrayOutput)
+}
+
+type FirewallProxyPolicyInternetService6CustomGroupOutput struct{ *pulumi.OutputState }
+
+func (FirewallProxyPolicyInternetService6CustomGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FirewallProxyPolicyInternetService6CustomGroup)(nil)).Elem()
+}
+
+func (o FirewallProxyPolicyInternetService6CustomGroupOutput) ToFirewallProxyPolicyInternetService6CustomGroupOutput() FirewallProxyPolicyInternetService6CustomGroupOutput {
+	return o
+}
+
+func (o FirewallProxyPolicyInternetService6CustomGroupOutput) ToFirewallProxyPolicyInternetService6CustomGroupOutputWithContext(ctx context.Context) FirewallProxyPolicyInternetService6CustomGroupOutput {
+	return o
+}
+
+func (o FirewallProxyPolicyInternetService6CustomGroupOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallProxyPolicyInternetService6CustomGroup) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type FirewallProxyPolicyInternetService6CustomGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (FirewallProxyPolicyInternetService6CustomGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FirewallProxyPolicyInternetService6CustomGroup)(nil)).Elem()
+}
+
+func (o FirewallProxyPolicyInternetService6CustomGroupArrayOutput) ToFirewallProxyPolicyInternetService6CustomGroupArrayOutput() FirewallProxyPolicyInternetService6CustomGroupArrayOutput {
+	return o
+}
+
+func (o FirewallProxyPolicyInternetService6CustomGroupArrayOutput) ToFirewallProxyPolicyInternetService6CustomGroupArrayOutputWithContext(ctx context.Context) FirewallProxyPolicyInternetService6CustomGroupArrayOutput {
+	return o
+}
+
+func (o FirewallProxyPolicyInternetService6CustomGroupArrayOutput) Index(i pulumi.IntInput) FirewallProxyPolicyInternetService6CustomGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallProxyPolicyInternetService6CustomGroup {
+		return vs[0].([]FirewallProxyPolicyInternetService6CustomGroup)[vs[1].(int)]
+	}).(FirewallProxyPolicyInternetService6CustomGroupOutput)
+}
+
+type FirewallProxyPolicyInternetService6Group struct {
+	Name *string `pulumi:"name"`
+}
+
+// FirewallProxyPolicyInternetService6GroupInput is an input type that accepts FirewallProxyPolicyInternetService6GroupArgs and FirewallProxyPolicyInternetService6GroupOutput values.
+// You can construct a concrete instance of `FirewallProxyPolicyInternetService6GroupInput` via:
+//
+//	FirewallProxyPolicyInternetService6GroupArgs{...}
+type FirewallProxyPolicyInternetService6GroupInput interface {
+	pulumi.Input
+
+	ToFirewallProxyPolicyInternetService6GroupOutput() FirewallProxyPolicyInternetService6GroupOutput
+	ToFirewallProxyPolicyInternetService6GroupOutputWithContext(context.Context) FirewallProxyPolicyInternetService6GroupOutput
+}
+
+type FirewallProxyPolicyInternetService6GroupArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (FirewallProxyPolicyInternetService6GroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FirewallProxyPolicyInternetService6Group)(nil)).Elem()
+}
+
+func (i FirewallProxyPolicyInternetService6GroupArgs) ToFirewallProxyPolicyInternetService6GroupOutput() FirewallProxyPolicyInternetService6GroupOutput {
+	return i.ToFirewallProxyPolicyInternetService6GroupOutputWithContext(context.Background())
+}
+
+func (i FirewallProxyPolicyInternetService6GroupArgs) ToFirewallProxyPolicyInternetService6GroupOutputWithContext(ctx context.Context) FirewallProxyPolicyInternetService6GroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FirewallProxyPolicyInternetService6GroupOutput)
+}
+
+// FirewallProxyPolicyInternetService6GroupArrayInput is an input type that accepts FirewallProxyPolicyInternetService6GroupArray and FirewallProxyPolicyInternetService6GroupArrayOutput values.
+// You can construct a concrete instance of `FirewallProxyPolicyInternetService6GroupArrayInput` via:
+//
+//	FirewallProxyPolicyInternetService6GroupArray{ FirewallProxyPolicyInternetService6GroupArgs{...} }
+type FirewallProxyPolicyInternetService6GroupArrayInput interface {
+	pulumi.Input
+
+	ToFirewallProxyPolicyInternetService6GroupArrayOutput() FirewallProxyPolicyInternetService6GroupArrayOutput
+	ToFirewallProxyPolicyInternetService6GroupArrayOutputWithContext(context.Context) FirewallProxyPolicyInternetService6GroupArrayOutput
+}
+
+type FirewallProxyPolicyInternetService6GroupArray []FirewallProxyPolicyInternetService6GroupInput
+
+func (FirewallProxyPolicyInternetService6GroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FirewallProxyPolicyInternetService6Group)(nil)).Elem()
+}
+
+func (i FirewallProxyPolicyInternetService6GroupArray) ToFirewallProxyPolicyInternetService6GroupArrayOutput() FirewallProxyPolicyInternetService6GroupArrayOutput {
+	return i.ToFirewallProxyPolicyInternetService6GroupArrayOutputWithContext(context.Background())
+}
+
+func (i FirewallProxyPolicyInternetService6GroupArray) ToFirewallProxyPolicyInternetService6GroupArrayOutputWithContext(ctx context.Context) FirewallProxyPolicyInternetService6GroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FirewallProxyPolicyInternetService6GroupArrayOutput)
+}
+
+type FirewallProxyPolicyInternetService6GroupOutput struct{ *pulumi.OutputState }
+
+func (FirewallProxyPolicyInternetService6GroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FirewallProxyPolicyInternetService6Group)(nil)).Elem()
+}
+
+func (o FirewallProxyPolicyInternetService6GroupOutput) ToFirewallProxyPolicyInternetService6GroupOutput() FirewallProxyPolicyInternetService6GroupOutput {
+	return o
+}
+
+func (o FirewallProxyPolicyInternetService6GroupOutput) ToFirewallProxyPolicyInternetService6GroupOutputWithContext(ctx context.Context) FirewallProxyPolicyInternetService6GroupOutput {
+	return o
+}
+
+func (o FirewallProxyPolicyInternetService6GroupOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallProxyPolicyInternetService6Group) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type FirewallProxyPolicyInternetService6GroupArrayOutput struct{ *pulumi.OutputState }
+
+func (FirewallProxyPolicyInternetService6GroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FirewallProxyPolicyInternetService6Group)(nil)).Elem()
+}
+
+func (o FirewallProxyPolicyInternetService6GroupArrayOutput) ToFirewallProxyPolicyInternetService6GroupArrayOutput() FirewallProxyPolicyInternetService6GroupArrayOutput {
+	return o
+}
+
+func (o FirewallProxyPolicyInternetService6GroupArrayOutput) ToFirewallProxyPolicyInternetService6GroupArrayOutputWithContext(ctx context.Context) FirewallProxyPolicyInternetService6GroupArrayOutput {
+	return o
+}
+
+func (o FirewallProxyPolicyInternetService6GroupArrayOutput) Index(i pulumi.IntInput) FirewallProxyPolicyInternetService6GroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallProxyPolicyInternetService6Group {
+		return vs[0].([]FirewallProxyPolicyInternetService6Group)[vs[1].(int)]
+	}).(FirewallProxyPolicyInternetService6GroupOutput)
+}
+
+type FirewallProxyPolicyInternetService6Name struct {
+	Name *string `pulumi:"name"`
+}
+
+// FirewallProxyPolicyInternetService6NameInput is an input type that accepts FirewallProxyPolicyInternetService6NameArgs and FirewallProxyPolicyInternetService6NameOutput values.
+// You can construct a concrete instance of `FirewallProxyPolicyInternetService6NameInput` via:
+//
+//	FirewallProxyPolicyInternetService6NameArgs{...}
+type FirewallProxyPolicyInternetService6NameInput interface {
+	pulumi.Input
+
+	ToFirewallProxyPolicyInternetService6NameOutput() FirewallProxyPolicyInternetService6NameOutput
+	ToFirewallProxyPolicyInternetService6NameOutputWithContext(context.Context) FirewallProxyPolicyInternetService6NameOutput
+}
+
+type FirewallProxyPolicyInternetService6NameArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (FirewallProxyPolicyInternetService6NameArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FirewallProxyPolicyInternetService6Name)(nil)).Elem()
+}
+
+func (i FirewallProxyPolicyInternetService6NameArgs) ToFirewallProxyPolicyInternetService6NameOutput() FirewallProxyPolicyInternetService6NameOutput {
+	return i.ToFirewallProxyPolicyInternetService6NameOutputWithContext(context.Background())
+}
+
+func (i FirewallProxyPolicyInternetService6NameArgs) ToFirewallProxyPolicyInternetService6NameOutputWithContext(ctx context.Context) FirewallProxyPolicyInternetService6NameOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FirewallProxyPolicyInternetService6NameOutput)
+}
+
+// FirewallProxyPolicyInternetService6NameArrayInput is an input type that accepts FirewallProxyPolicyInternetService6NameArray and FirewallProxyPolicyInternetService6NameArrayOutput values.
+// You can construct a concrete instance of `FirewallProxyPolicyInternetService6NameArrayInput` via:
+//
+//	FirewallProxyPolicyInternetService6NameArray{ FirewallProxyPolicyInternetService6NameArgs{...} }
+type FirewallProxyPolicyInternetService6NameArrayInput interface {
+	pulumi.Input
+
+	ToFirewallProxyPolicyInternetService6NameArrayOutput() FirewallProxyPolicyInternetService6NameArrayOutput
+	ToFirewallProxyPolicyInternetService6NameArrayOutputWithContext(context.Context) FirewallProxyPolicyInternetService6NameArrayOutput
+}
+
+type FirewallProxyPolicyInternetService6NameArray []FirewallProxyPolicyInternetService6NameInput
+
+func (FirewallProxyPolicyInternetService6NameArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FirewallProxyPolicyInternetService6Name)(nil)).Elem()
+}
+
+func (i FirewallProxyPolicyInternetService6NameArray) ToFirewallProxyPolicyInternetService6NameArrayOutput() FirewallProxyPolicyInternetService6NameArrayOutput {
+	return i.ToFirewallProxyPolicyInternetService6NameArrayOutputWithContext(context.Background())
+}
+
+func (i FirewallProxyPolicyInternetService6NameArray) ToFirewallProxyPolicyInternetService6NameArrayOutputWithContext(ctx context.Context) FirewallProxyPolicyInternetService6NameArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FirewallProxyPolicyInternetService6NameArrayOutput)
+}
+
+type FirewallProxyPolicyInternetService6NameOutput struct{ *pulumi.OutputState }
+
+func (FirewallProxyPolicyInternetService6NameOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FirewallProxyPolicyInternetService6Name)(nil)).Elem()
+}
+
+func (o FirewallProxyPolicyInternetService6NameOutput) ToFirewallProxyPolicyInternetService6NameOutput() FirewallProxyPolicyInternetService6NameOutput {
+	return o
+}
+
+func (o FirewallProxyPolicyInternetService6NameOutput) ToFirewallProxyPolicyInternetService6NameOutputWithContext(ctx context.Context) FirewallProxyPolicyInternetService6NameOutput {
+	return o
+}
+
+func (o FirewallProxyPolicyInternetService6NameOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallProxyPolicyInternetService6Name) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type FirewallProxyPolicyInternetService6NameArrayOutput struct{ *pulumi.OutputState }
+
+func (FirewallProxyPolicyInternetService6NameArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]FirewallProxyPolicyInternetService6Name)(nil)).Elem()
+}
+
+func (o FirewallProxyPolicyInternetService6NameArrayOutput) ToFirewallProxyPolicyInternetService6NameArrayOutput() FirewallProxyPolicyInternetService6NameArrayOutput {
+	return o
+}
+
+func (o FirewallProxyPolicyInternetService6NameArrayOutput) ToFirewallProxyPolicyInternetService6NameArrayOutputWithContext(ctx context.Context) FirewallProxyPolicyInternetService6NameArrayOutput {
+	return o
+}
+
+func (o FirewallProxyPolicyInternetService6NameArrayOutput) Index(i pulumi.IntInput) FirewallProxyPolicyInternetService6NameOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallProxyPolicyInternetService6Name {
+		return vs[0].([]FirewallProxyPolicyInternetService6Name)[vs[1].(int)]
+	}).(FirewallProxyPolicyInternetService6NameOutput)
 }
 
 type FirewallProxyPolicyInternetServiceCustom struct {
@@ -57206,6 +58072,7 @@ type FirewallVip6Realserver struct {
 	Monitor          *string `pulumi:"monitor"`
 	Port             *int    `pulumi:"port"`
 	Status           *string `pulumi:"status"`
+	TranslateHost    *string `pulumi:"translateHost"`
 	Weight           *int    `pulumi:"weight"`
 }
 
@@ -57231,6 +58098,7 @@ type FirewallVip6RealserverArgs struct {
 	Monitor          pulumi.StringPtrInput `pulumi:"monitor"`
 	Port             pulumi.IntPtrInput    `pulumi:"port"`
 	Status           pulumi.StringPtrInput `pulumi:"status"`
+	TranslateHost    pulumi.StringPtrInput `pulumi:"translateHost"`
 	Weight           pulumi.IntPtrInput    `pulumi:"weight"`
 }
 
@@ -57323,6 +58191,10 @@ func (o FirewallVip6RealserverOutput) Port() pulumi.IntPtrOutput {
 
 func (o FirewallVip6RealserverOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FirewallVip6Realserver) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallVip6RealserverOutput) TranslateHost() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallVip6Realserver) *string { return v.TranslateHost }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallVip6RealserverOutput) Weight() pulumi.IntPtrOutput {
@@ -57949,6 +58821,7 @@ type FirewallVipRealserver struct {
 	Monitor          *string `pulumi:"monitor"`
 	Port             *int    `pulumi:"port"`
 	Status           *string `pulumi:"status"`
+	TranslateHost    *string `pulumi:"translateHost"`
 	Type             *string `pulumi:"type"`
 	Weight           *int    `pulumi:"weight"`
 }
@@ -57976,6 +58849,7 @@ type FirewallVipRealserverArgs struct {
 	Monitor          pulumi.StringPtrInput `pulumi:"monitor"`
 	Port             pulumi.IntPtrInput    `pulumi:"port"`
 	Status           pulumi.StringPtrInput `pulumi:"status"`
+	TranslateHost    pulumi.StringPtrInput `pulumi:"translateHost"`
 	Type             pulumi.StringPtrInput `pulumi:"type"`
 	Weight           pulumi.IntPtrInput    `pulumi:"weight"`
 }
@@ -58073,6 +58947,10 @@ func (o FirewallVipRealserverOutput) Port() pulumi.IntPtrOutput {
 
 func (o FirewallVipRealserverOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FirewallVipRealserver) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallVipRealserverOutput) TranslateHost() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FirewallVipRealserver) *string { return v.TranslateHost }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallVipRealserverOutput) Type() pulumi.StringPtrOutput {
@@ -60263,6 +61141,100 @@ func (o GetFirewallAddressTaggingTagArrayOutput) Index(i pulumi.IntInput) GetFir
 	}).(GetFirewallAddressTaggingTagOutput)
 }
 
+type GetFirewallAddrgrp6ExcludeMember struct {
+	Name string `pulumi:"name"`
+}
+
+// GetFirewallAddrgrp6ExcludeMemberInput is an input type that accepts GetFirewallAddrgrp6ExcludeMemberArgs and GetFirewallAddrgrp6ExcludeMemberOutput values.
+// You can construct a concrete instance of `GetFirewallAddrgrp6ExcludeMemberInput` via:
+//
+//	GetFirewallAddrgrp6ExcludeMemberArgs{...}
+type GetFirewallAddrgrp6ExcludeMemberInput interface {
+	pulumi.Input
+
+	ToGetFirewallAddrgrp6ExcludeMemberOutput() GetFirewallAddrgrp6ExcludeMemberOutput
+	ToGetFirewallAddrgrp6ExcludeMemberOutputWithContext(context.Context) GetFirewallAddrgrp6ExcludeMemberOutput
+}
+
+type GetFirewallAddrgrp6ExcludeMemberArgs struct {
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetFirewallAddrgrp6ExcludeMemberArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFirewallAddrgrp6ExcludeMember)(nil)).Elem()
+}
+
+func (i GetFirewallAddrgrp6ExcludeMemberArgs) ToGetFirewallAddrgrp6ExcludeMemberOutput() GetFirewallAddrgrp6ExcludeMemberOutput {
+	return i.ToGetFirewallAddrgrp6ExcludeMemberOutputWithContext(context.Background())
+}
+
+func (i GetFirewallAddrgrp6ExcludeMemberArgs) ToGetFirewallAddrgrp6ExcludeMemberOutputWithContext(ctx context.Context) GetFirewallAddrgrp6ExcludeMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFirewallAddrgrp6ExcludeMemberOutput)
+}
+
+// GetFirewallAddrgrp6ExcludeMemberArrayInput is an input type that accepts GetFirewallAddrgrp6ExcludeMemberArray and GetFirewallAddrgrp6ExcludeMemberArrayOutput values.
+// You can construct a concrete instance of `GetFirewallAddrgrp6ExcludeMemberArrayInput` via:
+//
+//	GetFirewallAddrgrp6ExcludeMemberArray{ GetFirewallAddrgrp6ExcludeMemberArgs{...} }
+type GetFirewallAddrgrp6ExcludeMemberArrayInput interface {
+	pulumi.Input
+
+	ToGetFirewallAddrgrp6ExcludeMemberArrayOutput() GetFirewallAddrgrp6ExcludeMemberArrayOutput
+	ToGetFirewallAddrgrp6ExcludeMemberArrayOutputWithContext(context.Context) GetFirewallAddrgrp6ExcludeMemberArrayOutput
+}
+
+type GetFirewallAddrgrp6ExcludeMemberArray []GetFirewallAddrgrp6ExcludeMemberInput
+
+func (GetFirewallAddrgrp6ExcludeMemberArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFirewallAddrgrp6ExcludeMember)(nil)).Elem()
+}
+
+func (i GetFirewallAddrgrp6ExcludeMemberArray) ToGetFirewallAddrgrp6ExcludeMemberArrayOutput() GetFirewallAddrgrp6ExcludeMemberArrayOutput {
+	return i.ToGetFirewallAddrgrp6ExcludeMemberArrayOutputWithContext(context.Background())
+}
+
+func (i GetFirewallAddrgrp6ExcludeMemberArray) ToGetFirewallAddrgrp6ExcludeMemberArrayOutputWithContext(ctx context.Context) GetFirewallAddrgrp6ExcludeMemberArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFirewallAddrgrp6ExcludeMemberArrayOutput)
+}
+
+type GetFirewallAddrgrp6ExcludeMemberOutput struct{ *pulumi.OutputState }
+
+func (GetFirewallAddrgrp6ExcludeMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFirewallAddrgrp6ExcludeMember)(nil)).Elem()
+}
+
+func (o GetFirewallAddrgrp6ExcludeMemberOutput) ToGetFirewallAddrgrp6ExcludeMemberOutput() GetFirewallAddrgrp6ExcludeMemberOutput {
+	return o
+}
+
+func (o GetFirewallAddrgrp6ExcludeMemberOutput) ToGetFirewallAddrgrp6ExcludeMemberOutputWithContext(ctx context.Context) GetFirewallAddrgrp6ExcludeMemberOutput {
+	return o
+}
+
+func (o GetFirewallAddrgrp6ExcludeMemberOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFirewallAddrgrp6ExcludeMember) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetFirewallAddrgrp6ExcludeMemberArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFirewallAddrgrp6ExcludeMemberArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFirewallAddrgrp6ExcludeMember)(nil)).Elem()
+}
+
+func (o GetFirewallAddrgrp6ExcludeMemberArrayOutput) ToGetFirewallAddrgrp6ExcludeMemberArrayOutput() GetFirewallAddrgrp6ExcludeMemberArrayOutput {
+	return o
+}
+
+func (o GetFirewallAddrgrp6ExcludeMemberArrayOutput) ToGetFirewallAddrgrp6ExcludeMemberArrayOutputWithContext(ctx context.Context) GetFirewallAddrgrp6ExcludeMemberArrayOutput {
+	return o
+}
+
+func (o GetFirewallAddrgrp6ExcludeMemberArrayOutput) Index(i pulumi.IntInput) GetFirewallAddrgrp6ExcludeMemberOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFirewallAddrgrp6ExcludeMember {
+		return vs[0].([]GetFirewallAddrgrp6ExcludeMember)[vs[1].(int)]
+	}).(GetFirewallAddrgrp6ExcludeMemberOutput)
+}
+
 type GetFirewallAddrgrp6Member struct {
 	Name string `pulumi:"name"`
 }
@@ -61697,852 +62669,6 @@ func (o GetFirewallCentralSnatMapSrcintfArrayOutput) Index(i pulumi.IntInput) Ge
 	}).(GetFirewallCentralSnatMapSrcintfOutput)
 }
 
-type GetFirewallConsolidatedPolicyAppCategory struct {
-	Id int `pulumi:"id"`
-}
-
-// GetFirewallConsolidatedPolicyAppCategoryInput is an input type that accepts GetFirewallConsolidatedPolicyAppCategoryArgs and GetFirewallConsolidatedPolicyAppCategoryOutput values.
-// You can construct a concrete instance of `GetFirewallConsolidatedPolicyAppCategoryInput` via:
-//
-//	GetFirewallConsolidatedPolicyAppCategoryArgs{...}
-type GetFirewallConsolidatedPolicyAppCategoryInput interface {
-	pulumi.Input
-
-	ToGetFirewallConsolidatedPolicyAppCategoryOutput() GetFirewallConsolidatedPolicyAppCategoryOutput
-	ToGetFirewallConsolidatedPolicyAppCategoryOutputWithContext(context.Context) GetFirewallConsolidatedPolicyAppCategoryOutput
-}
-
-type GetFirewallConsolidatedPolicyAppCategoryArgs struct {
-	Id pulumi.IntInput `pulumi:"id"`
-}
-
-func (GetFirewallConsolidatedPolicyAppCategoryArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetFirewallConsolidatedPolicyAppCategory)(nil)).Elem()
-}
-
-func (i GetFirewallConsolidatedPolicyAppCategoryArgs) ToGetFirewallConsolidatedPolicyAppCategoryOutput() GetFirewallConsolidatedPolicyAppCategoryOutput {
-	return i.ToGetFirewallConsolidatedPolicyAppCategoryOutputWithContext(context.Background())
-}
-
-func (i GetFirewallConsolidatedPolicyAppCategoryArgs) ToGetFirewallConsolidatedPolicyAppCategoryOutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyAppCategoryOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetFirewallConsolidatedPolicyAppCategoryOutput)
-}
-
-// GetFirewallConsolidatedPolicyAppCategoryArrayInput is an input type that accepts GetFirewallConsolidatedPolicyAppCategoryArray and GetFirewallConsolidatedPolicyAppCategoryArrayOutput values.
-// You can construct a concrete instance of `GetFirewallConsolidatedPolicyAppCategoryArrayInput` via:
-//
-//	GetFirewallConsolidatedPolicyAppCategoryArray{ GetFirewallConsolidatedPolicyAppCategoryArgs{...} }
-type GetFirewallConsolidatedPolicyAppCategoryArrayInput interface {
-	pulumi.Input
-
-	ToGetFirewallConsolidatedPolicyAppCategoryArrayOutput() GetFirewallConsolidatedPolicyAppCategoryArrayOutput
-	ToGetFirewallConsolidatedPolicyAppCategoryArrayOutputWithContext(context.Context) GetFirewallConsolidatedPolicyAppCategoryArrayOutput
-}
-
-type GetFirewallConsolidatedPolicyAppCategoryArray []GetFirewallConsolidatedPolicyAppCategoryInput
-
-func (GetFirewallConsolidatedPolicyAppCategoryArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetFirewallConsolidatedPolicyAppCategory)(nil)).Elem()
-}
-
-func (i GetFirewallConsolidatedPolicyAppCategoryArray) ToGetFirewallConsolidatedPolicyAppCategoryArrayOutput() GetFirewallConsolidatedPolicyAppCategoryArrayOutput {
-	return i.ToGetFirewallConsolidatedPolicyAppCategoryArrayOutputWithContext(context.Background())
-}
-
-func (i GetFirewallConsolidatedPolicyAppCategoryArray) ToGetFirewallConsolidatedPolicyAppCategoryArrayOutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyAppCategoryArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetFirewallConsolidatedPolicyAppCategoryArrayOutput)
-}
-
-type GetFirewallConsolidatedPolicyAppCategoryOutput struct{ *pulumi.OutputState }
-
-func (GetFirewallConsolidatedPolicyAppCategoryOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetFirewallConsolidatedPolicyAppCategory)(nil)).Elem()
-}
-
-func (o GetFirewallConsolidatedPolicyAppCategoryOutput) ToGetFirewallConsolidatedPolicyAppCategoryOutput() GetFirewallConsolidatedPolicyAppCategoryOutput {
-	return o
-}
-
-func (o GetFirewallConsolidatedPolicyAppCategoryOutput) ToGetFirewallConsolidatedPolicyAppCategoryOutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyAppCategoryOutput {
-	return o
-}
-
-func (o GetFirewallConsolidatedPolicyAppCategoryOutput) Id() pulumi.IntOutput {
-	return o.ApplyT(func(v GetFirewallConsolidatedPolicyAppCategory) int { return v.Id }).(pulumi.IntOutput)
-}
-
-type GetFirewallConsolidatedPolicyAppCategoryArrayOutput struct{ *pulumi.OutputState }
-
-func (GetFirewallConsolidatedPolicyAppCategoryArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetFirewallConsolidatedPolicyAppCategory)(nil)).Elem()
-}
-
-func (o GetFirewallConsolidatedPolicyAppCategoryArrayOutput) ToGetFirewallConsolidatedPolicyAppCategoryArrayOutput() GetFirewallConsolidatedPolicyAppCategoryArrayOutput {
-	return o
-}
-
-func (o GetFirewallConsolidatedPolicyAppCategoryArrayOutput) ToGetFirewallConsolidatedPolicyAppCategoryArrayOutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyAppCategoryArrayOutput {
-	return o
-}
-
-func (o GetFirewallConsolidatedPolicyAppCategoryArrayOutput) Index(i pulumi.IntInput) GetFirewallConsolidatedPolicyAppCategoryOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFirewallConsolidatedPolicyAppCategory {
-		return vs[0].([]GetFirewallConsolidatedPolicyAppCategory)[vs[1].(int)]
-	}).(GetFirewallConsolidatedPolicyAppCategoryOutput)
-}
-
-type GetFirewallConsolidatedPolicyAppGroup struct {
-	Name string `pulumi:"name"`
-}
-
-// GetFirewallConsolidatedPolicyAppGroupInput is an input type that accepts GetFirewallConsolidatedPolicyAppGroupArgs and GetFirewallConsolidatedPolicyAppGroupOutput values.
-// You can construct a concrete instance of `GetFirewallConsolidatedPolicyAppGroupInput` via:
-//
-//	GetFirewallConsolidatedPolicyAppGroupArgs{...}
-type GetFirewallConsolidatedPolicyAppGroupInput interface {
-	pulumi.Input
-
-	ToGetFirewallConsolidatedPolicyAppGroupOutput() GetFirewallConsolidatedPolicyAppGroupOutput
-	ToGetFirewallConsolidatedPolicyAppGroupOutputWithContext(context.Context) GetFirewallConsolidatedPolicyAppGroupOutput
-}
-
-type GetFirewallConsolidatedPolicyAppGroupArgs struct {
-	Name pulumi.StringInput `pulumi:"name"`
-}
-
-func (GetFirewallConsolidatedPolicyAppGroupArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetFirewallConsolidatedPolicyAppGroup)(nil)).Elem()
-}
-
-func (i GetFirewallConsolidatedPolicyAppGroupArgs) ToGetFirewallConsolidatedPolicyAppGroupOutput() GetFirewallConsolidatedPolicyAppGroupOutput {
-	return i.ToGetFirewallConsolidatedPolicyAppGroupOutputWithContext(context.Background())
-}
-
-func (i GetFirewallConsolidatedPolicyAppGroupArgs) ToGetFirewallConsolidatedPolicyAppGroupOutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyAppGroupOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetFirewallConsolidatedPolicyAppGroupOutput)
-}
-
-// GetFirewallConsolidatedPolicyAppGroupArrayInput is an input type that accepts GetFirewallConsolidatedPolicyAppGroupArray and GetFirewallConsolidatedPolicyAppGroupArrayOutput values.
-// You can construct a concrete instance of `GetFirewallConsolidatedPolicyAppGroupArrayInput` via:
-//
-//	GetFirewallConsolidatedPolicyAppGroupArray{ GetFirewallConsolidatedPolicyAppGroupArgs{...} }
-type GetFirewallConsolidatedPolicyAppGroupArrayInput interface {
-	pulumi.Input
-
-	ToGetFirewallConsolidatedPolicyAppGroupArrayOutput() GetFirewallConsolidatedPolicyAppGroupArrayOutput
-	ToGetFirewallConsolidatedPolicyAppGroupArrayOutputWithContext(context.Context) GetFirewallConsolidatedPolicyAppGroupArrayOutput
-}
-
-type GetFirewallConsolidatedPolicyAppGroupArray []GetFirewallConsolidatedPolicyAppGroupInput
-
-func (GetFirewallConsolidatedPolicyAppGroupArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetFirewallConsolidatedPolicyAppGroup)(nil)).Elem()
-}
-
-func (i GetFirewallConsolidatedPolicyAppGroupArray) ToGetFirewallConsolidatedPolicyAppGroupArrayOutput() GetFirewallConsolidatedPolicyAppGroupArrayOutput {
-	return i.ToGetFirewallConsolidatedPolicyAppGroupArrayOutputWithContext(context.Background())
-}
-
-func (i GetFirewallConsolidatedPolicyAppGroupArray) ToGetFirewallConsolidatedPolicyAppGroupArrayOutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyAppGroupArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetFirewallConsolidatedPolicyAppGroupArrayOutput)
-}
-
-type GetFirewallConsolidatedPolicyAppGroupOutput struct{ *pulumi.OutputState }
-
-func (GetFirewallConsolidatedPolicyAppGroupOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetFirewallConsolidatedPolicyAppGroup)(nil)).Elem()
-}
-
-func (o GetFirewallConsolidatedPolicyAppGroupOutput) ToGetFirewallConsolidatedPolicyAppGroupOutput() GetFirewallConsolidatedPolicyAppGroupOutput {
-	return o
-}
-
-func (o GetFirewallConsolidatedPolicyAppGroupOutput) ToGetFirewallConsolidatedPolicyAppGroupOutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyAppGroupOutput {
-	return o
-}
-
-func (o GetFirewallConsolidatedPolicyAppGroupOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetFirewallConsolidatedPolicyAppGroup) string { return v.Name }).(pulumi.StringOutput)
-}
-
-type GetFirewallConsolidatedPolicyAppGroupArrayOutput struct{ *pulumi.OutputState }
-
-func (GetFirewallConsolidatedPolicyAppGroupArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetFirewallConsolidatedPolicyAppGroup)(nil)).Elem()
-}
-
-func (o GetFirewallConsolidatedPolicyAppGroupArrayOutput) ToGetFirewallConsolidatedPolicyAppGroupArrayOutput() GetFirewallConsolidatedPolicyAppGroupArrayOutput {
-	return o
-}
-
-func (o GetFirewallConsolidatedPolicyAppGroupArrayOutput) ToGetFirewallConsolidatedPolicyAppGroupArrayOutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyAppGroupArrayOutput {
-	return o
-}
-
-func (o GetFirewallConsolidatedPolicyAppGroupArrayOutput) Index(i pulumi.IntInput) GetFirewallConsolidatedPolicyAppGroupOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFirewallConsolidatedPolicyAppGroup {
-		return vs[0].([]GetFirewallConsolidatedPolicyAppGroup)[vs[1].(int)]
-	}).(GetFirewallConsolidatedPolicyAppGroupOutput)
-}
-
-type GetFirewallConsolidatedPolicyApplication struct {
-	Id int `pulumi:"id"`
-}
-
-// GetFirewallConsolidatedPolicyApplicationInput is an input type that accepts GetFirewallConsolidatedPolicyApplicationArgs and GetFirewallConsolidatedPolicyApplicationOutput values.
-// You can construct a concrete instance of `GetFirewallConsolidatedPolicyApplicationInput` via:
-//
-//	GetFirewallConsolidatedPolicyApplicationArgs{...}
-type GetFirewallConsolidatedPolicyApplicationInput interface {
-	pulumi.Input
-
-	ToGetFirewallConsolidatedPolicyApplicationOutput() GetFirewallConsolidatedPolicyApplicationOutput
-	ToGetFirewallConsolidatedPolicyApplicationOutputWithContext(context.Context) GetFirewallConsolidatedPolicyApplicationOutput
-}
-
-type GetFirewallConsolidatedPolicyApplicationArgs struct {
-	Id pulumi.IntInput `pulumi:"id"`
-}
-
-func (GetFirewallConsolidatedPolicyApplicationArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetFirewallConsolidatedPolicyApplication)(nil)).Elem()
-}
-
-func (i GetFirewallConsolidatedPolicyApplicationArgs) ToGetFirewallConsolidatedPolicyApplicationOutput() GetFirewallConsolidatedPolicyApplicationOutput {
-	return i.ToGetFirewallConsolidatedPolicyApplicationOutputWithContext(context.Background())
-}
-
-func (i GetFirewallConsolidatedPolicyApplicationArgs) ToGetFirewallConsolidatedPolicyApplicationOutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyApplicationOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetFirewallConsolidatedPolicyApplicationOutput)
-}
-
-// GetFirewallConsolidatedPolicyApplicationArrayInput is an input type that accepts GetFirewallConsolidatedPolicyApplicationArray and GetFirewallConsolidatedPolicyApplicationArrayOutput values.
-// You can construct a concrete instance of `GetFirewallConsolidatedPolicyApplicationArrayInput` via:
-//
-//	GetFirewallConsolidatedPolicyApplicationArray{ GetFirewallConsolidatedPolicyApplicationArgs{...} }
-type GetFirewallConsolidatedPolicyApplicationArrayInput interface {
-	pulumi.Input
-
-	ToGetFirewallConsolidatedPolicyApplicationArrayOutput() GetFirewallConsolidatedPolicyApplicationArrayOutput
-	ToGetFirewallConsolidatedPolicyApplicationArrayOutputWithContext(context.Context) GetFirewallConsolidatedPolicyApplicationArrayOutput
-}
-
-type GetFirewallConsolidatedPolicyApplicationArray []GetFirewallConsolidatedPolicyApplicationInput
-
-func (GetFirewallConsolidatedPolicyApplicationArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetFirewallConsolidatedPolicyApplication)(nil)).Elem()
-}
-
-func (i GetFirewallConsolidatedPolicyApplicationArray) ToGetFirewallConsolidatedPolicyApplicationArrayOutput() GetFirewallConsolidatedPolicyApplicationArrayOutput {
-	return i.ToGetFirewallConsolidatedPolicyApplicationArrayOutputWithContext(context.Background())
-}
-
-func (i GetFirewallConsolidatedPolicyApplicationArray) ToGetFirewallConsolidatedPolicyApplicationArrayOutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyApplicationArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetFirewallConsolidatedPolicyApplicationArrayOutput)
-}
-
-type GetFirewallConsolidatedPolicyApplicationOutput struct{ *pulumi.OutputState }
-
-func (GetFirewallConsolidatedPolicyApplicationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetFirewallConsolidatedPolicyApplication)(nil)).Elem()
-}
-
-func (o GetFirewallConsolidatedPolicyApplicationOutput) ToGetFirewallConsolidatedPolicyApplicationOutput() GetFirewallConsolidatedPolicyApplicationOutput {
-	return o
-}
-
-func (o GetFirewallConsolidatedPolicyApplicationOutput) ToGetFirewallConsolidatedPolicyApplicationOutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyApplicationOutput {
-	return o
-}
-
-func (o GetFirewallConsolidatedPolicyApplicationOutput) Id() pulumi.IntOutput {
-	return o.ApplyT(func(v GetFirewallConsolidatedPolicyApplication) int { return v.Id }).(pulumi.IntOutput)
-}
-
-type GetFirewallConsolidatedPolicyApplicationArrayOutput struct{ *pulumi.OutputState }
-
-func (GetFirewallConsolidatedPolicyApplicationArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetFirewallConsolidatedPolicyApplication)(nil)).Elem()
-}
-
-func (o GetFirewallConsolidatedPolicyApplicationArrayOutput) ToGetFirewallConsolidatedPolicyApplicationArrayOutput() GetFirewallConsolidatedPolicyApplicationArrayOutput {
-	return o
-}
-
-func (o GetFirewallConsolidatedPolicyApplicationArrayOutput) ToGetFirewallConsolidatedPolicyApplicationArrayOutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyApplicationArrayOutput {
-	return o
-}
-
-func (o GetFirewallConsolidatedPolicyApplicationArrayOutput) Index(i pulumi.IntInput) GetFirewallConsolidatedPolicyApplicationOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFirewallConsolidatedPolicyApplication {
-		return vs[0].([]GetFirewallConsolidatedPolicyApplication)[vs[1].(int)]
-	}).(GetFirewallConsolidatedPolicyApplicationOutput)
-}
-
-type GetFirewallConsolidatedPolicyDstaddr4 struct {
-	Name string `pulumi:"name"`
-}
-
-// GetFirewallConsolidatedPolicyDstaddr4Input is an input type that accepts GetFirewallConsolidatedPolicyDstaddr4Args and GetFirewallConsolidatedPolicyDstaddr4Output values.
-// You can construct a concrete instance of `GetFirewallConsolidatedPolicyDstaddr4Input` via:
-//
-//	GetFirewallConsolidatedPolicyDstaddr4Args{...}
-type GetFirewallConsolidatedPolicyDstaddr4Input interface {
-	pulumi.Input
-
-	ToGetFirewallConsolidatedPolicyDstaddr4Output() GetFirewallConsolidatedPolicyDstaddr4Output
-	ToGetFirewallConsolidatedPolicyDstaddr4OutputWithContext(context.Context) GetFirewallConsolidatedPolicyDstaddr4Output
-}
-
-type GetFirewallConsolidatedPolicyDstaddr4Args struct {
-	Name pulumi.StringInput `pulumi:"name"`
-}
-
-func (GetFirewallConsolidatedPolicyDstaddr4Args) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetFirewallConsolidatedPolicyDstaddr4)(nil)).Elem()
-}
-
-func (i GetFirewallConsolidatedPolicyDstaddr4Args) ToGetFirewallConsolidatedPolicyDstaddr4Output() GetFirewallConsolidatedPolicyDstaddr4Output {
-	return i.ToGetFirewallConsolidatedPolicyDstaddr4OutputWithContext(context.Background())
-}
-
-func (i GetFirewallConsolidatedPolicyDstaddr4Args) ToGetFirewallConsolidatedPolicyDstaddr4OutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyDstaddr4Output {
-	return pulumi.ToOutputWithContext(ctx, i).(GetFirewallConsolidatedPolicyDstaddr4Output)
-}
-
-// GetFirewallConsolidatedPolicyDstaddr4ArrayInput is an input type that accepts GetFirewallConsolidatedPolicyDstaddr4Array and GetFirewallConsolidatedPolicyDstaddr4ArrayOutput values.
-// You can construct a concrete instance of `GetFirewallConsolidatedPolicyDstaddr4ArrayInput` via:
-//
-//	GetFirewallConsolidatedPolicyDstaddr4Array{ GetFirewallConsolidatedPolicyDstaddr4Args{...} }
-type GetFirewallConsolidatedPolicyDstaddr4ArrayInput interface {
-	pulumi.Input
-
-	ToGetFirewallConsolidatedPolicyDstaddr4ArrayOutput() GetFirewallConsolidatedPolicyDstaddr4ArrayOutput
-	ToGetFirewallConsolidatedPolicyDstaddr4ArrayOutputWithContext(context.Context) GetFirewallConsolidatedPolicyDstaddr4ArrayOutput
-}
-
-type GetFirewallConsolidatedPolicyDstaddr4Array []GetFirewallConsolidatedPolicyDstaddr4Input
-
-func (GetFirewallConsolidatedPolicyDstaddr4Array) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetFirewallConsolidatedPolicyDstaddr4)(nil)).Elem()
-}
-
-func (i GetFirewallConsolidatedPolicyDstaddr4Array) ToGetFirewallConsolidatedPolicyDstaddr4ArrayOutput() GetFirewallConsolidatedPolicyDstaddr4ArrayOutput {
-	return i.ToGetFirewallConsolidatedPolicyDstaddr4ArrayOutputWithContext(context.Background())
-}
-
-func (i GetFirewallConsolidatedPolicyDstaddr4Array) ToGetFirewallConsolidatedPolicyDstaddr4ArrayOutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyDstaddr4ArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetFirewallConsolidatedPolicyDstaddr4ArrayOutput)
-}
-
-type GetFirewallConsolidatedPolicyDstaddr4Output struct{ *pulumi.OutputState }
-
-func (GetFirewallConsolidatedPolicyDstaddr4Output) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetFirewallConsolidatedPolicyDstaddr4)(nil)).Elem()
-}
-
-func (o GetFirewallConsolidatedPolicyDstaddr4Output) ToGetFirewallConsolidatedPolicyDstaddr4Output() GetFirewallConsolidatedPolicyDstaddr4Output {
-	return o
-}
-
-func (o GetFirewallConsolidatedPolicyDstaddr4Output) ToGetFirewallConsolidatedPolicyDstaddr4OutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyDstaddr4Output {
-	return o
-}
-
-func (o GetFirewallConsolidatedPolicyDstaddr4Output) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetFirewallConsolidatedPolicyDstaddr4) string { return v.Name }).(pulumi.StringOutput)
-}
-
-type GetFirewallConsolidatedPolicyDstaddr4ArrayOutput struct{ *pulumi.OutputState }
-
-func (GetFirewallConsolidatedPolicyDstaddr4ArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetFirewallConsolidatedPolicyDstaddr4)(nil)).Elem()
-}
-
-func (o GetFirewallConsolidatedPolicyDstaddr4ArrayOutput) ToGetFirewallConsolidatedPolicyDstaddr4ArrayOutput() GetFirewallConsolidatedPolicyDstaddr4ArrayOutput {
-	return o
-}
-
-func (o GetFirewallConsolidatedPolicyDstaddr4ArrayOutput) ToGetFirewallConsolidatedPolicyDstaddr4ArrayOutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyDstaddr4ArrayOutput {
-	return o
-}
-
-func (o GetFirewallConsolidatedPolicyDstaddr4ArrayOutput) Index(i pulumi.IntInput) GetFirewallConsolidatedPolicyDstaddr4Output {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFirewallConsolidatedPolicyDstaddr4 {
-		return vs[0].([]GetFirewallConsolidatedPolicyDstaddr4)[vs[1].(int)]
-	}).(GetFirewallConsolidatedPolicyDstaddr4Output)
-}
-
-type GetFirewallConsolidatedPolicyDstaddr6 struct {
-	Name string `pulumi:"name"`
-}
-
-// GetFirewallConsolidatedPolicyDstaddr6Input is an input type that accepts GetFirewallConsolidatedPolicyDstaddr6Args and GetFirewallConsolidatedPolicyDstaddr6Output values.
-// You can construct a concrete instance of `GetFirewallConsolidatedPolicyDstaddr6Input` via:
-//
-//	GetFirewallConsolidatedPolicyDstaddr6Args{...}
-type GetFirewallConsolidatedPolicyDstaddr6Input interface {
-	pulumi.Input
-
-	ToGetFirewallConsolidatedPolicyDstaddr6Output() GetFirewallConsolidatedPolicyDstaddr6Output
-	ToGetFirewallConsolidatedPolicyDstaddr6OutputWithContext(context.Context) GetFirewallConsolidatedPolicyDstaddr6Output
-}
-
-type GetFirewallConsolidatedPolicyDstaddr6Args struct {
-	Name pulumi.StringInput `pulumi:"name"`
-}
-
-func (GetFirewallConsolidatedPolicyDstaddr6Args) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetFirewallConsolidatedPolicyDstaddr6)(nil)).Elem()
-}
-
-func (i GetFirewallConsolidatedPolicyDstaddr6Args) ToGetFirewallConsolidatedPolicyDstaddr6Output() GetFirewallConsolidatedPolicyDstaddr6Output {
-	return i.ToGetFirewallConsolidatedPolicyDstaddr6OutputWithContext(context.Background())
-}
-
-func (i GetFirewallConsolidatedPolicyDstaddr6Args) ToGetFirewallConsolidatedPolicyDstaddr6OutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyDstaddr6Output {
-	return pulumi.ToOutputWithContext(ctx, i).(GetFirewallConsolidatedPolicyDstaddr6Output)
-}
-
-// GetFirewallConsolidatedPolicyDstaddr6ArrayInput is an input type that accepts GetFirewallConsolidatedPolicyDstaddr6Array and GetFirewallConsolidatedPolicyDstaddr6ArrayOutput values.
-// You can construct a concrete instance of `GetFirewallConsolidatedPolicyDstaddr6ArrayInput` via:
-//
-//	GetFirewallConsolidatedPolicyDstaddr6Array{ GetFirewallConsolidatedPolicyDstaddr6Args{...} }
-type GetFirewallConsolidatedPolicyDstaddr6ArrayInput interface {
-	pulumi.Input
-
-	ToGetFirewallConsolidatedPolicyDstaddr6ArrayOutput() GetFirewallConsolidatedPolicyDstaddr6ArrayOutput
-	ToGetFirewallConsolidatedPolicyDstaddr6ArrayOutputWithContext(context.Context) GetFirewallConsolidatedPolicyDstaddr6ArrayOutput
-}
-
-type GetFirewallConsolidatedPolicyDstaddr6Array []GetFirewallConsolidatedPolicyDstaddr6Input
-
-func (GetFirewallConsolidatedPolicyDstaddr6Array) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetFirewallConsolidatedPolicyDstaddr6)(nil)).Elem()
-}
-
-func (i GetFirewallConsolidatedPolicyDstaddr6Array) ToGetFirewallConsolidatedPolicyDstaddr6ArrayOutput() GetFirewallConsolidatedPolicyDstaddr6ArrayOutput {
-	return i.ToGetFirewallConsolidatedPolicyDstaddr6ArrayOutputWithContext(context.Background())
-}
-
-func (i GetFirewallConsolidatedPolicyDstaddr6Array) ToGetFirewallConsolidatedPolicyDstaddr6ArrayOutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyDstaddr6ArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetFirewallConsolidatedPolicyDstaddr6ArrayOutput)
-}
-
-type GetFirewallConsolidatedPolicyDstaddr6Output struct{ *pulumi.OutputState }
-
-func (GetFirewallConsolidatedPolicyDstaddr6Output) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetFirewallConsolidatedPolicyDstaddr6)(nil)).Elem()
-}
-
-func (o GetFirewallConsolidatedPolicyDstaddr6Output) ToGetFirewallConsolidatedPolicyDstaddr6Output() GetFirewallConsolidatedPolicyDstaddr6Output {
-	return o
-}
-
-func (o GetFirewallConsolidatedPolicyDstaddr6Output) ToGetFirewallConsolidatedPolicyDstaddr6OutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyDstaddr6Output {
-	return o
-}
-
-func (o GetFirewallConsolidatedPolicyDstaddr6Output) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetFirewallConsolidatedPolicyDstaddr6) string { return v.Name }).(pulumi.StringOutput)
-}
-
-type GetFirewallConsolidatedPolicyDstaddr6ArrayOutput struct{ *pulumi.OutputState }
-
-func (GetFirewallConsolidatedPolicyDstaddr6ArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetFirewallConsolidatedPolicyDstaddr6)(nil)).Elem()
-}
-
-func (o GetFirewallConsolidatedPolicyDstaddr6ArrayOutput) ToGetFirewallConsolidatedPolicyDstaddr6ArrayOutput() GetFirewallConsolidatedPolicyDstaddr6ArrayOutput {
-	return o
-}
-
-func (o GetFirewallConsolidatedPolicyDstaddr6ArrayOutput) ToGetFirewallConsolidatedPolicyDstaddr6ArrayOutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyDstaddr6ArrayOutput {
-	return o
-}
-
-func (o GetFirewallConsolidatedPolicyDstaddr6ArrayOutput) Index(i pulumi.IntInput) GetFirewallConsolidatedPolicyDstaddr6Output {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFirewallConsolidatedPolicyDstaddr6 {
-		return vs[0].([]GetFirewallConsolidatedPolicyDstaddr6)[vs[1].(int)]
-	}).(GetFirewallConsolidatedPolicyDstaddr6Output)
-}
-
-type GetFirewallConsolidatedPolicyDstintf struct {
-	Name string `pulumi:"name"`
-}
-
-// GetFirewallConsolidatedPolicyDstintfInput is an input type that accepts GetFirewallConsolidatedPolicyDstintfArgs and GetFirewallConsolidatedPolicyDstintfOutput values.
-// You can construct a concrete instance of `GetFirewallConsolidatedPolicyDstintfInput` via:
-//
-//	GetFirewallConsolidatedPolicyDstintfArgs{...}
-type GetFirewallConsolidatedPolicyDstintfInput interface {
-	pulumi.Input
-
-	ToGetFirewallConsolidatedPolicyDstintfOutput() GetFirewallConsolidatedPolicyDstintfOutput
-	ToGetFirewallConsolidatedPolicyDstintfOutputWithContext(context.Context) GetFirewallConsolidatedPolicyDstintfOutput
-}
-
-type GetFirewallConsolidatedPolicyDstintfArgs struct {
-	Name pulumi.StringInput `pulumi:"name"`
-}
-
-func (GetFirewallConsolidatedPolicyDstintfArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetFirewallConsolidatedPolicyDstintf)(nil)).Elem()
-}
-
-func (i GetFirewallConsolidatedPolicyDstintfArgs) ToGetFirewallConsolidatedPolicyDstintfOutput() GetFirewallConsolidatedPolicyDstintfOutput {
-	return i.ToGetFirewallConsolidatedPolicyDstintfOutputWithContext(context.Background())
-}
-
-func (i GetFirewallConsolidatedPolicyDstintfArgs) ToGetFirewallConsolidatedPolicyDstintfOutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyDstintfOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetFirewallConsolidatedPolicyDstintfOutput)
-}
-
-// GetFirewallConsolidatedPolicyDstintfArrayInput is an input type that accepts GetFirewallConsolidatedPolicyDstintfArray and GetFirewallConsolidatedPolicyDstintfArrayOutput values.
-// You can construct a concrete instance of `GetFirewallConsolidatedPolicyDstintfArrayInput` via:
-//
-//	GetFirewallConsolidatedPolicyDstintfArray{ GetFirewallConsolidatedPolicyDstintfArgs{...} }
-type GetFirewallConsolidatedPolicyDstintfArrayInput interface {
-	pulumi.Input
-
-	ToGetFirewallConsolidatedPolicyDstintfArrayOutput() GetFirewallConsolidatedPolicyDstintfArrayOutput
-	ToGetFirewallConsolidatedPolicyDstintfArrayOutputWithContext(context.Context) GetFirewallConsolidatedPolicyDstintfArrayOutput
-}
-
-type GetFirewallConsolidatedPolicyDstintfArray []GetFirewallConsolidatedPolicyDstintfInput
-
-func (GetFirewallConsolidatedPolicyDstintfArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetFirewallConsolidatedPolicyDstintf)(nil)).Elem()
-}
-
-func (i GetFirewallConsolidatedPolicyDstintfArray) ToGetFirewallConsolidatedPolicyDstintfArrayOutput() GetFirewallConsolidatedPolicyDstintfArrayOutput {
-	return i.ToGetFirewallConsolidatedPolicyDstintfArrayOutputWithContext(context.Background())
-}
-
-func (i GetFirewallConsolidatedPolicyDstintfArray) ToGetFirewallConsolidatedPolicyDstintfArrayOutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyDstintfArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetFirewallConsolidatedPolicyDstintfArrayOutput)
-}
-
-type GetFirewallConsolidatedPolicyDstintfOutput struct{ *pulumi.OutputState }
-
-func (GetFirewallConsolidatedPolicyDstintfOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetFirewallConsolidatedPolicyDstintf)(nil)).Elem()
-}
-
-func (o GetFirewallConsolidatedPolicyDstintfOutput) ToGetFirewallConsolidatedPolicyDstintfOutput() GetFirewallConsolidatedPolicyDstintfOutput {
-	return o
-}
-
-func (o GetFirewallConsolidatedPolicyDstintfOutput) ToGetFirewallConsolidatedPolicyDstintfOutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyDstintfOutput {
-	return o
-}
-
-func (o GetFirewallConsolidatedPolicyDstintfOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetFirewallConsolidatedPolicyDstintf) string { return v.Name }).(pulumi.StringOutput)
-}
-
-type GetFirewallConsolidatedPolicyDstintfArrayOutput struct{ *pulumi.OutputState }
-
-func (GetFirewallConsolidatedPolicyDstintfArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetFirewallConsolidatedPolicyDstintf)(nil)).Elem()
-}
-
-func (o GetFirewallConsolidatedPolicyDstintfArrayOutput) ToGetFirewallConsolidatedPolicyDstintfArrayOutput() GetFirewallConsolidatedPolicyDstintfArrayOutput {
-	return o
-}
-
-func (o GetFirewallConsolidatedPolicyDstintfArrayOutput) ToGetFirewallConsolidatedPolicyDstintfArrayOutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyDstintfArrayOutput {
-	return o
-}
-
-func (o GetFirewallConsolidatedPolicyDstintfArrayOutput) Index(i pulumi.IntInput) GetFirewallConsolidatedPolicyDstintfOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFirewallConsolidatedPolicyDstintf {
-		return vs[0].([]GetFirewallConsolidatedPolicyDstintf)[vs[1].(int)]
-	}).(GetFirewallConsolidatedPolicyDstintfOutput)
-}
-
-type GetFirewallConsolidatedPolicyFssoGroup struct {
-	Name string `pulumi:"name"`
-}
-
-// GetFirewallConsolidatedPolicyFssoGroupInput is an input type that accepts GetFirewallConsolidatedPolicyFssoGroupArgs and GetFirewallConsolidatedPolicyFssoGroupOutput values.
-// You can construct a concrete instance of `GetFirewallConsolidatedPolicyFssoGroupInput` via:
-//
-//	GetFirewallConsolidatedPolicyFssoGroupArgs{...}
-type GetFirewallConsolidatedPolicyFssoGroupInput interface {
-	pulumi.Input
-
-	ToGetFirewallConsolidatedPolicyFssoGroupOutput() GetFirewallConsolidatedPolicyFssoGroupOutput
-	ToGetFirewallConsolidatedPolicyFssoGroupOutputWithContext(context.Context) GetFirewallConsolidatedPolicyFssoGroupOutput
-}
-
-type GetFirewallConsolidatedPolicyFssoGroupArgs struct {
-	Name pulumi.StringInput `pulumi:"name"`
-}
-
-func (GetFirewallConsolidatedPolicyFssoGroupArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetFirewallConsolidatedPolicyFssoGroup)(nil)).Elem()
-}
-
-func (i GetFirewallConsolidatedPolicyFssoGroupArgs) ToGetFirewallConsolidatedPolicyFssoGroupOutput() GetFirewallConsolidatedPolicyFssoGroupOutput {
-	return i.ToGetFirewallConsolidatedPolicyFssoGroupOutputWithContext(context.Background())
-}
-
-func (i GetFirewallConsolidatedPolicyFssoGroupArgs) ToGetFirewallConsolidatedPolicyFssoGroupOutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyFssoGroupOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetFirewallConsolidatedPolicyFssoGroupOutput)
-}
-
-// GetFirewallConsolidatedPolicyFssoGroupArrayInput is an input type that accepts GetFirewallConsolidatedPolicyFssoGroupArray and GetFirewallConsolidatedPolicyFssoGroupArrayOutput values.
-// You can construct a concrete instance of `GetFirewallConsolidatedPolicyFssoGroupArrayInput` via:
-//
-//	GetFirewallConsolidatedPolicyFssoGroupArray{ GetFirewallConsolidatedPolicyFssoGroupArgs{...} }
-type GetFirewallConsolidatedPolicyFssoGroupArrayInput interface {
-	pulumi.Input
-
-	ToGetFirewallConsolidatedPolicyFssoGroupArrayOutput() GetFirewallConsolidatedPolicyFssoGroupArrayOutput
-	ToGetFirewallConsolidatedPolicyFssoGroupArrayOutputWithContext(context.Context) GetFirewallConsolidatedPolicyFssoGroupArrayOutput
-}
-
-type GetFirewallConsolidatedPolicyFssoGroupArray []GetFirewallConsolidatedPolicyFssoGroupInput
-
-func (GetFirewallConsolidatedPolicyFssoGroupArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetFirewallConsolidatedPolicyFssoGroup)(nil)).Elem()
-}
-
-func (i GetFirewallConsolidatedPolicyFssoGroupArray) ToGetFirewallConsolidatedPolicyFssoGroupArrayOutput() GetFirewallConsolidatedPolicyFssoGroupArrayOutput {
-	return i.ToGetFirewallConsolidatedPolicyFssoGroupArrayOutputWithContext(context.Background())
-}
-
-func (i GetFirewallConsolidatedPolicyFssoGroupArray) ToGetFirewallConsolidatedPolicyFssoGroupArrayOutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyFssoGroupArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetFirewallConsolidatedPolicyFssoGroupArrayOutput)
-}
-
-type GetFirewallConsolidatedPolicyFssoGroupOutput struct{ *pulumi.OutputState }
-
-func (GetFirewallConsolidatedPolicyFssoGroupOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetFirewallConsolidatedPolicyFssoGroup)(nil)).Elem()
-}
-
-func (o GetFirewallConsolidatedPolicyFssoGroupOutput) ToGetFirewallConsolidatedPolicyFssoGroupOutput() GetFirewallConsolidatedPolicyFssoGroupOutput {
-	return o
-}
-
-func (o GetFirewallConsolidatedPolicyFssoGroupOutput) ToGetFirewallConsolidatedPolicyFssoGroupOutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyFssoGroupOutput {
-	return o
-}
-
-func (o GetFirewallConsolidatedPolicyFssoGroupOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetFirewallConsolidatedPolicyFssoGroup) string { return v.Name }).(pulumi.StringOutput)
-}
-
-type GetFirewallConsolidatedPolicyFssoGroupArrayOutput struct{ *pulumi.OutputState }
-
-func (GetFirewallConsolidatedPolicyFssoGroupArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetFirewallConsolidatedPolicyFssoGroup)(nil)).Elem()
-}
-
-func (o GetFirewallConsolidatedPolicyFssoGroupArrayOutput) ToGetFirewallConsolidatedPolicyFssoGroupArrayOutput() GetFirewallConsolidatedPolicyFssoGroupArrayOutput {
-	return o
-}
-
-func (o GetFirewallConsolidatedPolicyFssoGroupArrayOutput) ToGetFirewallConsolidatedPolicyFssoGroupArrayOutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyFssoGroupArrayOutput {
-	return o
-}
-
-func (o GetFirewallConsolidatedPolicyFssoGroupArrayOutput) Index(i pulumi.IntInput) GetFirewallConsolidatedPolicyFssoGroupOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFirewallConsolidatedPolicyFssoGroup {
-		return vs[0].([]GetFirewallConsolidatedPolicyFssoGroup)[vs[1].(int)]
-	}).(GetFirewallConsolidatedPolicyFssoGroupOutput)
-}
-
-type GetFirewallConsolidatedPolicyGroup struct {
-	Name string `pulumi:"name"`
-}
-
-// GetFirewallConsolidatedPolicyGroupInput is an input type that accepts GetFirewallConsolidatedPolicyGroupArgs and GetFirewallConsolidatedPolicyGroupOutput values.
-// You can construct a concrete instance of `GetFirewallConsolidatedPolicyGroupInput` via:
-//
-//	GetFirewallConsolidatedPolicyGroupArgs{...}
-type GetFirewallConsolidatedPolicyGroupInput interface {
-	pulumi.Input
-
-	ToGetFirewallConsolidatedPolicyGroupOutput() GetFirewallConsolidatedPolicyGroupOutput
-	ToGetFirewallConsolidatedPolicyGroupOutputWithContext(context.Context) GetFirewallConsolidatedPolicyGroupOutput
-}
-
-type GetFirewallConsolidatedPolicyGroupArgs struct {
-	Name pulumi.StringInput `pulumi:"name"`
-}
-
-func (GetFirewallConsolidatedPolicyGroupArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetFirewallConsolidatedPolicyGroup)(nil)).Elem()
-}
-
-func (i GetFirewallConsolidatedPolicyGroupArgs) ToGetFirewallConsolidatedPolicyGroupOutput() GetFirewallConsolidatedPolicyGroupOutput {
-	return i.ToGetFirewallConsolidatedPolicyGroupOutputWithContext(context.Background())
-}
-
-func (i GetFirewallConsolidatedPolicyGroupArgs) ToGetFirewallConsolidatedPolicyGroupOutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyGroupOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetFirewallConsolidatedPolicyGroupOutput)
-}
-
-// GetFirewallConsolidatedPolicyGroupArrayInput is an input type that accepts GetFirewallConsolidatedPolicyGroupArray and GetFirewallConsolidatedPolicyGroupArrayOutput values.
-// You can construct a concrete instance of `GetFirewallConsolidatedPolicyGroupArrayInput` via:
-//
-//	GetFirewallConsolidatedPolicyGroupArray{ GetFirewallConsolidatedPolicyGroupArgs{...} }
-type GetFirewallConsolidatedPolicyGroupArrayInput interface {
-	pulumi.Input
-
-	ToGetFirewallConsolidatedPolicyGroupArrayOutput() GetFirewallConsolidatedPolicyGroupArrayOutput
-	ToGetFirewallConsolidatedPolicyGroupArrayOutputWithContext(context.Context) GetFirewallConsolidatedPolicyGroupArrayOutput
-}
-
-type GetFirewallConsolidatedPolicyGroupArray []GetFirewallConsolidatedPolicyGroupInput
-
-func (GetFirewallConsolidatedPolicyGroupArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetFirewallConsolidatedPolicyGroup)(nil)).Elem()
-}
-
-func (i GetFirewallConsolidatedPolicyGroupArray) ToGetFirewallConsolidatedPolicyGroupArrayOutput() GetFirewallConsolidatedPolicyGroupArrayOutput {
-	return i.ToGetFirewallConsolidatedPolicyGroupArrayOutputWithContext(context.Background())
-}
-
-func (i GetFirewallConsolidatedPolicyGroupArray) ToGetFirewallConsolidatedPolicyGroupArrayOutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyGroupArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetFirewallConsolidatedPolicyGroupArrayOutput)
-}
-
-type GetFirewallConsolidatedPolicyGroupOutput struct{ *pulumi.OutputState }
-
-func (GetFirewallConsolidatedPolicyGroupOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetFirewallConsolidatedPolicyGroup)(nil)).Elem()
-}
-
-func (o GetFirewallConsolidatedPolicyGroupOutput) ToGetFirewallConsolidatedPolicyGroupOutput() GetFirewallConsolidatedPolicyGroupOutput {
-	return o
-}
-
-func (o GetFirewallConsolidatedPolicyGroupOutput) ToGetFirewallConsolidatedPolicyGroupOutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyGroupOutput {
-	return o
-}
-
-func (o GetFirewallConsolidatedPolicyGroupOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetFirewallConsolidatedPolicyGroup) string { return v.Name }).(pulumi.StringOutput)
-}
-
-type GetFirewallConsolidatedPolicyGroupArrayOutput struct{ *pulumi.OutputState }
-
-func (GetFirewallConsolidatedPolicyGroupArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetFirewallConsolidatedPolicyGroup)(nil)).Elem()
-}
-
-func (o GetFirewallConsolidatedPolicyGroupArrayOutput) ToGetFirewallConsolidatedPolicyGroupArrayOutput() GetFirewallConsolidatedPolicyGroupArrayOutput {
-	return o
-}
-
-func (o GetFirewallConsolidatedPolicyGroupArrayOutput) ToGetFirewallConsolidatedPolicyGroupArrayOutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyGroupArrayOutput {
-	return o
-}
-
-func (o GetFirewallConsolidatedPolicyGroupArrayOutput) Index(i pulumi.IntInput) GetFirewallConsolidatedPolicyGroupOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFirewallConsolidatedPolicyGroup {
-		return vs[0].([]GetFirewallConsolidatedPolicyGroup)[vs[1].(int)]
-	}).(GetFirewallConsolidatedPolicyGroupOutput)
-}
-
-type GetFirewallConsolidatedPolicyInternetServiceCustom struct {
-	Name string `pulumi:"name"`
-}
-
-// GetFirewallConsolidatedPolicyInternetServiceCustomInput is an input type that accepts GetFirewallConsolidatedPolicyInternetServiceCustomArgs and GetFirewallConsolidatedPolicyInternetServiceCustomOutput values.
-// You can construct a concrete instance of `GetFirewallConsolidatedPolicyInternetServiceCustomInput` via:
-//
-//	GetFirewallConsolidatedPolicyInternetServiceCustomArgs{...}
-type GetFirewallConsolidatedPolicyInternetServiceCustomInput interface {
-	pulumi.Input
-
-	ToGetFirewallConsolidatedPolicyInternetServiceCustomOutput() GetFirewallConsolidatedPolicyInternetServiceCustomOutput
-	ToGetFirewallConsolidatedPolicyInternetServiceCustomOutputWithContext(context.Context) GetFirewallConsolidatedPolicyInternetServiceCustomOutput
-}
-
-type GetFirewallConsolidatedPolicyInternetServiceCustomArgs struct {
-	Name pulumi.StringInput `pulumi:"name"`
-}
-
-func (GetFirewallConsolidatedPolicyInternetServiceCustomArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetFirewallConsolidatedPolicyInternetServiceCustom)(nil)).Elem()
-}
-
-func (i GetFirewallConsolidatedPolicyInternetServiceCustomArgs) ToGetFirewallConsolidatedPolicyInternetServiceCustomOutput() GetFirewallConsolidatedPolicyInternetServiceCustomOutput {
-	return i.ToGetFirewallConsolidatedPolicyInternetServiceCustomOutputWithContext(context.Background())
-}
-
-func (i GetFirewallConsolidatedPolicyInternetServiceCustomArgs) ToGetFirewallConsolidatedPolicyInternetServiceCustomOutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyInternetServiceCustomOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetFirewallConsolidatedPolicyInternetServiceCustomOutput)
-}
-
-// GetFirewallConsolidatedPolicyInternetServiceCustomArrayInput is an input type that accepts GetFirewallConsolidatedPolicyInternetServiceCustomArray and GetFirewallConsolidatedPolicyInternetServiceCustomArrayOutput values.
-// You can construct a concrete instance of `GetFirewallConsolidatedPolicyInternetServiceCustomArrayInput` via:
-//
-//	GetFirewallConsolidatedPolicyInternetServiceCustomArray{ GetFirewallConsolidatedPolicyInternetServiceCustomArgs{...} }
-type GetFirewallConsolidatedPolicyInternetServiceCustomArrayInput interface {
-	pulumi.Input
-
-	ToGetFirewallConsolidatedPolicyInternetServiceCustomArrayOutput() GetFirewallConsolidatedPolicyInternetServiceCustomArrayOutput
-	ToGetFirewallConsolidatedPolicyInternetServiceCustomArrayOutputWithContext(context.Context) GetFirewallConsolidatedPolicyInternetServiceCustomArrayOutput
-}
-
-type GetFirewallConsolidatedPolicyInternetServiceCustomArray []GetFirewallConsolidatedPolicyInternetServiceCustomInput
-
-func (GetFirewallConsolidatedPolicyInternetServiceCustomArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetFirewallConsolidatedPolicyInternetServiceCustom)(nil)).Elem()
-}
-
-func (i GetFirewallConsolidatedPolicyInternetServiceCustomArray) ToGetFirewallConsolidatedPolicyInternetServiceCustomArrayOutput() GetFirewallConsolidatedPolicyInternetServiceCustomArrayOutput {
-	return i.ToGetFirewallConsolidatedPolicyInternetServiceCustomArrayOutputWithContext(context.Background())
-}
-
-func (i GetFirewallConsolidatedPolicyInternetServiceCustomArray) ToGetFirewallConsolidatedPolicyInternetServiceCustomArrayOutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyInternetServiceCustomArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetFirewallConsolidatedPolicyInternetServiceCustomArrayOutput)
-}
-
-type GetFirewallConsolidatedPolicyInternetServiceCustomOutput struct{ *pulumi.OutputState }
-
-func (GetFirewallConsolidatedPolicyInternetServiceCustomOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetFirewallConsolidatedPolicyInternetServiceCustom)(nil)).Elem()
-}
-
-func (o GetFirewallConsolidatedPolicyInternetServiceCustomOutput) ToGetFirewallConsolidatedPolicyInternetServiceCustomOutput() GetFirewallConsolidatedPolicyInternetServiceCustomOutput {
-	return o
-}
-
-func (o GetFirewallConsolidatedPolicyInternetServiceCustomOutput) ToGetFirewallConsolidatedPolicyInternetServiceCustomOutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyInternetServiceCustomOutput {
-	return o
-}
-
-func (o GetFirewallConsolidatedPolicyInternetServiceCustomOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetFirewallConsolidatedPolicyInternetServiceCustom) string { return v.Name }).(pulumi.StringOutput)
-}
-
-type GetFirewallConsolidatedPolicyInternetServiceCustomArrayOutput struct{ *pulumi.OutputState }
-
-func (GetFirewallConsolidatedPolicyInternetServiceCustomArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetFirewallConsolidatedPolicyInternetServiceCustom)(nil)).Elem()
-}
-
-func (o GetFirewallConsolidatedPolicyInternetServiceCustomArrayOutput) ToGetFirewallConsolidatedPolicyInternetServiceCustomArrayOutput() GetFirewallConsolidatedPolicyInternetServiceCustomArrayOutput {
-	return o
-}
-
-func (o GetFirewallConsolidatedPolicyInternetServiceCustomArrayOutput) ToGetFirewallConsolidatedPolicyInternetServiceCustomArrayOutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyInternetServiceCustomArrayOutput {
-	return o
-}
-
-func (o GetFirewallConsolidatedPolicyInternetServiceCustomArrayOutput) Index(i pulumi.IntInput) GetFirewallConsolidatedPolicyInternetServiceCustomOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFirewallConsolidatedPolicyInternetServiceCustom {
-		return vs[0].([]GetFirewallConsolidatedPolicyInternetServiceCustom)[vs[1].(int)]
-	}).(GetFirewallConsolidatedPolicyInternetServiceCustomOutput)
-}
-
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusProfileCifsInput)(nil)).Elem(), AntivirusProfileCifsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusProfileCifsPtrInput)(nil)).Elem(), AntivirusProfileCifsArgs{})
@@ -62864,6 +62990,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*FirewallAddressTaggingArrayInput)(nil)).Elem(), FirewallAddressTaggingArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FirewallAddressTaggingTagInput)(nil)).Elem(), FirewallAddressTaggingTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FirewallAddressTaggingTagArrayInput)(nil)).Elem(), FirewallAddressTaggingTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallAddrgrp6ExcludeMemberInput)(nil)).Elem(), FirewallAddrgrp6ExcludeMemberArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallAddrgrp6ExcludeMemberArrayInput)(nil)).Elem(), FirewallAddrgrp6ExcludeMemberArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FirewallAddrgrp6MemberInput)(nil)).Elem(), FirewallAddrgrp6MemberArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FirewallAddrgrp6MemberArrayInput)(nil)).Elem(), FirewallAddrgrp6MemberArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FirewallAddrgrp6TaggingInput)(nil)).Elem(), FirewallAddrgrp6TaggingArgs{})
@@ -63020,6 +63148,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInternetServiceExtensionEntryPortRangeArrayInput)(nil)).Elem(), FirewallInternetServiceExtensionEntryPortRangeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInternetServiceGroupMemberInput)(nil)).Elem(), FirewallInternetServiceGroupMemberArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInternetServiceGroupMemberArrayInput)(nil)).Elem(), FirewallInternetServiceGroupMemberArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInternetServiceSubappSubAppInput)(nil)).Elem(), FirewallInternetServiceSubappSubAppArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInternetServiceSubappSubAppArrayInput)(nil)).Elem(), FirewallInternetServiceSubappSubAppArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FirewallLocalInPolicy6DstaddrInput)(nil)).Elem(), FirewallLocalInPolicy6DstaddrArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FirewallLocalInPolicy6DstaddrArrayInput)(nil)).Elem(), FirewallLocalInPolicy6DstaddrArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FirewallLocalInPolicy6ServiceInput)(nil)).Elem(), FirewallLocalInPolicy6ServiceArgs{})
@@ -63158,6 +63288,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*FirewallPolicyNetworkServiceSrcDynamicArrayInput)(nil)).Elem(), FirewallPolicyNetworkServiceSrcDynamicArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FirewallPolicyNtlmEnabledBrowserInput)(nil)).Elem(), FirewallPolicyNtlmEnabledBrowserArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FirewallPolicyNtlmEnabledBrowserArrayInput)(nil)).Elem(), FirewallPolicyNtlmEnabledBrowserArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallPolicyPcpPoolnameInput)(nil)).Elem(), FirewallPolicyPcpPoolnameArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallPolicyPcpPoolnameArrayInput)(nil)).Elem(), FirewallPolicyPcpPoolnameArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FirewallPolicyPoolname6Input)(nil)).Elem(), FirewallPolicyPoolname6Args{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FirewallPolicyPoolname6ArrayInput)(nil)).Elem(), FirewallPolicyPoolname6Array{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FirewallPolicyPoolnameInput)(nil)).Elem(), FirewallPolicyPoolnameArgs{})
@@ -63184,6 +63316,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*FirewallPolicyUserArrayInput)(nil)).Elem(), FirewallPolicyUserArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FirewallPolicyZtnaEmsTagInput)(nil)).Elem(), FirewallPolicyZtnaEmsTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FirewallPolicyZtnaEmsTagArrayInput)(nil)).Elem(), FirewallPolicyZtnaEmsTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallPolicyZtnaEmsTagSecondaryInput)(nil)).Elem(), FirewallPolicyZtnaEmsTagSecondaryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallPolicyZtnaEmsTagSecondaryArrayInput)(nil)).Elem(), FirewallPolicyZtnaEmsTagSecondaryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FirewallPolicyZtnaGeoTagInput)(nil)).Elem(), FirewallPolicyZtnaGeoTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FirewallPolicyZtnaGeoTagArrayInput)(nil)).Elem(), FirewallPolicyZtnaGeoTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FirewallProfileProtocolOptionsCifsInput)(nil)).Elem(), FirewallProfileProtocolOptionsCifsArgs{})
@@ -63238,6 +63372,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*FirewallProxyPolicyDstintfArrayInput)(nil)).Elem(), FirewallProxyPolicyDstintfArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FirewallProxyPolicyGroupInput)(nil)).Elem(), FirewallProxyPolicyGroupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FirewallProxyPolicyGroupArrayInput)(nil)).Elem(), FirewallProxyPolicyGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallProxyPolicyInternetService6CustomInput)(nil)).Elem(), FirewallProxyPolicyInternetService6CustomArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallProxyPolicyInternetService6CustomArrayInput)(nil)).Elem(), FirewallProxyPolicyInternetService6CustomArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallProxyPolicyInternetService6CustomGroupInput)(nil)).Elem(), FirewallProxyPolicyInternetService6CustomGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallProxyPolicyInternetService6CustomGroupArrayInput)(nil)).Elem(), FirewallProxyPolicyInternetService6CustomGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallProxyPolicyInternetService6GroupInput)(nil)).Elem(), FirewallProxyPolicyInternetService6GroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallProxyPolicyInternetService6GroupArrayInput)(nil)).Elem(), FirewallProxyPolicyInternetService6GroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallProxyPolicyInternetService6NameInput)(nil)).Elem(), FirewallProxyPolicyInternetService6NameArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallProxyPolicyInternetService6NameArrayInput)(nil)).Elem(), FirewallProxyPolicyInternetService6NameArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FirewallProxyPolicyInternetServiceCustomInput)(nil)).Elem(), FirewallProxyPolicyInternetServiceCustomArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FirewallProxyPolicyInternetServiceCustomArrayInput)(nil)).Elem(), FirewallProxyPolicyInternetServiceCustomArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FirewallProxyPolicyInternetServiceCustomGroupInput)(nil)).Elem(), FirewallProxyPolicyInternetServiceCustomGroupArgs{})
@@ -63496,6 +63638,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFirewallAddressTaggingArrayInput)(nil)).Elem(), GetFirewallAddressTaggingArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFirewallAddressTaggingTagInput)(nil)).Elem(), GetFirewallAddressTaggingTagArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFirewallAddressTaggingTagArrayInput)(nil)).Elem(), GetFirewallAddressTaggingTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFirewallAddrgrp6ExcludeMemberInput)(nil)).Elem(), GetFirewallAddrgrp6ExcludeMemberArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFirewallAddrgrp6ExcludeMemberArrayInput)(nil)).Elem(), GetFirewallAddrgrp6ExcludeMemberArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFirewallAddrgrp6MemberInput)(nil)).Elem(), GetFirewallAddrgrp6MemberArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFirewallAddrgrp6MemberArrayInput)(nil)).Elem(), GetFirewallAddrgrp6MemberArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFirewallAddrgrp6TaggingInput)(nil)).Elem(), GetFirewallAddrgrp6TaggingArgs{})
@@ -63526,24 +63670,6 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFirewallCentralSnatMapOrigAddrArrayInput)(nil)).Elem(), GetFirewallCentralSnatMapOrigAddrArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFirewallCentralSnatMapSrcintfInput)(nil)).Elem(), GetFirewallCentralSnatMapSrcintfArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFirewallCentralSnatMapSrcintfArrayInput)(nil)).Elem(), GetFirewallCentralSnatMapSrcintfArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetFirewallConsolidatedPolicyAppCategoryInput)(nil)).Elem(), GetFirewallConsolidatedPolicyAppCategoryArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetFirewallConsolidatedPolicyAppCategoryArrayInput)(nil)).Elem(), GetFirewallConsolidatedPolicyAppCategoryArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetFirewallConsolidatedPolicyAppGroupInput)(nil)).Elem(), GetFirewallConsolidatedPolicyAppGroupArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetFirewallConsolidatedPolicyAppGroupArrayInput)(nil)).Elem(), GetFirewallConsolidatedPolicyAppGroupArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetFirewallConsolidatedPolicyApplicationInput)(nil)).Elem(), GetFirewallConsolidatedPolicyApplicationArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetFirewallConsolidatedPolicyApplicationArrayInput)(nil)).Elem(), GetFirewallConsolidatedPolicyApplicationArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetFirewallConsolidatedPolicyDstaddr4Input)(nil)).Elem(), GetFirewallConsolidatedPolicyDstaddr4Args{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetFirewallConsolidatedPolicyDstaddr4ArrayInput)(nil)).Elem(), GetFirewallConsolidatedPolicyDstaddr4Array{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetFirewallConsolidatedPolicyDstaddr6Input)(nil)).Elem(), GetFirewallConsolidatedPolicyDstaddr6Args{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetFirewallConsolidatedPolicyDstaddr6ArrayInput)(nil)).Elem(), GetFirewallConsolidatedPolicyDstaddr6Array{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetFirewallConsolidatedPolicyDstintfInput)(nil)).Elem(), GetFirewallConsolidatedPolicyDstintfArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetFirewallConsolidatedPolicyDstintfArrayInput)(nil)).Elem(), GetFirewallConsolidatedPolicyDstintfArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetFirewallConsolidatedPolicyFssoGroupInput)(nil)).Elem(), GetFirewallConsolidatedPolicyFssoGroupArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetFirewallConsolidatedPolicyFssoGroupArrayInput)(nil)).Elem(), GetFirewallConsolidatedPolicyFssoGroupArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetFirewallConsolidatedPolicyGroupInput)(nil)).Elem(), GetFirewallConsolidatedPolicyGroupArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetFirewallConsolidatedPolicyGroupArrayInput)(nil)).Elem(), GetFirewallConsolidatedPolicyGroupArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetFirewallConsolidatedPolicyInternetServiceCustomInput)(nil)).Elem(), GetFirewallConsolidatedPolicyInternetServiceCustomArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetFirewallConsolidatedPolicyInternetServiceCustomArrayInput)(nil)).Elem(), GetFirewallConsolidatedPolicyInternetServiceCustomArray{})
 	pulumi.RegisterOutputType(AntivirusProfileCifsOutput{})
 	pulumi.RegisterOutputType(AntivirusProfileCifsPtrOutput{})
 	pulumi.RegisterOutputType(AntivirusProfileContentDisarmOutput{})
@@ -63864,6 +63990,8 @@ func init() {
 	pulumi.RegisterOutputType(FirewallAddressTaggingArrayOutput{})
 	pulumi.RegisterOutputType(FirewallAddressTaggingTagOutput{})
 	pulumi.RegisterOutputType(FirewallAddressTaggingTagArrayOutput{})
+	pulumi.RegisterOutputType(FirewallAddrgrp6ExcludeMemberOutput{})
+	pulumi.RegisterOutputType(FirewallAddrgrp6ExcludeMemberArrayOutput{})
 	pulumi.RegisterOutputType(FirewallAddrgrp6MemberOutput{})
 	pulumi.RegisterOutputType(FirewallAddrgrp6MemberArrayOutput{})
 	pulumi.RegisterOutputType(FirewallAddrgrp6TaggingOutput{})
@@ -64020,6 +64148,8 @@ func init() {
 	pulumi.RegisterOutputType(FirewallInternetServiceExtensionEntryPortRangeArrayOutput{})
 	pulumi.RegisterOutputType(FirewallInternetServiceGroupMemberOutput{})
 	pulumi.RegisterOutputType(FirewallInternetServiceGroupMemberArrayOutput{})
+	pulumi.RegisterOutputType(FirewallInternetServiceSubappSubAppOutput{})
+	pulumi.RegisterOutputType(FirewallInternetServiceSubappSubAppArrayOutput{})
 	pulumi.RegisterOutputType(FirewallLocalInPolicy6DstaddrOutput{})
 	pulumi.RegisterOutputType(FirewallLocalInPolicy6DstaddrArrayOutput{})
 	pulumi.RegisterOutputType(FirewallLocalInPolicy6ServiceOutput{})
@@ -64158,6 +64288,8 @@ func init() {
 	pulumi.RegisterOutputType(FirewallPolicyNetworkServiceSrcDynamicArrayOutput{})
 	pulumi.RegisterOutputType(FirewallPolicyNtlmEnabledBrowserOutput{})
 	pulumi.RegisterOutputType(FirewallPolicyNtlmEnabledBrowserArrayOutput{})
+	pulumi.RegisterOutputType(FirewallPolicyPcpPoolnameOutput{})
+	pulumi.RegisterOutputType(FirewallPolicyPcpPoolnameArrayOutput{})
 	pulumi.RegisterOutputType(FirewallPolicyPoolname6Output{})
 	pulumi.RegisterOutputType(FirewallPolicyPoolname6ArrayOutput{})
 	pulumi.RegisterOutputType(FirewallPolicyPoolnameOutput{})
@@ -64184,6 +64316,8 @@ func init() {
 	pulumi.RegisterOutputType(FirewallPolicyUserArrayOutput{})
 	pulumi.RegisterOutputType(FirewallPolicyZtnaEmsTagOutput{})
 	pulumi.RegisterOutputType(FirewallPolicyZtnaEmsTagArrayOutput{})
+	pulumi.RegisterOutputType(FirewallPolicyZtnaEmsTagSecondaryOutput{})
+	pulumi.RegisterOutputType(FirewallPolicyZtnaEmsTagSecondaryArrayOutput{})
 	pulumi.RegisterOutputType(FirewallPolicyZtnaGeoTagOutput{})
 	pulumi.RegisterOutputType(FirewallPolicyZtnaGeoTagArrayOutput{})
 	pulumi.RegisterOutputType(FirewallProfileProtocolOptionsCifsOutput{})
@@ -64238,6 +64372,14 @@ func init() {
 	pulumi.RegisterOutputType(FirewallProxyPolicyDstintfArrayOutput{})
 	pulumi.RegisterOutputType(FirewallProxyPolicyGroupOutput{})
 	pulumi.RegisterOutputType(FirewallProxyPolicyGroupArrayOutput{})
+	pulumi.RegisterOutputType(FirewallProxyPolicyInternetService6CustomOutput{})
+	pulumi.RegisterOutputType(FirewallProxyPolicyInternetService6CustomArrayOutput{})
+	pulumi.RegisterOutputType(FirewallProxyPolicyInternetService6CustomGroupOutput{})
+	pulumi.RegisterOutputType(FirewallProxyPolicyInternetService6CustomGroupArrayOutput{})
+	pulumi.RegisterOutputType(FirewallProxyPolicyInternetService6GroupOutput{})
+	pulumi.RegisterOutputType(FirewallProxyPolicyInternetService6GroupArrayOutput{})
+	pulumi.RegisterOutputType(FirewallProxyPolicyInternetService6NameOutput{})
+	pulumi.RegisterOutputType(FirewallProxyPolicyInternetService6NameArrayOutput{})
 	pulumi.RegisterOutputType(FirewallProxyPolicyInternetServiceCustomOutput{})
 	pulumi.RegisterOutputType(FirewallProxyPolicyInternetServiceCustomArrayOutput{})
 	pulumi.RegisterOutputType(FirewallProxyPolicyInternetServiceCustomGroupOutput{})
@@ -64496,6 +64638,8 @@ func init() {
 	pulumi.RegisterOutputType(GetFirewallAddressTaggingArrayOutput{})
 	pulumi.RegisterOutputType(GetFirewallAddressTaggingTagOutput{})
 	pulumi.RegisterOutputType(GetFirewallAddressTaggingTagArrayOutput{})
+	pulumi.RegisterOutputType(GetFirewallAddrgrp6ExcludeMemberOutput{})
+	pulumi.RegisterOutputType(GetFirewallAddrgrp6ExcludeMemberArrayOutput{})
 	pulumi.RegisterOutputType(GetFirewallAddrgrp6MemberOutput{})
 	pulumi.RegisterOutputType(GetFirewallAddrgrp6MemberArrayOutput{})
 	pulumi.RegisterOutputType(GetFirewallAddrgrp6TaggingOutput{})
@@ -64526,22 +64670,4 @@ func init() {
 	pulumi.RegisterOutputType(GetFirewallCentralSnatMapOrigAddrArrayOutput{})
 	pulumi.RegisterOutputType(GetFirewallCentralSnatMapSrcintfOutput{})
 	pulumi.RegisterOutputType(GetFirewallCentralSnatMapSrcintfArrayOutput{})
-	pulumi.RegisterOutputType(GetFirewallConsolidatedPolicyAppCategoryOutput{})
-	pulumi.RegisterOutputType(GetFirewallConsolidatedPolicyAppCategoryArrayOutput{})
-	pulumi.RegisterOutputType(GetFirewallConsolidatedPolicyAppGroupOutput{})
-	pulumi.RegisterOutputType(GetFirewallConsolidatedPolicyAppGroupArrayOutput{})
-	pulumi.RegisterOutputType(GetFirewallConsolidatedPolicyApplicationOutput{})
-	pulumi.RegisterOutputType(GetFirewallConsolidatedPolicyApplicationArrayOutput{})
-	pulumi.RegisterOutputType(GetFirewallConsolidatedPolicyDstaddr4Output{})
-	pulumi.RegisterOutputType(GetFirewallConsolidatedPolicyDstaddr4ArrayOutput{})
-	pulumi.RegisterOutputType(GetFirewallConsolidatedPolicyDstaddr6Output{})
-	pulumi.RegisterOutputType(GetFirewallConsolidatedPolicyDstaddr6ArrayOutput{})
-	pulumi.RegisterOutputType(GetFirewallConsolidatedPolicyDstintfOutput{})
-	pulumi.RegisterOutputType(GetFirewallConsolidatedPolicyDstintfArrayOutput{})
-	pulumi.RegisterOutputType(GetFirewallConsolidatedPolicyFssoGroupOutput{})
-	pulumi.RegisterOutputType(GetFirewallConsolidatedPolicyFssoGroupArrayOutput{})
-	pulumi.RegisterOutputType(GetFirewallConsolidatedPolicyGroupOutput{})
-	pulumi.RegisterOutputType(GetFirewallConsolidatedPolicyGroupArrayOutput{})
-	pulumi.RegisterOutputType(GetFirewallConsolidatedPolicyInternetServiceCustomOutput{})
-	pulumi.RegisterOutputType(GetFirewallConsolidatedPolicyInternetServiceCustomArrayOutput{})
 }

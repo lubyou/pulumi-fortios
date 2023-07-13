@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -30,7 +31,7 @@ func NewSystemCustomLanguage(ctx *pulumi.Context,
 	if args.Filename == nil {
 		return nil, errors.New("invalid value for required argument 'Filename'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemCustomLanguage
 	err := ctx.RegisterResource("fortios:index/systemCustomLanguage:SystemCustomLanguage", name, args, &resource, opts...)
 	if err != nil {

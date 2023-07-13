@@ -24,6 +24,7 @@ class WirelessControllerApcfgProfileArgs:
                  command_lists: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerApcfgProfileCommandListArgs']]]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
@@ -45,6 +46,8 @@ class WirelessControllerApcfgProfileArgs:
             pulumi.set(__self__, "comment", comment)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if vdomparam is not None:
@@ -121,6 +124,15 @@ class WirelessControllerApcfgProfileArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -152,6 +164,7 @@ class _WirelessControllerApcfgProfileState:
                  command_lists: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerApcfgProfileCommandListArgs']]]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
@@ -173,6 +186,8 @@ class _WirelessControllerApcfgProfileState:
             pulumi.set(__self__, "comment", comment)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if vdomparam is not None:
@@ -249,6 +264,15 @@ class _WirelessControllerApcfgProfileState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -282,6 +306,7 @@ class WirelessControllerApcfgProfile(pulumi.CustomResource):
                  command_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerApcfgProfileCommandListArgs']]]]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -321,6 +346,7 @@ class WirelessControllerApcfgProfile(pulumi.CustomResource):
                  command_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerApcfgProfileCommandListArgs']]]]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -340,6 +366,7 @@ class WirelessControllerApcfgProfile(pulumi.CustomResource):
             __props__.__dict__["command_lists"] = command_lists
             __props__.__dict__["comment"] = comment
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["name"] = name
             __props__.__dict__["vdomparam"] = vdomparam
         super(WirelessControllerApcfgProfile, __self__).__init__(
@@ -360,6 +387,7 @@ class WirelessControllerApcfgProfile(pulumi.CustomResource):
             command_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerApcfgProfileCommandListArgs']]]]] = None,
             comment: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'WirelessControllerApcfgProfile':
         """
@@ -382,6 +410,7 @@ class WirelessControllerApcfgProfile(pulumi.CustomResource):
         __props__.__dict__["command_lists"] = command_lists
         __props__.__dict__["comment"] = comment
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["name"] = name
         __props__.__dict__["vdomparam"] = vdomparam
         return WirelessControllerApcfgProfile(resource_name, opts=opts, __props__=__props__)
@@ -425,6 +454,11 @@ class WirelessControllerApcfgProfile(pulumi.CustomResource):
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

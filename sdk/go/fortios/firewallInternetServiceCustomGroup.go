@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,6 +16,7 @@ type FirewallInternetServiceCustomGroup struct {
 
 	Comment             pulumi.StringPtrOutput                              `pulumi:"comment"`
 	DynamicSortSubtable pulumi.StringPtrOutput                              `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                              `pulumi:"getAllTables"`
 	Members             FirewallInternetServiceCustomGroupMemberArrayOutput `pulumi:"members"`
 	Name                pulumi.StringOutput                                 `pulumi:"name"`
 	Vdomparam           pulumi.StringPtrOutput                              `pulumi:"vdomparam"`
@@ -27,7 +29,7 @@ func NewFirewallInternetServiceCustomGroup(ctx *pulumi.Context,
 		args = &FirewallInternetServiceCustomGroupArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallInternetServiceCustomGroup
 	err := ctx.RegisterResource("fortios:index/firewallInternetServiceCustomGroup:FirewallInternetServiceCustomGroup", name, args, &resource, opts...)
 	if err != nil {
@@ -52,6 +54,7 @@ func GetFirewallInternetServiceCustomGroup(ctx *pulumi.Context,
 type firewallInternetServiceCustomGroupState struct {
 	Comment             *string                                    `pulumi:"comment"`
 	DynamicSortSubtable *string                                    `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                                    `pulumi:"getAllTables"`
 	Members             []FirewallInternetServiceCustomGroupMember `pulumi:"members"`
 	Name                *string                                    `pulumi:"name"`
 	Vdomparam           *string                                    `pulumi:"vdomparam"`
@@ -60,6 +63,7 @@ type firewallInternetServiceCustomGroupState struct {
 type FirewallInternetServiceCustomGroupState struct {
 	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Members             FirewallInternetServiceCustomGroupMemberArrayInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
@@ -72,6 +76,7 @@ func (FirewallInternetServiceCustomGroupState) ElementType() reflect.Type {
 type firewallInternetServiceCustomGroupArgs struct {
 	Comment             *string                                    `pulumi:"comment"`
 	DynamicSortSubtable *string                                    `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                                    `pulumi:"getAllTables"`
 	Members             []FirewallInternetServiceCustomGroupMember `pulumi:"members"`
 	Name                *string                                    `pulumi:"name"`
 	Vdomparam           *string                                    `pulumi:"vdomparam"`
@@ -81,6 +86,7 @@ type firewallInternetServiceCustomGroupArgs struct {
 type FirewallInternetServiceCustomGroupArgs struct {
 	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Members             FirewallInternetServiceCustomGroupMemberArrayInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
@@ -179,6 +185,10 @@ func (o FirewallInternetServiceCustomGroupOutput) Comment() pulumi.StringPtrOutp
 
 func (o FirewallInternetServiceCustomGroupOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FirewallInternetServiceCustomGroup) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallInternetServiceCustomGroupOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceCustomGroup) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallInternetServiceCustomGroupOutput) Members() FirewallInternetServiceCustomGroupMemberArrayOutput {

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -18,6 +19,7 @@ type UserDevice struct {
 	Category            pulumi.StringOutput          `pulumi:"category"`
 	Comment             pulumi.StringPtrOutput       `pulumi:"comment"`
 	DynamicSortSubtable pulumi.StringPtrOutput       `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput       `pulumi:"getAllTables"`
 	Mac                 pulumi.StringOutput          `pulumi:"mac"`
 	MasterDevice        pulumi.StringOutput          `pulumi:"masterDevice"`
 	Taggings            UserDeviceTaggingArrayOutput `pulumi:"taggings"`
@@ -33,7 +35,7 @@ func NewUserDevice(ctx *pulumi.Context,
 		args = &UserDeviceArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource UserDevice
 	err := ctx.RegisterResource("fortios:index/userDevice:UserDevice", name, args, &resource, opts...)
 	if err != nil {
@@ -61,6 +63,7 @@ type userDeviceState struct {
 	Category            *string             `pulumi:"category"`
 	Comment             *string             `pulumi:"comment"`
 	DynamicSortSubtable *string             `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string             `pulumi:"getAllTables"`
 	Mac                 *string             `pulumi:"mac"`
 	MasterDevice        *string             `pulumi:"masterDevice"`
 	Taggings            []UserDeviceTagging `pulumi:"taggings"`
@@ -75,6 +78,7 @@ type UserDeviceState struct {
 	Category            pulumi.StringPtrInput
 	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Mac                 pulumi.StringPtrInput
 	MasterDevice        pulumi.StringPtrInput
 	Taggings            UserDeviceTaggingArrayInput
@@ -93,6 +97,7 @@ type userDeviceArgs struct {
 	Category            *string             `pulumi:"category"`
 	Comment             *string             `pulumi:"comment"`
 	DynamicSortSubtable *string             `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string             `pulumi:"getAllTables"`
 	Mac                 *string             `pulumi:"mac"`
 	MasterDevice        *string             `pulumi:"masterDevice"`
 	Taggings            []UserDeviceTagging `pulumi:"taggings"`
@@ -108,6 +113,7 @@ type UserDeviceArgs struct {
 	Category            pulumi.StringPtrInput
 	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Mac                 pulumi.StringPtrInput
 	MasterDevice        pulumi.StringPtrInput
 	Taggings            UserDeviceTaggingArrayInput
@@ -221,6 +227,10 @@ func (o UserDeviceOutput) Comment() pulumi.StringPtrOutput {
 
 func (o UserDeviceOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *UserDevice) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o UserDeviceOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserDevice) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o UserDeviceOutput) Mac() pulumi.StringOutput {

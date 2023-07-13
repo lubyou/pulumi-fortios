@@ -19,6 +19,7 @@ class RouterbgpNeighborArgs:
                  ip: pulumi.Input[str],
                  activate: Optional[pulumi.Input[str]] = None,
                  activate6: Optional[pulumi.Input[str]] = None,
+                 activate_evpn: Optional[pulumi.Input[str]] = None,
                  activate_vpnv4: Optional[pulumi.Input[str]] = None,
                  additional_path: Optional[pulumi.Input[str]] = None,
                  additional_path6: Optional[pulumi.Input[str]] = None,
@@ -31,6 +32,9 @@ class RouterbgpNeighborArgs:
                  allowas_in6: Optional[pulumi.Input[int]] = None,
                  allowas_in_enable: Optional[pulumi.Input[str]] = None,
                  allowas_in_enable6: Optional[pulumi.Input[str]] = None,
+                 allowas_in_enable_evpn: Optional[pulumi.Input[str]] = None,
+                 allowas_in_enable_vpnv4: Optional[pulumi.Input[str]] = None,
+                 allowas_in_evpn: Optional[pulumi.Input[int]] = None,
                  allowas_in_vpnv4: Optional[pulumi.Input[int]] = None,
                  as_override: Optional[pulumi.Input[str]] = None,
                  as_override6: Optional[pulumi.Input[str]] = None,
@@ -43,6 +47,7 @@ class RouterbgpNeighborArgs:
                  capability_dynamic: Optional[pulumi.Input[str]] = None,
                  capability_graceful_restart: Optional[pulumi.Input[str]] = None,
                  capability_graceful_restart6: Optional[pulumi.Input[str]] = None,
+                 capability_graceful_restart_evpn: Optional[pulumi.Input[str]] = None,
                  capability_graceful_restart_vpnv4: Optional[pulumi.Input[str]] = None,
                  capability_orf: Optional[pulumi.Input[str]] = None,
                  capability_orf6: Optional[pulumi.Input[str]] = None,
@@ -67,6 +72,7 @@ class RouterbgpNeighborArgs:
                  filter_list_in6: Optional[pulumi.Input[str]] = None,
                  filter_list_out: Optional[pulumi.Input[str]] = None,
                  filter_list_out6: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  holdtime_timer: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  keep_alive_timer: Optional[pulumi.Input[int]] = None,
@@ -76,12 +82,15 @@ class RouterbgpNeighborArgs:
                  local_as_replace_as: Optional[pulumi.Input[str]] = None,
                  maximum_prefix: Optional[pulumi.Input[int]] = None,
                  maximum_prefix6: Optional[pulumi.Input[int]] = None,
+                 maximum_prefix_evpn: Optional[pulumi.Input[int]] = None,
                  maximum_prefix_threshold: Optional[pulumi.Input[int]] = None,
                  maximum_prefix_threshold6: Optional[pulumi.Input[int]] = None,
+                 maximum_prefix_threshold_evpn: Optional[pulumi.Input[int]] = None,
                  maximum_prefix_threshold_vpnv4: Optional[pulumi.Input[int]] = None,
                  maximum_prefix_vpnv4: Optional[pulumi.Input[int]] = None,
                  maximum_prefix_warning_only: Optional[pulumi.Input[str]] = None,
                  maximum_prefix_warning_only6: Optional[pulumi.Input[str]] = None,
+                 maximum_prefix_warning_only_evpn: Optional[pulumi.Input[str]] = None,
                  maximum_prefix_warning_only_vpnv4: Optional[pulumi.Input[str]] = None,
                  next_hop_self: Optional[pulumi.Input[str]] = None,
                  next_hop_self6: Optional[pulumi.Input[str]] = None,
@@ -100,30 +109,37 @@ class RouterbgpNeighborArgs:
                  remote_as: Optional[pulumi.Input[int]] = None,
                  remove_private_as: Optional[pulumi.Input[str]] = None,
                  remove_private_as6: Optional[pulumi.Input[str]] = None,
+                 remove_private_as_evpn: Optional[pulumi.Input[str]] = None,
                  remove_private_as_vpnv4: Optional[pulumi.Input[str]] = None,
                  restart_time: Optional[pulumi.Input[int]] = None,
                  retain_stale_time: Optional[pulumi.Input[int]] = None,
                  route_map_in: Optional[pulumi.Input[str]] = None,
                  route_map_in6: Optional[pulumi.Input[str]] = None,
+                 route_map_in_evpn: Optional[pulumi.Input[str]] = None,
                  route_map_in_vpnv4: Optional[pulumi.Input[str]] = None,
                  route_map_out: Optional[pulumi.Input[str]] = None,
                  route_map_out6: Optional[pulumi.Input[str]] = None,
                  route_map_out6_preferable: Optional[pulumi.Input[str]] = None,
+                 route_map_out_evpn: Optional[pulumi.Input[str]] = None,
                  route_map_out_preferable: Optional[pulumi.Input[str]] = None,
                  route_map_out_vpnv4: Optional[pulumi.Input[str]] = None,
                  route_map_out_vpnv4_preferable: Optional[pulumi.Input[str]] = None,
                  route_reflector_client: Optional[pulumi.Input[str]] = None,
                  route_reflector_client6: Optional[pulumi.Input[str]] = None,
+                 route_reflector_client_evpn: Optional[pulumi.Input[str]] = None,
                  route_reflector_client_vpnv4: Optional[pulumi.Input[str]] = None,
                  route_server_client: Optional[pulumi.Input[str]] = None,
                  route_server_client6: Optional[pulumi.Input[str]] = None,
+                 route_server_client_evpn: Optional[pulumi.Input[str]] = None,
                  route_server_client_vpnv4: Optional[pulumi.Input[str]] = None,
                  send_community: Optional[pulumi.Input[str]] = None,
                  send_community6: Optional[pulumi.Input[str]] = None,
+                 send_community_evpn: Optional[pulumi.Input[str]] = None,
                  send_community_vpnv4: Optional[pulumi.Input[str]] = None,
                  shutdown: Optional[pulumi.Input[str]] = None,
                  soft_reconfiguration: Optional[pulumi.Input[str]] = None,
                  soft_reconfiguration6: Optional[pulumi.Input[str]] = None,
+                 soft_reconfiguration_evpn: Optional[pulumi.Input[str]] = None,
                  soft_reconfiguration_vpnv4: Optional[pulumi.Input[str]] = None,
                  stale_route: Optional[pulumi.Input[str]] = None,
                  strict_capability_match: Optional[pulumi.Input[str]] = None,
@@ -140,6 +156,8 @@ class RouterbgpNeighborArgs:
             pulumi.set(__self__, "activate", activate)
         if activate6 is not None:
             pulumi.set(__self__, "activate6", activate6)
+        if activate_evpn is not None:
+            pulumi.set(__self__, "activate_evpn", activate_evpn)
         if activate_vpnv4 is not None:
             pulumi.set(__self__, "activate_vpnv4", activate_vpnv4)
         if additional_path is not None:
@@ -164,6 +182,12 @@ class RouterbgpNeighborArgs:
             pulumi.set(__self__, "allowas_in_enable", allowas_in_enable)
         if allowas_in_enable6 is not None:
             pulumi.set(__self__, "allowas_in_enable6", allowas_in_enable6)
+        if allowas_in_enable_evpn is not None:
+            pulumi.set(__self__, "allowas_in_enable_evpn", allowas_in_enable_evpn)
+        if allowas_in_enable_vpnv4 is not None:
+            pulumi.set(__self__, "allowas_in_enable_vpnv4", allowas_in_enable_vpnv4)
+        if allowas_in_evpn is not None:
+            pulumi.set(__self__, "allowas_in_evpn", allowas_in_evpn)
         if allowas_in_vpnv4 is not None:
             pulumi.set(__self__, "allowas_in_vpnv4", allowas_in_vpnv4)
         if as_override is not None:
@@ -188,6 +212,8 @@ class RouterbgpNeighborArgs:
             pulumi.set(__self__, "capability_graceful_restart", capability_graceful_restart)
         if capability_graceful_restart6 is not None:
             pulumi.set(__self__, "capability_graceful_restart6", capability_graceful_restart6)
+        if capability_graceful_restart_evpn is not None:
+            pulumi.set(__self__, "capability_graceful_restart_evpn", capability_graceful_restart_evpn)
         if capability_graceful_restart_vpnv4 is not None:
             pulumi.set(__self__, "capability_graceful_restart_vpnv4", capability_graceful_restart_vpnv4)
         if capability_orf is not None:
@@ -236,6 +262,8 @@ class RouterbgpNeighborArgs:
             pulumi.set(__self__, "filter_list_out", filter_list_out)
         if filter_list_out6 is not None:
             pulumi.set(__self__, "filter_list_out6", filter_list_out6)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if holdtime_timer is not None:
             pulumi.set(__self__, "holdtime_timer", holdtime_timer)
         if interface is not None:
@@ -254,10 +282,14 @@ class RouterbgpNeighborArgs:
             pulumi.set(__self__, "maximum_prefix", maximum_prefix)
         if maximum_prefix6 is not None:
             pulumi.set(__self__, "maximum_prefix6", maximum_prefix6)
+        if maximum_prefix_evpn is not None:
+            pulumi.set(__self__, "maximum_prefix_evpn", maximum_prefix_evpn)
         if maximum_prefix_threshold is not None:
             pulumi.set(__self__, "maximum_prefix_threshold", maximum_prefix_threshold)
         if maximum_prefix_threshold6 is not None:
             pulumi.set(__self__, "maximum_prefix_threshold6", maximum_prefix_threshold6)
+        if maximum_prefix_threshold_evpn is not None:
+            pulumi.set(__self__, "maximum_prefix_threshold_evpn", maximum_prefix_threshold_evpn)
         if maximum_prefix_threshold_vpnv4 is not None:
             pulumi.set(__self__, "maximum_prefix_threshold_vpnv4", maximum_prefix_threshold_vpnv4)
         if maximum_prefix_vpnv4 is not None:
@@ -266,6 +298,8 @@ class RouterbgpNeighborArgs:
             pulumi.set(__self__, "maximum_prefix_warning_only", maximum_prefix_warning_only)
         if maximum_prefix_warning_only6 is not None:
             pulumi.set(__self__, "maximum_prefix_warning_only6", maximum_prefix_warning_only6)
+        if maximum_prefix_warning_only_evpn is not None:
+            pulumi.set(__self__, "maximum_prefix_warning_only_evpn", maximum_prefix_warning_only_evpn)
         if maximum_prefix_warning_only_vpnv4 is not None:
             pulumi.set(__self__, "maximum_prefix_warning_only_vpnv4", maximum_prefix_warning_only_vpnv4)
         if next_hop_self is not None:
@@ -302,6 +336,8 @@ class RouterbgpNeighborArgs:
             pulumi.set(__self__, "remove_private_as", remove_private_as)
         if remove_private_as6 is not None:
             pulumi.set(__self__, "remove_private_as6", remove_private_as6)
+        if remove_private_as_evpn is not None:
+            pulumi.set(__self__, "remove_private_as_evpn", remove_private_as_evpn)
         if remove_private_as_vpnv4 is not None:
             pulumi.set(__self__, "remove_private_as_vpnv4", remove_private_as_vpnv4)
         if restart_time is not None:
@@ -312,6 +348,8 @@ class RouterbgpNeighborArgs:
             pulumi.set(__self__, "route_map_in", route_map_in)
         if route_map_in6 is not None:
             pulumi.set(__self__, "route_map_in6", route_map_in6)
+        if route_map_in_evpn is not None:
+            pulumi.set(__self__, "route_map_in_evpn", route_map_in_evpn)
         if route_map_in_vpnv4 is not None:
             pulumi.set(__self__, "route_map_in_vpnv4", route_map_in_vpnv4)
         if route_map_out is not None:
@@ -320,6 +358,8 @@ class RouterbgpNeighborArgs:
             pulumi.set(__self__, "route_map_out6", route_map_out6)
         if route_map_out6_preferable is not None:
             pulumi.set(__self__, "route_map_out6_preferable", route_map_out6_preferable)
+        if route_map_out_evpn is not None:
+            pulumi.set(__self__, "route_map_out_evpn", route_map_out_evpn)
         if route_map_out_preferable is not None:
             pulumi.set(__self__, "route_map_out_preferable", route_map_out_preferable)
         if route_map_out_vpnv4 is not None:
@@ -330,18 +370,24 @@ class RouterbgpNeighborArgs:
             pulumi.set(__self__, "route_reflector_client", route_reflector_client)
         if route_reflector_client6 is not None:
             pulumi.set(__self__, "route_reflector_client6", route_reflector_client6)
+        if route_reflector_client_evpn is not None:
+            pulumi.set(__self__, "route_reflector_client_evpn", route_reflector_client_evpn)
         if route_reflector_client_vpnv4 is not None:
             pulumi.set(__self__, "route_reflector_client_vpnv4", route_reflector_client_vpnv4)
         if route_server_client is not None:
             pulumi.set(__self__, "route_server_client", route_server_client)
         if route_server_client6 is not None:
             pulumi.set(__self__, "route_server_client6", route_server_client6)
+        if route_server_client_evpn is not None:
+            pulumi.set(__self__, "route_server_client_evpn", route_server_client_evpn)
         if route_server_client_vpnv4 is not None:
             pulumi.set(__self__, "route_server_client_vpnv4", route_server_client_vpnv4)
         if send_community is not None:
             pulumi.set(__self__, "send_community", send_community)
         if send_community6 is not None:
             pulumi.set(__self__, "send_community6", send_community6)
+        if send_community_evpn is not None:
+            pulumi.set(__self__, "send_community_evpn", send_community_evpn)
         if send_community_vpnv4 is not None:
             pulumi.set(__self__, "send_community_vpnv4", send_community_vpnv4)
         if shutdown is not None:
@@ -350,6 +396,8 @@ class RouterbgpNeighborArgs:
             pulumi.set(__self__, "soft_reconfiguration", soft_reconfiguration)
         if soft_reconfiguration6 is not None:
             pulumi.set(__self__, "soft_reconfiguration6", soft_reconfiguration6)
+        if soft_reconfiguration_evpn is not None:
+            pulumi.set(__self__, "soft_reconfiguration_evpn", soft_reconfiguration_evpn)
         if soft_reconfiguration_vpnv4 is not None:
             pulumi.set(__self__, "soft_reconfiguration_vpnv4", soft_reconfiguration_vpnv4)
         if stale_route is not None:
@@ -393,6 +441,15 @@ class RouterbgpNeighborArgs:
     @activate6.setter
     def activate6(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "activate6", value)
+
+    @property
+    @pulumi.getter(name="activateEvpn")
+    def activate_evpn(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "activate_evpn")
+
+    @activate_evpn.setter
+    def activate_evpn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "activate_evpn", value)
 
     @property
     @pulumi.getter(name="activateVpnv4")
@@ -503,6 +560,33 @@ class RouterbgpNeighborArgs:
         pulumi.set(self, "allowas_in_enable6", value)
 
     @property
+    @pulumi.getter(name="allowasInEnableEvpn")
+    def allowas_in_enable_evpn(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "allowas_in_enable_evpn")
+
+    @allowas_in_enable_evpn.setter
+    def allowas_in_enable_evpn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "allowas_in_enable_evpn", value)
+
+    @property
+    @pulumi.getter(name="allowasInEnableVpnv4")
+    def allowas_in_enable_vpnv4(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "allowas_in_enable_vpnv4")
+
+    @allowas_in_enable_vpnv4.setter
+    def allowas_in_enable_vpnv4(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "allowas_in_enable_vpnv4", value)
+
+    @property
+    @pulumi.getter(name="allowasInEvpn")
+    def allowas_in_evpn(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "allowas_in_evpn")
+
+    @allowas_in_evpn.setter
+    def allowas_in_evpn(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "allowas_in_evpn", value)
+
+    @property
     @pulumi.getter(name="allowasInVpnv4")
     def allowas_in_vpnv4(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "allowas_in_vpnv4")
@@ -609,6 +693,15 @@ class RouterbgpNeighborArgs:
     @capability_graceful_restart6.setter
     def capability_graceful_restart6(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "capability_graceful_restart6", value)
+
+    @property
+    @pulumi.getter(name="capabilityGracefulRestartEvpn")
+    def capability_graceful_restart_evpn(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "capability_graceful_restart_evpn")
+
+    @capability_graceful_restart_evpn.setter
+    def capability_graceful_restart_evpn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "capability_graceful_restart_evpn", value)
 
     @property
     @pulumi.getter(name="capabilityGracefulRestartVpnv4")
@@ -827,6 +920,15 @@ class RouterbgpNeighborArgs:
         pulumi.set(self, "filter_list_out6", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="holdtimeTimer")
     def holdtime_timer(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "holdtime_timer")
@@ -908,6 +1010,15 @@ class RouterbgpNeighborArgs:
         pulumi.set(self, "maximum_prefix6", value)
 
     @property
+    @pulumi.getter(name="maximumPrefixEvpn")
+    def maximum_prefix_evpn(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "maximum_prefix_evpn")
+
+    @maximum_prefix_evpn.setter
+    def maximum_prefix_evpn(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "maximum_prefix_evpn", value)
+
+    @property
     @pulumi.getter(name="maximumPrefixThreshold")
     def maximum_prefix_threshold(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "maximum_prefix_threshold")
@@ -924,6 +1035,15 @@ class RouterbgpNeighborArgs:
     @maximum_prefix_threshold6.setter
     def maximum_prefix_threshold6(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "maximum_prefix_threshold6", value)
+
+    @property
+    @pulumi.getter(name="maximumPrefixThresholdEvpn")
+    def maximum_prefix_threshold_evpn(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "maximum_prefix_threshold_evpn")
+
+    @maximum_prefix_threshold_evpn.setter
+    def maximum_prefix_threshold_evpn(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "maximum_prefix_threshold_evpn", value)
 
     @property
     @pulumi.getter(name="maximumPrefixThresholdVpnv4")
@@ -960,6 +1080,15 @@ class RouterbgpNeighborArgs:
     @maximum_prefix_warning_only6.setter
     def maximum_prefix_warning_only6(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "maximum_prefix_warning_only6", value)
+
+    @property
+    @pulumi.getter(name="maximumPrefixWarningOnlyEvpn")
+    def maximum_prefix_warning_only_evpn(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "maximum_prefix_warning_only_evpn")
+
+    @maximum_prefix_warning_only_evpn.setter
+    def maximum_prefix_warning_only_evpn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "maximum_prefix_warning_only_evpn", value)
 
     @property
     @pulumi.getter(name="maximumPrefixWarningOnlyVpnv4")
@@ -1124,6 +1253,15 @@ class RouterbgpNeighborArgs:
         pulumi.set(self, "remove_private_as6", value)
 
     @property
+    @pulumi.getter(name="removePrivateAsEvpn")
+    def remove_private_as_evpn(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "remove_private_as_evpn")
+
+    @remove_private_as_evpn.setter
+    def remove_private_as_evpn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "remove_private_as_evpn", value)
+
+    @property
     @pulumi.getter(name="removePrivateAsVpnv4")
     def remove_private_as_vpnv4(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "remove_private_as_vpnv4")
@@ -1169,6 +1307,15 @@ class RouterbgpNeighborArgs:
         pulumi.set(self, "route_map_in6", value)
 
     @property
+    @pulumi.getter(name="routeMapInEvpn")
+    def route_map_in_evpn(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "route_map_in_evpn")
+
+    @route_map_in_evpn.setter
+    def route_map_in_evpn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "route_map_in_evpn", value)
+
+    @property
     @pulumi.getter(name="routeMapInVpnv4")
     def route_map_in_vpnv4(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "route_map_in_vpnv4")
@@ -1203,6 +1350,15 @@ class RouterbgpNeighborArgs:
     @route_map_out6_preferable.setter
     def route_map_out6_preferable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "route_map_out6_preferable", value)
+
+    @property
+    @pulumi.getter(name="routeMapOutEvpn")
+    def route_map_out_evpn(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "route_map_out_evpn")
+
+    @route_map_out_evpn.setter
+    def route_map_out_evpn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "route_map_out_evpn", value)
 
     @property
     @pulumi.getter(name="routeMapOutPreferable")
@@ -1250,6 +1406,15 @@ class RouterbgpNeighborArgs:
         pulumi.set(self, "route_reflector_client6", value)
 
     @property
+    @pulumi.getter(name="routeReflectorClientEvpn")
+    def route_reflector_client_evpn(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "route_reflector_client_evpn")
+
+    @route_reflector_client_evpn.setter
+    def route_reflector_client_evpn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "route_reflector_client_evpn", value)
+
+    @property
     @pulumi.getter(name="routeReflectorClientVpnv4")
     def route_reflector_client_vpnv4(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "route_reflector_client_vpnv4")
@@ -1277,6 +1442,15 @@ class RouterbgpNeighborArgs:
         pulumi.set(self, "route_server_client6", value)
 
     @property
+    @pulumi.getter(name="routeServerClientEvpn")
+    def route_server_client_evpn(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "route_server_client_evpn")
+
+    @route_server_client_evpn.setter
+    def route_server_client_evpn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "route_server_client_evpn", value)
+
+    @property
     @pulumi.getter(name="routeServerClientVpnv4")
     def route_server_client_vpnv4(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "route_server_client_vpnv4")
@@ -1302,6 +1476,15 @@ class RouterbgpNeighborArgs:
     @send_community6.setter
     def send_community6(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "send_community6", value)
+
+    @property
+    @pulumi.getter(name="sendCommunityEvpn")
+    def send_community_evpn(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "send_community_evpn")
+
+    @send_community_evpn.setter
+    def send_community_evpn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "send_community_evpn", value)
 
     @property
     @pulumi.getter(name="sendCommunityVpnv4")
@@ -1338,6 +1521,15 @@ class RouterbgpNeighborArgs:
     @soft_reconfiguration6.setter
     def soft_reconfiguration6(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "soft_reconfiguration6", value)
+
+    @property
+    @pulumi.getter(name="softReconfigurationEvpn")
+    def soft_reconfiguration_evpn(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "soft_reconfiguration_evpn")
+
+    @soft_reconfiguration_evpn.setter
+    def soft_reconfiguration_evpn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "soft_reconfiguration_evpn", value)
 
     @property
     @pulumi.getter(name="softReconfigurationVpnv4")
@@ -1417,6 +1609,7 @@ class _RouterbgpNeighborState:
     def __init__(__self__, *,
                  activate: Optional[pulumi.Input[str]] = None,
                  activate6: Optional[pulumi.Input[str]] = None,
+                 activate_evpn: Optional[pulumi.Input[str]] = None,
                  activate_vpnv4: Optional[pulumi.Input[str]] = None,
                  additional_path: Optional[pulumi.Input[str]] = None,
                  additional_path6: Optional[pulumi.Input[str]] = None,
@@ -1429,6 +1622,9 @@ class _RouterbgpNeighborState:
                  allowas_in6: Optional[pulumi.Input[int]] = None,
                  allowas_in_enable: Optional[pulumi.Input[str]] = None,
                  allowas_in_enable6: Optional[pulumi.Input[str]] = None,
+                 allowas_in_enable_evpn: Optional[pulumi.Input[str]] = None,
+                 allowas_in_enable_vpnv4: Optional[pulumi.Input[str]] = None,
+                 allowas_in_evpn: Optional[pulumi.Input[int]] = None,
                  allowas_in_vpnv4: Optional[pulumi.Input[int]] = None,
                  as_override: Optional[pulumi.Input[str]] = None,
                  as_override6: Optional[pulumi.Input[str]] = None,
@@ -1441,6 +1637,7 @@ class _RouterbgpNeighborState:
                  capability_dynamic: Optional[pulumi.Input[str]] = None,
                  capability_graceful_restart: Optional[pulumi.Input[str]] = None,
                  capability_graceful_restart6: Optional[pulumi.Input[str]] = None,
+                 capability_graceful_restart_evpn: Optional[pulumi.Input[str]] = None,
                  capability_graceful_restart_vpnv4: Optional[pulumi.Input[str]] = None,
                  capability_orf: Optional[pulumi.Input[str]] = None,
                  capability_orf6: Optional[pulumi.Input[str]] = None,
@@ -1465,6 +1662,7 @@ class _RouterbgpNeighborState:
                  filter_list_in6: Optional[pulumi.Input[str]] = None,
                  filter_list_out: Optional[pulumi.Input[str]] = None,
                  filter_list_out6: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  holdtime_timer: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
@@ -1475,12 +1673,15 @@ class _RouterbgpNeighborState:
                  local_as_replace_as: Optional[pulumi.Input[str]] = None,
                  maximum_prefix: Optional[pulumi.Input[int]] = None,
                  maximum_prefix6: Optional[pulumi.Input[int]] = None,
+                 maximum_prefix_evpn: Optional[pulumi.Input[int]] = None,
                  maximum_prefix_threshold: Optional[pulumi.Input[int]] = None,
                  maximum_prefix_threshold6: Optional[pulumi.Input[int]] = None,
+                 maximum_prefix_threshold_evpn: Optional[pulumi.Input[int]] = None,
                  maximum_prefix_threshold_vpnv4: Optional[pulumi.Input[int]] = None,
                  maximum_prefix_vpnv4: Optional[pulumi.Input[int]] = None,
                  maximum_prefix_warning_only: Optional[pulumi.Input[str]] = None,
                  maximum_prefix_warning_only6: Optional[pulumi.Input[str]] = None,
+                 maximum_prefix_warning_only_evpn: Optional[pulumi.Input[str]] = None,
                  maximum_prefix_warning_only_vpnv4: Optional[pulumi.Input[str]] = None,
                  next_hop_self: Optional[pulumi.Input[str]] = None,
                  next_hop_self6: Optional[pulumi.Input[str]] = None,
@@ -1499,30 +1700,37 @@ class _RouterbgpNeighborState:
                  remote_as: Optional[pulumi.Input[int]] = None,
                  remove_private_as: Optional[pulumi.Input[str]] = None,
                  remove_private_as6: Optional[pulumi.Input[str]] = None,
+                 remove_private_as_evpn: Optional[pulumi.Input[str]] = None,
                  remove_private_as_vpnv4: Optional[pulumi.Input[str]] = None,
                  restart_time: Optional[pulumi.Input[int]] = None,
                  retain_stale_time: Optional[pulumi.Input[int]] = None,
                  route_map_in: Optional[pulumi.Input[str]] = None,
                  route_map_in6: Optional[pulumi.Input[str]] = None,
+                 route_map_in_evpn: Optional[pulumi.Input[str]] = None,
                  route_map_in_vpnv4: Optional[pulumi.Input[str]] = None,
                  route_map_out: Optional[pulumi.Input[str]] = None,
                  route_map_out6: Optional[pulumi.Input[str]] = None,
                  route_map_out6_preferable: Optional[pulumi.Input[str]] = None,
+                 route_map_out_evpn: Optional[pulumi.Input[str]] = None,
                  route_map_out_preferable: Optional[pulumi.Input[str]] = None,
                  route_map_out_vpnv4: Optional[pulumi.Input[str]] = None,
                  route_map_out_vpnv4_preferable: Optional[pulumi.Input[str]] = None,
                  route_reflector_client: Optional[pulumi.Input[str]] = None,
                  route_reflector_client6: Optional[pulumi.Input[str]] = None,
+                 route_reflector_client_evpn: Optional[pulumi.Input[str]] = None,
                  route_reflector_client_vpnv4: Optional[pulumi.Input[str]] = None,
                  route_server_client: Optional[pulumi.Input[str]] = None,
                  route_server_client6: Optional[pulumi.Input[str]] = None,
+                 route_server_client_evpn: Optional[pulumi.Input[str]] = None,
                  route_server_client_vpnv4: Optional[pulumi.Input[str]] = None,
                  send_community: Optional[pulumi.Input[str]] = None,
                  send_community6: Optional[pulumi.Input[str]] = None,
+                 send_community_evpn: Optional[pulumi.Input[str]] = None,
                  send_community_vpnv4: Optional[pulumi.Input[str]] = None,
                  shutdown: Optional[pulumi.Input[str]] = None,
                  soft_reconfiguration: Optional[pulumi.Input[str]] = None,
                  soft_reconfiguration6: Optional[pulumi.Input[str]] = None,
+                 soft_reconfiguration_evpn: Optional[pulumi.Input[str]] = None,
                  soft_reconfiguration_vpnv4: Optional[pulumi.Input[str]] = None,
                  stale_route: Optional[pulumi.Input[str]] = None,
                  strict_capability_match: Optional[pulumi.Input[str]] = None,
@@ -1538,6 +1746,8 @@ class _RouterbgpNeighborState:
             pulumi.set(__self__, "activate", activate)
         if activate6 is not None:
             pulumi.set(__self__, "activate6", activate6)
+        if activate_evpn is not None:
+            pulumi.set(__self__, "activate_evpn", activate_evpn)
         if activate_vpnv4 is not None:
             pulumi.set(__self__, "activate_vpnv4", activate_vpnv4)
         if additional_path is not None:
@@ -1562,6 +1772,12 @@ class _RouterbgpNeighborState:
             pulumi.set(__self__, "allowas_in_enable", allowas_in_enable)
         if allowas_in_enable6 is not None:
             pulumi.set(__self__, "allowas_in_enable6", allowas_in_enable6)
+        if allowas_in_enable_evpn is not None:
+            pulumi.set(__self__, "allowas_in_enable_evpn", allowas_in_enable_evpn)
+        if allowas_in_enable_vpnv4 is not None:
+            pulumi.set(__self__, "allowas_in_enable_vpnv4", allowas_in_enable_vpnv4)
+        if allowas_in_evpn is not None:
+            pulumi.set(__self__, "allowas_in_evpn", allowas_in_evpn)
         if allowas_in_vpnv4 is not None:
             pulumi.set(__self__, "allowas_in_vpnv4", allowas_in_vpnv4)
         if as_override is not None:
@@ -1586,6 +1802,8 @@ class _RouterbgpNeighborState:
             pulumi.set(__self__, "capability_graceful_restart", capability_graceful_restart)
         if capability_graceful_restart6 is not None:
             pulumi.set(__self__, "capability_graceful_restart6", capability_graceful_restart6)
+        if capability_graceful_restart_evpn is not None:
+            pulumi.set(__self__, "capability_graceful_restart_evpn", capability_graceful_restart_evpn)
         if capability_graceful_restart_vpnv4 is not None:
             pulumi.set(__self__, "capability_graceful_restart_vpnv4", capability_graceful_restart_vpnv4)
         if capability_orf is not None:
@@ -1634,6 +1852,8 @@ class _RouterbgpNeighborState:
             pulumi.set(__self__, "filter_list_out", filter_list_out)
         if filter_list_out6 is not None:
             pulumi.set(__self__, "filter_list_out6", filter_list_out6)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if holdtime_timer is not None:
             pulumi.set(__self__, "holdtime_timer", holdtime_timer)
         if interface is not None:
@@ -1654,10 +1874,14 @@ class _RouterbgpNeighborState:
             pulumi.set(__self__, "maximum_prefix", maximum_prefix)
         if maximum_prefix6 is not None:
             pulumi.set(__self__, "maximum_prefix6", maximum_prefix6)
+        if maximum_prefix_evpn is not None:
+            pulumi.set(__self__, "maximum_prefix_evpn", maximum_prefix_evpn)
         if maximum_prefix_threshold is not None:
             pulumi.set(__self__, "maximum_prefix_threshold", maximum_prefix_threshold)
         if maximum_prefix_threshold6 is not None:
             pulumi.set(__self__, "maximum_prefix_threshold6", maximum_prefix_threshold6)
+        if maximum_prefix_threshold_evpn is not None:
+            pulumi.set(__self__, "maximum_prefix_threshold_evpn", maximum_prefix_threshold_evpn)
         if maximum_prefix_threshold_vpnv4 is not None:
             pulumi.set(__self__, "maximum_prefix_threshold_vpnv4", maximum_prefix_threshold_vpnv4)
         if maximum_prefix_vpnv4 is not None:
@@ -1666,6 +1890,8 @@ class _RouterbgpNeighborState:
             pulumi.set(__self__, "maximum_prefix_warning_only", maximum_prefix_warning_only)
         if maximum_prefix_warning_only6 is not None:
             pulumi.set(__self__, "maximum_prefix_warning_only6", maximum_prefix_warning_only6)
+        if maximum_prefix_warning_only_evpn is not None:
+            pulumi.set(__self__, "maximum_prefix_warning_only_evpn", maximum_prefix_warning_only_evpn)
         if maximum_prefix_warning_only_vpnv4 is not None:
             pulumi.set(__self__, "maximum_prefix_warning_only_vpnv4", maximum_prefix_warning_only_vpnv4)
         if next_hop_self is not None:
@@ -1702,6 +1928,8 @@ class _RouterbgpNeighborState:
             pulumi.set(__self__, "remove_private_as", remove_private_as)
         if remove_private_as6 is not None:
             pulumi.set(__self__, "remove_private_as6", remove_private_as6)
+        if remove_private_as_evpn is not None:
+            pulumi.set(__self__, "remove_private_as_evpn", remove_private_as_evpn)
         if remove_private_as_vpnv4 is not None:
             pulumi.set(__self__, "remove_private_as_vpnv4", remove_private_as_vpnv4)
         if restart_time is not None:
@@ -1712,6 +1940,8 @@ class _RouterbgpNeighborState:
             pulumi.set(__self__, "route_map_in", route_map_in)
         if route_map_in6 is not None:
             pulumi.set(__self__, "route_map_in6", route_map_in6)
+        if route_map_in_evpn is not None:
+            pulumi.set(__self__, "route_map_in_evpn", route_map_in_evpn)
         if route_map_in_vpnv4 is not None:
             pulumi.set(__self__, "route_map_in_vpnv4", route_map_in_vpnv4)
         if route_map_out is not None:
@@ -1720,6 +1950,8 @@ class _RouterbgpNeighborState:
             pulumi.set(__self__, "route_map_out6", route_map_out6)
         if route_map_out6_preferable is not None:
             pulumi.set(__self__, "route_map_out6_preferable", route_map_out6_preferable)
+        if route_map_out_evpn is not None:
+            pulumi.set(__self__, "route_map_out_evpn", route_map_out_evpn)
         if route_map_out_preferable is not None:
             pulumi.set(__self__, "route_map_out_preferable", route_map_out_preferable)
         if route_map_out_vpnv4 is not None:
@@ -1730,18 +1962,24 @@ class _RouterbgpNeighborState:
             pulumi.set(__self__, "route_reflector_client", route_reflector_client)
         if route_reflector_client6 is not None:
             pulumi.set(__self__, "route_reflector_client6", route_reflector_client6)
+        if route_reflector_client_evpn is not None:
+            pulumi.set(__self__, "route_reflector_client_evpn", route_reflector_client_evpn)
         if route_reflector_client_vpnv4 is not None:
             pulumi.set(__self__, "route_reflector_client_vpnv4", route_reflector_client_vpnv4)
         if route_server_client is not None:
             pulumi.set(__self__, "route_server_client", route_server_client)
         if route_server_client6 is not None:
             pulumi.set(__self__, "route_server_client6", route_server_client6)
+        if route_server_client_evpn is not None:
+            pulumi.set(__self__, "route_server_client_evpn", route_server_client_evpn)
         if route_server_client_vpnv4 is not None:
             pulumi.set(__self__, "route_server_client_vpnv4", route_server_client_vpnv4)
         if send_community is not None:
             pulumi.set(__self__, "send_community", send_community)
         if send_community6 is not None:
             pulumi.set(__self__, "send_community6", send_community6)
+        if send_community_evpn is not None:
+            pulumi.set(__self__, "send_community_evpn", send_community_evpn)
         if send_community_vpnv4 is not None:
             pulumi.set(__self__, "send_community_vpnv4", send_community_vpnv4)
         if shutdown is not None:
@@ -1750,6 +1988,8 @@ class _RouterbgpNeighborState:
             pulumi.set(__self__, "soft_reconfiguration", soft_reconfiguration)
         if soft_reconfiguration6 is not None:
             pulumi.set(__self__, "soft_reconfiguration6", soft_reconfiguration6)
+        if soft_reconfiguration_evpn is not None:
+            pulumi.set(__self__, "soft_reconfiguration_evpn", soft_reconfiguration_evpn)
         if soft_reconfiguration_vpnv4 is not None:
             pulumi.set(__self__, "soft_reconfiguration_vpnv4", soft_reconfiguration_vpnv4)
         if stale_route is not None:
@@ -1784,6 +2024,15 @@ class _RouterbgpNeighborState:
     @activate6.setter
     def activate6(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "activate6", value)
+
+    @property
+    @pulumi.getter(name="activateEvpn")
+    def activate_evpn(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "activate_evpn")
+
+    @activate_evpn.setter
+    def activate_evpn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "activate_evpn", value)
 
     @property
     @pulumi.getter(name="activateVpnv4")
@@ -1894,6 +2143,33 @@ class _RouterbgpNeighborState:
         pulumi.set(self, "allowas_in_enable6", value)
 
     @property
+    @pulumi.getter(name="allowasInEnableEvpn")
+    def allowas_in_enable_evpn(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "allowas_in_enable_evpn")
+
+    @allowas_in_enable_evpn.setter
+    def allowas_in_enable_evpn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "allowas_in_enable_evpn", value)
+
+    @property
+    @pulumi.getter(name="allowasInEnableVpnv4")
+    def allowas_in_enable_vpnv4(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "allowas_in_enable_vpnv4")
+
+    @allowas_in_enable_vpnv4.setter
+    def allowas_in_enable_vpnv4(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "allowas_in_enable_vpnv4", value)
+
+    @property
+    @pulumi.getter(name="allowasInEvpn")
+    def allowas_in_evpn(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "allowas_in_evpn")
+
+    @allowas_in_evpn.setter
+    def allowas_in_evpn(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "allowas_in_evpn", value)
+
+    @property
     @pulumi.getter(name="allowasInVpnv4")
     def allowas_in_vpnv4(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "allowas_in_vpnv4")
@@ -2000,6 +2276,15 @@ class _RouterbgpNeighborState:
     @capability_graceful_restart6.setter
     def capability_graceful_restart6(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "capability_graceful_restart6", value)
+
+    @property
+    @pulumi.getter(name="capabilityGracefulRestartEvpn")
+    def capability_graceful_restart_evpn(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "capability_graceful_restart_evpn")
+
+    @capability_graceful_restart_evpn.setter
+    def capability_graceful_restart_evpn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "capability_graceful_restart_evpn", value)
 
     @property
     @pulumi.getter(name="capabilityGracefulRestartVpnv4")
@@ -2216,6 +2501,15 @@ class _RouterbgpNeighborState:
     @filter_list_out6.setter
     def filter_list_out6(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "filter_list_out6", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="holdtimeTimer")
@@ -2308,6 +2602,15 @@ class _RouterbgpNeighborState:
         pulumi.set(self, "maximum_prefix6", value)
 
     @property
+    @pulumi.getter(name="maximumPrefixEvpn")
+    def maximum_prefix_evpn(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "maximum_prefix_evpn")
+
+    @maximum_prefix_evpn.setter
+    def maximum_prefix_evpn(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "maximum_prefix_evpn", value)
+
+    @property
     @pulumi.getter(name="maximumPrefixThreshold")
     def maximum_prefix_threshold(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "maximum_prefix_threshold")
@@ -2324,6 +2627,15 @@ class _RouterbgpNeighborState:
     @maximum_prefix_threshold6.setter
     def maximum_prefix_threshold6(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "maximum_prefix_threshold6", value)
+
+    @property
+    @pulumi.getter(name="maximumPrefixThresholdEvpn")
+    def maximum_prefix_threshold_evpn(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "maximum_prefix_threshold_evpn")
+
+    @maximum_prefix_threshold_evpn.setter
+    def maximum_prefix_threshold_evpn(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "maximum_prefix_threshold_evpn", value)
 
     @property
     @pulumi.getter(name="maximumPrefixThresholdVpnv4")
@@ -2360,6 +2672,15 @@ class _RouterbgpNeighborState:
     @maximum_prefix_warning_only6.setter
     def maximum_prefix_warning_only6(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "maximum_prefix_warning_only6", value)
+
+    @property
+    @pulumi.getter(name="maximumPrefixWarningOnlyEvpn")
+    def maximum_prefix_warning_only_evpn(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "maximum_prefix_warning_only_evpn")
+
+    @maximum_prefix_warning_only_evpn.setter
+    def maximum_prefix_warning_only_evpn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "maximum_prefix_warning_only_evpn", value)
 
     @property
     @pulumi.getter(name="maximumPrefixWarningOnlyVpnv4")
@@ -2524,6 +2845,15 @@ class _RouterbgpNeighborState:
         pulumi.set(self, "remove_private_as6", value)
 
     @property
+    @pulumi.getter(name="removePrivateAsEvpn")
+    def remove_private_as_evpn(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "remove_private_as_evpn")
+
+    @remove_private_as_evpn.setter
+    def remove_private_as_evpn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "remove_private_as_evpn", value)
+
+    @property
     @pulumi.getter(name="removePrivateAsVpnv4")
     def remove_private_as_vpnv4(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "remove_private_as_vpnv4")
@@ -2569,6 +2899,15 @@ class _RouterbgpNeighborState:
         pulumi.set(self, "route_map_in6", value)
 
     @property
+    @pulumi.getter(name="routeMapInEvpn")
+    def route_map_in_evpn(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "route_map_in_evpn")
+
+    @route_map_in_evpn.setter
+    def route_map_in_evpn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "route_map_in_evpn", value)
+
+    @property
     @pulumi.getter(name="routeMapInVpnv4")
     def route_map_in_vpnv4(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "route_map_in_vpnv4")
@@ -2603,6 +2942,15 @@ class _RouterbgpNeighborState:
     @route_map_out6_preferable.setter
     def route_map_out6_preferable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "route_map_out6_preferable", value)
+
+    @property
+    @pulumi.getter(name="routeMapOutEvpn")
+    def route_map_out_evpn(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "route_map_out_evpn")
+
+    @route_map_out_evpn.setter
+    def route_map_out_evpn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "route_map_out_evpn", value)
 
     @property
     @pulumi.getter(name="routeMapOutPreferable")
@@ -2650,6 +2998,15 @@ class _RouterbgpNeighborState:
         pulumi.set(self, "route_reflector_client6", value)
 
     @property
+    @pulumi.getter(name="routeReflectorClientEvpn")
+    def route_reflector_client_evpn(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "route_reflector_client_evpn")
+
+    @route_reflector_client_evpn.setter
+    def route_reflector_client_evpn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "route_reflector_client_evpn", value)
+
+    @property
     @pulumi.getter(name="routeReflectorClientVpnv4")
     def route_reflector_client_vpnv4(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "route_reflector_client_vpnv4")
@@ -2677,6 +3034,15 @@ class _RouterbgpNeighborState:
         pulumi.set(self, "route_server_client6", value)
 
     @property
+    @pulumi.getter(name="routeServerClientEvpn")
+    def route_server_client_evpn(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "route_server_client_evpn")
+
+    @route_server_client_evpn.setter
+    def route_server_client_evpn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "route_server_client_evpn", value)
+
+    @property
     @pulumi.getter(name="routeServerClientVpnv4")
     def route_server_client_vpnv4(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "route_server_client_vpnv4")
@@ -2702,6 +3068,15 @@ class _RouterbgpNeighborState:
     @send_community6.setter
     def send_community6(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "send_community6", value)
+
+    @property
+    @pulumi.getter(name="sendCommunityEvpn")
+    def send_community_evpn(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "send_community_evpn")
+
+    @send_community_evpn.setter
+    def send_community_evpn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "send_community_evpn", value)
 
     @property
     @pulumi.getter(name="sendCommunityVpnv4")
@@ -2738,6 +3113,15 @@ class _RouterbgpNeighborState:
     @soft_reconfiguration6.setter
     def soft_reconfiguration6(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "soft_reconfiguration6", value)
+
+    @property
+    @pulumi.getter(name="softReconfigurationEvpn")
+    def soft_reconfiguration_evpn(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "soft_reconfiguration_evpn")
+
+    @soft_reconfiguration_evpn.setter
+    def soft_reconfiguration_evpn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "soft_reconfiguration_evpn", value)
 
     @property
     @pulumi.getter(name="softReconfigurationVpnv4")
@@ -2819,6 +3203,7 @@ class RouterbgpNeighbor(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  activate: Optional[pulumi.Input[str]] = None,
                  activate6: Optional[pulumi.Input[str]] = None,
+                 activate_evpn: Optional[pulumi.Input[str]] = None,
                  activate_vpnv4: Optional[pulumi.Input[str]] = None,
                  additional_path: Optional[pulumi.Input[str]] = None,
                  additional_path6: Optional[pulumi.Input[str]] = None,
@@ -2831,6 +3216,9 @@ class RouterbgpNeighbor(pulumi.CustomResource):
                  allowas_in6: Optional[pulumi.Input[int]] = None,
                  allowas_in_enable: Optional[pulumi.Input[str]] = None,
                  allowas_in_enable6: Optional[pulumi.Input[str]] = None,
+                 allowas_in_enable_evpn: Optional[pulumi.Input[str]] = None,
+                 allowas_in_enable_vpnv4: Optional[pulumi.Input[str]] = None,
+                 allowas_in_evpn: Optional[pulumi.Input[int]] = None,
                  allowas_in_vpnv4: Optional[pulumi.Input[int]] = None,
                  as_override: Optional[pulumi.Input[str]] = None,
                  as_override6: Optional[pulumi.Input[str]] = None,
@@ -2843,6 +3231,7 @@ class RouterbgpNeighbor(pulumi.CustomResource):
                  capability_dynamic: Optional[pulumi.Input[str]] = None,
                  capability_graceful_restart: Optional[pulumi.Input[str]] = None,
                  capability_graceful_restart6: Optional[pulumi.Input[str]] = None,
+                 capability_graceful_restart_evpn: Optional[pulumi.Input[str]] = None,
                  capability_graceful_restart_vpnv4: Optional[pulumi.Input[str]] = None,
                  capability_orf: Optional[pulumi.Input[str]] = None,
                  capability_orf6: Optional[pulumi.Input[str]] = None,
@@ -2867,6 +3256,7 @@ class RouterbgpNeighbor(pulumi.CustomResource):
                  filter_list_in6: Optional[pulumi.Input[str]] = None,
                  filter_list_out: Optional[pulumi.Input[str]] = None,
                  filter_list_out6: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  holdtime_timer: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
@@ -2877,12 +3267,15 @@ class RouterbgpNeighbor(pulumi.CustomResource):
                  local_as_replace_as: Optional[pulumi.Input[str]] = None,
                  maximum_prefix: Optional[pulumi.Input[int]] = None,
                  maximum_prefix6: Optional[pulumi.Input[int]] = None,
+                 maximum_prefix_evpn: Optional[pulumi.Input[int]] = None,
                  maximum_prefix_threshold: Optional[pulumi.Input[int]] = None,
                  maximum_prefix_threshold6: Optional[pulumi.Input[int]] = None,
+                 maximum_prefix_threshold_evpn: Optional[pulumi.Input[int]] = None,
                  maximum_prefix_threshold_vpnv4: Optional[pulumi.Input[int]] = None,
                  maximum_prefix_vpnv4: Optional[pulumi.Input[int]] = None,
                  maximum_prefix_warning_only: Optional[pulumi.Input[str]] = None,
                  maximum_prefix_warning_only6: Optional[pulumi.Input[str]] = None,
+                 maximum_prefix_warning_only_evpn: Optional[pulumi.Input[str]] = None,
                  maximum_prefix_warning_only_vpnv4: Optional[pulumi.Input[str]] = None,
                  next_hop_self: Optional[pulumi.Input[str]] = None,
                  next_hop_self6: Optional[pulumi.Input[str]] = None,
@@ -2901,30 +3294,37 @@ class RouterbgpNeighbor(pulumi.CustomResource):
                  remote_as: Optional[pulumi.Input[int]] = None,
                  remove_private_as: Optional[pulumi.Input[str]] = None,
                  remove_private_as6: Optional[pulumi.Input[str]] = None,
+                 remove_private_as_evpn: Optional[pulumi.Input[str]] = None,
                  remove_private_as_vpnv4: Optional[pulumi.Input[str]] = None,
                  restart_time: Optional[pulumi.Input[int]] = None,
                  retain_stale_time: Optional[pulumi.Input[int]] = None,
                  route_map_in: Optional[pulumi.Input[str]] = None,
                  route_map_in6: Optional[pulumi.Input[str]] = None,
+                 route_map_in_evpn: Optional[pulumi.Input[str]] = None,
                  route_map_in_vpnv4: Optional[pulumi.Input[str]] = None,
                  route_map_out: Optional[pulumi.Input[str]] = None,
                  route_map_out6: Optional[pulumi.Input[str]] = None,
                  route_map_out6_preferable: Optional[pulumi.Input[str]] = None,
+                 route_map_out_evpn: Optional[pulumi.Input[str]] = None,
                  route_map_out_preferable: Optional[pulumi.Input[str]] = None,
                  route_map_out_vpnv4: Optional[pulumi.Input[str]] = None,
                  route_map_out_vpnv4_preferable: Optional[pulumi.Input[str]] = None,
                  route_reflector_client: Optional[pulumi.Input[str]] = None,
                  route_reflector_client6: Optional[pulumi.Input[str]] = None,
+                 route_reflector_client_evpn: Optional[pulumi.Input[str]] = None,
                  route_reflector_client_vpnv4: Optional[pulumi.Input[str]] = None,
                  route_server_client: Optional[pulumi.Input[str]] = None,
                  route_server_client6: Optional[pulumi.Input[str]] = None,
+                 route_server_client_evpn: Optional[pulumi.Input[str]] = None,
                  route_server_client_vpnv4: Optional[pulumi.Input[str]] = None,
                  send_community: Optional[pulumi.Input[str]] = None,
                  send_community6: Optional[pulumi.Input[str]] = None,
+                 send_community_evpn: Optional[pulumi.Input[str]] = None,
                  send_community_vpnv4: Optional[pulumi.Input[str]] = None,
                  shutdown: Optional[pulumi.Input[str]] = None,
                  soft_reconfiguration: Optional[pulumi.Input[str]] = None,
                  soft_reconfiguration6: Optional[pulumi.Input[str]] = None,
+                 soft_reconfiguration_evpn: Optional[pulumi.Input[str]] = None,
                  soft_reconfiguration_vpnv4: Optional[pulumi.Input[str]] = None,
                  stale_route: Optional[pulumi.Input[str]] = None,
                  strict_capability_match: Optional[pulumi.Input[str]] = None,
@@ -2964,6 +3364,7 @@ class RouterbgpNeighbor(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  activate: Optional[pulumi.Input[str]] = None,
                  activate6: Optional[pulumi.Input[str]] = None,
+                 activate_evpn: Optional[pulumi.Input[str]] = None,
                  activate_vpnv4: Optional[pulumi.Input[str]] = None,
                  additional_path: Optional[pulumi.Input[str]] = None,
                  additional_path6: Optional[pulumi.Input[str]] = None,
@@ -2976,6 +3377,9 @@ class RouterbgpNeighbor(pulumi.CustomResource):
                  allowas_in6: Optional[pulumi.Input[int]] = None,
                  allowas_in_enable: Optional[pulumi.Input[str]] = None,
                  allowas_in_enable6: Optional[pulumi.Input[str]] = None,
+                 allowas_in_enable_evpn: Optional[pulumi.Input[str]] = None,
+                 allowas_in_enable_vpnv4: Optional[pulumi.Input[str]] = None,
+                 allowas_in_evpn: Optional[pulumi.Input[int]] = None,
                  allowas_in_vpnv4: Optional[pulumi.Input[int]] = None,
                  as_override: Optional[pulumi.Input[str]] = None,
                  as_override6: Optional[pulumi.Input[str]] = None,
@@ -2988,6 +3392,7 @@ class RouterbgpNeighbor(pulumi.CustomResource):
                  capability_dynamic: Optional[pulumi.Input[str]] = None,
                  capability_graceful_restart: Optional[pulumi.Input[str]] = None,
                  capability_graceful_restart6: Optional[pulumi.Input[str]] = None,
+                 capability_graceful_restart_evpn: Optional[pulumi.Input[str]] = None,
                  capability_graceful_restart_vpnv4: Optional[pulumi.Input[str]] = None,
                  capability_orf: Optional[pulumi.Input[str]] = None,
                  capability_orf6: Optional[pulumi.Input[str]] = None,
@@ -3012,6 +3417,7 @@ class RouterbgpNeighbor(pulumi.CustomResource):
                  filter_list_in6: Optional[pulumi.Input[str]] = None,
                  filter_list_out: Optional[pulumi.Input[str]] = None,
                  filter_list_out6: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  holdtime_timer: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
@@ -3022,12 +3428,15 @@ class RouterbgpNeighbor(pulumi.CustomResource):
                  local_as_replace_as: Optional[pulumi.Input[str]] = None,
                  maximum_prefix: Optional[pulumi.Input[int]] = None,
                  maximum_prefix6: Optional[pulumi.Input[int]] = None,
+                 maximum_prefix_evpn: Optional[pulumi.Input[int]] = None,
                  maximum_prefix_threshold: Optional[pulumi.Input[int]] = None,
                  maximum_prefix_threshold6: Optional[pulumi.Input[int]] = None,
+                 maximum_prefix_threshold_evpn: Optional[pulumi.Input[int]] = None,
                  maximum_prefix_threshold_vpnv4: Optional[pulumi.Input[int]] = None,
                  maximum_prefix_vpnv4: Optional[pulumi.Input[int]] = None,
                  maximum_prefix_warning_only: Optional[pulumi.Input[str]] = None,
                  maximum_prefix_warning_only6: Optional[pulumi.Input[str]] = None,
+                 maximum_prefix_warning_only_evpn: Optional[pulumi.Input[str]] = None,
                  maximum_prefix_warning_only_vpnv4: Optional[pulumi.Input[str]] = None,
                  next_hop_self: Optional[pulumi.Input[str]] = None,
                  next_hop_self6: Optional[pulumi.Input[str]] = None,
@@ -3046,30 +3455,37 @@ class RouterbgpNeighbor(pulumi.CustomResource):
                  remote_as: Optional[pulumi.Input[int]] = None,
                  remove_private_as: Optional[pulumi.Input[str]] = None,
                  remove_private_as6: Optional[pulumi.Input[str]] = None,
+                 remove_private_as_evpn: Optional[pulumi.Input[str]] = None,
                  remove_private_as_vpnv4: Optional[pulumi.Input[str]] = None,
                  restart_time: Optional[pulumi.Input[int]] = None,
                  retain_stale_time: Optional[pulumi.Input[int]] = None,
                  route_map_in: Optional[pulumi.Input[str]] = None,
                  route_map_in6: Optional[pulumi.Input[str]] = None,
+                 route_map_in_evpn: Optional[pulumi.Input[str]] = None,
                  route_map_in_vpnv4: Optional[pulumi.Input[str]] = None,
                  route_map_out: Optional[pulumi.Input[str]] = None,
                  route_map_out6: Optional[pulumi.Input[str]] = None,
                  route_map_out6_preferable: Optional[pulumi.Input[str]] = None,
+                 route_map_out_evpn: Optional[pulumi.Input[str]] = None,
                  route_map_out_preferable: Optional[pulumi.Input[str]] = None,
                  route_map_out_vpnv4: Optional[pulumi.Input[str]] = None,
                  route_map_out_vpnv4_preferable: Optional[pulumi.Input[str]] = None,
                  route_reflector_client: Optional[pulumi.Input[str]] = None,
                  route_reflector_client6: Optional[pulumi.Input[str]] = None,
+                 route_reflector_client_evpn: Optional[pulumi.Input[str]] = None,
                  route_reflector_client_vpnv4: Optional[pulumi.Input[str]] = None,
                  route_server_client: Optional[pulumi.Input[str]] = None,
                  route_server_client6: Optional[pulumi.Input[str]] = None,
+                 route_server_client_evpn: Optional[pulumi.Input[str]] = None,
                  route_server_client_vpnv4: Optional[pulumi.Input[str]] = None,
                  send_community: Optional[pulumi.Input[str]] = None,
                  send_community6: Optional[pulumi.Input[str]] = None,
+                 send_community_evpn: Optional[pulumi.Input[str]] = None,
                  send_community_vpnv4: Optional[pulumi.Input[str]] = None,
                  shutdown: Optional[pulumi.Input[str]] = None,
                  soft_reconfiguration: Optional[pulumi.Input[str]] = None,
                  soft_reconfiguration6: Optional[pulumi.Input[str]] = None,
+                 soft_reconfiguration_evpn: Optional[pulumi.Input[str]] = None,
                  soft_reconfiguration_vpnv4: Optional[pulumi.Input[str]] = None,
                  stale_route: Optional[pulumi.Input[str]] = None,
                  strict_capability_match: Optional[pulumi.Input[str]] = None,
@@ -3089,6 +3505,7 @@ class RouterbgpNeighbor(pulumi.CustomResource):
 
             __props__.__dict__["activate"] = activate
             __props__.__dict__["activate6"] = activate6
+            __props__.__dict__["activate_evpn"] = activate_evpn
             __props__.__dict__["activate_vpnv4"] = activate_vpnv4
             __props__.__dict__["additional_path"] = additional_path
             __props__.__dict__["additional_path6"] = additional_path6
@@ -3101,6 +3518,9 @@ class RouterbgpNeighbor(pulumi.CustomResource):
             __props__.__dict__["allowas_in6"] = allowas_in6
             __props__.__dict__["allowas_in_enable"] = allowas_in_enable
             __props__.__dict__["allowas_in_enable6"] = allowas_in_enable6
+            __props__.__dict__["allowas_in_enable_evpn"] = allowas_in_enable_evpn
+            __props__.__dict__["allowas_in_enable_vpnv4"] = allowas_in_enable_vpnv4
+            __props__.__dict__["allowas_in_evpn"] = allowas_in_evpn
             __props__.__dict__["allowas_in_vpnv4"] = allowas_in_vpnv4
             __props__.__dict__["as_override"] = as_override
             __props__.__dict__["as_override6"] = as_override6
@@ -3113,6 +3533,7 @@ class RouterbgpNeighbor(pulumi.CustomResource):
             __props__.__dict__["capability_dynamic"] = capability_dynamic
             __props__.__dict__["capability_graceful_restart"] = capability_graceful_restart
             __props__.__dict__["capability_graceful_restart6"] = capability_graceful_restart6
+            __props__.__dict__["capability_graceful_restart_evpn"] = capability_graceful_restart_evpn
             __props__.__dict__["capability_graceful_restart_vpnv4"] = capability_graceful_restart_vpnv4
             __props__.__dict__["capability_orf"] = capability_orf
             __props__.__dict__["capability_orf6"] = capability_orf6
@@ -3137,6 +3558,7 @@ class RouterbgpNeighbor(pulumi.CustomResource):
             __props__.__dict__["filter_list_in6"] = filter_list_in6
             __props__.__dict__["filter_list_out"] = filter_list_out
             __props__.__dict__["filter_list_out6"] = filter_list_out6
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["holdtime_timer"] = holdtime_timer
             __props__.__dict__["interface"] = interface
             if ip is None and not opts.urn:
@@ -3149,12 +3571,15 @@ class RouterbgpNeighbor(pulumi.CustomResource):
             __props__.__dict__["local_as_replace_as"] = local_as_replace_as
             __props__.__dict__["maximum_prefix"] = maximum_prefix
             __props__.__dict__["maximum_prefix6"] = maximum_prefix6
+            __props__.__dict__["maximum_prefix_evpn"] = maximum_prefix_evpn
             __props__.__dict__["maximum_prefix_threshold"] = maximum_prefix_threshold
             __props__.__dict__["maximum_prefix_threshold6"] = maximum_prefix_threshold6
+            __props__.__dict__["maximum_prefix_threshold_evpn"] = maximum_prefix_threshold_evpn
             __props__.__dict__["maximum_prefix_threshold_vpnv4"] = maximum_prefix_threshold_vpnv4
             __props__.__dict__["maximum_prefix_vpnv4"] = maximum_prefix_vpnv4
             __props__.__dict__["maximum_prefix_warning_only"] = maximum_prefix_warning_only
             __props__.__dict__["maximum_prefix_warning_only6"] = maximum_prefix_warning_only6
+            __props__.__dict__["maximum_prefix_warning_only_evpn"] = maximum_prefix_warning_only_evpn
             __props__.__dict__["maximum_prefix_warning_only_vpnv4"] = maximum_prefix_warning_only_vpnv4
             __props__.__dict__["next_hop_self"] = next_hop_self
             __props__.__dict__["next_hop_self6"] = next_hop_self6
@@ -3173,30 +3598,37 @@ class RouterbgpNeighbor(pulumi.CustomResource):
             __props__.__dict__["remote_as"] = remote_as
             __props__.__dict__["remove_private_as"] = remove_private_as
             __props__.__dict__["remove_private_as6"] = remove_private_as6
+            __props__.__dict__["remove_private_as_evpn"] = remove_private_as_evpn
             __props__.__dict__["remove_private_as_vpnv4"] = remove_private_as_vpnv4
             __props__.__dict__["restart_time"] = restart_time
             __props__.__dict__["retain_stale_time"] = retain_stale_time
             __props__.__dict__["route_map_in"] = route_map_in
             __props__.__dict__["route_map_in6"] = route_map_in6
+            __props__.__dict__["route_map_in_evpn"] = route_map_in_evpn
             __props__.__dict__["route_map_in_vpnv4"] = route_map_in_vpnv4
             __props__.__dict__["route_map_out"] = route_map_out
             __props__.__dict__["route_map_out6"] = route_map_out6
             __props__.__dict__["route_map_out6_preferable"] = route_map_out6_preferable
+            __props__.__dict__["route_map_out_evpn"] = route_map_out_evpn
             __props__.__dict__["route_map_out_preferable"] = route_map_out_preferable
             __props__.__dict__["route_map_out_vpnv4"] = route_map_out_vpnv4
             __props__.__dict__["route_map_out_vpnv4_preferable"] = route_map_out_vpnv4_preferable
             __props__.__dict__["route_reflector_client"] = route_reflector_client
             __props__.__dict__["route_reflector_client6"] = route_reflector_client6
+            __props__.__dict__["route_reflector_client_evpn"] = route_reflector_client_evpn
             __props__.__dict__["route_reflector_client_vpnv4"] = route_reflector_client_vpnv4
             __props__.__dict__["route_server_client"] = route_server_client
             __props__.__dict__["route_server_client6"] = route_server_client6
+            __props__.__dict__["route_server_client_evpn"] = route_server_client_evpn
             __props__.__dict__["route_server_client_vpnv4"] = route_server_client_vpnv4
             __props__.__dict__["send_community"] = send_community
             __props__.__dict__["send_community6"] = send_community6
+            __props__.__dict__["send_community_evpn"] = send_community_evpn
             __props__.__dict__["send_community_vpnv4"] = send_community_vpnv4
             __props__.__dict__["shutdown"] = shutdown
             __props__.__dict__["soft_reconfiguration"] = soft_reconfiguration
             __props__.__dict__["soft_reconfiguration6"] = soft_reconfiguration6
+            __props__.__dict__["soft_reconfiguration_evpn"] = soft_reconfiguration_evpn
             __props__.__dict__["soft_reconfiguration_vpnv4"] = soft_reconfiguration_vpnv4
             __props__.__dict__["stale_route"] = stale_route
             __props__.__dict__["strict_capability_match"] = strict_capability_match
@@ -3219,6 +3651,7 @@ class RouterbgpNeighbor(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             activate: Optional[pulumi.Input[str]] = None,
             activate6: Optional[pulumi.Input[str]] = None,
+            activate_evpn: Optional[pulumi.Input[str]] = None,
             activate_vpnv4: Optional[pulumi.Input[str]] = None,
             additional_path: Optional[pulumi.Input[str]] = None,
             additional_path6: Optional[pulumi.Input[str]] = None,
@@ -3231,6 +3664,9 @@ class RouterbgpNeighbor(pulumi.CustomResource):
             allowas_in6: Optional[pulumi.Input[int]] = None,
             allowas_in_enable: Optional[pulumi.Input[str]] = None,
             allowas_in_enable6: Optional[pulumi.Input[str]] = None,
+            allowas_in_enable_evpn: Optional[pulumi.Input[str]] = None,
+            allowas_in_enable_vpnv4: Optional[pulumi.Input[str]] = None,
+            allowas_in_evpn: Optional[pulumi.Input[int]] = None,
             allowas_in_vpnv4: Optional[pulumi.Input[int]] = None,
             as_override: Optional[pulumi.Input[str]] = None,
             as_override6: Optional[pulumi.Input[str]] = None,
@@ -3243,6 +3679,7 @@ class RouterbgpNeighbor(pulumi.CustomResource):
             capability_dynamic: Optional[pulumi.Input[str]] = None,
             capability_graceful_restart: Optional[pulumi.Input[str]] = None,
             capability_graceful_restart6: Optional[pulumi.Input[str]] = None,
+            capability_graceful_restart_evpn: Optional[pulumi.Input[str]] = None,
             capability_graceful_restart_vpnv4: Optional[pulumi.Input[str]] = None,
             capability_orf: Optional[pulumi.Input[str]] = None,
             capability_orf6: Optional[pulumi.Input[str]] = None,
@@ -3267,6 +3704,7 @@ class RouterbgpNeighbor(pulumi.CustomResource):
             filter_list_in6: Optional[pulumi.Input[str]] = None,
             filter_list_out: Optional[pulumi.Input[str]] = None,
             filter_list_out6: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             holdtime_timer: Optional[pulumi.Input[int]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             ip: Optional[pulumi.Input[str]] = None,
@@ -3277,12 +3715,15 @@ class RouterbgpNeighbor(pulumi.CustomResource):
             local_as_replace_as: Optional[pulumi.Input[str]] = None,
             maximum_prefix: Optional[pulumi.Input[int]] = None,
             maximum_prefix6: Optional[pulumi.Input[int]] = None,
+            maximum_prefix_evpn: Optional[pulumi.Input[int]] = None,
             maximum_prefix_threshold: Optional[pulumi.Input[int]] = None,
             maximum_prefix_threshold6: Optional[pulumi.Input[int]] = None,
+            maximum_prefix_threshold_evpn: Optional[pulumi.Input[int]] = None,
             maximum_prefix_threshold_vpnv4: Optional[pulumi.Input[int]] = None,
             maximum_prefix_vpnv4: Optional[pulumi.Input[int]] = None,
             maximum_prefix_warning_only: Optional[pulumi.Input[str]] = None,
             maximum_prefix_warning_only6: Optional[pulumi.Input[str]] = None,
+            maximum_prefix_warning_only_evpn: Optional[pulumi.Input[str]] = None,
             maximum_prefix_warning_only_vpnv4: Optional[pulumi.Input[str]] = None,
             next_hop_self: Optional[pulumi.Input[str]] = None,
             next_hop_self6: Optional[pulumi.Input[str]] = None,
@@ -3301,30 +3742,37 @@ class RouterbgpNeighbor(pulumi.CustomResource):
             remote_as: Optional[pulumi.Input[int]] = None,
             remove_private_as: Optional[pulumi.Input[str]] = None,
             remove_private_as6: Optional[pulumi.Input[str]] = None,
+            remove_private_as_evpn: Optional[pulumi.Input[str]] = None,
             remove_private_as_vpnv4: Optional[pulumi.Input[str]] = None,
             restart_time: Optional[pulumi.Input[int]] = None,
             retain_stale_time: Optional[pulumi.Input[int]] = None,
             route_map_in: Optional[pulumi.Input[str]] = None,
             route_map_in6: Optional[pulumi.Input[str]] = None,
+            route_map_in_evpn: Optional[pulumi.Input[str]] = None,
             route_map_in_vpnv4: Optional[pulumi.Input[str]] = None,
             route_map_out: Optional[pulumi.Input[str]] = None,
             route_map_out6: Optional[pulumi.Input[str]] = None,
             route_map_out6_preferable: Optional[pulumi.Input[str]] = None,
+            route_map_out_evpn: Optional[pulumi.Input[str]] = None,
             route_map_out_preferable: Optional[pulumi.Input[str]] = None,
             route_map_out_vpnv4: Optional[pulumi.Input[str]] = None,
             route_map_out_vpnv4_preferable: Optional[pulumi.Input[str]] = None,
             route_reflector_client: Optional[pulumi.Input[str]] = None,
             route_reflector_client6: Optional[pulumi.Input[str]] = None,
+            route_reflector_client_evpn: Optional[pulumi.Input[str]] = None,
             route_reflector_client_vpnv4: Optional[pulumi.Input[str]] = None,
             route_server_client: Optional[pulumi.Input[str]] = None,
             route_server_client6: Optional[pulumi.Input[str]] = None,
+            route_server_client_evpn: Optional[pulumi.Input[str]] = None,
             route_server_client_vpnv4: Optional[pulumi.Input[str]] = None,
             send_community: Optional[pulumi.Input[str]] = None,
             send_community6: Optional[pulumi.Input[str]] = None,
+            send_community_evpn: Optional[pulumi.Input[str]] = None,
             send_community_vpnv4: Optional[pulumi.Input[str]] = None,
             shutdown: Optional[pulumi.Input[str]] = None,
             soft_reconfiguration: Optional[pulumi.Input[str]] = None,
             soft_reconfiguration6: Optional[pulumi.Input[str]] = None,
+            soft_reconfiguration_evpn: Optional[pulumi.Input[str]] = None,
             soft_reconfiguration_vpnv4: Optional[pulumi.Input[str]] = None,
             stale_route: Optional[pulumi.Input[str]] = None,
             strict_capability_match: Optional[pulumi.Input[str]] = None,
@@ -3347,6 +3795,7 @@ class RouterbgpNeighbor(pulumi.CustomResource):
 
         __props__.__dict__["activate"] = activate
         __props__.__dict__["activate6"] = activate6
+        __props__.__dict__["activate_evpn"] = activate_evpn
         __props__.__dict__["activate_vpnv4"] = activate_vpnv4
         __props__.__dict__["additional_path"] = additional_path
         __props__.__dict__["additional_path6"] = additional_path6
@@ -3359,6 +3808,9 @@ class RouterbgpNeighbor(pulumi.CustomResource):
         __props__.__dict__["allowas_in6"] = allowas_in6
         __props__.__dict__["allowas_in_enable"] = allowas_in_enable
         __props__.__dict__["allowas_in_enable6"] = allowas_in_enable6
+        __props__.__dict__["allowas_in_enable_evpn"] = allowas_in_enable_evpn
+        __props__.__dict__["allowas_in_enable_vpnv4"] = allowas_in_enable_vpnv4
+        __props__.__dict__["allowas_in_evpn"] = allowas_in_evpn
         __props__.__dict__["allowas_in_vpnv4"] = allowas_in_vpnv4
         __props__.__dict__["as_override"] = as_override
         __props__.__dict__["as_override6"] = as_override6
@@ -3371,6 +3823,7 @@ class RouterbgpNeighbor(pulumi.CustomResource):
         __props__.__dict__["capability_dynamic"] = capability_dynamic
         __props__.__dict__["capability_graceful_restart"] = capability_graceful_restart
         __props__.__dict__["capability_graceful_restart6"] = capability_graceful_restart6
+        __props__.__dict__["capability_graceful_restart_evpn"] = capability_graceful_restart_evpn
         __props__.__dict__["capability_graceful_restart_vpnv4"] = capability_graceful_restart_vpnv4
         __props__.__dict__["capability_orf"] = capability_orf
         __props__.__dict__["capability_orf6"] = capability_orf6
@@ -3395,6 +3848,7 @@ class RouterbgpNeighbor(pulumi.CustomResource):
         __props__.__dict__["filter_list_in6"] = filter_list_in6
         __props__.__dict__["filter_list_out"] = filter_list_out
         __props__.__dict__["filter_list_out6"] = filter_list_out6
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["holdtime_timer"] = holdtime_timer
         __props__.__dict__["interface"] = interface
         __props__.__dict__["ip"] = ip
@@ -3405,12 +3859,15 @@ class RouterbgpNeighbor(pulumi.CustomResource):
         __props__.__dict__["local_as_replace_as"] = local_as_replace_as
         __props__.__dict__["maximum_prefix"] = maximum_prefix
         __props__.__dict__["maximum_prefix6"] = maximum_prefix6
+        __props__.__dict__["maximum_prefix_evpn"] = maximum_prefix_evpn
         __props__.__dict__["maximum_prefix_threshold"] = maximum_prefix_threshold
         __props__.__dict__["maximum_prefix_threshold6"] = maximum_prefix_threshold6
+        __props__.__dict__["maximum_prefix_threshold_evpn"] = maximum_prefix_threshold_evpn
         __props__.__dict__["maximum_prefix_threshold_vpnv4"] = maximum_prefix_threshold_vpnv4
         __props__.__dict__["maximum_prefix_vpnv4"] = maximum_prefix_vpnv4
         __props__.__dict__["maximum_prefix_warning_only"] = maximum_prefix_warning_only
         __props__.__dict__["maximum_prefix_warning_only6"] = maximum_prefix_warning_only6
+        __props__.__dict__["maximum_prefix_warning_only_evpn"] = maximum_prefix_warning_only_evpn
         __props__.__dict__["maximum_prefix_warning_only_vpnv4"] = maximum_prefix_warning_only_vpnv4
         __props__.__dict__["next_hop_self"] = next_hop_self
         __props__.__dict__["next_hop_self6"] = next_hop_self6
@@ -3429,30 +3886,37 @@ class RouterbgpNeighbor(pulumi.CustomResource):
         __props__.__dict__["remote_as"] = remote_as
         __props__.__dict__["remove_private_as"] = remove_private_as
         __props__.__dict__["remove_private_as6"] = remove_private_as6
+        __props__.__dict__["remove_private_as_evpn"] = remove_private_as_evpn
         __props__.__dict__["remove_private_as_vpnv4"] = remove_private_as_vpnv4
         __props__.__dict__["restart_time"] = restart_time
         __props__.__dict__["retain_stale_time"] = retain_stale_time
         __props__.__dict__["route_map_in"] = route_map_in
         __props__.__dict__["route_map_in6"] = route_map_in6
+        __props__.__dict__["route_map_in_evpn"] = route_map_in_evpn
         __props__.__dict__["route_map_in_vpnv4"] = route_map_in_vpnv4
         __props__.__dict__["route_map_out"] = route_map_out
         __props__.__dict__["route_map_out6"] = route_map_out6
         __props__.__dict__["route_map_out6_preferable"] = route_map_out6_preferable
+        __props__.__dict__["route_map_out_evpn"] = route_map_out_evpn
         __props__.__dict__["route_map_out_preferable"] = route_map_out_preferable
         __props__.__dict__["route_map_out_vpnv4"] = route_map_out_vpnv4
         __props__.__dict__["route_map_out_vpnv4_preferable"] = route_map_out_vpnv4_preferable
         __props__.__dict__["route_reflector_client"] = route_reflector_client
         __props__.__dict__["route_reflector_client6"] = route_reflector_client6
+        __props__.__dict__["route_reflector_client_evpn"] = route_reflector_client_evpn
         __props__.__dict__["route_reflector_client_vpnv4"] = route_reflector_client_vpnv4
         __props__.__dict__["route_server_client"] = route_server_client
         __props__.__dict__["route_server_client6"] = route_server_client6
+        __props__.__dict__["route_server_client_evpn"] = route_server_client_evpn
         __props__.__dict__["route_server_client_vpnv4"] = route_server_client_vpnv4
         __props__.__dict__["send_community"] = send_community
         __props__.__dict__["send_community6"] = send_community6
+        __props__.__dict__["send_community_evpn"] = send_community_evpn
         __props__.__dict__["send_community_vpnv4"] = send_community_vpnv4
         __props__.__dict__["shutdown"] = shutdown
         __props__.__dict__["soft_reconfiguration"] = soft_reconfiguration
         __props__.__dict__["soft_reconfiguration6"] = soft_reconfiguration6
+        __props__.__dict__["soft_reconfiguration_evpn"] = soft_reconfiguration_evpn
         __props__.__dict__["soft_reconfiguration_vpnv4"] = soft_reconfiguration_vpnv4
         __props__.__dict__["stale_route"] = stale_route
         __props__.__dict__["strict_capability_match"] = strict_capability_match
@@ -3472,6 +3936,11 @@ class RouterbgpNeighbor(pulumi.CustomResource):
     @pulumi.getter
     def activate6(self) -> pulumi.Output[str]:
         return pulumi.get(self, "activate6")
+
+    @property
+    @pulumi.getter(name="activateEvpn")
+    def activate_evpn(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "activate_evpn")
 
     @property
     @pulumi.getter(name="activateVpnv4")
@@ -3534,6 +4003,21 @@ class RouterbgpNeighbor(pulumi.CustomResource):
         return pulumi.get(self, "allowas_in_enable6")
 
     @property
+    @pulumi.getter(name="allowasInEnableEvpn")
+    def allowas_in_enable_evpn(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "allowas_in_enable_evpn")
+
+    @property
+    @pulumi.getter(name="allowasInEnableVpnv4")
+    def allowas_in_enable_vpnv4(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "allowas_in_enable_vpnv4")
+
+    @property
+    @pulumi.getter(name="allowasInEvpn")
+    def allowas_in_evpn(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "allowas_in_evpn")
+
+    @property
     @pulumi.getter(name="allowasInVpnv4")
     def allowas_in_vpnv4(self) -> pulumi.Output[int]:
         return pulumi.get(self, "allowas_in_vpnv4")
@@ -3592,6 +4076,11 @@ class RouterbgpNeighbor(pulumi.CustomResource):
     @pulumi.getter(name="capabilityGracefulRestart6")
     def capability_graceful_restart6(self) -> pulumi.Output[str]:
         return pulumi.get(self, "capability_graceful_restart6")
+
+    @property
+    @pulumi.getter(name="capabilityGracefulRestartEvpn")
+    def capability_graceful_restart_evpn(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "capability_graceful_restart_evpn")
 
     @property
     @pulumi.getter(name="capabilityGracefulRestartVpnv4")
@@ -3714,6 +4203,11 @@ class RouterbgpNeighbor(pulumi.CustomResource):
         return pulumi.get(self, "filter_list_out6")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter(name="holdtimeTimer")
     def holdtime_timer(self) -> pulumi.Output[int]:
         return pulumi.get(self, "holdtime_timer")
@@ -3764,6 +4258,11 @@ class RouterbgpNeighbor(pulumi.CustomResource):
         return pulumi.get(self, "maximum_prefix6")
 
     @property
+    @pulumi.getter(name="maximumPrefixEvpn")
+    def maximum_prefix_evpn(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "maximum_prefix_evpn")
+
+    @property
     @pulumi.getter(name="maximumPrefixThreshold")
     def maximum_prefix_threshold(self) -> pulumi.Output[int]:
         return pulumi.get(self, "maximum_prefix_threshold")
@@ -3772,6 +4271,11 @@ class RouterbgpNeighbor(pulumi.CustomResource):
     @pulumi.getter(name="maximumPrefixThreshold6")
     def maximum_prefix_threshold6(self) -> pulumi.Output[int]:
         return pulumi.get(self, "maximum_prefix_threshold6")
+
+    @property
+    @pulumi.getter(name="maximumPrefixThresholdEvpn")
+    def maximum_prefix_threshold_evpn(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "maximum_prefix_threshold_evpn")
 
     @property
     @pulumi.getter(name="maximumPrefixThresholdVpnv4")
@@ -3792,6 +4296,11 @@ class RouterbgpNeighbor(pulumi.CustomResource):
     @pulumi.getter(name="maximumPrefixWarningOnly6")
     def maximum_prefix_warning_only6(self) -> pulumi.Output[str]:
         return pulumi.get(self, "maximum_prefix_warning_only6")
+
+    @property
+    @pulumi.getter(name="maximumPrefixWarningOnlyEvpn")
+    def maximum_prefix_warning_only_evpn(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "maximum_prefix_warning_only_evpn")
 
     @property
     @pulumi.getter(name="maximumPrefixWarningOnlyVpnv4")
@@ -3884,6 +4393,11 @@ class RouterbgpNeighbor(pulumi.CustomResource):
         return pulumi.get(self, "remove_private_as6")
 
     @property
+    @pulumi.getter(name="removePrivateAsEvpn")
+    def remove_private_as_evpn(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "remove_private_as_evpn")
+
+    @property
     @pulumi.getter(name="removePrivateAsVpnv4")
     def remove_private_as_vpnv4(self) -> pulumi.Output[str]:
         return pulumi.get(self, "remove_private_as_vpnv4")
@@ -3909,6 +4423,11 @@ class RouterbgpNeighbor(pulumi.CustomResource):
         return pulumi.get(self, "route_map_in6")
 
     @property
+    @pulumi.getter(name="routeMapInEvpn")
+    def route_map_in_evpn(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "route_map_in_evpn")
+
+    @property
     @pulumi.getter(name="routeMapInVpnv4")
     def route_map_in_vpnv4(self) -> pulumi.Output[str]:
         return pulumi.get(self, "route_map_in_vpnv4")
@@ -3927,6 +4446,11 @@ class RouterbgpNeighbor(pulumi.CustomResource):
     @pulumi.getter(name="routeMapOut6Preferable")
     def route_map_out6_preferable(self) -> pulumi.Output[str]:
         return pulumi.get(self, "route_map_out6_preferable")
+
+    @property
+    @pulumi.getter(name="routeMapOutEvpn")
+    def route_map_out_evpn(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "route_map_out_evpn")
 
     @property
     @pulumi.getter(name="routeMapOutPreferable")
@@ -3954,6 +4478,11 @@ class RouterbgpNeighbor(pulumi.CustomResource):
         return pulumi.get(self, "route_reflector_client6")
 
     @property
+    @pulumi.getter(name="routeReflectorClientEvpn")
+    def route_reflector_client_evpn(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "route_reflector_client_evpn")
+
+    @property
     @pulumi.getter(name="routeReflectorClientVpnv4")
     def route_reflector_client_vpnv4(self) -> pulumi.Output[str]:
         return pulumi.get(self, "route_reflector_client_vpnv4")
@@ -3969,6 +4498,11 @@ class RouterbgpNeighbor(pulumi.CustomResource):
         return pulumi.get(self, "route_server_client6")
 
     @property
+    @pulumi.getter(name="routeServerClientEvpn")
+    def route_server_client_evpn(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "route_server_client_evpn")
+
+    @property
     @pulumi.getter(name="routeServerClientVpnv4")
     def route_server_client_vpnv4(self) -> pulumi.Output[str]:
         return pulumi.get(self, "route_server_client_vpnv4")
@@ -3982,6 +4516,11 @@ class RouterbgpNeighbor(pulumi.CustomResource):
     @pulumi.getter(name="sendCommunity6")
     def send_community6(self) -> pulumi.Output[str]:
         return pulumi.get(self, "send_community6")
+
+    @property
+    @pulumi.getter(name="sendCommunityEvpn")
+    def send_community_evpn(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "send_community_evpn")
 
     @property
     @pulumi.getter(name="sendCommunityVpnv4")
@@ -4002,6 +4541,11 @@ class RouterbgpNeighbor(pulumi.CustomResource):
     @pulumi.getter(name="softReconfiguration6")
     def soft_reconfiguration6(self) -> pulumi.Output[str]:
         return pulumi.get(self, "soft_reconfiguration6")
+
+    @property
+    @pulumi.getter(name="softReconfigurationEvpn")
+    def soft_reconfiguration_evpn(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "soft_reconfiguration_evpn")
 
     @property
     @pulumi.getter(name="softReconfigurationVpnv4")

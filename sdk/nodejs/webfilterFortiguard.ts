@@ -33,9 +33,11 @@ export class WebfilterFortiguard extends pulumi.CustomResource {
     }
 
     public readonly cacheMemPercent!: pulumi.Output<number>;
+    public readonly cacheMemPermille!: pulumi.Output<number>;
     public readonly cacheMode!: pulumi.Output<string>;
     public readonly cachePrefixMatch!: pulumi.Output<string>;
     public readonly closePorts!: pulumi.Output<string>;
+    public readonly embedImage!: pulumi.Output<string>;
     public readonly ovrdAuthHttps!: pulumi.Output<string>;
     public readonly ovrdAuthPort!: pulumi.Output<number>;
     public readonly ovrdAuthPortHttp!: pulumi.Output<number>;
@@ -60,9 +62,11 @@ export class WebfilterFortiguard extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as WebfilterFortiguardState | undefined;
             resourceInputs["cacheMemPercent"] = state ? state.cacheMemPercent : undefined;
+            resourceInputs["cacheMemPermille"] = state ? state.cacheMemPermille : undefined;
             resourceInputs["cacheMode"] = state ? state.cacheMode : undefined;
             resourceInputs["cachePrefixMatch"] = state ? state.cachePrefixMatch : undefined;
             resourceInputs["closePorts"] = state ? state.closePorts : undefined;
+            resourceInputs["embedImage"] = state ? state.embedImage : undefined;
             resourceInputs["ovrdAuthHttps"] = state ? state.ovrdAuthHttps : undefined;
             resourceInputs["ovrdAuthPort"] = state ? state.ovrdAuthPort : undefined;
             resourceInputs["ovrdAuthPortHttp"] = state ? state.ovrdAuthPortHttp : undefined;
@@ -75,9 +79,11 @@ export class WebfilterFortiguard extends pulumi.CustomResource {
         } else {
             const args = argsOrState as WebfilterFortiguardArgs | undefined;
             resourceInputs["cacheMemPercent"] = args ? args.cacheMemPercent : undefined;
+            resourceInputs["cacheMemPermille"] = args ? args.cacheMemPermille : undefined;
             resourceInputs["cacheMode"] = args ? args.cacheMode : undefined;
             resourceInputs["cachePrefixMatch"] = args ? args.cachePrefixMatch : undefined;
             resourceInputs["closePorts"] = args ? args.closePorts : undefined;
+            resourceInputs["embedImage"] = args ? args.embedImage : undefined;
             resourceInputs["ovrdAuthHttps"] = args ? args.ovrdAuthHttps : undefined;
             resourceInputs["ovrdAuthPort"] = args ? args.ovrdAuthPort : undefined;
             resourceInputs["ovrdAuthPortHttp"] = args ? args.ovrdAuthPortHttp : undefined;
@@ -98,9 +104,11 @@ export class WebfilterFortiguard extends pulumi.CustomResource {
  */
 export interface WebfilterFortiguardState {
     cacheMemPercent?: pulumi.Input<number>;
+    cacheMemPermille?: pulumi.Input<number>;
     cacheMode?: pulumi.Input<string>;
     cachePrefixMatch?: pulumi.Input<string>;
     closePorts?: pulumi.Input<string>;
+    embedImage?: pulumi.Input<string>;
     ovrdAuthHttps?: pulumi.Input<string>;
     ovrdAuthPort?: pulumi.Input<number>;
     ovrdAuthPortHttp?: pulumi.Input<number>;
@@ -117,9 +125,11 @@ export interface WebfilterFortiguardState {
  */
 export interface WebfilterFortiguardArgs {
     cacheMemPercent?: pulumi.Input<number>;
+    cacheMemPermille?: pulumi.Input<number>;
     cacheMode?: pulumi.Input<string>;
     cachePrefixMatch?: pulumi.Input<string>;
     closePorts?: pulumi.Input<string>;
+    embedImage?: pulumi.Input<string>;
     ovrdAuthHttps?: pulumi.Input<string>;
     ovrdAuthPort?: pulumi.Input<number>;
     ovrdAuthPortHttp?: pulumi.Input<number>;

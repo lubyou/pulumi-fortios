@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -33,7 +34,7 @@ func NewSwitchControllerTrafficPolicy(ctx *pulumi.Context,
 		args = &SwitchControllerTrafficPolicyArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SwitchControllerTrafficPolicy
 	err := ctx.RegisterResource("fortios:index/switchControllerTrafficPolicy:SwitchControllerTrafficPolicy", name, args, &resource, opts...)
 	if err != nil {

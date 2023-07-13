@@ -34,7 +34,12 @@ export class SystemIpam extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemIpam.__pulumiType;
     }
 
+    public readonly automaticConflictResolution!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    public readonly manageLanAddresses!: pulumi.Output<string>;
+    public readonly manageLanExtensionAddresses!: pulumi.Output<string>;
+    public readonly manageSsidAddresses!: pulumi.Output<string>;
     public readonly poolSubnet!: pulumi.Output<string>;
     public readonly pools!: pulumi.Output<outputs.SystemIpamPool[] | undefined>;
     public readonly rules!: pulumi.Output<outputs.SystemIpamRule[] | undefined>;
@@ -55,7 +60,12 @@ export class SystemIpam extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemIpamState | undefined;
+            resourceInputs["automaticConflictResolution"] = state ? state.automaticConflictResolution : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
+            resourceInputs["manageLanAddresses"] = state ? state.manageLanAddresses : undefined;
+            resourceInputs["manageLanExtensionAddresses"] = state ? state.manageLanExtensionAddresses : undefined;
+            resourceInputs["manageSsidAddresses"] = state ? state.manageSsidAddresses : undefined;
             resourceInputs["poolSubnet"] = state ? state.poolSubnet : undefined;
             resourceInputs["pools"] = state ? state.pools : undefined;
             resourceInputs["rules"] = state ? state.rules : undefined;
@@ -64,7 +74,12 @@ export class SystemIpam extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemIpamArgs | undefined;
+            resourceInputs["automaticConflictResolution"] = args ? args.automaticConflictResolution : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
+            resourceInputs["manageLanAddresses"] = args ? args.manageLanAddresses : undefined;
+            resourceInputs["manageLanExtensionAddresses"] = args ? args.manageLanExtensionAddresses : undefined;
+            resourceInputs["manageSsidAddresses"] = args ? args.manageSsidAddresses : undefined;
             resourceInputs["poolSubnet"] = args ? args.poolSubnet : undefined;
             resourceInputs["pools"] = args ? args.pools : undefined;
             resourceInputs["rules"] = args ? args.rules : undefined;
@@ -81,7 +96,12 @@ export class SystemIpam extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemIpam resources.
  */
 export interface SystemIpamState {
+    automaticConflictResolution?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
+    manageLanAddresses?: pulumi.Input<string>;
+    manageLanExtensionAddresses?: pulumi.Input<string>;
+    manageSsidAddresses?: pulumi.Input<string>;
     poolSubnet?: pulumi.Input<string>;
     pools?: pulumi.Input<pulumi.Input<inputs.SystemIpamPool>[]>;
     rules?: pulumi.Input<pulumi.Input<inputs.SystemIpamRule>[]>;
@@ -94,7 +114,12 @@ export interface SystemIpamState {
  * The set of arguments for constructing a SystemIpam resource.
  */
 export interface SystemIpamArgs {
+    automaticConflictResolution?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
+    manageLanAddresses?: pulumi.Input<string>;
+    manageLanExtensionAddresses?: pulumi.Input<string>;
+    manageSsidAddresses?: pulumi.Input<string>;
     poolSubnet?: pulumi.Input<string>;
     pools?: pulumi.Input<pulumi.Input<inputs.SystemIpamPool>[]>;
     rules?: pulumi.Input<pulumi.Input<inputs.SystemIpamRule>[]>;

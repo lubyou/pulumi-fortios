@@ -38,6 +38,7 @@ export class FileFilterProfile extends pulumi.CustomResource {
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly extendedLog!: pulumi.Output<string>;
     public readonly featureSet!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly log!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
     public readonly replacemsgGroup!: pulumi.Output<string>;
@@ -62,6 +63,7 @@ export class FileFilterProfile extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["extendedLog"] = state ? state.extendedLog : undefined;
             resourceInputs["featureSet"] = state ? state.featureSet : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["log"] = state ? state.log : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["replacemsgGroup"] = state ? state.replacemsgGroup : undefined;
@@ -74,6 +76,7 @@ export class FileFilterProfile extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["extendedLog"] = args ? args.extendedLog : undefined;
             resourceInputs["featureSet"] = args ? args.featureSet : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["log"] = args ? args.log : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["replacemsgGroup"] = args ? args.replacemsgGroup : undefined;
@@ -94,6 +97,7 @@ export interface FileFilterProfileState {
     dynamicSortSubtable?: pulumi.Input<string>;
     extendedLog?: pulumi.Input<string>;
     featureSet?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     log?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     replacemsgGroup?: pulumi.Input<string>;
@@ -110,6 +114,7 @@ export interface FileFilterProfileArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
     extendedLog?: pulumi.Input<string>;
     featureSet?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     log?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     replacemsgGroup?: pulumi.Input<string>;

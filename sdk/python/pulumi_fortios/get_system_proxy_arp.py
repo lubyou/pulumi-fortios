@@ -102,12 +102,12 @@ def get_system_proxy_arp(fosid: Optional[int] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemProxyArp:GetSystemProxyArp', __args__, opts=opts, typ=GetSystemProxyArpResult).value
 
     return AwaitableGetSystemProxyArpResult(
-        end_ip=__ret__.end_ip,
-        fosid=__ret__.fosid,
-        id=__ret__.id,
-        interface=__ret__.interface,
-        ip=__ret__.ip,
-        vdomparam=__ret__.vdomparam)
+        end_ip=pulumi.get(__ret__, 'end_ip'),
+        fosid=pulumi.get(__ret__, 'fosid'),
+        id=pulumi.get(__ret__, 'id'),
+        interface=pulumi.get(__ret__, 'interface'),
+        ip=pulumi.get(__ret__, 'ip'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_proxy_arp)

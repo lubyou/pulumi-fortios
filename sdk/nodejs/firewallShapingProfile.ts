@@ -37,6 +37,7 @@ export class FirewallShapingProfile extends pulumi.CustomResource {
     public readonly comment!: pulumi.Output<string | undefined>;
     public readonly defaultClassId!: pulumi.Output<number>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly profileName!: pulumi.Output<string>;
     public readonly shapingEntries!: pulumi.Output<outputs.FirewallShapingProfileShapingEntry[] | undefined>;
     public readonly type!: pulumi.Output<string>;
@@ -58,6 +59,7 @@ export class FirewallShapingProfile extends pulumi.CustomResource {
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["defaultClassId"] = state ? state.defaultClassId : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["profileName"] = state ? state.profileName : undefined;
             resourceInputs["shapingEntries"] = state ? state.shapingEntries : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
@@ -73,6 +75,7 @@ export class FirewallShapingProfile extends pulumi.CustomResource {
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["defaultClassId"] = args ? args.defaultClassId : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["profileName"] = args ? args.profileName : undefined;
             resourceInputs["shapingEntries"] = args ? args.shapingEntries : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
@@ -90,6 +93,7 @@ export interface FirewallShapingProfileState {
     comment?: pulumi.Input<string>;
     defaultClassId?: pulumi.Input<number>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     profileName?: pulumi.Input<string>;
     shapingEntries?: pulumi.Input<pulumi.Input<inputs.FirewallShapingProfileShapingEntry>[]>;
     type?: pulumi.Input<string>;
@@ -103,6 +107,7 @@ export interface FirewallShapingProfileArgs {
     comment?: pulumi.Input<string>;
     defaultClassId: pulumi.Input<number>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     profileName: pulumi.Input<string>;
     shapingEntries?: pulumi.Input<pulumi.Input<inputs.FirewallShapingProfileShapingEntry>[]>;
     type?: pulumi.Input<string>;

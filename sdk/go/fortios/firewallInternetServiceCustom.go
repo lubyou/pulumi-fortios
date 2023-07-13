@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -16,6 +17,7 @@ type FirewallInternetServiceCustom struct {
 	Comment             pulumi.StringPtrOutput                        `pulumi:"comment"`
 	DynamicSortSubtable pulumi.StringPtrOutput                        `pulumi:"dynamicSortSubtable"`
 	Entries             FirewallInternetServiceCustomEntryArrayOutput `pulumi:"entries"`
+	GetAllTables        pulumi.StringPtrOutput                        `pulumi:"getAllTables"`
 	Name                pulumi.StringOutput                           `pulumi:"name"`
 	Reputation          pulumi.IntOutput                              `pulumi:"reputation"`
 	Vdomparam           pulumi.StringPtrOutput                        `pulumi:"vdomparam"`
@@ -28,7 +30,7 @@ func NewFirewallInternetServiceCustom(ctx *pulumi.Context,
 		args = &FirewallInternetServiceCustomArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallInternetServiceCustom
 	err := ctx.RegisterResource("fortios:index/firewallInternetServiceCustom:FirewallInternetServiceCustom", name, args, &resource, opts...)
 	if err != nil {
@@ -54,6 +56,7 @@ type firewallInternetServiceCustomState struct {
 	Comment             *string                              `pulumi:"comment"`
 	DynamicSortSubtable *string                              `pulumi:"dynamicSortSubtable"`
 	Entries             []FirewallInternetServiceCustomEntry `pulumi:"entries"`
+	GetAllTables        *string                              `pulumi:"getAllTables"`
 	Name                *string                              `pulumi:"name"`
 	Reputation          *int                                 `pulumi:"reputation"`
 	Vdomparam           *string                              `pulumi:"vdomparam"`
@@ -63,6 +66,7 @@ type FirewallInternetServiceCustomState struct {
 	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	Entries             FirewallInternetServiceCustomEntryArrayInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Reputation          pulumi.IntPtrInput
 	Vdomparam           pulumi.StringPtrInput
@@ -76,6 +80,7 @@ type firewallInternetServiceCustomArgs struct {
 	Comment             *string                              `pulumi:"comment"`
 	DynamicSortSubtable *string                              `pulumi:"dynamicSortSubtable"`
 	Entries             []FirewallInternetServiceCustomEntry `pulumi:"entries"`
+	GetAllTables        *string                              `pulumi:"getAllTables"`
 	Name                *string                              `pulumi:"name"`
 	Reputation          *int                                 `pulumi:"reputation"`
 	Vdomparam           *string                              `pulumi:"vdomparam"`
@@ -86,6 +91,7 @@ type FirewallInternetServiceCustomArgs struct {
 	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	Entries             FirewallInternetServiceCustomEntryArrayInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Reputation          pulumi.IntPtrInput
 	Vdomparam           pulumi.StringPtrInput
@@ -188,6 +194,10 @@ func (o FirewallInternetServiceCustomOutput) DynamicSortSubtable() pulumi.String
 
 func (o FirewallInternetServiceCustomOutput) Entries() FirewallInternetServiceCustomEntryArrayOutput {
 	return o.ApplyT(func(v *FirewallInternetServiceCustom) FirewallInternetServiceCustomEntryArrayOutput { return v.Entries }).(FirewallInternetServiceCustomEntryArrayOutput)
+}
+
+func (o FirewallInternetServiceCustomOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceCustom) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallInternetServiceCustomOutput) Name() pulumi.StringOutput {

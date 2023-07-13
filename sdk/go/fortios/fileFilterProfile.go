@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -17,6 +18,7 @@ type FileFilterProfile struct {
 	DynamicSortSubtable pulumi.StringPtrOutput           `pulumi:"dynamicSortSubtable"`
 	ExtendedLog         pulumi.StringOutput              `pulumi:"extendedLog"`
 	FeatureSet          pulumi.StringOutput              `pulumi:"featureSet"`
+	GetAllTables        pulumi.StringPtrOutput           `pulumi:"getAllTables"`
 	Log                 pulumi.StringOutput              `pulumi:"log"`
 	Name                pulumi.StringOutput              `pulumi:"name"`
 	ReplacemsgGroup     pulumi.StringOutput              `pulumi:"replacemsgGroup"`
@@ -32,7 +34,7 @@ func NewFileFilterProfile(ctx *pulumi.Context,
 		args = &FileFilterProfileArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FileFilterProfile
 	err := ctx.RegisterResource("fortios:index/fileFilterProfile:FileFilterProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -59,6 +61,7 @@ type fileFilterProfileState struct {
 	DynamicSortSubtable *string                 `pulumi:"dynamicSortSubtable"`
 	ExtendedLog         *string                 `pulumi:"extendedLog"`
 	FeatureSet          *string                 `pulumi:"featureSet"`
+	GetAllTables        *string                 `pulumi:"getAllTables"`
 	Log                 *string                 `pulumi:"log"`
 	Name                *string                 `pulumi:"name"`
 	ReplacemsgGroup     *string                 `pulumi:"replacemsgGroup"`
@@ -72,6 +75,7 @@ type FileFilterProfileState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	ExtendedLog         pulumi.StringPtrInput
 	FeatureSet          pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Log                 pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	ReplacemsgGroup     pulumi.StringPtrInput
@@ -89,6 +93,7 @@ type fileFilterProfileArgs struct {
 	DynamicSortSubtable *string                 `pulumi:"dynamicSortSubtable"`
 	ExtendedLog         *string                 `pulumi:"extendedLog"`
 	FeatureSet          *string                 `pulumi:"featureSet"`
+	GetAllTables        *string                 `pulumi:"getAllTables"`
 	Log                 *string                 `pulumi:"log"`
 	Name                *string                 `pulumi:"name"`
 	ReplacemsgGroup     *string                 `pulumi:"replacemsgGroup"`
@@ -103,6 +108,7 @@ type FileFilterProfileArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	ExtendedLog         pulumi.StringPtrInput
 	FeatureSet          pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Log                 pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	ReplacemsgGroup     pulumi.StringPtrInput
@@ -212,6 +218,10 @@ func (o FileFilterProfileOutput) ExtendedLog() pulumi.StringOutput {
 
 func (o FileFilterProfileOutput) FeatureSet() pulumi.StringOutput {
 	return o.ApplyT(func(v *FileFilterProfile) pulumi.StringOutput { return v.FeatureSet }).(pulumi.StringOutput)
+}
+
+func (o FileFilterProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FileFilterProfile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o FileFilterProfileOutput) Log() pulumi.StringOutput {

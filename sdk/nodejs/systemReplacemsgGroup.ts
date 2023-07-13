@@ -45,6 +45,7 @@ export class SystemReplacemsgGroup extends pulumi.CustomResource {
     public readonly ecs!: pulumi.Output<outputs.SystemReplacemsgGroupEc[] | undefined>;
     public readonly fortiguardWfs!: pulumi.Output<outputs.SystemReplacemsgGroupFortiguardWf[] | undefined>;
     public readonly ftps!: pulumi.Output<outputs.SystemReplacemsgGroupFtp[] | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly groupType!: pulumi.Output<string>;
     public readonly https!: pulumi.Output<outputs.SystemReplacemsgGroupHttp[] | undefined>;
     public readonly icaps!: pulumi.Output<outputs.SystemReplacemsgGroupIcap[] | undefined>;
@@ -83,6 +84,7 @@ export class SystemReplacemsgGroup extends pulumi.CustomResource {
             resourceInputs["ecs"] = state ? state.ecs : undefined;
             resourceInputs["fortiguardWfs"] = state ? state.fortiguardWfs : undefined;
             resourceInputs["ftps"] = state ? state.ftps : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["groupType"] = state ? state.groupType : undefined;
             resourceInputs["https"] = state ? state.https : undefined;
             resourceInputs["icaps"] = state ? state.icaps : undefined;
@@ -112,6 +114,7 @@ export class SystemReplacemsgGroup extends pulumi.CustomResource {
             resourceInputs["ecs"] = args ? args.ecs : undefined;
             resourceInputs["fortiguardWfs"] = args ? args.fortiguardWfs : undefined;
             resourceInputs["ftps"] = args ? args.ftps : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["groupType"] = args ? args.groupType : undefined;
             resourceInputs["https"] = args ? args.https : undefined;
             resourceInputs["icaps"] = args ? args.icaps : undefined;
@@ -146,6 +149,7 @@ export interface SystemReplacemsgGroupState {
     ecs?: pulumi.Input<pulumi.Input<inputs.SystemReplacemsgGroupEc>[]>;
     fortiguardWfs?: pulumi.Input<pulumi.Input<inputs.SystemReplacemsgGroupFortiguardWf>[]>;
     ftps?: pulumi.Input<pulumi.Input<inputs.SystemReplacemsgGroupFtp>[]>;
+    getAllTables?: pulumi.Input<string>;
     groupType?: pulumi.Input<string>;
     https?: pulumi.Input<pulumi.Input<inputs.SystemReplacemsgGroupHttp>[]>;
     icaps?: pulumi.Input<pulumi.Input<inputs.SystemReplacemsgGroupIcap>[]>;
@@ -176,6 +180,7 @@ export interface SystemReplacemsgGroupArgs {
     ecs?: pulumi.Input<pulumi.Input<inputs.SystemReplacemsgGroupEc>[]>;
     fortiguardWfs?: pulumi.Input<pulumi.Input<inputs.SystemReplacemsgGroupFortiguardWf>[]>;
     ftps?: pulumi.Input<pulumi.Input<inputs.SystemReplacemsgGroupFtp>[]>;
+    getAllTables?: pulumi.Input<string>;
     groupType: pulumi.Input<string>;
     https?: pulumi.Input<pulumi.Input<inputs.SystemReplacemsgGroupHttp>[]>;
     icaps?: pulumi.Input<pulumi.Input<inputs.SystemReplacemsgGroupIcap>[]>;

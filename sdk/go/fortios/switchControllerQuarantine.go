@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -14,6 +15,7 @@ type SwitchControllerQuarantine struct {
 	pulumi.CustomResourceState
 
 	DynamicSortSubtable pulumi.StringPtrOutput                      `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                      `pulumi:"getAllTables"`
 	Quarantine          pulumi.StringOutput                         `pulumi:"quarantine"`
 	Targets             SwitchControllerQuarantineTargetArrayOutput `pulumi:"targets"`
 	Vdomparam           pulumi.StringPtrOutput                      `pulumi:"vdomparam"`
@@ -26,7 +28,7 @@ func NewSwitchControllerQuarantine(ctx *pulumi.Context,
 		args = &SwitchControllerQuarantineArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SwitchControllerQuarantine
 	err := ctx.RegisterResource("fortios:index/switchControllerQuarantine:SwitchControllerQuarantine", name, args, &resource, opts...)
 	if err != nil {
@@ -50,6 +52,7 @@ func GetSwitchControllerQuarantine(ctx *pulumi.Context,
 // Input properties used for looking up and filtering SwitchControllerQuarantine resources.
 type switchControllerQuarantineState struct {
 	DynamicSortSubtable *string                            `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                            `pulumi:"getAllTables"`
 	Quarantine          *string                            `pulumi:"quarantine"`
 	Targets             []SwitchControllerQuarantineTarget `pulumi:"targets"`
 	Vdomparam           *string                            `pulumi:"vdomparam"`
@@ -57,6 +60,7 @@ type switchControllerQuarantineState struct {
 
 type SwitchControllerQuarantineState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Quarantine          pulumi.StringPtrInput
 	Targets             SwitchControllerQuarantineTargetArrayInput
 	Vdomparam           pulumi.StringPtrInput
@@ -68,6 +72,7 @@ func (SwitchControllerQuarantineState) ElementType() reflect.Type {
 
 type switchControllerQuarantineArgs struct {
 	DynamicSortSubtable *string                            `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                            `pulumi:"getAllTables"`
 	Quarantine          *string                            `pulumi:"quarantine"`
 	Targets             []SwitchControllerQuarantineTarget `pulumi:"targets"`
 	Vdomparam           *string                            `pulumi:"vdomparam"`
@@ -76,6 +81,7 @@ type switchControllerQuarantineArgs struct {
 // The set of arguments for constructing a SwitchControllerQuarantine resource.
 type SwitchControllerQuarantineArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Quarantine          pulumi.StringPtrInput
 	Targets             SwitchControllerQuarantineTargetArrayInput
 	Vdomparam           pulumi.StringPtrInput
@@ -170,6 +176,10 @@ func (o SwitchControllerQuarantineOutput) ToSwitchControllerQuarantineOutputWith
 
 func (o SwitchControllerQuarantineOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SwitchControllerQuarantine) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SwitchControllerQuarantineOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerQuarantine) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SwitchControllerQuarantineOutput) Quarantine() pulumi.StringOutput {

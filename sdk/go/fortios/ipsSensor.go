@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,6 +20,7 @@ type IpsSensor struct {
 	Entries               IpsSensorEntryArrayOutput    `pulumi:"entries"`
 	ExtendedLog           pulumi.StringOutput          `pulumi:"extendedLog"`
 	Filters               IpsSensorFilterArrayOutput   `pulumi:"filters"`
+	GetAllTables          pulumi.StringPtrOutput       `pulumi:"getAllTables"`
 	Name                  pulumi.StringOutput          `pulumi:"name"`
 	Overrides             IpsSensorOverrideArrayOutput `pulumi:"overrides"`
 	ReplacemsgGroup       pulumi.StringOutput          `pulumi:"replacemsgGroup"`
@@ -33,7 +35,7 @@ func NewIpsSensor(ctx *pulumi.Context,
 		args = &IpsSensorArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource IpsSensor
 	err := ctx.RegisterResource("fortios:index/ipsSensor:IpsSensor", name, args, &resource, opts...)
 	if err != nil {
@@ -62,6 +64,7 @@ type ipsSensorState struct {
 	Entries               []IpsSensorEntry    `pulumi:"entries"`
 	ExtendedLog           *string             `pulumi:"extendedLog"`
 	Filters               []IpsSensorFilter   `pulumi:"filters"`
+	GetAllTables          *string             `pulumi:"getAllTables"`
 	Name                  *string             `pulumi:"name"`
 	Overrides             []IpsSensorOverride `pulumi:"overrides"`
 	ReplacemsgGroup       *string             `pulumi:"replacemsgGroup"`
@@ -76,6 +79,7 @@ type IpsSensorState struct {
 	Entries               IpsSensorEntryArrayInput
 	ExtendedLog           pulumi.StringPtrInput
 	Filters               IpsSensorFilterArrayInput
+	GetAllTables          pulumi.StringPtrInput
 	Name                  pulumi.StringPtrInput
 	Overrides             IpsSensorOverrideArrayInput
 	ReplacemsgGroup       pulumi.StringPtrInput
@@ -94,6 +98,7 @@ type ipsSensorArgs struct {
 	Entries               []IpsSensorEntry    `pulumi:"entries"`
 	ExtendedLog           *string             `pulumi:"extendedLog"`
 	Filters               []IpsSensorFilter   `pulumi:"filters"`
+	GetAllTables          *string             `pulumi:"getAllTables"`
 	Name                  *string             `pulumi:"name"`
 	Overrides             []IpsSensorOverride `pulumi:"overrides"`
 	ReplacemsgGroup       *string             `pulumi:"replacemsgGroup"`
@@ -109,6 +114,7 @@ type IpsSensorArgs struct {
 	Entries               IpsSensorEntryArrayInput
 	ExtendedLog           pulumi.StringPtrInput
 	Filters               IpsSensorFilterArrayInput
+	GetAllTables          pulumi.StringPtrInput
 	Name                  pulumi.StringPtrInput
 	Overrides             IpsSensorOverrideArrayInput
 	ReplacemsgGroup       pulumi.StringPtrInput
@@ -225,6 +231,10 @@ func (o IpsSensorOutput) ExtendedLog() pulumi.StringOutput {
 
 func (o IpsSensorOutput) Filters() IpsSensorFilterArrayOutput {
 	return o.ApplyT(func(v *IpsSensor) IpsSensorFilterArrayOutput { return v.Filters }).(IpsSensorFilterArrayOutput)
+}
+
+func (o IpsSensorOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IpsSensor) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o IpsSensorOutput) Name() pulumi.StringOutput {

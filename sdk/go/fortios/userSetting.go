@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -33,6 +34,7 @@ type UserSetting struct {
 	AuthTimeoutType           pulumi.StringOutput            `pulumi:"authTimeoutType"`
 	AuthType                  pulumi.StringOutput            `pulumi:"authType"`
 	DynamicSortSubtable       pulumi.StringPtrOutput         `pulumi:"dynamicSortSubtable"`
+	GetAllTables              pulumi.StringPtrOutput         `pulumi:"getAllTables"`
 	PerPolicyDisclaimer       pulumi.StringOutput            `pulumi:"perPolicyDisclaimer"`
 	RadiusSesTimeoutAct       pulumi.StringOutput            `pulumi:"radiusSesTimeoutAct"`
 	Vdomparam                 pulumi.StringPtrOutput         `pulumi:"vdomparam"`
@@ -45,7 +47,7 @@ func NewUserSetting(ctx *pulumi.Context,
 		args = &UserSettingArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource UserSetting
 	err := ctx.RegisterResource("fortios:index/userSetting:UserSetting", name, args, &resource, opts...)
 	if err != nil {
@@ -88,6 +90,7 @@ type userSettingState struct {
 	AuthTimeoutType           *string               `pulumi:"authTimeoutType"`
 	AuthType                  *string               `pulumi:"authType"`
 	DynamicSortSubtable       *string               `pulumi:"dynamicSortSubtable"`
+	GetAllTables              *string               `pulumi:"getAllTables"`
 	PerPolicyDisclaimer       *string               `pulumi:"perPolicyDisclaimer"`
 	RadiusSesTimeoutAct       *string               `pulumi:"radiusSesTimeoutAct"`
 	Vdomparam                 *string               `pulumi:"vdomparam"`
@@ -114,6 +117,7 @@ type UserSettingState struct {
 	AuthTimeoutType           pulumi.StringPtrInput
 	AuthType                  pulumi.StringPtrInput
 	DynamicSortSubtable       pulumi.StringPtrInput
+	GetAllTables              pulumi.StringPtrInput
 	PerPolicyDisclaimer       pulumi.StringPtrInput
 	RadiusSesTimeoutAct       pulumi.StringPtrInput
 	Vdomparam                 pulumi.StringPtrInput
@@ -144,6 +148,7 @@ type userSettingArgs struct {
 	AuthTimeoutType           *string               `pulumi:"authTimeoutType"`
 	AuthType                  *string               `pulumi:"authType"`
 	DynamicSortSubtable       *string               `pulumi:"dynamicSortSubtable"`
+	GetAllTables              *string               `pulumi:"getAllTables"`
 	PerPolicyDisclaimer       *string               `pulumi:"perPolicyDisclaimer"`
 	RadiusSesTimeoutAct       *string               `pulumi:"radiusSesTimeoutAct"`
 	Vdomparam                 *string               `pulumi:"vdomparam"`
@@ -171,6 +176,7 @@ type UserSettingArgs struct {
 	AuthTimeoutType           pulumi.StringPtrInput
 	AuthType                  pulumi.StringPtrInput
 	DynamicSortSubtable       pulumi.StringPtrInput
+	GetAllTables              pulumi.StringPtrInput
 	PerPolicyDisclaimer       pulumi.StringPtrInput
 	RadiusSesTimeoutAct       pulumi.StringPtrInput
 	Vdomparam                 pulumi.StringPtrInput
@@ -341,6 +347,10 @@ func (o UserSettingOutput) AuthType() pulumi.StringOutput {
 
 func (o UserSettingOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *UserSetting) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o UserSettingOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserSetting) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o UserSettingOutput) PerPolicyDisclaimer() pulumi.StringOutput {

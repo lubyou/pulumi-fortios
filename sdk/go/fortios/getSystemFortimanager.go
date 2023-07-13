@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemFortimanager(ctx *pulumi.Context, args *LookupSystemFortimanagerArgs, opts ...pulumi.InvokeOption) (*LookupSystemFortimanagerResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemFortimanagerResult
 	err := ctx.Invoke("fortios:index/getSystemFortimanager:GetSystemFortimanager", args, &rv, opts...)
 	if err != nil {

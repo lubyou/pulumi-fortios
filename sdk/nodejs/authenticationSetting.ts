@@ -51,6 +51,7 @@ export class AuthenticationSetting extends pulumi.CustomResource {
     public readonly cookieRefreshDiv!: pulumi.Output<number>;
     public readonly devRanges!: pulumi.Output<outputs.AuthenticationSettingDevRange[] | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly ipAuthCookie!: pulumi.Output<string>;
     public readonly persistentCookie!: pulumi.Output<string>;
     public readonly ssoAuthScheme!: pulumi.Output<string>;
@@ -88,6 +89,7 @@ export class AuthenticationSetting extends pulumi.CustomResource {
             resourceInputs["cookieRefreshDiv"] = state ? state.cookieRefreshDiv : undefined;
             resourceInputs["devRanges"] = state ? state.devRanges : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["ipAuthCookie"] = state ? state.ipAuthCookie : undefined;
             resourceInputs["persistentCookie"] = state ? state.persistentCookie : undefined;
             resourceInputs["ssoAuthScheme"] = state ? state.ssoAuthScheme : undefined;
@@ -113,6 +115,7 @@ export class AuthenticationSetting extends pulumi.CustomResource {
             resourceInputs["cookieRefreshDiv"] = args ? args.cookieRefreshDiv : undefined;
             resourceInputs["devRanges"] = args ? args.devRanges : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["ipAuthCookie"] = args ? args.ipAuthCookie : undefined;
             resourceInputs["persistentCookie"] = args ? args.persistentCookie : undefined;
             resourceInputs["ssoAuthScheme"] = args ? args.ssoAuthScheme : undefined;
@@ -146,6 +149,7 @@ export interface AuthenticationSettingState {
     cookieRefreshDiv?: pulumi.Input<number>;
     devRanges?: pulumi.Input<pulumi.Input<inputs.AuthenticationSettingDevRange>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     ipAuthCookie?: pulumi.Input<string>;
     persistentCookie?: pulumi.Input<string>;
     ssoAuthScheme?: pulumi.Input<string>;
@@ -175,6 +179,7 @@ export interface AuthenticationSettingArgs {
     cookieRefreshDiv?: pulumi.Input<number>;
     devRanges?: pulumi.Input<pulumi.Input<inputs.AuthenticationSettingDevRange>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     ipAuthCookie?: pulumi.Input<string>;
     persistentCookie?: pulumi.Input<string>;
     ssoAuthScheme?: pulumi.Input<string>;

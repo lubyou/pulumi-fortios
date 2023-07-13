@@ -28,6 +28,7 @@ class WirelessControllerSettingArgs:
                  fake_ssid_action: Optional[pulumi.Input[str]] = None,
                  fapc_compatibility: Optional[pulumi.Input[str]] = None,
                  firmware_provision_on_authorization: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  offending_ssids: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerSettingOffendingSsidArgs']]]] = None,
                  phishing_ssid_detect: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -59,6 +60,8 @@ class WirelessControllerSettingArgs:
             pulumi.set(__self__, "fapc_compatibility", fapc_compatibility)
         if firmware_provision_on_authorization is not None:
             pulumi.set(__self__, "firmware_provision_on_authorization", firmware_provision_on_authorization)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if offending_ssids is not None:
             pulumi.set(__self__, "offending_ssids", offending_ssids)
         if phishing_ssid_detect is not None:
@@ -175,6 +178,15 @@ class WirelessControllerSettingArgs:
     @firmware_provision_on_authorization.setter
     def firmware_provision_on_authorization(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "firmware_provision_on_authorization", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="offendingSsids")
@@ -228,6 +240,7 @@ class _WirelessControllerSettingState:
                  fake_ssid_action: Optional[pulumi.Input[str]] = None,
                  fapc_compatibility: Optional[pulumi.Input[str]] = None,
                  firmware_provision_on_authorization: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  offending_ssids: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerSettingOffendingSsidArgs']]]] = None,
                  phishing_ssid_detect: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -259,6 +272,8 @@ class _WirelessControllerSettingState:
             pulumi.set(__self__, "fapc_compatibility", fapc_compatibility)
         if firmware_provision_on_authorization is not None:
             pulumi.set(__self__, "firmware_provision_on_authorization", firmware_provision_on_authorization)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if offending_ssids is not None:
             pulumi.set(__self__, "offending_ssids", offending_ssids)
         if phishing_ssid_detect is not None:
@@ -375,6 +390,15 @@ class _WirelessControllerSettingState:
     @firmware_provision_on_authorization.setter
     def firmware_provision_on_authorization(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "firmware_provision_on_authorization", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="offendingSsids")
@@ -430,6 +454,7 @@ class WirelessControllerSetting(pulumi.CustomResource):
                  fake_ssid_action: Optional[pulumi.Input[str]] = None,
                  fapc_compatibility: Optional[pulumi.Input[str]] = None,
                  firmware_provision_on_authorization: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  offending_ssids: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerSettingOffendingSsidArgs']]]]] = None,
                  phishing_ssid_detect: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -475,6 +500,7 @@ class WirelessControllerSetting(pulumi.CustomResource):
                  fake_ssid_action: Optional[pulumi.Input[str]] = None,
                  fapc_compatibility: Optional[pulumi.Input[str]] = None,
                  firmware_provision_on_authorization: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  offending_ssids: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerSettingOffendingSsidArgs']]]]] = None,
                  phishing_ssid_detect: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -500,6 +526,7 @@ class WirelessControllerSetting(pulumi.CustomResource):
             __props__.__dict__["fake_ssid_action"] = fake_ssid_action
             __props__.__dict__["fapc_compatibility"] = fapc_compatibility
             __props__.__dict__["firmware_provision_on_authorization"] = firmware_provision_on_authorization
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["offending_ssids"] = offending_ssids
             __props__.__dict__["phishing_ssid_detect"] = phishing_ssid_detect
             __props__.__dict__["vdomparam"] = vdomparam
@@ -526,6 +553,7 @@ class WirelessControllerSetting(pulumi.CustomResource):
             fake_ssid_action: Optional[pulumi.Input[str]] = None,
             fapc_compatibility: Optional[pulumi.Input[str]] = None,
             firmware_provision_on_authorization: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             offending_ssids: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerSettingOffendingSsidArgs']]]]] = None,
             phishing_ssid_detect: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
@@ -554,6 +582,7 @@ class WirelessControllerSetting(pulumi.CustomResource):
         __props__.__dict__["fake_ssid_action"] = fake_ssid_action
         __props__.__dict__["fapc_compatibility"] = fapc_compatibility
         __props__.__dict__["firmware_provision_on_authorization"] = firmware_provision_on_authorization
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["offending_ssids"] = offending_ssids
         __props__.__dict__["phishing_ssid_detect"] = phishing_ssid_detect
         __props__.__dict__["vdomparam"] = vdomparam
@@ -619,6 +648,11 @@ class WirelessControllerSetting(pulumi.CustomResource):
     @pulumi.getter(name="firmwareProvisionOnAuthorization")
     def firmware_provision_on_authorization(self) -> pulumi.Output[str]:
         return pulumi.get(self, "firmware_provision_on_authorization")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="offendingSsids")

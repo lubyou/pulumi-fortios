@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -16,6 +17,7 @@ type SystemStandaloneCluster struct {
 	ClusterPeers        SystemStandaloneClusterClusterPeerArrayOutput `pulumi:"clusterPeers"`
 	DynamicSortSubtable pulumi.StringPtrOutput                        `pulumi:"dynamicSortSubtable"`
 	Encryption          pulumi.StringOutput                           `pulumi:"encryption"`
+	GetAllTables        pulumi.StringPtrOutput                        `pulumi:"getAllTables"`
 	GroupMemberId       pulumi.IntOutput                              `pulumi:"groupMemberId"`
 	Layer2Connection    pulumi.StringOutput                           `pulumi:"layer2Connection"`
 	Psksecret           pulumi.StringPtrOutput                        `pulumi:"psksecret"`
@@ -38,7 +40,7 @@ func NewSystemStandaloneCluster(ctx *pulumi.Context,
 		"psksecret",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemStandaloneCluster
 	err := ctx.RegisterResource("fortios:index/systemStandaloneCluster:SystemStandaloneCluster", name, args, &resource, opts...)
 	if err != nil {
@@ -64,6 +66,7 @@ type systemStandaloneClusterState struct {
 	ClusterPeers        []SystemStandaloneClusterClusterPeer `pulumi:"clusterPeers"`
 	DynamicSortSubtable *string                              `pulumi:"dynamicSortSubtable"`
 	Encryption          *string                              `pulumi:"encryption"`
+	GetAllTables        *string                              `pulumi:"getAllTables"`
 	GroupMemberId       *int                                 `pulumi:"groupMemberId"`
 	Layer2Connection    *string                              `pulumi:"layer2Connection"`
 	Psksecret           *string                              `pulumi:"psksecret"`
@@ -76,6 +79,7 @@ type SystemStandaloneClusterState struct {
 	ClusterPeers        SystemStandaloneClusterClusterPeerArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	Encryption          pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	GroupMemberId       pulumi.IntPtrInput
 	Layer2Connection    pulumi.StringPtrInput
 	Psksecret           pulumi.StringPtrInput
@@ -92,6 +96,7 @@ type systemStandaloneClusterArgs struct {
 	ClusterPeers        []SystemStandaloneClusterClusterPeer `pulumi:"clusterPeers"`
 	DynamicSortSubtable *string                              `pulumi:"dynamicSortSubtable"`
 	Encryption          *string                              `pulumi:"encryption"`
+	GetAllTables        *string                              `pulumi:"getAllTables"`
 	GroupMemberId       *int                                 `pulumi:"groupMemberId"`
 	Layer2Connection    *string                              `pulumi:"layer2Connection"`
 	Psksecret           *string                              `pulumi:"psksecret"`
@@ -105,6 +110,7 @@ type SystemStandaloneClusterArgs struct {
 	ClusterPeers        SystemStandaloneClusterClusterPeerArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	Encryption          pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	GroupMemberId       pulumi.IntPtrInput
 	Layer2Connection    pulumi.StringPtrInput
 	Psksecret           pulumi.StringPtrInput
@@ -210,6 +216,10 @@ func (o SystemStandaloneClusterOutput) DynamicSortSubtable() pulumi.StringPtrOut
 
 func (o SystemStandaloneClusterOutput) Encryption() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemStandaloneCluster) pulumi.StringOutput { return v.Encryption }).(pulumi.StringOutput)
+}
+
+func (o SystemStandaloneClusterOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemStandaloneCluster) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemStandaloneClusterOutput) GroupMemberId() pulumi.IntOutput {

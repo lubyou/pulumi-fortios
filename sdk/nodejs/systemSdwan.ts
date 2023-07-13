@@ -34,11 +34,13 @@ export class SystemSdwan extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemSdwan.__pulumiType;
     }
 
+    public readonly appPerfLogPeriod!: pulumi.Output<number>;
     public readonly duplicationMaxNum!: pulumi.Output<number>;
     public readonly duplications!: pulumi.Output<outputs.SystemSdwanDuplication[] | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly failAlertInterfaces!: pulumi.Output<outputs.SystemSdwanFailAlertInterface[] | undefined>;
     public readonly failDetect!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly healthChecks!: pulumi.Output<outputs.SystemSdwanHealthCheck[] | undefined>;
     public readonly loadBalanceMode!: pulumi.Output<string>;
     public readonly members!: pulumi.Output<outputs.SystemSdwanMember[] | undefined>;
@@ -65,11 +67,13 @@ export class SystemSdwan extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemSdwanState | undefined;
+            resourceInputs["appPerfLogPeriod"] = state ? state.appPerfLogPeriod : undefined;
             resourceInputs["duplicationMaxNum"] = state ? state.duplicationMaxNum : undefined;
             resourceInputs["duplications"] = state ? state.duplications : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["failAlertInterfaces"] = state ? state.failAlertInterfaces : undefined;
             resourceInputs["failDetect"] = state ? state.failDetect : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["healthChecks"] = state ? state.healthChecks : undefined;
             resourceInputs["loadBalanceMode"] = state ? state.loadBalanceMode : undefined;
             resourceInputs["members"] = state ? state.members : undefined;
@@ -84,11 +88,13 @@ export class SystemSdwan extends pulumi.CustomResource {
             resourceInputs["zones"] = state ? state.zones : undefined;
         } else {
             const args = argsOrState as SystemSdwanArgs | undefined;
+            resourceInputs["appPerfLogPeriod"] = args ? args.appPerfLogPeriod : undefined;
             resourceInputs["duplicationMaxNum"] = args ? args.duplicationMaxNum : undefined;
             resourceInputs["duplications"] = args ? args.duplications : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["failAlertInterfaces"] = args ? args.failAlertInterfaces : undefined;
             resourceInputs["failDetect"] = args ? args.failDetect : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["healthChecks"] = args ? args.healthChecks : undefined;
             resourceInputs["loadBalanceMode"] = args ? args.loadBalanceMode : undefined;
             resourceInputs["members"] = args ? args.members : undefined;
@@ -111,11 +117,13 @@ export class SystemSdwan extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemSdwan resources.
  */
 export interface SystemSdwanState {
+    appPerfLogPeriod?: pulumi.Input<number>;
     duplicationMaxNum?: pulumi.Input<number>;
     duplications?: pulumi.Input<pulumi.Input<inputs.SystemSdwanDuplication>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
     failAlertInterfaces?: pulumi.Input<pulumi.Input<inputs.SystemSdwanFailAlertInterface>[]>;
     failDetect?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     healthChecks?: pulumi.Input<pulumi.Input<inputs.SystemSdwanHealthCheck>[]>;
     loadBalanceMode?: pulumi.Input<string>;
     members?: pulumi.Input<pulumi.Input<inputs.SystemSdwanMember>[]>;
@@ -134,11 +142,13 @@ export interface SystemSdwanState {
  * The set of arguments for constructing a SystemSdwan resource.
  */
 export interface SystemSdwanArgs {
+    appPerfLogPeriod?: pulumi.Input<number>;
     duplicationMaxNum?: pulumi.Input<number>;
     duplications?: pulumi.Input<pulumi.Input<inputs.SystemSdwanDuplication>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
     failAlertInterfaces?: pulumi.Input<pulumi.Input<inputs.SystemSdwanFailAlertInterface>[]>;
     failDetect?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     healthChecks?: pulumi.Input<pulumi.Input<inputs.SystemSdwanHealthCheck>[]>;
     loadBalanceMode?: pulumi.Input<string>;
     members?: pulumi.Input<pulumi.Input<inputs.SystemSdwanMember>[]>;

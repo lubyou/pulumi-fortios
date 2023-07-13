@@ -42,6 +42,7 @@ class SystemDhcpServerArgs:
                  filename: Optional[pulumi.Input[str]] = None,
                  forticlient_on_net_status: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip_mode: Optional[pulumi.Input[str]] = None,
                  ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['SystemDhcpServerIpRangeArgs']]]] = None,
                  ipsec_lease_hold: Optional[pulumi.Input[int]] = None,
@@ -53,8 +54,10 @@ class SystemDhcpServerArgs:
                  ntp_server3: Optional[pulumi.Input[str]] = None,
                  ntp_service: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Sequence[pulumi.Input['SystemDhcpServerOptionArgs']]]] = None,
+                 relay_agent: Optional[pulumi.Input[str]] = None,
                  reserved_addresses: Optional[pulumi.Input[Sequence[pulumi.Input['SystemDhcpServerReservedAddressArgs']]]] = None,
                  server_type: Optional[pulumi.Input[str]] = None,
+                 shared_subnet: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  tftp_servers: Optional[pulumi.Input[Sequence[pulumi.Input['SystemDhcpServerTftpServerArgs']]]] = None,
                  timezone: Optional[pulumi.Input[str]] = None,
@@ -121,6 +124,8 @@ class SystemDhcpServerArgs:
             pulumi.set(__self__, "forticlient_on_net_status", forticlient_on_net_status)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ip_mode is not None:
             pulumi.set(__self__, "ip_mode", ip_mode)
         if ip_ranges is not None:
@@ -143,10 +148,14 @@ class SystemDhcpServerArgs:
             pulumi.set(__self__, "ntp_service", ntp_service)
         if options is not None:
             pulumi.set(__self__, "options", options)
+        if relay_agent is not None:
+            pulumi.set(__self__, "relay_agent", relay_agent)
         if reserved_addresses is not None:
             pulumi.set(__self__, "reserved_addresses", reserved_addresses)
         if server_type is not None:
             pulumi.set(__self__, "server_type", server_type)
+        if shared_subnet is not None:
+            pulumi.set(__self__, "shared_subnet", shared_subnet)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if tftp_servers is not None:
@@ -409,6 +418,15 @@ class SystemDhcpServerArgs:
         pulumi.set(self, "fosid", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="ipMode")
     def ip_mode(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "ip_mode")
@@ -508,6 +526,15 @@ class SystemDhcpServerArgs:
         pulumi.set(self, "options", value)
 
     @property
+    @pulumi.getter(name="relayAgent")
+    def relay_agent(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "relay_agent")
+
+    @relay_agent.setter
+    def relay_agent(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "relay_agent", value)
+
+    @property
     @pulumi.getter(name="reservedAddresses")
     def reserved_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SystemDhcpServerReservedAddressArgs']]]]:
         return pulumi.get(self, "reserved_addresses")
@@ -524,6 +551,15 @@ class SystemDhcpServerArgs:
     @server_type.setter
     def server_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "server_type", value)
+
+    @property
+    @pulumi.getter(name="sharedSubnet")
+    def shared_subnet(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "shared_subnet")
+
+    @shared_subnet.setter
+    def shared_subnet(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "shared_subnet", value)
 
     @property
     @pulumi.getter
@@ -670,6 +706,7 @@ class _SystemDhcpServerState:
                  filename: Optional[pulumi.Input[str]] = None,
                  forticlient_on_net_status: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ip_mode: Optional[pulumi.Input[str]] = None,
                  ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['SystemDhcpServerIpRangeArgs']]]] = None,
@@ -683,8 +720,10 @@ class _SystemDhcpServerState:
                  ntp_server3: Optional[pulumi.Input[str]] = None,
                  ntp_service: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Sequence[pulumi.Input['SystemDhcpServerOptionArgs']]]] = None,
+                 relay_agent: Optional[pulumi.Input[str]] = None,
                  reserved_addresses: Optional[pulumi.Input[Sequence[pulumi.Input['SystemDhcpServerReservedAddressArgs']]]] = None,
                  server_type: Optional[pulumi.Input[str]] = None,
+                 shared_subnet: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  tftp_servers: Optional[pulumi.Input[Sequence[pulumi.Input['SystemDhcpServerTftpServerArgs']]]] = None,
                  timezone: Optional[pulumi.Input[str]] = None,
@@ -749,6 +788,8 @@ class _SystemDhcpServerState:
             pulumi.set(__self__, "forticlient_on_net_status", forticlient_on_net_status)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
         if ip_mode is not None:
@@ -775,10 +816,14 @@ class _SystemDhcpServerState:
             pulumi.set(__self__, "ntp_service", ntp_service)
         if options is not None:
             pulumi.set(__self__, "options", options)
+        if relay_agent is not None:
+            pulumi.set(__self__, "relay_agent", relay_agent)
         if reserved_addresses is not None:
             pulumi.set(__self__, "reserved_addresses", reserved_addresses)
         if server_type is not None:
             pulumi.set(__self__, "server_type", server_type)
+        if shared_subnet is not None:
+            pulumi.set(__self__, "shared_subnet", shared_subnet)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if tftp_servers is not None:
@@ -1023,6 +1068,15 @@ class _SystemDhcpServerState:
         pulumi.set(self, "fosid", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter
     def interface(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "interface")
@@ -1140,6 +1194,15 @@ class _SystemDhcpServerState:
         pulumi.set(self, "options", value)
 
     @property
+    @pulumi.getter(name="relayAgent")
+    def relay_agent(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "relay_agent")
+
+    @relay_agent.setter
+    def relay_agent(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "relay_agent", value)
+
+    @property
     @pulumi.getter(name="reservedAddresses")
     def reserved_addresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SystemDhcpServerReservedAddressArgs']]]]:
         return pulumi.get(self, "reserved_addresses")
@@ -1156,6 +1219,15 @@ class _SystemDhcpServerState:
     @server_type.setter
     def server_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "server_type", value)
+
+    @property
+    @pulumi.getter(name="sharedSubnet")
+    def shared_subnet(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "shared_subnet")
+
+    @shared_subnet.setter
+    def shared_subnet(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "shared_subnet", value)
 
     @property
     @pulumi.getter
@@ -1304,6 +1376,7 @@ class SystemDhcpServer(pulumi.CustomResource):
                  filename: Optional[pulumi.Input[str]] = None,
                  forticlient_on_net_status: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ip_mode: Optional[pulumi.Input[str]] = None,
                  ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemDhcpServerIpRangeArgs']]]]] = None,
@@ -1317,8 +1390,10 @@ class SystemDhcpServer(pulumi.CustomResource):
                  ntp_server3: Optional[pulumi.Input[str]] = None,
                  ntp_service: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemDhcpServerOptionArgs']]]]] = None,
+                 relay_agent: Optional[pulumi.Input[str]] = None,
                  reserved_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemDhcpServerReservedAddressArgs']]]]] = None,
                  server_type: Optional[pulumi.Input[str]] = None,
+                 shared_subnet: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  tftp_servers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemDhcpServerTftpServerArgs']]]]] = None,
                  timezone: Optional[pulumi.Input[str]] = None,
@@ -1385,6 +1460,7 @@ class SystemDhcpServer(pulumi.CustomResource):
                  filename: Optional[pulumi.Input[str]] = None,
                  forticlient_on_net_status: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ip_mode: Optional[pulumi.Input[str]] = None,
                  ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemDhcpServerIpRangeArgs']]]]] = None,
@@ -1398,8 +1474,10 @@ class SystemDhcpServer(pulumi.CustomResource):
                  ntp_server3: Optional[pulumi.Input[str]] = None,
                  ntp_service: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemDhcpServerOptionArgs']]]]] = None,
+                 relay_agent: Optional[pulumi.Input[str]] = None,
                  reserved_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemDhcpServerReservedAddressArgs']]]]] = None,
                  server_type: Optional[pulumi.Input[str]] = None,
+                 shared_subnet: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  tftp_servers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemDhcpServerTftpServerArgs']]]]] = None,
                  timezone: Optional[pulumi.Input[str]] = None,
@@ -1446,6 +1524,7 @@ class SystemDhcpServer(pulumi.CustomResource):
             __props__.__dict__["filename"] = filename
             __props__.__dict__["forticlient_on_net_status"] = forticlient_on_net_status
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["get_all_tables"] = get_all_tables
             if interface is None and not opts.urn:
                 raise TypeError("Missing required property 'interface'")
             __props__.__dict__["interface"] = interface
@@ -1463,8 +1542,10 @@ class SystemDhcpServer(pulumi.CustomResource):
             __props__.__dict__["ntp_server3"] = ntp_server3
             __props__.__dict__["ntp_service"] = ntp_service
             __props__.__dict__["options"] = options
+            __props__.__dict__["relay_agent"] = relay_agent
             __props__.__dict__["reserved_addresses"] = reserved_addresses
             __props__.__dict__["server_type"] = server_type
+            __props__.__dict__["shared_subnet"] = shared_subnet
             __props__.__dict__["status"] = status
             __props__.__dict__["tftp_servers"] = tftp_servers
             __props__.__dict__["timezone"] = timezone
@@ -1514,6 +1595,7 @@ class SystemDhcpServer(pulumi.CustomResource):
             filename: Optional[pulumi.Input[str]] = None,
             forticlient_on_net_status: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             ip_mode: Optional[pulumi.Input[str]] = None,
             ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemDhcpServerIpRangeArgs']]]]] = None,
@@ -1527,8 +1609,10 @@ class SystemDhcpServer(pulumi.CustomResource):
             ntp_server3: Optional[pulumi.Input[str]] = None,
             ntp_service: Optional[pulumi.Input[str]] = None,
             options: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemDhcpServerOptionArgs']]]]] = None,
+            relay_agent: Optional[pulumi.Input[str]] = None,
             reserved_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemDhcpServerReservedAddressArgs']]]]] = None,
             server_type: Optional[pulumi.Input[str]] = None,
+            shared_subnet: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             tftp_servers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemDhcpServerTftpServerArgs']]]]] = None,
             timezone: Optional[pulumi.Input[str]] = None,
@@ -1578,6 +1662,7 @@ class SystemDhcpServer(pulumi.CustomResource):
         __props__.__dict__["filename"] = filename
         __props__.__dict__["forticlient_on_net_status"] = forticlient_on_net_status
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["interface"] = interface
         __props__.__dict__["ip_mode"] = ip_mode
         __props__.__dict__["ip_ranges"] = ip_ranges
@@ -1591,8 +1676,10 @@ class SystemDhcpServer(pulumi.CustomResource):
         __props__.__dict__["ntp_server3"] = ntp_server3
         __props__.__dict__["ntp_service"] = ntp_service
         __props__.__dict__["options"] = options
+        __props__.__dict__["relay_agent"] = relay_agent
         __props__.__dict__["reserved_addresses"] = reserved_addresses
         __props__.__dict__["server_type"] = server_type
+        __props__.__dict__["shared_subnet"] = shared_subnet
         __props__.__dict__["status"] = status
         __props__.__dict__["tftp_servers"] = tftp_servers
         __props__.__dict__["timezone"] = timezone
@@ -1729,6 +1816,11 @@ class SystemDhcpServer(pulumi.CustomResource):
         return pulumi.get(self, "fosid")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter
     def interface(self) -> pulumi.Output[str]:
         return pulumi.get(self, "interface")
@@ -1794,6 +1886,11 @@ class SystemDhcpServer(pulumi.CustomResource):
         return pulumi.get(self, "options")
 
     @property
+    @pulumi.getter(name="relayAgent")
+    def relay_agent(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "relay_agent")
+
+    @property
     @pulumi.getter(name="reservedAddresses")
     def reserved_addresses(self) -> pulumi.Output[Optional[Sequence['outputs.SystemDhcpServerReservedAddress']]]:
         return pulumi.get(self, "reserved_addresses")
@@ -1802,6 +1899,11 @@ class SystemDhcpServer(pulumi.CustomResource):
     @pulumi.getter(name="serverType")
     def server_type(self) -> pulumi.Output[str]:
         return pulumi.get(self, "server_type")
+
+    @property
+    @pulumi.getter(name="sharedSubnet")
+    def shared_subnet(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "shared_subnet")
 
     @property
     @pulumi.getter

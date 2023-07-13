@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -17,6 +18,7 @@ type SystemSnmpCommunity struct {
 	DynamicSortSubtable pulumi.StringPtrOutput               `pulumi:"dynamicSortSubtable"`
 	Events              pulumi.StringOutput                  `pulumi:"events"`
 	Fosid               pulumi.IntOutput                     `pulumi:"fosid"`
+	GetAllTables        pulumi.StringPtrOutput               `pulumi:"getAllTables"`
 	Hosts               SystemSnmpCommunityHostArrayOutput   `pulumi:"hosts"`
 	Hosts6s             SystemSnmpCommunityHosts6ArrayOutput `pulumi:"hosts6s"`
 	MibView             pulumi.StringOutput                  `pulumi:"mibView"`
@@ -46,7 +48,7 @@ func NewSystemSnmpCommunity(ctx *pulumi.Context,
 	if args.Fosid == nil {
 		return nil, errors.New("invalid value for required argument 'Fosid'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemSnmpCommunity
 	err := ctx.RegisterResource("fortios:index/systemSnmpCommunity:SystemSnmpCommunity", name, args, &resource, opts...)
 	if err != nil {
@@ -72,6 +74,7 @@ type systemSnmpCommunityState struct {
 	DynamicSortSubtable *string                     `pulumi:"dynamicSortSubtable"`
 	Events              *string                     `pulumi:"events"`
 	Fosid               *int                        `pulumi:"fosid"`
+	GetAllTables        *string                     `pulumi:"getAllTables"`
 	Hosts               []SystemSnmpCommunityHost   `pulumi:"hosts"`
 	Hosts6s             []SystemSnmpCommunityHosts6 `pulumi:"hosts6s"`
 	MibView             *string                     `pulumi:"mibView"`
@@ -95,6 +98,7 @@ type SystemSnmpCommunityState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	Events              pulumi.StringPtrInput
 	Fosid               pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Hosts               SystemSnmpCommunityHostArrayInput
 	Hosts6s             SystemSnmpCommunityHosts6ArrayInput
 	MibView             pulumi.StringPtrInput
@@ -122,6 +126,7 @@ type systemSnmpCommunityArgs struct {
 	DynamicSortSubtable *string                     `pulumi:"dynamicSortSubtable"`
 	Events              *string                     `pulumi:"events"`
 	Fosid               int                         `pulumi:"fosid"`
+	GetAllTables        *string                     `pulumi:"getAllTables"`
 	Hosts               []SystemSnmpCommunityHost   `pulumi:"hosts"`
 	Hosts6s             []SystemSnmpCommunityHosts6 `pulumi:"hosts6s"`
 	MibView             *string                     `pulumi:"mibView"`
@@ -146,6 +151,7 @@ type SystemSnmpCommunityArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	Events              pulumi.StringPtrInput
 	Fosid               pulumi.IntInput
+	GetAllTables        pulumi.StringPtrInput
 	Hosts               SystemSnmpCommunityHostArrayInput
 	Hosts6s             SystemSnmpCommunityHosts6ArrayInput
 	MibView             pulumi.StringPtrInput
@@ -262,6 +268,10 @@ func (o SystemSnmpCommunityOutput) Events() pulumi.StringOutput {
 
 func (o SystemSnmpCommunityOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *SystemSnmpCommunity) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o SystemSnmpCommunityOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemSnmpCommunity) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemSnmpCommunityOutput) Hosts() SystemSnmpCommunityHostArrayOutput {

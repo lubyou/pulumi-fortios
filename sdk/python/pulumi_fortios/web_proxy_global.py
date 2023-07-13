@@ -21,11 +21,13 @@ class WebProxyGlobalArgs:
                  fast_policy_match: Optional[pulumi.Input[str]] = None,
                  forward_proxy_auth: Optional[pulumi.Input[str]] = None,
                  forward_server_affinity_timeout: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ldap_user_cache: Optional[pulumi.Input[str]] = None,
                  learn_client_ip: Optional[pulumi.Input[str]] = None,
                  learn_client_ip_from_header: Optional[pulumi.Input[str]] = None,
                  learn_client_ip_srcaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input['WebProxyGlobalLearnClientIpSrcaddr6Args']]]] = None,
                  learn_client_ip_srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['WebProxyGlobalLearnClientIpSrcaddrArgs']]]] = None,
+                 log_forward_server: Optional[pulumi.Input[str]] = None,
                  max_message_length: Optional[pulumi.Input[int]] = None,
                  max_request_length: Optional[pulumi.Input[int]] = None,
                  max_waf_body_cache_length: Optional[pulumi.Input[int]] = None,
@@ -50,6 +52,8 @@ class WebProxyGlobalArgs:
             pulumi.set(__self__, "forward_proxy_auth", forward_proxy_auth)
         if forward_server_affinity_timeout is not None:
             pulumi.set(__self__, "forward_server_affinity_timeout", forward_server_affinity_timeout)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ldap_user_cache is not None:
             pulumi.set(__self__, "ldap_user_cache", ldap_user_cache)
         if learn_client_ip is not None:
@@ -60,6 +64,8 @@ class WebProxyGlobalArgs:
             pulumi.set(__self__, "learn_client_ip_srcaddr6s", learn_client_ip_srcaddr6s)
         if learn_client_ip_srcaddrs is not None:
             pulumi.set(__self__, "learn_client_ip_srcaddrs", learn_client_ip_srcaddrs)
+        if log_forward_server is not None:
+            pulumi.set(__self__, "log_forward_server", log_forward_server)
         if max_message_length is not None:
             pulumi.set(__self__, "max_message_length", max_message_length)
         if max_request_length is not None:
@@ -131,6 +137,15 @@ class WebProxyGlobalArgs:
         pulumi.set(self, "forward_server_affinity_timeout", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="ldapUserCache")
     def ldap_user_cache(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "ldap_user_cache")
@@ -174,6 +189,15 @@ class WebProxyGlobalArgs:
     @learn_client_ip_srcaddrs.setter
     def learn_client_ip_srcaddrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['WebProxyGlobalLearnClientIpSrcaddrArgs']]]]):
         pulumi.set(self, "learn_client_ip_srcaddrs", value)
+
+    @property
+    @pulumi.getter(name="logForwardServer")
+    def log_forward_server(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "log_forward_server")
+
+    @log_forward_server.setter
+    def log_forward_server(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "log_forward_server", value)
 
     @property
     @pulumi.getter(name="maxMessageLength")
@@ -291,11 +315,13 @@ class _WebProxyGlobalState:
                  fast_policy_match: Optional[pulumi.Input[str]] = None,
                  forward_proxy_auth: Optional[pulumi.Input[str]] = None,
                  forward_server_affinity_timeout: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ldap_user_cache: Optional[pulumi.Input[str]] = None,
                  learn_client_ip: Optional[pulumi.Input[str]] = None,
                  learn_client_ip_from_header: Optional[pulumi.Input[str]] = None,
                  learn_client_ip_srcaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input['WebProxyGlobalLearnClientIpSrcaddr6Args']]]] = None,
                  learn_client_ip_srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['WebProxyGlobalLearnClientIpSrcaddrArgs']]]] = None,
+                 log_forward_server: Optional[pulumi.Input[str]] = None,
                  max_message_length: Optional[pulumi.Input[int]] = None,
                  max_request_length: Optional[pulumi.Input[int]] = None,
                  max_waf_body_cache_length: Optional[pulumi.Input[int]] = None,
@@ -320,6 +346,8 @@ class _WebProxyGlobalState:
             pulumi.set(__self__, "forward_proxy_auth", forward_proxy_auth)
         if forward_server_affinity_timeout is not None:
             pulumi.set(__self__, "forward_server_affinity_timeout", forward_server_affinity_timeout)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ldap_user_cache is not None:
             pulumi.set(__self__, "ldap_user_cache", ldap_user_cache)
         if learn_client_ip is not None:
@@ -330,6 +358,8 @@ class _WebProxyGlobalState:
             pulumi.set(__self__, "learn_client_ip_srcaddr6s", learn_client_ip_srcaddr6s)
         if learn_client_ip_srcaddrs is not None:
             pulumi.set(__self__, "learn_client_ip_srcaddrs", learn_client_ip_srcaddrs)
+        if log_forward_server is not None:
+            pulumi.set(__self__, "log_forward_server", log_forward_server)
         if max_message_length is not None:
             pulumi.set(__self__, "max_message_length", max_message_length)
         if max_request_length is not None:
@@ -394,6 +424,15 @@ class _WebProxyGlobalState:
         pulumi.set(self, "forward_server_affinity_timeout", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="ldapUserCache")
     def ldap_user_cache(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "ldap_user_cache")
@@ -437,6 +476,15 @@ class _WebProxyGlobalState:
     @learn_client_ip_srcaddrs.setter
     def learn_client_ip_srcaddrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['WebProxyGlobalLearnClientIpSrcaddrArgs']]]]):
         pulumi.set(self, "learn_client_ip_srcaddrs", value)
+
+    @property
+    @pulumi.getter(name="logForwardServer")
+    def log_forward_server(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "log_forward_server")
+
+    @log_forward_server.setter
+    def log_forward_server(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "log_forward_server", value)
 
     @property
     @pulumi.getter(name="maxMessageLength")
@@ -565,11 +613,13 @@ class WebProxyGlobal(pulumi.CustomResource):
                  fast_policy_match: Optional[pulumi.Input[str]] = None,
                  forward_proxy_auth: Optional[pulumi.Input[str]] = None,
                  forward_server_affinity_timeout: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ldap_user_cache: Optional[pulumi.Input[str]] = None,
                  learn_client_ip: Optional[pulumi.Input[str]] = None,
                  learn_client_ip_from_header: Optional[pulumi.Input[str]] = None,
                  learn_client_ip_srcaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WebProxyGlobalLearnClientIpSrcaddr6Args']]]]] = None,
                  learn_client_ip_srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WebProxyGlobalLearnClientIpSrcaddrArgs']]]]] = None,
+                 log_forward_server: Optional[pulumi.Input[str]] = None,
                  max_message_length: Optional[pulumi.Input[int]] = None,
                  max_request_length: Optional[pulumi.Input[int]] = None,
                  max_waf_body_cache_length: Optional[pulumi.Input[int]] = None,
@@ -616,11 +666,13 @@ class WebProxyGlobal(pulumi.CustomResource):
                  fast_policy_match: Optional[pulumi.Input[str]] = None,
                  forward_proxy_auth: Optional[pulumi.Input[str]] = None,
                  forward_server_affinity_timeout: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ldap_user_cache: Optional[pulumi.Input[str]] = None,
                  learn_client_ip: Optional[pulumi.Input[str]] = None,
                  learn_client_ip_from_header: Optional[pulumi.Input[str]] = None,
                  learn_client_ip_srcaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WebProxyGlobalLearnClientIpSrcaddr6Args']]]]] = None,
                  learn_client_ip_srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WebProxyGlobalLearnClientIpSrcaddrArgs']]]]] = None,
+                 log_forward_server: Optional[pulumi.Input[str]] = None,
                  max_message_length: Optional[pulumi.Input[int]] = None,
                  max_request_length: Optional[pulumi.Input[int]] = None,
                  max_waf_body_cache_length: Optional[pulumi.Input[int]] = None,
@@ -647,11 +699,13 @@ class WebProxyGlobal(pulumi.CustomResource):
             __props__.__dict__["fast_policy_match"] = fast_policy_match
             __props__.__dict__["forward_proxy_auth"] = forward_proxy_auth
             __props__.__dict__["forward_server_affinity_timeout"] = forward_server_affinity_timeout
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["ldap_user_cache"] = ldap_user_cache
             __props__.__dict__["learn_client_ip"] = learn_client_ip
             __props__.__dict__["learn_client_ip_from_header"] = learn_client_ip_from_header
             __props__.__dict__["learn_client_ip_srcaddr6s"] = learn_client_ip_srcaddr6s
             __props__.__dict__["learn_client_ip_srcaddrs"] = learn_client_ip_srcaddrs
+            __props__.__dict__["log_forward_server"] = log_forward_server
             __props__.__dict__["max_message_length"] = max_message_length
             __props__.__dict__["max_request_length"] = max_request_length
             __props__.__dict__["max_waf_body_cache_length"] = max_waf_body_cache_length
@@ -681,11 +735,13 @@ class WebProxyGlobal(pulumi.CustomResource):
             fast_policy_match: Optional[pulumi.Input[str]] = None,
             forward_proxy_auth: Optional[pulumi.Input[str]] = None,
             forward_server_affinity_timeout: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             ldap_user_cache: Optional[pulumi.Input[str]] = None,
             learn_client_ip: Optional[pulumi.Input[str]] = None,
             learn_client_ip_from_header: Optional[pulumi.Input[str]] = None,
             learn_client_ip_srcaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WebProxyGlobalLearnClientIpSrcaddr6Args']]]]] = None,
             learn_client_ip_srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WebProxyGlobalLearnClientIpSrcaddrArgs']]]]] = None,
+            log_forward_server: Optional[pulumi.Input[str]] = None,
             max_message_length: Optional[pulumi.Input[int]] = None,
             max_request_length: Optional[pulumi.Input[int]] = None,
             max_waf_body_cache_length: Optional[pulumi.Input[int]] = None,
@@ -715,11 +771,13 @@ class WebProxyGlobal(pulumi.CustomResource):
         __props__.__dict__["fast_policy_match"] = fast_policy_match
         __props__.__dict__["forward_proxy_auth"] = forward_proxy_auth
         __props__.__dict__["forward_server_affinity_timeout"] = forward_server_affinity_timeout
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["ldap_user_cache"] = ldap_user_cache
         __props__.__dict__["learn_client_ip"] = learn_client_ip
         __props__.__dict__["learn_client_ip_from_header"] = learn_client_ip_from_header
         __props__.__dict__["learn_client_ip_srcaddr6s"] = learn_client_ip_srcaddr6s
         __props__.__dict__["learn_client_ip_srcaddrs"] = learn_client_ip_srcaddrs
+        __props__.__dict__["log_forward_server"] = log_forward_server
         __props__.__dict__["max_message_length"] = max_message_length
         __props__.__dict__["max_request_length"] = max_request_length
         __props__.__dict__["max_waf_body_cache_length"] = max_waf_body_cache_length
@@ -756,6 +814,11 @@ class WebProxyGlobal(pulumi.CustomResource):
         return pulumi.get(self, "forward_server_affinity_timeout")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter(name="ldapUserCache")
     def ldap_user_cache(self) -> pulumi.Output[str]:
         return pulumi.get(self, "ldap_user_cache")
@@ -779,6 +842,11 @@ class WebProxyGlobal(pulumi.CustomResource):
     @pulumi.getter(name="learnClientIpSrcaddrs")
     def learn_client_ip_srcaddrs(self) -> pulumi.Output[Optional[Sequence['outputs.WebProxyGlobalLearnClientIpSrcaddr']]]:
         return pulumi.get(self, "learn_client_ip_srcaddrs")
+
+    @property
+    @pulumi.getter(name="logForwardServer")
+    def log_forward_server(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "log_forward_server")
 
     @property
     @pulumi.getter(name="maxMessageLength")

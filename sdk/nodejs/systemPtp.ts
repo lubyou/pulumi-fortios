@@ -36,6 +36,7 @@ export class SystemPtp extends pulumi.CustomResource {
 
     public readonly delayMechanism!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly interface!: pulumi.Output<string>;
     public readonly mode!: pulumi.Output<string>;
     public readonly requestInterval!: pulumi.Output<number>;
@@ -59,6 +60,7 @@ export class SystemPtp extends pulumi.CustomResource {
             const state = argsOrState as SystemPtpState | undefined;
             resourceInputs["delayMechanism"] = state ? state.delayMechanism : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
             resourceInputs["mode"] = state ? state.mode : undefined;
             resourceInputs["requestInterval"] = state ? state.requestInterval : undefined;
@@ -73,6 +75,7 @@ export class SystemPtp extends pulumi.CustomResource {
             }
             resourceInputs["delayMechanism"] = args ? args.delayMechanism : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["mode"] = args ? args.mode : undefined;
             resourceInputs["requestInterval"] = args ? args.requestInterval : undefined;
@@ -92,6 +95,7 @@ export class SystemPtp extends pulumi.CustomResource {
 export interface SystemPtpState {
     delayMechanism?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     interface?: pulumi.Input<string>;
     mode?: pulumi.Input<string>;
     requestInterval?: pulumi.Input<number>;
@@ -107,6 +111,7 @@ export interface SystemPtpState {
 export interface SystemPtpArgs {
     delayMechanism?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     interface: pulumi.Input<string>;
     mode?: pulumi.Input<string>;
     requestInterval?: pulumi.Input<number>;

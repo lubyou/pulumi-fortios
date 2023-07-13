@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -25,6 +26,7 @@ type SystemReplacemsgGroup struct {
 	Ecs                    SystemReplacemsgGroupEcArrayOutput                    `pulumi:"ecs"`
 	FortiguardWfs          SystemReplacemsgGroupFortiguardWfArrayOutput          `pulumi:"fortiguardWfs"`
 	Ftps                   SystemReplacemsgGroupFtpArrayOutput                   `pulumi:"ftps"`
+	GetAllTables           pulumi.StringPtrOutput                                `pulumi:"getAllTables"`
 	GroupType              pulumi.StringOutput                                   `pulumi:"groupType"`
 	Https                  SystemReplacemsgGroupHttpArrayOutput                  `pulumi:"https"`
 	Icaps                  SystemReplacemsgGroupIcapArrayOutput                  `pulumi:"icaps"`
@@ -50,7 +52,7 @@ func NewSystemReplacemsgGroup(ctx *pulumi.Context,
 	if args.GroupType == nil {
 		return nil, errors.New("invalid value for required argument 'GroupType'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemReplacemsgGroup
 	err := ctx.RegisterResource("fortios:index/systemReplacemsgGroup:SystemReplacemsgGroup", name, args, &resource, opts...)
 	if err != nil {
@@ -84,6 +86,7 @@ type systemReplacemsgGroupState struct {
 	Ecs                    []SystemReplacemsgGroupEc                    `pulumi:"ecs"`
 	FortiguardWfs          []SystemReplacemsgGroupFortiguardWf          `pulumi:"fortiguardWfs"`
 	Ftps                   []SystemReplacemsgGroupFtp                   `pulumi:"ftps"`
+	GetAllTables           *string                                      `pulumi:"getAllTables"`
 	GroupType              *string                                      `pulumi:"groupType"`
 	Https                  []SystemReplacemsgGroupHttp                  `pulumi:"https"`
 	Icaps                  []SystemReplacemsgGroupIcap                  `pulumi:"icaps"`
@@ -111,6 +114,7 @@ type SystemReplacemsgGroupState struct {
 	Ecs                    SystemReplacemsgGroupEcArrayInput
 	FortiguardWfs          SystemReplacemsgGroupFortiguardWfArrayInput
 	Ftps                   SystemReplacemsgGroupFtpArrayInput
+	GetAllTables           pulumi.StringPtrInput
 	GroupType              pulumi.StringPtrInput
 	Https                  SystemReplacemsgGroupHttpArrayInput
 	Icaps                  SystemReplacemsgGroupIcapArrayInput
@@ -142,6 +146,7 @@ type systemReplacemsgGroupArgs struct {
 	Ecs                    []SystemReplacemsgGroupEc                    `pulumi:"ecs"`
 	FortiguardWfs          []SystemReplacemsgGroupFortiguardWf          `pulumi:"fortiguardWfs"`
 	Ftps                   []SystemReplacemsgGroupFtp                   `pulumi:"ftps"`
+	GetAllTables           *string                                      `pulumi:"getAllTables"`
 	GroupType              string                                       `pulumi:"groupType"`
 	Https                  []SystemReplacemsgGroupHttp                  `pulumi:"https"`
 	Icaps                  []SystemReplacemsgGroupIcap                  `pulumi:"icaps"`
@@ -170,6 +175,7 @@ type SystemReplacemsgGroupArgs struct {
 	Ecs                    SystemReplacemsgGroupEcArrayInput
 	FortiguardWfs          SystemReplacemsgGroupFortiguardWfArrayInput
 	Ftps                   SystemReplacemsgGroupFtpArrayInput
+	GetAllTables           pulumi.StringPtrInput
 	GroupType              pulumi.StringInput
 	Https                  SystemReplacemsgGroupHttpArrayInput
 	Icaps                  SystemReplacemsgGroupIcapArrayInput
@@ -316,6 +322,10 @@ func (o SystemReplacemsgGroupOutput) FortiguardWfs() SystemReplacemsgGroupFortig
 
 func (o SystemReplacemsgGroupOutput) Ftps() SystemReplacemsgGroupFtpArrayOutput {
 	return o.ApplyT(func(v *SystemReplacemsgGroup) SystemReplacemsgGroupFtpArrayOutput { return v.Ftps }).(SystemReplacemsgGroupFtpArrayOutput)
+}
+
+func (o SystemReplacemsgGroupOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemReplacemsgGroup) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemReplacemsgGroupOutput) GroupType() pulumi.StringOutput {

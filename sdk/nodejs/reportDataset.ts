@@ -36,6 +36,7 @@ export class ReportDataset extends pulumi.CustomResource {
 
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly fields!: pulumi.Output<outputs.ReportDatasetField[] | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly parameters!: pulumi.Output<outputs.ReportDatasetParameter[] | undefined>;
     public readonly policy!: pulumi.Output<number>;
@@ -57,6 +58,7 @@ export class ReportDataset extends pulumi.CustomResource {
             const state = argsOrState as ReportDatasetState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fields"] = state ? state.fields : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["parameters"] = state ? state.parameters : undefined;
             resourceInputs["policy"] = state ? state.policy : undefined;
@@ -66,6 +68,7 @@ export class ReportDataset extends pulumi.CustomResource {
             const args = argsOrState as ReportDatasetArgs | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fields"] = args ? args.fields : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["parameters"] = args ? args.parameters : undefined;
             resourceInputs["policy"] = args ? args.policy : undefined;
@@ -83,6 +86,7 @@ export class ReportDataset extends pulumi.CustomResource {
 export interface ReportDatasetState {
     dynamicSortSubtable?: pulumi.Input<string>;
     fields?: pulumi.Input<pulumi.Input<inputs.ReportDatasetField>[]>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     parameters?: pulumi.Input<pulumi.Input<inputs.ReportDatasetParameter>[]>;
     policy?: pulumi.Input<number>;
@@ -96,6 +100,7 @@ export interface ReportDatasetState {
 export interface ReportDatasetArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
     fields?: pulumi.Input<pulumi.Input<inputs.ReportDatasetField>[]>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     parameters?: pulumi.Input<pulumi.Input<inputs.ReportDatasetParameter>[]>;
     policy?: pulumi.Input<number>;

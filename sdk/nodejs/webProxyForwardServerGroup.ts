@@ -36,6 +36,7 @@ export class WebProxyForwardServerGroup extends pulumi.CustomResource {
 
     public readonly affinity!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly groupDownOption!: pulumi.Output<string>;
     public readonly ldbMethod!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
@@ -57,6 +58,7 @@ export class WebProxyForwardServerGroup extends pulumi.CustomResource {
             const state = argsOrState as WebProxyForwardServerGroupState | undefined;
             resourceInputs["affinity"] = state ? state.affinity : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["groupDownOption"] = state ? state.groupDownOption : undefined;
             resourceInputs["ldbMethod"] = state ? state.ldbMethod : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -66,6 +68,7 @@ export class WebProxyForwardServerGroup extends pulumi.CustomResource {
             const args = argsOrState as WebProxyForwardServerGroupArgs | undefined;
             resourceInputs["affinity"] = args ? args.affinity : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["groupDownOption"] = args ? args.groupDownOption : undefined;
             resourceInputs["ldbMethod"] = args ? args.ldbMethod : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -83,6 +86,7 @@ export class WebProxyForwardServerGroup extends pulumi.CustomResource {
 export interface WebProxyForwardServerGroupState {
     affinity?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     groupDownOption?: pulumi.Input<string>;
     ldbMethod?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
@@ -96,6 +100,7 @@ export interface WebProxyForwardServerGroupState {
 export interface WebProxyForwardServerGroupArgs {
     affinity?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     groupDownOption?: pulumi.Input<string>;
     ldbMethod?: pulumi.Input<string>;
     name?: pulumi.Input<string>;

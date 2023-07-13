@@ -40,6 +40,7 @@ export class SystemExternalResource extends pulumi.CustomResource {
     public readonly password!: pulumi.Output<string | undefined>;
     public readonly refreshRate!: pulumi.Output<number>;
     public readonly resource!: pulumi.Output<string>;
+    public readonly serverIdentityCheck!: pulumi.Output<string>;
     public readonly sourceIp!: pulumi.Output<string>;
     public readonly status!: pulumi.Output<string>;
     public readonly type!: pulumi.Output<string>;
@@ -70,6 +71,7 @@ export class SystemExternalResource extends pulumi.CustomResource {
             resourceInputs["password"] = state ? state.password : undefined;
             resourceInputs["refreshRate"] = state ? state.refreshRate : undefined;
             resourceInputs["resource"] = state ? state.resource : undefined;
+            resourceInputs["serverIdentityCheck"] = state ? state.serverIdentityCheck : undefined;
             resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
@@ -94,6 +96,7 @@ export class SystemExternalResource extends pulumi.CustomResource {
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["refreshRate"] = args ? args.refreshRate : undefined;
             resourceInputs["resource"] = args ? args.resource : undefined;
+            resourceInputs["serverIdentityCheck"] = args ? args.serverIdentityCheck : undefined;
             resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
@@ -122,6 +125,7 @@ export interface SystemExternalResourceState {
     password?: pulumi.Input<string>;
     refreshRate?: pulumi.Input<number>;
     resource?: pulumi.Input<string>;
+    serverIdentityCheck?: pulumi.Input<string>;
     sourceIp?: pulumi.Input<string>;
     status?: pulumi.Input<string>;
     type?: pulumi.Input<string>;
@@ -144,6 +148,7 @@ export interface SystemExternalResourceArgs {
     password?: pulumi.Input<string>;
     refreshRate: pulumi.Input<number>;
     resource: pulumi.Input<string>;
+    serverIdentityCheck?: pulumi.Input<string>;
     sourceIp?: pulumi.Input<string>;
     status?: pulumi.Input<string>;
     type?: pulumi.Input<string>;

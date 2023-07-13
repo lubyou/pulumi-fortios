@@ -211,24 +211,24 @@ def get_system_dns_database(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemDnsDatabase:GetSystemDnsDatabase', __args__, opts=opts, typ=GetSystemDnsDatabaseResult).value
 
     return AwaitableGetSystemDnsDatabaseResult(
-        allow_transfer=__ret__.allow_transfer,
-        authoritative=__ret__.authoritative,
-        contact=__ret__.contact,
-        dns_entries=__ret__.dns_entries,
-        domain=__ret__.domain,
-        forwarder=__ret__.forwarder,
-        id=__ret__.id,
-        ip_master=__ret__.ip_master,
-        ip_primary=__ret__.ip_primary,
-        name=__ret__.name,
-        primary_name=__ret__.primary_name,
-        rr_max=__ret__.rr_max,
-        source_ip=__ret__.source_ip,
-        status=__ret__.status,
-        ttl=__ret__.ttl,
-        type=__ret__.type,
-        vdomparam=__ret__.vdomparam,
-        view=__ret__.view)
+        allow_transfer=pulumi.get(__ret__, 'allow_transfer'),
+        authoritative=pulumi.get(__ret__, 'authoritative'),
+        contact=pulumi.get(__ret__, 'contact'),
+        dns_entries=pulumi.get(__ret__, 'dns_entries'),
+        domain=pulumi.get(__ret__, 'domain'),
+        forwarder=pulumi.get(__ret__, 'forwarder'),
+        id=pulumi.get(__ret__, 'id'),
+        ip_master=pulumi.get(__ret__, 'ip_master'),
+        ip_primary=pulumi.get(__ret__, 'ip_primary'),
+        name=pulumi.get(__ret__, 'name'),
+        primary_name=pulumi.get(__ret__, 'primary_name'),
+        rr_max=pulumi.get(__ret__, 'rr_max'),
+        source_ip=pulumi.get(__ret__, 'source_ip'),
+        status=pulumi.get(__ret__, 'status'),
+        ttl=pulumi.get(__ret__, 'ttl'),
+        type=pulumi.get(__ret__, 'type'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'),
+        view=pulumi.get(__ret__, 'view'))
 
 
 @_utilities.lift_output_func(get_system_dns_database)

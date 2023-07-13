@@ -33,14 +33,19 @@ export class FirewallShaperTrafficShaper extends pulumi.CustomResource {
     }
 
     public readonly bandwidthUnit!: pulumi.Output<string>;
+    public readonly cos!: pulumi.Output<string>;
+    public readonly cosMarking!: pulumi.Output<string>;
+    public readonly cosMarkingMethod!: pulumi.Output<string>;
     public readonly diffserv!: pulumi.Output<string>;
     public readonly diffservcode!: pulumi.Output<string>;
     public readonly dscpMarkingMethod!: pulumi.Output<string>;
     public readonly exceedBandwidth!: pulumi.Output<number>;
     public readonly exceedClassId!: pulumi.Output<number>;
+    public readonly exceedCos!: pulumi.Output<string>;
     public readonly exceedDscp!: pulumi.Output<string>;
     public readonly guaranteedBandwidth!: pulumi.Output<number>;
     public readonly maximumBandwidth!: pulumi.Output<number>;
+    public readonly maximumCos!: pulumi.Output<string>;
     public readonly maximumDscp!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
     public readonly overhead!: pulumi.Output<number>;
@@ -62,14 +67,19 @@ export class FirewallShaperTrafficShaper extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as FirewallShaperTrafficShaperState | undefined;
             resourceInputs["bandwidthUnit"] = state ? state.bandwidthUnit : undefined;
+            resourceInputs["cos"] = state ? state.cos : undefined;
+            resourceInputs["cosMarking"] = state ? state.cosMarking : undefined;
+            resourceInputs["cosMarkingMethod"] = state ? state.cosMarkingMethod : undefined;
             resourceInputs["diffserv"] = state ? state.diffserv : undefined;
             resourceInputs["diffservcode"] = state ? state.diffservcode : undefined;
             resourceInputs["dscpMarkingMethod"] = state ? state.dscpMarkingMethod : undefined;
             resourceInputs["exceedBandwidth"] = state ? state.exceedBandwidth : undefined;
             resourceInputs["exceedClassId"] = state ? state.exceedClassId : undefined;
+            resourceInputs["exceedCos"] = state ? state.exceedCos : undefined;
             resourceInputs["exceedDscp"] = state ? state.exceedDscp : undefined;
             resourceInputs["guaranteedBandwidth"] = state ? state.guaranteedBandwidth : undefined;
             resourceInputs["maximumBandwidth"] = state ? state.maximumBandwidth : undefined;
+            resourceInputs["maximumCos"] = state ? state.maximumCos : undefined;
             resourceInputs["maximumDscp"] = state ? state.maximumDscp : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["overhead"] = state ? state.overhead : undefined;
@@ -79,14 +89,19 @@ export class FirewallShaperTrafficShaper extends pulumi.CustomResource {
         } else {
             const args = argsOrState as FirewallShaperTrafficShaperArgs | undefined;
             resourceInputs["bandwidthUnit"] = args ? args.bandwidthUnit : undefined;
+            resourceInputs["cos"] = args ? args.cos : undefined;
+            resourceInputs["cosMarking"] = args ? args.cosMarking : undefined;
+            resourceInputs["cosMarkingMethod"] = args ? args.cosMarkingMethod : undefined;
             resourceInputs["diffserv"] = args ? args.diffserv : undefined;
             resourceInputs["diffservcode"] = args ? args.diffservcode : undefined;
             resourceInputs["dscpMarkingMethod"] = args ? args.dscpMarkingMethod : undefined;
             resourceInputs["exceedBandwidth"] = args ? args.exceedBandwidth : undefined;
             resourceInputs["exceedClassId"] = args ? args.exceedClassId : undefined;
+            resourceInputs["exceedCos"] = args ? args.exceedCos : undefined;
             resourceInputs["exceedDscp"] = args ? args.exceedDscp : undefined;
             resourceInputs["guaranteedBandwidth"] = args ? args.guaranteedBandwidth : undefined;
             resourceInputs["maximumBandwidth"] = args ? args.maximumBandwidth : undefined;
+            resourceInputs["maximumCos"] = args ? args.maximumCos : undefined;
             resourceInputs["maximumDscp"] = args ? args.maximumDscp : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["overhead"] = args ? args.overhead : undefined;
@@ -104,14 +119,19 @@ export class FirewallShaperTrafficShaper extends pulumi.CustomResource {
  */
 export interface FirewallShaperTrafficShaperState {
     bandwidthUnit?: pulumi.Input<string>;
+    cos?: pulumi.Input<string>;
+    cosMarking?: pulumi.Input<string>;
+    cosMarkingMethod?: pulumi.Input<string>;
     diffserv?: pulumi.Input<string>;
     diffservcode?: pulumi.Input<string>;
     dscpMarkingMethod?: pulumi.Input<string>;
     exceedBandwidth?: pulumi.Input<number>;
     exceedClassId?: pulumi.Input<number>;
+    exceedCos?: pulumi.Input<string>;
     exceedDscp?: pulumi.Input<string>;
     guaranteedBandwidth?: pulumi.Input<number>;
     maximumBandwidth?: pulumi.Input<number>;
+    maximumCos?: pulumi.Input<string>;
     maximumDscp?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     overhead?: pulumi.Input<number>;
@@ -125,14 +145,19 @@ export interface FirewallShaperTrafficShaperState {
  */
 export interface FirewallShaperTrafficShaperArgs {
     bandwidthUnit?: pulumi.Input<string>;
+    cos?: pulumi.Input<string>;
+    cosMarking?: pulumi.Input<string>;
+    cosMarkingMethod?: pulumi.Input<string>;
     diffserv?: pulumi.Input<string>;
     diffservcode?: pulumi.Input<string>;
     dscpMarkingMethod?: pulumi.Input<string>;
     exceedBandwidth?: pulumi.Input<number>;
     exceedClassId?: pulumi.Input<number>;
+    exceedCos?: pulumi.Input<string>;
     exceedDscp?: pulumi.Input<string>;
     guaranteedBandwidth?: pulumi.Input<number>;
     maximumBandwidth?: pulumi.Input<number>;
+    maximumCos?: pulumi.Input<string>;
     maximumDscp?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     overhead?: pulumi.Input<number>;

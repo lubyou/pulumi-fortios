@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -45,7 +46,7 @@ func NewUserKrbKeytab(ctx *pulumi.Context,
 		"keytab",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource UserKrbKeytab
 	err := ctx.RegisterResource("fortios:index/userKrbKeytab:UserKrbKeytab", name, args, &resource, opts...)
 	if err != nil {

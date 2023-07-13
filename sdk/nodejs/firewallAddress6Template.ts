@@ -36,6 +36,7 @@ export class FirewallAddress6Template extends pulumi.CustomResource {
 
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly fabricObject!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly ip6!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
     public readonly subnetSegmentCount!: pulumi.Output<number>;
@@ -57,6 +58,7 @@ export class FirewallAddress6Template extends pulumi.CustomResource {
             const state = argsOrState as FirewallAddress6TemplateState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fabricObject"] = state ? state.fabricObject : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["ip6"] = state ? state.ip6 : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["subnetSegmentCount"] = state ? state.subnetSegmentCount : undefined;
@@ -72,6 +74,7 @@ export class FirewallAddress6Template extends pulumi.CustomResource {
             }
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fabricObject"] = args ? args.fabricObject : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["ip6"] = args ? args.ip6 : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["subnetSegmentCount"] = args ? args.subnetSegmentCount : undefined;
@@ -89,6 +92,7 @@ export class FirewallAddress6Template extends pulumi.CustomResource {
 export interface FirewallAddress6TemplateState {
     dynamicSortSubtable?: pulumi.Input<string>;
     fabricObject?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     ip6?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     subnetSegmentCount?: pulumi.Input<number>;
@@ -102,6 +106,7 @@ export interface FirewallAddress6TemplateState {
 export interface FirewallAddress6TemplateArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
     fabricObject?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     ip6: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     subnetSegmentCount: pulumi.Input<number>;

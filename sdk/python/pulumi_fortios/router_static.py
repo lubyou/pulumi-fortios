@@ -26,15 +26,18 @@ class RouterStaticArgs:
                  dynamic_gateway: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  internet_service: Optional[pulumi.Input[int]] = None,
                  internet_service_custom: Optional[pulumi.Input[str]] = None,
                  link_monitor_exempt: Optional[pulumi.Input[str]] = None,
+                 preferred_source: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[int]] = None,
                  sdwan: Optional[pulumi.Input[str]] = None,
                  sdwan_zones: Optional[pulumi.Input[Sequence[pulumi.Input['RouterStaticSdwanZoneArgs']]]] = None,
                  seq_num: Optional[pulumi.Input[int]] = None,
                  src: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 tag: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  virtual_wan_link: Optional[pulumi.Input[str]] = None,
                  vrf: Optional[pulumi.Input[int]] = None,
@@ -62,12 +65,16 @@ class RouterStaticArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if gateway is not None:
             pulumi.set(__self__, "gateway", gateway)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if internet_service is not None:
             pulumi.set(__self__, "internet_service", internet_service)
         if internet_service_custom is not None:
             pulumi.set(__self__, "internet_service_custom", internet_service_custom)
         if link_monitor_exempt is not None:
             pulumi.set(__self__, "link_monitor_exempt", link_monitor_exempt)
+        if preferred_source is not None:
+            pulumi.set(__self__, "preferred_source", preferred_source)
         if priority is not None:
             pulumi.set(__self__, "priority", priority)
         if sdwan is not None:
@@ -80,6 +87,8 @@ class RouterStaticArgs:
             pulumi.set(__self__, "src", src)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if tag is not None:
+            pulumi.set(__self__, "tag", tag)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if virtual_wan_link is not None:
@@ -180,6 +189,15 @@ class RouterStaticArgs:
         pulumi.set(self, "gateway", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="internetService")
     def internet_service(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "internet_service")
@@ -205,6 +223,15 @@ class RouterStaticArgs:
     @link_monitor_exempt.setter
     def link_monitor_exempt(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "link_monitor_exempt", value)
+
+    @property
+    @pulumi.getter(name="preferredSource")
+    def preferred_source(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "preferred_source")
+
+    @preferred_source.setter
+    def preferred_source(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "preferred_source", value)
 
     @property
     @pulumi.getter
@@ -259,6 +286,15 @@ class RouterStaticArgs:
     @status.setter
     def status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "status", value)
+
+    @property
+    @pulumi.getter
+    def tag(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "tag")
+
+    @tag.setter
+    def tag(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "tag", value)
 
     @property
     @pulumi.getter
@@ -310,15 +346,18 @@ class _RouterStaticState:
                  dynamic_gateway: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  internet_service: Optional[pulumi.Input[int]] = None,
                  internet_service_custom: Optional[pulumi.Input[str]] = None,
                  link_monitor_exempt: Optional[pulumi.Input[str]] = None,
+                 preferred_source: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[int]] = None,
                  sdwan: Optional[pulumi.Input[str]] = None,
                  sdwan_zones: Optional[pulumi.Input[Sequence[pulumi.Input['RouterStaticSdwanZoneArgs']]]] = None,
                  seq_num: Optional[pulumi.Input[int]] = None,
                  src: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 tag: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  virtual_wan_link: Optional[pulumi.Input[str]] = None,
                  vrf: Optional[pulumi.Input[int]] = None,
@@ -346,12 +385,16 @@ class _RouterStaticState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if gateway is not None:
             pulumi.set(__self__, "gateway", gateway)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if internet_service is not None:
             pulumi.set(__self__, "internet_service", internet_service)
         if internet_service_custom is not None:
             pulumi.set(__self__, "internet_service_custom", internet_service_custom)
         if link_monitor_exempt is not None:
             pulumi.set(__self__, "link_monitor_exempt", link_monitor_exempt)
+        if preferred_source is not None:
+            pulumi.set(__self__, "preferred_source", preferred_source)
         if priority is not None:
             pulumi.set(__self__, "priority", priority)
         if sdwan is not None:
@@ -364,6 +407,8 @@ class _RouterStaticState:
             pulumi.set(__self__, "src", src)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if tag is not None:
+            pulumi.set(__self__, "tag", tag)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if virtual_wan_link is not None:
@@ -464,6 +509,15 @@ class _RouterStaticState:
         pulumi.set(self, "gateway", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="internetService")
     def internet_service(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "internet_service")
@@ -489,6 +543,15 @@ class _RouterStaticState:
     @link_monitor_exempt.setter
     def link_monitor_exempt(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "link_monitor_exempt", value)
+
+    @property
+    @pulumi.getter(name="preferredSource")
+    def preferred_source(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "preferred_source")
+
+    @preferred_source.setter
+    def preferred_source(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "preferred_source", value)
 
     @property
     @pulumi.getter
@@ -543,6 +606,15 @@ class _RouterStaticState:
     @status.setter
     def status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "status", value)
+
+    @property
+    @pulumi.getter
+    def tag(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "tag")
+
+    @tag.setter
+    def tag(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "tag", value)
 
     @property
     @pulumi.getter
@@ -596,15 +668,18 @@ class RouterStatic(pulumi.CustomResource):
                  dynamic_gateway: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  internet_service: Optional[pulumi.Input[int]] = None,
                  internet_service_custom: Optional[pulumi.Input[str]] = None,
                  link_monitor_exempt: Optional[pulumi.Input[str]] = None,
+                 preferred_source: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[int]] = None,
                  sdwan: Optional[pulumi.Input[str]] = None,
                  sdwan_zones: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterStaticSdwanZoneArgs']]]]] = None,
                  seq_num: Optional[pulumi.Input[int]] = None,
                  src: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 tag: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  virtual_wan_link: Optional[pulumi.Input[str]] = None,
                  vrf: Optional[pulumi.Input[int]] = None,
@@ -648,15 +723,18 @@ class RouterStatic(pulumi.CustomResource):
                  dynamic_gateway: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  internet_service: Optional[pulumi.Input[int]] = None,
                  internet_service_custom: Optional[pulumi.Input[str]] = None,
                  link_monitor_exempt: Optional[pulumi.Input[str]] = None,
+                 preferred_source: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[int]] = None,
                  sdwan: Optional[pulumi.Input[str]] = None,
                  sdwan_zones: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterStaticSdwanZoneArgs']]]]] = None,
                  seq_num: Optional[pulumi.Input[int]] = None,
                  src: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 tag: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  virtual_wan_link: Optional[pulumi.Input[str]] = None,
                  vrf: Optional[pulumi.Input[int]] = None,
@@ -680,15 +758,18 @@ class RouterStatic(pulumi.CustomResource):
             __props__.__dict__["dynamic_gateway"] = dynamic_gateway
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["gateway"] = gateway
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["internet_service"] = internet_service
             __props__.__dict__["internet_service_custom"] = internet_service_custom
             __props__.__dict__["link_monitor_exempt"] = link_monitor_exempt
+            __props__.__dict__["preferred_source"] = preferred_source
             __props__.__dict__["priority"] = priority
             __props__.__dict__["sdwan"] = sdwan
             __props__.__dict__["sdwan_zones"] = sdwan_zones
             __props__.__dict__["seq_num"] = seq_num
             __props__.__dict__["src"] = src
             __props__.__dict__["status"] = status
+            __props__.__dict__["tag"] = tag
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["virtual_wan_link"] = virtual_wan_link
             __props__.__dict__["vrf"] = vrf
@@ -713,15 +794,18 @@ class RouterStatic(pulumi.CustomResource):
             dynamic_gateway: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             gateway: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             internet_service: Optional[pulumi.Input[int]] = None,
             internet_service_custom: Optional[pulumi.Input[str]] = None,
             link_monitor_exempt: Optional[pulumi.Input[str]] = None,
+            preferred_source: Optional[pulumi.Input[str]] = None,
             priority: Optional[pulumi.Input[int]] = None,
             sdwan: Optional[pulumi.Input[str]] = None,
             sdwan_zones: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterStaticSdwanZoneArgs']]]]] = None,
             seq_num: Optional[pulumi.Input[int]] = None,
             src: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
+            tag: Optional[pulumi.Input[int]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             virtual_wan_link: Optional[pulumi.Input[str]] = None,
             vrf: Optional[pulumi.Input[int]] = None,
@@ -748,15 +832,18 @@ class RouterStatic(pulumi.CustomResource):
         __props__.__dict__["dynamic_gateway"] = dynamic_gateway
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["gateway"] = gateway
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["internet_service"] = internet_service
         __props__.__dict__["internet_service_custom"] = internet_service_custom
         __props__.__dict__["link_monitor_exempt"] = link_monitor_exempt
+        __props__.__dict__["preferred_source"] = preferred_source
         __props__.__dict__["priority"] = priority
         __props__.__dict__["sdwan"] = sdwan
         __props__.__dict__["sdwan_zones"] = sdwan_zones
         __props__.__dict__["seq_num"] = seq_num
         __props__.__dict__["src"] = src
         __props__.__dict__["status"] = status
+        __props__.__dict__["tag"] = tag
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["virtual_wan_link"] = virtual_wan_link
         __props__.__dict__["vrf"] = vrf
@@ -814,6 +901,11 @@ class RouterStatic(pulumi.CustomResource):
         return pulumi.get(self, "gateway")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter(name="internetService")
     def internet_service(self) -> pulumi.Output[int]:
         return pulumi.get(self, "internet_service")
@@ -827,6 +919,11 @@ class RouterStatic(pulumi.CustomResource):
     @pulumi.getter(name="linkMonitorExempt")
     def link_monitor_exempt(self) -> pulumi.Output[str]:
         return pulumi.get(self, "link_monitor_exempt")
+
+    @property
+    @pulumi.getter(name="preferredSource")
+    def preferred_source(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "preferred_source")
 
     @property
     @pulumi.getter
@@ -857,6 +954,11 @@ class RouterStatic(pulumi.CustomResource):
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def tag(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "tag")
 
     @property
     @pulumi.getter

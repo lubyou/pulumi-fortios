@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupFirewallAddress(ctx *pulumi.Context, args *LookupFirewallAddressArgs, opts ...pulumi.InvokeOption) (*LookupFirewallAddressResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallAddressResult
 	err := ctx.Invoke("fortios:index/getFirewallAddress:GetFirewallAddress", args, &rv, opts...)
 	if err != nil {
@@ -42,6 +43,8 @@ type LookupFirewallAddressResult struct {
 	Filter              string                        `pulumi:"filter"`
 	Fqdn                string                        `pulumi:"fqdn"`
 	FssoGroups          []GetFirewallAddressFssoGroup `pulumi:"fssoGroups"`
+	HwModel             string                        `pulumi:"hwModel"`
+	HwVendor            string                        `pulumi:"hwVendor"`
 	// The provider-assigned unique ID for this managed resource.
 	Id                string                      `pulumi:"id"`
 	Interface         string                      `pulumi:"interface"`
@@ -53,7 +56,9 @@ type LookupFirewallAddressResult struct {
 	ObjTag            string                      `pulumi:"objTag"`
 	ObjType           string                      `pulumi:"objType"`
 	Organization      string                      `pulumi:"organization"`
+	Os                string                      `pulumi:"os"`
 	PolicyGroup       string                      `pulumi:"policyGroup"`
+	RouteTag          int                         `pulumi:"routeTag"`
 	Sdn               string                      `pulumi:"sdn"`
 	SdnAddrType       string                      `pulumi:"sdnAddrType"`
 	SdnTag            string                      `pulumi:"sdnTag"`
@@ -62,6 +67,7 @@ type LookupFirewallAddressResult struct {
 	SubType           string                      `pulumi:"subType"`
 	Subnet            string                      `pulumi:"subnet"`
 	SubnetName        string                      `pulumi:"subnetName"`
+	SwVersion         string                      `pulumi:"swVersion"`
 	TagDetectionLevel string                      `pulumi:"tagDetectionLevel"`
 	TagType           string                      `pulumi:"tagType"`
 	Taggings          []GetFirewallAddressTagging `pulumi:"taggings"`
@@ -168,6 +174,14 @@ func (o LookupFirewallAddressResultOutput) FssoGroups() GetFirewallAddressFssoGr
 	return o.ApplyT(func(v LookupFirewallAddressResult) []GetFirewallAddressFssoGroup { return v.FssoGroups }).(GetFirewallAddressFssoGroupArrayOutput)
 }
 
+func (o LookupFirewallAddressResultOutput) HwModel() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.HwModel }).(pulumi.StringOutput)
+}
+
+func (o LookupFirewallAddressResultOutput) HwVendor() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.HwVendor }).(pulumi.StringOutput)
+}
+
 // The provider-assigned unique ID for this managed resource.
 func (o LookupFirewallAddressResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.Id }).(pulumi.StringOutput)
@@ -209,8 +223,16 @@ func (o LookupFirewallAddressResultOutput) Organization() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.Organization }).(pulumi.StringOutput)
 }
 
+func (o LookupFirewallAddressResultOutput) Os() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.Os }).(pulumi.StringOutput)
+}
+
 func (o LookupFirewallAddressResultOutput) PolicyGroup() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.PolicyGroup }).(pulumi.StringOutput)
+}
+
+func (o LookupFirewallAddressResultOutput) RouteTag() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) int { return v.RouteTag }).(pulumi.IntOutput)
 }
 
 func (o LookupFirewallAddressResultOutput) Sdn() pulumi.StringOutput {
@@ -243,6 +265,10 @@ func (o LookupFirewallAddressResultOutput) Subnet() pulumi.StringOutput {
 
 func (o LookupFirewallAddressResultOutput) SubnetName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.SubnetName }).(pulumi.StringOutput)
+}
+
+func (o LookupFirewallAddressResultOutput) SwVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.SwVersion }).(pulumi.StringOutput)
 }
 
 func (o LookupFirewallAddressResultOutput) TagDetectionLevel() pulumi.StringOutput {

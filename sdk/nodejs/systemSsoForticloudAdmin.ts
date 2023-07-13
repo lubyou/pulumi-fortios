@@ -34,7 +34,9 @@ export class SystemSsoForticloudAdmin extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemSsoForticloudAdmin.__pulumiType;
     }
 
+    public readonly accprofile!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
     public readonly vdoms!: pulumi.Output<outputs.SystemSsoForticloudAdminVdom[] | undefined>;
@@ -52,13 +54,17 @@ export class SystemSsoForticloudAdmin extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemSsoForticloudAdminState | undefined;
+            resourceInputs["accprofile"] = state ? state.accprofile : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["vdoms"] = state ? state.vdoms : undefined;
         } else {
             const args = argsOrState as SystemSsoForticloudAdminArgs | undefined;
+            resourceInputs["accprofile"] = args ? args.accprofile : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["vdoms"] = args ? args.vdoms : undefined;
@@ -72,7 +78,9 @@ export class SystemSsoForticloudAdmin extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemSsoForticloudAdmin resources.
  */
 export interface SystemSsoForticloudAdminState {
+    accprofile?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
     vdoms?: pulumi.Input<pulumi.Input<inputs.SystemSsoForticloudAdminVdom>[]>;
@@ -82,7 +90,9 @@ export interface SystemSsoForticloudAdminState {
  * The set of arguments for constructing a SystemSsoForticloudAdmin resource.
  */
 export interface SystemSsoForticloudAdminArgs {
+    accprofile?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
     vdoms?: pulumi.Input<pulumi.Input<inputs.SystemSsoForticloudAdminVdom>[]>;

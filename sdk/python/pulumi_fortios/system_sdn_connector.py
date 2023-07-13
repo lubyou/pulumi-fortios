@@ -19,11 +19,13 @@ class SystemSdnConnectorArgs:
                  status: pulumi.Input[str],
                  type: pulumi.Input[str],
                  access_key: Optional[pulumi.Input[str]] = None,
+                 alt_resource_ip: Optional[pulumi.Input[str]] = None,
                  api_key: Optional[pulumi.Input[str]] = None,
                  azure_region: Optional[pulumi.Input[str]] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_secret: Optional[pulumi.Input[str]] = None,
                  compartment_id: Optional[pulumi.Input[str]] = None,
+                 compartment_lists: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorCompartmentListArgs']]]] = None,
                  compute_generation: Optional[pulumi.Input[int]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
@@ -32,6 +34,7 @@ class SystemSdnConnectorArgs:
                  forwarding_rules: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorForwardingRuleArgs']]]] = None,
                  gcp_project: Optional[pulumi.Input[str]] = None,
                  gcp_project_lists: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorGcpProjectListArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
                  ha_status: Optional[pulumi.Input[str]] = None,
                  ibm_region: Optional[pulumi.Input[str]] = None,
@@ -44,9 +47,11 @@ class SystemSdnConnectorArgs:
                  oci_cert: Optional[pulumi.Input[str]] = None,
                  oci_fingerprint: Optional[pulumi.Input[str]] = None,
                  oci_region: Optional[pulumi.Input[str]] = None,
+                 oci_region_lists: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorOciRegionListArgs']]]] = None,
                  oci_region_type: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
+                 proxy: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  resource_group: Optional[pulumi.Input[str]] = None,
                  resource_url: Optional[pulumi.Input[str]] = None,
@@ -55,6 +60,8 @@ class SystemSdnConnectorArgs:
                  secret_key: Optional[pulumi.Input[str]] = None,
                  secret_token: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
+                 server_ca_cert: Optional[pulumi.Input[str]] = None,
+                 server_cert: Optional[pulumi.Input[str]] = None,
                  server_lists: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorServerListArgs']]]] = None,
                  server_port: Optional[pulumi.Input[int]] = None,
                  service_account: Optional[pulumi.Input[str]] = None,
@@ -77,6 +84,8 @@ class SystemSdnConnectorArgs:
         pulumi.set(__self__, "type", type)
         if access_key is not None:
             pulumi.set(__self__, "access_key", access_key)
+        if alt_resource_ip is not None:
+            pulumi.set(__self__, "alt_resource_ip", alt_resource_ip)
         if api_key is not None:
             pulumi.set(__self__, "api_key", api_key)
         if azure_region is not None:
@@ -87,6 +96,8 @@ class SystemSdnConnectorArgs:
             pulumi.set(__self__, "client_secret", client_secret)
         if compartment_id is not None:
             pulumi.set(__self__, "compartment_id", compartment_id)
+        if compartment_lists is not None:
+            pulumi.set(__self__, "compartment_lists", compartment_lists)
         if compute_generation is not None:
             pulumi.set(__self__, "compute_generation", compute_generation)
         if domain is not None:
@@ -103,6 +114,8 @@ class SystemSdnConnectorArgs:
             pulumi.set(__self__, "gcp_project", gcp_project)
         if gcp_project_lists is not None:
             pulumi.set(__self__, "gcp_project_lists", gcp_project_lists)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if group_name is not None:
             pulumi.set(__self__, "group_name", group_name)
         if ha_status is not None:
@@ -127,12 +140,16 @@ class SystemSdnConnectorArgs:
             pulumi.set(__self__, "oci_fingerprint", oci_fingerprint)
         if oci_region is not None:
             pulumi.set(__self__, "oci_region", oci_region)
+        if oci_region_lists is not None:
+            pulumi.set(__self__, "oci_region_lists", oci_region_lists)
         if oci_region_type is not None:
             pulumi.set(__self__, "oci_region_type", oci_region_type)
         if password is not None:
             pulumi.set(__self__, "password", password)
         if private_key is not None:
             pulumi.set(__self__, "private_key", private_key)
+        if proxy is not None:
+            pulumi.set(__self__, "proxy", proxy)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if resource_group is not None:
@@ -149,6 +166,10 @@ class SystemSdnConnectorArgs:
             pulumi.set(__self__, "secret_token", secret_token)
         if server is not None:
             pulumi.set(__self__, "server", server)
+        if server_ca_cert is not None:
+            pulumi.set(__self__, "server_ca_cert", server_ca_cert)
+        if server_cert is not None:
+            pulumi.set(__self__, "server_cert", server_cert)
         if server_lists is not None:
             pulumi.set(__self__, "server_lists", server_lists)
         if server_port is not None:
@@ -208,6 +229,15 @@ class SystemSdnConnectorArgs:
         pulumi.set(self, "access_key", value)
 
     @property
+    @pulumi.getter(name="altResourceIp")
+    def alt_resource_ip(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "alt_resource_ip")
+
+    @alt_resource_ip.setter
+    def alt_resource_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "alt_resource_ip", value)
+
+    @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "api_key")
@@ -251,6 +281,15 @@ class SystemSdnConnectorArgs:
     @compartment_id.setter
     def compartment_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "compartment_id", value)
+
+    @property
+    @pulumi.getter(name="compartmentLists")
+    def compartment_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorCompartmentListArgs']]]]:
+        return pulumi.get(self, "compartment_lists")
+
+    @compartment_lists.setter
+    def compartment_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorCompartmentListArgs']]]]):
+        pulumi.set(self, "compartment_lists", value)
 
     @property
     @pulumi.getter(name="computeGeneration")
@@ -323,6 +362,15 @@ class SystemSdnConnectorArgs:
     @gcp_project_lists.setter
     def gcp_project_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorGcpProjectListArgs']]]]):
         pulumi.set(self, "gcp_project_lists", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="groupName")
@@ -433,6 +481,15 @@ class SystemSdnConnectorArgs:
         pulumi.set(self, "oci_region", value)
 
     @property
+    @pulumi.getter(name="ociRegionLists")
+    def oci_region_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorOciRegionListArgs']]]]:
+        return pulumi.get(self, "oci_region_lists")
+
+    @oci_region_lists.setter
+    def oci_region_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorOciRegionListArgs']]]]):
+        pulumi.set(self, "oci_region_lists", value)
+
+    @property
     @pulumi.getter(name="ociRegionType")
     def oci_region_type(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "oci_region_type")
@@ -458,6 +515,15 @@ class SystemSdnConnectorArgs:
     @private_key.setter
     def private_key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "private_key", value)
+
+    @property
+    @pulumi.getter
+    def proxy(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "proxy")
+
+    @proxy.setter
+    def proxy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy", value)
 
     @property
     @pulumi.getter
@@ -530,6 +596,24 @@ class SystemSdnConnectorArgs:
     @server.setter
     def server(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "server", value)
+
+    @property
+    @pulumi.getter(name="serverCaCert")
+    def server_ca_cert(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "server_ca_cert")
+
+    @server_ca_cert.setter
+    def server_ca_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "server_ca_cert", value)
+
+    @property
+    @pulumi.getter(name="serverCert")
+    def server_cert(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "server_cert")
+
+    @server_cert.setter
+    def server_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "server_cert", value)
 
     @property
     @pulumi.getter(name="serverLists")
@@ -671,11 +755,13 @@ class SystemSdnConnectorArgs:
 class _SystemSdnConnectorState:
     def __init__(__self__, *,
                  access_key: Optional[pulumi.Input[str]] = None,
+                 alt_resource_ip: Optional[pulumi.Input[str]] = None,
                  api_key: Optional[pulumi.Input[str]] = None,
                  azure_region: Optional[pulumi.Input[str]] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_secret: Optional[pulumi.Input[str]] = None,
                  compartment_id: Optional[pulumi.Input[str]] = None,
+                 compartment_lists: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorCompartmentListArgs']]]] = None,
                  compute_generation: Optional[pulumi.Input[int]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
@@ -684,6 +770,7 @@ class _SystemSdnConnectorState:
                  forwarding_rules: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorForwardingRuleArgs']]]] = None,
                  gcp_project: Optional[pulumi.Input[str]] = None,
                  gcp_project_lists: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorGcpProjectListArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
                  ha_status: Optional[pulumi.Input[str]] = None,
                  ibm_region: Optional[pulumi.Input[str]] = None,
@@ -696,9 +783,11 @@ class _SystemSdnConnectorState:
                  oci_cert: Optional[pulumi.Input[str]] = None,
                  oci_fingerprint: Optional[pulumi.Input[str]] = None,
                  oci_region: Optional[pulumi.Input[str]] = None,
+                 oci_region_lists: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorOciRegionListArgs']]]] = None,
                  oci_region_type: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
+                 proxy: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  resource_group: Optional[pulumi.Input[str]] = None,
                  resource_url: Optional[pulumi.Input[str]] = None,
@@ -707,6 +796,8 @@ class _SystemSdnConnectorState:
                  secret_key: Optional[pulumi.Input[str]] = None,
                  secret_token: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
+                 server_ca_cert: Optional[pulumi.Input[str]] = None,
+                 server_cert: Optional[pulumi.Input[str]] = None,
                  server_lists: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorServerListArgs']]]] = None,
                  server_port: Optional[pulumi.Input[int]] = None,
                  service_account: Optional[pulumi.Input[str]] = None,
@@ -729,6 +820,8 @@ class _SystemSdnConnectorState:
         """
         if access_key is not None:
             pulumi.set(__self__, "access_key", access_key)
+        if alt_resource_ip is not None:
+            pulumi.set(__self__, "alt_resource_ip", alt_resource_ip)
         if api_key is not None:
             pulumi.set(__self__, "api_key", api_key)
         if azure_region is not None:
@@ -739,6 +832,8 @@ class _SystemSdnConnectorState:
             pulumi.set(__self__, "client_secret", client_secret)
         if compartment_id is not None:
             pulumi.set(__self__, "compartment_id", compartment_id)
+        if compartment_lists is not None:
+            pulumi.set(__self__, "compartment_lists", compartment_lists)
         if compute_generation is not None:
             pulumi.set(__self__, "compute_generation", compute_generation)
         if domain is not None:
@@ -755,6 +850,8 @@ class _SystemSdnConnectorState:
             pulumi.set(__self__, "gcp_project", gcp_project)
         if gcp_project_lists is not None:
             pulumi.set(__self__, "gcp_project_lists", gcp_project_lists)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if group_name is not None:
             pulumi.set(__self__, "group_name", group_name)
         if ha_status is not None:
@@ -779,12 +876,16 @@ class _SystemSdnConnectorState:
             pulumi.set(__self__, "oci_fingerprint", oci_fingerprint)
         if oci_region is not None:
             pulumi.set(__self__, "oci_region", oci_region)
+        if oci_region_lists is not None:
+            pulumi.set(__self__, "oci_region_lists", oci_region_lists)
         if oci_region_type is not None:
             pulumi.set(__self__, "oci_region_type", oci_region_type)
         if password is not None:
             pulumi.set(__self__, "password", password)
         if private_key is not None:
             pulumi.set(__self__, "private_key", private_key)
+        if proxy is not None:
+            pulumi.set(__self__, "proxy", proxy)
         if region is not None:
             pulumi.set(__self__, "region", region)
         if resource_group is not None:
@@ -801,6 +902,10 @@ class _SystemSdnConnectorState:
             pulumi.set(__self__, "secret_token", secret_token)
         if server is not None:
             pulumi.set(__self__, "server", server)
+        if server_ca_cert is not None:
+            pulumi.set(__self__, "server_ca_cert", server_ca_cert)
+        if server_cert is not None:
+            pulumi.set(__self__, "server_cert", server_cert)
         if server_lists is not None:
             pulumi.set(__self__, "server_lists", server_lists)
         if server_port is not None:
@@ -846,6 +951,15 @@ class _SystemSdnConnectorState:
         pulumi.set(self, "access_key", value)
 
     @property
+    @pulumi.getter(name="altResourceIp")
+    def alt_resource_ip(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "alt_resource_ip")
+
+    @alt_resource_ip.setter
+    def alt_resource_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "alt_resource_ip", value)
+
+    @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "api_key")
@@ -889,6 +1003,15 @@ class _SystemSdnConnectorState:
     @compartment_id.setter
     def compartment_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "compartment_id", value)
+
+    @property
+    @pulumi.getter(name="compartmentLists")
+    def compartment_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorCompartmentListArgs']]]]:
+        return pulumi.get(self, "compartment_lists")
+
+    @compartment_lists.setter
+    def compartment_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorCompartmentListArgs']]]]):
+        pulumi.set(self, "compartment_lists", value)
 
     @property
     @pulumi.getter(name="computeGeneration")
@@ -961,6 +1084,15 @@ class _SystemSdnConnectorState:
     @gcp_project_lists.setter
     def gcp_project_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorGcpProjectListArgs']]]]):
         pulumi.set(self, "gcp_project_lists", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="groupName")
@@ -1071,6 +1203,15 @@ class _SystemSdnConnectorState:
         pulumi.set(self, "oci_region", value)
 
     @property
+    @pulumi.getter(name="ociRegionLists")
+    def oci_region_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorOciRegionListArgs']]]]:
+        return pulumi.get(self, "oci_region_lists")
+
+    @oci_region_lists.setter
+    def oci_region_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorOciRegionListArgs']]]]):
+        pulumi.set(self, "oci_region_lists", value)
+
+    @property
     @pulumi.getter(name="ociRegionType")
     def oci_region_type(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "oci_region_type")
@@ -1096,6 +1237,15 @@ class _SystemSdnConnectorState:
     @private_key.setter
     def private_key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "private_key", value)
+
+    @property
+    @pulumi.getter
+    def proxy(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "proxy")
+
+    @proxy.setter
+    def proxy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy", value)
 
     @property
     @pulumi.getter
@@ -1168,6 +1318,24 @@ class _SystemSdnConnectorState:
     @server.setter
     def server(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "server", value)
+
+    @property
+    @pulumi.getter(name="serverCaCert")
+    def server_ca_cert(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "server_ca_cert")
+
+    @server_ca_cert.setter
+    def server_ca_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "server_ca_cert", value)
+
+    @property
+    @pulumi.getter(name="serverCert")
+    def server_cert(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "server_cert")
+
+    @server_cert.setter
+    def server_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "server_cert", value)
 
     @property
     @pulumi.getter(name="serverLists")
@@ -1329,11 +1497,13 @@ class SystemSdnConnector(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_key: Optional[pulumi.Input[str]] = None,
+                 alt_resource_ip: Optional[pulumi.Input[str]] = None,
                  api_key: Optional[pulumi.Input[str]] = None,
                  azure_region: Optional[pulumi.Input[str]] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_secret: Optional[pulumi.Input[str]] = None,
                  compartment_id: Optional[pulumi.Input[str]] = None,
+                 compartment_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorCompartmentListArgs']]]]] = None,
                  compute_generation: Optional[pulumi.Input[int]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
@@ -1342,6 +1512,7 @@ class SystemSdnConnector(pulumi.CustomResource):
                  forwarding_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorForwardingRuleArgs']]]]] = None,
                  gcp_project: Optional[pulumi.Input[str]] = None,
                  gcp_project_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorGcpProjectListArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
                  ha_status: Optional[pulumi.Input[str]] = None,
                  ibm_region: Optional[pulumi.Input[str]] = None,
@@ -1354,9 +1525,11 @@ class SystemSdnConnector(pulumi.CustomResource):
                  oci_cert: Optional[pulumi.Input[str]] = None,
                  oci_fingerprint: Optional[pulumi.Input[str]] = None,
                  oci_region: Optional[pulumi.Input[str]] = None,
+                 oci_region_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorOciRegionListArgs']]]]] = None,
                  oci_region_type: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
+                 proxy: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  resource_group: Optional[pulumi.Input[str]] = None,
                  resource_url: Optional[pulumi.Input[str]] = None,
@@ -1365,6 +1538,8 @@ class SystemSdnConnector(pulumi.CustomResource):
                  secret_key: Optional[pulumi.Input[str]] = None,
                  secret_token: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
+                 server_ca_cert: Optional[pulumi.Input[str]] = None,
+                 server_cert: Optional[pulumi.Input[str]] = None,
                  server_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorServerListArgs']]]]] = None,
                  server_port: Optional[pulumi.Input[int]] = None,
                  service_account: Optional[pulumi.Input[str]] = None,
@@ -1412,11 +1587,13 @@ class SystemSdnConnector(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_key: Optional[pulumi.Input[str]] = None,
+                 alt_resource_ip: Optional[pulumi.Input[str]] = None,
                  api_key: Optional[pulumi.Input[str]] = None,
                  azure_region: Optional[pulumi.Input[str]] = None,
                  client_id: Optional[pulumi.Input[str]] = None,
                  client_secret: Optional[pulumi.Input[str]] = None,
                  compartment_id: Optional[pulumi.Input[str]] = None,
+                 compartment_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorCompartmentListArgs']]]]] = None,
                  compute_generation: Optional[pulumi.Input[int]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
@@ -1425,6 +1602,7 @@ class SystemSdnConnector(pulumi.CustomResource):
                  forwarding_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorForwardingRuleArgs']]]]] = None,
                  gcp_project: Optional[pulumi.Input[str]] = None,
                  gcp_project_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorGcpProjectListArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
                  ha_status: Optional[pulumi.Input[str]] = None,
                  ibm_region: Optional[pulumi.Input[str]] = None,
@@ -1437,9 +1615,11 @@ class SystemSdnConnector(pulumi.CustomResource):
                  oci_cert: Optional[pulumi.Input[str]] = None,
                  oci_fingerprint: Optional[pulumi.Input[str]] = None,
                  oci_region: Optional[pulumi.Input[str]] = None,
+                 oci_region_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorOciRegionListArgs']]]]] = None,
                  oci_region_type: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  private_key: Optional[pulumi.Input[str]] = None,
+                 proxy: Optional[pulumi.Input[str]] = None,
                  region: Optional[pulumi.Input[str]] = None,
                  resource_group: Optional[pulumi.Input[str]] = None,
                  resource_url: Optional[pulumi.Input[str]] = None,
@@ -1448,6 +1628,8 @@ class SystemSdnConnector(pulumi.CustomResource):
                  secret_key: Optional[pulumi.Input[str]] = None,
                  secret_token: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
+                 server_ca_cert: Optional[pulumi.Input[str]] = None,
+                 server_cert: Optional[pulumi.Input[str]] = None,
                  server_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorServerListArgs']]]]] = None,
                  server_port: Optional[pulumi.Input[int]] = None,
                  service_account: Optional[pulumi.Input[str]] = None,
@@ -1475,11 +1657,13 @@ class SystemSdnConnector(pulumi.CustomResource):
             __props__ = SystemSdnConnectorArgs.__new__(SystemSdnConnectorArgs)
 
             __props__.__dict__["access_key"] = None if access_key is None else pulumi.Output.secret(access_key)
+            __props__.__dict__["alt_resource_ip"] = alt_resource_ip
             __props__.__dict__["api_key"] = None if api_key is None else pulumi.Output.secret(api_key)
             __props__.__dict__["azure_region"] = azure_region
             __props__.__dict__["client_id"] = client_id
             __props__.__dict__["client_secret"] = None if client_secret is None else pulumi.Output.secret(client_secret)
             __props__.__dict__["compartment_id"] = compartment_id
+            __props__.__dict__["compartment_lists"] = compartment_lists
             __props__.__dict__["compute_generation"] = compute_generation
             __props__.__dict__["domain"] = domain
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
@@ -1488,6 +1672,7 @@ class SystemSdnConnector(pulumi.CustomResource):
             __props__.__dict__["forwarding_rules"] = forwarding_rules
             __props__.__dict__["gcp_project"] = gcp_project
             __props__.__dict__["gcp_project_lists"] = gcp_project_lists
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["group_name"] = group_name
             __props__.__dict__["ha_status"] = ha_status
             __props__.__dict__["ibm_region"] = ibm_region
@@ -1500,9 +1685,11 @@ class SystemSdnConnector(pulumi.CustomResource):
             __props__.__dict__["oci_cert"] = oci_cert
             __props__.__dict__["oci_fingerprint"] = oci_fingerprint
             __props__.__dict__["oci_region"] = oci_region
+            __props__.__dict__["oci_region_lists"] = oci_region_lists
             __props__.__dict__["oci_region_type"] = oci_region_type
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
             __props__.__dict__["private_key"] = None if private_key is None else pulumi.Output.secret(private_key)
+            __props__.__dict__["proxy"] = proxy
             __props__.__dict__["region"] = region
             __props__.__dict__["resource_group"] = resource_group
             __props__.__dict__["resource_url"] = resource_url
@@ -1511,6 +1698,8 @@ class SystemSdnConnector(pulumi.CustomResource):
             __props__.__dict__["secret_key"] = None if secret_key is None else pulumi.Output.secret(secret_key)
             __props__.__dict__["secret_token"] = None if secret_token is None else pulumi.Output.secret(secret_token)
             __props__.__dict__["server"] = server
+            __props__.__dict__["server_ca_cert"] = server_ca_cert
+            __props__.__dict__["server_cert"] = server_cert
             __props__.__dict__["server_lists"] = server_lists
             __props__.__dict__["server_port"] = server_port
             __props__.__dict__["service_account"] = service_account
@@ -1545,11 +1734,13 @@ class SystemSdnConnector(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             access_key: Optional[pulumi.Input[str]] = None,
+            alt_resource_ip: Optional[pulumi.Input[str]] = None,
             api_key: Optional[pulumi.Input[str]] = None,
             azure_region: Optional[pulumi.Input[str]] = None,
             client_id: Optional[pulumi.Input[str]] = None,
             client_secret: Optional[pulumi.Input[str]] = None,
             compartment_id: Optional[pulumi.Input[str]] = None,
+            compartment_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorCompartmentListArgs']]]]] = None,
             compute_generation: Optional[pulumi.Input[int]] = None,
             domain: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
@@ -1558,6 +1749,7 @@ class SystemSdnConnector(pulumi.CustomResource):
             forwarding_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorForwardingRuleArgs']]]]] = None,
             gcp_project: Optional[pulumi.Input[str]] = None,
             gcp_project_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorGcpProjectListArgs']]]]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             group_name: Optional[pulumi.Input[str]] = None,
             ha_status: Optional[pulumi.Input[str]] = None,
             ibm_region: Optional[pulumi.Input[str]] = None,
@@ -1570,9 +1762,11 @@ class SystemSdnConnector(pulumi.CustomResource):
             oci_cert: Optional[pulumi.Input[str]] = None,
             oci_fingerprint: Optional[pulumi.Input[str]] = None,
             oci_region: Optional[pulumi.Input[str]] = None,
+            oci_region_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorOciRegionListArgs']]]]] = None,
             oci_region_type: Optional[pulumi.Input[str]] = None,
             password: Optional[pulumi.Input[str]] = None,
             private_key: Optional[pulumi.Input[str]] = None,
+            proxy: Optional[pulumi.Input[str]] = None,
             region: Optional[pulumi.Input[str]] = None,
             resource_group: Optional[pulumi.Input[str]] = None,
             resource_url: Optional[pulumi.Input[str]] = None,
@@ -1581,6 +1775,8 @@ class SystemSdnConnector(pulumi.CustomResource):
             secret_key: Optional[pulumi.Input[str]] = None,
             secret_token: Optional[pulumi.Input[str]] = None,
             server: Optional[pulumi.Input[str]] = None,
+            server_ca_cert: Optional[pulumi.Input[str]] = None,
+            server_cert: Optional[pulumi.Input[str]] = None,
             server_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorServerListArgs']]]]] = None,
             server_port: Optional[pulumi.Input[int]] = None,
             service_account: Optional[pulumi.Input[str]] = None,
@@ -1611,11 +1807,13 @@ class SystemSdnConnector(pulumi.CustomResource):
         __props__ = _SystemSdnConnectorState.__new__(_SystemSdnConnectorState)
 
         __props__.__dict__["access_key"] = access_key
+        __props__.__dict__["alt_resource_ip"] = alt_resource_ip
         __props__.__dict__["api_key"] = api_key
         __props__.__dict__["azure_region"] = azure_region
         __props__.__dict__["client_id"] = client_id
         __props__.__dict__["client_secret"] = client_secret
         __props__.__dict__["compartment_id"] = compartment_id
+        __props__.__dict__["compartment_lists"] = compartment_lists
         __props__.__dict__["compute_generation"] = compute_generation
         __props__.__dict__["domain"] = domain
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
@@ -1624,6 +1822,7 @@ class SystemSdnConnector(pulumi.CustomResource):
         __props__.__dict__["forwarding_rules"] = forwarding_rules
         __props__.__dict__["gcp_project"] = gcp_project
         __props__.__dict__["gcp_project_lists"] = gcp_project_lists
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["group_name"] = group_name
         __props__.__dict__["ha_status"] = ha_status
         __props__.__dict__["ibm_region"] = ibm_region
@@ -1636,9 +1835,11 @@ class SystemSdnConnector(pulumi.CustomResource):
         __props__.__dict__["oci_cert"] = oci_cert
         __props__.__dict__["oci_fingerprint"] = oci_fingerprint
         __props__.__dict__["oci_region"] = oci_region
+        __props__.__dict__["oci_region_lists"] = oci_region_lists
         __props__.__dict__["oci_region_type"] = oci_region_type
         __props__.__dict__["password"] = password
         __props__.__dict__["private_key"] = private_key
+        __props__.__dict__["proxy"] = proxy
         __props__.__dict__["region"] = region
         __props__.__dict__["resource_group"] = resource_group
         __props__.__dict__["resource_url"] = resource_url
@@ -1647,6 +1848,8 @@ class SystemSdnConnector(pulumi.CustomResource):
         __props__.__dict__["secret_key"] = secret_key
         __props__.__dict__["secret_token"] = secret_token
         __props__.__dict__["server"] = server
+        __props__.__dict__["server_ca_cert"] = server_ca_cert
+        __props__.__dict__["server_cert"] = server_cert
         __props__.__dict__["server_lists"] = server_lists
         __props__.__dict__["server_port"] = server_port
         __props__.__dict__["service_account"] = service_account
@@ -1672,6 +1875,11 @@ class SystemSdnConnector(pulumi.CustomResource):
         return pulumi.get(self, "access_key")
 
     @property
+    @pulumi.getter(name="altResourceIp")
+    def alt_resource_ip(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "alt_resource_ip")
+
+    @property
     @pulumi.getter(name="apiKey")
     def api_key(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "api_key")
@@ -1695,6 +1903,11 @@ class SystemSdnConnector(pulumi.CustomResource):
     @pulumi.getter(name="compartmentId")
     def compartment_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "compartment_id")
+
+    @property
+    @pulumi.getter(name="compartmentLists")
+    def compartment_lists(self) -> pulumi.Output[Optional[Sequence['outputs.SystemSdnConnectorCompartmentList']]]:
+        return pulumi.get(self, "compartment_lists")
 
     @property
     @pulumi.getter(name="computeGeneration")
@@ -1735,6 +1948,11 @@ class SystemSdnConnector(pulumi.CustomResource):
     @pulumi.getter(name="gcpProjectLists")
     def gcp_project_lists(self) -> pulumi.Output[Optional[Sequence['outputs.SystemSdnConnectorGcpProjectList']]]:
         return pulumi.get(self, "gcp_project_lists")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="groupName")
@@ -1797,6 +2015,11 @@ class SystemSdnConnector(pulumi.CustomResource):
         return pulumi.get(self, "oci_region")
 
     @property
+    @pulumi.getter(name="ociRegionLists")
+    def oci_region_lists(self) -> pulumi.Output[Optional[Sequence['outputs.SystemSdnConnectorOciRegionList']]]:
+        return pulumi.get(self, "oci_region_lists")
+
+    @property
     @pulumi.getter(name="ociRegionType")
     def oci_region_type(self) -> pulumi.Output[str]:
         return pulumi.get(self, "oci_region_type")
@@ -1810,6 +2033,11 @@ class SystemSdnConnector(pulumi.CustomResource):
     @pulumi.getter(name="privateKey")
     def private_key(self) -> pulumi.Output[str]:
         return pulumi.get(self, "private_key")
+
+    @property
+    @pulumi.getter
+    def proxy(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "proxy")
 
     @property
     @pulumi.getter
@@ -1850,6 +2078,16 @@ class SystemSdnConnector(pulumi.CustomResource):
     @pulumi.getter
     def server(self) -> pulumi.Output[str]:
         return pulumi.get(self, "server")
+
+    @property
+    @pulumi.getter(name="serverCaCert")
+    def server_ca_cert(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "server_ca_cert")
+
+    @property
+    @pulumi.getter(name="serverCert")
+    def server_cert(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "server_cert")
 
     @property
     @pulumi.getter(name="serverLists")

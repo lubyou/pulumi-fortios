@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -32,7 +33,7 @@ func NewSystemStorage(ctx *pulumi.Context,
 		args = &SystemStorageArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemStorage
 	err := ctx.RegisterResource("fortios:index/systemStorage:SystemStorage", name, args, &resource, opts...)
 	if err != nil {

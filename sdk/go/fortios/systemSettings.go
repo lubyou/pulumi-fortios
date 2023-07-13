@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -35,6 +36,7 @@ type SystemSettings struct {
 	DefaultPolicyExpiryDays         pulumi.IntOutput                                `pulumi:"defaultPolicyExpiryDays"`
 	DefaultVoipAlgMode              pulumi.StringOutput                             `pulumi:"defaultVoipAlgMode"`
 	DenyTcpWithIcmp                 pulumi.StringOutput                             `pulumi:"denyTcpWithIcmp"`
+	DetectUnknownEsp                pulumi.StringOutput                             `pulumi:"detectUnknownEsp"`
 	Device                          pulumi.StringOutput                             `pulumi:"device"`
 	Dhcp6ServerIp                   pulumi.StringOutput                             `pulumi:"dhcp6ServerIp"`
 	DhcpProxy                       pulumi.StringOutput                             `pulumi:"dhcpProxy"`
@@ -52,6 +54,7 @@ type SystemSettings struct {
 	FwSessionHairpin                pulumi.StringOutput                             `pulumi:"fwSessionHairpin"`
 	Gateway                         pulumi.StringOutput                             `pulumi:"gateway"`
 	Gateway6                        pulumi.StringOutput                             `pulumi:"gateway6"`
+	GetAllTables                    pulumi.StringPtrOutput                          `pulumi:"getAllTables"`
 	GuiAdvancedPolicy               pulumi.StringOutput                             `pulumi:"guiAdvancedPolicy"`
 	GuiAdvancedWirelessFeatures     pulumi.StringOutput                             `pulumi:"guiAdvancedWirelessFeatures"`
 	GuiAllowUnnamedPolicy           pulumi.StringOutput                             `pulumi:"guiAllowUnnamedPolicy"`
@@ -61,10 +64,12 @@ type SystemSettings struct {
 	GuiDefaultPolicyColumns         SystemSettingsGuiDefaultPolicyColumnArrayOutput `pulumi:"guiDefaultPolicyColumns"`
 	GuiDhcpAdvanced                 pulumi.StringOutput                             `pulumi:"guiDhcpAdvanced"`
 	GuiDlp                          pulumi.StringOutput                             `pulumi:"guiDlp"`
+	GuiDlpProfile                   pulumi.StringOutput                             `pulumi:"guiDlpProfile"`
 	GuiDnsDatabase                  pulumi.StringOutput                             `pulumi:"guiDnsDatabase"`
 	GuiDnsfilter                    pulumi.StringOutput                             `pulumi:"guiDnsfilter"`
 	GuiDomainIpReputation           pulumi.StringOutput                             `pulumi:"guiDomainIpReputation"`
 	GuiDosPolicy                    pulumi.StringOutput                             `pulumi:"guiDosPolicy"`
+	GuiDynamicDeviceOsId            pulumi.StringOutput                             `pulumi:"guiDynamicDeviceOsId"`
 	GuiDynamicProfileDisplay        pulumi.StringOutput                             `pulumi:"guiDynamicProfileDisplay"`
 	GuiDynamicRouting               pulumi.StringOutput                             `pulumi:"guiDynamicRouting"`
 	GuiEmailCollection              pulumi.StringOutput                             `pulumi:"guiEmailCollection"`
@@ -91,7 +96,9 @@ type SystemSettings struct {
 	GuiPolicyBasedIpsec             pulumi.StringOutput                             `pulumi:"guiPolicyBasedIpsec"`
 	GuiPolicyDisclaimer             pulumi.StringOutput                             `pulumi:"guiPolicyDisclaimer"`
 	GuiPolicyLearning               pulumi.StringOutput                             `pulumi:"guiPolicyLearning"`
+	GuiProxyInspection              pulumi.StringOutput                             `pulumi:"guiProxyInspection"`
 	GuiReplacementMessageGroups     pulumi.StringOutput                             `pulumi:"guiReplacementMessageGroups"`
+	GuiRouteTagAddressCreation      pulumi.StringOutput                             `pulumi:"guiRouteTagAddressCreation"`
 	GuiSecurityProfileGroup         pulumi.StringOutput                             `pulumi:"guiSecurityProfileGroup"`
 	GuiSpamfilter                   pulumi.StringOutput                             `pulumi:"guiSpamfilter"`
 	GuiSslvpnPersonalBookmarks      pulumi.StringOutput                             `pulumi:"guiSslvpnPersonalBookmarks"`
@@ -119,6 +126,7 @@ type SystemSettings struct {
 	IkeSessionResume                pulumi.StringOutput                             `pulumi:"ikeSessionResume"`
 	ImplicitAllowDns                pulumi.StringOutput                             `pulumi:"implicitAllowDns"`
 	InspectionMode                  pulumi.StringOutput                             `pulumi:"inspectionMode"`
+	InternetServiceDatabaseCache    pulumi.StringOutput                             `pulumi:"internetServiceDatabaseCache"`
 	Ip                              pulumi.StringOutput                             `pulumi:"ip"`
 	Ip6                             pulumi.StringOutput                             `pulumi:"ip6"`
 	LanExtensionControllerAddr      pulumi.StringOutput                             `pulumi:"lanExtensionControllerAddr"`
@@ -168,7 +176,7 @@ func NewSystemSettings(ctx *pulumi.Context,
 		args = &SystemSettingsArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemSettings
 	err := ctx.RegisterResource("fortios:index/systemSettings:SystemSettings", name, args, &resource, opts...)
 	if err != nil {
@@ -213,6 +221,7 @@ type systemSettingsState struct {
 	DefaultPolicyExpiryDays         *int                                   `pulumi:"defaultPolicyExpiryDays"`
 	DefaultVoipAlgMode              *string                                `pulumi:"defaultVoipAlgMode"`
 	DenyTcpWithIcmp                 *string                                `pulumi:"denyTcpWithIcmp"`
+	DetectUnknownEsp                *string                                `pulumi:"detectUnknownEsp"`
 	Device                          *string                                `pulumi:"device"`
 	Dhcp6ServerIp                   *string                                `pulumi:"dhcp6ServerIp"`
 	DhcpProxy                       *string                                `pulumi:"dhcpProxy"`
@@ -230,6 +239,7 @@ type systemSettingsState struct {
 	FwSessionHairpin                *string                                `pulumi:"fwSessionHairpin"`
 	Gateway                         *string                                `pulumi:"gateway"`
 	Gateway6                        *string                                `pulumi:"gateway6"`
+	GetAllTables                    *string                                `pulumi:"getAllTables"`
 	GuiAdvancedPolicy               *string                                `pulumi:"guiAdvancedPolicy"`
 	GuiAdvancedWirelessFeatures     *string                                `pulumi:"guiAdvancedWirelessFeatures"`
 	GuiAllowUnnamedPolicy           *string                                `pulumi:"guiAllowUnnamedPolicy"`
@@ -239,10 +249,12 @@ type systemSettingsState struct {
 	GuiDefaultPolicyColumns         []SystemSettingsGuiDefaultPolicyColumn `pulumi:"guiDefaultPolicyColumns"`
 	GuiDhcpAdvanced                 *string                                `pulumi:"guiDhcpAdvanced"`
 	GuiDlp                          *string                                `pulumi:"guiDlp"`
+	GuiDlpProfile                   *string                                `pulumi:"guiDlpProfile"`
 	GuiDnsDatabase                  *string                                `pulumi:"guiDnsDatabase"`
 	GuiDnsfilter                    *string                                `pulumi:"guiDnsfilter"`
 	GuiDomainIpReputation           *string                                `pulumi:"guiDomainIpReputation"`
 	GuiDosPolicy                    *string                                `pulumi:"guiDosPolicy"`
+	GuiDynamicDeviceOsId            *string                                `pulumi:"guiDynamicDeviceOsId"`
 	GuiDynamicProfileDisplay        *string                                `pulumi:"guiDynamicProfileDisplay"`
 	GuiDynamicRouting               *string                                `pulumi:"guiDynamicRouting"`
 	GuiEmailCollection              *string                                `pulumi:"guiEmailCollection"`
@@ -269,7 +281,9 @@ type systemSettingsState struct {
 	GuiPolicyBasedIpsec             *string                                `pulumi:"guiPolicyBasedIpsec"`
 	GuiPolicyDisclaimer             *string                                `pulumi:"guiPolicyDisclaimer"`
 	GuiPolicyLearning               *string                                `pulumi:"guiPolicyLearning"`
+	GuiProxyInspection              *string                                `pulumi:"guiProxyInspection"`
 	GuiReplacementMessageGroups     *string                                `pulumi:"guiReplacementMessageGroups"`
+	GuiRouteTagAddressCreation      *string                                `pulumi:"guiRouteTagAddressCreation"`
 	GuiSecurityProfileGroup         *string                                `pulumi:"guiSecurityProfileGroup"`
 	GuiSpamfilter                   *string                                `pulumi:"guiSpamfilter"`
 	GuiSslvpnPersonalBookmarks      *string                                `pulumi:"guiSslvpnPersonalBookmarks"`
@@ -297,6 +311,7 @@ type systemSettingsState struct {
 	IkeSessionResume                *string                                `pulumi:"ikeSessionResume"`
 	ImplicitAllowDns                *string                                `pulumi:"implicitAllowDns"`
 	InspectionMode                  *string                                `pulumi:"inspectionMode"`
+	InternetServiceDatabaseCache    *string                                `pulumi:"internetServiceDatabaseCache"`
 	Ip                              *string                                `pulumi:"ip"`
 	Ip6                             *string                                `pulumi:"ip6"`
 	LanExtensionControllerAddr      *string                                `pulumi:"lanExtensionControllerAddr"`
@@ -362,6 +377,7 @@ type SystemSettingsState struct {
 	DefaultPolicyExpiryDays         pulumi.IntPtrInput
 	DefaultVoipAlgMode              pulumi.StringPtrInput
 	DenyTcpWithIcmp                 pulumi.StringPtrInput
+	DetectUnknownEsp                pulumi.StringPtrInput
 	Device                          pulumi.StringPtrInput
 	Dhcp6ServerIp                   pulumi.StringPtrInput
 	DhcpProxy                       pulumi.StringPtrInput
@@ -379,6 +395,7 @@ type SystemSettingsState struct {
 	FwSessionHairpin                pulumi.StringPtrInput
 	Gateway                         pulumi.StringPtrInput
 	Gateway6                        pulumi.StringPtrInput
+	GetAllTables                    pulumi.StringPtrInput
 	GuiAdvancedPolicy               pulumi.StringPtrInput
 	GuiAdvancedWirelessFeatures     pulumi.StringPtrInput
 	GuiAllowUnnamedPolicy           pulumi.StringPtrInput
@@ -388,10 +405,12 @@ type SystemSettingsState struct {
 	GuiDefaultPolicyColumns         SystemSettingsGuiDefaultPolicyColumnArrayInput
 	GuiDhcpAdvanced                 pulumi.StringPtrInput
 	GuiDlp                          pulumi.StringPtrInput
+	GuiDlpProfile                   pulumi.StringPtrInput
 	GuiDnsDatabase                  pulumi.StringPtrInput
 	GuiDnsfilter                    pulumi.StringPtrInput
 	GuiDomainIpReputation           pulumi.StringPtrInput
 	GuiDosPolicy                    pulumi.StringPtrInput
+	GuiDynamicDeviceOsId            pulumi.StringPtrInput
 	GuiDynamicProfileDisplay        pulumi.StringPtrInput
 	GuiDynamicRouting               pulumi.StringPtrInput
 	GuiEmailCollection              pulumi.StringPtrInput
@@ -418,7 +437,9 @@ type SystemSettingsState struct {
 	GuiPolicyBasedIpsec             pulumi.StringPtrInput
 	GuiPolicyDisclaimer             pulumi.StringPtrInput
 	GuiPolicyLearning               pulumi.StringPtrInput
+	GuiProxyInspection              pulumi.StringPtrInput
 	GuiReplacementMessageGroups     pulumi.StringPtrInput
+	GuiRouteTagAddressCreation      pulumi.StringPtrInput
 	GuiSecurityProfileGroup         pulumi.StringPtrInput
 	GuiSpamfilter                   pulumi.StringPtrInput
 	GuiSslvpnPersonalBookmarks      pulumi.StringPtrInput
@@ -446,6 +467,7 @@ type SystemSettingsState struct {
 	IkeSessionResume                pulumi.StringPtrInput
 	ImplicitAllowDns                pulumi.StringPtrInput
 	InspectionMode                  pulumi.StringPtrInput
+	InternetServiceDatabaseCache    pulumi.StringPtrInput
 	Ip                              pulumi.StringPtrInput
 	Ip6                             pulumi.StringPtrInput
 	LanExtensionControllerAddr      pulumi.StringPtrInput
@@ -515,6 +537,7 @@ type systemSettingsArgs struct {
 	DefaultPolicyExpiryDays         *int                                   `pulumi:"defaultPolicyExpiryDays"`
 	DefaultVoipAlgMode              *string                                `pulumi:"defaultVoipAlgMode"`
 	DenyTcpWithIcmp                 *string                                `pulumi:"denyTcpWithIcmp"`
+	DetectUnknownEsp                *string                                `pulumi:"detectUnknownEsp"`
 	Device                          *string                                `pulumi:"device"`
 	Dhcp6ServerIp                   *string                                `pulumi:"dhcp6ServerIp"`
 	DhcpProxy                       *string                                `pulumi:"dhcpProxy"`
@@ -532,6 +555,7 @@ type systemSettingsArgs struct {
 	FwSessionHairpin                *string                                `pulumi:"fwSessionHairpin"`
 	Gateway                         *string                                `pulumi:"gateway"`
 	Gateway6                        *string                                `pulumi:"gateway6"`
+	GetAllTables                    *string                                `pulumi:"getAllTables"`
 	GuiAdvancedPolicy               *string                                `pulumi:"guiAdvancedPolicy"`
 	GuiAdvancedWirelessFeatures     *string                                `pulumi:"guiAdvancedWirelessFeatures"`
 	GuiAllowUnnamedPolicy           *string                                `pulumi:"guiAllowUnnamedPolicy"`
@@ -541,10 +565,12 @@ type systemSettingsArgs struct {
 	GuiDefaultPolicyColumns         []SystemSettingsGuiDefaultPolicyColumn `pulumi:"guiDefaultPolicyColumns"`
 	GuiDhcpAdvanced                 *string                                `pulumi:"guiDhcpAdvanced"`
 	GuiDlp                          *string                                `pulumi:"guiDlp"`
+	GuiDlpProfile                   *string                                `pulumi:"guiDlpProfile"`
 	GuiDnsDatabase                  *string                                `pulumi:"guiDnsDatabase"`
 	GuiDnsfilter                    *string                                `pulumi:"guiDnsfilter"`
 	GuiDomainIpReputation           *string                                `pulumi:"guiDomainIpReputation"`
 	GuiDosPolicy                    *string                                `pulumi:"guiDosPolicy"`
+	GuiDynamicDeviceOsId            *string                                `pulumi:"guiDynamicDeviceOsId"`
 	GuiDynamicProfileDisplay        *string                                `pulumi:"guiDynamicProfileDisplay"`
 	GuiDynamicRouting               *string                                `pulumi:"guiDynamicRouting"`
 	GuiEmailCollection              *string                                `pulumi:"guiEmailCollection"`
@@ -571,7 +597,9 @@ type systemSettingsArgs struct {
 	GuiPolicyBasedIpsec             *string                                `pulumi:"guiPolicyBasedIpsec"`
 	GuiPolicyDisclaimer             *string                                `pulumi:"guiPolicyDisclaimer"`
 	GuiPolicyLearning               *string                                `pulumi:"guiPolicyLearning"`
+	GuiProxyInspection              *string                                `pulumi:"guiProxyInspection"`
 	GuiReplacementMessageGroups     *string                                `pulumi:"guiReplacementMessageGroups"`
+	GuiRouteTagAddressCreation      *string                                `pulumi:"guiRouteTagAddressCreation"`
 	GuiSecurityProfileGroup         *string                                `pulumi:"guiSecurityProfileGroup"`
 	GuiSpamfilter                   *string                                `pulumi:"guiSpamfilter"`
 	GuiSslvpnPersonalBookmarks      *string                                `pulumi:"guiSslvpnPersonalBookmarks"`
@@ -599,6 +627,7 @@ type systemSettingsArgs struct {
 	IkeSessionResume                *string                                `pulumi:"ikeSessionResume"`
 	ImplicitAllowDns                *string                                `pulumi:"implicitAllowDns"`
 	InspectionMode                  *string                                `pulumi:"inspectionMode"`
+	InternetServiceDatabaseCache    *string                                `pulumi:"internetServiceDatabaseCache"`
 	Ip                              *string                                `pulumi:"ip"`
 	Ip6                             *string                                `pulumi:"ip6"`
 	LanExtensionControllerAddr      *string                                `pulumi:"lanExtensionControllerAddr"`
@@ -665,6 +694,7 @@ type SystemSettingsArgs struct {
 	DefaultPolicyExpiryDays         pulumi.IntPtrInput
 	DefaultVoipAlgMode              pulumi.StringPtrInput
 	DenyTcpWithIcmp                 pulumi.StringPtrInput
+	DetectUnknownEsp                pulumi.StringPtrInput
 	Device                          pulumi.StringPtrInput
 	Dhcp6ServerIp                   pulumi.StringPtrInput
 	DhcpProxy                       pulumi.StringPtrInput
@@ -682,6 +712,7 @@ type SystemSettingsArgs struct {
 	FwSessionHairpin                pulumi.StringPtrInput
 	Gateway                         pulumi.StringPtrInput
 	Gateway6                        pulumi.StringPtrInput
+	GetAllTables                    pulumi.StringPtrInput
 	GuiAdvancedPolicy               pulumi.StringPtrInput
 	GuiAdvancedWirelessFeatures     pulumi.StringPtrInput
 	GuiAllowUnnamedPolicy           pulumi.StringPtrInput
@@ -691,10 +722,12 @@ type SystemSettingsArgs struct {
 	GuiDefaultPolicyColumns         SystemSettingsGuiDefaultPolicyColumnArrayInput
 	GuiDhcpAdvanced                 pulumi.StringPtrInput
 	GuiDlp                          pulumi.StringPtrInput
+	GuiDlpProfile                   pulumi.StringPtrInput
 	GuiDnsDatabase                  pulumi.StringPtrInput
 	GuiDnsfilter                    pulumi.StringPtrInput
 	GuiDomainIpReputation           pulumi.StringPtrInput
 	GuiDosPolicy                    pulumi.StringPtrInput
+	GuiDynamicDeviceOsId            pulumi.StringPtrInput
 	GuiDynamicProfileDisplay        pulumi.StringPtrInput
 	GuiDynamicRouting               pulumi.StringPtrInput
 	GuiEmailCollection              pulumi.StringPtrInput
@@ -721,7 +754,9 @@ type SystemSettingsArgs struct {
 	GuiPolicyBasedIpsec             pulumi.StringPtrInput
 	GuiPolicyDisclaimer             pulumi.StringPtrInput
 	GuiPolicyLearning               pulumi.StringPtrInput
+	GuiProxyInspection              pulumi.StringPtrInput
 	GuiReplacementMessageGroups     pulumi.StringPtrInput
+	GuiRouteTagAddressCreation      pulumi.StringPtrInput
 	GuiSecurityProfileGroup         pulumi.StringPtrInput
 	GuiSpamfilter                   pulumi.StringPtrInput
 	GuiSslvpnPersonalBookmarks      pulumi.StringPtrInput
@@ -749,6 +784,7 @@ type SystemSettingsArgs struct {
 	IkeSessionResume                pulumi.StringPtrInput
 	ImplicitAllowDns                pulumi.StringPtrInput
 	InspectionMode                  pulumi.StringPtrInput
+	InternetServiceDatabaseCache    pulumi.StringPtrInput
 	Ip                              pulumi.StringPtrInput
 	Ip6                             pulumi.StringPtrInput
 	LanExtensionControllerAddr      pulumi.StringPtrInput
@@ -966,6 +1002,10 @@ func (o SystemSettingsOutput) DenyTcpWithIcmp() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.DenyTcpWithIcmp }).(pulumi.StringOutput)
 }
 
+func (o SystemSettingsOutput) DetectUnknownEsp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.DetectUnknownEsp }).(pulumi.StringOutput)
+}
+
 func (o SystemSettingsOutput) Device() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.Device }).(pulumi.StringOutput)
 }
@@ -1034,6 +1074,10 @@ func (o SystemSettingsOutput) Gateway6() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.Gateway6 }).(pulumi.StringOutput)
 }
 
+func (o SystemSettingsOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 func (o SystemSettingsOutput) GuiAdvancedPolicy() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiAdvancedPolicy }).(pulumi.StringOutput)
 }
@@ -1072,6 +1116,10 @@ func (o SystemSettingsOutput) GuiDlp() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiDlp }).(pulumi.StringOutput)
 }
 
+func (o SystemSettingsOutput) GuiDlpProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiDlpProfile }).(pulumi.StringOutput)
+}
+
 func (o SystemSettingsOutput) GuiDnsDatabase() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiDnsDatabase }).(pulumi.StringOutput)
 }
@@ -1086,6 +1134,10 @@ func (o SystemSettingsOutput) GuiDomainIpReputation() pulumi.StringOutput {
 
 func (o SystemSettingsOutput) GuiDosPolicy() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiDosPolicy }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiDynamicDeviceOsId() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiDynamicDeviceOsId }).(pulumi.StringOutput)
 }
 
 func (o SystemSettingsOutput) GuiDynamicProfileDisplay() pulumi.StringOutput {
@@ -1192,8 +1244,16 @@ func (o SystemSettingsOutput) GuiPolicyLearning() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiPolicyLearning }).(pulumi.StringOutput)
 }
 
+func (o SystemSettingsOutput) GuiProxyInspection() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiProxyInspection }).(pulumi.StringOutput)
+}
+
 func (o SystemSettingsOutput) GuiReplacementMessageGroups() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiReplacementMessageGroups }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiRouteTagAddressCreation() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiRouteTagAddressCreation }).(pulumi.StringOutput)
 }
 
 func (o SystemSettingsOutput) GuiSecurityProfileGroup() pulumi.StringOutput {
@@ -1302,6 +1362,10 @@ func (o SystemSettingsOutput) ImplicitAllowDns() pulumi.StringOutput {
 
 func (o SystemSettingsOutput) InspectionMode() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.InspectionMode }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) InternetServiceDatabaseCache() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.InternetServiceDatabaseCache }).(pulumi.StringOutput)
 }
 
 func (o SystemSettingsOutput) Ip() pulumi.StringOutput {

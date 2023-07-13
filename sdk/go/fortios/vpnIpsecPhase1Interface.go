@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -26,6 +27,7 @@ type VpnIpsecPhase1Interface struct {
 	Authpasswd                 pulumi.StringPtrOutput                             `pulumi:"authpasswd"`
 	Authusr                    pulumi.StringOutput                                `pulumi:"authusr"`
 	Authusrgrp                 pulumi.StringOutput                                `pulumi:"authusrgrp"`
+	AutoDiscoveryCrossover     pulumi.StringOutput                                `pulumi:"autoDiscoveryCrossover"`
 	AutoDiscoveryForwarder     pulumi.StringOutput                                `pulumi:"autoDiscoveryForwarder"`
 	AutoDiscoveryOfferInterval pulumi.IntOutput                                   `pulumi:"autoDiscoveryOfferInterval"`
 	AutoDiscoveryPsk           pulumi.StringOutput                                `pulumi:"autoDiscoveryPsk"`
@@ -43,6 +45,8 @@ type VpnIpsecPhase1Interface struct {
 	Comments                   pulumi.StringPtrOutput                             `pulumi:"comments"`
 	DefaultGw                  pulumi.StringOutput                                `pulumi:"defaultGw"`
 	DefaultGwPriority          pulumi.IntOutput                                   `pulumi:"defaultGwPriority"`
+	DevId                      pulumi.StringOutput                                `pulumi:"devId"`
+	DevIdNotification          pulumi.StringOutput                                `pulumi:"devIdNotification"`
 	Dhcp6RaLinkaddr            pulumi.StringOutput                                `pulumi:"dhcp6RaLinkaddr"`
 	DhcpRaGiaddr               pulumi.StringOutput                                `pulumi:"dhcpRaGiaddr"`
 	Dhgrp                      pulumi.StringOutput                                `pulumi:"dhgrp"`
@@ -65,11 +69,13 @@ type VpnIpsecPhase1Interface struct {
 	EncapsulationAddress       pulumi.StringOutput                                `pulumi:"encapsulationAddress"`
 	EnforceUniqueId            pulumi.StringOutput                                `pulumi:"enforceUniqueId"`
 	Esn                        pulumi.StringOutput                                `pulumi:"esn"`
+	ExchangeFgtDeviceId        pulumi.StringOutput                                `pulumi:"exchangeFgtDeviceId"`
 	ExchangeInterfaceIp        pulumi.StringOutput                                `pulumi:"exchangeInterfaceIp"`
 	ExchangeIpAddr4            pulumi.StringOutput                                `pulumi:"exchangeIpAddr4"`
 	ExchangeIpAddr6            pulumi.StringOutput                                `pulumi:"exchangeIpAddr6"`
 	FecBase                    pulumi.IntOutput                                   `pulumi:"fecBase"`
 	FecCodec                   pulumi.IntOutput                                   `pulumi:"fecCodec"`
+	FecCodecString             pulumi.StringOutput                                `pulumi:"fecCodecString"`
 	FecEgress                  pulumi.StringOutput                                `pulumi:"fecEgress"`
 	FecHealthCheck             pulumi.StringOutput                                `pulumi:"fecHealthCheck"`
 	FecIngress                 pulumi.StringOutput                                `pulumi:"fecIngress"`
@@ -81,6 +87,7 @@ type VpnIpsecPhase1Interface struct {
 	ForticlientEnforcement     pulumi.StringOutput                                `pulumi:"forticlientEnforcement"`
 	Fragmentation              pulumi.StringOutput                                `pulumi:"fragmentation"`
 	FragmentationMtu           pulumi.IntOutput                                   `pulumi:"fragmentationMtu"`
+	GetAllTables               pulumi.StringPtrOutput                             `pulumi:"getAllTables"`
 	GroupAuthentication        pulumi.StringOutput                                `pulumi:"groupAuthentication"`
 	GroupAuthenticationSecret  pulumi.StringPtrOutput                             `pulumi:"groupAuthenticationSecret"`
 	HaSyncEspSeqno             pulumi.StringOutput                                `pulumi:"haSyncEspSeqno"`
@@ -117,6 +124,7 @@ type VpnIpsecPhase1Interface struct {
 	Ipv6StartIp                pulumi.StringOutput                                `pulumi:"ipv6StartIp"`
 	Keepalive                  pulumi.IntOutput                                   `pulumi:"keepalive"`
 	Keylife                    pulumi.IntOutput                                   `pulumi:"keylife"`
+	Kms                        pulumi.StringOutput                                `pulumi:"kms"`
 	LinkCost                   pulumi.IntOutput                                   `pulumi:"linkCost"`
 	LocalGw                    pulumi.StringOutput                                `pulumi:"localGw"`
 	LocalGw6                   pulumi.StringOutput                                `pulumi:"localGw6"`
@@ -210,7 +218,7 @@ func NewVpnIpsecPhase1Interface(ctx *pulumi.Context,
 		"psksecretRemote",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource VpnIpsecPhase1Interface
 	err := ctx.RegisterResource("fortios:index/vpnIpsecPhase1Interface:VpnIpsecPhase1Interface", name, args, &resource, opts...)
 	if err != nil {
@@ -245,6 +253,7 @@ type vpnIpsecPhase1InterfaceState struct {
 	Authpasswd                 *string                                   `pulumi:"authpasswd"`
 	Authusr                    *string                                   `pulumi:"authusr"`
 	Authusrgrp                 *string                                   `pulumi:"authusrgrp"`
+	AutoDiscoveryCrossover     *string                                   `pulumi:"autoDiscoveryCrossover"`
 	AutoDiscoveryForwarder     *string                                   `pulumi:"autoDiscoveryForwarder"`
 	AutoDiscoveryOfferInterval *int                                      `pulumi:"autoDiscoveryOfferInterval"`
 	AutoDiscoveryPsk           *string                                   `pulumi:"autoDiscoveryPsk"`
@@ -262,6 +271,8 @@ type vpnIpsecPhase1InterfaceState struct {
 	Comments                   *string                                   `pulumi:"comments"`
 	DefaultGw                  *string                                   `pulumi:"defaultGw"`
 	DefaultGwPriority          *int                                      `pulumi:"defaultGwPriority"`
+	DevId                      *string                                   `pulumi:"devId"`
+	DevIdNotification          *string                                   `pulumi:"devIdNotification"`
 	Dhcp6RaLinkaddr            *string                                   `pulumi:"dhcp6RaLinkaddr"`
 	DhcpRaGiaddr               *string                                   `pulumi:"dhcpRaGiaddr"`
 	Dhgrp                      *string                                   `pulumi:"dhgrp"`
@@ -284,11 +295,13 @@ type vpnIpsecPhase1InterfaceState struct {
 	EncapsulationAddress       *string                                   `pulumi:"encapsulationAddress"`
 	EnforceUniqueId            *string                                   `pulumi:"enforceUniqueId"`
 	Esn                        *string                                   `pulumi:"esn"`
+	ExchangeFgtDeviceId        *string                                   `pulumi:"exchangeFgtDeviceId"`
 	ExchangeInterfaceIp        *string                                   `pulumi:"exchangeInterfaceIp"`
 	ExchangeIpAddr4            *string                                   `pulumi:"exchangeIpAddr4"`
 	ExchangeIpAddr6            *string                                   `pulumi:"exchangeIpAddr6"`
 	FecBase                    *int                                      `pulumi:"fecBase"`
 	FecCodec                   *int                                      `pulumi:"fecCodec"`
+	FecCodecString             *string                                   `pulumi:"fecCodecString"`
 	FecEgress                  *string                                   `pulumi:"fecEgress"`
 	FecHealthCheck             *string                                   `pulumi:"fecHealthCheck"`
 	FecIngress                 *string                                   `pulumi:"fecIngress"`
@@ -300,6 +313,7 @@ type vpnIpsecPhase1InterfaceState struct {
 	ForticlientEnforcement     *string                                   `pulumi:"forticlientEnforcement"`
 	Fragmentation              *string                                   `pulumi:"fragmentation"`
 	FragmentationMtu           *int                                      `pulumi:"fragmentationMtu"`
+	GetAllTables               *string                                   `pulumi:"getAllTables"`
 	GroupAuthentication        *string                                   `pulumi:"groupAuthentication"`
 	GroupAuthenticationSecret  *string                                   `pulumi:"groupAuthenticationSecret"`
 	HaSyncEspSeqno             *string                                   `pulumi:"haSyncEspSeqno"`
@@ -336,6 +350,7 @@ type vpnIpsecPhase1InterfaceState struct {
 	Ipv6StartIp                *string                                   `pulumi:"ipv6StartIp"`
 	Keepalive                  *int                                      `pulumi:"keepalive"`
 	Keylife                    *int                                      `pulumi:"keylife"`
+	Kms                        *string                                   `pulumi:"kms"`
 	LinkCost                   *int                                      `pulumi:"linkCost"`
 	LocalGw                    *string                                   `pulumi:"localGw"`
 	LocalGw6                   *string                                   `pulumi:"localGw6"`
@@ -406,6 +421,7 @@ type VpnIpsecPhase1InterfaceState struct {
 	Authpasswd                 pulumi.StringPtrInput
 	Authusr                    pulumi.StringPtrInput
 	Authusrgrp                 pulumi.StringPtrInput
+	AutoDiscoveryCrossover     pulumi.StringPtrInput
 	AutoDiscoveryForwarder     pulumi.StringPtrInput
 	AutoDiscoveryOfferInterval pulumi.IntPtrInput
 	AutoDiscoveryPsk           pulumi.StringPtrInput
@@ -423,6 +439,8 @@ type VpnIpsecPhase1InterfaceState struct {
 	Comments                   pulumi.StringPtrInput
 	DefaultGw                  pulumi.StringPtrInput
 	DefaultGwPriority          pulumi.IntPtrInput
+	DevId                      pulumi.StringPtrInput
+	DevIdNotification          pulumi.StringPtrInput
 	Dhcp6RaLinkaddr            pulumi.StringPtrInput
 	DhcpRaGiaddr               pulumi.StringPtrInput
 	Dhgrp                      pulumi.StringPtrInput
@@ -445,11 +463,13 @@ type VpnIpsecPhase1InterfaceState struct {
 	EncapsulationAddress       pulumi.StringPtrInput
 	EnforceUniqueId            pulumi.StringPtrInput
 	Esn                        pulumi.StringPtrInput
+	ExchangeFgtDeviceId        pulumi.StringPtrInput
 	ExchangeInterfaceIp        pulumi.StringPtrInput
 	ExchangeIpAddr4            pulumi.StringPtrInput
 	ExchangeIpAddr6            pulumi.StringPtrInput
 	FecBase                    pulumi.IntPtrInput
 	FecCodec                   pulumi.IntPtrInput
+	FecCodecString             pulumi.StringPtrInput
 	FecEgress                  pulumi.StringPtrInput
 	FecHealthCheck             pulumi.StringPtrInput
 	FecIngress                 pulumi.StringPtrInput
@@ -461,6 +481,7 @@ type VpnIpsecPhase1InterfaceState struct {
 	ForticlientEnforcement     pulumi.StringPtrInput
 	Fragmentation              pulumi.StringPtrInput
 	FragmentationMtu           pulumi.IntPtrInput
+	GetAllTables               pulumi.StringPtrInput
 	GroupAuthentication        pulumi.StringPtrInput
 	GroupAuthenticationSecret  pulumi.StringPtrInput
 	HaSyncEspSeqno             pulumi.StringPtrInput
@@ -497,6 +518,7 @@ type VpnIpsecPhase1InterfaceState struct {
 	Ipv6StartIp                pulumi.StringPtrInput
 	Keepalive                  pulumi.IntPtrInput
 	Keylife                    pulumi.IntPtrInput
+	Kms                        pulumi.StringPtrInput
 	LinkCost                   pulumi.IntPtrInput
 	LocalGw                    pulumi.StringPtrInput
 	LocalGw6                   pulumi.StringPtrInput
@@ -571,6 +593,7 @@ type vpnIpsecPhase1InterfaceArgs struct {
 	Authpasswd                 *string                                   `pulumi:"authpasswd"`
 	Authusr                    *string                                   `pulumi:"authusr"`
 	Authusrgrp                 *string                                   `pulumi:"authusrgrp"`
+	AutoDiscoveryCrossover     *string                                   `pulumi:"autoDiscoveryCrossover"`
 	AutoDiscoveryForwarder     *string                                   `pulumi:"autoDiscoveryForwarder"`
 	AutoDiscoveryOfferInterval *int                                      `pulumi:"autoDiscoveryOfferInterval"`
 	AutoDiscoveryPsk           *string                                   `pulumi:"autoDiscoveryPsk"`
@@ -588,6 +611,8 @@ type vpnIpsecPhase1InterfaceArgs struct {
 	Comments                   *string                                   `pulumi:"comments"`
 	DefaultGw                  *string                                   `pulumi:"defaultGw"`
 	DefaultGwPriority          *int                                      `pulumi:"defaultGwPriority"`
+	DevId                      *string                                   `pulumi:"devId"`
+	DevIdNotification          *string                                   `pulumi:"devIdNotification"`
 	Dhcp6RaLinkaddr            *string                                   `pulumi:"dhcp6RaLinkaddr"`
 	DhcpRaGiaddr               *string                                   `pulumi:"dhcpRaGiaddr"`
 	Dhgrp                      *string                                   `pulumi:"dhgrp"`
@@ -610,11 +635,13 @@ type vpnIpsecPhase1InterfaceArgs struct {
 	EncapsulationAddress       *string                                   `pulumi:"encapsulationAddress"`
 	EnforceUniqueId            *string                                   `pulumi:"enforceUniqueId"`
 	Esn                        *string                                   `pulumi:"esn"`
+	ExchangeFgtDeviceId        *string                                   `pulumi:"exchangeFgtDeviceId"`
 	ExchangeInterfaceIp        *string                                   `pulumi:"exchangeInterfaceIp"`
 	ExchangeIpAddr4            *string                                   `pulumi:"exchangeIpAddr4"`
 	ExchangeIpAddr6            *string                                   `pulumi:"exchangeIpAddr6"`
 	FecBase                    *int                                      `pulumi:"fecBase"`
 	FecCodec                   *int                                      `pulumi:"fecCodec"`
+	FecCodecString             *string                                   `pulumi:"fecCodecString"`
 	FecEgress                  *string                                   `pulumi:"fecEgress"`
 	FecHealthCheck             *string                                   `pulumi:"fecHealthCheck"`
 	FecIngress                 *string                                   `pulumi:"fecIngress"`
@@ -626,6 +653,7 @@ type vpnIpsecPhase1InterfaceArgs struct {
 	ForticlientEnforcement     *string                                   `pulumi:"forticlientEnforcement"`
 	Fragmentation              *string                                   `pulumi:"fragmentation"`
 	FragmentationMtu           *int                                      `pulumi:"fragmentationMtu"`
+	GetAllTables               *string                                   `pulumi:"getAllTables"`
 	GroupAuthentication        *string                                   `pulumi:"groupAuthentication"`
 	GroupAuthenticationSecret  *string                                   `pulumi:"groupAuthenticationSecret"`
 	HaSyncEspSeqno             *string                                   `pulumi:"haSyncEspSeqno"`
@@ -662,6 +690,7 @@ type vpnIpsecPhase1InterfaceArgs struct {
 	Ipv6StartIp                *string                                   `pulumi:"ipv6StartIp"`
 	Keepalive                  *int                                      `pulumi:"keepalive"`
 	Keylife                    *int                                      `pulumi:"keylife"`
+	Kms                        *string                                   `pulumi:"kms"`
 	LinkCost                   *int                                      `pulumi:"linkCost"`
 	LocalGw                    *string                                   `pulumi:"localGw"`
 	LocalGw6                   *string                                   `pulumi:"localGw6"`
@@ -733,6 +762,7 @@ type VpnIpsecPhase1InterfaceArgs struct {
 	Authpasswd                 pulumi.StringPtrInput
 	Authusr                    pulumi.StringPtrInput
 	Authusrgrp                 pulumi.StringPtrInput
+	AutoDiscoveryCrossover     pulumi.StringPtrInput
 	AutoDiscoveryForwarder     pulumi.StringPtrInput
 	AutoDiscoveryOfferInterval pulumi.IntPtrInput
 	AutoDiscoveryPsk           pulumi.StringPtrInput
@@ -750,6 +780,8 @@ type VpnIpsecPhase1InterfaceArgs struct {
 	Comments                   pulumi.StringPtrInput
 	DefaultGw                  pulumi.StringPtrInput
 	DefaultGwPriority          pulumi.IntPtrInput
+	DevId                      pulumi.StringPtrInput
+	DevIdNotification          pulumi.StringPtrInput
 	Dhcp6RaLinkaddr            pulumi.StringPtrInput
 	DhcpRaGiaddr               pulumi.StringPtrInput
 	Dhgrp                      pulumi.StringPtrInput
@@ -772,11 +804,13 @@ type VpnIpsecPhase1InterfaceArgs struct {
 	EncapsulationAddress       pulumi.StringPtrInput
 	EnforceUniqueId            pulumi.StringPtrInput
 	Esn                        pulumi.StringPtrInput
+	ExchangeFgtDeviceId        pulumi.StringPtrInput
 	ExchangeInterfaceIp        pulumi.StringPtrInput
 	ExchangeIpAddr4            pulumi.StringPtrInput
 	ExchangeIpAddr6            pulumi.StringPtrInput
 	FecBase                    pulumi.IntPtrInput
 	FecCodec                   pulumi.IntPtrInput
+	FecCodecString             pulumi.StringPtrInput
 	FecEgress                  pulumi.StringPtrInput
 	FecHealthCheck             pulumi.StringPtrInput
 	FecIngress                 pulumi.StringPtrInput
@@ -788,6 +822,7 @@ type VpnIpsecPhase1InterfaceArgs struct {
 	ForticlientEnforcement     pulumi.StringPtrInput
 	Fragmentation              pulumi.StringPtrInput
 	FragmentationMtu           pulumi.IntPtrInput
+	GetAllTables               pulumi.StringPtrInput
 	GroupAuthentication        pulumi.StringPtrInput
 	GroupAuthenticationSecret  pulumi.StringPtrInput
 	HaSyncEspSeqno             pulumi.StringPtrInput
@@ -824,6 +859,7 @@ type VpnIpsecPhase1InterfaceArgs struct {
 	Ipv6StartIp                pulumi.StringPtrInput
 	Keepalive                  pulumi.IntPtrInput
 	Keylife                    pulumi.IntPtrInput
+	Kms                        pulumi.StringPtrInput
 	LinkCost                   pulumi.IntPtrInput
 	LocalGw                    pulumi.StringPtrInput
 	LocalGw6                   pulumi.StringPtrInput
@@ -1016,6 +1052,10 @@ func (o VpnIpsecPhase1InterfaceOutput) Authusrgrp() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpnIpsecPhase1Interface) pulumi.StringOutput { return v.Authusrgrp }).(pulumi.StringOutput)
 }
 
+func (o VpnIpsecPhase1InterfaceOutput) AutoDiscoveryCrossover() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnIpsecPhase1Interface) pulumi.StringOutput { return v.AutoDiscoveryCrossover }).(pulumi.StringOutput)
+}
+
 func (o VpnIpsecPhase1InterfaceOutput) AutoDiscoveryForwarder() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpnIpsecPhase1Interface) pulumi.StringOutput { return v.AutoDiscoveryForwarder }).(pulumi.StringOutput)
 }
@@ -1084,6 +1124,14 @@ func (o VpnIpsecPhase1InterfaceOutput) DefaultGw() pulumi.StringOutput {
 
 func (o VpnIpsecPhase1InterfaceOutput) DefaultGwPriority() pulumi.IntOutput {
 	return o.ApplyT(func(v *VpnIpsecPhase1Interface) pulumi.IntOutput { return v.DefaultGwPriority }).(pulumi.IntOutput)
+}
+
+func (o VpnIpsecPhase1InterfaceOutput) DevId() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnIpsecPhase1Interface) pulumi.StringOutput { return v.DevId }).(pulumi.StringOutput)
+}
+
+func (o VpnIpsecPhase1InterfaceOutput) DevIdNotification() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnIpsecPhase1Interface) pulumi.StringOutput { return v.DevIdNotification }).(pulumi.StringOutput)
 }
 
 func (o VpnIpsecPhase1InterfaceOutput) Dhcp6RaLinkaddr() pulumi.StringOutput {
@@ -1174,6 +1222,10 @@ func (o VpnIpsecPhase1InterfaceOutput) Esn() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpnIpsecPhase1Interface) pulumi.StringOutput { return v.Esn }).(pulumi.StringOutput)
 }
 
+func (o VpnIpsecPhase1InterfaceOutput) ExchangeFgtDeviceId() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnIpsecPhase1Interface) pulumi.StringOutput { return v.ExchangeFgtDeviceId }).(pulumi.StringOutput)
+}
+
 func (o VpnIpsecPhase1InterfaceOutput) ExchangeInterfaceIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpnIpsecPhase1Interface) pulumi.StringOutput { return v.ExchangeInterfaceIp }).(pulumi.StringOutput)
 }
@@ -1192,6 +1244,10 @@ func (o VpnIpsecPhase1InterfaceOutput) FecBase() pulumi.IntOutput {
 
 func (o VpnIpsecPhase1InterfaceOutput) FecCodec() pulumi.IntOutput {
 	return o.ApplyT(func(v *VpnIpsecPhase1Interface) pulumi.IntOutput { return v.FecCodec }).(pulumi.IntOutput)
+}
+
+func (o VpnIpsecPhase1InterfaceOutput) FecCodecString() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnIpsecPhase1Interface) pulumi.StringOutput { return v.FecCodecString }).(pulumi.StringOutput)
 }
 
 func (o VpnIpsecPhase1InterfaceOutput) FecEgress() pulumi.StringOutput {
@@ -1236,6 +1292,10 @@ func (o VpnIpsecPhase1InterfaceOutput) Fragmentation() pulumi.StringOutput {
 
 func (o VpnIpsecPhase1InterfaceOutput) FragmentationMtu() pulumi.IntOutput {
 	return o.ApplyT(func(v *VpnIpsecPhase1Interface) pulumi.IntOutput { return v.FragmentationMtu }).(pulumi.IntOutput)
+}
+
+func (o VpnIpsecPhase1InterfaceOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnIpsecPhase1Interface) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o VpnIpsecPhase1InterfaceOutput) GroupAuthentication() pulumi.StringOutput {
@@ -1384,6 +1444,10 @@ func (o VpnIpsecPhase1InterfaceOutput) Keepalive() pulumi.IntOutput {
 
 func (o VpnIpsecPhase1InterfaceOutput) Keylife() pulumi.IntOutput {
 	return o.ApplyT(func(v *VpnIpsecPhase1Interface) pulumi.IntOutput { return v.Keylife }).(pulumi.IntOutput)
+}
+
+func (o VpnIpsecPhase1InterfaceOutput) Kms() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnIpsecPhase1Interface) pulumi.StringOutput { return v.Kms }).(pulumi.StringOutput)
 }
 
 func (o VpnIpsecPhase1InterfaceOutput) LinkCost() pulumi.IntOutput {

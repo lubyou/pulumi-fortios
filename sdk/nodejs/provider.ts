@@ -22,7 +22,7 @@ export class Provider extends pulumi.ProviderResource {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === Provider.__pulumiType;
+        return obj['__pulumiType'] === "pulumi:providers:" + Provider.__pulumiType;
     }
 
     /**
@@ -64,10 +64,18 @@ export class Provider extends pulumi.ProviderResource {
      */
     public readonly httpProxy!: pulumi.Output<string | undefined>;
     /**
+     * The password of the user.
+     */
+    public readonly password!: pulumi.Output<string | undefined>;
+    /**
      * Enable/disable peer authentication, can be 'enable' or 'disable'
      */
     public readonly peerauth!: pulumi.Output<string | undefined>;
     public readonly token!: pulumi.Output<string | undefined>;
+    /**
+     * The username of the user.
+     */
+    public readonly username!: pulumi.Output<string | undefined>;
     public readonly vdom!: pulumi.Output<string | undefined>;
 
     /**
@@ -94,8 +102,10 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["hostname"] = (args ? args.hostname : undefined) ?? utilities.getEnv("FORTIOS_ACCESS_HOSTNAME");
             resourceInputs["httpProxy"] = args ? args.httpProxy : undefined;
             resourceInputs["insecure"] = pulumi.output((args ? args.insecure : undefined) ?? utilities.getEnvBoolean("FORTIOS_INSECURE")).apply(JSON.stringify);
+            resourceInputs["password"] = args ? args.password : undefined;
             resourceInputs["peerauth"] = args ? args.peerauth : undefined;
             resourceInputs["token"] = (args ? args.token : undefined) ?? utilities.getEnv("FORTIOS_ACCESS_TOKEN");
+            resourceInputs["username"] = args ? args.username : undefined;
             resourceInputs["vdom"] = args ? args.vdom : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -148,9 +158,17 @@ export interface ProviderArgs {
     httpProxy?: pulumi.Input<string>;
     insecure?: pulumi.Input<boolean>;
     /**
+     * The password of the user.
+     */
+    password?: pulumi.Input<string>;
+    /**
      * Enable/disable peer authentication, can be 'enable' or 'disable'
      */
     peerauth?: pulumi.Input<string>;
     token?: pulumi.Input<string>;
+    /**
+     * The username of the user.
+     */
+    username?: pulumi.Input<string>;
     vdom?: pulumi.Input<string>;
 }

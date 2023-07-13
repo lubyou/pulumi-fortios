@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -17,6 +18,7 @@ type EmailfilterBwl struct {
 	DynamicSortSubtable pulumi.StringPtrOutput         `pulumi:"dynamicSortSubtable"`
 	Entries             EmailfilterBwlEntryArrayOutput `pulumi:"entries"`
 	Fosid               pulumi.IntOutput               `pulumi:"fosid"`
+	GetAllTables        pulumi.StringPtrOutput         `pulumi:"getAllTables"`
 	Name                pulumi.StringOutput            `pulumi:"name"`
 	Vdomparam           pulumi.StringPtrOutput         `pulumi:"vdomparam"`
 }
@@ -28,7 +30,7 @@ func NewEmailfilterBwl(ctx *pulumi.Context,
 		args = &EmailfilterBwlArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource EmailfilterBwl
 	err := ctx.RegisterResource("fortios:index/emailfilterBwl:EmailfilterBwl", name, args, &resource, opts...)
 	if err != nil {
@@ -55,6 +57,7 @@ type emailfilterBwlState struct {
 	DynamicSortSubtable *string               `pulumi:"dynamicSortSubtable"`
 	Entries             []EmailfilterBwlEntry `pulumi:"entries"`
 	Fosid               *int                  `pulumi:"fosid"`
+	GetAllTables        *string               `pulumi:"getAllTables"`
 	Name                *string               `pulumi:"name"`
 	Vdomparam           *string               `pulumi:"vdomparam"`
 }
@@ -64,6 +67,7 @@ type EmailfilterBwlState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	Entries             EmailfilterBwlEntryArrayInput
 	Fosid               pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
 }
@@ -77,6 +81,7 @@ type emailfilterBwlArgs struct {
 	DynamicSortSubtable *string               `pulumi:"dynamicSortSubtable"`
 	Entries             []EmailfilterBwlEntry `pulumi:"entries"`
 	Fosid               *int                  `pulumi:"fosid"`
+	GetAllTables        *string               `pulumi:"getAllTables"`
 	Name                *string               `pulumi:"name"`
 	Vdomparam           *string               `pulumi:"vdomparam"`
 }
@@ -87,6 +92,7 @@ type EmailfilterBwlArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	Entries             EmailfilterBwlEntryArrayInput
 	Fosid               pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
 }
@@ -192,6 +198,10 @@ func (o EmailfilterBwlOutput) Entries() EmailfilterBwlEntryArrayOutput {
 
 func (o EmailfilterBwlOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *EmailfilterBwl) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o EmailfilterBwlOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EmailfilterBwl) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o EmailfilterBwlOutput) Name() pulumi.StringOutput {

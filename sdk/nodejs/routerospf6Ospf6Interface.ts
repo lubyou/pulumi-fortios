@@ -40,6 +40,7 @@ export class Routerospf6Ospf6Interface extends pulumi.CustomResource {
     public readonly cost!: pulumi.Output<number>;
     public readonly deadInterval!: pulumi.Output<number>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly helloInterval!: pulumi.Output<number>;
     public readonly interface!: pulumi.Output<string>;
     public readonly ipsecAuthAlg!: pulumi.Output<string>;
@@ -76,6 +77,7 @@ export class Routerospf6Ospf6Interface extends pulumi.CustomResource {
             resourceInputs["cost"] = state ? state.cost : undefined;
             resourceInputs["deadInterval"] = state ? state.deadInterval : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["helloInterval"] = state ? state.helloInterval : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
             resourceInputs["ipsecAuthAlg"] = state ? state.ipsecAuthAlg : undefined;
@@ -100,6 +102,7 @@ export class Routerospf6Ospf6Interface extends pulumi.CustomResource {
             resourceInputs["cost"] = args ? args.cost : undefined;
             resourceInputs["deadInterval"] = args ? args.deadInterval : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["helloInterval"] = args ? args.helloInterval : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["ipsecAuthAlg"] = args ? args.ipsecAuthAlg : undefined;
@@ -132,6 +135,7 @@ export interface Routerospf6Ospf6InterfaceState {
     cost?: pulumi.Input<number>;
     deadInterval?: pulumi.Input<number>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     helloInterval?: pulumi.Input<number>;
     interface?: pulumi.Input<string>;
     ipsecAuthAlg?: pulumi.Input<string>;
@@ -160,6 +164,7 @@ export interface Routerospf6Ospf6InterfaceArgs {
     cost?: pulumi.Input<number>;
     deadInterval?: pulumi.Input<number>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     helloInterval?: pulumi.Input<number>;
     interface?: pulumi.Input<string>;
     ipsecAuthAlg?: pulumi.Input<string>;

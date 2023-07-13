@@ -35,6 +35,7 @@ export class SystemMobileTunnel extends pulumi.CustomResource {
     }
 
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly hashAlgorithm!: pulumi.Output<string>;
     public readonly homeAddress!: pulumi.Output<string>;
     public readonly homeAgent!: pulumi.Output<string>;
@@ -66,6 +67,7 @@ export class SystemMobileTunnel extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as SystemMobileTunnelState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["hashAlgorithm"] = state ? state.hashAlgorithm : undefined;
             resourceInputs["homeAddress"] = state ? state.homeAddress : undefined;
             resourceInputs["homeAgent"] = state ? state.homeAgent : undefined;
@@ -115,6 +117,7 @@ export class SystemMobileTunnel extends pulumi.CustomResource {
                 throw new Error("Missing required property 'tunnelMode'");
             }
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["hashAlgorithm"] = args ? args.hashAlgorithm : undefined;
             resourceInputs["homeAddress"] = args ? args.homeAddress : undefined;
             resourceInputs["homeAgent"] = args ? args.homeAgent : undefined;
@@ -144,6 +147,7 @@ export class SystemMobileTunnel extends pulumi.CustomResource {
  */
 export interface SystemMobileTunnelState {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     hashAlgorithm?: pulumi.Input<string>;
     homeAddress?: pulumi.Input<string>;
     homeAgent?: pulumi.Input<string>;
@@ -167,6 +171,7 @@ export interface SystemMobileTunnelState {
  */
 export interface SystemMobileTunnelArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     hashAlgorithm: pulumi.Input<string>;
     homeAddress?: pulumi.Input<string>;
     homeAgent: pulumi.Input<string>;

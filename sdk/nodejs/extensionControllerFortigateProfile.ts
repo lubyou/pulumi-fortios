@@ -36,6 +36,7 @@ export class ExtensionControllerFortigateProfile extends pulumi.CustomResource {
 
     public readonly extension!: pulumi.Output<string>;
     public readonly fosid!: pulumi.Output<number>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly lanExtension!: pulumi.Output<outputs.ExtensionControllerFortigateProfileLanExtension>;
     public readonly name!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -55,6 +56,7 @@ export class ExtensionControllerFortigateProfile extends pulumi.CustomResource {
             const state = argsOrState as ExtensionControllerFortigateProfileState | undefined;
             resourceInputs["extension"] = state ? state.extension : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["lanExtension"] = state ? state.lanExtension : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
@@ -62,6 +64,7 @@ export class ExtensionControllerFortigateProfile extends pulumi.CustomResource {
             const args = argsOrState as ExtensionControllerFortigateProfileArgs | undefined;
             resourceInputs["extension"] = args ? args.extension : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["lanExtension"] = args ? args.lanExtension : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -77,6 +80,7 @@ export class ExtensionControllerFortigateProfile extends pulumi.CustomResource {
 export interface ExtensionControllerFortigateProfileState {
     extension?: pulumi.Input<string>;
     fosid?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     lanExtension?: pulumi.Input<inputs.ExtensionControllerFortigateProfileLanExtension>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
@@ -88,6 +92,7 @@ export interface ExtensionControllerFortigateProfileState {
 export interface ExtensionControllerFortigateProfileArgs {
     extension?: pulumi.Input<string>;
     fosid?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     lanExtension?: pulumi.Input<inputs.ExtensionControllerFortigateProfileLanExtension>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;

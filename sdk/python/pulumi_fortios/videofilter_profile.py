@@ -18,7 +18,10 @@ class VideofilterProfileArgs:
     def __init__(__self__, *,
                  comment: Optional[pulumi.Input[str]] = None,
                  dailymotion: Optional[pulumi.Input[str]] = None,
+                 default_action: Optional[pulumi.Input[str]] = None,
                  fortiguard_category: Optional[pulumi.Input['VideofilterProfileFortiguardCategoryArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 log: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  replacemsg_group: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -32,8 +35,14 @@ class VideofilterProfileArgs:
             pulumi.set(__self__, "comment", comment)
         if dailymotion is not None:
             pulumi.set(__self__, "dailymotion", dailymotion)
+        if default_action is not None:
+            pulumi.set(__self__, "default_action", default_action)
         if fortiguard_category is not None:
             pulumi.set(__self__, "fortiguard_category", fortiguard_category)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
+        if log is not None:
+            pulumi.set(__self__, "log", log)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if replacemsg_group is not None:
@@ -66,6 +75,15 @@ class VideofilterProfileArgs:
         pulumi.set(self, "dailymotion", value)
 
     @property
+    @pulumi.getter(name="defaultAction")
+    def default_action(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "default_action")
+
+    @default_action.setter
+    def default_action(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "default_action", value)
+
+    @property
     @pulumi.getter(name="fortiguardCategory")
     def fortiguard_category(self) -> Optional[pulumi.Input['VideofilterProfileFortiguardCategoryArgs']]:
         return pulumi.get(self, "fortiguard_category")
@@ -73,6 +91,24 @@ class VideofilterProfileArgs:
     @fortiguard_category.setter
     def fortiguard_category(self, value: Optional[pulumi.Input['VideofilterProfileFortiguardCategoryArgs']]):
         pulumi.set(self, "fortiguard_category", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
+    @pulumi.getter
+    def log(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "log")
+
+    @log.setter
+    def log(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "log", value)
 
     @property
     @pulumi.getter
@@ -134,7 +170,10 @@ class _VideofilterProfileState:
     def __init__(__self__, *,
                  comment: Optional[pulumi.Input[str]] = None,
                  dailymotion: Optional[pulumi.Input[str]] = None,
+                 default_action: Optional[pulumi.Input[str]] = None,
                  fortiguard_category: Optional[pulumi.Input['VideofilterProfileFortiguardCategoryArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 log: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  replacemsg_group: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -148,8 +187,14 @@ class _VideofilterProfileState:
             pulumi.set(__self__, "comment", comment)
         if dailymotion is not None:
             pulumi.set(__self__, "dailymotion", dailymotion)
+        if default_action is not None:
+            pulumi.set(__self__, "default_action", default_action)
         if fortiguard_category is not None:
             pulumi.set(__self__, "fortiguard_category", fortiguard_category)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
+        if log is not None:
+            pulumi.set(__self__, "log", log)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if replacemsg_group is not None:
@@ -182,6 +227,15 @@ class _VideofilterProfileState:
         pulumi.set(self, "dailymotion", value)
 
     @property
+    @pulumi.getter(name="defaultAction")
+    def default_action(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "default_action")
+
+    @default_action.setter
+    def default_action(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "default_action", value)
+
+    @property
     @pulumi.getter(name="fortiguardCategory")
     def fortiguard_category(self) -> Optional[pulumi.Input['VideofilterProfileFortiguardCategoryArgs']]:
         return pulumi.get(self, "fortiguard_category")
@@ -189,6 +243,24 @@ class _VideofilterProfileState:
     @fortiguard_category.setter
     def fortiguard_category(self, value: Optional[pulumi.Input['VideofilterProfileFortiguardCategoryArgs']]):
         pulumi.set(self, "fortiguard_category", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
+    @pulumi.getter
+    def log(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "log")
+
+    @log.setter
+    def log(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "log", value)
 
     @property
     @pulumi.getter
@@ -252,7 +324,10 @@ class VideofilterProfile(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dailymotion: Optional[pulumi.Input[str]] = None,
+                 default_action: Optional[pulumi.Input[str]] = None,
                  fortiguard_category: Optional[pulumi.Input[pulumi.InputType['VideofilterProfileFortiguardCategoryArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 log: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  replacemsg_group: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -290,7 +365,10 @@ class VideofilterProfile(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dailymotion: Optional[pulumi.Input[str]] = None,
+                 default_action: Optional[pulumi.Input[str]] = None,
                  fortiguard_category: Optional[pulumi.Input[pulumi.InputType['VideofilterProfileFortiguardCategoryArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 log: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  replacemsg_group: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -308,7 +386,10 @@ class VideofilterProfile(pulumi.CustomResource):
 
             __props__.__dict__["comment"] = comment
             __props__.__dict__["dailymotion"] = dailymotion
+            __props__.__dict__["default_action"] = default_action
             __props__.__dict__["fortiguard_category"] = fortiguard_category
+            __props__.__dict__["get_all_tables"] = get_all_tables
+            __props__.__dict__["log"] = log
             __props__.__dict__["name"] = name
             __props__.__dict__["replacemsg_group"] = replacemsg_group
             __props__.__dict__["vdomparam"] = vdomparam
@@ -327,7 +408,10 @@ class VideofilterProfile(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             comment: Optional[pulumi.Input[str]] = None,
             dailymotion: Optional[pulumi.Input[str]] = None,
+            default_action: Optional[pulumi.Input[str]] = None,
             fortiguard_category: Optional[pulumi.Input[pulumi.InputType['VideofilterProfileFortiguardCategoryArgs']]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
+            log: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             replacemsg_group: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
@@ -348,7 +432,10 @@ class VideofilterProfile(pulumi.CustomResource):
 
         __props__.__dict__["comment"] = comment
         __props__.__dict__["dailymotion"] = dailymotion
+        __props__.__dict__["default_action"] = default_action
         __props__.__dict__["fortiguard_category"] = fortiguard_category
+        __props__.__dict__["get_all_tables"] = get_all_tables
+        __props__.__dict__["log"] = log
         __props__.__dict__["name"] = name
         __props__.__dict__["replacemsg_group"] = replacemsg_group
         __props__.__dict__["vdomparam"] = vdomparam
@@ -368,9 +455,24 @@ class VideofilterProfile(pulumi.CustomResource):
         return pulumi.get(self, "dailymotion")
 
     @property
+    @pulumi.getter(name="defaultAction")
+    def default_action(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "default_action")
+
+    @property
     @pulumi.getter(name="fortiguardCategory")
     def fortiguard_category(self) -> pulumi.Output['outputs.VideofilterProfileFortiguardCategory']:
         return pulumi.get(self, "fortiguard_category")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @property
+    @pulumi.getter
+    def log(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "log")
 
     @property
     @pulumi.getter

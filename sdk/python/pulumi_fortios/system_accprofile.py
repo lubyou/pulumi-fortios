@@ -23,6 +23,7 @@ class SystemAccprofileArgs:
                  ftviewgrp: Optional[pulumi.Input[str]] = None,
                  fwgrp: Optional[pulumi.Input[str]] = None,
                  fwgrp_permission: Optional[pulumi.Input['SystemAccprofileFwgrpPermissionArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  loggrp: Optional[pulumi.Input[str]] = None,
                  loggrp_permission: Optional[pulumi.Input['SystemAccprofileLoggrpPermissionArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -58,6 +59,8 @@ class SystemAccprofileArgs:
             pulumi.set(__self__, "fwgrp", fwgrp)
         if fwgrp_permission is not None:
             pulumi.set(__self__, "fwgrp_permission", fwgrp_permission)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if loggrp is not None:
             pulumi.set(__self__, "loggrp", loggrp)
         if loggrp_permission is not None:
@@ -157,6 +160,15 @@ class SystemAccprofileArgs:
     @fwgrp_permission.setter
     def fwgrp_permission(self, value: Optional[pulumi.Input['SystemAccprofileFwgrpPermissionArgs']]):
         pulumi.set(self, "fwgrp_permission", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -331,6 +343,7 @@ class _SystemAccprofileState:
                  ftviewgrp: Optional[pulumi.Input[str]] = None,
                  fwgrp: Optional[pulumi.Input[str]] = None,
                  fwgrp_permission: Optional[pulumi.Input['SystemAccprofileFwgrpPermissionArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  loggrp: Optional[pulumi.Input[str]] = None,
                  loggrp_permission: Optional[pulumi.Input['SystemAccprofileLoggrpPermissionArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -366,6 +379,8 @@ class _SystemAccprofileState:
             pulumi.set(__self__, "fwgrp", fwgrp)
         if fwgrp_permission is not None:
             pulumi.set(__self__, "fwgrp_permission", fwgrp_permission)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if loggrp is not None:
             pulumi.set(__self__, "loggrp", loggrp)
         if loggrp_permission is not None:
@@ -465,6 +480,15 @@ class _SystemAccprofileState:
     @fwgrp_permission.setter
     def fwgrp_permission(self, value: Optional[pulumi.Input['SystemAccprofileFwgrpPermissionArgs']]):
         pulumi.set(self, "fwgrp_permission", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -641,6 +665,7 @@ class SystemAccprofile(pulumi.CustomResource):
                  ftviewgrp: Optional[pulumi.Input[str]] = None,
                  fwgrp: Optional[pulumi.Input[str]] = None,
                  fwgrp_permission: Optional[pulumi.Input[pulumi.InputType['SystemAccprofileFwgrpPermissionArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  loggrp: Optional[pulumi.Input[str]] = None,
                  loggrp_permission: Optional[pulumi.Input[pulumi.InputType['SystemAccprofileLoggrpPermissionArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -695,6 +720,7 @@ class SystemAccprofile(pulumi.CustomResource):
                  ftviewgrp: Optional[pulumi.Input[str]] = None,
                  fwgrp: Optional[pulumi.Input[str]] = None,
                  fwgrp_permission: Optional[pulumi.Input[pulumi.InputType['SystemAccprofileFwgrpPermissionArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  loggrp: Optional[pulumi.Input[str]] = None,
                  loggrp_permission: Optional[pulumi.Input[pulumi.InputType['SystemAccprofileLoggrpPermissionArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -729,6 +755,7 @@ class SystemAccprofile(pulumi.CustomResource):
             __props__.__dict__["ftviewgrp"] = ftviewgrp
             __props__.__dict__["fwgrp"] = fwgrp
             __props__.__dict__["fwgrp_permission"] = fwgrp_permission
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["loggrp"] = loggrp
             __props__.__dict__["loggrp_permission"] = loggrp_permission
             __props__.__dict__["name"] = name
@@ -764,6 +791,7 @@ class SystemAccprofile(pulumi.CustomResource):
             ftviewgrp: Optional[pulumi.Input[str]] = None,
             fwgrp: Optional[pulumi.Input[str]] = None,
             fwgrp_permission: Optional[pulumi.Input[pulumi.InputType['SystemAccprofileFwgrpPermissionArgs']]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             loggrp: Optional[pulumi.Input[str]] = None,
             loggrp_permission: Optional[pulumi.Input[pulumi.InputType['SystemAccprofileLoggrpPermissionArgs']]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -801,6 +829,7 @@ class SystemAccprofile(pulumi.CustomResource):
         __props__.__dict__["ftviewgrp"] = ftviewgrp
         __props__.__dict__["fwgrp"] = fwgrp
         __props__.__dict__["fwgrp_permission"] = fwgrp_permission
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["loggrp"] = loggrp
         __props__.__dict__["loggrp_permission"] = loggrp_permission
         __props__.__dict__["name"] = name
@@ -855,6 +884,11 @@ class SystemAccprofile(pulumi.CustomResource):
     @pulumi.getter(name="fwgrpPermission")
     def fwgrp_permission(self) -> pulumi.Output['outputs.SystemAccprofileFwgrpPermission']:
         return pulumi.get(self, "fwgrp_permission")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

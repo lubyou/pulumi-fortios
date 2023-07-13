@@ -39,6 +39,7 @@ export class AuthenticationRule extends pulumi.CustomResource {
     public readonly dstaddr6s!: pulumi.Output<outputs.AuthenticationRuleDstaddr6[] | undefined>;
     public readonly dstaddrs!: pulumi.Output<outputs.AuthenticationRuleDstaddr[] | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly ipBased!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
     public readonly protocol!: pulumi.Output<string>;
@@ -70,6 +71,7 @@ export class AuthenticationRule extends pulumi.CustomResource {
             resourceInputs["dstaddr6s"] = state ? state.dstaddr6s : undefined;
             resourceInputs["dstaddrs"] = state ? state.dstaddrs : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["ipBased"] = state ? state.ipBased : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["protocol"] = state ? state.protocol : undefined;
@@ -89,6 +91,7 @@ export class AuthenticationRule extends pulumi.CustomResource {
             resourceInputs["dstaddr6s"] = args ? args.dstaddr6s : undefined;
             resourceInputs["dstaddrs"] = args ? args.dstaddrs : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["ipBased"] = args ? args.ipBased : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["protocol"] = args ? args.protocol : undefined;
@@ -116,6 +119,7 @@ export interface AuthenticationRuleState {
     dstaddr6s?: pulumi.Input<pulumi.Input<inputs.AuthenticationRuleDstaddr6>[]>;
     dstaddrs?: pulumi.Input<pulumi.Input<inputs.AuthenticationRuleDstaddr>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     ipBased?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     protocol?: pulumi.Input<string>;
@@ -139,6 +143,7 @@ export interface AuthenticationRuleArgs {
     dstaddr6s?: pulumi.Input<pulumi.Input<inputs.AuthenticationRuleDstaddr6>[]>;
     dstaddrs?: pulumi.Input<pulumi.Input<inputs.AuthenticationRuleDstaddr>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     ipBased?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     protocol?: pulumi.Input<string>;

@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -32,7 +33,7 @@ func NewSwitchControllerQosQosPolicy(ctx *pulumi.Context,
 	if args.DefaultCos == nil {
 		return nil, errors.New("invalid value for required argument 'DefaultCos'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SwitchControllerQosQosPolicy
 	err := ctx.RegisterResource("fortios:index/switchControllerQosQosPolicy:SwitchControllerQosQosPolicy", name, args, &resource, opts...)
 	if err != nil {

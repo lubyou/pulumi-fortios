@@ -22,9 +22,11 @@ class LogSettingArgs:
                  daemon_log: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  expolicy_implicit_log: Optional[pulumi.Input[str]] = None,
+                 extended_log: Optional[pulumi.Input[str]] = None,
                  faz_override: Optional[pulumi.Input[str]] = None,
                  fwpolicy6_implicit_log: Optional[pulumi.Input[str]] = None,
                  fwpolicy_implicit_log: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  local_in_allow: Optional[pulumi.Input[str]] = None,
                  local_in_deny_broadcast: Optional[pulumi.Input[str]] = None,
                  local_in_deny_unicast: Optional[pulumi.Input[str]] = None,
@@ -57,12 +59,16 @@ class LogSettingArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if expolicy_implicit_log is not None:
             pulumi.set(__self__, "expolicy_implicit_log", expolicy_implicit_log)
+        if extended_log is not None:
+            pulumi.set(__self__, "extended_log", extended_log)
         if faz_override is not None:
             pulumi.set(__self__, "faz_override", faz_override)
         if fwpolicy6_implicit_log is not None:
             pulumi.set(__self__, "fwpolicy6_implicit_log", fwpolicy6_implicit_log)
         if fwpolicy_implicit_log is not None:
             pulumi.set(__self__, "fwpolicy_implicit_log", fwpolicy_implicit_log)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if local_in_allow is not None:
             pulumi.set(__self__, "local_in_allow", local_in_allow)
         if local_in_deny_broadcast is not None:
@@ -153,6 +159,15 @@ class LogSettingArgs:
         pulumi.set(self, "expolicy_implicit_log", value)
 
     @property
+    @pulumi.getter(name="extendedLog")
+    def extended_log(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "extended_log")
+
+    @extended_log.setter
+    def extended_log(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "extended_log", value)
+
+    @property
     @pulumi.getter(name="fazOverride")
     def faz_override(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "faz_override")
@@ -178,6 +193,15 @@ class LogSettingArgs:
     @fwpolicy_implicit_log.setter
     def fwpolicy_implicit_log(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fwpolicy_implicit_log", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="localInAllow")
@@ -342,9 +366,11 @@ class _LogSettingState:
                  daemon_log: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  expolicy_implicit_log: Optional[pulumi.Input[str]] = None,
+                 extended_log: Optional[pulumi.Input[str]] = None,
                  faz_override: Optional[pulumi.Input[str]] = None,
                  fwpolicy6_implicit_log: Optional[pulumi.Input[str]] = None,
                  fwpolicy_implicit_log: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  local_in_allow: Optional[pulumi.Input[str]] = None,
                  local_in_deny_broadcast: Optional[pulumi.Input[str]] = None,
                  local_in_deny_unicast: Optional[pulumi.Input[str]] = None,
@@ -377,12 +403,16 @@ class _LogSettingState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if expolicy_implicit_log is not None:
             pulumi.set(__self__, "expolicy_implicit_log", expolicy_implicit_log)
+        if extended_log is not None:
+            pulumi.set(__self__, "extended_log", extended_log)
         if faz_override is not None:
             pulumi.set(__self__, "faz_override", faz_override)
         if fwpolicy6_implicit_log is not None:
             pulumi.set(__self__, "fwpolicy6_implicit_log", fwpolicy6_implicit_log)
         if fwpolicy_implicit_log is not None:
             pulumi.set(__self__, "fwpolicy_implicit_log", fwpolicy_implicit_log)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if local_in_allow is not None:
             pulumi.set(__self__, "local_in_allow", local_in_allow)
         if local_in_deny_broadcast is not None:
@@ -473,6 +503,15 @@ class _LogSettingState:
         pulumi.set(self, "expolicy_implicit_log", value)
 
     @property
+    @pulumi.getter(name="extendedLog")
+    def extended_log(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "extended_log")
+
+    @extended_log.setter
+    def extended_log(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "extended_log", value)
+
+    @property
     @pulumi.getter(name="fazOverride")
     def faz_override(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "faz_override")
@@ -498,6 +537,15 @@ class _LogSettingState:
     @fwpolicy_implicit_log.setter
     def fwpolicy_implicit_log(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fwpolicy_implicit_log", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="localInAllow")
@@ -664,9 +712,11 @@ class LogSetting(pulumi.CustomResource):
                  daemon_log: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  expolicy_implicit_log: Optional[pulumi.Input[str]] = None,
+                 extended_log: Optional[pulumi.Input[str]] = None,
                  faz_override: Optional[pulumi.Input[str]] = None,
                  fwpolicy6_implicit_log: Optional[pulumi.Input[str]] = None,
                  fwpolicy_implicit_log: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  local_in_allow: Optional[pulumi.Input[str]] = None,
                  local_in_deny_broadcast: Optional[pulumi.Input[str]] = None,
                  local_in_deny_unicast: Optional[pulumi.Input[str]] = None,
@@ -719,9 +769,11 @@ class LogSetting(pulumi.CustomResource):
                  daemon_log: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  expolicy_implicit_log: Optional[pulumi.Input[str]] = None,
+                 extended_log: Optional[pulumi.Input[str]] = None,
                  faz_override: Optional[pulumi.Input[str]] = None,
                  fwpolicy6_implicit_log: Optional[pulumi.Input[str]] = None,
                  fwpolicy_implicit_log: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  local_in_allow: Optional[pulumi.Input[str]] = None,
                  local_in_deny_broadcast: Optional[pulumi.Input[str]] = None,
                  local_in_deny_unicast: Optional[pulumi.Input[str]] = None,
@@ -754,9 +806,11 @@ class LogSetting(pulumi.CustomResource):
             __props__.__dict__["daemon_log"] = daemon_log
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["expolicy_implicit_log"] = expolicy_implicit_log
+            __props__.__dict__["extended_log"] = extended_log
             __props__.__dict__["faz_override"] = faz_override
             __props__.__dict__["fwpolicy6_implicit_log"] = fwpolicy6_implicit_log
             __props__.__dict__["fwpolicy_implicit_log"] = fwpolicy_implicit_log
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["local_in_allow"] = local_in_allow
             __props__.__dict__["local_in_deny_broadcast"] = local_in_deny_broadcast
             __props__.__dict__["local_in_deny_unicast"] = local_in_deny_unicast
@@ -790,9 +844,11 @@ class LogSetting(pulumi.CustomResource):
             daemon_log: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             expolicy_implicit_log: Optional[pulumi.Input[str]] = None,
+            extended_log: Optional[pulumi.Input[str]] = None,
             faz_override: Optional[pulumi.Input[str]] = None,
             fwpolicy6_implicit_log: Optional[pulumi.Input[str]] = None,
             fwpolicy_implicit_log: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             local_in_allow: Optional[pulumi.Input[str]] = None,
             local_in_deny_broadcast: Optional[pulumi.Input[str]] = None,
             local_in_deny_unicast: Optional[pulumi.Input[str]] = None,
@@ -828,9 +884,11 @@ class LogSetting(pulumi.CustomResource):
         __props__.__dict__["daemon_log"] = daemon_log
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["expolicy_implicit_log"] = expolicy_implicit_log
+        __props__.__dict__["extended_log"] = extended_log
         __props__.__dict__["faz_override"] = faz_override
         __props__.__dict__["fwpolicy6_implicit_log"] = fwpolicy6_implicit_log
         __props__.__dict__["fwpolicy_implicit_log"] = fwpolicy_implicit_log
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["local_in_allow"] = local_in_allow
         __props__.__dict__["local_in_deny_broadcast"] = local_in_deny_broadcast
         __props__.__dict__["local_in_deny_unicast"] = local_in_deny_unicast
@@ -881,6 +939,11 @@ class LogSetting(pulumi.CustomResource):
         return pulumi.get(self, "expolicy_implicit_log")
 
     @property
+    @pulumi.getter(name="extendedLog")
+    def extended_log(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "extended_log")
+
+    @property
     @pulumi.getter(name="fazOverride")
     def faz_override(self) -> pulumi.Output[str]:
         return pulumi.get(self, "faz_override")
@@ -894,6 +957,11 @@ class LogSetting(pulumi.CustomResource):
     @pulumi.getter(name="fwpolicyImplicitLog")
     def fwpolicy_implicit_log(self) -> pulumi.Output[str]:
         return pulumi.get(self, "fwpolicy_implicit_log")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="localInAllow")

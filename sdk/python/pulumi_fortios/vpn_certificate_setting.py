@@ -34,11 +34,17 @@ class VpnCertificateSettingArgs:
                  cn_allow_multi: Optional[pulumi.Input[str]] = None,
                  cn_match: Optional[pulumi.Input[str]] = None,
                  crl_verification: Optional[pulumi.Input['VpnCertificateSettingCrlVerificationArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  ocsp_default_server: Optional[pulumi.Input[str]] = None,
                  ocsp_option: Optional[pulumi.Input[str]] = None,
                  ocsp_status: Optional[pulumi.Input[str]] = None,
+                 proxy: Optional[pulumi.Input[str]] = None,
+                 proxy_password: Optional[pulumi.Input[str]] = None,
+                 proxy_port: Optional[pulumi.Input[int]] = None,
+                 proxy_username: Optional[pulumi.Input[str]] = None,
+                 source_ip: Optional[pulumi.Input[str]] = None,
                  ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
                  ssl_ocsp_source_ip: Optional[pulumi.Input[str]] = None,
                  strict_crl_check: Optional[pulumi.Input[str]] = None,
@@ -79,6 +85,8 @@ class VpnCertificateSettingArgs:
             pulumi.set(__self__, "cn_match", cn_match)
         if crl_verification is not None:
             pulumi.set(__self__, "crl_verification", crl_verification)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
         if interface_select_method is not None:
@@ -89,6 +97,16 @@ class VpnCertificateSettingArgs:
             pulumi.set(__self__, "ocsp_option", ocsp_option)
         if ocsp_status is not None:
             pulumi.set(__self__, "ocsp_status", ocsp_status)
+        if proxy is not None:
+            pulumi.set(__self__, "proxy", proxy)
+        if proxy_password is not None:
+            pulumi.set(__self__, "proxy_password", proxy_password)
+        if proxy_port is not None:
+            pulumi.set(__self__, "proxy_port", proxy_port)
+        if proxy_username is not None:
+            pulumi.set(__self__, "proxy_username", proxy_username)
+        if source_ip is not None:
+            pulumi.set(__self__, "source_ip", source_ip)
         if ssl_min_proto_version is not None:
             pulumi.set(__self__, "ssl_min_proto_version", ssl_min_proto_version)
         if ssl_ocsp_source_ip is not None:
@@ -267,6 +285,15 @@ class VpnCertificateSettingArgs:
         pulumi.set(self, "crl_verification", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter
     def interface(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "interface")
@@ -310,6 +337,51 @@ class VpnCertificateSettingArgs:
     @ocsp_status.setter
     def ocsp_status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ocsp_status", value)
+
+    @property
+    @pulumi.getter
+    def proxy(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "proxy")
+
+    @proxy.setter
+    def proxy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy", value)
+
+    @property
+    @pulumi.getter(name="proxyPassword")
+    def proxy_password(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "proxy_password")
+
+    @proxy_password.setter
+    def proxy_password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy_password", value)
+
+    @property
+    @pulumi.getter(name="proxyPort")
+    def proxy_port(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "proxy_port")
+
+    @proxy_port.setter
+    def proxy_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "proxy_port", value)
+
+    @property
+    @pulumi.getter(name="proxyUsername")
+    def proxy_username(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "proxy_username")
+
+    @proxy_username.setter
+    def proxy_username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy_username", value)
+
+    @property
+    @pulumi.getter(name="sourceIp")
+    def source_ip(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "source_ip")
+
+    @source_ip.setter
+    def source_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "source_ip", value)
 
     @property
     @pulumi.getter(name="sslMinProtoVersion")
@@ -396,11 +468,17 @@ class _VpnCertificateSettingState:
                  cn_allow_multi: Optional[pulumi.Input[str]] = None,
                  cn_match: Optional[pulumi.Input[str]] = None,
                  crl_verification: Optional[pulumi.Input['VpnCertificateSettingCrlVerificationArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  ocsp_default_server: Optional[pulumi.Input[str]] = None,
                  ocsp_option: Optional[pulumi.Input[str]] = None,
                  ocsp_status: Optional[pulumi.Input[str]] = None,
+                 proxy: Optional[pulumi.Input[str]] = None,
+                 proxy_password: Optional[pulumi.Input[str]] = None,
+                 proxy_port: Optional[pulumi.Input[int]] = None,
+                 proxy_username: Optional[pulumi.Input[str]] = None,
+                 source_ip: Optional[pulumi.Input[str]] = None,
                  ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
                  ssl_ocsp_source_ip: Optional[pulumi.Input[str]] = None,
                  strict_crl_check: Optional[pulumi.Input[str]] = None,
@@ -447,6 +525,8 @@ class _VpnCertificateSettingState:
             pulumi.set(__self__, "cn_match", cn_match)
         if crl_verification is not None:
             pulumi.set(__self__, "crl_verification", crl_verification)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
         if interface_select_method is not None:
@@ -457,6 +537,16 @@ class _VpnCertificateSettingState:
             pulumi.set(__self__, "ocsp_option", ocsp_option)
         if ocsp_status is not None:
             pulumi.set(__self__, "ocsp_status", ocsp_status)
+        if proxy is not None:
+            pulumi.set(__self__, "proxy", proxy)
+        if proxy_password is not None:
+            pulumi.set(__self__, "proxy_password", proxy_password)
+        if proxy_port is not None:
+            pulumi.set(__self__, "proxy_port", proxy_port)
+        if proxy_username is not None:
+            pulumi.set(__self__, "proxy_username", proxy_username)
+        if source_ip is not None:
+            pulumi.set(__self__, "source_ip", source_ip)
         if ssl_min_proto_version is not None:
             pulumi.set(__self__, "ssl_min_proto_version", ssl_min_proto_version)
         if ssl_ocsp_source_ip is not None:
@@ -635,6 +725,15 @@ class _VpnCertificateSettingState:
         pulumi.set(self, "crl_verification", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter
     def interface(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "interface")
@@ -678,6 +777,51 @@ class _VpnCertificateSettingState:
     @ocsp_status.setter
     def ocsp_status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ocsp_status", value)
+
+    @property
+    @pulumi.getter
+    def proxy(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "proxy")
+
+    @proxy.setter
+    def proxy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy", value)
+
+    @property
+    @pulumi.getter(name="proxyPassword")
+    def proxy_password(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "proxy_password")
+
+    @proxy_password.setter
+    def proxy_password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy_password", value)
+
+    @property
+    @pulumi.getter(name="proxyPort")
+    def proxy_port(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "proxy_port")
+
+    @proxy_port.setter
+    def proxy_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "proxy_port", value)
+
+    @property
+    @pulumi.getter(name="proxyUsername")
+    def proxy_username(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "proxy_username")
+
+    @proxy_username.setter
+    def proxy_username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy_username", value)
+
+    @property
+    @pulumi.getter(name="sourceIp")
+    def source_ip(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "source_ip")
+
+    @source_ip.setter
+    def source_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "source_ip", value)
 
     @property
     @pulumi.getter(name="sslMinProtoVersion")
@@ -766,11 +910,17 @@ class VpnCertificateSetting(pulumi.CustomResource):
                  cn_allow_multi: Optional[pulumi.Input[str]] = None,
                  cn_match: Optional[pulumi.Input[str]] = None,
                  crl_verification: Optional[pulumi.Input[pulumi.InputType['VpnCertificateSettingCrlVerificationArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  ocsp_default_server: Optional[pulumi.Input[str]] = None,
                  ocsp_option: Optional[pulumi.Input[str]] = None,
                  ocsp_status: Optional[pulumi.Input[str]] = None,
+                 proxy: Optional[pulumi.Input[str]] = None,
+                 proxy_password: Optional[pulumi.Input[str]] = None,
+                 proxy_port: Optional[pulumi.Input[int]] = None,
+                 proxy_username: Optional[pulumi.Input[str]] = None,
+                 source_ip: Optional[pulumi.Input[str]] = None,
                  ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
                  ssl_ocsp_source_ip: Optional[pulumi.Input[str]] = None,
                  strict_crl_check: Optional[pulumi.Input[str]] = None,
@@ -825,11 +975,17 @@ class VpnCertificateSetting(pulumi.CustomResource):
                  cn_allow_multi: Optional[pulumi.Input[str]] = None,
                  cn_match: Optional[pulumi.Input[str]] = None,
                  crl_verification: Optional[pulumi.Input[pulumi.InputType['VpnCertificateSettingCrlVerificationArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  ocsp_default_server: Optional[pulumi.Input[str]] = None,
                  ocsp_option: Optional[pulumi.Input[str]] = None,
                  ocsp_status: Optional[pulumi.Input[str]] = None,
+                 proxy: Optional[pulumi.Input[str]] = None,
+                 proxy_password: Optional[pulumi.Input[str]] = None,
+                 proxy_port: Optional[pulumi.Input[int]] = None,
+                 proxy_username: Optional[pulumi.Input[str]] = None,
+                 source_ip: Optional[pulumi.Input[str]] = None,
                  ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
                  ssl_ocsp_source_ip: Optional[pulumi.Input[str]] = None,
                  strict_crl_check: Optional[pulumi.Input[str]] = None,
@@ -876,11 +1032,17 @@ class VpnCertificateSetting(pulumi.CustomResource):
             __props__.__dict__["cn_allow_multi"] = cn_allow_multi
             __props__.__dict__["cn_match"] = cn_match
             __props__.__dict__["crl_verification"] = crl_verification
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["interface"] = interface
             __props__.__dict__["interface_select_method"] = interface_select_method
             __props__.__dict__["ocsp_default_server"] = ocsp_default_server
             __props__.__dict__["ocsp_option"] = ocsp_option
             __props__.__dict__["ocsp_status"] = ocsp_status
+            __props__.__dict__["proxy"] = proxy
+            __props__.__dict__["proxy_password"] = proxy_password
+            __props__.__dict__["proxy_port"] = proxy_port
+            __props__.__dict__["proxy_username"] = proxy_username
+            __props__.__dict__["source_ip"] = source_ip
             __props__.__dict__["ssl_min_proto_version"] = ssl_min_proto_version
             __props__.__dict__["ssl_ocsp_source_ip"] = ssl_ocsp_source_ip
             __props__.__dict__["strict_crl_check"] = strict_crl_check
@@ -916,11 +1078,17 @@ class VpnCertificateSetting(pulumi.CustomResource):
             cn_allow_multi: Optional[pulumi.Input[str]] = None,
             cn_match: Optional[pulumi.Input[str]] = None,
             crl_verification: Optional[pulumi.Input[pulumi.InputType['VpnCertificateSettingCrlVerificationArgs']]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             interface_select_method: Optional[pulumi.Input[str]] = None,
             ocsp_default_server: Optional[pulumi.Input[str]] = None,
             ocsp_option: Optional[pulumi.Input[str]] = None,
             ocsp_status: Optional[pulumi.Input[str]] = None,
+            proxy: Optional[pulumi.Input[str]] = None,
+            proxy_password: Optional[pulumi.Input[str]] = None,
+            proxy_port: Optional[pulumi.Input[int]] = None,
+            proxy_username: Optional[pulumi.Input[str]] = None,
+            source_ip: Optional[pulumi.Input[str]] = None,
             ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
             ssl_ocsp_source_ip: Optional[pulumi.Input[str]] = None,
             strict_crl_check: Optional[pulumi.Input[str]] = None,
@@ -958,11 +1126,17 @@ class VpnCertificateSetting(pulumi.CustomResource):
         __props__.__dict__["cn_allow_multi"] = cn_allow_multi
         __props__.__dict__["cn_match"] = cn_match
         __props__.__dict__["crl_verification"] = crl_verification
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["interface"] = interface
         __props__.__dict__["interface_select_method"] = interface_select_method
         __props__.__dict__["ocsp_default_server"] = ocsp_default_server
         __props__.__dict__["ocsp_option"] = ocsp_option
         __props__.__dict__["ocsp_status"] = ocsp_status
+        __props__.__dict__["proxy"] = proxy
+        __props__.__dict__["proxy_password"] = proxy_password
+        __props__.__dict__["proxy_port"] = proxy_port
+        __props__.__dict__["proxy_username"] = proxy_username
+        __props__.__dict__["source_ip"] = source_ip
         __props__.__dict__["ssl_min_proto_version"] = ssl_min_proto_version
         __props__.__dict__["ssl_ocsp_source_ip"] = ssl_ocsp_source_ip
         __props__.__dict__["strict_crl_check"] = strict_crl_check
@@ -1063,6 +1237,11 @@ class VpnCertificateSetting(pulumi.CustomResource):
         return pulumi.get(self, "crl_verification")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter
     def interface(self) -> pulumi.Output[str]:
         return pulumi.get(self, "interface")
@@ -1086,6 +1265,31 @@ class VpnCertificateSetting(pulumi.CustomResource):
     @pulumi.getter(name="ocspStatus")
     def ocsp_status(self) -> pulumi.Output[str]:
         return pulumi.get(self, "ocsp_status")
+
+    @property
+    @pulumi.getter
+    def proxy(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "proxy")
+
+    @property
+    @pulumi.getter(name="proxyPassword")
+    def proxy_password(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "proxy_password")
+
+    @property
+    @pulumi.getter(name="proxyPort")
+    def proxy_port(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "proxy_port")
+
+    @property
+    @pulumi.getter(name="proxyUsername")
+    def proxy_username(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "proxy_username")
+
+    @property
+    @pulumi.getter(name="sourceIp")
+    def source_ip(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "source_ip")
 
     @property
     @pulumi.getter(name="sslMinProtoVersion")

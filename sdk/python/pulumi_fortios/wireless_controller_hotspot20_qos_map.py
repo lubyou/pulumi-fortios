@@ -19,6 +19,7 @@ class WirelessControllerHotspot20QosMapArgs:
                  dscp_excepts: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerHotspot20QosMapDscpExceptArgs']]]] = None,
                  dscp_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerHotspot20QosMapDscpRangeArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
@@ -30,6 +31,8 @@ class WirelessControllerHotspot20QosMapArgs:
             pulumi.set(__self__, "dscp_ranges", dscp_ranges)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if vdomparam is not None:
@@ -61,6 +64,15 @@ class WirelessControllerHotspot20QosMapArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -87,6 +99,7 @@ class _WirelessControllerHotspot20QosMapState:
                  dscp_excepts: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerHotspot20QosMapDscpExceptArgs']]]] = None,
                  dscp_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerHotspot20QosMapDscpRangeArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
@@ -98,6 +111,8 @@ class _WirelessControllerHotspot20QosMapState:
             pulumi.set(__self__, "dscp_ranges", dscp_ranges)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if vdomparam is not None:
@@ -129,6 +144,15 @@ class _WirelessControllerHotspot20QosMapState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -157,6 +181,7 @@ class WirelessControllerHotspot20QosMap(pulumi.CustomResource):
                  dscp_excepts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerHotspot20QosMapDscpExceptArgs']]]]] = None,
                  dscp_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerHotspot20QosMapDscpRangeArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -191,6 +216,7 @@ class WirelessControllerHotspot20QosMap(pulumi.CustomResource):
                  dscp_excepts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerHotspot20QosMapDscpExceptArgs']]]]] = None,
                  dscp_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerHotspot20QosMapDscpRangeArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -205,6 +231,7 @@ class WirelessControllerHotspot20QosMap(pulumi.CustomResource):
             __props__.__dict__["dscp_excepts"] = dscp_excepts
             __props__.__dict__["dscp_ranges"] = dscp_ranges
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["name"] = name
             __props__.__dict__["vdomparam"] = vdomparam
         super(WirelessControllerHotspot20QosMap, __self__).__init__(
@@ -220,6 +247,7 @@ class WirelessControllerHotspot20QosMap(pulumi.CustomResource):
             dscp_excepts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerHotspot20QosMapDscpExceptArgs']]]]] = None,
             dscp_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerHotspot20QosMapDscpRangeArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'WirelessControllerHotspot20QosMap':
         """
@@ -237,6 +265,7 @@ class WirelessControllerHotspot20QosMap(pulumi.CustomResource):
         __props__.__dict__["dscp_excepts"] = dscp_excepts
         __props__.__dict__["dscp_ranges"] = dscp_ranges
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["name"] = name
         __props__.__dict__["vdomparam"] = vdomparam
         return WirelessControllerHotspot20QosMap(resource_name, opts=opts, __props__=__props__)
@@ -255,6 +284,11 @@ class WirelessControllerHotspot20QosMap(pulumi.CustomResource):
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

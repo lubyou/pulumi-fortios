@@ -42,6 +42,7 @@ export class RouterospfOspfInterface extends pulumi.CustomResource {
     public readonly databaseFilterOut!: pulumi.Output<string>;
     public readonly deadInterval!: pulumi.Output<number>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly helloInterval!: pulumi.Output<number>;
     public readonly helloMultiplier!: pulumi.Output<number>;
     public readonly interface!: pulumi.Output<string>;
@@ -83,6 +84,7 @@ export class RouterospfOspfInterface extends pulumi.CustomResource {
             resourceInputs["databaseFilterOut"] = state ? state.databaseFilterOut : undefined;
             resourceInputs["deadInterval"] = state ? state.deadInterval : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["helloInterval"] = state ? state.helloInterval : undefined;
             resourceInputs["helloMultiplier"] = state ? state.helloMultiplier : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
@@ -112,6 +114,7 @@ export class RouterospfOspfInterface extends pulumi.CustomResource {
             resourceInputs["databaseFilterOut"] = args ? args.databaseFilterOut : undefined;
             resourceInputs["deadInterval"] = args ? args.deadInterval : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["helloInterval"] = args ? args.helloInterval : undefined;
             resourceInputs["helloMultiplier"] = args ? args.helloMultiplier : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
@@ -149,6 +152,7 @@ export interface RouterospfOspfInterfaceState {
     databaseFilterOut?: pulumi.Input<string>;
     deadInterval?: pulumi.Input<number>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     helloInterval?: pulumi.Input<number>;
     helloMultiplier?: pulumi.Input<number>;
     interface?: pulumi.Input<string>;
@@ -182,6 +186,7 @@ export interface RouterospfOspfInterfaceArgs {
     databaseFilterOut?: pulumi.Input<string>;
     deadInterval?: pulumi.Input<number>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     helloInterval?: pulumi.Input<number>;
     helloMultiplier?: pulumi.Input<number>;
     interface?: pulumi.Input<string>;

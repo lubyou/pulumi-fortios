@@ -10,6 +10,11 @@ export type AlertemailSetting = import("./alertemailSetting").AlertemailSetting;
 export const AlertemailSetting: typeof import("./alertemailSetting").AlertemailSetting = null as any;
 utilities.lazyLoad(exports, ["AlertemailSetting"], () => require("./alertemailSetting"));
 
+export { AntivirusExemptListArgs, AntivirusExemptListState } from "./antivirusExemptList";
+export type AntivirusExemptList = import("./antivirusExemptList").AntivirusExemptList;
+export const AntivirusExemptList: typeof import("./antivirusExemptList").AntivirusExemptList = null as any;
+utilities.lazyLoad(exports, ["AntivirusExemptList"], () => require("./antivirusExemptList"));
+
 export { AntivirusHeuristicArgs, AntivirusHeuristicState } from "./antivirusHeuristic";
 export type AntivirusHeuristic = import("./antivirusHeuristic").AntivirusHeuristic;
 export const AntivirusHeuristic: typeof import("./antivirusHeuristic").AntivirusHeuristic = null as any;
@@ -229,6 +234,11 @@ export { EndpointControlFctemsArgs, EndpointControlFctemsState } from "./endpoin
 export type EndpointControlFctems = import("./endpointControlFctems").EndpointControlFctems;
 export const EndpointControlFctems: typeof import("./endpointControlFctems").EndpointControlFctems = null as any;
 utilities.lazyLoad(exports, ["EndpointControlFctems"], () => require("./endpointControlFctems"));
+
+export { EndpointControlFctemsOverrideArgs, EndpointControlFctemsOverrideState } from "./endpointControlFctemsOverride";
+export type EndpointControlFctemsOverride = import("./endpointControlFctemsOverride").EndpointControlFctemsOverride;
+export const EndpointControlFctemsOverride: typeof import("./endpointControlFctemsOverride").EndpointControlFctemsOverride = null as any;
+utilities.lazyLoad(exports, ["EndpointControlFctemsOverride"], () => require("./endpointControlFctemsOverride"));
 
 export { EndpointControlForticlientEmsArgs, EndpointControlForticlientEmsState } from "./endpointControlForticlientEms";
 export type EndpointControlForticlientEms = import("./endpointControlForticlientEms").EndpointControlForticlientEms;
@@ -499,6 +509,11 @@ export { FirewallInternetServiceReputationArgs, FirewallInternetServiceReputatio
 export type FirewallInternetServiceReputation = import("./firewallInternetServiceReputation").FirewallInternetServiceReputation;
 export const FirewallInternetServiceReputation: typeof import("./firewallInternetServiceReputation").FirewallInternetServiceReputation = null as any;
 utilities.lazyLoad(exports, ["FirewallInternetServiceReputation"], () => require("./firewallInternetServiceReputation"));
+
+export { FirewallInternetServiceSubappArgs, FirewallInternetServiceSubappState } from "./firewallInternetServiceSubapp";
+export type FirewallInternetServiceSubapp = import("./firewallInternetServiceSubapp").FirewallInternetServiceSubapp;
+export const FirewallInternetServiceSubapp: typeof import("./firewallInternetServiceSubapp").FirewallInternetServiceSubapp = null as any;
+utilities.lazyLoad(exports, ["FirewallInternetServiceSubapp"], () => require("./firewallInternetServiceSubapp"));
 
 export { FirewallIpTranslationArgs, FirewallIpTranslationState } from "./firewallIpTranslation";
 export type FirewallIpTranslation = import("./firewallIpTranslation").FirewallIpTranslation;
@@ -2575,6 +2590,11 @@ export type RouterCommunityList = import("./routerCommunityList").RouterCommunit
 export const RouterCommunityList: typeof import("./routerCommunityList").RouterCommunityList = null as any;
 utilities.lazyLoad(exports, ["RouterCommunityList"], () => require("./routerCommunityList"));
 
+export { RouterExtcommunityListArgs, RouterExtcommunityListState } from "./routerExtcommunityList";
+export type RouterExtcommunityList = import("./routerExtcommunityList").RouterExtcommunityList;
+export const RouterExtcommunityList: typeof import("./routerExtcommunityList").RouterExtcommunityList = null as any;
+utilities.lazyLoad(exports, ["RouterExtcommunityList"], () => require("./routerExtcommunityList"));
+
 export { RouterIsisArgs, RouterIsisState } from "./routerIsis";
 export type RouterIsis = import("./routerIsis").RouterIsis;
 export const RouterIsis: typeof import("./routerIsis").RouterIsis = null as any;
@@ -2749,6 +2769,16 @@ export { SwitchController8021XSettingsArgs, SwitchController8021XSettingsState }
 export type SwitchController8021XSettings = import("./switchController8021XSettings").SwitchController8021XSettings;
 export const SwitchController8021XSettings: typeof import("./switchController8021XSettings").SwitchController8021XSettings = null as any;
 utilities.lazyLoad(exports, ["SwitchController8021XSettings"], () => require("./switchController8021XSettings"));
+
+export { SwitchControllerAclGroupArgs, SwitchControllerAclGroupState } from "./switchControllerAclGroup";
+export type SwitchControllerAclGroup = import("./switchControllerAclGroup").SwitchControllerAclGroup;
+export const SwitchControllerAclGroup: typeof import("./switchControllerAclGroup").SwitchControllerAclGroup = null as any;
+utilities.lazyLoad(exports, ["SwitchControllerAclGroup"], () => require("./switchControllerAclGroup"));
+
+export { SwitchControllerAclIngressArgs, SwitchControllerAclIngressState } from "./switchControllerAclIngress";
+export type SwitchControllerAclIngress = import("./switchControllerAclIngress").SwitchControllerAclIngress;
+export const SwitchControllerAclIngress: typeof import("./switchControllerAclIngress").SwitchControllerAclIngress = null as any;
+utilities.lazyLoad(exports, ["SwitchControllerAclIngress"], () => require("./switchControllerAclIngress"));
 
 export { SwitchControllerAutoConfigCustomArgs, SwitchControllerAutoConfigCustomState } from "./switchControllerAutoConfigCustom";
 export type SwitchControllerAutoConfigCustom = import("./switchControllerAutoConfigCustom").SwitchControllerAutoConfigCustom;
@@ -3145,6 +3175,11 @@ export type SystemDedicatedMgmt = import("./systemDedicatedMgmt").SystemDedicate
 export const SystemDedicatedMgmt: typeof import("./systemDedicatedMgmt").SystemDedicatedMgmt = null as any;
 utilities.lazyLoad(exports, ["SystemDedicatedMgmt"], () => require("./systemDedicatedMgmt"));
 
+export { SystemDeviceUpgradeArgs, SystemDeviceUpgradeState } from "./systemDeviceUpgrade";
+export type SystemDeviceUpgrade = import("./systemDeviceUpgrade").SystemDeviceUpgrade;
+export const SystemDeviceUpgrade: typeof import("./systemDeviceUpgrade").SystemDeviceUpgrade = null as any;
+utilities.lazyLoad(exports, ["SystemDeviceUpgrade"], () => require("./systemDeviceUpgrade"));
+
 export { SystemDhcp6ServerArgs, SystemDhcp6ServerState } from "./systemDhcp6Server";
 export type SystemDhcp6Server = import("./systemDhcp6Server").SystemDhcp6Server;
 export const SystemDhcp6Server: typeof import("./systemDhcp6Server").SystemDhcp6Server = null as any;
@@ -3185,10 +3220,20 @@ export type SystemEmailServer = import("./systemEmailServer").SystemEmailServer;
 export const SystemEmailServer: typeof import("./systemEmailServer").SystemEmailServer = null as any;
 utilities.lazyLoad(exports, ["SystemEmailServer"], () => require("./systemEmailServer"));
 
+export { SystemEvpnArgs, SystemEvpnState } from "./systemEvpn";
+export type SystemEvpn = import("./systemEvpn").SystemEvpn;
+export const SystemEvpn: typeof import("./systemEvpn").SystemEvpn = null as any;
+utilities.lazyLoad(exports, ["SystemEvpn"], () => require("./systemEvpn"));
+
 export { SystemExternalResourceArgs, SystemExternalResourceState } from "./systemExternalResource";
 export type SystemExternalResource = import("./systemExternalResource").SystemExternalResource;
 export const SystemExternalResource: typeof import("./systemExternalResource").SystemExternalResource = null as any;
 utilities.lazyLoad(exports, ["SystemExternalResource"], () => require("./systemExternalResource"));
+
+export { SystemFabricVpnArgs, SystemFabricVpnState } from "./systemFabricVpn";
+export type SystemFabricVpn = import("./systemFabricVpn").SystemFabricVpn;
+export const SystemFabricVpn: typeof import("./systemFabricVpn").SystemFabricVpn = null as any;
+utilities.lazyLoad(exports, ["SystemFabricVpn"], () => require("./systemFabricVpn"));
 
 export { SystemFederatedUpgradeArgs, SystemFederatedUpgradeState } from "./systemFederatedUpgrade";
 export type SystemFederatedUpgrade = import("./systemFederatedUpgrade").SystemFederatedUpgrade;
@@ -3420,6 +3465,11 @@ export type SystemPasswordPolicyGuestAdmin = import("./systemPasswordPolicyGuest
 export const SystemPasswordPolicyGuestAdmin: typeof import("./systemPasswordPolicyGuestAdmin").SystemPasswordPolicyGuestAdmin = null as any;
 utilities.lazyLoad(exports, ["SystemPasswordPolicyGuestAdmin"], () => require("./systemPasswordPolicyGuestAdmin"));
 
+export { SystemPcpServerArgs, SystemPcpServerState } from "./systemPcpServer";
+export type SystemPcpServer = import("./systemPcpServer").SystemPcpServer;
+export const SystemPcpServer: typeof import("./systemPcpServer").SystemPcpServer = null as any;
+utilities.lazyLoad(exports, ["SystemPcpServer"], () => require("./systemPcpServer"));
+
 export { SystemPhysicalSwitchArgs, SystemPhysicalSwitchState } from "./systemPhysicalSwitch";
 export type SystemPhysicalSwitch = import("./systemPhysicalSwitch").SystemPhysicalSwitch;
 export const SystemPhysicalSwitch: typeof import("./systemPhysicalSwitch").SystemPhysicalSwitch = null as any;
@@ -3560,6 +3610,11 @@ export type SystemSdnConnector = import("./systemSdnConnector").SystemSdnConnect
 export const SystemSdnConnector: typeof import("./systemSdnConnector").SystemSdnConnector = null as any;
 utilities.lazyLoad(exports, ["SystemSdnConnector"], () => require("./systemSdnConnector"));
 
+export { SystemSdnProxyArgs, SystemSdnProxyState } from "./systemSdnProxy";
+export type SystemSdnProxy = import("./systemSdnProxy").SystemSdnProxy;
+export const SystemSdnProxy: typeof import("./systemSdnProxy").SystemSdnProxy = null as any;
+utilities.lazyLoad(exports, ["SystemSdnProxy"], () => require("./systemSdnProxy"));
+
 export { SystemSdwanArgs, SystemSdwanState } from "./systemSdwan";
 export type SystemSdwan = import("./systemSdwan").SystemSdwan;
 export const SystemSdwan: typeof import("./systemSdwan").SystemSdwan = null as any;
@@ -3649,6 +3704,11 @@ export { SystemSsoForticloudAdminArgs, SystemSsoForticloudAdminState } from "./s
 export type SystemSsoForticloudAdmin = import("./systemSsoForticloudAdmin").SystemSsoForticloudAdmin;
 export const SystemSsoForticloudAdmin: typeof import("./systemSsoForticloudAdmin").SystemSsoForticloudAdmin = null as any;
 utilities.lazyLoad(exports, ["SystemSsoForticloudAdmin"], () => require("./systemSsoForticloudAdmin"));
+
+export { SystemSsoFortigateCloudAdminArgs, SystemSsoFortigateCloudAdminState } from "./systemSsoFortigateCloudAdmin";
+export type SystemSsoFortigateCloudAdmin = import("./systemSsoFortigateCloudAdmin").SystemSsoFortigateCloudAdmin;
+export const SystemSsoFortigateCloudAdmin: typeof import("./systemSsoFortigateCloudAdmin").SystemSsoFortigateCloudAdmin = null as any;
+utilities.lazyLoad(exports, ["SystemSsoFortigateCloudAdmin"], () => require("./systemSsoFortigateCloudAdmin"));
 
 export { SystemStandaloneClusterArgs, SystemStandaloneClusterState } from "./systemStandaloneCluster";
 export type SystemStandaloneCluster = import("./systemStandaloneCluster").SystemStandaloneCluster;
@@ -3979,6 +4039,11 @@ export { VpnIpsecPhase2InterfaceArgs, VpnIpsecPhase2InterfaceState } from "./vpn
 export type VpnIpsecPhase2Interface = import("./vpnIpsecPhase2Interface").VpnIpsecPhase2Interface;
 export const VpnIpsecPhase2Interface: typeof import("./vpnIpsecPhase2Interface").VpnIpsecPhase2Interface = null as any;
 utilities.lazyLoad(exports, ["VpnIpsecPhase2Interface"], () => require("./vpnIpsecPhase2Interface"));
+
+export { VpnKmipServerArgs, VpnKmipServerState } from "./vpnKmipServer";
+export type VpnKmipServer = import("./vpnKmipServer").VpnKmipServer;
+export const VpnKmipServer: typeof import("./vpnKmipServer").VpnKmipServer = null as any;
+utilities.lazyLoad(exports, ["VpnKmipServer"], () => require("./vpnKmipServer"));
 
 export { VpnL2TpArgs, VpnL2TpState } from "./vpnL2Tp";
 export type VpnL2Tp = import("./vpnL2Tp").VpnL2Tp;
@@ -4441,6 +4506,8 @@ const _module = {
         switch (type) {
             case "fortios:index/alertemailSetting:AlertemailSetting":
                 return new AlertemailSetting(name, <any>undefined, { urn })
+            case "fortios:index/antivirusExemptList:AntivirusExemptList":
+                return new AntivirusExemptList(name, <any>undefined, { urn })
             case "fortios:index/antivirusHeuristic:AntivirusHeuristic":
                 return new AntivirusHeuristic(name, <any>undefined, { urn })
             case "fortios:index/antivirusProfile:AntivirusProfile":
@@ -4529,6 +4596,8 @@ const _module = {
                 return new EndpointControlClient(name, <any>undefined, { urn })
             case "fortios:index/endpointControlFctems:EndpointControlFctems":
                 return new EndpointControlFctems(name, <any>undefined, { urn })
+            case "fortios:index/endpointControlFctemsOverride:EndpointControlFctemsOverride":
+                return new EndpointControlFctemsOverride(name, <any>undefined, { urn })
             case "fortios:index/endpointControlForticlientEms:EndpointControlForticlientEms":
                 return new EndpointControlForticlientEms(name, <any>undefined, { urn })
             case "fortios:index/endpointControlForticlientRegistrationSync:EndpointControlForticlientRegistrationSync":
@@ -4637,6 +4706,8 @@ const _module = {
                 return new FirewallInternetServiceOwner(name, <any>undefined, { urn })
             case "fortios:index/firewallInternetServiceReputation:FirewallInternetServiceReputation":
                 return new FirewallInternetServiceReputation(name, <any>undefined, { urn })
+            case "fortios:index/firewallInternetServiceSubapp:FirewallInternetServiceSubapp":
+                return new FirewallInternetServiceSubapp(name, <any>undefined, { urn })
             case "fortios:index/firewallIpTranslation:FirewallIpTranslation":
                 return new FirewallIpTranslation(name, <any>undefined, { urn })
             case "fortios:index/firewallIpmacbindingSetting:FirewallIpmacbindingSetting":
@@ -5003,6 +5074,8 @@ const _module = {
                 return new RouterBgp(name, <any>undefined, { urn })
             case "fortios:index/routerCommunityList:RouterCommunityList":
                 return new RouterCommunityList(name, <any>undefined, { urn })
+            case "fortios:index/routerExtcommunityList:RouterExtcommunityList":
+                return new RouterExtcommunityList(name, <any>undefined, { urn })
             case "fortios:index/routerIsis:RouterIsis":
                 return new RouterIsis(name, <any>undefined, { urn })
             case "fortios:index/routerKeyChain:RouterKeyChain":
@@ -5073,6 +5146,10 @@ const _module = {
                 return new SshFilterProfile(name, <any>undefined, { urn })
             case "fortios:index/switchController8021XSettings:SwitchController8021XSettings":
                 return new SwitchController8021XSettings(name, <any>undefined, { urn })
+            case "fortios:index/switchControllerAclGroup:SwitchControllerAclGroup":
+                return new SwitchControllerAclGroup(name, <any>undefined, { urn })
+            case "fortios:index/switchControllerAclIngress:SwitchControllerAclIngress":
+                return new SwitchControllerAclIngress(name, <any>undefined, { urn })
             case "fortios:index/switchControllerAutoConfigCustom:SwitchControllerAutoConfigCustom":
                 return new SwitchControllerAutoConfigCustom(name, <any>undefined, { urn })
             case "fortios:index/switchControllerAutoConfigDefault:SwitchControllerAutoConfigDefault":
@@ -5231,6 +5308,8 @@ const _module = {
                 return new SystemDdns(name, <any>undefined, { urn })
             case "fortios:index/systemDedicatedMgmt:SystemDedicatedMgmt":
                 return new SystemDedicatedMgmt(name, <any>undefined, { urn })
+            case "fortios:index/systemDeviceUpgrade:SystemDeviceUpgrade":
+                return new SystemDeviceUpgrade(name, <any>undefined, { urn })
             case "fortios:index/systemDhcp6Server:SystemDhcp6Server":
                 return new SystemDhcp6Server(name, <any>undefined, { urn })
             case "fortios:index/systemDhcpServer:SystemDhcpServer":
@@ -5247,8 +5326,12 @@ const _module = {
                 return new SystemDscpBasedPriority(name, <any>undefined, { urn })
             case "fortios:index/systemEmailServer:SystemEmailServer":
                 return new SystemEmailServer(name, <any>undefined, { urn })
+            case "fortios:index/systemEvpn:SystemEvpn":
+                return new SystemEvpn(name, <any>undefined, { urn })
             case "fortios:index/systemExternalResource:SystemExternalResource":
                 return new SystemExternalResource(name, <any>undefined, { urn })
+            case "fortios:index/systemFabricVpn:SystemFabricVpn":
+                return new SystemFabricVpn(name, <any>undefined, { urn })
             case "fortios:index/systemFederatedUpgrade:SystemFederatedUpgrade":
                 return new SystemFederatedUpgrade(name, <any>undefined, { urn })
             case "fortios:index/systemFipsCc:SystemFipsCc":
@@ -5341,6 +5424,8 @@ const _module = {
                 return new SystemPasswordPolicy(name, <any>undefined, { urn })
             case "fortios:index/systemPasswordPolicyGuestAdmin:SystemPasswordPolicyGuestAdmin":
                 return new SystemPasswordPolicyGuestAdmin(name, <any>undefined, { urn })
+            case "fortios:index/systemPcpServer:SystemPcpServer":
+                return new SystemPcpServer(name, <any>undefined, { urn })
             case "fortios:index/systemPhysicalSwitch:SystemPhysicalSwitch":
                 return new SystemPhysicalSwitch(name, <any>undefined, { urn })
             case "fortios:index/systemPppoeInterface:SystemPppoeInterface":
@@ -5397,6 +5482,8 @@ const _module = {
                 return new SystemSaml(name, <any>undefined, { urn })
             case "fortios:index/systemSdnConnector:SystemSdnConnector":
                 return new SystemSdnConnector(name, <any>undefined, { urn })
+            case "fortios:index/systemSdnProxy:SystemSdnProxy":
+                return new SystemSdnProxy(name, <any>undefined, { urn })
             case "fortios:index/systemSdwan:SystemSdwan":
                 return new SystemSdwan(name, <any>undefined, { urn })
             case "fortios:index/systemSessionHelper:SystemSessionHelper":
@@ -5433,6 +5520,8 @@ const _module = {
                 return new SystemSsoAdmin(name, <any>undefined, { urn })
             case "fortios:index/systemSsoForticloudAdmin:SystemSsoForticloudAdmin":
                 return new SystemSsoForticloudAdmin(name, <any>undefined, { urn })
+            case "fortios:index/systemSsoFortigateCloudAdmin:SystemSsoFortigateCloudAdmin":
+                return new SystemSsoFortigateCloudAdmin(name, <any>undefined, { urn })
             case "fortios:index/systemStandaloneCluster:SystemStandaloneCluster":
                 return new SystemStandaloneCluster(name, <any>undefined, { urn })
             case "fortios:index/systemStorage:SystemStorage":
@@ -5569,6 +5658,8 @@ const _module = {
                 return new VpnIpsecPhase2(name, <any>undefined, { urn })
             case "fortios:index/vpnIpsecPhase2Interface:VpnIpsecPhase2Interface":
                 return new VpnIpsecPhase2Interface(name, <any>undefined, { urn })
+            case "fortios:index/vpnKmipServer:VpnKmipServer":
+                return new VpnKmipServer(name, <any>undefined, { urn })
             case "fortios:index/vpnL2Tp:VpnL2Tp":
                 return new VpnL2Tp(name, <any>undefined, { urn })
             case "fortios:index/vpnOcvpn:VpnOcvpn":
@@ -5749,6 +5840,7 @@ const _module = {
     },
 };
 pulumi.runtime.registerResourceModule("fortios", "index/alertemailSetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/antivirusExemptList", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/antivirusHeuristic", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/antivirusProfile", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/antivirusQuarantine", _module)
@@ -5793,6 +5885,7 @@ pulumi.runtime.registerResourceModule("fortios", "index/emailfilterOptions", _mo
 pulumi.runtime.registerResourceModule("fortios", "index/emailfilterProfile", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/endpointControlClient", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/endpointControlFctems", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/endpointControlFctemsOverride", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/endpointControlForticlientEms", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/endpointControlForticlientRegistrationSync", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/endpointControlProfile", _module)
@@ -5847,6 +5940,7 @@ pulumi.runtime.registerResourceModule("fortios", "index/firewallInternetServiceL
 pulumi.runtime.registerResourceModule("fortios", "index/firewallInternetServiceName", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/firewallInternetServiceOwner", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/firewallInternetServiceReputation", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallInternetServiceSubapp", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/firewallIpTranslation", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/firewallIpmacbindingSetting", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/firewallIpmacbindingTable", _module)
@@ -6030,6 +6124,7 @@ pulumi.runtime.registerResourceModule("fortios", "index/routerBfd", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/routerBfd6", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/routerBgp", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/routerCommunityList", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/routerExtcommunityList", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/routerIsis", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/routerKeyChain", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/routerMulticast", _module)
@@ -6065,6 +6160,8 @@ pulumi.runtime.registerResourceModule("fortios", "index/spamfilterOptions", _mod
 pulumi.runtime.registerResourceModule("fortios", "index/spamfilterProfile", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/sshFilterProfile", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/switchController8021XSettings", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchControllerAclGroup", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchControllerAclIngress", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/switchControllerAutoConfigCustom", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/switchControllerAutoConfigDefault", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/switchControllerAutoConfigPolicy", _module)
@@ -6144,6 +6241,7 @@ pulumi.runtime.registerResourceModule("fortios", "index/systemCsf", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemCustomLanguage", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemDdns", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemDedicatedMgmt", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemDeviceUpgrade", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemDhcp6Server", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemDhcpServer", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemDns", _module)
@@ -6152,7 +6250,9 @@ pulumi.runtime.registerResourceModule("fortios", "index/systemDnsDatabase", _mod
 pulumi.runtime.registerResourceModule("fortios", "index/systemDnsServer", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemDscpBasedPriority", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemEmailServer", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemEvpn", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemExternalResource", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemFabricVpn", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemFederatedUpgrade", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemFipsCc", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemFm", _module)
@@ -6199,6 +6299,7 @@ pulumi.runtime.registerResourceModule("fortios", "index/systemNtp", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemObjectTagging", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemPasswordPolicy", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemPasswordPolicyGuestAdmin", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemPcpServer", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemPhysicalSwitch", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemPppoeInterface", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemProbeResponse", _module)
@@ -6227,6 +6328,7 @@ pulumi.runtime.registerResourceModule("fortios", "index/systemReplacemsgWebproxy
 pulumi.runtime.registerResourceModule("fortios", "index/systemResourceLimits", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemSaml", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemSdnConnector", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemSdnProxy", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemSdwan", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemSessionHelper", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemSessionTtl", _module)
@@ -6245,6 +6347,7 @@ pulumi.runtime.registerResourceModule("fortios", "index/systemSpeedTestSchedule"
 pulumi.runtime.registerResourceModule("fortios", "index/systemSpeedTestServer", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemSsoAdmin", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemSsoForticloudAdmin", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemSsoFortigateCloudAdmin", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemStandaloneCluster", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemStorage", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemStp", _module)
@@ -6313,6 +6416,7 @@ pulumi.runtime.registerResourceModule("fortios", "index/vpnIpsecPhase1", _module
 pulumi.runtime.registerResourceModule("fortios", "index/vpnIpsecPhase1Interface", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/vpnIpsecPhase2", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/vpnIpsecPhase2Interface", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/vpnKmipServer", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/vpnL2Tp", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/vpnOcvpn", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/vpnPptp", _module)

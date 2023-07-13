@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -24,6 +25,7 @@ type SystemDhcp6Server struct {
 	Domain              pulumi.StringOutput                     `pulumi:"domain"`
 	DynamicSortSubtable pulumi.StringPtrOutput                  `pulumi:"dynamicSortSubtable"`
 	Fosid               pulumi.IntOutput                        `pulumi:"fosid"`
+	GetAllTables        pulumi.StringPtrOutput                  `pulumi:"getAllTables"`
 	Interface           pulumi.StringOutput                     `pulumi:"interface"`
 	IpMode              pulumi.StringOutput                     `pulumi:"ipMode"`
 	IpRanges            SystemDhcp6ServerIpRangeArrayOutput     `pulumi:"ipRanges"`
@@ -56,7 +58,7 @@ func NewSystemDhcp6Server(ctx *pulumi.Context,
 	if args.Subnet == nil {
 		return nil, errors.New("invalid value for required argument 'Subnet'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemDhcp6Server
 	err := ctx.RegisterResource("fortios:index/systemDhcp6Server:SystemDhcp6Server", name, args, &resource, opts...)
 	if err != nil {
@@ -89,6 +91,7 @@ type systemDhcp6ServerState struct {
 	Domain              *string                        `pulumi:"domain"`
 	DynamicSortSubtable *string                        `pulumi:"dynamicSortSubtable"`
 	Fosid               *int                           `pulumi:"fosid"`
+	GetAllTables        *string                        `pulumi:"getAllTables"`
 	Interface           *string                        `pulumi:"interface"`
 	IpMode              *string                        `pulumi:"ipMode"`
 	IpRanges            []SystemDhcp6ServerIpRange     `pulumi:"ipRanges"`
@@ -116,6 +119,7 @@ type SystemDhcp6ServerState struct {
 	Domain              pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	Fosid               pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Interface           pulumi.StringPtrInput
 	IpMode              pulumi.StringPtrInput
 	IpRanges            SystemDhcp6ServerIpRangeArrayInput
@@ -147,6 +151,7 @@ type systemDhcp6ServerArgs struct {
 	Domain              *string                        `pulumi:"domain"`
 	DynamicSortSubtable *string                        `pulumi:"dynamicSortSubtable"`
 	Fosid               int                            `pulumi:"fosid"`
+	GetAllTables        *string                        `pulumi:"getAllTables"`
 	Interface           string                         `pulumi:"interface"`
 	IpMode              *string                        `pulumi:"ipMode"`
 	IpRanges            []SystemDhcp6ServerIpRange     `pulumi:"ipRanges"`
@@ -175,6 +180,7 @@ type SystemDhcp6ServerArgs struct {
 	Domain              pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	Fosid               pulumi.IntInput
+	GetAllTables        pulumi.StringPtrInput
 	Interface           pulumi.StringInput
 	IpMode              pulumi.StringPtrInput
 	IpRanges            SystemDhcp6ServerIpRangeArrayInput
@@ -316,6 +322,10 @@ func (o SystemDhcp6ServerOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 
 func (o SystemDhcp6ServerOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *SystemDhcp6Server) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o SystemDhcp6ServerOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemDhcp6Server) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemDhcp6ServerOutput) Interface() pulumi.StringOutput {

@@ -24,6 +24,7 @@ class FirewallProfileGroupArgs:
                  file_filter_profile: Optional[pulumi.Input[str]] = None,
                  icap_profile: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
+                 ips_voip_filter: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  profile_protocol_options: Optional[pulumi.Input[str]] = None,
                  sctp_filter_profile: Optional[pulumi.Input[str]] = None,
@@ -58,6 +59,8 @@ class FirewallProfileGroupArgs:
             pulumi.set(__self__, "icap_profile", icap_profile)
         if ips_sensor is not None:
             pulumi.set(__self__, "ips_sensor", ips_sensor)
+        if ips_voip_filter is not None:
+            pulumi.set(__self__, "ips_voip_filter", ips_voip_filter)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if profile_protocol_options is not None:
@@ -170,6 +173,15 @@ class FirewallProfileGroupArgs:
     @ips_sensor.setter
     def ips_sensor(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ips_sensor", value)
+
+    @property
+    @pulumi.getter(name="ipsVoipFilter")
+    def ips_voip_filter(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ips_voip_filter")
+
+    @ips_voip_filter.setter
+    def ips_voip_filter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ips_voip_filter", value)
 
     @property
     @pulumi.getter
@@ -284,6 +296,7 @@ class _FirewallProfileGroupState:
                  file_filter_profile: Optional[pulumi.Input[str]] = None,
                  icap_profile: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
+                 ips_voip_filter: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  profile_protocol_options: Optional[pulumi.Input[str]] = None,
                  sctp_filter_profile: Optional[pulumi.Input[str]] = None,
@@ -318,6 +331,8 @@ class _FirewallProfileGroupState:
             pulumi.set(__self__, "icap_profile", icap_profile)
         if ips_sensor is not None:
             pulumi.set(__self__, "ips_sensor", ips_sensor)
+        if ips_voip_filter is not None:
+            pulumi.set(__self__, "ips_voip_filter", ips_voip_filter)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if profile_protocol_options is not None:
@@ -430,6 +445,15 @@ class _FirewallProfileGroupState:
     @ips_sensor.setter
     def ips_sensor(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ips_sensor", value)
+
+    @property
+    @pulumi.getter(name="ipsVoipFilter")
+    def ips_voip_filter(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ips_voip_filter")
+
+    @ips_voip_filter.setter
+    def ips_voip_filter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ips_voip_filter", value)
 
     @property
     @pulumi.getter
@@ -546,6 +570,7 @@ class FirewallProfileGroup(pulumi.CustomResource):
                  file_filter_profile: Optional[pulumi.Input[str]] = None,
                  icap_profile: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
+                 ips_voip_filter: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  profile_protocol_options: Optional[pulumi.Input[str]] = None,
                  sctp_filter_profile: Optional[pulumi.Input[str]] = None,
@@ -596,6 +621,7 @@ class FirewallProfileGroup(pulumi.CustomResource):
                  file_filter_profile: Optional[pulumi.Input[str]] = None,
                  icap_profile: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
+                 ips_voip_filter: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  profile_protocol_options: Optional[pulumi.Input[str]] = None,
                  sctp_filter_profile: Optional[pulumi.Input[str]] = None,
@@ -626,6 +652,7 @@ class FirewallProfileGroup(pulumi.CustomResource):
             __props__.__dict__["file_filter_profile"] = file_filter_profile
             __props__.__dict__["icap_profile"] = icap_profile
             __props__.__dict__["ips_sensor"] = ips_sensor
+            __props__.__dict__["ips_voip_filter"] = ips_voip_filter
             __props__.__dict__["name"] = name
             __props__.__dict__["profile_protocol_options"] = profile_protocol_options
             __props__.__dict__["sctp_filter_profile"] = sctp_filter_profile
@@ -657,6 +684,7 @@ class FirewallProfileGroup(pulumi.CustomResource):
             file_filter_profile: Optional[pulumi.Input[str]] = None,
             icap_profile: Optional[pulumi.Input[str]] = None,
             ips_sensor: Optional[pulumi.Input[str]] = None,
+            ips_voip_filter: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             profile_protocol_options: Optional[pulumi.Input[str]] = None,
             sctp_filter_profile: Optional[pulumi.Input[str]] = None,
@@ -690,6 +718,7 @@ class FirewallProfileGroup(pulumi.CustomResource):
         __props__.__dict__["file_filter_profile"] = file_filter_profile
         __props__.__dict__["icap_profile"] = icap_profile
         __props__.__dict__["ips_sensor"] = ips_sensor
+        __props__.__dict__["ips_voip_filter"] = ips_voip_filter
         __props__.__dict__["name"] = name
         __props__.__dict__["profile_protocol_options"] = profile_protocol_options
         __props__.__dict__["sctp_filter_profile"] = sctp_filter_profile
@@ -752,6 +781,11 @@ class FirewallProfileGroup(pulumi.CustomResource):
     @pulumi.getter(name="ipsSensor")
     def ips_sensor(self) -> pulumi.Output[str]:
         return pulumi.get(self, "ips_sensor")
+
+    @property
+    @pulumi.getter(name="ipsVoipFilter")
+    def ips_voip_filter(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "ips_voip_filter")
 
     @property
     @pulumi.getter

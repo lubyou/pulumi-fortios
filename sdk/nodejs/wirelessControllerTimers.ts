@@ -46,6 +46,7 @@ export class WirelessControllerTimers extends pulumi.CustomResource {
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly echoInterval!: pulumi.Output<number>;
     public readonly fakeApLog!: pulumi.Output<number>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly ipsecIntfCleanup!: pulumi.Output<number>;
     public readonly radioStatsInterval!: pulumi.Output<number>;
     public readonly rogueApCleanup!: pulumi.Output<number>;
@@ -81,6 +82,7 @@ export class WirelessControllerTimers extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["echoInterval"] = state ? state.echoInterval : undefined;
             resourceInputs["fakeApLog"] = state ? state.fakeApLog : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["ipsecIntfCleanup"] = state ? state.ipsecIntfCleanup : undefined;
             resourceInputs["radioStatsInterval"] = state ? state.radioStatsInterval : undefined;
             resourceInputs["rogueApCleanup"] = state ? state.rogueApCleanup : undefined;
@@ -104,6 +106,7 @@ export class WirelessControllerTimers extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["echoInterval"] = args ? args.echoInterval : undefined;
             resourceInputs["fakeApLog"] = args ? args.fakeApLog : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["ipsecIntfCleanup"] = args ? args.ipsecIntfCleanup : undefined;
             resourceInputs["radioStatsInterval"] = args ? args.radioStatsInterval : undefined;
             resourceInputs["rogueApCleanup"] = args ? args.rogueApCleanup : undefined;
@@ -135,6 +138,7 @@ export interface WirelessControllerTimersState {
     dynamicSortSubtable?: pulumi.Input<string>;
     echoInterval?: pulumi.Input<number>;
     fakeApLog?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     ipsecIntfCleanup?: pulumi.Input<number>;
     radioStatsInterval?: pulumi.Input<number>;
     rogueApCleanup?: pulumi.Input<number>;
@@ -162,6 +166,7 @@ export interface WirelessControllerTimersArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
     echoInterval?: pulumi.Input<number>;
     fakeApLog?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     ipsecIntfCleanup?: pulumi.Input<number>;
     radioStatsInterval?: pulumi.Input<number>;
     rogueApCleanup?: pulumi.Input<number>;

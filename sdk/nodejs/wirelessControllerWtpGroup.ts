@@ -35,6 +35,7 @@ export class WirelessControllerWtpGroup extends pulumi.CustomResource {
     }
 
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly platformType!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -54,6 +55,7 @@ export class WirelessControllerWtpGroup extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as WirelessControllerWtpGroupState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["platformType"] = state ? state.platformType : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
@@ -61,6 +63,7 @@ export class WirelessControllerWtpGroup extends pulumi.CustomResource {
         } else {
             const args = argsOrState as WirelessControllerWtpGroupArgs | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["platformType"] = args ? args.platformType : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -76,6 +79,7 @@ export class WirelessControllerWtpGroup extends pulumi.CustomResource {
  */
 export interface WirelessControllerWtpGroupState {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     platformType?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
@@ -87,6 +91,7 @@ export interface WirelessControllerWtpGroupState {
  */
 export interface WirelessControllerWtpGroupArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     platformType?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;

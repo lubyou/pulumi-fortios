@@ -127,15 +127,15 @@ def get_system_fm(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemFm:GetSystemFm', __args__, opts=opts, typ=GetSystemFmResult).value
 
     return AwaitableGetSystemFmResult(
-        auto_backup=__ret__.auto_backup,
-        fosid=__ret__.fosid,
-        id=__ret__.id,
-        ip=__ret__.ip,
-        ipsec=__ret__.ipsec,
-        scheduled_config_restore=__ret__.scheduled_config_restore,
-        status=__ret__.status,
-        vdom=__ret__.vdom,
-        vdomparam=__ret__.vdomparam)
+        auto_backup=pulumi.get(__ret__, 'auto_backup'),
+        fosid=pulumi.get(__ret__, 'fosid'),
+        id=pulumi.get(__ret__, 'id'),
+        ip=pulumi.get(__ret__, 'ip'),
+        ipsec=pulumi.get(__ret__, 'ipsec'),
+        scheduled_config_restore=pulumi.get(__ret__, 'scheduled_config_restore'),
+        status=pulumi.get(__ret__, 'status'),
+        vdom=pulumi.get(__ret__, 'vdom'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_fm)

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,6 +16,7 @@ type SctpFilterProfile struct {
 
 	Comment             pulumi.StringPtrOutput                 `pulumi:"comment"`
 	DynamicSortSubtable pulumi.StringPtrOutput                 `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                 `pulumi:"getAllTables"`
 	Name                pulumi.StringOutput                    `pulumi:"name"`
 	PpidFilters         SctpFilterProfilePpidFilterArrayOutput `pulumi:"ppidFilters"`
 	Vdomparam           pulumi.StringPtrOutput                 `pulumi:"vdomparam"`
@@ -27,7 +29,7 @@ func NewSctpFilterProfile(ctx *pulumi.Context,
 		args = &SctpFilterProfileArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SctpFilterProfile
 	err := ctx.RegisterResource("fortios:index/sctpFilterProfile:SctpFilterProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -52,6 +54,7 @@ func GetSctpFilterProfile(ctx *pulumi.Context,
 type sctpFilterProfileState struct {
 	Comment             *string                       `pulumi:"comment"`
 	DynamicSortSubtable *string                       `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                       `pulumi:"getAllTables"`
 	Name                *string                       `pulumi:"name"`
 	PpidFilters         []SctpFilterProfilePpidFilter `pulumi:"ppidFilters"`
 	Vdomparam           *string                       `pulumi:"vdomparam"`
@@ -60,6 +63,7 @@ type sctpFilterProfileState struct {
 type SctpFilterProfileState struct {
 	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	PpidFilters         SctpFilterProfilePpidFilterArrayInput
 	Vdomparam           pulumi.StringPtrInput
@@ -72,6 +76,7 @@ func (SctpFilterProfileState) ElementType() reflect.Type {
 type sctpFilterProfileArgs struct {
 	Comment             *string                       `pulumi:"comment"`
 	DynamicSortSubtable *string                       `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                       `pulumi:"getAllTables"`
 	Name                *string                       `pulumi:"name"`
 	PpidFilters         []SctpFilterProfilePpidFilter `pulumi:"ppidFilters"`
 	Vdomparam           *string                       `pulumi:"vdomparam"`
@@ -81,6 +86,7 @@ type sctpFilterProfileArgs struct {
 type SctpFilterProfileArgs struct {
 	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	PpidFilters         SctpFilterProfilePpidFilterArrayInput
 	Vdomparam           pulumi.StringPtrInput
@@ -179,6 +185,10 @@ func (o SctpFilterProfileOutput) Comment() pulumi.StringPtrOutput {
 
 func (o SctpFilterProfileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SctpFilterProfile) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SctpFilterProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SctpFilterProfile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SctpFilterProfileOutput) Name() pulumi.StringOutput {

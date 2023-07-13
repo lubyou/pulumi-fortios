@@ -36,6 +36,7 @@ export class SystemNtp extends pulumi.CustomResource {
 
     public readonly authentication!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly interfaces!: pulumi.Output<outputs.SystemNtpInterface[] | undefined>;
     public readonly key!: pulumi.Output<string | undefined>;
     public readonly keyId!: pulumi.Output<number>;
@@ -64,6 +65,7 @@ export class SystemNtp extends pulumi.CustomResource {
             const state = argsOrState as SystemNtpState | undefined;
             resourceInputs["authentication"] = state ? state.authentication : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["interfaces"] = state ? state.interfaces : undefined;
             resourceInputs["key"] = state ? state.key : undefined;
             resourceInputs["keyId"] = state ? state.keyId : undefined;
@@ -80,6 +82,7 @@ export class SystemNtp extends pulumi.CustomResource {
             const args = argsOrState as SystemNtpArgs | undefined;
             resourceInputs["authentication"] = args ? args.authentication : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["interfaces"] = args ? args.interfaces : undefined;
             resourceInputs["key"] = args?.key ? pulumi.secret(args.key) : undefined;
             resourceInputs["keyId"] = args ? args.keyId : undefined;
@@ -106,6 +109,7 @@ export class SystemNtp extends pulumi.CustomResource {
 export interface SystemNtpState {
     authentication?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     interfaces?: pulumi.Input<pulumi.Input<inputs.SystemNtpInterface>[]>;
     key?: pulumi.Input<string>;
     keyId?: pulumi.Input<number>;
@@ -126,6 +130,7 @@ export interface SystemNtpState {
 export interface SystemNtpArgs {
     authentication?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     interfaces?: pulumi.Input<pulumi.Input<inputs.SystemNtpInterface>[]>;
     key?: pulumi.Input<string>;
     keyId?: pulumi.Input<number>;

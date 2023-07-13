@@ -23,6 +23,7 @@ class WebfilterProfileArgs:
                  feature_set: Optional[pulumi.Input[str]] = None,
                  file_filter: Optional[pulumi.Input['WebfilterProfileFileFilterArgs']] = None,
                  ftgd_wf: Optional[pulumi.Input['WebfilterProfileFtgdWfArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  https_replacemsg: Optional[pulumi.Input[str]] = None,
                  inspection_mode: Optional[pulumi.Input[str]] = None,
                  log_all_url: Optional[pulumi.Input[str]] = None,
@@ -73,6 +74,8 @@ class WebfilterProfileArgs:
             pulumi.set(__self__, "file_filter", file_filter)
         if ftgd_wf is not None:
             pulumi.set(__self__, "ftgd_wf", ftgd_wf)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if https_replacemsg is not None:
             pulumi.set(__self__, "https_replacemsg", https_replacemsg)
         if inspection_mode is not None:
@@ -202,6 +205,15 @@ class WebfilterProfileArgs:
     @ftgd_wf.setter
     def ftgd_wf(self, value: Optional[pulumi.Input['WebfilterProfileFtgdWfArgs']]):
         pulumi.set(self, "ftgd_wf", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="httpsReplacemsg")
@@ -511,6 +523,7 @@ class _WebfilterProfileState:
                  feature_set: Optional[pulumi.Input[str]] = None,
                  file_filter: Optional[pulumi.Input['WebfilterProfileFileFilterArgs']] = None,
                  ftgd_wf: Optional[pulumi.Input['WebfilterProfileFtgdWfArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  https_replacemsg: Optional[pulumi.Input[str]] = None,
                  inspection_mode: Optional[pulumi.Input[str]] = None,
                  log_all_url: Optional[pulumi.Input[str]] = None,
@@ -561,6 +574,8 @@ class _WebfilterProfileState:
             pulumi.set(__self__, "file_filter", file_filter)
         if ftgd_wf is not None:
             pulumi.set(__self__, "ftgd_wf", ftgd_wf)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if https_replacemsg is not None:
             pulumi.set(__self__, "https_replacemsg", https_replacemsg)
         if inspection_mode is not None:
@@ -690,6 +705,15 @@ class _WebfilterProfileState:
     @ftgd_wf.setter
     def ftgd_wf(self, value: Optional[pulumi.Input['WebfilterProfileFtgdWfArgs']]):
         pulumi.set(self, "ftgd_wf", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="httpsReplacemsg")
@@ -1001,6 +1025,7 @@ class WebfilterProfile(pulumi.CustomResource):
                  feature_set: Optional[pulumi.Input[str]] = None,
                  file_filter: Optional[pulumi.Input[pulumi.InputType['WebfilterProfileFileFilterArgs']]] = None,
                  ftgd_wf: Optional[pulumi.Input[pulumi.InputType['WebfilterProfileFtgdWfArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  https_replacemsg: Optional[pulumi.Input[str]] = None,
                  inspection_mode: Optional[pulumi.Input[str]] = None,
                  log_all_url: Optional[pulumi.Input[str]] = None,
@@ -1070,6 +1095,7 @@ class WebfilterProfile(pulumi.CustomResource):
                  feature_set: Optional[pulumi.Input[str]] = None,
                  file_filter: Optional[pulumi.Input[pulumi.InputType['WebfilterProfileFileFilterArgs']]] = None,
                  ftgd_wf: Optional[pulumi.Input[pulumi.InputType['WebfilterProfileFtgdWfArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  https_replacemsg: Optional[pulumi.Input[str]] = None,
                  inspection_mode: Optional[pulumi.Input[str]] = None,
                  log_all_url: Optional[pulumi.Input[str]] = None,
@@ -1119,6 +1145,7 @@ class WebfilterProfile(pulumi.CustomResource):
             __props__.__dict__["feature_set"] = feature_set
             __props__.__dict__["file_filter"] = file_filter
             __props__.__dict__["ftgd_wf"] = ftgd_wf
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["https_replacemsg"] = https_replacemsg
             __props__.__dict__["inspection_mode"] = inspection_mode
             __props__.__dict__["log_all_url"] = log_all_url
@@ -1169,6 +1196,7 @@ class WebfilterProfile(pulumi.CustomResource):
             feature_set: Optional[pulumi.Input[str]] = None,
             file_filter: Optional[pulumi.Input[pulumi.InputType['WebfilterProfileFileFilterArgs']]] = None,
             ftgd_wf: Optional[pulumi.Input[pulumi.InputType['WebfilterProfileFtgdWfArgs']]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             https_replacemsg: Optional[pulumi.Input[str]] = None,
             inspection_mode: Optional[pulumi.Input[str]] = None,
             log_all_url: Optional[pulumi.Input[str]] = None,
@@ -1221,6 +1249,7 @@ class WebfilterProfile(pulumi.CustomResource):
         __props__.__dict__["feature_set"] = feature_set
         __props__.__dict__["file_filter"] = file_filter
         __props__.__dict__["ftgd_wf"] = ftgd_wf
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["https_replacemsg"] = https_replacemsg
         __props__.__dict__["inspection_mode"] = inspection_mode
         __props__.__dict__["log_all_url"] = log_all_url
@@ -1290,6 +1319,11 @@ class WebfilterProfile(pulumi.CustomResource):
     @pulumi.getter(name="ftgdWf")
     def ftgd_wf(self) -> pulumi.Output['outputs.WebfilterProfileFtgdWf']:
         return pulumi.get(self, "ftgd_wf")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="httpsReplacemsg")

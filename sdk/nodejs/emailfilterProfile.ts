@@ -38,6 +38,7 @@ export class EmailfilterProfile extends pulumi.CustomResource {
     public readonly external!: pulumi.Output<string>;
     public readonly featureSet!: pulumi.Output<string>;
     public readonly fileFilter!: pulumi.Output<outputs.EmailfilterProfileFileFilter>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly gmail!: pulumi.Output<outputs.EmailfilterProfileGmail>;
     public readonly imap!: pulumi.Output<outputs.EmailfilterProfileImap>;
     public readonly mapi!: pulumi.Output<outputs.EmailfilterProfileMapi>;
@@ -78,6 +79,7 @@ export class EmailfilterProfile extends pulumi.CustomResource {
             resourceInputs["external"] = state ? state.external : undefined;
             resourceInputs["featureSet"] = state ? state.featureSet : undefined;
             resourceInputs["fileFilter"] = state ? state.fileFilter : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["gmail"] = state ? state.gmail : undefined;
             resourceInputs["imap"] = state ? state.imap : undefined;
             resourceInputs["mapi"] = state ? state.mapi : undefined;
@@ -106,6 +108,7 @@ export class EmailfilterProfile extends pulumi.CustomResource {
             resourceInputs["external"] = args ? args.external : undefined;
             resourceInputs["featureSet"] = args ? args.featureSet : undefined;
             resourceInputs["fileFilter"] = args ? args.fileFilter : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["gmail"] = args ? args.gmail : undefined;
             resourceInputs["imap"] = args ? args.imap : undefined;
             resourceInputs["mapi"] = args ? args.mapi : undefined;
@@ -142,6 +145,7 @@ export interface EmailfilterProfileState {
     external?: pulumi.Input<string>;
     featureSet?: pulumi.Input<string>;
     fileFilter?: pulumi.Input<inputs.EmailfilterProfileFileFilter>;
+    getAllTables?: pulumi.Input<string>;
     gmail?: pulumi.Input<inputs.EmailfilterProfileGmail>;
     imap?: pulumi.Input<inputs.EmailfilterProfileImap>;
     mapi?: pulumi.Input<inputs.EmailfilterProfileMapi>;
@@ -174,6 +178,7 @@ export interface EmailfilterProfileArgs {
     external?: pulumi.Input<string>;
     featureSet?: pulumi.Input<string>;
     fileFilter?: pulumi.Input<inputs.EmailfilterProfileFileFilter>;
+    getAllTables?: pulumi.Input<string>;
     gmail?: pulumi.Input<inputs.EmailfilterProfileGmail>;
     imap?: pulumi.Input<inputs.EmailfilterProfileImap>;
     mapi?: pulumi.Input<inputs.EmailfilterProfileMapi>;

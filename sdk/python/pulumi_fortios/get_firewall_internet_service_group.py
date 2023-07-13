@@ -103,12 +103,12 @@ def get_firewall_internet_service_group(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getFirewallInternetServiceGroup:GetFirewallInternetServiceGroup', __args__, opts=opts, typ=GetFirewallInternetServiceGroupResult).value
 
     return AwaitableGetFirewallInternetServiceGroupResult(
-        comment=__ret__.comment,
-        direction=__ret__.direction,
-        id=__ret__.id,
-        members=__ret__.members,
-        name=__ret__.name,
-        vdomparam=__ret__.vdomparam)
+        comment=pulumi.get(__ret__, 'comment'),
+        direction=pulumi.get(__ret__, 'direction'),
+        id=pulumi.get(__ret__, 'id'),
+        members=pulumi.get(__ret__, 'members'),
+        name=pulumi.get(__ret__, 'name'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_firewall_internet_service_group)

@@ -27,6 +27,7 @@ class RouterBgpArgs:
                  aggregate_address6s: Optional[pulumi.Input[Sequence[pulumi.Input['RouterBgpAggregateAddress6Args']]]] = None,
                  aggregate_addresses: Optional[pulumi.Input[Sequence[pulumi.Input['RouterBgpAggregateAddressArgs']]]] = None,
                  always_compare_med: Optional[pulumi.Input[str]] = None,
+                 as_string: Optional[pulumi.Input[str]] = None,
                  bestpath_as_path_ignore: Optional[pulumi.Input[str]] = None,
                  bestpath_cmp_confed_aspath: Optional[pulumi.Input[str]] = None,
                  bestpath_cmp_routerid: Optional[pulumi.Input[str]] = None,
@@ -36,6 +37,7 @@ class RouterBgpArgs:
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  confederation_identifier: Optional[pulumi.Input[int]] = None,
                  confederation_peers: Optional[pulumi.Input[Sequence[pulumi.Input['RouterBgpConfederationPeerArgs']]]] = None,
+                 cross_family_conditional_adv: Optional[pulumi.Input[str]] = None,
                  dampening: Optional[pulumi.Input[str]] = None,
                  dampening_max_suppress_time: Optional[pulumi.Input[int]] = None,
                  dampening_reachability_half_life: Optional[pulumi.Input[int]] = None,
@@ -52,6 +54,7 @@ class RouterBgpArgs:
                  ebgp_multipath: Optional[pulumi.Input[str]] = None,
                  enforce_first_as: Optional[pulumi.Input[str]] = None,
                  fast_external_failover: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  graceful_end_on_timer: Optional[pulumi.Input[str]] = None,
                  graceful_restart: Optional[pulumi.Input[str]] = None,
                  graceful_restart_time: Optional[pulumi.Input[int]] = None,
@@ -107,6 +110,8 @@ class RouterBgpArgs:
             pulumi.set(__self__, "aggregate_addresses", aggregate_addresses)
         if always_compare_med is not None:
             pulumi.set(__self__, "always_compare_med", always_compare_med)
+        if as_string is not None:
+            pulumi.set(__self__, "as_string", as_string)
         if bestpath_as_path_ignore is not None:
             pulumi.set(__self__, "bestpath_as_path_ignore", bestpath_as_path_ignore)
         if bestpath_cmp_confed_aspath is not None:
@@ -125,6 +130,8 @@ class RouterBgpArgs:
             pulumi.set(__self__, "confederation_identifier", confederation_identifier)
         if confederation_peers is not None:
             pulumi.set(__self__, "confederation_peers", confederation_peers)
+        if cross_family_conditional_adv is not None:
+            pulumi.set(__self__, "cross_family_conditional_adv", cross_family_conditional_adv)
         if dampening is not None:
             pulumi.set(__self__, "dampening", dampening)
         if dampening_max_suppress_time is not None:
@@ -157,6 +164,8 @@ class RouterBgpArgs:
             pulumi.set(__self__, "enforce_first_as", enforce_first_as)
         if fast_external_failover is not None:
             pulumi.set(__self__, "fast_external_failover", fast_external_failover)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if graceful_end_on_timer is not None:
             pulumi.set(__self__, "graceful_end_on_timer", graceful_end_on_timer)
         if graceful_restart is not None:
@@ -320,6 +329,15 @@ class RouterBgpArgs:
         pulumi.set(self, "always_compare_med", value)
 
     @property
+    @pulumi.getter(name="asString")
+    def as_string(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "as_string")
+
+    @as_string.setter
+    def as_string(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "as_string", value)
+
+    @property
     @pulumi.getter(name="bestpathAsPathIgnore")
     def bestpath_as_path_ignore(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "bestpath_as_path_ignore")
@@ -399,6 +417,15 @@ class RouterBgpArgs:
     @confederation_peers.setter
     def confederation_peers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RouterBgpConfederationPeerArgs']]]]):
         pulumi.set(self, "confederation_peers", value)
+
+    @property
+    @pulumi.getter(name="crossFamilyConditionalAdv")
+    def cross_family_conditional_adv(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "cross_family_conditional_adv")
+
+    @cross_family_conditional_adv.setter
+    def cross_family_conditional_adv(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cross_family_conditional_adv", value)
 
     @property
     @pulumi.getter
@@ -543,6 +570,15 @@ class RouterBgpArgs:
     @fast_external_failover.setter
     def fast_external_failover(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fast_external_failover", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="gracefulEndOnTimer")
@@ -838,6 +874,7 @@ class _RouterBgpState:
                  aggregate_addresses: Optional[pulumi.Input[Sequence[pulumi.Input['RouterBgpAggregateAddressArgs']]]] = None,
                  always_compare_med: Optional[pulumi.Input[str]] = None,
                  as_: Optional[pulumi.Input[int]] = None,
+                 as_string: Optional[pulumi.Input[str]] = None,
                  bestpath_as_path_ignore: Optional[pulumi.Input[str]] = None,
                  bestpath_cmp_confed_aspath: Optional[pulumi.Input[str]] = None,
                  bestpath_cmp_routerid: Optional[pulumi.Input[str]] = None,
@@ -847,6 +884,7 @@ class _RouterBgpState:
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  confederation_identifier: Optional[pulumi.Input[int]] = None,
                  confederation_peers: Optional[pulumi.Input[Sequence[pulumi.Input['RouterBgpConfederationPeerArgs']]]] = None,
+                 cross_family_conditional_adv: Optional[pulumi.Input[str]] = None,
                  dampening: Optional[pulumi.Input[str]] = None,
                  dampening_max_suppress_time: Optional[pulumi.Input[int]] = None,
                  dampening_reachability_half_life: Optional[pulumi.Input[int]] = None,
@@ -863,6 +901,7 @@ class _RouterBgpState:
                  ebgp_multipath: Optional[pulumi.Input[str]] = None,
                  enforce_first_as: Optional[pulumi.Input[str]] = None,
                  fast_external_failover: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  graceful_end_on_timer: Optional[pulumi.Input[str]] = None,
                  graceful_restart: Optional[pulumi.Input[str]] = None,
                  graceful_restart_time: Optional[pulumi.Input[int]] = None,
@@ -919,6 +958,8 @@ class _RouterBgpState:
             pulumi.set(__self__, "always_compare_med", always_compare_med)
         if as_ is not None:
             pulumi.set(__self__, "as_", as_)
+        if as_string is not None:
+            pulumi.set(__self__, "as_string", as_string)
         if bestpath_as_path_ignore is not None:
             pulumi.set(__self__, "bestpath_as_path_ignore", bestpath_as_path_ignore)
         if bestpath_cmp_confed_aspath is not None:
@@ -937,6 +978,8 @@ class _RouterBgpState:
             pulumi.set(__self__, "confederation_identifier", confederation_identifier)
         if confederation_peers is not None:
             pulumi.set(__self__, "confederation_peers", confederation_peers)
+        if cross_family_conditional_adv is not None:
+            pulumi.set(__self__, "cross_family_conditional_adv", cross_family_conditional_adv)
         if dampening is not None:
             pulumi.set(__self__, "dampening", dampening)
         if dampening_max_suppress_time is not None:
@@ -969,6 +1012,8 @@ class _RouterBgpState:
             pulumi.set(__self__, "enforce_first_as", enforce_first_as)
         if fast_external_failover is not None:
             pulumi.set(__self__, "fast_external_failover", fast_external_failover)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if graceful_end_on_timer is not None:
             pulumi.set(__self__, "graceful_end_on_timer", graceful_end_on_timer)
         if graceful_restart is not None:
@@ -1132,6 +1177,15 @@ class _RouterBgpState:
         pulumi.set(self, "as_", value)
 
     @property
+    @pulumi.getter(name="asString")
+    def as_string(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "as_string")
+
+    @as_string.setter
+    def as_string(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "as_string", value)
+
+    @property
     @pulumi.getter(name="bestpathAsPathIgnore")
     def bestpath_as_path_ignore(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "bestpath_as_path_ignore")
@@ -1211,6 +1265,15 @@ class _RouterBgpState:
     @confederation_peers.setter
     def confederation_peers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RouterBgpConfederationPeerArgs']]]]):
         pulumi.set(self, "confederation_peers", value)
+
+    @property
+    @pulumi.getter(name="crossFamilyConditionalAdv")
+    def cross_family_conditional_adv(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "cross_family_conditional_adv")
+
+    @cross_family_conditional_adv.setter
+    def cross_family_conditional_adv(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cross_family_conditional_adv", value)
 
     @property
     @pulumi.getter
@@ -1355,6 +1418,15 @@ class _RouterBgpState:
     @fast_external_failover.setter
     def fast_external_failover(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fast_external_failover", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="gracefulEndOnTimer")
@@ -1652,6 +1724,7 @@ class RouterBgp(pulumi.CustomResource):
                  aggregate_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterBgpAggregateAddressArgs']]]]] = None,
                  always_compare_med: Optional[pulumi.Input[str]] = None,
                  as_: Optional[pulumi.Input[int]] = None,
+                 as_string: Optional[pulumi.Input[str]] = None,
                  bestpath_as_path_ignore: Optional[pulumi.Input[str]] = None,
                  bestpath_cmp_confed_aspath: Optional[pulumi.Input[str]] = None,
                  bestpath_cmp_routerid: Optional[pulumi.Input[str]] = None,
@@ -1661,6 +1734,7 @@ class RouterBgp(pulumi.CustomResource):
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  confederation_identifier: Optional[pulumi.Input[int]] = None,
                  confederation_peers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterBgpConfederationPeerArgs']]]]] = None,
+                 cross_family_conditional_adv: Optional[pulumi.Input[str]] = None,
                  dampening: Optional[pulumi.Input[str]] = None,
                  dampening_max_suppress_time: Optional[pulumi.Input[int]] = None,
                  dampening_reachability_half_life: Optional[pulumi.Input[int]] = None,
@@ -1677,6 +1751,7 @@ class RouterBgp(pulumi.CustomResource):
                  ebgp_multipath: Optional[pulumi.Input[str]] = None,
                  enforce_first_as: Optional[pulumi.Input[str]] = None,
                  fast_external_failover: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  graceful_end_on_timer: Optional[pulumi.Input[str]] = None,
                  graceful_restart: Optional[pulumi.Input[str]] = None,
                  graceful_restart_time: Optional[pulumi.Input[int]] = None,
@@ -1748,6 +1823,7 @@ class RouterBgp(pulumi.CustomResource):
                  aggregate_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterBgpAggregateAddressArgs']]]]] = None,
                  always_compare_med: Optional[pulumi.Input[str]] = None,
                  as_: Optional[pulumi.Input[int]] = None,
+                 as_string: Optional[pulumi.Input[str]] = None,
                  bestpath_as_path_ignore: Optional[pulumi.Input[str]] = None,
                  bestpath_cmp_confed_aspath: Optional[pulumi.Input[str]] = None,
                  bestpath_cmp_routerid: Optional[pulumi.Input[str]] = None,
@@ -1757,6 +1833,7 @@ class RouterBgp(pulumi.CustomResource):
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  confederation_identifier: Optional[pulumi.Input[int]] = None,
                  confederation_peers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterBgpConfederationPeerArgs']]]]] = None,
+                 cross_family_conditional_adv: Optional[pulumi.Input[str]] = None,
                  dampening: Optional[pulumi.Input[str]] = None,
                  dampening_max_suppress_time: Optional[pulumi.Input[int]] = None,
                  dampening_reachability_half_life: Optional[pulumi.Input[int]] = None,
@@ -1773,6 +1850,7 @@ class RouterBgp(pulumi.CustomResource):
                  ebgp_multipath: Optional[pulumi.Input[str]] = None,
                  enforce_first_as: Optional[pulumi.Input[str]] = None,
                  fast_external_failover: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  graceful_end_on_timer: Optional[pulumi.Input[str]] = None,
                  graceful_restart: Optional[pulumi.Input[str]] = None,
                  graceful_restart_time: Optional[pulumi.Input[int]] = None,
@@ -1826,6 +1904,7 @@ class RouterBgp(pulumi.CustomResource):
             if as_ is None and not opts.urn:
                 raise TypeError("Missing required property 'as_'")
             __props__.__dict__["as_"] = as_
+            __props__.__dict__["as_string"] = as_string
             __props__.__dict__["bestpath_as_path_ignore"] = bestpath_as_path_ignore
             __props__.__dict__["bestpath_cmp_confed_aspath"] = bestpath_cmp_confed_aspath
             __props__.__dict__["bestpath_cmp_routerid"] = bestpath_cmp_routerid
@@ -1835,6 +1914,7 @@ class RouterBgp(pulumi.CustomResource):
             __props__.__dict__["cluster_id"] = cluster_id
             __props__.__dict__["confederation_identifier"] = confederation_identifier
             __props__.__dict__["confederation_peers"] = confederation_peers
+            __props__.__dict__["cross_family_conditional_adv"] = cross_family_conditional_adv
             __props__.__dict__["dampening"] = dampening
             __props__.__dict__["dampening_max_suppress_time"] = dampening_max_suppress_time
             __props__.__dict__["dampening_reachability_half_life"] = dampening_reachability_half_life
@@ -1851,6 +1931,7 @@ class RouterBgp(pulumi.CustomResource):
             __props__.__dict__["ebgp_multipath"] = ebgp_multipath
             __props__.__dict__["enforce_first_as"] = enforce_first_as
             __props__.__dict__["fast_external_failover"] = fast_external_failover
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["graceful_end_on_timer"] = graceful_end_on_timer
             __props__.__dict__["graceful_restart"] = graceful_restart
             __props__.__dict__["graceful_restart_time"] = graceful_restart_time
@@ -1903,6 +1984,7 @@ class RouterBgp(pulumi.CustomResource):
             aggregate_addresses: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterBgpAggregateAddressArgs']]]]] = None,
             always_compare_med: Optional[pulumi.Input[str]] = None,
             as_: Optional[pulumi.Input[int]] = None,
+            as_string: Optional[pulumi.Input[str]] = None,
             bestpath_as_path_ignore: Optional[pulumi.Input[str]] = None,
             bestpath_cmp_confed_aspath: Optional[pulumi.Input[str]] = None,
             bestpath_cmp_routerid: Optional[pulumi.Input[str]] = None,
@@ -1912,6 +1994,7 @@ class RouterBgp(pulumi.CustomResource):
             cluster_id: Optional[pulumi.Input[str]] = None,
             confederation_identifier: Optional[pulumi.Input[int]] = None,
             confederation_peers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterBgpConfederationPeerArgs']]]]] = None,
+            cross_family_conditional_adv: Optional[pulumi.Input[str]] = None,
             dampening: Optional[pulumi.Input[str]] = None,
             dampening_max_suppress_time: Optional[pulumi.Input[int]] = None,
             dampening_reachability_half_life: Optional[pulumi.Input[int]] = None,
@@ -1928,6 +2011,7 @@ class RouterBgp(pulumi.CustomResource):
             ebgp_multipath: Optional[pulumi.Input[str]] = None,
             enforce_first_as: Optional[pulumi.Input[str]] = None,
             fast_external_failover: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             graceful_end_on_timer: Optional[pulumi.Input[str]] = None,
             graceful_restart: Optional[pulumi.Input[str]] = None,
             graceful_restart_time: Optional[pulumi.Input[int]] = None,
@@ -1982,6 +2066,7 @@ class RouterBgp(pulumi.CustomResource):
         __props__.__dict__["aggregate_addresses"] = aggregate_addresses
         __props__.__dict__["always_compare_med"] = always_compare_med
         __props__.__dict__["as_"] = as_
+        __props__.__dict__["as_string"] = as_string
         __props__.__dict__["bestpath_as_path_ignore"] = bestpath_as_path_ignore
         __props__.__dict__["bestpath_cmp_confed_aspath"] = bestpath_cmp_confed_aspath
         __props__.__dict__["bestpath_cmp_routerid"] = bestpath_cmp_routerid
@@ -1991,6 +2076,7 @@ class RouterBgp(pulumi.CustomResource):
         __props__.__dict__["cluster_id"] = cluster_id
         __props__.__dict__["confederation_identifier"] = confederation_identifier
         __props__.__dict__["confederation_peers"] = confederation_peers
+        __props__.__dict__["cross_family_conditional_adv"] = cross_family_conditional_adv
         __props__.__dict__["dampening"] = dampening
         __props__.__dict__["dampening_max_suppress_time"] = dampening_max_suppress_time
         __props__.__dict__["dampening_reachability_half_life"] = dampening_reachability_half_life
@@ -2007,6 +2093,7 @@ class RouterBgp(pulumi.CustomResource):
         __props__.__dict__["ebgp_multipath"] = ebgp_multipath
         __props__.__dict__["enforce_first_as"] = enforce_first_as
         __props__.__dict__["fast_external_failover"] = fast_external_failover
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["graceful_end_on_timer"] = graceful_end_on_timer
         __props__.__dict__["graceful_restart"] = graceful_restart
         __props__.__dict__["graceful_restart_time"] = graceful_restart_time
@@ -2096,6 +2183,11 @@ class RouterBgp(pulumi.CustomResource):
         return pulumi.get(self, "as_")
 
     @property
+    @pulumi.getter(name="asString")
+    def as_string(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "as_string")
+
+    @property
     @pulumi.getter(name="bestpathAsPathIgnore")
     def bestpath_as_path_ignore(self) -> pulumi.Output[str]:
         return pulumi.get(self, "bestpath_as_path_ignore")
@@ -2139,6 +2231,11 @@ class RouterBgp(pulumi.CustomResource):
     @pulumi.getter(name="confederationPeers")
     def confederation_peers(self) -> pulumi.Output[Optional[Sequence['outputs.RouterBgpConfederationPeer']]]:
         return pulumi.get(self, "confederation_peers")
+
+    @property
+    @pulumi.getter(name="crossFamilyConditionalAdv")
+    def cross_family_conditional_adv(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "cross_family_conditional_adv")
 
     @property
     @pulumi.getter
@@ -2221,6 +2318,11 @@ class RouterBgp(pulumi.CustomResource):
         return pulumi.get(self, "fast_external_failover")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter(name="gracefulEndOnTimer")
     def graceful_end_on_timer(self) -> pulumi.Output[str]:
         return pulumi.get(self, "graceful_end_on_timer")
@@ -2277,7 +2379,7 @@ class RouterBgp(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="neighborGroups")
-    def neighbor_groups(self) -> pulumi.Output[Optional[Sequence['outputs.RouterBgpNeighborGroup']]]:
+    def neighbor_groups(self) -> pulumi.Output[Sequence['outputs.RouterBgpNeighborGroup']]:
         return pulumi.get(self, "neighbor_groups")
 
     @property
@@ -2292,7 +2394,7 @@ class RouterBgp(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def neighbors(self) -> pulumi.Output[Optional[Sequence['outputs.RouterBgpNeighbor']]]:
+    def neighbors(self) -> pulumi.Output[Sequence['outputs.RouterBgpNeighbor']]:
         return pulumi.get(self, "neighbors")
 
     @property

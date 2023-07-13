@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,6 +16,7 @@ type SystemZone struct {
 
 	Description         pulumi.StringOutput            `pulumi:"description"`
 	DynamicSortSubtable pulumi.StringPtrOutput         `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput         `pulumi:"getAllTables"`
 	Interfaces          SystemZoneInterfaceArrayOutput `pulumi:"interfaces"`
 	Intrazone           pulumi.StringOutput            `pulumi:"intrazone"`
 	Name                pulumi.StringOutput            `pulumi:"name"`
@@ -29,7 +31,7 @@ func NewSystemZone(ctx *pulumi.Context,
 		args = &SystemZoneArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemZone
 	err := ctx.RegisterResource("fortios:index/systemZone:SystemZone", name, args, &resource, opts...)
 	if err != nil {
@@ -54,6 +56,7 @@ func GetSystemZone(ctx *pulumi.Context,
 type systemZoneState struct {
 	Description         *string               `pulumi:"description"`
 	DynamicSortSubtable *string               `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string               `pulumi:"getAllTables"`
 	Interfaces          []SystemZoneInterface `pulumi:"interfaces"`
 	Intrazone           *string               `pulumi:"intrazone"`
 	Name                *string               `pulumi:"name"`
@@ -64,6 +67,7 @@ type systemZoneState struct {
 type SystemZoneState struct {
 	Description         pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Interfaces          SystemZoneInterfaceArrayInput
 	Intrazone           pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
@@ -78,6 +82,7 @@ func (SystemZoneState) ElementType() reflect.Type {
 type systemZoneArgs struct {
 	Description         *string               `pulumi:"description"`
 	DynamicSortSubtable *string               `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string               `pulumi:"getAllTables"`
 	Interfaces          []SystemZoneInterface `pulumi:"interfaces"`
 	Intrazone           *string               `pulumi:"intrazone"`
 	Name                *string               `pulumi:"name"`
@@ -89,6 +94,7 @@ type systemZoneArgs struct {
 type SystemZoneArgs struct {
 	Description         pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Interfaces          SystemZoneInterfaceArrayInput
 	Intrazone           pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
@@ -189,6 +195,10 @@ func (o SystemZoneOutput) Description() pulumi.StringOutput {
 
 func (o SystemZoneOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SystemZone) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemZoneOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemZone) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemZoneOutput) Interfaces() SystemZoneInterfaceArrayOutput {

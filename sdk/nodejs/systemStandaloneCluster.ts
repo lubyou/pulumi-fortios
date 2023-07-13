@@ -37,6 +37,7 @@ export class SystemStandaloneCluster extends pulumi.CustomResource {
     public readonly clusterPeers!: pulumi.Output<outputs.SystemStandaloneClusterClusterPeer[] | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly encryption!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly groupMemberId!: pulumi.Output<number>;
     public readonly layer2Connection!: pulumi.Output<string>;
     public readonly psksecret!: pulumi.Output<string | undefined>;
@@ -60,6 +61,7 @@ export class SystemStandaloneCluster extends pulumi.CustomResource {
             resourceInputs["clusterPeers"] = state ? state.clusterPeers : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["encryption"] = state ? state.encryption : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["groupMemberId"] = state ? state.groupMemberId : undefined;
             resourceInputs["layer2Connection"] = state ? state.layer2Connection : undefined;
             resourceInputs["psksecret"] = state ? state.psksecret : undefined;
@@ -71,6 +73,7 @@ export class SystemStandaloneCluster extends pulumi.CustomResource {
             resourceInputs["clusterPeers"] = args ? args.clusterPeers : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["encryption"] = args ? args.encryption : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["groupMemberId"] = args ? args.groupMemberId : undefined;
             resourceInputs["layer2Connection"] = args ? args.layer2Connection : undefined;
             resourceInputs["psksecret"] = args?.psksecret ? pulumi.secret(args.psksecret) : undefined;
@@ -92,6 +95,7 @@ export interface SystemStandaloneClusterState {
     clusterPeers?: pulumi.Input<pulumi.Input<inputs.SystemStandaloneClusterClusterPeer>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
     encryption?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     groupMemberId?: pulumi.Input<number>;
     layer2Connection?: pulumi.Input<string>;
     psksecret?: pulumi.Input<string>;
@@ -107,6 +111,7 @@ export interface SystemStandaloneClusterArgs {
     clusterPeers?: pulumi.Input<pulumi.Input<inputs.SystemStandaloneClusterClusterPeer>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
     encryption?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     groupMemberId?: pulumi.Input<number>;
     layer2Connection?: pulumi.Input<string>;
     psksecret?: pulumi.Input<string>;

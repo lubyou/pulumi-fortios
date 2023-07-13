@@ -49,6 +49,7 @@ export class LogEventfilter extends pulumi.CustomResource {
     public readonly vdomparam!: pulumi.Output<string | undefined>;
     public readonly vpn!: pulumi.Output<string>;
     public readonly wanOpt!: pulumi.Output<string>;
+    public readonly webproxy!: pulumi.Output<string>;
     public readonly wirelessActivity!: pulumi.Output<string>;
 
     /**
@@ -81,6 +82,7 @@ export class LogEventfilter extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["vpn"] = state ? state.vpn : undefined;
             resourceInputs["wanOpt"] = state ? state.wanOpt : undefined;
+            resourceInputs["webproxy"] = state ? state.webproxy : undefined;
             resourceInputs["wirelessActivity"] = state ? state.wirelessActivity : undefined;
         } else {
             const args = argsOrState as LogEventfilterArgs | undefined;
@@ -101,6 +103,7 @@ export class LogEventfilter extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["vpn"] = args ? args.vpn : undefined;
             resourceInputs["wanOpt"] = args ? args.wanOpt : undefined;
+            resourceInputs["webproxy"] = args ? args.webproxy : undefined;
             resourceInputs["wirelessActivity"] = args ? args.wirelessActivity : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -129,6 +132,7 @@ export interface LogEventfilterState {
     vdomparam?: pulumi.Input<string>;
     vpn?: pulumi.Input<string>;
     wanOpt?: pulumi.Input<string>;
+    webproxy?: pulumi.Input<string>;
     wirelessActivity?: pulumi.Input<string>;
 }
 
@@ -153,5 +157,6 @@ export interface LogEventfilterArgs {
     vdomparam?: pulumi.Input<string>;
     vpn?: pulumi.Input<string>;
     wanOpt?: pulumi.Input<string>;
+    webproxy?: pulumi.Input<string>;
     wirelessActivity?: pulumi.Input<string>;
 }

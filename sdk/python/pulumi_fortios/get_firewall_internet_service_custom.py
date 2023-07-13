@@ -103,12 +103,12 @@ def get_firewall_internet_service_custom(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getFirewallInternetServiceCustom:GetFirewallInternetServiceCustom', __args__, opts=opts, typ=GetFirewallInternetServiceCustomResult).value
 
     return AwaitableGetFirewallInternetServiceCustomResult(
-        comment=__ret__.comment,
-        entries=__ret__.entries,
-        id=__ret__.id,
-        name=__ret__.name,
-        reputation=__ret__.reputation,
-        vdomparam=__ret__.vdomparam)
+        comment=pulumi.get(__ret__, 'comment'),
+        entries=pulumi.get(__ret__, 'entries'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        reputation=pulumi.get(__ret__, 'reputation'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_firewall_internet_service_custom)

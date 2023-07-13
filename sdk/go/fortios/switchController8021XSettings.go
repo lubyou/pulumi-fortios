@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -28,7 +29,7 @@ func NewSwitchController8021XSettings(ctx *pulumi.Context,
 		args = &SwitchController8021XSettingsArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SwitchController8021XSettings
 	err := ctx.RegisterResource("fortios:index/switchController8021XSettings:SwitchController8021XSettings", name, args, &resource, opts...)
 	if err != nil {

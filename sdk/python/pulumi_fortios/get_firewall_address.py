@@ -22,7 +22,7 @@ class GetFirewallAddressResult:
     """
     A collection of values returned by GetFirewallAddress.
     """
-    def __init__(__self__, allow_routing=None, associated_interface=None, cache_ttl=None, clearpass_spt=None, color=None, comment=None, country=None, end_ip=None, end_mac=None, epg_name=None, fabric_object=None, filter=None, fqdn=None, fsso_groups=None, id=None, interface=None, lists=None, macaddrs=None, name=None, node_ip_only=None, obj_id=None, obj_tag=None, obj_type=None, organization=None, policy_group=None, sdn=None, sdn_addr_type=None, sdn_tag=None, start_ip=None, start_mac=None, sub_type=None, subnet=None, subnet_name=None, tag_detection_level=None, tag_type=None, taggings=None, tenant=None, type=None, uuid=None, vdomparam=None, visibility=None, wildcard=None, wildcard_fqdn=None):
+    def __init__(__self__, allow_routing=None, associated_interface=None, cache_ttl=None, clearpass_spt=None, color=None, comment=None, country=None, end_ip=None, end_mac=None, epg_name=None, fabric_object=None, filter=None, fqdn=None, fsso_groups=None, hw_model=None, hw_vendor=None, id=None, interface=None, lists=None, macaddrs=None, name=None, node_ip_only=None, obj_id=None, obj_tag=None, obj_type=None, organization=None, os=None, policy_group=None, route_tag=None, sdn=None, sdn_addr_type=None, sdn_tag=None, start_ip=None, start_mac=None, sub_type=None, subnet=None, subnet_name=None, sw_version=None, tag_detection_level=None, tag_type=None, taggings=None, tenant=None, type=None, uuid=None, vdomparam=None, visibility=None, wildcard=None, wildcard_fqdn=None):
         if allow_routing and not isinstance(allow_routing, str):
             raise TypeError("Expected argument 'allow_routing' to be a str")
         pulumi.set(__self__, "allow_routing", allow_routing)
@@ -65,6 +65,12 @@ class GetFirewallAddressResult:
         if fsso_groups and not isinstance(fsso_groups, list):
             raise TypeError("Expected argument 'fsso_groups' to be a list")
         pulumi.set(__self__, "fsso_groups", fsso_groups)
+        if hw_model and not isinstance(hw_model, str):
+            raise TypeError("Expected argument 'hw_model' to be a str")
+        pulumi.set(__self__, "hw_model", hw_model)
+        if hw_vendor and not isinstance(hw_vendor, str):
+            raise TypeError("Expected argument 'hw_vendor' to be a str")
+        pulumi.set(__self__, "hw_vendor", hw_vendor)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -95,9 +101,15 @@ class GetFirewallAddressResult:
         if organization and not isinstance(organization, str):
             raise TypeError("Expected argument 'organization' to be a str")
         pulumi.set(__self__, "organization", organization)
+        if os and not isinstance(os, str):
+            raise TypeError("Expected argument 'os' to be a str")
+        pulumi.set(__self__, "os", os)
         if policy_group and not isinstance(policy_group, str):
             raise TypeError("Expected argument 'policy_group' to be a str")
         pulumi.set(__self__, "policy_group", policy_group)
+        if route_tag and not isinstance(route_tag, int):
+            raise TypeError("Expected argument 'route_tag' to be a int")
+        pulumi.set(__self__, "route_tag", route_tag)
         if sdn and not isinstance(sdn, str):
             raise TypeError("Expected argument 'sdn' to be a str")
         pulumi.set(__self__, "sdn", sdn)
@@ -122,6 +134,9 @@ class GetFirewallAddressResult:
         if subnet_name and not isinstance(subnet_name, str):
             raise TypeError("Expected argument 'subnet_name' to be a str")
         pulumi.set(__self__, "subnet_name", subnet_name)
+        if sw_version and not isinstance(sw_version, str):
+            raise TypeError("Expected argument 'sw_version' to be a str")
+        pulumi.set(__self__, "sw_version", sw_version)
         if tag_detection_level and not isinstance(tag_detection_level, str):
             raise TypeError("Expected argument 'tag_detection_level' to be a str")
         pulumi.set(__self__, "tag_detection_level", tag_detection_level)
@@ -224,6 +239,16 @@ class GetFirewallAddressResult:
         return pulumi.get(self, "fsso_groups")
 
     @property
+    @pulumi.getter(name="hwModel")
+    def hw_model(self) -> str:
+        return pulumi.get(self, "hw_model")
+
+    @property
+    @pulumi.getter(name="hwVendor")
+    def hw_vendor(self) -> str:
+        return pulumi.get(self, "hw_vendor")
+
+    @property
     @pulumi.getter
     def id(self) -> str:
         """
@@ -277,9 +302,19 @@ class GetFirewallAddressResult:
         return pulumi.get(self, "organization")
 
     @property
+    @pulumi.getter
+    def os(self) -> str:
+        return pulumi.get(self, "os")
+
+    @property
     @pulumi.getter(name="policyGroup")
     def policy_group(self) -> str:
         return pulumi.get(self, "policy_group")
+
+    @property
+    @pulumi.getter(name="routeTag")
+    def route_tag(self) -> int:
+        return pulumi.get(self, "route_tag")
 
     @property
     @pulumi.getter
@@ -320,6 +355,11 @@ class GetFirewallAddressResult:
     @pulumi.getter(name="subnetName")
     def subnet_name(self) -> str:
         return pulumi.get(self, "subnet_name")
+
+    @property
+    @pulumi.getter(name="swVersion")
+    def sw_version(self) -> str:
+        return pulumi.get(self, "sw_version")
 
     @property
     @pulumi.getter(name="tagDetectionLevel")
@@ -392,6 +432,8 @@ class AwaitableGetFirewallAddressResult(GetFirewallAddressResult):
             filter=self.filter,
             fqdn=self.fqdn,
             fsso_groups=self.fsso_groups,
+            hw_model=self.hw_model,
+            hw_vendor=self.hw_vendor,
             id=self.id,
             interface=self.interface,
             lists=self.lists,
@@ -402,7 +444,9 @@ class AwaitableGetFirewallAddressResult(GetFirewallAddressResult):
             obj_tag=self.obj_tag,
             obj_type=self.obj_type,
             organization=self.organization,
+            os=self.os,
             policy_group=self.policy_group,
+            route_tag=self.route_tag,
             sdn=self.sdn,
             sdn_addr_type=self.sdn_addr_type,
             sdn_tag=self.sdn_tag,
@@ -411,6 +455,7 @@ class AwaitableGetFirewallAddressResult(GetFirewallAddressResult):
             sub_type=self.sub_type,
             subnet=self.subnet,
             subnet_name=self.subnet_name,
+            sw_version=self.sw_version,
             tag_detection_level=self.tag_detection_level,
             tag_type=self.tag_type,
             taggings=self.taggings,
@@ -436,49 +481,54 @@ def get_firewall_address(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getFirewallAddress:GetFirewallAddress', __args__, opts=opts, typ=GetFirewallAddressResult).value
 
     return AwaitableGetFirewallAddressResult(
-        allow_routing=__ret__.allow_routing,
-        associated_interface=__ret__.associated_interface,
-        cache_ttl=__ret__.cache_ttl,
-        clearpass_spt=__ret__.clearpass_spt,
-        color=__ret__.color,
-        comment=__ret__.comment,
-        country=__ret__.country,
-        end_ip=__ret__.end_ip,
-        end_mac=__ret__.end_mac,
-        epg_name=__ret__.epg_name,
-        fabric_object=__ret__.fabric_object,
-        filter=__ret__.filter,
-        fqdn=__ret__.fqdn,
-        fsso_groups=__ret__.fsso_groups,
-        id=__ret__.id,
-        interface=__ret__.interface,
-        lists=__ret__.lists,
-        macaddrs=__ret__.macaddrs,
-        name=__ret__.name,
-        node_ip_only=__ret__.node_ip_only,
-        obj_id=__ret__.obj_id,
-        obj_tag=__ret__.obj_tag,
-        obj_type=__ret__.obj_type,
-        organization=__ret__.organization,
-        policy_group=__ret__.policy_group,
-        sdn=__ret__.sdn,
-        sdn_addr_type=__ret__.sdn_addr_type,
-        sdn_tag=__ret__.sdn_tag,
-        start_ip=__ret__.start_ip,
-        start_mac=__ret__.start_mac,
-        sub_type=__ret__.sub_type,
-        subnet=__ret__.subnet,
-        subnet_name=__ret__.subnet_name,
-        tag_detection_level=__ret__.tag_detection_level,
-        tag_type=__ret__.tag_type,
-        taggings=__ret__.taggings,
-        tenant=__ret__.tenant,
-        type=__ret__.type,
-        uuid=__ret__.uuid,
-        vdomparam=__ret__.vdomparam,
-        visibility=__ret__.visibility,
-        wildcard=__ret__.wildcard,
-        wildcard_fqdn=__ret__.wildcard_fqdn)
+        allow_routing=pulumi.get(__ret__, 'allow_routing'),
+        associated_interface=pulumi.get(__ret__, 'associated_interface'),
+        cache_ttl=pulumi.get(__ret__, 'cache_ttl'),
+        clearpass_spt=pulumi.get(__ret__, 'clearpass_spt'),
+        color=pulumi.get(__ret__, 'color'),
+        comment=pulumi.get(__ret__, 'comment'),
+        country=pulumi.get(__ret__, 'country'),
+        end_ip=pulumi.get(__ret__, 'end_ip'),
+        end_mac=pulumi.get(__ret__, 'end_mac'),
+        epg_name=pulumi.get(__ret__, 'epg_name'),
+        fabric_object=pulumi.get(__ret__, 'fabric_object'),
+        filter=pulumi.get(__ret__, 'filter'),
+        fqdn=pulumi.get(__ret__, 'fqdn'),
+        fsso_groups=pulumi.get(__ret__, 'fsso_groups'),
+        hw_model=pulumi.get(__ret__, 'hw_model'),
+        hw_vendor=pulumi.get(__ret__, 'hw_vendor'),
+        id=pulumi.get(__ret__, 'id'),
+        interface=pulumi.get(__ret__, 'interface'),
+        lists=pulumi.get(__ret__, 'lists'),
+        macaddrs=pulumi.get(__ret__, 'macaddrs'),
+        name=pulumi.get(__ret__, 'name'),
+        node_ip_only=pulumi.get(__ret__, 'node_ip_only'),
+        obj_id=pulumi.get(__ret__, 'obj_id'),
+        obj_tag=pulumi.get(__ret__, 'obj_tag'),
+        obj_type=pulumi.get(__ret__, 'obj_type'),
+        organization=pulumi.get(__ret__, 'organization'),
+        os=pulumi.get(__ret__, 'os'),
+        policy_group=pulumi.get(__ret__, 'policy_group'),
+        route_tag=pulumi.get(__ret__, 'route_tag'),
+        sdn=pulumi.get(__ret__, 'sdn'),
+        sdn_addr_type=pulumi.get(__ret__, 'sdn_addr_type'),
+        sdn_tag=pulumi.get(__ret__, 'sdn_tag'),
+        start_ip=pulumi.get(__ret__, 'start_ip'),
+        start_mac=pulumi.get(__ret__, 'start_mac'),
+        sub_type=pulumi.get(__ret__, 'sub_type'),
+        subnet=pulumi.get(__ret__, 'subnet'),
+        subnet_name=pulumi.get(__ret__, 'subnet_name'),
+        sw_version=pulumi.get(__ret__, 'sw_version'),
+        tag_detection_level=pulumi.get(__ret__, 'tag_detection_level'),
+        tag_type=pulumi.get(__ret__, 'tag_type'),
+        taggings=pulumi.get(__ret__, 'taggings'),
+        tenant=pulumi.get(__ret__, 'tenant'),
+        type=pulumi.get(__ret__, 'type'),
+        uuid=pulumi.get(__ret__, 'uuid'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'),
+        visibility=pulumi.get(__ret__, 'visibility'),
+        wildcard=pulumi.get(__ret__, 'wildcard'),
+        wildcard_fqdn=pulumi.get(__ret__, 'wildcard_fqdn'))
 
 
 @_utilities.lift_output_func(get_firewall_address)

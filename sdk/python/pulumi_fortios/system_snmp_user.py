@@ -20,6 +20,7 @@ class SystemSnmpUserArgs:
                  auth_pwd: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  events: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ha_direct: Optional[pulumi.Input[str]] = None,
                  mib_view: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -49,6 +50,8 @@ class SystemSnmpUserArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if events is not None:
             pulumi.set(__self__, "events", events)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ha_direct is not None:
             pulumi.set(__self__, "ha_direct", ha_direct)
         if mib_view is not None:
@@ -121,6 +124,15 @@ class SystemSnmpUserArgs:
     @events.setter
     def events(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "events", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="haDirect")
@@ -292,6 +304,7 @@ class _SystemSnmpUserState:
                  auth_pwd: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  events: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ha_direct: Optional[pulumi.Input[str]] = None,
                  mib_view: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -321,6 +334,8 @@ class _SystemSnmpUserState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if events is not None:
             pulumi.set(__self__, "events", events)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ha_direct is not None:
             pulumi.set(__self__, "ha_direct", ha_direct)
         if mib_view is not None:
@@ -393,6 +408,15 @@ class _SystemSnmpUserState:
     @events.setter
     def events(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "events", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="haDirect")
@@ -566,6 +590,7 @@ class SystemSnmpUser(pulumi.CustomResource):
                  auth_pwd: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  events: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ha_direct: Optional[pulumi.Input[str]] = None,
                  mib_view: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -617,6 +642,7 @@ class SystemSnmpUser(pulumi.CustomResource):
                  auth_pwd: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  events: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ha_direct: Optional[pulumi.Input[str]] = None,
                  mib_view: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -648,6 +674,7 @@ class SystemSnmpUser(pulumi.CustomResource):
             __props__.__dict__["auth_pwd"] = None if auth_pwd is None else pulumi.Output.secret(auth_pwd)
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["events"] = events
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["ha_direct"] = ha_direct
             __props__.__dict__["mib_view"] = mib_view
             __props__.__dict__["name"] = name
@@ -682,6 +709,7 @@ class SystemSnmpUser(pulumi.CustomResource):
             auth_pwd: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             events: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             ha_direct: Optional[pulumi.Input[str]] = None,
             mib_view: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -716,6 +744,7 @@ class SystemSnmpUser(pulumi.CustomResource):
         __props__.__dict__["auth_pwd"] = auth_pwd
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["events"] = events
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["ha_direct"] = ha_direct
         __props__.__dict__["mib_view"] = mib_view
         __props__.__dict__["name"] = name
@@ -755,6 +784,11 @@ class SystemSnmpUser(pulumi.CustomResource):
     @pulumi.getter
     def events(self) -> pulumi.Output[str]:
         return pulumi.get(self, "events")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="haDirect")

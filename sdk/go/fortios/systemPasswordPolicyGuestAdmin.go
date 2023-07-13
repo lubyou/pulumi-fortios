@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -35,7 +36,7 @@ func NewSystemPasswordPolicyGuestAdmin(ctx *pulumi.Context,
 		args = &SystemPasswordPolicyGuestAdminArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemPasswordPolicyGuestAdmin
 	err := ctx.RegisterResource("fortios:index/systemPasswordPolicyGuestAdmin:SystemPasswordPolicyGuestAdmin", name, args, &resource, opts...)
 	if err != nil {

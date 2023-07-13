@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -28,6 +29,7 @@ type EndpointControlSettings struct {
 	ForticlientSysUpdateInterval           pulumi.IntOutput       `pulumi:"forticlientSysUpdateInterval"`
 	ForticlientUserAvatar                  pulumi.StringOutput    `pulumi:"forticlientUserAvatar"`
 	ForticlientWarningInterval             pulumi.IntOutput       `pulumi:"forticlientWarningInterval"`
+	Override                               pulumi.StringOutput    `pulumi:"override"`
 	Vdomparam                              pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -45,7 +47,7 @@ func NewEndpointControlSettings(ctx *pulumi.Context,
 		"forticlientRegKey",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource EndpointControlSettings
 	err := ctx.RegisterResource("fortios:index/endpointControlSettings:EndpointControlSettings", name, args, &resource, opts...)
 	if err != nil {
@@ -83,6 +85,7 @@ type endpointControlSettingsState struct {
 	ForticlientSysUpdateInterval           *int    `pulumi:"forticlientSysUpdateInterval"`
 	ForticlientUserAvatar                  *string `pulumi:"forticlientUserAvatar"`
 	ForticlientWarningInterval             *int    `pulumi:"forticlientWarningInterval"`
+	Override                               *string `pulumi:"override"`
 	Vdomparam                              *string `pulumi:"vdomparam"`
 }
 
@@ -102,6 +105,7 @@ type EndpointControlSettingsState struct {
 	ForticlientSysUpdateInterval           pulumi.IntPtrInput
 	ForticlientUserAvatar                  pulumi.StringPtrInput
 	ForticlientWarningInterval             pulumi.IntPtrInput
+	Override                               pulumi.StringPtrInput
 	Vdomparam                              pulumi.StringPtrInput
 }
 
@@ -125,6 +129,7 @@ type endpointControlSettingsArgs struct {
 	ForticlientSysUpdateInterval           *int    `pulumi:"forticlientSysUpdateInterval"`
 	ForticlientUserAvatar                  *string `pulumi:"forticlientUserAvatar"`
 	ForticlientWarningInterval             *int    `pulumi:"forticlientWarningInterval"`
+	Override                               *string `pulumi:"override"`
 	Vdomparam                              *string `pulumi:"vdomparam"`
 }
 
@@ -145,6 +150,7 @@ type EndpointControlSettingsArgs struct {
 	ForticlientSysUpdateInterval           pulumi.IntPtrInput
 	ForticlientUserAvatar                  pulumi.StringPtrInput
 	ForticlientWarningInterval             pulumi.IntPtrInput
+	Override                               pulumi.StringPtrInput
 	Vdomparam                              pulumi.StringPtrInput
 }
 
@@ -293,6 +299,10 @@ func (o EndpointControlSettingsOutput) ForticlientUserAvatar() pulumi.StringOutp
 
 func (o EndpointControlSettingsOutput) ForticlientWarningInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v *EndpointControlSettings) pulumi.IntOutput { return v.ForticlientWarningInterval }).(pulumi.IntOutput)
+}
+
+func (o EndpointControlSettingsOutput) Override() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlSettings) pulumi.StringOutput { return v.Override }).(pulumi.StringOutput)
 }
 
 func (o EndpointControlSettingsOutput) Vdomparam() pulumi.StringPtrOutput {

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -43,10 +44,12 @@ type SystemAutomationAction struct {
 	EmailSubject                  pulumi.StringPtrOutput                        `pulumi:"emailSubject"`
 	EmailTos                      SystemAutomationActionEmailToArrayOutput      `pulumi:"emailTos"`
 	ExecuteSecurityFabric         pulumi.StringOutput                           `pulumi:"executeSecurityFabric"`
+	ForticareEmail                pulumi.StringOutput                           `pulumi:"forticareEmail"`
 	GcpFunction                   pulumi.StringOutput                           `pulumi:"gcpFunction"`
 	GcpFunctionDomain             pulumi.StringOutput                           `pulumi:"gcpFunctionDomain"`
 	GcpFunctionRegion             pulumi.StringOutput                           `pulumi:"gcpFunctionRegion"`
 	GcpProject                    pulumi.StringOutput                           `pulumi:"gcpProject"`
+	GetAllTables                  pulumi.StringPtrOutput                        `pulumi:"getAllTables"`
 	Headers                       SystemAutomationActionHeaderArrayOutput       `pulumi:"headers"`
 	HttpBody                      pulumi.StringPtrOutput                        `pulumi:"httpBody"`
 	HttpHeaders                   SystemAutomationActionHttpHeaderArrayOutput   `pulumi:"httpHeaders"`
@@ -94,7 +97,7 @@ func NewSystemAutomationAction(ctx *pulumi.Context,
 		"azureApiKey",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemAutomationAction
 	err := ctx.RegisterResource("fortios:index/systemAutomationAction:SystemAutomationAction", name, args, &resource, opts...)
 	if err != nil {
@@ -147,10 +150,12 @@ type systemAutomationActionState struct {
 	EmailSubject                  *string                              `pulumi:"emailSubject"`
 	EmailTos                      []SystemAutomationActionEmailTo      `pulumi:"emailTos"`
 	ExecuteSecurityFabric         *string                              `pulumi:"executeSecurityFabric"`
+	ForticareEmail                *string                              `pulumi:"forticareEmail"`
 	GcpFunction                   *string                              `pulumi:"gcpFunction"`
 	GcpFunctionDomain             *string                              `pulumi:"gcpFunctionDomain"`
 	GcpFunctionRegion             *string                              `pulumi:"gcpFunctionRegion"`
 	GcpProject                    *string                              `pulumi:"gcpProject"`
+	GetAllTables                  *string                              `pulumi:"getAllTables"`
 	Headers                       []SystemAutomationActionHeader       `pulumi:"headers"`
 	HttpBody                      *string                              `pulumi:"httpBody"`
 	HttpHeaders                   []SystemAutomationActionHttpHeader   `pulumi:"httpHeaders"`
@@ -207,10 +212,12 @@ type SystemAutomationActionState struct {
 	EmailSubject                  pulumi.StringPtrInput
 	EmailTos                      SystemAutomationActionEmailToArrayInput
 	ExecuteSecurityFabric         pulumi.StringPtrInput
+	ForticareEmail                pulumi.StringPtrInput
 	GcpFunction                   pulumi.StringPtrInput
 	GcpFunctionDomain             pulumi.StringPtrInput
 	GcpFunctionRegion             pulumi.StringPtrInput
 	GcpProject                    pulumi.StringPtrInput
+	GetAllTables                  pulumi.StringPtrInput
 	Headers                       SystemAutomationActionHeaderArrayInput
 	HttpBody                      pulumi.StringPtrInput
 	HttpHeaders                   SystemAutomationActionHttpHeaderArrayInput
@@ -271,10 +278,12 @@ type systemAutomationActionArgs struct {
 	EmailSubject                  *string                              `pulumi:"emailSubject"`
 	EmailTos                      []SystemAutomationActionEmailTo      `pulumi:"emailTos"`
 	ExecuteSecurityFabric         *string                              `pulumi:"executeSecurityFabric"`
+	ForticareEmail                *string                              `pulumi:"forticareEmail"`
 	GcpFunction                   *string                              `pulumi:"gcpFunction"`
 	GcpFunctionDomain             *string                              `pulumi:"gcpFunctionDomain"`
 	GcpFunctionRegion             *string                              `pulumi:"gcpFunctionRegion"`
 	GcpProject                    *string                              `pulumi:"gcpProject"`
+	GetAllTables                  *string                              `pulumi:"getAllTables"`
 	Headers                       []SystemAutomationActionHeader       `pulumi:"headers"`
 	HttpBody                      *string                              `pulumi:"httpBody"`
 	HttpHeaders                   []SystemAutomationActionHttpHeader   `pulumi:"httpHeaders"`
@@ -332,10 +341,12 @@ type SystemAutomationActionArgs struct {
 	EmailSubject                  pulumi.StringPtrInput
 	EmailTos                      SystemAutomationActionEmailToArrayInput
 	ExecuteSecurityFabric         pulumi.StringPtrInput
+	ForticareEmail                pulumi.StringPtrInput
 	GcpFunction                   pulumi.StringPtrInput
 	GcpFunctionDomain             pulumi.StringPtrInput
 	GcpFunctionRegion             pulumi.StringPtrInput
 	GcpProject                    pulumi.StringPtrInput
+	GetAllTables                  pulumi.StringPtrInput
 	Headers                       SystemAutomationActionHeaderArrayInput
 	HttpBody                      pulumi.StringPtrInput
 	HttpHeaders                   SystemAutomationActionHttpHeaderArrayInput
@@ -568,6 +579,10 @@ func (o SystemAutomationActionOutput) ExecuteSecurityFabric() pulumi.StringOutpu
 	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.ExecuteSecurityFabric }).(pulumi.StringOutput)
 }
 
+func (o SystemAutomationActionOutput) ForticareEmail() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.ForticareEmail }).(pulumi.StringOutput)
+}
+
 func (o SystemAutomationActionOutput) GcpFunction() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.GcpFunction }).(pulumi.StringOutput)
 }
@@ -582,6 +597,10 @@ func (o SystemAutomationActionOutput) GcpFunctionRegion() pulumi.StringOutput {
 
 func (o SystemAutomationActionOutput) GcpProject() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringOutput { return v.GcpProject }).(pulumi.StringOutput)
+}
+
+func (o SystemAutomationActionOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAutomationAction) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemAutomationActionOutput) Headers() SystemAutomationActionHeaderArrayOutput {

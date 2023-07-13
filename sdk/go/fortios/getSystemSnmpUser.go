@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemSnmpUser(ctx *pulumi.Context, args *LookupSystemSnmpUserArgs, opts ...pulumi.InvokeOption) (*LookupSystemSnmpUserResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemSnmpUserResult
 	err := ctx.Invoke("fortios:index/getSystemSnmpUser:GetSystemSnmpUser", args, &rv, opts...)
 	if err != nil {

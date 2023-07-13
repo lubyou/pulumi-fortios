@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -14,6 +15,7 @@ type IpsDecoder struct {
 	pulumi.CustomResourceState
 
 	DynamicSortSubtable pulumi.StringPtrOutput         `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput         `pulumi:"getAllTables"`
 	Name                pulumi.StringOutput            `pulumi:"name"`
 	Parameters          IpsDecoderParameterArrayOutput `pulumi:"parameters"`
 	Vdomparam           pulumi.StringPtrOutput         `pulumi:"vdomparam"`
@@ -26,7 +28,7 @@ func NewIpsDecoder(ctx *pulumi.Context,
 		args = &IpsDecoderArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource IpsDecoder
 	err := ctx.RegisterResource("fortios:index/ipsDecoder:IpsDecoder", name, args, &resource, opts...)
 	if err != nil {
@@ -50,6 +52,7 @@ func GetIpsDecoder(ctx *pulumi.Context,
 // Input properties used for looking up and filtering IpsDecoder resources.
 type ipsDecoderState struct {
 	DynamicSortSubtable *string               `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string               `pulumi:"getAllTables"`
 	Name                *string               `pulumi:"name"`
 	Parameters          []IpsDecoderParameter `pulumi:"parameters"`
 	Vdomparam           *string               `pulumi:"vdomparam"`
@@ -57,6 +60,7 @@ type ipsDecoderState struct {
 
 type IpsDecoderState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Parameters          IpsDecoderParameterArrayInput
 	Vdomparam           pulumi.StringPtrInput
@@ -68,6 +72,7 @@ func (IpsDecoderState) ElementType() reflect.Type {
 
 type ipsDecoderArgs struct {
 	DynamicSortSubtable *string               `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string               `pulumi:"getAllTables"`
 	Name                *string               `pulumi:"name"`
 	Parameters          []IpsDecoderParameter `pulumi:"parameters"`
 	Vdomparam           *string               `pulumi:"vdomparam"`
@@ -76,6 +81,7 @@ type ipsDecoderArgs struct {
 // The set of arguments for constructing a IpsDecoder resource.
 type IpsDecoderArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Parameters          IpsDecoderParameterArrayInput
 	Vdomparam           pulumi.StringPtrInput
@@ -170,6 +176,10 @@ func (o IpsDecoderOutput) ToIpsDecoderOutputWithContext(ctx context.Context) Ips
 
 func (o IpsDecoderOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IpsDecoder) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o IpsDecoderOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IpsDecoder) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o IpsDecoderOutput) Name() pulumi.StringOutput {

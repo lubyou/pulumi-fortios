@@ -19,6 +19,7 @@ class SpamfilterProfileArgs:
                  comment: Optional[pulumi.Input[str]] = None,
                  external: Optional[pulumi.Input[str]] = None,
                  flow_based: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gmail: Optional[pulumi.Input['SpamfilterProfileGmailArgs']] = None,
                  imap: Optional[pulumi.Input['SpamfilterProfileImapArgs']] = None,
                  mapi: Optional[pulumi.Input['SpamfilterProfileMapiArgs']] = None,
@@ -48,6 +49,8 @@ class SpamfilterProfileArgs:
             pulumi.set(__self__, "external", external)
         if flow_based is not None:
             pulumi.set(__self__, "flow_based", flow_based)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gmail is not None:
             pulumi.set(__self__, "gmail", gmail)
         if imap is not None:
@@ -115,6 +118,15 @@ class SpamfilterProfileArgs:
     @flow_based.setter
     def flow_based(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "flow_based", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -303,6 +315,7 @@ class _SpamfilterProfileState:
                  comment: Optional[pulumi.Input[str]] = None,
                  external: Optional[pulumi.Input[str]] = None,
                  flow_based: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gmail: Optional[pulumi.Input['SpamfilterProfileGmailArgs']] = None,
                  imap: Optional[pulumi.Input['SpamfilterProfileImapArgs']] = None,
                  mapi: Optional[pulumi.Input['SpamfilterProfileMapiArgs']] = None,
@@ -332,6 +345,8 @@ class _SpamfilterProfileState:
             pulumi.set(__self__, "external", external)
         if flow_based is not None:
             pulumi.set(__self__, "flow_based", flow_based)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gmail is not None:
             pulumi.set(__self__, "gmail", gmail)
         if imap is not None:
@@ -399,6 +414,15 @@ class _SpamfilterProfileState:
     @flow_based.setter
     def flow_based(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "flow_based", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -589,6 +613,7 @@ class SpamfilterProfile(pulumi.CustomResource):
                  comment: Optional[pulumi.Input[str]] = None,
                  external: Optional[pulumi.Input[str]] = None,
                  flow_based: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gmail: Optional[pulumi.Input[pulumi.InputType['SpamfilterProfileGmailArgs']]] = None,
                  imap: Optional[pulumi.Input[pulumi.InputType['SpamfilterProfileImapArgs']]] = None,
                  mapi: Optional[pulumi.Input[pulumi.InputType['SpamfilterProfileMapiArgs']]] = None,
@@ -641,6 +666,7 @@ class SpamfilterProfile(pulumi.CustomResource):
                  comment: Optional[pulumi.Input[str]] = None,
                  external: Optional[pulumi.Input[str]] = None,
                  flow_based: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gmail: Optional[pulumi.Input[pulumi.InputType['SpamfilterProfileGmailArgs']]] = None,
                  imap: Optional[pulumi.Input[pulumi.InputType['SpamfilterProfileImapArgs']]] = None,
                  mapi: Optional[pulumi.Input[pulumi.InputType['SpamfilterProfileMapiArgs']]] = None,
@@ -673,6 +699,7 @@ class SpamfilterProfile(pulumi.CustomResource):
             __props__.__dict__["comment"] = comment
             __props__.__dict__["external"] = external
             __props__.__dict__["flow_based"] = flow_based
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["gmail"] = gmail
             __props__.__dict__["imap"] = imap
             __props__.__dict__["mapi"] = mapi
@@ -706,6 +733,7 @@ class SpamfilterProfile(pulumi.CustomResource):
             comment: Optional[pulumi.Input[str]] = None,
             external: Optional[pulumi.Input[str]] = None,
             flow_based: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             gmail: Optional[pulumi.Input[pulumi.InputType['SpamfilterProfileGmailArgs']]] = None,
             imap: Optional[pulumi.Input[pulumi.InputType['SpamfilterProfileImapArgs']]] = None,
             mapi: Optional[pulumi.Input[pulumi.InputType['SpamfilterProfileMapiArgs']]] = None,
@@ -741,6 +769,7 @@ class SpamfilterProfile(pulumi.CustomResource):
         __props__.__dict__["comment"] = comment
         __props__.__dict__["external"] = external
         __props__.__dict__["flow_based"] = flow_based
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["gmail"] = gmail
         __props__.__dict__["imap"] = imap
         __props__.__dict__["mapi"] = mapi
@@ -777,6 +806,11 @@ class SpamfilterProfile(pulumi.CustomResource):
     @pulumi.getter(name="flowBased")
     def flow_based(self) -> pulumi.Output[str]:
         return pulumi.get(self, "flow_based")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

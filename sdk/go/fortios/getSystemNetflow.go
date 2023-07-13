@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemNetflow(ctx *pulumi.Context, args *LookupSystemNetflowArgs, opts ...pulumi.InvokeOption) (*LookupSystemNetflowResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemNetflowResult
 	err := ctx.Invoke("fortios:index/getSystemNetflow:GetSystemNetflow", args, &rv, opts...)
 	if err != nil {

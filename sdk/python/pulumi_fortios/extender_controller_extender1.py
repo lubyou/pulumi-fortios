@@ -21,6 +21,7 @@ class ExtenderControllerExtender1Args:
                  description: Optional[pulumi.Input[str]] = None,
                  ext_name: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  login_password: Optional[pulumi.Input[str]] = None,
                  modem1: Optional[pulumi.Input['ExtenderControllerExtender1Modem1Args']] = None,
                  modem2: Optional[pulumi.Input['ExtenderControllerExtender1Modem2Args']] = None,
@@ -39,6 +40,8 @@ class ExtenderControllerExtender1Args:
             pulumi.set(__self__, "ext_name", ext_name)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if login_password is not None:
             pulumi.set(__self__, "login_password", login_password)
         if modem1 is not None:
@@ -96,6 +99,15 @@ class ExtenderControllerExtender1Args:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="loginPassword")
@@ -160,6 +172,7 @@ class _ExtenderControllerExtender1State:
                  description: Optional[pulumi.Input[str]] = None,
                  ext_name: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  login_password: Optional[pulumi.Input[str]] = None,
                  modem1: Optional[pulumi.Input['ExtenderControllerExtender1Modem1Args']] = None,
                  modem2: Optional[pulumi.Input['ExtenderControllerExtender1Modem2Args']] = None,
@@ -179,6 +192,8 @@ class _ExtenderControllerExtender1State:
             pulumi.set(__self__, "ext_name", ext_name)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if login_password is not None:
             pulumi.set(__self__, "login_password", login_password)
         if modem1 is not None:
@@ -236,6 +251,15 @@ class _ExtenderControllerExtender1State:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="loginPassword")
@@ -302,6 +326,7 @@ class ExtenderControllerExtender1(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  ext_name: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  login_password: Optional[pulumi.Input[str]] = None,
                  modem1: Optional[pulumi.Input[pulumi.InputType['ExtenderControllerExtender1Modem1Args']]] = None,
                  modem2: Optional[pulumi.Input[pulumi.InputType['ExtenderControllerExtender1Modem2Args']]] = None,
@@ -342,6 +367,7 @@ class ExtenderControllerExtender1(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  ext_name: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  login_password: Optional[pulumi.Input[str]] = None,
                  modem1: Optional[pulumi.Input[pulumi.InputType['ExtenderControllerExtender1Modem1Args']]] = None,
                  modem2: Optional[pulumi.Input[pulumi.InputType['ExtenderControllerExtender1Modem2Args']]] = None,
@@ -364,6 +390,7 @@ class ExtenderControllerExtender1(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["ext_name"] = ext_name
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["login_password"] = None if login_password is None else pulumi.Output.secret(login_password)
             __props__.__dict__["modem1"] = modem1
             __props__.__dict__["modem2"] = modem2
@@ -387,6 +414,7 @@ class ExtenderControllerExtender1(pulumi.CustomResource):
             description: Optional[pulumi.Input[str]] = None,
             ext_name: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             login_password: Optional[pulumi.Input[str]] = None,
             modem1: Optional[pulumi.Input[pulumi.InputType['ExtenderControllerExtender1Modem1Args']]] = None,
             modem2: Optional[pulumi.Input[pulumi.InputType['ExtenderControllerExtender1Modem2Args']]] = None,
@@ -410,6 +438,7 @@ class ExtenderControllerExtender1(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["ext_name"] = ext_name
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["login_password"] = login_password
         __props__.__dict__["modem1"] = modem1
         __props__.__dict__["modem2"] = modem2
@@ -442,6 +471,11 @@ class ExtenderControllerExtender1(pulumi.CustomResource):
     @pulumi.getter
     def fosid(self) -> pulumi.Output[str]:
         return pulumi.get(self, "fosid")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="loginPassword")

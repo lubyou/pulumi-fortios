@@ -22,13 +22,19 @@ class GetFirewallAddrgrp6Result:
     """
     A collection of values returned by GetFirewallAddrgrp6.
     """
-    def __init__(__self__, color=None, comment=None, fabric_object=None, id=None, members=None, name=None, taggings=None, uuid=None, vdomparam=None, visibility=None):
+    def __init__(__self__, color=None, comment=None, exclude=None, exclude_members=None, fabric_object=None, id=None, members=None, name=None, taggings=None, uuid=None, vdomparam=None, visibility=None):
         if color and not isinstance(color, int):
             raise TypeError("Expected argument 'color' to be a int")
         pulumi.set(__self__, "color", color)
         if comment and not isinstance(comment, str):
             raise TypeError("Expected argument 'comment' to be a str")
         pulumi.set(__self__, "comment", comment)
+        if exclude and not isinstance(exclude, str):
+            raise TypeError("Expected argument 'exclude' to be a str")
+        pulumi.set(__self__, "exclude", exclude)
+        if exclude_members and not isinstance(exclude_members, list):
+            raise TypeError("Expected argument 'exclude_members' to be a list")
+        pulumi.set(__self__, "exclude_members", exclude_members)
         if fabric_object and not isinstance(fabric_object, str):
             raise TypeError("Expected argument 'fabric_object' to be a str")
         pulumi.set(__self__, "fabric_object", fabric_object)
@@ -63,6 +69,16 @@ class GetFirewallAddrgrp6Result:
     @pulumi.getter
     def comment(self) -> str:
         return pulumi.get(self, "comment")
+
+    @property
+    @pulumi.getter
+    def exclude(self) -> str:
+        return pulumi.get(self, "exclude")
+
+    @property
+    @pulumi.getter(name="excludeMembers")
+    def exclude_members(self) -> Sequence['outputs.GetFirewallAddrgrp6ExcludeMemberResult']:
+        return pulumi.get(self, "exclude_members")
 
     @property
     @pulumi.getter(name="fabricObject")
@@ -116,6 +132,8 @@ class AwaitableGetFirewallAddrgrp6Result(GetFirewallAddrgrp6Result):
         return GetFirewallAddrgrp6Result(
             color=self.color,
             comment=self.comment,
+            exclude=self.exclude,
+            exclude_members=self.exclude_members,
             fabric_object=self.fabric_object,
             id=self.id,
             members=self.members,
@@ -139,16 +157,18 @@ def get_firewall_addrgrp6(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getFirewallAddrgrp6:GetFirewallAddrgrp6', __args__, opts=opts, typ=GetFirewallAddrgrp6Result).value
 
     return AwaitableGetFirewallAddrgrp6Result(
-        color=__ret__.color,
-        comment=__ret__.comment,
-        fabric_object=__ret__.fabric_object,
-        id=__ret__.id,
-        members=__ret__.members,
-        name=__ret__.name,
-        taggings=__ret__.taggings,
-        uuid=__ret__.uuid,
-        vdomparam=__ret__.vdomparam,
-        visibility=__ret__.visibility)
+        color=pulumi.get(__ret__, 'color'),
+        comment=pulumi.get(__ret__, 'comment'),
+        exclude=pulumi.get(__ret__, 'exclude'),
+        exclude_members=pulumi.get(__ret__, 'exclude_members'),
+        fabric_object=pulumi.get(__ret__, 'fabric_object'),
+        id=pulumi.get(__ret__, 'id'),
+        members=pulumi.get(__ret__, 'members'),
+        name=pulumi.get(__ret__, 'name'),
+        taggings=pulumi.get(__ret__, 'taggings'),
+        uuid=pulumi.get(__ret__, 'uuid'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'),
+        visibility=pulumi.get(__ret__, 'visibility'))
 
 
 @_utilities.lift_output_func(get_firewall_addrgrp6)

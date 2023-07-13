@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -17,6 +18,7 @@ type WirelessControllerSnmp struct {
 	ContactInfo          pulumi.StringOutput                        `pulumi:"contactInfo"`
 	DynamicSortSubtable  pulumi.StringPtrOutput                     `pulumi:"dynamicSortSubtable"`
 	EngineId             pulumi.StringOutput                        `pulumi:"engineId"`
+	GetAllTables         pulumi.StringPtrOutput                     `pulumi:"getAllTables"`
 	TrapHighCpuThreshold pulumi.IntOutput                           `pulumi:"trapHighCpuThreshold"`
 	TrapHighMemThreshold pulumi.IntOutput                           `pulumi:"trapHighMemThreshold"`
 	Users                WirelessControllerSnmpUserArrayOutput      `pulumi:"users"`
@@ -30,7 +32,7 @@ func NewWirelessControllerSnmp(ctx *pulumi.Context,
 		args = &WirelessControllerSnmpArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WirelessControllerSnmp
 	err := ctx.RegisterResource("fortios:index/wirelessControllerSnmp:WirelessControllerSnmp", name, args, &resource, opts...)
 	if err != nil {
@@ -57,6 +59,7 @@ type wirelessControllerSnmpState struct {
 	ContactInfo          *string                           `pulumi:"contactInfo"`
 	DynamicSortSubtable  *string                           `pulumi:"dynamicSortSubtable"`
 	EngineId             *string                           `pulumi:"engineId"`
+	GetAllTables         *string                           `pulumi:"getAllTables"`
 	TrapHighCpuThreshold *int                              `pulumi:"trapHighCpuThreshold"`
 	TrapHighMemThreshold *int                              `pulumi:"trapHighMemThreshold"`
 	Users                []WirelessControllerSnmpUser      `pulumi:"users"`
@@ -68,6 +71,7 @@ type WirelessControllerSnmpState struct {
 	ContactInfo          pulumi.StringPtrInput
 	DynamicSortSubtable  pulumi.StringPtrInput
 	EngineId             pulumi.StringPtrInput
+	GetAllTables         pulumi.StringPtrInput
 	TrapHighCpuThreshold pulumi.IntPtrInput
 	TrapHighMemThreshold pulumi.IntPtrInput
 	Users                WirelessControllerSnmpUserArrayInput
@@ -83,6 +87,7 @@ type wirelessControllerSnmpArgs struct {
 	ContactInfo          *string                           `pulumi:"contactInfo"`
 	DynamicSortSubtable  *string                           `pulumi:"dynamicSortSubtable"`
 	EngineId             *string                           `pulumi:"engineId"`
+	GetAllTables         *string                           `pulumi:"getAllTables"`
 	TrapHighCpuThreshold *int                              `pulumi:"trapHighCpuThreshold"`
 	TrapHighMemThreshold *int                              `pulumi:"trapHighMemThreshold"`
 	Users                []WirelessControllerSnmpUser      `pulumi:"users"`
@@ -95,6 +100,7 @@ type WirelessControllerSnmpArgs struct {
 	ContactInfo          pulumi.StringPtrInput
 	DynamicSortSubtable  pulumi.StringPtrInput
 	EngineId             pulumi.StringPtrInput
+	GetAllTables         pulumi.StringPtrInput
 	TrapHighCpuThreshold pulumi.IntPtrInput
 	TrapHighMemThreshold pulumi.IntPtrInput
 	Users                WirelessControllerSnmpUserArrayInput
@@ -202,6 +208,10 @@ func (o WirelessControllerSnmpOutput) DynamicSortSubtable() pulumi.StringPtrOutp
 
 func (o WirelessControllerSnmpOutput) EngineId() pulumi.StringOutput {
 	return o.ApplyT(func(v *WirelessControllerSnmp) pulumi.StringOutput { return v.EngineId }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerSnmpOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerSnmp) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o WirelessControllerSnmpOutput) TrapHighCpuThreshold() pulumi.IntOutput {

@@ -21,6 +21,7 @@ class FirewallMulticastAddressArgs:
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  end_ip: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  start_ip: Optional[pulumi.Input[str]] = None,
                  subnet: Optional[pulumi.Input[str]] = None,
@@ -41,6 +42,8 @@ class FirewallMulticastAddressArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if end_ip is not None:
             pulumi.set(__self__, "end_ip", end_ip)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if start_ip is not None:
@@ -100,6 +103,15 @@ class FirewallMulticastAddressArgs:
     @end_ip.setter
     def end_ip(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "end_ip", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -173,6 +185,7 @@ class _FirewallMulticastAddressState:
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  end_ip: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  start_ip: Optional[pulumi.Input[str]] = None,
                  subnet: Optional[pulumi.Input[str]] = None,
@@ -193,6 +206,8 @@ class _FirewallMulticastAddressState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if end_ip is not None:
             pulumi.set(__self__, "end_ip", end_ip)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if start_ip is not None:
@@ -252,6 +267,15 @@ class _FirewallMulticastAddressState:
     @end_ip.setter
     def end_ip(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "end_ip", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -327,6 +351,7 @@ class FirewallMulticastAddress(pulumi.CustomResource):
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  end_ip: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  start_ip: Optional[pulumi.Input[str]] = None,
                  subnet: Optional[pulumi.Input[str]] = None,
@@ -368,6 +393,7 @@ class FirewallMulticastAddress(pulumi.CustomResource):
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  end_ip: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  start_ip: Optional[pulumi.Input[str]] = None,
                  subnet: Optional[pulumi.Input[str]] = None,
@@ -389,6 +415,7 @@ class FirewallMulticastAddress(pulumi.CustomResource):
             __props__.__dict__["comment"] = comment
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["end_ip"] = end_ip
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["name"] = name
             __props__.__dict__["start_ip"] = start_ip
             __props__.__dict__["subnet"] = subnet
@@ -411,6 +438,7 @@ class FirewallMulticastAddress(pulumi.CustomResource):
             comment: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             end_ip: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             start_ip: Optional[pulumi.Input[str]] = None,
             subnet: Optional[pulumi.Input[str]] = None,
@@ -435,6 +463,7 @@ class FirewallMulticastAddress(pulumi.CustomResource):
         __props__.__dict__["comment"] = comment
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["end_ip"] = end_ip
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["name"] = name
         __props__.__dict__["start_ip"] = start_ip
         __props__.__dict__["subnet"] = subnet
@@ -468,6 +497,11 @@ class FirewallMulticastAddress(pulumi.CustomResource):
     @pulumi.getter(name="endIp")
     def end_ip(self) -> pulumi.Output[str]:
         return pulumi.get(self, "end_ip")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -16,6 +17,7 @@ type SystemGeoipOverride struct {
 	CountryId           pulumi.StringOutput                    `pulumi:"countryId"`
 	Description         pulumi.StringOutput                    `pulumi:"description"`
 	DynamicSortSubtable pulumi.StringPtrOutput                 `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                 `pulumi:"getAllTables"`
 	Ip6Ranges           SystemGeoipOverrideIp6RangeArrayOutput `pulumi:"ip6Ranges"`
 	IpRanges            SystemGeoipOverrideIpRangeArrayOutput  `pulumi:"ipRanges"`
 	Name                pulumi.StringOutput                    `pulumi:"name"`
@@ -29,7 +31,7 @@ func NewSystemGeoipOverride(ctx *pulumi.Context,
 		args = &SystemGeoipOverrideArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemGeoipOverride
 	err := ctx.RegisterResource("fortios:index/systemGeoipOverride:SystemGeoipOverride", name, args, &resource, opts...)
 	if err != nil {
@@ -55,6 +57,7 @@ type systemGeoipOverrideState struct {
 	CountryId           *string                       `pulumi:"countryId"`
 	Description         *string                       `pulumi:"description"`
 	DynamicSortSubtable *string                       `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                       `pulumi:"getAllTables"`
 	Ip6Ranges           []SystemGeoipOverrideIp6Range `pulumi:"ip6Ranges"`
 	IpRanges            []SystemGeoipOverrideIpRange  `pulumi:"ipRanges"`
 	Name                *string                       `pulumi:"name"`
@@ -65,6 +68,7 @@ type SystemGeoipOverrideState struct {
 	CountryId           pulumi.StringPtrInput
 	Description         pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Ip6Ranges           SystemGeoipOverrideIp6RangeArrayInput
 	IpRanges            SystemGeoipOverrideIpRangeArrayInput
 	Name                pulumi.StringPtrInput
@@ -79,6 +83,7 @@ type systemGeoipOverrideArgs struct {
 	CountryId           *string                       `pulumi:"countryId"`
 	Description         *string                       `pulumi:"description"`
 	DynamicSortSubtable *string                       `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                       `pulumi:"getAllTables"`
 	Ip6Ranges           []SystemGeoipOverrideIp6Range `pulumi:"ip6Ranges"`
 	IpRanges            []SystemGeoipOverrideIpRange  `pulumi:"ipRanges"`
 	Name                *string                       `pulumi:"name"`
@@ -90,6 +95,7 @@ type SystemGeoipOverrideArgs struct {
 	CountryId           pulumi.StringPtrInput
 	Description         pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Ip6Ranges           SystemGeoipOverrideIp6RangeArrayInput
 	IpRanges            SystemGeoipOverrideIpRangeArrayInput
 	Name                pulumi.StringPtrInput
@@ -193,6 +199,10 @@ func (o SystemGeoipOverrideOutput) Description() pulumi.StringOutput {
 
 func (o SystemGeoipOverrideOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SystemGeoipOverride) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemGeoipOverrideOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemGeoipOverride) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemGeoipOverrideOutput) Ip6Ranges() SystemGeoipOverrideIp6RangeArrayOutput {

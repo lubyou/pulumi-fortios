@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -42,7 +43,7 @@ func NewFirewallObjectService(ctx *pulumi.Context,
 	if args.Protocol == nil {
 		return nil, errors.New("invalid value for required argument 'Protocol'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallObjectService
 	err := ctx.RegisterResource("fortios:index/firewallObjectService:FirewallObjectService", name, args, &resource, opts...)
 	if err != nil {

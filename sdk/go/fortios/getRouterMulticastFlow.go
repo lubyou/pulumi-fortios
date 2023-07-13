@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupRouterMulticastFlow(ctx *pulumi.Context, args *LookupRouterMulticastFlowArgs, opts ...pulumi.InvokeOption) (*LookupRouterMulticastFlowResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupRouterMulticastFlowResult
 	err := ctx.Invoke("fortios:index/getRouterMulticastFlow:GetRouterMulticastFlow", args, &rv, opts...)
 	if err != nil {

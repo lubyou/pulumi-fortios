@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -14,9 +15,11 @@ type WebfilterFortiguard struct {
 	pulumi.CustomResourceState
 
 	CacheMemPercent        pulumi.IntOutput       `pulumi:"cacheMemPercent"`
+	CacheMemPermille       pulumi.IntOutput       `pulumi:"cacheMemPermille"`
 	CacheMode              pulumi.StringOutput    `pulumi:"cacheMode"`
 	CachePrefixMatch       pulumi.StringOutput    `pulumi:"cachePrefixMatch"`
 	ClosePorts             pulumi.StringOutput    `pulumi:"closePorts"`
+	EmbedImage             pulumi.StringOutput    `pulumi:"embedImage"`
 	OvrdAuthHttps          pulumi.StringOutput    `pulumi:"ovrdAuthHttps"`
 	OvrdAuthPort           pulumi.IntOutput       `pulumi:"ovrdAuthPort"`
 	OvrdAuthPortHttp       pulumi.IntOutput       `pulumi:"ovrdAuthPortHttp"`
@@ -35,7 +38,7 @@ func NewWebfilterFortiguard(ctx *pulumi.Context,
 		args = &WebfilterFortiguardArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WebfilterFortiguard
 	err := ctx.RegisterResource("fortios:index/webfilterFortiguard:WebfilterFortiguard", name, args, &resource, opts...)
 	if err != nil {
@@ -59,9 +62,11 @@ func GetWebfilterFortiguard(ctx *pulumi.Context,
 // Input properties used for looking up and filtering WebfilterFortiguard resources.
 type webfilterFortiguardState struct {
 	CacheMemPercent        *int    `pulumi:"cacheMemPercent"`
+	CacheMemPermille       *int    `pulumi:"cacheMemPermille"`
 	CacheMode              *string `pulumi:"cacheMode"`
 	CachePrefixMatch       *string `pulumi:"cachePrefixMatch"`
 	ClosePorts             *string `pulumi:"closePorts"`
+	EmbedImage             *string `pulumi:"embedImage"`
 	OvrdAuthHttps          *string `pulumi:"ovrdAuthHttps"`
 	OvrdAuthPort           *int    `pulumi:"ovrdAuthPort"`
 	OvrdAuthPortHttp       *int    `pulumi:"ovrdAuthPortHttp"`
@@ -75,9 +80,11 @@ type webfilterFortiguardState struct {
 
 type WebfilterFortiguardState struct {
 	CacheMemPercent        pulumi.IntPtrInput
+	CacheMemPermille       pulumi.IntPtrInput
 	CacheMode              pulumi.StringPtrInput
 	CachePrefixMatch       pulumi.StringPtrInput
 	ClosePorts             pulumi.StringPtrInput
+	EmbedImage             pulumi.StringPtrInput
 	OvrdAuthHttps          pulumi.StringPtrInput
 	OvrdAuthPort           pulumi.IntPtrInput
 	OvrdAuthPortHttp       pulumi.IntPtrInput
@@ -95,9 +102,11 @@ func (WebfilterFortiguardState) ElementType() reflect.Type {
 
 type webfilterFortiguardArgs struct {
 	CacheMemPercent        *int    `pulumi:"cacheMemPercent"`
+	CacheMemPermille       *int    `pulumi:"cacheMemPermille"`
 	CacheMode              *string `pulumi:"cacheMode"`
 	CachePrefixMatch       *string `pulumi:"cachePrefixMatch"`
 	ClosePorts             *string `pulumi:"closePorts"`
+	EmbedImage             *string `pulumi:"embedImage"`
 	OvrdAuthHttps          *string `pulumi:"ovrdAuthHttps"`
 	OvrdAuthPort           *int    `pulumi:"ovrdAuthPort"`
 	OvrdAuthPortHttp       *int    `pulumi:"ovrdAuthPortHttp"`
@@ -112,9 +121,11 @@ type webfilterFortiguardArgs struct {
 // The set of arguments for constructing a WebfilterFortiguard resource.
 type WebfilterFortiguardArgs struct {
 	CacheMemPercent        pulumi.IntPtrInput
+	CacheMemPermille       pulumi.IntPtrInput
 	CacheMode              pulumi.StringPtrInput
 	CachePrefixMatch       pulumi.StringPtrInput
 	ClosePorts             pulumi.StringPtrInput
+	EmbedImage             pulumi.StringPtrInput
 	OvrdAuthHttps          pulumi.StringPtrInput
 	OvrdAuthPort           pulumi.IntPtrInput
 	OvrdAuthPortHttp       pulumi.IntPtrInput
@@ -217,6 +228,10 @@ func (o WebfilterFortiguardOutput) CacheMemPercent() pulumi.IntOutput {
 	return o.ApplyT(func(v *WebfilterFortiguard) pulumi.IntOutput { return v.CacheMemPercent }).(pulumi.IntOutput)
 }
 
+func (o WebfilterFortiguardOutput) CacheMemPermille() pulumi.IntOutput {
+	return o.ApplyT(func(v *WebfilterFortiguard) pulumi.IntOutput { return v.CacheMemPermille }).(pulumi.IntOutput)
+}
+
 func (o WebfilterFortiguardOutput) CacheMode() pulumi.StringOutput {
 	return o.ApplyT(func(v *WebfilterFortiguard) pulumi.StringOutput { return v.CacheMode }).(pulumi.StringOutput)
 }
@@ -227,6 +242,10 @@ func (o WebfilterFortiguardOutput) CachePrefixMatch() pulumi.StringOutput {
 
 func (o WebfilterFortiguardOutput) ClosePorts() pulumi.StringOutput {
 	return o.ApplyT(func(v *WebfilterFortiguard) pulumi.StringOutput { return v.ClosePorts }).(pulumi.StringOutput)
+}
+
+func (o WebfilterFortiguardOutput) EmbedImage() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterFortiguard) pulumi.StringOutput { return v.EmbedImage }).(pulumi.StringOutput)
 }
 
 func (o WebfilterFortiguardOutput) OvrdAuthHttps() pulumi.StringOutput {

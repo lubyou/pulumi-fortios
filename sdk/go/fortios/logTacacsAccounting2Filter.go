@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -26,7 +27,7 @@ func NewLogTacacsAccounting2Filter(ctx *pulumi.Context,
 		args = &LogTacacsAccounting2FilterArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource LogTacacsAccounting2Filter
 	err := ctx.RegisterResource("fortios:index/logTacacsAccounting2Filter:LogTacacsAccounting2Filter", name, args, &resource, opts...)
 	if err != nil {

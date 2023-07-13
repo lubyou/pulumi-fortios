@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -27,7 +28,7 @@ func NewSystemReplacemsgAutomation(ctx *pulumi.Context,
 		args = &SystemReplacemsgAutomationArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemReplacemsgAutomation
 	err := ctx.RegisterResource("fortios:index/systemReplacemsgAutomation:SystemReplacemsgAutomation", name, args, &resource, opts...)
 	if err != nil {

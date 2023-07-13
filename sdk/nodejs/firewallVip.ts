@@ -45,6 +45,7 @@ export class FirewallVip extends pulumi.CustomResource {
     public readonly extip!: pulumi.Output<string>;
     public readonly extport!: pulumi.Output<string>;
     public readonly fosid!: pulumi.Output<number>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly gratuitousArpInterval!: pulumi.Output<number>;
     public readonly httpCookieAge!: pulumi.Output<number>;
     public readonly httpCookieDomain!: pulumi.Output<string>;
@@ -55,7 +56,10 @@ export class FirewallVip extends pulumi.CustomResource {
     public readonly httpIpHeader!: pulumi.Output<string>;
     public readonly httpIpHeaderName!: pulumi.Output<string>;
     public readonly httpMultiplex!: pulumi.Output<string>;
+    public readonly httpMultiplexMaxRequest!: pulumi.Output<number>;
+    public readonly httpMultiplexTtl!: pulumi.Output<number>;
     public readonly httpRedirect!: pulumi.Output<string>;
+    public readonly httpSupportedMaxVersion!: pulumi.Output<string>;
     public readonly httpsCookieSecure!: pulumi.Output<string>;
     public readonly ipv6Mappedip!: pulumi.Output<string>;
     public readonly ipv6Mappedport!: pulumi.Output<string>;
@@ -110,6 +114,7 @@ export class FirewallVip extends pulumi.CustomResource {
     public readonly sslServerCipherSuites!: pulumi.Output<outputs.FirewallVipSslServerCipherSuite[] | undefined>;
     public readonly sslServerMaxVersion!: pulumi.Output<string>;
     public readonly sslServerMinVersion!: pulumi.Output<string>;
+    public readonly sslServerRenegotiation!: pulumi.Output<string>;
     public readonly sslServerSessionStateMax!: pulumi.Output<number>;
     public readonly sslServerSessionStateTimeout!: pulumi.Output<number>;
     public readonly sslServerSessionStateType!: pulumi.Output<string>;
@@ -144,6 +149,7 @@ export class FirewallVip extends pulumi.CustomResource {
             resourceInputs["extip"] = state ? state.extip : undefined;
             resourceInputs["extport"] = state ? state.extport : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["gratuitousArpInterval"] = state ? state.gratuitousArpInterval : undefined;
             resourceInputs["httpCookieAge"] = state ? state.httpCookieAge : undefined;
             resourceInputs["httpCookieDomain"] = state ? state.httpCookieDomain : undefined;
@@ -154,7 +160,10 @@ export class FirewallVip extends pulumi.CustomResource {
             resourceInputs["httpIpHeader"] = state ? state.httpIpHeader : undefined;
             resourceInputs["httpIpHeaderName"] = state ? state.httpIpHeaderName : undefined;
             resourceInputs["httpMultiplex"] = state ? state.httpMultiplex : undefined;
+            resourceInputs["httpMultiplexMaxRequest"] = state ? state.httpMultiplexMaxRequest : undefined;
+            resourceInputs["httpMultiplexTtl"] = state ? state.httpMultiplexTtl : undefined;
             resourceInputs["httpRedirect"] = state ? state.httpRedirect : undefined;
+            resourceInputs["httpSupportedMaxVersion"] = state ? state.httpSupportedMaxVersion : undefined;
             resourceInputs["httpsCookieSecure"] = state ? state.httpsCookieSecure : undefined;
             resourceInputs["ipv6Mappedip"] = state ? state.ipv6Mappedip : undefined;
             resourceInputs["ipv6Mappedport"] = state ? state.ipv6Mappedport : undefined;
@@ -209,6 +218,7 @@ export class FirewallVip extends pulumi.CustomResource {
             resourceInputs["sslServerCipherSuites"] = state ? state.sslServerCipherSuites : undefined;
             resourceInputs["sslServerMaxVersion"] = state ? state.sslServerMaxVersion : undefined;
             resourceInputs["sslServerMinVersion"] = state ? state.sslServerMinVersion : undefined;
+            resourceInputs["sslServerRenegotiation"] = state ? state.sslServerRenegotiation : undefined;
             resourceInputs["sslServerSessionStateMax"] = state ? state.sslServerSessionStateMax : undefined;
             resourceInputs["sslServerSessionStateTimeout"] = state ? state.sslServerSessionStateTimeout : undefined;
             resourceInputs["sslServerSessionStateType"] = state ? state.sslServerSessionStateType : undefined;
@@ -231,6 +241,7 @@ export class FirewallVip extends pulumi.CustomResource {
             resourceInputs["extip"] = args ? args.extip : undefined;
             resourceInputs["extport"] = args ? args.extport : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["gratuitousArpInterval"] = args ? args.gratuitousArpInterval : undefined;
             resourceInputs["httpCookieAge"] = args ? args.httpCookieAge : undefined;
             resourceInputs["httpCookieDomain"] = args ? args.httpCookieDomain : undefined;
@@ -241,7 +252,10 @@ export class FirewallVip extends pulumi.CustomResource {
             resourceInputs["httpIpHeader"] = args ? args.httpIpHeader : undefined;
             resourceInputs["httpIpHeaderName"] = args ? args.httpIpHeaderName : undefined;
             resourceInputs["httpMultiplex"] = args ? args.httpMultiplex : undefined;
+            resourceInputs["httpMultiplexMaxRequest"] = args ? args.httpMultiplexMaxRequest : undefined;
+            resourceInputs["httpMultiplexTtl"] = args ? args.httpMultiplexTtl : undefined;
             resourceInputs["httpRedirect"] = args ? args.httpRedirect : undefined;
+            resourceInputs["httpSupportedMaxVersion"] = args ? args.httpSupportedMaxVersion : undefined;
             resourceInputs["httpsCookieSecure"] = args ? args.httpsCookieSecure : undefined;
             resourceInputs["ipv6Mappedip"] = args ? args.ipv6Mappedip : undefined;
             resourceInputs["ipv6Mappedport"] = args ? args.ipv6Mappedport : undefined;
@@ -296,6 +310,7 @@ export class FirewallVip extends pulumi.CustomResource {
             resourceInputs["sslServerCipherSuites"] = args ? args.sslServerCipherSuites : undefined;
             resourceInputs["sslServerMaxVersion"] = args ? args.sslServerMaxVersion : undefined;
             resourceInputs["sslServerMinVersion"] = args ? args.sslServerMinVersion : undefined;
+            resourceInputs["sslServerRenegotiation"] = args ? args.sslServerRenegotiation : undefined;
             resourceInputs["sslServerSessionStateMax"] = args ? args.sslServerSessionStateMax : undefined;
             resourceInputs["sslServerSessionStateTimeout"] = args ? args.sslServerSessionStateTimeout : undefined;
             resourceInputs["sslServerSessionStateType"] = args ? args.sslServerSessionStateType : undefined;
@@ -326,6 +341,7 @@ export interface FirewallVipState {
     extip?: pulumi.Input<string>;
     extport?: pulumi.Input<string>;
     fosid?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     gratuitousArpInterval?: pulumi.Input<number>;
     httpCookieAge?: pulumi.Input<number>;
     httpCookieDomain?: pulumi.Input<string>;
@@ -336,7 +352,10 @@ export interface FirewallVipState {
     httpIpHeader?: pulumi.Input<string>;
     httpIpHeaderName?: pulumi.Input<string>;
     httpMultiplex?: pulumi.Input<string>;
+    httpMultiplexMaxRequest?: pulumi.Input<number>;
+    httpMultiplexTtl?: pulumi.Input<number>;
     httpRedirect?: pulumi.Input<string>;
+    httpSupportedMaxVersion?: pulumi.Input<string>;
     httpsCookieSecure?: pulumi.Input<string>;
     ipv6Mappedip?: pulumi.Input<string>;
     ipv6Mappedport?: pulumi.Input<string>;
@@ -391,6 +410,7 @@ export interface FirewallVipState {
     sslServerCipherSuites?: pulumi.Input<pulumi.Input<inputs.FirewallVipSslServerCipherSuite>[]>;
     sslServerMaxVersion?: pulumi.Input<string>;
     sslServerMinVersion?: pulumi.Input<string>;
+    sslServerRenegotiation?: pulumi.Input<string>;
     sslServerSessionStateMax?: pulumi.Input<number>;
     sslServerSessionStateTimeout?: pulumi.Input<number>;
     sslServerSessionStateType?: pulumi.Input<string>;
@@ -417,6 +437,7 @@ export interface FirewallVipArgs {
     extip?: pulumi.Input<string>;
     extport?: pulumi.Input<string>;
     fosid?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     gratuitousArpInterval?: pulumi.Input<number>;
     httpCookieAge?: pulumi.Input<number>;
     httpCookieDomain?: pulumi.Input<string>;
@@ -427,7 +448,10 @@ export interface FirewallVipArgs {
     httpIpHeader?: pulumi.Input<string>;
     httpIpHeaderName?: pulumi.Input<string>;
     httpMultiplex?: pulumi.Input<string>;
+    httpMultiplexMaxRequest?: pulumi.Input<number>;
+    httpMultiplexTtl?: pulumi.Input<number>;
     httpRedirect?: pulumi.Input<string>;
+    httpSupportedMaxVersion?: pulumi.Input<string>;
     httpsCookieSecure?: pulumi.Input<string>;
     ipv6Mappedip?: pulumi.Input<string>;
     ipv6Mappedport?: pulumi.Input<string>;
@@ -482,6 +506,7 @@ export interface FirewallVipArgs {
     sslServerCipherSuites?: pulumi.Input<pulumi.Input<inputs.FirewallVipSslServerCipherSuite>[]>;
     sslServerMaxVersion?: pulumi.Input<string>;
     sslServerMinVersion?: pulumi.Input<string>;
+    sslServerRenegotiation?: pulumi.Input<string>;
     sslServerSessionStateMax?: pulumi.Input<number>;
     sslServerSessionStateTimeout?: pulumi.Input<number>;
     sslServerSessionStateType?: pulumi.Input<string>;

@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemInterface(ctx *pulumi.Context, args *LookupSystemInterfaceArgs, opts ...pulumi.InvokeOption) (*LookupSystemInterfaceResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemInterfaceResult
 	err := ctx.Invoke("fortios:index/getSystemInterface:GetSystemInterface", args, &rv, opts...)
 	if err != nil {
@@ -52,6 +53,7 @@ type LookupSystemInterfaceResult struct {
 	ClientOptions                  []GetSystemInterfaceClientOption           `pulumi:"clientOptions"`
 	Color                          int                                        `pulumi:"color"`
 	DedicatedTo                    string                                     `pulumi:"dedicatedTo"`
+	DefaultPurdueLevel             string                                     `pulumi:"defaultPurdueLevel"`
 	Defaultgw                      string                                     `pulumi:"defaultgw"`
 	Description                    string                                     `pulumi:"description"`
 	DetectedPeerMtu                int                                        `pulumi:"detectedPeerMtu"`
@@ -63,6 +65,7 @@ type LookupSystemInterfaceResult struct {
 	DeviceNetscan                  string                                     `pulumi:"deviceNetscan"`
 	DeviceUserIdentification       string                                     `pulumi:"deviceUserIdentification"`
 	Devindex                       int                                        `pulumi:"devindex"`
+	DhcpBroadcastFlag              string                                     `pulumi:"dhcpBroadcastFlag"`
 	DhcpClasslessRouteAddition     string                                     `pulumi:"dhcpClasslessRouteAddition"`
 	DhcpClientIdentifier           string                                     `pulumi:"dhcpClientIdentifier"`
 	DhcpRelayAgentOption           string                                     `pulumi:"dhcpRelayAgentOption"`
@@ -74,6 +77,7 @@ type LookupSystemInterfaceResult struct {
 	DhcpRelayService               string                                     `pulumi:"dhcpRelayService"`
 	DhcpRelayType                  string                                     `pulumi:"dhcpRelayType"`
 	DhcpRenewTime                  int                                        `pulumi:"dhcpRenewTime"`
+	DhcpSmartRelay                 string                                     `pulumi:"dhcpSmartRelay"`
 	DhcpSnoopingServerLists        []GetSystemInterfaceDhcpSnoopingServerList `pulumi:"dhcpSnoopingServerLists"`
 	DiscRetryTimeout               int                                        `pulumi:"discRetryTimeout"`
 	DisconnectThreshold            int                                        `pulumi:"disconnectThreshold"`
@@ -387,6 +391,10 @@ func (o LookupSystemInterfaceResultOutput) DedicatedTo() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.DedicatedTo }).(pulumi.StringOutput)
 }
 
+func (o LookupSystemInterfaceResultOutput) DefaultPurdueLevel() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.DefaultPurdueLevel }).(pulumi.StringOutput)
+}
+
 func (o LookupSystemInterfaceResultOutput) Defaultgw() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Defaultgw }).(pulumi.StringOutput)
 }
@@ -431,6 +439,10 @@ func (o LookupSystemInterfaceResultOutput) Devindex() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.Devindex }).(pulumi.IntOutput)
 }
 
+func (o LookupSystemInterfaceResultOutput) DhcpBroadcastFlag() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.DhcpBroadcastFlag }).(pulumi.StringOutput)
+}
+
 func (o LookupSystemInterfaceResultOutput) DhcpClasslessRouteAddition() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.DhcpClasslessRouteAddition }).(pulumi.StringOutput)
 }
@@ -473,6 +485,10 @@ func (o LookupSystemInterfaceResultOutput) DhcpRelayType() pulumi.StringOutput {
 
 func (o LookupSystemInterfaceResultOutput) DhcpRenewTime() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.DhcpRenewTime }).(pulumi.IntOutput)
+}
+
+func (o LookupSystemInterfaceResultOutput) DhcpSmartRelay() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.DhcpSmartRelay }).(pulumi.StringOutput)
 }
 
 func (o LookupSystemInterfaceResultOutput) DhcpSnoopingServerLists() GetSystemInterfaceDhcpSnoopingServerListArrayOutput {

@@ -94,11 +94,11 @@ def get_router_multicast_flow(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getRouterMulticastFlow:GetRouterMulticastFlow', __args__, opts=opts, typ=GetRouterMulticastFlowResult).value
 
     return AwaitableGetRouterMulticastFlowResult(
-        comments=__ret__.comments,
-        flows=__ret__.flows,
-        id=__ret__.id,
-        name=__ret__.name,
-        vdomparam=__ret__.vdomparam)
+        comments=pulumi.get(__ret__, 'comments'),
+        flows=pulumi.get(__ret__, 'flows'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_router_multicast_flow)

@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupRouterPrefixList(ctx *pulumi.Context, args *LookupRouterPrefixListArgs, opts ...pulumi.InvokeOption) (*LookupRouterPrefixListResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupRouterPrefixListResult
 	err := ctx.Invoke("fortios:index/getRouterPrefixList:GetRouterPrefixList", args, &rv, opts...)
 	if err != nil {

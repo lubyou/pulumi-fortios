@@ -49,6 +49,9 @@ export class FirewallAddress extends pulumi.CustomResource {
     public readonly filter!: pulumi.Output<string | undefined>;
     public readonly fqdn!: pulumi.Output<string | undefined>;
     public readonly fssoGroups!: pulumi.Output<outputs.FirewallAddressFssoGroup[] | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    public readonly hwModel!: pulumi.Output<string | undefined>;
+    public readonly hwVendor!: pulumi.Output<string | undefined>;
     public readonly interface!: pulumi.Output<string | undefined>;
     public readonly lists!: pulumi.Output<outputs.FirewallAddressList[]>;
     public readonly macaddrs!: pulumi.Output<outputs.FirewallAddressMacaddr[] | undefined>;
@@ -58,7 +61,9 @@ export class FirewallAddress extends pulumi.CustomResource {
     public readonly objTag!: pulumi.Output<string | undefined>;
     public readonly objType!: pulumi.Output<string>;
     public readonly organization!: pulumi.Output<string | undefined>;
+    public readonly os!: pulumi.Output<string | undefined>;
     public readonly policyGroup!: pulumi.Output<string | undefined>;
+    public readonly routeTag!: pulumi.Output<number | undefined>;
     public readonly sdn!: pulumi.Output<string | undefined>;
     public readonly sdnAddrType!: pulumi.Output<string>;
     public readonly sdnTag!: pulumi.Output<string | undefined>;
@@ -67,6 +72,7 @@ export class FirewallAddress extends pulumi.CustomResource {
     public readonly subType!: pulumi.Output<string>;
     public readonly subnet!: pulumi.Output<string>;
     public readonly subnetName!: pulumi.Output<string | undefined>;
+    public readonly swVersion!: pulumi.Output<string | undefined>;
     public readonly tagDetectionLevel!: pulumi.Output<string | undefined>;
     public readonly tagType!: pulumi.Output<string | undefined>;
     public readonly taggings!: pulumi.Output<outputs.FirewallAddressTagging[] | undefined>;
@@ -106,6 +112,9 @@ export class FirewallAddress extends pulumi.CustomResource {
             resourceInputs["filter"] = state ? state.filter : undefined;
             resourceInputs["fqdn"] = state ? state.fqdn : undefined;
             resourceInputs["fssoGroups"] = state ? state.fssoGroups : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
+            resourceInputs["hwModel"] = state ? state.hwModel : undefined;
+            resourceInputs["hwVendor"] = state ? state.hwVendor : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
             resourceInputs["lists"] = state ? state.lists : undefined;
             resourceInputs["macaddrs"] = state ? state.macaddrs : undefined;
@@ -115,7 +124,9 @@ export class FirewallAddress extends pulumi.CustomResource {
             resourceInputs["objTag"] = state ? state.objTag : undefined;
             resourceInputs["objType"] = state ? state.objType : undefined;
             resourceInputs["organization"] = state ? state.organization : undefined;
+            resourceInputs["os"] = state ? state.os : undefined;
             resourceInputs["policyGroup"] = state ? state.policyGroup : undefined;
+            resourceInputs["routeTag"] = state ? state.routeTag : undefined;
             resourceInputs["sdn"] = state ? state.sdn : undefined;
             resourceInputs["sdnAddrType"] = state ? state.sdnAddrType : undefined;
             resourceInputs["sdnTag"] = state ? state.sdnTag : undefined;
@@ -124,6 +135,7 @@ export class FirewallAddress extends pulumi.CustomResource {
             resourceInputs["subType"] = state ? state.subType : undefined;
             resourceInputs["subnet"] = state ? state.subnet : undefined;
             resourceInputs["subnetName"] = state ? state.subnetName : undefined;
+            resourceInputs["swVersion"] = state ? state.swVersion : undefined;
             resourceInputs["tagDetectionLevel"] = state ? state.tagDetectionLevel : undefined;
             resourceInputs["tagType"] = state ? state.tagType : undefined;
             resourceInputs["taggings"] = state ? state.taggings : undefined;
@@ -151,6 +163,9 @@ export class FirewallAddress extends pulumi.CustomResource {
             resourceInputs["filter"] = args ? args.filter : undefined;
             resourceInputs["fqdn"] = args ? args.fqdn : undefined;
             resourceInputs["fssoGroups"] = args ? args.fssoGroups : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
+            resourceInputs["hwModel"] = args ? args.hwModel : undefined;
+            resourceInputs["hwVendor"] = args ? args.hwVendor : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["lists"] = args ? args.lists : undefined;
             resourceInputs["macaddrs"] = args ? args.macaddrs : undefined;
@@ -160,7 +175,9 @@ export class FirewallAddress extends pulumi.CustomResource {
             resourceInputs["objTag"] = args ? args.objTag : undefined;
             resourceInputs["objType"] = args ? args.objType : undefined;
             resourceInputs["organization"] = args ? args.organization : undefined;
+            resourceInputs["os"] = args ? args.os : undefined;
             resourceInputs["policyGroup"] = args ? args.policyGroup : undefined;
+            resourceInputs["routeTag"] = args ? args.routeTag : undefined;
             resourceInputs["sdn"] = args ? args.sdn : undefined;
             resourceInputs["sdnAddrType"] = args ? args.sdnAddrType : undefined;
             resourceInputs["sdnTag"] = args ? args.sdnTag : undefined;
@@ -169,6 +186,7 @@ export class FirewallAddress extends pulumi.CustomResource {
             resourceInputs["subType"] = args ? args.subType : undefined;
             resourceInputs["subnet"] = args ? args.subnet : undefined;
             resourceInputs["subnetName"] = args ? args.subnetName : undefined;
+            resourceInputs["swVersion"] = args ? args.swVersion : undefined;
             resourceInputs["tagDetectionLevel"] = args ? args.tagDetectionLevel : undefined;
             resourceInputs["tagType"] = args ? args.tagType : undefined;
             resourceInputs["taggings"] = args ? args.taggings : undefined;
@@ -204,6 +222,9 @@ export interface FirewallAddressState {
     filter?: pulumi.Input<string>;
     fqdn?: pulumi.Input<string>;
     fssoGroups?: pulumi.Input<pulumi.Input<inputs.FirewallAddressFssoGroup>[]>;
+    getAllTables?: pulumi.Input<string>;
+    hwModel?: pulumi.Input<string>;
+    hwVendor?: pulumi.Input<string>;
     interface?: pulumi.Input<string>;
     lists?: pulumi.Input<pulumi.Input<inputs.FirewallAddressList>[]>;
     macaddrs?: pulumi.Input<pulumi.Input<inputs.FirewallAddressMacaddr>[]>;
@@ -213,7 +234,9 @@ export interface FirewallAddressState {
     objTag?: pulumi.Input<string>;
     objType?: pulumi.Input<string>;
     organization?: pulumi.Input<string>;
+    os?: pulumi.Input<string>;
     policyGroup?: pulumi.Input<string>;
+    routeTag?: pulumi.Input<number>;
     sdn?: pulumi.Input<string>;
     sdnAddrType?: pulumi.Input<string>;
     sdnTag?: pulumi.Input<string>;
@@ -222,6 +245,7 @@ export interface FirewallAddressState {
     subType?: pulumi.Input<string>;
     subnet?: pulumi.Input<string>;
     subnetName?: pulumi.Input<string>;
+    swVersion?: pulumi.Input<string>;
     tagDetectionLevel?: pulumi.Input<string>;
     tagType?: pulumi.Input<string>;
     taggings?: pulumi.Input<pulumi.Input<inputs.FirewallAddressTagging>[]>;
@@ -253,6 +277,9 @@ export interface FirewallAddressArgs {
     filter?: pulumi.Input<string>;
     fqdn?: pulumi.Input<string>;
     fssoGroups?: pulumi.Input<pulumi.Input<inputs.FirewallAddressFssoGroup>[]>;
+    getAllTables?: pulumi.Input<string>;
+    hwModel?: pulumi.Input<string>;
+    hwVendor?: pulumi.Input<string>;
     interface?: pulumi.Input<string>;
     lists?: pulumi.Input<pulumi.Input<inputs.FirewallAddressList>[]>;
     macaddrs?: pulumi.Input<pulumi.Input<inputs.FirewallAddressMacaddr>[]>;
@@ -262,7 +289,9 @@ export interface FirewallAddressArgs {
     objTag?: pulumi.Input<string>;
     objType?: pulumi.Input<string>;
     organization?: pulumi.Input<string>;
+    os?: pulumi.Input<string>;
     policyGroup?: pulumi.Input<string>;
+    routeTag?: pulumi.Input<number>;
     sdn?: pulumi.Input<string>;
     sdnAddrType?: pulumi.Input<string>;
     sdnTag?: pulumi.Input<string>;
@@ -271,6 +300,7 @@ export interface FirewallAddressArgs {
     subType?: pulumi.Input<string>;
     subnet?: pulumi.Input<string>;
     subnetName?: pulumi.Input<string>;
+    swVersion?: pulumi.Input<string>;
     tagDetectionLevel?: pulumi.Input<string>;
     tagType?: pulumi.Input<string>;
     taggings?: pulumi.Input<pulumi.Input<inputs.FirewallAddressTagging>[]>;

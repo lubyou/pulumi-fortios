@@ -59,6 +59,7 @@ class WirelessControllerWidsProfileArgs:
                  eapol_succ_flood: Optional[pulumi.Input[str]] = None,
                  eapol_succ_intv: Optional[pulumi.Input[int]] = None,
                  eapol_succ_thresh: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  invalid_mac_oui: Optional[pulumi.Input[str]] = None,
                  long_duration_attack: Optional[pulumi.Input[str]] = None,
                  long_duration_thresh: Optional[pulumi.Input[int]] = None,
@@ -158,6 +159,8 @@ class WirelessControllerWidsProfileArgs:
             pulumi.set(__self__, "eapol_succ_intv", eapol_succ_intv)
         if eapol_succ_thresh is not None:
             pulumi.set(__self__, "eapol_succ_thresh", eapol_succ_thresh)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if invalid_mac_oui is not None:
             pulumi.set(__self__, "invalid_mac_oui", invalid_mac_oui)
         if long_duration_attack is not None:
@@ -565,6 +568,15 @@ class WirelessControllerWidsProfileArgs:
     @eapol_succ_thresh.setter
     def eapol_succ_thresh(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "eapol_succ_thresh", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="invalidMacOui")
@@ -703,6 +715,7 @@ class _WirelessControllerWidsProfileState:
                  eapol_succ_flood: Optional[pulumi.Input[str]] = None,
                  eapol_succ_intv: Optional[pulumi.Input[int]] = None,
                  eapol_succ_thresh: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  invalid_mac_oui: Optional[pulumi.Input[str]] = None,
                  long_duration_attack: Optional[pulumi.Input[str]] = None,
                  long_duration_thresh: Optional[pulumi.Input[int]] = None,
@@ -802,6 +815,8 @@ class _WirelessControllerWidsProfileState:
             pulumi.set(__self__, "eapol_succ_intv", eapol_succ_intv)
         if eapol_succ_thresh is not None:
             pulumi.set(__self__, "eapol_succ_thresh", eapol_succ_thresh)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if invalid_mac_oui is not None:
             pulumi.set(__self__, "invalid_mac_oui", invalid_mac_oui)
         if long_duration_attack is not None:
@@ -1209,6 +1224,15 @@ class _WirelessControllerWidsProfileState:
     @eapol_succ_thresh.setter
     def eapol_succ_thresh(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "eapol_succ_thresh", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="invalidMacOui")
@@ -1349,6 +1373,7 @@ class WirelessControllerWidsProfile(pulumi.CustomResource):
                  eapol_succ_flood: Optional[pulumi.Input[str]] = None,
                  eapol_succ_intv: Optional[pulumi.Input[int]] = None,
                  eapol_succ_thresh: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  invalid_mac_oui: Optional[pulumi.Input[str]] = None,
                  long_duration_attack: Optional[pulumi.Input[str]] = None,
                  long_duration_thresh: Optional[pulumi.Input[int]] = None,
@@ -1431,6 +1456,7 @@ class WirelessControllerWidsProfile(pulumi.CustomResource):
                  eapol_succ_flood: Optional[pulumi.Input[str]] = None,
                  eapol_succ_intv: Optional[pulumi.Input[int]] = None,
                  eapol_succ_thresh: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  invalid_mac_oui: Optional[pulumi.Input[str]] = None,
                  long_duration_attack: Optional[pulumi.Input[str]] = None,
                  long_duration_thresh: Optional[pulumi.Input[int]] = None,
@@ -1493,6 +1519,7 @@ class WirelessControllerWidsProfile(pulumi.CustomResource):
             __props__.__dict__["eapol_succ_flood"] = eapol_succ_flood
             __props__.__dict__["eapol_succ_intv"] = eapol_succ_intv
             __props__.__dict__["eapol_succ_thresh"] = eapol_succ_thresh
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["invalid_mac_oui"] = invalid_mac_oui
             __props__.__dict__["long_duration_attack"] = long_duration_attack
             __props__.__dict__["long_duration_thresh"] = long_duration_thresh
@@ -1556,6 +1583,7 @@ class WirelessControllerWidsProfile(pulumi.CustomResource):
             eapol_succ_flood: Optional[pulumi.Input[str]] = None,
             eapol_succ_intv: Optional[pulumi.Input[int]] = None,
             eapol_succ_thresh: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             invalid_mac_oui: Optional[pulumi.Input[str]] = None,
             long_duration_attack: Optional[pulumi.Input[str]] = None,
             long_duration_thresh: Optional[pulumi.Input[int]] = None,
@@ -1621,6 +1649,7 @@ class WirelessControllerWidsProfile(pulumi.CustomResource):
         __props__.__dict__["eapol_succ_flood"] = eapol_succ_flood
         __props__.__dict__["eapol_succ_intv"] = eapol_succ_intv
         __props__.__dict__["eapol_succ_thresh"] = eapol_succ_thresh
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["invalid_mac_oui"] = invalid_mac_oui
         __props__.__dict__["long_duration_attack"] = long_duration_attack
         __props__.__dict__["long_duration_thresh"] = long_duration_thresh
@@ -1847,6 +1876,11 @@ class WirelessControllerWidsProfile(pulumi.CustomResource):
     @pulumi.getter(name="eapolSuccThresh")
     def eapol_succ_thresh(self) -> pulumi.Output[int]:
         return pulumi.get(self, "eapol_succ_thresh")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="invalidMacOui")

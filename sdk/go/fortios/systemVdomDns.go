@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -17,6 +18,7 @@ type SystemVdomDns struct {
 	AltSecondary          pulumi.StringOutput                    `pulumi:"altSecondary"`
 	DnsOverTls            pulumi.StringOutput                    `pulumi:"dnsOverTls"`
 	DynamicSortSubtable   pulumi.StringPtrOutput                 `pulumi:"dynamicSortSubtable"`
+	GetAllTables          pulumi.StringPtrOutput                 `pulumi:"getAllTables"`
 	Interface             pulumi.StringOutput                    `pulumi:"interface"`
 	InterfaceSelectMethod pulumi.StringOutput                    `pulumi:"interfaceSelectMethod"`
 	Ip6Primary            pulumi.StringOutput                    `pulumi:"ip6Primary"`
@@ -39,7 +41,7 @@ func NewSystemVdomDns(ctx *pulumi.Context,
 		args = &SystemVdomDnsArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemVdomDns
 	err := ctx.RegisterResource("fortios:index/systemVdomDns:SystemVdomDns", name, args, &resource, opts...)
 	if err != nil {
@@ -66,6 +68,7 @@ type systemVdomDnsState struct {
 	AltSecondary          *string                       `pulumi:"altSecondary"`
 	DnsOverTls            *string                       `pulumi:"dnsOverTls"`
 	DynamicSortSubtable   *string                       `pulumi:"dynamicSortSubtable"`
+	GetAllTables          *string                       `pulumi:"getAllTables"`
 	Interface             *string                       `pulumi:"interface"`
 	InterfaceSelectMethod *string                       `pulumi:"interfaceSelectMethod"`
 	Ip6Primary            *string                       `pulumi:"ip6Primary"`
@@ -86,6 +89,7 @@ type SystemVdomDnsState struct {
 	AltSecondary          pulumi.StringPtrInput
 	DnsOverTls            pulumi.StringPtrInput
 	DynamicSortSubtable   pulumi.StringPtrInput
+	GetAllTables          pulumi.StringPtrInput
 	Interface             pulumi.StringPtrInput
 	InterfaceSelectMethod pulumi.StringPtrInput
 	Ip6Primary            pulumi.StringPtrInput
@@ -110,6 +114,7 @@ type systemVdomDnsArgs struct {
 	AltSecondary          *string                       `pulumi:"altSecondary"`
 	DnsOverTls            *string                       `pulumi:"dnsOverTls"`
 	DynamicSortSubtable   *string                       `pulumi:"dynamicSortSubtable"`
+	GetAllTables          *string                       `pulumi:"getAllTables"`
 	Interface             *string                       `pulumi:"interface"`
 	InterfaceSelectMethod *string                       `pulumi:"interfaceSelectMethod"`
 	Ip6Primary            *string                       `pulumi:"ip6Primary"`
@@ -131,6 +136,7 @@ type SystemVdomDnsArgs struct {
 	AltSecondary          pulumi.StringPtrInput
 	DnsOverTls            pulumi.StringPtrInput
 	DynamicSortSubtable   pulumi.StringPtrInput
+	GetAllTables          pulumi.StringPtrInput
 	Interface             pulumi.StringPtrInput
 	InterfaceSelectMethod pulumi.StringPtrInput
 	Ip6Primary            pulumi.StringPtrInput
@@ -247,6 +253,10 @@ func (o SystemVdomDnsOutput) DnsOverTls() pulumi.StringOutput {
 
 func (o SystemVdomDnsOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SystemVdomDns) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemVdomDnsOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemVdomDns) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemVdomDnsOutput) Interface() pulumi.StringOutput {

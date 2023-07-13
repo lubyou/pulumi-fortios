@@ -93,11 +93,11 @@ def get_system_replacemsg_image(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemReplacemsgImage:GetSystemReplacemsgImage', __args__, opts=opts, typ=GetSystemReplacemsgImageResult).value
 
     return AwaitableGetSystemReplacemsgImageResult(
-        id=__ret__.id,
-        image_base64=__ret__.image_base64,
-        image_type=__ret__.image_type,
-        name=__ret__.name,
-        vdomparam=__ret__.vdomparam)
+        id=pulumi.get(__ret__, 'id'),
+        image_base64=pulumi.get(__ret__, 'image_base64'),
+        image_type=pulumi.get(__ret__, 'image_type'),
+        name=pulumi.get(__ret__, 'name'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_replacemsg_image)

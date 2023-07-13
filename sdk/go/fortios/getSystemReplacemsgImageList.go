@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func GetSystemReplacemsgImageList(ctx *pulumi.Context, args *GetSystemReplacemsgImageListArgs, opts ...pulumi.InvokeOption) (*GetSystemReplacemsgImageListResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetSystemReplacemsgImageListResult
 	err := ctx.Invoke("fortios:index/getSystemReplacemsgImageList:GetSystemReplacemsgImageList", args, &rv, opts...)
 	if err != nil {

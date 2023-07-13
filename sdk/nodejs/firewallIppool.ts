@@ -50,6 +50,7 @@ export class FirewallIppool extends pulumi.CustomResource {
     public readonly sourceStartip!: pulumi.Output<string>;
     public readonly startip!: pulumi.Output<string>;
     public readonly startport!: pulumi.Output<number>;
+    public readonly subnetBroadcastInIppool!: pulumi.Output<string>;
     public readonly type!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
@@ -84,6 +85,7 @@ export class FirewallIppool extends pulumi.CustomResource {
             resourceInputs["sourceStartip"] = state ? state.sourceStartip : undefined;
             resourceInputs["startip"] = state ? state.startip : undefined;
             resourceInputs["startport"] = state ? state.startport : undefined;
+            resourceInputs["subnetBroadcastInIppool"] = state ? state.subnetBroadcastInIppool : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
@@ -112,6 +114,7 @@ export class FirewallIppool extends pulumi.CustomResource {
             resourceInputs["sourceStartip"] = args ? args.sourceStartip : undefined;
             resourceInputs["startip"] = args ? args.startip : undefined;
             resourceInputs["startport"] = args ? args.startport : undefined;
+            resourceInputs["subnetBroadcastInIppool"] = args ? args.subnetBroadcastInIppool : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
@@ -142,6 +145,7 @@ export interface FirewallIppoolState {
     sourceStartip?: pulumi.Input<string>;
     startip?: pulumi.Input<string>;
     startport?: pulumi.Input<number>;
+    subnetBroadcastInIppool?: pulumi.Input<string>;
     type?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }
@@ -168,6 +172,7 @@ export interface FirewallIppoolArgs {
     sourceStartip?: pulumi.Input<string>;
     startip: pulumi.Input<string>;
     startport?: pulumi.Input<number>;
+    subnetBroadcastInIppool?: pulumi.Input<string>;
     type?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }

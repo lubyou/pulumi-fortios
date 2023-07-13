@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -17,6 +18,7 @@ type IpsRule struct {
 	Application         pulumi.StringOutput        `pulumi:"application"`
 	Date                pulumi.IntOutput           `pulumi:"date"`
 	DynamicSortSubtable pulumi.StringPtrOutput     `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput     `pulumi:"getAllTables"`
 	Group               pulumi.StringOutput        `pulumi:"group"`
 	Location            pulumi.StringOutput        `pulumi:"location"`
 	Log                 pulumi.StringOutput        `pulumi:"log"`
@@ -39,7 +41,7 @@ func NewIpsRule(ctx *pulumi.Context,
 		args = &IpsRuleArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource IpsRule
 	err := ctx.RegisterResource("fortios:index/ipsRule:IpsRule", name, args, &resource, opts...)
 	if err != nil {
@@ -66,6 +68,7 @@ type ipsRuleState struct {
 	Application         *string           `pulumi:"application"`
 	Date                *int              `pulumi:"date"`
 	DynamicSortSubtable *string           `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string           `pulumi:"getAllTables"`
 	Group               *string           `pulumi:"group"`
 	Location            *string           `pulumi:"location"`
 	Log                 *string           `pulumi:"log"`
@@ -86,6 +89,7 @@ type IpsRuleState struct {
 	Application         pulumi.StringPtrInput
 	Date                pulumi.IntPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Group               pulumi.StringPtrInput
 	Location            pulumi.StringPtrInput
 	Log                 pulumi.StringPtrInput
@@ -110,6 +114,7 @@ type ipsRuleArgs struct {
 	Application         *string           `pulumi:"application"`
 	Date                *int              `pulumi:"date"`
 	DynamicSortSubtable *string           `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string           `pulumi:"getAllTables"`
 	Group               *string           `pulumi:"group"`
 	Location            *string           `pulumi:"location"`
 	Log                 *string           `pulumi:"log"`
@@ -131,6 +136,7 @@ type IpsRuleArgs struct {
 	Application         pulumi.StringPtrInput
 	Date                pulumi.IntPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Group               pulumi.StringPtrInput
 	Location            pulumi.StringPtrInput
 	Log                 pulumi.StringPtrInput
@@ -247,6 +253,10 @@ func (o IpsRuleOutput) Date() pulumi.IntOutput {
 
 func (o IpsRuleOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IpsRule) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o IpsRuleOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IpsRule) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o IpsRuleOutput) Group() pulumi.StringOutput {

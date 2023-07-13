@@ -28,6 +28,7 @@ class FirewallSecurityPolicyArgs:
                  dlp_sensor: Optional[pulumi.Input[str]] = None,
                  dnsfilter_profile: Optional[pulumi.Input[str]] = None,
                  dstaddr4s: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyDstaddr4Args']]]] = None,
+                 dstaddr6_negate: Optional[pulumi.Input[str]] = None,
                  dstaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyDstaddr6Args']]]] = None,
                  dstaddr_negate: Optional[pulumi.Input[str]] = None,
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyDstaddrArgs']]]] = None,
@@ -37,6 +38,7 @@ class FirewallSecurityPolicyArgs:
                  enforce_default_app_port: Optional[pulumi.Input[str]] = None,
                  file_filter_profile: Optional[pulumi.Input[str]] = None,
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyFssoGroupArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyGroupArgs']]]] = None,
                  icap_profile: Optional[pulumi.Input[str]] = None,
                  internet_service: Optional[pulumi.Input[str]] = None,
@@ -66,6 +68,7 @@ class FirewallSecurityPolicyArgs:
                  internet_service_src_names: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyInternetServiceSrcNameArgs']]]] = None,
                  internet_service_src_negate: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
+                 ips_voip_filter: Optional[pulumi.Input[str]] = None,
                  learning_mode: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
                  logtraffic_start: Optional[pulumi.Input[str]] = None,
@@ -82,6 +85,7 @@ class FirewallSecurityPolicyArgs:
                  service_negate: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyServiceArgs']]]] = None,
                  srcaddr4s: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicySrcaddr4Args']]]] = None,
+                 srcaddr6_negate: Optional[pulumi.Input[str]] = None,
                  srcaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicySrcaddr6Args']]]] = None,
                  srcaddr_negate: Optional[pulumi.Input[str]] = None,
                  srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicySrcaddrArgs']]]] = None,
@@ -90,6 +94,7 @@ class FirewallSecurityPolicyArgs:
                  ssl_ssh_profile: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  url_categories: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyUrlCategoryArgs']]]] = None,
+                 url_category_unitary: Optional[pulumi.Input[str]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyUserArgs']]]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -123,6 +128,8 @@ class FirewallSecurityPolicyArgs:
             pulumi.set(__self__, "dnsfilter_profile", dnsfilter_profile)
         if dstaddr4s is not None:
             pulumi.set(__self__, "dstaddr4s", dstaddr4s)
+        if dstaddr6_negate is not None:
+            pulumi.set(__self__, "dstaddr6_negate", dstaddr6_negate)
         if dstaddr6s is not None:
             pulumi.set(__self__, "dstaddr6s", dstaddr6s)
         if dstaddr_negate is not None:
@@ -141,6 +148,8 @@ class FirewallSecurityPolicyArgs:
             pulumi.set(__self__, "file_filter_profile", file_filter_profile)
         if fsso_groups is not None:
             pulumi.set(__self__, "fsso_groups", fsso_groups)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if groups is not None:
             pulumi.set(__self__, "groups", groups)
         if icap_profile is not None:
@@ -199,6 +208,8 @@ class FirewallSecurityPolicyArgs:
             pulumi.set(__self__, "internet_service_src_negate", internet_service_src_negate)
         if ips_sensor is not None:
             pulumi.set(__self__, "ips_sensor", ips_sensor)
+        if ips_voip_filter is not None:
+            pulumi.set(__self__, "ips_voip_filter", ips_voip_filter)
         if learning_mode is not None:
             pulumi.set(__self__, "learning_mode", learning_mode)
         if logtraffic is not None:
@@ -231,6 +242,8 @@ class FirewallSecurityPolicyArgs:
             pulumi.set(__self__, "services", services)
         if srcaddr4s is not None:
             pulumi.set(__self__, "srcaddr4s", srcaddr4s)
+        if srcaddr6_negate is not None:
+            pulumi.set(__self__, "srcaddr6_negate", srcaddr6_negate)
         if srcaddr6s is not None:
             pulumi.set(__self__, "srcaddr6s", srcaddr6s)
         if srcaddr_negate is not None:
@@ -247,6 +260,8 @@ class FirewallSecurityPolicyArgs:
             pulumi.set(__self__, "status", status)
         if url_categories is not None:
             pulumi.set(__self__, "url_categories", url_categories)
+        if url_category_unitary is not None:
+            pulumi.set(__self__, "url_category_unitary", url_category_unitary)
         if users is not None:
             pulumi.set(__self__, "users", users)
         if uuid is not None:
@@ -369,6 +384,15 @@ class FirewallSecurityPolicyArgs:
         pulumi.set(self, "dstaddr4s", value)
 
     @property
+    @pulumi.getter(name="dstaddr6Negate")
+    def dstaddr6_negate(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "dstaddr6_negate")
+
+    @dstaddr6_negate.setter
+    def dstaddr6_negate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dstaddr6_negate", value)
+
+    @property
     @pulumi.getter
     def dstaddr6s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyDstaddr6Args']]]]:
         return pulumi.get(self, "dstaddr6s")
@@ -448,6 +472,15 @@ class FirewallSecurityPolicyArgs:
     @fsso_groups.setter
     def fsso_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyFssoGroupArgs']]]]):
         pulumi.set(self, "fsso_groups", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -711,6 +744,15 @@ class FirewallSecurityPolicyArgs:
         pulumi.set(self, "ips_sensor", value)
 
     @property
+    @pulumi.getter(name="ipsVoipFilter")
+    def ips_voip_filter(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ips_voip_filter")
+
+    @ips_voip_filter.setter
+    def ips_voip_filter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ips_voip_filter", value)
+
+    @property
     @pulumi.getter(name="learningMode")
     def learning_mode(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "learning_mode")
@@ -855,6 +897,15 @@ class FirewallSecurityPolicyArgs:
         pulumi.set(self, "srcaddr4s", value)
 
     @property
+    @pulumi.getter(name="srcaddr6Negate")
+    def srcaddr6_negate(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "srcaddr6_negate")
+
+    @srcaddr6_negate.setter
+    def srcaddr6_negate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "srcaddr6_negate", value)
+
+    @property
     @pulumi.getter
     def srcaddr6s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicySrcaddr6Args']]]]:
         return pulumi.get(self, "srcaddr6s")
@@ -925,6 +976,15 @@ class FirewallSecurityPolicyArgs:
     @url_categories.setter
     def url_categories(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyUrlCategoryArgs']]]]):
         pulumi.set(self, "url_categories", value)
+
+    @property
+    @pulumi.getter(name="urlCategoryUnitary")
+    def url_category_unitary(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "url_category_unitary")
+
+    @url_category_unitary.setter
+    def url_category_unitary(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "url_category_unitary", value)
 
     @property
     @pulumi.getter
@@ -996,6 +1056,7 @@ class _FirewallSecurityPolicyState:
                  dlp_sensor: Optional[pulumi.Input[str]] = None,
                  dnsfilter_profile: Optional[pulumi.Input[str]] = None,
                  dstaddr4s: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyDstaddr4Args']]]] = None,
+                 dstaddr6_negate: Optional[pulumi.Input[str]] = None,
                  dstaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyDstaddr6Args']]]] = None,
                  dstaddr_negate: Optional[pulumi.Input[str]] = None,
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyDstaddrArgs']]]] = None,
@@ -1005,6 +1066,7 @@ class _FirewallSecurityPolicyState:
                  enforce_default_app_port: Optional[pulumi.Input[str]] = None,
                  file_filter_profile: Optional[pulumi.Input[str]] = None,
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyFssoGroupArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyGroupArgs']]]] = None,
                  icap_profile: Optional[pulumi.Input[str]] = None,
                  internet_service: Optional[pulumi.Input[str]] = None,
@@ -1034,6 +1096,7 @@ class _FirewallSecurityPolicyState:
                  internet_service_src_names: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyInternetServiceSrcNameArgs']]]] = None,
                  internet_service_src_negate: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
+                 ips_voip_filter: Optional[pulumi.Input[str]] = None,
                  learning_mode: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
                  logtraffic_start: Optional[pulumi.Input[str]] = None,
@@ -1050,6 +1113,7 @@ class _FirewallSecurityPolicyState:
                  service_negate: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyServiceArgs']]]] = None,
                  srcaddr4s: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicySrcaddr4Args']]]] = None,
+                 srcaddr6_negate: Optional[pulumi.Input[str]] = None,
                  srcaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicySrcaddr6Args']]]] = None,
                  srcaddr_negate: Optional[pulumi.Input[str]] = None,
                  srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicySrcaddrArgs']]]] = None,
@@ -1058,6 +1122,7 @@ class _FirewallSecurityPolicyState:
                  ssl_ssh_profile: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  url_categories: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyUrlCategoryArgs']]]] = None,
+                 url_category_unitary: Optional[pulumi.Input[str]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyUserArgs']]]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -1091,6 +1156,8 @@ class _FirewallSecurityPolicyState:
             pulumi.set(__self__, "dnsfilter_profile", dnsfilter_profile)
         if dstaddr4s is not None:
             pulumi.set(__self__, "dstaddr4s", dstaddr4s)
+        if dstaddr6_negate is not None:
+            pulumi.set(__self__, "dstaddr6_negate", dstaddr6_negate)
         if dstaddr6s is not None:
             pulumi.set(__self__, "dstaddr6s", dstaddr6s)
         if dstaddr_negate is not None:
@@ -1109,6 +1176,8 @@ class _FirewallSecurityPolicyState:
             pulumi.set(__self__, "file_filter_profile", file_filter_profile)
         if fsso_groups is not None:
             pulumi.set(__self__, "fsso_groups", fsso_groups)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if groups is not None:
             pulumi.set(__self__, "groups", groups)
         if icap_profile is not None:
@@ -1167,6 +1236,8 @@ class _FirewallSecurityPolicyState:
             pulumi.set(__self__, "internet_service_src_negate", internet_service_src_negate)
         if ips_sensor is not None:
             pulumi.set(__self__, "ips_sensor", ips_sensor)
+        if ips_voip_filter is not None:
+            pulumi.set(__self__, "ips_voip_filter", ips_voip_filter)
         if learning_mode is not None:
             pulumi.set(__self__, "learning_mode", learning_mode)
         if logtraffic is not None:
@@ -1199,6 +1270,8 @@ class _FirewallSecurityPolicyState:
             pulumi.set(__self__, "services", services)
         if srcaddr4s is not None:
             pulumi.set(__self__, "srcaddr4s", srcaddr4s)
+        if srcaddr6_negate is not None:
+            pulumi.set(__self__, "srcaddr6_negate", srcaddr6_negate)
         if srcaddr6s is not None:
             pulumi.set(__self__, "srcaddr6s", srcaddr6s)
         if srcaddr_negate is not None:
@@ -1215,6 +1288,8 @@ class _FirewallSecurityPolicyState:
             pulumi.set(__self__, "status", status)
         if url_categories is not None:
             pulumi.set(__self__, "url_categories", url_categories)
+        if url_category_unitary is not None:
+            pulumi.set(__self__, "url_category_unitary", url_category_unitary)
         if users is not None:
             pulumi.set(__self__, "users", users)
         if uuid is not None:
@@ -1337,6 +1412,15 @@ class _FirewallSecurityPolicyState:
         pulumi.set(self, "dstaddr4s", value)
 
     @property
+    @pulumi.getter(name="dstaddr6Negate")
+    def dstaddr6_negate(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "dstaddr6_negate")
+
+    @dstaddr6_negate.setter
+    def dstaddr6_negate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dstaddr6_negate", value)
+
+    @property
     @pulumi.getter
     def dstaddr6s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyDstaddr6Args']]]]:
         return pulumi.get(self, "dstaddr6s")
@@ -1416,6 +1500,15 @@ class _FirewallSecurityPolicyState:
     @fsso_groups.setter
     def fsso_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyFssoGroupArgs']]]]):
         pulumi.set(self, "fsso_groups", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -1679,6 +1772,15 @@ class _FirewallSecurityPolicyState:
         pulumi.set(self, "ips_sensor", value)
 
     @property
+    @pulumi.getter(name="ipsVoipFilter")
+    def ips_voip_filter(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ips_voip_filter")
+
+    @ips_voip_filter.setter
+    def ips_voip_filter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ips_voip_filter", value)
+
+    @property
     @pulumi.getter(name="learningMode")
     def learning_mode(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "learning_mode")
@@ -1823,6 +1925,15 @@ class _FirewallSecurityPolicyState:
         pulumi.set(self, "srcaddr4s", value)
 
     @property
+    @pulumi.getter(name="srcaddr6Negate")
+    def srcaddr6_negate(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "srcaddr6_negate")
+
+    @srcaddr6_negate.setter
+    def srcaddr6_negate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "srcaddr6_negate", value)
+
+    @property
     @pulumi.getter
     def srcaddr6s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicySrcaddr6Args']]]]:
         return pulumi.get(self, "srcaddr6s")
@@ -1893,6 +2004,15 @@ class _FirewallSecurityPolicyState:
     @url_categories.setter
     def url_categories(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyUrlCategoryArgs']]]]):
         pulumi.set(self, "url_categories", value)
+
+    @property
+    @pulumi.getter(name="urlCategoryUnitary")
+    def url_category_unitary(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "url_category_unitary")
+
+    @url_category_unitary.setter
+    def url_category_unitary(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "url_category_unitary", value)
 
     @property
     @pulumi.getter
@@ -1966,6 +2086,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
                  dlp_sensor: Optional[pulumi.Input[str]] = None,
                  dnsfilter_profile: Optional[pulumi.Input[str]] = None,
                  dstaddr4s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyDstaddr4Args']]]]] = None,
+                 dstaddr6_negate: Optional[pulumi.Input[str]] = None,
                  dstaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyDstaddr6Args']]]]] = None,
                  dstaddr_negate: Optional[pulumi.Input[str]] = None,
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyDstaddrArgs']]]]] = None,
@@ -1975,6 +2096,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
                  enforce_default_app_port: Optional[pulumi.Input[str]] = None,
                  file_filter_profile: Optional[pulumi.Input[str]] = None,
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyFssoGroupArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyGroupArgs']]]]] = None,
                  icap_profile: Optional[pulumi.Input[str]] = None,
                  internet_service: Optional[pulumi.Input[str]] = None,
@@ -2004,6 +2126,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
                  internet_service_src_names: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyInternetServiceSrcNameArgs']]]]] = None,
                  internet_service_src_negate: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
+                 ips_voip_filter: Optional[pulumi.Input[str]] = None,
                  learning_mode: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
                  logtraffic_start: Optional[pulumi.Input[str]] = None,
@@ -2020,6 +2143,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
                  service_negate: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyServiceArgs']]]]] = None,
                  srcaddr4s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicySrcaddr4Args']]]]] = None,
+                 srcaddr6_negate: Optional[pulumi.Input[str]] = None,
                  srcaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicySrcaddr6Args']]]]] = None,
                  srcaddr_negate: Optional[pulumi.Input[str]] = None,
                  srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicySrcaddrArgs']]]]] = None,
@@ -2028,6 +2152,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
                  ssl_ssh_profile: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  url_categories: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyUrlCategoryArgs']]]]] = None,
+                 url_category_unitary: Optional[pulumi.Input[str]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyUserArgs']]]]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -2075,6 +2200,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
                  dlp_sensor: Optional[pulumi.Input[str]] = None,
                  dnsfilter_profile: Optional[pulumi.Input[str]] = None,
                  dstaddr4s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyDstaddr4Args']]]]] = None,
+                 dstaddr6_negate: Optional[pulumi.Input[str]] = None,
                  dstaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyDstaddr6Args']]]]] = None,
                  dstaddr_negate: Optional[pulumi.Input[str]] = None,
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyDstaddrArgs']]]]] = None,
@@ -2084,6 +2210,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
                  enforce_default_app_port: Optional[pulumi.Input[str]] = None,
                  file_filter_profile: Optional[pulumi.Input[str]] = None,
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyFssoGroupArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyGroupArgs']]]]] = None,
                  icap_profile: Optional[pulumi.Input[str]] = None,
                  internet_service: Optional[pulumi.Input[str]] = None,
@@ -2113,6 +2240,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
                  internet_service_src_names: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyInternetServiceSrcNameArgs']]]]] = None,
                  internet_service_src_negate: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
+                 ips_voip_filter: Optional[pulumi.Input[str]] = None,
                  learning_mode: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
                  logtraffic_start: Optional[pulumi.Input[str]] = None,
@@ -2129,6 +2257,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
                  service_negate: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyServiceArgs']]]]] = None,
                  srcaddr4s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicySrcaddr4Args']]]]] = None,
+                 srcaddr6_negate: Optional[pulumi.Input[str]] = None,
                  srcaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicySrcaddr6Args']]]]] = None,
                  srcaddr_negate: Optional[pulumi.Input[str]] = None,
                  srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicySrcaddrArgs']]]]] = None,
@@ -2137,6 +2266,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
                  ssl_ssh_profile: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  url_categories: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyUrlCategoryArgs']]]]] = None,
+                 url_category_unitary: Optional[pulumi.Input[str]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyUserArgs']]]]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -2164,6 +2294,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
             __props__.__dict__["dlp_sensor"] = dlp_sensor
             __props__.__dict__["dnsfilter_profile"] = dnsfilter_profile
             __props__.__dict__["dstaddr4s"] = dstaddr4s
+            __props__.__dict__["dstaddr6_negate"] = dstaddr6_negate
             __props__.__dict__["dstaddr6s"] = dstaddr6s
             __props__.__dict__["dstaddr_negate"] = dstaddr_negate
             __props__.__dict__["dstaddrs"] = dstaddrs
@@ -2173,6 +2304,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
             __props__.__dict__["enforce_default_app_port"] = enforce_default_app_port
             __props__.__dict__["file_filter_profile"] = file_filter_profile
             __props__.__dict__["fsso_groups"] = fsso_groups
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["groups"] = groups
             __props__.__dict__["icap_profile"] = icap_profile
             __props__.__dict__["internet_service"] = internet_service
@@ -2202,6 +2334,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
             __props__.__dict__["internet_service_src_names"] = internet_service_src_names
             __props__.__dict__["internet_service_src_negate"] = internet_service_src_negate
             __props__.__dict__["ips_sensor"] = ips_sensor
+            __props__.__dict__["ips_voip_filter"] = ips_voip_filter
             __props__.__dict__["learning_mode"] = learning_mode
             __props__.__dict__["logtraffic"] = logtraffic
             __props__.__dict__["logtraffic_start"] = logtraffic_start
@@ -2218,6 +2351,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
             __props__.__dict__["service_negate"] = service_negate
             __props__.__dict__["services"] = services
             __props__.__dict__["srcaddr4s"] = srcaddr4s
+            __props__.__dict__["srcaddr6_negate"] = srcaddr6_negate
             __props__.__dict__["srcaddr6s"] = srcaddr6s
             __props__.__dict__["srcaddr_negate"] = srcaddr_negate
             __props__.__dict__["srcaddrs"] = srcaddrs
@@ -2226,6 +2360,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
             __props__.__dict__["ssl_ssh_profile"] = ssl_ssh_profile
             __props__.__dict__["status"] = status
             __props__.__dict__["url_categories"] = url_categories
+            __props__.__dict__["url_category_unitary"] = url_category_unitary
             __props__.__dict__["users"] = users
             __props__.__dict__["uuid"] = uuid
             __props__.__dict__["vdomparam"] = vdomparam
@@ -2254,6 +2389,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
             dlp_sensor: Optional[pulumi.Input[str]] = None,
             dnsfilter_profile: Optional[pulumi.Input[str]] = None,
             dstaddr4s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyDstaddr4Args']]]]] = None,
+            dstaddr6_negate: Optional[pulumi.Input[str]] = None,
             dstaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyDstaddr6Args']]]]] = None,
             dstaddr_negate: Optional[pulumi.Input[str]] = None,
             dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyDstaddrArgs']]]]] = None,
@@ -2263,6 +2399,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
             enforce_default_app_port: Optional[pulumi.Input[str]] = None,
             file_filter_profile: Optional[pulumi.Input[str]] = None,
             fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyFssoGroupArgs']]]]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyGroupArgs']]]]] = None,
             icap_profile: Optional[pulumi.Input[str]] = None,
             internet_service: Optional[pulumi.Input[str]] = None,
@@ -2292,6 +2429,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
             internet_service_src_names: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyInternetServiceSrcNameArgs']]]]] = None,
             internet_service_src_negate: Optional[pulumi.Input[str]] = None,
             ips_sensor: Optional[pulumi.Input[str]] = None,
+            ips_voip_filter: Optional[pulumi.Input[str]] = None,
             learning_mode: Optional[pulumi.Input[str]] = None,
             logtraffic: Optional[pulumi.Input[str]] = None,
             logtraffic_start: Optional[pulumi.Input[str]] = None,
@@ -2308,6 +2446,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
             service_negate: Optional[pulumi.Input[str]] = None,
             services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyServiceArgs']]]]] = None,
             srcaddr4s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicySrcaddr4Args']]]]] = None,
+            srcaddr6_negate: Optional[pulumi.Input[str]] = None,
             srcaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicySrcaddr6Args']]]]] = None,
             srcaddr_negate: Optional[pulumi.Input[str]] = None,
             srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicySrcaddrArgs']]]]] = None,
@@ -2316,6 +2455,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
             ssl_ssh_profile: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             url_categories: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyUrlCategoryArgs']]]]] = None,
+            url_category_unitary: Optional[pulumi.Input[str]] = None,
             users: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyUserArgs']]]]] = None,
             uuid: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
@@ -2346,6 +2486,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
         __props__.__dict__["dlp_sensor"] = dlp_sensor
         __props__.__dict__["dnsfilter_profile"] = dnsfilter_profile
         __props__.__dict__["dstaddr4s"] = dstaddr4s
+        __props__.__dict__["dstaddr6_negate"] = dstaddr6_negate
         __props__.__dict__["dstaddr6s"] = dstaddr6s
         __props__.__dict__["dstaddr_negate"] = dstaddr_negate
         __props__.__dict__["dstaddrs"] = dstaddrs
@@ -2355,6 +2496,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
         __props__.__dict__["enforce_default_app_port"] = enforce_default_app_port
         __props__.__dict__["file_filter_profile"] = file_filter_profile
         __props__.__dict__["fsso_groups"] = fsso_groups
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["groups"] = groups
         __props__.__dict__["icap_profile"] = icap_profile
         __props__.__dict__["internet_service"] = internet_service
@@ -2384,6 +2526,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
         __props__.__dict__["internet_service_src_names"] = internet_service_src_names
         __props__.__dict__["internet_service_src_negate"] = internet_service_src_negate
         __props__.__dict__["ips_sensor"] = ips_sensor
+        __props__.__dict__["ips_voip_filter"] = ips_voip_filter
         __props__.__dict__["learning_mode"] = learning_mode
         __props__.__dict__["logtraffic"] = logtraffic
         __props__.__dict__["logtraffic_start"] = logtraffic_start
@@ -2400,6 +2543,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
         __props__.__dict__["service_negate"] = service_negate
         __props__.__dict__["services"] = services
         __props__.__dict__["srcaddr4s"] = srcaddr4s
+        __props__.__dict__["srcaddr6_negate"] = srcaddr6_negate
         __props__.__dict__["srcaddr6s"] = srcaddr6s
         __props__.__dict__["srcaddr_negate"] = srcaddr_negate
         __props__.__dict__["srcaddrs"] = srcaddrs
@@ -2408,6 +2552,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
         __props__.__dict__["ssl_ssh_profile"] = ssl_ssh_profile
         __props__.__dict__["status"] = status
         __props__.__dict__["url_categories"] = url_categories
+        __props__.__dict__["url_category_unitary"] = url_category_unitary
         __props__.__dict__["users"] = users
         __props__.__dict__["uuid"] = uuid
         __props__.__dict__["vdomparam"] = vdomparam
@@ -2477,6 +2622,11 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
         return pulumi.get(self, "dstaddr4s")
 
     @property
+    @pulumi.getter(name="dstaddr6Negate")
+    def dstaddr6_negate(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "dstaddr6_negate")
+
+    @property
     @pulumi.getter
     def dstaddr6s(self) -> pulumi.Output[Optional[Sequence['outputs.FirewallSecurityPolicyDstaddr6']]]:
         return pulumi.get(self, "dstaddr6s")
@@ -2520,6 +2670,11 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
     @pulumi.getter(name="fssoGroups")
     def fsso_groups(self) -> pulumi.Output[Optional[Sequence['outputs.FirewallSecurityPolicyFssoGroup']]]:
         return pulumi.get(self, "fsso_groups")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter
@@ -2667,6 +2822,11 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
         return pulumi.get(self, "ips_sensor")
 
     @property
+    @pulumi.getter(name="ipsVoipFilter")
+    def ips_voip_filter(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "ips_voip_filter")
+
+    @property
     @pulumi.getter(name="learningMode")
     def learning_mode(self) -> pulumi.Output[str]:
         return pulumi.get(self, "learning_mode")
@@ -2747,6 +2907,11 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
         return pulumi.get(self, "srcaddr4s")
 
     @property
+    @pulumi.getter(name="srcaddr6Negate")
+    def srcaddr6_negate(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "srcaddr6_negate")
+
+    @property
     @pulumi.getter
     def srcaddr6s(self) -> pulumi.Output[Optional[Sequence['outputs.FirewallSecurityPolicySrcaddr6']]]:
         return pulumi.get(self, "srcaddr6s")
@@ -2785,6 +2950,11 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
     @pulumi.getter(name="urlCategories")
     def url_categories(self) -> pulumi.Output[Optional[Sequence['outputs.FirewallSecurityPolicyUrlCategory']]]:
         return pulumi.get(self, "url_categories")
+
+    @property
+    @pulumi.getter(name="urlCategoryUnitary")
+    def url_category_unitary(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "url_category_unitary")
 
     @property
     @pulumi.getter

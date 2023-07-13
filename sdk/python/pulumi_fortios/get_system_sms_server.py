@@ -84,10 +84,10 @@ def get_system_sms_server(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemSmsServer:GetSystemSmsServer', __args__, opts=opts, typ=GetSystemSmsServerResult).value
 
     return AwaitableGetSystemSmsServerResult(
-        id=__ret__.id,
-        mail_server=__ret__.mail_server,
-        name=__ret__.name,
-        vdomparam=__ret__.vdomparam)
+        id=pulumi.get(__ret__, 'id'),
+        mail_server=pulumi.get(__ret__, 'mail_server'),
+        name=pulumi.get(__ret__, 'name'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_sms_server)

@@ -18,6 +18,7 @@ class ReportDatasetArgs:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fields: Optional[pulumi.Input[Sequence[pulumi.Input['ReportDatasetFieldArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ReportDatasetParameterArgs']]]] = None,
                  policy: Optional[pulumi.Input[int]] = None,
@@ -30,6 +31,8 @@ class ReportDatasetArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fields is not None:
             pulumi.set(__self__, "fields", fields)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if parameters is not None:
@@ -58,6 +61,15 @@ class ReportDatasetArgs:
     @fields.setter
     def fields(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ReportDatasetFieldArgs']]]]):
         pulumi.set(self, "fields", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -110,6 +122,7 @@ class _ReportDatasetState:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fields: Optional[pulumi.Input[Sequence[pulumi.Input['ReportDatasetFieldArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  parameters: Optional[pulumi.Input[Sequence[pulumi.Input['ReportDatasetParameterArgs']]]] = None,
                  policy: Optional[pulumi.Input[int]] = None,
@@ -122,6 +135,8 @@ class _ReportDatasetState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fields is not None:
             pulumi.set(__self__, "fields", fields)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if parameters is not None:
@@ -150,6 +165,15 @@ class _ReportDatasetState:
     @fields.setter
     def fields(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ReportDatasetFieldArgs']]]]):
         pulumi.set(self, "fields", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -204,6 +228,7 @@ class ReportDataset(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fields: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReportDatasetFieldArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  parameters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReportDatasetParameterArgs']]]]] = None,
                  policy: Optional[pulumi.Input[int]] = None,
@@ -240,6 +265,7 @@ class ReportDataset(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fields: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReportDatasetFieldArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  parameters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReportDatasetParameterArgs']]]]] = None,
                  policy: Optional[pulumi.Input[int]] = None,
@@ -256,6 +282,7 @@ class ReportDataset(pulumi.CustomResource):
 
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["fields"] = fields
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["name"] = name
             __props__.__dict__["parameters"] = parameters
             __props__.__dict__["policy"] = policy
@@ -273,6 +300,7 @@ class ReportDataset(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             fields: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReportDatasetFieldArgs']]]]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             parameters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReportDatasetParameterArgs']]]]] = None,
             policy: Optional[pulumi.Input[int]] = None,
@@ -292,6 +320,7 @@ class ReportDataset(pulumi.CustomResource):
 
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["fields"] = fields
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["name"] = name
         __props__.__dict__["parameters"] = parameters
         __props__.__dict__["policy"] = policy
@@ -308,6 +337,11 @@ class ReportDataset(pulumi.CustomResource):
     @pulumi.getter
     def fields(self) -> pulumi.Output[Optional[Sequence['outputs.ReportDatasetField']]]:
         return pulumi.get(self, "fields")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

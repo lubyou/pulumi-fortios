@@ -93,11 +93,11 @@ def get_system_dscp_based_priority(fosid: Optional[int] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemDscpBasedPriority:GetSystemDscpBasedPriority', __args__, opts=opts, typ=GetSystemDscpBasedPriorityResult).value
 
     return AwaitableGetSystemDscpBasedPriorityResult(
-        ds=__ret__.ds,
-        fosid=__ret__.fosid,
-        id=__ret__.id,
-        priority=__ret__.priority,
-        vdomparam=__ret__.vdomparam)
+        ds=pulumi.get(__ret__, 'ds'),
+        fosid=pulumi.get(__ret__, 'fosid'),
+        id=pulumi.get(__ret__, 'id'),
+        priority=pulumi.get(__ret__, 'priority'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_dscp_based_priority)

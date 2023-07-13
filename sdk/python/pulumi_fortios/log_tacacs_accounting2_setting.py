@@ -14,21 +14,48 @@ __all__ = ['LogTacacsAccounting2SettingArgs', 'LogTacacsAccounting2Setting']
 @pulumi.input_type
 class LogTacacsAccounting2SettingArgs:
     def __init__(__self__, *,
+                 interface: Optional[pulumi.Input[str]] = None,
+                 interface_select_method: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
                  server_key: Optional[pulumi.Input[str]] = None,
+                 source_ip: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a LogTacacsAccounting2Setting resource.
         """
+        if interface is not None:
+            pulumi.set(__self__, "interface", interface)
+        if interface_select_method is not None:
+            pulumi.set(__self__, "interface_select_method", interface_select_method)
         if server is not None:
             pulumi.set(__self__, "server", server)
         if server_key is not None:
             pulumi.set(__self__, "server_key", server_key)
+        if source_ip is not None:
+            pulumi.set(__self__, "source_ip", source_ip)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter
+    def interface(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "interface")
+
+    @interface.setter
+    def interface(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "interface", value)
+
+    @property
+    @pulumi.getter(name="interfaceSelectMethod")
+    def interface_select_method(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "interface_select_method")
+
+    @interface_select_method.setter
+    def interface_select_method(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "interface_select_method", value)
 
     @property
     @pulumi.getter
@@ -47,6 +74,15 @@ class LogTacacsAccounting2SettingArgs:
     @server_key.setter
     def server_key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "server_key", value)
+
+    @property
+    @pulumi.getter(name="sourceIp")
+    def source_ip(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "source_ip")
+
+    @source_ip.setter
+    def source_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "source_ip", value)
 
     @property
     @pulumi.getter
@@ -70,21 +106,48 @@ class LogTacacsAccounting2SettingArgs:
 @pulumi.input_type
 class _LogTacacsAccounting2SettingState:
     def __init__(__self__, *,
+                 interface: Optional[pulumi.Input[str]] = None,
+                 interface_select_method: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
                  server_key: Optional[pulumi.Input[str]] = None,
+                 source_ip: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering LogTacacsAccounting2Setting resources.
         """
+        if interface is not None:
+            pulumi.set(__self__, "interface", interface)
+        if interface_select_method is not None:
+            pulumi.set(__self__, "interface_select_method", interface_select_method)
         if server is not None:
             pulumi.set(__self__, "server", server)
         if server_key is not None:
             pulumi.set(__self__, "server_key", server_key)
+        if source_ip is not None:
+            pulumi.set(__self__, "source_ip", source_ip)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter
+    def interface(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "interface")
+
+    @interface.setter
+    def interface(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "interface", value)
+
+    @property
+    @pulumi.getter(name="interfaceSelectMethod")
+    def interface_select_method(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "interface_select_method")
+
+    @interface_select_method.setter
+    def interface_select_method(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "interface_select_method", value)
 
     @property
     @pulumi.getter
@@ -103,6 +166,15 @@ class _LogTacacsAccounting2SettingState:
     @server_key.setter
     def server_key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "server_key", value)
+
+    @property
+    @pulumi.getter(name="sourceIp")
+    def source_ip(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "source_ip")
+
+    @source_ip.setter
+    def source_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "source_ip", value)
 
     @property
     @pulumi.getter
@@ -128,8 +200,11 @@ class LogTacacsAccounting2Setting(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 interface: Optional[pulumi.Input[str]] = None,
+                 interface_select_method: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
                  server_key: Optional[pulumi.Input[str]] = None,
+                 source_ip: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -161,8 +236,11 @@ class LogTacacsAccounting2Setting(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 interface: Optional[pulumi.Input[str]] = None,
+                 interface_select_method: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
                  server_key: Optional[pulumi.Input[str]] = None,
+                 source_ip: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -174,8 +252,11 @@ class LogTacacsAccounting2Setting(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = LogTacacsAccounting2SettingArgs.__new__(LogTacacsAccounting2SettingArgs)
 
+            __props__.__dict__["interface"] = interface
+            __props__.__dict__["interface_select_method"] = interface_select_method
             __props__.__dict__["server"] = server
             __props__.__dict__["server_key"] = server_key
+            __props__.__dict__["source_ip"] = source_ip
             __props__.__dict__["status"] = status
             __props__.__dict__["vdomparam"] = vdomparam
         super(LogTacacsAccounting2Setting, __self__).__init__(
@@ -188,8 +269,11 @@ class LogTacacsAccounting2Setting(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            interface: Optional[pulumi.Input[str]] = None,
+            interface_select_method: Optional[pulumi.Input[str]] = None,
             server: Optional[pulumi.Input[str]] = None,
             server_key: Optional[pulumi.Input[str]] = None,
+            source_ip: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'LogTacacsAccounting2Setting':
         """
@@ -204,11 +288,24 @@ class LogTacacsAccounting2Setting(pulumi.CustomResource):
 
         __props__ = _LogTacacsAccounting2SettingState.__new__(_LogTacacsAccounting2SettingState)
 
+        __props__.__dict__["interface"] = interface
+        __props__.__dict__["interface_select_method"] = interface_select_method
         __props__.__dict__["server"] = server
         __props__.__dict__["server_key"] = server_key
+        __props__.__dict__["source_ip"] = source_ip
         __props__.__dict__["status"] = status
         __props__.__dict__["vdomparam"] = vdomparam
         return LogTacacsAccounting2Setting(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def interface(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "interface")
+
+    @property
+    @pulumi.getter(name="interfaceSelectMethod")
+    def interface_select_method(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "interface_select_method")
 
     @property
     @pulumi.getter
@@ -219,6 +316,11 @@ class LogTacacsAccounting2Setting(pulumi.CustomResource):
     @pulumi.getter(name="serverKey")
     def server_key(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "server_key")
+
+    @property
+    @pulumi.getter(name="sourceIp")
+    def source_ip(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "source_ip")
 
     @property
     @pulumi.getter

@@ -84,10 +84,10 @@ def get_router_policy6_list(filter: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getRouterPolicy6List:GetRouterPolicy6List', __args__, opts=opts, typ=GetRouterPolicy6ListResult).value
 
     return AwaitableGetRouterPolicy6ListResult(
-        filter=__ret__.filter,
-        id=__ret__.id,
-        seq_numlists=__ret__.seq_numlists,
-        vdomparam=__ret__.vdomparam)
+        filter=pulumi.get(__ret__, 'filter'),
+        id=pulumi.get(__ret__, 'id'),
+        seq_numlists=pulumi.get(__ret__, 'seq_numlists'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_router_policy6_list)

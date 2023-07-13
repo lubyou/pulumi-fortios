@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -14,6 +15,7 @@ type SwitchControllerAutoConfigCustom struct {
 	pulumi.CustomResourceState
 
 	DynamicSortSubtable pulumi.StringPtrOutput                                   `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                                   `pulumi:"getAllTables"`
 	Name                pulumi.StringOutput                                      `pulumi:"name"`
 	SwitchBindings      SwitchControllerAutoConfigCustomSwitchBindingArrayOutput `pulumi:"switchBindings"`
 	Vdomparam           pulumi.StringPtrOutput                                   `pulumi:"vdomparam"`
@@ -26,7 +28,7 @@ func NewSwitchControllerAutoConfigCustom(ctx *pulumi.Context,
 		args = &SwitchControllerAutoConfigCustomArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SwitchControllerAutoConfigCustom
 	err := ctx.RegisterResource("fortios:index/switchControllerAutoConfigCustom:SwitchControllerAutoConfigCustom", name, args, &resource, opts...)
 	if err != nil {
@@ -50,6 +52,7 @@ func GetSwitchControllerAutoConfigCustom(ctx *pulumi.Context,
 // Input properties used for looking up and filtering SwitchControllerAutoConfigCustom resources.
 type switchControllerAutoConfigCustomState struct {
 	DynamicSortSubtable *string                                         `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                                         `pulumi:"getAllTables"`
 	Name                *string                                         `pulumi:"name"`
 	SwitchBindings      []SwitchControllerAutoConfigCustomSwitchBinding `pulumi:"switchBindings"`
 	Vdomparam           *string                                         `pulumi:"vdomparam"`
@@ -57,6 +60,7 @@ type switchControllerAutoConfigCustomState struct {
 
 type SwitchControllerAutoConfigCustomState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	SwitchBindings      SwitchControllerAutoConfigCustomSwitchBindingArrayInput
 	Vdomparam           pulumi.StringPtrInput
@@ -68,6 +72,7 @@ func (SwitchControllerAutoConfigCustomState) ElementType() reflect.Type {
 
 type switchControllerAutoConfigCustomArgs struct {
 	DynamicSortSubtable *string                                         `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                                         `pulumi:"getAllTables"`
 	Name                *string                                         `pulumi:"name"`
 	SwitchBindings      []SwitchControllerAutoConfigCustomSwitchBinding `pulumi:"switchBindings"`
 	Vdomparam           *string                                         `pulumi:"vdomparam"`
@@ -76,6 +81,7 @@ type switchControllerAutoConfigCustomArgs struct {
 // The set of arguments for constructing a SwitchControllerAutoConfigCustom resource.
 type SwitchControllerAutoConfigCustomArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	SwitchBindings      SwitchControllerAutoConfigCustomSwitchBindingArrayInput
 	Vdomparam           pulumi.StringPtrInput
@@ -170,6 +176,10 @@ func (o SwitchControllerAutoConfigCustomOutput) ToSwitchControllerAutoConfigCust
 
 func (o SwitchControllerAutoConfigCustomOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SwitchControllerAutoConfigCustom) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SwitchControllerAutoConfigCustomOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerAutoConfigCustom) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SwitchControllerAutoConfigCustomOutput) Name() pulumi.StringOutput {

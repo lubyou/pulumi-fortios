@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -37,9 +38,13 @@ type Provider struct {
 	Hostname pulumi.StringPtrOutput `pulumi:"hostname"`
 	// HTTP proxy address
 	HttpProxy pulumi.StringPtrOutput `pulumi:"httpProxy"`
+	// The password of the user.
+	Password pulumi.StringPtrOutput `pulumi:"password"`
 	// Enable/disable peer authentication, can be 'enable' or 'disable'
 	Peerauth pulumi.StringPtrOutput `pulumi:"peerauth"`
 	Token    pulumi.StringPtrOutput `pulumi:"token"`
+	// The username of the user.
+	Username pulumi.StringPtrOutput `pulumi:"username"`
 	Vdom     pulumi.StringPtrOutput `pulumi:"vdom"`
 }
 
@@ -51,33 +56,51 @@ func NewProvider(ctx *pulumi.Context,
 	}
 
 	if args.Cabundlefile == nil {
-		args.Cabundlefile = pulumi.StringPtr(getEnvOrDefault("", nil, "FORTIOS_CA_CABUNDLE").(string))
+		if d := internal.GetEnvOrDefault(nil, nil, "FORTIOS_CA_CABUNDLE"); d != nil {
+			args.Cabundlefile = pulumi.StringPtr(d.(string))
+		}
 	}
 	if args.FmgCabundlefile == nil {
-		args.FmgCabundlefile = pulumi.StringPtr(getEnvOrDefault("", nil, "FORTIOS_FMG_CABUNDLE").(string))
+		if d := internal.GetEnvOrDefault(nil, nil, "FORTIOS_FMG_CABUNDLE"); d != nil {
+			args.FmgCabundlefile = pulumi.StringPtr(d.(string))
+		}
 	}
 	if args.FmgHostname == nil {
-		args.FmgHostname = pulumi.StringPtr(getEnvOrDefault("", nil, "FORTIOS_FMG_HOSTNAME").(string))
+		if d := internal.GetEnvOrDefault(nil, nil, "FORTIOS_FMG_HOSTNAME"); d != nil {
+			args.FmgHostname = pulumi.StringPtr(d.(string))
+		}
 	}
 	if args.FmgInsecure == nil {
-		args.FmgInsecure = pulumi.BoolPtr(getEnvOrDefault(false, parseEnvBool, "FORTIOS_FMG_INSECURE").(bool))
+		if d := internal.GetEnvOrDefault(nil, internal.ParseEnvBool, "FORTIOS_FMG_INSECURE"); d != nil {
+			args.FmgInsecure = pulumi.BoolPtr(d.(bool))
+		}
 	}
 	if args.FmgPasswd == nil {
-		args.FmgPasswd = pulumi.StringPtr(getEnvOrDefault("", nil, "FORTIOS_FMG_PASSWORD").(string))
+		if d := internal.GetEnvOrDefault(nil, nil, "FORTIOS_FMG_PASSWORD"); d != nil {
+			args.FmgPasswd = pulumi.StringPtr(d.(string))
+		}
 	}
 	if args.FmgUsername == nil {
-		args.FmgUsername = pulumi.StringPtr(getEnvOrDefault("", nil, "FORTIOS_FMG_USERNAME").(string))
+		if d := internal.GetEnvOrDefault(nil, nil, "FORTIOS_FMG_USERNAME"); d != nil {
+			args.FmgUsername = pulumi.StringPtr(d.(string))
+		}
 	}
 	if args.Hostname == nil {
-		args.Hostname = pulumi.StringPtr(getEnvOrDefault("", nil, "FORTIOS_ACCESS_HOSTNAME").(string))
+		if d := internal.GetEnvOrDefault(nil, nil, "FORTIOS_ACCESS_HOSTNAME"); d != nil {
+			args.Hostname = pulumi.StringPtr(d.(string))
+		}
 	}
 	if args.Insecure == nil {
-		args.Insecure = pulumi.BoolPtr(getEnvOrDefault(false, parseEnvBool, "FORTIOS_INSECURE").(bool))
+		if d := internal.GetEnvOrDefault(nil, internal.ParseEnvBool, "FORTIOS_INSECURE"); d != nil {
+			args.Insecure = pulumi.BoolPtr(d.(bool))
+		}
 	}
 	if args.Token == nil {
-		args.Token = pulumi.StringPtr(getEnvOrDefault("", nil, "FORTIOS_ACCESS_TOKEN").(string))
+		if d := internal.GetEnvOrDefault(nil, nil, "FORTIOS_ACCESS_TOKEN"); d != nil {
+			args.Token = pulumi.StringPtr(d.(string))
+		}
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:fortios", name, args, &resource, opts...)
 	if err != nil {
@@ -109,9 +132,13 @@ type providerArgs struct {
 	// HTTP proxy address
 	HttpProxy *string `pulumi:"httpProxy"`
 	Insecure  *bool   `pulumi:"insecure"`
+	// The password of the user.
+	Password *string `pulumi:"password"`
 	// Enable/disable peer authentication, can be 'enable' or 'disable'
 	Peerauth *string `pulumi:"peerauth"`
 	Token    *string `pulumi:"token"`
+	// The username of the user.
+	Username *string `pulumi:"username"`
 	Vdom     *string `pulumi:"vdom"`
 }
 
@@ -139,9 +166,13 @@ type ProviderArgs struct {
 	// HTTP proxy address
 	HttpProxy pulumi.StringPtrInput
 	Insecure  pulumi.BoolPtrInput
+	// The password of the user.
+	Password pulumi.StringPtrInput
 	// Enable/disable peer authentication, can be 'enable' or 'disable'
 	Peerauth pulumi.StringPtrInput
 	Token    pulumi.StringPtrInput
+	// The username of the user.
+	Username pulumi.StringPtrInput
 	Vdom     pulumi.StringPtrInput
 }
 
@@ -235,6 +266,11 @@ func (o ProviderOutput) HttpProxy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.HttpProxy }).(pulumi.StringPtrOutput)
 }
 
+// The password of the user.
+func (o ProviderOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
 // Enable/disable peer authentication, can be 'enable' or 'disable'
 func (o ProviderOutput) Peerauth() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Peerauth }).(pulumi.StringPtrOutput)
@@ -242,6 +278,11 @@ func (o ProviderOutput) Peerauth() pulumi.StringPtrOutput {
 
 func (o ProviderOutput) Token() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Token }).(pulumi.StringPtrOutput)
+}
+
+// The username of the user.
+func (o ProviderOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Username }).(pulumi.StringPtrOutput)
 }
 
 func (o ProviderOutput) Vdom() pulumi.StringPtrOutput {

@@ -127,15 +127,15 @@ def get_system_management_tunnel(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemManagementTunnel:GetSystemManagementTunnel', __args__, opts=opts, typ=GetSystemManagementTunnelResult).value
 
     return AwaitableGetSystemManagementTunnelResult(
-        allow_collect_statistics=__ret__.allow_collect_statistics,
-        allow_config_restore=__ret__.allow_config_restore,
-        allow_push_configuration=__ret__.allow_push_configuration,
-        allow_push_firmware=__ret__.allow_push_firmware,
-        authorized_manager_only=__ret__.authorized_manager_only,
-        id=__ret__.id,
-        serial_number=__ret__.serial_number,
-        status=__ret__.status,
-        vdomparam=__ret__.vdomparam)
+        allow_collect_statistics=pulumi.get(__ret__, 'allow_collect_statistics'),
+        allow_config_restore=pulumi.get(__ret__, 'allow_config_restore'),
+        allow_push_configuration=pulumi.get(__ret__, 'allow_push_configuration'),
+        allow_push_firmware=pulumi.get(__ret__, 'allow_push_firmware'),
+        authorized_manager_only=pulumi.get(__ret__, 'authorized_manager_only'),
+        id=pulumi.get(__ret__, 'id'),
+        serial_number=pulumi.get(__ret__, 'serial_number'),
+        status=pulumi.get(__ret__, 'status'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_management_tunnel)

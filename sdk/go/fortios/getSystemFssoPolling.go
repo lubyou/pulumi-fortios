@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemFssoPolling(ctx *pulumi.Context, args *LookupSystemFssoPollingArgs, opts ...pulumi.InvokeOption) (*LookupSystemFssoPollingResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemFssoPollingResult
 	err := ctx.Invoke("fortios:index/getSystemFssoPolling:GetSystemFssoPolling", args, &rv, opts...)
 	if err != nil {

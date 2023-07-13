@@ -190,22 +190,22 @@ def get_system_email_server(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemEmailServer:GetSystemEmailServer', __args__, opts=opts, typ=GetSystemEmailServerResult).value
 
     return AwaitableGetSystemEmailServerResult(
-        authenticate=__ret__.authenticate,
-        id=__ret__.id,
-        interface=__ret__.interface,
-        interface_select_method=__ret__.interface_select_method,
-        password=__ret__.password,
-        port=__ret__.port,
-        reply_to=__ret__.reply_to,
-        security=__ret__.security,
-        server=__ret__.server,
-        source_ip=__ret__.source_ip,
-        source_ip6=__ret__.source_ip6,
-        ssl_min_proto_version=__ret__.ssl_min_proto_version,
-        type=__ret__.type,
-        username=__ret__.username,
-        validate_server=__ret__.validate_server,
-        vdomparam=__ret__.vdomparam)
+        authenticate=pulumi.get(__ret__, 'authenticate'),
+        id=pulumi.get(__ret__, 'id'),
+        interface=pulumi.get(__ret__, 'interface'),
+        interface_select_method=pulumi.get(__ret__, 'interface_select_method'),
+        password=pulumi.get(__ret__, 'password'),
+        port=pulumi.get(__ret__, 'port'),
+        reply_to=pulumi.get(__ret__, 'reply_to'),
+        security=pulumi.get(__ret__, 'security'),
+        server=pulumi.get(__ret__, 'server'),
+        source_ip=pulumi.get(__ret__, 'source_ip'),
+        source_ip6=pulumi.get(__ret__, 'source_ip6'),
+        ssl_min_proto_version=pulumi.get(__ret__, 'ssl_min_proto_version'),
+        type=pulumi.get(__ret__, 'type'),
+        username=pulumi.get(__ret__, 'username'),
+        validate_server=pulumi.get(__ret__, 'validate_server'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_email_server)

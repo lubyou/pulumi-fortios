@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -25,6 +26,7 @@ type RouterStatic6 struct {
 	DynamicGateway      pulumi.StringOutput               `pulumi:"dynamicGateway"`
 	DynamicSortSubtable pulumi.StringPtrOutput            `pulumi:"dynamicSortSubtable"`
 	Gateway             pulumi.StringOutput               `pulumi:"gateway"`
+	GetAllTables        pulumi.StringPtrOutput            `pulumi:"getAllTables"`
 	LinkMonitorExempt   pulumi.StringOutput               `pulumi:"linkMonitorExempt"`
 	Priority            pulumi.IntOutput                  `pulumi:"priority"`
 	Sdwan               pulumi.StringOutput               `pulumi:"sdwan"`
@@ -47,7 +49,7 @@ func NewRouterStatic6(ctx *pulumi.Context,
 	if args.Device == nil {
 		return nil, errors.New("invalid value for required argument 'Device'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RouterStatic6
 	err := ctx.RegisterResource("fortios:index/routerStatic6:RouterStatic6", name, args, &resource, opts...)
 	if err != nil {
@@ -81,6 +83,7 @@ type routerStatic6State struct {
 	DynamicGateway      *string                  `pulumi:"dynamicGateway"`
 	DynamicSortSubtable *string                  `pulumi:"dynamicSortSubtable"`
 	Gateway             *string                  `pulumi:"gateway"`
+	GetAllTables        *string                  `pulumi:"getAllTables"`
 	LinkMonitorExempt   *string                  `pulumi:"linkMonitorExempt"`
 	Priority            *int                     `pulumi:"priority"`
 	Sdwan               *string                  `pulumi:"sdwan"`
@@ -105,6 +108,7 @@ type RouterStatic6State struct {
 	DynamicGateway      pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	Gateway             pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	LinkMonitorExempt   pulumi.StringPtrInput
 	Priority            pulumi.IntPtrInput
 	Sdwan               pulumi.StringPtrInput
@@ -133,6 +137,7 @@ type routerStatic6Args struct {
 	DynamicGateway      *string                  `pulumi:"dynamicGateway"`
 	DynamicSortSubtable *string                  `pulumi:"dynamicSortSubtable"`
 	Gateway             *string                  `pulumi:"gateway"`
+	GetAllTables        *string                  `pulumi:"getAllTables"`
 	LinkMonitorExempt   *string                  `pulumi:"linkMonitorExempt"`
 	Priority            *int                     `pulumi:"priority"`
 	Sdwan               *string                  `pulumi:"sdwan"`
@@ -158,6 +163,7 @@ type RouterStatic6Args struct {
 	DynamicGateway      pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	Gateway             pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	LinkMonitorExempt   pulumi.StringPtrInput
 	Priority            pulumi.IntPtrInput
 	Sdwan               pulumi.StringPtrInput
@@ -299,6 +305,10 @@ func (o RouterStatic6Output) DynamicSortSubtable() pulumi.StringPtrOutput {
 
 func (o RouterStatic6Output) Gateway() pulumi.StringOutput {
 	return o.ApplyT(func(v *RouterStatic6) pulumi.StringOutput { return v.Gateway }).(pulumi.StringOutput)
+}
+
+func (o RouterStatic6Output) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterStatic6) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o RouterStatic6Output) LinkMonitorExempt() pulumi.StringOutput {

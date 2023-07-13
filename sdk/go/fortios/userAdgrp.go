@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -27,7 +28,7 @@ func NewUserAdgrp(ctx *pulumi.Context,
 		args = &UserAdgrpArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource UserAdgrp
 	err := ctx.RegisterResource("fortios:index/userAdgrp:UserAdgrp", name, args, &resource, opts...)
 	if err != nil {

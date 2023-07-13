@@ -39,6 +39,7 @@ export class VideofilterYoutubeChannelFilter extends pulumi.CustomResource {
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly entries!: pulumi.Output<outputs.VideofilterYoutubeChannelFilterEntry[] | undefined>;
     public readonly fosid!: pulumi.Output<number>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly log!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
     public readonly overrideCategory!: pulumi.Output<string>;
@@ -62,6 +63,7 @@ export class VideofilterYoutubeChannelFilter extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["entries"] = state ? state.entries : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["log"] = state ? state.log : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["overrideCategory"] = state ? state.overrideCategory : undefined;
@@ -73,6 +75,7 @@ export class VideofilterYoutubeChannelFilter extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["entries"] = args ? args.entries : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["log"] = args ? args.log : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["overrideCategory"] = args ? args.overrideCategory : undefined;
@@ -92,6 +95,7 @@ export interface VideofilterYoutubeChannelFilterState {
     dynamicSortSubtable?: pulumi.Input<string>;
     entries?: pulumi.Input<pulumi.Input<inputs.VideofilterYoutubeChannelFilterEntry>[]>;
     fosid?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     log?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     overrideCategory?: pulumi.Input<string>;
@@ -107,6 +111,7 @@ export interface VideofilterYoutubeChannelFilterArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
     entries?: pulumi.Input<pulumi.Input<inputs.VideofilterYoutubeChannelFilterEntry>[]>;
     fosid?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     log?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     overrideCategory?: pulumi.Input<string>;

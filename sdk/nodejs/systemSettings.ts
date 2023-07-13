@@ -56,6 +56,7 @@ export class SystemSettings extends pulumi.CustomResource {
     public readonly defaultPolicyExpiryDays!: pulumi.Output<number>;
     public readonly defaultVoipAlgMode!: pulumi.Output<string>;
     public readonly denyTcpWithIcmp!: pulumi.Output<string>;
+    public readonly detectUnknownEsp!: pulumi.Output<string>;
     public readonly device!: pulumi.Output<string>;
     public readonly dhcp6ServerIp!: pulumi.Output<string>;
     public readonly dhcpProxy!: pulumi.Output<string>;
@@ -73,6 +74,7 @@ export class SystemSettings extends pulumi.CustomResource {
     public readonly fwSessionHairpin!: pulumi.Output<string>;
     public readonly gateway!: pulumi.Output<string>;
     public readonly gateway6!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly guiAdvancedPolicy!: pulumi.Output<string>;
     public readonly guiAdvancedWirelessFeatures!: pulumi.Output<string>;
     public readonly guiAllowUnnamedPolicy!: pulumi.Output<string>;
@@ -82,10 +84,12 @@ export class SystemSettings extends pulumi.CustomResource {
     public readonly guiDefaultPolicyColumns!: pulumi.Output<outputs.SystemSettingsGuiDefaultPolicyColumn[] | undefined>;
     public readonly guiDhcpAdvanced!: pulumi.Output<string>;
     public readonly guiDlp!: pulumi.Output<string>;
+    public readonly guiDlpProfile!: pulumi.Output<string>;
     public readonly guiDnsDatabase!: pulumi.Output<string>;
     public readonly guiDnsfilter!: pulumi.Output<string>;
     public readonly guiDomainIpReputation!: pulumi.Output<string>;
     public readonly guiDosPolicy!: pulumi.Output<string>;
+    public readonly guiDynamicDeviceOsId!: pulumi.Output<string>;
     public readonly guiDynamicProfileDisplay!: pulumi.Output<string>;
     public readonly guiDynamicRouting!: pulumi.Output<string>;
     public readonly guiEmailCollection!: pulumi.Output<string>;
@@ -112,7 +116,9 @@ export class SystemSettings extends pulumi.CustomResource {
     public readonly guiPolicyBasedIpsec!: pulumi.Output<string>;
     public readonly guiPolicyDisclaimer!: pulumi.Output<string>;
     public readonly guiPolicyLearning!: pulumi.Output<string>;
+    public readonly guiProxyInspection!: pulumi.Output<string>;
     public readonly guiReplacementMessageGroups!: pulumi.Output<string>;
+    public readonly guiRouteTagAddressCreation!: pulumi.Output<string>;
     public readonly guiSecurityProfileGroup!: pulumi.Output<string>;
     public readonly guiSpamfilter!: pulumi.Output<string>;
     public readonly guiSslvpnPersonalBookmarks!: pulumi.Output<string>;
@@ -140,6 +146,7 @@ export class SystemSettings extends pulumi.CustomResource {
     public readonly ikeSessionResume!: pulumi.Output<string>;
     public readonly implicitAllowDns!: pulumi.Output<string>;
     public readonly inspectionMode!: pulumi.Output<string>;
+    public readonly internetServiceDatabaseCache!: pulumi.Output<string>;
     public readonly ip!: pulumi.Output<string>;
     public readonly ip6!: pulumi.Output<string>;
     public readonly lanExtensionControllerAddr!: pulumi.Output<string>;
@@ -216,6 +223,7 @@ export class SystemSettings extends pulumi.CustomResource {
             resourceInputs["defaultPolicyExpiryDays"] = state ? state.defaultPolicyExpiryDays : undefined;
             resourceInputs["defaultVoipAlgMode"] = state ? state.defaultVoipAlgMode : undefined;
             resourceInputs["denyTcpWithIcmp"] = state ? state.denyTcpWithIcmp : undefined;
+            resourceInputs["detectUnknownEsp"] = state ? state.detectUnknownEsp : undefined;
             resourceInputs["device"] = state ? state.device : undefined;
             resourceInputs["dhcp6ServerIp"] = state ? state.dhcp6ServerIp : undefined;
             resourceInputs["dhcpProxy"] = state ? state.dhcpProxy : undefined;
@@ -233,6 +241,7 @@ export class SystemSettings extends pulumi.CustomResource {
             resourceInputs["fwSessionHairpin"] = state ? state.fwSessionHairpin : undefined;
             resourceInputs["gateway"] = state ? state.gateway : undefined;
             resourceInputs["gateway6"] = state ? state.gateway6 : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["guiAdvancedPolicy"] = state ? state.guiAdvancedPolicy : undefined;
             resourceInputs["guiAdvancedWirelessFeatures"] = state ? state.guiAdvancedWirelessFeatures : undefined;
             resourceInputs["guiAllowUnnamedPolicy"] = state ? state.guiAllowUnnamedPolicy : undefined;
@@ -242,10 +251,12 @@ export class SystemSettings extends pulumi.CustomResource {
             resourceInputs["guiDefaultPolicyColumns"] = state ? state.guiDefaultPolicyColumns : undefined;
             resourceInputs["guiDhcpAdvanced"] = state ? state.guiDhcpAdvanced : undefined;
             resourceInputs["guiDlp"] = state ? state.guiDlp : undefined;
+            resourceInputs["guiDlpProfile"] = state ? state.guiDlpProfile : undefined;
             resourceInputs["guiDnsDatabase"] = state ? state.guiDnsDatabase : undefined;
             resourceInputs["guiDnsfilter"] = state ? state.guiDnsfilter : undefined;
             resourceInputs["guiDomainIpReputation"] = state ? state.guiDomainIpReputation : undefined;
             resourceInputs["guiDosPolicy"] = state ? state.guiDosPolicy : undefined;
+            resourceInputs["guiDynamicDeviceOsId"] = state ? state.guiDynamicDeviceOsId : undefined;
             resourceInputs["guiDynamicProfileDisplay"] = state ? state.guiDynamicProfileDisplay : undefined;
             resourceInputs["guiDynamicRouting"] = state ? state.guiDynamicRouting : undefined;
             resourceInputs["guiEmailCollection"] = state ? state.guiEmailCollection : undefined;
@@ -272,7 +283,9 @@ export class SystemSettings extends pulumi.CustomResource {
             resourceInputs["guiPolicyBasedIpsec"] = state ? state.guiPolicyBasedIpsec : undefined;
             resourceInputs["guiPolicyDisclaimer"] = state ? state.guiPolicyDisclaimer : undefined;
             resourceInputs["guiPolicyLearning"] = state ? state.guiPolicyLearning : undefined;
+            resourceInputs["guiProxyInspection"] = state ? state.guiProxyInspection : undefined;
             resourceInputs["guiReplacementMessageGroups"] = state ? state.guiReplacementMessageGroups : undefined;
+            resourceInputs["guiRouteTagAddressCreation"] = state ? state.guiRouteTagAddressCreation : undefined;
             resourceInputs["guiSecurityProfileGroup"] = state ? state.guiSecurityProfileGroup : undefined;
             resourceInputs["guiSpamfilter"] = state ? state.guiSpamfilter : undefined;
             resourceInputs["guiSslvpnPersonalBookmarks"] = state ? state.guiSslvpnPersonalBookmarks : undefined;
@@ -300,6 +313,7 @@ export class SystemSettings extends pulumi.CustomResource {
             resourceInputs["ikeSessionResume"] = state ? state.ikeSessionResume : undefined;
             resourceInputs["implicitAllowDns"] = state ? state.implicitAllowDns : undefined;
             resourceInputs["inspectionMode"] = state ? state.inspectionMode : undefined;
+            resourceInputs["internetServiceDatabaseCache"] = state ? state.internetServiceDatabaseCache : undefined;
             resourceInputs["ip"] = state ? state.ip : undefined;
             resourceInputs["ip6"] = state ? state.ip6 : undefined;
             resourceInputs["lanExtensionControllerAddr"] = state ? state.lanExtensionControllerAddr : undefined;
@@ -364,6 +378,7 @@ export class SystemSettings extends pulumi.CustomResource {
             resourceInputs["defaultPolicyExpiryDays"] = args ? args.defaultPolicyExpiryDays : undefined;
             resourceInputs["defaultVoipAlgMode"] = args ? args.defaultVoipAlgMode : undefined;
             resourceInputs["denyTcpWithIcmp"] = args ? args.denyTcpWithIcmp : undefined;
+            resourceInputs["detectUnknownEsp"] = args ? args.detectUnknownEsp : undefined;
             resourceInputs["device"] = args ? args.device : undefined;
             resourceInputs["dhcp6ServerIp"] = args ? args.dhcp6ServerIp : undefined;
             resourceInputs["dhcpProxy"] = args ? args.dhcpProxy : undefined;
@@ -381,6 +396,7 @@ export class SystemSettings extends pulumi.CustomResource {
             resourceInputs["fwSessionHairpin"] = args ? args.fwSessionHairpin : undefined;
             resourceInputs["gateway"] = args ? args.gateway : undefined;
             resourceInputs["gateway6"] = args ? args.gateway6 : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["guiAdvancedPolicy"] = args ? args.guiAdvancedPolicy : undefined;
             resourceInputs["guiAdvancedWirelessFeatures"] = args ? args.guiAdvancedWirelessFeatures : undefined;
             resourceInputs["guiAllowUnnamedPolicy"] = args ? args.guiAllowUnnamedPolicy : undefined;
@@ -390,10 +406,12 @@ export class SystemSettings extends pulumi.CustomResource {
             resourceInputs["guiDefaultPolicyColumns"] = args ? args.guiDefaultPolicyColumns : undefined;
             resourceInputs["guiDhcpAdvanced"] = args ? args.guiDhcpAdvanced : undefined;
             resourceInputs["guiDlp"] = args ? args.guiDlp : undefined;
+            resourceInputs["guiDlpProfile"] = args ? args.guiDlpProfile : undefined;
             resourceInputs["guiDnsDatabase"] = args ? args.guiDnsDatabase : undefined;
             resourceInputs["guiDnsfilter"] = args ? args.guiDnsfilter : undefined;
             resourceInputs["guiDomainIpReputation"] = args ? args.guiDomainIpReputation : undefined;
             resourceInputs["guiDosPolicy"] = args ? args.guiDosPolicy : undefined;
+            resourceInputs["guiDynamicDeviceOsId"] = args ? args.guiDynamicDeviceOsId : undefined;
             resourceInputs["guiDynamicProfileDisplay"] = args ? args.guiDynamicProfileDisplay : undefined;
             resourceInputs["guiDynamicRouting"] = args ? args.guiDynamicRouting : undefined;
             resourceInputs["guiEmailCollection"] = args ? args.guiEmailCollection : undefined;
@@ -420,7 +438,9 @@ export class SystemSettings extends pulumi.CustomResource {
             resourceInputs["guiPolicyBasedIpsec"] = args ? args.guiPolicyBasedIpsec : undefined;
             resourceInputs["guiPolicyDisclaimer"] = args ? args.guiPolicyDisclaimer : undefined;
             resourceInputs["guiPolicyLearning"] = args ? args.guiPolicyLearning : undefined;
+            resourceInputs["guiProxyInspection"] = args ? args.guiProxyInspection : undefined;
             resourceInputs["guiReplacementMessageGroups"] = args ? args.guiReplacementMessageGroups : undefined;
+            resourceInputs["guiRouteTagAddressCreation"] = args ? args.guiRouteTagAddressCreation : undefined;
             resourceInputs["guiSecurityProfileGroup"] = args ? args.guiSecurityProfileGroup : undefined;
             resourceInputs["guiSpamfilter"] = args ? args.guiSpamfilter : undefined;
             resourceInputs["guiSslvpnPersonalBookmarks"] = args ? args.guiSslvpnPersonalBookmarks : undefined;
@@ -448,6 +468,7 @@ export class SystemSettings extends pulumi.CustomResource {
             resourceInputs["ikeSessionResume"] = args ? args.ikeSessionResume : undefined;
             resourceInputs["implicitAllowDns"] = args ? args.implicitAllowDns : undefined;
             resourceInputs["inspectionMode"] = args ? args.inspectionMode : undefined;
+            resourceInputs["internetServiceDatabaseCache"] = args ? args.internetServiceDatabaseCache : undefined;
             resourceInputs["ip"] = args ? args.ip : undefined;
             resourceInputs["ip6"] = args ? args.ip6 : undefined;
             resourceInputs["lanExtensionControllerAddr"] = args ? args.lanExtensionControllerAddr : undefined;
@@ -520,6 +541,7 @@ export interface SystemSettingsState {
     defaultPolicyExpiryDays?: pulumi.Input<number>;
     defaultVoipAlgMode?: pulumi.Input<string>;
     denyTcpWithIcmp?: pulumi.Input<string>;
+    detectUnknownEsp?: pulumi.Input<string>;
     device?: pulumi.Input<string>;
     dhcp6ServerIp?: pulumi.Input<string>;
     dhcpProxy?: pulumi.Input<string>;
@@ -537,6 +559,7 @@ export interface SystemSettingsState {
     fwSessionHairpin?: pulumi.Input<string>;
     gateway?: pulumi.Input<string>;
     gateway6?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     guiAdvancedPolicy?: pulumi.Input<string>;
     guiAdvancedWirelessFeatures?: pulumi.Input<string>;
     guiAllowUnnamedPolicy?: pulumi.Input<string>;
@@ -546,10 +569,12 @@ export interface SystemSettingsState {
     guiDefaultPolicyColumns?: pulumi.Input<pulumi.Input<inputs.SystemSettingsGuiDefaultPolicyColumn>[]>;
     guiDhcpAdvanced?: pulumi.Input<string>;
     guiDlp?: pulumi.Input<string>;
+    guiDlpProfile?: pulumi.Input<string>;
     guiDnsDatabase?: pulumi.Input<string>;
     guiDnsfilter?: pulumi.Input<string>;
     guiDomainIpReputation?: pulumi.Input<string>;
     guiDosPolicy?: pulumi.Input<string>;
+    guiDynamicDeviceOsId?: pulumi.Input<string>;
     guiDynamicProfileDisplay?: pulumi.Input<string>;
     guiDynamicRouting?: pulumi.Input<string>;
     guiEmailCollection?: pulumi.Input<string>;
@@ -576,7 +601,9 @@ export interface SystemSettingsState {
     guiPolicyBasedIpsec?: pulumi.Input<string>;
     guiPolicyDisclaimer?: pulumi.Input<string>;
     guiPolicyLearning?: pulumi.Input<string>;
+    guiProxyInspection?: pulumi.Input<string>;
     guiReplacementMessageGroups?: pulumi.Input<string>;
+    guiRouteTagAddressCreation?: pulumi.Input<string>;
     guiSecurityProfileGroup?: pulumi.Input<string>;
     guiSpamfilter?: pulumi.Input<string>;
     guiSslvpnPersonalBookmarks?: pulumi.Input<string>;
@@ -604,6 +631,7 @@ export interface SystemSettingsState {
     ikeSessionResume?: pulumi.Input<string>;
     implicitAllowDns?: pulumi.Input<string>;
     inspectionMode?: pulumi.Input<string>;
+    internetServiceDatabaseCache?: pulumi.Input<string>;
     ip?: pulumi.Input<string>;
     ip6?: pulumi.Input<string>;
     lanExtensionControllerAddr?: pulumi.Input<string>;
@@ -672,6 +700,7 @@ export interface SystemSettingsArgs {
     defaultPolicyExpiryDays?: pulumi.Input<number>;
     defaultVoipAlgMode?: pulumi.Input<string>;
     denyTcpWithIcmp?: pulumi.Input<string>;
+    detectUnknownEsp?: pulumi.Input<string>;
     device?: pulumi.Input<string>;
     dhcp6ServerIp?: pulumi.Input<string>;
     dhcpProxy?: pulumi.Input<string>;
@@ -689,6 +718,7 @@ export interface SystemSettingsArgs {
     fwSessionHairpin?: pulumi.Input<string>;
     gateway?: pulumi.Input<string>;
     gateway6?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     guiAdvancedPolicy?: pulumi.Input<string>;
     guiAdvancedWirelessFeatures?: pulumi.Input<string>;
     guiAllowUnnamedPolicy?: pulumi.Input<string>;
@@ -698,10 +728,12 @@ export interface SystemSettingsArgs {
     guiDefaultPolicyColumns?: pulumi.Input<pulumi.Input<inputs.SystemSettingsGuiDefaultPolicyColumn>[]>;
     guiDhcpAdvanced?: pulumi.Input<string>;
     guiDlp?: pulumi.Input<string>;
+    guiDlpProfile?: pulumi.Input<string>;
     guiDnsDatabase?: pulumi.Input<string>;
     guiDnsfilter?: pulumi.Input<string>;
     guiDomainIpReputation?: pulumi.Input<string>;
     guiDosPolicy?: pulumi.Input<string>;
+    guiDynamicDeviceOsId?: pulumi.Input<string>;
     guiDynamicProfileDisplay?: pulumi.Input<string>;
     guiDynamicRouting?: pulumi.Input<string>;
     guiEmailCollection?: pulumi.Input<string>;
@@ -728,7 +760,9 @@ export interface SystemSettingsArgs {
     guiPolicyBasedIpsec?: pulumi.Input<string>;
     guiPolicyDisclaimer?: pulumi.Input<string>;
     guiPolicyLearning?: pulumi.Input<string>;
+    guiProxyInspection?: pulumi.Input<string>;
     guiReplacementMessageGroups?: pulumi.Input<string>;
+    guiRouteTagAddressCreation?: pulumi.Input<string>;
     guiSecurityProfileGroup?: pulumi.Input<string>;
     guiSpamfilter?: pulumi.Input<string>;
     guiSslvpnPersonalBookmarks?: pulumi.Input<string>;
@@ -756,6 +790,7 @@ export interface SystemSettingsArgs {
     ikeSessionResume?: pulumi.Input<string>;
     implicitAllowDns?: pulumi.Input<string>;
     inspectionMode?: pulumi.Input<string>;
+    internetServiceDatabaseCache?: pulumi.Input<string>;
     ip?: pulumi.Input<string>;
     ip6?: pulumi.Input<string>;
     lanExtensionControllerAddr?: pulumi.Input<string>;

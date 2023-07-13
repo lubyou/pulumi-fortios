@@ -93,11 +93,11 @@ def get_ip_mask_cidr(ipmask: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getIPMaskCIDR:GetIPMaskCIDR', __args__, opts=opts, typ=GetIPMaskCIDRResult).value
 
     return AwaitableGetIPMaskCIDRResult(
-        cidr=__ret__.cidr,
-        cidrlists=__ret__.cidrlists,
-        id=__ret__.id,
-        ipmask=__ret__.ipmask,
-        ipmasklists=__ret__.ipmasklists)
+        cidr=pulumi.get(__ret__, 'cidr'),
+        cidrlists=pulumi.get(__ret__, 'cidrlists'),
+        id=pulumi.get(__ret__, 'id'),
+        ipmask=pulumi.get(__ret__, 'ipmask'),
+        ipmasklists=pulumi.get(__ret__, 'ipmasklists'))
 
 
 @_utilities.lift_output_func(get_ip_mask_cidr)

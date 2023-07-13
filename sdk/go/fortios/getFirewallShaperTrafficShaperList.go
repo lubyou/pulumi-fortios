@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func GetFirewallShaperTrafficShaperList(ctx *pulumi.Context, args *GetFirewallShaperTrafficShaperListArgs, opts ...pulumi.InvokeOption) (*GetFirewallShaperTrafficShaperListResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetFirewallShaperTrafficShaperListResult
 	err := ctx.Invoke("fortios:index/getFirewallShaperTrafficShaperList:GetFirewallShaperTrafficShaperList", args, &rv, opts...)
 	if err != nil {

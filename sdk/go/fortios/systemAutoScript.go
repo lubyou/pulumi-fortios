@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -30,7 +31,7 @@ func NewSystemAutoScript(ctx *pulumi.Context,
 		args = &SystemAutoScriptArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemAutoScript
 	err := ctx.RegisterResource("fortios:index/systemAutoScript:SystemAutoScript", name, args, &resource, opts...)
 	if err != nil {

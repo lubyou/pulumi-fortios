@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -21,6 +22,7 @@ type WirelessControllerApcfgProfile struct {
 	CommandLists        WirelessControllerApcfgProfileCommandListArrayOutput `pulumi:"commandLists"`
 	Comment             pulumi.StringPtrOutput                               `pulumi:"comment"`
 	DynamicSortSubtable pulumi.StringPtrOutput                               `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                               `pulumi:"getAllTables"`
 	Name                pulumi.StringOutput                                  `pulumi:"name"`
 	Vdomparam           pulumi.StringPtrOutput                               `pulumi:"vdomparam"`
 }
@@ -32,7 +34,7 @@ func NewWirelessControllerApcfgProfile(ctx *pulumi.Context,
 		args = &WirelessControllerApcfgProfileArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WirelessControllerApcfgProfile
 	err := ctx.RegisterResource("fortios:index/wirelessControllerApcfgProfile:WirelessControllerApcfgProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -63,6 +65,7 @@ type wirelessControllerApcfgProfileState struct {
 	CommandLists        []WirelessControllerApcfgProfileCommandList `pulumi:"commandLists"`
 	Comment             *string                                     `pulumi:"comment"`
 	DynamicSortSubtable *string                                     `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                                     `pulumi:"getAllTables"`
 	Name                *string                                     `pulumi:"name"`
 	Vdomparam           *string                                     `pulumi:"vdomparam"`
 }
@@ -76,6 +79,7 @@ type WirelessControllerApcfgProfileState struct {
 	CommandLists        WirelessControllerApcfgProfileCommandListArrayInput
 	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
 }
@@ -93,6 +97,7 @@ type wirelessControllerApcfgProfileArgs struct {
 	CommandLists        []WirelessControllerApcfgProfileCommandList `pulumi:"commandLists"`
 	Comment             *string                                     `pulumi:"comment"`
 	DynamicSortSubtable *string                                     `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                                     `pulumi:"getAllTables"`
 	Name                *string                                     `pulumi:"name"`
 	Vdomparam           *string                                     `pulumi:"vdomparam"`
 }
@@ -107,6 +112,7 @@ type WirelessControllerApcfgProfileArgs struct {
 	CommandLists        WirelessControllerApcfgProfileCommandListArrayInput
 	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
 }
@@ -230,6 +236,10 @@ func (o WirelessControllerApcfgProfileOutput) Comment() pulumi.StringPtrOutput {
 
 func (o WirelessControllerApcfgProfileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WirelessControllerApcfgProfile) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerApcfgProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerApcfgProfile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o WirelessControllerApcfgProfileOutput) Name() pulumi.StringOutput {

@@ -41,6 +41,7 @@ export class SystemAccprofile extends pulumi.CustomResource {
     public readonly ftviewgrp!: pulumi.Output<string>;
     public readonly fwgrp!: pulumi.Output<string>;
     public readonly fwgrpPermission!: pulumi.Output<outputs.SystemAccprofileFwgrpPermission>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly loggrp!: pulumi.Output<string>;
     public readonly loggrpPermission!: pulumi.Output<outputs.SystemAccprofileLoggrpPermission>;
     public readonly name!: pulumi.Output<string>;
@@ -80,6 +81,7 @@ export class SystemAccprofile extends pulumi.CustomResource {
             resourceInputs["ftviewgrp"] = state ? state.ftviewgrp : undefined;
             resourceInputs["fwgrp"] = state ? state.fwgrp : undefined;
             resourceInputs["fwgrpPermission"] = state ? state.fwgrpPermission : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["loggrp"] = state ? state.loggrp : undefined;
             resourceInputs["loggrpPermission"] = state ? state.loggrpPermission : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -107,6 +109,7 @@ export class SystemAccprofile extends pulumi.CustomResource {
             resourceInputs["ftviewgrp"] = args ? args.ftviewgrp : undefined;
             resourceInputs["fwgrp"] = args ? args.fwgrp : undefined;
             resourceInputs["fwgrpPermission"] = args ? args.fwgrpPermission : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["loggrp"] = args ? args.loggrp : undefined;
             resourceInputs["loggrpPermission"] = args ? args.loggrpPermission : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -142,6 +145,7 @@ export interface SystemAccprofileState {
     ftviewgrp?: pulumi.Input<string>;
     fwgrp?: pulumi.Input<string>;
     fwgrpPermission?: pulumi.Input<inputs.SystemAccprofileFwgrpPermission>;
+    getAllTables?: pulumi.Input<string>;
     loggrp?: pulumi.Input<string>;
     loggrpPermission?: pulumi.Input<inputs.SystemAccprofileLoggrpPermission>;
     name?: pulumi.Input<string>;
@@ -173,6 +177,7 @@ export interface SystemAccprofileArgs {
     ftviewgrp?: pulumi.Input<string>;
     fwgrp?: pulumi.Input<string>;
     fwgrpPermission?: pulumi.Input<inputs.SystemAccprofileFwgrpPermission>;
+    getAllTables?: pulumi.Input<string>;
     loggrp?: pulumi.Input<string>;
     loggrpPermission?: pulumi.Input<inputs.SystemAccprofileLoggrpPermission>;
     name?: pulumi.Input<string>;

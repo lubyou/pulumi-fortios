@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -24,6 +25,7 @@ type RouterOspf6 struct {
 	DefaultInformationRouteMap   pulumi.StringOutput                      `pulumi:"defaultInformationRouteMap"`
 	DefaultMetric                pulumi.IntOutput                         `pulumi:"defaultMetric"`
 	DynamicSortSubtable          pulumi.StringPtrOutput                   `pulumi:"dynamicSortSubtable"`
+	GetAllTables                 pulumi.StringPtrOutput                   `pulumi:"getAllTables"`
 	LogNeighbourChanges          pulumi.StringOutput                      `pulumi:"logNeighbourChanges"`
 	Ospf6Interfaces              RouterOspf6Ospf6InterfaceTypeArrayOutput `pulumi:"ospf6Interfaces"`
 	PassiveInterfaces            RouterOspf6PassiveInterfaceArrayOutput   `pulumi:"passiveInterfaces"`
@@ -47,7 +49,7 @@ func NewRouterOspf6(ctx *pulumi.Context,
 	if args.RouterId == nil {
 		return nil, errors.New("invalid value for required argument 'RouterId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RouterOspf6
 	err := ctx.RegisterResource("fortios:index/routerOspf6:RouterOspf6", name, args, &resource, opts...)
 	if err != nil {
@@ -80,6 +82,7 @@ type routerOspf6State struct {
 	DefaultInformationRouteMap   *string                         `pulumi:"defaultInformationRouteMap"`
 	DefaultMetric                *int                            `pulumi:"defaultMetric"`
 	DynamicSortSubtable          *string                         `pulumi:"dynamicSortSubtable"`
+	GetAllTables                 *string                         `pulumi:"getAllTables"`
 	LogNeighbourChanges          *string                         `pulumi:"logNeighbourChanges"`
 	Ospf6Interfaces              []RouterOspf6Ospf6InterfaceType `pulumi:"ospf6Interfaces"`
 	PassiveInterfaces            []RouterOspf6PassiveInterface   `pulumi:"passiveInterfaces"`
@@ -104,6 +107,7 @@ type RouterOspf6State struct {
 	DefaultInformationRouteMap   pulumi.StringPtrInput
 	DefaultMetric                pulumi.IntPtrInput
 	DynamicSortSubtable          pulumi.StringPtrInput
+	GetAllTables                 pulumi.StringPtrInput
 	LogNeighbourChanges          pulumi.StringPtrInput
 	Ospf6Interfaces              RouterOspf6Ospf6InterfaceTypeArrayInput
 	PassiveInterfaces            RouterOspf6PassiveInterfaceArrayInput
@@ -132,6 +136,7 @@ type routerOspf6Args struct {
 	DefaultInformationRouteMap   *string                         `pulumi:"defaultInformationRouteMap"`
 	DefaultMetric                *int                            `pulumi:"defaultMetric"`
 	DynamicSortSubtable          *string                         `pulumi:"dynamicSortSubtable"`
+	GetAllTables                 *string                         `pulumi:"getAllTables"`
 	LogNeighbourChanges          *string                         `pulumi:"logNeighbourChanges"`
 	Ospf6Interfaces              []RouterOspf6Ospf6InterfaceType `pulumi:"ospf6Interfaces"`
 	PassiveInterfaces            []RouterOspf6PassiveInterface   `pulumi:"passiveInterfaces"`
@@ -157,6 +162,7 @@ type RouterOspf6Args struct {
 	DefaultInformationRouteMap   pulumi.StringPtrInput
 	DefaultMetric                pulumi.IntPtrInput
 	DynamicSortSubtable          pulumi.StringPtrInput
+	GetAllTables                 pulumi.StringPtrInput
 	LogNeighbourChanges          pulumi.StringPtrInput
 	Ospf6Interfaces              RouterOspf6Ospf6InterfaceTypeArrayInput
 	PassiveInterfaces            RouterOspf6PassiveInterfaceArrayInput
@@ -295,6 +301,10 @@ func (o RouterOspf6Output) DefaultMetric() pulumi.IntOutput {
 
 func (o RouterOspf6Output) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RouterOspf6) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o RouterOspf6Output) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterOspf6) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o RouterOspf6Output) LogNeighbourChanges() pulumi.StringOutput {

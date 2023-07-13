@@ -22,7 +22,7 @@ class GetFirewallProxyPolicyResult:
     """
     A collection of values returned by GetFirewallProxyPolicy.
     """
-    def __init__(__self__, access_proxies=None, access_proxy6s=None, action=None, application_list=None, av_profile=None, block_notification=None, cifs_profile=None, comments=None, decrypted_traffic_mirror=None, device_ownership=None, disclaimer=None, dlp_profile=None, dlp_sensor=None, dstaddr6s=None, dstaddr_negate=None, dstaddrs=None, dstintfs=None, emailfilter_profile=None, file_filter_profile=None, global_label=None, groups=None, http_tunnel_auth=None, icap_profile=None, id=None, internet_service=None, internet_service_custom_groups=None, internet_service_customs=None, internet_service_groups=None, internet_service_ids=None, internet_service_names=None, internet_service_negate=None, ips_sensor=None, label=None, logtraffic=None, logtraffic_start=None, name=None, policyid=None, poolnames=None, profile_group=None, profile_protocol_options=None, profile_type=None, proxy=None, redirect_url=None, replacemsg_override_group=None, scan_botnet_connections=None, schedule=None, sctp_filter_profile=None, service_negate=None, services=None, session_ttl=None, spamfilter_profile=None, srcaddr6s=None, srcaddr_negate=None, srcaddrs=None, srcintfs=None, ssh_filter_profile=None, ssh_policy_redirect=None, ssl_ssh_profile=None, status=None, transparent=None, users=None, utm_status=None, uuid=None, vdomparam=None, videofilter_profile=None, voip_profile=None, waf_profile=None, webcache=None, webcache_https=None, webfilter_profile=None, webproxy_forward_server=None, webproxy_profile=None, ztna_ems_tags=None, ztna_tags_match_logic=None):
+    def __init__(__self__, access_proxies=None, access_proxy6s=None, action=None, application_list=None, av_profile=None, block_notification=None, cifs_profile=None, comments=None, decrypted_traffic_mirror=None, device_ownership=None, disclaimer=None, dlp_profile=None, dlp_sensor=None, dstaddr6s=None, dstaddr_negate=None, dstaddrs=None, dstintfs=None, emailfilter_profile=None, file_filter_profile=None, global_label=None, groups=None, http_tunnel_auth=None, icap_profile=None, id=None, internet_service=None, internet_service6=None, internet_service6_custom_groups=None, internet_service6_customs=None, internet_service6_groups=None, internet_service6_names=None, internet_service6_negate=None, internet_service_custom_groups=None, internet_service_customs=None, internet_service_groups=None, internet_service_ids=None, internet_service_names=None, internet_service_negate=None, ips_sensor=None, ips_voip_filter=None, label=None, logtraffic=None, logtraffic_start=None, name=None, policyid=None, poolnames=None, profile_group=None, profile_protocol_options=None, profile_type=None, proxy=None, redirect_url=None, replacemsg_override_group=None, scan_botnet_connections=None, schedule=None, sctp_filter_profile=None, service_negate=None, services=None, session_ttl=None, spamfilter_profile=None, srcaddr6s=None, srcaddr_negate=None, srcaddrs=None, srcintfs=None, ssh_filter_profile=None, ssh_policy_redirect=None, ssl_ssh_profile=None, status=None, transparent=None, users=None, utm_status=None, uuid=None, vdomparam=None, videofilter_profile=None, voip_profile=None, waf_profile=None, webcache=None, webcache_https=None, webfilter_profile=None, webproxy_forward_server=None, webproxy_profile=None, ztna_ems_tags=None, ztna_tags_match_logic=None):
         if access_proxies and not isinstance(access_proxies, list):
             raise TypeError("Expected argument 'access_proxies' to be a list")
         pulumi.set(__self__, "access_proxies", access_proxies)
@@ -98,6 +98,24 @@ class GetFirewallProxyPolicyResult:
         if internet_service and not isinstance(internet_service, str):
             raise TypeError("Expected argument 'internet_service' to be a str")
         pulumi.set(__self__, "internet_service", internet_service)
+        if internet_service6 and not isinstance(internet_service6, str):
+            raise TypeError("Expected argument 'internet_service6' to be a str")
+        pulumi.set(__self__, "internet_service6", internet_service6)
+        if internet_service6_custom_groups and not isinstance(internet_service6_custom_groups, list):
+            raise TypeError("Expected argument 'internet_service6_custom_groups' to be a list")
+        pulumi.set(__self__, "internet_service6_custom_groups", internet_service6_custom_groups)
+        if internet_service6_customs and not isinstance(internet_service6_customs, list):
+            raise TypeError("Expected argument 'internet_service6_customs' to be a list")
+        pulumi.set(__self__, "internet_service6_customs", internet_service6_customs)
+        if internet_service6_groups and not isinstance(internet_service6_groups, list):
+            raise TypeError("Expected argument 'internet_service6_groups' to be a list")
+        pulumi.set(__self__, "internet_service6_groups", internet_service6_groups)
+        if internet_service6_names and not isinstance(internet_service6_names, list):
+            raise TypeError("Expected argument 'internet_service6_names' to be a list")
+        pulumi.set(__self__, "internet_service6_names", internet_service6_names)
+        if internet_service6_negate and not isinstance(internet_service6_negate, str):
+            raise TypeError("Expected argument 'internet_service6_negate' to be a str")
+        pulumi.set(__self__, "internet_service6_negate", internet_service6_negate)
         if internet_service_custom_groups and not isinstance(internet_service_custom_groups, list):
             raise TypeError("Expected argument 'internet_service_custom_groups' to be a list")
         pulumi.set(__self__, "internet_service_custom_groups", internet_service_custom_groups)
@@ -119,6 +137,9 @@ class GetFirewallProxyPolicyResult:
         if ips_sensor and not isinstance(ips_sensor, str):
             raise TypeError("Expected argument 'ips_sensor' to be a str")
         pulumi.set(__self__, "ips_sensor", ips_sensor)
+        if ips_voip_filter and not isinstance(ips_voip_filter, str):
+            raise TypeError("Expected argument 'ips_voip_filter' to be a str")
+        pulumi.set(__self__, "ips_voip_filter", ips_voip_filter)
         if label and not isinstance(label, str):
             raise TypeError("Expected argument 'label' to be a str")
         pulumi.set(__self__, "label", label)
@@ -375,6 +396,36 @@ class GetFirewallProxyPolicyResult:
         return pulumi.get(self, "internet_service")
 
     @property
+    @pulumi.getter(name="internetService6")
+    def internet_service6(self) -> str:
+        return pulumi.get(self, "internet_service6")
+
+    @property
+    @pulumi.getter(name="internetService6CustomGroups")
+    def internet_service6_custom_groups(self) -> Sequence['outputs.GetFirewallProxyPolicyInternetService6CustomGroupResult']:
+        return pulumi.get(self, "internet_service6_custom_groups")
+
+    @property
+    @pulumi.getter(name="internetService6Customs")
+    def internet_service6_customs(self) -> Sequence['outputs.GetFirewallProxyPolicyInternetService6CustomResult']:
+        return pulumi.get(self, "internet_service6_customs")
+
+    @property
+    @pulumi.getter(name="internetService6Groups")
+    def internet_service6_groups(self) -> Sequence['outputs.GetFirewallProxyPolicyInternetService6GroupResult']:
+        return pulumi.get(self, "internet_service6_groups")
+
+    @property
+    @pulumi.getter(name="internetService6Names")
+    def internet_service6_names(self) -> Sequence['outputs.GetFirewallProxyPolicyInternetService6NameResult']:
+        return pulumi.get(self, "internet_service6_names")
+
+    @property
+    @pulumi.getter(name="internetService6Negate")
+    def internet_service6_negate(self) -> str:
+        return pulumi.get(self, "internet_service6_negate")
+
+    @property
     @pulumi.getter(name="internetServiceCustomGroups")
     def internet_service_custom_groups(self) -> Sequence['outputs.GetFirewallProxyPolicyInternetServiceCustomGroupResult']:
         return pulumi.get(self, "internet_service_custom_groups")
@@ -408,6 +459,11 @@ class GetFirewallProxyPolicyResult:
     @pulumi.getter(name="ipsSensor")
     def ips_sensor(self) -> str:
         return pulumi.get(self, "ips_sensor")
+
+    @property
+    @pulumi.getter(name="ipsVoipFilter")
+    def ips_voip_filter(self) -> str:
+        return pulumi.get(self, "ips_voip_filter")
 
     @property
     @pulumi.getter
@@ -651,6 +707,12 @@ class AwaitableGetFirewallProxyPolicyResult(GetFirewallProxyPolicyResult):
             icap_profile=self.icap_profile,
             id=self.id,
             internet_service=self.internet_service,
+            internet_service6=self.internet_service6,
+            internet_service6_custom_groups=self.internet_service6_custom_groups,
+            internet_service6_customs=self.internet_service6_customs,
+            internet_service6_groups=self.internet_service6_groups,
+            internet_service6_names=self.internet_service6_names,
+            internet_service6_negate=self.internet_service6_negate,
             internet_service_custom_groups=self.internet_service_custom_groups,
             internet_service_customs=self.internet_service_customs,
             internet_service_groups=self.internet_service_groups,
@@ -658,6 +720,7 @@ class AwaitableGetFirewallProxyPolicyResult(GetFirewallProxyPolicyResult):
             internet_service_names=self.internet_service_names,
             internet_service_negate=self.internet_service_negate,
             ips_sensor=self.ips_sensor,
+            ips_voip_filter=self.ips_voip_filter,
             label=self.label,
             logtraffic=self.logtraffic,
             logtraffic_start=self.logtraffic_start,
@@ -715,80 +778,87 @@ def get_firewall_proxy_policy(policyid: Optional[int] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getFirewallProxyPolicy:GetFirewallProxyPolicy', __args__, opts=opts, typ=GetFirewallProxyPolicyResult).value
 
     return AwaitableGetFirewallProxyPolicyResult(
-        access_proxies=__ret__.access_proxies,
-        access_proxy6s=__ret__.access_proxy6s,
-        action=__ret__.action,
-        application_list=__ret__.application_list,
-        av_profile=__ret__.av_profile,
-        block_notification=__ret__.block_notification,
-        cifs_profile=__ret__.cifs_profile,
-        comments=__ret__.comments,
-        decrypted_traffic_mirror=__ret__.decrypted_traffic_mirror,
-        device_ownership=__ret__.device_ownership,
-        disclaimer=__ret__.disclaimer,
-        dlp_profile=__ret__.dlp_profile,
-        dlp_sensor=__ret__.dlp_sensor,
-        dstaddr6s=__ret__.dstaddr6s,
-        dstaddr_negate=__ret__.dstaddr_negate,
-        dstaddrs=__ret__.dstaddrs,
-        dstintfs=__ret__.dstintfs,
-        emailfilter_profile=__ret__.emailfilter_profile,
-        file_filter_profile=__ret__.file_filter_profile,
-        global_label=__ret__.global_label,
-        groups=__ret__.groups,
-        http_tunnel_auth=__ret__.http_tunnel_auth,
-        icap_profile=__ret__.icap_profile,
-        id=__ret__.id,
-        internet_service=__ret__.internet_service,
-        internet_service_custom_groups=__ret__.internet_service_custom_groups,
-        internet_service_customs=__ret__.internet_service_customs,
-        internet_service_groups=__ret__.internet_service_groups,
-        internet_service_ids=__ret__.internet_service_ids,
-        internet_service_names=__ret__.internet_service_names,
-        internet_service_negate=__ret__.internet_service_negate,
-        ips_sensor=__ret__.ips_sensor,
-        label=__ret__.label,
-        logtraffic=__ret__.logtraffic,
-        logtraffic_start=__ret__.logtraffic_start,
-        name=__ret__.name,
-        policyid=__ret__.policyid,
-        poolnames=__ret__.poolnames,
-        profile_group=__ret__.profile_group,
-        profile_protocol_options=__ret__.profile_protocol_options,
-        profile_type=__ret__.profile_type,
-        proxy=__ret__.proxy,
-        redirect_url=__ret__.redirect_url,
-        replacemsg_override_group=__ret__.replacemsg_override_group,
-        scan_botnet_connections=__ret__.scan_botnet_connections,
-        schedule=__ret__.schedule,
-        sctp_filter_profile=__ret__.sctp_filter_profile,
-        service_negate=__ret__.service_negate,
-        services=__ret__.services,
-        session_ttl=__ret__.session_ttl,
-        spamfilter_profile=__ret__.spamfilter_profile,
-        srcaddr6s=__ret__.srcaddr6s,
-        srcaddr_negate=__ret__.srcaddr_negate,
-        srcaddrs=__ret__.srcaddrs,
-        srcintfs=__ret__.srcintfs,
-        ssh_filter_profile=__ret__.ssh_filter_profile,
-        ssh_policy_redirect=__ret__.ssh_policy_redirect,
-        ssl_ssh_profile=__ret__.ssl_ssh_profile,
-        status=__ret__.status,
-        transparent=__ret__.transparent,
-        users=__ret__.users,
-        utm_status=__ret__.utm_status,
-        uuid=__ret__.uuid,
-        vdomparam=__ret__.vdomparam,
-        videofilter_profile=__ret__.videofilter_profile,
-        voip_profile=__ret__.voip_profile,
-        waf_profile=__ret__.waf_profile,
-        webcache=__ret__.webcache,
-        webcache_https=__ret__.webcache_https,
-        webfilter_profile=__ret__.webfilter_profile,
-        webproxy_forward_server=__ret__.webproxy_forward_server,
-        webproxy_profile=__ret__.webproxy_profile,
-        ztna_ems_tags=__ret__.ztna_ems_tags,
-        ztna_tags_match_logic=__ret__.ztna_tags_match_logic)
+        access_proxies=pulumi.get(__ret__, 'access_proxies'),
+        access_proxy6s=pulumi.get(__ret__, 'access_proxy6s'),
+        action=pulumi.get(__ret__, 'action'),
+        application_list=pulumi.get(__ret__, 'application_list'),
+        av_profile=pulumi.get(__ret__, 'av_profile'),
+        block_notification=pulumi.get(__ret__, 'block_notification'),
+        cifs_profile=pulumi.get(__ret__, 'cifs_profile'),
+        comments=pulumi.get(__ret__, 'comments'),
+        decrypted_traffic_mirror=pulumi.get(__ret__, 'decrypted_traffic_mirror'),
+        device_ownership=pulumi.get(__ret__, 'device_ownership'),
+        disclaimer=pulumi.get(__ret__, 'disclaimer'),
+        dlp_profile=pulumi.get(__ret__, 'dlp_profile'),
+        dlp_sensor=pulumi.get(__ret__, 'dlp_sensor'),
+        dstaddr6s=pulumi.get(__ret__, 'dstaddr6s'),
+        dstaddr_negate=pulumi.get(__ret__, 'dstaddr_negate'),
+        dstaddrs=pulumi.get(__ret__, 'dstaddrs'),
+        dstintfs=pulumi.get(__ret__, 'dstintfs'),
+        emailfilter_profile=pulumi.get(__ret__, 'emailfilter_profile'),
+        file_filter_profile=pulumi.get(__ret__, 'file_filter_profile'),
+        global_label=pulumi.get(__ret__, 'global_label'),
+        groups=pulumi.get(__ret__, 'groups'),
+        http_tunnel_auth=pulumi.get(__ret__, 'http_tunnel_auth'),
+        icap_profile=pulumi.get(__ret__, 'icap_profile'),
+        id=pulumi.get(__ret__, 'id'),
+        internet_service=pulumi.get(__ret__, 'internet_service'),
+        internet_service6=pulumi.get(__ret__, 'internet_service6'),
+        internet_service6_custom_groups=pulumi.get(__ret__, 'internet_service6_custom_groups'),
+        internet_service6_customs=pulumi.get(__ret__, 'internet_service6_customs'),
+        internet_service6_groups=pulumi.get(__ret__, 'internet_service6_groups'),
+        internet_service6_names=pulumi.get(__ret__, 'internet_service6_names'),
+        internet_service6_negate=pulumi.get(__ret__, 'internet_service6_negate'),
+        internet_service_custom_groups=pulumi.get(__ret__, 'internet_service_custom_groups'),
+        internet_service_customs=pulumi.get(__ret__, 'internet_service_customs'),
+        internet_service_groups=pulumi.get(__ret__, 'internet_service_groups'),
+        internet_service_ids=pulumi.get(__ret__, 'internet_service_ids'),
+        internet_service_names=pulumi.get(__ret__, 'internet_service_names'),
+        internet_service_negate=pulumi.get(__ret__, 'internet_service_negate'),
+        ips_sensor=pulumi.get(__ret__, 'ips_sensor'),
+        ips_voip_filter=pulumi.get(__ret__, 'ips_voip_filter'),
+        label=pulumi.get(__ret__, 'label'),
+        logtraffic=pulumi.get(__ret__, 'logtraffic'),
+        logtraffic_start=pulumi.get(__ret__, 'logtraffic_start'),
+        name=pulumi.get(__ret__, 'name'),
+        policyid=pulumi.get(__ret__, 'policyid'),
+        poolnames=pulumi.get(__ret__, 'poolnames'),
+        profile_group=pulumi.get(__ret__, 'profile_group'),
+        profile_protocol_options=pulumi.get(__ret__, 'profile_protocol_options'),
+        profile_type=pulumi.get(__ret__, 'profile_type'),
+        proxy=pulumi.get(__ret__, 'proxy'),
+        redirect_url=pulumi.get(__ret__, 'redirect_url'),
+        replacemsg_override_group=pulumi.get(__ret__, 'replacemsg_override_group'),
+        scan_botnet_connections=pulumi.get(__ret__, 'scan_botnet_connections'),
+        schedule=pulumi.get(__ret__, 'schedule'),
+        sctp_filter_profile=pulumi.get(__ret__, 'sctp_filter_profile'),
+        service_negate=pulumi.get(__ret__, 'service_negate'),
+        services=pulumi.get(__ret__, 'services'),
+        session_ttl=pulumi.get(__ret__, 'session_ttl'),
+        spamfilter_profile=pulumi.get(__ret__, 'spamfilter_profile'),
+        srcaddr6s=pulumi.get(__ret__, 'srcaddr6s'),
+        srcaddr_negate=pulumi.get(__ret__, 'srcaddr_negate'),
+        srcaddrs=pulumi.get(__ret__, 'srcaddrs'),
+        srcintfs=pulumi.get(__ret__, 'srcintfs'),
+        ssh_filter_profile=pulumi.get(__ret__, 'ssh_filter_profile'),
+        ssh_policy_redirect=pulumi.get(__ret__, 'ssh_policy_redirect'),
+        ssl_ssh_profile=pulumi.get(__ret__, 'ssl_ssh_profile'),
+        status=pulumi.get(__ret__, 'status'),
+        transparent=pulumi.get(__ret__, 'transparent'),
+        users=pulumi.get(__ret__, 'users'),
+        utm_status=pulumi.get(__ret__, 'utm_status'),
+        uuid=pulumi.get(__ret__, 'uuid'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'),
+        videofilter_profile=pulumi.get(__ret__, 'videofilter_profile'),
+        voip_profile=pulumi.get(__ret__, 'voip_profile'),
+        waf_profile=pulumi.get(__ret__, 'waf_profile'),
+        webcache=pulumi.get(__ret__, 'webcache'),
+        webcache_https=pulumi.get(__ret__, 'webcache_https'),
+        webfilter_profile=pulumi.get(__ret__, 'webfilter_profile'),
+        webproxy_forward_server=pulumi.get(__ret__, 'webproxy_forward_server'),
+        webproxy_profile=pulumi.get(__ret__, 'webproxy_profile'),
+        ztna_ems_tags=pulumi.get(__ret__, 'ztna_ems_tags'),
+        ztna_tags_match_logic=pulumi.get(__ret__, 'ztna_tags_match_logic'))
 
 
 @_utilities.lift_output_func(get_firewall_proxy_policy)

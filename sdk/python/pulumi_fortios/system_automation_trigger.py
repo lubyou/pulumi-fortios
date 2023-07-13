@@ -25,6 +25,7 @@ class SystemAutomationTriggerArgs:
                  faz_event_severity: Optional[pulumi.Input[str]] = None,
                  faz_event_tags: Optional[pulumi.Input[str]] = None,
                  fields: Optional[pulumi.Input[Sequence[pulumi.Input['SystemAutomationTriggerFieldArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ioc_level: Optional[pulumi.Input[str]] = None,
                  license_type: Optional[pulumi.Input[str]] = None,
                  logid: Optional[pulumi.Input[int]] = None,
@@ -62,6 +63,8 @@ class SystemAutomationTriggerArgs:
             pulumi.set(__self__, "faz_event_tags", faz_event_tags)
         if fields is not None:
             pulumi.set(__self__, "fields", fields)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ioc_level is not None:
             pulumi.set(__self__, "ioc_level", ioc_level)
         if license_type is not None:
@@ -175,6 +178,15 @@ class SystemAutomationTriggerArgs:
     @fields.setter
     def fields(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemAutomationTriggerFieldArgs']]]]):
         pulumi.set(self, "fields", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="iocLevel")
@@ -333,6 +345,7 @@ class _SystemAutomationTriggerState:
                  faz_event_severity: Optional[pulumi.Input[str]] = None,
                  faz_event_tags: Optional[pulumi.Input[str]] = None,
                  fields: Optional[pulumi.Input[Sequence[pulumi.Input['SystemAutomationTriggerFieldArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ioc_level: Optional[pulumi.Input[str]] = None,
                  license_type: Optional[pulumi.Input[str]] = None,
                  logid: Optional[pulumi.Input[int]] = None,
@@ -370,6 +383,8 @@ class _SystemAutomationTriggerState:
             pulumi.set(__self__, "faz_event_tags", faz_event_tags)
         if fields is not None:
             pulumi.set(__self__, "fields", fields)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ioc_level is not None:
             pulumi.set(__self__, "ioc_level", ioc_level)
         if license_type is not None:
@@ -483,6 +498,15 @@ class _SystemAutomationTriggerState:
     @fields.setter
     def fields(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemAutomationTriggerFieldArgs']]]]):
         pulumi.set(self, "fields", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="iocLevel")
@@ -643,6 +667,7 @@ class SystemAutomationTrigger(pulumi.CustomResource):
                  faz_event_severity: Optional[pulumi.Input[str]] = None,
                  faz_event_tags: Optional[pulumi.Input[str]] = None,
                  fields: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationTriggerFieldArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ioc_level: Optional[pulumi.Input[str]] = None,
                  license_type: Optional[pulumi.Input[str]] = None,
                  logid: Optional[pulumi.Input[int]] = None,
@@ -697,6 +722,7 @@ class SystemAutomationTrigger(pulumi.CustomResource):
                  faz_event_severity: Optional[pulumi.Input[str]] = None,
                  faz_event_tags: Optional[pulumi.Input[str]] = None,
                  fields: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationTriggerFieldArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ioc_level: Optional[pulumi.Input[str]] = None,
                  license_type: Optional[pulumi.Input[str]] = None,
                  logid: Optional[pulumi.Input[int]] = None,
@@ -731,6 +757,7 @@ class SystemAutomationTrigger(pulumi.CustomResource):
             __props__.__dict__["faz_event_severity"] = faz_event_severity
             __props__.__dict__["faz_event_tags"] = faz_event_tags
             __props__.__dict__["fields"] = fields
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["ioc_level"] = ioc_level
             __props__.__dict__["license_type"] = license_type
             __props__.__dict__["logid"] = logid
@@ -766,6 +793,7 @@ class SystemAutomationTrigger(pulumi.CustomResource):
             faz_event_severity: Optional[pulumi.Input[str]] = None,
             faz_event_tags: Optional[pulumi.Input[str]] = None,
             fields: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationTriggerFieldArgs']]]]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             ioc_level: Optional[pulumi.Input[str]] = None,
             license_type: Optional[pulumi.Input[str]] = None,
             logid: Optional[pulumi.Input[int]] = None,
@@ -803,6 +831,7 @@ class SystemAutomationTrigger(pulumi.CustomResource):
         __props__.__dict__["faz_event_severity"] = faz_event_severity
         __props__.__dict__["faz_event_tags"] = faz_event_tags
         __props__.__dict__["fields"] = fields
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["ioc_level"] = ioc_level
         __props__.__dict__["license_type"] = license_type
         __props__.__dict__["logid"] = logid
@@ -865,6 +894,11 @@ class SystemAutomationTrigger(pulumi.CustomResource):
     @pulumi.getter
     def fields(self) -> pulumi.Output[Optional[Sequence['outputs.SystemAutomationTriggerField']]]:
         return pulumi.get(self, "fields")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="iocLevel")

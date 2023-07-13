@@ -22,7 +22,7 @@ class GetSystemDnsResult:
     """
     A collection of values returned by GetSystemDns.
     """
-    def __init__(__self__, alt_primary=None, alt_secondary=None, cache_notfound_responses=None, dns_cache_limit=None, dns_cache_ttl=None, dns_over_tls=None, domains=None, fqdn_cache_ttl=None, fqdn_min_refresh=None, id=None, interface=None, interface_select_method=None, ip6_primary=None, ip6_secondary=None, log=None, primary=None, protocol=None, retry=None, secondary=None, server_hostnames=None, server_select_method=None, source_ip=None, ssl_certificate=None, timeout=None, vdomparam=None):
+    def __init__(__self__, alt_primary=None, alt_secondary=None, cache_notfound_responses=None, dns_cache_limit=None, dns_cache_ttl=None, dns_over_tls=None, domains=None, fqdn_cache_ttl=None, fqdn_max_refresh=None, fqdn_min_refresh=None, id=None, interface=None, interface_select_method=None, ip6_primary=None, ip6_secondary=None, log=None, primary=None, protocol=None, retry=None, secondary=None, server_hostnames=None, server_select_method=None, source_ip=None, ssl_certificate=None, timeout=None, vdomparam=None):
         if alt_primary and not isinstance(alt_primary, str):
             raise TypeError("Expected argument 'alt_primary' to be a str")
         pulumi.set(__self__, "alt_primary", alt_primary)
@@ -47,6 +47,9 @@ class GetSystemDnsResult:
         if fqdn_cache_ttl and not isinstance(fqdn_cache_ttl, int):
             raise TypeError("Expected argument 'fqdn_cache_ttl' to be a int")
         pulumi.set(__self__, "fqdn_cache_ttl", fqdn_cache_ttl)
+        if fqdn_max_refresh and not isinstance(fqdn_max_refresh, int):
+            raise TypeError("Expected argument 'fqdn_max_refresh' to be a int")
+        pulumi.set(__self__, "fqdn_max_refresh", fqdn_max_refresh)
         if fqdn_min_refresh and not isinstance(fqdn_min_refresh, int):
             raise TypeError("Expected argument 'fqdn_min_refresh' to be a int")
         pulumi.set(__self__, "fqdn_min_refresh", fqdn_min_refresh)
@@ -138,6 +141,11 @@ class GetSystemDnsResult:
     @pulumi.getter(name="fqdnCacheTtl")
     def fqdn_cache_ttl(self) -> int:
         return pulumi.get(self, "fqdn_cache_ttl")
+
+    @property
+    @pulumi.getter(name="fqdnMaxRefresh")
+    def fqdn_max_refresh(self) -> int:
+        return pulumi.get(self, "fqdn_max_refresh")
 
     @property
     @pulumi.getter(name="fqdnMinRefresh")
@@ -242,6 +250,7 @@ class AwaitableGetSystemDnsResult(GetSystemDnsResult):
             dns_over_tls=self.dns_over_tls,
             domains=self.domains,
             fqdn_cache_ttl=self.fqdn_cache_ttl,
+            fqdn_max_refresh=self.fqdn_max_refresh,
             fqdn_min_refresh=self.fqdn_min_refresh,
             id=self.id,
             interface=self.interface,
@@ -272,31 +281,32 @@ def get_system_dns(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemDns:GetSystemDns', __args__, opts=opts, typ=GetSystemDnsResult).value
 
     return AwaitableGetSystemDnsResult(
-        alt_primary=__ret__.alt_primary,
-        alt_secondary=__ret__.alt_secondary,
-        cache_notfound_responses=__ret__.cache_notfound_responses,
-        dns_cache_limit=__ret__.dns_cache_limit,
-        dns_cache_ttl=__ret__.dns_cache_ttl,
-        dns_over_tls=__ret__.dns_over_tls,
-        domains=__ret__.domains,
-        fqdn_cache_ttl=__ret__.fqdn_cache_ttl,
-        fqdn_min_refresh=__ret__.fqdn_min_refresh,
-        id=__ret__.id,
-        interface=__ret__.interface,
-        interface_select_method=__ret__.interface_select_method,
-        ip6_primary=__ret__.ip6_primary,
-        ip6_secondary=__ret__.ip6_secondary,
-        log=__ret__.log,
-        primary=__ret__.primary,
-        protocol=__ret__.protocol,
-        retry=__ret__.retry,
-        secondary=__ret__.secondary,
-        server_hostnames=__ret__.server_hostnames,
-        server_select_method=__ret__.server_select_method,
-        source_ip=__ret__.source_ip,
-        ssl_certificate=__ret__.ssl_certificate,
-        timeout=__ret__.timeout,
-        vdomparam=__ret__.vdomparam)
+        alt_primary=pulumi.get(__ret__, 'alt_primary'),
+        alt_secondary=pulumi.get(__ret__, 'alt_secondary'),
+        cache_notfound_responses=pulumi.get(__ret__, 'cache_notfound_responses'),
+        dns_cache_limit=pulumi.get(__ret__, 'dns_cache_limit'),
+        dns_cache_ttl=pulumi.get(__ret__, 'dns_cache_ttl'),
+        dns_over_tls=pulumi.get(__ret__, 'dns_over_tls'),
+        domains=pulumi.get(__ret__, 'domains'),
+        fqdn_cache_ttl=pulumi.get(__ret__, 'fqdn_cache_ttl'),
+        fqdn_max_refresh=pulumi.get(__ret__, 'fqdn_max_refresh'),
+        fqdn_min_refresh=pulumi.get(__ret__, 'fqdn_min_refresh'),
+        id=pulumi.get(__ret__, 'id'),
+        interface=pulumi.get(__ret__, 'interface'),
+        interface_select_method=pulumi.get(__ret__, 'interface_select_method'),
+        ip6_primary=pulumi.get(__ret__, 'ip6_primary'),
+        ip6_secondary=pulumi.get(__ret__, 'ip6_secondary'),
+        log=pulumi.get(__ret__, 'log'),
+        primary=pulumi.get(__ret__, 'primary'),
+        protocol=pulumi.get(__ret__, 'protocol'),
+        retry=pulumi.get(__ret__, 'retry'),
+        secondary=pulumi.get(__ret__, 'secondary'),
+        server_hostnames=pulumi.get(__ret__, 'server_hostnames'),
+        server_select_method=pulumi.get(__ret__, 'server_select_method'),
+        source_ip=pulumi.get(__ret__, 'source_ip'),
+        ssl_certificate=pulumi.get(__ret__, 'ssl_certificate'),
+        timeout=pulumi.get(__ret__, 'timeout'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_dns)

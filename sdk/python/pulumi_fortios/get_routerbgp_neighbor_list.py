@@ -84,10 +84,10 @@ def get_routerbgp_neighbor_list(filter: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getRouterbgpNeighborList:GetRouterbgpNeighborList', __args__, opts=opts, typ=GetRouterbgpNeighborListResult).value
 
     return AwaitableGetRouterbgpNeighborListResult(
-        filter=__ret__.filter,
-        id=__ret__.id,
-        iplists=__ret__.iplists,
-        vdomparam=__ret__.vdomparam)
+        filter=pulumi.get(__ret__, 'filter'),
+        id=pulumi.get(__ret__, 'id'),
+        iplists=pulumi.get(__ret__, 'iplists'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_routerbgp_neighbor_list)

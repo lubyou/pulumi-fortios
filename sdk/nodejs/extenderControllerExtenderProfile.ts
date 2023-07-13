@@ -40,6 +40,7 @@ export class ExtenderControllerExtenderProfile extends pulumi.CustomResource {
     public readonly enforceBandwidth!: pulumi.Output<string>;
     public readonly extension!: pulumi.Output<string>;
     public readonly fosid!: pulumi.Output<number>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly lanExtension!: pulumi.Output<outputs.ExtenderControllerExtenderProfileLanExtension>;
     public readonly loginPassword!: pulumi.Output<string | undefined>;
     public readonly loginPasswordChange!: pulumi.Output<string>;
@@ -66,6 +67,7 @@ export class ExtenderControllerExtenderProfile extends pulumi.CustomResource {
             resourceInputs["enforceBandwidth"] = state ? state.enforceBandwidth : undefined;
             resourceInputs["extension"] = state ? state.extension : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["lanExtension"] = state ? state.lanExtension : undefined;
             resourceInputs["loginPassword"] = state ? state.loginPassword : undefined;
             resourceInputs["loginPasswordChange"] = state ? state.loginPasswordChange : undefined;
@@ -80,6 +82,7 @@ export class ExtenderControllerExtenderProfile extends pulumi.CustomResource {
             resourceInputs["enforceBandwidth"] = args ? args.enforceBandwidth : undefined;
             resourceInputs["extension"] = args ? args.extension : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["lanExtension"] = args ? args.lanExtension : undefined;
             resourceInputs["loginPassword"] = args ? args.loginPassword : undefined;
             resourceInputs["loginPasswordChange"] = args ? args.loginPasswordChange : undefined;
@@ -102,6 +105,7 @@ export interface ExtenderControllerExtenderProfileState {
     enforceBandwidth?: pulumi.Input<string>;
     extension?: pulumi.Input<string>;
     fosid?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     lanExtension?: pulumi.Input<inputs.ExtenderControllerExtenderProfileLanExtension>;
     loginPassword?: pulumi.Input<string>;
     loginPasswordChange?: pulumi.Input<string>;
@@ -120,6 +124,7 @@ export interface ExtenderControllerExtenderProfileArgs {
     enforceBandwidth?: pulumi.Input<string>;
     extension?: pulumi.Input<string>;
     fosid?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     lanExtension?: pulumi.Input<inputs.ExtenderControllerExtenderProfileLanExtension>;
     loginPassword?: pulumi.Input<string>;
     loginPasswordChange?: pulumi.Input<string>;

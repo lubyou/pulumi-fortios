@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -14,6 +15,7 @@ type WirelessControllerMpskProfile struct {
 	pulumi.CustomResourceState
 
 	DynamicSortSubtable   pulumi.StringPtrOutput                            `pulumi:"dynamicSortSubtable"`
+	GetAllTables          pulumi.StringPtrOutput                            `pulumi:"getAllTables"`
 	MpskConcurrentClients pulumi.IntOutput                                  `pulumi:"mpskConcurrentClients"`
 	MpskGroups            WirelessControllerMpskProfileMpskGroupArrayOutput `pulumi:"mpskGroups"`
 	Name                  pulumi.StringOutput                               `pulumi:"name"`
@@ -27,7 +29,7 @@ func NewWirelessControllerMpskProfile(ctx *pulumi.Context,
 		args = &WirelessControllerMpskProfileArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WirelessControllerMpskProfile
 	err := ctx.RegisterResource("fortios:index/wirelessControllerMpskProfile:WirelessControllerMpskProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -51,6 +53,7 @@ func GetWirelessControllerMpskProfile(ctx *pulumi.Context,
 // Input properties used for looking up and filtering WirelessControllerMpskProfile resources.
 type wirelessControllerMpskProfileState struct {
 	DynamicSortSubtable   *string                                  `pulumi:"dynamicSortSubtable"`
+	GetAllTables          *string                                  `pulumi:"getAllTables"`
 	MpskConcurrentClients *int                                     `pulumi:"mpskConcurrentClients"`
 	MpskGroups            []WirelessControllerMpskProfileMpskGroup `pulumi:"mpskGroups"`
 	Name                  *string                                  `pulumi:"name"`
@@ -59,6 +62,7 @@ type wirelessControllerMpskProfileState struct {
 
 type WirelessControllerMpskProfileState struct {
 	DynamicSortSubtable   pulumi.StringPtrInput
+	GetAllTables          pulumi.StringPtrInput
 	MpskConcurrentClients pulumi.IntPtrInput
 	MpskGroups            WirelessControllerMpskProfileMpskGroupArrayInput
 	Name                  pulumi.StringPtrInput
@@ -71,6 +75,7 @@ func (WirelessControllerMpskProfileState) ElementType() reflect.Type {
 
 type wirelessControllerMpskProfileArgs struct {
 	DynamicSortSubtable   *string                                  `pulumi:"dynamicSortSubtable"`
+	GetAllTables          *string                                  `pulumi:"getAllTables"`
 	MpskConcurrentClients *int                                     `pulumi:"mpskConcurrentClients"`
 	MpskGroups            []WirelessControllerMpskProfileMpskGroup `pulumi:"mpskGroups"`
 	Name                  *string                                  `pulumi:"name"`
@@ -80,6 +85,7 @@ type wirelessControllerMpskProfileArgs struct {
 // The set of arguments for constructing a WirelessControllerMpskProfile resource.
 type WirelessControllerMpskProfileArgs struct {
 	DynamicSortSubtable   pulumi.StringPtrInput
+	GetAllTables          pulumi.StringPtrInput
 	MpskConcurrentClients pulumi.IntPtrInput
 	MpskGroups            WirelessControllerMpskProfileMpskGroupArrayInput
 	Name                  pulumi.StringPtrInput
@@ -175,6 +181,10 @@ func (o WirelessControllerMpskProfileOutput) ToWirelessControllerMpskProfileOutp
 
 func (o WirelessControllerMpskProfileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WirelessControllerMpskProfile) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerMpskProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerMpskProfile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o WirelessControllerMpskProfileOutput) MpskConcurrentClients() pulumi.IntOutput {

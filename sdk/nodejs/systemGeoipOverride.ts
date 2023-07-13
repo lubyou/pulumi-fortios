@@ -37,6 +37,7 @@ export class SystemGeoipOverride extends pulumi.CustomResource {
     public readonly countryId!: pulumi.Output<string>;
     public readonly description!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly ip6Ranges!: pulumi.Output<outputs.SystemGeoipOverrideIp6Range[] | undefined>;
     public readonly ipRanges!: pulumi.Output<outputs.SystemGeoipOverrideIpRange[] | undefined>;
     public readonly name!: pulumi.Output<string>;
@@ -58,6 +59,7 @@ export class SystemGeoipOverride extends pulumi.CustomResource {
             resourceInputs["countryId"] = state ? state.countryId : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["ip6Ranges"] = state ? state.ip6Ranges : undefined;
             resourceInputs["ipRanges"] = state ? state.ipRanges : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -67,6 +69,7 @@ export class SystemGeoipOverride extends pulumi.CustomResource {
             resourceInputs["countryId"] = args ? args.countryId : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["ip6Ranges"] = args ? args.ip6Ranges : undefined;
             resourceInputs["ipRanges"] = args ? args.ipRanges : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -84,6 +87,7 @@ export interface SystemGeoipOverrideState {
     countryId?: pulumi.Input<string>;
     description?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     ip6Ranges?: pulumi.Input<pulumi.Input<inputs.SystemGeoipOverrideIp6Range>[]>;
     ipRanges?: pulumi.Input<pulumi.Input<inputs.SystemGeoipOverrideIpRange>[]>;
     name?: pulumi.Input<string>;
@@ -97,6 +101,7 @@ export interface SystemGeoipOverrideArgs {
     countryId?: pulumi.Input<string>;
     description?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     ip6Ranges?: pulumi.Input<pulumi.Input<inputs.SystemGeoipOverrideIp6Range>[]>;
     ipRanges?: pulumi.Input<pulumi.Input<inputs.SystemGeoipOverrideIpRange>[]>;
     name?: pulumi.Input<string>;

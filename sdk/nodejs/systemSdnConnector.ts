@@ -35,11 +35,13 @@ export class SystemSdnConnector extends pulumi.CustomResource {
     }
 
     public readonly accessKey!: pulumi.Output<string>;
+    public readonly altResourceIp!: pulumi.Output<string>;
     public readonly apiKey!: pulumi.Output<string | undefined>;
     public readonly azureRegion!: pulumi.Output<string>;
     public readonly clientId!: pulumi.Output<string>;
     public readonly clientSecret!: pulumi.Output<string | undefined>;
     public readonly compartmentId!: pulumi.Output<string>;
+    public readonly compartmentLists!: pulumi.Output<outputs.SystemSdnConnectorCompartmentList[] | undefined>;
     public readonly computeGeneration!: pulumi.Output<number>;
     public readonly domain!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
@@ -48,6 +50,7 @@ export class SystemSdnConnector extends pulumi.CustomResource {
     public readonly forwardingRules!: pulumi.Output<outputs.SystemSdnConnectorForwardingRule[] | undefined>;
     public readonly gcpProject!: pulumi.Output<string>;
     public readonly gcpProjectLists!: pulumi.Output<outputs.SystemSdnConnectorGcpProjectList[] | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly groupName!: pulumi.Output<string>;
     public readonly haStatus!: pulumi.Output<string>;
     public readonly ibmRegion!: pulumi.Output<string>;
@@ -60,9 +63,11 @@ export class SystemSdnConnector extends pulumi.CustomResource {
     public readonly ociCert!: pulumi.Output<string>;
     public readonly ociFingerprint!: pulumi.Output<string>;
     public readonly ociRegion!: pulumi.Output<string>;
+    public readonly ociRegionLists!: pulumi.Output<outputs.SystemSdnConnectorOciRegionList[] | undefined>;
     public readonly ociRegionType!: pulumi.Output<string>;
     public readonly password!: pulumi.Output<string>;
     public readonly privateKey!: pulumi.Output<string>;
+    public readonly proxy!: pulumi.Output<string>;
     public readonly region!: pulumi.Output<string>;
     public readonly resourceGroup!: pulumi.Output<string>;
     public readonly resourceUrl!: pulumi.Output<string>;
@@ -71,6 +76,8 @@ export class SystemSdnConnector extends pulumi.CustomResource {
     public readonly secretKey!: pulumi.Output<string | undefined>;
     public readonly secretToken!: pulumi.Output<string>;
     public readonly server!: pulumi.Output<string>;
+    public readonly serverCaCert!: pulumi.Output<string>;
+    public readonly serverCert!: pulumi.Output<string>;
     public readonly serverLists!: pulumi.Output<outputs.SystemSdnConnectorServerList[] | undefined>;
     public readonly serverPort!: pulumi.Output<number>;
     public readonly serviceAccount!: pulumi.Output<string>;
@@ -103,11 +110,13 @@ export class SystemSdnConnector extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as SystemSdnConnectorState | undefined;
             resourceInputs["accessKey"] = state ? state.accessKey : undefined;
+            resourceInputs["altResourceIp"] = state ? state.altResourceIp : undefined;
             resourceInputs["apiKey"] = state ? state.apiKey : undefined;
             resourceInputs["azureRegion"] = state ? state.azureRegion : undefined;
             resourceInputs["clientId"] = state ? state.clientId : undefined;
             resourceInputs["clientSecret"] = state ? state.clientSecret : undefined;
             resourceInputs["compartmentId"] = state ? state.compartmentId : undefined;
+            resourceInputs["compartmentLists"] = state ? state.compartmentLists : undefined;
             resourceInputs["computeGeneration"] = state ? state.computeGeneration : undefined;
             resourceInputs["domain"] = state ? state.domain : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
@@ -116,6 +125,7 @@ export class SystemSdnConnector extends pulumi.CustomResource {
             resourceInputs["forwardingRules"] = state ? state.forwardingRules : undefined;
             resourceInputs["gcpProject"] = state ? state.gcpProject : undefined;
             resourceInputs["gcpProjectLists"] = state ? state.gcpProjectLists : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["groupName"] = state ? state.groupName : undefined;
             resourceInputs["haStatus"] = state ? state.haStatus : undefined;
             resourceInputs["ibmRegion"] = state ? state.ibmRegion : undefined;
@@ -128,9 +138,11 @@ export class SystemSdnConnector extends pulumi.CustomResource {
             resourceInputs["ociCert"] = state ? state.ociCert : undefined;
             resourceInputs["ociFingerprint"] = state ? state.ociFingerprint : undefined;
             resourceInputs["ociRegion"] = state ? state.ociRegion : undefined;
+            resourceInputs["ociRegionLists"] = state ? state.ociRegionLists : undefined;
             resourceInputs["ociRegionType"] = state ? state.ociRegionType : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
             resourceInputs["privateKey"] = state ? state.privateKey : undefined;
+            resourceInputs["proxy"] = state ? state.proxy : undefined;
             resourceInputs["region"] = state ? state.region : undefined;
             resourceInputs["resourceGroup"] = state ? state.resourceGroup : undefined;
             resourceInputs["resourceUrl"] = state ? state.resourceUrl : undefined;
@@ -139,6 +151,8 @@ export class SystemSdnConnector extends pulumi.CustomResource {
             resourceInputs["secretKey"] = state ? state.secretKey : undefined;
             resourceInputs["secretToken"] = state ? state.secretToken : undefined;
             resourceInputs["server"] = state ? state.server : undefined;
+            resourceInputs["serverCaCert"] = state ? state.serverCaCert : undefined;
+            resourceInputs["serverCert"] = state ? state.serverCert : undefined;
             resourceInputs["serverLists"] = state ? state.serverLists : undefined;
             resourceInputs["serverPort"] = state ? state.serverPort : undefined;
             resourceInputs["serviceAccount"] = state ? state.serviceAccount : undefined;
@@ -165,11 +179,13 @@ export class SystemSdnConnector extends pulumi.CustomResource {
                 throw new Error("Missing required property 'type'");
             }
             resourceInputs["accessKey"] = args?.accessKey ? pulumi.secret(args.accessKey) : undefined;
+            resourceInputs["altResourceIp"] = args ? args.altResourceIp : undefined;
             resourceInputs["apiKey"] = args?.apiKey ? pulumi.secret(args.apiKey) : undefined;
             resourceInputs["azureRegion"] = args ? args.azureRegion : undefined;
             resourceInputs["clientId"] = args ? args.clientId : undefined;
             resourceInputs["clientSecret"] = args?.clientSecret ? pulumi.secret(args.clientSecret) : undefined;
             resourceInputs["compartmentId"] = args ? args.compartmentId : undefined;
+            resourceInputs["compartmentLists"] = args ? args.compartmentLists : undefined;
             resourceInputs["computeGeneration"] = args ? args.computeGeneration : undefined;
             resourceInputs["domain"] = args ? args.domain : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
@@ -178,6 +194,7 @@ export class SystemSdnConnector extends pulumi.CustomResource {
             resourceInputs["forwardingRules"] = args ? args.forwardingRules : undefined;
             resourceInputs["gcpProject"] = args ? args.gcpProject : undefined;
             resourceInputs["gcpProjectLists"] = args ? args.gcpProjectLists : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["groupName"] = args ? args.groupName : undefined;
             resourceInputs["haStatus"] = args ? args.haStatus : undefined;
             resourceInputs["ibmRegion"] = args ? args.ibmRegion : undefined;
@@ -190,9 +207,11 @@ export class SystemSdnConnector extends pulumi.CustomResource {
             resourceInputs["ociCert"] = args ? args.ociCert : undefined;
             resourceInputs["ociFingerprint"] = args ? args.ociFingerprint : undefined;
             resourceInputs["ociRegion"] = args ? args.ociRegion : undefined;
+            resourceInputs["ociRegionLists"] = args ? args.ociRegionLists : undefined;
             resourceInputs["ociRegionType"] = args ? args.ociRegionType : undefined;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
             resourceInputs["privateKey"] = args?.privateKey ? pulumi.secret(args.privateKey) : undefined;
+            resourceInputs["proxy"] = args ? args.proxy : undefined;
             resourceInputs["region"] = args ? args.region : undefined;
             resourceInputs["resourceGroup"] = args ? args.resourceGroup : undefined;
             resourceInputs["resourceUrl"] = args ? args.resourceUrl : undefined;
@@ -201,6 +220,8 @@ export class SystemSdnConnector extends pulumi.CustomResource {
             resourceInputs["secretKey"] = args?.secretKey ? pulumi.secret(args.secretKey) : undefined;
             resourceInputs["secretToken"] = args?.secretToken ? pulumi.secret(args.secretToken) : undefined;
             resourceInputs["server"] = args ? args.server : undefined;
+            resourceInputs["serverCaCert"] = args ? args.serverCaCert : undefined;
+            resourceInputs["serverCert"] = args ? args.serverCert : undefined;
             resourceInputs["serverLists"] = args ? args.serverLists : undefined;
             resourceInputs["serverPort"] = args ? args.serverPort : undefined;
             resourceInputs["serviceAccount"] = args ? args.serviceAccount : undefined;
@@ -231,11 +252,13 @@ export class SystemSdnConnector extends pulumi.CustomResource {
  */
 export interface SystemSdnConnectorState {
     accessKey?: pulumi.Input<string>;
+    altResourceIp?: pulumi.Input<string>;
     apiKey?: pulumi.Input<string>;
     azureRegion?: pulumi.Input<string>;
     clientId?: pulumi.Input<string>;
     clientSecret?: pulumi.Input<string>;
     compartmentId?: pulumi.Input<string>;
+    compartmentLists?: pulumi.Input<pulumi.Input<inputs.SystemSdnConnectorCompartmentList>[]>;
     computeGeneration?: pulumi.Input<number>;
     domain?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
@@ -244,6 +267,7 @@ export interface SystemSdnConnectorState {
     forwardingRules?: pulumi.Input<pulumi.Input<inputs.SystemSdnConnectorForwardingRule>[]>;
     gcpProject?: pulumi.Input<string>;
     gcpProjectLists?: pulumi.Input<pulumi.Input<inputs.SystemSdnConnectorGcpProjectList>[]>;
+    getAllTables?: pulumi.Input<string>;
     groupName?: pulumi.Input<string>;
     haStatus?: pulumi.Input<string>;
     ibmRegion?: pulumi.Input<string>;
@@ -256,9 +280,11 @@ export interface SystemSdnConnectorState {
     ociCert?: pulumi.Input<string>;
     ociFingerprint?: pulumi.Input<string>;
     ociRegion?: pulumi.Input<string>;
+    ociRegionLists?: pulumi.Input<pulumi.Input<inputs.SystemSdnConnectorOciRegionList>[]>;
     ociRegionType?: pulumi.Input<string>;
     password?: pulumi.Input<string>;
     privateKey?: pulumi.Input<string>;
+    proxy?: pulumi.Input<string>;
     region?: pulumi.Input<string>;
     resourceGroup?: pulumi.Input<string>;
     resourceUrl?: pulumi.Input<string>;
@@ -267,6 +293,8 @@ export interface SystemSdnConnectorState {
     secretKey?: pulumi.Input<string>;
     secretToken?: pulumi.Input<string>;
     server?: pulumi.Input<string>;
+    serverCaCert?: pulumi.Input<string>;
+    serverCert?: pulumi.Input<string>;
     serverLists?: pulumi.Input<pulumi.Input<inputs.SystemSdnConnectorServerList>[]>;
     serverPort?: pulumi.Input<number>;
     serviceAccount?: pulumi.Input<string>;
@@ -291,11 +319,13 @@ export interface SystemSdnConnectorState {
  */
 export interface SystemSdnConnectorArgs {
     accessKey?: pulumi.Input<string>;
+    altResourceIp?: pulumi.Input<string>;
     apiKey?: pulumi.Input<string>;
     azureRegion?: pulumi.Input<string>;
     clientId?: pulumi.Input<string>;
     clientSecret?: pulumi.Input<string>;
     compartmentId?: pulumi.Input<string>;
+    compartmentLists?: pulumi.Input<pulumi.Input<inputs.SystemSdnConnectorCompartmentList>[]>;
     computeGeneration?: pulumi.Input<number>;
     domain?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
@@ -304,6 +334,7 @@ export interface SystemSdnConnectorArgs {
     forwardingRules?: pulumi.Input<pulumi.Input<inputs.SystemSdnConnectorForwardingRule>[]>;
     gcpProject?: pulumi.Input<string>;
     gcpProjectLists?: pulumi.Input<pulumi.Input<inputs.SystemSdnConnectorGcpProjectList>[]>;
+    getAllTables?: pulumi.Input<string>;
     groupName?: pulumi.Input<string>;
     haStatus?: pulumi.Input<string>;
     ibmRegion?: pulumi.Input<string>;
@@ -316,9 +347,11 @@ export interface SystemSdnConnectorArgs {
     ociCert?: pulumi.Input<string>;
     ociFingerprint?: pulumi.Input<string>;
     ociRegion?: pulumi.Input<string>;
+    ociRegionLists?: pulumi.Input<pulumi.Input<inputs.SystemSdnConnectorOciRegionList>[]>;
     ociRegionType?: pulumi.Input<string>;
     password?: pulumi.Input<string>;
     privateKey?: pulumi.Input<string>;
+    proxy?: pulumi.Input<string>;
     region?: pulumi.Input<string>;
     resourceGroup?: pulumi.Input<string>;
     resourceUrl?: pulumi.Input<string>;
@@ -327,6 +360,8 @@ export interface SystemSdnConnectorArgs {
     secretKey?: pulumi.Input<string>;
     secretToken?: pulumi.Input<string>;
     server?: pulumi.Input<string>;
+    serverCaCert?: pulumi.Input<string>;
+    serverCert?: pulumi.Input<string>;
     serverLists?: pulumi.Input<pulumi.Input<inputs.SystemSdnConnectorServerList>[]>;
     serverPort?: pulumi.Input<number>;
     serviceAccount?: pulumi.Input<string>;

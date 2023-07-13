@@ -120,14 +120,14 @@ def get_firewall_schedule_recurring(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getFirewallScheduleRecurring:GetFirewallScheduleRecurring', __args__, opts=opts, typ=GetFirewallScheduleRecurringResult).value
 
     return AwaitableGetFirewallScheduleRecurringResult(
-        color=__ret__.color,
-        day=__ret__.day,
-        end=__ret__.end,
-        fabric_object=__ret__.fabric_object,
-        id=__ret__.id,
-        name=__ret__.name,
-        start=__ret__.start,
-        vdomparam=__ret__.vdomparam)
+        color=pulumi.get(__ret__, 'color'),
+        day=pulumi.get(__ret__, 'day'),
+        end=pulumi.get(__ret__, 'end'),
+        fabric_object=pulumi.get(__ret__, 'fabric_object'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        start=pulumi.get(__ret__, 'start'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_firewall_schedule_recurring)

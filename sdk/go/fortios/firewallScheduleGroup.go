@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -17,6 +18,7 @@ type FirewallScheduleGroup struct {
 	Color               pulumi.IntOutput                       `pulumi:"color"`
 	DynamicSortSubtable pulumi.StringPtrOutput                 `pulumi:"dynamicSortSubtable"`
 	FabricObject        pulumi.StringOutput                    `pulumi:"fabricObject"`
+	GetAllTables        pulumi.StringPtrOutput                 `pulumi:"getAllTables"`
 	Members             FirewallScheduleGroupMemberArrayOutput `pulumi:"members"`
 	Name                pulumi.StringOutput                    `pulumi:"name"`
 	Vdomparam           pulumi.StringPtrOutput                 `pulumi:"vdomparam"`
@@ -32,7 +34,7 @@ func NewFirewallScheduleGroup(ctx *pulumi.Context,
 	if args.Members == nil {
 		return nil, errors.New("invalid value for required argument 'Members'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallScheduleGroup
 	err := ctx.RegisterResource("fortios:index/firewallScheduleGroup:FirewallScheduleGroup", name, args, &resource, opts...)
 	if err != nil {
@@ -58,6 +60,7 @@ type firewallScheduleGroupState struct {
 	Color               *int                          `pulumi:"color"`
 	DynamicSortSubtable *string                       `pulumi:"dynamicSortSubtable"`
 	FabricObject        *string                       `pulumi:"fabricObject"`
+	GetAllTables        *string                       `pulumi:"getAllTables"`
 	Members             []FirewallScheduleGroupMember `pulumi:"members"`
 	Name                *string                       `pulumi:"name"`
 	Vdomparam           *string                       `pulumi:"vdomparam"`
@@ -67,6 +70,7 @@ type FirewallScheduleGroupState struct {
 	Color               pulumi.IntPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	FabricObject        pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Members             FirewallScheduleGroupMemberArrayInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
@@ -80,6 +84,7 @@ type firewallScheduleGroupArgs struct {
 	Color               *int                          `pulumi:"color"`
 	DynamicSortSubtable *string                       `pulumi:"dynamicSortSubtable"`
 	FabricObject        *string                       `pulumi:"fabricObject"`
+	GetAllTables        *string                       `pulumi:"getAllTables"`
 	Members             []FirewallScheduleGroupMember `pulumi:"members"`
 	Name                *string                       `pulumi:"name"`
 	Vdomparam           *string                       `pulumi:"vdomparam"`
@@ -90,6 +95,7 @@ type FirewallScheduleGroupArgs struct {
 	Color               pulumi.IntPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	FabricObject        pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Members             FirewallScheduleGroupMemberArrayInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
@@ -192,6 +198,10 @@ func (o FirewallScheduleGroupOutput) DynamicSortSubtable() pulumi.StringPtrOutpu
 
 func (o FirewallScheduleGroupOutput) FabricObject() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallScheduleGroup) pulumi.StringOutput { return v.FabricObject }).(pulumi.StringOutput)
+}
+
+func (o FirewallScheduleGroupOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallScheduleGroup) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallScheduleGroupOutput) Members() FirewallScheduleGroupMemberArrayOutput {

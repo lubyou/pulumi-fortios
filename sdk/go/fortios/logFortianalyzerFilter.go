@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -21,6 +22,7 @@ type LogFortianalyzerFilter struct {
 	FilterType           pulumi.StringOutput                        `pulumi:"filterType"`
 	ForwardTraffic       pulumi.StringOutput                        `pulumi:"forwardTraffic"`
 	FreeStyles           LogFortianalyzerFilterFreeStyleArrayOutput `pulumi:"freeStyles"`
+	GetAllTables         pulumi.StringPtrOutput                     `pulumi:"getAllTables"`
 	Gtp                  pulumi.StringOutput                        `pulumi:"gtp"`
 	LocalTraffic         pulumi.StringOutput                        `pulumi:"localTraffic"`
 	MulticastTraffic     pulumi.StringOutput                        `pulumi:"multicastTraffic"`
@@ -41,7 +43,7 @@ func NewLogFortianalyzerFilter(ctx *pulumi.Context,
 		args = &LogFortianalyzerFilterArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource LogFortianalyzerFilter
 	err := ctx.RegisterResource("fortios:index/logFortianalyzerFilter:LogFortianalyzerFilter", name, args, &resource, opts...)
 	if err != nil {
@@ -72,6 +74,7 @@ type logFortianalyzerFilterState struct {
 	FilterType           *string                           `pulumi:"filterType"`
 	ForwardTraffic       *string                           `pulumi:"forwardTraffic"`
 	FreeStyles           []LogFortianalyzerFilterFreeStyle `pulumi:"freeStyles"`
+	GetAllTables         *string                           `pulumi:"getAllTables"`
 	Gtp                  *string                           `pulumi:"gtp"`
 	LocalTraffic         *string                           `pulumi:"localTraffic"`
 	MulticastTraffic     *string                           `pulumi:"multicastTraffic"`
@@ -94,6 +97,7 @@ type LogFortianalyzerFilterState struct {
 	FilterType           pulumi.StringPtrInput
 	ForwardTraffic       pulumi.StringPtrInput
 	FreeStyles           LogFortianalyzerFilterFreeStyleArrayInput
+	GetAllTables         pulumi.StringPtrInput
 	Gtp                  pulumi.StringPtrInput
 	LocalTraffic         pulumi.StringPtrInput
 	MulticastTraffic     pulumi.StringPtrInput
@@ -120,6 +124,7 @@ type logFortianalyzerFilterArgs struct {
 	FilterType           *string                           `pulumi:"filterType"`
 	ForwardTraffic       *string                           `pulumi:"forwardTraffic"`
 	FreeStyles           []LogFortianalyzerFilterFreeStyle `pulumi:"freeStyles"`
+	GetAllTables         *string                           `pulumi:"getAllTables"`
 	Gtp                  *string                           `pulumi:"gtp"`
 	LocalTraffic         *string                           `pulumi:"localTraffic"`
 	MulticastTraffic     *string                           `pulumi:"multicastTraffic"`
@@ -143,6 +148,7 @@ type LogFortianalyzerFilterArgs struct {
 	FilterType           pulumi.StringPtrInput
 	ForwardTraffic       pulumi.StringPtrInput
 	FreeStyles           LogFortianalyzerFilterFreeStyleArrayInput
+	GetAllTables         pulumi.StringPtrInput
 	Gtp                  pulumi.StringPtrInput
 	LocalTraffic         pulumi.StringPtrInput
 	MulticastTraffic     pulumi.StringPtrInput
@@ -273,6 +279,10 @@ func (o LogFortianalyzerFilterOutput) ForwardTraffic() pulumi.StringOutput {
 
 func (o LogFortianalyzerFilterOutput) FreeStyles() LogFortianalyzerFilterFreeStyleArrayOutput {
 	return o.ApplyT(func(v *LogFortianalyzerFilter) LogFortianalyzerFilterFreeStyleArrayOutput { return v.FreeStyles }).(LogFortianalyzerFilterFreeStyleArrayOutput)
+}
+
+func (o LogFortianalyzerFilterOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogFortianalyzerFilter) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o LogFortianalyzerFilterOutput) Gtp() pulumi.StringOutput {

@@ -18,6 +18,7 @@ class UserQuarantineArgs:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  firewall_groups: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  quarantine: Optional[pulumi.Input[str]] = None,
                  targets: Optional[pulumi.Input[Sequence[pulumi.Input['UserQuarantineTargetArgs']]]] = None,
                  traffic_policy: Optional[pulumi.Input[str]] = None,
@@ -29,6 +30,8 @@ class UserQuarantineArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if firewall_groups is not None:
             pulumi.set(__self__, "firewall_groups", firewall_groups)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if quarantine is not None:
             pulumi.set(__self__, "quarantine", quarantine)
         if targets is not None:
@@ -55,6 +58,15 @@ class UserQuarantineArgs:
     @firewall_groups.setter
     def firewall_groups(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "firewall_groups", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -98,6 +110,7 @@ class _UserQuarantineState:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  firewall_groups: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  quarantine: Optional[pulumi.Input[str]] = None,
                  targets: Optional[pulumi.Input[Sequence[pulumi.Input['UserQuarantineTargetArgs']]]] = None,
                  traffic_policy: Optional[pulumi.Input[str]] = None,
@@ -109,6 +122,8 @@ class _UserQuarantineState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if firewall_groups is not None:
             pulumi.set(__self__, "firewall_groups", firewall_groups)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if quarantine is not None:
             pulumi.set(__self__, "quarantine", quarantine)
         if targets is not None:
@@ -135,6 +150,15 @@ class _UserQuarantineState:
     @firewall_groups.setter
     def firewall_groups(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "firewall_groups", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -180,6 +204,7 @@ class UserQuarantine(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  firewall_groups: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  quarantine: Optional[pulumi.Input[str]] = None,
                  targets: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserQuarantineTargetArgs']]]]] = None,
                  traffic_policy: Optional[pulumi.Input[str]] = None,
@@ -215,6 +240,7 @@ class UserQuarantine(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  firewall_groups: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  quarantine: Optional[pulumi.Input[str]] = None,
                  targets: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserQuarantineTargetArgs']]]]] = None,
                  traffic_policy: Optional[pulumi.Input[str]] = None,
@@ -230,6 +256,7 @@ class UserQuarantine(pulumi.CustomResource):
 
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["firewall_groups"] = firewall_groups
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["quarantine"] = quarantine
             __props__.__dict__["targets"] = targets
             __props__.__dict__["traffic_policy"] = traffic_policy
@@ -246,6 +273,7 @@ class UserQuarantine(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             firewall_groups: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             quarantine: Optional[pulumi.Input[str]] = None,
             targets: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserQuarantineTargetArgs']]]]] = None,
             traffic_policy: Optional[pulumi.Input[str]] = None,
@@ -264,6 +292,7 @@ class UserQuarantine(pulumi.CustomResource):
 
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["firewall_groups"] = firewall_groups
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["quarantine"] = quarantine
         __props__.__dict__["targets"] = targets
         __props__.__dict__["traffic_policy"] = traffic_policy
@@ -279,6 +308,11 @@ class UserQuarantine(pulumi.CustomResource):
     @pulumi.getter(name="firewallGroups")
     def firewall_groups(self) -> pulumi.Output[str]:
         return pulumi.get(self, "firewall_groups")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

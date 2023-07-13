@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemIpipTunnel(ctx *pulumi.Context, args *LookupSystemIpipTunnelArgs, opts ...pulumi.InvokeOption) (*LookupSystemIpipTunnelResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemIpipTunnelResult
 	err := ctx.Invoke("fortios:index/getSystemIpipTunnel:GetSystemIpipTunnel", args, &rv, opts...)
 	if err != nil {

@@ -20,6 +20,7 @@ class IpsRuleArgs:
                  application: Optional[pulumi.Input[str]] = None,
                  date: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group: Optional[pulumi.Input[str]] = None,
                  location: Optional[pulumi.Input[str]] = None,
                  log: Optional[pulumi.Input[str]] = None,
@@ -44,6 +45,8 @@ class IpsRuleArgs:
             pulumi.set(__self__, "date", date)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if group is not None:
             pulumi.set(__self__, "group", group)
         if location is not None:
@@ -106,6 +109,15 @@ class IpsRuleArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -232,6 +244,7 @@ class _IpsRuleState:
                  application: Optional[pulumi.Input[str]] = None,
                  date: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group: Optional[pulumi.Input[str]] = None,
                  location: Optional[pulumi.Input[str]] = None,
                  log: Optional[pulumi.Input[str]] = None,
@@ -256,6 +269,8 @@ class _IpsRuleState:
             pulumi.set(__self__, "date", date)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if group is not None:
             pulumi.set(__self__, "group", group)
         if location is not None:
@@ -318,6 +333,15 @@ class _IpsRuleState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -446,6 +470,7 @@ class IpsRule(pulumi.CustomResource):
                  application: Optional[pulumi.Input[str]] = None,
                  date: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group: Optional[pulumi.Input[str]] = None,
                  location: Optional[pulumi.Input[str]] = None,
                  log: Optional[pulumi.Input[str]] = None,
@@ -492,6 +517,7 @@ class IpsRule(pulumi.CustomResource):
                  application: Optional[pulumi.Input[str]] = None,
                  date: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group: Optional[pulumi.Input[str]] = None,
                  location: Optional[pulumi.Input[str]] = None,
                  log: Optional[pulumi.Input[str]] = None,
@@ -518,6 +544,7 @@ class IpsRule(pulumi.CustomResource):
             __props__.__dict__["application"] = application
             __props__.__dict__["date"] = date
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["group"] = group
             __props__.__dict__["location"] = location
             __props__.__dict__["log"] = log
@@ -545,6 +572,7 @@ class IpsRule(pulumi.CustomResource):
             application: Optional[pulumi.Input[str]] = None,
             date: Optional[pulumi.Input[int]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             group: Optional[pulumi.Input[str]] = None,
             location: Optional[pulumi.Input[str]] = None,
             log: Optional[pulumi.Input[str]] = None,
@@ -574,6 +602,7 @@ class IpsRule(pulumi.CustomResource):
         __props__.__dict__["application"] = application
         __props__.__dict__["date"] = date
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["group"] = group
         __props__.__dict__["location"] = location
         __props__.__dict__["log"] = log
@@ -608,6 +637,11 @@ class IpsRule(pulumi.CustomResource):
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

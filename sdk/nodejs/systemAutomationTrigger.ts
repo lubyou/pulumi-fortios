@@ -43,6 +43,7 @@ export class SystemAutomationTrigger extends pulumi.CustomResource {
     public readonly fazEventSeverity!: pulumi.Output<string | undefined>;
     public readonly fazEventTags!: pulumi.Output<string | undefined>;
     public readonly fields!: pulumi.Output<outputs.SystemAutomationTriggerField[] | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly iocLevel!: pulumi.Output<string>;
     public readonly licenseType!: pulumi.Output<string>;
     public readonly logid!: pulumi.Output<number>;
@@ -82,6 +83,7 @@ export class SystemAutomationTrigger extends pulumi.CustomResource {
             resourceInputs["fazEventSeverity"] = state ? state.fazEventSeverity : undefined;
             resourceInputs["fazEventTags"] = state ? state.fazEventTags : undefined;
             resourceInputs["fields"] = state ? state.fields : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["iocLevel"] = state ? state.iocLevel : undefined;
             resourceInputs["licenseType"] = state ? state.licenseType : undefined;
             resourceInputs["logid"] = state ? state.logid : undefined;
@@ -109,6 +111,7 @@ export class SystemAutomationTrigger extends pulumi.CustomResource {
             resourceInputs["fazEventSeverity"] = args ? args.fazEventSeverity : undefined;
             resourceInputs["fazEventTags"] = args ? args.fazEventTags : undefined;
             resourceInputs["fields"] = args ? args.fields : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["iocLevel"] = args ? args.iocLevel : undefined;
             resourceInputs["licenseType"] = args ? args.licenseType : undefined;
             resourceInputs["logid"] = args ? args.logid : undefined;
@@ -144,6 +147,7 @@ export interface SystemAutomationTriggerState {
     fazEventSeverity?: pulumi.Input<string>;
     fazEventTags?: pulumi.Input<string>;
     fields?: pulumi.Input<pulumi.Input<inputs.SystemAutomationTriggerField>[]>;
+    getAllTables?: pulumi.Input<string>;
     iocLevel?: pulumi.Input<string>;
     licenseType?: pulumi.Input<string>;
     logid?: pulumi.Input<number>;
@@ -175,6 +179,7 @@ export interface SystemAutomationTriggerArgs {
     fazEventSeverity?: pulumi.Input<string>;
     fazEventTags?: pulumi.Input<string>;
     fields?: pulumi.Input<pulumi.Input<inputs.SystemAutomationTriggerField>[]>;
+    getAllTables?: pulumi.Input<string>;
     iocLevel?: pulumi.Input<string>;
     licenseType?: pulumi.Input<string>;
     logid?: pulumi.Input<number>;

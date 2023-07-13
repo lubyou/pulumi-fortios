@@ -38,6 +38,7 @@ export class SwitchControllerVlan extends pulumi.CustomResource {
     public readonly color!: pulumi.Output<number>;
     public readonly comments!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly portalMessageOverrideGroup!: pulumi.Output<string>;
     public readonly portalMessageOverrides!: pulumi.Output<outputs.SwitchControllerVlanPortalMessageOverrides>;
@@ -66,6 +67,7 @@ export class SwitchControllerVlan extends pulumi.CustomResource {
             resourceInputs["color"] = state ? state.color : undefined;
             resourceInputs["comments"] = state ? state.comments : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["portalMessageOverrideGroup"] = state ? state.portalMessageOverrideGroup : undefined;
             resourceInputs["portalMessageOverrides"] = state ? state.portalMessageOverrides : undefined;
@@ -82,6 +84,7 @@ export class SwitchControllerVlan extends pulumi.CustomResource {
             resourceInputs["color"] = args ? args.color : undefined;
             resourceInputs["comments"] = args ? args.comments : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["portalMessageOverrideGroup"] = args ? args.portalMessageOverrideGroup : undefined;
             resourceInputs["portalMessageOverrides"] = args ? args.portalMessageOverrides : undefined;
@@ -106,6 +109,7 @@ export interface SwitchControllerVlanState {
     color?: pulumi.Input<number>;
     comments?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     portalMessageOverrideGroup?: pulumi.Input<string>;
     portalMessageOverrides?: pulumi.Input<inputs.SwitchControllerVlanPortalMessageOverrides>;
@@ -126,6 +130,7 @@ export interface SwitchControllerVlanArgs {
     color?: pulumi.Input<number>;
     comments?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     portalMessageOverrideGroup?: pulumi.Input<string>;
     portalMessageOverrides?: pulumi.Input<inputs.SwitchControllerVlanPortalMessageOverrides>;

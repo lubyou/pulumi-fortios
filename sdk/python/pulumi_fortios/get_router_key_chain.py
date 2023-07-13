@@ -85,10 +85,10 @@ def get_router_key_chain(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getRouterKeyChain:GetRouterKeyChain', __args__, opts=opts, typ=GetRouterKeyChainResult).value
 
     return AwaitableGetRouterKeyChainResult(
-        id=__ret__.id,
-        keys=__ret__.keys,
-        name=__ret__.name,
-        vdomparam=__ret__.vdomparam)
+        id=pulumi.get(__ret__, 'id'),
+        keys=pulumi.get(__ret__, 'keys'),
+        name=pulumi.get(__ret__, 'name'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_router_key_chain)

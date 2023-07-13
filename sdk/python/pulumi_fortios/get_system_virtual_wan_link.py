@@ -173,20 +173,20 @@ def get_system_virtual_wan_link(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemVirtualWanLink:GetSystemVirtualWanLink', __args__, opts=opts, typ=GetSystemVirtualWanLinkResult).value
 
     return AwaitableGetSystemVirtualWanLinkResult(
-        fail_alert_interfaces=__ret__.fail_alert_interfaces,
-        fail_detect=__ret__.fail_detect,
-        health_checks=__ret__.health_checks,
-        id=__ret__.id,
-        load_balance_mode=__ret__.load_balance_mode,
-        members=__ret__.members,
-        neighbor_hold_boot_time=__ret__.neighbor_hold_boot_time,
-        neighbor_hold_down=__ret__.neighbor_hold_down,
-        neighbor_hold_down_time=__ret__.neighbor_hold_down_time,
-        neighbors=__ret__.neighbors,
-        services=__ret__.services,
-        status=__ret__.status,
-        vdomparam=__ret__.vdomparam,
-        zones=__ret__.zones)
+        fail_alert_interfaces=pulumi.get(__ret__, 'fail_alert_interfaces'),
+        fail_detect=pulumi.get(__ret__, 'fail_detect'),
+        health_checks=pulumi.get(__ret__, 'health_checks'),
+        id=pulumi.get(__ret__, 'id'),
+        load_balance_mode=pulumi.get(__ret__, 'load_balance_mode'),
+        members=pulumi.get(__ret__, 'members'),
+        neighbor_hold_boot_time=pulumi.get(__ret__, 'neighbor_hold_boot_time'),
+        neighbor_hold_down=pulumi.get(__ret__, 'neighbor_hold_down'),
+        neighbor_hold_down_time=pulumi.get(__ret__, 'neighbor_hold_down_time'),
+        neighbors=pulumi.get(__ret__, 'neighbors'),
+        services=pulumi.get(__ret__, 'services'),
+        status=pulumi.get(__ret__, 'status'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'),
+        zones=pulumi.get(__ret__, 'zones'))
 
 
 @_utilities.lift_output_func(get_system_virtual_wan_link)

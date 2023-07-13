@@ -27,6 +27,8 @@ class SystemCentralManagementArgs:
                  fmg_source_ip: Optional[pulumi.Input[str]] = None,
                  fmg_source_ip6: Optional[pulumi.Input[str]] = None,
                  fmg_update_port: Optional[pulumi.Input[str]] = None,
+                 fortigate_cloud_sso_default_profile: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  include_default_servers: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -64,6 +66,10 @@ class SystemCentralManagementArgs:
             pulumi.set(__self__, "fmg_source_ip6", fmg_source_ip6)
         if fmg_update_port is not None:
             pulumi.set(__self__, "fmg_update_port", fmg_update_port)
+        if fortigate_cloud_sso_default_profile is not None:
+            pulumi.set(__self__, "fortigate_cloud_sso_default_profile", fortigate_cloud_sso_default_profile)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if include_default_servers is not None:
             pulumi.set(__self__, "include_default_servers", include_default_servers)
         if interface is not None:
@@ -187,6 +193,24 @@ class SystemCentralManagementArgs:
     @fmg_update_port.setter
     def fmg_update_port(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fmg_update_port", value)
+
+    @property
+    @pulumi.getter(name="fortigateCloudSsoDefaultProfile")
+    def fortigate_cloud_sso_default_profile(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "fortigate_cloud_sso_default_profile")
+
+    @fortigate_cloud_sso_default_profile.setter
+    def fortigate_cloud_sso_default_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fortigate_cloud_sso_default_profile", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="includeDefaultServers")
@@ -311,6 +335,8 @@ class _SystemCentralManagementState:
                  fmg_source_ip: Optional[pulumi.Input[str]] = None,
                  fmg_source_ip6: Optional[pulumi.Input[str]] = None,
                  fmg_update_port: Optional[pulumi.Input[str]] = None,
+                 fortigate_cloud_sso_default_profile: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  include_default_servers: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -348,6 +374,10 @@ class _SystemCentralManagementState:
             pulumi.set(__self__, "fmg_source_ip6", fmg_source_ip6)
         if fmg_update_port is not None:
             pulumi.set(__self__, "fmg_update_port", fmg_update_port)
+        if fortigate_cloud_sso_default_profile is not None:
+            pulumi.set(__self__, "fortigate_cloud_sso_default_profile", fortigate_cloud_sso_default_profile)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if include_default_servers is not None:
             pulumi.set(__self__, "include_default_servers", include_default_servers)
         if interface is not None:
@@ -471,6 +501,24 @@ class _SystemCentralManagementState:
     @fmg_update_port.setter
     def fmg_update_port(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fmg_update_port", value)
+
+    @property
+    @pulumi.getter(name="fortigateCloudSsoDefaultProfile")
+    def fortigate_cloud_sso_default_profile(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "fortigate_cloud_sso_default_profile")
+
+    @fortigate_cloud_sso_default_profile.setter
+    def fortigate_cloud_sso_default_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fortigate_cloud_sso_default_profile", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="includeDefaultServers")
@@ -597,6 +645,8 @@ class SystemCentralManagement(pulumi.CustomResource):
                  fmg_source_ip: Optional[pulumi.Input[str]] = None,
                  fmg_source_ip6: Optional[pulumi.Input[str]] = None,
                  fmg_update_port: Optional[pulumi.Input[str]] = None,
+                 fortigate_cloud_sso_default_profile: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  include_default_servers: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -649,6 +699,8 @@ class SystemCentralManagement(pulumi.CustomResource):
                  fmg_source_ip: Optional[pulumi.Input[str]] = None,
                  fmg_source_ip6: Optional[pulumi.Input[str]] = None,
                  fmg_update_port: Optional[pulumi.Input[str]] = None,
+                 fortigate_cloud_sso_default_profile: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  include_default_servers: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -681,6 +733,8 @@ class SystemCentralManagement(pulumi.CustomResource):
             __props__.__dict__["fmg_source_ip"] = fmg_source_ip
             __props__.__dict__["fmg_source_ip6"] = fmg_source_ip6
             __props__.__dict__["fmg_update_port"] = fmg_update_port
+            __props__.__dict__["fortigate_cloud_sso_default_profile"] = fortigate_cloud_sso_default_profile
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["include_default_servers"] = include_default_servers
             __props__.__dict__["interface"] = interface
             __props__.__dict__["interface_select_method"] = interface_select_method
@@ -714,6 +768,8 @@ class SystemCentralManagement(pulumi.CustomResource):
             fmg_source_ip: Optional[pulumi.Input[str]] = None,
             fmg_source_ip6: Optional[pulumi.Input[str]] = None,
             fmg_update_port: Optional[pulumi.Input[str]] = None,
+            fortigate_cloud_sso_default_profile: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             include_default_servers: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -749,6 +805,8 @@ class SystemCentralManagement(pulumi.CustomResource):
         __props__.__dict__["fmg_source_ip"] = fmg_source_ip
         __props__.__dict__["fmg_source_ip6"] = fmg_source_ip6
         __props__.__dict__["fmg_update_port"] = fmg_update_port
+        __props__.__dict__["fortigate_cloud_sso_default_profile"] = fortigate_cloud_sso_default_profile
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["include_default_servers"] = include_default_servers
         __props__.__dict__["interface"] = interface
         __props__.__dict__["interface_select_method"] = interface_select_method
@@ -817,6 +875,16 @@ class SystemCentralManagement(pulumi.CustomResource):
     @pulumi.getter(name="fmgUpdatePort")
     def fmg_update_port(self) -> pulumi.Output[str]:
         return pulumi.get(self, "fmg_update_port")
+
+    @property
+    @pulumi.getter(name="fortigateCloudSsoDefaultProfile")
+    def fortigate_cloud_sso_default_profile(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "fortigate_cloud_sso_default_profile")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="includeDefaultServers")

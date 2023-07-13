@@ -22,7 +22,7 @@ class GetFirewallProxyAddressResult:
     """
     A collection of values returned by GetFirewallProxyAddress.
     """
-    def __init__(__self__, applications=None, case_sensitivity=None, categories=None, color=None, comment=None, header=None, header_groups=None, header_name=None, host=None, host_regex=None, id=None, method=None, name=None, path=None, query=None, referrer=None, taggings=None, type=None, ua=None, uuid=None, vdomparam=None, visibility=None):
+    def __init__(__self__, applications=None, case_sensitivity=None, categories=None, color=None, comment=None, header=None, header_groups=None, header_name=None, host=None, host_regex=None, id=None, method=None, name=None, path=None, query=None, referrer=None, taggings=None, type=None, ua=None, ua_max_ver=None, ua_min_ver=None, uuid=None, vdomparam=None, visibility=None):
         if applications and not isinstance(applications, list):
             raise TypeError("Expected argument 'applications' to be a list")
         pulumi.set(__self__, "applications", applications)
@@ -80,6 +80,12 @@ class GetFirewallProxyAddressResult:
         if ua and not isinstance(ua, str):
             raise TypeError("Expected argument 'ua' to be a str")
         pulumi.set(__self__, "ua", ua)
+        if ua_max_ver and not isinstance(ua_max_ver, str):
+            raise TypeError("Expected argument 'ua_max_ver' to be a str")
+        pulumi.set(__self__, "ua_max_ver", ua_max_ver)
+        if ua_min_ver and not isinstance(ua_min_ver, str):
+            raise TypeError("Expected argument 'ua_min_ver' to be a str")
+        pulumi.set(__self__, "ua_min_ver", ua_min_ver)
         if uuid and not isinstance(uuid, str):
             raise TypeError("Expected argument 'uuid' to be a str")
         pulumi.set(__self__, "uuid", uuid)
@@ -189,6 +195,16 @@ class GetFirewallProxyAddressResult:
         return pulumi.get(self, "ua")
 
     @property
+    @pulumi.getter(name="uaMaxVer")
+    def ua_max_ver(self) -> str:
+        return pulumi.get(self, "ua_max_ver")
+
+    @property
+    @pulumi.getter(name="uaMinVer")
+    def ua_min_ver(self) -> str:
+        return pulumi.get(self, "ua_min_ver")
+
+    @property
     @pulumi.getter
     def uuid(self) -> str:
         return pulumi.get(self, "uuid")
@@ -229,6 +245,8 @@ class AwaitableGetFirewallProxyAddressResult(GetFirewallProxyAddressResult):
             taggings=self.taggings,
             type=self.type,
             ua=self.ua,
+            ua_max_ver=self.ua_max_ver,
+            ua_min_ver=self.ua_min_ver,
             uuid=self.uuid,
             vdomparam=self.vdomparam,
             visibility=self.visibility)
@@ -247,28 +265,30 @@ def get_firewall_proxy_address(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getFirewallProxyAddress:GetFirewallProxyAddress', __args__, opts=opts, typ=GetFirewallProxyAddressResult).value
 
     return AwaitableGetFirewallProxyAddressResult(
-        applications=__ret__.applications,
-        case_sensitivity=__ret__.case_sensitivity,
-        categories=__ret__.categories,
-        color=__ret__.color,
-        comment=__ret__.comment,
-        header=__ret__.header,
-        header_groups=__ret__.header_groups,
-        header_name=__ret__.header_name,
-        host=__ret__.host,
-        host_regex=__ret__.host_regex,
-        id=__ret__.id,
-        method=__ret__.method,
-        name=__ret__.name,
-        path=__ret__.path,
-        query=__ret__.query,
-        referrer=__ret__.referrer,
-        taggings=__ret__.taggings,
-        type=__ret__.type,
-        ua=__ret__.ua,
-        uuid=__ret__.uuid,
-        vdomparam=__ret__.vdomparam,
-        visibility=__ret__.visibility)
+        applications=pulumi.get(__ret__, 'applications'),
+        case_sensitivity=pulumi.get(__ret__, 'case_sensitivity'),
+        categories=pulumi.get(__ret__, 'categories'),
+        color=pulumi.get(__ret__, 'color'),
+        comment=pulumi.get(__ret__, 'comment'),
+        header=pulumi.get(__ret__, 'header'),
+        header_groups=pulumi.get(__ret__, 'header_groups'),
+        header_name=pulumi.get(__ret__, 'header_name'),
+        host=pulumi.get(__ret__, 'host'),
+        host_regex=pulumi.get(__ret__, 'host_regex'),
+        id=pulumi.get(__ret__, 'id'),
+        method=pulumi.get(__ret__, 'method'),
+        name=pulumi.get(__ret__, 'name'),
+        path=pulumi.get(__ret__, 'path'),
+        query=pulumi.get(__ret__, 'query'),
+        referrer=pulumi.get(__ret__, 'referrer'),
+        taggings=pulumi.get(__ret__, 'taggings'),
+        type=pulumi.get(__ret__, 'type'),
+        ua=pulumi.get(__ret__, 'ua'),
+        ua_max_ver=pulumi.get(__ret__, 'ua_max_ver'),
+        ua_min_ver=pulumi.get(__ret__, 'ua_min_ver'),
+        uuid=pulumi.get(__ret__, 'uuid'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'),
+        visibility=pulumi.get(__ret__, 'visibility'))
 
 
 @_utilities.lift_output_func(get_firewall_proxy_address)

@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -59,7 +60,7 @@ func NewFirewallSslSetting(ctx *pulumi.Context,
 	if args.SslSendEmptyFrags == nil {
 		return nil, errors.New("invalid value for required argument 'SslSendEmptyFrags'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallSslSetting
 	err := ctx.RegisterResource("fortios:index/firewallSslSetting:FirewallSslSetting", name, args, &resource, opts...)
 	if err != nil {

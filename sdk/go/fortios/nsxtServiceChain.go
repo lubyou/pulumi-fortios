@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,6 +16,7 @@ type NsxtServiceChain struct {
 
 	DynamicSortSubtable pulumi.StringPtrOutput                  `pulumi:"dynamicSortSubtable"`
 	Fosid               pulumi.IntOutput                        `pulumi:"fosid"`
+	GetAllTables        pulumi.StringPtrOutput                  `pulumi:"getAllTables"`
 	Name                pulumi.StringOutput                     `pulumi:"name"`
 	ServiceIndices      NsxtServiceChainServiceIndexArrayOutput `pulumi:"serviceIndices"`
 	Vdomparam           pulumi.StringPtrOutput                  `pulumi:"vdomparam"`
@@ -27,7 +29,7 @@ func NewNsxtServiceChain(ctx *pulumi.Context,
 		args = &NsxtServiceChainArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource NsxtServiceChain
 	err := ctx.RegisterResource("fortios:index/nsxtServiceChain:NsxtServiceChain", name, args, &resource, opts...)
 	if err != nil {
@@ -52,6 +54,7 @@ func GetNsxtServiceChain(ctx *pulumi.Context,
 type nsxtServiceChainState struct {
 	DynamicSortSubtable *string                        `pulumi:"dynamicSortSubtable"`
 	Fosid               *int                           `pulumi:"fosid"`
+	GetAllTables        *string                        `pulumi:"getAllTables"`
 	Name                *string                        `pulumi:"name"`
 	ServiceIndices      []NsxtServiceChainServiceIndex `pulumi:"serviceIndices"`
 	Vdomparam           *string                        `pulumi:"vdomparam"`
@@ -60,6 +63,7 @@ type nsxtServiceChainState struct {
 type NsxtServiceChainState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	Fosid               pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	ServiceIndices      NsxtServiceChainServiceIndexArrayInput
 	Vdomparam           pulumi.StringPtrInput
@@ -72,6 +76,7 @@ func (NsxtServiceChainState) ElementType() reflect.Type {
 type nsxtServiceChainArgs struct {
 	DynamicSortSubtable *string                        `pulumi:"dynamicSortSubtable"`
 	Fosid               *int                           `pulumi:"fosid"`
+	GetAllTables        *string                        `pulumi:"getAllTables"`
 	Name                *string                        `pulumi:"name"`
 	ServiceIndices      []NsxtServiceChainServiceIndex `pulumi:"serviceIndices"`
 	Vdomparam           *string                        `pulumi:"vdomparam"`
@@ -81,6 +86,7 @@ type nsxtServiceChainArgs struct {
 type NsxtServiceChainArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	Fosid               pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	ServiceIndices      NsxtServiceChainServiceIndexArrayInput
 	Vdomparam           pulumi.StringPtrInput
@@ -179,6 +185,10 @@ func (o NsxtServiceChainOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 
 func (o NsxtServiceChainOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *NsxtServiceChain) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o NsxtServiceChainOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *NsxtServiceChain) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o NsxtServiceChainOutput) Name() pulumi.StringOutput {

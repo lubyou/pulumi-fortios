@@ -36,6 +36,7 @@ export interface GetSystemCentralManagementResult {
     readonly fmgSourceIp: string;
     readonly fmgSourceIp6: string;
     readonly fmgUpdatePort: string;
+    readonly fortigateCloudSsoDefaultProfile: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */

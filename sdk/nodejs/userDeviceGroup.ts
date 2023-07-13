@@ -36,6 +36,7 @@ export class UserDeviceGroup extends pulumi.CustomResource {
 
     public readonly comment!: pulumi.Output<string | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly members!: pulumi.Output<outputs.UserDeviceGroupMember[] | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly taggings!: pulumi.Output<outputs.UserDeviceGroupTagging[] | undefined>;
@@ -56,6 +57,7 @@ export class UserDeviceGroup extends pulumi.CustomResource {
             const state = argsOrState as UserDeviceGroupState | undefined;
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["members"] = state ? state.members : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["taggings"] = state ? state.taggings : undefined;
@@ -64,6 +66,7 @@ export class UserDeviceGroup extends pulumi.CustomResource {
             const args = argsOrState as UserDeviceGroupArgs | undefined;
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["members"] = args ? args.members : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["taggings"] = args ? args.taggings : undefined;
@@ -80,6 +83,7 @@ export class UserDeviceGroup extends pulumi.CustomResource {
 export interface UserDeviceGroupState {
     comment?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     members?: pulumi.Input<pulumi.Input<inputs.UserDeviceGroupMember>[]>;
     name?: pulumi.Input<string>;
     taggings?: pulumi.Input<pulumi.Input<inputs.UserDeviceGroupTagging>[]>;
@@ -92,6 +96,7 @@ export interface UserDeviceGroupState {
 export interface UserDeviceGroupArgs {
     comment?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     members?: pulumi.Input<pulumi.Input<inputs.UserDeviceGroupMember>[]>;
     name?: pulumi.Input<string>;
     taggings?: pulumi.Input<pulumi.Input<inputs.UserDeviceGroupTagging>[]>;

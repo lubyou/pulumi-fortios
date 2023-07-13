@@ -47,6 +47,7 @@ export class LogDiskFilter extends pulumi.CustomResource {
     public readonly filterType!: pulumi.Output<string>;
     public readonly forwardTraffic!: pulumi.Output<string>;
     public readonly freeStyles!: pulumi.Output<outputs.LogDiskFilterFreeStyle[] | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly gtp!: pulumi.Output<string>;
     public readonly ha!: pulumi.Output<string>;
     public readonly ipsec!: pulumi.Output<string>;
@@ -98,6 +99,7 @@ export class LogDiskFilter extends pulumi.CustomResource {
             resourceInputs["filterType"] = state ? state.filterType : undefined;
             resourceInputs["forwardTraffic"] = state ? state.forwardTraffic : undefined;
             resourceInputs["freeStyles"] = state ? state.freeStyles : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["gtp"] = state ? state.gtp : undefined;
             resourceInputs["ha"] = state ? state.ha : undefined;
             resourceInputs["ipsec"] = state ? state.ipsec : undefined;
@@ -137,6 +139,7 @@ export class LogDiskFilter extends pulumi.CustomResource {
             resourceInputs["filterType"] = args ? args.filterType : undefined;
             resourceInputs["forwardTraffic"] = args ? args.forwardTraffic : undefined;
             resourceInputs["freeStyles"] = args ? args.freeStyles : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["gtp"] = args ? args.gtp : undefined;
             resourceInputs["ha"] = args ? args.ha : undefined;
             resourceInputs["ipsec"] = args ? args.ipsec : undefined;
@@ -184,6 +187,7 @@ export interface LogDiskFilterState {
     filterType?: pulumi.Input<string>;
     forwardTraffic?: pulumi.Input<string>;
     freeStyles?: pulumi.Input<pulumi.Input<inputs.LogDiskFilterFreeStyle>[]>;
+    getAllTables?: pulumi.Input<string>;
     gtp?: pulumi.Input<string>;
     ha?: pulumi.Input<string>;
     ipsec?: pulumi.Input<string>;
@@ -227,6 +231,7 @@ export interface LogDiskFilterArgs {
     filterType?: pulumi.Input<string>;
     forwardTraffic?: pulumi.Input<string>;
     freeStyles?: pulumi.Input<pulumi.Input<inputs.LogDiskFilterFreeStyle>[]>;
+    getAllTables?: pulumi.Input<string>;
     gtp?: pulumi.Input<string>;
     ha?: pulumi.Input<string>;
     ipsec?: pulumi.Input<string>;

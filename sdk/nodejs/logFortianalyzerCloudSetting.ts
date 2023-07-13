@@ -40,6 +40,7 @@ export class LogFortianalyzerCloudSetting extends pulumi.CustomResource {
     public readonly connTimeout!: pulumi.Output<number>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly encAlgorithm!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly hmacAlgorithm!: pulumi.Output<string>;
     public readonly interface!: pulumi.Output<string>;
     public readonly interfaceSelectMethod!: pulumi.Output<string>;
@@ -78,6 +79,7 @@ export class LogFortianalyzerCloudSetting extends pulumi.CustomResource {
             resourceInputs["connTimeout"] = state ? state.connTimeout : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["encAlgorithm"] = state ? state.encAlgorithm : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["hmacAlgorithm"] = state ? state.hmacAlgorithm : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
             resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
@@ -104,6 +106,7 @@ export class LogFortianalyzerCloudSetting extends pulumi.CustomResource {
             resourceInputs["connTimeout"] = args ? args.connTimeout : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["encAlgorithm"] = args ? args.encAlgorithm : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["hmacAlgorithm"] = args ? args.hmacAlgorithm : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
@@ -138,6 +141,7 @@ export interface LogFortianalyzerCloudSettingState {
     connTimeout?: pulumi.Input<number>;
     dynamicSortSubtable?: pulumi.Input<string>;
     encAlgorithm?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     hmacAlgorithm?: pulumi.Input<string>;
     interface?: pulumi.Input<string>;
     interfaceSelectMethod?: pulumi.Input<string>;
@@ -168,6 +172,7 @@ export interface LogFortianalyzerCloudSettingArgs {
     connTimeout?: pulumi.Input<number>;
     dynamicSortSubtable?: pulumi.Input<string>;
     encAlgorithm?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     hmacAlgorithm?: pulumi.Input<string>;
     interface?: pulumi.Input<string>;
     interfaceSelectMethod?: pulumi.Input<string>;

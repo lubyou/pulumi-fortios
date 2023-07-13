@@ -7,42 +7,48 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type WebProxyExplicit struct {
 	pulumi.CustomResourceState
 
-	DynamicSortSubtable     pulumi.StringPtrOutput               `pulumi:"dynamicSortSubtable"`
-	FtpIncomingPort         pulumi.StringOutput                  `pulumi:"ftpIncomingPort"`
-	FtpOverHttp             pulumi.StringOutput                  `pulumi:"ftpOverHttp"`
-	HttpIncomingPort        pulumi.StringOutput                  `pulumi:"httpIncomingPort"`
-	HttpsIncomingPort       pulumi.StringOutput                  `pulumi:"httpsIncomingPort"`
-	HttpsReplacementMessage pulumi.StringOutput                  `pulumi:"httpsReplacementMessage"`
-	IncomingIp              pulumi.StringOutput                  `pulumi:"incomingIp"`
-	IncomingIp6             pulumi.StringOutput                  `pulumi:"incomingIp6"`
-	Ipv6Status              pulumi.StringOutput                  `pulumi:"ipv6Status"`
-	MessageUponServerError  pulumi.StringOutput                  `pulumi:"messageUponServerError"`
-	OutgoingIp              pulumi.StringOutput                  `pulumi:"outgoingIp"`
-	OutgoingIp6             pulumi.StringOutput                  `pulumi:"outgoingIp6"`
-	PacFileData             pulumi.StringOutput                  `pulumi:"pacFileData"`
-	PacFileName             pulumi.StringOutput                  `pulumi:"pacFileName"`
-	PacFileServerPort       pulumi.StringOutput                  `pulumi:"pacFileServerPort"`
-	PacFileServerStatus     pulumi.StringOutput                  `pulumi:"pacFileServerStatus"`
-	PacFileThroughHttps     pulumi.StringOutput                  `pulumi:"pacFileThroughHttps"`
-	PacFileUrl              pulumi.StringOutput                  `pulumi:"pacFileUrl"`
-	PacPolicies             WebProxyExplicitPacPolicyArrayOutput `pulumi:"pacPolicies"`
-	PrefDnsResult           pulumi.StringOutput                  `pulumi:"prefDnsResult"`
-	Realm                   pulumi.StringOutput                  `pulumi:"realm"`
-	SecDefaultAction        pulumi.StringOutput                  `pulumi:"secDefaultAction"`
-	Socks                   pulumi.StringOutput                  `pulumi:"socks"`
-	SocksIncomingPort       pulumi.StringOutput                  `pulumi:"socksIncomingPort"`
-	SslAlgorithm            pulumi.StringOutput                  `pulumi:"sslAlgorithm"`
-	Status                  pulumi.StringOutput                  `pulumi:"status"`
-	StrictGuest             pulumi.StringOutput                  `pulumi:"strictGuest"`
-	TraceAuthNoRsp          pulumi.StringOutput                  `pulumi:"traceAuthNoRsp"`
-	UnknownHttpVersion      pulumi.StringOutput                  `pulumi:"unknownHttpVersion"`
-	Vdomparam               pulumi.StringPtrOutput               `pulumi:"vdomparam"`
+	DynamicSortSubtable     pulumi.StringPtrOutput                        `pulumi:"dynamicSortSubtable"`
+	FtpIncomingPort         pulumi.StringOutput                           `pulumi:"ftpIncomingPort"`
+	FtpOverHttp             pulumi.StringOutput                           `pulumi:"ftpOverHttp"`
+	GetAllTables            pulumi.StringPtrOutput                        `pulumi:"getAllTables"`
+	HttpConnectionMode      pulumi.StringOutput                           `pulumi:"httpConnectionMode"`
+	HttpIncomingPort        pulumi.StringOutput                           `pulumi:"httpIncomingPort"`
+	HttpsIncomingPort       pulumi.StringOutput                           `pulumi:"httpsIncomingPort"`
+	HttpsReplacementMessage pulumi.StringOutput                           `pulumi:"httpsReplacementMessage"`
+	IncomingIp              pulumi.StringOutput                           `pulumi:"incomingIp"`
+	IncomingIp6             pulumi.StringOutput                           `pulumi:"incomingIp6"`
+	Ipv6Status              pulumi.StringOutput                           `pulumi:"ipv6Status"`
+	MessageUponServerError  pulumi.StringOutput                           `pulumi:"messageUponServerError"`
+	OutgoingIp              pulumi.StringOutput                           `pulumi:"outgoingIp"`
+	OutgoingIp6             pulumi.StringOutput                           `pulumi:"outgoingIp6"`
+	PacFileData             pulumi.StringOutput                           `pulumi:"pacFileData"`
+	PacFileName             pulumi.StringOutput                           `pulumi:"pacFileName"`
+	PacFileServerPort       pulumi.StringOutput                           `pulumi:"pacFileServerPort"`
+	PacFileServerStatus     pulumi.StringOutput                           `pulumi:"pacFileServerStatus"`
+	PacFileThroughHttps     pulumi.StringOutput                           `pulumi:"pacFileThroughHttps"`
+	PacFileUrl              pulumi.StringOutput                           `pulumi:"pacFileUrl"`
+	PacPolicies             WebProxyExplicitPacPolicyArrayOutput          `pulumi:"pacPolicies"`
+	PrefDnsResult           pulumi.StringOutput                           `pulumi:"prefDnsResult"`
+	Realm                   pulumi.StringOutput                           `pulumi:"realm"`
+	SecDefaultAction        pulumi.StringOutput                           `pulumi:"secDefaultAction"`
+	SecureWebProxy          pulumi.StringOutput                           `pulumi:"secureWebProxy"`
+	SecureWebProxyCerts     WebProxyExplicitSecureWebProxyCertArrayOutput `pulumi:"secureWebProxyCerts"`
+	Socks                   pulumi.StringOutput                           `pulumi:"socks"`
+	SocksIncomingPort       pulumi.StringOutput                           `pulumi:"socksIncomingPort"`
+	SslAlgorithm            pulumi.StringOutput                           `pulumi:"sslAlgorithm"`
+	SslDhBits               pulumi.StringOutput                           `pulumi:"sslDhBits"`
+	Status                  pulumi.StringOutput                           `pulumi:"status"`
+	StrictGuest             pulumi.StringOutput                           `pulumi:"strictGuest"`
+	TraceAuthNoRsp          pulumi.StringOutput                           `pulumi:"traceAuthNoRsp"`
+	UnknownHttpVersion      pulumi.StringOutput                           `pulumi:"unknownHttpVersion"`
+	Vdomparam               pulumi.StringPtrOutput                        `pulumi:"vdomparam"`
 }
 
 // NewWebProxyExplicit registers a new resource with the given unique name, arguments, and options.
@@ -52,7 +58,7 @@ func NewWebProxyExplicit(ctx *pulumi.Context,
 		args = &WebProxyExplicitArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WebProxyExplicit
 	err := ctx.RegisterResource("fortios:index/webProxyExplicit:WebProxyExplicit", name, args, &resource, opts...)
 	if err != nil {
@@ -75,42 +81,49 @@ func GetWebProxyExplicit(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WebProxyExplicit resources.
 type webProxyExplicitState struct {
-	DynamicSortSubtable     *string                     `pulumi:"dynamicSortSubtable"`
-	FtpIncomingPort         *string                     `pulumi:"ftpIncomingPort"`
-	FtpOverHttp             *string                     `pulumi:"ftpOverHttp"`
-	HttpIncomingPort        *string                     `pulumi:"httpIncomingPort"`
-	HttpsIncomingPort       *string                     `pulumi:"httpsIncomingPort"`
-	HttpsReplacementMessage *string                     `pulumi:"httpsReplacementMessage"`
-	IncomingIp              *string                     `pulumi:"incomingIp"`
-	IncomingIp6             *string                     `pulumi:"incomingIp6"`
-	Ipv6Status              *string                     `pulumi:"ipv6Status"`
-	MessageUponServerError  *string                     `pulumi:"messageUponServerError"`
-	OutgoingIp              *string                     `pulumi:"outgoingIp"`
-	OutgoingIp6             *string                     `pulumi:"outgoingIp6"`
-	PacFileData             *string                     `pulumi:"pacFileData"`
-	PacFileName             *string                     `pulumi:"pacFileName"`
-	PacFileServerPort       *string                     `pulumi:"pacFileServerPort"`
-	PacFileServerStatus     *string                     `pulumi:"pacFileServerStatus"`
-	PacFileThroughHttps     *string                     `pulumi:"pacFileThroughHttps"`
-	PacFileUrl              *string                     `pulumi:"pacFileUrl"`
-	PacPolicies             []WebProxyExplicitPacPolicy `pulumi:"pacPolicies"`
-	PrefDnsResult           *string                     `pulumi:"prefDnsResult"`
-	Realm                   *string                     `pulumi:"realm"`
-	SecDefaultAction        *string                     `pulumi:"secDefaultAction"`
-	Socks                   *string                     `pulumi:"socks"`
-	SocksIncomingPort       *string                     `pulumi:"socksIncomingPort"`
-	SslAlgorithm            *string                     `pulumi:"sslAlgorithm"`
-	Status                  *string                     `pulumi:"status"`
-	StrictGuest             *string                     `pulumi:"strictGuest"`
-	TraceAuthNoRsp          *string                     `pulumi:"traceAuthNoRsp"`
-	UnknownHttpVersion      *string                     `pulumi:"unknownHttpVersion"`
-	Vdomparam               *string                     `pulumi:"vdomparam"`
+	DynamicSortSubtable     *string                              `pulumi:"dynamicSortSubtable"`
+	FtpIncomingPort         *string                              `pulumi:"ftpIncomingPort"`
+	FtpOverHttp             *string                              `pulumi:"ftpOverHttp"`
+	GetAllTables            *string                              `pulumi:"getAllTables"`
+	HttpConnectionMode      *string                              `pulumi:"httpConnectionMode"`
+	HttpIncomingPort        *string                              `pulumi:"httpIncomingPort"`
+	HttpsIncomingPort       *string                              `pulumi:"httpsIncomingPort"`
+	HttpsReplacementMessage *string                              `pulumi:"httpsReplacementMessage"`
+	IncomingIp              *string                              `pulumi:"incomingIp"`
+	IncomingIp6             *string                              `pulumi:"incomingIp6"`
+	Ipv6Status              *string                              `pulumi:"ipv6Status"`
+	MessageUponServerError  *string                              `pulumi:"messageUponServerError"`
+	OutgoingIp              *string                              `pulumi:"outgoingIp"`
+	OutgoingIp6             *string                              `pulumi:"outgoingIp6"`
+	PacFileData             *string                              `pulumi:"pacFileData"`
+	PacFileName             *string                              `pulumi:"pacFileName"`
+	PacFileServerPort       *string                              `pulumi:"pacFileServerPort"`
+	PacFileServerStatus     *string                              `pulumi:"pacFileServerStatus"`
+	PacFileThroughHttps     *string                              `pulumi:"pacFileThroughHttps"`
+	PacFileUrl              *string                              `pulumi:"pacFileUrl"`
+	PacPolicies             []WebProxyExplicitPacPolicy          `pulumi:"pacPolicies"`
+	PrefDnsResult           *string                              `pulumi:"prefDnsResult"`
+	Realm                   *string                              `pulumi:"realm"`
+	SecDefaultAction        *string                              `pulumi:"secDefaultAction"`
+	SecureWebProxy          *string                              `pulumi:"secureWebProxy"`
+	SecureWebProxyCerts     []WebProxyExplicitSecureWebProxyCert `pulumi:"secureWebProxyCerts"`
+	Socks                   *string                              `pulumi:"socks"`
+	SocksIncomingPort       *string                              `pulumi:"socksIncomingPort"`
+	SslAlgorithm            *string                              `pulumi:"sslAlgorithm"`
+	SslDhBits               *string                              `pulumi:"sslDhBits"`
+	Status                  *string                              `pulumi:"status"`
+	StrictGuest             *string                              `pulumi:"strictGuest"`
+	TraceAuthNoRsp          *string                              `pulumi:"traceAuthNoRsp"`
+	UnknownHttpVersion      *string                              `pulumi:"unknownHttpVersion"`
+	Vdomparam               *string                              `pulumi:"vdomparam"`
 }
 
 type WebProxyExplicitState struct {
 	DynamicSortSubtable     pulumi.StringPtrInput
 	FtpIncomingPort         pulumi.StringPtrInput
 	FtpOverHttp             pulumi.StringPtrInput
+	GetAllTables            pulumi.StringPtrInput
+	HttpConnectionMode      pulumi.StringPtrInput
 	HttpIncomingPort        pulumi.StringPtrInput
 	HttpsIncomingPort       pulumi.StringPtrInput
 	HttpsReplacementMessage pulumi.StringPtrInput
@@ -130,9 +143,12 @@ type WebProxyExplicitState struct {
 	PrefDnsResult           pulumi.StringPtrInput
 	Realm                   pulumi.StringPtrInput
 	SecDefaultAction        pulumi.StringPtrInput
+	SecureWebProxy          pulumi.StringPtrInput
+	SecureWebProxyCerts     WebProxyExplicitSecureWebProxyCertArrayInput
 	Socks                   pulumi.StringPtrInput
 	SocksIncomingPort       pulumi.StringPtrInput
 	SslAlgorithm            pulumi.StringPtrInput
+	SslDhBits               pulumi.StringPtrInput
 	Status                  pulumi.StringPtrInput
 	StrictGuest             pulumi.StringPtrInput
 	TraceAuthNoRsp          pulumi.StringPtrInput
@@ -145,36 +161,41 @@ func (WebProxyExplicitState) ElementType() reflect.Type {
 }
 
 type webProxyExplicitArgs struct {
-	DynamicSortSubtable     *string                     `pulumi:"dynamicSortSubtable"`
-	FtpIncomingPort         *string                     `pulumi:"ftpIncomingPort"`
-	FtpOverHttp             *string                     `pulumi:"ftpOverHttp"`
-	HttpIncomingPort        *string                     `pulumi:"httpIncomingPort"`
-	HttpsIncomingPort       *string                     `pulumi:"httpsIncomingPort"`
-	HttpsReplacementMessage *string                     `pulumi:"httpsReplacementMessage"`
-	IncomingIp              *string                     `pulumi:"incomingIp"`
-	IncomingIp6             *string                     `pulumi:"incomingIp6"`
-	Ipv6Status              *string                     `pulumi:"ipv6Status"`
-	MessageUponServerError  *string                     `pulumi:"messageUponServerError"`
-	OutgoingIp              *string                     `pulumi:"outgoingIp"`
-	OutgoingIp6             *string                     `pulumi:"outgoingIp6"`
-	PacFileData             *string                     `pulumi:"pacFileData"`
-	PacFileName             *string                     `pulumi:"pacFileName"`
-	PacFileServerPort       *string                     `pulumi:"pacFileServerPort"`
-	PacFileServerStatus     *string                     `pulumi:"pacFileServerStatus"`
-	PacFileThroughHttps     *string                     `pulumi:"pacFileThroughHttps"`
-	PacFileUrl              *string                     `pulumi:"pacFileUrl"`
-	PacPolicies             []WebProxyExplicitPacPolicy `pulumi:"pacPolicies"`
-	PrefDnsResult           *string                     `pulumi:"prefDnsResult"`
-	Realm                   *string                     `pulumi:"realm"`
-	SecDefaultAction        *string                     `pulumi:"secDefaultAction"`
-	Socks                   *string                     `pulumi:"socks"`
-	SocksIncomingPort       *string                     `pulumi:"socksIncomingPort"`
-	SslAlgorithm            *string                     `pulumi:"sslAlgorithm"`
-	Status                  *string                     `pulumi:"status"`
-	StrictGuest             *string                     `pulumi:"strictGuest"`
-	TraceAuthNoRsp          *string                     `pulumi:"traceAuthNoRsp"`
-	UnknownHttpVersion      *string                     `pulumi:"unknownHttpVersion"`
-	Vdomparam               *string                     `pulumi:"vdomparam"`
+	DynamicSortSubtable     *string                              `pulumi:"dynamicSortSubtable"`
+	FtpIncomingPort         *string                              `pulumi:"ftpIncomingPort"`
+	FtpOverHttp             *string                              `pulumi:"ftpOverHttp"`
+	GetAllTables            *string                              `pulumi:"getAllTables"`
+	HttpConnectionMode      *string                              `pulumi:"httpConnectionMode"`
+	HttpIncomingPort        *string                              `pulumi:"httpIncomingPort"`
+	HttpsIncomingPort       *string                              `pulumi:"httpsIncomingPort"`
+	HttpsReplacementMessage *string                              `pulumi:"httpsReplacementMessage"`
+	IncomingIp              *string                              `pulumi:"incomingIp"`
+	IncomingIp6             *string                              `pulumi:"incomingIp6"`
+	Ipv6Status              *string                              `pulumi:"ipv6Status"`
+	MessageUponServerError  *string                              `pulumi:"messageUponServerError"`
+	OutgoingIp              *string                              `pulumi:"outgoingIp"`
+	OutgoingIp6             *string                              `pulumi:"outgoingIp6"`
+	PacFileData             *string                              `pulumi:"pacFileData"`
+	PacFileName             *string                              `pulumi:"pacFileName"`
+	PacFileServerPort       *string                              `pulumi:"pacFileServerPort"`
+	PacFileServerStatus     *string                              `pulumi:"pacFileServerStatus"`
+	PacFileThroughHttps     *string                              `pulumi:"pacFileThroughHttps"`
+	PacFileUrl              *string                              `pulumi:"pacFileUrl"`
+	PacPolicies             []WebProxyExplicitPacPolicy          `pulumi:"pacPolicies"`
+	PrefDnsResult           *string                              `pulumi:"prefDnsResult"`
+	Realm                   *string                              `pulumi:"realm"`
+	SecDefaultAction        *string                              `pulumi:"secDefaultAction"`
+	SecureWebProxy          *string                              `pulumi:"secureWebProxy"`
+	SecureWebProxyCerts     []WebProxyExplicitSecureWebProxyCert `pulumi:"secureWebProxyCerts"`
+	Socks                   *string                              `pulumi:"socks"`
+	SocksIncomingPort       *string                              `pulumi:"socksIncomingPort"`
+	SslAlgorithm            *string                              `pulumi:"sslAlgorithm"`
+	SslDhBits               *string                              `pulumi:"sslDhBits"`
+	Status                  *string                              `pulumi:"status"`
+	StrictGuest             *string                              `pulumi:"strictGuest"`
+	TraceAuthNoRsp          *string                              `pulumi:"traceAuthNoRsp"`
+	UnknownHttpVersion      *string                              `pulumi:"unknownHttpVersion"`
+	Vdomparam               *string                              `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WebProxyExplicit resource.
@@ -182,6 +203,8 @@ type WebProxyExplicitArgs struct {
 	DynamicSortSubtable     pulumi.StringPtrInput
 	FtpIncomingPort         pulumi.StringPtrInput
 	FtpOverHttp             pulumi.StringPtrInput
+	GetAllTables            pulumi.StringPtrInput
+	HttpConnectionMode      pulumi.StringPtrInput
 	HttpIncomingPort        pulumi.StringPtrInput
 	HttpsIncomingPort       pulumi.StringPtrInput
 	HttpsReplacementMessage pulumi.StringPtrInput
@@ -201,9 +224,12 @@ type WebProxyExplicitArgs struct {
 	PrefDnsResult           pulumi.StringPtrInput
 	Realm                   pulumi.StringPtrInput
 	SecDefaultAction        pulumi.StringPtrInput
+	SecureWebProxy          pulumi.StringPtrInput
+	SecureWebProxyCerts     WebProxyExplicitSecureWebProxyCertArrayInput
 	Socks                   pulumi.StringPtrInput
 	SocksIncomingPort       pulumi.StringPtrInput
 	SslAlgorithm            pulumi.StringPtrInput
+	SslDhBits               pulumi.StringPtrInput
 	Status                  pulumi.StringPtrInput
 	StrictGuest             pulumi.StringPtrInput
 	TraceAuthNoRsp          pulumi.StringPtrInput
@@ -310,6 +336,14 @@ func (o WebProxyExplicitOutput) FtpOverHttp() pulumi.StringOutput {
 	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringOutput { return v.FtpOverHttp }).(pulumi.StringOutput)
 }
 
+func (o WebProxyExplicitOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
+func (o WebProxyExplicitOutput) HttpConnectionMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringOutput { return v.HttpConnectionMode }).(pulumi.StringOutput)
+}
+
 func (o WebProxyExplicitOutput) HttpIncomingPort() pulumi.StringOutput {
 	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringOutput { return v.HttpIncomingPort }).(pulumi.StringOutput)
 }
@@ -386,6 +420,14 @@ func (o WebProxyExplicitOutput) SecDefaultAction() pulumi.StringOutput {
 	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringOutput { return v.SecDefaultAction }).(pulumi.StringOutput)
 }
 
+func (o WebProxyExplicitOutput) SecureWebProxy() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringOutput { return v.SecureWebProxy }).(pulumi.StringOutput)
+}
+
+func (o WebProxyExplicitOutput) SecureWebProxyCerts() WebProxyExplicitSecureWebProxyCertArrayOutput {
+	return o.ApplyT(func(v *WebProxyExplicit) WebProxyExplicitSecureWebProxyCertArrayOutput { return v.SecureWebProxyCerts }).(WebProxyExplicitSecureWebProxyCertArrayOutput)
+}
+
 func (o WebProxyExplicitOutput) Socks() pulumi.StringOutput {
 	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringOutput { return v.Socks }).(pulumi.StringOutput)
 }
@@ -396,6 +438,10 @@ func (o WebProxyExplicitOutput) SocksIncomingPort() pulumi.StringOutput {
 
 func (o WebProxyExplicitOutput) SslAlgorithm() pulumi.StringOutput {
 	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringOutput { return v.SslAlgorithm }).(pulumi.StringOutput)
+}
+
+func (o WebProxyExplicitOutput) SslDhBits() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyExplicit) pulumi.StringOutput { return v.SslDhBits }).(pulumi.StringOutput)
 }
 
 func (o WebProxyExplicitOutput) Status() pulumi.StringOutput {

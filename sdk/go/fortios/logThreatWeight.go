@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,6 +20,7 @@ type LogThreatWeight struct {
 	DynamicSortSubtable      pulumi.StringPtrOutput                `pulumi:"dynamicSortSubtable"`
 	FailedConnection         pulumi.StringOutput                   `pulumi:"failedConnection"`
 	Geolocations             LogThreatWeightGeolocationArrayOutput `pulumi:"geolocations"`
+	GetAllTables             pulumi.StringPtrOutput                `pulumi:"getAllTables"`
 	Ips                      LogThreatWeightIpsOutput              `pulumi:"ips"`
 	Level                    LogThreatWeightLevelOutput            `pulumi:"level"`
 	Malware                  LogThreatWeightMalwareOutput          `pulumi:"malware"`
@@ -35,7 +37,7 @@ func NewLogThreatWeight(ctx *pulumi.Context,
 		args = &LogThreatWeightArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource LogThreatWeight
 	err := ctx.RegisterResource("fortios:index/logThreatWeight:LogThreatWeight", name, args, &resource, opts...)
 	if err != nil {
@@ -64,6 +66,7 @@ type logThreatWeightState struct {
 	DynamicSortSubtable      *string                      `pulumi:"dynamicSortSubtable"`
 	FailedConnection         *string                      `pulumi:"failedConnection"`
 	Geolocations             []LogThreatWeightGeolocation `pulumi:"geolocations"`
+	GetAllTables             *string                      `pulumi:"getAllTables"`
 	Ips                      *LogThreatWeightIps          `pulumi:"ips"`
 	Level                    *LogThreatWeightLevel        `pulumi:"level"`
 	Malware                  *LogThreatWeightMalware      `pulumi:"malware"`
@@ -80,6 +83,7 @@ type LogThreatWeightState struct {
 	DynamicSortSubtable      pulumi.StringPtrInput
 	FailedConnection         pulumi.StringPtrInput
 	Geolocations             LogThreatWeightGeolocationArrayInput
+	GetAllTables             pulumi.StringPtrInput
 	Ips                      LogThreatWeightIpsPtrInput
 	Level                    LogThreatWeightLevelPtrInput
 	Malware                  LogThreatWeightMalwarePtrInput
@@ -100,6 +104,7 @@ type logThreatWeightArgs struct {
 	DynamicSortSubtable      *string                      `pulumi:"dynamicSortSubtable"`
 	FailedConnection         *string                      `pulumi:"failedConnection"`
 	Geolocations             []LogThreatWeightGeolocation `pulumi:"geolocations"`
+	GetAllTables             *string                      `pulumi:"getAllTables"`
 	Ips                      *LogThreatWeightIps          `pulumi:"ips"`
 	Level                    *LogThreatWeightLevel        `pulumi:"level"`
 	Malware                  *LogThreatWeightMalware      `pulumi:"malware"`
@@ -117,6 +122,7 @@ type LogThreatWeightArgs struct {
 	DynamicSortSubtable      pulumi.StringPtrInput
 	FailedConnection         pulumi.StringPtrInput
 	Geolocations             LogThreatWeightGeolocationArrayInput
+	GetAllTables             pulumi.StringPtrInput
 	Ips                      LogThreatWeightIpsPtrInput
 	Level                    LogThreatWeightLevelPtrInput
 	Malware                  LogThreatWeightMalwarePtrInput
@@ -235,6 +241,10 @@ func (o LogThreatWeightOutput) FailedConnection() pulumi.StringOutput {
 
 func (o LogThreatWeightOutput) Geolocations() LogThreatWeightGeolocationArrayOutput {
 	return o.ApplyT(func(v *LogThreatWeight) LogThreatWeightGeolocationArrayOutput { return v.Geolocations }).(LogThreatWeightGeolocationArrayOutput)
+}
+
+func (o LogThreatWeightOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogThreatWeight) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o LogThreatWeightOutput) Ips() LogThreatWeightIpsOutput {

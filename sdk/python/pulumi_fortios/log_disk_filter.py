@@ -29,6 +29,7 @@ class LogDiskFilterArgs:
                  filter_type: Optional[pulumi.Input[str]] = None,
                  forward_traffic: Optional[pulumi.Input[str]] = None,
                  free_styles: Optional[pulumi.Input[Sequence[pulumi.Input['LogDiskFilterFreeStyleArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gtp: Optional[pulumi.Input[str]] = None,
                  ha: Optional[pulumi.Input[str]] = None,
                  ipsec: Optional[pulumi.Input[str]] = None,
@@ -82,6 +83,8 @@ class LogDiskFilterArgs:
             pulumi.set(__self__, "forward_traffic", forward_traffic)
         if free_styles is not None:
             pulumi.set(__self__, "free_styles", free_styles)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gtp is not None:
             pulumi.set(__self__, "gtp", gtp)
         if ha is not None:
@@ -247,6 +250,15 @@ class LogDiskFilterArgs:
     @free_styles.setter
     def free_styles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LogDiskFilterFreeStyleArgs']]]]):
         pulumi.set(self, "free_styles", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -481,6 +493,7 @@ class _LogDiskFilterState:
                  filter_type: Optional[pulumi.Input[str]] = None,
                  forward_traffic: Optional[pulumi.Input[str]] = None,
                  free_styles: Optional[pulumi.Input[Sequence[pulumi.Input['LogDiskFilterFreeStyleArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gtp: Optional[pulumi.Input[str]] = None,
                  ha: Optional[pulumi.Input[str]] = None,
                  ipsec: Optional[pulumi.Input[str]] = None,
@@ -534,6 +547,8 @@ class _LogDiskFilterState:
             pulumi.set(__self__, "forward_traffic", forward_traffic)
         if free_styles is not None:
             pulumi.set(__self__, "free_styles", free_styles)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gtp is not None:
             pulumi.set(__self__, "gtp", gtp)
         if ha is not None:
@@ -699,6 +714,15 @@ class _LogDiskFilterState:
     @free_styles.setter
     def free_styles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LogDiskFilterFreeStyleArgs']]]]):
         pulumi.set(self, "free_styles", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -935,6 +959,7 @@ class LogDiskFilter(pulumi.CustomResource):
                  filter_type: Optional[pulumi.Input[str]] = None,
                  forward_traffic: Optional[pulumi.Input[str]] = None,
                  free_styles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogDiskFilterFreeStyleArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gtp: Optional[pulumi.Input[str]] = None,
                  ha: Optional[pulumi.Input[str]] = None,
                  ipsec: Optional[pulumi.Input[str]] = None,
@@ -1001,6 +1026,7 @@ class LogDiskFilter(pulumi.CustomResource):
                  filter_type: Optional[pulumi.Input[str]] = None,
                  forward_traffic: Optional[pulumi.Input[str]] = None,
                  free_styles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogDiskFilterFreeStyleArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gtp: Optional[pulumi.Input[str]] = None,
                  ha: Optional[pulumi.Input[str]] = None,
                  ipsec: Optional[pulumi.Input[str]] = None,
@@ -1047,6 +1073,7 @@ class LogDiskFilter(pulumi.CustomResource):
             __props__.__dict__["filter_type"] = filter_type
             __props__.__dict__["forward_traffic"] = forward_traffic
             __props__.__dict__["free_styles"] = free_styles
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["gtp"] = gtp
             __props__.__dict__["ha"] = ha
             __props__.__dict__["ipsec"] = ipsec
@@ -1094,6 +1121,7 @@ class LogDiskFilter(pulumi.CustomResource):
             filter_type: Optional[pulumi.Input[str]] = None,
             forward_traffic: Optional[pulumi.Input[str]] = None,
             free_styles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogDiskFilterFreeStyleArgs']]]]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             gtp: Optional[pulumi.Input[str]] = None,
             ha: Optional[pulumi.Input[str]] = None,
             ipsec: Optional[pulumi.Input[str]] = None,
@@ -1143,6 +1171,7 @@ class LogDiskFilter(pulumi.CustomResource):
         __props__.__dict__["filter_type"] = filter_type
         __props__.__dict__["forward_traffic"] = forward_traffic
         __props__.__dict__["free_styles"] = free_styles
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["gtp"] = gtp
         __props__.__dict__["ha"] = ha
         __props__.__dict__["ipsec"] = ipsec
@@ -1233,6 +1262,11 @@ class LogDiskFilter(pulumi.CustomResource):
     @pulumi.getter(name="freeStyles")
     def free_styles(self) -> pulumi.Output[Optional[Sequence['outputs.LogDiskFilterFreeStyle']]]:
         return pulumi.get(self, "free_styles")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

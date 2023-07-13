@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -14,14 +15,19 @@ type FirewallShaperTrafficShaper struct {
 	pulumi.CustomResourceState
 
 	BandwidthUnit       pulumi.StringOutput    `pulumi:"bandwidthUnit"`
+	Cos                 pulumi.StringOutput    `pulumi:"cos"`
+	CosMarking          pulumi.StringOutput    `pulumi:"cosMarking"`
+	CosMarkingMethod    pulumi.StringOutput    `pulumi:"cosMarkingMethod"`
 	Diffserv            pulumi.StringOutput    `pulumi:"diffserv"`
 	Diffservcode        pulumi.StringOutput    `pulumi:"diffservcode"`
 	DscpMarkingMethod   pulumi.StringOutput    `pulumi:"dscpMarkingMethod"`
 	ExceedBandwidth     pulumi.IntOutput       `pulumi:"exceedBandwidth"`
 	ExceedClassId       pulumi.IntOutput       `pulumi:"exceedClassId"`
+	ExceedCos           pulumi.StringOutput    `pulumi:"exceedCos"`
 	ExceedDscp          pulumi.StringOutput    `pulumi:"exceedDscp"`
 	GuaranteedBandwidth pulumi.IntOutput       `pulumi:"guaranteedBandwidth"`
 	MaximumBandwidth    pulumi.IntOutput       `pulumi:"maximumBandwidth"`
+	MaximumCos          pulumi.StringOutput    `pulumi:"maximumCos"`
 	MaximumDscp         pulumi.StringOutput    `pulumi:"maximumDscp"`
 	Name                pulumi.StringOutput    `pulumi:"name"`
 	Overhead            pulumi.IntOutput       `pulumi:"overhead"`
@@ -37,7 +43,7 @@ func NewFirewallShaperTrafficShaper(ctx *pulumi.Context,
 		args = &FirewallShaperTrafficShaperArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallShaperTrafficShaper
 	err := ctx.RegisterResource("fortios:index/firewallShaperTrafficShaper:FirewallShaperTrafficShaper", name, args, &resource, opts...)
 	if err != nil {
@@ -61,14 +67,19 @@ func GetFirewallShaperTrafficShaper(ctx *pulumi.Context,
 // Input properties used for looking up and filtering FirewallShaperTrafficShaper resources.
 type firewallShaperTrafficShaperState struct {
 	BandwidthUnit       *string `pulumi:"bandwidthUnit"`
+	Cos                 *string `pulumi:"cos"`
+	CosMarking          *string `pulumi:"cosMarking"`
+	CosMarkingMethod    *string `pulumi:"cosMarkingMethod"`
 	Diffserv            *string `pulumi:"diffserv"`
 	Diffservcode        *string `pulumi:"diffservcode"`
 	DscpMarkingMethod   *string `pulumi:"dscpMarkingMethod"`
 	ExceedBandwidth     *int    `pulumi:"exceedBandwidth"`
 	ExceedClassId       *int    `pulumi:"exceedClassId"`
+	ExceedCos           *string `pulumi:"exceedCos"`
 	ExceedDscp          *string `pulumi:"exceedDscp"`
 	GuaranteedBandwidth *int    `pulumi:"guaranteedBandwidth"`
 	MaximumBandwidth    *int    `pulumi:"maximumBandwidth"`
+	MaximumCos          *string `pulumi:"maximumCos"`
 	MaximumDscp         *string `pulumi:"maximumDscp"`
 	Name                *string `pulumi:"name"`
 	Overhead            *int    `pulumi:"overhead"`
@@ -79,14 +90,19 @@ type firewallShaperTrafficShaperState struct {
 
 type FirewallShaperTrafficShaperState struct {
 	BandwidthUnit       pulumi.StringPtrInput
+	Cos                 pulumi.StringPtrInput
+	CosMarking          pulumi.StringPtrInput
+	CosMarkingMethod    pulumi.StringPtrInput
 	Diffserv            pulumi.StringPtrInput
 	Diffservcode        pulumi.StringPtrInput
 	DscpMarkingMethod   pulumi.StringPtrInput
 	ExceedBandwidth     pulumi.IntPtrInput
 	ExceedClassId       pulumi.IntPtrInput
+	ExceedCos           pulumi.StringPtrInput
 	ExceedDscp          pulumi.StringPtrInput
 	GuaranteedBandwidth pulumi.IntPtrInput
 	MaximumBandwidth    pulumi.IntPtrInput
+	MaximumCos          pulumi.StringPtrInput
 	MaximumDscp         pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Overhead            pulumi.IntPtrInput
@@ -101,14 +117,19 @@ func (FirewallShaperTrafficShaperState) ElementType() reflect.Type {
 
 type firewallShaperTrafficShaperArgs struct {
 	BandwidthUnit       *string `pulumi:"bandwidthUnit"`
+	Cos                 *string `pulumi:"cos"`
+	CosMarking          *string `pulumi:"cosMarking"`
+	CosMarkingMethod    *string `pulumi:"cosMarkingMethod"`
 	Diffserv            *string `pulumi:"diffserv"`
 	Diffservcode        *string `pulumi:"diffservcode"`
 	DscpMarkingMethod   *string `pulumi:"dscpMarkingMethod"`
 	ExceedBandwidth     *int    `pulumi:"exceedBandwidth"`
 	ExceedClassId       *int    `pulumi:"exceedClassId"`
+	ExceedCos           *string `pulumi:"exceedCos"`
 	ExceedDscp          *string `pulumi:"exceedDscp"`
 	GuaranteedBandwidth *int    `pulumi:"guaranteedBandwidth"`
 	MaximumBandwidth    *int    `pulumi:"maximumBandwidth"`
+	MaximumCos          *string `pulumi:"maximumCos"`
 	MaximumDscp         *string `pulumi:"maximumDscp"`
 	Name                *string `pulumi:"name"`
 	Overhead            *int    `pulumi:"overhead"`
@@ -120,14 +141,19 @@ type firewallShaperTrafficShaperArgs struct {
 // The set of arguments for constructing a FirewallShaperTrafficShaper resource.
 type FirewallShaperTrafficShaperArgs struct {
 	BandwidthUnit       pulumi.StringPtrInput
+	Cos                 pulumi.StringPtrInput
+	CosMarking          pulumi.StringPtrInput
+	CosMarkingMethod    pulumi.StringPtrInput
 	Diffserv            pulumi.StringPtrInput
 	Diffservcode        pulumi.StringPtrInput
 	DscpMarkingMethod   pulumi.StringPtrInput
 	ExceedBandwidth     pulumi.IntPtrInput
 	ExceedClassId       pulumi.IntPtrInput
+	ExceedCos           pulumi.StringPtrInput
 	ExceedDscp          pulumi.StringPtrInput
 	GuaranteedBandwidth pulumi.IntPtrInput
 	MaximumBandwidth    pulumi.IntPtrInput
+	MaximumCos          pulumi.StringPtrInput
 	MaximumDscp         pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Overhead            pulumi.IntPtrInput
@@ -227,6 +253,18 @@ func (o FirewallShaperTrafficShaperOutput) BandwidthUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallShaperTrafficShaper) pulumi.StringOutput { return v.BandwidthUnit }).(pulumi.StringOutput)
 }
 
+func (o FirewallShaperTrafficShaperOutput) Cos() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShaperTrafficShaper) pulumi.StringOutput { return v.Cos }).(pulumi.StringOutput)
+}
+
+func (o FirewallShaperTrafficShaperOutput) CosMarking() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShaperTrafficShaper) pulumi.StringOutput { return v.CosMarking }).(pulumi.StringOutput)
+}
+
+func (o FirewallShaperTrafficShaperOutput) CosMarkingMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShaperTrafficShaper) pulumi.StringOutput { return v.CosMarkingMethod }).(pulumi.StringOutput)
+}
+
 func (o FirewallShaperTrafficShaperOutput) Diffserv() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallShaperTrafficShaper) pulumi.StringOutput { return v.Diffserv }).(pulumi.StringOutput)
 }
@@ -247,6 +285,10 @@ func (o FirewallShaperTrafficShaperOutput) ExceedClassId() pulumi.IntOutput {
 	return o.ApplyT(func(v *FirewallShaperTrafficShaper) pulumi.IntOutput { return v.ExceedClassId }).(pulumi.IntOutput)
 }
 
+func (o FirewallShaperTrafficShaperOutput) ExceedCos() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShaperTrafficShaper) pulumi.StringOutput { return v.ExceedCos }).(pulumi.StringOutput)
+}
+
 func (o FirewallShaperTrafficShaperOutput) ExceedDscp() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallShaperTrafficShaper) pulumi.StringOutput { return v.ExceedDscp }).(pulumi.StringOutput)
 }
@@ -257,6 +299,10 @@ func (o FirewallShaperTrafficShaperOutput) GuaranteedBandwidth() pulumi.IntOutpu
 
 func (o FirewallShaperTrafficShaperOutput) MaximumBandwidth() pulumi.IntOutput {
 	return o.ApplyT(func(v *FirewallShaperTrafficShaper) pulumi.IntOutput { return v.MaximumBandwidth }).(pulumi.IntOutput)
+}
+
+func (o FirewallShaperTrafficShaperOutput) MaximumCos() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShaperTrafficShaper) pulumi.StringOutput { return v.MaximumCos }).(pulumi.StringOutput)
 }
 
 func (o FirewallShaperTrafficShaperOutput) MaximumDscp() pulumi.StringOutput {

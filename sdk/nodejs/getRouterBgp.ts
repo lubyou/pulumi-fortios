@@ -37,6 +37,7 @@ export interface GetRouterBgpResult {
     readonly aggregateAddresses: outputs.GetRouterBgpAggregateAddress[];
     readonly alwaysCompareMed: string;
     readonly as: number;
+    readonly asString: string;
     readonly bestpathAsPathIgnore: string;
     readonly bestpathCmpConfedAspath: string;
     readonly bestpathCmpRouterid: string;
@@ -46,6 +47,7 @@ export interface GetRouterBgpResult {
     readonly clusterId: string;
     readonly confederationIdentifier: number;
     readonly confederationPeers: outputs.GetRouterBgpConfederationPeer[];
+    readonly crossFamilyConditionalAdv: string;
     readonly dampening: string;
     readonly dampeningMaxSuppressTime: number;
     readonly dampeningReachabilityHalfLife: number;

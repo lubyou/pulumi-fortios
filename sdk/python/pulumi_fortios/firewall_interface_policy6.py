@@ -33,6 +33,7 @@ class FirewallInterfacePolicy6Args:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  emailfilter_profile: Optional[pulumi.Input[str]] = None,
                  emailfilter_profile_status: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
                  ips_sensor_status: Optional[pulumi.Input[str]] = None,
                  label: Optional[pulumi.Input[str]] = None,
@@ -80,6 +81,8 @@ class FirewallInterfacePolicy6Args:
             pulumi.set(__self__, "emailfilter_profile", emailfilter_profile)
         if emailfilter_profile_status is not None:
             pulumi.set(__self__, "emailfilter_profile_status", emailfilter_profile_status)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ips_sensor is not None:
             pulumi.set(__self__, "ips_sensor", ips_sensor)
         if ips_sensor_status is not None:
@@ -261,6 +264,15 @@ class FirewallInterfacePolicy6Args:
         pulumi.set(self, "emailfilter_profile_status", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="ipsSensor")
     def ips_sensor(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "ips_sensor")
@@ -396,6 +408,7 @@ class _FirewallInterfacePolicy6State:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  emailfilter_profile: Optional[pulumi.Input[str]] = None,
                  emailfilter_profile_status: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
                  ips_sensor_status: Optional[pulumi.Input[str]] = None,
@@ -444,6 +457,8 @@ class _FirewallInterfacePolicy6State:
             pulumi.set(__self__, "emailfilter_profile", emailfilter_profile)
         if emailfilter_profile_status is not None:
             pulumi.set(__self__, "emailfilter_profile_status", emailfilter_profile_status)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
         if ips_sensor is not None:
@@ -611,6 +626,15 @@ class _FirewallInterfacePolicy6State:
         pulumi.set(self, "emailfilter_profile_status", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter
     def interface(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "interface")
@@ -766,6 +790,7 @@ class FirewallInterfacePolicy6(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  emailfilter_profile: Optional[pulumi.Input[str]] = None,
                  emailfilter_profile_status: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
                  ips_sensor_status: Optional[pulumi.Input[str]] = None,
@@ -825,6 +850,7 @@ class FirewallInterfacePolicy6(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  emailfilter_profile: Optional[pulumi.Input[str]] = None,
                  emailfilter_profile_status: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
                  ips_sensor_status: Optional[pulumi.Input[str]] = None,
@@ -866,6 +892,7 @@ class FirewallInterfacePolicy6(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["emailfilter_profile"] = emailfilter_profile
             __props__.__dict__["emailfilter_profile_status"] = emailfilter_profile_status
+            __props__.__dict__["get_all_tables"] = get_all_tables
             if interface is None and not opts.urn:
                 raise TypeError("Missing required property 'interface'")
             __props__.__dict__["interface"] = interface
@@ -910,6 +937,7 @@ class FirewallInterfacePolicy6(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             emailfilter_profile: Optional[pulumi.Input[str]] = None,
             emailfilter_profile_status: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             ips_sensor: Optional[pulumi.Input[str]] = None,
             ips_sensor_status: Optional[pulumi.Input[str]] = None,
@@ -952,6 +980,7 @@ class FirewallInterfacePolicy6(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["emailfilter_profile"] = emailfilter_profile
         __props__.__dict__["emailfilter_profile_status"] = emailfilter_profile_status
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["interface"] = interface
         __props__.__dict__["ips_sensor"] = ips_sensor
         __props__.__dict__["ips_sensor_status"] = ips_sensor_status
@@ -1043,6 +1072,11 @@ class FirewallInterfacePolicy6(pulumi.CustomResource):
     @pulumi.getter(name="emailfilterProfileStatus")
     def emailfilter_profile_status(self) -> pulumi.Output[str]:
         return pulumi.get(self, "emailfilter_profile_status")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

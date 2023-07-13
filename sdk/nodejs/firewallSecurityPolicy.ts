@@ -46,6 +46,7 @@ export class FirewallSecurityPolicy extends pulumi.CustomResource {
     public readonly dlpSensor!: pulumi.Output<string>;
     public readonly dnsfilterProfile!: pulumi.Output<string>;
     public readonly dstaddr4s!: pulumi.Output<outputs.FirewallSecurityPolicyDstaddr4[] | undefined>;
+    public readonly dstaddr6Negate!: pulumi.Output<string>;
     public readonly dstaddr6s!: pulumi.Output<outputs.FirewallSecurityPolicyDstaddr6[] | undefined>;
     public readonly dstaddrNegate!: pulumi.Output<string>;
     public readonly dstaddrs!: pulumi.Output<outputs.FirewallSecurityPolicyDstaddr[] | undefined>;
@@ -55,6 +56,7 @@ export class FirewallSecurityPolicy extends pulumi.CustomResource {
     public readonly enforceDefaultAppPort!: pulumi.Output<string>;
     public readonly fileFilterProfile!: pulumi.Output<string>;
     public readonly fssoGroups!: pulumi.Output<outputs.FirewallSecurityPolicyFssoGroup[] | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly groups!: pulumi.Output<outputs.FirewallSecurityPolicyGroup[] | undefined>;
     public readonly icapProfile!: pulumi.Output<string>;
     public readonly internetService!: pulumi.Output<string>;
@@ -84,6 +86,7 @@ export class FirewallSecurityPolicy extends pulumi.CustomResource {
     public readonly internetServiceSrcNames!: pulumi.Output<outputs.FirewallSecurityPolicyInternetServiceSrcName[] | undefined>;
     public readonly internetServiceSrcNegate!: pulumi.Output<string>;
     public readonly ipsSensor!: pulumi.Output<string>;
+    public readonly ipsVoipFilter!: pulumi.Output<string>;
     public readonly learningMode!: pulumi.Output<string>;
     public readonly logtraffic!: pulumi.Output<string>;
     public readonly logtrafficStart!: pulumi.Output<string>;
@@ -100,6 +103,7 @@ export class FirewallSecurityPolicy extends pulumi.CustomResource {
     public readonly serviceNegate!: pulumi.Output<string>;
     public readonly services!: pulumi.Output<outputs.FirewallSecurityPolicyService[] | undefined>;
     public readonly srcaddr4s!: pulumi.Output<outputs.FirewallSecurityPolicySrcaddr4[] | undefined>;
+    public readonly srcaddr6Negate!: pulumi.Output<string>;
     public readonly srcaddr6s!: pulumi.Output<outputs.FirewallSecurityPolicySrcaddr6[] | undefined>;
     public readonly srcaddrNegate!: pulumi.Output<string>;
     public readonly srcaddrs!: pulumi.Output<outputs.FirewallSecurityPolicySrcaddr[] | undefined>;
@@ -108,6 +112,7 @@ export class FirewallSecurityPolicy extends pulumi.CustomResource {
     public readonly sslSshProfile!: pulumi.Output<string>;
     public readonly status!: pulumi.Output<string>;
     public readonly urlCategories!: pulumi.Output<outputs.FirewallSecurityPolicyUrlCategory[] | undefined>;
+    public readonly urlCategoryUnitary!: pulumi.Output<string>;
     public readonly users!: pulumi.Output<outputs.FirewallSecurityPolicyUser[] | undefined>;
     public readonly uuid!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -140,6 +145,7 @@ export class FirewallSecurityPolicy extends pulumi.CustomResource {
             resourceInputs["dlpSensor"] = state ? state.dlpSensor : undefined;
             resourceInputs["dnsfilterProfile"] = state ? state.dnsfilterProfile : undefined;
             resourceInputs["dstaddr4s"] = state ? state.dstaddr4s : undefined;
+            resourceInputs["dstaddr6Negate"] = state ? state.dstaddr6Negate : undefined;
             resourceInputs["dstaddr6s"] = state ? state.dstaddr6s : undefined;
             resourceInputs["dstaddrNegate"] = state ? state.dstaddrNegate : undefined;
             resourceInputs["dstaddrs"] = state ? state.dstaddrs : undefined;
@@ -149,6 +155,7 @@ export class FirewallSecurityPolicy extends pulumi.CustomResource {
             resourceInputs["enforceDefaultAppPort"] = state ? state.enforceDefaultAppPort : undefined;
             resourceInputs["fileFilterProfile"] = state ? state.fileFilterProfile : undefined;
             resourceInputs["fssoGroups"] = state ? state.fssoGroups : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["groups"] = state ? state.groups : undefined;
             resourceInputs["icapProfile"] = state ? state.icapProfile : undefined;
             resourceInputs["internetService"] = state ? state.internetService : undefined;
@@ -178,6 +185,7 @@ export class FirewallSecurityPolicy extends pulumi.CustomResource {
             resourceInputs["internetServiceSrcNames"] = state ? state.internetServiceSrcNames : undefined;
             resourceInputs["internetServiceSrcNegate"] = state ? state.internetServiceSrcNegate : undefined;
             resourceInputs["ipsSensor"] = state ? state.ipsSensor : undefined;
+            resourceInputs["ipsVoipFilter"] = state ? state.ipsVoipFilter : undefined;
             resourceInputs["learningMode"] = state ? state.learningMode : undefined;
             resourceInputs["logtraffic"] = state ? state.logtraffic : undefined;
             resourceInputs["logtrafficStart"] = state ? state.logtrafficStart : undefined;
@@ -194,6 +202,7 @@ export class FirewallSecurityPolicy extends pulumi.CustomResource {
             resourceInputs["serviceNegate"] = state ? state.serviceNegate : undefined;
             resourceInputs["services"] = state ? state.services : undefined;
             resourceInputs["srcaddr4s"] = state ? state.srcaddr4s : undefined;
+            resourceInputs["srcaddr6Negate"] = state ? state.srcaddr6Negate : undefined;
             resourceInputs["srcaddr6s"] = state ? state.srcaddr6s : undefined;
             resourceInputs["srcaddrNegate"] = state ? state.srcaddrNegate : undefined;
             resourceInputs["srcaddrs"] = state ? state.srcaddrs : undefined;
@@ -202,6 +211,7 @@ export class FirewallSecurityPolicy extends pulumi.CustomResource {
             resourceInputs["sslSshProfile"] = state ? state.sslSshProfile : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["urlCategories"] = state ? state.urlCategories : undefined;
+            resourceInputs["urlCategoryUnitary"] = state ? state.urlCategoryUnitary : undefined;
             resourceInputs["users"] = state ? state.users : undefined;
             resourceInputs["uuid"] = state ? state.uuid : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
@@ -222,6 +232,7 @@ export class FirewallSecurityPolicy extends pulumi.CustomResource {
             resourceInputs["dlpSensor"] = args ? args.dlpSensor : undefined;
             resourceInputs["dnsfilterProfile"] = args ? args.dnsfilterProfile : undefined;
             resourceInputs["dstaddr4s"] = args ? args.dstaddr4s : undefined;
+            resourceInputs["dstaddr6Negate"] = args ? args.dstaddr6Negate : undefined;
             resourceInputs["dstaddr6s"] = args ? args.dstaddr6s : undefined;
             resourceInputs["dstaddrNegate"] = args ? args.dstaddrNegate : undefined;
             resourceInputs["dstaddrs"] = args ? args.dstaddrs : undefined;
@@ -231,6 +242,7 @@ export class FirewallSecurityPolicy extends pulumi.CustomResource {
             resourceInputs["enforceDefaultAppPort"] = args ? args.enforceDefaultAppPort : undefined;
             resourceInputs["fileFilterProfile"] = args ? args.fileFilterProfile : undefined;
             resourceInputs["fssoGroups"] = args ? args.fssoGroups : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["groups"] = args ? args.groups : undefined;
             resourceInputs["icapProfile"] = args ? args.icapProfile : undefined;
             resourceInputs["internetService"] = args ? args.internetService : undefined;
@@ -260,6 +272,7 @@ export class FirewallSecurityPolicy extends pulumi.CustomResource {
             resourceInputs["internetServiceSrcNames"] = args ? args.internetServiceSrcNames : undefined;
             resourceInputs["internetServiceSrcNegate"] = args ? args.internetServiceSrcNegate : undefined;
             resourceInputs["ipsSensor"] = args ? args.ipsSensor : undefined;
+            resourceInputs["ipsVoipFilter"] = args ? args.ipsVoipFilter : undefined;
             resourceInputs["learningMode"] = args ? args.learningMode : undefined;
             resourceInputs["logtraffic"] = args ? args.logtraffic : undefined;
             resourceInputs["logtrafficStart"] = args ? args.logtrafficStart : undefined;
@@ -276,6 +289,7 @@ export class FirewallSecurityPolicy extends pulumi.CustomResource {
             resourceInputs["serviceNegate"] = args ? args.serviceNegate : undefined;
             resourceInputs["services"] = args ? args.services : undefined;
             resourceInputs["srcaddr4s"] = args ? args.srcaddr4s : undefined;
+            resourceInputs["srcaddr6Negate"] = args ? args.srcaddr6Negate : undefined;
             resourceInputs["srcaddr6s"] = args ? args.srcaddr6s : undefined;
             resourceInputs["srcaddrNegate"] = args ? args.srcaddrNegate : undefined;
             resourceInputs["srcaddrs"] = args ? args.srcaddrs : undefined;
@@ -284,6 +298,7 @@ export class FirewallSecurityPolicy extends pulumi.CustomResource {
             resourceInputs["sslSshProfile"] = args ? args.sslSshProfile : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["urlCategories"] = args ? args.urlCategories : undefined;
+            resourceInputs["urlCategoryUnitary"] = args ? args.urlCategoryUnitary : undefined;
             resourceInputs["users"] = args ? args.users : undefined;
             resourceInputs["uuid"] = args ? args.uuid : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -312,6 +327,7 @@ export interface FirewallSecurityPolicyState {
     dlpSensor?: pulumi.Input<string>;
     dnsfilterProfile?: pulumi.Input<string>;
     dstaddr4s?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyDstaddr4>[]>;
+    dstaddr6Negate?: pulumi.Input<string>;
     dstaddr6s?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyDstaddr6>[]>;
     dstaddrNegate?: pulumi.Input<string>;
     dstaddrs?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyDstaddr>[]>;
@@ -321,6 +337,7 @@ export interface FirewallSecurityPolicyState {
     enforceDefaultAppPort?: pulumi.Input<string>;
     fileFilterProfile?: pulumi.Input<string>;
     fssoGroups?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyFssoGroup>[]>;
+    getAllTables?: pulumi.Input<string>;
     groups?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyGroup>[]>;
     icapProfile?: pulumi.Input<string>;
     internetService?: pulumi.Input<string>;
@@ -350,6 +367,7 @@ export interface FirewallSecurityPolicyState {
     internetServiceSrcNames?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetServiceSrcName>[]>;
     internetServiceSrcNegate?: pulumi.Input<string>;
     ipsSensor?: pulumi.Input<string>;
+    ipsVoipFilter?: pulumi.Input<string>;
     learningMode?: pulumi.Input<string>;
     logtraffic?: pulumi.Input<string>;
     logtrafficStart?: pulumi.Input<string>;
@@ -366,6 +384,7 @@ export interface FirewallSecurityPolicyState {
     serviceNegate?: pulumi.Input<string>;
     services?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyService>[]>;
     srcaddr4s?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicySrcaddr4>[]>;
+    srcaddr6Negate?: pulumi.Input<string>;
     srcaddr6s?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicySrcaddr6>[]>;
     srcaddrNegate?: pulumi.Input<string>;
     srcaddrs?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicySrcaddr>[]>;
@@ -374,6 +393,7 @@ export interface FirewallSecurityPolicyState {
     sslSshProfile?: pulumi.Input<string>;
     status?: pulumi.Input<string>;
     urlCategories?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyUrlCategory>[]>;
+    urlCategoryUnitary?: pulumi.Input<string>;
     users?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyUser>[]>;
     uuid?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
@@ -398,6 +418,7 @@ export interface FirewallSecurityPolicyArgs {
     dlpSensor?: pulumi.Input<string>;
     dnsfilterProfile?: pulumi.Input<string>;
     dstaddr4s?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyDstaddr4>[]>;
+    dstaddr6Negate?: pulumi.Input<string>;
     dstaddr6s?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyDstaddr6>[]>;
     dstaddrNegate?: pulumi.Input<string>;
     dstaddrs?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyDstaddr>[]>;
@@ -407,6 +428,7 @@ export interface FirewallSecurityPolicyArgs {
     enforceDefaultAppPort?: pulumi.Input<string>;
     fileFilterProfile?: pulumi.Input<string>;
     fssoGroups?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyFssoGroup>[]>;
+    getAllTables?: pulumi.Input<string>;
     groups?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyGroup>[]>;
     icapProfile?: pulumi.Input<string>;
     internetService?: pulumi.Input<string>;
@@ -436,6 +458,7 @@ export interface FirewallSecurityPolicyArgs {
     internetServiceSrcNames?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyInternetServiceSrcName>[]>;
     internetServiceSrcNegate?: pulumi.Input<string>;
     ipsSensor?: pulumi.Input<string>;
+    ipsVoipFilter?: pulumi.Input<string>;
     learningMode?: pulumi.Input<string>;
     logtraffic?: pulumi.Input<string>;
     logtrafficStart?: pulumi.Input<string>;
@@ -452,6 +475,7 @@ export interface FirewallSecurityPolicyArgs {
     serviceNegate?: pulumi.Input<string>;
     services?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyService>[]>;
     srcaddr4s?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicySrcaddr4>[]>;
+    srcaddr6Negate?: pulumi.Input<string>;
     srcaddr6s?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicySrcaddr6>[]>;
     srcaddrNegate?: pulumi.Input<string>;
     srcaddrs?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicySrcaddr>[]>;
@@ -460,6 +484,7 @@ export interface FirewallSecurityPolicyArgs {
     sslSshProfile?: pulumi.Input<string>;
     status?: pulumi.Input<string>;
     urlCategories?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyUrlCategory>[]>;
+    urlCategoryUnitary?: pulumi.Input<string>;
     users?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyUser>[]>;
     uuid?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;

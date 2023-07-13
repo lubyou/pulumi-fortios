@@ -21,6 +21,7 @@ class SystemApiUserArgs:
                  comments: Optional[pulumi.Input[str]] = None,
                  cors_allow_origin: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  peer_auth: Optional[pulumi.Input[str]] = None,
                  peer_group: Optional[pulumi.Input[str]] = None,
@@ -40,6 +41,8 @@ class SystemApiUserArgs:
             pulumi.set(__self__, "cors_allow_origin", cors_allow_origin)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if peer_auth is not None:
@@ -99,6 +102,15 @@ class SystemApiUserArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -172,6 +184,7 @@ class _SystemApiUserState:
                  comments: Optional[pulumi.Input[str]] = None,
                  cors_allow_origin: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  peer_auth: Optional[pulumi.Input[str]] = None,
                  peer_group: Optional[pulumi.Input[str]] = None,
@@ -192,6 +205,8 @@ class _SystemApiUserState:
             pulumi.set(__self__, "cors_allow_origin", cors_allow_origin)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if peer_auth is not None:
@@ -251,6 +266,15 @@ class _SystemApiUserState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -326,6 +350,7 @@ class SystemApiUser(pulumi.CustomResource):
                  comments: Optional[pulumi.Input[str]] = None,
                  cors_allow_origin: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  peer_auth: Optional[pulumi.Input[str]] = None,
                  peer_group: Optional[pulumi.Input[str]] = None,
@@ -367,6 +392,7 @@ class SystemApiUser(pulumi.CustomResource):
                  comments: Optional[pulumi.Input[str]] = None,
                  cors_allow_origin: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  peer_auth: Optional[pulumi.Input[str]] = None,
                  peer_group: Optional[pulumi.Input[str]] = None,
@@ -390,6 +416,7 @@ class SystemApiUser(pulumi.CustomResource):
             __props__.__dict__["comments"] = comments
             __props__.__dict__["cors_allow_origin"] = cors_allow_origin
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["name"] = name
             __props__.__dict__["peer_auth"] = peer_auth
             __props__.__dict__["peer_group"] = peer_group
@@ -414,6 +441,7 @@ class SystemApiUser(pulumi.CustomResource):
             comments: Optional[pulumi.Input[str]] = None,
             cors_allow_origin: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             peer_auth: Optional[pulumi.Input[str]] = None,
             peer_group: Optional[pulumi.Input[str]] = None,
@@ -438,6 +466,7 @@ class SystemApiUser(pulumi.CustomResource):
         __props__.__dict__["comments"] = comments
         __props__.__dict__["cors_allow_origin"] = cors_allow_origin
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["name"] = name
         __props__.__dict__["peer_auth"] = peer_auth
         __props__.__dict__["peer_group"] = peer_group
@@ -471,6 +500,11 @@ class SystemApiUser(pulumi.CustomResource):
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

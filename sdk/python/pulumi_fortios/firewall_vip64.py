@@ -24,6 +24,7 @@ class FirewallVip64Args:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  extport: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ldb_method: Optional[pulumi.Input[str]] = None,
                  mappedport: Optional[pulumi.Input[str]] = None,
                  monitors: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallVip64MonitorArgs']]]] = None,
@@ -53,6 +54,8 @@ class FirewallVip64Args:
             pulumi.set(__self__, "extport", extport)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ldb_method is not None:
             pulumi.set(__self__, "ldb_method", ldb_method)
         if mappedport is not None:
@@ -149,6 +152,15 @@ class FirewallVip64Args:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="ldbMethod")
@@ -269,6 +281,7 @@ class _FirewallVip64State:
                  extip: Optional[pulumi.Input[str]] = None,
                  extport: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ldb_method: Optional[pulumi.Input[str]] = None,
                  mappedip: Optional[pulumi.Input[str]] = None,
                  mappedport: Optional[pulumi.Input[str]] = None,
@@ -299,6 +312,8 @@ class _FirewallVip64State:
             pulumi.set(__self__, "extport", extport)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ldb_method is not None:
             pulumi.set(__self__, "ldb_method", ldb_method)
         if mappedip is not None:
@@ -388,6 +403,15 @@ class _FirewallVip64State:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="ldbMethod")
@@ -519,6 +543,7 @@ class FirewallVip64(pulumi.CustomResource):
                  extip: Optional[pulumi.Input[str]] = None,
                  extport: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ldb_method: Optional[pulumi.Input[str]] = None,
                  mappedip: Optional[pulumi.Input[str]] = None,
                  mappedport: Optional[pulumi.Input[str]] = None,
@@ -568,6 +593,7 @@ class FirewallVip64(pulumi.CustomResource):
                  extip: Optional[pulumi.Input[str]] = None,
                  extport: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ldb_method: Optional[pulumi.Input[str]] = None,
                  mappedip: Optional[pulumi.Input[str]] = None,
                  mappedport: Optional[pulumi.Input[str]] = None,
@@ -599,6 +625,7 @@ class FirewallVip64(pulumi.CustomResource):
             __props__.__dict__["extip"] = extip
             __props__.__dict__["extport"] = extport
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["ldb_method"] = ldb_method
             if mappedip is None and not opts.urn:
                 raise TypeError("Missing required property 'mappedip'")
@@ -631,6 +658,7 @@ class FirewallVip64(pulumi.CustomResource):
             extip: Optional[pulumi.Input[str]] = None,
             extport: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             ldb_method: Optional[pulumi.Input[str]] = None,
             mappedip: Optional[pulumi.Input[str]] = None,
             mappedport: Optional[pulumi.Input[str]] = None,
@@ -663,6 +691,7 @@ class FirewallVip64(pulumi.CustomResource):
         __props__.__dict__["extip"] = extip
         __props__.__dict__["extport"] = extport
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["ldb_method"] = ldb_method
         __props__.__dict__["mappedip"] = mappedip
         __props__.__dict__["mappedport"] = mappedport
@@ -712,6 +741,11 @@ class FirewallVip64(pulumi.CustomResource):
     @pulumi.getter
     def fosid(self) -> pulumi.Output[int]:
         return pulumi.get(self, "fosid")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="ldbMethod")

@@ -26,6 +26,7 @@ class DlpSensorArgs:
                  filters: Optional[pulumi.Input[Sequence[pulumi.Input['DlpSensorFilterArgs']]]] = None,
                  flow_based: Optional[pulumi.Input[str]] = None,
                  full_archive_proto: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  match_type: Optional[pulumi.Input[str]] = None,
                  nac_quar_log: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -56,6 +57,8 @@ class DlpSensorArgs:
             pulumi.set(__self__, "flow_based", flow_based)
         if full_archive_proto is not None:
             pulumi.set(__self__, "full_archive_proto", full_archive_proto)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if match_type is not None:
             pulumi.set(__self__, "match_type", match_type)
         if nac_quar_log is not None:
@@ -160,6 +163,15 @@ class DlpSensorArgs:
     @full_archive_proto.setter
     def full_archive_proto(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "full_archive_proto", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="matchType")
@@ -238,6 +250,7 @@ class _DlpSensorState:
                  filters: Optional[pulumi.Input[Sequence[pulumi.Input['DlpSensorFilterArgs']]]] = None,
                  flow_based: Optional[pulumi.Input[str]] = None,
                  full_archive_proto: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  match_type: Optional[pulumi.Input[str]] = None,
                  nac_quar_log: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -268,6 +281,8 @@ class _DlpSensorState:
             pulumi.set(__self__, "flow_based", flow_based)
         if full_archive_proto is not None:
             pulumi.set(__self__, "full_archive_proto", full_archive_proto)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if match_type is not None:
             pulumi.set(__self__, "match_type", match_type)
         if nac_quar_log is not None:
@@ -372,6 +387,15 @@ class _DlpSensorState:
     @full_archive_proto.setter
     def full_archive_proto(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "full_archive_proto", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="matchType")
@@ -452,6 +476,7 @@ class DlpSensor(pulumi.CustomResource):
                  filters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DlpSensorFilterArgs']]]]] = None,
                  flow_based: Optional[pulumi.Input[str]] = None,
                  full_archive_proto: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  match_type: Optional[pulumi.Input[str]] = None,
                  nac_quar_log: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -498,6 +523,7 @@ class DlpSensor(pulumi.CustomResource):
                  filters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DlpSensorFilterArgs']]]]] = None,
                  flow_based: Optional[pulumi.Input[str]] = None,
                  full_archive_proto: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  match_type: Optional[pulumi.Input[str]] = None,
                  nac_quar_log: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -524,6 +550,7 @@ class DlpSensor(pulumi.CustomResource):
             __props__.__dict__["filters"] = filters
             __props__.__dict__["flow_based"] = flow_based
             __props__.__dict__["full_archive_proto"] = full_archive_proto
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["match_type"] = match_type
             __props__.__dict__["nac_quar_log"] = nac_quar_log
             __props__.__dict__["name"] = name
@@ -551,6 +578,7 @@ class DlpSensor(pulumi.CustomResource):
             filters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DlpSensorFilterArgs']]]]] = None,
             flow_based: Optional[pulumi.Input[str]] = None,
             full_archive_proto: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             match_type: Optional[pulumi.Input[str]] = None,
             nac_quar_log: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -580,6 +608,7 @@ class DlpSensor(pulumi.CustomResource):
         __props__.__dict__["filters"] = filters
         __props__.__dict__["flow_based"] = flow_based
         __props__.__dict__["full_archive_proto"] = full_archive_proto
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["match_type"] = match_type
         __props__.__dict__["nac_quar_log"] = nac_quar_log
         __props__.__dict__["name"] = name
@@ -638,6 +667,11 @@ class DlpSensor(pulumi.CustomResource):
     @pulumi.getter(name="fullArchiveProto")
     def full_archive_proto(self) -> pulumi.Output[str]:
         return pulumi.get(self, "full_archive_proto")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="matchType")

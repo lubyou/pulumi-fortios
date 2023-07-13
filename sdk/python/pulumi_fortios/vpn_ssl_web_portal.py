@@ -19,12 +19,15 @@ class VpnSslWebPortalArgs:
                  allow_user_access: Optional[pulumi.Input[str]] = None,
                  auto_connect: Optional[pulumi.Input[str]] = None,
                  bookmark_groups: Optional[pulumi.Input[Sequence[pulumi.Input['VpnSslWebPortalBookmarkGroupArgs']]]] = None,
+                 client_src_range: Optional[pulumi.Input[str]] = None,
                  clipboard: Optional[pulumi.Input[str]] = None,
                  custom_lang: Optional[pulumi.Input[str]] = None,
                  customize_forticlient_download_url: Optional[pulumi.Input[str]] = None,
                  default_window_height: Optional[pulumi.Input[int]] = None,
                  default_window_width: Optional[pulumi.Input[int]] = None,
+                 dhcp6_ra_linkaddr: Optional[pulumi.Input[str]] = None,
                  dhcp_ip_overlap: Optional[pulumi.Input[str]] = None,
+                 dhcp_ra_giaddr: Optional[pulumi.Input[str]] = None,
                  display_bookmark: Optional[pulumi.Input[str]] = None,
                  display_connection_tools: Optional[pulumi.Input[str]] = None,
                  display_history: Optional[pulumi.Input[str]] = None,
@@ -36,6 +39,7 @@ class VpnSslWebPortalArgs:
                  exclusive_routing: Optional[pulumi.Input[str]] = None,
                  forticlient_download: Optional[pulumi.Input[str]] = None,
                  forticlient_download_method: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  heading: Optional[pulumi.Input[str]] = None,
                  hide_sso_credential: Optional[pulumi.Input[str]] = None,
                  host_check: Optional[pulumi.Input[str]] = None,
@@ -55,6 +59,8 @@ class VpnSslWebPortalArgs:
                  ipv6_wins_server1: Optional[pulumi.Input[str]] = None,
                  ipv6_wins_server2: Optional[pulumi.Input[str]] = None,
                  keep_alive: Optional[pulumi.Input[str]] = None,
+                 landing_page: Optional[pulumi.Input['VpnSslWebPortalLandingPageArgs']] = None,
+                 landing_page_mode: Optional[pulumi.Input[str]] = None,
                  limit_user_logins: Optional[pulumi.Input[str]] = None,
                  mac_addr_action: Optional[pulumi.Input[str]] = None,
                  mac_addr_check: Optional[pulumi.Input[str]] = None,
@@ -98,6 +104,8 @@ class VpnSslWebPortalArgs:
             pulumi.set(__self__, "auto_connect", auto_connect)
         if bookmark_groups is not None:
             pulumi.set(__self__, "bookmark_groups", bookmark_groups)
+        if client_src_range is not None:
+            pulumi.set(__self__, "client_src_range", client_src_range)
         if clipboard is not None:
             pulumi.set(__self__, "clipboard", clipboard)
         if custom_lang is not None:
@@ -108,8 +116,12 @@ class VpnSslWebPortalArgs:
             pulumi.set(__self__, "default_window_height", default_window_height)
         if default_window_width is not None:
             pulumi.set(__self__, "default_window_width", default_window_width)
+        if dhcp6_ra_linkaddr is not None:
+            pulumi.set(__self__, "dhcp6_ra_linkaddr", dhcp6_ra_linkaddr)
         if dhcp_ip_overlap is not None:
             pulumi.set(__self__, "dhcp_ip_overlap", dhcp_ip_overlap)
+        if dhcp_ra_giaddr is not None:
+            pulumi.set(__self__, "dhcp_ra_giaddr", dhcp_ra_giaddr)
         if display_bookmark is not None:
             pulumi.set(__self__, "display_bookmark", display_bookmark)
         if display_connection_tools is not None:
@@ -132,6 +144,8 @@ class VpnSslWebPortalArgs:
             pulumi.set(__self__, "forticlient_download", forticlient_download)
         if forticlient_download_method is not None:
             pulumi.set(__self__, "forticlient_download_method", forticlient_download_method)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if heading is not None:
             pulumi.set(__self__, "heading", heading)
         if hide_sso_credential is not None:
@@ -170,6 +184,10 @@ class VpnSslWebPortalArgs:
             pulumi.set(__self__, "ipv6_wins_server2", ipv6_wins_server2)
         if keep_alive is not None:
             pulumi.set(__self__, "keep_alive", keep_alive)
+        if landing_page is not None:
+            pulumi.set(__self__, "landing_page", landing_page)
+        if landing_page_mode is not None:
+            pulumi.set(__self__, "landing_page_mode", landing_page_mode)
         if limit_user_logins is not None:
             pulumi.set(__self__, "limit_user_logins", limit_user_logins)
         if mac_addr_action is not None:
@@ -267,6 +285,15 @@ class VpnSslWebPortalArgs:
         pulumi.set(self, "bookmark_groups", value)
 
     @property
+    @pulumi.getter(name="clientSrcRange")
+    def client_src_range(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "client_src_range")
+
+    @client_src_range.setter
+    def client_src_range(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_src_range", value)
+
+    @property
     @pulumi.getter
     def clipboard(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "clipboard")
@@ -312,6 +339,15 @@ class VpnSslWebPortalArgs:
         pulumi.set(self, "default_window_width", value)
 
     @property
+    @pulumi.getter(name="dhcp6RaLinkaddr")
+    def dhcp6_ra_linkaddr(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "dhcp6_ra_linkaddr")
+
+    @dhcp6_ra_linkaddr.setter
+    def dhcp6_ra_linkaddr(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp6_ra_linkaddr", value)
+
+    @property
     @pulumi.getter(name="dhcpIpOverlap")
     def dhcp_ip_overlap(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "dhcp_ip_overlap")
@@ -319,6 +355,15 @@ class VpnSslWebPortalArgs:
     @dhcp_ip_overlap.setter
     def dhcp_ip_overlap(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dhcp_ip_overlap", value)
+
+    @property
+    @pulumi.getter(name="dhcpRaGiaddr")
+    def dhcp_ra_giaddr(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "dhcp_ra_giaddr")
+
+    @dhcp_ra_giaddr.setter
+    def dhcp_ra_giaddr(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_ra_giaddr", value)
 
     @property
     @pulumi.getter(name="displayBookmark")
@@ -418,6 +463,15 @@ class VpnSslWebPortalArgs:
     @forticlient_download_method.setter
     def forticlient_download_method(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "forticlient_download_method", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -589,6 +643,24 @@ class VpnSslWebPortalArgs:
     @keep_alive.setter
     def keep_alive(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "keep_alive", value)
+
+    @property
+    @pulumi.getter(name="landingPage")
+    def landing_page(self) -> Optional[pulumi.Input['VpnSslWebPortalLandingPageArgs']]:
+        return pulumi.get(self, "landing_page")
+
+    @landing_page.setter
+    def landing_page(self, value: Optional[pulumi.Input['VpnSslWebPortalLandingPageArgs']]):
+        pulumi.set(self, "landing_page", value)
+
+    @property
+    @pulumi.getter(name="landingPageMode")
+    def landing_page_mode(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "landing_page_mode")
+
+    @landing_page_mode.setter
+    def landing_page_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "landing_page_mode", value)
 
     @property
     @pulumi.getter(name="limitUserLogins")
@@ -903,12 +975,15 @@ class _VpnSslWebPortalState:
                  allow_user_access: Optional[pulumi.Input[str]] = None,
                  auto_connect: Optional[pulumi.Input[str]] = None,
                  bookmark_groups: Optional[pulumi.Input[Sequence[pulumi.Input['VpnSslWebPortalBookmarkGroupArgs']]]] = None,
+                 client_src_range: Optional[pulumi.Input[str]] = None,
                  clipboard: Optional[pulumi.Input[str]] = None,
                  custom_lang: Optional[pulumi.Input[str]] = None,
                  customize_forticlient_download_url: Optional[pulumi.Input[str]] = None,
                  default_window_height: Optional[pulumi.Input[int]] = None,
                  default_window_width: Optional[pulumi.Input[int]] = None,
+                 dhcp6_ra_linkaddr: Optional[pulumi.Input[str]] = None,
                  dhcp_ip_overlap: Optional[pulumi.Input[str]] = None,
+                 dhcp_ra_giaddr: Optional[pulumi.Input[str]] = None,
                  display_bookmark: Optional[pulumi.Input[str]] = None,
                  display_connection_tools: Optional[pulumi.Input[str]] = None,
                  display_history: Optional[pulumi.Input[str]] = None,
@@ -920,6 +995,7 @@ class _VpnSslWebPortalState:
                  exclusive_routing: Optional[pulumi.Input[str]] = None,
                  forticlient_download: Optional[pulumi.Input[str]] = None,
                  forticlient_download_method: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  heading: Optional[pulumi.Input[str]] = None,
                  hide_sso_credential: Optional[pulumi.Input[str]] = None,
                  host_check: Optional[pulumi.Input[str]] = None,
@@ -939,6 +1015,8 @@ class _VpnSslWebPortalState:
                  ipv6_wins_server1: Optional[pulumi.Input[str]] = None,
                  ipv6_wins_server2: Optional[pulumi.Input[str]] = None,
                  keep_alive: Optional[pulumi.Input[str]] = None,
+                 landing_page: Optional[pulumi.Input['VpnSslWebPortalLandingPageArgs']] = None,
+                 landing_page_mode: Optional[pulumi.Input[str]] = None,
                  limit_user_logins: Optional[pulumi.Input[str]] = None,
                  mac_addr_action: Optional[pulumi.Input[str]] = None,
                  mac_addr_check: Optional[pulumi.Input[str]] = None,
@@ -982,6 +1060,8 @@ class _VpnSslWebPortalState:
             pulumi.set(__self__, "auto_connect", auto_connect)
         if bookmark_groups is not None:
             pulumi.set(__self__, "bookmark_groups", bookmark_groups)
+        if client_src_range is not None:
+            pulumi.set(__self__, "client_src_range", client_src_range)
         if clipboard is not None:
             pulumi.set(__self__, "clipboard", clipboard)
         if custom_lang is not None:
@@ -992,8 +1072,12 @@ class _VpnSslWebPortalState:
             pulumi.set(__self__, "default_window_height", default_window_height)
         if default_window_width is not None:
             pulumi.set(__self__, "default_window_width", default_window_width)
+        if dhcp6_ra_linkaddr is not None:
+            pulumi.set(__self__, "dhcp6_ra_linkaddr", dhcp6_ra_linkaddr)
         if dhcp_ip_overlap is not None:
             pulumi.set(__self__, "dhcp_ip_overlap", dhcp_ip_overlap)
+        if dhcp_ra_giaddr is not None:
+            pulumi.set(__self__, "dhcp_ra_giaddr", dhcp_ra_giaddr)
         if display_bookmark is not None:
             pulumi.set(__self__, "display_bookmark", display_bookmark)
         if display_connection_tools is not None:
@@ -1016,6 +1100,8 @@ class _VpnSslWebPortalState:
             pulumi.set(__self__, "forticlient_download", forticlient_download)
         if forticlient_download_method is not None:
             pulumi.set(__self__, "forticlient_download_method", forticlient_download_method)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if heading is not None:
             pulumi.set(__self__, "heading", heading)
         if hide_sso_credential is not None:
@@ -1054,6 +1140,10 @@ class _VpnSslWebPortalState:
             pulumi.set(__self__, "ipv6_wins_server2", ipv6_wins_server2)
         if keep_alive is not None:
             pulumi.set(__self__, "keep_alive", keep_alive)
+        if landing_page is not None:
+            pulumi.set(__self__, "landing_page", landing_page)
+        if landing_page_mode is not None:
+            pulumi.set(__self__, "landing_page_mode", landing_page_mode)
         if limit_user_logins is not None:
             pulumi.set(__self__, "limit_user_logins", limit_user_logins)
         if mac_addr_action is not None:
@@ -1151,6 +1241,15 @@ class _VpnSslWebPortalState:
         pulumi.set(self, "bookmark_groups", value)
 
     @property
+    @pulumi.getter(name="clientSrcRange")
+    def client_src_range(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "client_src_range")
+
+    @client_src_range.setter
+    def client_src_range(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_src_range", value)
+
+    @property
     @pulumi.getter
     def clipboard(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "clipboard")
@@ -1196,6 +1295,15 @@ class _VpnSslWebPortalState:
         pulumi.set(self, "default_window_width", value)
 
     @property
+    @pulumi.getter(name="dhcp6RaLinkaddr")
+    def dhcp6_ra_linkaddr(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "dhcp6_ra_linkaddr")
+
+    @dhcp6_ra_linkaddr.setter
+    def dhcp6_ra_linkaddr(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp6_ra_linkaddr", value)
+
+    @property
     @pulumi.getter(name="dhcpIpOverlap")
     def dhcp_ip_overlap(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "dhcp_ip_overlap")
@@ -1203,6 +1311,15 @@ class _VpnSslWebPortalState:
     @dhcp_ip_overlap.setter
     def dhcp_ip_overlap(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dhcp_ip_overlap", value)
+
+    @property
+    @pulumi.getter(name="dhcpRaGiaddr")
+    def dhcp_ra_giaddr(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "dhcp_ra_giaddr")
+
+    @dhcp_ra_giaddr.setter
+    def dhcp_ra_giaddr(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_ra_giaddr", value)
 
     @property
     @pulumi.getter(name="displayBookmark")
@@ -1302,6 +1419,15 @@ class _VpnSslWebPortalState:
     @forticlient_download_method.setter
     def forticlient_download_method(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "forticlient_download_method", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -1473,6 +1599,24 @@ class _VpnSslWebPortalState:
     @keep_alive.setter
     def keep_alive(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "keep_alive", value)
+
+    @property
+    @pulumi.getter(name="landingPage")
+    def landing_page(self) -> Optional[pulumi.Input['VpnSslWebPortalLandingPageArgs']]:
+        return pulumi.get(self, "landing_page")
+
+    @landing_page.setter
+    def landing_page(self, value: Optional[pulumi.Input['VpnSslWebPortalLandingPageArgs']]):
+        pulumi.set(self, "landing_page", value)
+
+    @property
+    @pulumi.getter(name="landingPageMode")
+    def landing_page_mode(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "landing_page_mode")
+
+    @landing_page_mode.setter
+    def landing_page_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "landing_page_mode", value)
 
     @property
     @pulumi.getter(name="limitUserLogins")
@@ -1789,12 +1933,15 @@ class VpnSslWebPortal(pulumi.CustomResource):
                  allow_user_access: Optional[pulumi.Input[str]] = None,
                  auto_connect: Optional[pulumi.Input[str]] = None,
                  bookmark_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnSslWebPortalBookmarkGroupArgs']]]]] = None,
+                 client_src_range: Optional[pulumi.Input[str]] = None,
                  clipboard: Optional[pulumi.Input[str]] = None,
                  custom_lang: Optional[pulumi.Input[str]] = None,
                  customize_forticlient_download_url: Optional[pulumi.Input[str]] = None,
                  default_window_height: Optional[pulumi.Input[int]] = None,
                  default_window_width: Optional[pulumi.Input[int]] = None,
+                 dhcp6_ra_linkaddr: Optional[pulumi.Input[str]] = None,
                  dhcp_ip_overlap: Optional[pulumi.Input[str]] = None,
+                 dhcp_ra_giaddr: Optional[pulumi.Input[str]] = None,
                  display_bookmark: Optional[pulumi.Input[str]] = None,
                  display_connection_tools: Optional[pulumi.Input[str]] = None,
                  display_history: Optional[pulumi.Input[str]] = None,
@@ -1806,6 +1953,7 @@ class VpnSslWebPortal(pulumi.CustomResource):
                  exclusive_routing: Optional[pulumi.Input[str]] = None,
                  forticlient_download: Optional[pulumi.Input[str]] = None,
                  forticlient_download_method: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  heading: Optional[pulumi.Input[str]] = None,
                  hide_sso_credential: Optional[pulumi.Input[str]] = None,
                  host_check: Optional[pulumi.Input[str]] = None,
@@ -1825,6 +1973,8 @@ class VpnSslWebPortal(pulumi.CustomResource):
                  ipv6_wins_server1: Optional[pulumi.Input[str]] = None,
                  ipv6_wins_server2: Optional[pulumi.Input[str]] = None,
                  keep_alive: Optional[pulumi.Input[str]] = None,
+                 landing_page: Optional[pulumi.Input[pulumi.InputType['VpnSslWebPortalLandingPageArgs']]] = None,
+                 landing_page_mode: Optional[pulumi.Input[str]] = None,
                  limit_user_logins: Optional[pulumi.Input[str]] = None,
                  mac_addr_action: Optional[pulumi.Input[str]] = None,
                  mac_addr_check: Optional[pulumi.Input[str]] = None,
@@ -1891,12 +2041,15 @@ class VpnSslWebPortal(pulumi.CustomResource):
                  allow_user_access: Optional[pulumi.Input[str]] = None,
                  auto_connect: Optional[pulumi.Input[str]] = None,
                  bookmark_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnSslWebPortalBookmarkGroupArgs']]]]] = None,
+                 client_src_range: Optional[pulumi.Input[str]] = None,
                  clipboard: Optional[pulumi.Input[str]] = None,
                  custom_lang: Optional[pulumi.Input[str]] = None,
                  customize_forticlient_download_url: Optional[pulumi.Input[str]] = None,
                  default_window_height: Optional[pulumi.Input[int]] = None,
                  default_window_width: Optional[pulumi.Input[int]] = None,
+                 dhcp6_ra_linkaddr: Optional[pulumi.Input[str]] = None,
                  dhcp_ip_overlap: Optional[pulumi.Input[str]] = None,
+                 dhcp_ra_giaddr: Optional[pulumi.Input[str]] = None,
                  display_bookmark: Optional[pulumi.Input[str]] = None,
                  display_connection_tools: Optional[pulumi.Input[str]] = None,
                  display_history: Optional[pulumi.Input[str]] = None,
@@ -1908,6 +2061,7 @@ class VpnSslWebPortal(pulumi.CustomResource):
                  exclusive_routing: Optional[pulumi.Input[str]] = None,
                  forticlient_download: Optional[pulumi.Input[str]] = None,
                  forticlient_download_method: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  heading: Optional[pulumi.Input[str]] = None,
                  hide_sso_credential: Optional[pulumi.Input[str]] = None,
                  host_check: Optional[pulumi.Input[str]] = None,
@@ -1927,6 +2081,8 @@ class VpnSslWebPortal(pulumi.CustomResource):
                  ipv6_wins_server1: Optional[pulumi.Input[str]] = None,
                  ipv6_wins_server2: Optional[pulumi.Input[str]] = None,
                  keep_alive: Optional[pulumi.Input[str]] = None,
+                 landing_page: Optional[pulumi.Input[pulumi.InputType['VpnSslWebPortalLandingPageArgs']]] = None,
+                 landing_page_mode: Optional[pulumi.Input[str]] = None,
                  limit_user_logins: Optional[pulumi.Input[str]] = None,
                  mac_addr_action: Optional[pulumi.Input[str]] = None,
                  mac_addr_check: Optional[pulumi.Input[str]] = None,
@@ -1973,12 +2129,15 @@ class VpnSslWebPortal(pulumi.CustomResource):
             __props__.__dict__["allow_user_access"] = allow_user_access
             __props__.__dict__["auto_connect"] = auto_connect
             __props__.__dict__["bookmark_groups"] = bookmark_groups
+            __props__.__dict__["client_src_range"] = client_src_range
             __props__.__dict__["clipboard"] = clipboard
             __props__.__dict__["custom_lang"] = custom_lang
             __props__.__dict__["customize_forticlient_download_url"] = customize_forticlient_download_url
             __props__.__dict__["default_window_height"] = default_window_height
             __props__.__dict__["default_window_width"] = default_window_width
+            __props__.__dict__["dhcp6_ra_linkaddr"] = dhcp6_ra_linkaddr
             __props__.__dict__["dhcp_ip_overlap"] = dhcp_ip_overlap
+            __props__.__dict__["dhcp_ra_giaddr"] = dhcp_ra_giaddr
             __props__.__dict__["display_bookmark"] = display_bookmark
             __props__.__dict__["display_connection_tools"] = display_connection_tools
             __props__.__dict__["display_history"] = display_history
@@ -1990,6 +2149,7 @@ class VpnSslWebPortal(pulumi.CustomResource):
             __props__.__dict__["exclusive_routing"] = exclusive_routing
             __props__.__dict__["forticlient_download"] = forticlient_download
             __props__.__dict__["forticlient_download_method"] = forticlient_download_method
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["heading"] = heading
             __props__.__dict__["hide_sso_credential"] = hide_sso_credential
             __props__.__dict__["host_check"] = host_check
@@ -2009,6 +2169,8 @@ class VpnSslWebPortal(pulumi.CustomResource):
             __props__.__dict__["ipv6_wins_server1"] = ipv6_wins_server1
             __props__.__dict__["ipv6_wins_server2"] = ipv6_wins_server2
             __props__.__dict__["keep_alive"] = keep_alive
+            __props__.__dict__["landing_page"] = landing_page
+            __props__.__dict__["landing_page_mode"] = landing_page_mode
             __props__.__dict__["limit_user_logins"] = limit_user_logins
             __props__.__dict__["mac_addr_action"] = mac_addr_action
             __props__.__dict__["mac_addr_check"] = mac_addr_check
@@ -2056,12 +2218,15 @@ class VpnSslWebPortal(pulumi.CustomResource):
             allow_user_access: Optional[pulumi.Input[str]] = None,
             auto_connect: Optional[pulumi.Input[str]] = None,
             bookmark_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnSslWebPortalBookmarkGroupArgs']]]]] = None,
+            client_src_range: Optional[pulumi.Input[str]] = None,
             clipboard: Optional[pulumi.Input[str]] = None,
             custom_lang: Optional[pulumi.Input[str]] = None,
             customize_forticlient_download_url: Optional[pulumi.Input[str]] = None,
             default_window_height: Optional[pulumi.Input[int]] = None,
             default_window_width: Optional[pulumi.Input[int]] = None,
+            dhcp6_ra_linkaddr: Optional[pulumi.Input[str]] = None,
             dhcp_ip_overlap: Optional[pulumi.Input[str]] = None,
+            dhcp_ra_giaddr: Optional[pulumi.Input[str]] = None,
             display_bookmark: Optional[pulumi.Input[str]] = None,
             display_connection_tools: Optional[pulumi.Input[str]] = None,
             display_history: Optional[pulumi.Input[str]] = None,
@@ -2073,6 +2238,7 @@ class VpnSslWebPortal(pulumi.CustomResource):
             exclusive_routing: Optional[pulumi.Input[str]] = None,
             forticlient_download: Optional[pulumi.Input[str]] = None,
             forticlient_download_method: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             heading: Optional[pulumi.Input[str]] = None,
             hide_sso_credential: Optional[pulumi.Input[str]] = None,
             host_check: Optional[pulumi.Input[str]] = None,
@@ -2092,6 +2258,8 @@ class VpnSslWebPortal(pulumi.CustomResource):
             ipv6_wins_server1: Optional[pulumi.Input[str]] = None,
             ipv6_wins_server2: Optional[pulumi.Input[str]] = None,
             keep_alive: Optional[pulumi.Input[str]] = None,
+            landing_page: Optional[pulumi.Input[pulumi.InputType['VpnSslWebPortalLandingPageArgs']]] = None,
+            landing_page_mode: Optional[pulumi.Input[str]] = None,
             limit_user_logins: Optional[pulumi.Input[str]] = None,
             mac_addr_action: Optional[pulumi.Input[str]] = None,
             mac_addr_check: Optional[pulumi.Input[str]] = None,
@@ -2141,12 +2309,15 @@ class VpnSslWebPortal(pulumi.CustomResource):
         __props__.__dict__["allow_user_access"] = allow_user_access
         __props__.__dict__["auto_connect"] = auto_connect
         __props__.__dict__["bookmark_groups"] = bookmark_groups
+        __props__.__dict__["client_src_range"] = client_src_range
         __props__.__dict__["clipboard"] = clipboard
         __props__.__dict__["custom_lang"] = custom_lang
         __props__.__dict__["customize_forticlient_download_url"] = customize_forticlient_download_url
         __props__.__dict__["default_window_height"] = default_window_height
         __props__.__dict__["default_window_width"] = default_window_width
+        __props__.__dict__["dhcp6_ra_linkaddr"] = dhcp6_ra_linkaddr
         __props__.__dict__["dhcp_ip_overlap"] = dhcp_ip_overlap
+        __props__.__dict__["dhcp_ra_giaddr"] = dhcp_ra_giaddr
         __props__.__dict__["display_bookmark"] = display_bookmark
         __props__.__dict__["display_connection_tools"] = display_connection_tools
         __props__.__dict__["display_history"] = display_history
@@ -2158,6 +2329,7 @@ class VpnSslWebPortal(pulumi.CustomResource):
         __props__.__dict__["exclusive_routing"] = exclusive_routing
         __props__.__dict__["forticlient_download"] = forticlient_download
         __props__.__dict__["forticlient_download_method"] = forticlient_download_method
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["heading"] = heading
         __props__.__dict__["hide_sso_credential"] = hide_sso_credential
         __props__.__dict__["host_check"] = host_check
@@ -2177,6 +2349,8 @@ class VpnSslWebPortal(pulumi.CustomResource):
         __props__.__dict__["ipv6_wins_server1"] = ipv6_wins_server1
         __props__.__dict__["ipv6_wins_server2"] = ipv6_wins_server2
         __props__.__dict__["keep_alive"] = keep_alive
+        __props__.__dict__["landing_page"] = landing_page
+        __props__.__dict__["landing_page_mode"] = landing_page_mode
         __props__.__dict__["limit_user_logins"] = limit_user_logins
         __props__.__dict__["mac_addr_action"] = mac_addr_action
         __props__.__dict__["mac_addr_check"] = mac_addr_check
@@ -2229,6 +2403,11 @@ class VpnSslWebPortal(pulumi.CustomResource):
         return pulumi.get(self, "bookmark_groups")
 
     @property
+    @pulumi.getter(name="clientSrcRange")
+    def client_src_range(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "client_src_range")
+
+    @property
     @pulumi.getter
     def clipboard(self) -> pulumi.Output[str]:
         return pulumi.get(self, "clipboard")
@@ -2254,9 +2433,19 @@ class VpnSslWebPortal(pulumi.CustomResource):
         return pulumi.get(self, "default_window_width")
 
     @property
+    @pulumi.getter(name="dhcp6RaLinkaddr")
+    def dhcp6_ra_linkaddr(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "dhcp6_ra_linkaddr")
+
+    @property
     @pulumi.getter(name="dhcpIpOverlap")
     def dhcp_ip_overlap(self) -> pulumi.Output[str]:
         return pulumi.get(self, "dhcp_ip_overlap")
+
+    @property
+    @pulumi.getter(name="dhcpRaGiaddr")
+    def dhcp_ra_giaddr(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "dhcp_ra_giaddr")
 
     @property
     @pulumi.getter(name="displayBookmark")
@@ -2312,6 +2501,11 @@ class VpnSslWebPortal(pulumi.CustomResource):
     @pulumi.getter(name="forticlientDownloadMethod")
     def forticlient_download_method(self) -> pulumi.Output[str]:
         return pulumi.get(self, "forticlient_download_method")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter
@@ -2407,6 +2601,16 @@ class VpnSslWebPortal(pulumi.CustomResource):
     @pulumi.getter(name="keepAlive")
     def keep_alive(self) -> pulumi.Output[str]:
         return pulumi.get(self, "keep_alive")
+
+    @property
+    @pulumi.getter(name="landingPage")
+    def landing_page(self) -> pulumi.Output['outputs.VpnSslWebPortalLandingPage']:
+        return pulumi.get(self, "landing_page")
+
+    @property
+    @pulumi.getter(name="landingPageMode")
+    def landing_page_mode(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "landing_page_mode")
 
     @property
     @pulumi.getter(name="limitUserLogins")

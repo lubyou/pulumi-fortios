@@ -103,12 +103,12 @@ def get_firewall_internet_service_extension(fosid: Optional[int] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getFirewallInternetServiceExtension:GetFirewallInternetServiceExtension', __args__, opts=opts, typ=GetFirewallInternetServiceExtensionResult).value
 
     return AwaitableGetFirewallInternetServiceExtensionResult(
-        comment=__ret__.comment,
-        disable_entries=__ret__.disable_entries,
-        entries=__ret__.entries,
-        fosid=__ret__.fosid,
-        id=__ret__.id,
-        vdomparam=__ret__.vdomparam)
+        comment=pulumi.get(__ret__, 'comment'),
+        disable_entries=pulumi.get(__ret__, 'disable_entries'),
+        entries=pulumi.get(__ret__, 'entries'),
+        fosid=pulumi.get(__ret__, 'fosid'),
+        id=pulumi.get(__ret__, 'id'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_firewall_internet_service_extension)

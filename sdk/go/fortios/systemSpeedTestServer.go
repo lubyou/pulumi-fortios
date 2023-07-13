@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -14,6 +15,7 @@ type SystemSpeedTestServer struct {
 	pulumi.CustomResourceState
 
 	DynamicSortSubtable pulumi.StringPtrOutput               `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput               `pulumi:"getAllTables"`
 	Hosts               SystemSpeedTestServerHostArrayOutput `pulumi:"hosts"`
 	Name                pulumi.StringOutput                  `pulumi:"name"`
 	Timestamp           pulumi.IntOutput                     `pulumi:"timestamp"`
@@ -27,7 +29,7 @@ func NewSystemSpeedTestServer(ctx *pulumi.Context,
 		args = &SystemSpeedTestServerArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemSpeedTestServer
 	err := ctx.RegisterResource("fortios:index/systemSpeedTestServer:SystemSpeedTestServer", name, args, &resource, opts...)
 	if err != nil {
@@ -51,6 +53,7 @@ func GetSystemSpeedTestServer(ctx *pulumi.Context,
 // Input properties used for looking up and filtering SystemSpeedTestServer resources.
 type systemSpeedTestServerState struct {
 	DynamicSortSubtable *string                     `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                     `pulumi:"getAllTables"`
 	Hosts               []SystemSpeedTestServerHost `pulumi:"hosts"`
 	Name                *string                     `pulumi:"name"`
 	Timestamp           *int                        `pulumi:"timestamp"`
@@ -59,6 +62,7 @@ type systemSpeedTestServerState struct {
 
 type SystemSpeedTestServerState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Hosts               SystemSpeedTestServerHostArrayInput
 	Name                pulumi.StringPtrInput
 	Timestamp           pulumi.IntPtrInput
@@ -71,6 +75,7 @@ func (SystemSpeedTestServerState) ElementType() reflect.Type {
 
 type systemSpeedTestServerArgs struct {
 	DynamicSortSubtable *string                     `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                     `pulumi:"getAllTables"`
 	Hosts               []SystemSpeedTestServerHost `pulumi:"hosts"`
 	Name                *string                     `pulumi:"name"`
 	Timestamp           *int                        `pulumi:"timestamp"`
@@ -80,6 +85,7 @@ type systemSpeedTestServerArgs struct {
 // The set of arguments for constructing a SystemSpeedTestServer resource.
 type SystemSpeedTestServerArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Hosts               SystemSpeedTestServerHostArrayInput
 	Name                pulumi.StringPtrInput
 	Timestamp           pulumi.IntPtrInput
@@ -175,6 +181,10 @@ func (o SystemSpeedTestServerOutput) ToSystemSpeedTestServerOutputWithContext(ct
 
 func (o SystemSpeedTestServerOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SystemSpeedTestServer) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemSpeedTestServerOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemSpeedTestServer) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemSpeedTestServerOutput) Hosts() SystemSpeedTestServerHostArrayOutput {

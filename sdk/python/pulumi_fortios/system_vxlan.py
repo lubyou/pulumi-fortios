@@ -21,6 +21,9 @@ class SystemVxlanArgs:
                  vni: pulumi.Input[int],
                  dstport: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 evpn_id: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 learn_from_traffic: Optional[pulumi.Input[str]] = None,
                  multicast_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  remote_ip6s: Optional[pulumi.Input[Sequence[pulumi.Input['SystemVxlanRemoteIp6Args']]]] = None,
@@ -36,6 +39,12 @@ class SystemVxlanArgs:
             pulumi.set(__self__, "dstport", dstport)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if evpn_id is not None:
+            pulumi.set(__self__, "evpn_id", evpn_id)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
+        if learn_from_traffic is not None:
+            pulumi.set(__self__, "learn_from_traffic", learn_from_traffic)
         if multicast_ttl is not None:
             pulumi.set(__self__, "multicast_ttl", multicast_ttl)
         if name is not None:
@@ -93,6 +102,33 @@ class SystemVxlanArgs:
         pulumi.set(self, "dynamic_sort_subtable", value)
 
     @property
+    @pulumi.getter(name="evpnId")
+    def evpn_id(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "evpn_id")
+
+    @evpn_id.setter
+    def evpn_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "evpn_id", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
+    @pulumi.getter(name="learnFromTraffic")
+    def learn_from_traffic(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "learn_from_traffic")
+
+    @learn_from_traffic.setter
+    def learn_from_traffic(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "learn_from_traffic", value)
+
+    @property
     @pulumi.getter(name="multicastTtl")
     def multicast_ttl(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "multicast_ttl")
@@ -143,8 +179,11 @@ class _SystemVxlanState:
     def __init__(__self__, *,
                  dstport: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 evpn_id: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ip_version: Optional[pulumi.Input[str]] = None,
+                 learn_from_traffic: Optional[pulumi.Input[str]] = None,
                  multicast_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  remote_ip6s: Optional[pulumi.Input[Sequence[pulumi.Input['SystemVxlanRemoteIp6Args']]]] = None,
@@ -158,10 +197,16 @@ class _SystemVxlanState:
             pulumi.set(__self__, "dstport", dstport)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if evpn_id is not None:
+            pulumi.set(__self__, "evpn_id", evpn_id)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
         if ip_version is not None:
             pulumi.set(__self__, "ip_version", ip_version)
+        if learn_from_traffic is not None:
+            pulumi.set(__self__, "learn_from_traffic", learn_from_traffic)
         if multicast_ttl is not None:
             pulumi.set(__self__, "multicast_ttl", multicast_ttl)
         if name is not None:
@@ -194,6 +239,24 @@ class _SystemVxlanState:
         pulumi.set(self, "dynamic_sort_subtable", value)
 
     @property
+    @pulumi.getter(name="evpnId")
+    def evpn_id(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "evpn_id")
+
+    @evpn_id.setter
+    def evpn_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "evpn_id", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter
     def interface(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "interface")
@@ -210,6 +273,15 @@ class _SystemVxlanState:
     @ip_version.setter
     def ip_version(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ip_version", value)
+
+    @property
+    @pulumi.getter(name="learnFromTraffic")
+    def learn_from_traffic(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "learn_from_traffic")
+
+    @learn_from_traffic.setter
+    def learn_from_traffic(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "learn_from_traffic", value)
 
     @property
     @pulumi.getter(name="multicastTtl")
@@ -273,8 +345,11 @@ class SystemVxlan(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dstport: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 evpn_id: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ip_version: Optional[pulumi.Input[str]] = None,
+                 learn_from_traffic: Optional[pulumi.Input[str]] = None,
                  multicast_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  remote_ip6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemVxlanRemoteIp6Args']]]]] = None,
@@ -312,8 +387,11 @@ class SystemVxlan(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dstport: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 evpn_id: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ip_version: Optional[pulumi.Input[str]] = None,
+                 learn_from_traffic: Optional[pulumi.Input[str]] = None,
                  multicast_ttl: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  remote_ip6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemVxlanRemoteIp6Args']]]]] = None,
@@ -331,12 +409,15 @@ class SystemVxlan(pulumi.CustomResource):
 
             __props__.__dict__["dstport"] = dstport
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["evpn_id"] = evpn_id
+            __props__.__dict__["get_all_tables"] = get_all_tables
             if interface is None and not opts.urn:
                 raise TypeError("Missing required property 'interface'")
             __props__.__dict__["interface"] = interface
             if ip_version is None and not opts.urn:
                 raise TypeError("Missing required property 'ip_version'")
             __props__.__dict__["ip_version"] = ip_version
+            __props__.__dict__["learn_from_traffic"] = learn_from_traffic
             __props__.__dict__["multicast_ttl"] = multicast_ttl
             __props__.__dict__["name"] = name
             __props__.__dict__["remote_ip6s"] = remote_ip6s
@@ -357,8 +438,11 @@ class SystemVxlan(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             dstport: Optional[pulumi.Input[int]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            evpn_id: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             ip_version: Optional[pulumi.Input[str]] = None,
+            learn_from_traffic: Optional[pulumi.Input[str]] = None,
             multicast_ttl: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             remote_ip6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemVxlanRemoteIp6Args']]]]] = None,
@@ -379,8 +463,11 @@ class SystemVxlan(pulumi.CustomResource):
 
         __props__.__dict__["dstport"] = dstport
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["evpn_id"] = evpn_id
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["interface"] = interface
         __props__.__dict__["ip_version"] = ip_version
+        __props__.__dict__["learn_from_traffic"] = learn_from_traffic
         __props__.__dict__["multicast_ttl"] = multicast_ttl
         __props__.__dict__["name"] = name
         __props__.__dict__["remote_ip6s"] = remote_ip6s
@@ -400,6 +487,16 @@ class SystemVxlan(pulumi.CustomResource):
         return pulumi.get(self, "dynamic_sort_subtable")
 
     @property
+    @pulumi.getter(name="evpnId")
+    def evpn_id(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "evpn_id")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter
     def interface(self) -> pulumi.Output[str]:
         return pulumi.get(self, "interface")
@@ -408,6 +505,11 @@ class SystemVxlan(pulumi.CustomResource):
     @pulumi.getter(name="ipVersion")
     def ip_version(self) -> pulumi.Output[str]:
         return pulumi.get(self, "ip_version")
+
+    @property
+    @pulumi.getter(name="learnFromTraffic")
+    def learn_from_traffic(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "learn_from_traffic")
 
     @property
     @pulumi.getter(name="multicastTtl")

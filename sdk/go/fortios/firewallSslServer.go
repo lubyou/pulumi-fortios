@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -47,7 +48,7 @@ func NewFirewallSslServer(ctx *pulumi.Context,
 	if args.SslCert == nil {
 		return nil, errors.New("invalid value for required argument 'SslCert'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallSslServer
 	err := ctx.RegisterResource("fortios:index/firewallSslServer:FirewallSslServer", name, args, &resource, opts...)
 	if err != nil {

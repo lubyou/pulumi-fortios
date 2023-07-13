@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -18,6 +19,7 @@ type UserFssoPolling struct {
 	DefaultDomain       pulumi.StringOutput             `pulumi:"defaultDomain"`
 	DynamicSortSubtable pulumi.StringPtrOutput          `pulumi:"dynamicSortSubtable"`
 	Fosid               pulumi.IntOutput                `pulumi:"fosid"`
+	GetAllTables        pulumi.StringPtrOutput          `pulumi:"getAllTables"`
 	LdapServer          pulumi.StringOutput             `pulumi:"ldapServer"`
 	LogonHistory        pulumi.IntOutput                `pulumi:"logonHistory"`
 	Password            pulumi.StringPtrOutput          `pulumi:"password"`
@@ -54,7 +56,7 @@ func NewUserFssoPolling(ctx *pulumi.Context,
 		"password",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource UserFssoPolling
 	err := ctx.RegisterResource("fortios:index/userFssoPolling:UserFssoPolling", name, args, &resource, opts...)
 	if err != nil {
@@ -81,6 +83,7 @@ type userFssoPollingState struct {
 	DefaultDomain       *string                `pulumi:"defaultDomain"`
 	DynamicSortSubtable *string                `pulumi:"dynamicSortSubtable"`
 	Fosid               *int                   `pulumi:"fosid"`
+	GetAllTables        *string                `pulumi:"getAllTables"`
 	LdapServer          *string                `pulumi:"ldapServer"`
 	LogonHistory        *int                   `pulumi:"logonHistory"`
 	Password            *string                `pulumi:"password"`
@@ -99,6 +102,7 @@ type UserFssoPollingState struct {
 	DefaultDomain       pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	Fosid               pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	LdapServer          pulumi.StringPtrInput
 	LogonHistory        pulumi.IntPtrInput
 	Password            pulumi.StringPtrInput
@@ -121,6 +125,7 @@ type userFssoPollingArgs struct {
 	DefaultDomain       *string                `pulumi:"defaultDomain"`
 	DynamicSortSubtable *string                `pulumi:"dynamicSortSubtable"`
 	Fosid               *int                   `pulumi:"fosid"`
+	GetAllTables        *string                `pulumi:"getAllTables"`
 	LdapServer          string                 `pulumi:"ldapServer"`
 	LogonHistory        *int                   `pulumi:"logonHistory"`
 	Password            *string                `pulumi:"password"`
@@ -140,6 +145,7 @@ type UserFssoPollingArgs struct {
 	DefaultDomain       pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	Fosid               pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	LdapServer          pulumi.StringInput
 	LogonHistory        pulumi.IntPtrInput
 	Password            pulumi.StringPtrInput
@@ -254,6 +260,10 @@ func (o UserFssoPollingOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 
 func (o UserFssoPollingOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *UserFssoPolling) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o UserFssoPollingOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserFssoPolling) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o UserFssoPollingOutput) LdapServer() pulumi.StringOutput {

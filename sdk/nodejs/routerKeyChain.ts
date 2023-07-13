@@ -35,6 +35,7 @@ export class RouterKeyChain extends pulumi.CustomResource {
     }
 
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly keys!: pulumi.Output<outputs.RouterKeyChainKey[] | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -53,12 +54,14 @@ export class RouterKeyChain extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as RouterKeyChainState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["keys"] = state ? state.keys : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as RouterKeyChainArgs | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["keys"] = args ? args.keys : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -73,6 +76,7 @@ export class RouterKeyChain extends pulumi.CustomResource {
  */
 export interface RouterKeyChainState {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     keys?: pulumi.Input<pulumi.Input<inputs.RouterKeyChainKey>[]>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
@@ -83,6 +87,7 @@ export interface RouterKeyChainState {
  */
 export interface RouterKeyChainArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     keys?: pulumi.Input<pulumi.Input<inputs.RouterKeyChainKey>[]>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;

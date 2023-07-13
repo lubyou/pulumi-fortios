@@ -7,6 +7,7 @@ import (
 	"fmt"
 
 	"github.com/blang/semver"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -22,6 +23,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "fortios:index/alertemailSetting:AlertemailSetting":
 		r = &AlertemailSetting{}
+	case "fortios:index/antivirusExemptList:AntivirusExemptList":
+		r = &AntivirusExemptList{}
 	case "fortios:index/antivirusHeuristic:AntivirusHeuristic":
 		r = &AntivirusHeuristic{}
 	case "fortios:index/antivirusProfile:AntivirusProfile":
@@ -110,6 +113,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &EndpointControlClient{}
 	case "fortios:index/endpointControlFctems:EndpointControlFctems":
 		r = &EndpointControlFctems{}
+	case "fortios:index/endpointControlFctemsOverride:EndpointControlFctemsOverride":
+		r = &EndpointControlFctemsOverride{}
 	case "fortios:index/endpointControlForticlientEms:EndpointControlForticlientEms":
 		r = &EndpointControlForticlientEms{}
 	case "fortios:index/endpointControlForticlientRegistrationSync:EndpointControlForticlientRegistrationSync":
@@ -218,6 +223,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &FirewallInternetServiceOwner{}
 	case "fortios:index/firewallInternetServiceReputation:FirewallInternetServiceReputation":
 		r = &FirewallInternetServiceReputation{}
+	case "fortios:index/firewallInternetServiceSubapp:FirewallInternetServiceSubapp":
+		r = &FirewallInternetServiceSubapp{}
 	case "fortios:index/firewallIpTranslation:FirewallIpTranslation":
 		r = &FirewallIpTranslation{}
 	case "fortios:index/firewallIpmacbindingSetting:FirewallIpmacbindingSetting":
@@ -584,6 +591,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &RouterBgp{}
 	case "fortios:index/routerCommunityList:RouterCommunityList":
 		r = &RouterCommunityList{}
+	case "fortios:index/routerExtcommunityList:RouterExtcommunityList":
+		r = &RouterExtcommunityList{}
 	case "fortios:index/routerIsis:RouterIsis":
 		r = &RouterIsis{}
 	case "fortios:index/routerKeyChain:RouterKeyChain":
@@ -654,6 +663,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &SshFilterProfile{}
 	case "fortios:index/switchController8021XSettings:SwitchController8021XSettings":
 		r = &SwitchController8021XSettings{}
+	case "fortios:index/switchControllerAclGroup:SwitchControllerAclGroup":
+		r = &SwitchControllerAclGroup{}
+	case "fortios:index/switchControllerAclIngress:SwitchControllerAclIngress":
+		r = &SwitchControllerAclIngress{}
 	case "fortios:index/switchControllerAutoConfigCustom:SwitchControllerAutoConfigCustom":
 		r = &SwitchControllerAutoConfigCustom{}
 	case "fortios:index/switchControllerAutoConfigDefault:SwitchControllerAutoConfigDefault":
@@ -812,6 +825,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &SystemDdns{}
 	case "fortios:index/systemDedicatedMgmt:SystemDedicatedMgmt":
 		r = &SystemDedicatedMgmt{}
+	case "fortios:index/systemDeviceUpgrade:SystemDeviceUpgrade":
+		r = &SystemDeviceUpgrade{}
 	case "fortios:index/systemDhcp6Server:SystemDhcp6Server":
 		r = &SystemDhcp6Server{}
 	case "fortios:index/systemDhcpServer:SystemDhcpServer":
@@ -828,8 +843,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &SystemDscpBasedPriority{}
 	case "fortios:index/systemEmailServer:SystemEmailServer":
 		r = &SystemEmailServer{}
+	case "fortios:index/systemEvpn:SystemEvpn":
+		r = &SystemEvpn{}
 	case "fortios:index/systemExternalResource:SystemExternalResource":
 		r = &SystemExternalResource{}
+	case "fortios:index/systemFabricVpn:SystemFabricVpn":
+		r = &SystemFabricVpn{}
 	case "fortios:index/systemFederatedUpgrade:SystemFederatedUpgrade":
 		r = &SystemFederatedUpgrade{}
 	case "fortios:index/systemFipsCc:SystemFipsCc":
@@ -922,6 +941,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &SystemPasswordPolicy{}
 	case "fortios:index/systemPasswordPolicyGuestAdmin:SystemPasswordPolicyGuestAdmin":
 		r = &SystemPasswordPolicyGuestAdmin{}
+	case "fortios:index/systemPcpServer:SystemPcpServer":
+		r = &SystemPcpServer{}
 	case "fortios:index/systemPhysicalSwitch:SystemPhysicalSwitch":
 		r = &SystemPhysicalSwitch{}
 	case "fortios:index/systemPppoeInterface:SystemPppoeInterface":
@@ -978,6 +999,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &SystemSaml{}
 	case "fortios:index/systemSdnConnector:SystemSdnConnector":
 		r = &SystemSdnConnector{}
+	case "fortios:index/systemSdnProxy:SystemSdnProxy":
+		r = &SystemSdnProxy{}
 	case "fortios:index/systemSdwan:SystemSdwan":
 		r = &SystemSdwan{}
 	case "fortios:index/systemSessionHelper:SystemSessionHelper":
@@ -1014,6 +1037,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &SystemSsoAdmin{}
 	case "fortios:index/systemSsoForticloudAdmin:SystemSsoForticloudAdmin":
 		r = &SystemSsoForticloudAdmin{}
+	case "fortios:index/systemSsoFortigateCloudAdmin:SystemSsoFortigateCloudAdmin":
+		r = &SystemSsoFortigateCloudAdmin{}
 	case "fortios:index/systemStandaloneCluster:SystemStandaloneCluster":
 		r = &SystemStandaloneCluster{}
 	case "fortios:index/systemStorage:SystemStorage":
@@ -1150,6 +1175,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &VpnIpsecPhase2{}
 	case "fortios:index/vpnIpsecPhase2Interface:VpnIpsecPhase2Interface":
 		r = &VpnIpsecPhase2Interface{}
+	case "fortios:index/vpnKmipServer:VpnKmipServer":
+		r = &VpnKmipServer{}
 	case "fortios:index/vpnL2Tp:VpnL2Tp":
 		r = &VpnL2Tp{}
 	case "fortios:index/vpnOcvpn:VpnOcvpn":
@@ -1351,10 +1378,18 @@ func (p *pkg) ConstructProvider(ctx *pulumi.Context, name, typ, urn string) (pul
 }
 
 func init() {
-	version, _ := PkgVersion()
+	version, err := internal.PkgVersion()
+	if err != nil {
+		version = semver.Version{Major: 1}
+	}
 	pulumi.RegisterResourceModule(
 		"fortios",
 		"index/alertemailSetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/antivirusExemptList",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -1575,6 +1610,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fortios",
 		"index/endpointControlFctems",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/endpointControlFctemsOverride",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -1845,6 +1885,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fortios",
 		"index/firewallInternetServiceReputation",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallInternetServiceSubapp",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -2764,6 +2809,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
+		"index/routerExtcommunityList",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
 		"index/routerIsis",
 		&module{version},
 	)
@@ -2935,6 +2985,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fortios",
 		"index/switchController8021XSettings",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchControllerAclGroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchControllerAclIngress",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -3334,6 +3394,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
+		"index/systemDeviceUpgrade",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
 		"index/systemDhcp6Server",
 		&module{version},
 	)
@@ -3374,7 +3439,17 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
+		"index/systemEvpn",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
 		"index/systemExternalResource",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemFabricVpn",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -3609,6 +3684,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
+		"index/systemPcpServer",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
 		"index/systemPhysicalSwitch",
 		&module{version},
 	)
@@ -3749,6 +3829,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
+		"index/systemSdnProxy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
 		"index/systemSdwan",
 		&module{version},
 	)
@@ -3835,6 +3920,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fortios",
 		"index/systemSsoForticloudAdmin",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemSsoFortigateCloudAdmin",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -4175,6 +4265,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fortios",
 		"index/vpnIpsecPhase2Interface",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/vpnKmipServer",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

@@ -31,6 +31,7 @@ class WirelessControllerHotspot20HsProfileArgs:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  gas_comeback_delay: Optional[pulumi.Input[int]] = None,
                  gas_fragmentation_limit: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hessid: Optional[pulumi.Input[str]] = None,
                  ip_addr_type: Optional[pulumi.Input[str]] = None,
                  l2tif: Optional[pulumi.Input[str]] = None,
@@ -89,6 +90,8 @@ class WirelessControllerHotspot20HsProfileArgs:
             pulumi.set(__self__, "gas_comeback_delay", gas_comeback_delay)
         if gas_fragmentation_limit is not None:
             pulumi.set(__self__, "gas_fragmentation_limit", gas_fragmentation_limit)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if hessid is not None:
             pulumi.set(__self__, "hessid", hessid)
         if ip_addr_type is not None:
@@ -274,6 +277,15 @@ class WirelessControllerHotspot20HsProfileArgs:
     @gas_fragmentation_limit.setter
     def gas_fragmentation_limit(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "gas_fragmentation_limit", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -519,6 +531,7 @@ class _WirelessControllerHotspot20HsProfileState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  gas_comeback_delay: Optional[pulumi.Input[int]] = None,
                  gas_fragmentation_limit: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hessid: Optional[pulumi.Input[str]] = None,
                  ip_addr_type: Optional[pulumi.Input[str]] = None,
                  l2tif: Optional[pulumi.Input[str]] = None,
@@ -577,6 +590,8 @@ class _WirelessControllerHotspot20HsProfileState:
             pulumi.set(__self__, "gas_comeback_delay", gas_comeback_delay)
         if gas_fragmentation_limit is not None:
             pulumi.set(__self__, "gas_fragmentation_limit", gas_fragmentation_limit)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if hessid is not None:
             pulumi.set(__self__, "hessid", hessid)
         if ip_addr_type is not None:
@@ -762,6 +777,15 @@ class _WirelessControllerHotspot20HsProfileState:
     @gas_fragmentation_limit.setter
     def gas_fragmentation_limit(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "gas_fragmentation_limit", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -1009,6 +1033,7 @@ class WirelessControllerHotspot20HsProfile(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  gas_comeback_delay: Optional[pulumi.Input[int]] = None,
                  gas_fragmentation_limit: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hessid: Optional[pulumi.Input[str]] = None,
                  ip_addr_type: Optional[pulumi.Input[str]] = None,
                  l2tif: Optional[pulumi.Input[str]] = None,
@@ -1078,6 +1103,7 @@ class WirelessControllerHotspot20HsProfile(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  gas_comeback_delay: Optional[pulumi.Input[int]] = None,
                  gas_fragmentation_limit: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hessid: Optional[pulumi.Input[str]] = None,
                  ip_addr_type: Optional[pulumi.Input[str]] = None,
                  l2tif: Optional[pulumi.Input[str]] = None,
@@ -1127,6 +1153,7 @@ class WirelessControllerHotspot20HsProfile(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["gas_comeback_delay"] = gas_comeback_delay
             __props__.__dict__["gas_fragmentation_limit"] = gas_fragmentation_limit
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["hessid"] = hessid
             __props__.__dict__["ip_addr_type"] = ip_addr_type
             __props__.__dict__["l2tif"] = l2tif
@@ -1177,6 +1204,7 @@ class WirelessControllerHotspot20HsProfile(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             gas_comeback_delay: Optional[pulumi.Input[int]] = None,
             gas_fragmentation_limit: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             hessid: Optional[pulumi.Input[str]] = None,
             ip_addr_type: Optional[pulumi.Input[str]] = None,
             l2tif: Optional[pulumi.Input[str]] = None,
@@ -1229,6 +1257,7 @@ class WirelessControllerHotspot20HsProfile(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["gas_comeback_delay"] = gas_comeback_delay
         __props__.__dict__["gas_fragmentation_limit"] = gas_fragmentation_limit
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["hessid"] = hessid
         __props__.__dict__["ip_addr_type"] = ip_addr_type
         __props__.__dict__["l2tif"] = l2tif
@@ -1330,6 +1359,11 @@ class WirelessControllerHotspot20HsProfile(pulumi.CustomResource):
     @pulumi.getter(name="gasFragmentationLimit")
     def gas_fragmentation_limit(self) -> pulumi.Output[int]:
         return pulumi.get(self, "gas_fragmentation_limit")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

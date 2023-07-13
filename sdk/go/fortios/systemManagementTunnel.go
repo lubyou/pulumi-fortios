@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -30,7 +31,7 @@ func NewSystemManagementTunnel(ctx *pulumi.Context,
 		args = &SystemManagementTunnelArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemManagementTunnel
 	err := ctx.RegisterResource("fortios:index/systemManagementTunnel:SystemManagementTunnel", name, args, &resource, opts...)
 	if err != nil {

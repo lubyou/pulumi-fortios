@@ -44,6 +44,7 @@ export class FirewallAddress6 extends pulumi.CustomResource {
     public readonly epgName!: pulumi.Output<string>;
     public readonly fabricObject!: pulumi.Output<string>;
     public readonly fqdn!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly host!: pulumi.Output<string>;
     public readonly hostType!: pulumi.Output<string>;
     public readonly ip6!: pulumi.Output<string>;
@@ -51,6 +52,7 @@ export class FirewallAddress6 extends pulumi.CustomResource {
     public readonly macaddrs!: pulumi.Output<outputs.FirewallAddress6Macaddr[] | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly objId!: pulumi.Output<string | undefined>;
+    public readonly routeTag!: pulumi.Output<number>;
     public readonly sdn!: pulumi.Output<string>;
     public readonly sdnTag!: pulumi.Output<string>;
     public readonly startIp!: pulumi.Output<string>;
@@ -87,6 +89,7 @@ export class FirewallAddress6 extends pulumi.CustomResource {
             resourceInputs["epgName"] = state ? state.epgName : undefined;
             resourceInputs["fabricObject"] = state ? state.fabricObject : undefined;
             resourceInputs["fqdn"] = state ? state.fqdn : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["host"] = state ? state.host : undefined;
             resourceInputs["hostType"] = state ? state.hostType : undefined;
             resourceInputs["ip6"] = state ? state.ip6 : undefined;
@@ -94,6 +97,7 @@ export class FirewallAddress6 extends pulumi.CustomResource {
             resourceInputs["macaddrs"] = state ? state.macaddrs : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["objId"] = state ? state.objId : undefined;
+            resourceInputs["routeTag"] = state ? state.routeTag : undefined;
             resourceInputs["sdn"] = state ? state.sdn : undefined;
             resourceInputs["sdnTag"] = state ? state.sdnTag : undefined;
             resourceInputs["startIp"] = state ? state.startIp : undefined;
@@ -118,6 +122,7 @@ export class FirewallAddress6 extends pulumi.CustomResource {
             resourceInputs["epgName"] = args ? args.epgName : undefined;
             resourceInputs["fabricObject"] = args ? args.fabricObject : undefined;
             resourceInputs["fqdn"] = args ? args.fqdn : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["host"] = args ? args.host : undefined;
             resourceInputs["hostType"] = args ? args.hostType : undefined;
             resourceInputs["ip6"] = args ? args.ip6 : undefined;
@@ -125,6 +130,7 @@ export class FirewallAddress6 extends pulumi.CustomResource {
             resourceInputs["macaddrs"] = args ? args.macaddrs : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["objId"] = args ? args.objId : undefined;
+            resourceInputs["routeTag"] = args ? args.routeTag : undefined;
             resourceInputs["sdn"] = args ? args.sdn : undefined;
             resourceInputs["sdnTag"] = args ? args.sdnTag : undefined;
             resourceInputs["startIp"] = args ? args.startIp : undefined;
@@ -157,6 +163,7 @@ export interface FirewallAddress6State {
     epgName?: pulumi.Input<string>;
     fabricObject?: pulumi.Input<string>;
     fqdn?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     host?: pulumi.Input<string>;
     hostType?: pulumi.Input<string>;
     ip6?: pulumi.Input<string>;
@@ -164,6 +171,7 @@ export interface FirewallAddress6State {
     macaddrs?: pulumi.Input<pulumi.Input<inputs.FirewallAddress6Macaddr>[]>;
     name?: pulumi.Input<string>;
     objId?: pulumi.Input<string>;
+    routeTag?: pulumi.Input<number>;
     sdn?: pulumi.Input<string>;
     sdnTag?: pulumi.Input<string>;
     startIp?: pulumi.Input<string>;
@@ -192,6 +200,7 @@ export interface FirewallAddress6Args {
     epgName?: pulumi.Input<string>;
     fabricObject?: pulumi.Input<string>;
     fqdn?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     host?: pulumi.Input<string>;
     hostType?: pulumi.Input<string>;
     ip6?: pulumi.Input<string>;
@@ -199,6 +208,7 @@ export interface FirewallAddress6Args {
     macaddrs?: pulumi.Input<pulumi.Input<inputs.FirewallAddress6Macaddr>[]>;
     name?: pulumi.Input<string>;
     objId?: pulumi.Input<string>;
+    routeTag?: pulumi.Input<number>;
     sdn?: pulumi.Input<string>;
     sdnTag?: pulumi.Input<string>;
     startIp?: pulumi.Input<string>;

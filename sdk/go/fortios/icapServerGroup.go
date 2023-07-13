@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -14,6 +15,7 @@ type IcapServerGroup struct {
 	pulumi.CustomResourceState
 
 	DynamicSortSubtable pulumi.StringPtrOutput               `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput               `pulumi:"getAllTables"`
 	LdbMethod           pulumi.StringOutput                  `pulumi:"ldbMethod"`
 	Name                pulumi.StringOutput                  `pulumi:"name"`
 	ServerLists         IcapServerGroupServerListArrayOutput `pulumi:"serverLists"`
@@ -27,7 +29,7 @@ func NewIcapServerGroup(ctx *pulumi.Context,
 		args = &IcapServerGroupArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource IcapServerGroup
 	err := ctx.RegisterResource("fortios:index/icapServerGroup:IcapServerGroup", name, args, &resource, opts...)
 	if err != nil {
@@ -51,6 +53,7 @@ func GetIcapServerGroup(ctx *pulumi.Context,
 // Input properties used for looking up and filtering IcapServerGroup resources.
 type icapServerGroupState struct {
 	DynamicSortSubtable *string                     `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                     `pulumi:"getAllTables"`
 	LdbMethod           *string                     `pulumi:"ldbMethod"`
 	Name                *string                     `pulumi:"name"`
 	ServerLists         []IcapServerGroupServerList `pulumi:"serverLists"`
@@ -59,6 +62,7 @@ type icapServerGroupState struct {
 
 type IcapServerGroupState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	LdbMethod           pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	ServerLists         IcapServerGroupServerListArrayInput
@@ -71,6 +75,7 @@ func (IcapServerGroupState) ElementType() reflect.Type {
 
 type icapServerGroupArgs struct {
 	DynamicSortSubtable *string                     `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                     `pulumi:"getAllTables"`
 	LdbMethod           *string                     `pulumi:"ldbMethod"`
 	Name                *string                     `pulumi:"name"`
 	ServerLists         []IcapServerGroupServerList `pulumi:"serverLists"`
@@ -80,6 +85,7 @@ type icapServerGroupArgs struct {
 // The set of arguments for constructing a IcapServerGroup resource.
 type IcapServerGroupArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	LdbMethod           pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	ServerLists         IcapServerGroupServerListArrayInput
@@ -175,6 +181,10 @@ func (o IcapServerGroupOutput) ToIcapServerGroupOutputWithContext(ctx context.Co
 
 func (o IcapServerGroupOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IcapServerGroup) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o IcapServerGroupOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IcapServerGroup) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o IcapServerGroupOutput) LdbMethod() pulumi.StringOutput {

@@ -36,6 +36,7 @@ export class SystemZone extends pulumi.CustomResource {
 
     public readonly description!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly interfaces!: pulumi.Output<outputs.SystemZoneInterface[] | undefined>;
     public readonly intrazone!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
@@ -57,6 +58,7 @@ export class SystemZone extends pulumi.CustomResource {
             const state = argsOrState as SystemZoneState | undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["interfaces"] = state ? state.interfaces : undefined;
             resourceInputs["intrazone"] = state ? state.intrazone : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -66,6 +68,7 @@ export class SystemZone extends pulumi.CustomResource {
             const args = argsOrState as SystemZoneArgs | undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["interfaces"] = args ? args.interfaces : undefined;
             resourceInputs["intrazone"] = args ? args.intrazone : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -83,6 +86,7 @@ export class SystemZone extends pulumi.CustomResource {
 export interface SystemZoneState {
     description?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     interfaces?: pulumi.Input<pulumi.Input<inputs.SystemZoneInterface>[]>;
     intrazone?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
@@ -96,6 +100,7 @@ export interface SystemZoneState {
 export interface SystemZoneArgs {
     description?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     interfaces?: pulumi.Input<pulumi.Input<inputs.SystemZoneInterface>[]>;
     intrazone?: pulumi.Input<string>;
     name?: pulumi.Input<string>;

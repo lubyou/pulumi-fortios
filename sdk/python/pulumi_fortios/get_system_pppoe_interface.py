@@ -210,24 +210,24 @@ def get_system_pppoe_interface(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemPppoeInterface:GetSystemPppoeInterface', __args__, opts=opts, typ=GetSystemPppoeInterfaceResult).value
 
     return AwaitableGetSystemPppoeInterfaceResult(
-        ac_name=__ret__.ac_name,
-        auth_type=__ret__.auth_type,
-        device=__ret__.device,
-        dial_on_demand=__ret__.dial_on_demand,
-        disc_retry_timeout=__ret__.disc_retry_timeout,
-        id=__ret__.id,
-        idle_timeout=__ret__.idle_timeout,
-        ipunnumbered=__ret__.ipunnumbered,
-        ipv6=__ret__.ipv6,
-        lcp_echo_interval=__ret__.lcp_echo_interval,
-        lcp_max_echo_fails=__ret__.lcp_max_echo_fails,
-        name=__ret__.name,
-        padt_retry_timeout=__ret__.padt_retry_timeout,
-        password=__ret__.password,
-        pppoe_unnumbered_negotiate=__ret__.pppoe_unnumbered_negotiate,
-        service_name=__ret__.service_name,
-        username=__ret__.username,
-        vdomparam=__ret__.vdomparam)
+        ac_name=pulumi.get(__ret__, 'ac_name'),
+        auth_type=pulumi.get(__ret__, 'auth_type'),
+        device=pulumi.get(__ret__, 'device'),
+        dial_on_demand=pulumi.get(__ret__, 'dial_on_demand'),
+        disc_retry_timeout=pulumi.get(__ret__, 'disc_retry_timeout'),
+        id=pulumi.get(__ret__, 'id'),
+        idle_timeout=pulumi.get(__ret__, 'idle_timeout'),
+        ipunnumbered=pulumi.get(__ret__, 'ipunnumbered'),
+        ipv6=pulumi.get(__ret__, 'ipv6'),
+        lcp_echo_interval=pulumi.get(__ret__, 'lcp_echo_interval'),
+        lcp_max_echo_fails=pulumi.get(__ret__, 'lcp_max_echo_fails'),
+        name=pulumi.get(__ret__, 'name'),
+        padt_retry_timeout=pulumi.get(__ret__, 'padt_retry_timeout'),
+        password=pulumi.get(__ret__, 'password'),
+        pppoe_unnumbered_negotiate=pulumi.get(__ret__, 'pppoe_unnumbered_negotiate'),
+        service_name=pulumi.get(__ret__, 'service_name'),
+        username=pulumi.get(__ret__, 'username'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_pppoe_interface)

@@ -37,6 +37,7 @@ export class SystemSnmpCommunity extends pulumi.CustomResource {
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly events!: pulumi.Output<string>;
     public readonly fosid!: pulumi.Output<number>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly hosts!: pulumi.Output<outputs.SystemSnmpCommunityHost[] | undefined>;
     public readonly hosts6s!: pulumi.Output<outputs.SystemSnmpCommunityHosts6[] | undefined>;
     public readonly mibView!: pulumi.Output<string>;
@@ -71,6 +72,7 @@ export class SystemSnmpCommunity extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["events"] = state ? state.events : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["hosts"] = state ? state.hosts : undefined;
             resourceInputs["hosts6s"] = state ? state.hosts6s : undefined;
             resourceInputs["mibView"] = state ? state.mibView : undefined;
@@ -96,6 +98,7 @@ export class SystemSnmpCommunity extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["events"] = args ? args.events : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["hosts"] = args ? args.hosts : undefined;
             resourceInputs["hosts6s"] = args ? args.hosts6s : undefined;
             resourceInputs["mibView"] = args ? args.mibView : undefined;
@@ -126,6 +129,7 @@ export interface SystemSnmpCommunityState {
     dynamicSortSubtable?: pulumi.Input<string>;
     events?: pulumi.Input<string>;
     fosid?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     hosts?: pulumi.Input<pulumi.Input<inputs.SystemSnmpCommunityHost>[]>;
     hosts6s?: pulumi.Input<pulumi.Input<inputs.SystemSnmpCommunityHosts6>[]>;
     mibView?: pulumi.Input<string>;
@@ -152,6 +156,7 @@ export interface SystemSnmpCommunityArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
     events?: pulumi.Input<string>;
     fosid: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     hosts?: pulumi.Input<pulumi.Input<inputs.SystemSnmpCommunityHost>[]>;
     hosts6s?: pulumi.Input<pulumi.Input<inputs.SystemSnmpCommunityHosts6>[]>;
     mibView?: pulumi.Input<string>;

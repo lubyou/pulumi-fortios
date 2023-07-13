@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,6 +16,7 @@ type WirelessControllerHotspot20H2QpOsuProvider struct {
 
 	DynamicSortSubtable pulumi.StringPtrOutput                                                  `pulumi:"dynamicSortSubtable"`
 	FriendlyNames       WirelessControllerHotspot20H2QpOsuProviderFriendlyNameArrayOutput       `pulumi:"friendlyNames"`
+	GetAllTables        pulumi.StringPtrOutput                                                  `pulumi:"getAllTables"`
 	Icon                pulumi.StringOutput                                                     `pulumi:"icon"`
 	Name                pulumi.StringOutput                                                     `pulumi:"name"`
 	OsuMethod           pulumi.StringOutput                                                     `pulumi:"osuMethod"`
@@ -31,7 +33,7 @@ func NewWirelessControllerHotspot20H2QpOsuProvider(ctx *pulumi.Context,
 		args = &WirelessControllerHotspot20H2QpOsuProviderArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WirelessControllerHotspot20H2QpOsuProvider
 	err := ctx.RegisterResource("fortios:index/wirelessControllerHotspot20H2QpOsuProvider:WirelessControllerHotspot20H2QpOsuProvider", name, args, &resource, opts...)
 	if err != nil {
@@ -56,6 +58,7 @@ func GetWirelessControllerHotspot20H2QpOsuProvider(ctx *pulumi.Context,
 type wirelessControllerHotspot20H2QpOsuProviderState struct {
 	DynamicSortSubtable *string                                                        `pulumi:"dynamicSortSubtable"`
 	FriendlyNames       []WirelessControllerHotspot20H2QpOsuProviderFriendlyName       `pulumi:"friendlyNames"`
+	GetAllTables        *string                                                        `pulumi:"getAllTables"`
 	Icon                *string                                                        `pulumi:"icon"`
 	Name                *string                                                        `pulumi:"name"`
 	OsuMethod           *string                                                        `pulumi:"osuMethod"`
@@ -68,6 +71,7 @@ type wirelessControllerHotspot20H2QpOsuProviderState struct {
 type WirelessControllerHotspot20H2QpOsuProviderState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	FriendlyNames       WirelessControllerHotspot20H2QpOsuProviderFriendlyNameArrayInput
+	GetAllTables        pulumi.StringPtrInput
 	Icon                pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	OsuMethod           pulumi.StringPtrInput
@@ -84,6 +88,7 @@ func (WirelessControllerHotspot20H2QpOsuProviderState) ElementType() reflect.Typ
 type wirelessControllerHotspot20H2QpOsuProviderArgs struct {
 	DynamicSortSubtable *string                                                        `pulumi:"dynamicSortSubtable"`
 	FriendlyNames       []WirelessControllerHotspot20H2QpOsuProviderFriendlyName       `pulumi:"friendlyNames"`
+	GetAllTables        *string                                                        `pulumi:"getAllTables"`
 	Icon                *string                                                        `pulumi:"icon"`
 	Name                *string                                                        `pulumi:"name"`
 	OsuMethod           *string                                                        `pulumi:"osuMethod"`
@@ -97,6 +102,7 @@ type wirelessControllerHotspot20H2QpOsuProviderArgs struct {
 type WirelessControllerHotspot20H2QpOsuProviderArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	FriendlyNames       WirelessControllerHotspot20H2QpOsuProviderFriendlyNameArrayInput
+	GetAllTables        pulumi.StringPtrInput
 	Icon                pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	OsuMethod           pulumi.StringPtrInput
@@ -203,6 +209,10 @@ func (o WirelessControllerHotspot20H2QpOsuProviderOutput) FriendlyNames() Wirele
 	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpOsuProvider) WirelessControllerHotspot20H2QpOsuProviderFriendlyNameArrayOutput {
 		return v.FriendlyNames
 	}).(WirelessControllerHotspot20H2QpOsuProviderFriendlyNameArrayOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpOsuProviderOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpOsuProvider) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o WirelessControllerHotspot20H2QpOsuProviderOutput) Icon() pulumi.StringOutput {

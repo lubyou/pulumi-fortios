@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -16,6 +17,7 @@ type SystemPtp struct {
 
 	DelayMechanism      pulumi.StringOutput                 `pulumi:"delayMechanism"`
 	DynamicSortSubtable pulumi.StringPtrOutput              `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput              `pulumi:"getAllTables"`
 	Interface           pulumi.StringOutput                 `pulumi:"interface"`
 	Mode                pulumi.StringOutput                 `pulumi:"mode"`
 	RequestInterval     pulumi.IntOutput                    `pulumi:"requestInterval"`
@@ -35,7 +37,7 @@ func NewSystemPtp(ctx *pulumi.Context,
 	if args.Interface == nil {
 		return nil, errors.New("invalid value for required argument 'Interface'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemPtp
 	err := ctx.RegisterResource("fortios:index/systemPtp:SystemPtp", name, args, &resource, opts...)
 	if err != nil {
@@ -60,6 +62,7 @@ func GetSystemPtp(ctx *pulumi.Context,
 type systemPtpState struct {
 	DelayMechanism      *string                    `pulumi:"delayMechanism"`
 	DynamicSortSubtable *string                    `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                    `pulumi:"getAllTables"`
 	Interface           *string                    `pulumi:"interface"`
 	Mode                *string                    `pulumi:"mode"`
 	RequestInterval     *int                       `pulumi:"requestInterval"`
@@ -72,6 +75,7 @@ type systemPtpState struct {
 type SystemPtpState struct {
 	DelayMechanism      pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Interface           pulumi.StringPtrInput
 	Mode                pulumi.StringPtrInput
 	RequestInterval     pulumi.IntPtrInput
@@ -88,6 +92,7 @@ func (SystemPtpState) ElementType() reflect.Type {
 type systemPtpArgs struct {
 	DelayMechanism      *string                    `pulumi:"delayMechanism"`
 	DynamicSortSubtable *string                    `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                    `pulumi:"getAllTables"`
 	Interface           string                     `pulumi:"interface"`
 	Mode                *string                    `pulumi:"mode"`
 	RequestInterval     *int                       `pulumi:"requestInterval"`
@@ -101,6 +106,7 @@ type systemPtpArgs struct {
 type SystemPtpArgs struct {
 	DelayMechanism      pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Interface           pulumi.StringInput
 	Mode                pulumi.StringPtrInput
 	RequestInterval     pulumi.IntPtrInput
@@ -203,6 +209,10 @@ func (o SystemPtpOutput) DelayMechanism() pulumi.StringOutput {
 
 func (o SystemPtpOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SystemPtp) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemPtpOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemPtp) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemPtpOutput) Interface() pulumi.StringOutput {

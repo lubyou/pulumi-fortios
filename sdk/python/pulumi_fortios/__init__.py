@@ -6,6 +6,7 @@ from . import _utilities
 import typing
 # Export this package's modules as members:
 from .alertemail_setting import *
+from .antivirus_exempt_list import *
 from .antivirus_heuristic import *
 from .antivirus_profile import *
 from .antivirus_quarantine import *
@@ -50,6 +51,7 @@ from .emailfilter_options import *
 from .emailfilter_profile import *
 from .endpoint_control_client import *
 from .endpoint_control_fctems import *
+from .endpoint_control_fctems_override import *
 from .endpoint_control_forticlient_ems import *
 from .endpoint_control_forticlient_registration_sync import *
 from .endpoint_control_profile import *
@@ -104,6 +106,7 @@ from .firewall_internet_service_list import *
 from .firewall_internet_service_name import *
 from .firewall_internet_service_owner import *
 from .firewall_internet_service_reputation import *
+from .firewall_internet_service_subapp import *
 from .firewall_ip_translation import *
 from .firewall_ipmacbinding_setting import *
 from .firewall_ipmacbinding_table import *
@@ -519,6 +522,7 @@ from .router_bfd import *
 from .router_bfd6 import *
 from .router_bgp import *
 from .router_community_list import *
+from .router_extcommunity_list import *
 from .router_isis import *
 from .router_key_chain import *
 from .router_multicast import *
@@ -554,6 +558,8 @@ from .spamfilter_options import *
 from .spamfilter_profile import *
 from .ssh_filter_profile import *
 from .switch_controller8021_x_settings import *
+from .switch_controller_acl_group import *
+from .switch_controller_acl_ingress import *
 from .switch_controller_auto_config_custom import *
 from .switch_controller_auto_config_default import *
 from .switch_controller_auto_config_policy import *
@@ -633,6 +639,7 @@ from .system_csf import *
 from .system_custom_language import *
 from .system_ddns import *
 from .system_dedicated_mgmt import *
+from .system_device_upgrade import *
 from .system_dhcp6_server import *
 from .system_dhcp_server import *
 from .system_dns import *
@@ -641,7 +648,9 @@ from .system_dns_database import *
 from .system_dns_server import *
 from .system_dscp_based_priority import *
 from .system_email_server import *
+from .system_evpn import *
 from .system_external_resource import *
+from .system_fabric_vpn import *
 from .system_federated_upgrade import *
 from .system_fips_cc import *
 from .system_fm import *
@@ -688,6 +697,7 @@ from .system_ntp import *
 from .system_object_tagging import *
 from .system_password_policy import *
 from .system_password_policy_guest_admin import *
+from .system_pcp_server import *
 from .system_physical_switch import *
 from .system_pppoe_interface import *
 from .system_probe_response import *
@@ -716,6 +726,7 @@ from .system_replacemsg_webproxy import *
 from .system_resource_limits import *
 from .system_saml import *
 from .system_sdn_connector import *
+from .system_sdn_proxy import *
 from .system_sdwan import *
 from .system_session_helper import *
 from .system_session_ttl import *
@@ -734,6 +745,7 @@ from .system_speed_test_schedule import *
 from .system_speed_test_server import *
 from .system_sso_admin import *
 from .system_sso_forticloud_admin import *
+from .system_sso_fortigate_cloud_admin import *
 from .system_standalone_cluster import *
 from .system_storage import *
 from .system_stp import *
@@ -800,6 +812,7 @@ from .vpn_ipsec_phase1 import *
 from .vpn_ipsec_phase1_interface import *
 from .vpn_ipsec_phase2 import *
 from .vpn_ipsec_phase2_interface import *
+from .vpn_kmip_server import *
 from .vpn_l2_tp import *
 from .vpn_ocvpn import *
 from .vpn_pptp import *
@@ -908,6 +921,14 @@ _utilities.register(
   "fqn": "pulumi_fortios",
   "classes": {
    "fortios:index/alertemailSetting:AlertemailSetting": "AlertemailSetting"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/antivirusExemptList",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/antivirusExemptList:AntivirusExemptList": "AntivirusExemptList"
   }
  },
  {
@@ -1260,6 +1281,14 @@ _utilities.register(
   "fqn": "pulumi_fortios",
   "classes": {
    "fortios:index/endpointControlFctems:EndpointControlFctems": "EndpointControlFctems"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/endpointControlFctemsOverride",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/endpointControlFctemsOverride:EndpointControlFctemsOverride": "EndpointControlFctemsOverride"
   }
  },
  {
@@ -1692,6 +1721,14 @@ _utilities.register(
   "fqn": "pulumi_fortios",
   "classes": {
    "fortios:index/firewallInternetServiceReputation:FirewallInternetServiceReputation": "FirewallInternetServiceReputation"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/firewallInternetServiceSubapp",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/firewallInternetServiceSubapp:FirewallInternetServiceSubapp": "FirewallInternetServiceSubapp"
   }
  },
  {
@@ -3160,6 +3197,14 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "index/routerExtcommunityList",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/routerExtcommunityList:RouterExtcommunityList": "RouterExtcommunityList"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "index/routerIsis",
   "fqn": "pulumi_fortios",
   "classes": {
@@ -3436,6 +3481,22 @@ _utilities.register(
   "fqn": "pulumi_fortios",
   "classes": {
    "fortios:index/switchController8021XSettings:SwitchController8021XSettings": "SwitchController8021XSettings"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/switchControllerAclGroup",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/switchControllerAclGroup:SwitchControllerAclGroup": "SwitchControllerAclGroup"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/switchControllerAclIngress",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/switchControllerAclIngress:SwitchControllerAclIngress": "SwitchControllerAclIngress"
   }
  },
  {
@@ -4072,6 +4133,14 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "index/systemDeviceUpgrade",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/systemDeviceUpgrade:SystemDeviceUpgrade": "SystemDeviceUpgrade"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "index/systemDhcp6Server",
   "fqn": "pulumi_fortios",
   "classes": {
@@ -4136,10 +4205,26 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "index/systemEvpn",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/systemEvpn:SystemEvpn": "SystemEvpn"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "index/systemExternalResource",
   "fqn": "pulumi_fortios",
   "classes": {
    "fortios:index/systemExternalResource:SystemExternalResource": "SystemExternalResource"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/systemFabricVpn",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/systemFabricVpn:SystemFabricVpn": "SystemFabricVpn"
   }
  },
  {
@@ -4512,6 +4597,14 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "index/systemPcpServer",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/systemPcpServer:SystemPcpServer": "SystemPcpServer"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "index/systemPhysicalSwitch",
   "fqn": "pulumi_fortios",
   "classes": {
@@ -4736,6 +4829,14 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "index/systemSdnProxy",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/systemSdnProxy:SystemSdnProxy": "SystemSdnProxy"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "index/systemSdwan",
   "fqn": "pulumi_fortios",
   "classes": {
@@ -4876,6 +4977,14 @@ _utilities.register(
   "fqn": "pulumi_fortios",
   "classes": {
    "fortios:index/systemSsoForticloudAdmin:SystemSsoForticloudAdmin": "SystemSsoForticloudAdmin"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/systemSsoFortigateCloudAdmin",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/systemSsoFortigateCloudAdmin:SystemSsoFortigateCloudAdmin": "SystemSsoFortigateCloudAdmin"
   }
  },
  {
@@ -5420,6 +5529,14 @@ _utilities.register(
   "fqn": "pulumi_fortios",
   "classes": {
    "fortios:index/vpnIpsecPhase2Interface:VpnIpsecPhase2Interface": "VpnIpsecPhase2Interface"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/vpnKmipServer",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/vpnKmipServer:VpnKmipServer": "VpnKmipServer"
   }
  },
  {

@@ -17,6 +17,7 @@ __all__ = ['SystemLldpNetworkPolicyArgs', 'SystemLldpNetworkPolicy']
 class SystemLldpNetworkPolicyArgs:
     def __init__(__self__, *,
                  comment: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  guest: Optional[pulumi.Input['SystemLldpNetworkPolicyGuestArgs']] = None,
                  guest_voice_signaling: Optional[pulumi.Input['SystemLldpNetworkPolicyGuestVoiceSignalingArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -32,6 +33,8 @@ class SystemLldpNetworkPolicyArgs:
         """
         if comment is not None:
             pulumi.set(__self__, "comment", comment)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if guest is not None:
             pulumi.set(__self__, "guest", guest)
         if guest_voice_signaling is not None:
@@ -61,6 +64,15 @@ class SystemLldpNetworkPolicyArgs:
     @comment.setter
     def comment(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "comment", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -157,6 +169,7 @@ class SystemLldpNetworkPolicyArgs:
 class _SystemLldpNetworkPolicyState:
     def __init__(__self__, *,
                  comment: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  guest: Optional[pulumi.Input['SystemLldpNetworkPolicyGuestArgs']] = None,
                  guest_voice_signaling: Optional[pulumi.Input['SystemLldpNetworkPolicyGuestVoiceSignalingArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -172,6 +185,8 @@ class _SystemLldpNetworkPolicyState:
         """
         if comment is not None:
             pulumi.set(__self__, "comment", comment)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if guest is not None:
             pulumi.set(__self__, "guest", guest)
         if guest_voice_signaling is not None:
@@ -201,6 +216,15 @@ class _SystemLldpNetworkPolicyState:
     @comment.setter
     def comment(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "comment", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -299,6 +323,7 @@ class SystemLldpNetworkPolicy(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  comment: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  guest: Optional[pulumi.Input[pulumi.InputType['SystemLldpNetworkPolicyGuestArgs']]] = None,
                  guest_voice_signaling: Optional[pulumi.Input[pulumi.InputType['SystemLldpNetworkPolicyGuestVoiceSignalingArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -339,6 +364,7 @@ class SystemLldpNetworkPolicy(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  comment: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  guest: Optional[pulumi.Input[pulumi.InputType['SystemLldpNetworkPolicyGuestArgs']]] = None,
                  guest_voice_signaling: Optional[pulumi.Input[pulumi.InputType['SystemLldpNetworkPolicyGuestVoiceSignalingArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -359,6 +385,7 @@ class SystemLldpNetworkPolicy(pulumi.CustomResource):
             __props__ = SystemLldpNetworkPolicyArgs.__new__(SystemLldpNetworkPolicyArgs)
 
             __props__.__dict__["comment"] = comment
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["guest"] = guest
             __props__.__dict__["guest_voice_signaling"] = guest_voice_signaling
             __props__.__dict__["name"] = name
@@ -380,6 +407,7 @@ class SystemLldpNetworkPolicy(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             comment: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             guest: Optional[pulumi.Input[pulumi.InputType['SystemLldpNetworkPolicyGuestArgs']]] = None,
             guest_voice_signaling: Optional[pulumi.Input[pulumi.InputType['SystemLldpNetworkPolicyGuestVoiceSignalingArgs']]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -403,6 +431,7 @@ class SystemLldpNetworkPolicy(pulumi.CustomResource):
         __props__ = _SystemLldpNetworkPolicyState.__new__(_SystemLldpNetworkPolicyState)
 
         __props__.__dict__["comment"] = comment
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["guest"] = guest
         __props__.__dict__["guest_voice_signaling"] = guest_voice_signaling
         __props__.__dict__["name"] = name
@@ -419,6 +448,11 @@ class SystemLldpNetworkPolicy(pulumi.CustomResource):
     @pulumi.getter
     def comment(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "comment")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

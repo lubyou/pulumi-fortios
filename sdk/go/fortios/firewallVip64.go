@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -21,6 +22,7 @@ type FirewallVip64 struct {
 	Extip               pulumi.StringOutput                `pulumi:"extip"`
 	Extport             pulumi.StringOutput                `pulumi:"extport"`
 	Fosid               pulumi.IntOutput                   `pulumi:"fosid"`
+	GetAllTables        pulumi.StringPtrOutput             `pulumi:"getAllTables"`
 	LdbMethod           pulumi.StringOutput                `pulumi:"ldbMethod"`
 	Mappedip            pulumi.StringOutput                `pulumi:"mappedip"`
 	Mappedport          pulumi.StringOutput                `pulumi:"mappedport"`
@@ -49,7 +51,7 @@ func NewFirewallVip64(ctx *pulumi.Context,
 	if args.Mappedip == nil {
 		return nil, errors.New("invalid value for required argument 'Mappedip'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallVip64
 	err := ctx.RegisterResource("fortios:index/firewallVip64:FirewallVip64", name, args, &resource, opts...)
 	if err != nil {
@@ -79,6 +81,7 @@ type firewallVip64State struct {
 	Extip               *string                   `pulumi:"extip"`
 	Extport             *string                   `pulumi:"extport"`
 	Fosid               *int                      `pulumi:"fosid"`
+	GetAllTables        *string                   `pulumi:"getAllTables"`
 	LdbMethod           *string                   `pulumi:"ldbMethod"`
 	Mappedip            *string                   `pulumi:"mappedip"`
 	Mappedport          *string                   `pulumi:"mappedport"`
@@ -102,6 +105,7 @@ type FirewallVip64State struct {
 	Extip               pulumi.StringPtrInput
 	Extport             pulumi.StringPtrInput
 	Fosid               pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	LdbMethod           pulumi.StringPtrInput
 	Mappedip            pulumi.StringPtrInput
 	Mappedport          pulumi.StringPtrInput
@@ -129,6 +133,7 @@ type firewallVip64Args struct {
 	Extip               string                    `pulumi:"extip"`
 	Extport             *string                   `pulumi:"extport"`
 	Fosid               *int                      `pulumi:"fosid"`
+	GetAllTables        *string                   `pulumi:"getAllTables"`
 	LdbMethod           *string                   `pulumi:"ldbMethod"`
 	Mappedip            string                    `pulumi:"mappedip"`
 	Mappedport          *string                   `pulumi:"mappedport"`
@@ -153,6 +158,7 @@ type FirewallVip64Args struct {
 	Extip               pulumi.StringInput
 	Extport             pulumi.StringPtrInput
 	Fosid               pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	LdbMethod           pulumi.StringPtrInput
 	Mappedip            pulumi.StringInput
 	Mappedport          pulumi.StringPtrInput
@@ -281,6 +287,10 @@ func (o FirewallVip64Output) Extport() pulumi.StringOutput {
 
 func (o FirewallVip64Output) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *FirewallVip64) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o FirewallVip64Output) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallVip64) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallVip64Output) LdbMethod() pulumi.StringOutput {

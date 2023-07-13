@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func GetSystemIpv6NeighborCacheList(ctx *pulumi.Context, args *GetSystemIpv6NeighborCacheListArgs, opts ...pulumi.InvokeOption) (*GetSystemIpv6NeighborCacheListResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetSystemIpv6NeighborCacheListResult
 	err := ctx.Invoke("fortios:index/getSystemIpv6NeighborCacheList:GetSystemIpv6NeighborCacheList", args, &rv, opts...)
 	if err != nil {

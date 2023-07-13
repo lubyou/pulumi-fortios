@@ -40,6 +40,7 @@ export class EndpointControlProfile extends pulumi.CustomResource {
     public readonly forticlientAndroidSettings!: pulumi.Output<outputs.EndpointControlProfileForticlientAndroidSettings>;
     public readonly forticlientIosSettings!: pulumi.Output<outputs.EndpointControlProfileForticlientIosSettings>;
     public readonly forticlientWinmacSettings!: pulumi.Output<outputs.EndpointControlProfileForticlientWinmacSettings>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly onNetAddrs!: pulumi.Output<outputs.EndpointControlProfileOnNetAddr[] | undefined>;
     public readonly profileName!: pulumi.Output<string>;
     public readonly replacemsgOverrideGroup!: pulumi.Output<string>;
@@ -67,6 +68,7 @@ export class EndpointControlProfile extends pulumi.CustomResource {
             resourceInputs["forticlientAndroidSettings"] = state ? state.forticlientAndroidSettings : undefined;
             resourceInputs["forticlientIosSettings"] = state ? state.forticlientIosSettings : undefined;
             resourceInputs["forticlientWinmacSettings"] = state ? state.forticlientWinmacSettings : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["onNetAddrs"] = state ? state.onNetAddrs : undefined;
             resourceInputs["profileName"] = state ? state.profileName : undefined;
             resourceInputs["replacemsgOverrideGroup"] = state ? state.replacemsgOverrideGroup : undefined;
@@ -82,6 +84,7 @@ export class EndpointControlProfile extends pulumi.CustomResource {
             resourceInputs["forticlientAndroidSettings"] = args ? args.forticlientAndroidSettings : undefined;
             resourceInputs["forticlientIosSettings"] = args ? args.forticlientIosSettings : undefined;
             resourceInputs["forticlientWinmacSettings"] = args ? args.forticlientWinmacSettings : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["onNetAddrs"] = args ? args.onNetAddrs : undefined;
             resourceInputs["profileName"] = args ? args.profileName : undefined;
             resourceInputs["replacemsgOverrideGroup"] = args ? args.replacemsgOverrideGroup : undefined;
@@ -105,6 +108,7 @@ export interface EndpointControlProfileState {
     forticlientAndroidSettings?: pulumi.Input<inputs.EndpointControlProfileForticlientAndroidSettings>;
     forticlientIosSettings?: pulumi.Input<inputs.EndpointControlProfileForticlientIosSettings>;
     forticlientWinmacSettings?: pulumi.Input<inputs.EndpointControlProfileForticlientWinmacSettings>;
+    getAllTables?: pulumi.Input<string>;
     onNetAddrs?: pulumi.Input<pulumi.Input<inputs.EndpointControlProfileOnNetAddr>[]>;
     profileName?: pulumi.Input<string>;
     replacemsgOverrideGroup?: pulumi.Input<string>;
@@ -124,6 +128,7 @@ export interface EndpointControlProfileArgs {
     forticlientAndroidSettings?: pulumi.Input<inputs.EndpointControlProfileForticlientAndroidSettings>;
     forticlientIosSettings?: pulumi.Input<inputs.EndpointControlProfileForticlientIosSettings>;
     forticlientWinmacSettings?: pulumi.Input<inputs.EndpointControlProfileForticlientWinmacSettings>;
+    getAllTables?: pulumi.Input<string>;
     onNetAddrs?: pulumi.Input<pulumi.Input<inputs.EndpointControlProfileOnNetAddr>[]>;
     profileName?: pulumi.Input<string>;
     replacemsgOverrideGroup?: pulumi.Input<string>;

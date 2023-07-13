@@ -19,6 +19,8 @@ class SystemFederatedUpgradeArgs:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  failure_device: Optional[pulumi.Input[str]] = None,
                  failure_reason: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 ha_reboot_controller: Optional[pulumi.Input[str]] = None,
                  next_path_index: Optional[pulumi.Input[int]] = None,
                  node_lists: Optional[pulumi.Input[Sequence[pulumi.Input['SystemFederatedUpgradeNodeListArgs']]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -33,6 +35,10 @@ class SystemFederatedUpgradeArgs:
             pulumi.set(__self__, "failure_device", failure_device)
         if failure_reason is not None:
             pulumi.set(__self__, "failure_reason", failure_reason)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
+        if ha_reboot_controller is not None:
+            pulumi.set(__self__, "ha_reboot_controller", ha_reboot_controller)
         if next_path_index is not None:
             pulumi.set(__self__, "next_path_index", next_path_index)
         if node_lists is not None:
@@ -70,6 +76,24 @@ class SystemFederatedUpgradeArgs:
     @failure_reason.setter
     def failure_reason(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "failure_reason", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
+    @pulumi.getter(name="haRebootController")
+    def ha_reboot_controller(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ha_reboot_controller")
+
+    @ha_reboot_controller.setter
+    def ha_reboot_controller(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ha_reboot_controller", value)
 
     @property
     @pulumi.getter(name="nextPathIndex")
@@ -123,6 +147,8 @@ class _SystemFederatedUpgradeState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  failure_device: Optional[pulumi.Input[str]] = None,
                  failure_reason: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 ha_reboot_controller: Optional[pulumi.Input[str]] = None,
                  next_path_index: Optional[pulumi.Input[int]] = None,
                  node_lists: Optional[pulumi.Input[Sequence[pulumi.Input['SystemFederatedUpgradeNodeListArgs']]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -137,6 +163,10 @@ class _SystemFederatedUpgradeState:
             pulumi.set(__self__, "failure_device", failure_device)
         if failure_reason is not None:
             pulumi.set(__self__, "failure_reason", failure_reason)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
+        if ha_reboot_controller is not None:
+            pulumi.set(__self__, "ha_reboot_controller", ha_reboot_controller)
         if next_path_index is not None:
             pulumi.set(__self__, "next_path_index", next_path_index)
         if node_lists is not None:
@@ -174,6 +204,24 @@ class _SystemFederatedUpgradeState:
     @failure_reason.setter
     def failure_reason(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "failure_reason", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
+    @pulumi.getter(name="haRebootController")
+    def ha_reboot_controller(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ha_reboot_controller")
+
+    @ha_reboot_controller.setter
+    def ha_reboot_controller(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ha_reboot_controller", value)
 
     @property
     @pulumi.getter(name="nextPathIndex")
@@ -229,6 +277,8 @@ class SystemFederatedUpgrade(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  failure_device: Optional[pulumi.Input[str]] = None,
                  failure_reason: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 ha_reboot_controller: Optional[pulumi.Input[str]] = None,
                  next_path_index: Optional[pulumi.Input[int]] = None,
                  node_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemFederatedUpgradeNodeListArgs']]]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -266,6 +316,8 @@ class SystemFederatedUpgrade(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  failure_device: Optional[pulumi.Input[str]] = None,
                  failure_reason: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 ha_reboot_controller: Optional[pulumi.Input[str]] = None,
                  next_path_index: Optional[pulumi.Input[int]] = None,
                  node_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemFederatedUpgradeNodeListArgs']]]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -283,6 +335,8 @@ class SystemFederatedUpgrade(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["failure_device"] = failure_device
             __props__.__dict__["failure_reason"] = failure_reason
+            __props__.__dict__["get_all_tables"] = get_all_tables
+            __props__.__dict__["ha_reboot_controller"] = ha_reboot_controller
             __props__.__dict__["next_path_index"] = next_path_index
             __props__.__dict__["node_lists"] = node_lists
             __props__.__dict__["status"] = status
@@ -301,6 +355,8 @@ class SystemFederatedUpgrade(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             failure_device: Optional[pulumi.Input[str]] = None,
             failure_reason: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
+            ha_reboot_controller: Optional[pulumi.Input[str]] = None,
             next_path_index: Optional[pulumi.Input[int]] = None,
             node_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemFederatedUpgradeNodeListArgs']]]]] = None,
             status: Optional[pulumi.Input[str]] = None,
@@ -321,6 +377,8 @@ class SystemFederatedUpgrade(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["failure_device"] = failure_device
         __props__.__dict__["failure_reason"] = failure_reason
+        __props__.__dict__["get_all_tables"] = get_all_tables
+        __props__.__dict__["ha_reboot_controller"] = ha_reboot_controller
         __props__.__dict__["next_path_index"] = next_path_index
         __props__.__dict__["node_lists"] = node_lists
         __props__.__dict__["status"] = status
@@ -342,6 +400,16 @@ class SystemFederatedUpgrade(pulumi.CustomResource):
     @pulumi.getter(name="failureReason")
     def failure_reason(self) -> pulumi.Output[str]:
         return pulumi.get(self, "failure_reason")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @property
+    @pulumi.getter(name="haRebootController")
+    def ha_reboot_controller(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "ha_reboot_controller")
 
     @property
     @pulumi.getter(name="nextPathIndex")

@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemExternalResource(ctx *pulumi.Context, args *LookupSystemExternalResourceArgs, opts ...pulumi.InvokeOption) (*LookupSystemExternalResourceResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemExternalResourceResult
 	err := ctx.Invoke("fortios:index/getSystemExternalResource:GetSystemExternalResource", args, &rv, opts...)
 	if err != nil {
@@ -38,6 +39,7 @@ type LookupSystemExternalResourceResult struct {
 	Password              string  `pulumi:"password"`
 	RefreshRate           int     `pulumi:"refreshRate"`
 	Resource              string  `pulumi:"resource"`
+	ServerIdentityCheck   string  `pulumi:"serverIdentityCheck"`
 	SourceIp              string  `pulumi:"sourceIp"`
 	Status                string  `pulumi:"status"`
 	Type                  string  `pulumi:"type"`
@@ -121,6 +123,10 @@ func (o LookupSystemExternalResourceResultOutput) RefreshRate() pulumi.IntOutput
 
 func (o LookupSystemExternalResourceResultOutput) Resource() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemExternalResourceResult) string { return v.Resource }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemExternalResourceResultOutput) ServerIdentityCheck() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemExternalResourceResult) string { return v.ServerIdentityCheck }).(pulumi.StringOutput)
 }
 
 func (o LookupSystemExternalResourceResultOutput) SourceIp() pulumi.StringOutput {

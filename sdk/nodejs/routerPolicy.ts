@@ -43,6 +43,7 @@ export class RouterPolicy extends pulumi.CustomResource {
     public readonly endPort!: pulumi.Output<number>;
     public readonly endSourcePort!: pulumi.Output<number>;
     public readonly gateway!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly inputDeviceNegate!: pulumi.Output<string>;
     public readonly inputDevices!: pulumi.Output<outputs.RouterPolicyInputDevice[] | undefined>;
     public readonly internetServiceCustoms!: pulumi.Output<outputs.RouterPolicyInternetServiceCustom[] | undefined>;
@@ -82,6 +83,7 @@ export class RouterPolicy extends pulumi.CustomResource {
             resourceInputs["endPort"] = state ? state.endPort : undefined;
             resourceInputs["endSourcePort"] = state ? state.endSourcePort : undefined;
             resourceInputs["gateway"] = state ? state.gateway : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["inputDeviceNegate"] = state ? state.inputDeviceNegate : undefined;
             resourceInputs["inputDevices"] = state ? state.inputDevices : undefined;
             resourceInputs["internetServiceCustoms"] = state ? state.internetServiceCustoms : undefined;
@@ -109,6 +111,7 @@ export class RouterPolicy extends pulumi.CustomResource {
             resourceInputs["endPort"] = args ? args.endPort : undefined;
             resourceInputs["endSourcePort"] = args ? args.endSourcePort : undefined;
             resourceInputs["gateway"] = args ? args.gateway : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["inputDeviceNegate"] = args ? args.inputDeviceNegate : undefined;
             resourceInputs["inputDevices"] = args ? args.inputDevices : undefined;
             resourceInputs["internetServiceCustoms"] = args ? args.internetServiceCustoms : undefined;
@@ -144,6 +147,7 @@ export interface RouterPolicyState {
     endPort?: pulumi.Input<number>;
     endSourcePort?: pulumi.Input<number>;
     gateway?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     inputDeviceNegate?: pulumi.Input<string>;
     inputDevices?: pulumi.Input<pulumi.Input<inputs.RouterPolicyInputDevice>[]>;
     internetServiceCustoms?: pulumi.Input<pulumi.Input<inputs.RouterPolicyInternetServiceCustom>[]>;
@@ -175,6 +179,7 @@ export interface RouterPolicyArgs {
     endPort?: pulumi.Input<number>;
     endSourcePort?: pulumi.Input<number>;
     gateway?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     inputDeviceNegate?: pulumi.Input<string>;
     inputDevices?: pulumi.Input<pulumi.Input<inputs.RouterPolicyInputDevice>[]>;
     internetServiceCustoms?: pulumi.Input<pulumi.Input<inputs.RouterPolicyInternetServiceCustom>[]>;

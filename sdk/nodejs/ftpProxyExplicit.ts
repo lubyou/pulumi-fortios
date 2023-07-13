@@ -36,6 +36,7 @@ export class FtpProxyExplicit extends pulumi.CustomResource {
     public readonly incomingPort!: pulumi.Output<string>;
     public readonly outgoingIp!: pulumi.Output<string>;
     public readonly secDefaultAction!: pulumi.Output<string>;
+    public readonly serverDataMode!: pulumi.Output<string>;
     public readonly ssl!: pulumi.Output<string>;
     public readonly sslAlgorithm!: pulumi.Output<string>;
     public readonly sslCert!: pulumi.Output<string>;
@@ -60,6 +61,7 @@ export class FtpProxyExplicit extends pulumi.CustomResource {
             resourceInputs["incomingPort"] = state ? state.incomingPort : undefined;
             resourceInputs["outgoingIp"] = state ? state.outgoingIp : undefined;
             resourceInputs["secDefaultAction"] = state ? state.secDefaultAction : undefined;
+            resourceInputs["serverDataMode"] = state ? state.serverDataMode : undefined;
             resourceInputs["ssl"] = state ? state.ssl : undefined;
             resourceInputs["sslAlgorithm"] = state ? state.sslAlgorithm : undefined;
             resourceInputs["sslCert"] = state ? state.sslCert : undefined;
@@ -72,6 +74,7 @@ export class FtpProxyExplicit extends pulumi.CustomResource {
             resourceInputs["incomingPort"] = args ? args.incomingPort : undefined;
             resourceInputs["outgoingIp"] = args ? args.outgoingIp : undefined;
             resourceInputs["secDefaultAction"] = args ? args.secDefaultAction : undefined;
+            resourceInputs["serverDataMode"] = args ? args.serverDataMode : undefined;
             resourceInputs["ssl"] = args ? args.ssl : undefined;
             resourceInputs["sslAlgorithm"] = args ? args.sslAlgorithm : undefined;
             resourceInputs["sslCert"] = args ? args.sslCert : undefined;
@@ -92,6 +95,7 @@ export interface FtpProxyExplicitState {
     incomingPort?: pulumi.Input<string>;
     outgoingIp?: pulumi.Input<string>;
     secDefaultAction?: pulumi.Input<string>;
+    serverDataMode?: pulumi.Input<string>;
     ssl?: pulumi.Input<string>;
     sslAlgorithm?: pulumi.Input<string>;
     sslCert?: pulumi.Input<string>;
@@ -108,6 +112,7 @@ export interface FtpProxyExplicitArgs {
     incomingPort?: pulumi.Input<string>;
     outgoingIp?: pulumi.Input<string>;
     secDefaultAction?: pulumi.Input<string>;
+    serverDataMode?: pulumi.Input<string>;
     ssl?: pulumi.Input<string>;
     sslAlgorithm?: pulumi.Input<string>;
     sslCert?: pulumi.Input<string>;

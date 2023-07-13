@@ -40,6 +40,7 @@ export class WafProfile extends pulumi.CustomResource {
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly extendedLog!: pulumi.Output<string>;
     public readonly external!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly method!: pulumi.Output<outputs.WafProfileMethod>;
     public readonly name!: pulumi.Output<string>;
     public readonly signature!: pulumi.Output<outputs.WafProfileSignature>;
@@ -65,6 +66,7 @@ export class WafProfile extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["extendedLog"] = state ? state.extendedLog : undefined;
             resourceInputs["external"] = state ? state.external : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["method"] = state ? state.method : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["signature"] = state ? state.signature : undefined;
@@ -78,6 +80,7 @@ export class WafProfile extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["extendedLog"] = args ? args.extendedLog : undefined;
             resourceInputs["external"] = args ? args.external : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["method"] = args ? args.method : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["signature"] = args ? args.signature : undefined;
@@ -99,6 +102,7 @@ export interface WafProfileState {
     dynamicSortSubtable?: pulumi.Input<string>;
     extendedLog?: pulumi.Input<string>;
     external?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     method?: pulumi.Input<inputs.WafProfileMethod>;
     name?: pulumi.Input<string>;
     signature?: pulumi.Input<inputs.WafProfileSignature>;
@@ -116,6 +120,7 @@ export interface WafProfileArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
     extendedLog?: pulumi.Input<string>;
     external?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     method?: pulumi.Input<inputs.WafProfileMethod>;
     name?: pulumi.Input<string>;
     signature?: pulumi.Input<inputs.WafProfileSignature>;

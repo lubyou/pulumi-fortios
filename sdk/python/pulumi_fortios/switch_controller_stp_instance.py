@@ -18,6 +18,7 @@ class SwitchControllerStpInstanceArgs:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vlan_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerStpInstanceVlanRangeArgs']]]] = None):
         """
@@ -27,6 +28,8 @@ class SwitchControllerStpInstanceArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if vlan_ranges is not None:
@@ -49,6 +52,15 @@ class SwitchControllerStpInstanceArgs:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -74,6 +86,7 @@ class _SwitchControllerStpInstanceState:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vlan_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerStpInstanceVlanRangeArgs']]]] = None):
         """
@@ -83,6 +96,8 @@ class _SwitchControllerStpInstanceState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if vlan_ranges is not None:
@@ -105,6 +120,15 @@ class _SwitchControllerStpInstanceState:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -132,6 +156,7 @@ class SwitchControllerStpInstance(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vlan_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerStpInstanceVlanRangeArgs']]]]] = None,
                  __props__=None):
@@ -165,6 +190,7 @@ class SwitchControllerStpInstance(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vlan_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerStpInstanceVlanRangeArgs']]]]] = None,
                  __props__=None):
@@ -178,6 +204,7 @@ class SwitchControllerStpInstance(pulumi.CustomResource):
 
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["vlan_ranges"] = vlan_ranges
         super(SwitchControllerStpInstance, __self__).__init__(
@@ -192,6 +219,7 @@ class SwitchControllerStpInstance(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             vlan_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerStpInstanceVlanRangeArgs']]]]] = None) -> 'SwitchControllerStpInstance':
         """
@@ -208,6 +236,7 @@ class SwitchControllerStpInstance(pulumi.CustomResource):
 
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["vlan_ranges"] = vlan_ranges
         return SwitchControllerStpInstance(resource_name, opts=opts, __props__=__props__)
@@ -221,6 +250,11 @@ class SwitchControllerStpInstance(pulumi.CustomResource):
     @pulumi.getter
     def fosid(self) -> pulumi.Output[str]:
         return pulumi.get(self, "fosid")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

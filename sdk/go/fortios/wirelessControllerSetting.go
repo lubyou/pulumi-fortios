@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -25,6 +26,7 @@ type WirelessControllerSetting struct {
 	FakeSsidAction                   pulumi.StringOutput                                       `pulumi:"fakeSsidAction"`
 	FapcCompatibility                pulumi.StringOutput                                       `pulumi:"fapcCompatibility"`
 	FirmwareProvisionOnAuthorization pulumi.StringOutput                                       `pulumi:"firmwareProvisionOnAuthorization"`
+	GetAllTables                     pulumi.StringPtrOutput                                    `pulumi:"getAllTables"`
 	OffendingSsids                   WirelessControllerSettingOffendingSsidArrayOutput         `pulumi:"offendingSsids"`
 	PhishingSsidDetect               pulumi.StringOutput                                       `pulumi:"phishingSsidDetect"`
 	Vdomparam                        pulumi.StringPtrOutput                                    `pulumi:"vdomparam"`
@@ -38,7 +40,7 @@ func NewWirelessControllerSetting(ctx *pulumi.Context,
 		args = &WirelessControllerSettingArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WirelessControllerSetting
 	err := ctx.RegisterResource("fortios:index/wirelessControllerSetting:WirelessControllerSetting", name, args, &resource, opts...)
 	if err != nil {
@@ -73,6 +75,7 @@ type wirelessControllerSettingState struct {
 	FakeSsidAction                   *string                                          `pulumi:"fakeSsidAction"`
 	FapcCompatibility                *string                                          `pulumi:"fapcCompatibility"`
 	FirmwareProvisionOnAuthorization *string                                          `pulumi:"firmwareProvisionOnAuthorization"`
+	GetAllTables                     *string                                          `pulumi:"getAllTables"`
 	OffendingSsids                   []WirelessControllerSettingOffendingSsid         `pulumi:"offendingSsids"`
 	PhishingSsidDetect               *string                                          `pulumi:"phishingSsidDetect"`
 	Vdomparam                        *string                                          `pulumi:"vdomparam"`
@@ -92,6 +95,7 @@ type WirelessControllerSettingState struct {
 	FakeSsidAction                   pulumi.StringPtrInput
 	FapcCompatibility                pulumi.StringPtrInput
 	FirmwareProvisionOnAuthorization pulumi.StringPtrInput
+	GetAllTables                     pulumi.StringPtrInput
 	OffendingSsids                   WirelessControllerSettingOffendingSsidArrayInput
 	PhishingSsidDetect               pulumi.StringPtrInput
 	Vdomparam                        pulumi.StringPtrInput
@@ -115,6 +119,7 @@ type wirelessControllerSettingArgs struct {
 	FakeSsidAction                   *string                                          `pulumi:"fakeSsidAction"`
 	FapcCompatibility                *string                                          `pulumi:"fapcCompatibility"`
 	FirmwareProvisionOnAuthorization *string                                          `pulumi:"firmwareProvisionOnAuthorization"`
+	GetAllTables                     *string                                          `pulumi:"getAllTables"`
 	OffendingSsids                   []WirelessControllerSettingOffendingSsid         `pulumi:"offendingSsids"`
 	PhishingSsidDetect               *string                                          `pulumi:"phishingSsidDetect"`
 	Vdomparam                        *string                                          `pulumi:"vdomparam"`
@@ -135,6 +140,7 @@ type WirelessControllerSettingArgs struct {
 	FakeSsidAction                   pulumi.StringPtrInput
 	FapcCompatibility                pulumi.StringPtrInput
 	FirmwareProvisionOnAuthorization pulumi.StringPtrInput
+	GetAllTables                     pulumi.StringPtrInput
 	OffendingSsids                   WirelessControllerSettingOffendingSsidArrayInput
 	PhishingSsidDetect               pulumi.StringPtrInput
 	Vdomparam                        pulumi.StringPtrInput
@@ -276,6 +282,10 @@ func (o WirelessControllerSettingOutput) FapcCompatibility() pulumi.StringOutput
 
 func (o WirelessControllerSettingOutput) FirmwareProvisionOnAuthorization() pulumi.StringOutput {
 	return o.ApplyT(func(v *WirelessControllerSetting) pulumi.StringOutput { return v.FirmwareProvisionOnAuthorization }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerSettingOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerSetting) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o WirelessControllerSettingOutput) OffendingSsids() WirelessControllerSettingOffendingSsidArrayOutput {

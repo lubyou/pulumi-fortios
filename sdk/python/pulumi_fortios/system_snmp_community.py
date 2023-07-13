@@ -19,6 +19,7 @@ class SystemSnmpCommunityArgs:
                  fosid: pulumi.Input[int],
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  events: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hosts: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSnmpCommunityHostArgs']]]] = None,
                  hosts6s: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSnmpCommunityHosts6Args']]]] = None,
                  mib_view: Optional[pulumi.Input[str]] = None,
@@ -44,6 +45,8 @@ class SystemSnmpCommunityArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if events is not None:
             pulumi.set(__self__, "events", events)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if hosts is not None:
             pulumi.set(__self__, "hosts", hosts)
         if hosts6s is not None:
@@ -105,6 +108,15 @@ class SystemSnmpCommunityArgs:
     @events.setter
     def events(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "events", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -266,6 +278,7 @@ class _SystemSnmpCommunityState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  events: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hosts: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSnmpCommunityHostArgs']]]] = None,
                  hosts6s: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSnmpCommunityHosts6Args']]]] = None,
                  mib_view: Optional[pulumi.Input[str]] = None,
@@ -292,6 +305,8 @@ class _SystemSnmpCommunityState:
             pulumi.set(__self__, "events", events)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if hosts is not None:
             pulumi.set(__self__, "hosts", hosts)
         if hosts6s is not None:
@@ -353,6 +368,15 @@ class _SystemSnmpCommunityState:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -516,6 +540,7 @@ class SystemSnmpCommunity(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  events: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hosts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSnmpCommunityHostArgs']]]]] = None,
                  hosts6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSnmpCommunityHosts6Args']]]]] = None,
                  mib_view: Optional[pulumi.Input[str]] = None,
@@ -565,6 +590,7 @@ class SystemSnmpCommunity(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  events: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hosts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSnmpCommunityHostArgs']]]]] = None,
                  hosts6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSnmpCommunityHosts6Args']]]]] = None,
                  mib_view: Optional[pulumi.Input[str]] = None,
@@ -596,6 +622,7 @@ class SystemSnmpCommunity(pulumi.CustomResource):
             if fosid is None and not opts.urn:
                 raise TypeError("Missing required property 'fosid'")
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["hosts"] = hosts
             __props__.__dict__["hosts6s"] = hosts6s
             __props__.__dict__["mib_view"] = mib_view
@@ -626,6 +653,7 @@ class SystemSnmpCommunity(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             events: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             hosts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSnmpCommunityHostArgs']]]]] = None,
             hosts6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSnmpCommunityHosts6Args']]]]] = None,
             mib_view: Optional[pulumi.Input[str]] = None,
@@ -658,6 +686,7 @@ class SystemSnmpCommunity(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["events"] = events
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["hosts"] = hosts
         __props__.__dict__["hosts6s"] = hosts6s
         __props__.__dict__["mib_view"] = mib_view
@@ -691,6 +720,11 @@ class SystemSnmpCommunity(pulumi.CustomResource):
     @pulumi.getter
     def fosid(self) -> pulumi.Output[int]:
         return pulumi.get(self, "fosid")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

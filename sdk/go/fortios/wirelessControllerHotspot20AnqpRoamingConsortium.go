@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -14,6 +15,7 @@ type WirelessControllerHotspot20AnqpRoamingConsortium struct {
 	pulumi.CustomResourceState
 
 	DynamicSortSubtable pulumi.StringPtrOutput                                            `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                                            `pulumi:"getAllTables"`
 	Name                pulumi.StringOutput                                               `pulumi:"name"`
 	OiLists             WirelessControllerHotspot20AnqpRoamingConsortiumOiListArrayOutput `pulumi:"oiLists"`
 	Vdomparam           pulumi.StringPtrOutput                                            `pulumi:"vdomparam"`
@@ -26,7 +28,7 @@ func NewWirelessControllerHotspot20AnqpRoamingConsortium(ctx *pulumi.Context,
 		args = &WirelessControllerHotspot20AnqpRoamingConsortiumArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WirelessControllerHotspot20AnqpRoamingConsortium
 	err := ctx.RegisterResource("fortios:index/wirelessControllerHotspot20AnqpRoamingConsortium:WirelessControllerHotspot20AnqpRoamingConsortium", name, args, &resource, opts...)
 	if err != nil {
@@ -50,6 +52,7 @@ func GetWirelessControllerHotspot20AnqpRoamingConsortium(ctx *pulumi.Context,
 // Input properties used for looking up and filtering WirelessControllerHotspot20AnqpRoamingConsortium resources.
 type wirelessControllerHotspot20AnqpRoamingConsortiumState struct {
 	DynamicSortSubtable *string                                                  `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                                                  `pulumi:"getAllTables"`
 	Name                *string                                                  `pulumi:"name"`
 	OiLists             []WirelessControllerHotspot20AnqpRoamingConsortiumOiList `pulumi:"oiLists"`
 	Vdomparam           *string                                                  `pulumi:"vdomparam"`
@@ -57,6 +60,7 @@ type wirelessControllerHotspot20AnqpRoamingConsortiumState struct {
 
 type WirelessControllerHotspot20AnqpRoamingConsortiumState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	OiLists             WirelessControllerHotspot20AnqpRoamingConsortiumOiListArrayInput
 	Vdomparam           pulumi.StringPtrInput
@@ -68,6 +72,7 @@ func (WirelessControllerHotspot20AnqpRoamingConsortiumState) ElementType() refle
 
 type wirelessControllerHotspot20AnqpRoamingConsortiumArgs struct {
 	DynamicSortSubtable *string                                                  `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                                                  `pulumi:"getAllTables"`
 	Name                *string                                                  `pulumi:"name"`
 	OiLists             []WirelessControllerHotspot20AnqpRoamingConsortiumOiList `pulumi:"oiLists"`
 	Vdomparam           *string                                                  `pulumi:"vdomparam"`
@@ -76,6 +81,7 @@ type wirelessControllerHotspot20AnqpRoamingConsortiumArgs struct {
 // The set of arguments for constructing a WirelessControllerHotspot20AnqpRoamingConsortium resource.
 type WirelessControllerHotspot20AnqpRoamingConsortiumArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	OiLists             WirelessControllerHotspot20AnqpRoamingConsortiumOiListArrayInput
 	Vdomparam           pulumi.StringPtrInput
@@ -171,6 +177,12 @@ func (o WirelessControllerHotspot20AnqpRoamingConsortiumOutput) ToWirelessContro
 func (o WirelessControllerHotspot20AnqpRoamingConsortiumOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WirelessControllerHotspot20AnqpRoamingConsortium) pulumi.StringPtrOutput {
 		return v.DynamicSortSubtable
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerHotspot20AnqpRoamingConsortiumOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20AnqpRoamingConsortium) pulumi.StringPtrOutput {
+		return v.GetAllTables
 	}).(pulumi.StringPtrOutput)
 }
 

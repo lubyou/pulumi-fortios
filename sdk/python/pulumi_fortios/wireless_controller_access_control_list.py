@@ -18,6 +18,7 @@ class WirelessControllerAccessControlListArgs:
     def __init__(__self__, *,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  layer3_ipv4_rules: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerAccessControlListLayer3Ipv4RuleArgs']]]] = None,
                  layer3_ipv6_rules: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerAccessControlListLayer3Ipv6RuleArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -29,6 +30,8 @@ class WirelessControllerAccessControlListArgs:
             pulumi.set(__self__, "comment", comment)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if layer3_ipv4_rules is not None:
             pulumi.set(__self__, "layer3_ipv4_rules", layer3_ipv4_rules)
         if layer3_ipv6_rules is not None:
@@ -55,6 +58,15 @@ class WirelessControllerAccessControlListArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="layer3Ipv4Rules")
@@ -98,6 +110,7 @@ class _WirelessControllerAccessControlListState:
     def __init__(__self__, *,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  layer3_ipv4_rules: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerAccessControlListLayer3Ipv4RuleArgs']]]] = None,
                  layer3_ipv6_rules: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerAccessControlListLayer3Ipv6RuleArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -109,6 +122,8 @@ class _WirelessControllerAccessControlListState:
             pulumi.set(__self__, "comment", comment)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if layer3_ipv4_rules is not None:
             pulumi.set(__self__, "layer3_ipv4_rules", layer3_ipv4_rules)
         if layer3_ipv6_rules is not None:
@@ -135,6 +150,15 @@ class _WirelessControllerAccessControlListState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="layer3Ipv4Rules")
@@ -180,6 +204,7 @@ class WirelessControllerAccessControlList(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  layer3_ipv4_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerAccessControlListLayer3Ipv4RuleArgs']]]]] = None,
                  layer3_ipv6_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerAccessControlListLayer3Ipv6RuleArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -215,6 +240,7 @@ class WirelessControllerAccessControlList(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  layer3_ipv4_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerAccessControlListLayer3Ipv4RuleArgs']]]]] = None,
                  layer3_ipv6_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerAccessControlListLayer3Ipv6RuleArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -230,6 +256,7 @@ class WirelessControllerAccessControlList(pulumi.CustomResource):
 
             __props__.__dict__["comment"] = comment
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["layer3_ipv4_rules"] = layer3_ipv4_rules
             __props__.__dict__["layer3_ipv6_rules"] = layer3_ipv6_rules
             __props__.__dict__["name"] = name
@@ -246,6 +273,7 @@ class WirelessControllerAccessControlList(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             comment: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             layer3_ipv4_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerAccessControlListLayer3Ipv4RuleArgs']]]]] = None,
             layer3_ipv6_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerAccessControlListLayer3Ipv6RuleArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -264,6 +292,7 @@ class WirelessControllerAccessControlList(pulumi.CustomResource):
 
         __props__.__dict__["comment"] = comment
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["layer3_ipv4_rules"] = layer3_ipv4_rules
         __props__.__dict__["layer3_ipv6_rules"] = layer3_ipv6_rules
         __props__.__dict__["name"] = name
@@ -279,6 +308,11 @@ class WirelessControllerAccessControlList(pulumi.CustomResource):
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="layer3Ipv4Rules")

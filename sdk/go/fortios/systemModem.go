@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -69,7 +70,7 @@ func NewSystemModem(ctx *pulumi.Context,
 		args = &SystemModemArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemModem
 	err := ctx.RegisterResource("fortios:index/systemModem:SystemModem", name, args, &resource, opts...)
 	if err != nil {

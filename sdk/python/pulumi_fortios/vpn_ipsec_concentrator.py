@@ -18,6 +18,7 @@ class VpnIpsecConcentratorArgs:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input['VpnIpsecConcentratorMemberArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  src_check: Optional[pulumi.Input[str]] = None,
@@ -29,6 +30,8 @@ class VpnIpsecConcentratorArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if members is not None:
             pulumi.set(__self__, "members", members)
         if name is not None:
@@ -55,6 +58,15 @@ class VpnIpsecConcentratorArgs:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -98,6 +110,7 @@ class _VpnIpsecConcentratorState:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input['VpnIpsecConcentratorMemberArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  src_check: Optional[pulumi.Input[str]] = None,
@@ -109,6 +122,8 @@ class _VpnIpsecConcentratorState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if members is not None:
             pulumi.set(__self__, "members", members)
         if name is not None:
@@ -135,6 +150,15 @@ class _VpnIpsecConcentratorState:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -180,6 +204,7 @@ class VpnIpsecConcentrator(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnIpsecConcentratorMemberArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  src_check: Optional[pulumi.Input[str]] = None,
@@ -215,6 +240,7 @@ class VpnIpsecConcentrator(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnIpsecConcentratorMemberArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  src_check: Optional[pulumi.Input[str]] = None,
@@ -230,6 +256,7 @@ class VpnIpsecConcentrator(pulumi.CustomResource):
 
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["members"] = members
             __props__.__dict__["name"] = name
             __props__.__dict__["src_check"] = src_check
@@ -246,6 +273,7 @@ class VpnIpsecConcentrator(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnIpsecConcentratorMemberArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             src_check: Optional[pulumi.Input[str]] = None,
@@ -264,6 +292,7 @@ class VpnIpsecConcentrator(pulumi.CustomResource):
 
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["members"] = members
         __props__.__dict__["name"] = name
         __props__.__dict__["src_check"] = src_check
@@ -279,6 +308,11 @@ class VpnIpsecConcentrator(pulumi.CustomResource):
     @pulumi.getter
     def fosid(self) -> pulumi.Output[int]:
         return pulumi.get(self, "fosid")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

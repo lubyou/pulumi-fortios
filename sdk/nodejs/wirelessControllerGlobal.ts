@@ -32,11 +32,13 @@ export class WirelessControllerGlobal extends pulumi.CustomResource {
         return obj['__pulumiType'] === WirelessControllerGlobal.__pulumiType;
     }
 
+    public readonly acdProcessCount!: pulumi.Output<number>;
     public readonly apLogServer!: pulumi.Output<string>;
     public readonly apLogServerIp!: pulumi.Output<string>;
     public readonly apLogServerPort!: pulumi.Output<number>;
     public readonly controlMessageOffload!: pulumi.Output<string>;
     public readonly dataEthernetIi!: pulumi.Output<string>;
+    public readonly dfsLabTest!: pulumi.Output<string>;
     public readonly discoveryMcAddr!: pulumi.Output<string>;
     public readonly fiappEthType!: pulumi.Output<number>;
     public readonly imageDownload!: pulumi.Output<string>;
@@ -51,6 +53,7 @@ export class WirelessControllerGlobal extends pulumi.CustomResource {
     public readonly rogueScanMacAdjacency!: pulumi.Output<number>;
     public readonly tunnelMode!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly wpadProcessCount!: pulumi.Output<number>;
     public readonly wtpShare!: pulumi.Output<string>;
 
     /**
@@ -66,11 +69,13 @@ export class WirelessControllerGlobal extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WirelessControllerGlobalState | undefined;
+            resourceInputs["acdProcessCount"] = state ? state.acdProcessCount : undefined;
             resourceInputs["apLogServer"] = state ? state.apLogServer : undefined;
             resourceInputs["apLogServerIp"] = state ? state.apLogServerIp : undefined;
             resourceInputs["apLogServerPort"] = state ? state.apLogServerPort : undefined;
             resourceInputs["controlMessageOffload"] = state ? state.controlMessageOffload : undefined;
             resourceInputs["dataEthernetIi"] = state ? state.dataEthernetIi : undefined;
+            resourceInputs["dfsLabTest"] = state ? state.dfsLabTest : undefined;
             resourceInputs["discoveryMcAddr"] = state ? state.discoveryMcAddr : undefined;
             resourceInputs["fiappEthType"] = state ? state.fiappEthType : undefined;
             resourceInputs["imageDownload"] = state ? state.imageDownload : undefined;
@@ -85,14 +90,17 @@ export class WirelessControllerGlobal extends pulumi.CustomResource {
             resourceInputs["rogueScanMacAdjacency"] = state ? state.rogueScanMacAdjacency : undefined;
             resourceInputs["tunnelMode"] = state ? state.tunnelMode : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["wpadProcessCount"] = state ? state.wpadProcessCount : undefined;
             resourceInputs["wtpShare"] = state ? state.wtpShare : undefined;
         } else {
             const args = argsOrState as WirelessControllerGlobalArgs | undefined;
+            resourceInputs["acdProcessCount"] = args ? args.acdProcessCount : undefined;
             resourceInputs["apLogServer"] = args ? args.apLogServer : undefined;
             resourceInputs["apLogServerIp"] = args ? args.apLogServerIp : undefined;
             resourceInputs["apLogServerPort"] = args ? args.apLogServerPort : undefined;
             resourceInputs["controlMessageOffload"] = args ? args.controlMessageOffload : undefined;
             resourceInputs["dataEthernetIi"] = args ? args.dataEthernetIi : undefined;
+            resourceInputs["dfsLabTest"] = args ? args.dfsLabTest : undefined;
             resourceInputs["discoveryMcAddr"] = args ? args.discoveryMcAddr : undefined;
             resourceInputs["fiappEthType"] = args ? args.fiappEthType : undefined;
             resourceInputs["imageDownload"] = args ? args.imageDownload : undefined;
@@ -107,6 +115,7 @@ export class WirelessControllerGlobal extends pulumi.CustomResource {
             resourceInputs["rogueScanMacAdjacency"] = args ? args.rogueScanMacAdjacency : undefined;
             resourceInputs["tunnelMode"] = args ? args.tunnelMode : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["wpadProcessCount"] = args ? args.wpadProcessCount : undefined;
             resourceInputs["wtpShare"] = args ? args.wtpShare : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -118,11 +127,13 @@ export class WirelessControllerGlobal extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WirelessControllerGlobal resources.
  */
 export interface WirelessControllerGlobalState {
+    acdProcessCount?: pulumi.Input<number>;
     apLogServer?: pulumi.Input<string>;
     apLogServerIp?: pulumi.Input<string>;
     apLogServerPort?: pulumi.Input<number>;
     controlMessageOffload?: pulumi.Input<string>;
     dataEthernetIi?: pulumi.Input<string>;
+    dfsLabTest?: pulumi.Input<string>;
     discoveryMcAddr?: pulumi.Input<string>;
     fiappEthType?: pulumi.Input<number>;
     imageDownload?: pulumi.Input<string>;
@@ -137,6 +148,7 @@ export interface WirelessControllerGlobalState {
     rogueScanMacAdjacency?: pulumi.Input<number>;
     tunnelMode?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
+    wpadProcessCount?: pulumi.Input<number>;
     wtpShare?: pulumi.Input<string>;
 }
 
@@ -144,11 +156,13 @@ export interface WirelessControllerGlobalState {
  * The set of arguments for constructing a WirelessControllerGlobal resource.
  */
 export interface WirelessControllerGlobalArgs {
+    acdProcessCount?: pulumi.Input<number>;
     apLogServer?: pulumi.Input<string>;
     apLogServerIp?: pulumi.Input<string>;
     apLogServerPort?: pulumi.Input<number>;
     controlMessageOffload?: pulumi.Input<string>;
     dataEthernetIi?: pulumi.Input<string>;
+    dfsLabTest?: pulumi.Input<string>;
     discoveryMcAddr?: pulumi.Input<string>;
     fiappEthType?: pulumi.Input<number>;
     imageDownload?: pulumi.Input<string>;
@@ -163,5 +177,6 @@ export interface WirelessControllerGlobalArgs {
     rogueScanMacAdjacency?: pulumi.Input<number>;
     tunnelMode?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
+    wpadProcessCount?: pulumi.Input<number>;
     wtpShare?: pulumi.Input<string>;
 }

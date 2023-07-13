@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -18,6 +19,8 @@ type WebfilterUrlfilter struct {
 	DynamicSortSubtable pulumi.StringPtrOutput             `pulumi:"dynamicSortSubtable"`
 	Entries             WebfilterUrlfilterEntryArrayOutput `pulumi:"entries"`
 	Fosid               pulumi.IntOutput                   `pulumi:"fosid"`
+	GetAllTables        pulumi.StringPtrOutput             `pulumi:"getAllTables"`
+	Ip4MappedIp6        pulumi.StringOutput                `pulumi:"ip4MappedIp6"`
 	IpAddrBlock         pulumi.StringOutput                `pulumi:"ipAddrBlock"`
 	Name                pulumi.StringOutput                `pulumi:"name"`
 	OneArmIpsUrlfilter  pulumi.StringOutput                `pulumi:"oneArmIpsUrlfilter"`
@@ -34,7 +37,7 @@ func NewWebfilterUrlfilter(ctx *pulumi.Context,
 	if args.Fosid == nil {
 		return nil, errors.New("invalid value for required argument 'Fosid'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WebfilterUrlfilter
 	err := ctx.RegisterResource("fortios:index/webfilterUrlfilter:WebfilterUrlfilter", name, args, &resource, opts...)
 	if err != nil {
@@ -61,6 +64,8 @@ type webfilterUrlfilterState struct {
 	DynamicSortSubtable *string                   `pulumi:"dynamicSortSubtable"`
 	Entries             []WebfilterUrlfilterEntry `pulumi:"entries"`
 	Fosid               *int                      `pulumi:"fosid"`
+	GetAllTables        *string                   `pulumi:"getAllTables"`
+	Ip4MappedIp6        *string                   `pulumi:"ip4MappedIp6"`
 	IpAddrBlock         *string                   `pulumi:"ipAddrBlock"`
 	Name                *string                   `pulumi:"name"`
 	OneArmIpsUrlfilter  *string                   `pulumi:"oneArmIpsUrlfilter"`
@@ -72,6 +77,8 @@ type WebfilterUrlfilterState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	Entries             WebfilterUrlfilterEntryArrayInput
 	Fosid               pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
+	Ip4MappedIp6        pulumi.StringPtrInput
 	IpAddrBlock         pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	OneArmIpsUrlfilter  pulumi.StringPtrInput
@@ -87,6 +94,8 @@ type webfilterUrlfilterArgs struct {
 	DynamicSortSubtable *string                   `pulumi:"dynamicSortSubtable"`
 	Entries             []WebfilterUrlfilterEntry `pulumi:"entries"`
 	Fosid               int                       `pulumi:"fosid"`
+	GetAllTables        *string                   `pulumi:"getAllTables"`
+	Ip4MappedIp6        *string                   `pulumi:"ip4MappedIp6"`
 	IpAddrBlock         *string                   `pulumi:"ipAddrBlock"`
 	Name                *string                   `pulumi:"name"`
 	OneArmIpsUrlfilter  *string                   `pulumi:"oneArmIpsUrlfilter"`
@@ -99,6 +108,8 @@ type WebfilterUrlfilterArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	Entries             WebfilterUrlfilterEntryArrayInput
 	Fosid               pulumi.IntInput
+	GetAllTables        pulumi.StringPtrInput
+	Ip4MappedIp6        pulumi.StringPtrInput
 	IpAddrBlock         pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	OneArmIpsUrlfilter  pulumi.StringPtrInput
@@ -206,6 +217,14 @@ func (o WebfilterUrlfilterOutput) Entries() WebfilterUrlfilterEntryArrayOutput {
 
 func (o WebfilterUrlfilterOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *WebfilterUrlfilter) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o WebfilterUrlfilterOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebfilterUrlfilter) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
+func (o WebfilterUrlfilterOutput) Ip4MappedIp6() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebfilterUrlfilter) pulumi.StringOutput { return v.Ip4MappedIp6 }).(pulumi.StringOutput)
 }
 
 func (o WebfilterUrlfilterOutput) IpAddrBlock() pulumi.StringOutput {

@@ -22,7 +22,7 @@ class GetSystemCentralManagementResult:
     """
     A collection of values returned by GetSystemCentralManagement.
     """
-    def __init__(__self__, allow_monitor=None, allow_push_configuration=None, allow_push_firmware=None, allow_remote_firmware_upgrade=None, ca_cert=None, enc_algorithm=None, fmg=None, fmg_source_ip=None, fmg_source_ip6=None, fmg_update_port=None, id=None, include_default_servers=None, interface=None, interface_select_method=None, local_cert=None, mode=None, schedule_config_restore=None, schedule_script_restore=None, serial_number=None, server_lists=None, type=None, vdom=None, vdomparam=None):
+    def __init__(__self__, allow_monitor=None, allow_push_configuration=None, allow_push_firmware=None, allow_remote_firmware_upgrade=None, ca_cert=None, enc_algorithm=None, fmg=None, fmg_source_ip=None, fmg_source_ip6=None, fmg_update_port=None, fortigate_cloud_sso_default_profile=None, id=None, include_default_servers=None, interface=None, interface_select_method=None, local_cert=None, mode=None, schedule_config_restore=None, schedule_script_restore=None, serial_number=None, server_lists=None, type=None, vdom=None, vdomparam=None):
         if allow_monitor and not isinstance(allow_monitor, str):
             raise TypeError("Expected argument 'allow_monitor' to be a str")
         pulumi.set(__self__, "allow_monitor", allow_monitor)
@@ -53,6 +53,9 @@ class GetSystemCentralManagementResult:
         if fmg_update_port and not isinstance(fmg_update_port, str):
             raise TypeError("Expected argument 'fmg_update_port' to be a str")
         pulumi.set(__self__, "fmg_update_port", fmg_update_port)
+        if fortigate_cloud_sso_default_profile and not isinstance(fortigate_cloud_sso_default_profile, str):
+            raise TypeError("Expected argument 'fortigate_cloud_sso_default_profile' to be a str")
+        pulumi.set(__self__, "fortigate_cloud_sso_default_profile", fortigate_cloud_sso_default_profile)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -144,6 +147,11 @@ class GetSystemCentralManagementResult:
         return pulumi.get(self, "fmg_update_port")
 
     @property
+    @pulumi.getter(name="fortigateCloudSsoDefaultProfile")
+    def fortigate_cloud_sso_default_profile(self) -> str:
+        return pulumi.get(self, "fortigate_cloud_sso_default_profile")
+
+    @property
     @pulumi.getter
     def id(self) -> str:
         """
@@ -228,6 +236,7 @@ class AwaitableGetSystemCentralManagementResult(GetSystemCentralManagementResult
             fmg_source_ip=self.fmg_source_ip,
             fmg_source_ip6=self.fmg_source_ip6,
             fmg_update_port=self.fmg_update_port,
+            fortigate_cloud_sso_default_profile=self.fortigate_cloud_sso_default_profile,
             id=self.id,
             include_default_servers=self.include_default_servers,
             interface=self.interface,
@@ -254,29 +263,30 @@ def get_system_central_management(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemCentralManagement:GetSystemCentralManagement', __args__, opts=opts, typ=GetSystemCentralManagementResult).value
 
     return AwaitableGetSystemCentralManagementResult(
-        allow_monitor=__ret__.allow_monitor,
-        allow_push_configuration=__ret__.allow_push_configuration,
-        allow_push_firmware=__ret__.allow_push_firmware,
-        allow_remote_firmware_upgrade=__ret__.allow_remote_firmware_upgrade,
-        ca_cert=__ret__.ca_cert,
-        enc_algorithm=__ret__.enc_algorithm,
-        fmg=__ret__.fmg,
-        fmg_source_ip=__ret__.fmg_source_ip,
-        fmg_source_ip6=__ret__.fmg_source_ip6,
-        fmg_update_port=__ret__.fmg_update_port,
-        id=__ret__.id,
-        include_default_servers=__ret__.include_default_servers,
-        interface=__ret__.interface,
-        interface_select_method=__ret__.interface_select_method,
-        local_cert=__ret__.local_cert,
-        mode=__ret__.mode,
-        schedule_config_restore=__ret__.schedule_config_restore,
-        schedule_script_restore=__ret__.schedule_script_restore,
-        serial_number=__ret__.serial_number,
-        server_lists=__ret__.server_lists,
-        type=__ret__.type,
-        vdom=__ret__.vdom,
-        vdomparam=__ret__.vdomparam)
+        allow_monitor=pulumi.get(__ret__, 'allow_monitor'),
+        allow_push_configuration=pulumi.get(__ret__, 'allow_push_configuration'),
+        allow_push_firmware=pulumi.get(__ret__, 'allow_push_firmware'),
+        allow_remote_firmware_upgrade=pulumi.get(__ret__, 'allow_remote_firmware_upgrade'),
+        ca_cert=pulumi.get(__ret__, 'ca_cert'),
+        enc_algorithm=pulumi.get(__ret__, 'enc_algorithm'),
+        fmg=pulumi.get(__ret__, 'fmg'),
+        fmg_source_ip=pulumi.get(__ret__, 'fmg_source_ip'),
+        fmg_source_ip6=pulumi.get(__ret__, 'fmg_source_ip6'),
+        fmg_update_port=pulumi.get(__ret__, 'fmg_update_port'),
+        fortigate_cloud_sso_default_profile=pulumi.get(__ret__, 'fortigate_cloud_sso_default_profile'),
+        id=pulumi.get(__ret__, 'id'),
+        include_default_servers=pulumi.get(__ret__, 'include_default_servers'),
+        interface=pulumi.get(__ret__, 'interface'),
+        interface_select_method=pulumi.get(__ret__, 'interface_select_method'),
+        local_cert=pulumi.get(__ret__, 'local_cert'),
+        mode=pulumi.get(__ret__, 'mode'),
+        schedule_config_restore=pulumi.get(__ret__, 'schedule_config_restore'),
+        schedule_script_restore=pulumi.get(__ret__, 'schedule_script_restore'),
+        serial_number=pulumi.get(__ret__, 'serial_number'),
+        server_lists=pulumi.get(__ret__, 'server_lists'),
+        type=pulumi.get(__ret__, 'type'),
+        vdom=pulumi.get(__ret__, 'vdom'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_central_management)

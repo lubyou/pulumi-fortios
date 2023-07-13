@@ -28,6 +28,7 @@ class WirelessControllerTimersArgs:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  echo_interval: Optional[pulumi.Input[int]] = None,
                  fake_ap_log: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ipsec_intf_cleanup: Optional[pulumi.Input[int]] = None,
                  radio_stats_interval: Optional[pulumi.Input[int]] = None,
                  rogue_ap_cleanup: Optional[pulumi.Input[int]] = None,
@@ -64,6 +65,8 @@ class WirelessControllerTimersArgs:
             pulumi.set(__self__, "echo_interval", echo_interval)
         if fake_ap_log is not None:
             pulumi.set(__self__, "fake_ap_log", fake_ap_log)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ipsec_intf_cleanup is not None:
             pulumi.set(__self__, "ipsec_intf_cleanup", ipsec_intf_cleanup)
         if radio_stats_interval is not None:
@@ -190,6 +193,15 @@ class WirelessControllerTimersArgs:
     @fake_ap_log.setter
     def fake_ap_log(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fake_ap_log", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="ipsecIntfCleanup")
@@ -288,6 +300,7 @@ class _WirelessControllerTimersState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  echo_interval: Optional[pulumi.Input[int]] = None,
                  fake_ap_log: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ipsec_intf_cleanup: Optional[pulumi.Input[int]] = None,
                  radio_stats_interval: Optional[pulumi.Input[int]] = None,
                  rogue_ap_cleanup: Optional[pulumi.Input[int]] = None,
@@ -324,6 +337,8 @@ class _WirelessControllerTimersState:
             pulumi.set(__self__, "echo_interval", echo_interval)
         if fake_ap_log is not None:
             pulumi.set(__self__, "fake_ap_log", fake_ap_log)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ipsec_intf_cleanup is not None:
             pulumi.set(__self__, "ipsec_intf_cleanup", ipsec_intf_cleanup)
         if radio_stats_interval is not None:
@@ -450,6 +465,15 @@ class _WirelessControllerTimersState:
     @fake_ap_log.setter
     def fake_ap_log(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fake_ap_log", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="ipsecIntfCleanup")
@@ -550,6 +574,7 @@ class WirelessControllerTimers(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  echo_interval: Optional[pulumi.Input[int]] = None,
                  fake_ap_log: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ipsec_intf_cleanup: Optional[pulumi.Input[int]] = None,
                  radio_stats_interval: Optional[pulumi.Input[int]] = None,
                  rogue_ap_cleanup: Optional[pulumi.Input[int]] = None,
@@ -600,6 +625,7 @@ class WirelessControllerTimers(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  echo_interval: Optional[pulumi.Input[int]] = None,
                  fake_ap_log: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ipsec_intf_cleanup: Optional[pulumi.Input[int]] = None,
                  radio_stats_interval: Optional[pulumi.Input[int]] = None,
                  rogue_ap_cleanup: Optional[pulumi.Input[int]] = None,
@@ -630,6 +656,7 @@ class WirelessControllerTimers(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["echo_interval"] = echo_interval
             __props__.__dict__["fake_ap_log"] = fake_ap_log
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["ipsec_intf_cleanup"] = ipsec_intf_cleanup
             __props__.__dict__["radio_stats_interval"] = radio_stats_interval
             __props__.__dict__["rogue_ap_cleanup"] = rogue_ap_cleanup
@@ -661,6 +688,7 @@ class WirelessControllerTimers(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             echo_interval: Optional[pulumi.Input[int]] = None,
             fake_ap_log: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             ipsec_intf_cleanup: Optional[pulumi.Input[int]] = None,
             radio_stats_interval: Optional[pulumi.Input[int]] = None,
             rogue_ap_cleanup: Optional[pulumi.Input[int]] = None,
@@ -694,6 +722,7 @@ class WirelessControllerTimers(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["echo_interval"] = echo_interval
         __props__.__dict__["fake_ap_log"] = fake_ap_log
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["ipsec_intf_cleanup"] = ipsec_intf_cleanup
         __props__.__dict__["radio_stats_interval"] = radio_stats_interval
         __props__.__dict__["rogue_ap_cleanup"] = rogue_ap_cleanup
@@ -764,6 +793,11 @@ class WirelessControllerTimers(pulumi.CustomResource):
     @pulumi.getter(name="fakeApLog")
     def fake_ap_log(self) -> pulumi.Output[int]:
         return pulumi.get(self, "fake_ap_log")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="ipsecIntfCleanup")

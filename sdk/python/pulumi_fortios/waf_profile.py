@@ -22,6 +22,7 @@ class WafProfileArgs:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  extended_log: Optional[pulumi.Input[str]] = None,
                  external: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  method: Optional[pulumi.Input['WafProfileMethodArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  signature: Optional[pulumi.Input['WafProfileSignatureArgs']] = None,
@@ -42,6 +43,8 @@ class WafProfileArgs:
             pulumi.set(__self__, "extended_log", extended_log)
         if external is not None:
             pulumi.set(__self__, "external", external)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if method is not None:
             pulumi.set(__self__, "method", method)
         if name is not None:
@@ -106,6 +109,15 @@ class WafProfileArgs:
     @external.setter
     def external(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "external", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -162,6 +174,7 @@ class _WafProfileState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  extended_log: Optional[pulumi.Input[str]] = None,
                  external: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  method: Optional[pulumi.Input['WafProfileMethodArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  signature: Optional[pulumi.Input['WafProfileSignatureArgs']] = None,
@@ -182,6 +195,8 @@ class _WafProfileState:
             pulumi.set(__self__, "extended_log", extended_log)
         if external is not None:
             pulumi.set(__self__, "external", external)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if method is not None:
             pulumi.set(__self__, "method", method)
         if name is not None:
@@ -246,6 +261,15 @@ class _WafProfileState:
     @external.setter
     def external(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "external", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -304,6 +328,7 @@ class WafProfile(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  extended_log: Optional[pulumi.Input[str]] = None,
                  external: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  method: Optional[pulumi.Input[pulumi.InputType['WafProfileMethodArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  signature: Optional[pulumi.Input[pulumi.InputType['WafProfileSignatureArgs']]] = None,
@@ -344,6 +369,7 @@ class WafProfile(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  extended_log: Optional[pulumi.Input[str]] = None,
                  external: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  method: Optional[pulumi.Input[pulumi.InputType['WafProfileMethodArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  signature: Optional[pulumi.Input[pulumi.InputType['WafProfileSignatureArgs']]] = None,
@@ -364,6 +390,7 @@ class WafProfile(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["extended_log"] = extended_log
             __props__.__dict__["external"] = external
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["method"] = method
             __props__.__dict__["name"] = name
             __props__.__dict__["signature"] = signature
@@ -385,6 +412,7 @@ class WafProfile(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             extended_log: Optional[pulumi.Input[str]] = None,
             external: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             method: Optional[pulumi.Input[pulumi.InputType['WafProfileMethodArgs']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             signature: Optional[pulumi.Input[pulumi.InputType['WafProfileSignatureArgs']]] = None,
@@ -408,6 +436,7 @@ class WafProfile(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["extended_log"] = extended_log
         __props__.__dict__["external"] = external
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["method"] = method
         __props__.__dict__["name"] = name
         __props__.__dict__["signature"] = signature
@@ -444,6 +473,11 @@ class WafProfile(pulumi.CustomResource):
     @pulumi.getter
     def external(self) -> pulumi.Output[str]:
         return pulumi.get(self, "external")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

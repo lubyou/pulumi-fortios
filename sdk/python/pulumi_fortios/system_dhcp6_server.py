@@ -28,6 +28,7 @@ class SystemDhcp6ServerArgs:
                  dns_service: Optional[pulumi.Input[str]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip_mode: Optional[pulumi.Input[str]] = None,
                  ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['SystemDhcp6ServerIpRangeArgs']]]] = None,
                  lease_time: Optional[pulumi.Input[int]] = None,
@@ -64,6 +65,8 @@ class SystemDhcp6ServerArgs:
             pulumi.set(__self__, "domain", domain)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ip_mode is not None:
             pulumi.set(__self__, "ip_mode", ip_mode)
         if ip_ranges is not None:
@@ -198,6 +201,15 @@ class SystemDhcp6ServerArgs:
         pulumi.set(self, "dynamic_sort_subtable", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="ipMode")
     def ip_mode(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "ip_mode")
@@ -319,6 +331,7 @@ class _SystemDhcp6ServerState:
                  domain: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ip_mode: Optional[pulumi.Input[str]] = None,
                  ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['SystemDhcp6ServerIpRangeArgs']]]] = None,
@@ -356,6 +369,8 @@ class _SystemDhcp6ServerState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
         if ip_mode is not None:
@@ -474,6 +489,15 @@ class _SystemDhcp6ServerState:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -617,6 +641,7 @@ class SystemDhcp6Server(pulumi.CustomResource):
                  domain: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ip_mode: Optional[pulumi.Input[str]] = None,
                  ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemDhcp6ServerIpRangeArgs']]]]] = None,
@@ -670,6 +695,7 @@ class SystemDhcp6Server(pulumi.CustomResource):
                  domain: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ip_mode: Optional[pulumi.Input[str]] = None,
                  ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemDhcp6ServerIpRangeArgs']]]]] = None,
@@ -705,6 +731,7 @@ class SystemDhcp6Server(pulumi.CustomResource):
             if fosid is None and not opts.urn:
                 raise TypeError("Missing required property 'fosid'")
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["get_all_tables"] = get_all_tables
             if interface is None and not opts.urn:
                 raise TypeError("Missing required property 'interface'")
             __props__.__dict__["interface"] = interface
@@ -743,6 +770,7 @@ class SystemDhcp6Server(pulumi.CustomResource):
             domain: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             ip_mode: Optional[pulumi.Input[str]] = None,
             ip_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemDhcp6ServerIpRangeArgs']]]]] = None,
@@ -779,6 +807,7 @@ class SystemDhcp6Server(pulumi.CustomResource):
         __props__.__dict__["domain"] = domain
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["interface"] = interface
         __props__.__dict__["ip_mode"] = ip_mode
         __props__.__dict__["ip_ranges"] = ip_ranges
@@ -844,6 +873,11 @@ class SystemDhcp6Server(pulumi.CustomResource):
     @pulumi.getter
     def fosid(self) -> pulumi.Output[int]:
         return pulumi.get(self, "fosid")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

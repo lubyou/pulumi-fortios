@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -16,6 +17,7 @@ type VpnSslWebUserBookmark struct {
 	Bookmarks           VpnSslWebUserBookmarkBookmarkArrayOutput `pulumi:"bookmarks"`
 	CustomLang          pulumi.StringOutput                      `pulumi:"customLang"`
 	DynamicSortSubtable pulumi.StringPtrOutput                   `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                   `pulumi:"getAllTables"`
 	Name                pulumi.StringOutput                      `pulumi:"name"`
 	Vdomparam           pulumi.StringPtrOutput                   `pulumi:"vdomparam"`
 }
@@ -27,7 +29,7 @@ func NewVpnSslWebUserBookmark(ctx *pulumi.Context,
 		args = &VpnSslWebUserBookmarkArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource VpnSslWebUserBookmark
 	err := ctx.RegisterResource("fortios:index/vpnSslWebUserBookmark:VpnSslWebUserBookmark", name, args, &resource, opts...)
 	if err != nil {
@@ -53,6 +55,7 @@ type vpnSslWebUserBookmarkState struct {
 	Bookmarks           []VpnSslWebUserBookmarkBookmark `pulumi:"bookmarks"`
 	CustomLang          *string                         `pulumi:"customLang"`
 	DynamicSortSubtable *string                         `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                         `pulumi:"getAllTables"`
 	Name                *string                         `pulumi:"name"`
 	Vdomparam           *string                         `pulumi:"vdomparam"`
 }
@@ -61,6 +64,7 @@ type VpnSslWebUserBookmarkState struct {
 	Bookmarks           VpnSslWebUserBookmarkBookmarkArrayInput
 	CustomLang          pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
 }
@@ -73,6 +77,7 @@ type vpnSslWebUserBookmarkArgs struct {
 	Bookmarks           []VpnSslWebUserBookmarkBookmark `pulumi:"bookmarks"`
 	CustomLang          *string                         `pulumi:"customLang"`
 	DynamicSortSubtable *string                         `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                         `pulumi:"getAllTables"`
 	Name                *string                         `pulumi:"name"`
 	Vdomparam           *string                         `pulumi:"vdomparam"`
 }
@@ -82,6 +87,7 @@ type VpnSslWebUserBookmarkArgs struct {
 	Bookmarks           VpnSslWebUserBookmarkBookmarkArrayInput
 	CustomLang          pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
 }
@@ -183,6 +189,10 @@ func (o VpnSslWebUserBookmarkOutput) CustomLang() pulumi.StringOutput {
 
 func (o VpnSslWebUserBookmarkOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VpnSslWebUserBookmark) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebUserBookmarkOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnSslWebUserBookmark) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o VpnSslWebUserBookmarkOutput) Name() pulumi.StringOutput {

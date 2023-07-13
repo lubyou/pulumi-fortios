@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -31,7 +32,7 @@ func NewExtensionControllerFortigate(ctx *pulumi.Context,
 		args = &ExtensionControllerFortigateArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ExtensionControllerFortigate
 	err := ctx.RegisterResource("fortios:index/extensionControllerFortigate:ExtensionControllerFortigate", name, args, &resource, opts...)
 	if err != nil {

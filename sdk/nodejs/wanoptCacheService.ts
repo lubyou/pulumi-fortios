@@ -39,6 +39,7 @@ export class WanoptCacheService extends pulumi.CustomResource {
     public readonly deviceId!: pulumi.Output<string>;
     public readonly dstPeers!: pulumi.Output<outputs.WanoptCacheServiceDstPeer[] | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly preferScenario!: pulumi.Output<string>;
     public readonly srcPeers!: pulumi.Output<outputs.WanoptCacheServiceSrcPeer[] | undefined>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -61,6 +62,7 @@ export class WanoptCacheService extends pulumi.CustomResource {
             resourceInputs["deviceId"] = state ? state.deviceId : undefined;
             resourceInputs["dstPeers"] = state ? state.dstPeers : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["preferScenario"] = state ? state.preferScenario : undefined;
             resourceInputs["srcPeers"] = state ? state.srcPeers : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
@@ -71,6 +73,7 @@ export class WanoptCacheService extends pulumi.CustomResource {
             resourceInputs["deviceId"] = args ? args.deviceId : undefined;
             resourceInputs["dstPeers"] = args ? args.dstPeers : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["preferScenario"] = args ? args.preferScenario : undefined;
             resourceInputs["srcPeers"] = args ? args.srcPeers : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -89,6 +92,7 @@ export interface WanoptCacheServiceState {
     deviceId?: pulumi.Input<string>;
     dstPeers?: pulumi.Input<pulumi.Input<inputs.WanoptCacheServiceDstPeer>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     preferScenario?: pulumi.Input<string>;
     srcPeers?: pulumi.Input<pulumi.Input<inputs.WanoptCacheServiceSrcPeer>[]>;
     vdomparam?: pulumi.Input<string>;
@@ -103,6 +107,7 @@ export interface WanoptCacheServiceArgs {
     deviceId?: pulumi.Input<string>;
     dstPeers?: pulumi.Input<pulumi.Input<inputs.WanoptCacheServiceDstPeer>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     preferScenario?: pulumi.Input<string>;
     srcPeers?: pulumi.Input<pulumi.Input<inputs.WanoptCacheServiceSrcPeer>[]>;
     vdomparam?: pulumi.Input<string>;

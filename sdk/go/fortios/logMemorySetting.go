@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -25,7 +26,7 @@ func NewLogMemorySetting(ctx *pulumi.Context,
 		args = &LogMemorySettingArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource LogMemorySetting
 	err := ctx.RegisterResource("fortios:index/logMemorySetting:LogMemorySetting", name, args, &resource, opts...)
 	if err != nil {

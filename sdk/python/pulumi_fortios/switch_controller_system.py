@@ -14,6 +14,8 @@ __all__ = ['SwitchControllerSystemArgs', 'SwitchControllerSystem']
 @pulumi.input_type
 class SwitchControllerSystemArgs:
     def __init__(__self__, *,
+                 caputp_echo_interval: Optional[pulumi.Input[int]] = None,
+                 caputp_max_retransmit: Optional[pulumi.Input[int]] = None,
                  data_sync_interval: Optional[pulumi.Input[int]] = None,
                  dynamic_periodic_interval: Optional[pulumi.Input[int]] = None,
                  iot_holdoff: Optional[pulumi.Input[int]] = None,
@@ -28,6 +30,10 @@ class SwitchControllerSystemArgs:
         """
         The set of arguments for constructing a SwitchControllerSystem resource.
         """
+        if caputp_echo_interval is not None:
+            pulumi.set(__self__, "caputp_echo_interval", caputp_echo_interval)
+        if caputp_max_retransmit is not None:
+            pulumi.set(__self__, "caputp_max_retransmit", caputp_max_retransmit)
         if data_sync_interval is not None:
             pulumi.set(__self__, "data_sync_interval", data_sync_interval)
         if dynamic_periodic_interval is not None:
@@ -50,6 +56,24 @@ class SwitchControllerSystemArgs:
             pulumi.set(__self__, "tunnel_mode", tunnel_mode)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="caputpEchoInterval")
+    def caputp_echo_interval(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "caputp_echo_interval")
+
+    @caputp_echo_interval.setter
+    def caputp_echo_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "caputp_echo_interval", value)
+
+    @property
+    @pulumi.getter(name="caputpMaxRetransmit")
+    def caputp_max_retransmit(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "caputp_max_retransmit")
+
+    @caputp_max_retransmit.setter
+    def caputp_max_retransmit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "caputp_max_retransmit", value)
 
     @property
     @pulumi.getter(name="dataSyncInterval")
@@ -154,6 +178,8 @@ class SwitchControllerSystemArgs:
 @pulumi.input_type
 class _SwitchControllerSystemState:
     def __init__(__self__, *,
+                 caputp_echo_interval: Optional[pulumi.Input[int]] = None,
+                 caputp_max_retransmit: Optional[pulumi.Input[int]] = None,
                  data_sync_interval: Optional[pulumi.Input[int]] = None,
                  dynamic_periodic_interval: Optional[pulumi.Input[int]] = None,
                  iot_holdoff: Optional[pulumi.Input[int]] = None,
@@ -168,6 +194,10 @@ class _SwitchControllerSystemState:
         """
         Input properties used for looking up and filtering SwitchControllerSystem resources.
         """
+        if caputp_echo_interval is not None:
+            pulumi.set(__self__, "caputp_echo_interval", caputp_echo_interval)
+        if caputp_max_retransmit is not None:
+            pulumi.set(__self__, "caputp_max_retransmit", caputp_max_retransmit)
         if data_sync_interval is not None:
             pulumi.set(__self__, "data_sync_interval", data_sync_interval)
         if dynamic_periodic_interval is not None:
@@ -190,6 +220,24 @@ class _SwitchControllerSystemState:
             pulumi.set(__self__, "tunnel_mode", tunnel_mode)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="caputpEchoInterval")
+    def caputp_echo_interval(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "caputp_echo_interval")
+
+    @caputp_echo_interval.setter
+    def caputp_echo_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "caputp_echo_interval", value)
+
+    @property
+    @pulumi.getter(name="caputpMaxRetransmit")
+    def caputp_max_retransmit(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "caputp_max_retransmit")
+
+    @caputp_max_retransmit.setter
+    def caputp_max_retransmit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "caputp_max_retransmit", value)
 
     @property
     @pulumi.getter(name="dataSyncInterval")
@@ -296,6 +344,8 @@ class SwitchControllerSystem(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 caputp_echo_interval: Optional[pulumi.Input[int]] = None,
+                 caputp_max_retransmit: Optional[pulumi.Input[int]] = None,
                  data_sync_interval: Optional[pulumi.Input[int]] = None,
                  dynamic_periodic_interval: Optional[pulumi.Input[int]] = None,
                  iot_holdoff: Optional[pulumi.Input[int]] = None,
@@ -336,6 +386,8 @@ class SwitchControllerSystem(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 caputp_echo_interval: Optional[pulumi.Input[int]] = None,
+                 caputp_max_retransmit: Optional[pulumi.Input[int]] = None,
                  data_sync_interval: Optional[pulumi.Input[int]] = None,
                  dynamic_periodic_interval: Optional[pulumi.Input[int]] = None,
                  iot_holdoff: Optional[pulumi.Input[int]] = None,
@@ -356,6 +408,8 @@ class SwitchControllerSystem(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SwitchControllerSystemArgs.__new__(SwitchControllerSystemArgs)
 
+            __props__.__dict__["caputp_echo_interval"] = caputp_echo_interval
+            __props__.__dict__["caputp_max_retransmit"] = caputp_max_retransmit
             __props__.__dict__["data_sync_interval"] = data_sync_interval
             __props__.__dict__["dynamic_periodic_interval"] = dynamic_periodic_interval
             __props__.__dict__["iot_holdoff"] = iot_holdoff
@@ -377,6 +431,8 @@ class SwitchControllerSystem(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            caputp_echo_interval: Optional[pulumi.Input[int]] = None,
+            caputp_max_retransmit: Optional[pulumi.Input[int]] = None,
             data_sync_interval: Optional[pulumi.Input[int]] = None,
             dynamic_periodic_interval: Optional[pulumi.Input[int]] = None,
             iot_holdoff: Optional[pulumi.Input[int]] = None,
@@ -400,6 +456,8 @@ class SwitchControllerSystem(pulumi.CustomResource):
 
         __props__ = _SwitchControllerSystemState.__new__(_SwitchControllerSystemState)
 
+        __props__.__dict__["caputp_echo_interval"] = caputp_echo_interval
+        __props__.__dict__["caputp_max_retransmit"] = caputp_max_retransmit
         __props__.__dict__["data_sync_interval"] = data_sync_interval
         __props__.__dict__["dynamic_periodic_interval"] = dynamic_periodic_interval
         __props__.__dict__["iot_holdoff"] = iot_holdoff
@@ -412,6 +470,16 @@ class SwitchControllerSystem(pulumi.CustomResource):
         __props__.__dict__["tunnel_mode"] = tunnel_mode
         __props__.__dict__["vdomparam"] = vdomparam
         return SwitchControllerSystem(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="caputpEchoInterval")
+    def caputp_echo_interval(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "caputp_echo_interval")
+
+    @property
+    @pulumi.getter(name="caputpMaxRetransmit")
+    def caputp_max_retransmit(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "caputp_max_retransmit")
 
     @property
     @pulumi.getter(name="dataSyncInterval")

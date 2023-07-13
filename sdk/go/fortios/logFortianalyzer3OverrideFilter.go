@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -21,6 +22,7 @@ type LogFortianalyzer3OverrideFilter struct {
 	FilterType           pulumi.StringOutput                                 `pulumi:"filterType"`
 	ForwardTraffic       pulumi.StringOutput                                 `pulumi:"forwardTraffic"`
 	FreeStyles           LogFortianalyzer3OverrideFilterFreeStyleArrayOutput `pulumi:"freeStyles"`
+	GetAllTables         pulumi.StringPtrOutput                              `pulumi:"getAllTables"`
 	Gtp                  pulumi.StringOutput                                 `pulumi:"gtp"`
 	LocalTraffic         pulumi.StringOutput                                 `pulumi:"localTraffic"`
 	MulticastTraffic     pulumi.StringOutput                                 `pulumi:"multicastTraffic"`
@@ -41,7 +43,7 @@ func NewLogFortianalyzer3OverrideFilter(ctx *pulumi.Context,
 		args = &LogFortianalyzer3OverrideFilterArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource LogFortianalyzer3OverrideFilter
 	err := ctx.RegisterResource("fortios:index/logFortianalyzer3OverrideFilter:LogFortianalyzer3OverrideFilter", name, args, &resource, opts...)
 	if err != nil {
@@ -72,6 +74,7 @@ type logFortianalyzer3OverrideFilterState struct {
 	FilterType           *string                                    `pulumi:"filterType"`
 	ForwardTraffic       *string                                    `pulumi:"forwardTraffic"`
 	FreeStyles           []LogFortianalyzer3OverrideFilterFreeStyle `pulumi:"freeStyles"`
+	GetAllTables         *string                                    `pulumi:"getAllTables"`
 	Gtp                  *string                                    `pulumi:"gtp"`
 	LocalTraffic         *string                                    `pulumi:"localTraffic"`
 	MulticastTraffic     *string                                    `pulumi:"multicastTraffic"`
@@ -94,6 +97,7 @@ type LogFortianalyzer3OverrideFilterState struct {
 	FilterType           pulumi.StringPtrInput
 	ForwardTraffic       pulumi.StringPtrInput
 	FreeStyles           LogFortianalyzer3OverrideFilterFreeStyleArrayInput
+	GetAllTables         pulumi.StringPtrInput
 	Gtp                  pulumi.StringPtrInput
 	LocalTraffic         pulumi.StringPtrInput
 	MulticastTraffic     pulumi.StringPtrInput
@@ -120,6 +124,7 @@ type logFortianalyzer3OverrideFilterArgs struct {
 	FilterType           *string                                    `pulumi:"filterType"`
 	ForwardTraffic       *string                                    `pulumi:"forwardTraffic"`
 	FreeStyles           []LogFortianalyzer3OverrideFilterFreeStyle `pulumi:"freeStyles"`
+	GetAllTables         *string                                    `pulumi:"getAllTables"`
 	Gtp                  *string                                    `pulumi:"gtp"`
 	LocalTraffic         *string                                    `pulumi:"localTraffic"`
 	MulticastTraffic     *string                                    `pulumi:"multicastTraffic"`
@@ -143,6 +148,7 @@ type LogFortianalyzer3OverrideFilterArgs struct {
 	FilterType           pulumi.StringPtrInput
 	ForwardTraffic       pulumi.StringPtrInput
 	FreeStyles           LogFortianalyzer3OverrideFilterFreeStyleArrayInput
+	GetAllTables         pulumi.StringPtrInput
 	Gtp                  pulumi.StringPtrInput
 	LocalTraffic         pulumi.StringPtrInput
 	MulticastTraffic     pulumi.StringPtrInput
@@ -275,6 +281,10 @@ func (o LogFortianalyzer3OverrideFilterOutput) FreeStyles() LogFortianalyzer3Ove
 	return o.ApplyT(func(v *LogFortianalyzer3OverrideFilter) LogFortianalyzer3OverrideFilterFreeStyleArrayOutput {
 		return v.FreeStyles
 	}).(LogFortianalyzer3OverrideFilterFreeStyleArrayOutput)
+}
+
+func (o LogFortianalyzer3OverrideFilterOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogFortianalyzer3OverrideFilter) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o LogFortianalyzer3OverrideFilterOutput) Gtp() pulumi.StringOutput {

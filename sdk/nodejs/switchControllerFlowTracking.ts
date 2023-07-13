@@ -40,6 +40,7 @@ export class SwitchControllerFlowTracking extends pulumi.CustomResource {
     public readonly collectors!: pulumi.Output<outputs.SwitchControllerFlowTrackingCollector[] | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly format!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly level!: pulumi.Output<string>;
     public readonly maxExportPktSize!: pulumi.Output<number>;
     public readonly sampleMode!: pulumi.Output<string>;
@@ -74,6 +75,7 @@ export class SwitchControllerFlowTracking extends pulumi.CustomResource {
             resourceInputs["collectors"] = state ? state.collectors : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["format"] = state ? state.format : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["level"] = state ? state.level : undefined;
             resourceInputs["maxExportPktSize"] = state ? state.maxExportPktSize : undefined;
             resourceInputs["sampleMode"] = state ? state.sampleMode : undefined;
@@ -96,6 +98,7 @@ export class SwitchControllerFlowTracking extends pulumi.CustomResource {
             resourceInputs["collectors"] = args ? args.collectors : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["format"] = args ? args.format : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["level"] = args ? args.level : undefined;
             resourceInputs["maxExportPktSize"] = args ? args.maxExportPktSize : undefined;
             resourceInputs["sampleMode"] = args ? args.sampleMode : undefined;
@@ -126,6 +129,7 @@ export interface SwitchControllerFlowTrackingState {
     collectors?: pulumi.Input<pulumi.Input<inputs.SwitchControllerFlowTrackingCollector>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
     format?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     level?: pulumi.Input<string>;
     maxExportPktSize?: pulumi.Input<number>;
     sampleMode?: pulumi.Input<string>;
@@ -152,6 +156,7 @@ export interface SwitchControllerFlowTrackingArgs {
     collectors?: pulumi.Input<pulumi.Input<inputs.SwitchControllerFlowTrackingCollector>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
     format?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     level?: pulumi.Input<string>;
     maxExportPktSize?: pulumi.Input<number>;
     sampleMode?: pulumi.Input<string>;

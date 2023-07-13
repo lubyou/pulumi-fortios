@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -41,7 +42,7 @@ func NewSystemVneTunnel(ctx *pulumi.Context,
 		"bmrHostname",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemVneTunnel
 	err := ctx.RegisterResource("fortios:index/systemVneTunnel:SystemVneTunnel", name, args, &resource, opts...)
 	if err != nil {

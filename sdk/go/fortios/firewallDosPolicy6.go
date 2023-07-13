@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -18,6 +19,7 @@ type FirewallDosPolicy6 struct {
 	Comments            pulumi.StringPtrOutput               `pulumi:"comments"`
 	Dstaddrs            FirewallDosPolicy6DstaddrArrayOutput `pulumi:"dstaddrs"`
 	DynamicSortSubtable pulumi.StringPtrOutput               `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput               `pulumi:"getAllTables"`
 	Interface           pulumi.StringOutput                  `pulumi:"interface"`
 	Name                pulumi.StringOutput                  `pulumi:"name"`
 	Policyid            pulumi.IntOutput                     `pulumi:"policyid"`
@@ -43,7 +45,7 @@ func NewFirewallDosPolicy6(ctx *pulumi.Context,
 	if args.Srcaddrs == nil {
 		return nil, errors.New("invalid value for required argument 'Srcaddrs'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallDosPolicy6
 	err := ctx.RegisterResource("fortios:index/firewallDosPolicy6:FirewallDosPolicy6", name, args, &resource, opts...)
 	if err != nil {
@@ -70,6 +72,7 @@ type firewallDosPolicy6State struct {
 	Comments            *string                     `pulumi:"comments"`
 	Dstaddrs            []FirewallDosPolicy6Dstaddr `pulumi:"dstaddrs"`
 	DynamicSortSubtable *string                     `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                     `pulumi:"getAllTables"`
 	Interface           *string                     `pulumi:"interface"`
 	Name                *string                     `pulumi:"name"`
 	Policyid            *int                        `pulumi:"policyid"`
@@ -84,6 +87,7 @@ type FirewallDosPolicy6State struct {
 	Comments            pulumi.StringPtrInput
 	Dstaddrs            FirewallDosPolicy6DstaddrArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Interface           pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Policyid            pulumi.IntPtrInput
@@ -102,6 +106,7 @@ type firewallDosPolicy6Args struct {
 	Comments            *string                     `pulumi:"comments"`
 	Dstaddrs            []FirewallDosPolicy6Dstaddr `pulumi:"dstaddrs"`
 	DynamicSortSubtable *string                     `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                     `pulumi:"getAllTables"`
 	Interface           string                      `pulumi:"interface"`
 	Name                *string                     `pulumi:"name"`
 	Policyid            *int                        `pulumi:"policyid"`
@@ -117,6 +122,7 @@ type FirewallDosPolicy6Args struct {
 	Comments            pulumi.StringPtrInput
 	Dstaddrs            FirewallDosPolicy6DstaddrArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Interface           pulumi.StringInput
 	Name                pulumi.StringPtrInput
 	Policyid            pulumi.IntPtrInput
@@ -227,6 +233,10 @@ func (o FirewallDosPolicy6Output) Dstaddrs() FirewallDosPolicy6DstaddrArrayOutpu
 
 func (o FirewallDosPolicy6Output) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FirewallDosPolicy6) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallDosPolicy6Output) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallDosPolicy6) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallDosPolicy6Output) Interface() pulumi.StringOutput {

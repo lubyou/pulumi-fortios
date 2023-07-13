@@ -37,6 +37,7 @@ export class SwitchControllerLocation extends pulumi.CustomResource {
     public readonly addressCivic!: pulumi.Output<outputs.SwitchControllerLocationAddressCivic>;
     public readonly coordinates!: pulumi.Output<outputs.SwitchControllerLocationCoordinates>;
     public readonly elinNumber!: pulumi.Output<outputs.SwitchControllerLocationElinNumber>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
@@ -56,6 +57,7 @@ export class SwitchControllerLocation extends pulumi.CustomResource {
             resourceInputs["addressCivic"] = state ? state.addressCivic : undefined;
             resourceInputs["coordinates"] = state ? state.coordinates : undefined;
             resourceInputs["elinNumber"] = state ? state.elinNumber : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
@@ -63,6 +65,7 @@ export class SwitchControllerLocation extends pulumi.CustomResource {
             resourceInputs["addressCivic"] = args ? args.addressCivic : undefined;
             resourceInputs["coordinates"] = args ? args.coordinates : undefined;
             resourceInputs["elinNumber"] = args ? args.elinNumber : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
@@ -78,6 +81,7 @@ export interface SwitchControllerLocationState {
     addressCivic?: pulumi.Input<inputs.SwitchControllerLocationAddressCivic>;
     coordinates?: pulumi.Input<inputs.SwitchControllerLocationCoordinates>;
     elinNumber?: pulumi.Input<inputs.SwitchControllerLocationElinNumber>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }
@@ -89,6 +93,7 @@ export interface SwitchControllerLocationArgs {
     addressCivic?: pulumi.Input<inputs.SwitchControllerLocationAddressCivic>;
     coordinates?: pulumi.Input<inputs.SwitchControllerLocationCoordinates>;
     elinNumber?: pulumi.Input<inputs.SwitchControllerLocationElinNumber>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }

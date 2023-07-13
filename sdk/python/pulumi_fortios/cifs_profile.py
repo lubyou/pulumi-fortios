@@ -19,6 +19,7 @@ class CifsProfileArgs:
                  domain_controller: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  file_filter: Optional[pulumi.Input['CifsProfileFileFilterArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  server_credential_type: Optional[pulumi.Input[str]] = None,
                  server_keytabs: Optional[pulumi.Input[Sequence[pulumi.Input['CifsProfileServerKeytabArgs']]]] = None,
@@ -32,6 +33,8 @@ class CifsProfileArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if file_filter is not None:
             pulumi.set(__self__, "file_filter", file_filter)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if server_credential_type is not None:
@@ -67,6 +70,15 @@ class CifsProfileArgs:
     @file_filter.setter
     def file_filter(self, value: Optional[pulumi.Input['CifsProfileFileFilterArgs']]):
         pulumi.set(self, "file_filter", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -111,6 +123,7 @@ class _CifsProfileState:
                  domain_controller: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  file_filter: Optional[pulumi.Input['CifsProfileFileFilterArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  server_credential_type: Optional[pulumi.Input[str]] = None,
                  server_keytabs: Optional[pulumi.Input[Sequence[pulumi.Input['CifsProfileServerKeytabArgs']]]] = None,
@@ -124,6 +137,8 @@ class _CifsProfileState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if file_filter is not None:
             pulumi.set(__self__, "file_filter", file_filter)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if server_credential_type is not None:
@@ -159,6 +174,15 @@ class _CifsProfileState:
     @file_filter.setter
     def file_filter(self, value: Optional[pulumi.Input['CifsProfileFileFilterArgs']]):
         pulumi.set(self, "file_filter", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -205,6 +229,7 @@ class CifsProfile(pulumi.CustomResource):
                  domain_controller: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  file_filter: Optional[pulumi.Input[pulumi.InputType['CifsProfileFileFilterArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  server_credential_type: Optional[pulumi.Input[str]] = None,
                  server_keytabs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CifsProfileServerKeytabArgs']]]]] = None,
@@ -241,6 +266,7 @@ class CifsProfile(pulumi.CustomResource):
                  domain_controller: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  file_filter: Optional[pulumi.Input[pulumi.InputType['CifsProfileFileFilterArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  server_credential_type: Optional[pulumi.Input[str]] = None,
                  server_keytabs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CifsProfileServerKeytabArgs']]]]] = None,
@@ -257,6 +283,7 @@ class CifsProfile(pulumi.CustomResource):
             __props__.__dict__["domain_controller"] = domain_controller
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["file_filter"] = file_filter
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["name"] = name
             __props__.__dict__["server_credential_type"] = server_credential_type
             __props__.__dict__["server_keytabs"] = server_keytabs
@@ -274,6 +301,7 @@ class CifsProfile(pulumi.CustomResource):
             domain_controller: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             file_filter: Optional[pulumi.Input[pulumi.InputType['CifsProfileFileFilterArgs']]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             server_credential_type: Optional[pulumi.Input[str]] = None,
             server_keytabs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['CifsProfileServerKeytabArgs']]]]] = None,
@@ -293,6 +321,7 @@ class CifsProfile(pulumi.CustomResource):
         __props__.__dict__["domain_controller"] = domain_controller
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["file_filter"] = file_filter
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["name"] = name
         __props__.__dict__["server_credential_type"] = server_credential_type
         __props__.__dict__["server_keytabs"] = server_keytabs
@@ -313,6 +342,11 @@ class CifsProfile(pulumi.CustomResource):
     @pulumi.getter(name="fileFilter")
     def file_filter(self) -> pulumi.Output['outputs.CifsProfileFileFilter']:
         return pulumi.get(self, "file_filter")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

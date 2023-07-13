@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -35,6 +36,7 @@ type ExtenderControllerExtender struct {
 	ExtName                     pulumi.StringOutput                              `pulumi:"extName"`
 	ExtensionType               pulumi.StringOutput                              `pulumi:"extensionType"`
 	Fosid                       pulumi.StringOutput                              `pulumi:"fosid"`
+	GetAllTables                pulumi.StringPtrOutput                           `pulumi:"getAllTables"`
 	HaSharedSecret              pulumi.StringPtrOutput                           `pulumi:"haSharedSecret"`
 	Ifname                      pulumi.StringOutput                              `pulumi:"ifname"`
 	InitiatedUpdate             pulumi.StringOutput                              `pulumi:"initiatedUpdate"`
@@ -110,7 +112,7 @@ func NewExtenderControllerExtender(ctx *pulumi.Context,
 		"simPin",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ExtenderControllerExtender
 	err := ctx.RegisterResource("fortios:index/extenderControllerExtender:ExtenderControllerExtender", name, args, &resource, opts...)
 	if err != nil {
@@ -154,6 +156,7 @@ type extenderControllerExtenderState struct {
 	ExtName                     *string                                     `pulumi:"extName"`
 	ExtensionType               *string                                     `pulumi:"extensionType"`
 	Fosid                       *string                                     `pulumi:"fosid"`
+	GetAllTables                *string                                     `pulumi:"getAllTables"`
 	HaSharedSecret              *string                                     `pulumi:"haSharedSecret"`
 	Ifname                      *string                                     `pulumi:"ifname"`
 	InitiatedUpdate             *string                                     `pulumi:"initiatedUpdate"`
@@ -212,6 +215,7 @@ type ExtenderControllerExtenderState struct {
 	ExtName                     pulumi.StringPtrInput
 	ExtensionType               pulumi.StringPtrInput
 	Fosid                       pulumi.StringPtrInput
+	GetAllTables                pulumi.StringPtrInput
 	HaSharedSecret              pulumi.StringPtrInput
 	Ifname                      pulumi.StringPtrInput
 	InitiatedUpdate             pulumi.StringPtrInput
@@ -274,6 +278,7 @@ type extenderControllerExtenderArgs struct {
 	ExtName                     *string                                     `pulumi:"extName"`
 	ExtensionType               *string                                     `pulumi:"extensionType"`
 	Fosid                       string                                      `pulumi:"fosid"`
+	GetAllTables                *string                                     `pulumi:"getAllTables"`
 	HaSharedSecret              *string                                     `pulumi:"haSharedSecret"`
 	Ifname                      *string                                     `pulumi:"ifname"`
 	InitiatedUpdate             *string                                     `pulumi:"initiatedUpdate"`
@@ -333,6 +338,7 @@ type ExtenderControllerExtenderArgs struct {
 	ExtName                     pulumi.StringPtrInput
 	ExtensionType               pulumi.StringPtrInput
 	Fosid                       pulumi.StringInput
+	GetAllTables                pulumi.StringPtrInput
 	HaSharedSecret              pulumi.StringPtrInput
 	Ifname                      pulumi.StringPtrInput
 	InitiatedUpdate             pulumi.StringPtrInput
@@ -540,6 +546,10 @@ func (o ExtenderControllerExtenderOutput) ExtensionType() pulumi.StringOutput {
 
 func (o ExtenderControllerExtenderOutput) Fosid() pulumi.StringOutput {
 	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringOutput { return v.Fosid }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtenderOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o ExtenderControllerExtenderOutput) HaSharedSecret() pulumi.StringPtrOutput {

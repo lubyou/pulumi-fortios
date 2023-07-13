@@ -36,6 +36,7 @@ export class WirelessControllerAccessControlList extends pulumi.CustomResource {
 
     public readonly comment!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly layer3Ipv4Rules!: pulumi.Output<outputs.WirelessControllerAccessControlListLayer3Ipv4Rule[] | undefined>;
     public readonly layer3Ipv6Rules!: pulumi.Output<outputs.WirelessControllerAccessControlListLayer3Ipv6Rule[] | undefined>;
     public readonly name!: pulumi.Output<string>;
@@ -56,6 +57,7 @@ export class WirelessControllerAccessControlList extends pulumi.CustomResource {
             const state = argsOrState as WirelessControllerAccessControlListState | undefined;
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["layer3Ipv4Rules"] = state ? state.layer3Ipv4Rules : undefined;
             resourceInputs["layer3Ipv6Rules"] = state ? state.layer3Ipv6Rules : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -64,6 +66,7 @@ export class WirelessControllerAccessControlList extends pulumi.CustomResource {
             const args = argsOrState as WirelessControllerAccessControlListArgs | undefined;
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["layer3Ipv4Rules"] = args ? args.layer3Ipv4Rules : undefined;
             resourceInputs["layer3Ipv6Rules"] = args ? args.layer3Ipv6Rules : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -80,6 +83,7 @@ export class WirelessControllerAccessControlList extends pulumi.CustomResource {
 export interface WirelessControllerAccessControlListState {
     comment?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     layer3Ipv4Rules?: pulumi.Input<pulumi.Input<inputs.WirelessControllerAccessControlListLayer3Ipv4Rule>[]>;
     layer3Ipv6Rules?: pulumi.Input<pulumi.Input<inputs.WirelessControllerAccessControlListLayer3Ipv6Rule>[]>;
     name?: pulumi.Input<string>;
@@ -92,6 +96,7 @@ export interface WirelessControllerAccessControlListState {
 export interface WirelessControllerAccessControlListArgs {
     comment?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     layer3Ipv4Rules?: pulumi.Input<pulumi.Input<inputs.WirelessControllerAccessControlListLayer3Ipv4Rule>[]>;
     layer3Ipv6Rules?: pulumi.Input<pulumi.Input<inputs.WirelessControllerAccessControlListLayer3Ipv6Rule>[]>;
     name?: pulumi.Input<string>;

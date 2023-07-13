@@ -36,6 +36,7 @@ class UserSettingArgs:
                  auth_timeout_type: Optional[pulumi.Input[str]] = None,
                  auth_type: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  per_policy_disclaimer: Optional[pulumi.Input[str]] = None,
                  radius_ses_timeout_act: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -82,6 +83,8 @@ class UserSettingArgs:
             pulumi.set(__self__, "auth_type", auth_type)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if per_policy_disclaimer is not None:
             pulumi.set(__self__, "per_policy_disclaimer", per_policy_disclaimer)
         if radius_ses_timeout_act is not None:
@@ -268,6 +271,15 @@ class UserSettingArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="perPolicyDisclaimer")
@@ -320,6 +332,7 @@ class _UserSettingState:
                  auth_timeout_type: Optional[pulumi.Input[str]] = None,
                  auth_type: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  per_policy_disclaimer: Optional[pulumi.Input[str]] = None,
                  radius_ses_timeout_act: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -366,6 +379,8 @@ class _UserSettingState:
             pulumi.set(__self__, "auth_type", auth_type)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if per_policy_disclaimer is not None:
             pulumi.set(__self__, "per_policy_disclaimer", per_policy_disclaimer)
         if radius_ses_timeout_act is not None:
@@ -552,6 +567,15 @@ class _UserSettingState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="perPolicyDisclaimer")
@@ -606,6 +630,7 @@ class UserSetting(pulumi.CustomResource):
                  auth_timeout_type: Optional[pulumi.Input[str]] = None,
                  auth_type: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  per_policy_disclaimer: Optional[pulumi.Input[str]] = None,
                  radius_ses_timeout_act: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -658,6 +683,7 @@ class UserSetting(pulumi.CustomResource):
                  auth_timeout_type: Optional[pulumi.Input[str]] = None,
                  auth_type: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  per_policy_disclaimer: Optional[pulumi.Input[str]] = None,
                  radius_ses_timeout_act: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -690,6 +716,7 @@ class UserSetting(pulumi.CustomResource):
             __props__.__dict__["auth_timeout_type"] = auth_timeout_type
             __props__.__dict__["auth_type"] = auth_type
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["per_policy_disclaimer"] = per_policy_disclaimer
             __props__.__dict__["radius_ses_timeout_act"] = radius_ses_timeout_act
             __props__.__dict__["vdomparam"] = vdomparam
@@ -723,6 +750,7 @@ class UserSetting(pulumi.CustomResource):
             auth_timeout_type: Optional[pulumi.Input[str]] = None,
             auth_type: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             per_policy_disclaimer: Optional[pulumi.Input[str]] = None,
             radius_ses_timeout_act: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'UserSetting':
@@ -758,6 +786,7 @@ class UserSetting(pulumi.CustomResource):
         __props__.__dict__["auth_timeout_type"] = auth_timeout_type
         __props__.__dict__["auth_type"] = auth_type
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["per_policy_disclaimer"] = per_policy_disclaimer
         __props__.__dict__["radius_ses_timeout_act"] = radius_ses_timeout_act
         __props__.__dict__["vdomparam"] = vdomparam
@@ -862,6 +891,11 @@ class UserSetting(pulumi.CustomResource):
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="perPolicyDisclaimer")

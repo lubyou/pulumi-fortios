@@ -29,6 +29,7 @@ class EndpointControlSettingsArgs:
                  forticlient_sys_update_interval: Optional[pulumi.Input[int]] = None,
                  forticlient_user_avatar: Optional[pulumi.Input[str]] = None,
                  forticlient_warning_interval: Optional[pulumi.Input[int]] = None,
+                 override: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a EndpointControlSettings resource.
@@ -63,6 +64,8 @@ class EndpointControlSettingsArgs:
             pulumi.set(__self__, "forticlient_user_avatar", forticlient_user_avatar)
         if forticlient_warning_interval is not None:
             pulumi.set(__self__, "forticlient_warning_interval", forticlient_warning_interval)
+        if override is not None:
+            pulumi.set(__self__, "override", override)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -203,6 +206,15 @@ class EndpointControlSettingsArgs:
 
     @property
     @pulumi.getter
+    def override(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "override")
+
+    @override.setter
+    def override(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "override", value)
+
+    @property
+    @pulumi.getter
     def vdomparam(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "vdomparam")
 
@@ -229,6 +241,7 @@ class _EndpointControlSettingsState:
                  forticlient_sys_update_interval: Optional[pulumi.Input[int]] = None,
                  forticlient_user_avatar: Optional[pulumi.Input[str]] = None,
                  forticlient_warning_interval: Optional[pulumi.Input[int]] = None,
+                 override: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering EndpointControlSettings resources.
@@ -263,6 +276,8 @@ class _EndpointControlSettingsState:
             pulumi.set(__self__, "forticlient_user_avatar", forticlient_user_avatar)
         if forticlient_warning_interval is not None:
             pulumi.set(__self__, "forticlient_warning_interval", forticlient_warning_interval)
+        if override is not None:
+            pulumi.set(__self__, "override", override)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -403,6 +418,15 @@ class _EndpointControlSettingsState:
 
     @property
     @pulumi.getter
+    def override(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "override")
+
+    @override.setter
+    def override(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "override", value)
+
+    @property
+    @pulumi.getter
     def vdomparam(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "vdomparam")
 
@@ -431,6 +455,7 @@ class EndpointControlSettings(pulumi.CustomResource):
                  forticlient_sys_update_interval: Optional[pulumi.Input[int]] = None,
                  forticlient_user_avatar: Optional[pulumi.Input[str]] = None,
                  forticlient_warning_interval: Optional[pulumi.Input[int]] = None,
+                 override: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -476,6 +501,7 @@ class EndpointControlSettings(pulumi.CustomResource):
                  forticlient_sys_update_interval: Optional[pulumi.Input[int]] = None,
                  forticlient_user_avatar: Optional[pulumi.Input[str]] = None,
                  forticlient_warning_interval: Optional[pulumi.Input[int]] = None,
+                 override: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -501,6 +527,7 @@ class EndpointControlSettings(pulumi.CustomResource):
             __props__.__dict__["forticlient_sys_update_interval"] = forticlient_sys_update_interval
             __props__.__dict__["forticlient_user_avatar"] = forticlient_user_avatar
             __props__.__dict__["forticlient_warning_interval"] = forticlient_warning_interval
+            __props__.__dict__["override"] = override
             __props__.__dict__["vdomparam"] = vdomparam
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["forticlientRegKey"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
@@ -529,6 +556,7 @@ class EndpointControlSettings(pulumi.CustomResource):
             forticlient_sys_update_interval: Optional[pulumi.Input[int]] = None,
             forticlient_user_avatar: Optional[pulumi.Input[str]] = None,
             forticlient_warning_interval: Optional[pulumi.Input[int]] = None,
+            override: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'EndpointControlSettings':
         """
         Get an existing EndpointControlSettings resource's state with the given name, id, and optional extra
@@ -557,6 +585,7 @@ class EndpointControlSettings(pulumi.CustomResource):
         __props__.__dict__["forticlient_sys_update_interval"] = forticlient_sys_update_interval
         __props__.__dict__["forticlient_user_avatar"] = forticlient_user_avatar
         __props__.__dict__["forticlient_warning_interval"] = forticlient_warning_interval
+        __props__.__dict__["override"] = override
         __props__.__dict__["vdomparam"] = vdomparam
         return EndpointControlSettings(resource_name, opts=opts, __props__=__props__)
 
@@ -634,6 +663,11 @@ class EndpointControlSettings(pulumi.CustomResource):
     @pulumi.getter(name="forticlientWarningInterval")
     def forticlient_warning_interval(self) -> pulumi.Output[int]:
         return pulumi.get(self, "forticlient_warning_interval")
+
+    @property
+    @pulumi.getter
+    def override(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "override")
 
     @property
     @pulumi.getter

@@ -27,6 +27,7 @@ class FirewallVipArgs:
                  extip: Optional[pulumi.Input[str]] = None,
                  extport: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gratuitous_arp_interval: Optional[pulumi.Input[int]] = None,
                  http_cookie_age: Optional[pulumi.Input[int]] = None,
                  http_cookie_domain: Optional[pulumi.Input[str]] = None,
@@ -37,7 +38,10 @@ class FirewallVipArgs:
                  http_ip_header: Optional[pulumi.Input[str]] = None,
                  http_ip_header_name: Optional[pulumi.Input[str]] = None,
                  http_multiplex: Optional[pulumi.Input[str]] = None,
+                 http_multiplex_max_request: Optional[pulumi.Input[int]] = None,
+                 http_multiplex_ttl: Optional[pulumi.Input[int]] = None,
                  http_redirect: Optional[pulumi.Input[str]] = None,
+                 http_supported_max_version: Optional[pulumi.Input[str]] = None,
                  https_cookie_secure: Optional[pulumi.Input[str]] = None,
                  ipv6_mappedip: Optional[pulumi.Input[str]] = None,
                  ipv6_mappedport: Optional[pulumi.Input[str]] = None,
@@ -92,6 +96,7 @@ class FirewallVipArgs:
                  ssl_server_cipher_suites: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallVipSslServerCipherSuiteArgs']]]] = None,
                  ssl_server_max_version: Optional[pulumi.Input[str]] = None,
                  ssl_server_min_version: Optional[pulumi.Input[str]] = None,
+                 ssl_server_renegotiation: Optional[pulumi.Input[str]] = None,
                  ssl_server_session_state_max: Optional[pulumi.Input[int]] = None,
                  ssl_server_session_state_timeout: Optional[pulumi.Input[int]] = None,
                  ssl_server_session_state_type: Optional[pulumi.Input[str]] = None,
@@ -126,6 +131,8 @@ class FirewallVipArgs:
             pulumi.set(__self__, "extport", extport)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gratuitous_arp_interval is not None:
             pulumi.set(__self__, "gratuitous_arp_interval", gratuitous_arp_interval)
         if http_cookie_age is not None:
@@ -146,8 +153,14 @@ class FirewallVipArgs:
             pulumi.set(__self__, "http_ip_header_name", http_ip_header_name)
         if http_multiplex is not None:
             pulumi.set(__self__, "http_multiplex", http_multiplex)
+        if http_multiplex_max_request is not None:
+            pulumi.set(__self__, "http_multiplex_max_request", http_multiplex_max_request)
+        if http_multiplex_ttl is not None:
+            pulumi.set(__self__, "http_multiplex_ttl", http_multiplex_ttl)
         if http_redirect is not None:
             pulumi.set(__self__, "http_redirect", http_redirect)
+        if http_supported_max_version is not None:
+            pulumi.set(__self__, "http_supported_max_version", http_supported_max_version)
         if https_cookie_secure is not None:
             pulumi.set(__self__, "https_cookie_secure", https_cookie_secure)
         if ipv6_mappedip is not None:
@@ -256,6 +269,8 @@ class FirewallVipArgs:
             pulumi.set(__self__, "ssl_server_max_version", ssl_server_max_version)
         if ssl_server_min_version is not None:
             pulumi.set(__self__, "ssl_server_min_version", ssl_server_min_version)
+        if ssl_server_renegotiation is not None:
+            pulumi.set(__self__, "ssl_server_renegotiation", ssl_server_renegotiation)
         if ssl_server_session_state_max is not None:
             pulumi.set(__self__, "ssl_server_session_state_max", ssl_server_session_state_max)
         if ssl_server_session_state_timeout is not None:
@@ -375,6 +390,15 @@ class FirewallVipArgs:
         pulumi.set(self, "fosid", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="gratuitousArpInterval")
     def gratuitous_arp_interval(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "gratuitous_arp_interval")
@@ -465,6 +489,24 @@ class FirewallVipArgs:
         pulumi.set(self, "http_multiplex", value)
 
     @property
+    @pulumi.getter(name="httpMultiplexMaxRequest")
+    def http_multiplex_max_request(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "http_multiplex_max_request")
+
+    @http_multiplex_max_request.setter
+    def http_multiplex_max_request(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "http_multiplex_max_request", value)
+
+    @property
+    @pulumi.getter(name="httpMultiplexTtl")
+    def http_multiplex_ttl(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "http_multiplex_ttl")
+
+    @http_multiplex_ttl.setter
+    def http_multiplex_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "http_multiplex_ttl", value)
+
+    @property
     @pulumi.getter(name="httpRedirect")
     def http_redirect(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "http_redirect")
@@ -472,6 +514,15 @@ class FirewallVipArgs:
     @http_redirect.setter
     def http_redirect(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "http_redirect", value)
+
+    @property
+    @pulumi.getter(name="httpSupportedMaxVersion")
+    def http_supported_max_version(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "http_supported_max_version")
+
+    @http_supported_max_version.setter
+    def http_supported_max_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "http_supported_max_version", value)
 
     @property
     @pulumi.getter(name="httpsCookieSecure")
@@ -958,6 +1009,15 @@ class FirewallVipArgs:
     @ssl_server_min_version.setter
     def ssl_server_min_version(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ssl_server_min_version", value)
+
+    @property
+    @pulumi.getter(name="sslServerRenegotiation")
+    def ssl_server_renegotiation(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ssl_server_renegotiation")
+
+    @ssl_server_renegotiation.setter
+    def ssl_server_renegotiation(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssl_server_renegotiation", value)
 
     @property
     @pulumi.getter(name="sslServerSessionStateMax")
@@ -1055,6 +1115,7 @@ class _FirewallVipState:
                  extip: Optional[pulumi.Input[str]] = None,
                  extport: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gratuitous_arp_interval: Optional[pulumi.Input[int]] = None,
                  http_cookie_age: Optional[pulumi.Input[int]] = None,
                  http_cookie_domain: Optional[pulumi.Input[str]] = None,
@@ -1065,7 +1126,10 @@ class _FirewallVipState:
                  http_ip_header: Optional[pulumi.Input[str]] = None,
                  http_ip_header_name: Optional[pulumi.Input[str]] = None,
                  http_multiplex: Optional[pulumi.Input[str]] = None,
+                 http_multiplex_max_request: Optional[pulumi.Input[int]] = None,
+                 http_multiplex_ttl: Optional[pulumi.Input[int]] = None,
                  http_redirect: Optional[pulumi.Input[str]] = None,
+                 http_supported_max_version: Optional[pulumi.Input[str]] = None,
                  https_cookie_secure: Optional[pulumi.Input[str]] = None,
                  ipv6_mappedip: Optional[pulumi.Input[str]] = None,
                  ipv6_mappedport: Optional[pulumi.Input[str]] = None,
@@ -1120,6 +1184,7 @@ class _FirewallVipState:
                  ssl_server_cipher_suites: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallVipSslServerCipherSuiteArgs']]]] = None,
                  ssl_server_max_version: Optional[pulumi.Input[str]] = None,
                  ssl_server_min_version: Optional[pulumi.Input[str]] = None,
+                 ssl_server_renegotiation: Optional[pulumi.Input[str]] = None,
                  ssl_server_session_state_max: Optional[pulumi.Input[int]] = None,
                  ssl_server_session_state_timeout: Optional[pulumi.Input[int]] = None,
                  ssl_server_session_state_type: Optional[pulumi.Input[str]] = None,
@@ -1154,6 +1219,8 @@ class _FirewallVipState:
             pulumi.set(__self__, "extport", extport)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gratuitous_arp_interval is not None:
             pulumi.set(__self__, "gratuitous_arp_interval", gratuitous_arp_interval)
         if http_cookie_age is not None:
@@ -1174,8 +1241,14 @@ class _FirewallVipState:
             pulumi.set(__self__, "http_ip_header_name", http_ip_header_name)
         if http_multiplex is not None:
             pulumi.set(__self__, "http_multiplex", http_multiplex)
+        if http_multiplex_max_request is not None:
+            pulumi.set(__self__, "http_multiplex_max_request", http_multiplex_max_request)
+        if http_multiplex_ttl is not None:
+            pulumi.set(__self__, "http_multiplex_ttl", http_multiplex_ttl)
         if http_redirect is not None:
             pulumi.set(__self__, "http_redirect", http_redirect)
+        if http_supported_max_version is not None:
+            pulumi.set(__self__, "http_supported_max_version", http_supported_max_version)
         if https_cookie_secure is not None:
             pulumi.set(__self__, "https_cookie_secure", https_cookie_secure)
         if ipv6_mappedip is not None:
@@ -1284,6 +1357,8 @@ class _FirewallVipState:
             pulumi.set(__self__, "ssl_server_max_version", ssl_server_max_version)
         if ssl_server_min_version is not None:
             pulumi.set(__self__, "ssl_server_min_version", ssl_server_min_version)
+        if ssl_server_renegotiation is not None:
+            pulumi.set(__self__, "ssl_server_renegotiation", ssl_server_renegotiation)
         if ssl_server_session_state_max is not None:
             pulumi.set(__self__, "ssl_server_session_state_max", ssl_server_session_state_max)
         if ssl_server_session_state_timeout is not None:
@@ -1403,6 +1478,15 @@ class _FirewallVipState:
         pulumi.set(self, "fosid", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="gratuitousArpInterval")
     def gratuitous_arp_interval(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "gratuitous_arp_interval")
@@ -1493,6 +1577,24 @@ class _FirewallVipState:
         pulumi.set(self, "http_multiplex", value)
 
     @property
+    @pulumi.getter(name="httpMultiplexMaxRequest")
+    def http_multiplex_max_request(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "http_multiplex_max_request")
+
+    @http_multiplex_max_request.setter
+    def http_multiplex_max_request(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "http_multiplex_max_request", value)
+
+    @property
+    @pulumi.getter(name="httpMultiplexTtl")
+    def http_multiplex_ttl(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "http_multiplex_ttl")
+
+    @http_multiplex_ttl.setter
+    def http_multiplex_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "http_multiplex_ttl", value)
+
+    @property
     @pulumi.getter(name="httpRedirect")
     def http_redirect(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "http_redirect")
@@ -1500,6 +1602,15 @@ class _FirewallVipState:
     @http_redirect.setter
     def http_redirect(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "http_redirect", value)
+
+    @property
+    @pulumi.getter(name="httpSupportedMaxVersion")
+    def http_supported_max_version(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "http_supported_max_version")
+
+    @http_supported_max_version.setter
+    def http_supported_max_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "http_supported_max_version", value)
 
     @property
     @pulumi.getter(name="httpsCookieSecure")
@@ -1986,6 +2097,15 @@ class _FirewallVipState:
     @ssl_server_min_version.setter
     def ssl_server_min_version(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ssl_server_min_version", value)
+
+    @property
+    @pulumi.getter(name="sslServerRenegotiation")
+    def ssl_server_renegotiation(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ssl_server_renegotiation")
+
+    @ssl_server_renegotiation.setter
+    def ssl_server_renegotiation(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssl_server_renegotiation", value)
 
     @property
     @pulumi.getter(name="sslServerSessionStateMax")
@@ -2085,6 +2205,7 @@ class FirewallVip(pulumi.CustomResource):
                  extip: Optional[pulumi.Input[str]] = None,
                  extport: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gratuitous_arp_interval: Optional[pulumi.Input[int]] = None,
                  http_cookie_age: Optional[pulumi.Input[int]] = None,
                  http_cookie_domain: Optional[pulumi.Input[str]] = None,
@@ -2095,7 +2216,10 @@ class FirewallVip(pulumi.CustomResource):
                  http_ip_header: Optional[pulumi.Input[str]] = None,
                  http_ip_header_name: Optional[pulumi.Input[str]] = None,
                  http_multiplex: Optional[pulumi.Input[str]] = None,
+                 http_multiplex_max_request: Optional[pulumi.Input[int]] = None,
+                 http_multiplex_ttl: Optional[pulumi.Input[int]] = None,
                  http_redirect: Optional[pulumi.Input[str]] = None,
+                 http_supported_max_version: Optional[pulumi.Input[str]] = None,
                  https_cookie_secure: Optional[pulumi.Input[str]] = None,
                  ipv6_mappedip: Optional[pulumi.Input[str]] = None,
                  ipv6_mappedport: Optional[pulumi.Input[str]] = None,
@@ -2150,6 +2274,7 @@ class FirewallVip(pulumi.CustomResource):
                  ssl_server_cipher_suites: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallVipSslServerCipherSuiteArgs']]]]] = None,
                  ssl_server_max_version: Optional[pulumi.Input[str]] = None,
                  ssl_server_min_version: Optional[pulumi.Input[str]] = None,
+                 ssl_server_renegotiation: Optional[pulumi.Input[str]] = None,
                  ssl_server_session_state_max: Optional[pulumi.Input[int]] = None,
                  ssl_server_session_state_timeout: Optional[pulumi.Input[int]] = None,
                  ssl_server_session_state_type: Optional[pulumi.Input[str]] = None,
@@ -2199,6 +2324,7 @@ class FirewallVip(pulumi.CustomResource):
                  extip: Optional[pulumi.Input[str]] = None,
                  extport: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gratuitous_arp_interval: Optional[pulumi.Input[int]] = None,
                  http_cookie_age: Optional[pulumi.Input[int]] = None,
                  http_cookie_domain: Optional[pulumi.Input[str]] = None,
@@ -2209,7 +2335,10 @@ class FirewallVip(pulumi.CustomResource):
                  http_ip_header: Optional[pulumi.Input[str]] = None,
                  http_ip_header_name: Optional[pulumi.Input[str]] = None,
                  http_multiplex: Optional[pulumi.Input[str]] = None,
+                 http_multiplex_max_request: Optional[pulumi.Input[int]] = None,
+                 http_multiplex_ttl: Optional[pulumi.Input[int]] = None,
                  http_redirect: Optional[pulumi.Input[str]] = None,
+                 http_supported_max_version: Optional[pulumi.Input[str]] = None,
                  https_cookie_secure: Optional[pulumi.Input[str]] = None,
                  ipv6_mappedip: Optional[pulumi.Input[str]] = None,
                  ipv6_mappedport: Optional[pulumi.Input[str]] = None,
@@ -2264,6 +2393,7 @@ class FirewallVip(pulumi.CustomResource):
                  ssl_server_cipher_suites: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallVipSslServerCipherSuiteArgs']]]]] = None,
                  ssl_server_max_version: Optional[pulumi.Input[str]] = None,
                  ssl_server_min_version: Optional[pulumi.Input[str]] = None,
+                 ssl_server_renegotiation: Optional[pulumi.Input[str]] = None,
                  ssl_server_session_state_max: Optional[pulumi.Input[int]] = None,
                  ssl_server_session_state_timeout: Optional[pulumi.Input[int]] = None,
                  ssl_server_session_state_type: Optional[pulumi.Input[str]] = None,
@@ -2293,6 +2423,7 @@ class FirewallVip(pulumi.CustomResource):
             __props__.__dict__["extip"] = extip
             __props__.__dict__["extport"] = extport
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["gratuitous_arp_interval"] = gratuitous_arp_interval
             __props__.__dict__["http_cookie_age"] = http_cookie_age
             __props__.__dict__["http_cookie_domain"] = http_cookie_domain
@@ -2303,7 +2434,10 @@ class FirewallVip(pulumi.CustomResource):
             __props__.__dict__["http_ip_header"] = http_ip_header
             __props__.__dict__["http_ip_header_name"] = http_ip_header_name
             __props__.__dict__["http_multiplex"] = http_multiplex
+            __props__.__dict__["http_multiplex_max_request"] = http_multiplex_max_request
+            __props__.__dict__["http_multiplex_ttl"] = http_multiplex_ttl
             __props__.__dict__["http_redirect"] = http_redirect
+            __props__.__dict__["http_supported_max_version"] = http_supported_max_version
             __props__.__dict__["https_cookie_secure"] = https_cookie_secure
             __props__.__dict__["ipv6_mappedip"] = ipv6_mappedip
             __props__.__dict__["ipv6_mappedport"] = ipv6_mappedport
@@ -2358,6 +2492,7 @@ class FirewallVip(pulumi.CustomResource):
             __props__.__dict__["ssl_server_cipher_suites"] = ssl_server_cipher_suites
             __props__.__dict__["ssl_server_max_version"] = ssl_server_max_version
             __props__.__dict__["ssl_server_min_version"] = ssl_server_min_version
+            __props__.__dict__["ssl_server_renegotiation"] = ssl_server_renegotiation
             __props__.__dict__["ssl_server_session_state_max"] = ssl_server_session_state_max
             __props__.__dict__["ssl_server_session_state_timeout"] = ssl_server_session_state_timeout
             __props__.__dict__["ssl_server_session_state_type"] = ssl_server_session_state_type
@@ -2388,6 +2523,7 @@ class FirewallVip(pulumi.CustomResource):
             extip: Optional[pulumi.Input[str]] = None,
             extport: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             gratuitous_arp_interval: Optional[pulumi.Input[int]] = None,
             http_cookie_age: Optional[pulumi.Input[int]] = None,
             http_cookie_domain: Optional[pulumi.Input[str]] = None,
@@ -2398,7 +2534,10 @@ class FirewallVip(pulumi.CustomResource):
             http_ip_header: Optional[pulumi.Input[str]] = None,
             http_ip_header_name: Optional[pulumi.Input[str]] = None,
             http_multiplex: Optional[pulumi.Input[str]] = None,
+            http_multiplex_max_request: Optional[pulumi.Input[int]] = None,
+            http_multiplex_ttl: Optional[pulumi.Input[int]] = None,
             http_redirect: Optional[pulumi.Input[str]] = None,
+            http_supported_max_version: Optional[pulumi.Input[str]] = None,
             https_cookie_secure: Optional[pulumi.Input[str]] = None,
             ipv6_mappedip: Optional[pulumi.Input[str]] = None,
             ipv6_mappedport: Optional[pulumi.Input[str]] = None,
@@ -2453,6 +2592,7 @@ class FirewallVip(pulumi.CustomResource):
             ssl_server_cipher_suites: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallVipSslServerCipherSuiteArgs']]]]] = None,
             ssl_server_max_version: Optional[pulumi.Input[str]] = None,
             ssl_server_min_version: Optional[pulumi.Input[str]] = None,
+            ssl_server_renegotiation: Optional[pulumi.Input[str]] = None,
             ssl_server_session_state_max: Optional[pulumi.Input[int]] = None,
             ssl_server_session_state_timeout: Optional[pulumi.Input[int]] = None,
             ssl_server_session_state_type: Optional[pulumi.Input[str]] = None,
@@ -2485,6 +2625,7 @@ class FirewallVip(pulumi.CustomResource):
         __props__.__dict__["extip"] = extip
         __props__.__dict__["extport"] = extport
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["gratuitous_arp_interval"] = gratuitous_arp_interval
         __props__.__dict__["http_cookie_age"] = http_cookie_age
         __props__.__dict__["http_cookie_domain"] = http_cookie_domain
@@ -2495,7 +2636,10 @@ class FirewallVip(pulumi.CustomResource):
         __props__.__dict__["http_ip_header"] = http_ip_header
         __props__.__dict__["http_ip_header_name"] = http_ip_header_name
         __props__.__dict__["http_multiplex"] = http_multiplex
+        __props__.__dict__["http_multiplex_max_request"] = http_multiplex_max_request
+        __props__.__dict__["http_multiplex_ttl"] = http_multiplex_ttl
         __props__.__dict__["http_redirect"] = http_redirect
+        __props__.__dict__["http_supported_max_version"] = http_supported_max_version
         __props__.__dict__["https_cookie_secure"] = https_cookie_secure
         __props__.__dict__["ipv6_mappedip"] = ipv6_mappedip
         __props__.__dict__["ipv6_mappedport"] = ipv6_mappedport
@@ -2550,6 +2694,7 @@ class FirewallVip(pulumi.CustomResource):
         __props__.__dict__["ssl_server_cipher_suites"] = ssl_server_cipher_suites
         __props__.__dict__["ssl_server_max_version"] = ssl_server_max_version
         __props__.__dict__["ssl_server_min_version"] = ssl_server_min_version
+        __props__.__dict__["ssl_server_renegotiation"] = ssl_server_renegotiation
         __props__.__dict__["ssl_server_session_state_max"] = ssl_server_session_state_max
         __props__.__dict__["ssl_server_session_state_timeout"] = ssl_server_session_state_timeout
         __props__.__dict__["ssl_server_session_state_type"] = ssl_server_session_state_type
@@ -2617,6 +2762,11 @@ class FirewallVip(pulumi.CustomResource):
         return pulumi.get(self, "fosid")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter(name="gratuitousArpInterval")
     def gratuitous_arp_interval(self) -> pulumi.Output[int]:
         return pulumi.get(self, "gratuitous_arp_interval")
@@ -2667,9 +2817,24 @@ class FirewallVip(pulumi.CustomResource):
         return pulumi.get(self, "http_multiplex")
 
     @property
+    @pulumi.getter(name="httpMultiplexMaxRequest")
+    def http_multiplex_max_request(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "http_multiplex_max_request")
+
+    @property
+    @pulumi.getter(name="httpMultiplexTtl")
+    def http_multiplex_ttl(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "http_multiplex_ttl")
+
+    @property
     @pulumi.getter(name="httpRedirect")
     def http_redirect(self) -> pulumi.Output[str]:
         return pulumi.get(self, "http_redirect")
+
+    @property
+    @pulumi.getter(name="httpSupportedMaxVersion")
+    def http_supported_max_version(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "http_supported_max_version")
 
     @property
     @pulumi.getter(name="httpsCookieSecure")
@@ -2940,6 +3105,11 @@ class FirewallVip(pulumi.CustomResource):
     @pulumi.getter(name="sslServerMinVersion")
     def ssl_server_min_version(self) -> pulumi.Output[str]:
         return pulumi.get(self, "ssl_server_min_version")
+
+    @property
+    @pulumi.getter(name="sslServerRenegotiation")
+    def ssl_server_renegotiation(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "ssl_server_renegotiation")
 
     @property
     @pulumi.getter(name="sslServerSessionStateMax")

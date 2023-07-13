@@ -38,6 +38,7 @@ class ExtenderControllerExtenderArgs:
                  enforce_bandwidth: Optional[pulumi.Input[str]] = None,
                  ext_name: Optional[pulumi.Input[str]] = None,
                  extension_type: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ha_shared_secret: Optional[pulumi.Input[str]] = None,
                  ifname: Optional[pulumi.Input[str]] = None,
                  initiated_update: Optional[pulumi.Input[str]] = None,
@@ -115,6 +116,8 @@ class ExtenderControllerExtenderArgs:
             pulumi.set(__self__, "ext_name", ext_name)
         if extension_type is not None:
             pulumi.set(__self__, "extension_type", extension_type)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ha_shared_secret is not None:
             pulumi.set(__self__, "ha_shared_secret", ha_shared_secret)
         if ifname is not None:
@@ -379,6 +382,15 @@ class ExtenderControllerExtenderArgs:
     @extension_type.setter
     def extension_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "extension_type", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="haSharedSecret")
@@ -702,6 +714,7 @@ class _ExtenderControllerExtenderState:
                  ext_name: Optional[pulumi.Input[str]] = None,
                  extension_type: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ha_shared_secret: Optional[pulumi.Input[str]] = None,
                  ifname: Optional[pulumi.Input[str]] = None,
                  initiated_update: Optional[pulumi.Input[str]] = None,
@@ -781,6 +794,8 @@ class _ExtenderControllerExtenderState:
             pulumi.set(__self__, "extension_type", extension_type)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ha_shared_secret is not None:
             pulumi.set(__self__, "ha_shared_secret", ha_shared_secret)
         if ifname is not None:
@@ -1038,6 +1053,15 @@ class _ExtenderControllerExtenderState:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="haSharedSecret")
@@ -1372,6 +1396,7 @@ class ExtenderControllerExtender(pulumi.CustomResource):
                  ext_name: Optional[pulumi.Input[str]] = None,
                  extension_type: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ha_shared_secret: Optional[pulumi.Input[str]] = None,
                  ifname: Optional[pulumi.Input[str]] = None,
                  initiated_update: Optional[pulumi.Input[str]] = None,
@@ -1456,6 +1481,7 @@ class ExtenderControllerExtender(pulumi.CustomResource):
                  ext_name: Optional[pulumi.Input[str]] = None,
                  extension_type: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ha_shared_secret: Optional[pulumi.Input[str]] = None,
                  ifname: Optional[pulumi.Input[str]] = None,
                  initiated_update: Optional[pulumi.Input[str]] = None,
@@ -1524,6 +1550,7 @@ class ExtenderControllerExtender(pulumi.CustomResource):
             if fosid is None and not opts.urn:
                 raise TypeError("Missing required property 'fosid'")
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["ha_shared_secret"] = None if ha_shared_secret is None else pulumi.Output.secret(ha_shared_secret)
             __props__.__dict__["ifname"] = ifname
             __props__.__dict__["initiated_update"] = initiated_update
@@ -1593,6 +1620,7 @@ class ExtenderControllerExtender(pulumi.CustomResource):
             ext_name: Optional[pulumi.Input[str]] = None,
             extension_type: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             ha_shared_secret: Optional[pulumi.Input[str]] = None,
             ifname: Optional[pulumi.Input[str]] = None,
             initiated_update: Optional[pulumi.Input[str]] = None,
@@ -1660,6 +1688,7 @@ class ExtenderControllerExtender(pulumi.CustomResource):
         __props__.__dict__["ext_name"] = ext_name
         __props__.__dict__["extension_type"] = extension_type
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["ha_shared_secret"] = ha_shared_secret
         __props__.__dict__["ifname"] = ifname
         __props__.__dict__["initiated_update"] = initiated_update
@@ -1800,6 +1829,11 @@ class ExtenderControllerExtender(pulumi.CustomResource):
     @pulumi.getter
     def fosid(self) -> pulumi.Output[str]:
         return pulumi.get(self, "fosid")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="haSharedSecret")

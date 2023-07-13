@@ -37,6 +37,7 @@ export class CifsProfile extends pulumi.CustomResource {
     public readonly domainController!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly fileFilter!: pulumi.Output<outputs.CifsProfileFileFilter>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly serverCredentialType!: pulumi.Output<string>;
     public readonly serverKeytabs!: pulumi.Output<outputs.CifsProfileServerKeytab[] | undefined>;
@@ -58,6 +59,7 @@ export class CifsProfile extends pulumi.CustomResource {
             resourceInputs["domainController"] = state ? state.domainController : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fileFilter"] = state ? state.fileFilter : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["serverCredentialType"] = state ? state.serverCredentialType : undefined;
             resourceInputs["serverKeytabs"] = state ? state.serverKeytabs : undefined;
@@ -67,6 +69,7 @@ export class CifsProfile extends pulumi.CustomResource {
             resourceInputs["domainController"] = args ? args.domainController : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fileFilter"] = args ? args.fileFilter : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["serverCredentialType"] = args ? args.serverCredentialType : undefined;
             resourceInputs["serverKeytabs"] = args ? args.serverKeytabs : undefined;
@@ -84,6 +87,7 @@ export interface CifsProfileState {
     domainController?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     fileFilter?: pulumi.Input<inputs.CifsProfileFileFilter>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     serverCredentialType?: pulumi.Input<string>;
     serverKeytabs?: pulumi.Input<pulumi.Input<inputs.CifsProfileServerKeytab>[]>;
@@ -97,6 +101,7 @@ export interface CifsProfileArgs {
     domainController?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     fileFilter?: pulumi.Input<inputs.CifsProfileFileFilter>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     serverCredentialType?: pulumi.Input<string>;
     serverKeytabs?: pulumi.Input<pulumi.Input<inputs.CifsProfileServerKeytab>[]>;

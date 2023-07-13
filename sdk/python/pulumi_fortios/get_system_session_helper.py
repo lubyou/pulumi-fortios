@@ -102,12 +102,12 @@ def get_system_session_helper(fosid: Optional[int] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemSessionHelper:GetSystemSessionHelper', __args__, opts=opts, typ=GetSystemSessionHelperResult).value
 
     return AwaitableGetSystemSessionHelperResult(
-        fosid=__ret__.fosid,
-        id=__ret__.id,
-        name=__ret__.name,
-        port=__ret__.port,
-        protocol=__ret__.protocol,
-        vdomparam=__ret__.vdomparam)
+        fosid=pulumi.get(__ret__, 'fosid'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        port=pulumi.get(__ret__, 'port'),
+        protocol=pulumi.get(__ret__, 'protocol'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_session_helper)

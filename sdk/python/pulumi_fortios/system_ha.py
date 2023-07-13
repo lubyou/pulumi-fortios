@@ -22,8 +22,10 @@ class SystemHaArgs:
                  cpu_threshold: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  encryption: Optional[pulumi.Input[str]] = None,
+                 evpn_ttl: Optional[pulumi.Input[int]] = None,
                  failover_hold_time: Optional[pulumi.Input[int]] = None,
                  ftp_proxy_threshold: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gratuitous_arps: Optional[pulumi.Input[str]] = None,
                  group_id: Optional[pulumi.Input[int]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
@@ -114,10 +116,14 @@ class SystemHaArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if encryption is not None:
             pulumi.set(__self__, "encryption", encryption)
+        if evpn_ttl is not None:
+            pulumi.set(__self__, "evpn_ttl", evpn_ttl)
         if failover_hold_time is not None:
             pulumi.set(__self__, "failover_hold_time", failover_hold_time)
         if ftp_proxy_threshold is not None:
             pulumi.set(__self__, "ftp_proxy_threshold", ftp_proxy_threshold)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gratuitous_arps is not None:
             pulumi.set(__self__, "gratuitous_arps", gratuitous_arps)
         if group_id is not None:
@@ -324,6 +330,15 @@ class SystemHaArgs:
         pulumi.set(self, "encryption", value)
 
     @property
+    @pulumi.getter(name="evpnTtl")
+    def evpn_ttl(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "evpn_ttl")
+
+    @evpn_ttl.setter
+    def evpn_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "evpn_ttl", value)
+
+    @property
     @pulumi.getter(name="failoverHoldTime")
     def failover_hold_time(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "failover_hold_time")
@@ -340,6 +355,15 @@ class SystemHaArgs:
     @ftp_proxy_threshold.setter
     def ftp_proxy_threshold(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ftp_proxy_threshold", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="gratuitousArps")
@@ -1026,8 +1050,10 @@ class _SystemHaState:
                  cpu_threshold: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  encryption: Optional[pulumi.Input[str]] = None,
+                 evpn_ttl: Optional[pulumi.Input[int]] = None,
                  failover_hold_time: Optional[pulumi.Input[int]] = None,
                  ftp_proxy_threshold: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gratuitous_arps: Optional[pulumi.Input[str]] = None,
                  group_id: Optional[pulumi.Input[int]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
@@ -1118,10 +1144,14 @@ class _SystemHaState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if encryption is not None:
             pulumi.set(__self__, "encryption", encryption)
+        if evpn_ttl is not None:
+            pulumi.set(__self__, "evpn_ttl", evpn_ttl)
         if failover_hold_time is not None:
             pulumi.set(__self__, "failover_hold_time", failover_hold_time)
         if ftp_proxy_threshold is not None:
             pulumi.set(__self__, "ftp_proxy_threshold", ftp_proxy_threshold)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gratuitous_arps is not None:
             pulumi.set(__self__, "gratuitous_arps", gratuitous_arps)
         if group_id is not None:
@@ -1328,6 +1358,15 @@ class _SystemHaState:
         pulumi.set(self, "encryption", value)
 
     @property
+    @pulumi.getter(name="evpnTtl")
+    def evpn_ttl(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "evpn_ttl")
+
+    @evpn_ttl.setter
+    def evpn_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "evpn_ttl", value)
+
+    @property
     @pulumi.getter(name="failoverHoldTime")
     def failover_hold_time(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "failover_hold_time")
@@ -1344,6 +1383,15 @@ class _SystemHaState:
     @ftp_proxy_threshold.setter
     def ftp_proxy_threshold(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ftp_proxy_threshold", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="gratuitousArps")
@@ -2032,8 +2080,10 @@ class SystemHa(pulumi.CustomResource):
                  cpu_threshold: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  encryption: Optional[pulumi.Input[str]] = None,
+                 evpn_ttl: Optional[pulumi.Input[int]] = None,
                  failover_hold_time: Optional[pulumi.Input[int]] = None,
                  ftp_proxy_threshold: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gratuitous_arps: Optional[pulumi.Input[str]] = None,
                  group_id: Optional[pulumi.Input[int]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
@@ -2144,8 +2194,10 @@ class SystemHa(pulumi.CustomResource):
                  cpu_threshold: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  encryption: Optional[pulumi.Input[str]] = None,
+                 evpn_ttl: Optional[pulumi.Input[int]] = None,
                  failover_hold_time: Optional[pulumi.Input[int]] = None,
                  ftp_proxy_threshold: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gratuitous_arps: Optional[pulumi.Input[str]] = None,
                  group_id: Optional[pulumi.Input[int]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
@@ -2236,8 +2288,10 @@ class SystemHa(pulumi.CustomResource):
             __props__.__dict__["cpu_threshold"] = cpu_threshold
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["encryption"] = encryption
+            __props__.__dict__["evpn_ttl"] = evpn_ttl
             __props__.__dict__["failover_hold_time"] = failover_hold_time
             __props__.__dict__["ftp_proxy_threshold"] = ftp_proxy_threshold
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["gratuitous_arps"] = gratuitous_arps
             __props__.__dict__["group_id"] = group_id
             __props__.__dict__["group_name"] = group_name
@@ -2331,8 +2385,10 @@ class SystemHa(pulumi.CustomResource):
             cpu_threshold: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             encryption: Optional[pulumi.Input[str]] = None,
+            evpn_ttl: Optional[pulumi.Input[int]] = None,
             failover_hold_time: Optional[pulumi.Input[int]] = None,
             ftp_proxy_threshold: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             gratuitous_arps: Optional[pulumi.Input[str]] = None,
             group_id: Optional[pulumi.Input[int]] = None,
             group_name: Optional[pulumi.Input[str]] = None,
@@ -2426,8 +2482,10 @@ class SystemHa(pulumi.CustomResource):
         __props__.__dict__["cpu_threshold"] = cpu_threshold
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["encryption"] = encryption
+        __props__.__dict__["evpn_ttl"] = evpn_ttl
         __props__.__dict__["failover_hold_time"] = failover_hold_time
         __props__.__dict__["ftp_proxy_threshold"] = ftp_proxy_threshold
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["gratuitous_arps"] = gratuitous_arps
         __props__.__dict__["group_id"] = group_id
         __props__.__dict__["group_name"] = group_name
@@ -2536,6 +2594,11 @@ class SystemHa(pulumi.CustomResource):
         return pulumi.get(self, "encryption")
 
     @property
+    @pulumi.getter(name="evpnTtl")
+    def evpn_ttl(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "evpn_ttl")
+
+    @property
     @pulumi.getter(name="failoverHoldTime")
     def failover_hold_time(self) -> pulumi.Output[int]:
         return pulumi.get(self, "failover_hold_time")
@@ -2544,6 +2607,11 @@ class SystemHa(pulumi.CustomResource):
     @pulumi.getter(name="ftpProxyThreshold")
     def ftp_proxy_threshold(self) -> pulumi.Output[str]:
         return pulumi.get(self, "ftp_proxy_threshold")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="gratuitousArps")

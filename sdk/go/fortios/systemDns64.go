@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -26,7 +27,7 @@ func NewSystemDns64(ctx *pulumi.Context,
 		args = &SystemDns64Args{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemDns64
 	err := ctx.RegisterResource("fortios:index/systemDns64:SystemDns64", name, args, &resource, opts...)
 	if err != nil {

@@ -20,6 +20,7 @@ class FirewallShapingProfileArgs:
                  profile_name: pulumi.Input[str],
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  shaping_entries: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallShapingProfileShapingEntryArgs']]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -32,6 +33,8 @@ class FirewallShapingProfileArgs:
             pulumi.set(__self__, "comment", comment)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if shaping_entries is not None:
             pulumi.set(__self__, "shaping_entries", shaping_entries)
         if type is not None:
@@ -76,6 +79,15 @@ class FirewallShapingProfileArgs:
         pulumi.set(self, "dynamic_sort_subtable", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="shapingEntries")
     def shaping_entries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallShapingProfileShapingEntryArgs']]]]:
         return pulumi.get(self, "shaping_entries")
@@ -109,6 +121,7 @@ class _FirewallShapingProfileState:
                  comment: Optional[pulumi.Input[str]] = None,
                  default_class_id: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  profile_name: Optional[pulumi.Input[str]] = None,
                  shaping_entries: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallShapingProfileShapingEntryArgs']]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -122,6 +135,8 @@ class _FirewallShapingProfileState:
             pulumi.set(__self__, "default_class_id", default_class_id)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if profile_name is not None:
             pulumi.set(__self__, "profile_name", profile_name)
         if shaping_entries is not None:
@@ -157,6 +172,15 @@ class _FirewallShapingProfileState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="profileName")
@@ -203,6 +227,7 @@ class FirewallShapingProfile(pulumi.CustomResource):
                  comment: Optional[pulumi.Input[str]] = None,
                  default_class_id: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  profile_name: Optional[pulumi.Input[str]] = None,
                  shaping_entries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallShapingProfileShapingEntryArgs']]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -239,6 +264,7 @@ class FirewallShapingProfile(pulumi.CustomResource):
                  comment: Optional[pulumi.Input[str]] = None,
                  default_class_id: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  profile_name: Optional[pulumi.Input[str]] = None,
                  shaping_entries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallShapingProfileShapingEntryArgs']]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -257,6 +283,7 @@ class FirewallShapingProfile(pulumi.CustomResource):
                 raise TypeError("Missing required property 'default_class_id'")
             __props__.__dict__["default_class_id"] = default_class_id
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             if profile_name is None and not opts.urn:
                 raise TypeError("Missing required property 'profile_name'")
             __props__.__dict__["profile_name"] = profile_name
@@ -276,6 +303,7 @@ class FirewallShapingProfile(pulumi.CustomResource):
             comment: Optional[pulumi.Input[str]] = None,
             default_class_id: Optional[pulumi.Input[int]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             profile_name: Optional[pulumi.Input[str]] = None,
             shaping_entries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallShapingProfileShapingEntryArgs']]]]] = None,
             type: Optional[pulumi.Input[str]] = None,
@@ -295,6 +323,7 @@ class FirewallShapingProfile(pulumi.CustomResource):
         __props__.__dict__["comment"] = comment
         __props__.__dict__["default_class_id"] = default_class_id
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["profile_name"] = profile_name
         __props__.__dict__["shaping_entries"] = shaping_entries
         __props__.__dict__["type"] = type
@@ -315,6 +344,11 @@ class FirewallShapingProfile(pulumi.CustomResource):
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="profileName")

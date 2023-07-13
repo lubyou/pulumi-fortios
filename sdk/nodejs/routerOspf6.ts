@@ -44,6 +44,7 @@ export class RouterOspf6 extends pulumi.CustomResource {
     public readonly defaultInformationRouteMap!: pulumi.Output<string>;
     public readonly defaultMetric!: pulumi.Output<number>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly logNeighbourChanges!: pulumi.Output<string>;
     public readonly ospf6Interfaces!: pulumi.Output<outputs.RouterOspf6Ospf6Interface[] | undefined>;
     public readonly passiveInterfaces!: pulumi.Output<outputs.RouterOspf6PassiveInterface[] | undefined>;
@@ -79,6 +80,7 @@ export class RouterOspf6 extends pulumi.CustomResource {
             resourceInputs["defaultInformationRouteMap"] = state ? state.defaultInformationRouteMap : undefined;
             resourceInputs["defaultMetric"] = state ? state.defaultMetric : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["logNeighbourChanges"] = state ? state.logNeighbourChanges : undefined;
             resourceInputs["ospf6Interfaces"] = state ? state.ospf6Interfaces : undefined;
             resourceInputs["passiveInterfaces"] = state ? state.passiveInterfaces : undefined;
@@ -105,6 +107,7 @@ export class RouterOspf6 extends pulumi.CustomResource {
             resourceInputs["defaultInformationRouteMap"] = args ? args.defaultInformationRouteMap : undefined;
             resourceInputs["defaultMetric"] = args ? args.defaultMetric : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["logNeighbourChanges"] = args ? args.logNeighbourChanges : undefined;
             resourceInputs["ospf6Interfaces"] = args ? args.ospf6Interfaces : undefined;
             resourceInputs["passiveInterfaces"] = args ? args.passiveInterfaces : undefined;
@@ -136,6 +139,7 @@ export interface RouterOspf6State {
     defaultInformationRouteMap?: pulumi.Input<string>;
     defaultMetric?: pulumi.Input<number>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     logNeighbourChanges?: pulumi.Input<string>;
     ospf6Interfaces?: pulumi.Input<pulumi.Input<inputs.RouterOspf6Ospf6Interface>[]>;
     passiveInterfaces?: pulumi.Input<pulumi.Input<inputs.RouterOspf6PassiveInterface>[]>;
@@ -163,6 +167,7 @@ export interface RouterOspf6Args {
     defaultInformationRouteMap?: pulumi.Input<string>;
     defaultMetric?: pulumi.Input<number>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     logNeighbourChanges?: pulumi.Input<string>;
     ospf6Interfaces?: pulumi.Input<pulumi.Input<inputs.RouterOspf6Ospf6Interface>[]>;
     passiveInterfaces?: pulumi.Input<pulumi.Input<inputs.RouterOspf6PassiveInterface>[]>;

@@ -56,6 +56,7 @@ class VpnIpsecPhase1Args:
                  esn: Optional[pulumi.Input[str]] = None,
                  fec_base: Optional[pulumi.Input[int]] = None,
                  fec_codec: Optional[pulumi.Input[int]] = None,
+                 fec_codec_string: Optional[pulumi.Input[str]] = None,
                  fec_egress: Optional[pulumi.Input[str]] = None,
                  fec_health_check: Optional[pulumi.Input[str]] = None,
                  fec_ingress: Optional[pulumi.Input[str]] = None,
@@ -67,6 +68,7 @@ class VpnIpsecPhase1Args:
                  forticlient_enforcement: Optional[pulumi.Input[str]] = None,
                  fragmentation: Optional[pulumi.Input[str]] = None,
                  fragmentation_mtu: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_authentication: Optional[pulumi.Input[str]] = None,
                  group_authentication_secret: Optional[pulumi.Input[str]] = None,
                  ha_sync_esp_seqno: Optional[pulumi.Input[str]] = None,
@@ -220,6 +222,8 @@ class VpnIpsecPhase1Args:
             pulumi.set(__self__, "fec_base", fec_base)
         if fec_codec is not None:
             pulumi.set(__self__, "fec_codec", fec_codec)
+        if fec_codec_string is not None:
+            pulumi.set(__self__, "fec_codec_string", fec_codec_string)
         if fec_egress is not None:
             pulumi.set(__self__, "fec_egress", fec_egress)
         if fec_health_check is not None:
@@ -242,6 +246,8 @@ class VpnIpsecPhase1Args:
             pulumi.set(__self__, "fragmentation", fragmentation)
         if fragmentation_mtu is not None:
             pulumi.set(__self__, "fragmentation_mtu", fragmentation_mtu)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if group_authentication is not None:
             pulumi.set(__self__, "group_authentication", group_authentication)
         if group_authentication_secret is not None:
@@ -750,6 +756,15 @@ class VpnIpsecPhase1Args:
         pulumi.set(self, "fec_codec", value)
 
     @property
+    @pulumi.getter(name="fecCodecString")
+    def fec_codec_string(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "fec_codec_string")
+
+    @fec_codec_string.setter
+    def fec_codec_string(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fec_codec_string", value)
+
+    @property
     @pulumi.getter(name="fecEgress")
     def fec_egress(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "fec_egress")
@@ -847,6 +862,15 @@ class VpnIpsecPhase1Args:
     @fragmentation_mtu.setter
     def fragmentation_mtu(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fragmentation_mtu", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="groupAuthentication")
@@ -1546,6 +1570,7 @@ class _VpnIpsecPhase1State:
                  esn: Optional[pulumi.Input[str]] = None,
                  fec_base: Optional[pulumi.Input[int]] = None,
                  fec_codec: Optional[pulumi.Input[int]] = None,
+                 fec_codec_string: Optional[pulumi.Input[str]] = None,
                  fec_egress: Optional[pulumi.Input[str]] = None,
                  fec_health_check: Optional[pulumi.Input[str]] = None,
                  fec_ingress: Optional[pulumi.Input[str]] = None,
@@ -1557,6 +1582,7 @@ class _VpnIpsecPhase1State:
                  forticlient_enforcement: Optional[pulumi.Input[str]] = None,
                  fragmentation: Optional[pulumi.Input[str]] = None,
                  fragmentation_mtu: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_authentication: Optional[pulumi.Input[str]] = None,
                  group_authentication_secret: Optional[pulumi.Input[str]] = None,
                  ha_sync_esp_seqno: Optional[pulumi.Input[str]] = None,
@@ -1710,6 +1736,8 @@ class _VpnIpsecPhase1State:
             pulumi.set(__self__, "fec_base", fec_base)
         if fec_codec is not None:
             pulumi.set(__self__, "fec_codec", fec_codec)
+        if fec_codec_string is not None:
+            pulumi.set(__self__, "fec_codec_string", fec_codec_string)
         if fec_egress is not None:
             pulumi.set(__self__, "fec_egress", fec_egress)
         if fec_health_check is not None:
@@ -1732,6 +1760,8 @@ class _VpnIpsecPhase1State:
             pulumi.set(__self__, "fragmentation", fragmentation)
         if fragmentation_mtu is not None:
             pulumi.set(__self__, "fragmentation_mtu", fragmentation_mtu)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if group_authentication is not None:
             pulumi.set(__self__, "group_authentication", group_authentication)
         if group_authentication_secret is not None:
@@ -2219,6 +2249,15 @@ class _VpnIpsecPhase1State:
         pulumi.set(self, "fec_codec", value)
 
     @property
+    @pulumi.getter(name="fecCodecString")
+    def fec_codec_string(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "fec_codec_string")
+
+    @fec_codec_string.setter
+    def fec_codec_string(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fec_codec_string", value)
+
+    @property
     @pulumi.getter(name="fecEgress")
     def fec_egress(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "fec_egress")
@@ -2316,6 +2355,15 @@ class _VpnIpsecPhase1State:
     @fragmentation_mtu.setter
     def fragmentation_mtu(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fragmentation_mtu", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="groupAuthentication")
@@ -3044,6 +3092,7 @@ class VpnIpsecPhase1(pulumi.CustomResource):
                  esn: Optional[pulumi.Input[str]] = None,
                  fec_base: Optional[pulumi.Input[int]] = None,
                  fec_codec: Optional[pulumi.Input[int]] = None,
+                 fec_codec_string: Optional[pulumi.Input[str]] = None,
                  fec_egress: Optional[pulumi.Input[str]] = None,
                  fec_health_check: Optional[pulumi.Input[str]] = None,
                  fec_ingress: Optional[pulumi.Input[str]] = None,
@@ -3055,6 +3104,7 @@ class VpnIpsecPhase1(pulumi.CustomResource):
                  forticlient_enforcement: Optional[pulumi.Input[str]] = None,
                  fragmentation: Optional[pulumi.Input[str]] = None,
                  fragmentation_mtu: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_authentication: Optional[pulumi.Input[str]] = None,
                  group_authentication_secret: Optional[pulumi.Input[str]] = None,
                  ha_sync_esp_seqno: Optional[pulumi.Input[str]] = None,
@@ -3197,6 +3247,7 @@ class VpnIpsecPhase1(pulumi.CustomResource):
                  esn: Optional[pulumi.Input[str]] = None,
                  fec_base: Optional[pulumi.Input[int]] = None,
                  fec_codec: Optional[pulumi.Input[int]] = None,
+                 fec_codec_string: Optional[pulumi.Input[str]] = None,
                  fec_egress: Optional[pulumi.Input[str]] = None,
                  fec_health_check: Optional[pulumi.Input[str]] = None,
                  fec_ingress: Optional[pulumi.Input[str]] = None,
@@ -3208,6 +3259,7 @@ class VpnIpsecPhase1(pulumi.CustomResource):
                  forticlient_enforcement: Optional[pulumi.Input[str]] = None,
                  fragmentation: Optional[pulumi.Input[str]] = None,
                  fragmentation_mtu: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_authentication: Optional[pulumi.Input[str]] = None,
                  group_authentication_secret: Optional[pulumi.Input[str]] = None,
                  ha_sync_esp_seqno: Optional[pulumi.Input[str]] = None,
@@ -3330,6 +3382,7 @@ class VpnIpsecPhase1(pulumi.CustomResource):
             __props__.__dict__["esn"] = esn
             __props__.__dict__["fec_base"] = fec_base
             __props__.__dict__["fec_codec"] = fec_codec
+            __props__.__dict__["fec_codec_string"] = fec_codec_string
             __props__.__dict__["fec_egress"] = fec_egress
             __props__.__dict__["fec_health_check"] = fec_health_check
             __props__.__dict__["fec_ingress"] = fec_ingress
@@ -3341,6 +3394,7 @@ class VpnIpsecPhase1(pulumi.CustomResource):
             __props__.__dict__["forticlient_enforcement"] = forticlient_enforcement
             __props__.__dict__["fragmentation"] = fragmentation
             __props__.__dict__["fragmentation_mtu"] = fragmentation_mtu
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["group_authentication"] = group_authentication
             __props__.__dict__["group_authentication_secret"] = None if group_authentication_secret is None else pulumi.Output.secret(group_authentication_secret)
             __props__.__dict__["ha_sync_esp_seqno"] = ha_sync_esp_seqno
@@ -3472,6 +3526,7 @@ class VpnIpsecPhase1(pulumi.CustomResource):
             esn: Optional[pulumi.Input[str]] = None,
             fec_base: Optional[pulumi.Input[int]] = None,
             fec_codec: Optional[pulumi.Input[int]] = None,
+            fec_codec_string: Optional[pulumi.Input[str]] = None,
             fec_egress: Optional[pulumi.Input[str]] = None,
             fec_health_check: Optional[pulumi.Input[str]] = None,
             fec_ingress: Optional[pulumi.Input[str]] = None,
@@ -3483,6 +3538,7 @@ class VpnIpsecPhase1(pulumi.CustomResource):
             forticlient_enforcement: Optional[pulumi.Input[str]] = None,
             fragmentation: Optional[pulumi.Input[str]] = None,
             fragmentation_mtu: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             group_authentication: Optional[pulumi.Input[str]] = None,
             group_authentication_secret: Optional[pulumi.Input[str]] = None,
             ha_sync_esp_seqno: Optional[pulumi.Input[str]] = None,
@@ -3608,6 +3664,7 @@ class VpnIpsecPhase1(pulumi.CustomResource):
         __props__.__dict__["esn"] = esn
         __props__.__dict__["fec_base"] = fec_base
         __props__.__dict__["fec_codec"] = fec_codec
+        __props__.__dict__["fec_codec_string"] = fec_codec_string
         __props__.__dict__["fec_egress"] = fec_egress
         __props__.__dict__["fec_health_check"] = fec_health_check
         __props__.__dict__["fec_ingress"] = fec_ingress
@@ -3619,6 +3676,7 @@ class VpnIpsecPhase1(pulumi.CustomResource):
         __props__.__dict__["forticlient_enforcement"] = forticlient_enforcement
         __props__.__dict__["fragmentation"] = fragmentation
         __props__.__dict__["fragmentation_mtu"] = fragmentation_mtu
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["group_authentication"] = group_authentication
         __props__.__dict__["group_authentication_secret"] = group_authentication_secret
         __props__.__dict__["ha_sync_esp_seqno"] = ha_sync_esp_seqno
@@ -3883,6 +3941,11 @@ class VpnIpsecPhase1(pulumi.CustomResource):
         return pulumi.get(self, "fec_codec")
 
     @property
+    @pulumi.getter(name="fecCodecString")
+    def fec_codec_string(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "fec_codec_string")
+
+    @property
     @pulumi.getter(name="fecEgress")
     def fec_egress(self) -> pulumi.Output[str]:
         return pulumi.get(self, "fec_egress")
@@ -3936,6 +3999,11 @@ class VpnIpsecPhase1(pulumi.CustomResource):
     @pulumi.getter(name="fragmentationMtu")
     def fragmentation_mtu(self) -> pulumi.Output[int]:
         return pulumi.get(self, "fragmentation_mtu")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="groupAuthentication")

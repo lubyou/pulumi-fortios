@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -23,7 +24,9 @@ type SystemDns struct {
 	Domains                SystemDnsDomainArrayOutput         `pulumi:"domains"`
 	DynamicSortSubtable    pulumi.StringPtrOutput             `pulumi:"dynamicSortSubtable"`
 	FqdnCacheTtl           pulumi.IntOutput                   `pulumi:"fqdnCacheTtl"`
+	FqdnMaxRefresh         pulumi.IntOutput                   `pulumi:"fqdnMaxRefresh"`
 	FqdnMinRefresh         pulumi.IntOutput                   `pulumi:"fqdnMinRefresh"`
+	GetAllTables           pulumi.StringPtrOutput             `pulumi:"getAllTables"`
 	Interface              pulumi.StringOutput                `pulumi:"interface"`
 	InterfaceSelectMethod  pulumi.StringOutput                `pulumi:"interfaceSelectMethod"`
 	Ip6Primary             pulumi.StringOutput                `pulumi:"ip6Primary"`
@@ -51,7 +54,7 @@ func NewSystemDns(ctx *pulumi.Context,
 	if args.Primary == nil {
 		return nil, errors.New("invalid value for required argument 'Primary'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemDns
 	err := ctx.RegisterResource("fortios:index/systemDns:SystemDns", name, args, &resource, opts...)
 	if err != nil {
@@ -83,7 +86,9 @@ type systemDnsState struct {
 	Domains                []SystemDnsDomain         `pulumi:"domains"`
 	DynamicSortSubtable    *string                   `pulumi:"dynamicSortSubtable"`
 	FqdnCacheTtl           *int                      `pulumi:"fqdnCacheTtl"`
+	FqdnMaxRefresh         *int                      `pulumi:"fqdnMaxRefresh"`
 	FqdnMinRefresh         *int                      `pulumi:"fqdnMinRefresh"`
+	GetAllTables           *string                   `pulumi:"getAllTables"`
 	Interface              *string                   `pulumi:"interface"`
 	InterfaceSelectMethod  *string                   `pulumi:"interfaceSelectMethod"`
 	Ip6Primary             *string                   `pulumi:"ip6Primary"`
@@ -111,7 +116,9 @@ type SystemDnsState struct {
 	Domains                SystemDnsDomainArrayInput
 	DynamicSortSubtable    pulumi.StringPtrInput
 	FqdnCacheTtl           pulumi.IntPtrInput
+	FqdnMaxRefresh         pulumi.IntPtrInput
 	FqdnMinRefresh         pulumi.IntPtrInput
+	GetAllTables           pulumi.StringPtrInput
 	Interface              pulumi.StringPtrInput
 	InterfaceSelectMethod  pulumi.StringPtrInput
 	Ip6Primary             pulumi.StringPtrInput
@@ -143,7 +150,9 @@ type systemDnsArgs struct {
 	Domains                []SystemDnsDomain         `pulumi:"domains"`
 	DynamicSortSubtable    *string                   `pulumi:"dynamicSortSubtable"`
 	FqdnCacheTtl           *int                      `pulumi:"fqdnCacheTtl"`
+	FqdnMaxRefresh         *int                      `pulumi:"fqdnMaxRefresh"`
 	FqdnMinRefresh         *int                      `pulumi:"fqdnMinRefresh"`
+	GetAllTables           *string                   `pulumi:"getAllTables"`
 	Interface              *string                   `pulumi:"interface"`
 	InterfaceSelectMethod  *string                   `pulumi:"interfaceSelectMethod"`
 	Ip6Primary             *string                   `pulumi:"ip6Primary"`
@@ -172,7 +181,9 @@ type SystemDnsArgs struct {
 	Domains                SystemDnsDomainArrayInput
 	DynamicSortSubtable    pulumi.StringPtrInput
 	FqdnCacheTtl           pulumi.IntPtrInput
+	FqdnMaxRefresh         pulumi.IntPtrInput
 	FqdnMinRefresh         pulumi.IntPtrInput
+	GetAllTables           pulumi.StringPtrInput
 	Interface              pulumi.StringPtrInput
 	InterfaceSelectMethod  pulumi.StringPtrInput
 	Ip6Primary             pulumi.StringPtrInput
@@ -313,8 +324,16 @@ func (o SystemDnsOutput) FqdnCacheTtl() pulumi.IntOutput {
 	return o.ApplyT(func(v *SystemDns) pulumi.IntOutput { return v.FqdnCacheTtl }).(pulumi.IntOutput)
 }
 
+func (o SystemDnsOutput) FqdnMaxRefresh() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemDns) pulumi.IntOutput { return v.FqdnMaxRefresh }).(pulumi.IntOutput)
+}
+
 func (o SystemDnsOutput) FqdnMinRefresh() pulumi.IntOutput {
 	return o.ApplyT(func(v *SystemDns) pulumi.IntOutput { return v.FqdnMinRefresh }).(pulumi.IntOutput)
+}
+
+func (o SystemDnsOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemDns) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemDnsOutput) Interface() pulumi.StringOutput {

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,8 +20,10 @@ type SystemHa struct {
 	CpuThreshold                  pulumi.StringOutput                `pulumi:"cpuThreshold"`
 	DynamicSortSubtable           pulumi.StringPtrOutput             `pulumi:"dynamicSortSubtable"`
 	Encryption                    pulumi.StringOutput                `pulumi:"encryption"`
+	EvpnTtl                       pulumi.IntOutput                   `pulumi:"evpnTtl"`
 	FailoverHoldTime              pulumi.IntOutput                   `pulumi:"failoverHoldTime"`
 	FtpProxyThreshold             pulumi.StringOutput                `pulumi:"ftpProxyThreshold"`
+	GetAllTables                  pulumi.StringPtrOutput             `pulumi:"getAllTables"`
 	GratuitousArps                pulumi.StringOutput                `pulumi:"gratuitousArps"`
 	GroupId                       pulumi.IntOutput                   `pulumi:"groupId"`
 	GroupName                     pulumi.StringOutput                `pulumi:"groupName"`
@@ -116,7 +119,7 @@ func NewSystemHa(ctx *pulumi.Context,
 		"password",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemHa
 	err := ctx.RegisterResource("fortios:index/systemHa:SystemHa", name, args, &resource, opts...)
 	if err != nil {
@@ -145,8 +148,10 @@ type systemHaState struct {
 	CpuThreshold                  *string                    `pulumi:"cpuThreshold"`
 	DynamicSortSubtable           *string                    `pulumi:"dynamicSortSubtable"`
 	Encryption                    *string                    `pulumi:"encryption"`
+	EvpnTtl                       *int                       `pulumi:"evpnTtl"`
 	FailoverHoldTime              *int                       `pulumi:"failoverHoldTime"`
 	FtpProxyThreshold             *string                    `pulumi:"ftpProxyThreshold"`
+	GetAllTables                  *string                    `pulumi:"getAllTables"`
 	GratuitousArps                *string                    `pulumi:"gratuitousArps"`
 	GroupId                       *int                       `pulumi:"groupId"`
 	GroupName                     *string                    `pulumi:"groupName"`
@@ -231,8 +236,10 @@ type SystemHaState struct {
 	CpuThreshold                  pulumi.StringPtrInput
 	DynamicSortSubtable           pulumi.StringPtrInput
 	Encryption                    pulumi.StringPtrInput
+	EvpnTtl                       pulumi.IntPtrInput
 	FailoverHoldTime              pulumi.IntPtrInput
 	FtpProxyThreshold             pulumi.StringPtrInput
+	GetAllTables                  pulumi.StringPtrInput
 	GratuitousArps                pulumi.StringPtrInput
 	GroupId                       pulumi.IntPtrInput
 	GroupName                     pulumi.StringPtrInput
@@ -321,8 +328,10 @@ type systemHaArgs struct {
 	CpuThreshold                  *string                    `pulumi:"cpuThreshold"`
 	DynamicSortSubtable           *string                    `pulumi:"dynamicSortSubtable"`
 	Encryption                    *string                    `pulumi:"encryption"`
+	EvpnTtl                       *int                       `pulumi:"evpnTtl"`
 	FailoverHoldTime              *int                       `pulumi:"failoverHoldTime"`
 	FtpProxyThreshold             *string                    `pulumi:"ftpProxyThreshold"`
+	GetAllTables                  *string                    `pulumi:"getAllTables"`
 	GratuitousArps                *string                    `pulumi:"gratuitousArps"`
 	GroupId                       *int                       `pulumi:"groupId"`
 	GroupName                     *string                    `pulumi:"groupName"`
@@ -408,8 +417,10 @@ type SystemHaArgs struct {
 	CpuThreshold                  pulumi.StringPtrInput
 	DynamicSortSubtable           pulumi.StringPtrInput
 	Encryption                    pulumi.StringPtrInput
+	EvpnTtl                       pulumi.IntPtrInput
 	FailoverHoldTime              pulumi.IntPtrInput
 	FtpProxyThreshold             pulumi.StringPtrInput
+	GetAllTables                  pulumi.StringPtrInput
 	GratuitousArps                pulumi.StringPtrInput
 	GroupId                       pulumi.IntPtrInput
 	GroupName                     pulumi.StringPtrInput
@@ -598,12 +609,20 @@ func (o SystemHaOutput) Encryption() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.Encryption }).(pulumi.StringOutput)
 }
 
+func (o SystemHaOutput) EvpnTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.IntOutput { return v.EvpnTtl }).(pulumi.IntOutput)
+}
+
 func (o SystemHaOutput) FailoverHoldTime() pulumi.IntOutput {
 	return o.ApplyT(func(v *SystemHa) pulumi.IntOutput { return v.FailoverHoldTime }).(pulumi.IntOutput)
 }
 
 func (o SystemHaOutput) FtpProxyThreshold() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemHa) pulumi.StringOutput { return v.FtpProxyThreshold }).(pulumi.StringOutput)
+}
+
+func (o SystemHaOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemHa) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemHaOutput) GratuitousArps() pulumi.StringOutput {

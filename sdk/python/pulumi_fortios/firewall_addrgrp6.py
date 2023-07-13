@@ -20,7 +20,10 @@ class FirewallAddrgrp6Args:
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 exclude: Optional[pulumi.Input[str]] = None,
+                 exclude_members: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddrgrp6ExcludeMemberArgs']]]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddrgrp6TaggingArgs']]]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
@@ -36,8 +39,14 @@ class FirewallAddrgrp6Args:
             pulumi.set(__self__, "comment", comment)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if exclude is not None:
+            pulumi.set(__self__, "exclude", exclude)
+        if exclude_members is not None:
+            pulumi.set(__self__, "exclude_members", exclude_members)
         if fabric_object is not None:
             pulumi.set(__self__, "fabric_object", fabric_object)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if taggings is not None:
@@ -86,6 +95,24 @@ class FirewallAddrgrp6Args:
         pulumi.set(self, "dynamic_sort_subtable", value)
 
     @property
+    @pulumi.getter
+    def exclude(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "exclude")
+
+    @exclude.setter
+    def exclude(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "exclude", value)
+
+    @property
+    @pulumi.getter(name="excludeMembers")
+    def exclude_members(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddrgrp6ExcludeMemberArgs']]]]:
+        return pulumi.get(self, "exclude_members")
+
+    @exclude_members.setter
+    def exclude_members(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddrgrp6ExcludeMemberArgs']]]]):
+        pulumi.set(self, "exclude_members", value)
+
+    @property
     @pulumi.getter(name="fabricObject")
     def fabric_object(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "fabric_object")
@@ -93,6 +120,15 @@ class FirewallAddrgrp6Args:
     @fabric_object.setter
     def fabric_object(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fabric_object", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -146,7 +182,10 @@ class _FirewallAddrgrp6State:
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 exclude: Optional[pulumi.Input[str]] = None,
+                 exclude_members: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddrgrp6ExcludeMemberArgs']]]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddrgrp6MemberArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddrgrp6TaggingArgs']]]] = None,
@@ -162,8 +201,14 @@ class _FirewallAddrgrp6State:
             pulumi.set(__self__, "comment", comment)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if exclude is not None:
+            pulumi.set(__self__, "exclude", exclude)
+        if exclude_members is not None:
+            pulumi.set(__self__, "exclude_members", exclude_members)
         if fabric_object is not None:
             pulumi.set(__self__, "fabric_object", fabric_object)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if members is not None:
             pulumi.set(__self__, "members", members)
         if name is not None:
@@ -205,6 +250,24 @@ class _FirewallAddrgrp6State:
         pulumi.set(self, "dynamic_sort_subtable", value)
 
     @property
+    @pulumi.getter
+    def exclude(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "exclude")
+
+    @exclude.setter
+    def exclude(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "exclude", value)
+
+    @property
+    @pulumi.getter(name="excludeMembers")
+    def exclude_members(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddrgrp6ExcludeMemberArgs']]]]:
+        return pulumi.get(self, "exclude_members")
+
+    @exclude_members.setter
+    def exclude_members(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddrgrp6ExcludeMemberArgs']]]]):
+        pulumi.set(self, "exclude_members", value)
+
+    @property
     @pulumi.getter(name="fabricObject")
     def fabric_object(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "fabric_object")
@@ -212,6 +275,15 @@ class _FirewallAddrgrp6State:
     @fabric_object.setter
     def fabric_object(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fabric_object", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -276,7 +348,10 @@ class FirewallAddrgrp6(pulumi.CustomResource):
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 exclude: Optional[pulumi.Input[str]] = None,
+                 exclude_members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddrgrp6ExcludeMemberArgs']]]]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddrgrp6MemberArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddrgrp6TaggingArgs']]]]] = None,
@@ -315,7 +390,10 @@ class FirewallAddrgrp6(pulumi.CustomResource):
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 exclude: Optional[pulumi.Input[str]] = None,
+                 exclude_members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddrgrp6ExcludeMemberArgs']]]]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddrgrp6MemberArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddrgrp6TaggingArgs']]]]] = None,
@@ -334,7 +412,10 @@ class FirewallAddrgrp6(pulumi.CustomResource):
             __props__.__dict__["color"] = color
             __props__.__dict__["comment"] = comment
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["exclude"] = exclude
+            __props__.__dict__["exclude_members"] = exclude_members
             __props__.__dict__["fabric_object"] = fabric_object
+            __props__.__dict__["get_all_tables"] = get_all_tables
             if members is None and not opts.urn:
                 raise TypeError("Missing required property 'members'")
             __props__.__dict__["members"] = members
@@ -356,7 +437,10 @@ class FirewallAddrgrp6(pulumi.CustomResource):
             color: Optional[pulumi.Input[int]] = None,
             comment: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            exclude: Optional[pulumi.Input[str]] = None,
+            exclude_members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddrgrp6ExcludeMemberArgs']]]]] = None,
             fabric_object: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddrgrp6MemberArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             taggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddrgrp6TaggingArgs']]]]] = None,
@@ -378,7 +462,10 @@ class FirewallAddrgrp6(pulumi.CustomResource):
         __props__.__dict__["color"] = color
         __props__.__dict__["comment"] = comment
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["exclude"] = exclude
+        __props__.__dict__["exclude_members"] = exclude_members
         __props__.__dict__["fabric_object"] = fabric_object
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["members"] = members
         __props__.__dict__["name"] = name
         __props__.__dict__["taggings"] = taggings
@@ -403,9 +490,24 @@ class FirewallAddrgrp6(pulumi.CustomResource):
         return pulumi.get(self, "dynamic_sort_subtable")
 
     @property
+    @pulumi.getter
+    def exclude(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "exclude")
+
+    @property
+    @pulumi.getter(name="excludeMembers")
+    def exclude_members(self) -> pulumi.Output[Optional[Sequence['outputs.FirewallAddrgrp6ExcludeMember']]]:
+        return pulumi.get(self, "exclude_members")
+
+    @property
     @pulumi.getter(name="fabricObject")
     def fabric_object(self) -> pulumi.Output[str]:
         return pulumi.get(self, "fabric_object")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

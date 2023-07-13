@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -16,6 +17,7 @@ type FirewallAddress6Template struct {
 
 	DynamicSortSubtable pulumi.StringPtrOutput                           `pulumi:"dynamicSortSubtable"`
 	FabricObject        pulumi.StringOutput                              `pulumi:"fabricObject"`
+	GetAllTables        pulumi.StringPtrOutput                           `pulumi:"getAllTables"`
 	Ip6                 pulumi.StringOutput                              `pulumi:"ip6"`
 	Name                pulumi.StringOutput                              `pulumi:"name"`
 	SubnetSegmentCount  pulumi.IntOutput                                 `pulumi:"subnetSegmentCount"`
@@ -36,7 +38,7 @@ func NewFirewallAddress6Template(ctx *pulumi.Context,
 	if args.SubnetSegmentCount == nil {
 		return nil, errors.New("invalid value for required argument 'SubnetSegmentCount'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallAddress6Template
 	err := ctx.RegisterResource("fortios:index/firewallAddress6Template:FirewallAddress6Template", name, args, &resource, opts...)
 	if err != nil {
@@ -61,6 +63,7 @@ func GetFirewallAddress6Template(ctx *pulumi.Context,
 type firewallAddress6TemplateState struct {
 	DynamicSortSubtable *string                                 `pulumi:"dynamicSortSubtable"`
 	FabricObject        *string                                 `pulumi:"fabricObject"`
+	GetAllTables        *string                                 `pulumi:"getAllTables"`
 	Ip6                 *string                                 `pulumi:"ip6"`
 	Name                *string                                 `pulumi:"name"`
 	SubnetSegmentCount  *int                                    `pulumi:"subnetSegmentCount"`
@@ -71,6 +74,7 @@ type firewallAddress6TemplateState struct {
 type FirewallAddress6TemplateState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	FabricObject        pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Ip6                 pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	SubnetSegmentCount  pulumi.IntPtrInput
@@ -85,6 +89,7 @@ func (FirewallAddress6TemplateState) ElementType() reflect.Type {
 type firewallAddress6TemplateArgs struct {
 	DynamicSortSubtable *string                                 `pulumi:"dynamicSortSubtable"`
 	FabricObject        *string                                 `pulumi:"fabricObject"`
+	GetAllTables        *string                                 `pulumi:"getAllTables"`
 	Ip6                 string                                  `pulumi:"ip6"`
 	Name                *string                                 `pulumi:"name"`
 	SubnetSegmentCount  int                                     `pulumi:"subnetSegmentCount"`
@@ -96,6 +101,7 @@ type firewallAddress6TemplateArgs struct {
 type FirewallAddress6TemplateArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	FabricObject        pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Ip6                 pulumi.StringInput
 	Name                pulumi.StringPtrInput
 	SubnetSegmentCount  pulumi.IntInput
@@ -196,6 +202,10 @@ func (o FirewallAddress6TemplateOutput) DynamicSortSubtable() pulumi.StringPtrOu
 
 func (o FirewallAddress6TemplateOutput) FabricObject() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallAddress6Template) pulumi.StringOutput { return v.FabricObject }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddress6TemplateOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress6Template) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallAddress6TemplateOutput) Ip6() pulumi.StringOutput {

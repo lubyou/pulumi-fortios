@@ -171,6 +171,7 @@ __all__ = [
     'FirewallAddressMacaddr',
     'FirewallAddressTagging',
     'FirewallAddressTaggingTag',
+    'FirewallAddrgrp6ExcludeMember',
     'FirewallAddrgrp6Member',
     'FirewallAddrgrp6Tagging',
     'FirewallAddrgrp6TaggingTag',
@@ -249,6 +250,7 @@ __all__ = [
     'FirewallInternetServiceExtensionEntryDst',
     'FirewallInternetServiceExtensionEntryPortRange',
     'FirewallInternetServiceGroupMember',
+    'FirewallInternetServiceSubappSubApp',
     'FirewallLocalInPolicy6Dstaddr',
     'FirewallLocalInPolicy6Service',
     'FirewallLocalInPolicy6Srcaddr',
@@ -318,6 +320,7 @@ __all__ = [
     'FirewallPolicyNetworkServiceDynamic',
     'FirewallPolicyNetworkServiceSrcDynamic',
     'FirewallPolicyNtlmEnabledBrowser',
+    'FirewallPolicyPcpPoolname',
     'FirewallPolicyPoolname6',
     'FirewallPolicyPoolname',
     'FirewallPolicyRtpAddr',
@@ -331,6 +334,7 @@ __all__ = [
     'FirewallPolicyUrlCategory',
     'FirewallPolicyUser',
     'FirewallPolicyZtnaEmsTag',
+    'FirewallPolicyZtnaEmsTagSecondary',
     'FirewallPolicyZtnaGeoTag',
     'FirewallProfileProtocolOptionsCifs',
     'FirewallProfileProtocolOptionsCifsServerKeytab',
@@ -358,6 +362,10 @@ __all__ = [
     'FirewallProxyPolicyDstaddr',
     'FirewallProxyPolicyDstintf',
     'FirewallProxyPolicyGroup',
+    'FirewallProxyPolicyInternetService6Custom',
+    'FirewallProxyPolicyInternetService6CustomGroup',
+    'FirewallProxyPolicyInternetService6Group',
+    'FirewallProxyPolicyInternetService6Name',
     'FirewallProxyPolicyInternetServiceCustom',
     'FirewallProxyPolicyInternetServiceCustomGroup',
     'FirewallProxyPolicyInternetServiceGroup',
@@ -487,6 +495,7 @@ __all__ = [
     'GetFirewallAddressMacaddrResult',
     'GetFirewallAddressTaggingResult',
     'GetFirewallAddressTaggingTagResult',
+    'GetFirewallAddrgrp6ExcludeMemberResult',
     'GetFirewallAddrgrp6MemberResult',
     'GetFirewallAddrgrp6TaggingResult',
     'GetFirewallAddrgrp6TaggingTagResult',
@@ -611,6 +620,7 @@ __all__ = [
     'GetFirewallPolicyNetworkServiceDynamicResult',
     'GetFirewallPolicyNetworkServiceSrcDynamicResult',
     'GetFirewallPolicyNtlmEnabledBrowserResult',
+    'GetFirewallPolicyPcpPoolnameResult',
     'GetFirewallPolicyPoolname6Result',
     'GetFirewallPolicyPoolnameResult',
     'GetFirewallPolicyRtpAddrResult',
@@ -624,6 +634,7 @@ __all__ = [
     'GetFirewallPolicyUrlCategoryResult',
     'GetFirewallPolicyUserResult',
     'GetFirewallPolicyZtnaEmsTagResult',
+    'GetFirewallPolicyZtnaEmsTagSecondaryResult',
     'GetFirewallPolicyZtnaGeoTagResult',
     'GetFirewallProfileProtocolOptionsCifResult',
     'GetFirewallProfileProtocolOptionsCifServerKeytabResult',
@@ -651,6 +662,10 @@ __all__ = [
     'GetFirewallProxyPolicyDstaddrResult',
     'GetFirewallProxyPolicyDstintfResult',
     'GetFirewallProxyPolicyGroupResult',
+    'GetFirewallProxyPolicyInternetService6CustomResult',
+    'GetFirewallProxyPolicyInternetService6CustomGroupResult',
+    'GetFirewallProxyPolicyInternetService6GroupResult',
+    'GetFirewallProxyPolicyInternetService6NameResult',
     'GetFirewallProxyPolicyInternetServiceCustomResult',
     'GetFirewallProxyPolicyInternetServiceCustomGroupResult',
     'GetFirewallProxyPolicyInternetServiceGroupResult',
@@ -808,15 +823,19 @@ __all__ = [
     'GetSystemClusterSyncSessionSyncFilterCustomServiceResult',
     'GetSystemClusterSyncSyncvdResult',
     'GetSystemCsfFabricConnectorResult',
+    'GetSystemCsfFabricConnectorVdomResult',
     'GetSystemCsfFabricDeviceResult',
     'GetSystemCsfTrustedListResult',
     'GetSystemDdnsDdnsServerAddrResult',
     'GetSystemDdnsMonitorInterfaceResult',
     'GetSystemDhcpServerExcludeRangeResult',
+    'GetSystemDhcpServerExcludeRangeUciStringResult',
     'GetSystemDhcpServerExcludeRangeVciStringResult',
     'GetSystemDhcpServerIpRangeResult',
+    'GetSystemDhcpServerIpRangeUciStringResult',
     'GetSystemDhcpServerIpRangeVciStringResult',
     'GetSystemDhcpServerOptionResult',
+    'GetSystemDhcpServerOptionUciStringResult',
     'GetSystemDhcpServerOptionVciStringResult',
     'GetSystemDhcpServerReservedAddressResult',
     'GetSystemDhcpServerTftpServerResult',
@@ -824,6 +843,7 @@ __all__ = [
     'GetSystemDnsDatabaseDnsEntryResult',
     'GetSystemDnsDomainResult',
     'GetSystemDnsServerHostnameResult',
+    'GetSystemGlobalInternetServiceDownloadListResult',
     'GetSystemHaHaMgmtInterfaceResult',
     'GetSystemHaSecondaryVclusterResult',
     'GetSystemHaUnicastPeerResult',
@@ -883,6 +903,7 @@ __all__ = [
     'GetSystemReplacemsgGroupTrafficQuotaResult',
     'GetSystemReplacemsgGroupUtmResult',
     'GetSystemReplacemsgGroupWebproxyResult',
+    'GetSystemSdnConnectorCompartmentListResult',
     'GetSystemSdnConnectorExternalAccountListResult',
     'GetSystemSdnConnectorExternalAccountListRegionListResult',
     'GetSystemSdnConnectorExternalIpResult',
@@ -891,6 +912,7 @@ __all__ = [
     'GetSystemSdnConnectorGcpProjectListGcpZoneListResult',
     'GetSystemSdnConnectorNicResult',
     'GetSystemSdnConnectorNicIpResult',
+    'GetSystemSdnConnectorOciRegionListResult',
     'GetSystemSdnConnectorRouteResult',
     'GetSystemSdnConnectorRouteTableResult',
     'GetSystemSdnConnectorRouteTableRouteResult',
@@ -1041,6 +1063,7 @@ __all__ = [
     'RouterBgpVrfLeak',
     'RouterBgpVrfLeakTarget',
     'RouterCommunityListRule',
+    'RouterExtcommunityListRule',
     'RouterIsisIsisInterface',
     'RouterIsisIsisNet',
     'RouterIsisRedistribute6',
@@ -1140,6 +1163,9 @@ __all__ = [
     'SshFilterProfileFileFilterEntry',
     'SshFilterProfileFileFilterEntryFileType',
     'SshFilterProfileShellCommand',
+    'SwitchControllerAclGroupIngress',
+    'SwitchControllerAclIngressAction',
+    'SwitchControllerAclIngressClassifier',
     'SwitchControllerAutoConfigCustomSwitchBinding',
     'SwitchControllerDynamicPortPolicyPolicy',
     'SwitchControllerDynamicPortPolicyPolicyInterfaceTag',
@@ -1156,6 +1182,7 @@ __all__ = [
     'SwitchControllerLocationCoordinates',
     'SwitchControllerLocationElinNumber',
     'SwitchControllerManagedSwitchCustomCommand',
+    'SwitchControllerManagedSwitchDhcpSnoopingStaticClient',
     'SwitchControllerManagedSwitchIgmpSnooping',
     'SwitchControllerManagedSwitchIgmpSnoopingVlan',
     'SwitchControllerManagedSwitchIpSourceGuard',
@@ -1165,8 +1192,11 @@ __all__ = [
     'SwitchControllerManagedSwitchMirrorSrcIngress',
     'SwitchControllerManagedSwitchN8021xSettings',
     'SwitchControllerManagedSwitchPort',
+    'SwitchControllerManagedSwitchPortAclGroup',
     'SwitchControllerManagedSwitchPortAllowedVlan',
+    'SwitchControllerManagedSwitchPortDhcpSnoopOption82Override',
     'SwitchControllerManagedSwitchPortExportTag',
+    'SwitchControllerManagedSwitchPortFortiswitchAcl',
     'SwitchControllerManagedSwitchPortInterfaceTag',
     'SwitchControllerManagedSwitchPortMember',
     'SwitchControllerManagedSwitchPortUntaggedVlan',
@@ -1236,6 +1266,7 @@ __all__ = [
     'SystemClusterSyncSessionSyncFilterCustomService',
     'SystemClusterSyncSyncvd',
     'SystemCsfFabricConnector',
+    'SystemCsfFabricConnectorVdom',
     'SystemCsfFabricDevice',
     'SystemCsfTrustedList',
     'SystemDdnsDdnsServerAddr',
@@ -1243,10 +1274,13 @@ __all__ = [
     'SystemDhcp6ServerIpRange',
     'SystemDhcp6ServerPrefixRange',
     'SystemDhcpServerExcludeRange',
+    'SystemDhcpServerExcludeRangeUciString',
     'SystemDhcpServerExcludeRangeVciString',
     'SystemDhcpServerIpRange',
+    'SystemDhcpServerIpRangeUciString',
     'SystemDhcpServerIpRangeVciString',
     'SystemDhcpServerOption',
+    'SystemDhcpServerOptionUciString',
     'SystemDhcpServerOptionVciString',
     'SystemDhcpServerReservedAddress',
     'SystemDhcpServerTftpServer',
@@ -1254,9 +1288,14 @@ __all__ = [
     'SystemDnsDatabaseDnsEntry',
     'SystemDnsDomain',
     'SystemDnsServerHostname',
+    'SystemEvpnExportRt',
+    'SystemEvpnImportRt',
+    'SystemFabricVpnAdvertisedSubnet',
+    'SystemFabricVpnOverlay',
     'SystemFederatedUpgradeNodeList',
     'SystemGeoipOverrideIp6Range',
     'SystemGeoipOverrideIpRange',
+    'SystemGlobalInternetServiceDownloadList',
     'SystemHaHaMgmtInterface',
     'SystemHaSecondaryVcluster',
     'SystemHaUnicastPeer',
@@ -1321,6 +1360,10 @@ __all__ = [
     'SystemNtpInterface',
     'SystemNtpNtpserver',
     'SystemObjectTaggingTag',
+    'SystemPcpServerPool',
+    'SystemPcpServerPoolClientSubnet',
+    'SystemPcpServerPoolIntlIntf',
+    'SystemPcpServerPoolThirdPartySubnet',
     'SystemPtpServerInterface',
     'SystemReplacemsgGroupAdmin',
     'SystemReplacemsgGroupAlertmail',
@@ -1343,6 +1386,7 @@ __all__ = [
     'SystemReplacemsgGroupWebproxy',
     'SystemSamlServiceProvider',
     'SystemSamlServiceProviderAssertionAttribute',
+    'SystemSdnConnectorCompartmentList',
     'SystemSdnConnectorExternalAccountList',
     'SystemSdnConnectorExternalAccountListRegionList',
     'SystemSdnConnectorExternalIp',
@@ -1351,6 +1395,7 @@ __all__ = [
     'SystemSdnConnectorGcpProjectListGcpZoneList',
     'SystemSdnConnectorNic',
     'SystemSdnConnectorNicIp',
+    'SystemSdnConnectorOciRegionList',
     'SystemSdnConnectorRoute',
     'SystemSdnConnectorRouteTable',
     'SystemSdnConnectorRouteTableRoute',
@@ -1370,6 +1415,7 @@ __all__ = [
     'SystemSdwanHealthCheckSla',
     'SystemSdwanMember',
     'SystemSdwanNeighbor',
+    'SystemSdwanNeighborMemberBlock',
     'SystemSdwanService',
     'SystemSdwanServiceDst6',
     'SystemSdwanServiceDst',
@@ -1401,6 +1447,7 @@ __all__ = [
     'SystemSpeedTestServerHost',
     'SystemSsoAdminVdom',
     'SystemSsoForticloudAdminVdom',
+    'SystemSsoFortigateCloudAdminVdom',
     'SystemStandaloneClusterClusterPeer',
     'SystemStandaloneClusterClusterPeerDownIntfsBeforeSessSync',
     'SystemStandaloneClusterClusterPeerSessionSyncFilter',
@@ -1455,6 +1502,7 @@ __all__ = [
     'UserGroupGuest',
     'UserGroupMatch',
     'UserGroupMember',
+    'UserNacPolicySeverity',
     'UserNacPolicySwitchGroup',
     'UserNacPolicySwitchScope',
     'UserPeergrpMember',
@@ -1485,6 +1533,7 @@ __all__ = [
     'VpnIpsecPhase1InterfaceIpv6ExcludeRange',
     'VpnIpsecPhase1Ipv4ExcludeRange',
     'VpnIpsecPhase1Ipv6ExcludeRange',
+    'VpnKmipServerServerList',
     'VpnOcvpnForticlientAccess',
     'VpnOcvpnForticlientAccessAuthGroup',
     'VpnOcvpnForticlientAccessAuthGroupOverlay',
@@ -1511,6 +1560,8 @@ __all__ = [
     'VpnSslWebPortalIpPool',
     'VpnSslWebPortalIpv6Pool',
     'VpnSslWebPortalIpv6SplitTunnelingRoutingAddress',
+    'VpnSslWebPortalLandingPage',
+    'VpnSslWebPortalLandingPageFormData',
     'VpnSslWebPortalMacAddrCheckRule',
     'VpnSslWebPortalMacAddrCheckRuleMacAddrList',
     'VpnSslWebPortalOsCheckList',
@@ -1565,6 +1616,7 @@ __all__ = [
     'WebProxyExplicitPacPolicyDstaddr',
     'WebProxyExplicitPacPolicySrcaddr6',
     'WebProxyExplicitPacPolicySrcaddr',
+    'WebProxyExplicitSecureWebProxyCert',
     'WebProxyForwardServerGroupServerList',
     'WebProxyGlobalLearnClientIpSrcaddr6',
     'WebProxyGlobalLearnClientIpSrcaddr',
@@ -9738,6 +9790,8 @@ class FirewallAccessProxy6ApiGateway6(dict):
             suggest = "ssl_max_version"
         elif key == "sslMinVersion":
             suggest = "ssl_min_version"
+        elif key == "sslRenegotiation":
+            suggest = "ssl_renegotiation"
         elif key == "sslVpnWebPortal":
             suggest = "ssl_vpn_web_portal"
         elif key == "urlMap":
@@ -9779,6 +9833,7 @@ class FirewallAccessProxy6ApiGateway6(dict):
                  ssl_dh_bits: Optional[str] = None,
                  ssl_max_version: Optional[str] = None,
                  ssl_min_version: Optional[str] = None,
+                 ssl_renegotiation: Optional[str] = None,
                  ssl_vpn_web_portal: Optional[str] = None,
                  url_map: Optional[str] = None,
                  url_map_type: Optional[str] = None,
@@ -9823,6 +9878,8 @@ class FirewallAccessProxy6ApiGateway6(dict):
             pulumi.set(__self__, "ssl_max_version", ssl_max_version)
         if ssl_min_version is not None:
             pulumi.set(__self__, "ssl_min_version", ssl_min_version)
+        if ssl_renegotiation is not None:
+            pulumi.set(__self__, "ssl_renegotiation", ssl_renegotiation)
         if ssl_vpn_web_portal is not None:
             pulumi.set(__self__, "ssl_vpn_web_portal", ssl_vpn_web_portal)
         if url_map is not None:
@@ -9933,6 +9990,11 @@ class FirewallAccessProxy6ApiGateway6(dict):
         return pulumi.get(self, "ssl_min_version")
 
     @property
+    @pulumi.getter(name="sslRenegotiation")
+    def ssl_renegotiation(self) -> Optional[str]:
+        return pulumi.get(self, "ssl_renegotiation")
+
+    @property
     @pulumi.getter(name="sslVpnWebPortal")
     def ssl_vpn_web_portal(self) -> Optional[str]:
         return pulumi.get(self, "ssl_vpn_web_portal")
@@ -9973,6 +10035,8 @@ class FirewallAccessProxy6ApiGateway6Realserver(dict):
         suggest = None
         if key == "addrType":
             suggest = "addr_type"
+        elif key == "externalAuth":
+            suggest = "external_auth"
         elif key == "healthCheck":
             suggest = "health_check"
         elif key == "healthCheckProto":
@@ -9987,6 +10051,10 @@ class FirewallAccessProxy6ApiGateway6Realserver(dict):
             suggest = "ssh_host_key_validation"
         elif key == "sshHostKeys":
             suggest = "ssh_host_keys"
+        elif key == "translateHost":
+            suggest = "translate_host"
+        elif key == "tunnelEncryption":
+            suggest = "tunnel_encryption"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in FirewallAccessProxy6ApiGateway6Realserver. Access the value via the '{suggest}' property getter instead.")
@@ -10003,6 +10071,7 @@ class FirewallAccessProxy6ApiGateway6Realserver(dict):
                  addr_type: Optional[str] = None,
                  address: Optional[str] = None,
                  domain: Optional[str] = None,
+                 external_auth: Optional[str] = None,
                  health_check: Optional[str] = None,
                  health_check_proto: Optional[str] = None,
                  holddown_interval: Optional[str] = None,
@@ -10015,6 +10084,8 @@ class FirewallAccessProxy6ApiGateway6Realserver(dict):
                  ssh_host_key_validation: Optional[str] = None,
                  ssh_host_keys: Optional[Sequence['outputs.FirewallAccessProxy6ApiGateway6RealserverSshHostKey']] = None,
                  status: Optional[str] = None,
+                 translate_host: Optional[str] = None,
+                 tunnel_encryption: Optional[str] = None,
                  type: Optional[str] = None,
                  weight: Optional[int] = None):
         if addr_type is not None:
@@ -10023,6 +10094,8 @@ class FirewallAccessProxy6ApiGateway6Realserver(dict):
             pulumi.set(__self__, "address", address)
         if domain is not None:
             pulumi.set(__self__, "domain", domain)
+        if external_auth is not None:
+            pulumi.set(__self__, "external_auth", external_auth)
         if health_check is not None:
             pulumi.set(__self__, "health_check", health_check)
         if health_check_proto is not None:
@@ -10047,6 +10120,10 @@ class FirewallAccessProxy6ApiGateway6Realserver(dict):
             pulumi.set(__self__, "ssh_host_keys", ssh_host_keys)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if translate_host is not None:
+            pulumi.set(__self__, "translate_host", translate_host)
+        if tunnel_encryption is not None:
+            pulumi.set(__self__, "tunnel_encryption", tunnel_encryption)
         if type is not None:
             pulumi.set(__self__, "type", type)
         if weight is not None:
@@ -10066,6 +10143,11 @@ class FirewallAccessProxy6ApiGateway6Realserver(dict):
     @pulumi.getter
     def domain(self) -> Optional[str]:
         return pulumi.get(self, "domain")
+
+    @property
+    @pulumi.getter(name="externalAuth")
+    def external_auth(self) -> Optional[str]:
+        return pulumi.get(self, "external_auth")
 
     @property
     @pulumi.getter(name="healthCheck")
@@ -10126,6 +10208,16 @@ class FirewallAccessProxy6ApiGateway6Realserver(dict):
     @pulumi.getter
     def status(self) -> Optional[str]:
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="translateHost")
+    def translate_host(self) -> Optional[str]:
+        return pulumi.get(self, "translate_host")
+
+    @property
+    @pulumi.getter(name="tunnelEncryption")
+    def tunnel_encryption(self) -> Optional[str]:
+        return pulumi.get(self, "tunnel_encryption")
 
     @property
     @pulumi.getter
@@ -10215,6 +10307,8 @@ class FirewallAccessProxy6ApiGateway(dict):
             suggest = "ssl_max_version"
         elif key == "sslMinVersion":
             suggest = "ssl_min_version"
+        elif key == "sslRenegotiation":
+            suggest = "ssl_renegotiation"
         elif key == "sslVpnWebPortal":
             suggest = "ssl_vpn_web_portal"
         elif key == "urlMap":
@@ -10256,6 +10350,7 @@ class FirewallAccessProxy6ApiGateway(dict):
                  ssl_dh_bits: Optional[str] = None,
                  ssl_max_version: Optional[str] = None,
                  ssl_min_version: Optional[str] = None,
+                 ssl_renegotiation: Optional[str] = None,
                  ssl_vpn_web_portal: Optional[str] = None,
                  url_map: Optional[str] = None,
                  url_map_type: Optional[str] = None,
@@ -10300,6 +10395,8 @@ class FirewallAccessProxy6ApiGateway(dict):
             pulumi.set(__self__, "ssl_max_version", ssl_max_version)
         if ssl_min_version is not None:
             pulumi.set(__self__, "ssl_min_version", ssl_min_version)
+        if ssl_renegotiation is not None:
+            pulumi.set(__self__, "ssl_renegotiation", ssl_renegotiation)
         if ssl_vpn_web_portal is not None:
             pulumi.set(__self__, "ssl_vpn_web_portal", ssl_vpn_web_portal)
         if url_map is not None:
@@ -10410,6 +10507,11 @@ class FirewallAccessProxy6ApiGateway(dict):
         return pulumi.get(self, "ssl_min_version")
 
     @property
+    @pulumi.getter(name="sslRenegotiation")
+    def ssl_renegotiation(self) -> Optional[str]:
+        return pulumi.get(self, "ssl_renegotiation")
+
+    @property
     @pulumi.getter(name="sslVpnWebPortal")
     def ssl_vpn_web_portal(self) -> Optional[str]:
         return pulumi.get(self, "ssl_vpn_web_portal")
@@ -10450,6 +10552,8 @@ class FirewallAccessProxy6ApiGatewayRealserver(dict):
         suggest = None
         if key == "addrType":
             suggest = "addr_type"
+        elif key == "externalAuth":
+            suggest = "external_auth"
         elif key == "healthCheck":
             suggest = "health_check"
         elif key == "healthCheckProto":
@@ -10464,6 +10568,10 @@ class FirewallAccessProxy6ApiGatewayRealserver(dict):
             suggest = "ssh_host_key_validation"
         elif key == "sshHostKeys":
             suggest = "ssh_host_keys"
+        elif key == "translateHost":
+            suggest = "translate_host"
+        elif key == "tunnelEncryption":
+            suggest = "tunnel_encryption"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in FirewallAccessProxy6ApiGatewayRealserver. Access the value via the '{suggest}' property getter instead.")
@@ -10480,6 +10588,7 @@ class FirewallAccessProxy6ApiGatewayRealserver(dict):
                  addr_type: Optional[str] = None,
                  address: Optional[str] = None,
                  domain: Optional[str] = None,
+                 external_auth: Optional[str] = None,
                  health_check: Optional[str] = None,
                  health_check_proto: Optional[str] = None,
                  holddown_interval: Optional[str] = None,
@@ -10492,6 +10601,8 @@ class FirewallAccessProxy6ApiGatewayRealserver(dict):
                  ssh_host_key_validation: Optional[str] = None,
                  ssh_host_keys: Optional[Sequence['outputs.FirewallAccessProxy6ApiGatewayRealserverSshHostKey']] = None,
                  status: Optional[str] = None,
+                 translate_host: Optional[str] = None,
+                 tunnel_encryption: Optional[str] = None,
                  type: Optional[str] = None,
                  weight: Optional[int] = None):
         if addr_type is not None:
@@ -10500,6 +10611,8 @@ class FirewallAccessProxy6ApiGatewayRealserver(dict):
             pulumi.set(__self__, "address", address)
         if domain is not None:
             pulumi.set(__self__, "domain", domain)
+        if external_auth is not None:
+            pulumi.set(__self__, "external_auth", external_auth)
         if health_check is not None:
             pulumi.set(__self__, "health_check", health_check)
         if health_check_proto is not None:
@@ -10524,6 +10637,10 @@ class FirewallAccessProxy6ApiGatewayRealserver(dict):
             pulumi.set(__self__, "ssh_host_keys", ssh_host_keys)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if translate_host is not None:
+            pulumi.set(__self__, "translate_host", translate_host)
+        if tunnel_encryption is not None:
+            pulumi.set(__self__, "tunnel_encryption", tunnel_encryption)
         if type is not None:
             pulumi.set(__self__, "type", type)
         if weight is not None:
@@ -10543,6 +10660,11 @@ class FirewallAccessProxy6ApiGatewayRealserver(dict):
     @pulumi.getter
     def domain(self) -> Optional[str]:
         return pulumi.get(self, "domain")
+
+    @property
+    @pulumi.getter(name="externalAuth")
+    def external_auth(self) -> Optional[str]:
+        return pulumi.get(self, "external_auth")
 
     @property
     @pulumi.getter(name="healthCheck")
@@ -10603,6 +10725,16 @@ class FirewallAccessProxy6ApiGatewayRealserver(dict):
     @pulumi.getter
     def status(self) -> Optional[str]:
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="translateHost")
+    def translate_host(self) -> Optional[str]:
+        return pulumi.get(self, "translate_host")
+
+    @property
+    @pulumi.getter(name="tunnelEncryption")
+    def tunnel_encryption(self) -> Optional[str]:
+        return pulumi.get(self, "tunnel_encryption")
 
     @property
     @pulumi.getter
@@ -10692,6 +10824,8 @@ class FirewallAccessProxyApiGateway6(dict):
             suggest = "ssl_max_version"
         elif key == "sslMinVersion":
             suggest = "ssl_min_version"
+        elif key == "sslRenegotiation":
+            suggest = "ssl_renegotiation"
         elif key == "sslVpnWebPortal":
             suggest = "ssl_vpn_web_portal"
         elif key == "urlMap":
@@ -10733,6 +10867,7 @@ class FirewallAccessProxyApiGateway6(dict):
                  ssl_dh_bits: Optional[str] = None,
                  ssl_max_version: Optional[str] = None,
                  ssl_min_version: Optional[str] = None,
+                 ssl_renegotiation: Optional[str] = None,
                  ssl_vpn_web_portal: Optional[str] = None,
                  url_map: Optional[str] = None,
                  url_map_type: Optional[str] = None,
@@ -10777,6 +10912,8 @@ class FirewallAccessProxyApiGateway6(dict):
             pulumi.set(__self__, "ssl_max_version", ssl_max_version)
         if ssl_min_version is not None:
             pulumi.set(__self__, "ssl_min_version", ssl_min_version)
+        if ssl_renegotiation is not None:
+            pulumi.set(__self__, "ssl_renegotiation", ssl_renegotiation)
         if ssl_vpn_web_portal is not None:
             pulumi.set(__self__, "ssl_vpn_web_portal", ssl_vpn_web_portal)
         if url_map is not None:
@@ -10887,6 +11024,11 @@ class FirewallAccessProxyApiGateway6(dict):
         return pulumi.get(self, "ssl_min_version")
 
     @property
+    @pulumi.getter(name="sslRenegotiation")
+    def ssl_renegotiation(self) -> Optional[str]:
+        return pulumi.get(self, "ssl_renegotiation")
+
+    @property
     @pulumi.getter(name="sslVpnWebPortal")
     def ssl_vpn_web_portal(self) -> Optional[str]:
         return pulumi.get(self, "ssl_vpn_web_portal")
@@ -10927,6 +11069,8 @@ class FirewallAccessProxyApiGateway6Realserver(dict):
         suggest = None
         if key == "addrType":
             suggest = "addr_type"
+        elif key == "externalAuth":
+            suggest = "external_auth"
         elif key == "healthCheck":
             suggest = "health_check"
         elif key == "healthCheckProto":
@@ -10941,6 +11085,10 @@ class FirewallAccessProxyApiGateway6Realserver(dict):
             suggest = "ssh_host_key_validation"
         elif key == "sshHostKeys":
             suggest = "ssh_host_keys"
+        elif key == "translateHost":
+            suggest = "translate_host"
+        elif key == "tunnelEncryption":
+            suggest = "tunnel_encryption"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in FirewallAccessProxyApiGateway6Realserver. Access the value via the '{suggest}' property getter instead.")
@@ -10957,6 +11105,7 @@ class FirewallAccessProxyApiGateway6Realserver(dict):
                  addr_type: Optional[str] = None,
                  address: Optional[str] = None,
                  domain: Optional[str] = None,
+                 external_auth: Optional[str] = None,
                  health_check: Optional[str] = None,
                  health_check_proto: Optional[str] = None,
                  holddown_interval: Optional[str] = None,
@@ -10969,6 +11118,8 @@ class FirewallAccessProxyApiGateway6Realserver(dict):
                  ssh_host_key_validation: Optional[str] = None,
                  ssh_host_keys: Optional[Sequence['outputs.FirewallAccessProxyApiGateway6RealserverSshHostKey']] = None,
                  status: Optional[str] = None,
+                 translate_host: Optional[str] = None,
+                 tunnel_encryption: Optional[str] = None,
                  type: Optional[str] = None,
                  weight: Optional[int] = None):
         if addr_type is not None:
@@ -10977,6 +11128,8 @@ class FirewallAccessProxyApiGateway6Realserver(dict):
             pulumi.set(__self__, "address", address)
         if domain is not None:
             pulumi.set(__self__, "domain", domain)
+        if external_auth is not None:
+            pulumi.set(__self__, "external_auth", external_auth)
         if health_check is not None:
             pulumi.set(__self__, "health_check", health_check)
         if health_check_proto is not None:
@@ -11001,6 +11154,10 @@ class FirewallAccessProxyApiGateway6Realserver(dict):
             pulumi.set(__self__, "ssh_host_keys", ssh_host_keys)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if translate_host is not None:
+            pulumi.set(__self__, "translate_host", translate_host)
+        if tunnel_encryption is not None:
+            pulumi.set(__self__, "tunnel_encryption", tunnel_encryption)
         if type is not None:
             pulumi.set(__self__, "type", type)
         if weight is not None:
@@ -11020,6 +11177,11 @@ class FirewallAccessProxyApiGateway6Realserver(dict):
     @pulumi.getter
     def domain(self) -> Optional[str]:
         return pulumi.get(self, "domain")
+
+    @property
+    @pulumi.getter(name="externalAuth")
+    def external_auth(self) -> Optional[str]:
+        return pulumi.get(self, "external_auth")
 
     @property
     @pulumi.getter(name="healthCheck")
@@ -11080,6 +11242,16 @@ class FirewallAccessProxyApiGateway6Realserver(dict):
     @pulumi.getter
     def status(self) -> Optional[str]:
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="translateHost")
+    def translate_host(self) -> Optional[str]:
+        return pulumi.get(self, "translate_host")
+
+    @property
+    @pulumi.getter(name="tunnelEncryption")
+    def tunnel_encryption(self) -> Optional[str]:
+        return pulumi.get(self, "tunnel_encryption")
 
     @property
     @pulumi.getter
@@ -11169,6 +11341,8 @@ class FirewallAccessProxyApiGateway(dict):
             suggest = "ssl_max_version"
         elif key == "sslMinVersion":
             suggest = "ssl_min_version"
+        elif key == "sslRenegotiation":
+            suggest = "ssl_renegotiation"
         elif key == "sslVpnWebPortal":
             suggest = "ssl_vpn_web_portal"
         elif key == "urlMap":
@@ -11210,6 +11384,7 @@ class FirewallAccessProxyApiGateway(dict):
                  ssl_dh_bits: Optional[str] = None,
                  ssl_max_version: Optional[str] = None,
                  ssl_min_version: Optional[str] = None,
+                 ssl_renegotiation: Optional[str] = None,
                  ssl_vpn_web_portal: Optional[str] = None,
                  url_map: Optional[str] = None,
                  url_map_type: Optional[str] = None,
@@ -11254,6 +11429,8 @@ class FirewallAccessProxyApiGateway(dict):
             pulumi.set(__self__, "ssl_max_version", ssl_max_version)
         if ssl_min_version is not None:
             pulumi.set(__self__, "ssl_min_version", ssl_min_version)
+        if ssl_renegotiation is not None:
+            pulumi.set(__self__, "ssl_renegotiation", ssl_renegotiation)
         if ssl_vpn_web_portal is not None:
             pulumi.set(__self__, "ssl_vpn_web_portal", ssl_vpn_web_portal)
         if url_map is not None:
@@ -11364,6 +11541,11 @@ class FirewallAccessProxyApiGateway(dict):
         return pulumi.get(self, "ssl_min_version")
 
     @property
+    @pulumi.getter(name="sslRenegotiation")
+    def ssl_renegotiation(self) -> Optional[str]:
+        return pulumi.get(self, "ssl_renegotiation")
+
+    @property
     @pulumi.getter(name="sslVpnWebPortal")
     def ssl_vpn_web_portal(self) -> Optional[str]:
         return pulumi.get(self, "ssl_vpn_web_portal")
@@ -11404,6 +11586,8 @@ class FirewallAccessProxyApiGatewayRealserver(dict):
         suggest = None
         if key == "addrType":
             suggest = "addr_type"
+        elif key == "externalAuth":
+            suggest = "external_auth"
         elif key == "healthCheck":
             suggest = "health_check"
         elif key == "healthCheckProto":
@@ -11418,6 +11602,10 @@ class FirewallAccessProxyApiGatewayRealserver(dict):
             suggest = "ssh_host_key_validation"
         elif key == "sshHostKeys":
             suggest = "ssh_host_keys"
+        elif key == "translateHost":
+            suggest = "translate_host"
+        elif key == "tunnelEncryption":
+            suggest = "tunnel_encryption"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in FirewallAccessProxyApiGatewayRealserver. Access the value via the '{suggest}' property getter instead.")
@@ -11434,6 +11622,7 @@ class FirewallAccessProxyApiGatewayRealserver(dict):
                  addr_type: Optional[str] = None,
                  address: Optional[str] = None,
                  domain: Optional[str] = None,
+                 external_auth: Optional[str] = None,
                  health_check: Optional[str] = None,
                  health_check_proto: Optional[str] = None,
                  holddown_interval: Optional[str] = None,
@@ -11446,6 +11635,8 @@ class FirewallAccessProxyApiGatewayRealserver(dict):
                  ssh_host_key_validation: Optional[str] = None,
                  ssh_host_keys: Optional[Sequence['outputs.FirewallAccessProxyApiGatewayRealserverSshHostKey']] = None,
                  status: Optional[str] = None,
+                 translate_host: Optional[str] = None,
+                 tunnel_encryption: Optional[str] = None,
                  type: Optional[str] = None,
                  weight: Optional[int] = None):
         if addr_type is not None:
@@ -11454,6 +11645,8 @@ class FirewallAccessProxyApiGatewayRealserver(dict):
             pulumi.set(__self__, "address", address)
         if domain is not None:
             pulumi.set(__self__, "domain", domain)
+        if external_auth is not None:
+            pulumi.set(__self__, "external_auth", external_auth)
         if health_check is not None:
             pulumi.set(__self__, "health_check", health_check)
         if health_check_proto is not None:
@@ -11478,6 +11671,10 @@ class FirewallAccessProxyApiGatewayRealserver(dict):
             pulumi.set(__self__, "ssh_host_keys", ssh_host_keys)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if translate_host is not None:
+            pulumi.set(__self__, "translate_host", translate_host)
+        if tunnel_encryption is not None:
+            pulumi.set(__self__, "tunnel_encryption", tunnel_encryption)
         if type is not None:
             pulumi.set(__self__, "type", type)
         if weight is not None:
@@ -11497,6 +11694,11 @@ class FirewallAccessProxyApiGatewayRealserver(dict):
     @pulumi.getter
     def domain(self) -> Optional[str]:
         return pulumi.get(self, "domain")
+
+    @property
+    @pulumi.getter(name="externalAuth")
+    def external_auth(self) -> Optional[str]:
+        return pulumi.get(self, "external_auth")
 
     @property
     @pulumi.getter(name="healthCheck")
@@ -11557,6 +11759,16 @@ class FirewallAccessProxyApiGatewayRealserver(dict):
     @pulumi.getter
     def status(self) -> Optional[str]:
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="translateHost")
+    def translate_host(self) -> Optional[str]:
+        return pulumi.get(self, "translate_host")
+
+    @property
+    @pulumi.getter(name="tunnelEncryption")
+    def tunnel_encryption(self) -> Optional[str]:
+        return pulumi.get(self, "tunnel_encryption")
 
     @property
     @pulumi.getter
@@ -11881,6 +12093,19 @@ class FirewallAddressTagging(dict):
 
 @pulumi.output_type
 class FirewallAddressTaggingTag(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class FirewallAddrgrp6ExcludeMember(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
         if name is not None:
@@ -13675,6 +13900,19 @@ class FirewallInternetServiceGroupMember(dict):
 
 
 @pulumi.output_type
+class FirewallInternetServiceSubappSubApp(dict):
+    def __init__(__self__, *,
+                 id: Optional[int] = None):
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
 class FirewallLocalInPolicy6Dstaddr(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
@@ -14655,6 +14893,19 @@ class FirewallPolicyNtlmEnabledBrowser(dict):
 
 
 @pulumi.output_type
+class FirewallPolicyPcpPoolname(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
 class FirewallPolicyPoolname6(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
@@ -14812,6 +15063,19 @@ class FirewallPolicyUser(dict):
 
 @pulumi.output_type
 class FirewallPolicyZtnaEmsTag(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class FirewallPolicyZtnaEmsTagSecondary(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
         if name is not None:
@@ -15273,6 +15537,8 @@ class FirewallProfileProtocolOptionsHttp(dict):
             suggest = "uncompressed_nest_limit"
         elif key == "uncompressedOversizeLimit":
             suggest = "uncompressed_oversize_limit"
+        elif key == "unknownContentEncoding":
+            suggest = "unknown_content_encoding"
         elif key == "unknownHttpVersion":
             suggest = "unknown_http_version"
         elif key == "verifyDnsForPolicyMatching":
@@ -15320,6 +15586,7 @@ class FirewallProfileProtocolOptionsHttp(dict):
                  tunnel_non_http: Optional[str] = None,
                  uncompressed_nest_limit: Optional[int] = None,
                  uncompressed_oversize_limit: Optional[int] = None,
+                 unknown_content_encoding: Optional[str] = None,
                  unknown_http_version: Optional[str] = None,
                  verify_dns_for_policy_matching: Optional[str] = None):
         if address_ip_rating is not None:
@@ -15382,6 +15649,8 @@ class FirewallProfileProtocolOptionsHttp(dict):
             pulumi.set(__self__, "uncompressed_nest_limit", uncompressed_nest_limit)
         if uncompressed_oversize_limit is not None:
             pulumi.set(__self__, "uncompressed_oversize_limit", uncompressed_oversize_limit)
+        if unknown_content_encoding is not None:
+            pulumi.set(__self__, "unknown_content_encoding", unknown_content_encoding)
         if unknown_http_version is not None:
             pulumi.set(__self__, "unknown_http_version", unknown_http_version)
         if verify_dns_for_policy_matching is not None:
@@ -15536,6 +15805,11 @@ class FirewallProfileProtocolOptionsHttp(dict):
     @pulumi.getter(name="uncompressedOversizeLimit")
     def uncompressed_oversize_limit(self) -> Optional[int]:
         return pulumi.get(self, "uncompressed_oversize_limit")
+
+    @property
+    @pulumi.getter(name="unknownContentEncoding")
+    def unknown_content_encoding(self) -> Optional[str]:
+        return pulumi.get(self, "unknown_content_encoding")
 
     @property
     @pulumi.getter(name="unknownHttpVersion")
@@ -16503,6 +16777,58 @@ class FirewallProxyPolicyDstintf(dict):
 
 @pulumi.output_type
 class FirewallProxyPolicyGroup(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class FirewallProxyPolicyInternetService6Custom(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class FirewallProxyPolicyInternetService6CustomGroup(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class FirewallProxyPolicyInternetService6Group(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class FirewallProxyPolicyInternetService6Name(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
         if name is not None:
@@ -19659,6 +19985,8 @@ class FirewallVip6Realserver(dict):
             suggest = "http_host"
         elif key == "maxConnections":
             suggest = "max_connections"
+        elif key == "translateHost":
+            suggest = "translate_host"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in FirewallVip6Realserver. Access the value via the '{suggest}' property getter instead.")
@@ -19682,6 +20010,7 @@ class FirewallVip6Realserver(dict):
                  monitor: Optional[str] = None,
                  port: Optional[int] = None,
                  status: Optional[str] = None,
+                 translate_host: Optional[str] = None,
                  weight: Optional[int] = None):
         if client_ip is not None:
             pulumi.set(__self__, "client_ip", client_ip)
@@ -19703,6 +20032,8 @@ class FirewallVip6Realserver(dict):
             pulumi.set(__self__, "port", port)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if translate_host is not None:
+            pulumi.set(__self__, "translate_host", translate_host)
         if weight is not None:
             pulumi.set(__self__, "weight", weight)
 
@@ -19755,6 +20086,11 @@ class FirewallVip6Realserver(dict):
     @pulumi.getter
     def status(self) -> Optional[str]:
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="translateHost")
+    def translate_host(self) -> Optional[str]:
+        return pulumi.get(self, "translate_host")
 
     @property
     @pulumi.getter
@@ -19885,6 +20221,8 @@ class FirewallVipRealserver(dict):
             suggest = "http_host"
         elif key == "maxConnections":
             suggest = "max_connections"
+        elif key == "translateHost":
+            suggest = "translate_host"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in FirewallVipRealserver. Access the value via the '{suggest}' property getter instead.")
@@ -19909,6 +20247,7 @@ class FirewallVipRealserver(dict):
                  monitor: Optional[str] = None,
                  port: Optional[int] = None,
                  status: Optional[str] = None,
+                 translate_host: Optional[str] = None,
                  type: Optional[str] = None,
                  weight: Optional[int] = None):
         if address is not None:
@@ -19933,6 +20272,8 @@ class FirewallVipRealserver(dict):
             pulumi.set(__self__, "port", port)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if translate_host is not None:
+            pulumi.set(__self__, "translate_host", translate_host)
         if type is not None:
             pulumi.set(__self__, "type", type)
         if weight is not None:
@@ -19992,6 +20333,11 @@ class FirewallVipRealserver(dict):
     @pulumi.getter
     def status(self) -> Optional[str]:
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="translateHost")
+    def translate_host(self) -> Optional[str]:
+        return pulumi.get(self, "translate_host")
 
     @property
     @pulumi.getter
@@ -20394,6 +20740,18 @@ class GetFirewallAddressTaggingResult(dict):
 
 @pulumi.output_type
 class GetFirewallAddressTaggingTagResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetFirewallAddrgrp6ExcludeMemberResult(dict):
     def __init__(__self__, *,
                  name: str):
         pulumi.set(__self__, "name", name)
@@ -22299,6 +22657,18 @@ class GetFirewallPolicyNtlmEnabledBrowserResult(dict):
 
 
 @pulumi.output_type
+class GetFirewallPolicyPcpPoolnameResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
 class GetFirewallPolicyPoolname6Result(dict):
     def __init__(__self__, *,
                  name: str):
@@ -22444,6 +22814,18 @@ class GetFirewallPolicyUserResult(dict):
 
 @pulumi.output_type
 class GetFirewallPolicyZtnaEmsTagResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetFirewallPolicyZtnaEmsTagSecondaryResult(dict):
     def __init__(__self__, *,
                  name: str):
         pulumi.set(__self__, "name", name)
@@ -22764,6 +23146,7 @@ class GetFirewallProfileProtocolOptionsHttpResult(dict):
                  tunnel_non_http: str,
                  uncompressed_nest_limit: int,
                  uncompressed_oversize_limit: int,
+                 unknown_content_encoding: str,
                  unknown_http_version: str,
                  verify_dns_for_policy_matching: str):
         pulumi.set(__self__, "address_ip_rating", address_ip_rating)
@@ -22796,6 +23179,7 @@ class GetFirewallProfileProtocolOptionsHttpResult(dict):
         pulumi.set(__self__, "tunnel_non_http", tunnel_non_http)
         pulumi.set(__self__, "uncompressed_nest_limit", uncompressed_nest_limit)
         pulumi.set(__self__, "uncompressed_oversize_limit", uncompressed_oversize_limit)
+        pulumi.set(__self__, "unknown_content_encoding", unknown_content_encoding)
         pulumi.set(__self__, "unknown_http_version", unknown_http_version)
         pulumi.set(__self__, "verify_dns_for_policy_matching", verify_dns_for_policy_matching)
 
@@ -22948,6 +23332,11 @@ class GetFirewallProfileProtocolOptionsHttpResult(dict):
     @pulumi.getter(name="uncompressedOversizeLimit")
     def uncompressed_oversize_limit(self) -> int:
         return pulumi.get(self, "uncompressed_oversize_limit")
+
+    @property
+    @pulumi.getter(name="unknownContentEncoding")
+    def unknown_content_encoding(self) -> str:
+        return pulumi.get(self, "unknown_content_encoding")
 
     @property
     @pulumi.getter(name="unknownHttpVersion")
@@ -23647,6 +24036,54 @@ class GetFirewallProxyPolicyGroupResult(dict):
 
 
 @pulumi.output_type
+class GetFirewallProxyPolicyInternetService6CustomResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetFirewallProxyPolicyInternetService6CustomGroupResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetFirewallProxyPolicyInternetService6GroupResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetFirewallProxyPolicyInternetService6NameResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
 class GetFirewallProxyPolicyInternetServiceCustomResult(dict):
     def __init__(__self__, *,
                  name: str):
@@ -24239,6 +24676,7 @@ class GetRouterBgpNeighborResult(dict):
     def __init__(__self__, *,
                  activate: str,
                  activate6: str,
+                 activate_evpn: str,
                  activate_vpnv4: str,
                  additional_path: str,
                  additional_path6: str,
@@ -24251,6 +24689,9 @@ class GetRouterBgpNeighborResult(dict):
                  allowas_in6: int,
                  allowas_in_enable: str,
                  allowas_in_enable6: str,
+                 allowas_in_enable_evpn: str,
+                 allowas_in_enable_vpnv4: str,
+                 allowas_in_evpn: int,
                  allowas_in_vpnv4: int,
                  as_override: str,
                  as_override6: str,
@@ -24263,6 +24704,7 @@ class GetRouterBgpNeighborResult(dict):
                  capability_dynamic: str,
                  capability_graceful_restart: str,
                  capability_graceful_restart6: str,
+                 capability_graceful_restart_evpn: str,
                  capability_graceful_restart_vpnv4: str,
                  capability_orf: str,
                  capability_orf6: str,
@@ -24296,12 +24738,15 @@ class GetRouterBgpNeighborResult(dict):
                  local_as_replace_as: str,
                  maximum_prefix: int,
                  maximum_prefix6: int,
+                 maximum_prefix_evpn: int,
                  maximum_prefix_threshold: int,
                  maximum_prefix_threshold6: int,
+                 maximum_prefix_threshold_evpn: int,
                  maximum_prefix_threshold_vpnv4: int,
                  maximum_prefix_vpnv4: int,
                  maximum_prefix_warning_only: str,
                  maximum_prefix_warning_only6: str,
+                 maximum_prefix_warning_only_evpn: str,
                  maximum_prefix_warning_only_vpnv4: str,
                  next_hop_self: str,
                  next_hop_self6: str,
@@ -24320,30 +24765,37 @@ class GetRouterBgpNeighborResult(dict):
                  remote_as: int,
                  remove_private_as: str,
                  remove_private_as6: str,
+                 remove_private_as_evpn: str,
                  remove_private_as_vpnv4: str,
                  restart_time: int,
                  retain_stale_time: int,
                  route_map_in: str,
                  route_map_in6: str,
+                 route_map_in_evpn: str,
                  route_map_in_vpnv4: str,
                  route_map_out: str,
                  route_map_out6: str,
                  route_map_out6_preferable: str,
+                 route_map_out_evpn: str,
                  route_map_out_preferable: str,
                  route_map_out_vpnv4: str,
                  route_map_out_vpnv4_preferable: str,
                  route_reflector_client: str,
                  route_reflector_client6: str,
+                 route_reflector_client_evpn: str,
                  route_reflector_client_vpnv4: str,
                  route_server_client: str,
                  route_server_client6: str,
+                 route_server_client_evpn: str,
                  route_server_client_vpnv4: str,
                  send_community: str,
                  send_community6: str,
+                 send_community_evpn: str,
                  send_community_vpnv4: str,
                  shutdown: str,
                  soft_reconfiguration: str,
                  soft_reconfiguration6: str,
+                 soft_reconfiguration_evpn: str,
                  soft_reconfiguration_vpnv4: str,
                  stale_route: str,
                  strict_capability_match: str,
@@ -24353,6 +24805,7 @@ class GetRouterBgpNeighborResult(dict):
                  weight: int):
         pulumi.set(__self__, "activate", activate)
         pulumi.set(__self__, "activate6", activate6)
+        pulumi.set(__self__, "activate_evpn", activate_evpn)
         pulumi.set(__self__, "activate_vpnv4", activate_vpnv4)
         pulumi.set(__self__, "additional_path", additional_path)
         pulumi.set(__self__, "additional_path6", additional_path6)
@@ -24365,6 +24818,9 @@ class GetRouterBgpNeighborResult(dict):
         pulumi.set(__self__, "allowas_in6", allowas_in6)
         pulumi.set(__self__, "allowas_in_enable", allowas_in_enable)
         pulumi.set(__self__, "allowas_in_enable6", allowas_in_enable6)
+        pulumi.set(__self__, "allowas_in_enable_evpn", allowas_in_enable_evpn)
+        pulumi.set(__self__, "allowas_in_enable_vpnv4", allowas_in_enable_vpnv4)
+        pulumi.set(__self__, "allowas_in_evpn", allowas_in_evpn)
         pulumi.set(__self__, "allowas_in_vpnv4", allowas_in_vpnv4)
         pulumi.set(__self__, "as_override", as_override)
         pulumi.set(__self__, "as_override6", as_override6)
@@ -24377,6 +24833,7 @@ class GetRouterBgpNeighborResult(dict):
         pulumi.set(__self__, "capability_dynamic", capability_dynamic)
         pulumi.set(__self__, "capability_graceful_restart", capability_graceful_restart)
         pulumi.set(__self__, "capability_graceful_restart6", capability_graceful_restart6)
+        pulumi.set(__self__, "capability_graceful_restart_evpn", capability_graceful_restart_evpn)
         pulumi.set(__self__, "capability_graceful_restart_vpnv4", capability_graceful_restart_vpnv4)
         pulumi.set(__self__, "capability_orf", capability_orf)
         pulumi.set(__self__, "capability_orf6", capability_orf6)
@@ -24410,12 +24867,15 @@ class GetRouterBgpNeighborResult(dict):
         pulumi.set(__self__, "local_as_replace_as", local_as_replace_as)
         pulumi.set(__self__, "maximum_prefix", maximum_prefix)
         pulumi.set(__self__, "maximum_prefix6", maximum_prefix6)
+        pulumi.set(__self__, "maximum_prefix_evpn", maximum_prefix_evpn)
         pulumi.set(__self__, "maximum_prefix_threshold", maximum_prefix_threshold)
         pulumi.set(__self__, "maximum_prefix_threshold6", maximum_prefix_threshold6)
+        pulumi.set(__self__, "maximum_prefix_threshold_evpn", maximum_prefix_threshold_evpn)
         pulumi.set(__self__, "maximum_prefix_threshold_vpnv4", maximum_prefix_threshold_vpnv4)
         pulumi.set(__self__, "maximum_prefix_vpnv4", maximum_prefix_vpnv4)
         pulumi.set(__self__, "maximum_prefix_warning_only", maximum_prefix_warning_only)
         pulumi.set(__self__, "maximum_prefix_warning_only6", maximum_prefix_warning_only6)
+        pulumi.set(__self__, "maximum_prefix_warning_only_evpn", maximum_prefix_warning_only_evpn)
         pulumi.set(__self__, "maximum_prefix_warning_only_vpnv4", maximum_prefix_warning_only_vpnv4)
         pulumi.set(__self__, "next_hop_self", next_hop_self)
         pulumi.set(__self__, "next_hop_self6", next_hop_self6)
@@ -24434,30 +24894,37 @@ class GetRouterBgpNeighborResult(dict):
         pulumi.set(__self__, "remote_as", remote_as)
         pulumi.set(__self__, "remove_private_as", remove_private_as)
         pulumi.set(__self__, "remove_private_as6", remove_private_as6)
+        pulumi.set(__self__, "remove_private_as_evpn", remove_private_as_evpn)
         pulumi.set(__self__, "remove_private_as_vpnv4", remove_private_as_vpnv4)
         pulumi.set(__self__, "restart_time", restart_time)
         pulumi.set(__self__, "retain_stale_time", retain_stale_time)
         pulumi.set(__self__, "route_map_in", route_map_in)
         pulumi.set(__self__, "route_map_in6", route_map_in6)
+        pulumi.set(__self__, "route_map_in_evpn", route_map_in_evpn)
         pulumi.set(__self__, "route_map_in_vpnv4", route_map_in_vpnv4)
         pulumi.set(__self__, "route_map_out", route_map_out)
         pulumi.set(__self__, "route_map_out6", route_map_out6)
         pulumi.set(__self__, "route_map_out6_preferable", route_map_out6_preferable)
+        pulumi.set(__self__, "route_map_out_evpn", route_map_out_evpn)
         pulumi.set(__self__, "route_map_out_preferable", route_map_out_preferable)
         pulumi.set(__self__, "route_map_out_vpnv4", route_map_out_vpnv4)
         pulumi.set(__self__, "route_map_out_vpnv4_preferable", route_map_out_vpnv4_preferable)
         pulumi.set(__self__, "route_reflector_client", route_reflector_client)
         pulumi.set(__self__, "route_reflector_client6", route_reflector_client6)
+        pulumi.set(__self__, "route_reflector_client_evpn", route_reflector_client_evpn)
         pulumi.set(__self__, "route_reflector_client_vpnv4", route_reflector_client_vpnv4)
         pulumi.set(__self__, "route_server_client", route_server_client)
         pulumi.set(__self__, "route_server_client6", route_server_client6)
+        pulumi.set(__self__, "route_server_client_evpn", route_server_client_evpn)
         pulumi.set(__self__, "route_server_client_vpnv4", route_server_client_vpnv4)
         pulumi.set(__self__, "send_community", send_community)
         pulumi.set(__self__, "send_community6", send_community6)
+        pulumi.set(__self__, "send_community_evpn", send_community_evpn)
         pulumi.set(__self__, "send_community_vpnv4", send_community_vpnv4)
         pulumi.set(__self__, "shutdown", shutdown)
         pulumi.set(__self__, "soft_reconfiguration", soft_reconfiguration)
         pulumi.set(__self__, "soft_reconfiguration6", soft_reconfiguration6)
+        pulumi.set(__self__, "soft_reconfiguration_evpn", soft_reconfiguration_evpn)
         pulumi.set(__self__, "soft_reconfiguration_vpnv4", soft_reconfiguration_vpnv4)
         pulumi.set(__self__, "stale_route", stale_route)
         pulumi.set(__self__, "strict_capability_match", strict_capability_match)
@@ -24475,6 +24942,11 @@ class GetRouterBgpNeighborResult(dict):
     @pulumi.getter
     def activate6(self) -> str:
         return pulumi.get(self, "activate6")
+
+    @property
+    @pulumi.getter(name="activateEvpn")
+    def activate_evpn(self) -> str:
+        return pulumi.get(self, "activate_evpn")
 
     @property
     @pulumi.getter(name="activateVpnv4")
@@ -24537,6 +25009,21 @@ class GetRouterBgpNeighborResult(dict):
         return pulumi.get(self, "allowas_in_enable6")
 
     @property
+    @pulumi.getter(name="allowasInEnableEvpn")
+    def allowas_in_enable_evpn(self) -> str:
+        return pulumi.get(self, "allowas_in_enable_evpn")
+
+    @property
+    @pulumi.getter(name="allowasInEnableVpnv4")
+    def allowas_in_enable_vpnv4(self) -> str:
+        return pulumi.get(self, "allowas_in_enable_vpnv4")
+
+    @property
+    @pulumi.getter(name="allowasInEvpn")
+    def allowas_in_evpn(self) -> int:
+        return pulumi.get(self, "allowas_in_evpn")
+
+    @property
     @pulumi.getter(name="allowasInVpnv4")
     def allowas_in_vpnv4(self) -> int:
         return pulumi.get(self, "allowas_in_vpnv4")
@@ -24595,6 +25082,11 @@ class GetRouterBgpNeighborResult(dict):
     @pulumi.getter(name="capabilityGracefulRestart6")
     def capability_graceful_restart6(self) -> str:
         return pulumi.get(self, "capability_graceful_restart6")
+
+    @property
+    @pulumi.getter(name="capabilityGracefulRestartEvpn")
+    def capability_graceful_restart_evpn(self) -> str:
+        return pulumi.get(self, "capability_graceful_restart_evpn")
 
     @property
     @pulumi.getter(name="capabilityGracefulRestartVpnv4")
@@ -24762,6 +25254,11 @@ class GetRouterBgpNeighborResult(dict):
         return pulumi.get(self, "maximum_prefix6")
 
     @property
+    @pulumi.getter(name="maximumPrefixEvpn")
+    def maximum_prefix_evpn(self) -> int:
+        return pulumi.get(self, "maximum_prefix_evpn")
+
+    @property
     @pulumi.getter(name="maximumPrefixThreshold")
     def maximum_prefix_threshold(self) -> int:
         return pulumi.get(self, "maximum_prefix_threshold")
@@ -24770,6 +25267,11 @@ class GetRouterBgpNeighborResult(dict):
     @pulumi.getter(name="maximumPrefixThreshold6")
     def maximum_prefix_threshold6(self) -> int:
         return pulumi.get(self, "maximum_prefix_threshold6")
+
+    @property
+    @pulumi.getter(name="maximumPrefixThresholdEvpn")
+    def maximum_prefix_threshold_evpn(self) -> int:
+        return pulumi.get(self, "maximum_prefix_threshold_evpn")
 
     @property
     @pulumi.getter(name="maximumPrefixThresholdVpnv4")
@@ -24790,6 +25292,11 @@ class GetRouterBgpNeighborResult(dict):
     @pulumi.getter(name="maximumPrefixWarningOnly6")
     def maximum_prefix_warning_only6(self) -> str:
         return pulumi.get(self, "maximum_prefix_warning_only6")
+
+    @property
+    @pulumi.getter(name="maximumPrefixWarningOnlyEvpn")
+    def maximum_prefix_warning_only_evpn(self) -> str:
+        return pulumi.get(self, "maximum_prefix_warning_only_evpn")
 
     @property
     @pulumi.getter(name="maximumPrefixWarningOnlyVpnv4")
@@ -24882,6 +25389,11 @@ class GetRouterBgpNeighborResult(dict):
         return pulumi.get(self, "remove_private_as6")
 
     @property
+    @pulumi.getter(name="removePrivateAsEvpn")
+    def remove_private_as_evpn(self) -> str:
+        return pulumi.get(self, "remove_private_as_evpn")
+
+    @property
     @pulumi.getter(name="removePrivateAsVpnv4")
     def remove_private_as_vpnv4(self) -> str:
         return pulumi.get(self, "remove_private_as_vpnv4")
@@ -24907,6 +25419,11 @@ class GetRouterBgpNeighborResult(dict):
         return pulumi.get(self, "route_map_in6")
 
     @property
+    @pulumi.getter(name="routeMapInEvpn")
+    def route_map_in_evpn(self) -> str:
+        return pulumi.get(self, "route_map_in_evpn")
+
+    @property
     @pulumi.getter(name="routeMapInVpnv4")
     def route_map_in_vpnv4(self) -> str:
         return pulumi.get(self, "route_map_in_vpnv4")
@@ -24925,6 +25442,11 @@ class GetRouterBgpNeighborResult(dict):
     @pulumi.getter(name="routeMapOut6Preferable")
     def route_map_out6_preferable(self) -> str:
         return pulumi.get(self, "route_map_out6_preferable")
+
+    @property
+    @pulumi.getter(name="routeMapOutEvpn")
+    def route_map_out_evpn(self) -> str:
+        return pulumi.get(self, "route_map_out_evpn")
 
     @property
     @pulumi.getter(name="routeMapOutPreferable")
@@ -24952,6 +25474,11 @@ class GetRouterBgpNeighborResult(dict):
         return pulumi.get(self, "route_reflector_client6")
 
     @property
+    @pulumi.getter(name="routeReflectorClientEvpn")
+    def route_reflector_client_evpn(self) -> str:
+        return pulumi.get(self, "route_reflector_client_evpn")
+
+    @property
     @pulumi.getter(name="routeReflectorClientVpnv4")
     def route_reflector_client_vpnv4(self) -> str:
         return pulumi.get(self, "route_reflector_client_vpnv4")
@@ -24967,6 +25494,11 @@ class GetRouterBgpNeighborResult(dict):
         return pulumi.get(self, "route_server_client6")
 
     @property
+    @pulumi.getter(name="routeServerClientEvpn")
+    def route_server_client_evpn(self) -> str:
+        return pulumi.get(self, "route_server_client_evpn")
+
+    @property
     @pulumi.getter(name="routeServerClientVpnv4")
     def route_server_client_vpnv4(self) -> str:
         return pulumi.get(self, "route_server_client_vpnv4")
@@ -24980,6 +25512,11 @@ class GetRouterBgpNeighborResult(dict):
     @pulumi.getter(name="sendCommunity6")
     def send_community6(self) -> str:
         return pulumi.get(self, "send_community6")
+
+    @property
+    @pulumi.getter(name="sendCommunityEvpn")
+    def send_community_evpn(self) -> str:
+        return pulumi.get(self, "send_community_evpn")
 
     @property
     @pulumi.getter(name="sendCommunityVpnv4")
@@ -25000,6 +25537,11 @@ class GetRouterBgpNeighborResult(dict):
     @pulumi.getter(name="softReconfiguration6")
     def soft_reconfiguration6(self) -> str:
         return pulumi.get(self, "soft_reconfiguration6")
+
+    @property
+    @pulumi.getter(name="softReconfigurationEvpn")
+    def soft_reconfiguration_evpn(self) -> str:
+        return pulumi.get(self, "soft_reconfiguration_evpn")
 
     @property
     @pulumi.getter(name="softReconfigurationVpnv4")
@@ -25094,6 +25636,7 @@ class GetRouterBgpNeighborGroupResult(dict):
     def __init__(__self__, *,
                  activate: str,
                  activate6: str,
+                 activate_evpn: str,
                  activate_vpnv4: str,
                  additional_path: str,
                  additional_path6: str,
@@ -25106,6 +25649,9 @@ class GetRouterBgpNeighborGroupResult(dict):
                  allowas_in6: int,
                  allowas_in_enable: str,
                  allowas_in_enable6: str,
+                 allowas_in_enable_evpn: str,
+                 allowas_in_enable_vpnv4: str,
+                 allowas_in_evpn: int,
                  allowas_in_vpnv4: int,
                  as_override: str,
                  as_override6: str,
@@ -25118,6 +25664,7 @@ class GetRouterBgpNeighborGroupResult(dict):
                  capability_dynamic: str,
                  capability_graceful_restart: str,
                  capability_graceful_restart6: str,
+                 capability_graceful_restart_evpn: str,
                  capability_graceful_restart_vpnv4: str,
                  capability_orf: str,
                  capability_orf6: str,
@@ -25148,12 +25695,15 @@ class GetRouterBgpNeighborGroupResult(dict):
                  local_as_replace_as: str,
                  maximum_prefix: int,
                  maximum_prefix6: int,
+                 maximum_prefix_evpn: int,
                  maximum_prefix_threshold: int,
                  maximum_prefix_threshold6: int,
+                 maximum_prefix_threshold_evpn: int,
                  maximum_prefix_threshold_vpnv4: int,
                  maximum_prefix_vpnv4: int,
                  maximum_prefix_warning_only: str,
                  maximum_prefix_warning_only6: str,
+                 maximum_prefix_warning_only_evpn: str,
                  maximum_prefix_warning_only_vpnv4: str,
                  name: str,
                  next_hop_self: str,
@@ -25163,6 +25713,7 @@ class GetRouterBgpNeighborGroupResult(dict):
                  next_hop_self_vpnv4: str,
                  override_capability: str,
                  passive: str,
+                 password: str,
                  prefix_list_in: str,
                  prefix_list_in6: str,
                  prefix_list_in_vpnv4: str,
@@ -25172,30 +25723,37 @@ class GetRouterBgpNeighborGroupResult(dict):
                  remote_as: int,
                  remove_private_as: str,
                  remove_private_as6: str,
+                 remove_private_as_evpn: str,
                  remove_private_as_vpnv4: str,
                  restart_time: int,
                  retain_stale_time: int,
                  route_map_in: str,
                  route_map_in6: str,
+                 route_map_in_evpn: str,
                  route_map_in_vpnv4: str,
                  route_map_out: str,
                  route_map_out6: str,
                  route_map_out6_preferable: str,
+                 route_map_out_evpn: str,
                  route_map_out_preferable: str,
                  route_map_out_vpnv4: str,
                  route_map_out_vpnv4_preferable: str,
                  route_reflector_client: str,
                  route_reflector_client6: str,
+                 route_reflector_client_evpn: str,
                  route_reflector_client_vpnv4: str,
                  route_server_client: str,
                  route_server_client6: str,
+                 route_server_client_evpn: str,
                  route_server_client_vpnv4: str,
                  send_community: str,
                  send_community6: str,
+                 send_community_evpn: str,
                  send_community_vpnv4: str,
                  shutdown: str,
                  soft_reconfiguration: str,
                  soft_reconfiguration6: str,
+                 soft_reconfiguration_evpn: str,
                  soft_reconfiguration_vpnv4: str,
                  stale_route: str,
                  strict_capability_match: str,
@@ -25205,6 +25763,7 @@ class GetRouterBgpNeighborGroupResult(dict):
                  weight: int):
         pulumi.set(__self__, "activate", activate)
         pulumi.set(__self__, "activate6", activate6)
+        pulumi.set(__self__, "activate_evpn", activate_evpn)
         pulumi.set(__self__, "activate_vpnv4", activate_vpnv4)
         pulumi.set(__self__, "additional_path", additional_path)
         pulumi.set(__self__, "additional_path6", additional_path6)
@@ -25217,6 +25776,9 @@ class GetRouterBgpNeighborGroupResult(dict):
         pulumi.set(__self__, "allowas_in6", allowas_in6)
         pulumi.set(__self__, "allowas_in_enable", allowas_in_enable)
         pulumi.set(__self__, "allowas_in_enable6", allowas_in_enable6)
+        pulumi.set(__self__, "allowas_in_enable_evpn", allowas_in_enable_evpn)
+        pulumi.set(__self__, "allowas_in_enable_vpnv4", allowas_in_enable_vpnv4)
+        pulumi.set(__self__, "allowas_in_evpn", allowas_in_evpn)
         pulumi.set(__self__, "allowas_in_vpnv4", allowas_in_vpnv4)
         pulumi.set(__self__, "as_override", as_override)
         pulumi.set(__self__, "as_override6", as_override6)
@@ -25229,6 +25791,7 @@ class GetRouterBgpNeighborGroupResult(dict):
         pulumi.set(__self__, "capability_dynamic", capability_dynamic)
         pulumi.set(__self__, "capability_graceful_restart", capability_graceful_restart)
         pulumi.set(__self__, "capability_graceful_restart6", capability_graceful_restart6)
+        pulumi.set(__self__, "capability_graceful_restart_evpn", capability_graceful_restart_evpn)
         pulumi.set(__self__, "capability_graceful_restart_vpnv4", capability_graceful_restart_vpnv4)
         pulumi.set(__self__, "capability_orf", capability_orf)
         pulumi.set(__self__, "capability_orf6", capability_orf6)
@@ -25259,12 +25822,15 @@ class GetRouterBgpNeighborGroupResult(dict):
         pulumi.set(__self__, "local_as_replace_as", local_as_replace_as)
         pulumi.set(__self__, "maximum_prefix", maximum_prefix)
         pulumi.set(__self__, "maximum_prefix6", maximum_prefix6)
+        pulumi.set(__self__, "maximum_prefix_evpn", maximum_prefix_evpn)
         pulumi.set(__self__, "maximum_prefix_threshold", maximum_prefix_threshold)
         pulumi.set(__self__, "maximum_prefix_threshold6", maximum_prefix_threshold6)
+        pulumi.set(__self__, "maximum_prefix_threshold_evpn", maximum_prefix_threshold_evpn)
         pulumi.set(__self__, "maximum_prefix_threshold_vpnv4", maximum_prefix_threshold_vpnv4)
         pulumi.set(__self__, "maximum_prefix_vpnv4", maximum_prefix_vpnv4)
         pulumi.set(__self__, "maximum_prefix_warning_only", maximum_prefix_warning_only)
         pulumi.set(__self__, "maximum_prefix_warning_only6", maximum_prefix_warning_only6)
+        pulumi.set(__self__, "maximum_prefix_warning_only_evpn", maximum_prefix_warning_only_evpn)
         pulumi.set(__self__, "maximum_prefix_warning_only_vpnv4", maximum_prefix_warning_only_vpnv4)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "next_hop_self", next_hop_self)
@@ -25274,6 +25840,7 @@ class GetRouterBgpNeighborGroupResult(dict):
         pulumi.set(__self__, "next_hop_self_vpnv4", next_hop_self_vpnv4)
         pulumi.set(__self__, "override_capability", override_capability)
         pulumi.set(__self__, "passive", passive)
+        pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "prefix_list_in", prefix_list_in)
         pulumi.set(__self__, "prefix_list_in6", prefix_list_in6)
         pulumi.set(__self__, "prefix_list_in_vpnv4", prefix_list_in_vpnv4)
@@ -25283,30 +25850,37 @@ class GetRouterBgpNeighborGroupResult(dict):
         pulumi.set(__self__, "remote_as", remote_as)
         pulumi.set(__self__, "remove_private_as", remove_private_as)
         pulumi.set(__self__, "remove_private_as6", remove_private_as6)
+        pulumi.set(__self__, "remove_private_as_evpn", remove_private_as_evpn)
         pulumi.set(__self__, "remove_private_as_vpnv4", remove_private_as_vpnv4)
         pulumi.set(__self__, "restart_time", restart_time)
         pulumi.set(__self__, "retain_stale_time", retain_stale_time)
         pulumi.set(__self__, "route_map_in", route_map_in)
         pulumi.set(__self__, "route_map_in6", route_map_in6)
+        pulumi.set(__self__, "route_map_in_evpn", route_map_in_evpn)
         pulumi.set(__self__, "route_map_in_vpnv4", route_map_in_vpnv4)
         pulumi.set(__self__, "route_map_out", route_map_out)
         pulumi.set(__self__, "route_map_out6", route_map_out6)
         pulumi.set(__self__, "route_map_out6_preferable", route_map_out6_preferable)
+        pulumi.set(__self__, "route_map_out_evpn", route_map_out_evpn)
         pulumi.set(__self__, "route_map_out_preferable", route_map_out_preferable)
         pulumi.set(__self__, "route_map_out_vpnv4", route_map_out_vpnv4)
         pulumi.set(__self__, "route_map_out_vpnv4_preferable", route_map_out_vpnv4_preferable)
         pulumi.set(__self__, "route_reflector_client", route_reflector_client)
         pulumi.set(__self__, "route_reflector_client6", route_reflector_client6)
+        pulumi.set(__self__, "route_reflector_client_evpn", route_reflector_client_evpn)
         pulumi.set(__self__, "route_reflector_client_vpnv4", route_reflector_client_vpnv4)
         pulumi.set(__self__, "route_server_client", route_server_client)
         pulumi.set(__self__, "route_server_client6", route_server_client6)
+        pulumi.set(__self__, "route_server_client_evpn", route_server_client_evpn)
         pulumi.set(__self__, "route_server_client_vpnv4", route_server_client_vpnv4)
         pulumi.set(__self__, "send_community", send_community)
         pulumi.set(__self__, "send_community6", send_community6)
+        pulumi.set(__self__, "send_community_evpn", send_community_evpn)
         pulumi.set(__self__, "send_community_vpnv4", send_community_vpnv4)
         pulumi.set(__self__, "shutdown", shutdown)
         pulumi.set(__self__, "soft_reconfiguration", soft_reconfiguration)
         pulumi.set(__self__, "soft_reconfiguration6", soft_reconfiguration6)
+        pulumi.set(__self__, "soft_reconfiguration_evpn", soft_reconfiguration_evpn)
         pulumi.set(__self__, "soft_reconfiguration_vpnv4", soft_reconfiguration_vpnv4)
         pulumi.set(__self__, "stale_route", stale_route)
         pulumi.set(__self__, "strict_capability_match", strict_capability_match)
@@ -25324,6 +25898,11 @@ class GetRouterBgpNeighborGroupResult(dict):
     @pulumi.getter
     def activate6(self) -> str:
         return pulumi.get(self, "activate6")
+
+    @property
+    @pulumi.getter(name="activateEvpn")
+    def activate_evpn(self) -> str:
+        return pulumi.get(self, "activate_evpn")
 
     @property
     @pulumi.getter(name="activateVpnv4")
@@ -25386,6 +25965,21 @@ class GetRouterBgpNeighborGroupResult(dict):
         return pulumi.get(self, "allowas_in_enable6")
 
     @property
+    @pulumi.getter(name="allowasInEnableEvpn")
+    def allowas_in_enable_evpn(self) -> str:
+        return pulumi.get(self, "allowas_in_enable_evpn")
+
+    @property
+    @pulumi.getter(name="allowasInEnableVpnv4")
+    def allowas_in_enable_vpnv4(self) -> str:
+        return pulumi.get(self, "allowas_in_enable_vpnv4")
+
+    @property
+    @pulumi.getter(name="allowasInEvpn")
+    def allowas_in_evpn(self) -> int:
+        return pulumi.get(self, "allowas_in_evpn")
+
+    @property
     @pulumi.getter(name="allowasInVpnv4")
     def allowas_in_vpnv4(self) -> int:
         return pulumi.get(self, "allowas_in_vpnv4")
@@ -25444,6 +26038,11 @@ class GetRouterBgpNeighborGroupResult(dict):
     @pulumi.getter(name="capabilityGracefulRestart6")
     def capability_graceful_restart6(self) -> str:
         return pulumi.get(self, "capability_graceful_restart6")
+
+    @property
+    @pulumi.getter(name="capabilityGracefulRestartEvpn")
+    def capability_graceful_restart_evpn(self) -> str:
+        return pulumi.get(self, "capability_graceful_restart_evpn")
 
     @property
     @pulumi.getter(name="capabilityGracefulRestartVpnv4")
@@ -25596,6 +26195,11 @@ class GetRouterBgpNeighborGroupResult(dict):
         return pulumi.get(self, "maximum_prefix6")
 
     @property
+    @pulumi.getter(name="maximumPrefixEvpn")
+    def maximum_prefix_evpn(self) -> int:
+        return pulumi.get(self, "maximum_prefix_evpn")
+
+    @property
     @pulumi.getter(name="maximumPrefixThreshold")
     def maximum_prefix_threshold(self) -> int:
         return pulumi.get(self, "maximum_prefix_threshold")
@@ -25604,6 +26208,11 @@ class GetRouterBgpNeighborGroupResult(dict):
     @pulumi.getter(name="maximumPrefixThreshold6")
     def maximum_prefix_threshold6(self) -> int:
         return pulumi.get(self, "maximum_prefix_threshold6")
+
+    @property
+    @pulumi.getter(name="maximumPrefixThresholdEvpn")
+    def maximum_prefix_threshold_evpn(self) -> int:
+        return pulumi.get(self, "maximum_prefix_threshold_evpn")
 
     @property
     @pulumi.getter(name="maximumPrefixThresholdVpnv4")
@@ -25624,6 +26233,11 @@ class GetRouterBgpNeighborGroupResult(dict):
     @pulumi.getter(name="maximumPrefixWarningOnly6")
     def maximum_prefix_warning_only6(self) -> str:
         return pulumi.get(self, "maximum_prefix_warning_only6")
+
+    @property
+    @pulumi.getter(name="maximumPrefixWarningOnlyEvpn")
+    def maximum_prefix_warning_only_evpn(self) -> str:
+        return pulumi.get(self, "maximum_prefix_warning_only_evpn")
 
     @property
     @pulumi.getter(name="maximumPrefixWarningOnlyVpnv4")
@@ -25671,6 +26285,11 @@ class GetRouterBgpNeighborGroupResult(dict):
         return pulumi.get(self, "passive")
 
     @property
+    @pulumi.getter
+    def password(self) -> str:
+        return pulumi.get(self, "password")
+
+    @property
     @pulumi.getter(name="prefixListIn")
     def prefix_list_in(self) -> str:
         return pulumi.get(self, "prefix_list_in")
@@ -25716,6 +26335,11 @@ class GetRouterBgpNeighborGroupResult(dict):
         return pulumi.get(self, "remove_private_as6")
 
     @property
+    @pulumi.getter(name="removePrivateAsEvpn")
+    def remove_private_as_evpn(self) -> str:
+        return pulumi.get(self, "remove_private_as_evpn")
+
+    @property
     @pulumi.getter(name="removePrivateAsVpnv4")
     def remove_private_as_vpnv4(self) -> str:
         return pulumi.get(self, "remove_private_as_vpnv4")
@@ -25741,6 +26365,11 @@ class GetRouterBgpNeighborGroupResult(dict):
         return pulumi.get(self, "route_map_in6")
 
     @property
+    @pulumi.getter(name="routeMapInEvpn")
+    def route_map_in_evpn(self) -> str:
+        return pulumi.get(self, "route_map_in_evpn")
+
+    @property
     @pulumi.getter(name="routeMapInVpnv4")
     def route_map_in_vpnv4(self) -> str:
         return pulumi.get(self, "route_map_in_vpnv4")
@@ -25759,6 +26388,11 @@ class GetRouterBgpNeighborGroupResult(dict):
     @pulumi.getter(name="routeMapOut6Preferable")
     def route_map_out6_preferable(self) -> str:
         return pulumi.get(self, "route_map_out6_preferable")
+
+    @property
+    @pulumi.getter(name="routeMapOutEvpn")
+    def route_map_out_evpn(self) -> str:
+        return pulumi.get(self, "route_map_out_evpn")
 
     @property
     @pulumi.getter(name="routeMapOutPreferable")
@@ -25786,6 +26420,11 @@ class GetRouterBgpNeighborGroupResult(dict):
         return pulumi.get(self, "route_reflector_client6")
 
     @property
+    @pulumi.getter(name="routeReflectorClientEvpn")
+    def route_reflector_client_evpn(self) -> str:
+        return pulumi.get(self, "route_reflector_client_evpn")
+
+    @property
     @pulumi.getter(name="routeReflectorClientVpnv4")
     def route_reflector_client_vpnv4(self) -> str:
         return pulumi.get(self, "route_reflector_client_vpnv4")
@@ -25801,6 +26440,11 @@ class GetRouterBgpNeighborGroupResult(dict):
         return pulumi.get(self, "route_server_client6")
 
     @property
+    @pulumi.getter(name="routeServerClientEvpn")
+    def route_server_client_evpn(self) -> str:
+        return pulumi.get(self, "route_server_client_evpn")
+
+    @property
     @pulumi.getter(name="routeServerClientVpnv4")
     def route_server_client_vpnv4(self) -> str:
         return pulumi.get(self, "route_server_client_vpnv4")
@@ -25814,6 +26458,11 @@ class GetRouterBgpNeighborGroupResult(dict):
     @pulumi.getter(name="sendCommunity6")
     def send_community6(self) -> str:
         return pulumi.get(self, "send_community6")
+
+    @property
+    @pulumi.getter(name="sendCommunityEvpn")
+    def send_community_evpn(self) -> str:
+        return pulumi.get(self, "send_community_evpn")
 
     @property
     @pulumi.getter(name="sendCommunityVpnv4")
@@ -25834,6 +26483,11 @@ class GetRouterBgpNeighborGroupResult(dict):
     @pulumi.getter(name="softReconfiguration6")
     def soft_reconfiguration6(self) -> str:
         return pulumi.get(self, "soft_reconfiguration6")
+
+    @property
+    @pulumi.getter(name="softReconfigurationEvpn")
+    def soft_reconfiguration_evpn(self) -> str:
+        return pulumi.get(self, "soft_reconfiguration_evpn")
 
     @property
     @pulumi.getter(name="softReconfigurationVpnv4")
@@ -27081,6 +27735,7 @@ class GetRouterMulticastPimSmGlobalResult(dict):
                  join_prune_holdtime: int,
                  message_interval: int,
                  null_register_retries: int,
+                 pim_use_sdwan: str,
                  register_rate_limit: int,
                  register_rp_reachability: str,
                  register_source: str,
@@ -27107,6 +27762,7 @@ class GetRouterMulticastPimSmGlobalResult(dict):
         pulumi.set(__self__, "join_prune_holdtime", join_prune_holdtime)
         pulumi.set(__self__, "message_interval", message_interval)
         pulumi.set(__self__, "null_register_retries", null_register_retries)
+        pulumi.set(__self__, "pim_use_sdwan", pim_use_sdwan)
         pulumi.set(__self__, "register_rate_limit", register_rate_limit)
         pulumi.set(__self__, "register_rp_reachability", register_rp_reachability)
         pulumi.set(__self__, "register_source", register_source)
@@ -27189,6 +27845,11 @@ class GetRouterMulticastPimSmGlobalResult(dict):
     @pulumi.getter(name="nullRegisterRetries")
     def null_register_retries(self) -> int:
         return pulumi.get(self, "null_register_retries")
+
+    @property
+    @pulumi.getter(name="pimUseSdwan")
+    def pim_use_sdwan(self) -> str:
+        return pulumi.get(self, "pim_use_sdwan")
 
     @property
     @pulumi.getter(name="registerRateLimit")
@@ -29291,6 +29952,8 @@ class GetRouterRouteMapRuleResult(dict):
                  match_as_path: str,
                  match_community: str,
                  match_community_exact: str,
+                 match_extcommunity: str,
+                 match_extcommunity_exact: str,
                  match_flags: int,
                  match_interface: str,
                  match_ip6_address: str,
@@ -29321,6 +29984,7 @@ class GetRouterRouteMapRuleResult(dict):
                  set_ip6_nexthop: str,
                  set_ip6_nexthop_local: str,
                  set_ip_nexthop: str,
+                 set_ip_prefsrc: str,
                  set_local_preference: int,
                  set_metric: int,
                  set_metric_type: str,
@@ -29335,6 +29999,8 @@ class GetRouterRouteMapRuleResult(dict):
         pulumi.set(__self__, "match_as_path", match_as_path)
         pulumi.set(__self__, "match_community", match_community)
         pulumi.set(__self__, "match_community_exact", match_community_exact)
+        pulumi.set(__self__, "match_extcommunity", match_extcommunity)
+        pulumi.set(__self__, "match_extcommunity_exact", match_extcommunity_exact)
         pulumi.set(__self__, "match_flags", match_flags)
         pulumi.set(__self__, "match_interface", match_interface)
         pulumi.set(__self__, "match_ip6_address", match_ip6_address)
@@ -29365,6 +30031,7 @@ class GetRouterRouteMapRuleResult(dict):
         pulumi.set(__self__, "set_ip6_nexthop", set_ip6_nexthop)
         pulumi.set(__self__, "set_ip6_nexthop_local", set_ip6_nexthop_local)
         pulumi.set(__self__, "set_ip_nexthop", set_ip_nexthop)
+        pulumi.set(__self__, "set_ip_prefsrc", set_ip_prefsrc)
         pulumi.set(__self__, "set_local_preference", set_local_preference)
         pulumi.set(__self__, "set_metric", set_metric)
         pulumi.set(__self__, "set_metric_type", set_metric_type)
@@ -29399,6 +30066,16 @@ class GetRouterRouteMapRuleResult(dict):
     @pulumi.getter(name="matchCommunityExact")
     def match_community_exact(self) -> str:
         return pulumi.get(self, "match_community_exact")
+
+    @property
+    @pulumi.getter(name="matchExtcommunity")
+    def match_extcommunity(self) -> str:
+        return pulumi.get(self, "match_extcommunity")
+
+    @property
+    @pulumi.getter(name="matchExtcommunityExact")
+    def match_extcommunity_exact(self) -> str:
+        return pulumi.get(self, "match_extcommunity_exact")
 
     @property
     @pulumi.getter(name="matchFlags")
@@ -29549,6 +30226,11 @@ class GetRouterRouteMapRuleResult(dict):
     @pulumi.getter(name="setIpNexthop")
     def set_ip_nexthop(self) -> str:
         return pulumi.get(self, "set_ip_nexthop")
+
+    @property
+    @pulumi.getter(name="setIpPrefsrc")
+    def set_ip_prefsrc(self) -> str:
+        return pulumi.get(self, "set_ip_prefsrc")
 
     @property
     @pulumi.getter(name="setLocalPreference")
@@ -29857,6 +30539,7 @@ class GetSystemAccprofileUtmgrpPermissionResult(dict):
     def __init__(__self__, *,
                  antivirus: str,
                  application_control: str,
+                 data_leak_prevention: str,
                  data_loss_prevention: str,
                  dnsfilter: str,
                  emailfilter: str,
@@ -29871,6 +30554,7 @@ class GetSystemAccprofileUtmgrpPermissionResult(dict):
                  webfilter: str):
         pulumi.set(__self__, "antivirus", antivirus)
         pulumi.set(__self__, "application_control", application_control)
+        pulumi.set(__self__, "data_leak_prevention", data_leak_prevention)
         pulumi.set(__self__, "data_loss_prevention", data_loss_prevention)
         pulumi.set(__self__, "dnsfilter", dnsfilter)
         pulumi.set(__self__, "emailfilter", emailfilter)
@@ -29893,6 +30577,11 @@ class GetSystemAccprofileUtmgrpPermissionResult(dict):
     @pulumi.getter(name="applicationControl")
     def application_control(self) -> str:
         return pulumi.get(self, "application_control")
+
+    @property
+    @pulumi.getter(name="dataLeakPrevention")
+    def data_leak_prevention(self) -> str:
+        return pulumi.get(self, "data_leak_prevention")
 
     @property
     @pulumi.getter(name="dataLossPrevention")
@@ -30556,10 +31245,12 @@ class GetSystemCsfFabricConnectorResult(dict):
     def __init__(__self__, *,
                  accprofile: str,
                  configuration_write_access: str,
-                 serial: str):
+                 serial: str,
+                 vdoms: Sequence['outputs.GetSystemCsfFabricConnectorVdomResult']):
         pulumi.set(__self__, "accprofile", accprofile)
         pulumi.set(__self__, "configuration_write_access", configuration_write_access)
         pulumi.set(__self__, "serial", serial)
+        pulumi.set(__self__, "vdoms", vdoms)
 
     @property
     @pulumi.getter
@@ -30575,6 +31266,23 @@ class GetSystemCsfFabricConnectorResult(dict):
     @pulumi.getter
     def serial(self) -> str:
         return pulumi.get(self, "serial")
+
+    @property
+    @pulumi.getter
+    def vdoms(self) -> Sequence['outputs.GetSystemCsfFabricConnectorVdomResult']:
+        return pulumi.get(self, "vdoms")
+
+
+@pulumi.output_type
+class GetSystemCsfFabricConnectorVdomResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
 
 
 @pulumi.output_type
@@ -30639,6 +31347,7 @@ class GetSystemCsfTrustedListResult(dict):
                  certificate: str,
                  downstream_authorization: str,
                  ha_members: str,
+                 index: int,
                  name: str,
                  serial: str):
         pulumi.set(__self__, "action", action)
@@ -30646,6 +31355,7 @@ class GetSystemCsfTrustedListResult(dict):
         pulumi.set(__self__, "certificate", certificate)
         pulumi.set(__self__, "downstream_authorization", downstream_authorization)
         pulumi.set(__self__, "ha_members", ha_members)
+        pulumi.set(__self__, "index", index)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "serial", serial)
 
@@ -30673,6 +31383,11 @@ class GetSystemCsfTrustedListResult(dict):
     @pulumi.getter(name="haMembers")
     def ha_members(self) -> str:
         return pulumi.get(self, "ha_members")
+
+    @property
+    @pulumi.getter
+    def index(self) -> int:
+        return pulumi.get(self, "index")
 
     @property
     @pulumi.getter
@@ -30714,12 +31429,18 @@ class GetSystemDhcpServerExcludeRangeResult(dict):
     def __init__(__self__, *,
                  end_ip: str,
                  id: int,
+                 lease_time: int,
                  start_ip: str,
+                 uci_match: str,
+                 uci_strings: Sequence['outputs.GetSystemDhcpServerExcludeRangeUciStringResult'],
                  vci_match: str,
                  vci_strings: Sequence['outputs.GetSystemDhcpServerExcludeRangeVciStringResult']):
         pulumi.set(__self__, "end_ip", end_ip)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "lease_time", lease_time)
         pulumi.set(__self__, "start_ip", start_ip)
+        pulumi.set(__self__, "uci_match", uci_match)
+        pulumi.set(__self__, "uci_strings", uci_strings)
         pulumi.set(__self__, "vci_match", vci_match)
         pulumi.set(__self__, "vci_strings", vci_strings)
 
@@ -30734,9 +31455,24 @@ class GetSystemDhcpServerExcludeRangeResult(dict):
         return pulumi.get(self, "id")
 
     @property
+    @pulumi.getter(name="leaseTime")
+    def lease_time(self) -> int:
+        return pulumi.get(self, "lease_time")
+
+    @property
     @pulumi.getter(name="startIp")
     def start_ip(self) -> str:
         return pulumi.get(self, "start_ip")
+
+    @property
+    @pulumi.getter(name="uciMatch")
+    def uci_match(self) -> str:
+        return pulumi.get(self, "uci_match")
+
+    @property
+    @pulumi.getter(name="uciStrings")
+    def uci_strings(self) -> Sequence['outputs.GetSystemDhcpServerExcludeRangeUciStringResult']:
+        return pulumi.get(self, "uci_strings")
 
     @property
     @pulumi.getter(name="vciMatch")
@@ -30747,6 +31483,18 @@ class GetSystemDhcpServerExcludeRangeResult(dict):
     @pulumi.getter(name="vciStrings")
     def vci_strings(self) -> Sequence['outputs.GetSystemDhcpServerExcludeRangeVciStringResult']:
         return pulumi.get(self, "vci_strings")
+
+
+@pulumi.output_type
+class GetSystemDhcpServerExcludeRangeUciStringResult(dict):
+    def __init__(__self__, *,
+                 uci_string: str):
+        pulumi.set(__self__, "uci_string", uci_string)
+
+    @property
+    @pulumi.getter(name="uciString")
+    def uci_string(self) -> str:
+        return pulumi.get(self, "uci_string")
 
 
 @pulumi.output_type
@@ -30766,12 +31514,18 @@ class GetSystemDhcpServerIpRangeResult(dict):
     def __init__(__self__, *,
                  end_ip: str,
                  id: int,
+                 lease_time: int,
                  start_ip: str,
+                 uci_match: str,
+                 uci_strings: Sequence['outputs.GetSystemDhcpServerIpRangeUciStringResult'],
                  vci_match: str,
                  vci_strings: Sequence['outputs.GetSystemDhcpServerIpRangeVciStringResult']):
         pulumi.set(__self__, "end_ip", end_ip)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "lease_time", lease_time)
         pulumi.set(__self__, "start_ip", start_ip)
+        pulumi.set(__self__, "uci_match", uci_match)
+        pulumi.set(__self__, "uci_strings", uci_strings)
         pulumi.set(__self__, "vci_match", vci_match)
         pulumi.set(__self__, "vci_strings", vci_strings)
 
@@ -30786,9 +31540,24 @@ class GetSystemDhcpServerIpRangeResult(dict):
         return pulumi.get(self, "id")
 
     @property
+    @pulumi.getter(name="leaseTime")
+    def lease_time(self) -> int:
+        return pulumi.get(self, "lease_time")
+
+    @property
     @pulumi.getter(name="startIp")
     def start_ip(self) -> str:
         return pulumi.get(self, "start_ip")
+
+    @property
+    @pulumi.getter(name="uciMatch")
+    def uci_match(self) -> str:
+        return pulumi.get(self, "uci_match")
+
+    @property
+    @pulumi.getter(name="uciStrings")
+    def uci_strings(self) -> Sequence['outputs.GetSystemDhcpServerIpRangeUciStringResult']:
+        return pulumi.get(self, "uci_strings")
 
     @property
     @pulumi.getter(name="vciMatch")
@@ -30799,6 +31568,18 @@ class GetSystemDhcpServerIpRangeResult(dict):
     @pulumi.getter(name="vciStrings")
     def vci_strings(self) -> Sequence['outputs.GetSystemDhcpServerIpRangeVciStringResult']:
         return pulumi.get(self, "vci_strings")
+
+
+@pulumi.output_type
+class GetSystemDhcpServerIpRangeUciStringResult(dict):
+    def __init__(__self__, *,
+                 uci_string: str):
+        pulumi.set(__self__, "uci_string", uci_string)
+
+    @property
+    @pulumi.getter(name="uciString")
+    def uci_string(self) -> str:
+        return pulumi.get(self, "uci_string")
 
 
 @pulumi.output_type
@@ -30820,6 +31601,8 @@ class GetSystemDhcpServerOptionResult(dict):
                  id: int,
                  ip: str,
                  type: str,
+                 uci_match: str,
+                 uci_strings: Sequence['outputs.GetSystemDhcpServerOptionUciStringResult'],
                  value: str,
                  vci_match: str,
                  vci_strings: Sequence['outputs.GetSystemDhcpServerOptionVciStringResult']):
@@ -30827,6 +31610,8 @@ class GetSystemDhcpServerOptionResult(dict):
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "ip", ip)
         pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "uci_match", uci_match)
+        pulumi.set(__self__, "uci_strings", uci_strings)
         pulumi.set(__self__, "value", value)
         pulumi.set(__self__, "vci_match", vci_match)
         pulumi.set(__self__, "vci_strings", vci_strings)
@@ -30852,6 +31637,16 @@ class GetSystemDhcpServerOptionResult(dict):
         return pulumi.get(self, "type")
 
     @property
+    @pulumi.getter(name="uciMatch")
+    def uci_match(self) -> str:
+        return pulumi.get(self, "uci_match")
+
+    @property
+    @pulumi.getter(name="uciStrings")
+    def uci_strings(self) -> Sequence['outputs.GetSystemDhcpServerOptionUciStringResult']:
+        return pulumi.get(self, "uci_strings")
+
+    @property
     @pulumi.getter
     def value(self) -> str:
         return pulumi.get(self, "value")
@@ -30865,6 +31660,18 @@ class GetSystemDhcpServerOptionResult(dict):
     @pulumi.getter(name="vciStrings")
     def vci_strings(self) -> Sequence['outputs.GetSystemDhcpServerOptionVciStringResult']:
         return pulumi.get(self, "vci_strings")
+
+
+@pulumi.output_type
+class GetSystemDhcpServerOptionUciStringResult(dict):
+    def __init__(__self__, *,
+                 uci_string: str):
+        pulumi.set(__self__, "uci_string", uci_string)
+
+    @property
+    @pulumi.getter(name="uciString")
+    def uci_string(self) -> str:
+        return pulumi.get(self, "uci_string")
 
 
 @pulumi.output_type
@@ -31068,6 +31875,18 @@ class GetSystemDnsServerHostnameResult(dict):
     @pulumi.getter
     def hostname(self) -> str:
         return pulumi.get(self, "hostname")
+
+
+@pulumi.output_type
+class GetSystemGlobalInternetServiceDownloadListResult(dict):
+    def __init__(__self__, *,
+                 id: int):
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def id(self) -> int:
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type
@@ -31376,6 +32195,7 @@ class GetSystemInterfaceIpv6Result(dict):
                  dhcp6_prefix_hint_vlt: int,
                  dhcp6_relay_ip: str,
                  dhcp6_relay_service: str,
+                 dhcp6_relay_source_interface: str,
                  dhcp6_relay_type: str,
                  icmp6_send_redirect: str,
                  interface_identifier: str,
@@ -31422,6 +32242,7 @@ class GetSystemInterfaceIpv6Result(dict):
         pulumi.set(__self__, "dhcp6_prefix_hint_vlt", dhcp6_prefix_hint_vlt)
         pulumi.set(__self__, "dhcp6_relay_ip", dhcp6_relay_ip)
         pulumi.set(__self__, "dhcp6_relay_service", dhcp6_relay_service)
+        pulumi.set(__self__, "dhcp6_relay_source_interface", dhcp6_relay_source_interface)
         pulumi.set(__self__, "dhcp6_relay_type", dhcp6_relay_type)
         pulumi.set(__self__, "icmp6_send_redirect", icmp6_send_redirect)
         pulumi.set(__self__, "interface_identifier", interface_identifier)
@@ -31512,6 +32333,11 @@ class GetSystemInterfaceIpv6Result(dict):
     @pulumi.getter(name="dhcp6RelayService")
     def dhcp6_relay_service(self) -> str:
         return pulumi.get(self, "dhcp6_relay_service")
+
+    @property
+    @pulumi.getter(name="dhcp6RelaySourceInterface")
+    def dhcp6_relay_source_interface(self) -> str:
+        return pulumi.get(self, "dhcp6_relay_source_interface")
 
     @property
     @pulumi.getter(name="dhcp6RelayType")
@@ -31970,7 +32796,8 @@ class GetSystemInterfaceSecondaryipResult(dict):
                  ha_priority: int,
                  id: int,
                  ip: str,
-                 ping_serv_status: int):
+                 ping_serv_status: int,
+                 secip_relay_ip: str):
         pulumi.set(__self__, "allowaccess", allowaccess)
         pulumi.set(__self__, "detectprotocol", detectprotocol)
         pulumi.set(__self__, "detectserver", detectserver)
@@ -31979,6 +32806,7 @@ class GetSystemInterfaceSecondaryipResult(dict):
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "ip", ip)
         pulumi.set(__self__, "ping_serv_status", ping_serv_status)
+        pulumi.set(__self__, "secip_relay_ip", secip_relay_ip)
 
     @property
     @pulumi.getter
@@ -32019,6 +32847,11 @@ class GetSystemInterfaceSecondaryipResult(dict):
     @pulumi.getter(name="pingServStatus")
     def ping_serv_status(self) -> int:
         return pulumi.get(self, "ping_serv_status")
+
+    @property
+    @pulumi.getter(name="secipRelayIp")
+    def secip_relay_ip(self) -> str:
+        return pulumi.get(self, "secip_relay_ip")
 
 
 @pulumi.output_type
@@ -33347,6 +34180,18 @@ class GetSystemReplacemsgGroupWebproxyResult(dict):
 
 
 @pulumi.output_type
+class GetSystemSdnConnectorCompartmentListResult(dict):
+    def __init__(__self__, *,
+                 compartment_id: str):
+        pulumi.set(__self__, "compartment_id", compartment_id)
+
+    @property
+    @pulumi.getter(name="compartmentId")
+    def compartment_id(self) -> str:
+        return pulumi.get(self, "compartment_id")
+
+
+@pulumi.output_type
 class GetSystemSdnConnectorExternalAccountListResult(dict):
     def __init__(__self__, *,
                  external_id: str,
@@ -33489,6 +34334,18 @@ class GetSystemSdnConnectorNicIpResult(dict):
     @pulumi.getter(name="resourceGroup")
     def resource_group(self) -> str:
         return pulumi.get(self, "resource_group")
+
+
+@pulumi.output_type
+class GetSystemSdnConnectorOciRegionListResult(dict):
+    def __init__(__self__, *,
+                 region: str):
+        pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        return pulumi.get(self, "region")
 
 
 @pulumi.output_type
@@ -37471,6 +38328,8 @@ class LogThreatWeightMalware(dict):
             suggest = "fsa_malicious"
         elif key == "fsaMediumRisk":
             suggest = "fsa_medium_risk"
+        elif key == "inlineBlock":
+            suggest = "inline_block"
         elif key == "malwareList":
             suggest = "malware_list"
         elif key == "switchProto":
@@ -37507,6 +38366,7 @@ class LogThreatWeightMalware(dict):
                  fsa_high_risk: Optional[str] = None,
                  fsa_malicious: Optional[str] = None,
                  fsa_medium_risk: Optional[str] = None,
+                 inline_block: Optional[str] = None,
                  malware_list: Optional[str] = None,
                  mimefragmented: Optional[str] = None,
                  oversized: Optional[str] = None,
@@ -37537,6 +38397,8 @@ class LogThreatWeightMalware(dict):
             pulumi.set(__self__, "fsa_malicious", fsa_malicious)
         if fsa_medium_risk is not None:
             pulumi.set(__self__, "fsa_medium_risk", fsa_medium_risk)
+        if inline_block is not None:
+            pulumi.set(__self__, "inline_block", inline_block)
         if malware_list is not None:
             pulumi.set(__self__, "malware_list", malware_list)
         if mimefragmented is not None:
@@ -37608,6 +38470,11 @@ class LogThreatWeightMalware(dict):
     @pulumi.getter(name="fsaMediumRisk")
     def fsa_medium_risk(self) -> Optional[str]:
         return pulumi.get(self, "fsa_medium_risk")
+
+    @property
+    @pulumi.getter(name="inlineBlock")
+    def inline_block(self) -> Optional[str]:
+        return pulumi.get(self, "inline_block")
 
     @property
     @pulumi.getter(name="malwareList")
@@ -39549,7 +40416,9 @@ class RouterBgpNeighbor(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "activateVpnv4":
+        if key == "activateEvpn":
+            suggest = "activate_evpn"
+        elif key == "activateVpnv4":
             suggest = "activate_vpnv4"
         elif key == "additionalPath":
             suggest = "additional_path"
@@ -39573,6 +40442,12 @@ class RouterBgpNeighbor(dict):
             suggest = "allowas_in_enable"
         elif key == "allowasInEnable6":
             suggest = "allowas_in_enable6"
+        elif key == "allowasInEnableEvpn":
+            suggest = "allowas_in_enable_evpn"
+        elif key == "allowasInEnableVpnv4":
+            suggest = "allowas_in_enable_vpnv4"
+        elif key == "allowasInEvpn":
+            suggest = "allowas_in_evpn"
         elif key == "allowasInVpnv4":
             suggest = "allowas_in_vpnv4"
         elif key == "asOverride":
@@ -39595,6 +40470,8 @@ class RouterBgpNeighbor(dict):
             suggest = "capability_graceful_restart"
         elif key == "capabilityGracefulRestart6":
             suggest = "capability_graceful_restart6"
+        elif key == "capabilityGracefulRestartEvpn":
+            suggest = "capability_graceful_restart_evpn"
         elif key == "capabilityGracefulRestartVpnv4":
             suggest = "capability_graceful_restart_vpnv4"
         elif key == "capabilityOrf":
@@ -39655,10 +40532,14 @@ class RouterBgpNeighbor(dict):
             suggest = "maximum_prefix"
         elif key == "maximumPrefix6":
             suggest = "maximum_prefix6"
+        elif key == "maximumPrefixEvpn":
+            suggest = "maximum_prefix_evpn"
         elif key == "maximumPrefixThreshold":
             suggest = "maximum_prefix_threshold"
         elif key == "maximumPrefixThreshold6":
             suggest = "maximum_prefix_threshold6"
+        elif key == "maximumPrefixThresholdEvpn":
+            suggest = "maximum_prefix_threshold_evpn"
         elif key == "maximumPrefixThresholdVpnv4":
             suggest = "maximum_prefix_threshold_vpnv4"
         elif key == "maximumPrefixVpnv4":
@@ -39667,6 +40548,8 @@ class RouterBgpNeighbor(dict):
             suggest = "maximum_prefix_warning_only"
         elif key == "maximumPrefixWarningOnly6":
             suggest = "maximum_prefix_warning_only6"
+        elif key == "maximumPrefixWarningOnlyEvpn":
+            suggest = "maximum_prefix_warning_only_evpn"
         elif key == "maximumPrefixWarningOnlyVpnv4":
             suggest = "maximum_prefix_warning_only_vpnv4"
         elif key == "nextHopSelf":
@@ -39699,6 +40582,8 @@ class RouterBgpNeighbor(dict):
             suggest = "remove_private_as"
         elif key == "removePrivateAs6":
             suggest = "remove_private_as6"
+        elif key == "removePrivateAsEvpn":
+            suggest = "remove_private_as_evpn"
         elif key == "removePrivateAsVpnv4":
             suggest = "remove_private_as_vpnv4"
         elif key == "restartTime":
@@ -39709,6 +40594,8 @@ class RouterBgpNeighbor(dict):
             suggest = "route_map_in"
         elif key == "routeMapIn6":
             suggest = "route_map_in6"
+        elif key == "routeMapInEvpn":
+            suggest = "route_map_in_evpn"
         elif key == "routeMapInVpnv4":
             suggest = "route_map_in_vpnv4"
         elif key == "routeMapOut":
@@ -39717,6 +40604,8 @@ class RouterBgpNeighbor(dict):
             suggest = "route_map_out6"
         elif key == "routeMapOut6Preferable":
             suggest = "route_map_out6_preferable"
+        elif key == "routeMapOutEvpn":
+            suggest = "route_map_out_evpn"
         elif key == "routeMapOutPreferable":
             suggest = "route_map_out_preferable"
         elif key == "routeMapOutVpnv4":
@@ -39727,24 +40616,32 @@ class RouterBgpNeighbor(dict):
             suggest = "route_reflector_client"
         elif key == "routeReflectorClient6":
             suggest = "route_reflector_client6"
+        elif key == "routeReflectorClientEvpn":
+            suggest = "route_reflector_client_evpn"
         elif key == "routeReflectorClientVpnv4":
             suggest = "route_reflector_client_vpnv4"
         elif key == "routeServerClient":
             suggest = "route_server_client"
         elif key == "routeServerClient6":
             suggest = "route_server_client6"
+        elif key == "routeServerClientEvpn":
+            suggest = "route_server_client_evpn"
         elif key == "routeServerClientVpnv4":
             suggest = "route_server_client_vpnv4"
         elif key == "sendCommunity":
             suggest = "send_community"
         elif key == "sendCommunity6":
             suggest = "send_community6"
+        elif key == "sendCommunityEvpn":
+            suggest = "send_community_evpn"
         elif key == "sendCommunityVpnv4":
             suggest = "send_community_vpnv4"
         elif key == "softReconfiguration":
             suggest = "soft_reconfiguration"
         elif key == "softReconfiguration6":
             suggest = "soft_reconfiguration6"
+        elif key == "softReconfigurationEvpn":
+            suggest = "soft_reconfiguration_evpn"
         elif key == "softReconfigurationVpnv4":
             suggest = "soft_reconfiguration_vpnv4"
         elif key == "staleRoute":
@@ -39772,6 +40669,7 @@ class RouterBgpNeighbor(dict):
     def __init__(__self__, *,
                  activate: Optional[str] = None,
                  activate6: Optional[str] = None,
+                 activate_evpn: Optional[str] = None,
                  activate_vpnv4: Optional[str] = None,
                  additional_path: Optional[str] = None,
                  additional_path6: Optional[str] = None,
@@ -39784,6 +40682,9 @@ class RouterBgpNeighbor(dict):
                  allowas_in6: Optional[int] = None,
                  allowas_in_enable: Optional[str] = None,
                  allowas_in_enable6: Optional[str] = None,
+                 allowas_in_enable_evpn: Optional[str] = None,
+                 allowas_in_enable_vpnv4: Optional[str] = None,
+                 allowas_in_evpn: Optional[int] = None,
                  allowas_in_vpnv4: Optional[int] = None,
                  as_override: Optional[str] = None,
                  as_override6: Optional[str] = None,
@@ -39796,6 +40697,7 @@ class RouterBgpNeighbor(dict):
                  capability_dynamic: Optional[str] = None,
                  capability_graceful_restart: Optional[str] = None,
                  capability_graceful_restart6: Optional[str] = None,
+                 capability_graceful_restart_evpn: Optional[str] = None,
                  capability_graceful_restart_vpnv4: Optional[str] = None,
                  capability_orf: Optional[str] = None,
                  capability_orf6: Optional[str] = None,
@@ -39829,12 +40731,15 @@ class RouterBgpNeighbor(dict):
                  local_as_replace_as: Optional[str] = None,
                  maximum_prefix: Optional[int] = None,
                  maximum_prefix6: Optional[int] = None,
+                 maximum_prefix_evpn: Optional[int] = None,
                  maximum_prefix_threshold: Optional[int] = None,
                  maximum_prefix_threshold6: Optional[int] = None,
+                 maximum_prefix_threshold_evpn: Optional[int] = None,
                  maximum_prefix_threshold_vpnv4: Optional[int] = None,
                  maximum_prefix_vpnv4: Optional[int] = None,
                  maximum_prefix_warning_only: Optional[str] = None,
                  maximum_prefix_warning_only6: Optional[str] = None,
+                 maximum_prefix_warning_only_evpn: Optional[str] = None,
                  maximum_prefix_warning_only_vpnv4: Optional[str] = None,
                  next_hop_self: Optional[str] = None,
                  next_hop_self6: Optional[str] = None,
@@ -39853,30 +40758,37 @@ class RouterBgpNeighbor(dict):
                  remote_as: Optional[int] = None,
                  remove_private_as: Optional[str] = None,
                  remove_private_as6: Optional[str] = None,
+                 remove_private_as_evpn: Optional[str] = None,
                  remove_private_as_vpnv4: Optional[str] = None,
                  restart_time: Optional[int] = None,
                  retain_stale_time: Optional[int] = None,
                  route_map_in: Optional[str] = None,
                  route_map_in6: Optional[str] = None,
+                 route_map_in_evpn: Optional[str] = None,
                  route_map_in_vpnv4: Optional[str] = None,
                  route_map_out: Optional[str] = None,
                  route_map_out6: Optional[str] = None,
                  route_map_out6_preferable: Optional[str] = None,
+                 route_map_out_evpn: Optional[str] = None,
                  route_map_out_preferable: Optional[str] = None,
                  route_map_out_vpnv4: Optional[str] = None,
                  route_map_out_vpnv4_preferable: Optional[str] = None,
                  route_reflector_client: Optional[str] = None,
                  route_reflector_client6: Optional[str] = None,
+                 route_reflector_client_evpn: Optional[str] = None,
                  route_reflector_client_vpnv4: Optional[str] = None,
                  route_server_client: Optional[str] = None,
                  route_server_client6: Optional[str] = None,
+                 route_server_client_evpn: Optional[str] = None,
                  route_server_client_vpnv4: Optional[str] = None,
                  send_community: Optional[str] = None,
                  send_community6: Optional[str] = None,
+                 send_community_evpn: Optional[str] = None,
                  send_community_vpnv4: Optional[str] = None,
                  shutdown: Optional[str] = None,
                  soft_reconfiguration: Optional[str] = None,
                  soft_reconfiguration6: Optional[str] = None,
+                 soft_reconfiguration_evpn: Optional[str] = None,
                  soft_reconfiguration_vpnv4: Optional[str] = None,
                  stale_route: Optional[str] = None,
                  strict_capability_match: Optional[str] = None,
@@ -39888,6 +40800,8 @@ class RouterBgpNeighbor(dict):
             pulumi.set(__self__, "activate", activate)
         if activate6 is not None:
             pulumi.set(__self__, "activate6", activate6)
+        if activate_evpn is not None:
+            pulumi.set(__self__, "activate_evpn", activate_evpn)
         if activate_vpnv4 is not None:
             pulumi.set(__self__, "activate_vpnv4", activate_vpnv4)
         if additional_path is not None:
@@ -39912,6 +40826,12 @@ class RouterBgpNeighbor(dict):
             pulumi.set(__self__, "allowas_in_enable", allowas_in_enable)
         if allowas_in_enable6 is not None:
             pulumi.set(__self__, "allowas_in_enable6", allowas_in_enable6)
+        if allowas_in_enable_evpn is not None:
+            pulumi.set(__self__, "allowas_in_enable_evpn", allowas_in_enable_evpn)
+        if allowas_in_enable_vpnv4 is not None:
+            pulumi.set(__self__, "allowas_in_enable_vpnv4", allowas_in_enable_vpnv4)
+        if allowas_in_evpn is not None:
+            pulumi.set(__self__, "allowas_in_evpn", allowas_in_evpn)
         if allowas_in_vpnv4 is not None:
             pulumi.set(__self__, "allowas_in_vpnv4", allowas_in_vpnv4)
         if as_override is not None:
@@ -39936,6 +40856,8 @@ class RouterBgpNeighbor(dict):
             pulumi.set(__self__, "capability_graceful_restart", capability_graceful_restart)
         if capability_graceful_restart6 is not None:
             pulumi.set(__self__, "capability_graceful_restart6", capability_graceful_restart6)
+        if capability_graceful_restart_evpn is not None:
+            pulumi.set(__self__, "capability_graceful_restart_evpn", capability_graceful_restart_evpn)
         if capability_graceful_restart_vpnv4 is not None:
             pulumi.set(__self__, "capability_graceful_restart_vpnv4", capability_graceful_restart_vpnv4)
         if capability_orf is not None:
@@ -40002,10 +40924,14 @@ class RouterBgpNeighbor(dict):
             pulumi.set(__self__, "maximum_prefix", maximum_prefix)
         if maximum_prefix6 is not None:
             pulumi.set(__self__, "maximum_prefix6", maximum_prefix6)
+        if maximum_prefix_evpn is not None:
+            pulumi.set(__self__, "maximum_prefix_evpn", maximum_prefix_evpn)
         if maximum_prefix_threshold is not None:
             pulumi.set(__self__, "maximum_prefix_threshold", maximum_prefix_threshold)
         if maximum_prefix_threshold6 is not None:
             pulumi.set(__self__, "maximum_prefix_threshold6", maximum_prefix_threshold6)
+        if maximum_prefix_threshold_evpn is not None:
+            pulumi.set(__self__, "maximum_prefix_threshold_evpn", maximum_prefix_threshold_evpn)
         if maximum_prefix_threshold_vpnv4 is not None:
             pulumi.set(__self__, "maximum_prefix_threshold_vpnv4", maximum_prefix_threshold_vpnv4)
         if maximum_prefix_vpnv4 is not None:
@@ -40014,6 +40940,8 @@ class RouterBgpNeighbor(dict):
             pulumi.set(__self__, "maximum_prefix_warning_only", maximum_prefix_warning_only)
         if maximum_prefix_warning_only6 is not None:
             pulumi.set(__self__, "maximum_prefix_warning_only6", maximum_prefix_warning_only6)
+        if maximum_prefix_warning_only_evpn is not None:
+            pulumi.set(__self__, "maximum_prefix_warning_only_evpn", maximum_prefix_warning_only_evpn)
         if maximum_prefix_warning_only_vpnv4 is not None:
             pulumi.set(__self__, "maximum_prefix_warning_only_vpnv4", maximum_prefix_warning_only_vpnv4)
         if next_hop_self is not None:
@@ -40050,6 +40978,8 @@ class RouterBgpNeighbor(dict):
             pulumi.set(__self__, "remove_private_as", remove_private_as)
         if remove_private_as6 is not None:
             pulumi.set(__self__, "remove_private_as6", remove_private_as6)
+        if remove_private_as_evpn is not None:
+            pulumi.set(__self__, "remove_private_as_evpn", remove_private_as_evpn)
         if remove_private_as_vpnv4 is not None:
             pulumi.set(__self__, "remove_private_as_vpnv4", remove_private_as_vpnv4)
         if restart_time is not None:
@@ -40060,6 +40990,8 @@ class RouterBgpNeighbor(dict):
             pulumi.set(__self__, "route_map_in", route_map_in)
         if route_map_in6 is not None:
             pulumi.set(__self__, "route_map_in6", route_map_in6)
+        if route_map_in_evpn is not None:
+            pulumi.set(__self__, "route_map_in_evpn", route_map_in_evpn)
         if route_map_in_vpnv4 is not None:
             pulumi.set(__self__, "route_map_in_vpnv4", route_map_in_vpnv4)
         if route_map_out is not None:
@@ -40068,6 +41000,8 @@ class RouterBgpNeighbor(dict):
             pulumi.set(__self__, "route_map_out6", route_map_out6)
         if route_map_out6_preferable is not None:
             pulumi.set(__self__, "route_map_out6_preferable", route_map_out6_preferable)
+        if route_map_out_evpn is not None:
+            pulumi.set(__self__, "route_map_out_evpn", route_map_out_evpn)
         if route_map_out_preferable is not None:
             pulumi.set(__self__, "route_map_out_preferable", route_map_out_preferable)
         if route_map_out_vpnv4 is not None:
@@ -40078,18 +41012,24 @@ class RouterBgpNeighbor(dict):
             pulumi.set(__self__, "route_reflector_client", route_reflector_client)
         if route_reflector_client6 is not None:
             pulumi.set(__self__, "route_reflector_client6", route_reflector_client6)
+        if route_reflector_client_evpn is not None:
+            pulumi.set(__self__, "route_reflector_client_evpn", route_reflector_client_evpn)
         if route_reflector_client_vpnv4 is not None:
             pulumi.set(__self__, "route_reflector_client_vpnv4", route_reflector_client_vpnv4)
         if route_server_client is not None:
             pulumi.set(__self__, "route_server_client", route_server_client)
         if route_server_client6 is not None:
             pulumi.set(__self__, "route_server_client6", route_server_client6)
+        if route_server_client_evpn is not None:
+            pulumi.set(__self__, "route_server_client_evpn", route_server_client_evpn)
         if route_server_client_vpnv4 is not None:
             pulumi.set(__self__, "route_server_client_vpnv4", route_server_client_vpnv4)
         if send_community is not None:
             pulumi.set(__self__, "send_community", send_community)
         if send_community6 is not None:
             pulumi.set(__self__, "send_community6", send_community6)
+        if send_community_evpn is not None:
+            pulumi.set(__self__, "send_community_evpn", send_community_evpn)
         if send_community_vpnv4 is not None:
             pulumi.set(__self__, "send_community_vpnv4", send_community_vpnv4)
         if shutdown is not None:
@@ -40098,6 +41038,8 @@ class RouterBgpNeighbor(dict):
             pulumi.set(__self__, "soft_reconfiguration", soft_reconfiguration)
         if soft_reconfiguration6 is not None:
             pulumi.set(__self__, "soft_reconfiguration6", soft_reconfiguration6)
+        if soft_reconfiguration_evpn is not None:
+            pulumi.set(__self__, "soft_reconfiguration_evpn", soft_reconfiguration_evpn)
         if soft_reconfiguration_vpnv4 is not None:
             pulumi.set(__self__, "soft_reconfiguration_vpnv4", soft_reconfiguration_vpnv4)
         if stale_route is not None:
@@ -40122,6 +41064,11 @@ class RouterBgpNeighbor(dict):
     @pulumi.getter
     def activate6(self) -> Optional[str]:
         return pulumi.get(self, "activate6")
+
+    @property
+    @pulumi.getter(name="activateEvpn")
+    def activate_evpn(self) -> Optional[str]:
+        return pulumi.get(self, "activate_evpn")
 
     @property
     @pulumi.getter(name="activateVpnv4")
@@ -40184,6 +41131,21 @@ class RouterBgpNeighbor(dict):
         return pulumi.get(self, "allowas_in_enable6")
 
     @property
+    @pulumi.getter(name="allowasInEnableEvpn")
+    def allowas_in_enable_evpn(self) -> Optional[str]:
+        return pulumi.get(self, "allowas_in_enable_evpn")
+
+    @property
+    @pulumi.getter(name="allowasInEnableVpnv4")
+    def allowas_in_enable_vpnv4(self) -> Optional[str]:
+        return pulumi.get(self, "allowas_in_enable_vpnv4")
+
+    @property
+    @pulumi.getter(name="allowasInEvpn")
+    def allowas_in_evpn(self) -> Optional[int]:
+        return pulumi.get(self, "allowas_in_evpn")
+
+    @property
     @pulumi.getter(name="allowasInVpnv4")
     def allowas_in_vpnv4(self) -> Optional[int]:
         return pulumi.get(self, "allowas_in_vpnv4")
@@ -40242,6 +41204,11 @@ class RouterBgpNeighbor(dict):
     @pulumi.getter(name="capabilityGracefulRestart6")
     def capability_graceful_restart6(self) -> Optional[str]:
         return pulumi.get(self, "capability_graceful_restart6")
+
+    @property
+    @pulumi.getter(name="capabilityGracefulRestartEvpn")
+    def capability_graceful_restart_evpn(self) -> Optional[str]:
+        return pulumi.get(self, "capability_graceful_restart_evpn")
 
     @property
     @pulumi.getter(name="capabilityGracefulRestartVpnv4")
@@ -40409,6 +41376,11 @@ class RouterBgpNeighbor(dict):
         return pulumi.get(self, "maximum_prefix6")
 
     @property
+    @pulumi.getter(name="maximumPrefixEvpn")
+    def maximum_prefix_evpn(self) -> Optional[int]:
+        return pulumi.get(self, "maximum_prefix_evpn")
+
+    @property
     @pulumi.getter(name="maximumPrefixThreshold")
     def maximum_prefix_threshold(self) -> Optional[int]:
         return pulumi.get(self, "maximum_prefix_threshold")
@@ -40417,6 +41389,11 @@ class RouterBgpNeighbor(dict):
     @pulumi.getter(name="maximumPrefixThreshold6")
     def maximum_prefix_threshold6(self) -> Optional[int]:
         return pulumi.get(self, "maximum_prefix_threshold6")
+
+    @property
+    @pulumi.getter(name="maximumPrefixThresholdEvpn")
+    def maximum_prefix_threshold_evpn(self) -> Optional[int]:
+        return pulumi.get(self, "maximum_prefix_threshold_evpn")
 
     @property
     @pulumi.getter(name="maximumPrefixThresholdVpnv4")
@@ -40437,6 +41414,11 @@ class RouterBgpNeighbor(dict):
     @pulumi.getter(name="maximumPrefixWarningOnly6")
     def maximum_prefix_warning_only6(self) -> Optional[str]:
         return pulumi.get(self, "maximum_prefix_warning_only6")
+
+    @property
+    @pulumi.getter(name="maximumPrefixWarningOnlyEvpn")
+    def maximum_prefix_warning_only_evpn(self) -> Optional[str]:
+        return pulumi.get(self, "maximum_prefix_warning_only_evpn")
 
     @property
     @pulumi.getter(name="maximumPrefixWarningOnlyVpnv4")
@@ -40529,6 +41511,11 @@ class RouterBgpNeighbor(dict):
         return pulumi.get(self, "remove_private_as6")
 
     @property
+    @pulumi.getter(name="removePrivateAsEvpn")
+    def remove_private_as_evpn(self) -> Optional[str]:
+        return pulumi.get(self, "remove_private_as_evpn")
+
+    @property
     @pulumi.getter(name="removePrivateAsVpnv4")
     def remove_private_as_vpnv4(self) -> Optional[str]:
         return pulumi.get(self, "remove_private_as_vpnv4")
@@ -40554,6 +41541,11 @@ class RouterBgpNeighbor(dict):
         return pulumi.get(self, "route_map_in6")
 
     @property
+    @pulumi.getter(name="routeMapInEvpn")
+    def route_map_in_evpn(self) -> Optional[str]:
+        return pulumi.get(self, "route_map_in_evpn")
+
+    @property
     @pulumi.getter(name="routeMapInVpnv4")
     def route_map_in_vpnv4(self) -> Optional[str]:
         return pulumi.get(self, "route_map_in_vpnv4")
@@ -40572,6 +41564,11 @@ class RouterBgpNeighbor(dict):
     @pulumi.getter(name="routeMapOut6Preferable")
     def route_map_out6_preferable(self) -> Optional[str]:
         return pulumi.get(self, "route_map_out6_preferable")
+
+    @property
+    @pulumi.getter(name="routeMapOutEvpn")
+    def route_map_out_evpn(self) -> Optional[str]:
+        return pulumi.get(self, "route_map_out_evpn")
 
     @property
     @pulumi.getter(name="routeMapOutPreferable")
@@ -40599,6 +41596,11 @@ class RouterBgpNeighbor(dict):
         return pulumi.get(self, "route_reflector_client6")
 
     @property
+    @pulumi.getter(name="routeReflectorClientEvpn")
+    def route_reflector_client_evpn(self) -> Optional[str]:
+        return pulumi.get(self, "route_reflector_client_evpn")
+
+    @property
     @pulumi.getter(name="routeReflectorClientVpnv4")
     def route_reflector_client_vpnv4(self) -> Optional[str]:
         return pulumi.get(self, "route_reflector_client_vpnv4")
@@ -40614,6 +41616,11 @@ class RouterBgpNeighbor(dict):
         return pulumi.get(self, "route_server_client6")
 
     @property
+    @pulumi.getter(name="routeServerClientEvpn")
+    def route_server_client_evpn(self) -> Optional[str]:
+        return pulumi.get(self, "route_server_client_evpn")
+
+    @property
     @pulumi.getter(name="routeServerClientVpnv4")
     def route_server_client_vpnv4(self) -> Optional[str]:
         return pulumi.get(self, "route_server_client_vpnv4")
@@ -40627,6 +41634,11 @@ class RouterBgpNeighbor(dict):
     @pulumi.getter(name="sendCommunity6")
     def send_community6(self) -> Optional[str]:
         return pulumi.get(self, "send_community6")
+
+    @property
+    @pulumi.getter(name="sendCommunityEvpn")
+    def send_community_evpn(self) -> Optional[str]:
+        return pulumi.get(self, "send_community_evpn")
 
     @property
     @pulumi.getter(name="sendCommunityVpnv4")
@@ -40647,6 +41659,11 @@ class RouterBgpNeighbor(dict):
     @pulumi.getter(name="softReconfiguration6")
     def soft_reconfiguration6(self) -> Optional[str]:
         return pulumi.get(self, "soft_reconfiguration6")
+
+    @property
+    @pulumi.getter(name="softReconfigurationEvpn")
+    def soft_reconfiguration_evpn(self) -> Optional[str]:
+        return pulumi.get(self, "soft_reconfiguration_evpn")
 
     @property
     @pulumi.getter(name="softReconfigurationVpnv4")
@@ -40789,7 +41806,9 @@ class RouterBgpNeighborGroup(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "activateVpnv4":
+        if key == "activateEvpn":
+            suggest = "activate_evpn"
+        elif key == "activateVpnv4":
             suggest = "activate_vpnv4"
         elif key == "additionalPath":
             suggest = "additional_path"
@@ -40813,6 +41832,12 @@ class RouterBgpNeighborGroup(dict):
             suggest = "allowas_in_enable"
         elif key == "allowasInEnable6":
             suggest = "allowas_in_enable6"
+        elif key == "allowasInEnableEvpn":
+            suggest = "allowas_in_enable_evpn"
+        elif key == "allowasInEnableVpnv4":
+            suggest = "allowas_in_enable_vpnv4"
+        elif key == "allowasInEvpn":
+            suggest = "allowas_in_evpn"
         elif key == "allowasInVpnv4":
             suggest = "allowas_in_vpnv4"
         elif key == "asOverride":
@@ -40835,6 +41860,8 @@ class RouterBgpNeighborGroup(dict):
             suggest = "capability_graceful_restart"
         elif key == "capabilityGracefulRestart6":
             suggest = "capability_graceful_restart6"
+        elif key == "capabilityGracefulRestartEvpn":
+            suggest = "capability_graceful_restart_evpn"
         elif key == "capabilityGracefulRestartVpnv4":
             suggest = "capability_graceful_restart_vpnv4"
         elif key == "capabilityOrf":
@@ -40891,10 +41918,14 @@ class RouterBgpNeighborGroup(dict):
             suggest = "maximum_prefix"
         elif key == "maximumPrefix6":
             suggest = "maximum_prefix6"
+        elif key == "maximumPrefixEvpn":
+            suggest = "maximum_prefix_evpn"
         elif key == "maximumPrefixThreshold":
             suggest = "maximum_prefix_threshold"
         elif key == "maximumPrefixThreshold6":
             suggest = "maximum_prefix_threshold6"
+        elif key == "maximumPrefixThresholdEvpn":
+            suggest = "maximum_prefix_threshold_evpn"
         elif key == "maximumPrefixThresholdVpnv4":
             suggest = "maximum_prefix_threshold_vpnv4"
         elif key == "maximumPrefixVpnv4":
@@ -40903,6 +41934,8 @@ class RouterBgpNeighborGroup(dict):
             suggest = "maximum_prefix_warning_only"
         elif key == "maximumPrefixWarningOnly6":
             suggest = "maximum_prefix_warning_only6"
+        elif key == "maximumPrefixWarningOnlyEvpn":
+            suggest = "maximum_prefix_warning_only_evpn"
         elif key == "maximumPrefixWarningOnlyVpnv4":
             suggest = "maximum_prefix_warning_only_vpnv4"
         elif key == "nextHopSelf":
@@ -40935,6 +41968,8 @@ class RouterBgpNeighborGroup(dict):
             suggest = "remove_private_as"
         elif key == "removePrivateAs6":
             suggest = "remove_private_as6"
+        elif key == "removePrivateAsEvpn":
+            suggest = "remove_private_as_evpn"
         elif key == "removePrivateAsVpnv4":
             suggest = "remove_private_as_vpnv4"
         elif key == "restartTime":
@@ -40945,6 +41980,8 @@ class RouterBgpNeighborGroup(dict):
             suggest = "route_map_in"
         elif key == "routeMapIn6":
             suggest = "route_map_in6"
+        elif key == "routeMapInEvpn":
+            suggest = "route_map_in_evpn"
         elif key == "routeMapInVpnv4":
             suggest = "route_map_in_vpnv4"
         elif key == "routeMapOut":
@@ -40953,6 +41990,8 @@ class RouterBgpNeighborGroup(dict):
             suggest = "route_map_out6"
         elif key == "routeMapOut6Preferable":
             suggest = "route_map_out6_preferable"
+        elif key == "routeMapOutEvpn":
+            suggest = "route_map_out_evpn"
         elif key == "routeMapOutPreferable":
             suggest = "route_map_out_preferable"
         elif key == "routeMapOutVpnv4":
@@ -40963,24 +42002,32 @@ class RouterBgpNeighborGroup(dict):
             suggest = "route_reflector_client"
         elif key == "routeReflectorClient6":
             suggest = "route_reflector_client6"
+        elif key == "routeReflectorClientEvpn":
+            suggest = "route_reflector_client_evpn"
         elif key == "routeReflectorClientVpnv4":
             suggest = "route_reflector_client_vpnv4"
         elif key == "routeServerClient":
             suggest = "route_server_client"
         elif key == "routeServerClient6":
             suggest = "route_server_client6"
+        elif key == "routeServerClientEvpn":
+            suggest = "route_server_client_evpn"
         elif key == "routeServerClientVpnv4":
             suggest = "route_server_client_vpnv4"
         elif key == "sendCommunity":
             suggest = "send_community"
         elif key == "sendCommunity6":
             suggest = "send_community6"
+        elif key == "sendCommunityEvpn":
+            suggest = "send_community_evpn"
         elif key == "sendCommunityVpnv4":
             suggest = "send_community_vpnv4"
         elif key == "softReconfiguration":
             suggest = "soft_reconfiguration"
         elif key == "softReconfiguration6":
             suggest = "soft_reconfiguration6"
+        elif key == "softReconfigurationEvpn":
+            suggest = "soft_reconfiguration_evpn"
         elif key == "softReconfigurationVpnv4":
             suggest = "soft_reconfiguration_vpnv4"
         elif key == "staleRoute":
@@ -41008,6 +42055,7 @@ class RouterBgpNeighborGroup(dict):
     def __init__(__self__, *,
                  activate: Optional[str] = None,
                  activate6: Optional[str] = None,
+                 activate_evpn: Optional[str] = None,
                  activate_vpnv4: Optional[str] = None,
                  additional_path: Optional[str] = None,
                  additional_path6: Optional[str] = None,
@@ -41020,6 +42068,9 @@ class RouterBgpNeighborGroup(dict):
                  allowas_in6: Optional[int] = None,
                  allowas_in_enable: Optional[str] = None,
                  allowas_in_enable6: Optional[str] = None,
+                 allowas_in_enable_evpn: Optional[str] = None,
+                 allowas_in_enable_vpnv4: Optional[str] = None,
+                 allowas_in_evpn: Optional[int] = None,
                  allowas_in_vpnv4: Optional[int] = None,
                  as_override: Optional[str] = None,
                  as_override6: Optional[str] = None,
@@ -41032,6 +42083,7 @@ class RouterBgpNeighborGroup(dict):
                  capability_dynamic: Optional[str] = None,
                  capability_graceful_restart: Optional[str] = None,
                  capability_graceful_restart6: Optional[str] = None,
+                 capability_graceful_restart_evpn: Optional[str] = None,
                  capability_graceful_restart_vpnv4: Optional[str] = None,
                  capability_orf: Optional[str] = None,
                  capability_orf6: Optional[str] = None,
@@ -41062,12 +42114,15 @@ class RouterBgpNeighborGroup(dict):
                  local_as_replace_as: Optional[str] = None,
                  maximum_prefix: Optional[int] = None,
                  maximum_prefix6: Optional[int] = None,
+                 maximum_prefix_evpn: Optional[int] = None,
                  maximum_prefix_threshold: Optional[int] = None,
                  maximum_prefix_threshold6: Optional[int] = None,
+                 maximum_prefix_threshold_evpn: Optional[int] = None,
                  maximum_prefix_threshold_vpnv4: Optional[int] = None,
                  maximum_prefix_vpnv4: Optional[int] = None,
                  maximum_prefix_warning_only: Optional[str] = None,
                  maximum_prefix_warning_only6: Optional[str] = None,
+                 maximum_prefix_warning_only_evpn: Optional[str] = None,
                  maximum_prefix_warning_only_vpnv4: Optional[str] = None,
                  name: Optional[str] = None,
                  next_hop_self: Optional[str] = None,
@@ -41077,6 +42132,7 @@ class RouterBgpNeighborGroup(dict):
                  next_hop_self_vpnv4: Optional[str] = None,
                  override_capability: Optional[str] = None,
                  passive: Optional[str] = None,
+                 password: Optional[str] = None,
                  prefix_list_in: Optional[str] = None,
                  prefix_list_in6: Optional[str] = None,
                  prefix_list_in_vpnv4: Optional[str] = None,
@@ -41086,30 +42142,37 @@ class RouterBgpNeighborGroup(dict):
                  remote_as: Optional[int] = None,
                  remove_private_as: Optional[str] = None,
                  remove_private_as6: Optional[str] = None,
+                 remove_private_as_evpn: Optional[str] = None,
                  remove_private_as_vpnv4: Optional[str] = None,
                  restart_time: Optional[int] = None,
                  retain_stale_time: Optional[int] = None,
                  route_map_in: Optional[str] = None,
                  route_map_in6: Optional[str] = None,
+                 route_map_in_evpn: Optional[str] = None,
                  route_map_in_vpnv4: Optional[str] = None,
                  route_map_out: Optional[str] = None,
                  route_map_out6: Optional[str] = None,
                  route_map_out6_preferable: Optional[str] = None,
+                 route_map_out_evpn: Optional[str] = None,
                  route_map_out_preferable: Optional[str] = None,
                  route_map_out_vpnv4: Optional[str] = None,
                  route_map_out_vpnv4_preferable: Optional[str] = None,
                  route_reflector_client: Optional[str] = None,
                  route_reflector_client6: Optional[str] = None,
+                 route_reflector_client_evpn: Optional[str] = None,
                  route_reflector_client_vpnv4: Optional[str] = None,
                  route_server_client: Optional[str] = None,
                  route_server_client6: Optional[str] = None,
+                 route_server_client_evpn: Optional[str] = None,
                  route_server_client_vpnv4: Optional[str] = None,
                  send_community: Optional[str] = None,
                  send_community6: Optional[str] = None,
+                 send_community_evpn: Optional[str] = None,
                  send_community_vpnv4: Optional[str] = None,
                  shutdown: Optional[str] = None,
                  soft_reconfiguration: Optional[str] = None,
                  soft_reconfiguration6: Optional[str] = None,
+                 soft_reconfiguration_evpn: Optional[str] = None,
                  soft_reconfiguration_vpnv4: Optional[str] = None,
                  stale_route: Optional[str] = None,
                  strict_capability_match: Optional[str] = None,
@@ -41121,6 +42184,8 @@ class RouterBgpNeighborGroup(dict):
             pulumi.set(__self__, "activate", activate)
         if activate6 is not None:
             pulumi.set(__self__, "activate6", activate6)
+        if activate_evpn is not None:
+            pulumi.set(__self__, "activate_evpn", activate_evpn)
         if activate_vpnv4 is not None:
             pulumi.set(__self__, "activate_vpnv4", activate_vpnv4)
         if additional_path is not None:
@@ -41145,6 +42210,12 @@ class RouterBgpNeighborGroup(dict):
             pulumi.set(__self__, "allowas_in_enable", allowas_in_enable)
         if allowas_in_enable6 is not None:
             pulumi.set(__self__, "allowas_in_enable6", allowas_in_enable6)
+        if allowas_in_enable_evpn is not None:
+            pulumi.set(__self__, "allowas_in_enable_evpn", allowas_in_enable_evpn)
+        if allowas_in_enable_vpnv4 is not None:
+            pulumi.set(__self__, "allowas_in_enable_vpnv4", allowas_in_enable_vpnv4)
+        if allowas_in_evpn is not None:
+            pulumi.set(__self__, "allowas_in_evpn", allowas_in_evpn)
         if allowas_in_vpnv4 is not None:
             pulumi.set(__self__, "allowas_in_vpnv4", allowas_in_vpnv4)
         if as_override is not None:
@@ -41169,6 +42240,8 @@ class RouterBgpNeighborGroup(dict):
             pulumi.set(__self__, "capability_graceful_restart", capability_graceful_restart)
         if capability_graceful_restart6 is not None:
             pulumi.set(__self__, "capability_graceful_restart6", capability_graceful_restart6)
+        if capability_graceful_restart_evpn is not None:
+            pulumi.set(__self__, "capability_graceful_restart_evpn", capability_graceful_restart_evpn)
         if capability_graceful_restart_vpnv4 is not None:
             pulumi.set(__self__, "capability_graceful_restart_vpnv4", capability_graceful_restart_vpnv4)
         if capability_orf is not None:
@@ -41229,10 +42302,14 @@ class RouterBgpNeighborGroup(dict):
             pulumi.set(__self__, "maximum_prefix", maximum_prefix)
         if maximum_prefix6 is not None:
             pulumi.set(__self__, "maximum_prefix6", maximum_prefix6)
+        if maximum_prefix_evpn is not None:
+            pulumi.set(__self__, "maximum_prefix_evpn", maximum_prefix_evpn)
         if maximum_prefix_threshold is not None:
             pulumi.set(__self__, "maximum_prefix_threshold", maximum_prefix_threshold)
         if maximum_prefix_threshold6 is not None:
             pulumi.set(__self__, "maximum_prefix_threshold6", maximum_prefix_threshold6)
+        if maximum_prefix_threshold_evpn is not None:
+            pulumi.set(__self__, "maximum_prefix_threshold_evpn", maximum_prefix_threshold_evpn)
         if maximum_prefix_threshold_vpnv4 is not None:
             pulumi.set(__self__, "maximum_prefix_threshold_vpnv4", maximum_prefix_threshold_vpnv4)
         if maximum_prefix_vpnv4 is not None:
@@ -41241,6 +42318,8 @@ class RouterBgpNeighborGroup(dict):
             pulumi.set(__self__, "maximum_prefix_warning_only", maximum_prefix_warning_only)
         if maximum_prefix_warning_only6 is not None:
             pulumi.set(__self__, "maximum_prefix_warning_only6", maximum_prefix_warning_only6)
+        if maximum_prefix_warning_only_evpn is not None:
+            pulumi.set(__self__, "maximum_prefix_warning_only_evpn", maximum_prefix_warning_only_evpn)
         if maximum_prefix_warning_only_vpnv4 is not None:
             pulumi.set(__self__, "maximum_prefix_warning_only_vpnv4", maximum_prefix_warning_only_vpnv4)
         if name is not None:
@@ -41259,6 +42338,8 @@ class RouterBgpNeighborGroup(dict):
             pulumi.set(__self__, "override_capability", override_capability)
         if passive is not None:
             pulumi.set(__self__, "passive", passive)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
         if prefix_list_in is not None:
             pulumi.set(__self__, "prefix_list_in", prefix_list_in)
         if prefix_list_in6 is not None:
@@ -41277,6 +42358,8 @@ class RouterBgpNeighborGroup(dict):
             pulumi.set(__self__, "remove_private_as", remove_private_as)
         if remove_private_as6 is not None:
             pulumi.set(__self__, "remove_private_as6", remove_private_as6)
+        if remove_private_as_evpn is not None:
+            pulumi.set(__self__, "remove_private_as_evpn", remove_private_as_evpn)
         if remove_private_as_vpnv4 is not None:
             pulumi.set(__self__, "remove_private_as_vpnv4", remove_private_as_vpnv4)
         if restart_time is not None:
@@ -41287,6 +42370,8 @@ class RouterBgpNeighborGroup(dict):
             pulumi.set(__self__, "route_map_in", route_map_in)
         if route_map_in6 is not None:
             pulumi.set(__self__, "route_map_in6", route_map_in6)
+        if route_map_in_evpn is not None:
+            pulumi.set(__self__, "route_map_in_evpn", route_map_in_evpn)
         if route_map_in_vpnv4 is not None:
             pulumi.set(__self__, "route_map_in_vpnv4", route_map_in_vpnv4)
         if route_map_out is not None:
@@ -41295,6 +42380,8 @@ class RouterBgpNeighborGroup(dict):
             pulumi.set(__self__, "route_map_out6", route_map_out6)
         if route_map_out6_preferable is not None:
             pulumi.set(__self__, "route_map_out6_preferable", route_map_out6_preferable)
+        if route_map_out_evpn is not None:
+            pulumi.set(__self__, "route_map_out_evpn", route_map_out_evpn)
         if route_map_out_preferable is not None:
             pulumi.set(__self__, "route_map_out_preferable", route_map_out_preferable)
         if route_map_out_vpnv4 is not None:
@@ -41305,18 +42392,24 @@ class RouterBgpNeighborGroup(dict):
             pulumi.set(__self__, "route_reflector_client", route_reflector_client)
         if route_reflector_client6 is not None:
             pulumi.set(__self__, "route_reflector_client6", route_reflector_client6)
+        if route_reflector_client_evpn is not None:
+            pulumi.set(__self__, "route_reflector_client_evpn", route_reflector_client_evpn)
         if route_reflector_client_vpnv4 is not None:
             pulumi.set(__self__, "route_reflector_client_vpnv4", route_reflector_client_vpnv4)
         if route_server_client is not None:
             pulumi.set(__self__, "route_server_client", route_server_client)
         if route_server_client6 is not None:
             pulumi.set(__self__, "route_server_client6", route_server_client6)
+        if route_server_client_evpn is not None:
+            pulumi.set(__self__, "route_server_client_evpn", route_server_client_evpn)
         if route_server_client_vpnv4 is not None:
             pulumi.set(__self__, "route_server_client_vpnv4", route_server_client_vpnv4)
         if send_community is not None:
             pulumi.set(__self__, "send_community", send_community)
         if send_community6 is not None:
             pulumi.set(__self__, "send_community6", send_community6)
+        if send_community_evpn is not None:
+            pulumi.set(__self__, "send_community_evpn", send_community_evpn)
         if send_community_vpnv4 is not None:
             pulumi.set(__self__, "send_community_vpnv4", send_community_vpnv4)
         if shutdown is not None:
@@ -41325,6 +42418,8 @@ class RouterBgpNeighborGroup(dict):
             pulumi.set(__self__, "soft_reconfiguration", soft_reconfiguration)
         if soft_reconfiguration6 is not None:
             pulumi.set(__self__, "soft_reconfiguration6", soft_reconfiguration6)
+        if soft_reconfiguration_evpn is not None:
+            pulumi.set(__self__, "soft_reconfiguration_evpn", soft_reconfiguration_evpn)
         if soft_reconfiguration_vpnv4 is not None:
             pulumi.set(__self__, "soft_reconfiguration_vpnv4", soft_reconfiguration_vpnv4)
         if stale_route is not None:
@@ -41349,6 +42444,11 @@ class RouterBgpNeighborGroup(dict):
     @pulumi.getter
     def activate6(self) -> Optional[str]:
         return pulumi.get(self, "activate6")
+
+    @property
+    @pulumi.getter(name="activateEvpn")
+    def activate_evpn(self) -> Optional[str]:
+        return pulumi.get(self, "activate_evpn")
 
     @property
     @pulumi.getter(name="activateVpnv4")
@@ -41411,6 +42511,21 @@ class RouterBgpNeighborGroup(dict):
         return pulumi.get(self, "allowas_in_enable6")
 
     @property
+    @pulumi.getter(name="allowasInEnableEvpn")
+    def allowas_in_enable_evpn(self) -> Optional[str]:
+        return pulumi.get(self, "allowas_in_enable_evpn")
+
+    @property
+    @pulumi.getter(name="allowasInEnableVpnv4")
+    def allowas_in_enable_vpnv4(self) -> Optional[str]:
+        return pulumi.get(self, "allowas_in_enable_vpnv4")
+
+    @property
+    @pulumi.getter(name="allowasInEvpn")
+    def allowas_in_evpn(self) -> Optional[int]:
+        return pulumi.get(self, "allowas_in_evpn")
+
+    @property
     @pulumi.getter(name="allowasInVpnv4")
     def allowas_in_vpnv4(self) -> Optional[int]:
         return pulumi.get(self, "allowas_in_vpnv4")
@@ -41469,6 +42584,11 @@ class RouterBgpNeighborGroup(dict):
     @pulumi.getter(name="capabilityGracefulRestart6")
     def capability_graceful_restart6(self) -> Optional[str]:
         return pulumi.get(self, "capability_graceful_restart6")
+
+    @property
+    @pulumi.getter(name="capabilityGracefulRestartEvpn")
+    def capability_graceful_restart_evpn(self) -> Optional[str]:
+        return pulumi.get(self, "capability_graceful_restart_evpn")
 
     @property
     @pulumi.getter(name="capabilityGracefulRestartVpnv4")
@@ -41621,6 +42741,11 @@ class RouterBgpNeighborGroup(dict):
         return pulumi.get(self, "maximum_prefix6")
 
     @property
+    @pulumi.getter(name="maximumPrefixEvpn")
+    def maximum_prefix_evpn(self) -> Optional[int]:
+        return pulumi.get(self, "maximum_prefix_evpn")
+
+    @property
     @pulumi.getter(name="maximumPrefixThreshold")
     def maximum_prefix_threshold(self) -> Optional[int]:
         return pulumi.get(self, "maximum_prefix_threshold")
@@ -41629,6 +42754,11 @@ class RouterBgpNeighborGroup(dict):
     @pulumi.getter(name="maximumPrefixThreshold6")
     def maximum_prefix_threshold6(self) -> Optional[int]:
         return pulumi.get(self, "maximum_prefix_threshold6")
+
+    @property
+    @pulumi.getter(name="maximumPrefixThresholdEvpn")
+    def maximum_prefix_threshold_evpn(self) -> Optional[int]:
+        return pulumi.get(self, "maximum_prefix_threshold_evpn")
 
     @property
     @pulumi.getter(name="maximumPrefixThresholdVpnv4")
@@ -41649,6 +42779,11 @@ class RouterBgpNeighborGroup(dict):
     @pulumi.getter(name="maximumPrefixWarningOnly6")
     def maximum_prefix_warning_only6(self) -> Optional[str]:
         return pulumi.get(self, "maximum_prefix_warning_only6")
+
+    @property
+    @pulumi.getter(name="maximumPrefixWarningOnlyEvpn")
+    def maximum_prefix_warning_only_evpn(self) -> Optional[str]:
+        return pulumi.get(self, "maximum_prefix_warning_only_evpn")
 
     @property
     @pulumi.getter(name="maximumPrefixWarningOnlyVpnv4")
@@ -41696,6 +42831,11 @@ class RouterBgpNeighborGroup(dict):
         return pulumi.get(self, "passive")
 
     @property
+    @pulumi.getter
+    def password(self) -> Optional[str]:
+        return pulumi.get(self, "password")
+
+    @property
     @pulumi.getter(name="prefixListIn")
     def prefix_list_in(self) -> Optional[str]:
         return pulumi.get(self, "prefix_list_in")
@@ -41741,6 +42881,11 @@ class RouterBgpNeighborGroup(dict):
         return pulumi.get(self, "remove_private_as6")
 
     @property
+    @pulumi.getter(name="removePrivateAsEvpn")
+    def remove_private_as_evpn(self) -> Optional[str]:
+        return pulumi.get(self, "remove_private_as_evpn")
+
+    @property
     @pulumi.getter(name="removePrivateAsVpnv4")
     def remove_private_as_vpnv4(self) -> Optional[str]:
         return pulumi.get(self, "remove_private_as_vpnv4")
@@ -41766,6 +42911,11 @@ class RouterBgpNeighborGroup(dict):
         return pulumi.get(self, "route_map_in6")
 
     @property
+    @pulumi.getter(name="routeMapInEvpn")
+    def route_map_in_evpn(self) -> Optional[str]:
+        return pulumi.get(self, "route_map_in_evpn")
+
+    @property
     @pulumi.getter(name="routeMapInVpnv4")
     def route_map_in_vpnv4(self) -> Optional[str]:
         return pulumi.get(self, "route_map_in_vpnv4")
@@ -41784,6 +42934,11 @@ class RouterBgpNeighborGroup(dict):
     @pulumi.getter(name="routeMapOut6Preferable")
     def route_map_out6_preferable(self) -> Optional[str]:
         return pulumi.get(self, "route_map_out6_preferable")
+
+    @property
+    @pulumi.getter(name="routeMapOutEvpn")
+    def route_map_out_evpn(self) -> Optional[str]:
+        return pulumi.get(self, "route_map_out_evpn")
 
     @property
     @pulumi.getter(name="routeMapOutPreferable")
@@ -41811,6 +42966,11 @@ class RouterBgpNeighborGroup(dict):
         return pulumi.get(self, "route_reflector_client6")
 
     @property
+    @pulumi.getter(name="routeReflectorClientEvpn")
+    def route_reflector_client_evpn(self) -> Optional[str]:
+        return pulumi.get(self, "route_reflector_client_evpn")
+
+    @property
     @pulumi.getter(name="routeReflectorClientVpnv4")
     def route_reflector_client_vpnv4(self) -> Optional[str]:
         return pulumi.get(self, "route_reflector_client_vpnv4")
@@ -41826,6 +42986,11 @@ class RouterBgpNeighborGroup(dict):
         return pulumi.get(self, "route_server_client6")
 
     @property
+    @pulumi.getter(name="routeServerClientEvpn")
+    def route_server_client_evpn(self) -> Optional[str]:
+        return pulumi.get(self, "route_server_client_evpn")
+
+    @property
     @pulumi.getter(name="routeServerClientVpnv4")
     def route_server_client_vpnv4(self) -> Optional[str]:
         return pulumi.get(self, "route_server_client_vpnv4")
@@ -41839,6 +43004,11 @@ class RouterBgpNeighborGroup(dict):
     @pulumi.getter(name="sendCommunity6")
     def send_community6(self) -> Optional[str]:
         return pulumi.get(self, "send_community6")
+
+    @property
+    @pulumi.getter(name="sendCommunityEvpn")
+    def send_community_evpn(self) -> Optional[str]:
+        return pulumi.get(self, "send_community_evpn")
 
     @property
     @pulumi.getter(name="sendCommunityVpnv4")
@@ -41859,6 +43029,11 @@ class RouterBgpNeighborGroup(dict):
     @pulumi.getter(name="softReconfiguration6")
     def soft_reconfiguration6(self) -> Optional[str]:
         return pulumi.get(self, "soft_reconfiguration6")
+
+    @property
+    @pulumi.getter(name="softReconfigurationEvpn")
+    def soft_reconfiguration_evpn(self) -> Optional[str]:
+        return pulumi.get(self, "soft_reconfiguration_evpn")
 
     @property
     @pulumi.getter(name="softReconfigurationVpnv4")
@@ -42625,6 +43800,51 @@ class RouterCommunityListRule(dict):
     @pulumi.getter
     def regexp(self) -> Optional[str]:
         return pulumi.get(self, "regexp")
+
+
+@pulumi.output_type
+class RouterExtcommunityListRule(dict):
+    def __init__(__self__, *,
+                 action: Optional[str] = None,
+                 id: Optional[int] = None,
+                 match: Optional[str] = None,
+                 regexp: Optional[str] = None,
+                 type: Optional[str] = None):
+        if action is not None:
+            pulumi.set(__self__, "action", action)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if match is not None:
+            pulumi.set(__self__, "match", match)
+        if regexp is not None:
+            pulumi.set(__self__, "regexp", regexp)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def action(self) -> Optional[str]:
+        return pulumi.get(self, "action")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def match(self) -> Optional[str]:
+        return pulumi.get(self, "match")
+
+    @property
+    @pulumi.getter
+    def regexp(self) -> Optional[str]:
+        return pulumi.get(self, "regexp")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        return pulumi.get(self, "type")
 
 
 @pulumi.output_type
@@ -43786,6 +45006,8 @@ class RouterMulticastPimSmGlobal(dict):
             suggest = "message_interval"
         elif key == "nullRegisterRetries":
             suggest = "null_register_retries"
+        elif key == "pimUseSdwan":
+            suggest = "pim_use_sdwan"
         elif key == "registerRateLimit":
             suggest = "register_rate_limit"
         elif key == "registerRpReachability":
@@ -43835,6 +45057,7 @@ class RouterMulticastPimSmGlobal(dict):
                  join_prune_holdtime: Optional[int] = None,
                  message_interval: Optional[int] = None,
                  null_register_retries: Optional[int] = None,
+                 pim_use_sdwan: Optional[str] = None,
                  register_rate_limit: Optional[int] = None,
                  register_rp_reachability: Optional[str] = None,
                  register_source: Optional[str] = None,
@@ -43875,6 +45098,8 @@ class RouterMulticastPimSmGlobal(dict):
             pulumi.set(__self__, "message_interval", message_interval)
         if null_register_retries is not None:
             pulumi.set(__self__, "null_register_retries", null_register_retries)
+        if pim_use_sdwan is not None:
+            pulumi.set(__self__, "pim_use_sdwan", pim_use_sdwan)
         if register_rate_limit is not None:
             pulumi.set(__self__, "register_rate_limit", register_rate_limit)
         if register_rp_reachability is not None:
@@ -43969,6 +45194,11 @@ class RouterMulticastPimSmGlobal(dict):
     @pulumi.getter(name="nullRegisterRetries")
     def null_register_retries(self) -> Optional[int]:
         return pulumi.get(self, "null_register_retries")
+
+    @property
+    @pulumi.getter(name="pimUseSdwan")
+    def pim_use_sdwan(self) -> Optional[str]:
+        return pulumi.get(self, "pim_use_sdwan")
 
     @property
     @pulumi.getter(name="registerRateLimit")
@@ -46867,6 +48097,10 @@ class RouterRouteMapRule(dict):
             suggest = "match_community"
         elif key == "matchCommunityExact":
             suggest = "match_community_exact"
+        elif key == "matchExtcommunity":
+            suggest = "match_extcommunity"
+        elif key == "matchExtcommunityExact":
+            suggest = "match_extcommunity_exact"
         elif key == "matchFlags":
             suggest = "match_flags"
         elif key == "matchInterface":
@@ -46927,6 +48161,8 @@ class RouterRouteMapRule(dict):
             suggest = "set_ip6_nexthop_local"
         elif key == "setIpNexthop":
             suggest = "set_ip_nexthop"
+        elif key == "setIpPrefsrc":
+            suggest = "set_ip_prefsrc"
         elif key == "setLocalPreference":
             suggest = "set_local_preference"
         elif key == "setMetric":
@@ -46963,6 +48199,8 @@ class RouterRouteMapRule(dict):
                  match_as_path: Optional[str] = None,
                  match_community: Optional[str] = None,
                  match_community_exact: Optional[str] = None,
+                 match_extcommunity: Optional[str] = None,
+                 match_extcommunity_exact: Optional[str] = None,
                  match_flags: Optional[int] = None,
                  match_interface: Optional[str] = None,
                  match_ip6_address: Optional[str] = None,
@@ -46993,6 +48231,7 @@ class RouterRouteMapRule(dict):
                  set_ip6_nexthop: Optional[str] = None,
                  set_ip6_nexthop_local: Optional[str] = None,
                  set_ip_nexthop: Optional[str] = None,
+                 set_ip_prefsrc: Optional[str] = None,
                  set_local_preference: Optional[int] = None,
                  set_metric: Optional[int] = None,
                  set_metric_type: Optional[str] = None,
@@ -47012,6 +48251,10 @@ class RouterRouteMapRule(dict):
             pulumi.set(__self__, "match_community", match_community)
         if match_community_exact is not None:
             pulumi.set(__self__, "match_community_exact", match_community_exact)
+        if match_extcommunity is not None:
+            pulumi.set(__self__, "match_extcommunity", match_extcommunity)
+        if match_extcommunity_exact is not None:
+            pulumi.set(__self__, "match_extcommunity_exact", match_extcommunity_exact)
         if match_flags is not None:
             pulumi.set(__self__, "match_flags", match_flags)
         if match_interface is not None:
@@ -47072,6 +48315,8 @@ class RouterRouteMapRule(dict):
             pulumi.set(__self__, "set_ip6_nexthop_local", set_ip6_nexthop_local)
         if set_ip_nexthop is not None:
             pulumi.set(__self__, "set_ip_nexthop", set_ip_nexthop)
+        if set_ip_prefsrc is not None:
+            pulumi.set(__self__, "set_ip_prefsrc", set_ip_prefsrc)
         if set_local_preference is not None:
             pulumi.set(__self__, "set_local_preference", set_local_preference)
         if set_metric is not None:
@@ -47115,6 +48360,16 @@ class RouterRouteMapRule(dict):
     @pulumi.getter(name="matchCommunityExact")
     def match_community_exact(self) -> Optional[str]:
         return pulumi.get(self, "match_community_exact")
+
+    @property
+    @pulumi.getter(name="matchExtcommunity")
+    def match_extcommunity(self) -> Optional[str]:
+        return pulumi.get(self, "match_extcommunity")
+
+    @property
+    @pulumi.getter(name="matchExtcommunityExact")
+    def match_extcommunity_exact(self) -> Optional[str]:
+        return pulumi.get(self, "match_extcommunity_exact")
 
     @property
     @pulumi.getter(name="matchFlags")
@@ -47265,6 +48520,11 @@ class RouterRouteMapRule(dict):
     @pulumi.getter(name="setIpNexthop")
     def set_ip_nexthop(self) -> Optional[str]:
         return pulumi.get(self, "set_ip_nexthop")
+
+    @property
+    @pulumi.getter(name="setIpPrefsrc")
+    def set_ip_prefsrc(self) -> Optional[str]:
+        return pulumi.get(self, "set_ip_prefsrc")
 
     @property
     @pulumi.getter(name="setLocalPreference")
@@ -48492,6 +49752,108 @@ class SshFilterProfileShellCommand(dict):
 
 
 @pulumi.output_type
+class SwitchControllerAclGroupIngress(dict):
+    def __init__(__self__, *,
+                 id: Optional[int] = None):
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class SwitchControllerAclIngressAction(dict):
+    def __init__(__self__, *,
+                 count: Optional[str] = None,
+                 drop: Optional[str] = None):
+        if count is not None:
+            pulumi.set(__self__, "count", count)
+        if drop is not None:
+            pulumi.set(__self__, "drop", drop)
+
+    @property
+    @pulumi.getter
+    def count(self) -> Optional[str]:
+        return pulumi.get(self, "count")
+
+    @property
+    @pulumi.getter
+    def drop(self) -> Optional[str]:
+        return pulumi.get(self, "drop")
+
+
+@pulumi.output_type
+class SwitchControllerAclIngressClassifier(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "dstIpPrefix":
+            suggest = "dst_ip_prefix"
+        elif key == "dstMac":
+            suggest = "dst_mac"
+        elif key == "srcIpPrefix":
+            suggest = "src_ip_prefix"
+        elif key == "srcMac":
+            suggest = "src_mac"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SwitchControllerAclIngressClassifier. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SwitchControllerAclIngressClassifier.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SwitchControllerAclIngressClassifier.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 dst_ip_prefix: Optional[str] = None,
+                 dst_mac: Optional[str] = None,
+                 src_ip_prefix: Optional[str] = None,
+                 src_mac: Optional[str] = None,
+                 vlan: Optional[int] = None):
+        if dst_ip_prefix is not None:
+            pulumi.set(__self__, "dst_ip_prefix", dst_ip_prefix)
+        if dst_mac is not None:
+            pulumi.set(__self__, "dst_mac", dst_mac)
+        if src_ip_prefix is not None:
+            pulumi.set(__self__, "src_ip_prefix", src_ip_prefix)
+        if src_mac is not None:
+            pulumi.set(__self__, "src_mac", src_mac)
+        if vlan is not None:
+            pulumi.set(__self__, "vlan", vlan)
+
+    @property
+    @pulumi.getter(name="dstIpPrefix")
+    def dst_ip_prefix(self) -> Optional[str]:
+        return pulumi.get(self, "dst_ip_prefix")
+
+    @property
+    @pulumi.getter(name="dstMac")
+    def dst_mac(self) -> Optional[str]:
+        return pulumi.get(self, "dst_mac")
+
+    @property
+    @pulumi.getter(name="srcIpPrefix")
+    def src_ip_prefix(self) -> Optional[str]:
+        return pulumi.get(self, "src_ip_prefix")
+
+    @property
+    @pulumi.getter(name="srcMac")
+    def src_mac(self) -> Optional[str]:
+        return pulumi.get(self, "src_mac")
+
+    @property
+    @pulumi.getter
+    def vlan(self) -> Optional[int]:
+        return pulumi.get(self, "vlan")
+
+
+@pulumi.output_type
 class SwitchControllerAutoConfigCustomSwitchBinding(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -49599,6 +50961,51 @@ class SwitchControllerManagedSwitchCustomCommand(dict):
 
 
 @pulumi.output_type
+class SwitchControllerManagedSwitchDhcpSnoopingStaticClient(dict):
+    def __init__(__self__, *,
+                 ip: Optional[str] = None,
+                 mac: Optional[str] = None,
+                 name: Optional[str] = None,
+                 port: Optional[str] = None,
+                 vlan: Optional[str] = None):
+        if ip is not None:
+            pulumi.set(__self__, "ip", ip)
+        if mac is not None:
+            pulumi.set(__self__, "mac", mac)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if vlan is not None:
+            pulumi.set(__self__, "vlan", vlan)
+
+    @property
+    @pulumi.getter
+    def ip(self) -> Optional[str]:
+        return pulumi.get(self, "ip")
+
+    @property
+    @pulumi.getter
+    def mac(self) -> Optional[str]:
+        return pulumi.get(self, "mac")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[str]:
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter
+    def vlan(self) -> Optional[str]:
+        return pulumi.get(self, "vlan")
+
+
+@pulumi.output_type
 class SwitchControllerManagedSwitchIgmpSnooping(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -49999,6 +51406,8 @@ class SwitchControllerManagedSwitchPort(dict):
         suggest = None
         if key == "accessMode":
             suggest = "access_mode"
+        elif key == "aclGroups":
+            suggest = "acl_groups"
         elif key == "aggregatorMode":
             suggest = "aggregator_mode"
         elif key == "allowedVlans":
@@ -50007,6 +51416,8 @@ class SwitchControllerManagedSwitchPort(dict):
             suggest = "allowed_vlans_all"
         elif key == "arpInspectionTrust":
             suggest = "arp_inspection_trust"
+        elif key == "dhcpSnoopOption82Overrides":
+            suggest = "dhcp_snoop_option82_overrides"
         elif key == "dhcpSnoopOption82Trust":
             suggest = "dhcp_snoop_option82_trust"
         elif key == "dhcpSnooping":
@@ -50043,6 +51454,8 @@ class SwitchControllerManagedSwitchPort(dict):
             suggest = "flow_control"
         elif key == "fortilinkPort":
             suggest = "fortilink_port"
+        elif key == "fortiswitchAcls":
+            suggest = "fortiswitch_acls"
         elif key == "igmpSnooping":
             suggest = "igmp_snooping"
         elif key == "igmpSnoopingFloodReports":
@@ -50059,12 +51472,16 @@ class SwitchControllerManagedSwitchPort(dict):
             suggest = "isl_local_trunk_name"
         elif key == "islPeerDeviceName":
             suggest = "isl_peer_device_name"
+        elif key == "islPeerDeviceSn":
+            suggest = "isl_peer_device_sn"
         elif key == "islPeerPortName":
             suggest = "isl_peer_port_name"
         elif key == "lacpSpeed":
             suggest = "lacp_speed"
         elif key == "learningLimit":
             suggest = "learning_limit"
+        elif key == "linkStatus":
+            suggest = "link_status"
         elif key == "lldpProfile":
             suggest = "lldp_profile"
         elif key == "lldpStatus":
@@ -50105,6 +51522,14 @@ class SwitchControllerManagedSwitchPort(dict):
             suggest = "poe_capable"
         elif key == "poeMaxPower":
             suggest = "poe_max_power"
+        elif key == "poeModeBtCabable":
+            suggest = "poe_mode_bt_cabable"
+        elif key == "poePortMode":
+            suggest = "poe_port_mode"
+        elif key == "poePortPower":
+            suggest = "poe_port_power"
+        elif key == "poePortPriority":
+            suggest = "poe_port_priority"
         elif key == "poePreStandardDetection":
             suggest = "poe_pre_standard_detection"
         elif key == "poeStandard":
@@ -50175,12 +51600,14 @@ class SwitchControllerManagedSwitchPort(dict):
 
     def __init__(__self__, *,
                  access_mode: Optional[str] = None,
+                 acl_groups: Optional[Sequence['outputs.SwitchControllerManagedSwitchPortAclGroup']] = None,
                  aggregator_mode: Optional[str] = None,
                  allowed_vlans: Optional[Sequence['outputs.SwitchControllerManagedSwitchPortAllowedVlan']] = None,
                  allowed_vlans_all: Optional[str] = None,
                  arp_inspection_trust: Optional[str] = None,
                  bundle: Optional[str] = None,
                  description: Optional[str] = None,
+                 dhcp_snoop_option82_overrides: Optional[Sequence['outputs.SwitchControllerManagedSwitchPortDhcpSnoopOption82Override']] = None,
                  dhcp_snoop_option82_trust: Optional[str] = None,
                  dhcp_snooping: Optional[str] = None,
                  discard_mode: Optional[str] = None,
@@ -50201,6 +51628,7 @@ class SwitchControllerManagedSwitchPort(dict):
                  flapguard: Optional[str] = None,
                  flow_control: Optional[str] = None,
                  fortilink_port: Optional[int] = None,
+                 fortiswitch_acls: Optional[Sequence['outputs.SwitchControllerManagedSwitchPortFortiswitchAcl']] = None,
                  igmp_snooping: Optional[str] = None,
                  igmp_snooping_flood_reports: Optional[str] = None,
                  igmps_flood_reports: Optional[str] = None,
@@ -50209,9 +51637,11 @@ class SwitchControllerManagedSwitchPort(dict):
                  ip_source_guard: Optional[str] = None,
                  isl_local_trunk_name: Optional[str] = None,
                  isl_peer_device_name: Optional[str] = None,
+                 isl_peer_device_sn: Optional[str] = None,
                  isl_peer_port_name: Optional[str] = None,
                  lacp_speed: Optional[str] = None,
                  learning_limit: Optional[int] = None,
+                 link_status: Optional[str] = None,
                  lldp_profile: Optional[str] = None,
                  lldp_status: Optional[str] = None,
                  loop_guard: Optional[str] = None,
@@ -50235,6 +51665,10 @@ class SwitchControllerManagedSwitchPort(dict):
                  pause_meter_resume: Optional[str] = None,
                  poe_capable: Optional[int] = None,
                  poe_max_power: Optional[str] = None,
+                 poe_mode_bt_cabable: Optional[int] = None,
+                 poe_port_mode: Optional[str] = None,
+                 poe_port_power: Optional[str] = None,
+                 poe_port_priority: Optional[str] = None,
                  poe_pre_standard_detection: Optional[str] = None,
                  poe_standard: Optional[str] = None,
                  poe_status: Optional[str] = None,
@@ -50269,6 +51703,8 @@ class SwitchControllerManagedSwitchPort(dict):
                  vlan: Optional[str] = None):
         if access_mode is not None:
             pulumi.set(__self__, "access_mode", access_mode)
+        if acl_groups is not None:
+            pulumi.set(__self__, "acl_groups", acl_groups)
         if aggregator_mode is not None:
             pulumi.set(__self__, "aggregator_mode", aggregator_mode)
         if allowed_vlans is not None:
@@ -50281,6 +51717,8 @@ class SwitchControllerManagedSwitchPort(dict):
             pulumi.set(__self__, "bundle", bundle)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if dhcp_snoop_option82_overrides is not None:
+            pulumi.set(__self__, "dhcp_snoop_option82_overrides", dhcp_snoop_option82_overrides)
         if dhcp_snoop_option82_trust is not None:
             pulumi.set(__self__, "dhcp_snoop_option82_trust", dhcp_snoop_option82_trust)
         if dhcp_snooping is not None:
@@ -50321,6 +51759,8 @@ class SwitchControllerManagedSwitchPort(dict):
             pulumi.set(__self__, "flow_control", flow_control)
         if fortilink_port is not None:
             pulumi.set(__self__, "fortilink_port", fortilink_port)
+        if fortiswitch_acls is not None:
+            pulumi.set(__self__, "fortiswitch_acls", fortiswitch_acls)
         if igmp_snooping is not None:
             pulumi.set(__self__, "igmp_snooping", igmp_snooping)
         if igmp_snooping_flood_reports is not None:
@@ -50337,12 +51777,16 @@ class SwitchControllerManagedSwitchPort(dict):
             pulumi.set(__self__, "isl_local_trunk_name", isl_local_trunk_name)
         if isl_peer_device_name is not None:
             pulumi.set(__self__, "isl_peer_device_name", isl_peer_device_name)
+        if isl_peer_device_sn is not None:
+            pulumi.set(__self__, "isl_peer_device_sn", isl_peer_device_sn)
         if isl_peer_port_name is not None:
             pulumi.set(__self__, "isl_peer_port_name", isl_peer_port_name)
         if lacp_speed is not None:
             pulumi.set(__self__, "lacp_speed", lacp_speed)
         if learning_limit is not None:
             pulumi.set(__self__, "learning_limit", learning_limit)
+        if link_status is not None:
+            pulumi.set(__self__, "link_status", link_status)
         if lldp_profile is not None:
             pulumi.set(__self__, "lldp_profile", lldp_profile)
         if lldp_status is not None:
@@ -50389,6 +51833,14 @@ class SwitchControllerManagedSwitchPort(dict):
             pulumi.set(__self__, "poe_capable", poe_capable)
         if poe_max_power is not None:
             pulumi.set(__self__, "poe_max_power", poe_max_power)
+        if poe_mode_bt_cabable is not None:
+            pulumi.set(__self__, "poe_mode_bt_cabable", poe_mode_bt_cabable)
+        if poe_port_mode is not None:
+            pulumi.set(__self__, "poe_port_mode", poe_port_mode)
+        if poe_port_power is not None:
+            pulumi.set(__self__, "poe_port_power", poe_port_power)
+        if poe_port_priority is not None:
+            pulumi.set(__self__, "poe_port_priority", poe_port_priority)
         if poe_pre_standard_detection is not None:
             pulumi.set(__self__, "poe_pre_standard_detection", poe_pre_standard_detection)
         if poe_standard is not None:
@@ -50460,6 +51912,11 @@ class SwitchControllerManagedSwitchPort(dict):
         return pulumi.get(self, "access_mode")
 
     @property
+    @pulumi.getter(name="aclGroups")
+    def acl_groups(self) -> Optional[Sequence['outputs.SwitchControllerManagedSwitchPortAclGroup']]:
+        return pulumi.get(self, "acl_groups")
+
+    @property
     @pulumi.getter(name="aggregatorMode")
     def aggregator_mode(self) -> Optional[str]:
         return pulumi.get(self, "aggregator_mode")
@@ -50488,6 +51945,11 @@ class SwitchControllerManagedSwitchPort(dict):
     @pulumi.getter
     def description(self) -> Optional[str]:
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="dhcpSnoopOption82Overrides")
+    def dhcp_snoop_option82_overrides(self) -> Optional[Sequence['outputs.SwitchControllerManagedSwitchPortDhcpSnoopOption82Override']]:
+        return pulumi.get(self, "dhcp_snoop_option82_overrides")
 
     @property
     @pulumi.getter(name="dhcpSnoopOption82Trust")
@@ -50590,6 +52052,11 @@ class SwitchControllerManagedSwitchPort(dict):
         return pulumi.get(self, "fortilink_port")
 
     @property
+    @pulumi.getter(name="fortiswitchAcls")
+    def fortiswitch_acls(self) -> Optional[Sequence['outputs.SwitchControllerManagedSwitchPortFortiswitchAcl']]:
+        return pulumi.get(self, "fortiswitch_acls")
+
+    @property
     @pulumi.getter(name="igmpSnooping")
     def igmp_snooping(self) -> Optional[str]:
         return pulumi.get(self, "igmp_snooping")
@@ -50630,6 +52097,11 @@ class SwitchControllerManagedSwitchPort(dict):
         return pulumi.get(self, "isl_peer_device_name")
 
     @property
+    @pulumi.getter(name="islPeerDeviceSn")
+    def isl_peer_device_sn(self) -> Optional[str]:
+        return pulumi.get(self, "isl_peer_device_sn")
+
+    @property
     @pulumi.getter(name="islPeerPortName")
     def isl_peer_port_name(self) -> Optional[str]:
         return pulumi.get(self, "isl_peer_port_name")
@@ -50643,6 +52115,11 @@ class SwitchControllerManagedSwitchPort(dict):
     @pulumi.getter(name="learningLimit")
     def learning_limit(self) -> Optional[int]:
         return pulumi.get(self, "learning_limit")
+
+    @property
+    @pulumi.getter(name="linkStatus")
+    def link_status(self) -> Optional[str]:
+        return pulumi.get(self, "link_status")
 
     @property
     @pulumi.getter(name="lldpProfile")
@@ -50758,6 +52235,26 @@ class SwitchControllerManagedSwitchPort(dict):
     @pulumi.getter(name="poeMaxPower")
     def poe_max_power(self) -> Optional[str]:
         return pulumi.get(self, "poe_max_power")
+
+    @property
+    @pulumi.getter(name="poeModeBtCabable")
+    def poe_mode_bt_cabable(self) -> Optional[int]:
+        return pulumi.get(self, "poe_mode_bt_cabable")
+
+    @property
+    @pulumi.getter(name="poePortMode")
+    def poe_port_mode(self) -> Optional[str]:
+        return pulumi.get(self, "poe_port_mode")
+
+    @property
+    @pulumi.getter(name="poePortPower")
+    def poe_port_power(self) -> Optional[str]:
+        return pulumi.get(self, "poe_port_power")
+
+    @property
+    @pulumi.getter(name="poePortPriority")
+    def poe_port_priority(self) -> Optional[str]:
+        return pulumi.get(self, "poe_port_priority")
 
     @property
     @pulumi.getter(name="poePreStandardDetection")
@@ -50921,6 +52418,19 @@ class SwitchControllerManagedSwitchPort(dict):
 
 
 @pulumi.output_type
+class SwitchControllerManagedSwitchPortAclGroup(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
 class SwitchControllerManagedSwitchPortAllowedVlan(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -50943,6 +52453,56 @@ class SwitchControllerManagedSwitchPortAllowedVlan(dict):
                  vlan_name: Optional[str] = None):
         if vlan_name is not None:
             pulumi.set(__self__, "vlan_name", vlan_name)
+
+    @property
+    @pulumi.getter(name="vlanName")
+    def vlan_name(self) -> Optional[str]:
+        return pulumi.get(self, "vlan_name")
+
+
+@pulumi.output_type
+class SwitchControllerManagedSwitchPortDhcpSnoopOption82Override(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "circuitId":
+            suggest = "circuit_id"
+        elif key == "remoteId":
+            suggest = "remote_id"
+        elif key == "vlanName":
+            suggest = "vlan_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SwitchControllerManagedSwitchPortDhcpSnoopOption82Override. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SwitchControllerManagedSwitchPortDhcpSnoopOption82Override.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SwitchControllerManagedSwitchPortDhcpSnoopOption82Override.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 circuit_id: Optional[str] = None,
+                 remote_id: Optional[str] = None,
+                 vlan_name: Optional[str] = None):
+        if circuit_id is not None:
+            pulumi.set(__self__, "circuit_id", circuit_id)
+        if remote_id is not None:
+            pulumi.set(__self__, "remote_id", remote_id)
+        if vlan_name is not None:
+            pulumi.set(__self__, "vlan_name", vlan_name)
+
+    @property
+    @pulumi.getter(name="circuitId")
+    def circuit_id(self) -> Optional[str]:
+        return pulumi.get(self, "circuit_id")
+
+    @property
+    @pulumi.getter(name="remoteId")
+    def remote_id(self) -> Optional[str]:
+        return pulumi.get(self, "remote_id")
 
     @property
     @pulumi.getter(name="vlanName")
@@ -50978,6 +52538,19 @@ class SwitchControllerManagedSwitchPortExportTag(dict):
     @pulumi.getter(name="tagName")
     def tag_name(self) -> Optional[str]:
         return pulumi.get(self, "tag_name")
+
+
+@pulumi.output_type
+class SwitchControllerManagedSwitchPortFortiswitchAcl(dict):
+    def __init__(__self__, *,
+                 id: Optional[int] = None):
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type
@@ -52650,6 +54223,8 @@ class SystemAccprofileUtmgrpPermission(dict):
         suggest = None
         if key == "applicationControl":
             suggest = "application_control"
+        elif key == "dataLeakPrevention":
+            suggest = "data_leak_prevention"
         elif key == "dataLossPrevention":
             suggest = "data_loss_prevention"
         elif key == "endpointControl":
@@ -52671,6 +54246,7 @@ class SystemAccprofileUtmgrpPermission(dict):
     def __init__(__self__, *,
                  antivirus: Optional[str] = None,
                  application_control: Optional[str] = None,
+                 data_leak_prevention: Optional[str] = None,
                  data_loss_prevention: Optional[str] = None,
                  dnsfilter: Optional[str] = None,
                  emailfilter: Optional[str] = None,
@@ -52687,6 +54263,8 @@ class SystemAccprofileUtmgrpPermission(dict):
             pulumi.set(__self__, "antivirus", antivirus)
         if application_control is not None:
             pulumi.set(__self__, "application_control", application_control)
+        if data_leak_prevention is not None:
+            pulumi.set(__self__, "data_leak_prevention", data_leak_prevention)
         if data_loss_prevention is not None:
             pulumi.set(__self__, "data_loss_prevention", data_loss_prevention)
         if dnsfilter is not None:
@@ -52721,6 +54299,11 @@ class SystemAccprofileUtmgrpPermission(dict):
     @pulumi.getter(name="applicationControl")
     def application_control(self) -> Optional[str]:
         return pulumi.get(self, "application_control")
+
+    @property
+    @pulumi.getter(name="dataLeakPrevention")
+    def data_leak_prevention(self) -> Optional[str]:
+        return pulumi.get(self, "data_leak_prevention")
 
     @property
     @pulumi.getter(name="dataLossPrevention")
@@ -53992,13 +55575,16 @@ class SystemCsfFabricConnector(dict):
     def __init__(__self__, *,
                  accprofile: Optional[str] = None,
                  configuration_write_access: Optional[str] = None,
-                 serial: Optional[str] = None):
+                 serial: Optional[str] = None,
+                 vdoms: Optional[Sequence['outputs.SystemCsfFabricConnectorVdom']] = None):
         if accprofile is not None:
             pulumi.set(__self__, "accprofile", accprofile)
         if configuration_write_access is not None:
             pulumi.set(__self__, "configuration_write_access", configuration_write_access)
         if serial is not None:
             pulumi.set(__self__, "serial", serial)
+        if vdoms is not None:
+            pulumi.set(__self__, "vdoms", vdoms)
 
     @property
     @pulumi.getter
@@ -54014,6 +55600,24 @@ class SystemCsfFabricConnector(dict):
     @pulumi.getter
     def serial(self) -> Optional[str]:
         return pulumi.get(self, "serial")
+
+    @property
+    @pulumi.getter
+    def vdoms(self) -> Optional[Sequence['outputs.SystemCsfFabricConnectorVdom']]:
+        return pulumi.get(self, "vdoms")
+
+
+@pulumi.output_type
+class SystemCsfFabricConnectorVdom(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
 
 
 @pulumi.output_type
@@ -54129,6 +55733,7 @@ class SystemCsfTrustedList(dict):
                  certificate: Optional[str] = None,
                  downstream_authorization: Optional[str] = None,
                  ha_members: Optional[str] = None,
+                 index: Optional[int] = None,
                  name: Optional[str] = None,
                  serial: Optional[str] = None):
         if action is not None:
@@ -54141,6 +55746,8 @@ class SystemCsfTrustedList(dict):
             pulumi.set(__self__, "downstream_authorization", downstream_authorization)
         if ha_members is not None:
             pulumi.set(__self__, "ha_members", ha_members)
+        if index is not None:
+            pulumi.set(__self__, "index", index)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if serial is not None:
@@ -54170,6 +55777,11 @@ class SystemCsfTrustedList(dict):
     @pulumi.getter(name="haMembers")
     def ha_members(self) -> Optional[str]:
         return pulumi.get(self, "ha_members")
+
+    @property
+    @pulumi.getter
+    def index(self) -> Optional[int]:
+        return pulumi.get(self, "index")
 
     @property
     @pulumi.getter
@@ -54338,8 +55950,14 @@ class SystemDhcpServerExcludeRange(dict):
         suggest = None
         if key == "endIp":
             suggest = "end_ip"
+        elif key == "leaseTime":
+            suggest = "lease_time"
         elif key == "startIp":
             suggest = "start_ip"
+        elif key == "uciMatch":
+            suggest = "uci_match"
+        elif key == "uciStrings":
+            suggest = "uci_strings"
         elif key == "vciMatch":
             suggest = "vci_match"
         elif key == "vciStrings":
@@ -54359,15 +55977,24 @@ class SystemDhcpServerExcludeRange(dict):
     def __init__(__self__, *,
                  end_ip: Optional[str] = None,
                  id: Optional[int] = None,
+                 lease_time: Optional[int] = None,
                  start_ip: Optional[str] = None,
+                 uci_match: Optional[str] = None,
+                 uci_strings: Optional[Sequence['outputs.SystemDhcpServerExcludeRangeUciString']] = None,
                  vci_match: Optional[str] = None,
                  vci_strings: Optional[Sequence['outputs.SystemDhcpServerExcludeRangeVciString']] = None):
         if end_ip is not None:
             pulumi.set(__self__, "end_ip", end_ip)
         if id is not None:
             pulumi.set(__self__, "id", id)
+        if lease_time is not None:
+            pulumi.set(__self__, "lease_time", lease_time)
         if start_ip is not None:
             pulumi.set(__self__, "start_ip", start_ip)
+        if uci_match is not None:
+            pulumi.set(__self__, "uci_match", uci_match)
+        if uci_strings is not None:
+            pulumi.set(__self__, "uci_strings", uci_strings)
         if vci_match is not None:
             pulumi.set(__self__, "vci_match", vci_match)
         if vci_strings is not None:
@@ -54384,9 +56011,24 @@ class SystemDhcpServerExcludeRange(dict):
         return pulumi.get(self, "id")
 
     @property
+    @pulumi.getter(name="leaseTime")
+    def lease_time(self) -> Optional[int]:
+        return pulumi.get(self, "lease_time")
+
+    @property
     @pulumi.getter(name="startIp")
     def start_ip(self) -> Optional[str]:
         return pulumi.get(self, "start_ip")
+
+    @property
+    @pulumi.getter(name="uciMatch")
+    def uci_match(self) -> Optional[str]:
+        return pulumi.get(self, "uci_match")
+
+    @property
+    @pulumi.getter(name="uciStrings")
+    def uci_strings(self) -> Optional[Sequence['outputs.SystemDhcpServerExcludeRangeUciString']]:
+        return pulumi.get(self, "uci_strings")
 
     @property
     @pulumi.getter(name="vciMatch")
@@ -54397,6 +56039,36 @@ class SystemDhcpServerExcludeRange(dict):
     @pulumi.getter(name="vciStrings")
     def vci_strings(self) -> Optional[Sequence['outputs.SystemDhcpServerExcludeRangeVciString']]:
         return pulumi.get(self, "vci_strings")
+
+
+@pulumi.output_type
+class SystemDhcpServerExcludeRangeUciString(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "uciString":
+            suggest = "uci_string"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemDhcpServerExcludeRangeUciString. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemDhcpServerExcludeRangeUciString.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemDhcpServerExcludeRangeUciString.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 uci_string: Optional[str] = None):
+        if uci_string is not None:
+            pulumi.set(__self__, "uci_string", uci_string)
+
+    @property
+    @pulumi.getter(name="uciString")
+    def uci_string(self) -> Optional[str]:
+        return pulumi.get(self, "uci_string")
 
 
 @pulumi.output_type
@@ -54436,8 +56108,14 @@ class SystemDhcpServerIpRange(dict):
         suggest = None
         if key == "endIp":
             suggest = "end_ip"
+        elif key == "leaseTime":
+            suggest = "lease_time"
         elif key == "startIp":
             suggest = "start_ip"
+        elif key == "uciMatch":
+            suggest = "uci_match"
+        elif key == "uciStrings":
+            suggest = "uci_strings"
         elif key == "vciMatch":
             suggest = "vci_match"
         elif key == "vciStrings":
@@ -54457,15 +56135,24 @@ class SystemDhcpServerIpRange(dict):
     def __init__(__self__, *,
                  end_ip: Optional[str] = None,
                  id: Optional[int] = None,
+                 lease_time: Optional[int] = None,
                  start_ip: Optional[str] = None,
+                 uci_match: Optional[str] = None,
+                 uci_strings: Optional[Sequence['outputs.SystemDhcpServerIpRangeUciString']] = None,
                  vci_match: Optional[str] = None,
                  vci_strings: Optional[Sequence['outputs.SystemDhcpServerIpRangeVciString']] = None):
         if end_ip is not None:
             pulumi.set(__self__, "end_ip", end_ip)
         if id is not None:
             pulumi.set(__self__, "id", id)
+        if lease_time is not None:
+            pulumi.set(__self__, "lease_time", lease_time)
         if start_ip is not None:
             pulumi.set(__self__, "start_ip", start_ip)
+        if uci_match is not None:
+            pulumi.set(__self__, "uci_match", uci_match)
+        if uci_strings is not None:
+            pulumi.set(__self__, "uci_strings", uci_strings)
         if vci_match is not None:
             pulumi.set(__self__, "vci_match", vci_match)
         if vci_strings is not None:
@@ -54482,9 +56169,24 @@ class SystemDhcpServerIpRange(dict):
         return pulumi.get(self, "id")
 
     @property
+    @pulumi.getter(name="leaseTime")
+    def lease_time(self) -> Optional[int]:
+        return pulumi.get(self, "lease_time")
+
+    @property
     @pulumi.getter(name="startIp")
     def start_ip(self) -> Optional[str]:
         return pulumi.get(self, "start_ip")
+
+    @property
+    @pulumi.getter(name="uciMatch")
+    def uci_match(self) -> Optional[str]:
+        return pulumi.get(self, "uci_match")
+
+    @property
+    @pulumi.getter(name="uciStrings")
+    def uci_strings(self) -> Optional[Sequence['outputs.SystemDhcpServerIpRangeUciString']]:
+        return pulumi.get(self, "uci_strings")
 
     @property
     @pulumi.getter(name="vciMatch")
@@ -54495,6 +56197,36 @@ class SystemDhcpServerIpRange(dict):
     @pulumi.getter(name="vciStrings")
     def vci_strings(self) -> Optional[Sequence['outputs.SystemDhcpServerIpRangeVciString']]:
         return pulumi.get(self, "vci_strings")
+
+
+@pulumi.output_type
+class SystemDhcpServerIpRangeUciString(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "uciString":
+            suggest = "uci_string"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemDhcpServerIpRangeUciString. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemDhcpServerIpRangeUciString.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemDhcpServerIpRangeUciString.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 uci_string: Optional[str] = None):
+        if uci_string is not None:
+            pulumi.set(__self__, "uci_string", uci_string)
+
+    @property
+    @pulumi.getter(name="uciString")
+    def uci_string(self) -> Optional[str]:
+        return pulumi.get(self, "uci_string")
 
 
 @pulumi.output_type
@@ -54532,7 +56264,11 @@ class SystemDhcpServerOption(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "vciMatch":
+        if key == "uciMatch":
+            suggest = "uci_match"
+        elif key == "uciStrings":
+            suggest = "uci_strings"
+        elif key == "vciMatch":
             suggest = "vci_match"
         elif key == "vciStrings":
             suggest = "vci_strings"
@@ -54553,6 +56289,8 @@ class SystemDhcpServerOption(dict):
                  id: Optional[int] = None,
                  ip: Optional[str] = None,
                  type: Optional[str] = None,
+                 uci_match: Optional[str] = None,
+                 uci_strings: Optional[Sequence['outputs.SystemDhcpServerOptionUciString']] = None,
                  value: Optional[str] = None,
                  vci_match: Optional[str] = None,
                  vci_strings: Optional[Sequence['outputs.SystemDhcpServerOptionVciString']] = None):
@@ -54564,6 +56302,10 @@ class SystemDhcpServerOption(dict):
             pulumi.set(__self__, "ip", ip)
         if type is not None:
             pulumi.set(__self__, "type", type)
+        if uci_match is not None:
+            pulumi.set(__self__, "uci_match", uci_match)
+        if uci_strings is not None:
+            pulumi.set(__self__, "uci_strings", uci_strings)
         if value is not None:
             pulumi.set(__self__, "value", value)
         if vci_match is not None:
@@ -54592,6 +56334,16 @@ class SystemDhcpServerOption(dict):
         return pulumi.get(self, "type")
 
     @property
+    @pulumi.getter(name="uciMatch")
+    def uci_match(self) -> Optional[str]:
+        return pulumi.get(self, "uci_match")
+
+    @property
+    @pulumi.getter(name="uciStrings")
+    def uci_strings(self) -> Optional[Sequence['outputs.SystemDhcpServerOptionUciString']]:
+        return pulumi.get(self, "uci_strings")
+
+    @property
     @pulumi.getter
     def value(self) -> Optional[str]:
         return pulumi.get(self, "value")
@@ -54605,6 +56357,36 @@ class SystemDhcpServerOption(dict):
     @pulumi.getter(name="vciStrings")
     def vci_strings(self) -> Optional[Sequence['outputs.SystemDhcpServerOptionVciString']]:
         return pulumi.get(self, "vci_strings")
+
+
+@pulumi.output_type
+class SystemDhcpServerOptionUciString(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "uciString":
+            suggest = "uci_string"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemDhcpServerOptionUciString. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemDhcpServerOptionUciString.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemDhcpServerOptionUciString.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 uci_string: Optional[str] = None):
+        if uci_string is not None:
+            pulumi.set(__self__, "uci_string", uci_string)
+
+    @property
+    @pulumi.getter(name="uciString")
+    def uci_string(self) -> Optional[str]:
+        return pulumi.get(self, "uci_string")
 
 
 @pulumi.output_type
@@ -54926,6 +56708,274 @@ class SystemDnsServerHostname(dict):
 
 
 @pulumi.output_type
+class SystemEvpnExportRt(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "routeTarget":
+            suggest = "route_target"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemEvpnExportRt. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemEvpnExportRt.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemEvpnExportRt.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 route_target: Optional[str] = None):
+        if route_target is not None:
+            pulumi.set(__self__, "route_target", route_target)
+
+    @property
+    @pulumi.getter(name="routeTarget")
+    def route_target(self) -> Optional[str]:
+        return pulumi.get(self, "route_target")
+
+
+@pulumi.output_type
+class SystemEvpnImportRt(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "routeTarget":
+            suggest = "route_target"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemEvpnImportRt. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemEvpnImportRt.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemEvpnImportRt.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 route_target: Optional[str] = None):
+        if route_target is not None:
+            pulumi.set(__self__, "route_target", route_target)
+
+    @property
+    @pulumi.getter(name="routeTarget")
+    def route_target(self) -> Optional[str]:
+        return pulumi.get(self, "route_target")
+
+
+@pulumi.output_type
+class SystemFabricVpnAdvertisedSubnet(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bgpNetwork":
+            suggest = "bgp_network"
+        elif key == "firewallAddress":
+            suggest = "firewall_address"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemFabricVpnAdvertisedSubnet. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemFabricVpnAdvertisedSubnet.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemFabricVpnAdvertisedSubnet.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 access: Optional[str] = None,
+                 bgp_network: Optional[int] = None,
+                 firewall_address: Optional[str] = None,
+                 id: Optional[int] = None,
+                 policies: Optional[int] = None,
+                 prefix: Optional[str] = None):
+        if access is not None:
+            pulumi.set(__self__, "access", access)
+        if bgp_network is not None:
+            pulumi.set(__self__, "bgp_network", bgp_network)
+        if firewall_address is not None:
+            pulumi.set(__self__, "firewall_address", firewall_address)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if policies is not None:
+            pulumi.set(__self__, "policies", policies)
+        if prefix is not None:
+            pulumi.set(__self__, "prefix", prefix)
+
+    @property
+    @pulumi.getter
+    def access(self) -> Optional[str]:
+        return pulumi.get(self, "access")
+
+    @property
+    @pulumi.getter(name="bgpNetwork")
+    def bgp_network(self) -> Optional[int]:
+        return pulumi.get(self, "bgp_network")
+
+    @property
+    @pulumi.getter(name="firewallAddress")
+    def firewall_address(self) -> Optional[str]:
+        return pulumi.get(self, "firewall_address")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def policies(self) -> Optional[int]:
+        return pulumi.get(self, "policies")
+
+    @property
+    @pulumi.getter
+    def prefix(self) -> Optional[str]:
+        return pulumi.get(self, "prefix")
+
+
+@pulumi.output_type
+class SystemFabricVpnOverlay(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bgpNeighbor":
+            suggest = "bgp_neighbor"
+        elif key == "bgpNeighborGroup":
+            suggest = "bgp_neighbor_group"
+        elif key == "bgpNeighborRange":
+            suggest = "bgp_neighbor_range"
+        elif key == "bgpNetwork":
+            suggest = "bgp_network"
+        elif key == "ipsecPhase1":
+            suggest = "ipsec_phase1"
+        elif key == "overlayPolicy":
+            suggest = "overlay_policy"
+        elif key == "overlayTunnelBlock":
+            suggest = "overlay_tunnel_block"
+        elif key == "remoteGw":
+            suggest = "remote_gw"
+        elif key == "routePolicy":
+            suggest = "route_policy"
+        elif key == "sdwanMember":
+            suggest = "sdwan_member"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemFabricVpnOverlay. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemFabricVpnOverlay.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemFabricVpnOverlay.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 bgp_neighbor: Optional[str] = None,
+                 bgp_neighbor_group: Optional[str] = None,
+                 bgp_neighbor_range: Optional[int] = None,
+                 bgp_network: Optional[int] = None,
+                 interface: Optional[str] = None,
+                 ipsec_phase1: Optional[str] = None,
+                 name: Optional[str] = None,
+                 overlay_policy: Optional[int] = None,
+                 overlay_tunnel_block: Optional[str] = None,
+                 remote_gw: Optional[str] = None,
+                 route_policy: Optional[int] = None,
+                 sdwan_member: Optional[int] = None):
+        if bgp_neighbor is not None:
+            pulumi.set(__self__, "bgp_neighbor", bgp_neighbor)
+        if bgp_neighbor_group is not None:
+            pulumi.set(__self__, "bgp_neighbor_group", bgp_neighbor_group)
+        if bgp_neighbor_range is not None:
+            pulumi.set(__self__, "bgp_neighbor_range", bgp_neighbor_range)
+        if bgp_network is not None:
+            pulumi.set(__self__, "bgp_network", bgp_network)
+        if interface is not None:
+            pulumi.set(__self__, "interface", interface)
+        if ipsec_phase1 is not None:
+            pulumi.set(__self__, "ipsec_phase1", ipsec_phase1)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if overlay_policy is not None:
+            pulumi.set(__self__, "overlay_policy", overlay_policy)
+        if overlay_tunnel_block is not None:
+            pulumi.set(__self__, "overlay_tunnel_block", overlay_tunnel_block)
+        if remote_gw is not None:
+            pulumi.set(__self__, "remote_gw", remote_gw)
+        if route_policy is not None:
+            pulumi.set(__self__, "route_policy", route_policy)
+        if sdwan_member is not None:
+            pulumi.set(__self__, "sdwan_member", sdwan_member)
+
+    @property
+    @pulumi.getter(name="bgpNeighbor")
+    def bgp_neighbor(self) -> Optional[str]:
+        return pulumi.get(self, "bgp_neighbor")
+
+    @property
+    @pulumi.getter(name="bgpNeighborGroup")
+    def bgp_neighbor_group(self) -> Optional[str]:
+        return pulumi.get(self, "bgp_neighbor_group")
+
+    @property
+    @pulumi.getter(name="bgpNeighborRange")
+    def bgp_neighbor_range(self) -> Optional[int]:
+        return pulumi.get(self, "bgp_neighbor_range")
+
+    @property
+    @pulumi.getter(name="bgpNetwork")
+    def bgp_network(self) -> Optional[int]:
+        return pulumi.get(self, "bgp_network")
+
+    @property
+    @pulumi.getter
+    def interface(self) -> Optional[str]:
+        return pulumi.get(self, "interface")
+
+    @property
+    @pulumi.getter(name="ipsecPhase1")
+    def ipsec_phase1(self) -> Optional[str]:
+        return pulumi.get(self, "ipsec_phase1")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="overlayPolicy")
+    def overlay_policy(self) -> Optional[int]:
+        return pulumi.get(self, "overlay_policy")
+
+    @property
+    @pulumi.getter(name="overlayTunnelBlock")
+    def overlay_tunnel_block(self) -> Optional[str]:
+        return pulumi.get(self, "overlay_tunnel_block")
+
+    @property
+    @pulumi.getter(name="remoteGw")
+    def remote_gw(self) -> Optional[str]:
+        return pulumi.get(self, "remote_gw")
+
+    @property
+    @pulumi.getter(name="routePolicy")
+    def route_policy(self) -> Optional[int]:
+        return pulumi.get(self, "route_policy")
+
+    @property
+    @pulumi.getter(name="sdwanMember")
+    def sdwan_member(self) -> Optional[int]:
+        return pulumi.get(self, "sdwan_member")
+
+
+@pulumi.output_type
 class SystemFederatedUpgradeNodeList(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -54934,6 +56984,8 @@ class SystemFederatedUpgradeNodeList(dict):
             suggest = "coordinating_fortigate"
         elif key == "deviceType":
             suggest = "device_type"
+        elif key == "maximumMinutes":
+            suggest = "maximum_minutes"
         elif key == "setupTime":
             suggest = "setup_time"
         elif key == "upgradePath":
@@ -54953,6 +57005,7 @@ class SystemFederatedUpgradeNodeList(dict):
     def __init__(__self__, *,
                  coordinating_fortigate: Optional[str] = None,
                  device_type: Optional[str] = None,
+                 maximum_minutes: Optional[int] = None,
                  serial: Optional[str] = None,
                  setup_time: Optional[str] = None,
                  time: Optional[str] = None,
@@ -54962,6 +57015,8 @@ class SystemFederatedUpgradeNodeList(dict):
             pulumi.set(__self__, "coordinating_fortigate", coordinating_fortigate)
         if device_type is not None:
             pulumi.set(__self__, "device_type", device_type)
+        if maximum_minutes is not None:
+            pulumi.set(__self__, "maximum_minutes", maximum_minutes)
         if serial is not None:
             pulumi.set(__self__, "serial", serial)
         if setup_time is not None:
@@ -54982,6 +57037,11 @@ class SystemFederatedUpgradeNodeList(dict):
     @pulumi.getter(name="deviceType")
     def device_type(self) -> Optional[str]:
         return pulumi.get(self, "device_type")
+
+    @property
+    @pulumi.getter(name="maximumMinutes")
+    def maximum_minutes(self) -> Optional[int]:
+        return pulumi.get(self, "maximum_minutes")
 
     @property
     @pulumi.getter
@@ -55103,6 +57163,19 @@ class SystemGeoipOverrideIpRange(dict):
     @pulumi.getter(name="startIp")
     def start_ip(self) -> Optional[str]:
         return pulumi.get(self, "start_ip")
+
+
+@pulumi.output_type
+class SystemGlobalInternetServiceDownloadList(dict):
+    def __init__(__self__, *,
+                 id: Optional[int] = None):
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        return pulumi.get(self, "id")
 
 
 @pulumi.output_type
@@ -56362,6 +58435,8 @@ class SystemInterfaceIpv6(dict):
             suggest = "dhcp6_relay_ip"
         elif key == "dhcp6RelayService":
             suggest = "dhcp6_relay_service"
+        elif key == "dhcp6RelaySourceInterface":
+            suggest = "dhcp6_relay_source_interface"
         elif key == "dhcp6RelayType":
             suggest = "dhcp6_relay_type"
         elif key == "icmp6SendRedirect":
@@ -56454,6 +58529,7 @@ class SystemInterfaceIpv6(dict):
                  dhcp6_prefix_hint_vlt: Optional[int] = None,
                  dhcp6_relay_ip: Optional[str] = None,
                  dhcp6_relay_service: Optional[str] = None,
+                 dhcp6_relay_source_interface: Optional[str] = None,
                  dhcp6_relay_type: Optional[str] = None,
                  icmp6_send_redirect: Optional[str] = None,
                  interface_identifier: Optional[str] = None,
@@ -56511,6 +58587,8 @@ class SystemInterfaceIpv6(dict):
             pulumi.set(__self__, "dhcp6_relay_ip", dhcp6_relay_ip)
         if dhcp6_relay_service is not None:
             pulumi.set(__self__, "dhcp6_relay_service", dhcp6_relay_service)
+        if dhcp6_relay_source_interface is not None:
+            pulumi.set(__self__, "dhcp6_relay_source_interface", dhcp6_relay_source_interface)
         if dhcp6_relay_type is not None:
             pulumi.set(__self__, "dhcp6_relay_type", dhcp6_relay_type)
         if icmp6_send_redirect is not None:
@@ -56636,6 +58714,11 @@ class SystemInterfaceIpv6(dict):
     @pulumi.getter(name="dhcp6RelayService")
     def dhcp6_relay_service(self) -> Optional[str]:
         return pulumi.get(self, "dhcp6_relay_service")
+
+    @property
+    @pulumi.getter(name="dhcp6RelaySourceInterface")
+    def dhcp6_relay_source_interface(self) -> Optional[str]:
+        return pulumi.get(self, "dhcp6_relay_source_interface")
 
     @property
     @pulumi.getter(name="dhcp6RelayType")
@@ -57235,6 +59318,8 @@ class SystemInterfaceSecondaryip(dict):
             suggest = "ha_priority"
         elif key == "pingServStatus":
             suggest = "ping_serv_status"
+        elif key == "secipRelayIp":
+            suggest = "secip_relay_ip"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in SystemInterfaceSecondaryip. Access the value via the '{suggest}' property getter instead.")
@@ -57255,7 +59340,8 @@ class SystemInterfaceSecondaryip(dict):
                  ha_priority: Optional[int] = None,
                  id: Optional[int] = None,
                  ip: Optional[str] = None,
-                 ping_serv_status: Optional[int] = None):
+                 ping_serv_status: Optional[int] = None,
+                 secip_relay_ip: Optional[str] = None):
         if allowaccess is not None:
             pulumi.set(__self__, "allowaccess", allowaccess)
         if detectprotocol is not None:
@@ -57272,6 +59358,8 @@ class SystemInterfaceSecondaryip(dict):
             pulumi.set(__self__, "ip", ip)
         if ping_serv_status is not None:
             pulumi.set(__self__, "ping_serv_status", ping_serv_status)
+        if secip_relay_ip is not None:
+            pulumi.set(__self__, "secip_relay_ip", secip_relay_ip)
 
     @property
     @pulumi.getter
@@ -57312,6 +59400,11 @@ class SystemInterfaceSecondaryip(dict):
     @pulumi.getter(name="pingServStatus")
     def ping_serv_status(self) -> Optional[int]:
         return pulumi.get(self, "ping_serv_status")
+
+    @property
+    @pulumi.getter(name="secipRelayIp")
+    def secip_relay_ip(self) -> Optional[str]:
+        return pulumi.get(self, "secip_relay_ip")
 
 
 @pulumi.output_type
@@ -58379,6 +60472,262 @@ class SystemObjectTaggingTag(dict):
     @pulumi.getter
     def name(self) -> Optional[str]:
         return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class SystemPcpServerPool(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "allowOpcode":
+            suggest = "allow_opcode"
+        elif key == "announcementCount":
+            suggest = "announcement_count"
+        elif key == "arpReply":
+            suggest = "arp_reply"
+        elif key == "clientMappingLimit":
+            suggest = "client_mapping_limit"
+        elif key == "clientSubnets":
+            suggest = "client_subnets"
+        elif key == "extIntf":
+            suggest = "ext_intf"
+        elif key == "intlIntfs":
+            suggest = "intl_intfs"
+        elif key == "mappingFilterLimit":
+            suggest = "mapping_filter_limit"
+        elif key == "maximalLifetime":
+            suggest = "maximal_lifetime"
+        elif key == "minimalLifetime":
+            suggest = "minimal_lifetime"
+        elif key == "multicastAnnouncement":
+            suggest = "multicast_announcement"
+        elif key == "recycleDelay":
+            suggest = "recycle_delay"
+        elif key == "thirdParty":
+            suggest = "third_party"
+        elif key == "thirdPartySubnets":
+            suggest = "third_party_subnets"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemPcpServerPool. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemPcpServerPool.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemPcpServerPool.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 allow_opcode: Optional[str] = None,
+                 announcement_count: Optional[int] = None,
+                 arp_reply: Optional[str] = None,
+                 client_mapping_limit: Optional[int] = None,
+                 client_subnets: Optional[Sequence['outputs.SystemPcpServerPoolClientSubnet']] = None,
+                 description: Optional[str] = None,
+                 ext_intf: Optional[str] = None,
+                 extip: Optional[str] = None,
+                 extport: Optional[str] = None,
+                 id: Optional[int] = None,
+                 intl_intfs: Optional[Sequence['outputs.SystemPcpServerPoolIntlIntf']] = None,
+                 mapping_filter_limit: Optional[int] = None,
+                 maximal_lifetime: Optional[int] = None,
+                 minimal_lifetime: Optional[int] = None,
+                 multicast_announcement: Optional[str] = None,
+                 name: Optional[str] = None,
+                 recycle_delay: Optional[int] = None,
+                 third_party: Optional[str] = None,
+                 third_party_subnets: Optional[Sequence['outputs.SystemPcpServerPoolThirdPartySubnet']] = None):
+        if allow_opcode is not None:
+            pulumi.set(__self__, "allow_opcode", allow_opcode)
+        if announcement_count is not None:
+            pulumi.set(__self__, "announcement_count", announcement_count)
+        if arp_reply is not None:
+            pulumi.set(__self__, "arp_reply", arp_reply)
+        if client_mapping_limit is not None:
+            pulumi.set(__self__, "client_mapping_limit", client_mapping_limit)
+        if client_subnets is not None:
+            pulumi.set(__self__, "client_subnets", client_subnets)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if ext_intf is not None:
+            pulumi.set(__self__, "ext_intf", ext_intf)
+        if extip is not None:
+            pulumi.set(__self__, "extip", extip)
+        if extport is not None:
+            pulumi.set(__self__, "extport", extport)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if intl_intfs is not None:
+            pulumi.set(__self__, "intl_intfs", intl_intfs)
+        if mapping_filter_limit is not None:
+            pulumi.set(__self__, "mapping_filter_limit", mapping_filter_limit)
+        if maximal_lifetime is not None:
+            pulumi.set(__self__, "maximal_lifetime", maximal_lifetime)
+        if minimal_lifetime is not None:
+            pulumi.set(__self__, "minimal_lifetime", minimal_lifetime)
+        if multicast_announcement is not None:
+            pulumi.set(__self__, "multicast_announcement", multicast_announcement)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if recycle_delay is not None:
+            pulumi.set(__self__, "recycle_delay", recycle_delay)
+        if third_party is not None:
+            pulumi.set(__self__, "third_party", third_party)
+        if third_party_subnets is not None:
+            pulumi.set(__self__, "third_party_subnets", third_party_subnets)
+
+    @property
+    @pulumi.getter(name="allowOpcode")
+    def allow_opcode(self) -> Optional[str]:
+        return pulumi.get(self, "allow_opcode")
+
+    @property
+    @pulumi.getter(name="announcementCount")
+    def announcement_count(self) -> Optional[int]:
+        return pulumi.get(self, "announcement_count")
+
+    @property
+    @pulumi.getter(name="arpReply")
+    def arp_reply(self) -> Optional[str]:
+        return pulumi.get(self, "arp_reply")
+
+    @property
+    @pulumi.getter(name="clientMappingLimit")
+    def client_mapping_limit(self) -> Optional[int]:
+        return pulumi.get(self, "client_mapping_limit")
+
+    @property
+    @pulumi.getter(name="clientSubnets")
+    def client_subnets(self) -> Optional[Sequence['outputs.SystemPcpServerPoolClientSubnet']]:
+        return pulumi.get(self, "client_subnets")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="extIntf")
+    def ext_intf(self) -> Optional[str]:
+        return pulumi.get(self, "ext_intf")
+
+    @property
+    @pulumi.getter
+    def extip(self) -> Optional[str]:
+        return pulumi.get(self, "extip")
+
+    @property
+    @pulumi.getter
+    def extport(self) -> Optional[str]:
+        return pulumi.get(self, "extport")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="intlIntfs")
+    def intl_intfs(self) -> Optional[Sequence['outputs.SystemPcpServerPoolIntlIntf']]:
+        return pulumi.get(self, "intl_intfs")
+
+    @property
+    @pulumi.getter(name="mappingFilterLimit")
+    def mapping_filter_limit(self) -> Optional[int]:
+        return pulumi.get(self, "mapping_filter_limit")
+
+    @property
+    @pulumi.getter(name="maximalLifetime")
+    def maximal_lifetime(self) -> Optional[int]:
+        return pulumi.get(self, "maximal_lifetime")
+
+    @property
+    @pulumi.getter(name="minimalLifetime")
+    def minimal_lifetime(self) -> Optional[int]:
+        return pulumi.get(self, "minimal_lifetime")
+
+    @property
+    @pulumi.getter(name="multicastAnnouncement")
+    def multicast_announcement(self) -> Optional[str]:
+        return pulumi.get(self, "multicast_announcement")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="recycleDelay")
+    def recycle_delay(self) -> Optional[int]:
+        return pulumi.get(self, "recycle_delay")
+
+    @property
+    @pulumi.getter(name="thirdParty")
+    def third_party(self) -> Optional[str]:
+        return pulumi.get(self, "third_party")
+
+    @property
+    @pulumi.getter(name="thirdPartySubnets")
+    def third_party_subnets(self) -> Optional[Sequence['outputs.SystemPcpServerPoolThirdPartySubnet']]:
+        return pulumi.get(self, "third_party_subnets")
+
+
+@pulumi.output_type
+class SystemPcpServerPoolClientSubnet(dict):
+    def __init__(__self__, *,
+                 subnet: Optional[str] = None):
+        if subnet is not None:
+            pulumi.set(__self__, "subnet", subnet)
+
+    @property
+    @pulumi.getter
+    def subnet(self) -> Optional[str]:
+        return pulumi.get(self, "subnet")
+
+
+@pulumi.output_type
+class SystemPcpServerPoolIntlIntf(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "interfaceName":
+            suggest = "interface_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemPcpServerPoolIntlIntf. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemPcpServerPoolIntlIntf.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemPcpServerPoolIntlIntf.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 interface_name: Optional[str] = None):
+        if interface_name is not None:
+            pulumi.set(__self__, "interface_name", interface_name)
+
+    @property
+    @pulumi.getter(name="interfaceName")
+    def interface_name(self) -> Optional[str]:
+        return pulumi.get(self, "interface_name")
+
+
+@pulumi.output_type
+class SystemPcpServerPoolThirdPartySubnet(dict):
+    def __init__(__self__, *,
+                 subnet: Optional[str] = None):
+        if subnet is not None:
+            pulumi.set(__self__, "subnet", subnet)
+
+    @property
+    @pulumi.getter
+    def subnet(self) -> Optional[str]:
+        return pulumi.get(self, "subnet")
 
 
 @pulumi.output_type
@@ -59613,6 +61962,36 @@ class SystemSamlServiceProviderAssertionAttribute(dict):
 
 
 @pulumi.output_type
+class SystemSdnConnectorCompartmentList(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "compartmentId":
+            suggest = "compartment_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemSdnConnectorCompartmentList. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemSdnConnectorCompartmentList.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemSdnConnectorCompartmentList.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 compartment_id: Optional[str] = None):
+        if compartment_id is not None:
+            pulumi.set(__self__, "compartment_id", compartment_id)
+
+    @property
+    @pulumi.getter(name="compartmentId")
+    def compartment_id(self) -> Optional[str]:
+        return pulumi.get(self, "compartment_id")
+
+
+@pulumi.output_type
 class SystemSdnConnectorExternalAccountList(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -59844,6 +62223,19 @@ class SystemSdnConnectorNicIp(dict):
     @pulumi.getter(name="resourceGroup")
     def resource_group(self) -> Optional[str]:
         return pulumi.get(self, "resource_group")
+
+
+@pulumi.output_type
+class SystemSdnConnectorOciRegionList(dict):
+    def __init__(__self__, *,
+                 region: Optional[str] = None):
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[str]:
+        return pulumi.get(self, "region")
 
 
 @pulumi.output_type
@@ -60214,6 +62606,8 @@ class SystemSdwanHealthCheck(dict):
         suggest = None
         if key == "addrMode":
             suggest = "addr_mode"
+        elif key == "classId":
+            suggest = "class_id"
         elif key == "detectMode":
             suggest = "detect_mode"
         elif key == "dnsMatchIp":
@@ -60286,6 +62680,7 @@ class SystemSdwanHealthCheck(dict):
 
     def __init__(__self__, *,
                  addr_mode: Optional[str] = None,
+                 class_id: Optional[int] = None,
                  detect_mode: Optional[str] = None,
                  diffservcode: Optional[str] = None,
                  dns_match_ip: Optional[str] = None,
@@ -60318,6 +62713,7 @@ class SystemSdwanHealthCheck(dict):
                  sla_pass_log_period: Optional[int] = None,
                  slas: Optional[Sequence['outputs.SystemSdwanHealthCheckSla']] = None,
                  source: Optional[str] = None,
+                 source6: Optional[str] = None,
                  system_dns: Optional[str] = None,
                  threshold_alert_jitter: Optional[int] = None,
                  threshold_alert_latency: Optional[int] = None,
@@ -60331,6 +62727,8 @@ class SystemSdwanHealthCheck(dict):
                  vrf: Optional[int] = None):
         if addr_mode is not None:
             pulumi.set(__self__, "addr_mode", addr_mode)
+        if class_id is not None:
+            pulumi.set(__self__, "class_id", class_id)
         if detect_mode is not None:
             pulumi.set(__self__, "detect_mode", detect_mode)
         if diffservcode is not None:
@@ -60395,6 +62793,8 @@ class SystemSdwanHealthCheck(dict):
             pulumi.set(__self__, "slas", slas)
         if source is not None:
             pulumi.set(__self__, "source", source)
+        if source6 is not None:
+            pulumi.set(__self__, "source6", source6)
         if system_dns is not None:
             pulumi.set(__self__, "system_dns", system_dns)
         if threshold_alert_jitter is not None:
@@ -60422,6 +62822,11 @@ class SystemSdwanHealthCheck(dict):
     @pulumi.getter(name="addrMode")
     def addr_mode(self) -> Optional[str]:
         return pulumi.get(self, "addr_mode")
+
+    @property
+    @pulumi.getter(name="classId")
+    def class_id(self) -> Optional[int]:
+        return pulumi.get(self, "class_id")
 
     @property
     @pulumi.getter(name="detectMode")
@@ -60582,6 +62987,11 @@ class SystemSdwanHealthCheck(dict):
     @pulumi.getter
     def source(self) -> Optional[str]:
         return pulumi.get(self, "source")
+
+    @property
+    @pulumi.getter
+    def source6(self) -> Optional[str]:
+        return pulumi.get(self, "source6")
 
     @property
     @pulumi.getter(name="systemDns")
@@ -60774,6 +63184,8 @@ class SystemSdwanMember(dict):
         suggest = None
         if key == "ingressSpilloverThreshold":
             suggest = "ingress_spillover_threshold"
+        elif key == "preferredSource":
+            suggest = "preferred_source"
         elif key == "seqNum":
             suggest = "seq_num"
         elif key == "spilloverThreshold":
@@ -60799,6 +63211,7 @@ class SystemSdwanMember(dict):
                  gateway6: Optional[str] = None,
                  ingress_spillover_threshold: Optional[int] = None,
                  interface: Optional[str] = None,
+                 preferred_source: Optional[str] = None,
                  priority: Optional[int] = None,
                  priority6: Optional[int] = None,
                  seq_num: Optional[int] = None,
@@ -60821,6 +63234,8 @@ class SystemSdwanMember(dict):
             pulumi.set(__self__, "ingress_spillover_threshold", ingress_spillover_threshold)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
+        if preferred_source is not None:
+            pulumi.set(__self__, "preferred_source", preferred_source)
         if priority is not None:
             pulumi.set(__self__, "priority", priority)
         if priority6 is not None:
@@ -60871,6 +63286,11 @@ class SystemSdwanMember(dict):
     @pulumi.getter
     def interface(self) -> Optional[str]:
         return pulumi.get(self, "interface")
+
+    @property
+    @pulumi.getter(name="preferredSource")
+    def preferred_source(self) -> Optional[str]:
+        return pulumi.get(self, "preferred_source")
 
     @property
     @pulumi.getter
@@ -60930,6 +63350,8 @@ class SystemSdwanNeighbor(dict):
         suggest = None
         if key == "healthCheck":
             suggest = "health_check"
+        elif key == "memberBlocks":
+            suggest = "member_blocks"
         elif key == "minimumSlaMeetMembers":
             suggest = "minimum_sla_meet_members"
         elif key == "slaId":
@@ -60950,6 +63372,7 @@ class SystemSdwanNeighbor(dict):
                  health_check: Optional[str] = None,
                  ip: Optional[str] = None,
                  member: Optional[int] = None,
+                 member_blocks: Optional[Sequence['outputs.SystemSdwanNeighborMemberBlock']] = None,
                  minimum_sla_meet_members: Optional[int] = None,
                  mode: Optional[str] = None,
                  role: Optional[str] = None,
@@ -60960,6 +63383,8 @@ class SystemSdwanNeighbor(dict):
             pulumi.set(__self__, "ip", ip)
         if member is not None:
             pulumi.set(__self__, "member", member)
+        if member_blocks is not None:
+            pulumi.set(__self__, "member_blocks", member_blocks)
         if minimum_sla_meet_members is not None:
             pulumi.set(__self__, "minimum_sla_meet_members", minimum_sla_meet_members)
         if mode is not None:
@@ -60985,6 +63410,11 @@ class SystemSdwanNeighbor(dict):
         return pulumi.get(self, "member")
 
     @property
+    @pulumi.getter(name="memberBlocks")
+    def member_blocks(self) -> Optional[Sequence['outputs.SystemSdwanNeighborMemberBlock']]:
+        return pulumi.get(self, "member_blocks")
+
+    @property
     @pulumi.getter(name="minimumSlaMeetMembers")
     def minimum_sla_meet_members(self) -> Optional[int]:
         return pulumi.get(self, "minimum_sla_meet_members")
@@ -61006,12 +63436,44 @@ class SystemSdwanNeighbor(dict):
 
 
 @pulumi.output_type
+class SystemSdwanNeighborMemberBlock(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "seqNum":
+            suggest = "seq_num"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemSdwanNeighborMemberBlock. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemSdwanNeighborMemberBlock.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemSdwanNeighborMemberBlock.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 seq_num: Optional[int] = None):
+        if seq_num is not None:
+            pulumi.set(__self__, "seq_num", seq_num)
+
+    @property
+    @pulumi.getter(name="seqNum")
+    def seq_num(self) -> Optional[int]:
+        return pulumi.get(self, "seq_num")
+
+
+@pulumi.output_type
 class SystemSdwanService(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
         if key == "addrMode":
             suggest = "addr_mode"
+        elif key == "agentExclusive":
+            suggest = "agent_exclusive"
         elif key == "bandwidthWeight":
             suggest = "bandwidth_weight"
         elif key == "dscpForward":
@@ -61076,6 +63538,8 @@ class SystemSdwanService(dict):
             suggest = "quality_link"
         elif key == "routeTag":
             suggest = "route_tag"
+        elif key == "shortcutStickiness":
+            suggest = "shortcut_stickiness"
         elif key == "slaCompareMethod":
             suggest = "sla_compare_method"
         elif key == "srcNegate":
@@ -61104,6 +63568,7 @@ class SystemSdwanService(dict):
 
     def __init__(__self__, *,
                  addr_mode: Optional[str] = None,
+                 agent_exclusive: Optional[str] = None,
                  bandwidth_weight: Optional[int] = None,
                  default: Optional[str] = None,
                  dscp_forward: Optional[str] = None,
@@ -61146,6 +63611,8 @@ class SystemSdwanService(dict):
                  quality_link: Optional[int] = None,
                  role: Optional[str] = None,
                  route_tag: Optional[int] = None,
+                 shortcut: Optional[str] = None,
+                 shortcut_stickiness: Optional[str] = None,
                  sla_compare_method: Optional[str] = None,
                  slas: Optional[Sequence['outputs.SystemSdwanServiceSla']] = None,
                  src6s: Optional[Sequence['outputs.SystemSdwanServiceSrc6']] = None,
@@ -61161,6 +63628,8 @@ class SystemSdwanService(dict):
                  users: Optional[Sequence['outputs.SystemSdwanServiceUser']] = None):
         if addr_mode is not None:
             pulumi.set(__self__, "addr_mode", addr_mode)
+        if agent_exclusive is not None:
+            pulumi.set(__self__, "agent_exclusive", agent_exclusive)
         if bandwidth_weight is not None:
             pulumi.set(__self__, "bandwidth_weight", bandwidth_weight)
         if default is not None:
@@ -61245,6 +63714,10 @@ class SystemSdwanService(dict):
             pulumi.set(__self__, "role", role)
         if route_tag is not None:
             pulumi.set(__self__, "route_tag", route_tag)
+        if shortcut is not None:
+            pulumi.set(__self__, "shortcut", shortcut)
+        if shortcut_stickiness is not None:
+            pulumi.set(__self__, "shortcut_stickiness", shortcut_stickiness)
         if sla_compare_method is not None:
             pulumi.set(__self__, "sla_compare_method", sla_compare_method)
         if slas is not None:
@@ -61276,6 +63749,11 @@ class SystemSdwanService(dict):
     @pulumi.getter(name="addrMode")
     def addr_mode(self) -> Optional[str]:
         return pulumi.get(self, "addr_mode")
+
+    @property
+    @pulumi.getter(name="agentExclusive")
+    def agent_exclusive(self) -> Optional[str]:
+        return pulumi.get(self, "agent_exclusive")
 
     @property
     @pulumi.getter(name="bandwidthWeight")
@@ -61486,6 +63964,16 @@ class SystemSdwanService(dict):
     @pulumi.getter(name="routeTag")
     def route_tag(self) -> Optional[int]:
         return pulumi.get(self, "route_tag")
+
+    @property
+    @pulumi.getter
+    def shortcut(self) -> Optional[str]:
+        return pulumi.get(self, "shortcut")
+
+    @property
+    @pulumi.getter(name="shortcutStickiness")
+    def shortcut_stickiness(self) -> Optional[str]:
+        return pulumi.get(self, "shortcut_stickiness")
 
     @property
     @pulumi.getter(name="slaCompareMethod")
@@ -62131,21 +64619,35 @@ class SystemSpeedTestScheduleSchedule(dict):
 @pulumi.output_type
 class SystemSpeedTestServerHost(dict):
     def __init__(__self__, *,
+                 distance: Optional[int] = None,
                  id: Optional[int] = None,
                  ip: Optional[str] = None,
+                 latitude: Optional[str] = None,
+                 longitude: Optional[str] = None,
                  password: Optional[str] = None,
                  port: Optional[int] = None,
                  user: Optional[str] = None):
+        if distance is not None:
+            pulumi.set(__self__, "distance", distance)
         if id is not None:
             pulumi.set(__self__, "id", id)
         if ip is not None:
             pulumi.set(__self__, "ip", ip)
+        if latitude is not None:
+            pulumi.set(__self__, "latitude", latitude)
+        if longitude is not None:
+            pulumi.set(__self__, "longitude", longitude)
         if password is not None:
             pulumi.set(__self__, "password", password)
         if port is not None:
             pulumi.set(__self__, "port", port)
         if user is not None:
             pulumi.set(__self__, "user", user)
+
+    @property
+    @pulumi.getter
+    def distance(self) -> Optional[int]:
+        return pulumi.get(self, "distance")
 
     @property
     @pulumi.getter
@@ -62156,6 +64658,16 @@ class SystemSpeedTestServerHost(dict):
     @pulumi.getter
     def ip(self) -> Optional[str]:
         return pulumi.get(self, "ip")
+
+    @property
+    @pulumi.getter
+    def latitude(self) -> Optional[str]:
+        return pulumi.get(self, "latitude")
+
+    @property
+    @pulumi.getter
+    def longitude(self) -> Optional[str]:
+        return pulumi.get(self, "longitude")
 
     @property
     @pulumi.getter
@@ -62188,6 +64700,19 @@ class SystemSsoAdminVdom(dict):
 
 @pulumi.output_type
 class SystemSsoForticloudAdminVdom(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class SystemSsoFortigateCloudAdminVdom(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
         if name is not None:
@@ -64522,6 +67047,36 @@ class UserGroupMember(dict):
 
 
 @pulumi.output_type
+class UserNacPolicySeverity(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "severityNum":
+            suggest = "severity_num"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in UserNacPolicySeverity. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        UserNacPolicySeverity.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        UserNacPolicySeverity.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 severity_num: Optional[int] = None):
+        if severity_num is not None:
+            pulumi.set(__self__, "severity_num", severity_num)
+
+    @property
+    @pulumi.getter(name="severityNum")
+    def severity_num(self) -> Optional[int]:
+        return pulumi.get(self, "severity_num")
+
+
+@pulumi.output_type
 class UserNacPolicySwitchGroup(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
@@ -65199,6 +67754,8 @@ class VoipProfileSip(dict):
             suggest = "bye_rate"
         elif key == "byeRateTrack":
             suggest = "bye_rate_track"
+        elif key == "callIdRegex":
+            suggest = "call_id_regex"
         elif key == "callKeepalive":
             suggest = "call_keepalive"
         elif key == "cancelRate":
@@ -65207,6 +67764,8 @@ class VoipProfileSip(dict):
             suggest = "cancel_rate_track"
         elif key == "contactFixup":
             suggest = "contact_fixup"
+        elif key == "contentTypeRegex":
+            suggest = "content_type_regex"
         elif key == "hntRestrictSourceIp":
             suggest = "hnt_restrict_source_ip"
         elif key == "hostedNatTraversal":
@@ -65413,10 +67972,12 @@ class VoipProfileSip(dict):
                  block_update: Optional[str] = None,
                  bye_rate: Optional[int] = None,
                  bye_rate_track: Optional[str] = None,
+                 call_id_regex: Optional[str] = None,
                  call_keepalive: Optional[int] = None,
                  cancel_rate: Optional[int] = None,
                  cancel_rate_track: Optional[str] = None,
                  contact_fixup: Optional[str] = None,
+                 content_type_regex: Optional[str] = None,
                  hnt_restrict_source_ip: Optional[str] = None,
                  hosted_nat_traversal: Optional[str] = None,
                  info_rate: Optional[int] = None,
@@ -65547,6 +68108,8 @@ class VoipProfileSip(dict):
             pulumi.set(__self__, "bye_rate", bye_rate)
         if bye_rate_track is not None:
             pulumi.set(__self__, "bye_rate_track", bye_rate_track)
+        if call_id_regex is not None:
+            pulumi.set(__self__, "call_id_regex", call_id_regex)
         if call_keepalive is not None:
             pulumi.set(__self__, "call_keepalive", call_keepalive)
         if cancel_rate is not None:
@@ -65555,6 +68118,8 @@ class VoipProfileSip(dict):
             pulumi.set(__self__, "cancel_rate_track", cancel_rate_track)
         if contact_fixup is not None:
             pulumi.set(__self__, "contact_fixup", contact_fixup)
+        if content_type_regex is not None:
+            pulumi.set(__self__, "content_type_regex", content_type_regex)
         if hnt_restrict_source_ip is not None:
             pulumi.set(__self__, "hnt_restrict_source_ip", hnt_restrict_source_ip)
         if hosted_nat_traversal is not None:
@@ -65838,6 +68403,11 @@ class VoipProfileSip(dict):
         return pulumi.get(self, "bye_rate_track")
 
     @property
+    @pulumi.getter(name="callIdRegex")
+    def call_id_regex(self) -> Optional[str]:
+        return pulumi.get(self, "call_id_regex")
+
+    @property
     @pulumi.getter(name="callKeepalive")
     def call_keepalive(self) -> Optional[int]:
         return pulumi.get(self, "call_keepalive")
@@ -65856,6 +68426,11 @@ class VoipProfileSip(dict):
     @pulumi.getter(name="contactFixup")
     def contact_fixup(self) -> Optional[str]:
         return pulumi.get(self, "contact_fixup")
+
+    @property
+    @pulumi.getter(name="contentTypeRegex")
+    def content_type_regex(self) -> Optional[str]:
+        return pulumi.get(self, "content_type_regex")
 
     @property
     @pulumi.getter(name="hntRestrictSourceIp")
@@ -66698,6 +69273,51 @@ class VpnIpsecPhase1Ipv6ExcludeRange(dict):
 
 
 @pulumi.output_type
+class VpnKmipServerServerList(dict):
+    def __init__(__self__, *,
+                 cert: Optional[str] = None,
+                 id: Optional[int] = None,
+                 port: Optional[int] = None,
+                 server: Optional[str] = None,
+                 status: Optional[str] = None):
+        if cert is not None:
+            pulumi.set(__self__, "cert", cert)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if server is not None:
+            pulumi.set(__self__, "server", server)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter
+    def cert(self) -> Optional[str]:
+        return pulumi.get(self, "cert")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[int]:
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter
+    def server(self) -> Optional[str]:
+        return pulumi.get(self, "server")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[str]:
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
 class VpnOcvpnForticlientAccess(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -67369,6 +69989,8 @@ class VpnSslWebPortalBookmarkGroupBookmark(dict):
             suggest = "sso_password"
         elif key == "ssoUsername":
             suggest = "sso_username"
+        elif key == "vncKeyboardLayout":
+            suggest = "vnc_keyboard_layout"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in VpnSslWebPortalBookmarkGroupBookmark. Access the value via the '{suggest}' property getter instead.")
@@ -67412,6 +70034,7 @@ class VpnSslWebPortalBookmarkGroupBookmark(dict):
                  sso_password: Optional[str] = None,
                  sso_username: Optional[str] = None,
                  url: Optional[str] = None,
+                 vnc_keyboard_layout: Optional[str] = None,
                  width: Optional[int] = None):
         if additional_params is not None:
             pulumi.set(__self__, "additional_params", additional_params)
@@ -67473,6 +70096,8 @@ class VpnSslWebPortalBookmarkGroupBookmark(dict):
             pulumi.set(__self__, "sso_username", sso_username)
         if url is not None:
             pulumi.set(__self__, "url", url)
+        if vnc_keyboard_layout is not None:
+            pulumi.set(__self__, "vnc_keyboard_layout", vnc_keyboard_layout)
         if width is not None:
             pulumi.set(__self__, "width", width)
 
@@ -67627,6 +70252,11 @@ class VpnSslWebPortalBookmarkGroupBookmark(dict):
         return pulumi.get(self, "url")
 
     @property
+    @pulumi.getter(name="vncKeyboardLayout")
+    def vnc_keyboard_layout(self) -> Optional[str]:
+        return pulumi.get(self, "vnc_keyboard_layout")
+
+    @property
     @pulumi.getter
     def width(self) -> Optional[int]:
         return pulumi.get(self, "width")
@@ -67703,6 +70333,113 @@ class VpnSslWebPortalIpv6SplitTunnelingRoutingAddress(dict):
     @pulumi.getter
     def name(self) -> Optional[str]:
         return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class VpnSslWebPortalLandingPage(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "formDatas":
+            suggest = "form_datas"
+        elif key == "logoutUrl":
+            suggest = "logout_url"
+        elif key == "ssoCredential":
+            suggest = "sso_credential"
+        elif key == "ssoPassword":
+            suggest = "sso_password"
+        elif key == "ssoUsername":
+            suggest = "sso_username"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in VpnSslWebPortalLandingPage. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        VpnSslWebPortalLandingPage.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        VpnSslWebPortalLandingPage.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 form_datas: Optional[Sequence['outputs.VpnSslWebPortalLandingPageFormData']] = None,
+                 logout_url: Optional[str] = None,
+                 sso: Optional[str] = None,
+                 sso_credential: Optional[str] = None,
+                 sso_password: Optional[str] = None,
+                 sso_username: Optional[str] = None,
+                 url: Optional[str] = None):
+        if form_datas is not None:
+            pulumi.set(__self__, "form_datas", form_datas)
+        if logout_url is not None:
+            pulumi.set(__self__, "logout_url", logout_url)
+        if sso is not None:
+            pulumi.set(__self__, "sso", sso)
+        if sso_credential is not None:
+            pulumi.set(__self__, "sso_credential", sso_credential)
+        if sso_password is not None:
+            pulumi.set(__self__, "sso_password", sso_password)
+        if sso_username is not None:
+            pulumi.set(__self__, "sso_username", sso_username)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+
+    @property
+    @pulumi.getter(name="formDatas")
+    def form_datas(self) -> Optional[Sequence['outputs.VpnSslWebPortalLandingPageFormData']]:
+        return pulumi.get(self, "form_datas")
+
+    @property
+    @pulumi.getter(name="logoutUrl")
+    def logout_url(self) -> Optional[str]:
+        return pulumi.get(self, "logout_url")
+
+    @property
+    @pulumi.getter
+    def sso(self) -> Optional[str]:
+        return pulumi.get(self, "sso")
+
+    @property
+    @pulumi.getter(name="ssoCredential")
+    def sso_credential(self) -> Optional[str]:
+        return pulumi.get(self, "sso_credential")
+
+    @property
+    @pulumi.getter(name="ssoPassword")
+    def sso_password(self) -> Optional[str]:
+        return pulumi.get(self, "sso_password")
+
+    @property
+    @pulumi.getter(name="ssoUsername")
+    def sso_username(self) -> Optional[str]:
+        return pulumi.get(self, "sso_username")
+
+    @property
+    @pulumi.getter
+    def url(self) -> Optional[str]:
+        return pulumi.get(self, "url")
+
+
+@pulumi.output_type
+class VpnSslWebPortalLandingPageFormData(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None,
+                 value: Optional[str] = None):
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -67952,6 +70689,8 @@ class VpnSslWebUserBookmarkBookmark(dict):
             suggest = "sso_password"
         elif key == "ssoUsername":
             suggest = "sso_username"
+        elif key == "vncKeyboardLayout":
+            suggest = "vnc_keyboard_layout"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in VpnSslWebUserBookmarkBookmark. Access the value via the '{suggest}' property getter instead.")
@@ -67995,6 +70734,7 @@ class VpnSslWebUserBookmarkBookmark(dict):
                  sso_password: Optional[str] = None,
                  sso_username: Optional[str] = None,
                  url: Optional[str] = None,
+                 vnc_keyboard_layout: Optional[str] = None,
                  width: Optional[int] = None):
         if additional_params is not None:
             pulumi.set(__self__, "additional_params", additional_params)
@@ -68056,6 +70796,8 @@ class VpnSslWebUserBookmarkBookmark(dict):
             pulumi.set(__self__, "sso_username", sso_username)
         if url is not None:
             pulumi.set(__self__, "url", url)
+        if vnc_keyboard_layout is not None:
+            pulumi.set(__self__, "vnc_keyboard_layout", vnc_keyboard_layout)
         if width is not None:
             pulumi.set(__self__, "width", width)
 
@@ -68210,6 +70952,11 @@ class VpnSslWebUserBookmarkBookmark(dict):
         return pulumi.get(self, "url")
 
     @property
+    @pulumi.getter(name="vncKeyboardLayout")
+    def vnc_keyboard_layout(self) -> Optional[str]:
+        return pulumi.get(self, "vnc_keyboard_layout")
+
+    @property
     @pulumi.getter
     def width(self) -> Optional[int]:
         return pulumi.get(self, "width")
@@ -68279,6 +71026,8 @@ class VpnSslWebUserGroupBookmarkBookmark(dict):
             suggest = "sso_password"
         elif key == "ssoUsername":
             suggest = "sso_username"
+        elif key == "vncKeyboardLayout":
+            suggest = "vnc_keyboard_layout"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in VpnSslWebUserGroupBookmarkBookmark. Access the value via the '{suggest}' property getter instead.")
@@ -68322,6 +71071,7 @@ class VpnSslWebUserGroupBookmarkBookmark(dict):
                  sso_password: Optional[str] = None,
                  sso_username: Optional[str] = None,
                  url: Optional[str] = None,
+                 vnc_keyboard_layout: Optional[str] = None,
                  width: Optional[int] = None):
         if additional_params is not None:
             pulumi.set(__self__, "additional_params", additional_params)
@@ -68383,6 +71133,8 @@ class VpnSslWebUserGroupBookmarkBookmark(dict):
             pulumi.set(__self__, "sso_username", sso_username)
         if url is not None:
             pulumi.set(__self__, "url", url)
+        if vnc_keyboard_layout is not None:
+            pulumi.set(__self__, "vnc_keyboard_layout", vnc_keyboard_layout)
         if width is not None:
             pulumi.set(__self__, "width", width)
 
@@ -68535,6 +71287,11 @@ class VpnSslWebUserGroupBookmarkBookmark(dict):
     @pulumi.getter
     def url(self) -> Optional[str]:
         return pulumi.get(self, "url")
+
+    @property
+    @pulumi.getter(name="vncKeyboardLayout")
+    def vnc_keyboard_layout(self) -> Optional[str]:
+        return pulumi.get(self, "vnc_keyboard_layout")
 
     @property
     @pulumi.getter
@@ -71111,6 +73868,19 @@ class WebProxyExplicitPacPolicySrcaddr6(dict):
 
 @pulumi.output_type
 class WebProxyExplicitPacPolicySrcaddr(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class WebProxyExplicitSecureWebProxyCert(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
         if name is not None:
@@ -75349,6 +78119,8 @@ class WirelessControllerWtpProfileRadio1(dict):
             suggest = "max_clients"
         elif key == "maxDistance":
             suggest = "max_distance"
+        elif key == "optionalAntenna":
+            suggest = "optional_antenna"
         elif key == "powerLevel":
             suggest = "power_level"
         elif key == "powerMode":
@@ -75463,6 +78235,7 @@ class WirelessControllerWtpProfileRadio1(dict):
                  max_distance: Optional[int] = None,
                  mode: Optional[str] = None,
                  n80211d: Optional[str] = None,
+                 optional_antenna: Optional[str] = None,
                  power_level: Optional[int] = None,
                  power_mode: Optional[str] = None,
                  power_value: Optional[int] = None,
@@ -75576,6 +78349,8 @@ class WirelessControllerWtpProfileRadio1(dict):
             pulumi.set(__self__, "mode", mode)
         if n80211d is not None:
             pulumi.set(__self__, "n80211d", n80211d)
+        if optional_antenna is not None:
+            pulumi.set(__self__, "optional_antenna", optional_antenna)
         if power_level is not None:
             pulumi.set(__self__, "power_level", power_level)
         if power_mode is not None:
@@ -75845,6 +78620,11 @@ class WirelessControllerWtpProfileRadio1(dict):
         return pulumi.get(self, "n80211d")
 
     @property
+    @pulumi.getter(name="optionalAntenna")
+    def optional_antenna(self) -> Optional[str]:
+        return pulumi.get(self, "optional_antenna")
+
+    @property
     @pulumi.getter(name="powerLevel")
     def power_level(self) -> Optional[int]:
         return pulumi.get(self, "power_level")
@@ -76095,6 +78875,8 @@ class WirelessControllerWtpProfileRadio2(dict):
             suggest = "max_clients"
         elif key == "maxDistance":
             suggest = "max_distance"
+        elif key == "optionalAntenna":
+            suggest = "optional_antenna"
         elif key == "powerLevel":
             suggest = "power_level"
         elif key == "powerMode":
@@ -76209,6 +78991,7 @@ class WirelessControllerWtpProfileRadio2(dict):
                  max_distance: Optional[int] = None,
                  mode: Optional[str] = None,
                  n80211d: Optional[str] = None,
+                 optional_antenna: Optional[str] = None,
                  power_level: Optional[int] = None,
                  power_mode: Optional[str] = None,
                  power_value: Optional[int] = None,
@@ -76322,6 +79105,8 @@ class WirelessControllerWtpProfileRadio2(dict):
             pulumi.set(__self__, "mode", mode)
         if n80211d is not None:
             pulumi.set(__self__, "n80211d", n80211d)
+        if optional_antenna is not None:
+            pulumi.set(__self__, "optional_antenna", optional_antenna)
         if power_level is not None:
             pulumi.set(__self__, "power_level", power_level)
         if power_mode is not None:
@@ -76591,6 +79376,11 @@ class WirelessControllerWtpProfileRadio2(dict):
         return pulumi.get(self, "n80211d")
 
     @property
+    @pulumi.getter(name="optionalAntenna")
+    def optional_antenna(self) -> Optional[str]:
+        return pulumi.get(self, "optional_antenna")
+
+    @property
     @pulumi.getter(name="powerLevel")
     def power_level(self) -> Optional[int]:
         return pulumi.get(self, "power_level")
@@ -76841,6 +79631,8 @@ class WirelessControllerWtpProfileRadio3(dict):
             suggest = "max_clients"
         elif key == "maxDistance":
             suggest = "max_distance"
+        elif key == "optionalAntenna":
+            suggest = "optional_antenna"
         elif key == "powerLevel":
             suggest = "power_level"
         elif key == "powerMode":
@@ -76953,6 +79745,7 @@ class WirelessControllerWtpProfileRadio3(dict):
                  max_distance: Optional[int] = None,
                  mode: Optional[str] = None,
                  n80211d: Optional[str] = None,
+                 optional_antenna: Optional[str] = None,
                  power_level: Optional[int] = None,
                  power_mode: Optional[str] = None,
                  power_value: Optional[int] = None,
@@ -77065,6 +79858,8 @@ class WirelessControllerWtpProfileRadio3(dict):
             pulumi.set(__self__, "mode", mode)
         if n80211d is not None:
             pulumi.set(__self__, "n80211d", n80211d)
+        if optional_antenna is not None:
+            pulumi.set(__self__, "optional_antenna", optional_antenna)
         if power_level is not None:
             pulumi.set(__self__, "power_level", power_level)
         if power_mode is not None:
@@ -77332,6 +80127,11 @@ class WirelessControllerWtpProfileRadio3(dict):
         return pulumi.get(self, "n80211d")
 
     @property
+    @pulumi.getter(name="optionalAntenna")
+    def optional_antenna(self) -> Optional[str]:
+        return pulumi.get(self, "optional_antenna")
+
+    @property
     @pulumi.getter(name="powerLevel")
     def power_level(self) -> Optional[int]:
         return pulumi.get(self, "power_level")
@@ -77577,6 +80377,8 @@ class WirelessControllerWtpProfileRadio4(dict):
             suggest = "max_clients"
         elif key == "maxDistance":
             suggest = "max_distance"
+        elif key == "optionalAntenna":
+            suggest = "optional_antenna"
         elif key == "powerLevel":
             suggest = "power_level"
         elif key == "powerMode":
@@ -77689,6 +80491,7 @@ class WirelessControllerWtpProfileRadio4(dict):
                  max_distance: Optional[int] = None,
                  mode: Optional[str] = None,
                  n80211d: Optional[str] = None,
+                 optional_antenna: Optional[str] = None,
                  power_level: Optional[int] = None,
                  power_mode: Optional[str] = None,
                  power_value: Optional[int] = None,
@@ -77801,6 +80604,8 @@ class WirelessControllerWtpProfileRadio4(dict):
             pulumi.set(__self__, "mode", mode)
         if n80211d is not None:
             pulumi.set(__self__, "n80211d", n80211d)
+        if optional_antenna is not None:
+            pulumi.set(__self__, "optional_antenna", optional_antenna)
         if power_level is not None:
             pulumi.set(__self__, "power_level", power_level)
         if power_mode is not None:
@@ -78066,6 +80871,11 @@ class WirelessControllerWtpProfileRadio4(dict):
     @pulumi.getter
     def n80211d(self) -> Optional[str]:
         return pulumi.get(self, "n80211d")
+
+    @property
+    @pulumi.getter(name="optionalAntenna")
+    def optional_antenna(self) -> Optional[str]:
+        return pulumi.get(self, "optional_antenna")
 
     @property
     @pulumi.getter(name="powerLevel")

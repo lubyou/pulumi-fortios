@@ -24,6 +24,7 @@ class LogFortianalyzer2OverrideSettingArgs:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  enc_algorithm: Optional[pulumi.Input[str]] = None,
                  faz_type: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hmac_algorithm: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -66,6 +67,8 @@ class LogFortianalyzer2OverrideSettingArgs:
             pulumi.set(__self__, "enc_algorithm", enc_algorithm)
         if faz_type is not None:
             pulumi.set(__self__, "faz_type", faz_type)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if hmac_algorithm is not None:
             pulumi.set(__self__, "hmac_algorithm", hmac_algorithm)
         if interface is not None:
@@ -184,6 +187,15 @@ class LogFortianalyzer2OverrideSettingArgs:
     @faz_type.setter
     def faz_type(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "faz_type", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="hmacAlgorithm")
@@ -404,6 +416,7 @@ class _LogFortianalyzer2OverrideSettingState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  enc_algorithm: Optional[pulumi.Input[str]] = None,
                  faz_type: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hmac_algorithm: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -446,6 +459,8 @@ class _LogFortianalyzer2OverrideSettingState:
             pulumi.set(__self__, "enc_algorithm", enc_algorithm)
         if faz_type is not None:
             pulumi.set(__self__, "faz_type", faz_type)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if hmac_algorithm is not None:
             pulumi.set(__self__, "hmac_algorithm", hmac_algorithm)
         if interface is not None:
@@ -564,6 +579,15 @@ class _LogFortianalyzer2OverrideSettingState:
     @faz_type.setter
     def faz_type(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "faz_type", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="hmacAlgorithm")
@@ -786,6 +810,7 @@ class LogFortianalyzer2OverrideSetting(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  enc_algorithm: Optional[pulumi.Input[str]] = None,
                  faz_type: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hmac_algorithm: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -846,6 +871,7 @@ class LogFortianalyzer2OverrideSetting(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  enc_algorithm: Optional[pulumi.Input[str]] = None,
                  faz_type: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hmac_algorithm: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -886,6 +912,7 @@ class LogFortianalyzer2OverrideSetting(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["enc_algorithm"] = enc_algorithm
             __props__.__dict__["faz_type"] = faz_type
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["hmac_algorithm"] = hmac_algorithm
             __props__.__dict__["interface"] = interface
             __props__.__dict__["interface_select_method"] = interface_select_method
@@ -927,6 +954,7 @@ class LogFortianalyzer2OverrideSetting(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             enc_algorithm: Optional[pulumi.Input[str]] = None,
             faz_type: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             hmac_algorithm: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -970,6 +998,7 @@ class LogFortianalyzer2OverrideSetting(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["enc_algorithm"] = enc_algorithm
         __props__.__dict__["faz_type"] = faz_type
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["hmac_algorithm"] = hmac_algorithm
         __props__.__dict__["interface"] = interface
         __props__.__dict__["interface_select_method"] = interface_select_method
@@ -1034,6 +1063,11 @@ class LogFortianalyzer2OverrideSetting(pulumi.CustomResource):
     @pulumi.getter(name="fazType")
     def faz_type(self) -> pulumi.Output[int]:
         return pulumi.get(self, "faz_type")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="hmacAlgorithm")

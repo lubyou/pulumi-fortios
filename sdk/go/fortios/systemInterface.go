@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -39,6 +40,7 @@ type SystemInterface struct {
 	ClientOptions                         SystemInterfaceClientOptionArrayOutput           `pulumi:"clientOptions"`
 	Color                                 pulumi.IntOutput                                 `pulumi:"color"`
 	DedicatedTo                           pulumi.StringOutput                              `pulumi:"dedicatedTo"`
+	DefaultPurdueLevel                    pulumi.StringOutput                              `pulumi:"defaultPurdueLevel"`
 	Defaultgw                             pulumi.StringOutput                              `pulumi:"defaultgw"`
 	Description                           pulumi.StringPtrOutput                           `pulumi:"description"`
 	DetectedPeerMtu                       pulumi.IntOutput                                 `pulumi:"detectedPeerMtu"`
@@ -50,6 +52,7 @@ type SystemInterface struct {
 	DeviceNetscan                         pulumi.StringOutput                              `pulumi:"deviceNetscan"`
 	DeviceUserIdentification              pulumi.StringOutput                              `pulumi:"deviceUserIdentification"`
 	Devindex                              pulumi.IntOutput                                 `pulumi:"devindex"`
+	DhcpBroadcastFlag                     pulumi.StringOutput                              `pulumi:"dhcpBroadcastFlag"`
 	DhcpClasslessRouteAddition            pulumi.StringOutput                              `pulumi:"dhcpClasslessRouteAddition"`
 	DhcpClientIdentifier                  pulumi.StringOutput                              `pulumi:"dhcpClientIdentifier"`
 	DhcpRelayAgentOption                  pulumi.StringOutput                              `pulumi:"dhcpRelayAgentOption"`
@@ -61,6 +64,7 @@ type SystemInterface struct {
 	DhcpRelayService                      pulumi.StringOutput                              `pulumi:"dhcpRelayService"`
 	DhcpRelayType                         pulumi.StringOutput                              `pulumi:"dhcpRelayType"`
 	DhcpRenewTime                         pulumi.IntOutput                                 `pulumi:"dhcpRenewTime"`
+	DhcpSmartRelay                        pulumi.StringOutput                              `pulumi:"dhcpSmartRelay"`
 	DhcpSnoopingServerLists               SystemInterfaceDhcpSnoopingServerListArrayOutput `pulumi:"dhcpSnoopingServerLists"`
 	DiscRetryTimeout                      pulumi.IntOutput                                 `pulumi:"discRetryTimeout"`
 	DisconnectThreshold                   pulumi.IntOutput                                 `pulumi:"disconnectThreshold"`
@@ -96,6 +100,7 @@ type SystemInterface struct {
 	FortilinkStacking                     pulumi.StringOutput                              `pulumi:"fortilinkStacking"`
 	ForwardDomain                         pulumi.IntOutput                                 `pulumi:"forwardDomain"`
 	ForwardErrorCorrection                pulumi.StringOutput                              `pulumi:"forwardErrorCorrection"`
+	GetAllTables                          pulumi.StringPtrOutput                           `pulumi:"getAllTables"`
 	Gwdetect                              pulumi.StringOutput                              `pulumi:"gwdetect"`
 	HaPriority                            pulumi.IntOutput                                 `pulumi:"haPriority"`
 	IcmpAcceptRedirect                    pulumi.StringOutput                              `pulumi:"icmpAcceptRedirect"`
@@ -264,7 +269,7 @@ func NewSystemInterface(ctx *pulumi.Context,
 		"pptpPassword",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemInterface
 	err := ctx.RegisterResource("fortios:index/systemInterface:SystemInterface", name, args, &resource, opts...)
 	if err != nil {
@@ -312,6 +317,7 @@ type systemInterfaceState struct {
 	ClientOptions                         []SystemInterfaceClientOption           `pulumi:"clientOptions"`
 	Color                                 *int                                    `pulumi:"color"`
 	DedicatedTo                           *string                                 `pulumi:"dedicatedTo"`
+	DefaultPurdueLevel                    *string                                 `pulumi:"defaultPurdueLevel"`
 	Defaultgw                             *string                                 `pulumi:"defaultgw"`
 	Description                           *string                                 `pulumi:"description"`
 	DetectedPeerMtu                       *int                                    `pulumi:"detectedPeerMtu"`
@@ -323,6 +329,7 @@ type systemInterfaceState struct {
 	DeviceNetscan                         *string                                 `pulumi:"deviceNetscan"`
 	DeviceUserIdentification              *string                                 `pulumi:"deviceUserIdentification"`
 	Devindex                              *int                                    `pulumi:"devindex"`
+	DhcpBroadcastFlag                     *string                                 `pulumi:"dhcpBroadcastFlag"`
 	DhcpClasslessRouteAddition            *string                                 `pulumi:"dhcpClasslessRouteAddition"`
 	DhcpClientIdentifier                  *string                                 `pulumi:"dhcpClientIdentifier"`
 	DhcpRelayAgentOption                  *string                                 `pulumi:"dhcpRelayAgentOption"`
@@ -334,6 +341,7 @@ type systemInterfaceState struct {
 	DhcpRelayService                      *string                                 `pulumi:"dhcpRelayService"`
 	DhcpRelayType                         *string                                 `pulumi:"dhcpRelayType"`
 	DhcpRenewTime                         *int                                    `pulumi:"dhcpRenewTime"`
+	DhcpSmartRelay                        *string                                 `pulumi:"dhcpSmartRelay"`
 	DhcpSnoopingServerLists               []SystemInterfaceDhcpSnoopingServerList `pulumi:"dhcpSnoopingServerLists"`
 	DiscRetryTimeout                      *int                                    `pulumi:"discRetryTimeout"`
 	DisconnectThreshold                   *int                                    `pulumi:"disconnectThreshold"`
@@ -369,6 +377,7 @@ type systemInterfaceState struct {
 	FortilinkStacking                     *string                                 `pulumi:"fortilinkStacking"`
 	ForwardDomain                         *int                                    `pulumi:"forwardDomain"`
 	ForwardErrorCorrection                *string                                 `pulumi:"forwardErrorCorrection"`
+	GetAllTables                          *string                                 `pulumi:"getAllTables"`
 	Gwdetect                              *string                                 `pulumi:"gwdetect"`
 	HaPriority                            *int                                    `pulumi:"haPriority"`
 	IcmpAcceptRedirect                    *string                                 `pulumi:"icmpAcceptRedirect"`
@@ -538,6 +547,7 @@ type SystemInterfaceState struct {
 	ClientOptions                         SystemInterfaceClientOptionArrayInput
 	Color                                 pulumi.IntPtrInput
 	DedicatedTo                           pulumi.StringPtrInput
+	DefaultPurdueLevel                    pulumi.StringPtrInput
 	Defaultgw                             pulumi.StringPtrInput
 	Description                           pulumi.StringPtrInput
 	DetectedPeerMtu                       pulumi.IntPtrInput
@@ -549,6 +559,7 @@ type SystemInterfaceState struct {
 	DeviceNetscan                         pulumi.StringPtrInput
 	DeviceUserIdentification              pulumi.StringPtrInput
 	Devindex                              pulumi.IntPtrInput
+	DhcpBroadcastFlag                     pulumi.StringPtrInput
 	DhcpClasslessRouteAddition            pulumi.StringPtrInput
 	DhcpClientIdentifier                  pulumi.StringPtrInput
 	DhcpRelayAgentOption                  pulumi.StringPtrInput
@@ -560,6 +571,7 @@ type SystemInterfaceState struct {
 	DhcpRelayService                      pulumi.StringPtrInput
 	DhcpRelayType                         pulumi.StringPtrInput
 	DhcpRenewTime                         pulumi.IntPtrInput
+	DhcpSmartRelay                        pulumi.StringPtrInput
 	DhcpSnoopingServerLists               SystemInterfaceDhcpSnoopingServerListArrayInput
 	DiscRetryTimeout                      pulumi.IntPtrInput
 	DisconnectThreshold                   pulumi.IntPtrInput
@@ -595,6 +607,7 @@ type SystemInterfaceState struct {
 	FortilinkStacking                     pulumi.StringPtrInput
 	ForwardDomain                         pulumi.IntPtrInput
 	ForwardErrorCorrection                pulumi.StringPtrInput
+	GetAllTables                          pulumi.StringPtrInput
 	Gwdetect                              pulumi.StringPtrInput
 	HaPriority                            pulumi.IntPtrInput
 	IcmpAcceptRedirect                    pulumi.StringPtrInput
@@ -768,6 +781,7 @@ type systemInterfaceArgs struct {
 	ClientOptions                         []SystemInterfaceClientOption           `pulumi:"clientOptions"`
 	Color                                 *int                                    `pulumi:"color"`
 	DedicatedTo                           *string                                 `pulumi:"dedicatedTo"`
+	DefaultPurdueLevel                    *string                                 `pulumi:"defaultPurdueLevel"`
 	Defaultgw                             *string                                 `pulumi:"defaultgw"`
 	Description                           *string                                 `pulumi:"description"`
 	DetectedPeerMtu                       *int                                    `pulumi:"detectedPeerMtu"`
@@ -779,6 +793,7 @@ type systemInterfaceArgs struct {
 	DeviceNetscan                         *string                                 `pulumi:"deviceNetscan"`
 	DeviceUserIdentification              *string                                 `pulumi:"deviceUserIdentification"`
 	Devindex                              *int                                    `pulumi:"devindex"`
+	DhcpBroadcastFlag                     *string                                 `pulumi:"dhcpBroadcastFlag"`
 	DhcpClasslessRouteAddition            *string                                 `pulumi:"dhcpClasslessRouteAddition"`
 	DhcpClientIdentifier                  *string                                 `pulumi:"dhcpClientIdentifier"`
 	DhcpRelayAgentOption                  *string                                 `pulumi:"dhcpRelayAgentOption"`
@@ -790,6 +805,7 @@ type systemInterfaceArgs struct {
 	DhcpRelayService                      *string                                 `pulumi:"dhcpRelayService"`
 	DhcpRelayType                         *string                                 `pulumi:"dhcpRelayType"`
 	DhcpRenewTime                         *int                                    `pulumi:"dhcpRenewTime"`
+	DhcpSmartRelay                        *string                                 `pulumi:"dhcpSmartRelay"`
 	DhcpSnoopingServerLists               []SystemInterfaceDhcpSnoopingServerList `pulumi:"dhcpSnoopingServerLists"`
 	DiscRetryTimeout                      *int                                    `pulumi:"discRetryTimeout"`
 	DisconnectThreshold                   *int                                    `pulumi:"disconnectThreshold"`
@@ -825,6 +841,7 @@ type systemInterfaceArgs struct {
 	FortilinkStacking                     *string                                 `pulumi:"fortilinkStacking"`
 	ForwardDomain                         *int                                    `pulumi:"forwardDomain"`
 	ForwardErrorCorrection                *string                                 `pulumi:"forwardErrorCorrection"`
+	GetAllTables                          *string                                 `pulumi:"getAllTables"`
 	Gwdetect                              *string                                 `pulumi:"gwdetect"`
 	HaPriority                            *int                                    `pulumi:"haPriority"`
 	IcmpAcceptRedirect                    *string                                 `pulumi:"icmpAcceptRedirect"`
@@ -995,6 +1012,7 @@ type SystemInterfaceArgs struct {
 	ClientOptions                         SystemInterfaceClientOptionArrayInput
 	Color                                 pulumi.IntPtrInput
 	DedicatedTo                           pulumi.StringPtrInput
+	DefaultPurdueLevel                    pulumi.StringPtrInput
 	Defaultgw                             pulumi.StringPtrInput
 	Description                           pulumi.StringPtrInput
 	DetectedPeerMtu                       pulumi.IntPtrInput
@@ -1006,6 +1024,7 @@ type SystemInterfaceArgs struct {
 	DeviceNetscan                         pulumi.StringPtrInput
 	DeviceUserIdentification              pulumi.StringPtrInput
 	Devindex                              pulumi.IntPtrInput
+	DhcpBroadcastFlag                     pulumi.StringPtrInput
 	DhcpClasslessRouteAddition            pulumi.StringPtrInput
 	DhcpClientIdentifier                  pulumi.StringPtrInput
 	DhcpRelayAgentOption                  pulumi.StringPtrInput
@@ -1017,6 +1036,7 @@ type SystemInterfaceArgs struct {
 	DhcpRelayService                      pulumi.StringPtrInput
 	DhcpRelayType                         pulumi.StringPtrInput
 	DhcpRenewTime                         pulumi.IntPtrInput
+	DhcpSmartRelay                        pulumi.StringPtrInput
 	DhcpSnoopingServerLists               SystemInterfaceDhcpSnoopingServerListArrayInput
 	DiscRetryTimeout                      pulumi.IntPtrInput
 	DisconnectThreshold                   pulumi.IntPtrInput
@@ -1052,6 +1072,7 @@ type SystemInterfaceArgs struct {
 	FortilinkStacking                     pulumi.StringPtrInput
 	ForwardDomain                         pulumi.IntPtrInput
 	ForwardErrorCorrection                pulumi.StringPtrInput
+	GetAllTables                          pulumi.StringPtrInput
 	Gwdetect                              pulumi.StringPtrInput
 	HaPriority                            pulumi.IntPtrInput
 	IcmpAcceptRedirect                    pulumi.StringPtrInput
@@ -1382,6 +1403,10 @@ func (o SystemInterfaceOutput) DedicatedTo() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemInterface) pulumi.StringOutput { return v.DedicatedTo }).(pulumi.StringOutput)
 }
 
+func (o SystemInterfaceOutput) DefaultPurdueLevel() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemInterface) pulumi.StringOutput { return v.DefaultPurdueLevel }).(pulumi.StringOutput)
+}
+
 func (o SystemInterfaceOutput) Defaultgw() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemInterface) pulumi.StringOutput { return v.Defaultgw }).(pulumi.StringOutput)
 }
@@ -1426,6 +1451,10 @@ func (o SystemInterfaceOutput) Devindex() pulumi.IntOutput {
 	return o.ApplyT(func(v *SystemInterface) pulumi.IntOutput { return v.Devindex }).(pulumi.IntOutput)
 }
 
+func (o SystemInterfaceOutput) DhcpBroadcastFlag() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemInterface) pulumi.StringOutput { return v.DhcpBroadcastFlag }).(pulumi.StringOutput)
+}
+
 func (o SystemInterfaceOutput) DhcpClasslessRouteAddition() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemInterface) pulumi.StringOutput { return v.DhcpClasslessRouteAddition }).(pulumi.StringOutput)
 }
@@ -1468,6 +1497,10 @@ func (o SystemInterfaceOutput) DhcpRelayType() pulumi.StringOutput {
 
 func (o SystemInterfaceOutput) DhcpRenewTime() pulumi.IntOutput {
 	return o.ApplyT(func(v *SystemInterface) pulumi.IntOutput { return v.DhcpRenewTime }).(pulumi.IntOutput)
+}
+
+func (o SystemInterfaceOutput) DhcpSmartRelay() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemInterface) pulumi.StringOutput { return v.DhcpSmartRelay }).(pulumi.StringOutput)
 }
 
 func (o SystemInterfaceOutput) DhcpSnoopingServerLists() SystemInterfaceDhcpSnoopingServerListArrayOutput {
@@ -1610,6 +1643,10 @@ func (o SystemInterfaceOutput) ForwardDomain() pulumi.IntOutput {
 
 func (o SystemInterfaceOutput) ForwardErrorCorrection() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemInterface) pulumi.StringOutput { return v.ForwardErrorCorrection }).(pulumi.StringOutput)
+}
+
+func (o SystemInterfaceOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemInterface) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemInterfaceOutput) Gwdetect() pulumi.StringOutput {

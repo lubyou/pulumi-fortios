@@ -34,6 +34,7 @@ export class SystemFortiguard extends pulumi.CustomResource {
 
     public readonly antispamCache!: pulumi.Output<string>;
     public readonly antispamCacheMpercent!: pulumi.Output<number>;
+    public readonly antispamCacheMpermille!: pulumi.Output<number>;
     public readonly antispamCacheTtl!: pulumi.Output<number>;
     public readonly antispamExpiration!: pulumi.Output<number>;
     public readonly antispamForceOff!: pulumi.Output<string>;
@@ -43,12 +44,14 @@ export class SystemFortiguard extends pulumi.CustomResource {
     public readonly anycastSdnsServerPort!: pulumi.Output<number>;
     public readonly autoFirmwareUpgrade!: pulumi.Output<string>;
     public readonly autoFirmwareUpgradeDay!: pulumi.Output<string>;
+    public readonly autoFirmwareUpgradeDelay!: pulumi.Output<number>;
     public readonly autoFirmwareUpgradeEndHour!: pulumi.Output<number>;
     public readonly autoFirmwareUpgradeStartHour!: pulumi.Output<number>;
     public readonly autoJoinForticloud!: pulumi.Output<string>;
     public readonly ddnsServerIp!: pulumi.Output<string>;
     public readonly ddnsServerIp6!: pulumi.Output<string>;
     public readonly ddnsServerPort!: pulumi.Output<number>;
+    public readonly fdsLicenseExpiringDays!: pulumi.Output<number>;
     public readonly fortiguardAnycast!: pulumi.Output<string>;
     public readonly fortiguardAnycastSource!: pulumi.Output<string>;
     public readonly interface!: pulumi.Output<string>;
@@ -56,6 +59,7 @@ export class SystemFortiguard extends pulumi.CustomResource {
     public readonly loadBalanceServers!: pulumi.Output<number>;
     public readonly outbreakPreventionCache!: pulumi.Output<string>;
     public readonly outbreakPreventionCacheMpercent!: pulumi.Output<number>;
+    public readonly outbreakPreventionCacheMpermille!: pulumi.Output<number>;
     public readonly outbreakPreventionCacheTtl!: pulumi.Output<number>;
     public readonly outbreakPreventionExpiration!: pulumi.Output<number>;
     public readonly outbreakPreventionForceOff!: pulumi.Output<string>;
@@ -77,6 +81,7 @@ export class SystemFortiguard extends pulumi.CustomResource {
     public readonly sourceIp!: pulumi.Output<string>;
     public readonly sourceIp6!: pulumi.Output<string>;
     public readonly updateBuildProxy!: pulumi.Output<string>;
+    public readonly updateDldb!: pulumi.Output<string>;
     public readonly updateExtdb!: pulumi.Output<string>;
     public readonly updateFfdb!: pulumi.Output<string>;
     public readonly updateServerLocation!: pulumi.Output<string>;
@@ -107,6 +112,7 @@ export class SystemFortiguard extends pulumi.CustomResource {
             const state = argsOrState as SystemFortiguardState | undefined;
             resourceInputs["antispamCache"] = state ? state.antispamCache : undefined;
             resourceInputs["antispamCacheMpercent"] = state ? state.antispamCacheMpercent : undefined;
+            resourceInputs["antispamCacheMpermille"] = state ? state.antispamCacheMpermille : undefined;
             resourceInputs["antispamCacheTtl"] = state ? state.antispamCacheTtl : undefined;
             resourceInputs["antispamExpiration"] = state ? state.antispamExpiration : undefined;
             resourceInputs["antispamForceOff"] = state ? state.antispamForceOff : undefined;
@@ -116,12 +122,14 @@ export class SystemFortiguard extends pulumi.CustomResource {
             resourceInputs["anycastSdnsServerPort"] = state ? state.anycastSdnsServerPort : undefined;
             resourceInputs["autoFirmwareUpgrade"] = state ? state.autoFirmwareUpgrade : undefined;
             resourceInputs["autoFirmwareUpgradeDay"] = state ? state.autoFirmwareUpgradeDay : undefined;
+            resourceInputs["autoFirmwareUpgradeDelay"] = state ? state.autoFirmwareUpgradeDelay : undefined;
             resourceInputs["autoFirmwareUpgradeEndHour"] = state ? state.autoFirmwareUpgradeEndHour : undefined;
             resourceInputs["autoFirmwareUpgradeStartHour"] = state ? state.autoFirmwareUpgradeStartHour : undefined;
             resourceInputs["autoJoinForticloud"] = state ? state.autoJoinForticloud : undefined;
             resourceInputs["ddnsServerIp"] = state ? state.ddnsServerIp : undefined;
             resourceInputs["ddnsServerIp6"] = state ? state.ddnsServerIp6 : undefined;
             resourceInputs["ddnsServerPort"] = state ? state.ddnsServerPort : undefined;
+            resourceInputs["fdsLicenseExpiringDays"] = state ? state.fdsLicenseExpiringDays : undefined;
             resourceInputs["fortiguardAnycast"] = state ? state.fortiguardAnycast : undefined;
             resourceInputs["fortiguardAnycastSource"] = state ? state.fortiguardAnycastSource : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
@@ -129,6 +137,7 @@ export class SystemFortiguard extends pulumi.CustomResource {
             resourceInputs["loadBalanceServers"] = state ? state.loadBalanceServers : undefined;
             resourceInputs["outbreakPreventionCache"] = state ? state.outbreakPreventionCache : undefined;
             resourceInputs["outbreakPreventionCacheMpercent"] = state ? state.outbreakPreventionCacheMpercent : undefined;
+            resourceInputs["outbreakPreventionCacheMpermille"] = state ? state.outbreakPreventionCacheMpermille : undefined;
             resourceInputs["outbreakPreventionCacheTtl"] = state ? state.outbreakPreventionCacheTtl : undefined;
             resourceInputs["outbreakPreventionExpiration"] = state ? state.outbreakPreventionExpiration : undefined;
             resourceInputs["outbreakPreventionForceOff"] = state ? state.outbreakPreventionForceOff : undefined;
@@ -150,6 +159,7 @@ export class SystemFortiguard extends pulumi.CustomResource {
             resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
             resourceInputs["sourceIp6"] = state ? state.sourceIp6 : undefined;
             resourceInputs["updateBuildProxy"] = state ? state.updateBuildProxy : undefined;
+            resourceInputs["updateDldb"] = state ? state.updateDldb : undefined;
             resourceInputs["updateExtdb"] = state ? state.updateExtdb : undefined;
             resourceInputs["updateFfdb"] = state ? state.updateFfdb : undefined;
             resourceInputs["updateServerLocation"] = state ? state.updateServerLocation : undefined;
@@ -177,6 +187,7 @@ export class SystemFortiguard extends pulumi.CustomResource {
             }
             resourceInputs["antispamCache"] = args ? args.antispamCache : undefined;
             resourceInputs["antispamCacheMpercent"] = args ? args.antispamCacheMpercent : undefined;
+            resourceInputs["antispamCacheMpermille"] = args ? args.antispamCacheMpermille : undefined;
             resourceInputs["antispamCacheTtl"] = args ? args.antispamCacheTtl : undefined;
             resourceInputs["antispamExpiration"] = args ? args.antispamExpiration : undefined;
             resourceInputs["antispamForceOff"] = args ? args.antispamForceOff : undefined;
@@ -186,12 +197,14 @@ export class SystemFortiguard extends pulumi.CustomResource {
             resourceInputs["anycastSdnsServerPort"] = args ? args.anycastSdnsServerPort : undefined;
             resourceInputs["autoFirmwareUpgrade"] = args ? args.autoFirmwareUpgrade : undefined;
             resourceInputs["autoFirmwareUpgradeDay"] = args ? args.autoFirmwareUpgradeDay : undefined;
+            resourceInputs["autoFirmwareUpgradeDelay"] = args ? args.autoFirmwareUpgradeDelay : undefined;
             resourceInputs["autoFirmwareUpgradeEndHour"] = args ? args.autoFirmwareUpgradeEndHour : undefined;
             resourceInputs["autoFirmwareUpgradeStartHour"] = args ? args.autoFirmwareUpgradeStartHour : undefined;
             resourceInputs["autoJoinForticloud"] = args ? args.autoJoinForticloud : undefined;
             resourceInputs["ddnsServerIp"] = args ? args.ddnsServerIp : undefined;
             resourceInputs["ddnsServerIp6"] = args ? args.ddnsServerIp6 : undefined;
             resourceInputs["ddnsServerPort"] = args ? args.ddnsServerPort : undefined;
+            resourceInputs["fdsLicenseExpiringDays"] = args ? args.fdsLicenseExpiringDays : undefined;
             resourceInputs["fortiguardAnycast"] = args ? args.fortiguardAnycast : undefined;
             resourceInputs["fortiguardAnycastSource"] = args ? args.fortiguardAnycastSource : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
@@ -199,6 +212,7 @@ export class SystemFortiguard extends pulumi.CustomResource {
             resourceInputs["loadBalanceServers"] = args ? args.loadBalanceServers : undefined;
             resourceInputs["outbreakPreventionCache"] = args ? args.outbreakPreventionCache : undefined;
             resourceInputs["outbreakPreventionCacheMpercent"] = args ? args.outbreakPreventionCacheMpercent : undefined;
+            resourceInputs["outbreakPreventionCacheMpermille"] = args ? args.outbreakPreventionCacheMpermille : undefined;
             resourceInputs["outbreakPreventionCacheTtl"] = args ? args.outbreakPreventionCacheTtl : undefined;
             resourceInputs["outbreakPreventionExpiration"] = args ? args.outbreakPreventionExpiration : undefined;
             resourceInputs["outbreakPreventionForceOff"] = args ? args.outbreakPreventionForceOff : undefined;
@@ -220,6 +234,7 @@ export class SystemFortiguard extends pulumi.CustomResource {
             resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
             resourceInputs["sourceIp6"] = args ? args.sourceIp6 : undefined;
             resourceInputs["updateBuildProxy"] = args ? args.updateBuildProxy : undefined;
+            resourceInputs["updateDldb"] = args ? args.updateDldb : undefined;
             resourceInputs["updateExtdb"] = args ? args.updateExtdb : undefined;
             resourceInputs["updateFfdb"] = args ? args.updateFfdb : undefined;
             resourceInputs["updateServerLocation"] = args ? args.updateServerLocation : undefined;
@@ -248,6 +263,7 @@ export class SystemFortiguard extends pulumi.CustomResource {
 export interface SystemFortiguardState {
     antispamCache?: pulumi.Input<string>;
     antispamCacheMpercent?: pulumi.Input<number>;
+    antispamCacheMpermille?: pulumi.Input<number>;
     antispamCacheTtl?: pulumi.Input<number>;
     antispamExpiration?: pulumi.Input<number>;
     antispamForceOff?: pulumi.Input<string>;
@@ -257,12 +273,14 @@ export interface SystemFortiguardState {
     anycastSdnsServerPort?: pulumi.Input<number>;
     autoFirmwareUpgrade?: pulumi.Input<string>;
     autoFirmwareUpgradeDay?: pulumi.Input<string>;
+    autoFirmwareUpgradeDelay?: pulumi.Input<number>;
     autoFirmwareUpgradeEndHour?: pulumi.Input<number>;
     autoFirmwareUpgradeStartHour?: pulumi.Input<number>;
     autoJoinForticloud?: pulumi.Input<string>;
     ddnsServerIp?: pulumi.Input<string>;
     ddnsServerIp6?: pulumi.Input<string>;
     ddnsServerPort?: pulumi.Input<number>;
+    fdsLicenseExpiringDays?: pulumi.Input<number>;
     fortiguardAnycast?: pulumi.Input<string>;
     fortiguardAnycastSource?: pulumi.Input<string>;
     interface?: pulumi.Input<string>;
@@ -270,6 +288,7 @@ export interface SystemFortiguardState {
     loadBalanceServers?: pulumi.Input<number>;
     outbreakPreventionCache?: pulumi.Input<string>;
     outbreakPreventionCacheMpercent?: pulumi.Input<number>;
+    outbreakPreventionCacheMpermille?: pulumi.Input<number>;
     outbreakPreventionCacheTtl?: pulumi.Input<number>;
     outbreakPreventionExpiration?: pulumi.Input<number>;
     outbreakPreventionForceOff?: pulumi.Input<string>;
@@ -291,6 +310,7 @@ export interface SystemFortiguardState {
     sourceIp?: pulumi.Input<string>;
     sourceIp6?: pulumi.Input<string>;
     updateBuildProxy?: pulumi.Input<string>;
+    updateDldb?: pulumi.Input<string>;
     updateExtdb?: pulumi.Input<string>;
     updateFfdb?: pulumi.Input<string>;
     updateServerLocation?: pulumi.Input<string>;
@@ -313,6 +333,7 @@ export interface SystemFortiguardState {
 export interface SystemFortiguardArgs {
     antispamCache?: pulumi.Input<string>;
     antispamCacheMpercent?: pulumi.Input<number>;
+    antispamCacheMpermille?: pulumi.Input<number>;
     antispamCacheTtl?: pulumi.Input<number>;
     antispamExpiration?: pulumi.Input<number>;
     antispamForceOff?: pulumi.Input<string>;
@@ -322,12 +343,14 @@ export interface SystemFortiguardArgs {
     anycastSdnsServerPort?: pulumi.Input<number>;
     autoFirmwareUpgrade?: pulumi.Input<string>;
     autoFirmwareUpgradeDay?: pulumi.Input<string>;
+    autoFirmwareUpgradeDelay?: pulumi.Input<number>;
     autoFirmwareUpgradeEndHour?: pulumi.Input<number>;
     autoFirmwareUpgradeStartHour?: pulumi.Input<number>;
     autoJoinForticloud?: pulumi.Input<string>;
     ddnsServerIp?: pulumi.Input<string>;
     ddnsServerIp6?: pulumi.Input<string>;
     ddnsServerPort?: pulumi.Input<number>;
+    fdsLicenseExpiringDays?: pulumi.Input<number>;
     fortiguardAnycast?: pulumi.Input<string>;
     fortiguardAnycastSource?: pulumi.Input<string>;
     interface?: pulumi.Input<string>;
@@ -335,6 +358,7 @@ export interface SystemFortiguardArgs {
     loadBalanceServers?: pulumi.Input<number>;
     outbreakPreventionCache?: pulumi.Input<string>;
     outbreakPreventionCacheMpercent?: pulumi.Input<number>;
+    outbreakPreventionCacheMpermille?: pulumi.Input<number>;
     outbreakPreventionCacheTtl?: pulumi.Input<number>;
     outbreakPreventionExpiration?: pulumi.Input<number>;
     outbreakPreventionForceOff?: pulumi.Input<string>;
@@ -356,6 +380,7 @@ export interface SystemFortiguardArgs {
     sourceIp?: pulumi.Input<string>;
     sourceIp6?: pulumi.Input<string>;
     updateBuildProxy?: pulumi.Input<string>;
+    updateDldb?: pulumi.Input<string>;
     updateExtdb?: pulumi.Input<string>;
     updateFfdb?: pulumi.Input<string>;
     updateServerLocation?: pulumi.Input<string>;

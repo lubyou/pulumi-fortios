@@ -24,6 +24,7 @@ class IpsGlobalArgs:
                  engine_count: Optional[pulumi.Input[int]] = None,
                  exclude_signatures: Optional[pulumi.Input[str]] = None,
                  fail_open: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  intelligent_mode: Optional[pulumi.Input[str]] = None,
                  ips_reserve_cpu: Optional[pulumi.Input[str]] = None,
                  ngfw_max_scan_range: Optional[pulumi.Input[int]] = None,
@@ -55,6 +56,8 @@ class IpsGlobalArgs:
             pulumi.set(__self__, "exclude_signatures", exclude_signatures)
         if fail_open is not None:
             pulumi.set(__self__, "fail_open", fail_open)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if intelligent_mode is not None:
             pulumi.set(__self__, "intelligent_mode", intelligent_mode)
         if ips_reserve_cpu is not None:
@@ -151,6 +154,15 @@ class IpsGlobalArgs:
     @fail_open.setter
     def fail_open(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fail_open", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="intelligentMode")
@@ -272,6 +284,7 @@ class _IpsGlobalState:
                  engine_count: Optional[pulumi.Input[int]] = None,
                  exclude_signatures: Optional[pulumi.Input[str]] = None,
                  fail_open: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  intelligent_mode: Optional[pulumi.Input[str]] = None,
                  ips_reserve_cpu: Optional[pulumi.Input[str]] = None,
                  ngfw_max_scan_range: Optional[pulumi.Input[int]] = None,
@@ -303,6 +316,8 @@ class _IpsGlobalState:
             pulumi.set(__self__, "exclude_signatures", exclude_signatures)
         if fail_open is not None:
             pulumi.set(__self__, "fail_open", fail_open)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if intelligent_mode is not None:
             pulumi.set(__self__, "intelligent_mode", intelligent_mode)
         if ips_reserve_cpu is not None:
@@ -399,6 +414,15 @@ class _IpsGlobalState:
     @fail_open.setter
     def fail_open(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fail_open", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="intelligentMode")
@@ -522,6 +546,7 @@ class IpsGlobal(pulumi.CustomResource):
                  engine_count: Optional[pulumi.Input[int]] = None,
                  exclude_signatures: Optional[pulumi.Input[str]] = None,
                  fail_open: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  intelligent_mode: Optional[pulumi.Input[str]] = None,
                  ips_reserve_cpu: Optional[pulumi.Input[str]] = None,
                  ngfw_max_scan_range: Optional[pulumi.Input[int]] = None,
@@ -571,6 +596,7 @@ class IpsGlobal(pulumi.CustomResource):
                  engine_count: Optional[pulumi.Input[int]] = None,
                  exclude_signatures: Optional[pulumi.Input[str]] = None,
                  fail_open: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  intelligent_mode: Optional[pulumi.Input[str]] = None,
                  ips_reserve_cpu: Optional[pulumi.Input[str]] = None,
                  ngfw_max_scan_range: Optional[pulumi.Input[int]] = None,
@@ -600,6 +626,7 @@ class IpsGlobal(pulumi.CustomResource):
             __props__.__dict__["engine_count"] = engine_count
             __props__.__dict__["exclude_signatures"] = exclude_signatures
             __props__.__dict__["fail_open"] = fail_open
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["intelligent_mode"] = intelligent_mode
             __props__.__dict__["ips_reserve_cpu"] = ips_reserve_cpu
             __props__.__dict__["ngfw_max_scan_range"] = ngfw_max_scan_range
@@ -630,6 +657,7 @@ class IpsGlobal(pulumi.CustomResource):
             engine_count: Optional[pulumi.Input[int]] = None,
             exclude_signatures: Optional[pulumi.Input[str]] = None,
             fail_open: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             intelligent_mode: Optional[pulumi.Input[str]] = None,
             ips_reserve_cpu: Optional[pulumi.Input[str]] = None,
             ngfw_max_scan_range: Optional[pulumi.Input[int]] = None,
@@ -662,6 +690,7 @@ class IpsGlobal(pulumi.CustomResource):
         __props__.__dict__["engine_count"] = engine_count
         __props__.__dict__["exclude_signatures"] = exclude_signatures
         __props__.__dict__["fail_open"] = fail_open
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["intelligent_mode"] = intelligent_mode
         __props__.__dict__["ips_reserve_cpu"] = ips_reserve_cpu
         __props__.__dict__["ngfw_max_scan_range"] = ngfw_max_scan_range
@@ -715,6 +744,11 @@ class IpsGlobal(pulumi.CustomResource):
     @pulumi.getter(name="failOpen")
     def fail_open(self) -> pulumi.Output[str]:
         return pulumi.get(self, "fail_open")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="intelligentMode")

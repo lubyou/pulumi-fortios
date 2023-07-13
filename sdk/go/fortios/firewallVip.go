@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -24,6 +25,7 @@ type FirewallVip struct {
 	Extip                        pulumi.StringOutput                        `pulumi:"extip"`
 	Extport                      pulumi.StringOutput                        `pulumi:"extport"`
 	Fosid                        pulumi.IntOutput                           `pulumi:"fosid"`
+	GetAllTables                 pulumi.StringPtrOutput                     `pulumi:"getAllTables"`
 	GratuitousArpInterval        pulumi.IntOutput                           `pulumi:"gratuitousArpInterval"`
 	HttpCookieAge                pulumi.IntOutput                           `pulumi:"httpCookieAge"`
 	HttpCookieDomain             pulumi.StringOutput                        `pulumi:"httpCookieDomain"`
@@ -34,7 +36,10 @@ type FirewallVip struct {
 	HttpIpHeader                 pulumi.StringOutput                        `pulumi:"httpIpHeader"`
 	HttpIpHeaderName             pulumi.StringOutput                        `pulumi:"httpIpHeaderName"`
 	HttpMultiplex                pulumi.StringOutput                        `pulumi:"httpMultiplex"`
+	HttpMultiplexMaxRequest      pulumi.IntOutput                           `pulumi:"httpMultiplexMaxRequest"`
+	HttpMultiplexTtl             pulumi.IntOutput                           `pulumi:"httpMultiplexTtl"`
 	HttpRedirect                 pulumi.StringOutput                        `pulumi:"httpRedirect"`
+	HttpSupportedMaxVersion      pulumi.StringOutput                        `pulumi:"httpSupportedMaxVersion"`
 	HttpsCookieSecure            pulumi.StringOutput                        `pulumi:"httpsCookieSecure"`
 	Ipv6Mappedip                 pulumi.StringOutput                        `pulumi:"ipv6Mappedip"`
 	Ipv6Mappedport               pulumi.StringOutput                        `pulumi:"ipv6Mappedport"`
@@ -89,6 +94,7 @@ type FirewallVip struct {
 	SslServerCipherSuites        FirewallVipSslServerCipherSuiteArrayOutput `pulumi:"sslServerCipherSuites"`
 	SslServerMaxVersion          pulumi.StringOutput                        `pulumi:"sslServerMaxVersion"`
 	SslServerMinVersion          pulumi.StringOutput                        `pulumi:"sslServerMinVersion"`
+	SslServerRenegotiation       pulumi.StringOutput                        `pulumi:"sslServerRenegotiation"`
 	SslServerSessionStateMax     pulumi.IntOutput                           `pulumi:"sslServerSessionStateMax"`
 	SslServerSessionStateTimeout pulumi.IntOutput                           `pulumi:"sslServerSessionStateTimeout"`
 	SslServerSessionStateType    pulumi.StringOutput                        `pulumi:"sslServerSessionStateType"`
@@ -107,7 +113,7 @@ func NewFirewallVip(ctx *pulumi.Context,
 		args = &FirewallVipArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallVip
 	err := ctx.RegisterResource("fortios:index/firewallVip:FirewallVip", name, args, &resource, opts...)
 	if err != nil {
@@ -141,6 +147,7 @@ type firewallVipState struct {
 	Extip                        *string                           `pulumi:"extip"`
 	Extport                      *string                           `pulumi:"extport"`
 	Fosid                        *int                              `pulumi:"fosid"`
+	GetAllTables                 *string                           `pulumi:"getAllTables"`
 	GratuitousArpInterval        *int                              `pulumi:"gratuitousArpInterval"`
 	HttpCookieAge                *int                              `pulumi:"httpCookieAge"`
 	HttpCookieDomain             *string                           `pulumi:"httpCookieDomain"`
@@ -151,7 +158,10 @@ type firewallVipState struct {
 	HttpIpHeader                 *string                           `pulumi:"httpIpHeader"`
 	HttpIpHeaderName             *string                           `pulumi:"httpIpHeaderName"`
 	HttpMultiplex                *string                           `pulumi:"httpMultiplex"`
+	HttpMultiplexMaxRequest      *int                              `pulumi:"httpMultiplexMaxRequest"`
+	HttpMultiplexTtl             *int                              `pulumi:"httpMultiplexTtl"`
 	HttpRedirect                 *string                           `pulumi:"httpRedirect"`
+	HttpSupportedMaxVersion      *string                           `pulumi:"httpSupportedMaxVersion"`
 	HttpsCookieSecure            *string                           `pulumi:"httpsCookieSecure"`
 	Ipv6Mappedip                 *string                           `pulumi:"ipv6Mappedip"`
 	Ipv6Mappedport               *string                           `pulumi:"ipv6Mappedport"`
@@ -206,6 +216,7 @@ type firewallVipState struct {
 	SslServerCipherSuites        []FirewallVipSslServerCipherSuite `pulumi:"sslServerCipherSuites"`
 	SslServerMaxVersion          *string                           `pulumi:"sslServerMaxVersion"`
 	SslServerMinVersion          *string                           `pulumi:"sslServerMinVersion"`
+	SslServerRenegotiation       *string                           `pulumi:"sslServerRenegotiation"`
 	SslServerSessionStateMax     *int                              `pulumi:"sslServerSessionStateMax"`
 	SslServerSessionStateTimeout *int                              `pulumi:"sslServerSessionStateTimeout"`
 	SslServerSessionStateType    *string                           `pulumi:"sslServerSessionStateType"`
@@ -229,6 +240,7 @@ type FirewallVipState struct {
 	Extip                        pulumi.StringPtrInput
 	Extport                      pulumi.StringPtrInput
 	Fosid                        pulumi.IntPtrInput
+	GetAllTables                 pulumi.StringPtrInput
 	GratuitousArpInterval        pulumi.IntPtrInput
 	HttpCookieAge                pulumi.IntPtrInput
 	HttpCookieDomain             pulumi.StringPtrInput
@@ -239,7 +251,10 @@ type FirewallVipState struct {
 	HttpIpHeader                 pulumi.StringPtrInput
 	HttpIpHeaderName             pulumi.StringPtrInput
 	HttpMultiplex                pulumi.StringPtrInput
+	HttpMultiplexMaxRequest      pulumi.IntPtrInput
+	HttpMultiplexTtl             pulumi.IntPtrInput
 	HttpRedirect                 pulumi.StringPtrInput
+	HttpSupportedMaxVersion      pulumi.StringPtrInput
 	HttpsCookieSecure            pulumi.StringPtrInput
 	Ipv6Mappedip                 pulumi.StringPtrInput
 	Ipv6Mappedport               pulumi.StringPtrInput
@@ -294,6 +309,7 @@ type FirewallVipState struct {
 	SslServerCipherSuites        FirewallVipSslServerCipherSuiteArrayInput
 	SslServerMaxVersion          pulumi.StringPtrInput
 	SslServerMinVersion          pulumi.StringPtrInput
+	SslServerRenegotiation       pulumi.StringPtrInput
 	SslServerSessionStateMax     pulumi.IntPtrInput
 	SslServerSessionStateTimeout pulumi.IntPtrInput
 	SslServerSessionStateType    pulumi.StringPtrInput
@@ -321,6 +337,7 @@ type firewallVipArgs struct {
 	Extip                        *string                           `pulumi:"extip"`
 	Extport                      *string                           `pulumi:"extport"`
 	Fosid                        *int                              `pulumi:"fosid"`
+	GetAllTables                 *string                           `pulumi:"getAllTables"`
 	GratuitousArpInterval        *int                              `pulumi:"gratuitousArpInterval"`
 	HttpCookieAge                *int                              `pulumi:"httpCookieAge"`
 	HttpCookieDomain             *string                           `pulumi:"httpCookieDomain"`
@@ -331,7 +348,10 @@ type firewallVipArgs struct {
 	HttpIpHeader                 *string                           `pulumi:"httpIpHeader"`
 	HttpIpHeaderName             *string                           `pulumi:"httpIpHeaderName"`
 	HttpMultiplex                *string                           `pulumi:"httpMultiplex"`
+	HttpMultiplexMaxRequest      *int                              `pulumi:"httpMultiplexMaxRequest"`
+	HttpMultiplexTtl             *int                              `pulumi:"httpMultiplexTtl"`
 	HttpRedirect                 *string                           `pulumi:"httpRedirect"`
+	HttpSupportedMaxVersion      *string                           `pulumi:"httpSupportedMaxVersion"`
 	HttpsCookieSecure            *string                           `pulumi:"httpsCookieSecure"`
 	Ipv6Mappedip                 *string                           `pulumi:"ipv6Mappedip"`
 	Ipv6Mappedport               *string                           `pulumi:"ipv6Mappedport"`
@@ -386,6 +406,7 @@ type firewallVipArgs struct {
 	SslServerCipherSuites        []FirewallVipSslServerCipherSuite `pulumi:"sslServerCipherSuites"`
 	SslServerMaxVersion          *string                           `pulumi:"sslServerMaxVersion"`
 	SslServerMinVersion          *string                           `pulumi:"sslServerMinVersion"`
+	SslServerRenegotiation       *string                           `pulumi:"sslServerRenegotiation"`
 	SslServerSessionStateMax     *int                              `pulumi:"sslServerSessionStateMax"`
 	SslServerSessionStateTimeout *int                              `pulumi:"sslServerSessionStateTimeout"`
 	SslServerSessionStateType    *string                           `pulumi:"sslServerSessionStateType"`
@@ -410,6 +431,7 @@ type FirewallVipArgs struct {
 	Extip                        pulumi.StringPtrInput
 	Extport                      pulumi.StringPtrInput
 	Fosid                        pulumi.IntPtrInput
+	GetAllTables                 pulumi.StringPtrInput
 	GratuitousArpInterval        pulumi.IntPtrInput
 	HttpCookieAge                pulumi.IntPtrInput
 	HttpCookieDomain             pulumi.StringPtrInput
@@ -420,7 +442,10 @@ type FirewallVipArgs struct {
 	HttpIpHeader                 pulumi.StringPtrInput
 	HttpIpHeaderName             pulumi.StringPtrInput
 	HttpMultiplex                pulumi.StringPtrInput
+	HttpMultiplexMaxRequest      pulumi.IntPtrInput
+	HttpMultiplexTtl             pulumi.IntPtrInput
 	HttpRedirect                 pulumi.StringPtrInput
+	HttpSupportedMaxVersion      pulumi.StringPtrInput
 	HttpsCookieSecure            pulumi.StringPtrInput
 	Ipv6Mappedip                 pulumi.StringPtrInput
 	Ipv6Mappedport               pulumi.StringPtrInput
@@ -475,6 +500,7 @@ type FirewallVipArgs struct {
 	SslServerCipherSuites        FirewallVipSslServerCipherSuiteArrayInput
 	SslServerMaxVersion          pulumi.StringPtrInput
 	SslServerMinVersion          pulumi.StringPtrInput
+	SslServerRenegotiation       pulumi.StringPtrInput
 	SslServerSessionStateMax     pulumi.IntPtrInput
 	SslServerSessionStateTimeout pulumi.IntPtrInput
 	SslServerSessionStateType    pulumi.StringPtrInput
@@ -617,6 +643,10 @@ func (o FirewallVipOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *FirewallVip) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
 }
 
+func (o FirewallVipOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallVip) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 func (o FirewallVipOutput) GratuitousArpInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v *FirewallVip) pulumi.IntOutput { return v.GratuitousArpInterval }).(pulumi.IntOutput)
 }
@@ -657,8 +687,20 @@ func (o FirewallVipOutput) HttpMultiplex() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallVip) pulumi.StringOutput { return v.HttpMultiplex }).(pulumi.StringOutput)
 }
 
+func (o FirewallVipOutput) HttpMultiplexMaxRequest() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallVip) pulumi.IntOutput { return v.HttpMultiplexMaxRequest }).(pulumi.IntOutput)
+}
+
+func (o FirewallVipOutput) HttpMultiplexTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallVip) pulumi.IntOutput { return v.HttpMultiplexTtl }).(pulumi.IntOutput)
+}
+
 func (o FirewallVipOutput) HttpRedirect() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallVip) pulumi.StringOutput { return v.HttpRedirect }).(pulumi.StringOutput)
+}
+
+func (o FirewallVipOutput) HttpSupportedMaxVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip) pulumi.StringOutput { return v.HttpSupportedMaxVersion }).(pulumi.StringOutput)
 }
 
 func (o FirewallVipOutput) HttpsCookieSecure() pulumi.StringOutput {
@@ -875,6 +917,10 @@ func (o FirewallVipOutput) SslServerMaxVersion() pulumi.StringOutput {
 
 func (o FirewallVipOutput) SslServerMinVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallVip) pulumi.StringOutput { return v.SslServerMinVersion }).(pulumi.StringOutput)
+}
+
+func (o FirewallVipOutput) SslServerRenegotiation() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip) pulumi.StringOutput { return v.SslServerRenegotiation }).(pulumi.StringOutput)
 }
 
 func (o FirewallVipOutput) SslServerSessionStateMax() pulumi.IntOutput {

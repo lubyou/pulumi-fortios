@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -22,6 +23,7 @@ type SystemAutomationTrigger struct {
 	FazEventSeverity    pulumi.StringPtrOutput                       `pulumi:"fazEventSeverity"`
 	FazEventTags        pulumi.StringPtrOutput                       `pulumi:"fazEventTags"`
 	Fields              SystemAutomationTriggerFieldArrayOutput      `pulumi:"fields"`
+	GetAllTables        pulumi.StringPtrOutput                       `pulumi:"getAllTables"`
 	IocLevel            pulumi.StringOutput                          `pulumi:"iocLevel"`
 	LicenseType         pulumi.StringOutput                          `pulumi:"licenseType"`
 	Logid               pulumi.IntOutput                             `pulumi:"logid"`
@@ -47,7 +49,7 @@ func NewSystemAutomationTrigger(ctx *pulumi.Context,
 		args = &SystemAutomationTriggerArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemAutomationTrigger
 	err := ctx.RegisterResource("fortios:index/systemAutomationTrigger:SystemAutomationTrigger", name, args, &resource, opts...)
 	if err != nil {
@@ -79,6 +81,7 @@ type systemAutomationTriggerState struct {
 	FazEventSeverity    *string                             `pulumi:"fazEventSeverity"`
 	FazEventTags        *string                             `pulumi:"fazEventTags"`
 	Fields              []SystemAutomationTriggerField      `pulumi:"fields"`
+	GetAllTables        *string                             `pulumi:"getAllTables"`
 	IocLevel            *string                             `pulumi:"iocLevel"`
 	LicenseType         *string                             `pulumi:"licenseType"`
 	Logid               *int                                `pulumi:"logid"`
@@ -107,6 +110,7 @@ type SystemAutomationTriggerState struct {
 	FazEventSeverity    pulumi.StringPtrInput
 	FazEventTags        pulumi.StringPtrInput
 	Fields              SystemAutomationTriggerFieldArrayInput
+	GetAllTables        pulumi.StringPtrInput
 	IocLevel            pulumi.StringPtrInput
 	LicenseType         pulumi.StringPtrInput
 	Logid               pulumi.IntPtrInput
@@ -139,6 +143,7 @@ type systemAutomationTriggerArgs struct {
 	FazEventSeverity    *string                             `pulumi:"fazEventSeverity"`
 	FazEventTags        *string                             `pulumi:"fazEventTags"`
 	Fields              []SystemAutomationTriggerField      `pulumi:"fields"`
+	GetAllTables        *string                             `pulumi:"getAllTables"`
 	IocLevel            *string                             `pulumi:"iocLevel"`
 	LicenseType         *string                             `pulumi:"licenseType"`
 	Logid               *int                                `pulumi:"logid"`
@@ -168,6 +173,7 @@ type SystemAutomationTriggerArgs struct {
 	FazEventSeverity    pulumi.StringPtrInput
 	FazEventTags        pulumi.StringPtrInput
 	Fields              SystemAutomationTriggerFieldArrayInput
+	GetAllTables        pulumi.StringPtrInput
 	IocLevel            pulumi.StringPtrInput
 	LicenseType         pulumi.StringPtrInput
 	Logid               pulumi.IntPtrInput
@@ -307,6 +313,10 @@ func (o SystemAutomationTriggerOutput) FazEventTags() pulumi.StringPtrOutput {
 
 func (o SystemAutomationTriggerOutput) Fields() SystemAutomationTriggerFieldArrayOutput {
 	return o.ApplyT(func(v *SystemAutomationTrigger) SystemAutomationTriggerFieldArrayOutput { return v.Fields }).(SystemAutomationTriggerFieldArrayOutput)
+}
+
+func (o SystemAutomationTriggerOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAutomationTrigger) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemAutomationTriggerOutput) IocLevel() pulumi.StringOutput {

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -23,6 +24,7 @@ type FirewallAddress6 struct {
 	EpgName             pulumi.StringOutput                      `pulumi:"epgName"`
 	FabricObject        pulumi.StringOutput                      `pulumi:"fabricObject"`
 	Fqdn                pulumi.StringOutput                      `pulumi:"fqdn"`
+	GetAllTables        pulumi.StringPtrOutput                   `pulumi:"getAllTables"`
 	Host                pulumi.StringOutput                      `pulumi:"host"`
 	HostType            pulumi.StringOutput                      `pulumi:"hostType"`
 	Ip6                 pulumi.StringOutput                      `pulumi:"ip6"`
@@ -30,6 +32,7 @@ type FirewallAddress6 struct {
 	Macaddrs            FirewallAddress6MacaddrArrayOutput       `pulumi:"macaddrs"`
 	Name                pulumi.StringOutput                      `pulumi:"name"`
 	ObjId               pulumi.StringPtrOutput                   `pulumi:"objId"`
+	RouteTag            pulumi.IntOutput                         `pulumi:"routeTag"`
 	Sdn                 pulumi.StringOutput                      `pulumi:"sdn"`
 	SdnTag              pulumi.StringOutput                      `pulumi:"sdnTag"`
 	StartIp             pulumi.StringOutput                      `pulumi:"startIp"`
@@ -51,7 +54,7 @@ func NewFirewallAddress6(ctx *pulumi.Context,
 		args = &FirewallAddress6Args{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallAddress6
 	err := ctx.RegisterResource("fortios:index/firewallAddress6:FirewallAddress6", name, args, &resource, opts...)
 	if err != nil {
@@ -84,6 +87,7 @@ type firewallAddress6State struct {
 	EpgName             *string                         `pulumi:"epgName"`
 	FabricObject        *string                         `pulumi:"fabricObject"`
 	Fqdn                *string                         `pulumi:"fqdn"`
+	GetAllTables        *string                         `pulumi:"getAllTables"`
 	Host                *string                         `pulumi:"host"`
 	HostType            *string                         `pulumi:"hostType"`
 	Ip6                 *string                         `pulumi:"ip6"`
@@ -91,6 +95,7 @@ type firewallAddress6State struct {
 	Macaddrs            []FirewallAddress6Macaddr       `pulumi:"macaddrs"`
 	Name                *string                         `pulumi:"name"`
 	ObjId               *string                         `pulumi:"objId"`
+	RouteTag            *int                            `pulumi:"routeTag"`
 	Sdn                 *string                         `pulumi:"sdn"`
 	SdnTag              *string                         `pulumi:"sdnTag"`
 	StartIp             *string                         `pulumi:"startIp"`
@@ -116,6 +121,7 @@ type FirewallAddress6State struct {
 	EpgName             pulumi.StringPtrInput
 	FabricObject        pulumi.StringPtrInput
 	Fqdn                pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Host                pulumi.StringPtrInput
 	HostType            pulumi.StringPtrInput
 	Ip6                 pulumi.StringPtrInput
@@ -123,6 +129,7 @@ type FirewallAddress6State struct {
 	Macaddrs            FirewallAddress6MacaddrArrayInput
 	Name                pulumi.StringPtrInput
 	ObjId               pulumi.StringPtrInput
+	RouteTag            pulumi.IntPtrInput
 	Sdn                 pulumi.StringPtrInput
 	SdnTag              pulumi.StringPtrInput
 	StartIp             pulumi.StringPtrInput
@@ -152,6 +159,7 @@ type firewallAddress6Args struct {
 	EpgName             *string                         `pulumi:"epgName"`
 	FabricObject        *string                         `pulumi:"fabricObject"`
 	Fqdn                *string                         `pulumi:"fqdn"`
+	GetAllTables        *string                         `pulumi:"getAllTables"`
 	Host                *string                         `pulumi:"host"`
 	HostType            *string                         `pulumi:"hostType"`
 	Ip6                 *string                         `pulumi:"ip6"`
@@ -159,6 +167,7 @@ type firewallAddress6Args struct {
 	Macaddrs            []FirewallAddress6Macaddr       `pulumi:"macaddrs"`
 	Name                *string                         `pulumi:"name"`
 	ObjId               *string                         `pulumi:"objId"`
+	RouteTag            *int                            `pulumi:"routeTag"`
 	Sdn                 *string                         `pulumi:"sdn"`
 	SdnTag              *string                         `pulumi:"sdnTag"`
 	StartIp             *string                         `pulumi:"startIp"`
@@ -185,6 +194,7 @@ type FirewallAddress6Args struct {
 	EpgName             pulumi.StringPtrInput
 	FabricObject        pulumi.StringPtrInput
 	Fqdn                pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Host                pulumi.StringPtrInput
 	HostType            pulumi.StringPtrInput
 	Ip6                 pulumi.StringPtrInput
@@ -192,6 +202,7 @@ type FirewallAddress6Args struct {
 	Macaddrs            FirewallAddress6MacaddrArrayInput
 	Name                pulumi.StringPtrInput
 	ObjId               pulumi.StringPtrInput
+	RouteTag            pulumi.IntPtrInput
 	Sdn                 pulumi.StringPtrInput
 	SdnTag              pulumi.StringPtrInput
 	StartIp             pulumi.StringPtrInput
@@ -333,6 +344,10 @@ func (o FirewallAddress6Output) Fqdn() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallAddress6) pulumi.StringOutput { return v.Fqdn }).(pulumi.StringOutput)
 }
 
+func (o FirewallAddress6Output) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress6) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 func (o FirewallAddress6Output) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallAddress6) pulumi.StringOutput { return v.Host }).(pulumi.StringOutput)
 }
@@ -359,6 +374,10 @@ func (o FirewallAddress6Output) Name() pulumi.StringOutput {
 
 func (o FirewallAddress6Output) ObjId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FirewallAddress6) pulumi.StringPtrOutput { return v.ObjId }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAddress6Output) RouteTag() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallAddress6) pulumi.IntOutput { return v.RouteTag }).(pulumi.IntOutput)
 }
 
 func (o FirewallAddress6Output) Sdn() pulumi.StringOutput {

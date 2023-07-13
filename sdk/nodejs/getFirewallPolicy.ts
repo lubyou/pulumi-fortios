@@ -113,6 +113,7 @@ export interface GetFirewallPolicyResult {
     readonly internetServiceSrcNegate: string;
     readonly ippool: string;
     readonly ipsSensor: string;
+    readonly ipsVoipFilter: string;
     readonly label: string;
     readonly learningMode: string;
     readonly logtraffic: string;
@@ -134,11 +135,15 @@ export interface GetFirewallPolicyResult {
     readonly ntlmGuest: string;
     readonly outbound: string;
     readonly passiveWanHealthMeasurement: string;
+    readonly pcpInbound: string;
+    readonly pcpOutbound: string;
+    readonly pcpPoolnames: outputs.GetFirewallPolicyPcpPoolname[];
     readonly perIpShaper: string;
     readonly permitAnyHost: string;
     readonly permitStunHost: string;
     readonly policyExpiry: string;
     readonly policyExpiryDate: string;
+    readonly policyExpiryDateUtc: string;
     readonly policyid: number;
     readonly poolname6s: outputs.GetFirewallPolicyPoolname6[];
     readonly poolnames: outputs.GetFirewallPolicyPoolname[];
@@ -211,9 +216,13 @@ export interface GetFirewallPolicyResult {
     readonly webproxyForwardServer: string;
     readonly webproxyProfile: string;
     readonly wsso: string;
+    readonly ztnaDeviceOwnership: string;
+    readonly ztnaEmsTagSecondaries: outputs.GetFirewallPolicyZtnaEmsTagSecondary[];
     readonly ztnaEmsTags: outputs.GetFirewallPolicyZtnaEmsTag[];
     readonly ztnaGeoTags: outputs.GetFirewallPolicyZtnaGeoTag[];
+    readonly ztnaPolicyRedirect: string;
     readonly ztnaStatus: string;
+    readonly ztnaTagsMatchLogic: string;
 }
 export function getFirewallPolicyOutput(args: GetFirewallPolicyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallPolicyResult> {
     return pulumi.output(args).apply((a: any) => getFirewallPolicy(a, opts))

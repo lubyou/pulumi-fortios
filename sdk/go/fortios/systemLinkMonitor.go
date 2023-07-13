@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -22,6 +23,7 @@ type SystemLinkMonitor struct {
 	Failtime               pulumi.IntOutput                       `pulumi:"failtime"`
 	GatewayIp              pulumi.StringOutput                    `pulumi:"gatewayIp"`
 	GatewayIp6             pulumi.StringOutput                    `pulumi:"gatewayIp6"`
+	GetAllTables           pulumi.StringPtrOutput                 `pulumi:"getAllTables"`
 	HaPriority             pulumi.IntOutput                       `pulumi:"haPriority"`
 	HttpAgent              pulumi.StringOutput                    `pulumi:"httpAgent"`
 	HttpGet                pulumi.StringOutput                    `pulumi:"httpGet"`
@@ -69,7 +71,7 @@ func NewSystemLinkMonitor(ctx *pulumi.Context,
 		"password",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemLinkMonitor
 	err := ctx.RegisterResource("fortios:index/systemLinkMonitor:SystemLinkMonitor", name, args, &resource, opts...)
 	if err != nil {
@@ -100,6 +102,7 @@ type systemLinkMonitorState struct {
 	Failtime               *int                          `pulumi:"failtime"`
 	GatewayIp              *string                       `pulumi:"gatewayIp"`
 	GatewayIp6             *string                       `pulumi:"gatewayIp6"`
+	GetAllTables           *string                       `pulumi:"getAllTables"`
 	HaPriority             *int                          `pulumi:"haPriority"`
 	HttpAgent              *string                       `pulumi:"httpAgent"`
 	HttpGet                *string                       `pulumi:"httpGet"`
@@ -139,6 +142,7 @@ type SystemLinkMonitorState struct {
 	Failtime               pulumi.IntPtrInput
 	GatewayIp              pulumi.StringPtrInput
 	GatewayIp6             pulumi.StringPtrInput
+	GetAllTables           pulumi.StringPtrInput
 	HaPriority             pulumi.IntPtrInput
 	HttpAgent              pulumi.StringPtrInput
 	HttpGet                pulumi.StringPtrInput
@@ -182,6 +186,7 @@ type systemLinkMonitorArgs struct {
 	Failtime               *int                          `pulumi:"failtime"`
 	GatewayIp              *string                       `pulumi:"gatewayIp"`
 	GatewayIp6             *string                       `pulumi:"gatewayIp6"`
+	GetAllTables           *string                       `pulumi:"getAllTables"`
 	HaPriority             *int                          `pulumi:"haPriority"`
 	HttpAgent              *string                       `pulumi:"httpAgent"`
 	HttpGet                *string                       `pulumi:"httpGet"`
@@ -222,6 +227,7 @@ type SystemLinkMonitorArgs struct {
 	Failtime               pulumi.IntPtrInput
 	GatewayIp              pulumi.StringPtrInput
 	GatewayIp6             pulumi.StringPtrInput
+	GetAllTables           pulumi.StringPtrInput
 	HaPriority             pulumi.IntPtrInput
 	HttpAgent              pulumi.StringPtrInput
 	HttpGet                pulumi.StringPtrInput
@@ -369,6 +375,10 @@ func (o SystemLinkMonitorOutput) GatewayIp() pulumi.StringOutput {
 
 func (o SystemLinkMonitorOutput) GatewayIp6() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemLinkMonitor) pulumi.StringOutput { return v.GatewayIp6 }).(pulumi.StringOutput)
+}
+
+func (o SystemLinkMonitorOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemLinkMonitor) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemLinkMonitorOutput) HaPriority() pulumi.IntOutput {

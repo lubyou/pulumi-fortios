@@ -100,12 +100,12 @@ def get_system_fips_cc(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemFipsCc:GetSystemFipsCc', __args__, opts=opts, typ=GetSystemFipsCcResult).value
 
     return AwaitableGetSystemFipsCcResult(
-        entropy_token=__ret__.entropy_token,
-        id=__ret__.id,
-        key_generation_self_test=__ret__.key_generation_self_test,
-        self_test_period=__ret__.self_test_period,
-        status=__ret__.status,
-        vdomparam=__ret__.vdomparam)
+        entropy_token=pulumi.get(__ret__, 'entropy_token'),
+        id=pulumi.get(__ret__, 'id'),
+        key_generation_self_test=pulumi.get(__ret__, 'key_generation_self_test'),
+        self_test_period=pulumi.get(__ret__, 'self_test_period'),
+        status=pulumi.get(__ret__, 'status'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_fips_cc)

@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupRouterBfd(ctx *pulumi.Context, args *LookupRouterBfdArgs, opts ...pulumi.InvokeOption) (*LookupRouterBfdResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupRouterBfdResult
 	err := ctx.Invoke("fortios:index/getRouterBfd:GetRouterBfd", args, &rv, opts...)
 	if err != nil {

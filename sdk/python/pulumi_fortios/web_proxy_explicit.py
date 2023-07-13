@@ -19,6 +19,8 @@ class WebProxyExplicitArgs:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  ftp_incoming_port: Optional[pulumi.Input[str]] = None,
                  ftp_over_http: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 http_connection_mode: Optional[pulumi.Input[str]] = None,
                  http_incoming_port: Optional[pulumi.Input[str]] = None,
                  https_incoming_port: Optional[pulumi.Input[str]] = None,
                  https_replacement_message: Optional[pulumi.Input[str]] = None,
@@ -38,9 +40,12 @@ class WebProxyExplicitArgs:
                  pref_dns_result: Optional[pulumi.Input[str]] = None,
                  realm: Optional[pulumi.Input[str]] = None,
                  sec_default_action: Optional[pulumi.Input[str]] = None,
+                 secure_web_proxy: Optional[pulumi.Input[str]] = None,
+                 secure_web_proxy_certs: Optional[pulumi.Input[Sequence[pulumi.Input['WebProxyExplicitSecureWebProxyCertArgs']]]] = None,
                  socks: Optional[pulumi.Input[str]] = None,
                  socks_incoming_port: Optional[pulumi.Input[str]] = None,
                  ssl_algorithm: Optional[pulumi.Input[str]] = None,
+                 ssl_dh_bits: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  strict_guest: Optional[pulumi.Input[str]] = None,
                  trace_auth_no_rsp: Optional[pulumi.Input[str]] = None,
@@ -55,6 +60,10 @@ class WebProxyExplicitArgs:
             pulumi.set(__self__, "ftp_incoming_port", ftp_incoming_port)
         if ftp_over_http is not None:
             pulumi.set(__self__, "ftp_over_http", ftp_over_http)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
+        if http_connection_mode is not None:
+            pulumi.set(__self__, "http_connection_mode", http_connection_mode)
         if http_incoming_port is not None:
             pulumi.set(__self__, "http_incoming_port", http_incoming_port)
         if https_incoming_port is not None:
@@ -93,12 +102,18 @@ class WebProxyExplicitArgs:
             pulumi.set(__self__, "realm", realm)
         if sec_default_action is not None:
             pulumi.set(__self__, "sec_default_action", sec_default_action)
+        if secure_web_proxy is not None:
+            pulumi.set(__self__, "secure_web_proxy", secure_web_proxy)
+        if secure_web_proxy_certs is not None:
+            pulumi.set(__self__, "secure_web_proxy_certs", secure_web_proxy_certs)
         if socks is not None:
             pulumi.set(__self__, "socks", socks)
         if socks_incoming_port is not None:
             pulumi.set(__self__, "socks_incoming_port", socks_incoming_port)
         if ssl_algorithm is not None:
             pulumi.set(__self__, "ssl_algorithm", ssl_algorithm)
+        if ssl_dh_bits is not None:
+            pulumi.set(__self__, "ssl_dh_bits", ssl_dh_bits)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if strict_guest is not None:
@@ -136,6 +151,24 @@ class WebProxyExplicitArgs:
     @ftp_over_http.setter
     def ftp_over_http(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ftp_over_http", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
+    @pulumi.getter(name="httpConnectionMode")
+    def http_connection_mode(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "http_connection_mode")
+
+    @http_connection_mode.setter
+    def http_connection_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "http_connection_mode", value)
 
     @property
     @pulumi.getter(name="httpIncomingPort")
@@ -309,6 +342,24 @@ class WebProxyExplicitArgs:
         pulumi.set(self, "sec_default_action", value)
 
     @property
+    @pulumi.getter(name="secureWebProxy")
+    def secure_web_proxy(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "secure_web_proxy")
+
+    @secure_web_proxy.setter
+    def secure_web_proxy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "secure_web_proxy", value)
+
+    @property
+    @pulumi.getter(name="secureWebProxyCerts")
+    def secure_web_proxy_certs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WebProxyExplicitSecureWebProxyCertArgs']]]]:
+        return pulumi.get(self, "secure_web_proxy_certs")
+
+    @secure_web_proxy_certs.setter
+    def secure_web_proxy_certs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['WebProxyExplicitSecureWebProxyCertArgs']]]]):
+        pulumi.set(self, "secure_web_proxy_certs", value)
+
+    @property
     @pulumi.getter
     def socks(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "socks")
@@ -334,6 +385,15 @@ class WebProxyExplicitArgs:
     @ssl_algorithm.setter
     def ssl_algorithm(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ssl_algorithm", value)
+
+    @property
+    @pulumi.getter(name="sslDhBits")
+    def ssl_dh_bits(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ssl_dh_bits")
+
+    @ssl_dh_bits.setter
+    def ssl_dh_bits(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssl_dh_bits", value)
 
     @property
     @pulumi.getter
@@ -387,6 +447,8 @@ class _WebProxyExplicitState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  ftp_incoming_port: Optional[pulumi.Input[str]] = None,
                  ftp_over_http: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 http_connection_mode: Optional[pulumi.Input[str]] = None,
                  http_incoming_port: Optional[pulumi.Input[str]] = None,
                  https_incoming_port: Optional[pulumi.Input[str]] = None,
                  https_replacement_message: Optional[pulumi.Input[str]] = None,
@@ -406,9 +468,12 @@ class _WebProxyExplicitState:
                  pref_dns_result: Optional[pulumi.Input[str]] = None,
                  realm: Optional[pulumi.Input[str]] = None,
                  sec_default_action: Optional[pulumi.Input[str]] = None,
+                 secure_web_proxy: Optional[pulumi.Input[str]] = None,
+                 secure_web_proxy_certs: Optional[pulumi.Input[Sequence[pulumi.Input['WebProxyExplicitSecureWebProxyCertArgs']]]] = None,
                  socks: Optional[pulumi.Input[str]] = None,
                  socks_incoming_port: Optional[pulumi.Input[str]] = None,
                  ssl_algorithm: Optional[pulumi.Input[str]] = None,
+                 ssl_dh_bits: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  strict_guest: Optional[pulumi.Input[str]] = None,
                  trace_auth_no_rsp: Optional[pulumi.Input[str]] = None,
@@ -423,6 +488,10 @@ class _WebProxyExplicitState:
             pulumi.set(__self__, "ftp_incoming_port", ftp_incoming_port)
         if ftp_over_http is not None:
             pulumi.set(__self__, "ftp_over_http", ftp_over_http)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
+        if http_connection_mode is not None:
+            pulumi.set(__self__, "http_connection_mode", http_connection_mode)
         if http_incoming_port is not None:
             pulumi.set(__self__, "http_incoming_port", http_incoming_port)
         if https_incoming_port is not None:
@@ -461,12 +530,18 @@ class _WebProxyExplicitState:
             pulumi.set(__self__, "realm", realm)
         if sec_default_action is not None:
             pulumi.set(__self__, "sec_default_action", sec_default_action)
+        if secure_web_proxy is not None:
+            pulumi.set(__self__, "secure_web_proxy", secure_web_proxy)
+        if secure_web_proxy_certs is not None:
+            pulumi.set(__self__, "secure_web_proxy_certs", secure_web_proxy_certs)
         if socks is not None:
             pulumi.set(__self__, "socks", socks)
         if socks_incoming_port is not None:
             pulumi.set(__self__, "socks_incoming_port", socks_incoming_port)
         if ssl_algorithm is not None:
             pulumi.set(__self__, "ssl_algorithm", ssl_algorithm)
+        if ssl_dh_bits is not None:
+            pulumi.set(__self__, "ssl_dh_bits", ssl_dh_bits)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if strict_guest is not None:
@@ -504,6 +579,24 @@ class _WebProxyExplicitState:
     @ftp_over_http.setter
     def ftp_over_http(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ftp_over_http", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
+    @pulumi.getter(name="httpConnectionMode")
+    def http_connection_mode(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "http_connection_mode")
+
+    @http_connection_mode.setter
+    def http_connection_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "http_connection_mode", value)
 
     @property
     @pulumi.getter(name="httpIncomingPort")
@@ -677,6 +770,24 @@ class _WebProxyExplicitState:
         pulumi.set(self, "sec_default_action", value)
 
     @property
+    @pulumi.getter(name="secureWebProxy")
+    def secure_web_proxy(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "secure_web_proxy")
+
+    @secure_web_proxy.setter
+    def secure_web_proxy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "secure_web_proxy", value)
+
+    @property
+    @pulumi.getter(name="secureWebProxyCerts")
+    def secure_web_proxy_certs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WebProxyExplicitSecureWebProxyCertArgs']]]]:
+        return pulumi.get(self, "secure_web_proxy_certs")
+
+    @secure_web_proxy_certs.setter
+    def secure_web_proxy_certs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['WebProxyExplicitSecureWebProxyCertArgs']]]]):
+        pulumi.set(self, "secure_web_proxy_certs", value)
+
+    @property
     @pulumi.getter
     def socks(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "socks")
@@ -702,6 +813,15 @@ class _WebProxyExplicitState:
     @ssl_algorithm.setter
     def ssl_algorithm(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ssl_algorithm", value)
+
+    @property
+    @pulumi.getter(name="sslDhBits")
+    def ssl_dh_bits(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ssl_dh_bits")
+
+    @ssl_dh_bits.setter
+    def ssl_dh_bits(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssl_dh_bits", value)
 
     @property
     @pulumi.getter
@@ -757,6 +877,8 @@ class WebProxyExplicit(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  ftp_incoming_port: Optional[pulumi.Input[str]] = None,
                  ftp_over_http: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 http_connection_mode: Optional[pulumi.Input[str]] = None,
                  http_incoming_port: Optional[pulumi.Input[str]] = None,
                  https_incoming_port: Optional[pulumi.Input[str]] = None,
                  https_replacement_message: Optional[pulumi.Input[str]] = None,
@@ -776,9 +898,12 @@ class WebProxyExplicit(pulumi.CustomResource):
                  pref_dns_result: Optional[pulumi.Input[str]] = None,
                  realm: Optional[pulumi.Input[str]] = None,
                  sec_default_action: Optional[pulumi.Input[str]] = None,
+                 secure_web_proxy: Optional[pulumi.Input[str]] = None,
+                 secure_web_proxy_certs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WebProxyExplicitSecureWebProxyCertArgs']]]]] = None,
                  socks: Optional[pulumi.Input[str]] = None,
                  socks_incoming_port: Optional[pulumi.Input[str]] = None,
                  ssl_algorithm: Optional[pulumi.Input[str]] = None,
+                 ssl_dh_bits: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  strict_guest: Optional[pulumi.Input[str]] = None,
                  trace_auth_no_rsp: Optional[pulumi.Input[str]] = None,
@@ -816,6 +941,8 @@ class WebProxyExplicit(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  ftp_incoming_port: Optional[pulumi.Input[str]] = None,
                  ftp_over_http: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 http_connection_mode: Optional[pulumi.Input[str]] = None,
                  http_incoming_port: Optional[pulumi.Input[str]] = None,
                  https_incoming_port: Optional[pulumi.Input[str]] = None,
                  https_replacement_message: Optional[pulumi.Input[str]] = None,
@@ -835,9 +962,12 @@ class WebProxyExplicit(pulumi.CustomResource):
                  pref_dns_result: Optional[pulumi.Input[str]] = None,
                  realm: Optional[pulumi.Input[str]] = None,
                  sec_default_action: Optional[pulumi.Input[str]] = None,
+                 secure_web_proxy: Optional[pulumi.Input[str]] = None,
+                 secure_web_proxy_certs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WebProxyExplicitSecureWebProxyCertArgs']]]]] = None,
                  socks: Optional[pulumi.Input[str]] = None,
                  socks_incoming_port: Optional[pulumi.Input[str]] = None,
                  ssl_algorithm: Optional[pulumi.Input[str]] = None,
+                 ssl_dh_bits: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  strict_guest: Optional[pulumi.Input[str]] = None,
                  trace_auth_no_rsp: Optional[pulumi.Input[str]] = None,
@@ -855,6 +985,8 @@ class WebProxyExplicit(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["ftp_incoming_port"] = ftp_incoming_port
             __props__.__dict__["ftp_over_http"] = ftp_over_http
+            __props__.__dict__["get_all_tables"] = get_all_tables
+            __props__.__dict__["http_connection_mode"] = http_connection_mode
             __props__.__dict__["http_incoming_port"] = http_incoming_port
             __props__.__dict__["https_incoming_port"] = https_incoming_port
             __props__.__dict__["https_replacement_message"] = https_replacement_message
@@ -874,9 +1006,12 @@ class WebProxyExplicit(pulumi.CustomResource):
             __props__.__dict__["pref_dns_result"] = pref_dns_result
             __props__.__dict__["realm"] = realm
             __props__.__dict__["sec_default_action"] = sec_default_action
+            __props__.__dict__["secure_web_proxy"] = secure_web_proxy
+            __props__.__dict__["secure_web_proxy_certs"] = secure_web_proxy_certs
             __props__.__dict__["socks"] = socks
             __props__.__dict__["socks_incoming_port"] = socks_incoming_port
             __props__.__dict__["ssl_algorithm"] = ssl_algorithm
+            __props__.__dict__["ssl_dh_bits"] = ssl_dh_bits
             __props__.__dict__["status"] = status
             __props__.__dict__["strict_guest"] = strict_guest
             __props__.__dict__["trace_auth_no_rsp"] = trace_auth_no_rsp
@@ -895,6 +1030,8 @@ class WebProxyExplicit(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             ftp_incoming_port: Optional[pulumi.Input[str]] = None,
             ftp_over_http: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
+            http_connection_mode: Optional[pulumi.Input[str]] = None,
             http_incoming_port: Optional[pulumi.Input[str]] = None,
             https_incoming_port: Optional[pulumi.Input[str]] = None,
             https_replacement_message: Optional[pulumi.Input[str]] = None,
@@ -914,9 +1051,12 @@ class WebProxyExplicit(pulumi.CustomResource):
             pref_dns_result: Optional[pulumi.Input[str]] = None,
             realm: Optional[pulumi.Input[str]] = None,
             sec_default_action: Optional[pulumi.Input[str]] = None,
+            secure_web_proxy: Optional[pulumi.Input[str]] = None,
+            secure_web_proxy_certs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WebProxyExplicitSecureWebProxyCertArgs']]]]] = None,
             socks: Optional[pulumi.Input[str]] = None,
             socks_incoming_port: Optional[pulumi.Input[str]] = None,
             ssl_algorithm: Optional[pulumi.Input[str]] = None,
+            ssl_dh_bits: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             strict_guest: Optional[pulumi.Input[str]] = None,
             trace_auth_no_rsp: Optional[pulumi.Input[str]] = None,
@@ -937,6 +1077,8 @@ class WebProxyExplicit(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["ftp_incoming_port"] = ftp_incoming_port
         __props__.__dict__["ftp_over_http"] = ftp_over_http
+        __props__.__dict__["get_all_tables"] = get_all_tables
+        __props__.__dict__["http_connection_mode"] = http_connection_mode
         __props__.__dict__["http_incoming_port"] = http_incoming_port
         __props__.__dict__["https_incoming_port"] = https_incoming_port
         __props__.__dict__["https_replacement_message"] = https_replacement_message
@@ -956,9 +1098,12 @@ class WebProxyExplicit(pulumi.CustomResource):
         __props__.__dict__["pref_dns_result"] = pref_dns_result
         __props__.__dict__["realm"] = realm
         __props__.__dict__["sec_default_action"] = sec_default_action
+        __props__.__dict__["secure_web_proxy"] = secure_web_proxy
+        __props__.__dict__["secure_web_proxy_certs"] = secure_web_proxy_certs
         __props__.__dict__["socks"] = socks
         __props__.__dict__["socks_incoming_port"] = socks_incoming_port
         __props__.__dict__["ssl_algorithm"] = ssl_algorithm
+        __props__.__dict__["ssl_dh_bits"] = ssl_dh_bits
         __props__.__dict__["status"] = status
         __props__.__dict__["strict_guest"] = strict_guest
         __props__.__dict__["trace_auth_no_rsp"] = trace_auth_no_rsp
@@ -980,6 +1125,16 @@ class WebProxyExplicit(pulumi.CustomResource):
     @pulumi.getter(name="ftpOverHttp")
     def ftp_over_http(self) -> pulumi.Output[str]:
         return pulumi.get(self, "ftp_over_http")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @property
+    @pulumi.getter(name="httpConnectionMode")
+    def http_connection_mode(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "http_connection_mode")
 
     @property
     @pulumi.getter(name="httpIncomingPort")
@@ -1077,6 +1232,16 @@ class WebProxyExplicit(pulumi.CustomResource):
         return pulumi.get(self, "sec_default_action")
 
     @property
+    @pulumi.getter(name="secureWebProxy")
+    def secure_web_proxy(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "secure_web_proxy")
+
+    @property
+    @pulumi.getter(name="secureWebProxyCerts")
+    def secure_web_proxy_certs(self) -> pulumi.Output[Optional[Sequence['outputs.WebProxyExplicitSecureWebProxyCert']]]:
+        return pulumi.get(self, "secure_web_proxy_certs")
+
+    @property
     @pulumi.getter
     def socks(self) -> pulumi.Output[str]:
         return pulumi.get(self, "socks")
@@ -1090,6 +1255,11 @@ class WebProxyExplicit(pulumi.CustomResource):
     @pulumi.getter(name="sslAlgorithm")
     def ssl_algorithm(self) -> pulumi.Output[str]:
         return pulumi.get(self, "ssl_algorithm")
+
+    @property
+    @pulumi.getter(name="sslDhBits")
+    def ssl_dh_bits(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "ssl_dh_bits")
 
     @property
     @pulumi.getter

@@ -45,6 +45,8 @@ export class SystemCentralManagement extends pulumi.CustomResource {
     public readonly fmgSourceIp!: pulumi.Output<string>;
     public readonly fmgSourceIp6!: pulumi.Output<string>;
     public readonly fmgUpdatePort!: pulumi.Output<string>;
+    public readonly fortigateCloudSsoDefaultProfile!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly includeDefaultServers!: pulumi.Output<string>;
     public readonly interface!: pulumi.Output<string>;
     public readonly interfaceSelectMethod!: pulumi.Output<string>;
@@ -82,6 +84,8 @@ export class SystemCentralManagement extends pulumi.CustomResource {
             resourceInputs["fmgSourceIp"] = state ? state.fmgSourceIp : undefined;
             resourceInputs["fmgSourceIp6"] = state ? state.fmgSourceIp6 : undefined;
             resourceInputs["fmgUpdatePort"] = state ? state.fmgUpdatePort : undefined;
+            resourceInputs["fortigateCloudSsoDefaultProfile"] = state ? state.fortigateCloudSsoDefaultProfile : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["includeDefaultServers"] = state ? state.includeDefaultServers : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
             resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
@@ -107,6 +111,8 @@ export class SystemCentralManagement extends pulumi.CustomResource {
             resourceInputs["fmgSourceIp"] = args ? args.fmgSourceIp : undefined;
             resourceInputs["fmgSourceIp6"] = args ? args.fmgSourceIp6 : undefined;
             resourceInputs["fmgUpdatePort"] = args ? args.fmgUpdatePort : undefined;
+            resourceInputs["fortigateCloudSsoDefaultProfile"] = args ? args.fortigateCloudSsoDefaultProfile : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["includeDefaultServers"] = args ? args.includeDefaultServers : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
@@ -140,6 +146,8 @@ export interface SystemCentralManagementState {
     fmgSourceIp?: pulumi.Input<string>;
     fmgSourceIp6?: pulumi.Input<string>;
     fmgUpdatePort?: pulumi.Input<string>;
+    fortigateCloudSsoDefaultProfile?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     includeDefaultServers?: pulumi.Input<string>;
     interface?: pulumi.Input<string>;
     interfaceSelectMethod?: pulumi.Input<string>;
@@ -169,6 +177,8 @@ export interface SystemCentralManagementArgs {
     fmgSourceIp?: pulumi.Input<string>;
     fmgSourceIp6?: pulumi.Input<string>;
     fmgUpdatePort?: pulumi.Input<string>;
+    fortigateCloudSsoDefaultProfile?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     includeDefaultServers?: pulumi.Input<string>;
     interface?: pulumi.Input<string>;
     interfaceSelectMethod?: pulumi.Input<string>;

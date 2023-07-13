@@ -32,6 +32,8 @@ export class SwitchControllerSystem extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerSystem.__pulumiType;
     }
 
+    public readonly caputpEchoInterval!: pulumi.Output<number>;
+    public readonly caputpMaxRetransmit!: pulumi.Output<number>;
     public readonly dataSyncInterval!: pulumi.Output<number>;
     public readonly dynamicPeriodicInterval!: pulumi.Output<number>;
     public readonly iotHoldoff!: pulumi.Output<number>;
@@ -57,6 +59,8 @@ export class SwitchControllerSystem extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerSystemState | undefined;
+            resourceInputs["caputpEchoInterval"] = state ? state.caputpEchoInterval : undefined;
+            resourceInputs["caputpMaxRetransmit"] = state ? state.caputpMaxRetransmit : undefined;
             resourceInputs["dataSyncInterval"] = state ? state.dataSyncInterval : undefined;
             resourceInputs["dynamicPeriodicInterval"] = state ? state.dynamicPeriodicInterval : undefined;
             resourceInputs["iotHoldoff"] = state ? state.iotHoldoff : undefined;
@@ -70,6 +74,8 @@ export class SwitchControllerSystem extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerSystemArgs | undefined;
+            resourceInputs["caputpEchoInterval"] = args ? args.caputpEchoInterval : undefined;
+            resourceInputs["caputpMaxRetransmit"] = args ? args.caputpMaxRetransmit : undefined;
             resourceInputs["dataSyncInterval"] = args ? args.dataSyncInterval : undefined;
             resourceInputs["dynamicPeriodicInterval"] = args ? args.dynamicPeriodicInterval : undefined;
             resourceInputs["iotHoldoff"] = args ? args.iotHoldoff : undefined;
@@ -91,6 +97,8 @@ export class SwitchControllerSystem extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerSystem resources.
  */
 export interface SwitchControllerSystemState {
+    caputpEchoInterval?: pulumi.Input<number>;
+    caputpMaxRetransmit?: pulumi.Input<number>;
     dataSyncInterval?: pulumi.Input<number>;
     dynamicPeriodicInterval?: pulumi.Input<number>;
     iotHoldoff?: pulumi.Input<number>;
@@ -108,6 +116,8 @@ export interface SwitchControllerSystemState {
  * The set of arguments for constructing a SwitchControllerSystem resource.
  */
 export interface SwitchControllerSystemArgs {
+    caputpEchoInterval?: pulumi.Input<number>;
+    caputpMaxRetransmit?: pulumi.Input<number>;
     dataSyncInterval?: pulumi.Input<number>;
     dynamicPeriodicInterval?: pulumi.Input<number>;
     iotHoldoff?: pulumi.Input<number>;

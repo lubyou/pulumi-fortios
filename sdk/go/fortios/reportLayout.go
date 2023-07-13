@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -23,6 +24,7 @@ type ReportLayout struct {
 	EmailRecipients     pulumi.StringOutput             `pulumi:"emailRecipients"`
 	EmailSend           pulumi.StringOutput             `pulumi:"emailSend"`
 	Format              pulumi.StringOutput             `pulumi:"format"`
+	GetAllTables        pulumi.StringPtrOutput          `pulumi:"getAllTables"`
 	MaxPdfReport        pulumi.IntOutput                `pulumi:"maxPdfReport"`
 	Name                pulumi.StringOutput             `pulumi:"name"`
 	Options             pulumi.StringOutput             `pulumi:"options"`
@@ -45,7 +47,7 @@ func NewReportLayout(ctx *pulumi.Context,
 	if args.StyleTheme == nil {
 		return nil, errors.New("invalid value for required argument 'StyleTheme'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ReportLayout
 	err := ctx.RegisterResource("fortios:index/reportLayout:ReportLayout", name, args, &resource, opts...)
 	if err != nil {
@@ -77,6 +79,7 @@ type reportLayoutState struct {
 	EmailRecipients     *string                `pulumi:"emailRecipients"`
 	EmailSend           *string                `pulumi:"emailSend"`
 	Format              *string                `pulumi:"format"`
+	GetAllTables        *string                `pulumi:"getAllTables"`
 	MaxPdfReport        *int                   `pulumi:"maxPdfReport"`
 	Name                *string                `pulumi:"name"`
 	Options             *string                `pulumi:"options"`
@@ -99,6 +102,7 @@ type ReportLayoutState struct {
 	EmailRecipients     pulumi.StringPtrInput
 	EmailSend           pulumi.StringPtrInput
 	Format              pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	MaxPdfReport        pulumi.IntPtrInput
 	Name                pulumi.StringPtrInput
 	Options             pulumi.StringPtrInput
@@ -125,6 +129,7 @@ type reportLayoutArgs struct {
 	EmailRecipients     *string                `pulumi:"emailRecipients"`
 	EmailSend           *string                `pulumi:"emailSend"`
 	Format              *string                `pulumi:"format"`
+	GetAllTables        *string                `pulumi:"getAllTables"`
 	MaxPdfReport        *int                   `pulumi:"maxPdfReport"`
 	Name                *string                `pulumi:"name"`
 	Options             *string                `pulumi:"options"`
@@ -148,6 +153,7 @@ type ReportLayoutArgs struct {
 	EmailRecipients     pulumi.StringPtrInput
 	EmailSend           pulumi.StringPtrInput
 	Format              pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	MaxPdfReport        pulumi.IntPtrInput
 	Name                pulumi.StringPtrInput
 	Options             pulumi.StringPtrInput
@@ -281,6 +287,10 @@ func (o ReportLayoutOutput) EmailSend() pulumi.StringOutput {
 
 func (o ReportLayoutOutput) Format() pulumi.StringOutput {
 	return o.ApplyT(func(v *ReportLayout) pulumi.StringOutput { return v.Format }).(pulumi.StringOutput)
+}
+
+func (o ReportLayoutOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ReportLayout) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o ReportLayoutOutput) MaxPdfReport() pulumi.IntOutput {

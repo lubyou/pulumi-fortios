@@ -20,6 +20,7 @@ class SystemNpuArgs:
                  dedicated_management_affinity: Optional[pulumi.Input[str]] = None,
                  dedicated_management_cpu: Optional[pulumi.Input[str]] = None,
                  fastpath: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ipsec_dec_subengine_mask: Optional[pulumi.Input[str]] = None,
                  ipsec_enc_subengine_mask: Optional[pulumi.Input[str]] = None,
                  ipsec_inbound_cache: Optional[pulumi.Input[str]] = None,
@@ -47,6 +48,8 @@ class SystemNpuArgs:
             pulumi.set(__self__, "dedicated_management_cpu", dedicated_management_cpu)
         if fastpath is not None:
             pulumi.set(__self__, "fastpath", fastpath)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ipsec_dec_subengine_mask is not None:
             pulumi.set(__self__, "ipsec_dec_subengine_mask", ipsec_dec_subengine_mask)
         if ipsec_enc_subengine_mask is not None:
@@ -115,6 +118,15 @@ class SystemNpuArgs:
     @fastpath.setter
     def fastpath(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fastpath", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="ipsecDecSubengineMask")
@@ -268,6 +280,7 @@ class _SystemNpuState:
                  dedicated_management_affinity: Optional[pulumi.Input[str]] = None,
                  dedicated_management_cpu: Optional[pulumi.Input[str]] = None,
                  fastpath: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ipsec_dec_subengine_mask: Optional[pulumi.Input[str]] = None,
                  ipsec_enc_subengine_mask: Optional[pulumi.Input[str]] = None,
                  ipsec_inbound_cache: Optional[pulumi.Input[str]] = None,
@@ -295,6 +308,8 @@ class _SystemNpuState:
             pulumi.set(__self__, "dedicated_management_cpu", dedicated_management_cpu)
         if fastpath is not None:
             pulumi.set(__self__, "fastpath", fastpath)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ipsec_dec_subengine_mask is not None:
             pulumi.set(__self__, "ipsec_dec_subengine_mask", ipsec_dec_subengine_mask)
         if ipsec_enc_subengine_mask is not None:
@@ -363,6 +378,15 @@ class _SystemNpuState:
     @fastpath.setter
     def fastpath(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fastpath", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="ipsecDecSubengineMask")
@@ -518,6 +542,7 @@ class SystemNpu(pulumi.CustomResource):
                  dedicated_management_affinity: Optional[pulumi.Input[str]] = None,
                  dedicated_management_cpu: Optional[pulumi.Input[str]] = None,
                  fastpath: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ipsec_dec_subengine_mask: Optional[pulumi.Input[str]] = None,
                  ipsec_enc_subengine_mask: Optional[pulumi.Input[str]] = None,
                  ipsec_inbound_cache: Optional[pulumi.Input[str]] = None,
@@ -567,6 +592,7 @@ class SystemNpu(pulumi.CustomResource):
                  dedicated_management_affinity: Optional[pulumi.Input[str]] = None,
                  dedicated_management_cpu: Optional[pulumi.Input[str]] = None,
                  fastpath: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ipsec_dec_subengine_mask: Optional[pulumi.Input[str]] = None,
                  ipsec_enc_subengine_mask: Optional[pulumi.Input[str]] = None,
                  ipsec_inbound_cache: Optional[pulumi.Input[str]] = None,
@@ -596,6 +622,7 @@ class SystemNpu(pulumi.CustomResource):
             __props__.__dict__["dedicated_management_affinity"] = dedicated_management_affinity
             __props__.__dict__["dedicated_management_cpu"] = dedicated_management_cpu
             __props__.__dict__["fastpath"] = fastpath
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["ipsec_dec_subengine_mask"] = ipsec_dec_subengine_mask
             __props__.__dict__["ipsec_enc_subengine_mask"] = ipsec_enc_subengine_mask
             __props__.__dict__["ipsec_inbound_cache"] = ipsec_inbound_cache
@@ -626,6 +653,7 @@ class SystemNpu(pulumi.CustomResource):
             dedicated_management_affinity: Optional[pulumi.Input[str]] = None,
             dedicated_management_cpu: Optional[pulumi.Input[str]] = None,
             fastpath: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             ipsec_dec_subengine_mask: Optional[pulumi.Input[str]] = None,
             ipsec_enc_subengine_mask: Optional[pulumi.Input[str]] = None,
             ipsec_inbound_cache: Optional[pulumi.Input[str]] = None,
@@ -658,6 +686,7 @@ class SystemNpu(pulumi.CustomResource):
         __props__.__dict__["dedicated_management_affinity"] = dedicated_management_affinity
         __props__.__dict__["dedicated_management_cpu"] = dedicated_management_cpu
         __props__.__dict__["fastpath"] = fastpath
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["ipsec_dec_subengine_mask"] = ipsec_dec_subengine_mask
         __props__.__dict__["ipsec_enc_subengine_mask"] = ipsec_enc_subengine_mask
         __props__.__dict__["ipsec_inbound_cache"] = ipsec_inbound_cache
@@ -695,6 +724,11 @@ class SystemNpu(pulumi.CustomResource):
     @pulumi.getter
     def fastpath(self) -> pulumi.Output[str]:
         return pulumi.get(self, "fastpath")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="ipsecDecSubengineMask")

@@ -71,6 +71,7 @@ export class VpnIpsecPhase1 extends pulumi.CustomResource {
     public readonly esn!: pulumi.Output<string>;
     public readonly fecBase!: pulumi.Output<number>;
     public readonly fecCodec!: pulumi.Output<number>;
+    public readonly fecCodecString!: pulumi.Output<string>;
     public readonly fecEgress!: pulumi.Output<string>;
     public readonly fecHealthCheck!: pulumi.Output<string>;
     public readonly fecIngress!: pulumi.Output<string>;
@@ -82,6 +83,7 @@ export class VpnIpsecPhase1 extends pulumi.CustomResource {
     public readonly forticlientEnforcement!: pulumi.Output<string>;
     public readonly fragmentation!: pulumi.Output<string>;
     public readonly fragmentationMtu!: pulumi.Output<number>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly groupAuthentication!: pulumi.Output<string>;
     public readonly groupAuthenticationSecret!: pulumi.Output<string | undefined>;
     public readonly haSyncEspSeqno!: pulumi.Output<string>;
@@ -209,6 +211,7 @@ export class VpnIpsecPhase1 extends pulumi.CustomResource {
             resourceInputs["esn"] = state ? state.esn : undefined;
             resourceInputs["fecBase"] = state ? state.fecBase : undefined;
             resourceInputs["fecCodec"] = state ? state.fecCodec : undefined;
+            resourceInputs["fecCodecString"] = state ? state.fecCodecString : undefined;
             resourceInputs["fecEgress"] = state ? state.fecEgress : undefined;
             resourceInputs["fecHealthCheck"] = state ? state.fecHealthCheck : undefined;
             resourceInputs["fecIngress"] = state ? state.fecIngress : undefined;
@@ -220,6 +223,7 @@ export class VpnIpsecPhase1 extends pulumi.CustomResource {
             resourceInputs["forticlientEnforcement"] = state ? state.forticlientEnforcement : undefined;
             resourceInputs["fragmentation"] = state ? state.fragmentation : undefined;
             resourceInputs["fragmentationMtu"] = state ? state.fragmentationMtu : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["groupAuthentication"] = state ? state.groupAuthentication : undefined;
             resourceInputs["groupAuthenticationSecret"] = state ? state.groupAuthenticationSecret : undefined;
             resourceInputs["haSyncEspSeqno"] = state ? state.haSyncEspSeqno : undefined;
@@ -344,6 +348,7 @@ export class VpnIpsecPhase1 extends pulumi.CustomResource {
             resourceInputs["esn"] = args ? args.esn : undefined;
             resourceInputs["fecBase"] = args ? args.fecBase : undefined;
             resourceInputs["fecCodec"] = args ? args.fecCodec : undefined;
+            resourceInputs["fecCodecString"] = args ? args.fecCodecString : undefined;
             resourceInputs["fecEgress"] = args ? args.fecEgress : undefined;
             resourceInputs["fecHealthCheck"] = args ? args.fecHealthCheck : undefined;
             resourceInputs["fecIngress"] = args ? args.fecIngress : undefined;
@@ -355,6 +360,7 @@ export class VpnIpsecPhase1 extends pulumi.CustomResource {
             resourceInputs["forticlientEnforcement"] = args ? args.forticlientEnforcement : undefined;
             resourceInputs["fragmentation"] = args ? args.fragmentation : undefined;
             resourceInputs["fragmentationMtu"] = args ? args.fragmentationMtu : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["groupAuthentication"] = args ? args.groupAuthentication : undefined;
             resourceInputs["groupAuthenticationSecret"] = args?.groupAuthenticationSecret ? pulumi.secret(args.groupAuthenticationSecret) : undefined;
             resourceInputs["haSyncEspSeqno"] = args ? args.haSyncEspSeqno : undefined;
@@ -480,6 +486,7 @@ export interface VpnIpsecPhase1State {
     esn?: pulumi.Input<string>;
     fecBase?: pulumi.Input<number>;
     fecCodec?: pulumi.Input<number>;
+    fecCodecString?: pulumi.Input<string>;
     fecEgress?: pulumi.Input<string>;
     fecHealthCheck?: pulumi.Input<string>;
     fecIngress?: pulumi.Input<string>;
@@ -491,6 +498,7 @@ export interface VpnIpsecPhase1State {
     forticlientEnforcement?: pulumi.Input<string>;
     fragmentation?: pulumi.Input<string>;
     fragmentationMtu?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     groupAuthentication?: pulumi.Input<string>;
     groupAuthenticationSecret?: pulumi.Input<string>;
     haSyncEspSeqno?: pulumi.Input<string>;
@@ -610,6 +618,7 @@ export interface VpnIpsecPhase1Args {
     esn?: pulumi.Input<string>;
     fecBase?: pulumi.Input<number>;
     fecCodec?: pulumi.Input<number>;
+    fecCodecString?: pulumi.Input<string>;
     fecEgress?: pulumi.Input<string>;
     fecHealthCheck?: pulumi.Input<string>;
     fecIngress?: pulumi.Input<string>;
@@ -621,6 +630,7 @@ export interface VpnIpsecPhase1Args {
     forticlientEnforcement?: pulumi.Input<string>;
     fragmentation?: pulumi.Input<string>;
     fragmentationMtu?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     groupAuthentication?: pulumi.Input<string>;
     groupAuthenticationSecret?: pulumi.Input<string>;
     haSyncEspSeqno?: pulumi.Input<string>;

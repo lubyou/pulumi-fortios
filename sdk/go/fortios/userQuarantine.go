@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,6 +16,7 @@ type UserQuarantine struct {
 
 	DynamicSortSubtable pulumi.StringPtrOutput          `pulumi:"dynamicSortSubtable"`
 	FirewallGroups      pulumi.StringOutput             `pulumi:"firewallGroups"`
+	GetAllTables        pulumi.StringPtrOutput          `pulumi:"getAllTables"`
 	Quarantine          pulumi.StringOutput             `pulumi:"quarantine"`
 	Targets             UserQuarantineTargetArrayOutput `pulumi:"targets"`
 	TrafficPolicy       pulumi.StringOutput             `pulumi:"trafficPolicy"`
@@ -28,7 +30,7 @@ func NewUserQuarantine(ctx *pulumi.Context,
 		args = &UserQuarantineArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource UserQuarantine
 	err := ctx.RegisterResource("fortios:index/userQuarantine:UserQuarantine", name, args, &resource, opts...)
 	if err != nil {
@@ -53,6 +55,7 @@ func GetUserQuarantine(ctx *pulumi.Context,
 type userQuarantineState struct {
 	DynamicSortSubtable *string                `pulumi:"dynamicSortSubtable"`
 	FirewallGroups      *string                `pulumi:"firewallGroups"`
+	GetAllTables        *string                `pulumi:"getAllTables"`
 	Quarantine          *string                `pulumi:"quarantine"`
 	Targets             []UserQuarantineTarget `pulumi:"targets"`
 	TrafficPolicy       *string                `pulumi:"trafficPolicy"`
@@ -62,6 +65,7 @@ type userQuarantineState struct {
 type UserQuarantineState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	FirewallGroups      pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Quarantine          pulumi.StringPtrInput
 	Targets             UserQuarantineTargetArrayInput
 	TrafficPolicy       pulumi.StringPtrInput
@@ -75,6 +79,7 @@ func (UserQuarantineState) ElementType() reflect.Type {
 type userQuarantineArgs struct {
 	DynamicSortSubtable *string                `pulumi:"dynamicSortSubtable"`
 	FirewallGroups      *string                `pulumi:"firewallGroups"`
+	GetAllTables        *string                `pulumi:"getAllTables"`
 	Quarantine          *string                `pulumi:"quarantine"`
 	Targets             []UserQuarantineTarget `pulumi:"targets"`
 	TrafficPolicy       *string                `pulumi:"trafficPolicy"`
@@ -85,6 +90,7 @@ type userQuarantineArgs struct {
 type UserQuarantineArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	FirewallGroups      pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Quarantine          pulumi.StringPtrInput
 	Targets             UserQuarantineTargetArrayInput
 	TrafficPolicy       pulumi.StringPtrInput
@@ -184,6 +190,10 @@ func (o UserQuarantineOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 
 func (o UserQuarantineOutput) FirewallGroups() pulumi.StringOutput {
 	return o.ApplyT(func(v *UserQuarantine) pulumi.StringOutput { return v.FirewallGroups }).(pulumi.StringOutput)
+}
+
+func (o UserQuarantineOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserQuarantine) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o UserQuarantineOutput) Quarantine() pulumi.StringOutput {

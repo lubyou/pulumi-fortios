@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -18,6 +19,7 @@ type FirewallProfileProtocolOptions struct {
 	Dns                   FirewallProfileProtocolOptionsDnsOutput           `pulumi:"dns"`
 	FeatureSet            pulumi.StringOutput                               `pulumi:"featureSet"`
 	Ftp                   FirewallProfileProtocolOptionsFtpOutput           `pulumi:"ftp"`
+	GetAllTables          pulumi.StringPtrOutput                            `pulumi:"getAllTables"`
 	Http                  FirewallProfileProtocolOptionsHttpOutput          `pulumi:"http"`
 	Imap                  FirewallProfileProtocolOptionsImapOutput          `pulumi:"imap"`
 	MailSignature         FirewallProfileProtocolOptionsMailSignatureOutput `pulumi:"mailSignature"`
@@ -41,7 +43,7 @@ func NewFirewallProfileProtocolOptions(ctx *pulumi.Context,
 		args = &FirewallProfileProtocolOptionsArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallProfileProtocolOptions
 	err := ctx.RegisterResource("fortios:index/firewallProfileProtocolOptions:FirewallProfileProtocolOptions", name, args, &resource, opts...)
 	if err != nil {
@@ -69,6 +71,7 @@ type firewallProfileProtocolOptionsState struct {
 	Dns                   *FirewallProfileProtocolOptionsDns           `pulumi:"dns"`
 	FeatureSet            *string                                      `pulumi:"featureSet"`
 	Ftp                   *FirewallProfileProtocolOptionsFtp           `pulumi:"ftp"`
+	GetAllTables          *string                                      `pulumi:"getAllTables"`
 	Http                  *FirewallProfileProtocolOptionsHttp          `pulumi:"http"`
 	Imap                  *FirewallProfileProtocolOptionsImap          `pulumi:"imap"`
 	MailSignature         *FirewallProfileProtocolOptionsMailSignature `pulumi:"mailSignature"`
@@ -91,6 +94,7 @@ type FirewallProfileProtocolOptionsState struct {
 	Dns                   FirewallProfileProtocolOptionsDnsPtrInput
 	FeatureSet            pulumi.StringPtrInput
 	Ftp                   FirewallProfileProtocolOptionsFtpPtrInput
+	GetAllTables          pulumi.StringPtrInput
 	Http                  FirewallProfileProtocolOptionsHttpPtrInput
 	Imap                  FirewallProfileProtocolOptionsImapPtrInput
 	MailSignature         FirewallProfileProtocolOptionsMailSignaturePtrInput
@@ -117,6 +121,7 @@ type firewallProfileProtocolOptionsArgs struct {
 	Dns                   *FirewallProfileProtocolOptionsDns           `pulumi:"dns"`
 	FeatureSet            *string                                      `pulumi:"featureSet"`
 	Ftp                   *FirewallProfileProtocolOptionsFtp           `pulumi:"ftp"`
+	GetAllTables          *string                                      `pulumi:"getAllTables"`
 	Http                  *FirewallProfileProtocolOptionsHttp          `pulumi:"http"`
 	Imap                  *FirewallProfileProtocolOptionsImap          `pulumi:"imap"`
 	MailSignature         *FirewallProfileProtocolOptionsMailSignature `pulumi:"mailSignature"`
@@ -140,6 +145,7 @@ type FirewallProfileProtocolOptionsArgs struct {
 	Dns                   FirewallProfileProtocolOptionsDnsPtrInput
 	FeatureSet            pulumi.StringPtrInput
 	Ftp                   FirewallProfileProtocolOptionsFtpPtrInput
+	GetAllTables          pulumi.StringPtrInput
 	Http                  FirewallProfileProtocolOptionsHttpPtrInput
 	Imap                  FirewallProfileProtocolOptionsImapPtrInput
 	MailSignature         FirewallProfileProtocolOptionsMailSignaturePtrInput
@@ -261,6 +267,10 @@ func (o FirewallProfileProtocolOptionsOutput) FeatureSet() pulumi.StringOutput {
 
 func (o FirewallProfileProtocolOptionsOutput) Ftp() FirewallProfileProtocolOptionsFtpOutput {
 	return o.ApplyT(func(v *FirewallProfileProtocolOptions) FirewallProfileProtocolOptionsFtpOutput { return v.Ftp }).(FirewallProfileProtocolOptionsFtpOutput)
+}
+
+func (o FirewallProfileProtocolOptionsOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallProfileProtocolOptions) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallProfileProtocolOptionsOutput) Http() FirewallProfileProtocolOptionsHttpOutput {

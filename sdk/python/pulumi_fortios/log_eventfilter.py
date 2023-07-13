@@ -31,6 +31,7 @@ class LogEventfilterArgs:
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vpn: Optional[pulumi.Input[str]] = None,
                  wan_opt: Optional[pulumi.Input[str]] = None,
+                 webproxy: Optional[pulumi.Input[str]] = None,
                  wireless_activity: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a LogEventfilter resource.
@@ -69,6 +70,8 @@ class LogEventfilterArgs:
             pulumi.set(__self__, "vpn", vpn)
         if wan_opt is not None:
             pulumi.set(__self__, "wan_opt", wan_opt)
+        if webproxy is not None:
+            pulumi.set(__self__, "webproxy", webproxy)
         if wireless_activity is not None:
             pulumi.set(__self__, "wireless_activity", wireless_activity)
 
@@ -226,6 +229,15 @@ class LogEventfilterArgs:
         pulumi.set(self, "wan_opt", value)
 
     @property
+    @pulumi.getter
+    def webproxy(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "webproxy")
+
+    @webproxy.setter
+    def webproxy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "webproxy", value)
+
+    @property
     @pulumi.getter(name="wirelessActivity")
     def wireless_activity(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "wireless_activity")
@@ -255,6 +267,7 @@ class _LogEventfilterState:
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vpn: Optional[pulumi.Input[str]] = None,
                  wan_opt: Optional[pulumi.Input[str]] = None,
+                 webproxy: Optional[pulumi.Input[str]] = None,
                  wireless_activity: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering LogEventfilter resources.
@@ -293,6 +306,8 @@ class _LogEventfilterState:
             pulumi.set(__self__, "vpn", vpn)
         if wan_opt is not None:
             pulumi.set(__self__, "wan_opt", wan_opt)
+        if webproxy is not None:
+            pulumi.set(__self__, "webproxy", webproxy)
         if wireless_activity is not None:
             pulumi.set(__self__, "wireless_activity", wireless_activity)
 
@@ -450,6 +465,15 @@ class _LogEventfilterState:
         pulumi.set(self, "wan_opt", value)
 
     @property
+    @pulumi.getter
+    def webproxy(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "webproxy")
+
+    @webproxy.setter
+    def webproxy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "webproxy", value)
+
+    @property
     @pulumi.getter(name="wirelessActivity")
     def wireless_activity(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "wireless_activity")
@@ -481,6 +505,7 @@ class LogEventfilter(pulumi.CustomResource):
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vpn: Optional[pulumi.Input[str]] = None,
                  wan_opt: Optional[pulumi.Input[str]] = None,
+                 webproxy: Optional[pulumi.Input[str]] = None,
                  wireless_activity: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -528,6 +553,7 @@ class LogEventfilter(pulumi.CustomResource):
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vpn: Optional[pulumi.Input[str]] = None,
                  wan_opt: Optional[pulumi.Input[str]] = None,
+                 webproxy: Optional[pulumi.Input[str]] = None,
                  wireless_activity: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -555,6 +581,7 @@ class LogEventfilter(pulumi.CustomResource):
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["vpn"] = vpn
             __props__.__dict__["wan_opt"] = wan_opt
+            __props__.__dict__["webproxy"] = webproxy
             __props__.__dict__["wireless_activity"] = wireless_activity
         super(LogEventfilter, __self__).__init__(
             'fortios:index/logEventfilter:LogEventfilter',
@@ -583,6 +610,7 @@ class LogEventfilter(pulumi.CustomResource):
             vdomparam: Optional[pulumi.Input[str]] = None,
             vpn: Optional[pulumi.Input[str]] = None,
             wan_opt: Optional[pulumi.Input[str]] = None,
+            webproxy: Optional[pulumi.Input[str]] = None,
             wireless_activity: Optional[pulumi.Input[str]] = None) -> 'LogEventfilter':
         """
         Get an existing LogEventfilter resource's state with the given name, id, and optional extra
@@ -613,6 +641,7 @@ class LogEventfilter(pulumi.CustomResource):
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["vpn"] = vpn
         __props__.__dict__["wan_opt"] = wan_opt
+        __props__.__dict__["webproxy"] = webproxy
         __props__.__dict__["wireless_activity"] = wireless_activity
         return LogEventfilter(resource_name, opts=opts, __props__=__props__)
 
@@ -700,6 +729,11 @@ class LogEventfilter(pulumi.CustomResource):
     @pulumi.getter(name="wanOpt")
     def wan_opt(self) -> pulumi.Output[str]:
         return pulumi.get(self, "wan_opt")
+
+    @property
+    @pulumi.getter
+    def webproxy(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "webproxy")
 
     @property
     @pulumi.getter(name="wirelessActivity")

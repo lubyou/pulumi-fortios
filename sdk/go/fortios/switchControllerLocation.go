@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -16,6 +17,7 @@ type SwitchControllerLocation struct {
 	AddressCivic SwitchControllerLocationAddressCivicOutput `pulumi:"addressCivic"`
 	Coordinates  SwitchControllerLocationCoordinatesOutput  `pulumi:"coordinates"`
 	ElinNumber   SwitchControllerLocationElinNumberOutput   `pulumi:"elinNumber"`
+	GetAllTables pulumi.StringPtrOutput                     `pulumi:"getAllTables"`
 	Name         pulumi.StringOutput                        `pulumi:"name"`
 	Vdomparam    pulumi.StringPtrOutput                     `pulumi:"vdomparam"`
 }
@@ -27,7 +29,7 @@ func NewSwitchControllerLocation(ctx *pulumi.Context,
 		args = &SwitchControllerLocationArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SwitchControllerLocation
 	err := ctx.RegisterResource("fortios:index/switchControllerLocation:SwitchControllerLocation", name, args, &resource, opts...)
 	if err != nil {
@@ -53,6 +55,7 @@ type switchControllerLocationState struct {
 	AddressCivic *SwitchControllerLocationAddressCivic `pulumi:"addressCivic"`
 	Coordinates  *SwitchControllerLocationCoordinates  `pulumi:"coordinates"`
 	ElinNumber   *SwitchControllerLocationElinNumber   `pulumi:"elinNumber"`
+	GetAllTables *string                               `pulumi:"getAllTables"`
 	Name         *string                               `pulumi:"name"`
 	Vdomparam    *string                               `pulumi:"vdomparam"`
 }
@@ -61,6 +64,7 @@ type SwitchControllerLocationState struct {
 	AddressCivic SwitchControllerLocationAddressCivicPtrInput
 	Coordinates  SwitchControllerLocationCoordinatesPtrInput
 	ElinNumber   SwitchControllerLocationElinNumberPtrInput
+	GetAllTables pulumi.StringPtrInput
 	Name         pulumi.StringPtrInput
 	Vdomparam    pulumi.StringPtrInput
 }
@@ -73,6 +77,7 @@ type switchControllerLocationArgs struct {
 	AddressCivic *SwitchControllerLocationAddressCivic `pulumi:"addressCivic"`
 	Coordinates  *SwitchControllerLocationCoordinates  `pulumi:"coordinates"`
 	ElinNumber   *SwitchControllerLocationElinNumber   `pulumi:"elinNumber"`
+	GetAllTables *string                               `pulumi:"getAllTables"`
 	Name         *string                               `pulumi:"name"`
 	Vdomparam    *string                               `pulumi:"vdomparam"`
 }
@@ -82,6 +87,7 @@ type SwitchControllerLocationArgs struct {
 	AddressCivic SwitchControllerLocationAddressCivicPtrInput
 	Coordinates  SwitchControllerLocationCoordinatesPtrInput
 	ElinNumber   SwitchControllerLocationElinNumberPtrInput
+	GetAllTables pulumi.StringPtrInput
 	Name         pulumi.StringPtrInput
 	Vdomparam    pulumi.StringPtrInput
 }
@@ -183,6 +189,10 @@ func (o SwitchControllerLocationOutput) Coordinates() SwitchControllerLocationCo
 
 func (o SwitchControllerLocationOutput) ElinNumber() SwitchControllerLocationElinNumberOutput {
 	return o.ApplyT(func(v *SwitchControllerLocation) SwitchControllerLocationElinNumberOutput { return v.ElinNumber }).(SwitchControllerLocationElinNumberOutput)
+}
+
+func (o SwitchControllerLocationOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerLocation) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SwitchControllerLocationOutput) Name() pulumi.StringOutput {

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -16,6 +17,7 @@ type SystemVirtualWanLink struct {
 	DynamicSortSubtable  pulumi.StringPtrOutput                            `pulumi:"dynamicSortSubtable"`
 	FailAlertInterfaces  SystemVirtualWanLinkFailAlertInterfaceArrayOutput `pulumi:"failAlertInterfaces"`
 	FailDetect           pulumi.StringOutput                               `pulumi:"failDetect"`
+	GetAllTables         pulumi.StringPtrOutput                            `pulumi:"getAllTables"`
 	HealthChecks         SystemVirtualWanLinkHealthCheckArrayOutput        `pulumi:"healthChecks"`
 	LoadBalanceMode      pulumi.StringOutput                               `pulumi:"loadBalanceMode"`
 	Members              SystemVirtualWanLinkMemberArrayOutput             `pulumi:"members"`
@@ -36,7 +38,7 @@ func NewSystemVirtualWanLink(ctx *pulumi.Context,
 		args = &SystemVirtualWanLinkArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemVirtualWanLink
 	err := ctx.RegisterResource("fortios:index/systemVirtualWanLink:SystemVirtualWanLink", name, args, &resource, opts...)
 	if err != nil {
@@ -62,6 +64,7 @@ type systemVirtualWanLinkState struct {
 	DynamicSortSubtable  *string                                  `pulumi:"dynamicSortSubtable"`
 	FailAlertInterfaces  []SystemVirtualWanLinkFailAlertInterface `pulumi:"failAlertInterfaces"`
 	FailDetect           *string                                  `pulumi:"failDetect"`
+	GetAllTables         *string                                  `pulumi:"getAllTables"`
 	HealthChecks         []SystemVirtualWanLinkHealthCheck        `pulumi:"healthChecks"`
 	LoadBalanceMode      *string                                  `pulumi:"loadBalanceMode"`
 	Members              []SystemVirtualWanLinkMember             `pulumi:"members"`
@@ -79,6 +82,7 @@ type SystemVirtualWanLinkState struct {
 	DynamicSortSubtable  pulumi.StringPtrInput
 	FailAlertInterfaces  SystemVirtualWanLinkFailAlertInterfaceArrayInput
 	FailDetect           pulumi.StringPtrInput
+	GetAllTables         pulumi.StringPtrInput
 	HealthChecks         SystemVirtualWanLinkHealthCheckArrayInput
 	LoadBalanceMode      pulumi.StringPtrInput
 	Members              SystemVirtualWanLinkMemberArrayInput
@@ -100,6 +104,7 @@ type systemVirtualWanLinkArgs struct {
 	DynamicSortSubtable  *string                                  `pulumi:"dynamicSortSubtable"`
 	FailAlertInterfaces  []SystemVirtualWanLinkFailAlertInterface `pulumi:"failAlertInterfaces"`
 	FailDetect           *string                                  `pulumi:"failDetect"`
+	GetAllTables         *string                                  `pulumi:"getAllTables"`
 	HealthChecks         []SystemVirtualWanLinkHealthCheck        `pulumi:"healthChecks"`
 	LoadBalanceMode      *string                                  `pulumi:"loadBalanceMode"`
 	Members              []SystemVirtualWanLinkMember             `pulumi:"members"`
@@ -118,6 +123,7 @@ type SystemVirtualWanLinkArgs struct {
 	DynamicSortSubtable  pulumi.StringPtrInput
 	FailAlertInterfaces  SystemVirtualWanLinkFailAlertInterfaceArrayInput
 	FailDetect           pulumi.StringPtrInput
+	GetAllTables         pulumi.StringPtrInput
 	HealthChecks         SystemVirtualWanLinkHealthCheckArrayInput
 	LoadBalanceMode      pulumi.StringPtrInput
 	Members              SystemVirtualWanLinkMemberArrayInput
@@ -230,6 +236,10 @@ func (o SystemVirtualWanLinkOutput) FailAlertInterfaces() SystemVirtualWanLinkFa
 
 func (o SystemVirtualWanLinkOutput) FailDetect() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemVirtualWanLink) pulumi.StringOutput { return v.FailDetect }).(pulumi.StringOutput)
+}
+
+func (o SystemVirtualWanLinkOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemVirtualWanLink) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemVirtualWanLinkOutput) HealthChecks() SystemVirtualWanLinkHealthCheckArrayOutput {

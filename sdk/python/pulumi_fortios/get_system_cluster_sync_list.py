@@ -84,10 +84,10 @@ def get_system_cluster_sync_list(filter: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemClusterSyncList:GetSystemClusterSyncList', __args__, opts=opts, typ=GetSystemClusterSyncListResult).value
 
     return AwaitableGetSystemClusterSyncListResult(
-        filter=__ret__.filter,
-        id=__ret__.id,
-        sync_idlists=__ret__.sync_idlists,
-        vdomparam=__ret__.vdomparam)
+        filter=pulumi.get(__ret__, 'filter'),
+        id=pulumi.get(__ret__, 'id'),
+        sync_idlists=pulumi.get(__ret__, 'sync_idlists'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_cluster_sync_list)

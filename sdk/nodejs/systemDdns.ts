@@ -51,6 +51,7 @@ export class SystemDdns extends pulumi.CustomResource {
     public readonly ddnsZone!: pulumi.Output<string>;
     public readonly ddnsid!: pulumi.Output<number>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly monitorInterfaces!: pulumi.Output<outputs.SystemDdnsMonitorInterface[]>;
     public readonly serverType!: pulumi.Output<string>;
     public readonly sslCertificate!: pulumi.Output<string>;
@@ -88,6 +89,7 @@ export class SystemDdns extends pulumi.CustomResource {
             resourceInputs["ddnsZone"] = state ? state.ddnsZone : undefined;
             resourceInputs["ddnsid"] = state ? state.ddnsid : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["monitorInterfaces"] = state ? state.monitorInterfaces : undefined;
             resourceInputs["serverType"] = state ? state.serverType : undefined;
             resourceInputs["sslCertificate"] = state ? state.sslCertificate : undefined;
@@ -119,6 +121,7 @@ export class SystemDdns extends pulumi.CustomResource {
             resourceInputs["ddnsZone"] = args ? args.ddnsZone : undefined;
             resourceInputs["ddnsid"] = args ? args.ddnsid : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["monitorInterfaces"] = args ? args.monitorInterfaces : undefined;
             resourceInputs["serverType"] = args ? args.serverType : undefined;
             resourceInputs["sslCertificate"] = args ? args.sslCertificate : undefined;
@@ -154,6 +157,7 @@ export interface SystemDdnsState {
     ddnsZone?: pulumi.Input<string>;
     ddnsid?: pulumi.Input<number>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     monitorInterfaces?: pulumi.Input<pulumi.Input<inputs.SystemDdnsMonitorInterface>[]>;
     serverType?: pulumi.Input<string>;
     sslCertificate?: pulumi.Input<string>;
@@ -183,6 +187,7 @@ export interface SystemDdnsArgs {
     ddnsZone?: pulumi.Input<string>;
     ddnsid?: pulumi.Input<number>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     monitorInterfaces: pulumi.Input<pulumi.Input<inputs.SystemDdnsMonitorInterface>[]>;
     serverType?: pulumi.Input<string>;
     sslCertificate?: pulumi.Input<string>;

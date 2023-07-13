@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemPasswordPolicy(ctx *pulumi.Context, args *LookupSystemPasswordPolicyArgs, opts ...pulumi.InvokeOption) (*LookupSystemPasswordPolicyResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemPasswordPolicyResult
 	err := ctx.Invoke("fortios:index/getSystemPasswordPolicy:GetSystemPasswordPolicy", args, &rv, opts...)
 	if err != nil {

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -20,6 +21,7 @@ type LogSyslogd2Filter struct {
 	FilterType           pulumi.StringOutput                   `pulumi:"filterType"`
 	ForwardTraffic       pulumi.StringOutput                   `pulumi:"forwardTraffic"`
 	FreeStyles           LogSyslogd2FilterFreeStyleArrayOutput `pulumi:"freeStyles"`
+	GetAllTables         pulumi.StringPtrOutput                `pulumi:"getAllTables"`
 	Gtp                  pulumi.StringOutput                   `pulumi:"gtp"`
 	LocalTraffic         pulumi.StringOutput                   `pulumi:"localTraffic"`
 	MulticastTraffic     pulumi.StringOutput                   `pulumi:"multicastTraffic"`
@@ -40,7 +42,7 @@ func NewLogSyslogd2Filter(ctx *pulumi.Context,
 		args = &LogSyslogd2FilterArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource LogSyslogd2Filter
 	err := ctx.RegisterResource("fortios:index/logSyslogd2Filter:LogSyslogd2Filter", name, args, &resource, opts...)
 	if err != nil {
@@ -70,6 +72,7 @@ type logSyslogd2FilterState struct {
 	FilterType           *string                      `pulumi:"filterType"`
 	ForwardTraffic       *string                      `pulumi:"forwardTraffic"`
 	FreeStyles           []LogSyslogd2FilterFreeStyle `pulumi:"freeStyles"`
+	GetAllTables         *string                      `pulumi:"getAllTables"`
 	Gtp                  *string                      `pulumi:"gtp"`
 	LocalTraffic         *string                      `pulumi:"localTraffic"`
 	MulticastTraffic     *string                      `pulumi:"multicastTraffic"`
@@ -91,6 +94,7 @@ type LogSyslogd2FilterState struct {
 	FilterType           pulumi.StringPtrInput
 	ForwardTraffic       pulumi.StringPtrInput
 	FreeStyles           LogSyslogd2FilterFreeStyleArrayInput
+	GetAllTables         pulumi.StringPtrInput
 	Gtp                  pulumi.StringPtrInput
 	LocalTraffic         pulumi.StringPtrInput
 	MulticastTraffic     pulumi.StringPtrInput
@@ -116,6 +120,7 @@ type logSyslogd2FilterArgs struct {
 	FilterType           *string                      `pulumi:"filterType"`
 	ForwardTraffic       *string                      `pulumi:"forwardTraffic"`
 	FreeStyles           []LogSyslogd2FilterFreeStyle `pulumi:"freeStyles"`
+	GetAllTables         *string                      `pulumi:"getAllTables"`
 	Gtp                  *string                      `pulumi:"gtp"`
 	LocalTraffic         *string                      `pulumi:"localTraffic"`
 	MulticastTraffic     *string                      `pulumi:"multicastTraffic"`
@@ -138,6 +143,7 @@ type LogSyslogd2FilterArgs struct {
 	FilterType           pulumi.StringPtrInput
 	ForwardTraffic       pulumi.StringPtrInput
 	FreeStyles           LogSyslogd2FilterFreeStyleArrayInput
+	GetAllTables         pulumi.StringPtrInput
 	Gtp                  pulumi.StringPtrInput
 	LocalTraffic         pulumi.StringPtrInput
 	MulticastTraffic     pulumi.StringPtrInput
@@ -264,6 +270,10 @@ func (o LogSyslogd2FilterOutput) ForwardTraffic() pulumi.StringOutput {
 
 func (o LogSyslogd2FilterOutput) FreeStyles() LogSyslogd2FilterFreeStyleArrayOutput {
 	return o.ApplyT(func(v *LogSyslogd2Filter) LogSyslogd2FilterFreeStyleArrayOutput { return v.FreeStyles }).(LogSyslogd2FilterFreeStyleArrayOutput)
+}
+
+func (o LogSyslogd2FilterOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogSyslogd2Filter) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o LogSyslogd2FilterOutput) Gtp() pulumi.StringOutput {

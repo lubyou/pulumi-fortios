@@ -130,15 +130,15 @@ def get_system_object_tagging(category: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemObjectTagging:GetSystemObjectTagging', __args__, opts=opts, typ=GetSystemObjectTaggingResult).value
 
     return AwaitableGetSystemObjectTaggingResult(
-        address=__ret__.address,
-        category=__ret__.category,
-        color=__ret__.color,
-        device=__ret__.device,
-        id=__ret__.id,
-        interface=__ret__.interface,
-        multiple=__ret__.multiple,
-        tags=__ret__.tags,
-        vdomparam=__ret__.vdomparam)
+        address=pulumi.get(__ret__, 'address'),
+        category=pulumi.get(__ret__, 'category'),
+        color=pulumi.get(__ret__, 'color'),
+        device=pulumi.get(__ret__, 'device'),
+        id=pulumi.get(__ret__, 'id'),
+        interface=pulumi.get(__ret__, 'interface'),
+        multiple=pulumi.get(__ret__, 'multiple'),
+        tags=pulumi.get(__ret__, 'tags'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_object_tagging)

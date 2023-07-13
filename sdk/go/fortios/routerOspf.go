@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -34,6 +35,7 @@ type RouterOspf struct {
 	DistributeLists               RouterOspfDistributeListArrayOutput    `pulumi:"distributeLists"`
 	DistributeRouteMapIn          pulumi.StringOutput                    `pulumi:"distributeRouteMapIn"`
 	DynamicSortSubtable           pulumi.StringPtrOutput                 `pulumi:"dynamicSortSubtable"`
+	GetAllTables                  pulumi.StringPtrOutput                 `pulumi:"getAllTables"`
 	LogNeighbourChanges           pulumi.StringOutput                    `pulumi:"logNeighbourChanges"`
 	Neighbors                     RouterOspfNeighborTypeArrayOutput      `pulumi:"neighbors"`
 	Networks                      RouterOspfNetworkTypeArrayOutput       `pulumi:"networks"`
@@ -60,7 +62,7 @@ func NewRouterOspf(ctx *pulumi.Context,
 	if args.RouterId == nil {
 		return nil, errors.New("invalid value for required argument 'RouterId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RouterOspf
 	err := ctx.RegisterResource("fortios:index/routerOspf:RouterOspf", name, args, &resource, opts...)
 	if err != nil {
@@ -103,6 +105,7 @@ type routerOspfState struct {
 	DistributeLists               []RouterOspfDistributeList    `pulumi:"distributeLists"`
 	DistributeRouteMapIn          *string                       `pulumi:"distributeRouteMapIn"`
 	DynamicSortSubtable           *string                       `pulumi:"dynamicSortSubtable"`
+	GetAllTables                  *string                       `pulumi:"getAllTables"`
 	LogNeighbourChanges           *string                       `pulumi:"logNeighbourChanges"`
 	Neighbors                     []RouterOspfNeighborType      `pulumi:"neighbors"`
 	Networks                      []RouterOspfNetworkType       `pulumi:"networks"`
@@ -140,6 +143,7 @@ type RouterOspfState struct {
 	DistributeLists               RouterOspfDistributeListArrayInput
 	DistributeRouteMapIn          pulumi.StringPtrInput
 	DynamicSortSubtable           pulumi.StringPtrInput
+	GetAllTables                  pulumi.StringPtrInput
 	LogNeighbourChanges           pulumi.StringPtrInput
 	Neighbors                     RouterOspfNeighborTypeArrayInput
 	Networks                      RouterOspfNetworkTypeArrayInput
@@ -181,6 +185,7 @@ type routerOspfArgs struct {
 	DistributeLists               []RouterOspfDistributeList    `pulumi:"distributeLists"`
 	DistributeRouteMapIn          *string                       `pulumi:"distributeRouteMapIn"`
 	DynamicSortSubtable           *string                       `pulumi:"dynamicSortSubtable"`
+	GetAllTables                  *string                       `pulumi:"getAllTables"`
 	LogNeighbourChanges           *string                       `pulumi:"logNeighbourChanges"`
 	Neighbors                     []RouterOspfNeighborType      `pulumi:"neighbors"`
 	Networks                      []RouterOspfNetworkType       `pulumi:"networks"`
@@ -219,6 +224,7 @@ type RouterOspfArgs struct {
 	DistributeLists               RouterOspfDistributeListArrayInput
 	DistributeRouteMapIn          pulumi.StringPtrInput
 	DynamicSortSubtable           pulumi.StringPtrInput
+	GetAllTables                  pulumi.StringPtrInput
 	LogNeighbourChanges           pulumi.StringPtrInput
 	Neighbors                     RouterOspfNeighborTypeArrayInput
 	Networks                      RouterOspfNetworkTypeArrayInput
@@ -400,6 +406,10 @@ func (o RouterOspfOutput) DistributeRouteMapIn() pulumi.StringOutput {
 
 func (o RouterOspfOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RouterOspf) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o RouterOspfOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterOspf) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o RouterOspfOutput) LogNeighbourChanges() pulumi.StringOutput {

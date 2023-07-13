@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,9 +16,11 @@ type SystemAcme struct {
 
 	Accounts            SystemAcmeAccountArrayOutput   `pulumi:"accounts"`
 	DynamicSortSubtable pulumi.StringPtrOutput         `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput         `pulumi:"getAllTables"`
 	Interfaces          SystemAcmeInterfaceArrayOutput `pulumi:"interfaces"`
 	SourceIp            pulumi.StringOutput            `pulumi:"sourceIp"`
 	SourceIp6           pulumi.StringOutput            `pulumi:"sourceIp6"`
+	UseHaDirect         pulumi.StringOutput            `pulumi:"useHaDirect"`
 	Vdomparam           pulumi.StringPtrOutput         `pulumi:"vdomparam"`
 }
 
@@ -28,7 +31,7 @@ func NewSystemAcme(ctx *pulumi.Context,
 		args = &SystemAcmeArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemAcme
 	err := ctx.RegisterResource("fortios:index/systemAcme:SystemAcme", name, args, &resource, opts...)
 	if err != nil {
@@ -53,18 +56,22 @@ func GetSystemAcme(ctx *pulumi.Context,
 type systemAcmeState struct {
 	Accounts            []SystemAcmeAccount   `pulumi:"accounts"`
 	DynamicSortSubtable *string               `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string               `pulumi:"getAllTables"`
 	Interfaces          []SystemAcmeInterface `pulumi:"interfaces"`
 	SourceIp            *string               `pulumi:"sourceIp"`
 	SourceIp6           *string               `pulumi:"sourceIp6"`
+	UseHaDirect         *string               `pulumi:"useHaDirect"`
 	Vdomparam           *string               `pulumi:"vdomparam"`
 }
 
 type SystemAcmeState struct {
 	Accounts            SystemAcmeAccountArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Interfaces          SystemAcmeInterfaceArrayInput
 	SourceIp            pulumi.StringPtrInput
 	SourceIp6           pulumi.StringPtrInput
+	UseHaDirect         pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
 }
 
@@ -75,9 +82,11 @@ func (SystemAcmeState) ElementType() reflect.Type {
 type systemAcmeArgs struct {
 	Accounts            []SystemAcmeAccount   `pulumi:"accounts"`
 	DynamicSortSubtable *string               `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string               `pulumi:"getAllTables"`
 	Interfaces          []SystemAcmeInterface `pulumi:"interfaces"`
 	SourceIp            *string               `pulumi:"sourceIp"`
 	SourceIp6           *string               `pulumi:"sourceIp6"`
+	UseHaDirect         *string               `pulumi:"useHaDirect"`
 	Vdomparam           *string               `pulumi:"vdomparam"`
 }
 
@@ -85,9 +94,11 @@ type systemAcmeArgs struct {
 type SystemAcmeArgs struct {
 	Accounts            SystemAcmeAccountArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Interfaces          SystemAcmeInterfaceArrayInput
 	SourceIp            pulumi.StringPtrInput
 	SourceIp6           pulumi.StringPtrInput
+	UseHaDirect         pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
 }
 
@@ -186,6 +197,10 @@ func (o SystemAcmeOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SystemAcme) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
 }
 
+func (o SystemAcmeOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAcme) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 func (o SystemAcmeOutput) Interfaces() SystemAcmeInterfaceArrayOutput {
 	return o.ApplyT(func(v *SystemAcme) SystemAcmeInterfaceArrayOutput { return v.Interfaces }).(SystemAcmeInterfaceArrayOutput)
 }
@@ -196,6 +211,10 @@ func (o SystemAcmeOutput) SourceIp() pulumi.StringOutput {
 
 func (o SystemAcmeOutput) SourceIp6() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemAcme) pulumi.StringOutput { return v.SourceIp6 }).(pulumi.StringOutput)
+}
+
+func (o SystemAcmeOutput) UseHaDirect() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAcme) pulumi.StringOutput { return v.UseHaDirect }).(pulumi.StringOutput)
 }
 
 func (o SystemAcmeOutput) Vdomparam() pulumi.StringPtrOutput {

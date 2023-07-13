@@ -36,9 +36,11 @@ export class SystemAcme extends pulumi.CustomResource {
 
     public readonly accounts!: pulumi.Output<outputs.SystemAcmeAccount[] | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly interfaces!: pulumi.Output<outputs.SystemAcmeInterface[] | undefined>;
     public readonly sourceIp!: pulumi.Output<string>;
     public readonly sourceIp6!: pulumi.Output<string>;
+    public readonly useHaDirect!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -56,17 +58,21 @@ export class SystemAcme extends pulumi.CustomResource {
             const state = argsOrState as SystemAcmeState | undefined;
             resourceInputs["accounts"] = state ? state.accounts : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["interfaces"] = state ? state.interfaces : undefined;
             resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
             resourceInputs["sourceIp6"] = state ? state.sourceIp6 : undefined;
+            resourceInputs["useHaDirect"] = state ? state.useHaDirect : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemAcmeArgs | undefined;
             resourceInputs["accounts"] = args ? args.accounts : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["interfaces"] = args ? args.interfaces : undefined;
             resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
             resourceInputs["sourceIp6"] = args ? args.sourceIp6 : undefined;
+            resourceInputs["useHaDirect"] = args ? args.useHaDirect : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -80,9 +86,11 @@ export class SystemAcme extends pulumi.CustomResource {
 export interface SystemAcmeState {
     accounts?: pulumi.Input<pulumi.Input<inputs.SystemAcmeAccount>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     interfaces?: pulumi.Input<pulumi.Input<inputs.SystemAcmeInterface>[]>;
     sourceIp?: pulumi.Input<string>;
     sourceIp6?: pulumi.Input<string>;
+    useHaDirect?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -92,8 +100,10 @@ export interface SystemAcmeState {
 export interface SystemAcmeArgs {
     accounts?: pulumi.Input<pulumi.Input<inputs.SystemAcmeAccount>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     interfaces?: pulumi.Input<pulumi.Input<inputs.SystemAcmeInterface>[]>;
     sourceIp?: pulumi.Input<string>;
     sourceIp6?: pulumi.Input<string>;
+    useHaDirect?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }

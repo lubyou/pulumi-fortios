@@ -45,6 +45,7 @@ export class ReportChart extends pulumi.CustomResource {
     public readonly drillDownCharts!: pulumi.Output<outputs.ReportChartDrillDownChart[] | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly favorite!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly graphType!: pulumi.Output<string>;
     public readonly legend!: pulumi.Output<string>;
     public readonly legendFontSize!: pulumi.Output<number>;
@@ -84,6 +85,7 @@ export class ReportChart extends pulumi.CustomResource {
             resourceInputs["drillDownCharts"] = state ? state.drillDownCharts : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["favorite"] = state ? state.favorite : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["graphType"] = state ? state.graphType : undefined;
             resourceInputs["legend"] = state ? state.legend : undefined;
             resourceInputs["legendFontSize"] = state ? state.legendFontSize : undefined;
@@ -117,6 +119,7 @@ export class ReportChart extends pulumi.CustomResource {
             resourceInputs["drillDownCharts"] = args ? args.drillDownCharts : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["favorite"] = args ? args.favorite : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["graphType"] = args ? args.graphType : undefined;
             resourceInputs["legend"] = args ? args.legend : undefined;
             resourceInputs["legendFontSize"] = args ? args.legendFontSize : undefined;
@@ -152,6 +155,7 @@ export interface ReportChartState {
     drillDownCharts?: pulumi.Input<pulumi.Input<inputs.ReportChartDrillDownChart>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
     favorite?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     graphType?: pulumi.Input<string>;
     legend?: pulumi.Input<string>;
     legendFontSize?: pulumi.Input<number>;
@@ -183,6 +187,7 @@ export interface ReportChartArgs {
     drillDownCharts?: pulumi.Input<pulumi.Input<inputs.ReportChartDrillDownChart>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
     favorite?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     graphType?: pulumi.Input<string>;
     legend?: pulumi.Input<string>;
     legendFontSize?: pulumi.Input<number>;

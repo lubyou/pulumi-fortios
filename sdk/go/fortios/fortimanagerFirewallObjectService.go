@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -36,7 +37,7 @@ func NewFortimanagerFirewallObjectService(ctx *pulumi.Context,
 		args = &FortimanagerFirewallObjectServiceArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FortimanagerFirewallObjectService
 	err := ctx.RegisterResource("fortios:index/fortimanagerFirewallObjectService:FortimanagerFirewallObjectService", name, args, &resource, opts...)
 	if err != nil {

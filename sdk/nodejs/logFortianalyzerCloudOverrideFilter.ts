@@ -41,6 +41,7 @@ export class LogFortianalyzerCloudOverrideFilter extends pulumi.CustomResource {
     public readonly filterType!: pulumi.Output<string>;
     public readonly forwardTraffic!: pulumi.Output<string>;
     public readonly freeStyles!: pulumi.Output<outputs.LogFortianalyzerCloudOverrideFilterFreeStyle[] | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly gtp!: pulumi.Output<string>;
     public readonly localTraffic!: pulumi.Output<string>;
     public readonly multicastTraffic!: pulumi.Output<string>;
@@ -70,6 +71,7 @@ export class LogFortianalyzerCloudOverrideFilter extends pulumi.CustomResource {
             resourceInputs["filterType"] = state ? state.filterType : undefined;
             resourceInputs["forwardTraffic"] = state ? state.forwardTraffic : undefined;
             resourceInputs["freeStyles"] = state ? state.freeStyles : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["gtp"] = state ? state.gtp : undefined;
             resourceInputs["localTraffic"] = state ? state.localTraffic : undefined;
             resourceInputs["multicastTraffic"] = state ? state.multicastTraffic : undefined;
@@ -87,6 +89,7 @@ export class LogFortianalyzerCloudOverrideFilter extends pulumi.CustomResource {
             resourceInputs["filterType"] = args ? args.filterType : undefined;
             resourceInputs["forwardTraffic"] = args ? args.forwardTraffic : undefined;
             resourceInputs["freeStyles"] = args ? args.freeStyles : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["gtp"] = args ? args.gtp : undefined;
             resourceInputs["localTraffic"] = args ? args.localTraffic : undefined;
             resourceInputs["multicastTraffic"] = args ? args.multicastTraffic : undefined;
@@ -112,6 +115,7 @@ export interface LogFortianalyzerCloudOverrideFilterState {
     filterType?: pulumi.Input<string>;
     forwardTraffic?: pulumi.Input<string>;
     freeStyles?: pulumi.Input<pulumi.Input<inputs.LogFortianalyzerCloudOverrideFilterFreeStyle>[]>;
+    getAllTables?: pulumi.Input<string>;
     gtp?: pulumi.Input<string>;
     localTraffic?: pulumi.Input<string>;
     multicastTraffic?: pulumi.Input<string>;
@@ -133,6 +137,7 @@ export interface LogFortianalyzerCloudOverrideFilterArgs {
     filterType?: pulumi.Input<string>;
     forwardTraffic?: pulumi.Input<string>;
     freeStyles?: pulumi.Input<pulumi.Input<inputs.LogFortianalyzerCloudOverrideFilterFreeStyle>[]>;
+    getAllTables?: pulumi.Input<string>;
     gtp?: pulumi.Input<string>;
     localTraffic?: pulumi.Input<string>;
     multicastTraffic?: pulumi.Input<string>;

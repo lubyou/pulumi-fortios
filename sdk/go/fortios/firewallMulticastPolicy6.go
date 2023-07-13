@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -22,6 +23,7 @@ type FirewallMulticastPolicy6 struct {
 	DynamicSortSubtable pulumi.StringPtrOutput                     `pulumi:"dynamicSortSubtable"`
 	EndPort             pulumi.IntOutput                           `pulumi:"endPort"`
 	Fosid               pulumi.IntOutput                           `pulumi:"fosid"`
+	GetAllTables        pulumi.StringPtrOutput                     `pulumi:"getAllTables"`
 	Logtraffic          pulumi.StringOutput                        `pulumi:"logtraffic"`
 	Name                pulumi.StringOutput                        `pulumi:"name"`
 	Protocol            pulumi.IntOutput                           `pulumi:"protocol"`
@@ -52,7 +54,7 @@ func NewFirewallMulticastPolicy6(ctx *pulumi.Context,
 	if args.Srcintf == nil {
 		return nil, errors.New("invalid value for required argument 'Srcintf'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallMulticastPolicy6
 	err := ctx.RegisterResource("fortios:index/firewallMulticastPolicy6:FirewallMulticastPolicy6", name, args, &resource, opts...)
 	if err != nil {
@@ -83,6 +85,7 @@ type firewallMulticastPolicy6State struct {
 	DynamicSortSubtable *string                           `pulumi:"dynamicSortSubtable"`
 	EndPort             *int                              `pulumi:"endPort"`
 	Fosid               *int                              `pulumi:"fosid"`
+	GetAllTables        *string                           `pulumi:"getAllTables"`
 	Logtraffic          *string                           `pulumi:"logtraffic"`
 	Name                *string                           `pulumi:"name"`
 	Protocol            *int                              `pulumi:"protocol"`
@@ -103,6 +106,7 @@ type FirewallMulticastPolicy6State struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	EndPort             pulumi.IntPtrInput
 	Fosid               pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Logtraffic          pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Protocol            pulumi.IntPtrInput
@@ -127,6 +131,7 @@ type firewallMulticastPolicy6Args struct {
 	DynamicSortSubtable *string                           `pulumi:"dynamicSortSubtable"`
 	EndPort             *int                              `pulumi:"endPort"`
 	Fosid               *int                              `pulumi:"fosid"`
+	GetAllTables        *string                           `pulumi:"getAllTables"`
 	Logtraffic          *string                           `pulumi:"logtraffic"`
 	Name                *string                           `pulumi:"name"`
 	Protocol            *int                              `pulumi:"protocol"`
@@ -148,6 +153,7 @@ type FirewallMulticastPolicy6Args struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	EndPort             pulumi.IntPtrInput
 	Fosid               pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Logtraffic          pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Protocol            pulumi.IntPtrInput
@@ -276,6 +282,10 @@ func (o FirewallMulticastPolicy6Output) EndPort() pulumi.IntOutput {
 
 func (o FirewallMulticastPolicy6Output) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *FirewallMulticastPolicy6) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o FirewallMulticastPolicy6Output) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallMulticastPolicy6) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallMulticastPolicy6Output) Logtraffic() pulumi.StringOutput {

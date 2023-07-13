@@ -7,261 +7,282 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type SystemGlobal struct {
 	pulumi.CustomResourceState
 
-	AdminConcurrent                       pulumi.StringOutput    `pulumi:"adminConcurrent"`
-	AdminConsoleTimeout                   pulumi.IntOutput       `pulumi:"adminConsoleTimeout"`
-	AdminForticloudSsoLogin               pulumi.StringOutput    `pulumi:"adminForticloudSsoLogin"`
-	AdminHost                             pulumi.StringOutput    `pulumi:"adminHost"`
-	AdminHstsMaxAge                       pulumi.IntOutput       `pulumi:"adminHstsMaxAge"`
-	AdminHttpsPkiRequired                 pulumi.StringOutput    `pulumi:"adminHttpsPkiRequired"`
-	AdminHttpsRedirect                    pulumi.StringOutput    `pulumi:"adminHttpsRedirect"`
-	AdminHttpsSslBannedCiphers            pulumi.StringOutput    `pulumi:"adminHttpsSslBannedCiphers"`
-	AdminHttpsSslCiphersuites             pulumi.StringOutput    `pulumi:"adminHttpsSslCiphersuites"`
-	AdminHttpsSslVersions                 pulumi.StringOutput    `pulumi:"adminHttpsSslVersions"`
-	AdminLockoutDuration                  pulumi.IntOutput       `pulumi:"adminLockoutDuration"`
-	AdminLockoutThreshold                 pulumi.IntOutput       `pulumi:"adminLockoutThreshold"`
-	AdminLoginMax                         pulumi.IntOutput       `pulumi:"adminLoginMax"`
-	AdminMaintainer                       pulumi.StringOutput    `pulumi:"adminMaintainer"`
-	AdminPort                             pulumi.IntOutput       `pulumi:"adminPort"`
-	AdminRestrictLocal                    pulumi.StringOutput    `pulumi:"adminRestrictLocal"`
-	AdminScp                              pulumi.StringOutput    `pulumi:"adminScp"`
-	AdminServerCert                       pulumi.StringOutput    `pulumi:"adminServerCert"`
-	AdminSport                            pulumi.IntOutput       `pulumi:"adminSport"`
-	AdminSshGraceTime                     pulumi.IntOutput       `pulumi:"adminSshGraceTime"`
-	AdminSshPassword                      pulumi.StringOutput    `pulumi:"adminSshPassword"`
-	AdminSshPort                          pulumi.IntOutput       `pulumi:"adminSshPort"`
-	AdminSshV1                            pulumi.StringOutput    `pulumi:"adminSshV1"`
-	AdminTelnet                           pulumi.StringOutput    `pulumi:"adminTelnet"`
-	AdminTelnetPort                       pulumi.IntOutput       `pulumi:"adminTelnetPort"`
-	Admintimeout                          pulumi.IntOutput       `pulumi:"admintimeout"`
-	Alias                                 pulumi.StringOutput    `pulumi:"alias"`
-	AllowTrafficRedirect                  pulumi.StringOutput    `pulumi:"allowTrafficRedirect"`
-	AntiReplay                            pulumi.StringOutput    `pulumi:"antiReplay"`
-	ArpMaxEntry                           pulumi.IntOutput       `pulumi:"arpMaxEntry"`
-	Asymroute                             pulumi.StringOutput    `pulumi:"asymroute"`
-	AuthCert                              pulumi.StringOutput    `pulumi:"authCert"`
-	AuthHttpPort                          pulumi.IntOutput       `pulumi:"authHttpPort"`
-	AuthHttpsPort                         pulumi.IntOutput       `pulumi:"authHttpsPort"`
-	AuthIkeSamlPort                       pulumi.IntOutput       `pulumi:"authIkeSamlPort"`
-	AuthKeepalive                         pulumi.StringOutput    `pulumi:"authKeepalive"`
-	AuthSessionLimit                      pulumi.StringOutput    `pulumi:"authSessionLimit"`
-	AutoAuthExtensionDevice               pulumi.StringOutput    `pulumi:"autoAuthExtensionDevice"`
-	AutorunLogFsck                        pulumi.StringOutput    `pulumi:"autorunLogFsck"`
-	AvAffinity                            pulumi.StringOutput    `pulumi:"avAffinity"`
-	AvFailopen                            pulumi.StringOutput    `pulumi:"avFailopen"`
-	AvFailopenSession                     pulumi.StringOutput    `pulumi:"avFailopenSession"`
-	BatchCmdb                             pulumi.StringOutput    `pulumi:"batchCmdb"`
-	BlockSessionTimer                     pulumi.IntOutput       `pulumi:"blockSessionTimer"`
-	BrFdbMaxEntry                         pulumi.IntOutput       `pulumi:"brFdbMaxEntry"`
-	CertChainMax                          pulumi.IntOutput       `pulumi:"certChainMax"`
-	CfgRevertTimeout                      pulumi.IntOutput       `pulumi:"cfgRevertTimeout"`
-	CfgSave                               pulumi.StringOutput    `pulumi:"cfgSave"`
-	CheckProtocolHeader                   pulumi.StringOutput    `pulumi:"checkProtocolHeader"`
-	CheckResetRange                       pulumi.StringOutput    `pulumi:"checkResetRange"`
-	CliAuditLog                           pulumi.StringOutput    `pulumi:"cliAuditLog"`
-	CloudCommunication                    pulumi.StringOutput    `pulumi:"cloudCommunication"`
-	CltCertReq                            pulumi.StringOutput    `pulumi:"cltCertReq"`
-	CmdbsvrAffinity                       pulumi.StringOutput    `pulumi:"cmdbsvrAffinity"`
-	ComplianceCheck                       pulumi.StringOutput    `pulumi:"complianceCheck"`
-	ComplianceCheckTime                   pulumi.StringOutput    `pulumi:"complianceCheckTime"`
-	CpuUseThreshold                       pulumi.IntOutput       `pulumi:"cpuUseThreshold"`
-	CsrCaAttribute                        pulumi.StringOutput    `pulumi:"csrCaAttribute"`
-	DailyRestart                          pulumi.StringOutput    `pulumi:"dailyRestart"`
-	DefaultServiceSourcePort              pulumi.StringOutput    `pulumi:"defaultServiceSourcePort"`
-	DeviceIdentificationActiveScanDelay   pulumi.IntOutput       `pulumi:"deviceIdentificationActiveScanDelay"`
-	DeviceIdleTimeout                     pulumi.IntOutput       `pulumi:"deviceIdleTimeout"`
-	DhParams                              pulumi.StringOutput    `pulumi:"dhParams"`
-	DnsproxyWorkerCount                   pulumi.IntOutput       `pulumi:"dnsproxyWorkerCount"`
-	Dst                                   pulumi.StringOutput    `pulumi:"dst"`
-	EarlyTcpNpuSession                    pulumi.StringOutput    `pulumi:"earlyTcpNpuSession"`
-	EditVdomPrompt                        pulumi.StringOutput    `pulumi:"editVdomPrompt"`
-	EndpointControlFdsAccess              pulumi.StringOutput    `pulumi:"endpointControlFdsAccess"`
-	EndpointControlPortalPort             pulumi.IntOutput       `pulumi:"endpointControlPortalPort"`
-	ExtenderControllerReservedNetwork     pulumi.StringOutput    `pulumi:"extenderControllerReservedNetwork"`
-	Failtime                              pulumi.IntOutput       `pulumi:"failtime"`
-	FazDiskBufferSize                     pulumi.IntOutput       `pulumi:"fazDiskBufferSize"`
-	FdsStatistics                         pulumi.StringOutput    `pulumi:"fdsStatistics"`
-	FdsStatisticsPeriod                   pulumi.IntOutput       `pulumi:"fdsStatisticsPeriod"`
-	FecPort                               pulumi.IntOutput       `pulumi:"fecPort"`
-	FgdAlertSubscription                  pulumi.StringOutput    `pulumi:"fgdAlertSubscription"`
-	Fortiextender                         pulumi.StringOutput    `pulumi:"fortiextender"`
-	FortiextenderDataPort                 pulumi.IntOutput       `pulumi:"fortiextenderDataPort"`
-	FortiextenderDiscoveryLockdown        pulumi.StringOutput    `pulumi:"fortiextenderDiscoveryLockdown"`
-	FortiextenderProvisionOnAuthorization pulumi.StringOutput    `pulumi:"fortiextenderProvisionOnAuthorization"`
-	FortiextenderVlanMode                 pulumi.StringOutput    `pulumi:"fortiextenderVlanMode"`
-	FortiipamIntegration                  pulumi.StringOutput    `pulumi:"fortiipamIntegration"`
-	FortiservicePort                      pulumi.IntOutput       `pulumi:"fortiservicePort"`
-	FortitokenCloud                       pulumi.StringOutput    `pulumi:"fortitokenCloud"`
-	GuiAllowDefaultHostname               pulumi.StringOutput    `pulumi:"guiAllowDefaultHostname"`
-	GuiAppDetectionSdwan                  pulumi.StringOutput    `pulumi:"guiAppDetectionSdwan"`
-	GuiCdnUsage                           pulumi.StringOutput    `pulumi:"guiCdnUsage"`
-	GuiCertificates                       pulumi.StringOutput    `pulumi:"guiCertificates"`
-	GuiCustomLanguage                     pulumi.StringOutput    `pulumi:"guiCustomLanguage"`
-	GuiDateFormat                         pulumi.StringOutput    `pulumi:"guiDateFormat"`
-	GuiDateTimeSource                     pulumi.StringOutput    `pulumi:"guiDateTimeSource"`
-	GuiDeviceLatitude                     pulumi.StringOutput    `pulumi:"guiDeviceLatitude"`
-	GuiDeviceLongitude                    pulumi.StringOutput    `pulumi:"guiDeviceLongitude"`
-	GuiDisplayHostname                    pulumi.StringOutput    `pulumi:"guiDisplayHostname"`
-	GuiFirmwareUpgradeSetupWarning        pulumi.StringOutput    `pulumi:"guiFirmwareUpgradeSetupWarning"`
-	GuiFirmwareUpgradeWarning             pulumi.StringOutput    `pulumi:"guiFirmwareUpgradeWarning"`
-	GuiForticareRegistrationSetupWarning  pulumi.StringOutput    `pulumi:"guiForticareRegistrationSetupWarning"`
-	GuiFortigateCloudSandbox              pulumi.StringOutput    `pulumi:"guiFortigateCloudSandbox"`
-	GuiFortiguardResourceFetch            pulumi.StringOutput    `pulumi:"guiFortiguardResourceFetch"`
-	GuiFortisandboxCloud                  pulumi.StringOutput    `pulumi:"guiFortisandboxCloud"`
-	GuiIpv6                               pulumi.StringOutput    `pulumi:"guiIpv6"`
-	GuiLinesPerPage                       pulumi.IntOutput       `pulumi:"guiLinesPerPage"`
-	GuiLocalOut                           pulumi.StringOutput    `pulumi:"guiLocalOut"`
-	GuiReplacementMessageGroups           pulumi.StringOutput    `pulumi:"guiReplacementMessageGroups"`
-	GuiRestApiCache                       pulumi.StringOutput    `pulumi:"guiRestApiCache"`
-	GuiTheme                              pulumi.StringOutput    `pulumi:"guiTheme"`
-	GuiWirelessOpensecurity               pulumi.StringOutput    `pulumi:"guiWirelessOpensecurity"`
-	GuiWorkflowManagement                 pulumi.StringOutput    `pulumi:"guiWorkflowManagement"`
-	HaAffinity                            pulumi.StringOutput    `pulumi:"haAffinity"`
-	HonorDf                               pulumi.StringOutput    `pulumi:"honorDf"`
-	Hostname                              pulumi.StringOutput    `pulumi:"hostname"`
-	IgmpStateLimit                        pulumi.IntOutput       `pulumi:"igmpStateLimit"`
-	IkeEmbryonicLimit                     pulumi.IntOutput       `pulumi:"ikeEmbryonicLimit"`
-	InternetServiceDatabase               pulumi.StringOutput    `pulumi:"internetServiceDatabase"`
-	Interval                              pulumi.IntOutput       `pulumi:"interval"`
-	IpSrcPortRange                        pulumi.StringOutput    `pulumi:"ipSrcPortRange"`
-	IpsAffinity                           pulumi.StringOutput    `pulumi:"ipsAffinity"`
-	IpsecAsicOffload                      pulumi.StringOutput    `pulumi:"ipsecAsicOffload"`
-	IpsecHaSeqjumpRate                    pulumi.IntOutput       `pulumi:"ipsecHaSeqjumpRate"`
-	IpsecHmacOffload                      pulumi.StringOutput    `pulumi:"ipsecHmacOffload"`
-	IpsecRoundRobin                       pulumi.StringOutput    `pulumi:"ipsecRoundRobin"`
-	IpsecSoftDecAsync                     pulumi.StringOutput    `pulumi:"ipsecSoftDecAsync"`
-	Ipv6AcceptDad                         pulumi.IntOutput       `pulumi:"ipv6AcceptDad"`
-	Ipv6AllowAnycastProbe                 pulumi.StringOutput    `pulumi:"ipv6AllowAnycastProbe"`
-	Ipv6AllowLocalInSlientDrop            pulumi.StringOutput    `pulumi:"ipv6AllowLocalInSlientDrop"`
-	Ipv6AllowMulticastProbe               pulumi.StringOutput    `pulumi:"ipv6AllowMulticastProbe"`
-	Ipv6AllowTrafficRedirect              pulumi.StringOutput    `pulumi:"ipv6AllowTrafficRedirect"`
-	IrqTimeAccounting                     pulumi.StringOutput    `pulumi:"irqTimeAccounting"`
-	Language                              pulumi.StringOutput    `pulumi:"language"`
-	Ldapconntimeout                       pulumi.IntOutput       `pulumi:"ldapconntimeout"`
-	LldpReception                         pulumi.StringOutput    `pulumi:"lldpReception"`
-	LldpTransmission                      pulumi.StringOutput    `pulumi:"lldpTransmission"`
-	LogSslConnection                      pulumi.StringOutput    `pulumi:"logSslConnection"`
-	LogUuidAddress                        pulumi.StringOutput    `pulumi:"logUuidAddress"`
-	LogUuidPolicy                         pulumi.StringOutput    `pulumi:"logUuidPolicy"`
-	LoginTimestamp                        pulumi.StringOutput    `pulumi:"loginTimestamp"`
-	LongVdomName                          pulumi.StringOutput    `pulumi:"longVdomName"`
-	ManagementIp                          pulumi.StringOutput    `pulumi:"managementIp"`
-	ManagementPort                        pulumi.IntOutput       `pulumi:"managementPort"`
-	ManagementPortUseAdminSport           pulumi.StringOutput    `pulumi:"managementPortUseAdminSport"`
-	ManagementVdom                        pulumi.StringOutput    `pulumi:"managementVdom"`
-	MaxDlpstatMemory                      pulumi.IntOutput       `pulumi:"maxDlpstatMemory"`
-	MaxRouteCacheSize                     pulumi.IntOutput       `pulumi:"maxRouteCacheSize"`
-	McTtlNotchange                        pulumi.StringOutput    `pulumi:"mcTtlNotchange"`
-	MemoryUseThresholdExtreme             pulumi.IntOutput       `pulumi:"memoryUseThresholdExtreme"`
-	MemoryUseThresholdGreen               pulumi.IntOutput       `pulumi:"memoryUseThresholdGreen"`
-	MemoryUseThresholdRed                 pulumi.IntOutput       `pulumi:"memoryUseThresholdRed"`
-	MiglogAffinity                        pulumi.StringOutput    `pulumi:"miglogAffinity"`
-	MiglogdChildren                       pulumi.IntOutput       `pulumi:"miglogdChildren"`
-	MultiFactorAuthentication             pulumi.StringOutput    `pulumi:"multiFactorAuthentication"`
-	MulticastForward                      pulumi.StringOutput    `pulumi:"multicastForward"`
-	NdpMaxEntry                           pulumi.IntOutput       `pulumi:"ndpMaxEntry"`
-	PerUserBal                            pulumi.StringOutput    `pulumi:"perUserBal"`
-	PerUserBwl                            pulumi.StringOutput    `pulumi:"perUserBwl"`
-	PmtuDiscovery                         pulumi.StringOutput    `pulumi:"pmtuDiscovery"`
-	PolicyAuthConcurrent                  pulumi.IntOutput       `pulumi:"policyAuthConcurrent"`
-	PostLoginBanner                       pulumi.StringOutput    `pulumi:"postLoginBanner"`
-	PreLoginBanner                        pulumi.StringOutput    `pulumi:"preLoginBanner"`
-	PrivateDataEncryption                 pulumi.StringOutput    `pulumi:"privateDataEncryption"`
-	ProxyAuthLifetime                     pulumi.StringOutput    `pulumi:"proxyAuthLifetime"`
-	ProxyAuthLifetimeTimeout              pulumi.IntOutput       `pulumi:"proxyAuthLifetimeTimeout"`
-	ProxyAuthTimeout                      pulumi.IntOutput       `pulumi:"proxyAuthTimeout"`
-	ProxyCertUseMgmtVdom                  pulumi.StringOutput    `pulumi:"proxyCertUseMgmtVdom"`
-	ProxyCipherHardwareAcceleration       pulumi.StringOutput    `pulumi:"proxyCipherHardwareAcceleration"`
-	ProxyHardwareAcceleration             pulumi.StringOutput    `pulumi:"proxyHardwareAcceleration"`
-	ProxyKxpHardwareAcceleration          pulumi.StringOutput    `pulumi:"proxyKxpHardwareAcceleration"`
-	ProxyReAuthenticationMode             pulumi.StringOutput    `pulumi:"proxyReAuthenticationMode"`
-	ProxyResourceMode                     pulumi.StringOutput    `pulumi:"proxyResourceMode"`
-	ProxyWorkerCount                      pulumi.IntOutput       `pulumi:"proxyWorkerCount"`
-	RadiusPort                            pulumi.IntOutput       `pulumi:"radiusPort"`
-	RebootUponConfigRestore               pulumi.StringOutput    `pulumi:"rebootUponConfigRestore"`
-	Refresh                               pulumi.IntOutput       `pulumi:"refresh"`
-	Remoteauthtimeout                     pulumi.IntOutput       `pulumi:"remoteauthtimeout"`
-	ResetSessionlessTcp                   pulumi.StringOutput    `pulumi:"resetSessionlessTcp"`
-	RestartTime                           pulumi.StringOutput    `pulumi:"restartTime"`
-	RevisionBackupOnLogout                pulumi.StringOutput    `pulumi:"revisionBackupOnLogout"`
-	RevisionImageAutoBackup               pulumi.StringOutput    `pulumi:"revisionImageAutoBackup"`
-	ScanunitCount                         pulumi.IntOutput       `pulumi:"scanunitCount"`
-	SecurityRatingResultSubmission        pulumi.StringOutput    `pulumi:"securityRatingResultSubmission"`
-	SecurityRatingRunOnSchedule           pulumi.StringOutput    `pulumi:"securityRatingRunOnSchedule"`
-	SendPmtuIcmp                          pulumi.StringOutput    `pulumi:"sendPmtuIcmp"`
-	SnatRouteChange                       pulumi.StringOutput    `pulumi:"snatRouteChange"`
-	SpecialFile23Support                  pulumi.StringOutput    `pulumi:"specialFile23Support"`
-	SpeedtestServer                       pulumi.StringOutput    `pulumi:"speedtestServer"`
-	SplitPort                             pulumi.StringOutput    `pulumi:"splitPort"`
-	SsdTrimDate                           pulumi.IntOutput       `pulumi:"ssdTrimDate"`
-	SsdTrimFreq                           pulumi.StringOutput    `pulumi:"ssdTrimFreq"`
-	SsdTrimHour                           pulumi.IntOutput       `pulumi:"ssdTrimHour"`
-	SsdTrimMin                            pulumi.IntOutput       `pulumi:"ssdTrimMin"`
-	SsdTrimWeekday                        pulumi.StringOutput    `pulumi:"ssdTrimWeekday"`
-	SshCbcCipher                          pulumi.StringOutput    `pulumi:"sshCbcCipher"`
-	SshEncAlgo                            pulumi.StringOutput    `pulumi:"sshEncAlgo"`
-	SshHmacMd5                            pulumi.StringOutput    `pulumi:"sshHmacMd5"`
-	SshKexAlgo                            pulumi.StringOutput    `pulumi:"sshKexAlgo"`
-	SshKexSha1                            pulumi.StringOutput    `pulumi:"sshKexSha1"`
-	SshMacAlgo                            pulumi.StringOutput    `pulumi:"sshMacAlgo"`
-	SshMacWeak                            pulumi.StringOutput    `pulumi:"sshMacWeak"`
-	SslMinProtoVersion                    pulumi.StringOutput    `pulumi:"sslMinProtoVersion"`
-	SslStaticKeyCiphers                   pulumi.StringOutput    `pulumi:"sslStaticKeyCiphers"`
-	SslvpnCipherHardwareAcceleration      pulumi.StringOutput    `pulumi:"sslvpnCipherHardwareAcceleration"`
-	SslvpnEmsSnCheck                      pulumi.StringOutput    `pulumi:"sslvpnEmsSnCheck"`
-	SslvpnKxpHardwareAcceleration         pulumi.StringOutput    `pulumi:"sslvpnKxpHardwareAcceleration"`
-	SslvpnMaxWorkerCount                  pulumi.IntOutput       `pulumi:"sslvpnMaxWorkerCount"`
-	SslvpnPluginVersionCheck              pulumi.StringOutput    `pulumi:"sslvpnPluginVersionCheck"`
-	StrictDirtySessionCheck               pulumi.StringOutput    `pulumi:"strictDirtySessionCheck"`
-	StrongCrypto                          pulumi.StringOutput    `pulumi:"strongCrypto"`
-	SwitchController                      pulumi.StringOutput    `pulumi:"switchController"`
-	SwitchControllerReservedNetwork       pulumi.StringOutput    `pulumi:"switchControllerReservedNetwork"`
-	SysPerfLogInterval                    pulumi.IntOutput       `pulumi:"sysPerfLogInterval"`
-	TcpHalfcloseTimer                     pulumi.IntOutput       `pulumi:"tcpHalfcloseTimer"`
-	TcpHalfopenTimer                      pulumi.IntOutput       `pulumi:"tcpHalfopenTimer"`
-	TcpOption                             pulumi.StringOutput    `pulumi:"tcpOption"`
-	TcpRstTimer                           pulumi.IntOutput       `pulumi:"tcpRstTimer"`
-	TcpTimewaitTimer                      pulumi.IntOutput       `pulumi:"tcpTimewaitTimer"`
-	Tftp                                  pulumi.StringOutput    `pulumi:"tftp"`
-	Timezone                              pulumi.StringOutput    `pulumi:"timezone"`
-	TpMcSkipPolicy                        pulumi.StringOutput    `pulumi:"tpMcSkipPolicy"`
-	TrafficPriority                       pulumi.StringOutput    `pulumi:"trafficPriority"`
-	TrafficPriorityLevel                  pulumi.StringOutput    `pulumi:"trafficPriorityLevel"`
-	TwoFactorEmailExpiry                  pulumi.IntOutput       `pulumi:"twoFactorEmailExpiry"`
-	TwoFactorFacExpiry                    pulumi.IntOutput       `pulumi:"twoFactorFacExpiry"`
-	TwoFactorFtkExpiry                    pulumi.IntOutput       `pulumi:"twoFactorFtkExpiry"`
-	TwoFactorFtmExpiry                    pulumi.IntOutput       `pulumi:"twoFactorFtmExpiry"`
-	TwoFactorSmsExpiry                    pulumi.IntOutput       `pulumi:"twoFactorSmsExpiry"`
-	UdpIdleTimer                          pulumi.IntOutput       `pulumi:"udpIdleTimer"`
-	UrlFilterAffinity                     pulumi.StringOutput    `pulumi:"urlFilterAffinity"`
-	UrlFilterCount                        pulumi.IntOutput       `pulumi:"urlFilterCount"`
-	UserDeviceStoreMaxDevices             pulumi.IntOutput       `pulumi:"userDeviceStoreMaxDevices"`
-	UserDeviceStoreMaxUnifiedMem          pulumi.IntOutput       `pulumi:"userDeviceStoreMaxUnifiedMem"`
-	UserDeviceStoreMaxUsers               pulumi.IntOutput       `pulumi:"userDeviceStoreMaxUsers"`
-	UserServerCert                        pulumi.StringOutput    `pulumi:"userServerCert"`
-	VdomAdmin                             pulumi.StringOutput    `pulumi:"vdomAdmin"`
-	VdomMode                              pulumi.StringOutput    `pulumi:"vdomMode"`
-	Vdomparam                             pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	VipArpRange                           pulumi.StringOutput    `pulumi:"vipArpRange"`
-	VirtualServerCount                    pulumi.IntOutput       `pulumi:"virtualServerCount"`
-	VirtualServerHardwareAcceleration     pulumi.StringOutput    `pulumi:"virtualServerHardwareAcceleration"`
-	VirtualSwitchVlan                     pulumi.StringOutput    `pulumi:"virtualSwitchVlan"`
-	WadAffinity                           pulumi.StringOutput    `pulumi:"wadAffinity"`
-	WadCsvcCsCount                        pulumi.IntOutput       `pulumi:"wadCsvcCsCount"`
-	WadCsvcDbCount                        pulumi.IntOutput       `pulumi:"wadCsvcDbCount"`
-	WadMemoryChangeGranularity            pulumi.IntOutput       `pulumi:"wadMemoryChangeGranularity"`
-	WadSourceAffinity                     pulumi.StringOutput    `pulumi:"wadSourceAffinity"`
-	WadWorkerCount                        pulumi.IntOutput       `pulumi:"wadWorkerCount"`
-	WifiCaCertificate                     pulumi.StringOutput    `pulumi:"wifiCaCertificate"`
-	WifiCertificate                       pulumi.StringOutput    `pulumi:"wifiCertificate"`
-	Wimax4gUsb                            pulumi.StringOutput    `pulumi:"wimax4gUsb"`
-	WirelessController                    pulumi.StringOutput    `pulumi:"wirelessController"`
-	WirelessControllerPort                pulumi.IntOutput       `pulumi:"wirelessControllerPort"`
+	AdminConcurrent                       pulumi.StringOutput                                `pulumi:"adminConcurrent"`
+	AdminConsoleTimeout                   pulumi.IntOutput                                   `pulumi:"adminConsoleTimeout"`
+	AdminForticloudSsoDefaultProfile      pulumi.StringOutput                                `pulumi:"adminForticloudSsoDefaultProfile"`
+	AdminForticloudSsoLogin               pulumi.StringOutput                                `pulumi:"adminForticloudSsoLogin"`
+	AdminHost                             pulumi.StringOutput                                `pulumi:"adminHost"`
+	AdminHstsMaxAge                       pulumi.IntOutput                                   `pulumi:"adminHstsMaxAge"`
+	AdminHttpsPkiRequired                 pulumi.StringOutput                                `pulumi:"adminHttpsPkiRequired"`
+	AdminHttpsRedirect                    pulumi.StringOutput                                `pulumi:"adminHttpsRedirect"`
+	AdminHttpsSslBannedCiphers            pulumi.StringOutput                                `pulumi:"adminHttpsSslBannedCiphers"`
+	AdminHttpsSslCiphersuites             pulumi.StringOutput                                `pulumi:"adminHttpsSslCiphersuites"`
+	AdminHttpsSslVersions                 pulumi.StringOutput                                `pulumi:"adminHttpsSslVersions"`
+	AdminLockoutDuration                  pulumi.IntOutput                                   `pulumi:"adminLockoutDuration"`
+	AdminLockoutThreshold                 pulumi.IntOutput                                   `pulumi:"adminLockoutThreshold"`
+	AdminLoginMax                         pulumi.IntOutput                                   `pulumi:"adminLoginMax"`
+	AdminMaintainer                       pulumi.StringOutput                                `pulumi:"adminMaintainer"`
+	AdminPort                             pulumi.IntOutput                                   `pulumi:"adminPort"`
+	AdminRestrictLocal                    pulumi.StringOutput                                `pulumi:"adminRestrictLocal"`
+	AdminScp                              pulumi.StringOutput                                `pulumi:"adminScp"`
+	AdminServerCert                       pulumi.StringOutput                                `pulumi:"adminServerCert"`
+	AdminSport                            pulumi.IntOutput                                   `pulumi:"adminSport"`
+	AdminSshGraceTime                     pulumi.IntOutput                                   `pulumi:"adminSshGraceTime"`
+	AdminSshPassword                      pulumi.StringOutput                                `pulumi:"adminSshPassword"`
+	AdminSshPort                          pulumi.IntOutput                                   `pulumi:"adminSshPort"`
+	AdminSshV1                            pulumi.StringOutput                                `pulumi:"adminSshV1"`
+	AdminTelnet                           pulumi.StringOutput                                `pulumi:"adminTelnet"`
+	AdminTelnetPort                       pulumi.IntOutput                                   `pulumi:"adminTelnetPort"`
+	Admintimeout                          pulumi.IntOutput                                   `pulumi:"admintimeout"`
+	Alias                                 pulumi.StringOutput                                `pulumi:"alias"`
+	AllowTrafficRedirect                  pulumi.StringOutput                                `pulumi:"allowTrafficRedirect"`
+	AntiReplay                            pulumi.StringOutput                                `pulumi:"antiReplay"`
+	ArpMaxEntry                           pulumi.IntOutput                                   `pulumi:"arpMaxEntry"`
+	Asymroute                             pulumi.StringOutput                                `pulumi:"asymroute"`
+	AuthCert                              pulumi.StringOutput                                `pulumi:"authCert"`
+	AuthHttpPort                          pulumi.IntOutput                                   `pulumi:"authHttpPort"`
+	AuthHttpsPort                         pulumi.IntOutput                                   `pulumi:"authHttpsPort"`
+	AuthIkeSamlPort                       pulumi.IntOutput                                   `pulumi:"authIkeSamlPort"`
+	AuthKeepalive                         pulumi.StringOutput                                `pulumi:"authKeepalive"`
+	AuthSessionLimit                      pulumi.StringOutput                                `pulumi:"authSessionLimit"`
+	AutoAuthExtensionDevice               pulumi.StringOutput                                `pulumi:"autoAuthExtensionDevice"`
+	AutorunLogFsck                        pulumi.StringOutput                                `pulumi:"autorunLogFsck"`
+	AvAffinity                            pulumi.StringOutput                                `pulumi:"avAffinity"`
+	AvFailopen                            pulumi.StringOutput                                `pulumi:"avFailopen"`
+	AvFailopenSession                     pulumi.StringOutput                                `pulumi:"avFailopenSession"`
+	BatchCmdb                             pulumi.StringOutput                                `pulumi:"batchCmdb"`
+	BlockSessionTimer                     pulumi.IntOutput                                   `pulumi:"blockSessionTimer"`
+	BrFdbMaxEntry                         pulumi.IntOutput                                   `pulumi:"brFdbMaxEntry"`
+	CertChainMax                          pulumi.IntOutput                                   `pulumi:"certChainMax"`
+	CfgRevertTimeout                      pulumi.IntOutput                                   `pulumi:"cfgRevertTimeout"`
+	CfgSave                               pulumi.StringOutput                                `pulumi:"cfgSave"`
+	CheckProtocolHeader                   pulumi.StringOutput                                `pulumi:"checkProtocolHeader"`
+	CheckResetRange                       pulumi.StringOutput                                `pulumi:"checkResetRange"`
+	CliAuditLog                           pulumi.StringOutput                                `pulumi:"cliAuditLog"`
+	CloudCommunication                    pulumi.StringOutput                                `pulumi:"cloudCommunication"`
+	CltCertReq                            pulumi.StringOutput                                `pulumi:"cltCertReq"`
+	CmdbsvrAffinity                       pulumi.StringOutput                                `pulumi:"cmdbsvrAffinity"`
+	ComplianceCheck                       pulumi.StringOutput                                `pulumi:"complianceCheck"`
+	ComplianceCheckTime                   pulumi.StringOutput                                `pulumi:"complianceCheckTime"`
+	CpuUseThreshold                       pulumi.IntOutput                                   `pulumi:"cpuUseThreshold"`
+	CsrCaAttribute                        pulumi.StringOutput                                `pulumi:"csrCaAttribute"`
+	DailyRestart                          pulumi.StringOutput                                `pulumi:"dailyRestart"`
+	DefaultServiceSourcePort              pulumi.StringOutput                                `pulumi:"defaultServiceSourcePort"`
+	DeviceIdentificationActiveScanDelay   pulumi.IntOutput                                   `pulumi:"deviceIdentificationActiveScanDelay"`
+	DeviceIdleTimeout                     pulumi.IntOutput                                   `pulumi:"deviceIdleTimeout"`
+	DhParams                              pulumi.StringOutput                                `pulumi:"dhParams"`
+	DnsproxyWorkerCount                   pulumi.IntOutput                                   `pulumi:"dnsproxyWorkerCount"`
+	Dst                                   pulumi.StringOutput                                `pulumi:"dst"`
+	DynamicSortSubtable                   pulumi.StringPtrOutput                             `pulumi:"dynamicSortSubtable"`
+	EarlyTcpNpuSession                    pulumi.StringOutput                                `pulumi:"earlyTcpNpuSession"`
+	EditVdomPrompt                        pulumi.StringOutput                                `pulumi:"editVdomPrompt"`
+	EndpointControlFdsAccess              pulumi.StringOutput                                `pulumi:"endpointControlFdsAccess"`
+	EndpointControlPortalPort             pulumi.IntOutput                                   `pulumi:"endpointControlPortalPort"`
+	ExtenderControllerReservedNetwork     pulumi.StringOutput                                `pulumi:"extenderControllerReservedNetwork"`
+	Failtime                              pulumi.IntOutput                                   `pulumi:"failtime"`
+	FazDiskBufferSize                     pulumi.IntOutput                                   `pulumi:"fazDiskBufferSize"`
+	FdsStatistics                         pulumi.StringOutput                                `pulumi:"fdsStatistics"`
+	FdsStatisticsPeriod                   pulumi.IntOutput                                   `pulumi:"fdsStatisticsPeriod"`
+	FecPort                               pulumi.IntOutput                                   `pulumi:"fecPort"`
+	FgdAlertSubscription                  pulumi.StringOutput                                `pulumi:"fgdAlertSubscription"`
+	ForticonverterConfigUpload            pulumi.StringOutput                                `pulumi:"forticonverterConfigUpload"`
+	ForticonverterIntegration             pulumi.StringOutput                                `pulumi:"forticonverterIntegration"`
+	Fortiextender                         pulumi.StringOutput                                `pulumi:"fortiextender"`
+	FortiextenderDataPort                 pulumi.IntOutput                                   `pulumi:"fortiextenderDataPort"`
+	FortiextenderDiscoveryLockdown        pulumi.StringOutput                                `pulumi:"fortiextenderDiscoveryLockdown"`
+	FortiextenderProvisionOnAuthorization pulumi.StringOutput                                `pulumi:"fortiextenderProvisionOnAuthorization"`
+	FortiextenderVlanMode                 pulumi.StringOutput                                `pulumi:"fortiextenderVlanMode"`
+	FortiipamIntegration                  pulumi.StringOutput                                `pulumi:"fortiipamIntegration"`
+	FortiservicePort                      pulumi.IntOutput                                   `pulumi:"fortiservicePort"`
+	FortitokenCloud                       pulumi.StringOutput                                `pulumi:"fortitokenCloud"`
+	GetAllTables                          pulumi.StringPtrOutput                             `pulumi:"getAllTables"`
+	GuiAllowDefaultHostname               pulumi.StringOutput                                `pulumi:"guiAllowDefaultHostname"`
+	GuiAllowIncompatibleFabricFgt         pulumi.StringOutput                                `pulumi:"guiAllowIncompatibleFabricFgt"`
+	GuiAppDetectionSdwan                  pulumi.StringOutput                                `pulumi:"guiAppDetectionSdwan"`
+	GuiCdnDomainOverride                  pulumi.StringOutput                                `pulumi:"guiCdnDomainOverride"`
+	GuiCdnUsage                           pulumi.StringOutput                                `pulumi:"guiCdnUsage"`
+	GuiCertificates                       pulumi.StringOutput                                `pulumi:"guiCertificates"`
+	GuiCustomLanguage                     pulumi.StringOutput                                `pulumi:"guiCustomLanguage"`
+	GuiDateFormat                         pulumi.StringOutput                                `pulumi:"guiDateFormat"`
+	GuiDateTimeSource                     pulumi.StringOutput                                `pulumi:"guiDateTimeSource"`
+	GuiDeviceLatitude                     pulumi.StringOutput                                `pulumi:"guiDeviceLatitude"`
+	GuiDeviceLongitude                    pulumi.StringOutput                                `pulumi:"guiDeviceLongitude"`
+	GuiDisplayHostname                    pulumi.StringOutput                                `pulumi:"guiDisplayHostname"`
+	GuiFirmwareUpgradeSetupWarning        pulumi.StringOutput                                `pulumi:"guiFirmwareUpgradeSetupWarning"`
+	GuiFirmwareUpgradeWarning             pulumi.StringOutput                                `pulumi:"guiFirmwareUpgradeWarning"`
+	GuiForticareRegistrationSetupWarning  pulumi.StringOutput                                `pulumi:"guiForticareRegistrationSetupWarning"`
+	GuiFortigateCloudSandbox              pulumi.StringOutput                                `pulumi:"guiFortigateCloudSandbox"`
+	GuiFortiguardResourceFetch            pulumi.StringOutput                                `pulumi:"guiFortiguardResourceFetch"`
+	GuiFortisandboxCloud                  pulumi.StringOutput                                `pulumi:"guiFortisandboxCloud"`
+	GuiIpv6                               pulumi.StringOutput                                `pulumi:"guiIpv6"`
+	GuiLinesPerPage                       pulumi.IntOutput                                   `pulumi:"guiLinesPerPage"`
+	GuiLocalOut                           pulumi.StringOutput                                `pulumi:"guiLocalOut"`
+	GuiReplacementMessageGroups           pulumi.StringOutput                                `pulumi:"guiReplacementMessageGroups"`
+	GuiRestApiCache                       pulumi.StringOutput                                `pulumi:"guiRestApiCache"`
+	GuiTheme                              pulumi.StringOutput                                `pulumi:"guiTheme"`
+	GuiWirelessOpensecurity               pulumi.StringOutput                                `pulumi:"guiWirelessOpensecurity"`
+	GuiWorkflowManagement                 pulumi.StringOutput                                `pulumi:"guiWorkflowManagement"`
+	HaAffinity                            pulumi.StringOutput                                `pulumi:"haAffinity"`
+	HonorDf                               pulumi.StringOutput                                `pulumi:"honorDf"`
+	Hostname                              pulumi.StringOutput                                `pulumi:"hostname"`
+	IgmpStateLimit                        pulumi.IntOutput                                   `pulumi:"igmpStateLimit"`
+	IkeEmbryonicLimit                     pulumi.IntOutput                                   `pulumi:"ikeEmbryonicLimit"`
+	InterfaceSubnetUsage                  pulumi.StringOutput                                `pulumi:"interfaceSubnetUsage"`
+	InternetServiceDatabase               pulumi.StringOutput                                `pulumi:"internetServiceDatabase"`
+	InternetServiceDownloadLists          SystemGlobalInternetServiceDownloadListArrayOutput `pulumi:"internetServiceDownloadLists"`
+	Interval                              pulumi.IntOutput                                   `pulumi:"interval"`
+	IpFragmentMemThresholds               pulumi.IntOutput                                   `pulumi:"ipFragmentMemThresholds"`
+	IpSrcPortRange                        pulumi.StringOutput                                `pulumi:"ipSrcPortRange"`
+	IpsAffinity                           pulumi.StringOutput                                `pulumi:"ipsAffinity"`
+	IpsecAsicOffload                      pulumi.StringOutput                                `pulumi:"ipsecAsicOffload"`
+	IpsecHaSeqjumpRate                    pulumi.IntOutput                                   `pulumi:"ipsecHaSeqjumpRate"`
+	IpsecHmacOffload                      pulumi.StringOutput                                `pulumi:"ipsecHmacOffload"`
+	IpsecRoundRobin                       pulumi.StringOutput                                `pulumi:"ipsecRoundRobin"`
+	IpsecSoftDecAsync                     pulumi.StringOutput                                `pulumi:"ipsecSoftDecAsync"`
+	Ipv6AcceptDad                         pulumi.IntOutput                                   `pulumi:"ipv6AcceptDad"`
+	Ipv6AllowAnycastProbe                 pulumi.StringOutput                                `pulumi:"ipv6AllowAnycastProbe"`
+	Ipv6AllowLocalInSlientDrop            pulumi.StringOutput                                `pulumi:"ipv6AllowLocalInSlientDrop"`
+	Ipv6AllowMulticastProbe               pulumi.StringOutput                                `pulumi:"ipv6AllowMulticastProbe"`
+	Ipv6AllowTrafficRedirect              pulumi.StringOutput                                `pulumi:"ipv6AllowTrafficRedirect"`
+	IrqTimeAccounting                     pulumi.StringOutput                                `pulumi:"irqTimeAccounting"`
+	Language                              pulumi.StringOutput                                `pulumi:"language"`
+	Ldapconntimeout                       pulumi.IntOutput                                   `pulumi:"ldapconntimeout"`
+	LldpReception                         pulumi.StringOutput                                `pulumi:"lldpReception"`
+	LldpTransmission                      pulumi.StringOutput                                `pulumi:"lldpTransmission"`
+	LogSingleCpuHigh                      pulumi.StringOutput                                `pulumi:"logSingleCpuHigh"`
+	LogSslConnection                      pulumi.StringOutput                                `pulumi:"logSslConnection"`
+	LogUuidAddress                        pulumi.StringOutput                                `pulumi:"logUuidAddress"`
+	LogUuidPolicy                         pulumi.StringOutput                                `pulumi:"logUuidPolicy"`
+	LoginTimestamp                        pulumi.StringOutput                                `pulumi:"loginTimestamp"`
+	LongVdomName                          pulumi.StringOutput                                `pulumi:"longVdomName"`
+	ManagementIp                          pulumi.StringOutput                                `pulumi:"managementIp"`
+	ManagementPort                        pulumi.IntOutput                                   `pulumi:"managementPort"`
+	ManagementPortUseAdminSport           pulumi.StringOutput                                `pulumi:"managementPortUseAdminSport"`
+	ManagementVdom                        pulumi.StringOutput                                `pulumi:"managementVdom"`
+	MaxDlpstatMemory                      pulumi.IntOutput                                   `pulumi:"maxDlpstatMemory"`
+	MaxRouteCacheSize                     pulumi.IntOutput                                   `pulumi:"maxRouteCacheSize"`
+	McTtlNotchange                        pulumi.StringOutput                                `pulumi:"mcTtlNotchange"`
+	MemoryUseThresholdExtreme             pulumi.IntOutput                                   `pulumi:"memoryUseThresholdExtreme"`
+	MemoryUseThresholdGreen               pulumi.IntOutput                                   `pulumi:"memoryUseThresholdGreen"`
+	MemoryUseThresholdRed                 pulumi.IntOutput                                   `pulumi:"memoryUseThresholdRed"`
+	MiglogAffinity                        pulumi.StringOutput                                `pulumi:"miglogAffinity"`
+	MiglogdChildren                       pulumi.IntOutput                                   `pulumi:"miglogdChildren"`
+	MultiFactorAuthentication             pulumi.StringOutput                                `pulumi:"multiFactorAuthentication"`
+	MulticastForward                      pulumi.StringOutput                                `pulumi:"multicastForward"`
+	NdpMaxEntry                           pulumi.IntOutput                                   `pulumi:"ndpMaxEntry"`
+	PerUserBal                            pulumi.StringOutput                                `pulumi:"perUserBal"`
+	PerUserBwl                            pulumi.StringOutput                                `pulumi:"perUserBwl"`
+	PmtuDiscovery                         pulumi.StringOutput                                `pulumi:"pmtuDiscovery"`
+	PolicyAuthConcurrent                  pulumi.IntOutput                                   `pulumi:"policyAuthConcurrent"`
+	PostLoginBanner                       pulumi.StringOutput                                `pulumi:"postLoginBanner"`
+	PreLoginBanner                        pulumi.StringOutput                                `pulumi:"preLoginBanner"`
+	PrivateDataEncryption                 pulumi.StringOutput                                `pulumi:"privateDataEncryption"`
+	ProxyAuthLifetime                     pulumi.StringOutput                                `pulumi:"proxyAuthLifetime"`
+	ProxyAuthLifetimeTimeout              pulumi.IntOutput                                   `pulumi:"proxyAuthLifetimeTimeout"`
+	ProxyAuthTimeout                      pulumi.IntOutput                                   `pulumi:"proxyAuthTimeout"`
+	ProxyCertUseMgmtVdom                  pulumi.StringOutput                                `pulumi:"proxyCertUseMgmtVdom"`
+	ProxyCipherHardwareAcceleration       pulumi.StringOutput                                `pulumi:"proxyCipherHardwareAcceleration"`
+	ProxyHardwareAcceleration             pulumi.StringOutput                                `pulumi:"proxyHardwareAcceleration"`
+	ProxyKeepAliveMode                    pulumi.StringOutput                                `pulumi:"proxyKeepAliveMode"`
+	ProxyKxpHardwareAcceleration          pulumi.StringOutput                                `pulumi:"proxyKxpHardwareAcceleration"`
+	ProxyReAuthenticationMode             pulumi.StringOutput                                `pulumi:"proxyReAuthenticationMode"`
+	ProxyReAuthenticationTime             pulumi.IntOutput                                   `pulumi:"proxyReAuthenticationTime"`
+	ProxyResourceMode                     pulumi.StringOutput                                `pulumi:"proxyResourceMode"`
+	ProxyWorkerCount                      pulumi.IntOutput                                   `pulumi:"proxyWorkerCount"`
+	RadiusPort                            pulumi.IntOutput                                   `pulumi:"radiusPort"`
+	RebootUponConfigRestore               pulumi.StringOutput                                `pulumi:"rebootUponConfigRestore"`
+	Refresh                               pulumi.IntOutput                                   `pulumi:"refresh"`
+	Remoteauthtimeout                     pulumi.IntOutput                                   `pulumi:"remoteauthtimeout"`
+	ResetSessionlessTcp                   pulumi.StringOutput                                `pulumi:"resetSessionlessTcp"`
+	RestartTime                           pulumi.StringOutput                                `pulumi:"restartTime"`
+	RevisionBackupOnLogout                pulumi.StringOutput                                `pulumi:"revisionBackupOnLogout"`
+	RevisionImageAutoBackup               pulumi.StringOutput                                `pulumi:"revisionImageAutoBackup"`
+	ScanunitCount                         pulumi.IntOutput                                   `pulumi:"scanunitCount"`
+	SecurityRatingResultSubmission        pulumi.StringOutput                                `pulumi:"securityRatingResultSubmission"`
+	SecurityRatingRunOnSchedule           pulumi.StringOutput                                `pulumi:"securityRatingRunOnSchedule"`
+	SendPmtuIcmp                          pulumi.StringOutput                                `pulumi:"sendPmtuIcmp"`
+	SflowdMaxChildrenNum                  pulumi.IntOutput                                   `pulumi:"sflowdMaxChildrenNum"`
+	SnatRouteChange                       pulumi.StringOutput                                `pulumi:"snatRouteChange"`
+	SpecialFile23Support                  pulumi.StringOutput                                `pulumi:"specialFile23Support"`
+	SpeedtestServer                       pulumi.StringOutput                                `pulumi:"speedtestServer"`
+	SplitPort                             pulumi.StringOutput                                `pulumi:"splitPort"`
+	SsdTrimDate                           pulumi.IntOutput                                   `pulumi:"ssdTrimDate"`
+	SsdTrimFreq                           pulumi.StringOutput                                `pulumi:"ssdTrimFreq"`
+	SsdTrimHour                           pulumi.IntOutput                                   `pulumi:"ssdTrimHour"`
+	SsdTrimMin                            pulumi.IntOutput                                   `pulumi:"ssdTrimMin"`
+	SsdTrimWeekday                        pulumi.StringOutput                                `pulumi:"ssdTrimWeekday"`
+	SshCbcCipher                          pulumi.StringOutput                                `pulumi:"sshCbcCipher"`
+	SshEncAlgo                            pulumi.StringOutput                                `pulumi:"sshEncAlgo"`
+	SshHmacMd5                            pulumi.StringOutput                                `pulumi:"sshHmacMd5"`
+	SshHostkeyAlgo                        pulumi.StringOutput                                `pulumi:"sshHostkeyAlgo"`
+	SshKexAlgo                            pulumi.StringOutput                                `pulumi:"sshKexAlgo"`
+	SshKexSha1                            pulumi.StringOutput                                `pulumi:"sshKexSha1"`
+	SshMacAlgo                            pulumi.StringOutput                                `pulumi:"sshMacAlgo"`
+	SshMacWeak                            pulumi.StringOutput                                `pulumi:"sshMacWeak"`
+	SslMinProtoVersion                    pulumi.StringOutput                                `pulumi:"sslMinProtoVersion"`
+	SslStaticKeyCiphers                   pulumi.StringOutput                                `pulumi:"sslStaticKeyCiphers"`
+	SslvpnCipherHardwareAcceleration      pulumi.StringOutput                                `pulumi:"sslvpnCipherHardwareAcceleration"`
+	SslvpnEmsSnCheck                      pulumi.StringOutput                                `pulumi:"sslvpnEmsSnCheck"`
+	SslvpnKxpHardwareAcceleration         pulumi.StringOutput                                `pulumi:"sslvpnKxpHardwareAcceleration"`
+	SslvpnMaxWorkerCount                  pulumi.IntOutput                                   `pulumi:"sslvpnMaxWorkerCount"`
+	SslvpnPluginVersionCheck              pulumi.StringOutput                                `pulumi:"sslvpnPluginVersionCheck"`
+	StrictDirtySessionCheck               pulumi.StringOutput                                `pulumi:"strictDirtySessionCheck"`
+	StrongCrypto                          pulumi.StringOutput                                `pulumi:"strongCrypto"`
+	SwitchController                      pulumi.StringOutput                                `pulumi:"switchController"`
+	SwitchControllerReservedNetwork       pulumi.StringOutput                                `pulumi:"switchControllerReservedNetwork"`
+	SysPerfLogInterval                    pulumi.IntOutput                                   `pulumi:"sysPerfLogInterval"`
+	SyslogAffinity                        pulumi.StringOutput                                `pulumi:"syslogAffinity"`
+	TcpHalfcloseTimer                     pulumi.IntOutput                                   `pulumi:"tcpHalfcloseTimer"`
+	TcpHalfopenTimer                      pulumi.IntOutput                                   `pulumi:"tcpHalfopenTimer"`
+	TcpOption                             pulumi.StringOutput                                `pulumi:"tcpOption"`
+	TcpRstTimer                           pulumi.IntOutput                                   `pulumi:"tcpRstTimer"`
+	TcpTimewaitTimer                      pulumi.IntOutput                                   `pulumi:"tcpTimewaitTimer"`
+	Tftp                                  pulumi.StringOutput                                `pulumi:"tftp"`
+	Timezone                              pulumi.StringOutput                                `pulumi:"timezone"`
+	TpMcSkipPolicy                        pulumi.StringOutput                                `pulumi:"tpMcSkipPolicy"`
+	TrafficPriority                       pulumi.StringOutput                                `pulumi:"trafficPriority"`
+	TrafficPriorityLevel                  pulumi.StringOutput                                `pulumi:"trafficPriorityLevel"`
+	TwoFactorEmailExpiry                  pulumi.IntOutput                                   `pulumi:"twoFactorEmailExpiry"`
+	TwoFactorFacExpiry                    pulumi.IntOutput                                   `pulumi:"twoFactorFacExpiry"`
+	TwoFactorFtkExpiry                    pulumi.IntOutput                                   `pulumi:"twoFactorFtkExpiry"`
+	TwoFactorFtmExpiry                    pulumi.IntOutput                                   `pulumi:"twoFactorFtmExpiry"`
+	TwoFactorSmsExpiry                    pulumi.IntOutput                                   `pulumi:"twoFactorSmsExpiry"`
+	UdpIdleTimer                          pulumi.IntOutput                                   `pulumi:"udpIdleTimer"`
+	UrlFilterAffinity                     pulumi.StringOutput                                `pulumi:"urlFilterAffinity"`
+	UrlFilterCount                        pulumi.IntOutput                                   `pulumi:"urlFilterCount"`
+	UserDeviceStoreMaxDevices             pulumi.IntOutput                                   `pulumi:"userDeviceStoreMaxDevices"`
+	UserDeviceStoreMaxUnifiedMem          pulumi.IntOutput                                   `pulumi:"userDeviceStoreMaxUnifiedMem"`
+	UserDeviceStoreMaxUsers               pulumi.IntOutput                                   `pulumi:"userDeviceStoreMaxUsers"`
+	UserServerCert                        pulumi.StringOutput                                `pulumi:"userServerCert"`
+	VdomAdmin                             pulumi.StringOutput                                `pulumi:"vdomAdmin"`
+	VdomMode                              pulumi.StringOutput                                `pulumi:"vdomMode"`
+	Vdomparam                             pulumi.StringPtrOutput                             `pulumi:"vdomparam"`
+	VipArpRange                           pulumi.StringOutput                                `pulumi:"vipArpRange"`
+	VirtualServerCount                    pulumi.IntOutput                                   `pulumi:"virtualServerCount"`
+	VirtualServerHardwareAcceleration     pulumi.StringOutput                                `pulumi:"virtualServerHardwareAcceleration"`
+	VirtualSwitchVlan                     pulumi.StringOutput                                `pulumi:"virtualSwitchVlan"`
+	VpnEmsSnCheck                         pulumi.StringOutput                                `pulumi:"vpnEmsSnCheck"`
+	WadAffinity                           pulumi.StringOutput                                `pulumi:"wadAffinity"`
+	WadCsvcCsCount                        pulumi.IntOutput                                   `pulumi:"wadCsvcCsCount"`
+	WadCsvcDbCount                        pulumi.IntOutput                                   `pulumi:"wadCsvcDbCount"`
+	WadMemoryChangeGranularity            pulumi.IntOutput                                   `pulumi:"wadMemoryChangeGranularity"`
+	WadRestartEndTime                     pulumi.StringOutput                                `pulumi:"wadRestartEndTime"`
+	WadRestartMode                        pulumi.StringOutput                                `pulumi:"wadRestartMode"`
+	WadRestartStartTime                   pulumi.StringOutput                                `pulumi:"wadRestartStartTime"`
+	WadSourceAffinity                     pulumi.StringOutput                                `pulumi:"wadSourceAffinity"`
+	WadWorkerCount                        pulumi.IntOutput                                   `pulumi:"wadWorkerCount"`
+	WifiCaCertificate                     pulumi.StringOutput                                `pulumi:"wifiCaCertificate"`
+	WifiCertificate                       pulumi.StringOutput                                `pulumi:"wifiCertificate"`
+	Wimax4gUsb                            pulumi.StringOutput                                `pulumi:"wimax4gUsb"`
+	WirelessController                    pulumi.StringOutput                                `pulumi:"wirelessController"`
+	WirelessControllerPort                pulumi.IntOutput                                   `pulumi:"wirelessControllerPort"`
 }
 
 // NewSystemGlobal registers a new resource with the given unique name, arguments, and options.
@@ -271,7 +292,7 @@ func NewSystemGlobal(ctx *pulumi.Context,
 		args = &SystemGlobalArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemGlobal
 	err := ctx.RegisterResource("fortios:index/systemGlobal:SystemGlobal", name, args, &resource, opts...)
 	if err != nil {
@@ -294,260 +315,281 @@ func GetSystemGlobal(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemGlobal resources.
 type systemGlobalState struct {
-	AdminConcurrent                       *string `pulumi:"adminConcurrent"`
-	AdminConsoleTimeout                   *int    `pulumi:"adminConsoleTimeout"`
-	AdminForticloudSsoLogin               *string `pulumi:"adminForticloudSsoLogin"`
-	AdminHost                             *string `pulumi:"adminHost"`
-	AdminHstsMaxAge                       *int    `pulumi:"adminHstsMaxAge"`
-	AdminHttpsPkiRequired                 *string `pulumi:"adminHttpsPkiRequired"`
-	AdminHttpsRedirect                    *string `pulumi:"adminHttpsRedirect"`
-	AdminHttpsSslBannedCiphers            *string `pulumi:"adminHttpsSslBannedCiphers"`
-	AdminHttpsSslCiphersuites             *string `pulumi:"adminHttpsSslCiphersuites"`
-	AdminHttpsSslVersions                 *string `pulumi:"adminHttpsSslVersions"`
-	AdminLockoutDuration                  *int    `pulumi:"adminLockoutDuration"`
-	AdminLockoutThreshold                 *int    `pulumi:"adminLockoutThreshold"`
-	AdminLoginMax                         *int    `pulumi:"adminLoginMax"`
-	AdminMaintainer                       *string `pulumi:"adminMaintainer"`
-	AdminPort                             *int    `pulumi:"adminPort"`
-	AdminRestrictLocal                    *string `pulumi:"adminRestrictLocal"`
-	AdminScp                              *string `pulumi:"adminScp"`
-	AdminServerCert                       *string `pulumi:"adminServerCert"`
-	AdminSport                            *int    `pulumi:"adminSport"`
-	AdminSshGraceTime                     *int    `pulumi:"adminSshGraceTime"`
-	AdminSshPassword                      *string `pulumi:"adminSshPassword"`
-	AdminSshPort                          *int    `pulumi:"adminSshPort"`
-	AdminSshV1                            *string `pulumi:"adminSshV1"`
-	AdminTelnet                           *string `pulumi:"adminTelnet"`
-	AdminTelnetPort                       *int    `pulumi:"adminTelnetPort"`
-	Admintimeout                          *int    `pulumi:"admintimeout"`
-	Alias                                 *string `pulumi:"alias"`
-	AllowTrafficRedirect                  *string `pulumi:"allowTrafficRedirect"`
-	AntiReplay                            *string `pulumi:"antiReplay"`
-	ArpMaxEntry                           *int    `pulumi:"arpMaxEntry"`
-	Asymroute                             *string `pulumi:"asymroute"`
-	AuthCert                              *string `pulumi:"authCert"`
-	AuthHttpPort                          *int    `pulumi:"authHttpPort"`
-	AuthHttpsPort                         *int    `pulumi:"authHttpsPort"`
-	AuthIkeSamlPort                       *int    `pulumi:"authIkeSamlPort"`
-	AuthKeepalive                         *string `pulumi:"authKeepalive"`
-	AuthSessionLimit                      *string `pulumi:"authSessionLimit"`
-	AutoAuthExtensionDevice               *string `pulumi:"autoAuthExtensionDevice"`
-	AutorunLogFsck                        *string `pulumi:"autorunLogFsck"`
-	AvAffinity                            *string `pulumi:"avAffinity"`
-	AvFailopen                            *string `pulumi:"avFailopen"`
-	AvFailopenSession                     *string `pulumi:"avFailopenSession"`
-	BatchCmdb                             *string `pulumi:"batchCmdb"`
-	BlockSessionTimer                     *int    `pulumi:"blockSessionTimer"`
-	BrFdbMaxEntry                         *int    `pulumi:"brFdbMaxEntry"`
-	CertChainMax                          *int    `pulumi:"certChainMax"`
-	CfgRevertTimeout                      *int    `pulumi:"cfgRevertTimeout"`
-	CfgSave                               *string `pulumi:"cfgSave"`
-	CheckProtocolHeader                   *string `pulumi:"checkProtocolHeader"`
-	CheckResetRange                       *string `pulumi:"checkResetRange"`
-	CliAuditLog                           *string `pulumi:"cliAuditLog"`
-	CloudCommunication                    *string `pulumi:"cloudCommunication"`
-	CltCertReq                            *string `pulumi:"cltCertReq"`
-	CmdbsvrAffinity                       *string `pulumi:"cmdbsvrAffinity"`
-	ComplianceCheck                       *string `pulumi:"complianceCheck"`
-	ComplianceCheckTime                   *string `pulumi:"complianceCheckTime"`
-	CpuUseThreshold                       *int    `pulumi:"cpuUseThreshold"`
-	CsrCaAttribute                        *string `pulumi:"csrCaAttribute"`
-	DailyRestart                          *string `pulumi:"dailyRestart"`
-	DefaultServiceSourcePort              *string `pulumi:"defaultServiceSourcePort"`
-	DeviceIdentificationActiveScanDelay   *int    `pulumi:"deviceIdentificationActiveScanDelay"`
-	DeviceIdleTimeout                     *int    `pulumi:"deviceIdleTimeout"`
-	DhParams                              *string `pulumi:"dhParams"`
-	DnsproxyWorkerCount                   *int    `pulumi:"dnsproxyWorkerCount"`
-	Dst                                   *string `pulumi:"dst"`
-	EarlyTcpNpuSession                    *string `pulumi:"earlyTcpNpuSession"`
-	EditVdomPrompt                        *string `pulumi:"editVdomPrompt"`
-	EndpointControlFdsAccess              *string `pulumi:"endpointControlFdsAccess"`
-	EndpointControlPortalPort             *int    `pulumi:"endpointControlPortalPort"`
-	ExtenderControllerReservedNetwork     *string `pulumi:"extenderControllerReservedNetwork"`
-	Failtime                              *int    `pulumi:"failtime"`
-	FazDiskBufferSize                     *int    `pulumi:"fazDiskBufferSize"`
-	FdsStatistics                         *string `pulumi:"fdsStatistics"`
-	FdsStatisticsPeriod                   *int    `pulumi:"fdsStatisticsPeriod"`
-	FecPort                               *int    `pulumi:"fecPort"`
-	FgdAlertSubscription                  *string `pulumi:"fgdAlertSubscription"`
-	Fortiextender                         *string `pulumi:"fortiextender"`
-	FortiextenderDataPort                 *int    `pulumi:"fortiextenderDataPort"`
-	FortiextenderDiscoveryLockdown        *string `pulumi:"fortiextenderDiscoveryLockdown"`
-	FortiextenderProvisionOnAuthorization *string `pulumi:"fortiextenderProvisionOnAuthorization"`
-	FortiextenderVlanMode                 *string `pulumi:"fortiextenderVlanMode"`
-	FortiipamIntegration                  *string `pulumi:"fortiipamIntegration"`
-	FortiservicePort                      *int    `pulumi:"fortiservicePort"`
-	FortitokenCloud                       *string `pulumi:"fortitokenCloud"`
-	GuiAllowDefaultHostname               *string `pulumi:"guiAllowDefaultHostname"`
-	GuiAppDetectionSdwan                  *string `pulumi:"guiAppDetectionSdwan"`
-	GuiCdnUsage                           *string `pulumi:"guiCdnUsage"`
-	GuiCertificates                       *string `pulumi:"guiCertificates"`
-	GuiCustomLanguage                     *string `pulumi:"guiCustomLanguage"`
-	GuiDateFormat                         *string `pulumi:"guiDateFormat"`
-	GuiDateTimeSource                     *string `pulumi:"guiDateTimeSource"`
-	GuiDeviceLatitude                     *string `pulumi:"guiDeviceLatitude"`
-	GuiDeviceLongitude                    *string `pulumi:"guiDeviceLongitude"`
-	GuiDisplayHostname                    *string `pulumi:"guiDisplayHostname"`
-	GuiFirmwareUpgradeSetupWarning        *string `pulumi:"guiFirmwareUpgradeSetupWarning"`
-	GuiFirmwareUpgradeWarning             *string `pulumi:"guiFirmwareUpgradeWarning"`
-	GuiForticareRegistrationSetupWarning  *string `pulumi:"guiForticareRegistrationSetupWarning"`
-	GuiFortigateCloudSandbox              *string `pulumi:"guiFortigateCloudSandbox"`
-	GuiFortiguardResourceFetch            *string `pulumi:"guiFortiguardResourceFetch"`
-	GuiFortisandboxCloud                  *string `pulumi:"guiFortisandboxCloud"`
-	GuiIpv6                               *string `pulumi:"guiIpv6"`
-	GuiLinesPerPage                       *int    `pulumi:"guiLinesPerPage"`
-	GuiLocalOut                           *string `pulumi:"guiLocalOut"`
-	GuiReplacementMessageGroups           *string `pulumi:"guiReplacementMessageGroups"`
-	GuiRestApiCache                       *string `pulumi:"guiRestApiCache"`
-	GuiTheme                              *string `pulumi:"guiTheme"`
-	GuiWirelessOpensecurity               *string `pulumi:"guiWirelessOpensecurity"`
-	GuiWorkflowManagement                 *string `pulumi:"guiWorkflowManagement"`
-	HaAffinity                            *string `pulumi:"haAffinity"`
-	HonorDf                               *string `pulumi:"honorDf"`
-	Hostname                              *string `pulumi:"hostname"`
-	IgmpStateLimit                        *int    `pulumi:"igmpStateLimit"`
-	IkeEmbryonicLimit                     *int    `pulumi:"ikeEmbryonicLimit"`
-	InternetServiceDatabase               *string `pulumi:"internetServiceDatabase"`
-	Interval                              *int    `pulumi:"interval"`
-	IpSrcPortRange                        *string `pulumi:"ipSrcPortRange"`
-	IpsAffinity                           *string `pulumi:"ipsAffinity"`
-	IpsecAsicOffload                      *string `pulumi:"ipsecAsicOffload"`
-	IpsecHaSeqjumpRate                    *int    `pulumi:"ipsecHaSeqjumpRate"`
-	IpsecHmacOffload                      *string `pulumi:"ipsecHmacOffload"`
-	IpsecRoundRobin                       *string `pulumi:"ipsecRoundRobin"`
-	IpsecSoftDecAsync                     *string `pulumi:"ipsecSoftDecAsync"`
-	Ipv6AcceptDad                         *int    `pulumi:"ipv6AcceptDad"`
-	Ipv6AllowAnycastProbe                 *string `pulumi:"ipv6AllowAnycastProbe"`
-	Ipv6AllowLocalInSlientDrop            *string `pulumi:"ipv6AllowLocalInSlientDrop"`
-	Ipv6AllowMulticastProbe               *string `pulumi:"ipv6AllowMulticastProbe"`
-	Ipv6AllowTrafficRedirect              *string `pulumi:"ipv6AllowTrafficRedirect"`
-	IrqTimeAccounting                     *string `pulumi:"irqTimeAccounting"`
-	Language                              *string `pulumi:"language"`
-	Ldapconntimeout                       *int    `pulumi:"ldapconntimeout"`
-	LldpReception                         *string `pulumi:"lldpReception"`
-	LldpTransmission                      *string `pulumi:"lldpTransmission"`
-	LogSslConnection                      *string `pulumi:"logSslConnection"`
-	LogUuidAddress                        *string `pulumi:"logUuidAddress"`
-	LogUuidPolicy                         *string `pulumi:"logUuidPolicy"`
-	LoginTimestamp                        *string `pulumi:"loginTimestamp"`
-	LongVdomName                          *string `pulumi:"longVdomName"`
-	ManagementIp                          *string `pulumi:"managementIp"`
-	ManagementPort                        *int    `pulumi:"managementPort"`
-	ManagementPortUseAdminSport           *string `pulumi:"managementPortUseAdminSport"`
-	ManagementVdom                        *string `pulumi:"managementVdom"`
-	MaxDlpstatMemory                      *int    `pulumi:"maxDlpstatMemory"`
-	MaxRouteCacheSize                     *int    `pulumi:"maxRouteCacheSize"`
-	McTtlNotchange                        *string `pulumi:"mcTtlNotchange"`
-	MemoryUseThresholdExtreme             *int    `pulumi:"memoryUseThresholdExtreme"`
-	MemoryUseThresholdGreen               *int    `pulumi:"memoryUseThresholdGreen"`
-	MemoryUseThresholdRed                 *int    `pulumi:"memoryUseThresholdRed"`
-	MiglogAffinity                        *string `pulumi:"miglogAffinity"`
-	MiglogdChildren                       *int    `pulumi:"miglogdChildren"`
-	MultiFactorAuthentication             *string `pulumi:"multiFactorAuthentication"`
-	MulticastForward                      *string `pulumi:"multicastForward"`
-	NdpMaxEntry                           *int    `pulumi:"ndpMaxEntry"`
-	PerUserBal                            *string `pulumi:"perUserBal"`
-	PerUserBwl                            *string `pulumi:"perUserBwl"`
-	PmtuDiscovery                         *string `pulumi:"pmtuDiscovery"`
-	PolicyAuthConcurrent                  *int    `pulumi:"policyAuthConcurrent"`
-	PostLoginBanner                       *string `pulumi:"postLoginBanner"`
-	PreLoginBanner                        *string `pulumi:"preLoginBanner"`
-	PrivateDataEncryption                 *string `pulumi:"privateDataEncryption"`
-	ProxyAuthLifetime                     *string `pulumi:"proxyAuthLifetime"`
-	ProxyAuthLifetimeTimeout              *int    `pulumi:"proxyAuthLifetimeTimeout"`
-	ProxyAuthTimeout                      *int    `pulumi:"proxyAuthTimeout"`
-	ProxyCertUseMgmtVdom                  *string `pulumi:"proxyCertUseMgmtVdom"`
-	ProxyCipherHardwareAcceleration       *string `pulumi:"proxyCipherHardwareAcceleration"`
-	ProxyHardwareAcceleration             *string `pulumi:"proxyHardwareAcceleration"`
-	ProxyKxpHardwareAcceleration          *string `pulumi:"proxyKxpHardwareAcceleration"`
-	ProxyReAuthenticationMode             *string `pulumi:"proxyReAuthenticationMode"`
-	ProxyResourceMode                     *string `pulumi:"proxyResourceMode"`
-	ProxyWorkerCount                      *int    `pulumi:"proxyWorkerCount"`
-	RadiusPort                            *int    `pulumi:"radiusPort"`
-	RebootUponConfigRestore               *string `pulumi:"rebootUponConfigRestore"`
-	Refresh                               *int    `pulumi:"refresh"`
-	Remoteauthtimeout                     *int    `pulumi:"remoteauthtimeout"`
-	ResetSessionlessTcp                   *string `pulumi:"resetSessionlessTcp"`
-	RestartTime                           *string `pulumi:"restartTime"`
-	RevisionBackupOnLogout                *string `pulumi:"revisionBackupOnLogout"`
-	RevisionImageAutoBackup               *string `pulumi:"revisionImageAutoBackup"`
-	ScanunitCount                         *int    `pulumi:"scanunitCount"`
-	SecurityRatingResultSubmission        *string `pulumi:"securityRatingResultSubmission"`
-	SecurityRatingRunOnSchedule           *string `pulumi:"securityRatingRunOnSchedule"`
-	SendPmtuIcmp                          *string `pulumi:"sendPmtuIcmp"`
-	SnatRouteChange                       *string `pulumi:"snatRouteChange"`
-	SpecialFile23Support                  *string `pulumi:"specialFile23Support"`
-	SpeedtestServer                       *string `pulumi:"speedtestServer"`
-	SplitPort                             *string `pulumi:"splitPort"`
-	SsdTrimDate                           *int    `pulumi:"ssdTrimDate"`
-	SsdTrimFreq                           *string `pulumi:"ssdTrimFreq"`
-	SsdTrimHour                           *int    `pulumi:"ssdTrimHour"`
-	SsdTrimMin                            *int    `pulumi:"ssdTrimMin"`
-	SsdTrimWeekday                        *string `pulumi:"ssdTrimWeekday"`
-	SshCbcCipher                          *string `pulumi:"sshCbcCipher"`
-	SshEncAlgo                            *string `pulumi:"sshEncAlgo"`
-	SshHmacMd5                            *string `pulumi:"sshHmacMd5"`
-	SshKexAlgo                            *string `pulumi:"sshKexAlgo"`
-	SshKexSha1                            *string `pulumi:"sshKexSha1"`
-	SshMacAlgo                            *string `pulumi:"sshMacAlgo"`
-	SshMacWeak                            *string `pulumi:"sshMacWeak"`
-	SslMinProtoVersion                    *string `pulumi:"sslMinProtoVersion"`
-	SslStaticKeyCiphers                   *string `pulumi:"sslStaticKeyCiphers"`
-	SslvpnCipherHardwareAcceleration      *string `pulumi:"sslvpnCipherHardwareAcceleration"`
-	SslvpnEmsSnCheck                      *string `pulumi:"sslvpnEmsSnCheck"`
-	SslvpnKxpHardwareAcceleration         *string `pulumi:"sslvpnKxpHardwareAcceleration"`
-	SslvpnMaxWorkerCount                  *int    `pulumi:"sslvpnMaxWorkerCount"`
-	SslvpnPluginVersionCheck              *string `pulumi:"sslvpnPluginVersionCheck"`
-	StrictDirtySessionCheck               *string `pulumi:"strictDirtySessionCheck"`
-	StrongCrypto                          *string `pulumi:"strongCrypto"`
-	SwitchController                      *string `pulumi:"switchController"`
-	SwitchControllerReservedNetwork       *string `pulumi:"switchControllerReservedNetwork"`
-	SysPerfLogInterval                    *int    `pulumi:"sysPerfLogInterval"`
-	TcpHalfcloseTimer                     *int    `pulumi:"tcpHalfcloseTimer"`
-	TcpHalfopenTimer                      *int    `pulumi:"tcpHalfopenTimer"`
-	TcpOption                             *string `pulumi:"tcpOption"`
-	TcpRstTimer                           *int    `pulumi:"tcpRstTimer"`
-	TcpTimewaitTimer                      *int    `pulumi:"tcpTimewaitTimer"`
-	Tftp                                  *string `pulumi:"tftp"`
-	Timezone                              *string `pulumi:"timezone"`
-	TpMcSkipPolicy                        *string `pulumi:"tpMcSkipPolicy"`
-	TrafficPriority                       *string `pulumi:"trafficPriority"`
-	TrafficPriorityLevel                  *string `pulumi:"trafficPriorityLevel"`
-	TwoFactorEmailExpiry                  *int    `pulumi:"twoFactorEmailExpiry"`
-	TwoFactorFacExpiry                    *int    `pulumi:"twoFactorFacExpiry"`
-	TwoFactorFtkExpiry                    *int    `pulumi:"twoFactorFtkExpiry"`
-	TwoFactorFtmExpiry                    *int    `pulumi:"twoFactorFtmExpiry"`
-	TwoFactorSmsExpiry                    *int    `pulumi:"twoFactorSmsExpiry"`
-	UdpIdleTimer                          *int    `pulumi:"udpIdleTimer"`
-	UrlFilterAffinity                     *string `pulumi:"urlFilterAffinity"`
-	UrlFilterCount                        *int    `pulumi:"urlFilterCount"`
-	UserDeviceStoreMaxDevices             *int    `pulumi:"userDeviceStoreMaxDevices"`
-	UserDeviceStoreMaxUnifiedMem          *int    `pulumi:"userDeviceStoreMaxUnifiedMem"`
-	UserDeviceStoreMaxUsers               *int    `pulumi:"userDeviceStoreMaxUsers"`
-	UserServerCert                        *string `pulumi:"userServerCert"`
-	VdomAdmin                             *string `pulumi:"vdomAdmin"`
-	VdomMode                              *string `pulumi:"vdomMode"`
-	Vdomparam                             *string `pulumi:"vdomparam"`
-	VipArpRange                           *string `pulumi:"vipArpRange"`
-	VirtualServerCount                    *int    `pulumi:"virtualServerCount"`
-	VirtualServerHardwareAcceleration     *string `pulumi:"virtualServerHardwareAcceleration"`
-	VirtualSwitchVlan                     *string `pulumi:"virtualSwitchVlan"`
-	WadAffinity                           *string `pulumi:"wadAffinity"`
-	WadCsvcCsCount                        *int    `pulumi:"wadCsvcCsCount"`
-	WadCsvcDbCount                        *int    `pulumi:"wadCsvcDbCount"`
-	WadMemoryChangeGranularity            *int    `pulumi:"wadMemoryChangeGranularity"`
-	WadSourceAffinity                     *string `pulumi:"wadSourceAffinity"`
-	WadWorkerCount                        *int    `pulumi:"wadWorkerCount"`
-	WifiCaCertificate                     *string `pulumi:"wifiCaCertificate"`
-	WifiCertificate                       *string `pulumi:"wifiCertificate"`
-	Wimax4gUsb                            *string `pulumi:"wimax4gUsb"`
-	WirelessController                    *string `pulumi:"wirelessController"`
-	WirelessControllerPort                *int    `pulumi:"wirelessControllerPort"`
+	AdminConcurrent                       *string                                   `pulumi:"adminConcurrent"`
+	AdminConsoleTimeout                   *int                                      `pulumi:"adminConsoleTimeout"`
+	AdminForticloudSsoDefaultProfile      *string                                   `pulumi:"adminForticloudSsoDefaultProfile"`
+	AdminForticloudSsoLogin               *string                                   `pulumi:"adminForticloudSsoLogin"`
+	AdminHost                             *string                                   `pulumi:"adminHost"`
+	AdminHstsMaxAge                       *int                                      `pulumi:"adminHstsMaxAge"`
+	AdminHttpsPkiRequired                 *string                                   `pulumi:"adminHttpsPkiRequired"`
+	AdminHttpsRedirect                    *string                                   `pulumi:"adminHttpsRedirect"`
+	AdminHttpsSslBannedCiphers            *string                                   `pulumi:"adminHttpsSslBannedCiphers"`
+	AdminHttpsSslCiphersuites             *string                                   `pulumi:"adminHttpsSslCiphersuites"`
+	AdminHttpsSslVersions                 *string                                   `pulumi:"adminHttpsSslVersions"`
+	AdminLockoutDuration                  *int                                      `pulumi:"adminLockoutDuration"`
+	AdminLockoutThreshold                 *int                                      `pulumi:"adminLockoutThreshold"`
+	AdminLoginMax                         *int                                      `pulumi:"adminLoginMax"`
+	AdminMaintainer                       *string                                   `pulumi:"adminMaintainer"`
+	AdminPort                             *int                                      `pulumi:"adminPort"`
+	AdminRestrictLocal                    *string                                   `pulumi:"adminRestrictLocal"`
+	AdminScp                              *string                                   `pulumi:"adminScp"`
+	AdminServerCert                       *string                                   `pulumi:"adminServerCert"`
+	AdminSport                            *int                                      `pulumi:"adminSport"`
+	AdminSshGraceTime                     *int                                      `pulumi:"adminSshGraceTime"`
+	AdminSshPassword                      *string                                   `pulumi:"adminSshPassword"`
+	AdminSshPort                          *int                                      `pulumi:"adminSshPort"`
+	AdminSshV1                            *string                                   `pulumi:"adminSshV1"`
+	AdminTelnet                           *string                                   `pulumi:"adminTelnet"`
+	AdminTelnetPort                       *int                                      `pulumi:"adminTelnetPort"`
+	Admintimeout                          *int                                      `pulumi:"admintimeout"`
+	Alias                                 *string                                   `pulumi:"alias"`
+	AllowTrafficRedirect                  *string                                   `pulumi:"allowTrafficRedirect"`
+	AntiReplay                            *string                                   `pulumi:"antiReplay"`
+	ArpMaxEntry                           *int                                      `pulumi:"arpMaxEntry"`
+	Asymroute                             *string                                   `pulumi:"asymroute"`
+	AuthCert                              *string                                   `pulumi:"authCert"`
+	AuthHttpPort                          *int                                      `pulumi:"authHttpPort"`
+	AuthHttpsPort                         *int                                      `pulumi:"authHttpsPort"`
+	AuthIkeSamlPort                       *int                                      `pulumi:"authIkeSamlPort"`
+	AuthKeepalive                         *string                                   `pulumi:"authKeepalive"`
+	AuthSessionLimit                      *string                                   `pulumi:"authSessionLimit"`
+	AutoAuthExtensionDevice               *string                                   `pulumi:"autoAuthExtensionDevice"`
+	AutorunLogFsck                        *string                                   `pulumi:"autorunLogFsck"`
+	AvAffinity                            *string                                   `pulumi:"avAffinity"`
+	AvFailopen                            *string                                   `pulumi:"avFailopen"`
+	AvFailopenSession                     *string                                   `pulumi:"avFailopenSession"`
+	BatchCmdb                             *string                                   `pulumi:"batchCmdb"`
+	BlockSessionTimer                     *int                                      `pulumi:"blockSessionTimer"`
+	BrFdbMaxEntry                         *int                                      `pulumi:"brFdbMaxEntry"`
+	CertChainMax                          *int                                      `pulumi:"certChainMax"`
+	CfgRevertTimeout                      *int                                      `pulumi:"cfgRevertTimeout"`
+	CfgSave                               *string                                   `pulumi:"cfgSave"`
+	CheckProtocolHeader                   *string                                   `pulumi:"checkProtocolHeader"`
+	CheckResetRange                       *string                                   `pulumi:"checkResetRange"`
+	CliAuditLog                           *string                                   `pulumi:"cliAuditLog"`
+	CloudCommunication                    *string                                   `pulumi:"cloudCommunication"`
+	CltCertReq                            *string                                   `pulumi:"cltCertReq"`
+	CmdbsvrAffinity                       *string                                   `pulumi:"cmdbsvrAffinity"`
+	ComplianceCheck                       *string                                   `pulumi:"complianceCheck"`
+	ComplianceCheckTime                   *string                                   `pulumi:"complianceCheckTime"`
+	CpuUseThreshold                       *int                                      `pulumi:"cpuUseThreshold"`
+	CsrCaAttribute                        *string                                   `pulumi:"csrCaAttribute"`
+	DailyRestart                          *string                                   `pulumi:"dailyRestart"`
+	DefaultServiceSourcePort              *string                                   `pulumi:"defaultServiceSourcePort"`
+	DeviceIdentificationActiveScanDelay   *int                                      `pulumi:"deviceIdentificationActiveScanDelay"`
+	DeviceIdleTimeout                     *int                                      `pulumi:"deviceIdleTimeout"`
+	DhParams                              *string                                   `pulumi:"dhParams"`
+	DnsproxyWorkerCount                   *int                                      `pulumi:"dnsproxyWorkerCount"`
+	Dst                                   *string                                   `pulumi:"dst"`
+	DynamicSortSubtable                   *string                                   `pulumi:"dynamicSortSubtable"`
+	EarlyTcpNpuSession                    *string                                   `pulumi:"earlyTcpNpuSession"`
+	EditVdomPrompt                        *string                                   `pulumi:"editVdomPrompt"`
+	EndpointControlFdsAccess              *string                                   `pulumi:"endpointControlFdsAccess"`
+	EndpointControlPortalPort             *int                                      `pulumi:"endpointControlPortalPort"`
+	ExtenderControllerReservedNetwork     *string                                   `pulumi:"extenderControllerReservedNetwork"`
+	Failtime                              *int                                      `pulumi:"failtime"`
+	FazDiskBufferSize                     *int                                      `pulumi:"fazDiskBufferSize"`
+	FdsStatistics                         *string                                   `pulumi:"fdsStatistics"`
+	FdsStatisticsPeriod                   *int                                      `pulumi:"fdsStatisticsPeriod"`
+	FecPort                               *int                                      `pulumi:"fecPort"`
+	FgdAlertSubscription                  *string                                   `pulumi:"fgdAlertSubscription"`
+	ForticonverterConfigUpload            *string                                   `pulumi:"forticonverterConfigUpload"`
+	ForticonverterIntegration             *string                                   `pulumi:"forticonverterIntegration"`
+	Fortiextender                         *string                                   `pulumi:"fortiextender"`
+	FortiextenderDataPort                 *int                                      `pulumi:"fortiextenderDataPort"`
+	FortiextenderDiscoveryLockdown        *string                                   `pulumi:"fortiextenderDiscoveryLockdown"`
+	FortiextenderProvisionOnAuthorization *string                                   `pulumi:"fortiextenderProvisionOnAuthorization"`
+	FortiextenderVlanMode                 *string                                   `pulumi:"fortiextenderVlanMode"`
+	FortiipamIntegration                  *string                                   `pulumi:"fortiipamIntegration"`
+	FortiservicePort                      *int                                      `pulumi:"fortiservicePort"`
+	FortitokenCloud                       *string                                   `pulumi:"fortitokenCloud"`
+	GetAllTables                          *string                                   `pulumi:"getAllTables"`
+	GuiAllowDefaultHostname               *string                                   `pulumi:"guiAllowDefaultHostname"`
+	GuiAllowIncompatibleFabricFgt         *string                                   `pulumi:"guiAllowIncompatibleFabricFgt"`
+	GuiAppDetectionSdwan                  *string                                   `pulumi:"guiAppDetectionSdwan"`
+	GuiCdnDomainOverride                  *string                                   `pulumi:"guiCdnDomainOverride"`
+	GuiCdnUsage                           *string                                   `pulumi:"guiCdnUsage"`
+	GuiCertificates                       *string                                   `pulumi:"guiCertificates"`
+	GuiCustomLanguage                     *string                                   `pulumi:"guiCustomLanguage"`
+	GuiDateFormat                         *string                                   `pulumi:"guiDateFormat"`
+	GuiDateTimeSource                     *string                                   `pulumi:"guiDateTimeSource"`
+	GuiDeviceLatitude                     *string                                   `pulumi:"guiDeviceLatitude"`
+	GuiDeviceLongitude                    *string                                   `pulumi:"guiDeviceLongitude"`
+	GuiDisplayHostname                    *string                                   `pulumi:"guiDisplayHostname"`
+	GuiFirmwareUpgradeSetupWarning        *string                                   `pulumi:"guiFirmwareUpgradeSetupWarning"`
+	GuiFirmwareUpgradeWarning             *string                                   `pulumi:"guiFirmwareUpgradeWarning"`
+	GuiForticareRegistrationSetupWarning  *string                                   `pulumi:"guiForticareRegistrationSetupWarning"`
+	GuiFortigateCloudSandbox              *string                                   `pulumi:"guiFortigateCloudSandbox"`
+	GuiFortiguardResourceFetch            *string                                   `pulumi:"guiFortiguardResourceFetch"`
+	GuiFortisandboxCloud                  *string                                   `pulumi:"guiFortisandboxCloud"`
+	GuiIpv6                               *string                                   `pulumi:"guiIpv6"`
+	GuiLinesPerPage                       *int                                      `pulumi:"guiLinesPerPage"`
+	GuiLocalOut                           *string                                   `pulumi:"guiLocalOut"`
+	GuiReplacementMessageGroups           *string                                   `pulumi:"guiReplacementMessageGroups"`
+	GuiRestApiCache                       *string                                   `pulumi:"guiRestApiCache"`
+	GuiTheme                              *string                                   `pulumi:"guiTheme"`
+	GuiWirelessOpensecurity               *string                                   `pulumi:"guiWirelessOpensecurity"`
+	GuiWorkflowManagement                 *string                                   `pulumi:"guiWorkflowManagement"`
+	HaAffinity                            *string                                   `pulumi:"haAffinity"`
+	HonorDf                               *string                                   `pulumi:"honorDf"`
+	Hostname                              *string                                   `pulumi:"hostname"`
+	IgmpStateLimit                        *int                                      `pulumi:"igmpStateLimit"`
+	IkeEmbryonicLimit                     *int                                      `pulumi:"ikeEmbryonicLimit"`
+	InterfaceSubnetUsage                  *string                                   `pulumi:"interfaceSubnetUsage"`
+	InternetServiceDatabase               *string                                   `pulumi:"internetServiceDatabase"`
+	InternetServiceDownloadLists          []SystemGlobalInternetServiceDownloadList `pulumi:"internetServiceDownloadLists"`
+	Interval                              *int                                      `pulumi:"interval"`
+	IpFragmentMemThresholds               *int                                      `pulumi:"ipFragmentMemThresholds"`
+	IpSrcPortRange                        *string                                   `pulumi:"ipSrcPortRange"`
+	IpsAffinity                           *string                                   `pulumi:"ipsAffinity"`
+	IpsecAsicOffload                      *string                                   `pulumi:"ipsecAsicOffload"`
+	IpsecHaSeqjumpRate                    *int                                      `pulumi:"ipsecHaSeqjumpRate"`
+	IpsecHmacOffload                      *string                                   `pulumi:"ipsecHmacOffload"`
+	IpsecRoundRobin                       *string                                   `pulumi:"ipsecRoundRobin"`
+	IpsecSoftDecAsync                     *string                                   `pulumi:"ipsecSoftDecAsync"`
+	Ipv6AcceptDad                         *int                                      `pulumi:"ipv6AcceptDad"`
+	Ipv6AllowAnycastProbe                 *string                                   `pulumi:"ipv6AllowAnycastProbe"`
+	Ipv6AllowLocalInSlientDrop            *string                                   `pulumi:"ipv6AllowLocalInSlientDrop"`
+	Ipv6AllowMulticastProbe               *string                                   `pulumi:"ipv6AllowMulticastProbe"`
+	Ipv6AllowTrafficRedirect              *string                                   `pulumi:"ipv6AllowTrafficRedirect"`
+	IrqTimeAccounting                     *string                                   `pulumi:"irqTimeAccounting"`
+	Language                              *string                                   `pulumi:"language"`
+	Ldapconntimeout                       *int                                      `pulumi:"ldapconntimeout"`
+	LldpReception                         *string                                   `pulumi:"lldpReception"`
+	LldpTransmission                      *string                                   `pulumi:"lldpTransmission"`
+	LogSingleCpuHigh                      *string                                   `pulumi:"logSingleCpuHigh"`
+	LogSslConnection                      *string                                   `pulumi:"logSslConnection"`
+	LogUuidAddress                        *string                                   `pulumi:"logUuidAddress"`
+	LogUuidPolicy                         *string                                   `pulumi:"logUuidPolicy"`
+	LoginTimestamp                        *string                                   `pulumi:"loginTimestamp"`
+	LongVdomName                          *string                                   `pulumi:"longVdomName"`
+	ManagementIp                          *string                                   `pulumi:"managementIp"`
+	ManagementPort                        *int                                      `pulumi:"managementPort"`
+	ManagementPortUseAdminSport           *string                                   `pulumi:"managementPortUseAdminSport"`
+	ManagementVdom                        *string                                   `pulumi:"managementVdom"`
+	MaxDlpstatMemory                      *int                                      `pulumi:"maxDlpstatMemory"`
+	MaxRouteCacheSize                     *int                                      `pulumi:"maxRouteCacheSize"`
+	McTtlNotchange                        *string                                   `pulumi:"mcTtlNotchange"`
+	MemoryUseThresholdExtreme             *int                                      `pulumi:"memoryUseThresholdExtreme"`
+	MemoryUseThresholdGreen               *int                                      `pulumi:"memoryUseThresholdGreen"`
+	MemoryUseThresholdRed                 *int                                      `pulumi:"memoryUseThresholdRed"`
+	MiglogAffinity                        *string                                   `pulumi:"miglogAffinity"`
+	MiglogdChildren                       *int                                      `pulumi:"miglogdChildren"`
+	MultiFactorAuthentication             *string                                   `pulumi:"multiFactorAuthentication"`
+	MulticastForward                      *string                                   `pulumi:"multicastForward"`
+	NdpMaxEntry                           *int                                      `pulumi:"ndpMaxEntry"`
+	PerUserBal                            *string                                   `pulumi:"perUserBal"`
+	PerUserBwl                            *string                                   `pulumi:"perUserBwl"`
+	PmtuDiscovery                         *string                                   `pulumi:"pmtuDiscovery"`
+	PolicyAuthConcurrent                  *int                                      `pulumi:"policyAuthConcurrent"`
+	PostLoginBanner                       *string                                   `pulumi:"postLoginBanner"`
+	PreLoginBanner                        *string                                   `pulumi:"preLoginBanner"`
+	PrivateDataEncryption                 *string                                   `pulumi:"privateDataEncryption"`
+	ProxyAuthLifetime                     *string                                   `pulumi:"proxyAuthLifetime"`
+	ProxyAuthLifetimeTimeout              *int                                      `pulumi:"proxyAuthLifetimeTimeout"`
+	ProxyAuthTimeout                      *int                                      `pulumi:"proxyAuthTimeout"`
+	ProxyCertUseMgmtVdom                  *string                                   `pulumi:"proxyCertUseMgmtVdom"`
+	ProxyCipherHardwareAcceleration       *string                                   `pulumi:"proxyCipherHardwareAcceleration"`
+	ProxyHardwareAcceleration             *string                                   `pulumi:"proxyHardwareAcceleration"`
+	ProxyKeepAliveMode                    *string                                   `pulumi:"proxyKeepAliveMode"`
+	ProxyKxpHardwareAcceleration          *string                                   `pulumi:"proxyKxpHardwareAcceleration"`
+	ProxyReAuthenticationMode             *string                                   `pulumi:"proxyReAuthenticationMode"`
+	ProxyReAuthenticationTime             *int                                      `pulumi:"proxyReAuthenticationTime"`
+	ProxyResourceMode                     *string                                   `pulumi:"proxyResourceMode"`
+	ProxyWorkerCount                      *int                                      `pulumi:"proxyWorkerCount"`
+	RadiusPort                            *int                                      `pulumi:"radiusPort"`
+	RebootUponConfigRestore               *string                                   `pulumi:"rebootUponConfigRestore"`
+	Refresh                               *int                                      `pulumi:"refresh"`
+	Remoteauthtimeout                     *int                                      `pulumi:"remoteauthtimeout"`
+	ResetSessionlessTcp                   *string                                   `pulumi:"resetSessionlessTcp"`
+	RestartTime                           *string                                   `pulumi:"restartTime"`
+	RevisionBackupOnLogout                *string                                   `pulumi:"revisionBackupOnLogout"`
+	RevisionImageAutoBackup               *string                                   `pulumi:"revisionImageAutoBackup"`
+	ScanunitCount                         *int                                      `pulumi:"scanunitCount"`
+	SecurityRatingResultSubmission        *string                                   `pulumi:"securityRatingResultSubmission"`
+	SecurityRatingRunOnSchedule           *string                                   `pulumi:"securityRatingRunOnSchedule"`
+	SendPmtuIcmp                          *string                                   `pulumi:"sendPmtuIcmp"`
+	SflowdMaxChildrenNum                  *int                                      `pulumi:"sflowdMaxChildrenNum"`
+	SnatRouteChange                       *string                                   `pulumi:"snatRouteChange"`
+	SpecialFile23Support                  *string                                   `pulumi:"specialFile23Support"`
+	SpeedtestServer                       *string                                   `pulumi:"speedtestServer"`
+	SplitPort                             *string                                   `pulumi:"splitPort"`
+	SsdTrimDate                           *int                                      `pulumi:"ssdTrimDate"`
+	SsdTrimFreq                           *string                                   `pulumi:"ssdTrimFreq"`
+	SsdTrimHour                           *int                                      `pulumi:"ssdTrimHour"`
+	SsdTrimMin                            *int                                      `pulumi:"ssdTrimMin"`
+	SsdTrimWeekday                        *string                                   `pulumi:"ssdTrimWeekday"`
+	SshCbcCipher                          *string                                   `pulumi:"sshCbcCipher"`
+	SshEncAlgo                            *string                                   `pulumi:"sshEncAlgo"`
+	SshHmacMd5                            *string                                   `pulumi:"sshHmacMd5"`
+	SshHostkeyAlgo                        *string                                   `pulumi:"sshHostkeyAlgo"`
+	SshKexAlgo                            *string                                   `pulumi:"sshKexAlgo"`
+	SshKexSha1                            *string                                   `pulumi:"sshKexSha1"`
+	SshMacAlgo                            *string                                   `pulumi:"sshMacAlgo"`
+	SshMacWeak                            *string                                   `pulumi:"sshMacWeak"`
+	SslMinProtoVersion                    *string                                   `pulumi:"sslMinProtoVersion"`
+	SslStaticKeyCiphers                   *string                                   `pulumi:"sslStaticKeyCiphers"`
+	SslvpnCipherHardwareAcceleration      *string                                   `pulumi:"sslvpnCipherHardwareAcceleration"`
+	SslvpnEmsSnCheck                      *string                                   `pulumi:"sslvpnEmsSnCheck"`
+	SslvpnKxpHardwareAcceleration         *string                                   `pulumi:"sslvpnKxpHardwareAcceleration"`
+	SslvpnMaxWorkerCount                  *int                                      `pulumi:"sslvpnMaxWorkerCount"`
+	SslvpnPluginVersionCheck              *string                                   `pulumi:"sslvpnPluginVersionCheck"`
+	StrictDirtySessionCheck               *string                                   `pulumi:"strictDirtySessionCheck"`
+	StrongCrypto                          *string                                   `pulumi:"strongCrypto"`
+	SwitchController                      *string                                   `pulumi:"switchController"`
+	SwitchControllerReservedNetwork       *string                                   `pulumi:"switchControllerReservedNetwork"`
+	SysPerfLogInterval                    *int                                      `pulumi:"sysPerfLogInterval"`
+	SyslogAffinity                        *string                                   `pulumi:"syslogAffinity"`
+	TcpHalfcloseTimer                     *int                                      `pulumi:"tcpHalfcloseTimer"`
+	TcpHalfopenTimer                      *int                                      `pulumi:"tcpHalfopenTimer"`
+	TcpOption                             *string                                   `pulumi:"tcpOption"`
+	TcpRstTimer                           *int                                      `pulumi:"tcpRstTimer"`
+	TcpTimewaitTimer                      *int                                      `pulumi:"tcpTimewaitTimer"`
+	Tftp                                  *string                                   `pulumi:"tftp"`
+	Timezone                              *string                                   `pulumi:"timezone"`
+	TpMcSkipPolicy                        *string                                   `pulumi:"tpMcSkipPolicy"`
+	TrafficPriority                       *string                                   `pulumi:"trafficPriority"`
+	TrafficPriorityLevel                  *string                                   `pulumi:"trafficPriorityLevel"`
+	TwoFactorEmailExpiry                  *int                                      `pulumi:"twoFactorEmailExpiry"`
+	TwoFactorFacExpiry                    *int                                      `pulumi:"twoFactorFacExpiry"`
+	TwoFactorFtkExpiry                    *int                                      `pulumi:"twoFactorFtkExpiry"`
+	TwoFactorFtmExpiry                    *int                                      `pulumi:"twoFactorFtmExpiry"`
+	TwoFactorSmsExpiry                    *int                                      `pulumi:"twoFactorSmsExpiry"`
+	UdpIdleTimer                          *int                                      `pulumi:"udpIdleTimer"`
+	UrlFilterAffinity                     *string                                   `pulumi:"urlFilterAffinity"`
+	UrlFilterCount                        *int                                      `pulumi:"urlFilterCount"`
+	UserDeviceStoreMaxDevices             *int                                      `pulumi:"userDeviceStoreMaxDevices"`
+	UserDeviceStoreMaxUnifiedMem          *int                                      `pulumi:"userDeviceStoreMaxUnifiedMem"`
+	UserDeviceStoreMaxUsers               *int                                      `pulumi:"userDeviceStoreMaxUsers"`
+	UserServerCert                        *string                                   `pulumi:"userServerCert"`
+	VdomAdmin                             *string                                   `pulumi:"vdomAdmin"`
+	VdomMode                              *string                                   `pulumi:"vdomMode"`
+	Vdomparam                             *string                                   `pulumi:"vdomparam"`
+	VipArpRange                           *string                                   `pulumi:"vipArpRange"`
+	VirtualServerCount                    *int                                      `pulumi:"virtualServerCount"`
+	VirtualServerHardwareAcceleration     *string                                   `pulumi:"virtualServerHardwareAcceleration"`
+	VirtualSwitchVlan                     *string                                   `pulumi:"virtualSwitchVlan"`
+	VpnEmsSnCheck                         *string                                   `pulumi:"vpnEmsSnCheck"`
+	WadAffinity                           *string                                   `pulumi:"wadAffinity"`
+	WadCsvcCsCount                        *int                                      `pulumi:"wadCsvcCsCount"`
+	WadCsvcDbCount                        *int                                      `pulumi:"wadCsvcDbCount"`
+	WadMemoryChangeGranularity            *int                                      `pulumi:"wadMemoryChangeGranularity"`
+	WadRestartEndTime                     *string                                   `pulumi:"wadRestartEndTime"`
+	WadRestartMode                        *string                                   `pulumi:"wadRestartMode"`
+	WadRestartStartTime                   *string                                   `pulumi:"wadRestartStartTime"`
+	WadSourceAffinity                     *string                                   `pulumi:"wadSourceAffinity"`
+	WadWorkerCount                        *int                                      `pulumi:"wadWorkerCount"`
+	WifiCaCertificate                     *string                                   `pulumi:"wifiCaCertificate"`
+	WifiCertificate                       *string                                   `pulumi:"wifiCertificate"`
+	Wimax4gUsb                            *string                                   `pulumi:"wimax4gUsb"`
+	WirelessController                    *string                                   `pulumi:"wirelessController"`
+	WirelessControllerPort                *int                                      `pulumi:"wirelessControllerPort"`
 }
 
 type SystemGlobalState struct {
 	AdminConcurrent                       pulumi.StringPtrInput
 	AdminConsoleTimeout                   pulumi.IntPtrInput
+	AdminForticloudSsoDefaultProfile      pulumi.StringPtrInput
 	AdminForticloudSsoLogin               pulumi.StringPtrInput
 	AdminHost                             pulumi.StringPtrInput
 	AdminHstsMaxAge                       pulumi.IntPtrInput
@@ -611,6 +653,7 @@ type SystemGlobalState struct {
 	DhParams                              pulumi.StringPtrInput
 	DnsproxyWorkerCount                   pulumi.IntPtrInput
 	Dst                                   pulumi.StringPtrInput
+	DynamicSortSubtable                   pulumi.StringPtrInput
 	EarlyTcpNpuSession                    pulumi.StringPtrInput
 	EditVdomPrompt                        pulumi.StringPtrInput
 	EndpointControlFdsAccess              pulumi.StringPtrInput
@@ -622,6 +665,8 @@ type SystemGlobalState struct {
 	FdsStatisticsPeriod                   pulumi.IntPtrInput
 	FecPort                               pulumi.IntPtrInput
 	FgdAlertSubscription                  pulumi.StringPtrInput
+	ForticonverterConfigUpload            pulumi.StringPtrInput
+	ForticonverterIntegration             pulumi.StringPtrInput
 	Fortiextender                         pulumi.StringPtrInput
 	FortiextenderDataPort                 pulumi.IntPtrInput
 	FortiextenderDiscoveryLockdown        pulumi.StringPtrInput
@@ -630,8 +675,11 @@ type SystemGlobalState struct {
 	FortiipamIntegration                  pulumi.StringPtrInput
 	FortiservicePort                      pulumi.IntPtrInput
 	FortitokenCloud                       pulumi.StringPtrInput
+	GetAllTables                          pulumi.StringPtrInput
 	GuiAllowDefaultHostname               pulumi.StringPtrInput
+	GuiAllowIncompatibleFabricFgt         pulumi.StringPtrInput
 	GuiAppDetectionSdwan                  pulumi.StringPtrInput
+	GuiCdnDomainOverride                  pulumi.StringPtrInput
 	GuiCdnUsage                           pulumi.StringPtrInput
 	GuiCertificates                       pulumi.StringPtrInput
 	GuiCustomLanguage                     pulumi.StringPtrInput
@@ -659,8 +707,11 @@ type SystemGlobalState struct {
 	Hostname                              pulumi.StringPtrInput
 	IgmpStateLimit                        pulumi.IntPtrInput
 	IkeEmbryonicLimit                     pulumi.IntPtrInput
+	InterfaceSubnetUsage                  pulumi.StringPtrInput
 	InternetServiceDatabase               pulumi.StringPtrInput
+	InternetServiceDownloadLists          SystemGlobalInternetServiceDownloadListArrayInput
 	Interval                              pulumi.IntPtrInput
+	IpFragmentMemThresholds               pulumi.IntPtrInput
 	IpSrcPortRange                        pulumi.StringPtrInput
 	IpsAffinity                           pulumi.StringPtrInput
 	IpsecAsicOffload                      pulumi.StringPtrInput
@@ -678,6 +729,7 @@ type SystemGlobalState struct {
 	Ldapconntimeout                       pulumi.IntPtrInput
 	LldpReception                         pulumi.StringPtrInput
 	LldpTransmission                      pulumi.StringPtrInput
+	LogSingleCpuHigh                      pulumi.StringPtrInput
 	LogSslConnection                      pulumi.StringPtrInput
 	LogUuidAddress                        pulumi.StringPtrInput
 	LogUuidPolicy                         pulumi.StringPtrInput
@@ -711,8 +763,10 @@ type SystemGlobalState struct {
 	ProxyCertUseMgmtVdom                  pulumi.StringPtrInput
 	ProxyCipherHardwareAcceleration       pulumi.StringPtrInput
 	ProxyHardwareAcceleration             pulumi.StringPtrInput
+	ProxyKeepAliveMode                    pulumi.StringPtrInput
 	ProxyKxpHardwareAcceleration          pulumi.StringPtrInput
 	ProxyReAuthenticationMode             pulumi.StringPtrInput
+	ProxyReAuthenticationTime             pulumi.IntPtrInput
 	ProxyResourceMode                     pulumi.StringPtrInput
 	ProxyWorkerCount                      pulumi.IntPtrInput
 	RadiusPort                            pulumi.IntPtrInput
@@ -727,6 +781,7 @@ type SystemGlobalState struct {
 	SecurityRatingResultSubmission        pulumi.StringPtrInput
 	SecurityRatingRunOnSchedule           pulumi.StringPtrInput
 	SendPmtuIcmp                          pulumi.StringPtrInput
+	SflowdMaxChildrenNum                  pulumi.IntPtrInput
 	SnatRouteChange                       pulumi.StringPtrInput
 	SpecialFile23Support                  pulumi.StringPtrInput
 	SpeedtestServer                       pulumi.StringPtrInput
@@ -739,6 +794,7 @@ type SystemGlobalState struct {
 	SshCbcCipher                          pulumi.StringPtrInput
 	SshEncAlgo                            pulumi.StringPtrInput
 	SshHmacMd5                            pulumi.StringPtrInput
+	SshHostkeyAlgo                        pulumi.StringPtrInput
 	SshKexAlgo                            pulumi.StringPtrInput
 	SshKexSha1                            pulumi.StringPtrInput
 	SshMacAlgo                            pulumi.StringPtrInput
@@ -755,6 +811,7 @@ type SystemGlobalState struct {
 	SwitchController                      pulumi.StringPtrInput
 	SwitchControllerReservedNetwork       pulumi.StringPtrInput
 	SysPerfLogInterval                    pulumi.IntPtrInput
+	SyslogAffinity                        pulumi.StringPtrInput
 	TcpHalfcloseTimer                     pulumi.IntPtrInput
 	TcpHalfopenTimer                      pulumi.IntPtrInput
 	TcpOption                             pulumi.StringPtrInput
@@ -784,10 +841,14 @@ type SystemGlobalState struct {
 	VirtualServerCount                    pulumi.IntPtrInput
 	VirtualServerHardwareAcceleration     pulumi.StringPtrInput
 	VirtualSwitchVlan                     pulumi.StringPtrInput
+	VpnEmsSnCheck                         pulumi.StringPtrInput
 	WadAffinity                           pulumi.StringPtrInput
 	WadCsvcCsCount                        pulumi.IntPtrInput
 	WadCsvcDbCount                        pulumi.IntPtrInput
 	WadMemoryChangeGranularity            pulumi.IntPtrInput
+	WadRestartEndTime                     pulumi.StringPtrInput
+	WadRestartMode                        pulumi.StringPtrInput
+	WadRestartStartTime                   pulumi.StringPtrInput
 	WadSourceAffinity                     pulumi.StringPtrInput
 	WadWorkerCount                        pulumi.IntPtrInput
 	WifiCaCertificate                     pulumi.StringPtrInput
@@ -802,261 +863,282 @@ func (SystemGlobalState) ElementType() reflect.Type {
 }
 
 type systemGlobalArgs struct {
-	AdminConcurrent                       *string `pulumi:"adminConcurrent"`
-	AdminConsoleTimeout                   *int    `pulumi:"adminConsoleTimeout"`
-	AdminForticloudSsoLogin               *string `pulumi:"adminForticloudSsoLogin"`
-	AdminHost                             *string `pulumi:"adminHost"`
-	AdminHstsMaxAge                       *int    `pulumi:"adminHstsMaxAge"`
-	AdminHttpsPkiRequired                 *string `pulumi:"adminHttpsPkiRequired"`
-	AdminHttpsRedirect                    *string `pulumi:"adminHttpsRedirect"`
-	AdminHttpsSslBannedCiphers            *string `pulumi:"adminHttpsSslBannedCiphers"`
-	AdminHttpsSslCiphersuites             *string `pulumi:"adminHttpsSslCiphersuites"`
-	AdminHttpsSslVersions                 *string `pulumi:"adminHttpsSslVersions"`
-	AdminLockoutDuration                  *int    `pulumi:"adminLockoutDuration"`
-	AdminLockoutThreshold                 *int    `pulumi:"adminLockoutThreshold"`
-	AdminLoginMax                         *int    `pulumi:"adminLoginMax"`
-	AdminMaintainer                       *string `pulumi:"adminMaintainer"`
-	AdminPort                             *int    `pulumi:"adminPort"`
-	AdminRestrictLocal                    *string `pulumi:"adminRestrictLocal"`
-	AdminScp                              *string `pulumi:"adminScp"`
-	AdminServerCert                       *string `pulumi:"adminServerCert"`
-	AdminSport                            *int    `pulumi:"adminSport"`
-	AdminSshGraceTime                     *int    `pulumi:"adminSshGraceTime"`
-	AdminSshPassword                      *string `pulumi:"adminSshPassword"`
-	AdminSshPort                          *int    `pulumi:"adminSshPort"`
-	AdminSshV1                            *string `pulumi:"adminSshV1"`
-	AdminTelnet                           *string `pulumi:"adminTelnet"`
-	AdminTelnetPort                       *int    `pulumi:"adminTelnetPort"`
-	Admintimeout                          *int    `pulumi:"admintimeout"`
-	Alias                                 *string `pulumi:"alias"`
-	AllowTrafficRedirect                  *string `pulumi:"allowTrafficRedirect"`
-	AntiReplay                            *string `pulumi:"antiReplay"`
-	ArpMaxEntry                           *int    `pulumi:"arpMaxEntry"`
-	Asymroute                             *string `pulumi:"asymroute"`
-	AuthCert                              *string `pulumi:"authCert"`
-	AuthHttpPort                          *int    `pulumi:"authHttpPort"`
-	AuthHttpsPort                         *int    `pulumi:"authHttpsPort"`
-	AuthIkeSamlPort                       *int    `pulumi:"authIkeSamlPort"`
-	AuthKeepalive                         *string `pulumi:"authKeepalive"`
-	AuthSessionLimit                      *string `pulumi:"authSessionLimit"`
-	AutoAuthExtensionDevice               *string `pulumi:"autoAuthExtensionDevice"`
-	AutorunLogFsck                        *string `pulumi:"autorunLogFsck"`
-	AvAffinity                            *string `pulumi:"avAffinity"`
-	AvFailopen                            *string `pulumi:"avFailopen"`
-	AvFailopenSession                     *string `pulumi:"avFailopenSession"`
-	BatchCmdb                             *string `pulumi:"batchCmdb"`
-	BlockSessionTimer                     *int    `pulumi:"blockSessionTimer"`
-	BrFdbMaxEntry                         *int    `pulumi:"brFdbMaxEntry"`
-	CertChainMax                          *int    `pulumi:"certChainMax"`
-	CfgRevertTimeout                      *int    `pulumi:"cfgRevertTimeout"`
-	CfgSave                               *string `pulumi:"cfgSave"`
-	CheckProtocolHeader                   *string `pulumi:"checkProtocolHeader"`
-	CheckResetRange                       *string `pulumi:"checkResetRange"`
-	CliAuditLog                           *string `pulumi:"cliAuditLog"`
-	CloudCommunication                    *string `pulumi:"cloudCommunication"`
-	CltCertReq                            *string `pulumi:"cltCertReq"`
-	CmdbsvrAffinity                       *string `pulumi:"cmdbsvrAffinity"`
-	ComplianceCheck                       *string `pulumi:"complianceCheck"`
-	ComplianceCheckTime                   *string `pulumi:"complianceCheckTime"`
-	CpuUseThreshold                       *int    `pulumi:"cpuUseThreshold"`
-	CsrCaAttribute                        *string `pulumi:"csrCaAttribute"`
-	DailyRestart                          *string `pulumi:"dailyRestart"`
-	DefaultServiceSourcePort              *string `pulumi:"defaultServiceSourcePort"`
-	DeviceIdentificationActiveScanDelay   *int    `pulumi:"deviceIdentificationActiveScanDelay"`
-	DeviceIdleTimeout                     *int    `pulumi:"deviceIdleTimeout"`
-	DhParams                              *string `pulumi:"dhParams"`
-	DnsproxyWorkerCount                   *int    `pulumi:"dnsproxyWorkerCount"`
-	Dst                                   *string `pulumi:"dst"`
-	EarlyTcpNpuSession                    *string `pulumi:"earlyTcpNpuSession"`
-	EditVdomPrompt                        *string `pulumi:"editVdomPrompt"`
-	EndpointControlFdsAccess              *string `pulumi:"endpointControlFdsAccess"`
-	EndpointControlPortalPort             *int    `pulumi:"endpointControlPortalPort"`
-	ExtenderControllerReservedNetwork     *string `pulumi:"extenderControllerReservedNetwork"`
-	Failtime                              *int    `pulumi:"failtime"`
-	FazDiskBufferSize                     *int    `pulumi:"fazDiskBufferSize"`
-	FdsStatistics                         *string `pulumi:"fdsStatistics"`
-	FdsStatisticsPeriod                   *int    `pulumi:"fdsStatisticsPeriod"`
-	FecPort                               *int    `pulumi:"fecPort"`
-	FgdAlertSubscription                  *string `pulumi:"fgdAlertSubscription"`
-	Fortiextender                         *string `pulumi:"fortiextender"`
-	FortiextenderDataPort                 *int    `pulumi:"fortiextenderDataPort"`
-	FortiextenderDiscoveryLockdown        *string `pulumi:"fortiextenderDiscoveryLockdown"`
-	FortiextenderProvisionOnAuthorization *string `pulumi:"fortiextenderProvisionOnAuthorization"`
-	FortiextenderVlanMode                 *string `pulumi:"fortiextenderVlanMode"`
-	FortiipamIntegration                  *string `pulumi:"fortiipamIntegration"`
-	FortiservicePort                      *int    `pulumi:"fortiservicePort"`
-	FortitokenCloud                       *string `pulumi:"fortitokenCloud"`
-	GuiAllowDefaultHostname               *string `pulumi:"guiAllowDefaultHostname"`
-	GuiAppDetectionSdwan                  *string `pulumi:"guiAppDetectionSdwan"`
-	GuiCdnUsage                           *string `pulumi:"guiCdnUsage"`
-	GuiCertificates                       *string `pulumi:"guiCertificates"`
-	GuiCustomLanguage                     *string `pulumi:"guiCustomLanguage"`
-	GuiDateFormat                         *string `pulumi:"guiDateFormat"`
-	GuiDateTimeSource                     *string `pulumi:"guiDateTimeSource"`
-	GuiDeviceLatitude                     *string `pulumi:"guiDeviceLatitude"`
-	GuiDeviceLongitude                    *string `pulumi:"guiDeviceLongitude"`
-	GuiDisplayHostname                    *string `pulumi:"guiDisplayHostname"`
-	GuiFirmwareUpgradeSetupWarning        *string `pulumi:"guiFirmwareUpgradeSetupWarning"`
-	GuiFirmwareUpgradeWarning             *string `pulumi:"guiFirmwareUpgradeWarning"`
-	GuiForticareRegistrationSetupWarning  *string `pulumi:"guiForticareRegistrationSetupWarning"`
-	GuiFortigateCloudSandbox              *string `pulumi:"guiFortigateCloudSandbox"`
-	GuiFortiguardResourceFetch            *string `pulumi:"guiFortiguardResourceFetch"`
-	GuiFortisandboxCloud                  *string `pulumi:"guiFortisandboxCloud"`
-	GuiIpv6                               *string `pulumi:"guiIpv6"`
-	GuiLinesPerPage                       *int    `pulumi:"guiLinesPerPage"`
-	GuiLocalOut                           *string `pulumi:"guiLocalOut"`
-	GuiReplacementMessageGroups           *string `pulumi:"guiReplacementMessageGroups"`
-	GuiRestApiCache                       *string `pulumi:"guiRestApiCache"`
-	GuiTheme                              *string `pulumi:"guiTheme"`
-	GuiWirelessOpensecurity               *string `pulumi:"guiWirelessOpensecurity"`
-	GuiWorkflowManagement                 *string `pulumi:"guiWorkflowManagement"`
-	HaAffinity                            *string `pulumi:"haAffinity"`
-	HonorDf                               *string `pulumi:"honorDf"`
-	Hostname                              *string `pulumi:"hostname"`
-	IgmpStateLimit                        *int    `pulumi:"igmpStateLimit"`
-	IkeEmbryonicLimit                     *int    `pulumi:"ikeEmbryonicLimit"`
-	InternetServiceDatabase               *string `pulumi:"internetServiceDatabase"`
-	Interval                              *int    `pulumi:"interval"`
-	IpSrcPortRange                        *string `pulumi:"ipSrcPortRange"`
-	IpsAffinity                           *string `pulumi:"ipsAffinity"`
-	IpsecAsicOffload                      *string `pulumi:"ipsecAsicOffload"`
-	IpsecHaSeqjumpRate                    *int    `pulumi:"ipsecHaSeqjumpRate"`
-	IpsecHmacOffload                      *string `pulumi:"ipsecHmacOffload"`
-	IpsecRoundRobin                       *string `pulumi:"ipsecRoundRobin"`
-	IpsecSoftDecAsync                     *string `pulumi:"ipsecSoftDecAsync"`
-	Ipv6AcceptDad                         *int    `pulumi:"ipv6AcceptDad"`
-	Ipv6AllowAnycastProbe                 *string `pulumi:"ipv6AllowAnycastProbe"`
-	Ipv6AllowLocalInSlientDrop            *string `pulumi:"ipv6AllowLocalInSlientDrop"`
-	Ipv6AllowMulticastProbe               *string `pulumi:"ipv6AllowMulticastProbe"`
-	Ipv6AllowTrafficRedirect              *string `pulumi:"ipv6AllowTrafficRedirect"`
-	IrqTimeAccounting                     *string `pulumi:"irqTimeAccounting"`
-	Language                              *string `pulumi:"language"`
-	Ldapconntimeout                       *int    `pulumi:"ldapconntimeout"`
-	LldpReception                         *string `pulumi:"lldpReception"`
-	LldpTransmission                      *string `pulumi:"lldpTransmission"`
-	LogSslConnection                      *string `pulumi:"logSslConnection"`
-	LogUuidAddress                        *string `pulumi:"logUuidAddress"`
-	LogUuidPolicy                         *string `pulumi:"logUuidPolicy"`
-	LoginTimestamp                        *string `pulumi:"loginTimestamp"`
-	LongVdomName                          *string `pulumi:"longVdomName"`
-	ManagementIp                          *string `pulumi:"managementIp"`
-	ManagementPort                        *int    `pulumi:"managementPort"`
-	ManagementPortUseAdminSport           *string `pulumi:"managementPortUseAdminSport"`
-	ManagementVdom                        *string `pulumi:"managementVdom"`
-	MaxDlpstatMemory                      *int    `pulumi:"maxDlpstatMemory"`
-	MaxRouteCacheSize                     *int    `pulumi:"maxRouteCacheSize"`
-	McTtlNotchange                        *string `pulumi:"mcTtlNotchange"`
-	MemoryUseThresholdExtreme             *int    `pulumi:"memoryUseThresholdExtreme"`
-	MemoryUseThresholdGreen               *int    `pulumi:"memoryUseThresholdGreen"`
-	MemoryUseThresholdRed                 *int    `pulumi:"memoryUseThresholdRed"`
-	MiglogAffinity                        *string `pulumi:"miglogAffinity"`
-	MiglogdChildren                       *int    `pulumi:"miglogdChildren"`
-	MultiFactorAuthentication             *string `pulumi:"multiFactorAuthentication"`
-	MulticastForward                      *string `pulumi:"multicastForward"`
-	NdpMaxEntry                           *int    `pulumi:"ndpMaxEntry"`
-	PerUserBal                            *string `pulumi:"perUserBal"`
-	PerUserBwl                            *string `pulumi:"perUserBwl"`
-	PmtuDiscovery                         *string `pulumi:"pmtuDiscovery"`
-	PolicyAuthConcurrent                  *int    `pulumi:"policyAuthConcurrent"`
-	PostLoginBanner                       *string `pulumi:"postLoginBanner"`
-	PreLoginBanner                        *string `pulumi:"preLoginBanner"`
-	PrivateDataEncryption                 *string `pulumi:"privateDataEncryption"`
-	ProxyAuthLifetime                     *string `pulumi:"proxyAuthLifetime"`
-	ProxyAuthLifetimeTimeout              *int    `pulumi:"proxyAuthLifetimeTimeout"`
-	ProxyAuthTimeout                      *int    `pulumi:"proxyAuthTimeout"`
-	ProxyCertUseMgmtVdom                  *string `pulumi:"proxyCertUseMgmtVdom"`
-	ProxyCipherHardwareAcceleration       *string `pulumi:"proxyCipherHardwareAcceleration"`
-	ProxyHardwareAcceleration             *string `pulumi:"proxyHardwareAcceleration"`
-	ProxyKxpHardwareAcceleration          *string `pulumi:"proxyKxpHardwareAcceleration"`
-	ProxyReAuthenticationMode             *string `pulumi:"proxyReAuthenticationMode"`
-	ProxyResourceMode                     *string `pulumi:"proxyResourceMode"`
-	ProxyWorkerCount                      *int    `pulumi:"proxyWorkerCount"`
-	RadiusPort                            *int    `pulumi:"radiusPort"`
-	RebootUponConfigRestore               *string `pulumi:"rebootUponConfigRestore"`
-	Refresh                               *int    `pulumi:"refresh"`
-	Remoteauthtimeout                     *int    `pulumi:"remoteauthtimeout"`
-	ResetSessionlessTcp                   *string `pulumi:"resetSessionlessTcp"`
-	RestartTime                           *string `pulumi:"restartTime"`
-	RevisionBackupOnLogout                *string `pulumi:"revisionBackupOnLogout"`
-	RevisionImageAutoBackup               *string `pulumi:"revisionImageAutoBackup"`
-	ScanunitCount                         *int    `pulumi:"scanunitCount"`
-	SecurityRatingResultSubmission        *string `pulumi:"securityRatingResultSubmission"`
-	SecurityRatingRunOnSchedule           *string `pulumi:"securityRatingRunOnSchedule"`
-	SendPmtuIcmp                          *string `pulumi:"sendPmtuIcmp"`
-	SnatRouteChange                       *string `pulumi:"snatRouteChange"`
-	SpecialFile23Support                  *string `pulumi:"specialFile23Support"`
-	SpeedtestServer                       *string `pulumi:"speedtestServer"`
-	SplitPort                             *string `pulumi:"splitPort"`
-	SsdTrimDate                           *int    `pulumi:"ssdTrimDate"`
-	SsdTrimFreq                           *string `pulumi:"ssdTrimFreq"`
-	SsdTrimHour                           *int    `pulumi:"ssdTrimHour"`
-	SsdTrimMin                            *int    `pulumi:"ssdTrimMin"`
-	SsdTrimWeekday                        *string `pulumi:"ssdTrimWeekday"`
-	SshCbcCipher                          *string `pulumi:"sshCbcCipher"`
-	SshEncAlgo                            *string `pulumi:"sshEncAlgo"`
-	SshHmacMd5                            *string `pulumi:"sshHmacMd5"`
-	SshKexAlgo                            *string `pulumi:"sshKexAlgo"`
-	SshKexSha1                            *string `pulumi:"sshKexSha1"`
-	SshMacAlgo                            *string `pulumi:"sshMacAlgo"`
-	SshMacWeak                            *string `pulumi:"sshMacWeak"`
-	SslMinProtoVersion                    *string `pulumi:"sslMinProtoVersion"`
-	SslStaticKeyCiphers                   *string `pulumi:"sslStaticKeyCiphers"`
-	SslvpnCipherHardwareAcceleration      *string `pulumi:"sslvpnCipherHardwareAcceleration"`
-	SslvpnEmsSnCheck                      *string `pulumi:"sslvpnEmsSnCheck"`
-	SslvpnKxpHardwareAcceleration         *string `pulumi:"sslvpnKxpHardwareAcceleration"`
-	SslvpnMaxWorkerCount                  *int    `pulumi:"sslvpnMaxWorkerCount"`
-	SslvpnPluginVersionCheck              *string `pulumi:"sslvpnPluginVersionCheck"`
-	StrictDirtySessionCheck               *string `pulumi:"strictDirtySessionCheck"`
-	StrongCrypto                          *string `pulumi:"strongCrypto"`
-	SwitchController                      *string `pulumi:"switchController"`
-	SwitchControllerReservedNetwork       *string `pulumi:"switchControllerReservedNetwork"`
-	SysPerfLogInterval                    *int    `pulumi:"sysPerfLogInterval"`
-	TcpHalfcloseTimer                     *int    `pulumi:"tcpHalfcloseTimer"`
-	TcpHalfopenTimer                      *int    `pulumi:"tcpHalfopenTimer"`
-	TcpOption                             *string `pulumi:"tcpOption"`
-	TcpRstTimer                           *int    `pulumi:"tcpRstTimer"`
-	TcpTimewaitTimer                      *int    `pulumi:"tcpTimewaitTimer"`
-	Tftp                                  *string `pulumi:"tftp"`
-	Timezone                              *string `pulumi:"timezone"`
-	TpMcSkipPolicy                        *string `pulumi:"tpMcSkipPolicy"`
-	TrafficPriority                       *string `pulumi:"trafficPriority"`
-	TrafficPriorityLevel                  *string `pulumi:"trafficPriorityLevel"`
-	TwoFactorEmailExpiry                  *int    `pulumi:"twoFactorEmailExpiry"`
-	TwoFactorFacExpiry                    *int    `pulumi:"twoFactorFacExpiry"`
-	TwoFactorFtkExpiry                    *int    `pulumi:"twoFactorFtkExpiry"`
-	TwoFactorFtmExpiry                    *int    `pulumi:"twoFactorFtmExpiry"`
-	TwoFactorSmsExpiry                    *int    `pulumi:"twoFactorSmsExpiry"`
-	UdpIdleTimer                          *int    `pulumi:"udpIdleTimer"`
-	UrlFilterAffinity                     *string `pulumi:"urlFilterAffinity"`
-	UrlFilterCount                        *int    `pulumi:"urlFilterCount"`
-	UserDeviceStoreMaxDevices             *int    `pulumi:"userDeviceStoreMaxDevices"`
-	UserDeviceStoreMaxUnifiedMem          *int    `pulumi:"userDeviceStoreMaxUnifiedMem"`
-	UserDeviceStoreMaxUsers               *int    `pulumi:"userDeviceStoreMaxUsers"`
-	UserServerCert                        *string `pulumi:"userServerCert"`
-	VdomAdmin                             *string `pulumi:"vdomAdmin"`
-	VdomMode                              *string `pulumi:"vdomMode"`
-	Vdomparam                             *string `pulumi:"vdomparam"`
-	VipArpRange                           *string `pulumi:"vipArpRange"`
-	VirtualServerCount                    *int    `pulumi:"virtualServerCount"`
-	VirtualServerHardwareAcceleration     *string `pulumi:"virtualServerHardwareAcceleration"`
-	VirtualSwitchVlan                     *string `pulumi:"virtualSwitchVlan"`
-	WadAffinity                           *string `pulumi:"wadAffinity"`
-	WadCsvcCsCount                        *int    `pulumi:"wadCsvcCsCount"`
-	WadCsvcDbCount                        *int    `pulumi:"wadCsvcDbCount"`
-	WadMemoryChangeGranularity            *int    `pulumi:"wadMemoryChangeGranularity"`
-	WadSourceAffinity                     *string `pulumi:"wadSourceAffinity"`
-	WadWorkerCount                        *int    `pulumi:"wadWorkerCount"`
-	WifiCaCertificate                     *string `pulumi:"wifiCaCertificate"`
-	WifiCertificate                       *string `pulumi:"wifiCertificate"`
-	Wimax4gUsb                            *string `pulumi:"wimax4gUsb"`
-	WirelessController                    *string `pulumi:"wirelessController"`
-	WirelessControllerPort                *int    `pulumi:"wirelessControllerPort"`
+	AdminConcurrent                       *string                                   `pulumi:"adminConcurrent"`
+	AdminConsoleTimeout                   *int                                      `pulumi:"adminConsoleTimeout"`
+	AdminForticloudSsoDefaultProfile      *string                                   `pulumi:"adminForticloudSsoDefaultProfile"`
+	AdminForticloudSsoLogin               *string                                   `pulumi:"adminForticloudSsoLogin"`
+	AdminHost                             *string                                   `pulumi:"adminHost"`
+	AdminHstsMaxAge                       *int                                      `pulumi:"adminHstsMaxAge"`
+	AdminHttpsPkiRequired                 *string                                   `pulumi:"adminHttpsPkiRequired"`
+	AdminHttpsRedirect                    *string                                   `pulumi:"adminHttpsRedirect"`
+	AdminHttpsSslBannedCiphers            *string                                   `pulumi:"adminHttpsSslBannedCiphers"`
+	AdminHttpsSslCiphersuites             *string                                   `pulumi:"adminHttpsSslCiphersuites"`
+	AdminHttpsSslVersions                 *string                                   `pulumi:"adminHttpsSslVersions"`
+	AdminLockoutDuration                  *int                                      `pulumi:"adminLockoutDuration"`
+	AdminLockoutThreshold                 *int                                      `pulumi:"adminLockoutThreshold"`
+	AdminLoginMax                         *int                                      `pulumi:"adminLoginMax"`
+	AdminMaintainer                       *string                                   `pulumi:"adminMaintainer"`
+	AdminPort                             *int                                      `pulumi:"adminPort"`
+	AdminRestrictLocal                    *string                                   `pulumi:"adminRestrictLocal"`
+	AdminScp                              *string                                   `pulumi:"adminScp"`
+	AdminServerCert                       *string                                   `pulumi:"adminServerCert"`
+	AdminSport                            *int                                      `pulumi:"adminSport"`
+	AdminSshGraceTime                     *int                                      `pulumi:"adminSshGraceTime"`
+	AdminSshPassword                      *string                                   `pulumi:"adminSshPassword"`
+	AdminSshPort                          *int                                      `pulumi:"adminSshPort"`
+	AdminSshV1                            *string                                   `pulumi:"adminSshV1"`
+	AdminTelnet                           *string                                   `pulumi:"adminTelnet"`
+	AdminTelnetPort                       *int                                      `pulumi:"adminTelnetPort"`
+	Admintimeout                          *int                                      `pulumi:"admintimeout"`
+	Alias                                 *string                                   `pulumi:"alias"`
+	AllowTrafficRedirect                  *string                                   `pulumi:"allowTrafficRedirect"`
+	AntiReplay                            *string                                   `pulumi:"antiReplay"`
+	ArpMaxEntry                           *int                                      `pulumi:"arpMaxEntry"`
+	Asymroute                             *string                                   `pulumi:"asymroute"`
+	AuthCert                              *string                                   `pulumi:"authCert"`
+	AuthHttpPort                          *int                                      `pulumi:"authHttpPort"`
+	AuthHttpsPort                         *int                                      `pulumi:"authHttpsPort"`
+	AuthIkeSamlPort                       *int                                      `pulumi:"authIkeSamlPort"`
+	AuthKeepalive                         *string                                   `pulumi:"authKeepalive"`
+	AuthSessionLimit                      *string                                   `pulumi:"authSessionLimit"`
+	AutoAuthExtensionDevice               *string                                   `pulumi:"autoAuthExtensionDevice"`
+	AutorunLogFsck                        *string                                   `pulumi:"autorunLogFsck"`
+	AvAffinity                            *string                                   `pulumi:"avAffinity"`
+	AvFailopen                            *string                                   `pulumi:"avFailopen"`
+	AvFailopenSession                     *string                                   `pulumi:"avFailopenSession"`
+	BatchCmdb                             *string                                   `pulumi:"batchCmdb"`
+	BlockSessionTimer                     *int                                      `pulumi:"blockSessionTimer"`
+	BrFdbMaxEntry                         *int                                      `pulumi:"brFdbMaxEntry"`
+	CertChainMax                          *int                                      `pulumi:"certChainMax"`
+	CfgRevertTimeout                      *int                                      `pulumi:"cfgRevertTimeout"`
+	CfgSave                               *string                                   `pulumi:"cfgSave"`
+	CheckProtocolHeader                   *string                                   `pulumi:"checkProtocolHeader"`
+	CheckResetRange                       *string                                   `pulumi:"checkResetRange"`
+	CliAuditLog                           *string                                   `pulumi:"cliAuditLog"`
+	CloudCommunication                    *string                                   `pulumi:"cloudCommunication"`
+	CltCertReq                            *string                                   `pulumi:"cltCertReq"`
+	CmdbsvrAffinity                       *string                                   `pulumi:"cmdbsvrAffinity"`
+	ComplianceCheck                       *string                                   `pulumi:"complianceCheck"`
+	ComplianceCheckTime                   *string                                   `pulumi:"complianceCheckTime"`
+	CpuUseThreshold                       *int                                      `pulumi:"cpuUseThreshold"`
+	CsrCaAttribute                        *string                                   `pulumi:"csrCaAttribute"`
+	DailyRestart                          *string                                   `pulumi:"dailyRestart"`
+	DefaultServiceSourcePort              *string                                   `pulumi:"defaultServiceSourcePort"`
+	DeviceIdentificationActiveScanDelay   *int                                      `pulumi:"deviceIdentificationActiveScanDelay"`
+	DeviceIdleTimeout                     *int                                      `pulumi:"deviceIdleTimeout"`
+	DhParams                              *string                                   `pulumi:"dhParams"`
+	DnsproxyWorkerCount                   *int                                      `pulumi:"dnsproxyWorkerCount"`
+	Dst                                   *string                                   `pulumi:"dst"`
+	DynamicSortSubtable                   *string                                   `pulumi:"dynamicSortSubtable"`
+	EarlyTcpNpuSession                    *string                                   `pulumi:"earlyTcpNpuSession"`
+	EditVdomPrompt                        *string                                   `pulumi:"editVdomPrompt"`
+	EndpointControlFdsAccess              *string                                   `pulumi:"endpointControlFdsAccess"`
+	EndpointControlPortalPort             *int                                      `pulumi:"endpointControlPortalPort"`
+	ExtenderControllerReservedNetwork     *string                                   `pulumi:"extenderControllerReservedNetwork"`
+	Failtime                              *int                                      `pulumi:"failtime"`
+	FazDiskBufferSize                     *int                                      `pulumi:"fazDiskBufferSize"`
+	FdsStatistics                         *string                                   `pulumi:"fdsStatistics"`
+	FdsStatisticsPeriod                   *int                                      `pulumi:"fdsStatisticsPeriod"`
+	FecPort                               *int                                      `pulumi:"fecPort"`
+	FgdAlertSubscription                  *string                                   `pulumi:"fgdAlertSubscription"`
+	ForticonverterConfigUpload            *string                                   `pulumi:"forticonverterConfigUpload"`
+	ForticonverterIntegration             *string                                   `pulumi:"forticonverterIntegration"`
+	Fortiextender                         *string                                   `pulumi:"fortiextender"`
+	FortiextenderDataPort                 *int                                      `pulumi:"fortiextenderDataPort"`
+	FortiextenderDiscoveryLockdown        *string                                   `pulumi:"fortiextenderDiscoveryLockdown"`
+	FortiextenderProvisionOnAuthorization *string                                   `pulumi:"fortiextenderProvisionOnAuthorization"`
+	FortiextenderVlanMode                 *string                                   `pulumi:"fortiextenderVlanMode"`
+	FortiipamIntegration                  *string                                   `pulumi:"fortiipamIntegration"`
+	FortiservicePort                      *int                                      `pulumi:"fortiservicePort"`
+	FortitokenCloud                       *string                                   `pulumi:"fortitokenCloud"`
+	GetAllTables                          *string                                   `pulumi:"getAllTables"`
+	GuiAllowDefaultHostname               *string                                   `pulumi:"guiAllowDefaultHostname"`
+	GuiAllowIncompatibleFabricFgt         *string                                   `pulumi:"guiAllowIncompatibleFabricFgt"`
+	GuiAppDetectionSdwan                  *string                                   `pulumi:"guiAppDetectionSdwan"`
+	GuiCdnDomainOverride                  *string                                   `pulumi:"guiCdnDomainOverride"`
+	GuiCdnUsage                           *string                                   `pulumi:"guiCdnUsage"`
+	GuiCertificates                       *string                                   `pulumi:"guiCertificates"`
+	GuiCustomLanguage                     *string                                   `pulumi:"guiCustomLanguage"`
+	GuiDateFormat                         *string                                   `pulumi:"guiDateFormat"`
+	GuiDateTimeSource                     *string                                   `pulumi:"guiDateTimeSource"`
+	GuiDeviceLatitude                     *string                                   `pulumi:"guiDeviceLatitude"`
+	GuiDeviceLongitude                    *string                                   `pulumi:"guiDeviceLongitude"`
+	GuiDisplayHostname                    *string                                   `pulumi:"guiDisplayHostname"`
+	GuiFirmwareUpgradeSetupWarning        *string                                   `pulumi:"guiFirmwareUpgradeSetupWarning"`
+	GuiFirmwareUpgradeWarning             *string                                   `pulumi:"guiFirmwareUpgradeWarning"`
+	GuiForticareRegistrationSetupWarning  *string                                   `pulumi:"guiForticareRegistrationSetupWarning"`
+	GuiFortigateCloudSandbox              *string                                   `pulumi:"guiFortigateCloudSandbox"`
+	GuiFortiguardResourceFetch            *string                                   `pulumi:"guiFortiguardResourceFetch"`
+	GuiFortisandboxCloud                  *string                                   `pulumi:"guiFortisandboxCloud"`
+	GuiIpv6                               *string                                   `pulumi:"guiIpv6"`
+	GuiLinesPerPage                       *int                                      `pulumi:"guiLinesPerPage"`
+	GuiLocalOut                           *string                                   `pulumi:"guiLocalOut"`
+	GuiReplacementMessageGroups           *string                                   `pulumi:"guiReplacementMessageGroups"`
+	GuiRestApiCache                       *string                                   `pulumi:"guiRestApiCache"`
+	GuiTheme                              *string                                   `pulumi:"guiTheme"`
+	GuiWirelessOpensecurity               *string                                   `pulumi:"guiWirelessOpensecurity"`
+	GuiWorkflowManagement                 *string                                   `pulumi:"guiWorkflowManagement"`
+	HaAffinity                            *string                                   `pulumi:"haAffinity"`
+	HonorDf                               *string                                   `pulumi:"honorDf"`
+	Hostname                              *string                                   `pulumi:"hostname"`
+	IgmpStateLimit                        *int                                      `pulumi:"igmpStateLimit"`
+	IkeEmbryonicLimit                     *int                                      `pulumi:"ikeEmbryonicLimit"`
+	InterfaceSubnetUsage                  *string                                   `pulumi:"interfaceSubnetUsage"`
+	InternetServiceDatabase               *string                                   `pulumi:"internetServiceDatabase"`
+	InternetServiceDownloadLists          []SystemGlobalInternetServiceDownloadList `pulumi:"internetServiceDownloadLists"`
+	Interval                              *int                                      `pulumi:"interval"`
+	IpFragmentMemThresholds               *int                                      `pulumi:"ipFragmentMemThresholds"`
+	IpSrcPortRange                        *string                                   `pulumi:"ipSrcPortRange"`
+	IpsAffinity                           *string                                   `pulumi:"ipsAffinity"`
+	IpsecAsicOffload                      *string                                   `pulumi:"ipsecAsicOffload"`
+	IpsecHaSeqjumpRate                    *int                                      `pulumi:"ipsecHaSeqjumpRate"`
+	IpsecHmacOffload                      *string                                   `pulumi:"ipsecHmacOffload"`
+	IpsecRoundRobin                       *string                                   `pulumi:"ipsecRoundRobin"`
+	IpsecSoftDecAsync                     *string                                   `pulumi:"ipsecSoftDecAsync"`
+	Ipv6AcceptDad                         *int                                      `pulumi:"ipv6AcceptDad"`
+	Ipv6AllowAnycastProbe                 *string                                   `pulumi:"ipv6AllowAnycastProbe"`
+	Ipv6AllowLocalInSlientDrop            *string                                   `pulumi:"ipv6AllowLocalInSlientDrop"`
+	Ipv6AllowMulticastProbe               *string                                   `pulumi:"ipv6AllowMulticastProbe"`
+	Ipv6AllowTrafficRedirect              *string                                   `pulumi:"ipv6AllowTrafficRedirect"`
+	IrqTimeAccounting                     *string                                   `pulumi:"irqTimeAccounting"`
+	Language                              *string                                   `pulumi:"language"`
+	Ldapconntimeout                       *int                                      `pulumi:"ldapconntimeout"`
+	LldpReception                         *string                                   `pulumi:"lldpReception"`
+	LldpTransmission                      *string                                   `pulumi:"lldpTransmission"`
+	LogSingleCpuHigh                      *string                                   `pulumi:"logSingleCpuHigh"`
+	LogSslConnection                      *string                                   `pulumi:"logSslConnection"`
+	LogUuidAddress                        *string                                   `pulumi:"logUuidAddress"`
+	LogUuidPolicy                         *string                                   `pulumi:"logUuidPolicy"`
+	LoginTimestamp                        *string                                   `pulumi:"loginTimestamp"`
+	LongVdomName                          *string                                   `pulumi:"longVdomName"`
+	ManagementIp                          *string                                   `pulumi:"managementIp"`
+	ManagementPort                        *int                                      `pulumi:"managementPort"`
+	ManagementPortUseAdminSport           *string                                   `pulumi:"managementPortUseAdminSport"`
+	ManagementVdom                        *string                                   `pulumi:"managementVdom"`
+	MaxDlpstatMemory                      *int                                      `pulumi:"maxDlpstatMemory"`
+	MaxRouteCacheSize                     *int                                      `pulumi:"maxRouteCacheSize"`
+	McTtlNotchange                        *string                                   `pulumi:"mcTtlNotchange"`
+	MemoryUseThresholdExtreme             *int                                      `pulumi:"memoryUseThresholdExtreme"`
+	MemoryUseThresholdGreen               *int                                      `pulumi:"memoryUseThresholdGreen"`
+	MemoryUseThresholdRed                 *int                                      `pulumi:"memoryUseThresholdRed"`
+	MiglogAffinity                        *string                                   `pulumi:"miglogAffinity"`
+	MiglogdChildren                       *int                                      `pulumi:"miglogdChildren"`
+	MultiFactorAuthentication             *string                                   `pulumi:"multiFactorAuthentication"`
+	MulticastForward                      *string                                   `pulumi:"multicastForward"`
+	NdpMaxEntry                           *int                                      `pulumi:"ndpMaxEntry"`
+	PerUserBal                            *string                                   `pulumi:"perUserBal"`
+	PerUserBwl                            *string                                   `pulumi:"perUserBwl"`
+	PmtuDiscovery                         *string                                   `pulumi:"pmtuDiscovery"`
+	PolicyAuthConcurrent                  *int                                      `pulumi:"policyAuthConcurrent"`
+	PostLoginBanner                       *string                                   `pulumi:"postLoginBanner"`
+	PreLoginBanner                        *string                                   `pulumi:"preLoginBanner"`
+	PrivateDataEncryption                 *string                                   `pulumi:"privateDataEncryption"`
+	ProxyAuthLifetime                     *string                                   `pulumi:"proxyAuthLifetime"`
+	ProxyAuthLifetimeTimeout              *int                                      `pulumi:"proxyAuthLifetimeTimeout"`
+	ProxyAuthTimeout                      *int                                      `pulumi:"proxyAuthTimeout"`
+	ProxyCertUseMgmtVdom                  *string                                   `pulumi:"proxyCertUseMgmtVdom"`
+	ProxyCipherHardwareAcceleration       *string                                   `pulumi:"proxyCipherHardwareAcceleration"`
+	ProxyHardwareAcceleration             *string                                   `pulumi:"proxyHardwareAcceleration"`
+	ProxyKeepAliveMode                    *string                                   `pulumi:"proxyKeepAliveMode"`
+	ProxyKxpHardwareAcceleration          *string                                   `pulumi:"proxyKxpHardwareAcceleration"`
+	ProxyReAuthenticationMode             *string                                   `pulumi:"proxyReAuthenticationMode"`
+	ProxyReAuthenticationTime             *int                                      `pulumi:"proxyReAuthenticationTime"`
+	ProxyResourceMode                     *string                                   `pulumi:"proxyResourceMode"`
+	ProxyWorkerCount                      *int                                      `pulumi:"proxyWorkerCount"`
+	RadiusPort                            *int                                      `pulumi:"radiusPort"`
+	RebootUponConfigRestore               *string                                   `pulumi:"rebootUponConfigRestore"`
+	Refresh                               *int                                      `pulumi:"refresh"`
+	Remoteauthtimeout                     *int                                      `pulumi:"remoteauthtimeout"`
+	ResetSessionlessTcp                   *string                                   `pulumi:"resetSessionlessTcp"`
+	RestartTime                           *string                                   `pulumi:"restartTime"`
+	RevisionBackupOnLogout                *string                                   `pulumi:"revisionBackupOnLogout"`
+	RevisionImageAutoBackup               *string                                   `pulumi:"revisionImageAutoBackup"`
+	ScanunitCount                         *int                                      `pulumi:"scanunitCount"`
+	SecurityRatingResultSubmission        *string                                   `pulumi:"securityRatingResultSubmission"`
+	SecurityRatingRunOnSchedule           *string                                   `pulumi:"securityRatingRunOnSchedule"`
+	SendPmtuIcmp                          *string                                   `pulumi:"sendPmtuIcmp"`
+	SflowdMaxChildrenNum                  *int                                      `pulumi:"sflowdMaxChildrenNum"`
+	SnatRouteChange                       *string                                   `pulumi:"snatRouteChange"`
+	SpecialFile23Support                  *string                                   `pulumi:"specialFile23Support"`
+	SpeedtestServer                       *string                                   `pulumi:"speedtestServer"`
+	SplitPort                             *string                                   `pulumi:"splitPort"`
+	SsdTrimDate                           *int                                      `pulumi:"ssdTrimDate"`
+	SsdTrimFreq                           *string                                   `pulumi:"ssdTrimFreq"`
+	SsdTrimHour                           *int                                      `pulumi:"ssdTrimHour"`
+	SsdTrimMin                            *int                                      `pulumi:"ssdTrimMin"`
+	SsdTrimWeekday                        *string                                   `pulumi:"ssdTrimWeekday"`
+	SshCbcCipher                          *string                                   `pulumi:"sshCbcCipher"`
+	SshEncAlgo                            *string                                   `pulumi:"sshEncAlgo"`
+	SshHmacMd5                            *string                                   `pulumi:"sshHmacMd5"`
+	SshHostkeyAlgo                        *string                                   `pulumi:"sshHostkeyAlgo"`
+	SshKexAlgo                            *string                                   `pulumi:"sshKexAlgo"`
+	SshKexSha1                            *string                                   `pulumi:"sshKexSha1"`
+	SshMacAlgo                            *string                                   `pulumi:"sshMacAlgo"`
+	SshMacWeak                            *string                                   `pulumi:"sshMacWeak"`
+	SslMinProtoVersion                    *string                                   `pulumi:"sslMinProtoVersion"`
+	SslStaticKeyCiphers                   *string                                   `pulumi:"sslStaticKeyCiphers"`
+	SslvpnCipherHardwareAcceleration      *string                                   `pulumi:"sslvpnCipherHardwareAcceleration"`
+	SslvpnEmsSnCheck                      *string                                   `pulumi:"sslvpnEmsSnCheck"`
+	SslvpnKxpHardwareAcceleration         *string                                   `pulumi:"sslvpnKxpHardwareAcceleration"`
+	SslvpnMaxWorkerCount                  *int                                      `pulumi:"sslvpnMaxWorkerCount"`
+	SslvpnPluginVersionCheck              *string                                   `pulumi:"sslvpnPluginVersionCheck"`
+	StrictDirtySessionCheck               *string                                   `pulumi:"strictDirtySessionCheck"`
+	StrongCrypto                          *string                                   `pulumi:"strongCrypto"`
+	SwitchController                      *string                                   `pulumi:"switchController"`
+	SwitchControllerReservedNetwork       *string                                   `pulumi:"switchControllerReservedNetwork"`
+	SysPerfLogInterval                    *int                                      `pulumi:"sysPerfLogInterval"`
+	SyslogAffinity                        *string                                   `pulumi:"syslogAffinity"`
+	TcpHalfcloseTimer                     *int                                      `pulumi:"tcpHalfcloseTimer"`
+	TcpHalfopenTimer                      *int                                      `pulumi:"tcpHalfopenTimer"`
+	TcpOption                             *string                                   `pulumi:"tcpOption"`
+	TcpRstTimer                           *int                                      `pulumi:"tcpRstTimer"`
+	TcpTimewaitTimer                      *int                                      `pulumi:"tcpTimewaitTimer"`
+	Tftp                                  *string                                   `pulumi:"tftp"`
+	Timezone                              *string                                   `pulumi:"timezone"`
+	TpMcSkipPolicy                        *string                                   `pulumi:"tpMcSkipPolicy"`
+	TrafficPriority                       *string                                   `pulumi:"trafficPriority"`
+	TrafficPriorityLevel                  *string                                   `pulumi:"trafficPriorityLevel"`
+	TwoFactorEmailExpiry                  *int                                      `pulumi:"twoFactorEmailExpiry"`
+	TwoFactorFacExpiry                    *int                                      `pulumi:"twoFactorFacExpiry"`
+	TwoFactorFtkExpiry                    *int                                      `pulumi:"twoFactorFtkExpiry"`
+	TwoFactorFtmExpiry                    *int                                      `pulumi:"twoFactorFtmExpiry"`
+	TwoFactorSmsExpiry                    *int                                      `pulumi:"twoFactorSmsExpiry"`
+	UdpIdleTimer                          *int                                      `pulumi:"udpIdleTimer"`
+	UrlFilterAffinity                     *string                                   `pulumi:"urlFilterAffinity"`
+	UrlFilterCount                        *int                                      `pulumi:"urlFilterCount"`
+	UserDeviceStoreMaxDevices             *int                                      `pulumi:"userDeviceStoreMaxDevices"`
+	UserDeviceStoreMaxUnifiedMem          *int                                      `pulumi:"userDeviceStoreMaxUnifiedMem"`
+	UserDeviceStoreMaxUsers               *int                                      `pulumi:"userDeviceStoreMaxUsers"`
+	UserServerCert                        *string                                   `pulumi:"userServerCert"`
+	VdomAdmin                             *string                                   `pulumi:"vdomAdmin"`
+	VdomMode                              *string                                   `pulumi:"vdomMode"`
+	Vdomparam                             *string                                   `pulumi:"vdomparam"`
+	VipArpRange                           *string                                   `pulumi:"vipArpRange"`
+	VirtualServerCount                    *int                                      `pulumi:"virtualServerCount"`
+	VirtualServerHardwareAcceleration     *string                                   `pulumi:"virtualServerHardwareAcceleration"`
+	VirtualSwitchVlan                     *string                                   `pulumi:"virtualSwitchVlan"`
+	VpnEmsSnCheck                         *string                                   `pulumi:"vpnEmsSnCheck"`
+	WadAffinity                           *string                                   `pulumi:"wadAffinity"`
+	WadCsvcCsCount                        *int                                      `pulumi:"wadCsvcCsCount"`
+	WadCsvcDbCount                        *int                                      `pulumi:"wadCsvcDbCount"`
+	WadMemoryChangeGranularity            *int                                      `pulumi:"wadMemoryChangeGranularity"`
+	WadRestartEndTime                     *string                                   `pulumi:"wadRestartEndTime"`
+	WadRestartMode                        *string                                   `pulumi:"wadRestartMode"`
+	WadRestartStartTime                   *string                                   `pulumi:"wadRestartStartTime"`
+	WadSourceAffinity                     *string                                   `pulumi:"wadSourceAffinity"`
+	WadWorkerCount                        *int                                      `pulumi:"wadWorkerCount"`
+	WifiCaCertificate                     *string                                   `pulumi:"wifiCaCertificate"`
+	WifiCertificate                       *string                                   `pulumi:"wifiCertificate"`
+	Wimax4gUsb                            *string                                   `pulumi:"wimax4gUsb"`
+	WirelessController                    *string                                   `pulumi:"wirelessController"`
+	WirelessControllerPort                *int                                      `pulumi:"wirelessControllerPort"`
 }
 
 // The set of arguments for constructing a SystemGlobal resource.
 type SystemGlobalArgs struct {
 	AdminConcurrent                       pulumi.StringPtrInput
 	AdminConsoleTimeout                   pulumi.IntPtrInput
+	AdminForticloudSsoDefaultProfile      pulumi.StringPtrInput
 	AdminForticloudSsoLogin               pulumi.StringPtrInput
 	AdminHost                             pulumi.StringPtrInput
 	AdminHstsMaxAge                       pulumi.IntPtrInput
@@ -1120,6 +1202,7 @@ type SystemGlobalArgs struct {
 	DhParams                              pulumi.StringPtrInput
 	DnsproxyWorkerCount                   pulumi.IntPtrInput
 	Dst                                   pulumi.StringPtrInput
+	DynamicSortSubtable                   pulumi.StringPtrInput
 	EarlyTcpNpuSession                    pulumi.StringPtrInput
 	EditVdomPrompt                        pulumi.StringPtrInput
 	EndpointControlFdsAccess              pulumi.StringPtrInput
@@ -1131,6 +1214,8 @@ type SystemGlobalArgs struct {
 	FdsStatisticsPeriod                   pulumi.IntPtrInput
 	FecPort                               pulumi.IntPtrInput
 	FgdAlertSubscription                  pulumi.StringPtrInput
+	ForticonverterConfigUpload            pulumi.StringPtrInput
+	ForticonverterIntegration             pulumi.StringPtrInput
 	Fortiextender                         pulumi.StringPtrInput
 	FortiextenderDataPort                 pulumi.IntPtrInput
 	FortiextenderDiscoveryLockdown        pulumi.StringPtrInput
@@ -1139,8 +1224,11 @@ type SystemGlobalArgs struct {
 	FortiipamIntegration                  pulumi.StringPtrInput
 	FortiservicePort                      pulumi.IntPtrInput
 	FortitokenCloud                       pulumi.StringPtrInput
+	GetAllTables                          pulumi.StringPtrInput
 	GuiAllowDefaultHostname               pulumi.StringPtrInput
+	GuiAllowIncompatibleFabricFgt         pulumi.StringPtrInput
 	GuiAppDetectionSdwan                  pulumi.StringPtrInput
+	GuiCdnDomainOverride                  pulumi.StringPtrInput
 	GuiCdnUsage                           pulumi.StringPtrInput
 	GuiCertificates                       pulumi.StringPtrInput
 	GuiCustomLanguage                     pulumi.StringPtrInput
@@ -1168,8 +1256,11 @@ type SystemGlobalArgs struct {
 	Hostname                              pulumi.StringPtrInput
 	IgmpStateLimit                        pulumi.IntPtrInput
 	IkeEmbryonicLimit                     pulumi.IntPtrInput
+	InterfaceSubnetUsage                  pulumi.StringPtrInput
 	InternetServiceDatabase               pulumi.StringPtrInput
+	InternetServiceDownloadLists          SystemGlobalInternetServiceDownloadListArrayInput
 	Interval                              pulumi.IntPtrInput
+	IpFragmentMemThresholds               pulumi.IntPtrInput
 	IpSrcPortRange                        pulumi.StringPtrInput
 	IpsAffinity                           pulumi.StringPtrInput
 	IpsecAsicOffload                      pulumi.StringPtrInput
@@ -1187,6 +1278,7 @@ type SystemGlobalArgs struct {
 	Ldapconntimeout                       pulumi.IntPtrInput
 	LldpReception                         pulumi.StringPtrInput
 	LldpTransmission                      pulumi.StringPtrInput
+	LogSingleCpuHigh                      pulumi.StringPtrInput
 	LogSslConnection                      pulumi.StringPtrInput
 	LogUuidAddress                        pulumi.StringPtrInput
 	LogUuidPolicy                         pulumi.StringPtrInput
@@ -1220,8 +1312,10 @@ type SystemGlobalArgs struct {
 	ProxyCertUseMgmtVdom                  pulumi.StringPtrInput
 	ProxyCipherHardwareAcceleration       pulumi.StringPtrInput
 	ProxyHardwareAcceleration             pulumi.StringPtrInput
+	ProxyKeepAliveMode                    pulumi.StringPtrInput
 	ProxyKxpHardwareAcceleration          pulumi.StringPtrInput
 	ProxyReAuthenticationMode             pulumi.StringPtrInput
+	ProxyReAuthenticationTime             pulumi.IntPtrInput
 	ProxyResourceMode                     pulumi.StringPtrInput
 	ProxyWorkerCount                      pulumi.IntPtrInput
 	RadiusPort                            pulumi.IntPtrInput
@@ -1236,6 +1330,7 @@ type SystemGlobalArgs struct {
 	SecurityRatingResultSubmission        pulumi.StringPtrInput
 	SecurityRatingRunOnSchedule           pulumi.StringPtrInput
 	SendPmtuIcmp                          pulumi.StringPtrInput
+	SflowdMaxChildrenNum                  pulumi.IntPtrInput
 	SnatRouteChange                       pulumi.StringPtrInput
 	SpecialFile23Support                  pulumi.StringPtrInput
 	SpeedtestServer                       pulumi.StringPtrInput
@@ -1248,6 +1343,7 @@ type SystemGlobalArgs struct {
 	SshCbcCipher                          pulumi.StringPtrInput
 	SshEncAlgo                            pulumi.StringPtrInput
 	SshHmacMd5                            pulumi.StringPtrInput
+	SshHostkeyAlgo                        pulumi.StringPtrInput
 	SshKexAlgo                            pulumi.StringPtrInput
 	SshKexSha1                            pulumi.StringPtrInput
 	SshMacAlgo                            pulumi.StringPtrInput
@@ -1264,6 +1360,7 @@ type SystemGlobalArgs struct {
 	SwitchController                      pulumi.StringPtrInput
 	SwitchControllerReservedNetwork       pulumi.StringPtrInput
 	SysPerfLogInterval                    pulumi.IntPtrInput
+	SyslogAffinity                        pulumi.StringPtrInput
 	TcpHalfcloseTimer                     pulumi.IntPtrInput
 	TcpHalfopenTimer                      pulumi.IntPtrInput
 	TcpOption                             pulumi.StringPtrInput
@@ -1293,10 +1390,14 @@ type SystemGlobalArgs struct {
 	VirtualServerCount                    pulumi.IntPtrInput
 	VirtualServerHardwareAcceleration     pulumi.StringPtrInput
 	VirtualSwitchVlan                     pulumi.StringPtrInput
+	VpnEmsSnCheck                         pulumi.StringPtrInput
 	WadAffinity                           pulumi.StringPtrInput
 	WadCsvcCsCount                        pulumi.IntPtrInput
 	WadCsvcDbCount                        pulumi.IntPtrInput
 	WadMemoryChangeGranularity            pulumi.IntPtrInput
+	WadRestartEndTime                     pulumi.StringPtrInput
+	WadRestartMode                        pulumi.StringPtrInput
+	WadRestartStartTime                   pulumi.StringPtrInput
 	WadSourceAffinity                     pulumi.StringPtrInput
 	WadWorkerCount                        pulumi.IntPtrInput
 	WifiCaCertificate                     pulumi.StringPtrInput
@@ -1399,6 +1500,10 @@ func (o SystemGlobalOutput) AdminConcurrent() pulumi.StringOutput {
 
 func (o SystemGlobalOutput) AdminConsoleTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.AdminConsoleTimeout }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) AdminForticloudSsoDefaultProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.AdminForticloudSsoDefaultProfile }).(pulumi.StringOutput)
 }
 
 func (o SystemGlobalOutput) AdminForticloudSsoLogin() pulumi.StringOutput {
@@ -1653,6 +1758,10 @@ func (o SystemGlobalOutput) Dst() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.Dst }).(pulumi.StringOutput)
 }
 
+func (o SystemGlobalOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
 func (o SystemGlobalOutput) EarlyTcpNpuSession() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.EarlyTcpNpuSession }).(pulumi.StringOutput)
 }
@@ -1697,6 +1806,14 @@ func (o SystemGlobalOutput) FgdAlertSubscription() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.FgdAlertSubscription }).(pulumi.StringOutput)
 }
 
+func (o SystemGlobalOutput) ForticonverterConfigUpload() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.ForticonverterConfigUpload }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) ForticonverterIntegration() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.ForticonverterIntegration }).(pulumi.StringOutput)
+}
+
 func (o SystemGlobalOutput) Fortiextender() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.Fortiextender }).(pulumi.StringOutput)
 }
@@ -1729,12 +1846,24 @@ func (o SystemGlobalOutput) FortitokenCloud() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.FortitokenCloud }).(pulumi.StringOutput)
 }
 
+func (o SystemGlobalOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 func (o SystemGlobalOutput) GuiAllowDefaultHostname() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.GuiAllowDefaultHostname }).(pulumi.StringOutput)
 }
 
+func (o SystemGlobalOutput) GuiAllowIncompatibleFabricFgt() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.GuiAllowIncompatibleFabricFgt }).(pulumi.StringOutput)
+}
+
 func (o SystemGlobalOutput) GuiAppDetectionSdwan() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.GuiAppDetectionSdwan }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) GuiCdnDomainOverride() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.GuiCdnDomainOverride }).(pulumi.StringOutput)
 }
 
 func (o SystemGlobalOutput) GuiCdnUsage() pulumi.StringOutput {
@@ -1845,12 +1974,26 @@ func (o SystemGlobalOutput) IkeEmbryonicLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.IkeEmbryonicLimit }).(pulumi.IntOutput)
 }
 
+func (o SystemGlobalOutput) InterfaceSubnetUsage() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.InterfaceSubnetUsage }).(pulumi.StringOutput)
+}
+
 func (o SystemGlobalOutput) InternetServiceDatabase() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.InternetServiceDatabase }).(pulumi.StringOutput)
 }
 
+func (o SystemGlobalOutput) InternetServiceDownloadLists() SystemGlobalInternetServiceDownloadListArrayOutput {
+	return o.ApplyT(func(v *SystemGlobal) SystemGlobalInternetServiceDownloadListArrayOutput {
+		return v.InternetServiceDownloadLists
+	}).(SystemGlobalInternetServiceDownloadListArrayOutput)
+}
+
 func (o SystemGlobalOutput) Interval() pulumi.IntOutput {
 	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.Interval }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) IpFragmentMemThresholds() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.IpFragmentMemThresholds }).(pulumi.IntOutput)
 }
 
 func (o SystemGlobalOutput) IpSrcPortRange() pulumi.StringOutput {
@@ -1919,6 +2062,10 @@ func (o SystemGlobalOutput) LldpReception() pulumi.StringOutput {
 
 func (o SystemGlobalOutput) LldpTransmission() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.LldpTransmission }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) LogSingleCpuHigh() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.LogSingleCpuHigh }).(pulumi.StringOutput)
 }
 
 func (o SystemGlobalOutput) LogSslConnection() pulumi.StringOutput {
@@ -2053,12 +2200,20 @@ func (o SystemGlobalOutput) ProxyHardwareAcceleration() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.ProxyHardwareAcceleration }).(pulumi.StringOutput)
 }
 
+func (o SystemGlobalOutput) ProxyKeepAliveMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.ProxyKeepAliveMode }).(pulumi.StringOutput)
+}
+
 func (o SystemGlobalOutput) ProxyKxpHardwareAcceleration() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.ProxyKxpHardwareAcceleration }).(pulumi.StringOutput)
 }
 
 func (o SystemGlobalOutput) ProxyReAuthenticationMode() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.ProxyReAuthenticationMode }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) ProxyReAuthenticationTime() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.ProxyReAuthenticationTime }).(pulumi.IntOutput)
 }
 
 func (o SystemGlobalOutput) ProxyResourceMode() pulumi.StringOutput {
@@ -2117,6 +2272,10 @@ func (o SystemGlobalOutput) SendPmtuIcmp() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.SendPmtuIcmp }).(pulumi.StringOutput)
 }
 
+func (o SystemGlobalOutput) SflowdMaxChildrenNum() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.SflowdMaxChildrenNum }).(pulumi.IntOutput)
+}
+
 func (o SystemGlobalOutput) SnatRouteChange() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.SnatRouteChange }).(pulumi.StringOutput)
 }
@@ -2163,6 +2322,10 @@ func (o SystemGlobalOutput) SshEncAlgo() pulumi.StringOutput {
 
 func (o SystemGlobalOutput) SshHmacMd5() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.SshHmacMd5 }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) SshHostkeyAlgo() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.SshHostkeyAlgo }).(pulumi.StringOutput)
 }
 
 func (o SystemGlobalOutput) SshKexAlgo() pulumi.StringOutput {
@@ -2227,6 +2390,10 @@ func (o SystemGlobalOutput) SwitchControllerReservedNetwork() pulumi.StringOutpu
 
 func (o SystemGlobalOutput) SysPerfLogInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.SysPerfLogInterval }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) SyslogAffinity() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.SyslogAffinity }).(pulumi.StringOutput)
 }
 
 func (o SystemGlobalOutput) TcpHalfcloseTimer() pulumi.IntOutput {
@@ -2345,6 +2512,10 @@ func (o SystemGlobalOutput) VirtualSwitchVlan() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.VirtualSwitchVlan }).(pulumi.StringOutput)
 }
 
+func (o SystemGlobalOutput) VpnEmsSnCheck() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.VpnEmsSnCheck }).(pulumi.StringOutput)
+}
+
 func (o SystemGlobalOutput) WadAffinity() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.WadAffinity }).(pulumi.StringOutput)
 }
@@ -2359,6 +2530,18 @@ func (o SystemGlobalOutput) WadCsvcDbCount() pulumi.IntOutput {
 
 func (o SystemGlobalOutput) WadMemoryChangeGranularity() pulumi.IntOutput {
 	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.WadMemoryChangeGranularity }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) WadRestartEndTime() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.WadRestartEndTime }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) WadRestartMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.WadRestartMode }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) WadRestartStartTime() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.WadRestartStartTime }).(pulumi.StringOutput)
 }
 
 func (o SystemGlobalOutput) WadSourceAffinity() pulumi.StringOutput {

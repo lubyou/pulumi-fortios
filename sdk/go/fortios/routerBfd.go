@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -14,6 +15,7 @@ type RouterBfd struct {
 	pulumi.CustomResourceState
 
 	DynamicSortSubtable pulumi.StringPtrOutput               `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput               `pulumi:"getAllTables"`
 	MultihopTemplates   RouterBfdMultihopTemplateArrayOutput `pulumi:"multihopTemplates"`
 	Neighbors           RouterBfdNeighborArrayOutput         `pulumi:"neighbors"`
 	Vdomparam           pulumi.StringPtrOutput               `pulumi:"vdomparam"`
@@ -26,7 +28,7 @@ func NewRouterBfd(ctx *pulumi.Context,
 		args = &RouterBfdArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RouterBfd
 	err := ctx.RegisterResource("fortios:index/routerBfd:RouterBfd", name, args, &resource, opts...)
 	if err != nil {
@@ -50,6 +52,7 @@ func GetRouterBfd(ctx *pulumi.Context,
 // Input properties used for looking up and filtering RouterBfd resources.
 type routerBfdState struct {
 	DynamicSortSubtable *string                     `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                     `pulumi:"getAllTables"`
 	MultihopTemplates   []RouterBfdMultihopTemplate `pulumi:"multihopTemplates"`
 	Neighbors           []RouterBfdNeighbor         `pulumi:"neighbors"`
 	Vdomparam           *string                     `pulumi:"vdomparam"`
@@ -57,6 +60,7 @@ type routerBfdState struct {
 
 type RouterBfdState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	MultihopTemplates   RouterBfdMultihopTemplateArrayInput
 	Neighbors           RouterBfdNeighborArrayInput
 	Vdomparam           pulumi.StringPtrInput
@@ -68,6 +72,7 @@ func (RouterBfdState) ElementType() reflect.Type {
 
 type routerBfdArgs struct {
 	DynamicSortSubtable *string                     `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                     `pulumi:"getAllTables"`
 	MultihopTemplates   []RouterBfdMultihopTemplate `pulumi:"multihopTemplates"`
 	Neighbors           []RouterBfdNeighbor         `pulumi:"neighbors"`
 	Vdomparam           *string                     `pulumi:"vdomparam"`
@@ -76,6 +81,7 @@ type routerBfdArgs struct {
 // The set of arguments for constructing a RouterBfd resource.
 type RouterBfdArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	MultihopTemplates   RouterBfdMultihopTemplateArrayInput
 	Neighbors           RouterBfdNeighborArrayInput
 	Vdomparam           pulumi.StringPtrInput
@@ -170,6 +176,10 @@ func (o RouterBfdOutput) ToRouterBfdOutputWithContext(ctx context.Context) Route
 
 func (o RouterBfdOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RouterBfd) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o RouterBfdOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterBfd) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o RouterBfdOutput) MultihopTemplates() RouterBfdMultihopTemplateArrayOutput {

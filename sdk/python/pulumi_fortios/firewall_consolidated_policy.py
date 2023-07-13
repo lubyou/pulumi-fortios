@@ -40,6 +40,7 @@ class FirewallConsolidatedPolicyArgs:
                  emailfilter_profile: Optional[pulumi.Input[str]] = None,
                  fixedport: Optional[pulumi.Input[str]] = None,
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallConsolidatedPolicyFssoGroupArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallConsolidatedPolicyGroupArgs']]]] = None,
                  http_policy_redirect: Optional[pulumi.Input[str]] = None,
                  icap_profile: Optional[pulumi.Input[str]] = None,
@@ -159,6 +160,8 @@ class FirewallConsolidatedPolicyArgs:
             pulumi.set(__self__, "fixedport", fixedport)
         if fsso_groups is not None:
             pulumi.set(__self__, "fsso_groups", fsso_groups)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if groups is not None:
             pulumi.set(__self__, "groups", groups)
         if http_policy_redirect is not None:
@@ -511,6 +514,15 @@ class FirewallConsolidatedPolicyArgs:
     @fsso_groups.setter
     def fsso_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallConsolidatedPolicyFssoGroupArgs']]]]):
         pulumi.set(self, "fsso_groups", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -1152,6 +1164,7 @@ class _FirewallConsolidatedPolicyState:
                  emailfilter_profile: Optional[pulumi.Input[str]] = None,
                  fixedport: Optional[pulumi.Input[str]] = None,
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallConsolidatedPolicyFssoGroupArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallConsolidatedPolicyGroupArgs']]]] = None,
                  http_policy_redirect: Optional[pulumi.Input[str]] = None,
                  icap_profile: Optional[pulumi.Input[str]] = None,
@@ -1271,6 +1284,8 @@ class _FirewallConsolidatedPolicyState:
             pulumi.set(__self__, "fixedport", fixedport)
         if fsso_groups is not None:
             pulumi.set(__self__, "fsso_groups", fsso_groups)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if groups is not None:
             pulumi.set(__self__, "groups", groups)
         if http_policy_redirect is not None:
@@ -1623,6 +1638,15 @@ class _FirewallConsolidatedPolicyState:
     @fsso_groups.setter
     def fsso_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallConsolidatedPolicyFssoGroupArgs']]]]):
         pulumi.set(self, "fsso_groups", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -2266,6 +2290,7 @@ class FirewallConsolidatedPolicy(pulumi.CustomResource):
                  emailfilter_profile: Optional[pulumi.Input[str]] = None,
                  fixedport: Optional[pulumi.Input[str]] = None,
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallConsolidatedPolicyFssoGroupArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallConsolidatedPolicyGroupArgs']]]]] = None,
                  http_policy_redirect: Optional[pulumi.Input[str]] = None,
                  icap_profile: Optional[pulumi.Input[str]] = None,
@@ -2387,6 +2412,7 @@ class FirewallConsolidatedPolicy(pulumi.CustomResource):
                  emailfilter_profile: Optional[pulumi.Input[str]] = None,
                  fixedport: Optional[pulumi.Input[str]] = None,
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallConsolidatedPolicyFssoGroupArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallConsolidatedPolicyGroupArgs']]]]] = None,
                  http_policy_redirect: Optional[pulumi.Input[str]] = None,
                  icap_profile: Optional[pulumi.Input[str]] = None,
@@ -2488,6 +2514,7 @@ class FirewallConsolidatedPolicy(pulumi.CustomResource):
             __props__.__dict__["emailfilter_profile"] = emailfilter_profile
             __props__.__dict__["fixedport"] = fixedport
             __props__.__dict__["fsso_groups"] = fsso_groups
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["groups"] = groups
             __props__.__dict__["http_policy_redirect"] = http_policy_redirect
             __props__.__dict__["icap_profile"] = icap_profile
@@ -2590,6 +2617,7 @@ class FirewallConsolidatedPolicy(pulumi.CustomResource):
             emailfilter_profile: Optional[pulumi.Input[str]] = None,
             fixedport: Optional[pulumi.Input[str]] = None,
             fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallConsolidatedPolicyFssoGroupArgs']]]]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallConsolidatedPolicyGroupArgs']]]]] = None,
             http_policy_redirect: Optional[pulumi.Input[str]] = None,
             icap_profile: Optional[pulumi.Input[str]] = None,
@@ -2694,6 +2722,7 @@ class FirewallConsolidatedPolicy(pulumi.CustomResource):
         __props__.__dict__["emailfilter_profile"] = emailfilter_profile
         __props__.__dict__["fixedport"] = fixedport
         __props__.__dict__["fsso_groups"] = fsso_groups
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["groups"] = groups
         __props__.__dict__["http_policy_redirect"] = http_policy_redirect
         __props__.__dict__["icap_profile"] = icap_profile
@@ -2883,6 +2912,11 @@ class FirewallConsolidatedPolicy(pulumi.CustomResource):
     @pulumi.getter(name="fssoGroups")
     def fsso_groups(self) -> pulumi.Output[Optional[Sequence['outputs.FirewallConsolidatedPolicyFssoGroup']]]:
         return pulumi.get(self, "fsso_groups")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

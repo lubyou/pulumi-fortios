@@ -35,12 +35,14 @@ export class IcapProfile extends pulumi.CustomResource {
     }
 
     public readonly chunkEncap!: pulumi.Output<string>;
+    public readonly comment!: pulumi.Output<string | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly extensionFeature!: pulumi.Output<string>;
     public readonly fileTransfer!: pulumi.Output<string>;
     public readonly fileTransferFailure!: pulumi.Output<string>;
     public readonly fileTransferPath!: pulumi.Output<string>;
     public readonly fileTransferServer!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly icapBlockLog!: pulumi.Output<string>;
     public readonly icapHeaders!: pulumi.Output<outputs.IcapProfileIcapHeader[] | undefined>;
     public readonly methods!: pulumi.Output<string>;
@@ -80,12 +82,14 @@ export class IcapProfile extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as IcapProfileState | undefined;
             resourceInputs["chunkEncap"] = state ? state.chunkEncap : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["extensionFeature"] = state ? state.extensionFeature : undefined;
             resourceInputs["fileTransfer"] = state ? state.fileTransfer : undefined;
             resourceInputs["fileTransferFailure"] = state ? state.fileTransferFailure : undefined;
             resourceInputs["fileTransferPath"] = state ? state.fileTransferPath : undefined;
             resourceInputs["fileTransferServer"] = state ? state.fileTransferServer : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["icapBlockLog"] = state ? state.icapBlockLog : undefined;
             resourceInputs["icapHeaders"] = state ? state.icapHeaders : undefined;
             resourceInputs["methods"] = state ? state.methods : undefined;
@@ -113,12 +117,14 @@ export class IcapProfile extends pulumi.CustomResource {
         } else {
             const args = argsOrState as IcapProfileArgs | undefined;
             resourceInputs["chunkEncap"] = args ? args.chunkEncap : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["extensionFeature"] = args ? args.extensionFeature : undefined;
             resourceInputs["fileTransfer"] = args ? args.fileTransfer : undefined;
             resourceInputs["fileTransferFailure"] = args ? args.fileTransferFailure : undefined;
             resourceInputs["fileTransferPath"] = args ? args.fileTransferPath : undefined;
             resourceInputs["fileTransferServer"] = args ? args.fileTransferServer : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["icapBlockLog"] = args ? args.icapBlockLog : undefined;
             resourceInputs["icapHeaders"] = args ? args.icapHeaders : undefined;
             resourceInputs["methods"] = args ? args.methods : undefined;
@@ -154,12 +160,14 @@ export class IcapProfile extends pulumi.CustomResource {
  */
 export interface IcapProfileState {
     chunkEncap?: pulumi.Input<string>;
+    comment?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     extensionFeature?: pulumi.Input<string>;
     fileTransfer?: pulumi.Input<string>;
     fileTransferFailure?: pulumi.Input<string>;
     fileTransferPath?: pulumi.Input<string>;
     fileTransferServer?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     icapBlockLog?: pulumi.Input<string>;
     icapHeaders?: pulumi.Input<pulumi.Input<inputs.IcapProfileIcapHeader>[]>;
     methods?: pulumi.Input<string>;
@@ -191,12 +199,14 @@ export interface IcapProfileState {
  */
 export interface IcapProfileArgs {
     chunkEncap?: pulumi.Input<string>;
+    comment?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     extensionFeature?: pulumi.Input<string>;
     fileTransfer?: pulumi.Input<string>;
     fileTransferFailure?: pulumi.Input<string>;
     fileTransferPath?: pulumi.Input<string>;
     fileTransferServer?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     icapBlockLog?: pulumi.Input<string>;
     icapHeaders?: pulumi.Input<pulumi.Input<inputs.IcapProfileIcapHeader>[]>;
     methods?: pulumi.Input<string>;

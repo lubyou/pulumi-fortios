@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func GetFirewallProxyPolicyList(ctx *pulumi.Context, args *GetFirewallProxyPolicyListArgs, opts ...pulumi.InvokeOption) (*GetFirewallProxyPolicyListResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetFirewallProxyPolicyListResult
 	err := ctx.Invoke("fortios:index/getFirewallProxyPolicyList:GetFirewallProxyPolicyList", args, &rv, opts...)
 	if err != nil {

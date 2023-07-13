@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemEmailServer(ctx *pulumi.Context, args *LookupSystemEmailServerArgs, opts ...pulumi.InvokeOption) (*LookupSystemEmailServerResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemEmailServerResult
 	err := ctx.Invoke("fortios:index/getSystemEmailServer:GetSystemEmailServer", args, &rv, opts...)
 	if err != nil {

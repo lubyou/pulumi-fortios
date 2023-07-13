@@ -5,7 +5,7 @@ SCRIPT_ROOT=$(dirname $0)
 PROVIDER_NAME=$(yq eval '.provider.name' $SCRIPT_ROOT/provider_config.yml)
 
 $SCRIPT_ROOT/extract_resources.py \
-    $SCRIPT_ROOT/../terraform-provider-$PROVIDER_NAME/$PROVIDER_NAME/provider.go \
+    $SCRIPT_ROOT/../upstream/$PROVIDER_NAME/provider.go \
     -c $SCRIPT_ROOT/provider_config.yml \
     -o $SCRIPT_ROOT/../provider/resources.go && \
     go fmt $SCRIPT_ROOT/../provider/resources.go

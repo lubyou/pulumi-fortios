@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemProxyArp(ctx *pulumi.Context, args *LookupSystemProxyArpArgs, opts ...pulumi.InvokeOption) (*LookupSystemProxyArpResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemProxyArpResult
 	err := ctx.Invoke("fortios:index/getSystemProxyArp:GetSystemProxyArp", args, &rv, opts...)
 	if err != nil {

@@ -45,6 +45,7 @@ export class RouterStatic6 extends pulumi.CustomResource {
     public readonly dynamicGateway!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly gateway!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly linkMonitorExempt!: pulumi.Output<string>;
     public readonly priority!: pulumi.Output<number>;
     public readonly sdwan!: pulumi.Output<string>;
@@ -80,6 +81,7 @@ export class RouterStatic6 extends pulumi.CustomResource {
             resourceInputs["dynamicGateway"] = state ? state.dynamicGateway : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["gateway"] = state ? state.gateway : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["linkMonitorExempt"] = state ? state.linkMonitorExempt : undefined;
             resourceInputs["priority"] = state ? state.priority : undefined;
             resourceInputs["sdwan"] = state ? state.sdwan : undefined;
@@ -106,6 +108,7 @@ export class RouterStatic6 extends pulumi.CustomResource {
             resourceInputs["dynamicGateway"] = args ? args.dynamicGateway : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["gateway"] = args ? args.gateway : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["linkMonitorExempt"] = args ? args.linkMonitorExempt : undefined;
             resourceInputs["priority"] = args ? args.priority : undefined;
             resourceInputs["sdwan"] = args ? args.sdwan : undefined;
@@ -137,6 +140,7 @@ export interface RouterStatic6State {
     dynamicGateway?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     gateway?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     linkMonitorExempt?: pulumi.Input<string>;
     priority?: pulumi.Input<number>;
     sdwan?: pulumi.Input<string>;
@@ -164,6 +168,7 @@ export interface RouterStatic6Args {
     dynamicGateway?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     gateway?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     linkMonitorExempt?: pulumi.Input<string>;
     priority?: pulumi.Input<number>;
     sdwan?: pulumi.Input<string>;

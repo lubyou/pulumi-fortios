@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -33,7 +34,7 @@ func NewSystemMacAddressTable(ctx *pulumi.Context,
 	if args.Mac == nil {
 		return nil, errors.New("invalid value for required argument 'Mac'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemMacAddressTable
 	err := ctx.RegisterResource("fortios:index/systemMacAddressTable:SystemMacAddressTable", name, args, &resource, opts...)
 	if err != nil {

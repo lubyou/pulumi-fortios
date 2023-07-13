@@ -20,6 +20,7 @@ class EmailfilterBlockAllowListArgs:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  entries: Optional[pulumi.Input[Sequence[pulumi.Input['EmailfilterBlockAllowListEntryArgs']]]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
@@ -33,6 +34,8 @@ class EmailfilterBlockAllowListArgs:
             pulumi.set(__self__, "entries", entries)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if vdomparam is not None:
@@ -73,6 +76,15 @@ class EmailfilterBlockAllowListArgs:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -100,6 +112,7 @@ class _EmailfilterBlockAllowListState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  entries: Optional[pulumi.Input[Sequence[pulumi.Input['EmailfilterBlockAllowListEntryArgs']]]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
@@ -113,6 +126,8 @@ class _EmailfilterBlockAllowListState:
             pulumi.set(__self__, "entries", entries)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if vdomparam is not None:
@@ -153,6 +168,15 @@ class _EmailfilterBlockAllowListState:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -182,6 +206,7 @@ class EmailfilterBlockAllowList(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  entries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['EmailfilterBlockAllowListEntryArgs']]]]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -217,6 +242,7 @@ class EmailfilterBlockAllowList(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  entries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['EmailfilterBlockAllowListEntryArgs']]]]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -232,6 +258,7 @@ class EmailfilterBlockAllowList(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["entries"] = entries
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["name"] = name
             __props__.__dict__["vdomparam"] = vdomparam
         super(EmailfilterBlockAllowList, __self__).__init__(
@@ -248,6 +275,7 @@ class EmailfilterBlockAllowList(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             entries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['EmailfilterBlockAllowListEntryArgs']]]]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'EmailfilterBlockAllowList':
         """
@@ -266,6 +294,7 @@ class EmailfilterBlockAllowList(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["entries"] = entries
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["name"] = name
         __props__.__dict__["vdomparam"] = vdomparam
         return EmailfilterBlockAllowList(resource_name, opts=opts, __props__=__props__)
@@ -289,6 +318,11 @@ class EmailfilterBlockAllowList(pulumi.CustomResource):
     @pulumi.getter
     def fosid(self) -> pulumi.Output[int]:
         return pulumi.get(self, "fosid")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

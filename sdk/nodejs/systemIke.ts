@@ -58,6 +58,7 @@ export class SystemIke extends pulumi.CustomResource {
     public readonly dhMultiprocess!: pulumi.Output<string>;
     public readonly dhWorkerCount!: pulumi.Output<number>;
     public readonly embryonicLimit!: pulumi.Output<number>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -97,6 +98,7 @@ export class SystemIke extends pulumi.CustomResource {
             resourceInputs["dhMultiprocess"] = state ? state.dhMultiprocess : undefined;
             resourceInputs["dhWorkerCount"] = state ? state.dhWorkerCount : undefined;
             resourceInputs["embryonicLimit"] = state ? state.embryonicLimit : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemIkeArgs | undefined;
@@ -124,6 +126,7 @@ export class SystemIke extends pulumi.CustomResource {
             resourceInputs["dhMultiprocess"] = args ? args.dhMultiprocess : undefined;
             resourceInputs["dhWorkerCount"] = args ? args.dhWorkerCount : undefined;
             resourceInputs["embryonicLimit"] = args ? args.embryonicLimit : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -159,6 +162,7 @@ export interface SystemIkeState {
     dhMultiprocess?: pulumi.Input<string>;
     dhWorkerCount?: pulumi.Input<number>;
     embryonicLimit?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -190,5 +194,6 @@ export interface SystemIkeArgs {
     dhMultiprocess?: pulumi.Input<string>;
     dhWorkerCount?: pulumi.Input<number>;
     embryonicLimit?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }

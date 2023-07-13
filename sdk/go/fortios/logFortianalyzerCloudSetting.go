@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,6 +20,7 @@ type LogFortianalyzerCloudSetting struct {
 	ConnTimeout               pulumi.IntOutput                              `pulumi:"connTimeout"`
 	DynamicSortSubtable       pulumi.StringPtrOutput                        `pulumi:"dynamicSortSubtable"`
 	EncAlgorithm              pulumi.StringOutput                           `pulumi:"encAlgorithm"`
+	GetAllTables              pulumi.StringPtrOutput                        `pulumi:"getAllTables"`
 	HmacAlgorithm             pulumi.StringOutput                           `pulumi:"hmacAlgorithm"`
 	Interface                 pulumi.StringOutput                           `pulumi:"interface"`
 	InterfaceSelectMethod     pulumi.StringOutput                           `pulumi:"interfaceSelectMethod"`
@@ -46,7 +48,7 @@ func NewLogFortianalyzerCloudSetting(ctx *pulumi.Context,
 		args = &LogFortianalyzerCloudSettingArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource LogFortianalyzerCloudSetting
 	err := ctx.RegisterResource("fortios:index/logFortianalyzerCloudSetting:LogFortianalyzerCloudSetting", name, args, &resource, opts...)
 	if err != nil {
@@ -75,6 +77,7 @@ type logFortianalyzerCloudSettingState struct {
 	ConnTimeout               *int                                 `pulumi:"connTimeout"`
 	DynamicSortSubtable       *string                              `pulumi:"dynamicSortSubtable"`
 	EncAlgorithm              *string                              `pulumi:"encAlgorithm"`
+	GetAllTables              *string                              `pulumi:"getAllTables"`
 	HmacAlgorithm             *string                              `pulumi:"hmacAlgorithm"`
 	Interface                 *string                              `pulumi:"interface"`
 	InterfaceSelectMethod     *string                              `pulumi:"interfaceSelectMethod"`
@@ -102,6 +105,7 @@ type LogFortianalyzerCloudSettingState struct {
 	ConnTimeout               pulumi.IntPtrInput
 	DynamicSortSubtable       pulumi.StringPtrInput
 	EncAlgorithm              pulumi.StringPtrInput
+	GetAllTables              pulumi.StringPtrInput
 	HmacAlgorithm             pulumi.StringPtrInput
 	Interface                 pulumi.StringPtrInput
 	InterfaceSelectMethod     pulumi.StringPtrInput
@@ -133,6 +137,7 @@ type logFortianalyzerCloudSettingArgs struct {
 	ConnTimeout               *int                                 `pulumi:"connTimeout"`
 	DynamicSortSubtable       *string                              `pulumi:"dynamicSortSubtable"`
 	EncAlgorithm              *string                              `pulumi:"encAlgorithm"`
+	GetAllTables              *string                              `pulumi:"getAllTables"`
 	HmacAlgorithm             *string                              `pulumi:"hmacAlgorithm"`
 	Interface                 *string                              `pulumi:"interface"`
 	InterfaceSelectMethod     *string                              `pulumi:"interfaceSelectMethod"`
@@ -161,6 +166,7 @@ type LogFortianalyzerCloudSettingArgs struct {
 	ConnTimeout               pulumi.IntPtrInput
 	DynamicSortSubtable       pulumi.StringPtrInput
 	EncAlgorithm              pulumi.StringPtrInput
+	GetAllTables              pulumi.StringPtrInput
 	HmacAlgorithm             pulumi.StringPtrInput
 	Interface                 pulumi.StringPtrInput
 	InterfaceSelectMethod     pulumi.StringPtrInput
@@ -290,6 +296,10 @@ func (o LogFortianalyzerCloudSettingOutput) DynamicSortSubtable() pulumi.StringP
 
 func (o LogFortianalyzerCloudSettingOutput) EncAlgorithm() pulumi.StringOutput {
 	return o.ApplyT(func(v *LogFortianalyzerCloudSetting) pulumi.StringOutput { return v.EncAlgorithm }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzerCloudSettingOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogFortianalyzerCloudSetting) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o LogFortianalyzerCloudSettingOutput) HmacAlgorithm() pulumi.StringOutput {

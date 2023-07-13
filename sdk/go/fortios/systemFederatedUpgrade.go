@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -16,6 +17,8 @@ type SystemFederatedUpgrade struct {
 	DynamicSortSubtable pulumi.StringPtrOutput                    `pulumi:"dynamicSortSubtable"`
 	FailureDevice       pulumi.StringOutput                       `pulumi:"failureDevice"`
 	FailureReason       pulumi.StringOutput                       `pulumi:"failureReason"`
+	GetAllTables        pulumi.StringPtrOutput                    `pulumi:"getAllTables"`
+	HaRebootController  pulumi.StringOutput                       `pulumi:"haRebootController"`
 	NextPathIndex       pulumi.IntOutput                          `pulumi:"nextPathIndex"`
 	NodeLists           SystemFederatedUpgradeNodeListArrayOutput `pulumi:"nodeLists"`
 	Status              pulumi.StringOutput                       `pulumi:"status"`
@@ -30,7 +33,7 @@ func NewSystemFederatedUpgrade(ctx *pulumi.Context,
 		args = &SystemFederatedUpgradeArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemFederatedUpgrade
 	err := ctx.RegisterResource("fortios:index/systemFederatedUpgrade:SystemFederatedUpgrade", name, args, &resource, opts...)
 	if err != nil {
@@ -56,6 +59,8 @@ type systemFederatedUpgradeState struct {
 	DynamicSortSubtable *string                          `pulumi:"dynamicSortSubtable"`
 	FailureDevice       *string                          `pulumi:"failureDevice"`
 	FailureReason       *string                          `pulumi:"failureReason"`
+	GetAllTables        *string                          `pulumi:"getAllTables"`
+	HaRebootController  *string                          `pulumi:"haRebootController"`
 	NextPathIndex       *int                             `pulumi:"nextPathIndex"`
 	NodeLists           []SystemFederatedUpgradeNodeList `pulumi:"nodeLists"`
 	Status              *string                          `pulumi:"status"`
@@ -67,6 +72,8 @@ type SystemFederatedUpgradeState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	FailureDevice       pulumi.StringPtrInput
 	FailureReason       pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
+	HaRebootController  pulumi.StringPtrInput
 	NextPathIndex       pulumi.IntPtrInput
 	NodeLists           SystemFederatedUpgradeNodeListArrayInput
 	Status              pulumi.StringPtrInput
@@ -82,6 +89,8 @@ type systemFederatedUpgradeArgs struct {
 	DynamicSortSubtable *string                          `pulumi:"dynamicSortSubtable"`
 	FailureDevice       *string                          `pulumi:"failureDevice"`
 	FailureReason       *string                          `pulumi:"failureReason"`
+	GetAllTables        *string                          `pulumi:"getAllTables"`
+	HaRebootController  *string                          `pulumi:"haRebootController"`
 	NextPathIndex       *int                             `pulumi:"nextPathIndex"`
 	NodeLists           []SystemFederatedUpgradeNodeList `pulumi:"nodeLists"`
 	Status              *string                          `pulumi:"status"`
@@ -94,6 +103,8 @@ type SystemFederatedUpgradeArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	FailureDevice       pulumi.StringPtrInput
 	FailureReason       pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
+	HaRebootController  pulumi.StringPtrInput
 	NextPathIndex       pulumi.IntPtrInput
 	NodeLists           SystemFederatedUpgradeNodeListArrayInput
 	Status              pulumi.StringPtrInput
@@ -198,6 +209,14 @@ func (o SystemFederatedUpgradeOutput) FailureDevice() pulumi.StringOutput {
 
 func (o SystemFederatedUpgradeOutput) FailureReason() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemFederatedUpgrade) pulumi.StringOutput { return v.FailureReason }).(pulumi.StringOutput)
+}
+
+func (o SystemFederatedUpgradeOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemFederatedUpgrade) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemFederatedUpgradeOutput) HaRebootController() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFederatedUpgrade) pulumi.StringOutput { return v.HaRebootController }).(pulumi.StringOutput)
 }
 
 func (o SystemFederatedUpgradeOutput) NextPathIndex() pulumi.IntOutput {

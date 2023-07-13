@@ -173,20 +173,20 @@ def get_system_ntp(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemNtp:GetSystemNtp', __args__, opts=opts, typ=GetSystemNtpResult).value
 
     return AwaitableGetSystemNtpResult(
-        authentication=__ret__.authentication,
-        id=__ret__.id,
-        interfaces=__ret__.interfaces,
-        key=__ret__.key,
-        key_id=__ret__.key_id,
-        key_type=__ret__.key_type,
-        ntpservers=__ret__.ntpservers,
-        ntpsync=__ret__.ntpsync,
-        server_mode=__ret__.server_mode,
-        source_ip=__ret__.source_ip,
-        source_ip6=__ret__.source_ip6,
-        syncinterval=__ret__.syncinterval,
-        type=__ret__.type,
-        vdomparam=__ret__.vdomparam)
+        authentication=pulumi.get(__ret__, 'authentication'),
+        id=pulumi.get(__ret__, 'id'),
+        interfaces=pulumi.get(__ret__, 'interfaces'),
+        key=pulumi.get(__ret__, 'key'),
+        key_id=pulumi.get(__ret__, 'key_id'),
+        key_type=pulumi.get(__ret__, 'key_type'),
+        ntpservers=pulumi.get(__ret__, 'ntpservers'),
+        ntpsync=pulumi.get(__ret__, 'ntpsync'),
+        server_mode=pulumi.get(__ret__, 'server_mode'),
+        source_ip=pulumi.get(__ret__, 'source_ip'),
+        source_ip6=pulumi.get(__ret__, 'source_ip6'),
+        syncinterval=pulumi.get(__ret__, 'syncinterval'),
+        type=pulumi.get(__ret__, 'type'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_ntp)

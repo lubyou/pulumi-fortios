@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemDns(ctx *pulumi.Context, args *LookupSystemDnsArgs, opts ...pulumi.InvokeOption) (*LookupSystemDnsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemDnsResult
 	err := ctx.Invoke("fortios:index/getSystemDns:GetSystemDns", args, &rv, opts...)
 	if err != nil {
@@ -35,6 +36,7 @@ type LookupSystemDnsResult struct {
 	DnsOverTls             string               `pulumi:"dnsOverTls"`
 	Domains                []GetSystemDnsDomain `pulumi:"domains"`
 	FqdnCacheTtl           int                  `pulumi:"fqdnCacheTtl"`
+	FqdnMaxRefresh         int                  `pulumi:"fqdnMaxRefresh"`
 	FqdnMinRefresh         int                  `pulumi:"fqdnMinRefresh"`
 	// The provider-assigned unique ID for this managed resource.
 	Id                    string                       `pulumi:"id"`
@@ -122,6 +124,10 @@ func (o LookupSystemDnsResultOutput) Domains() GetSystemDnsDomainArrayOutput {
 
 func (o LookupSystemDnsResultOutput) FqdnCacheTtl() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemDnsResult) int { return v.FqdnCacheTtl }).(pulumi.IntOutput)
+}
+
+func (o LookupSystemDnsResultOutput) FqdnMaxRefresh() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemDnsResult) int { return v.FqdnMaxRefresh }).(pulumi.IntOutput)
 }
 
 func (o LookupSystemDnsResultOutput) FqdnMinRefresh() pulumi.IntOutput {

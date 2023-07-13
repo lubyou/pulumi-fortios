@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -51,6 +52,7 @@ type VpnIpsecPhase1 struct {
 	Esn                        pulumi.StringOutput                       `pulumi:"esn"`
 	FecBase                    pulumi.IntOutput                          `pulumi:"fecBase"`
 	FecCodec                   pulumi.IntOutput                          `pulumi:"fecCodec"`
+	FecCodecString             pulumi.StringOutput                       `pulumi:"fecCodecString"`
 	FecEgress                  pulumi.StringOutput                       `pulumi:"fecEgress"`
 	FecHealthCheck             pulumi.StringOutput                       `pulumi:"fecHealthCheck"`
 	FecIngress                 pulumi.StringOutput                       `pulumi:"fecIngress"`
@@ -62,6 +64,7 @@ type VpnIpsecPhase1 struct {
 	ForticlientEnforcement     pulumi.StringOutput                       `pulumi:"forticlientEnforcement"`
 	Fragmentation              pulumi.StringOutput                       `pulumi:"fragmentation"`
 	FragmentationMtu           pulumi.IntOutput                          `pulumi:"fragmentationMtu"`
+	GetAllTables               pulumi.StringPtrOutput                    `pulumi:"getAllTables"`
 	GroupAuthentication        pulumi.StringOutput                       `pulumi:"groupAuthentication"`
 	GroupAuthenticationSecret  pulumi.StringPtrOutput                    `pulumi:"groupAuthenticationSecret"`
 	HaSyncEspSeqno             pulumi.StringOutput                       `pulumi:"haSyncEspSeqno"`
@@ -179,7 +182,7 @@ func NewVpnIpsecPhase1(ctx *pulumi.Context,
 		"psksecretRemote",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource VpnIpsecPhase1
 	err := ctx.RegisterResource("fortios:index/vpnIpsecPhase1:VpnIpsecPhase1", name, args, &resource, opts...)
 	if err != nil {
@@ -239,6 +242,7 @@ type vpnIpsecPhase1State struct {
 	Esn                        *string                          `pulumi:"esn"`
 	FecBase                    *int                             `pulumi:"fecBase"`
 	FecCodec                   *int                             `pulumi:"fecCodec"`
+	FecCodecString             *string                          `pulumi:"fecCodecString"`
 	FecEgress                  *string                          `pulumi:"fecEgress"`
 	FecHealthCheck             *string                          `pulumi:"fecHealthCheck"`
 	FecIngress                 *string                          `pulumi:"fecIngress"`
@@ -250,6 +254,7 @@ type vpnIpsecPhase1State struct {
 	ForticlientEnforcement     *string                          `pulumi:"forticlientEnforcement"`
 	Fragmentation              *string                          `pulumi:"fragmentation"`
 	FragmentationMtu           *int                             `pulumi:"fragmentationMtu"`
+	GetAllTables               *string                          `pulumi:"getAllTables"`
 	GroupAuthentication        *string                          `pulumi:"groupAuthentication"`
 	GroupAuthenticationSecret  *string                          `pulumi:"groupAuthenticationSecret"`
 	HaSyncEspSeqno             *string                          `pulumi:"haSyncEspSeqno"`
@@ -366,6 +371,7 @@ type VpnIpsecPhase1State struct {
 	Esn                        pulumi.StringPtrInput
 	FecBase                    pulumi.IntPtrInput
 	FecCodec                   pulumi.IntPtrInput
+	FecCodecString             pulumi.StringPtrInput
 	FecEgress                  pulumi.StringPtrInput
 	FecHealthCheck             pulumi.StringPtrInput
 	FecIngress                 pulumi.StringPtrInput
@@ -377,6 +383,7 @@ type VpnIpsecPhase1State struct {
 	ForticlientEnforcement     pulumi.StringPtrInput
 	Fragmentation              pulumi.StringPtrInput
 	FragmentationMtu           pulumi.IntPtrInput
+	GetAllTables               pulumi.StringPtrInput
 	GroupAuthentication        pulumi.StringPtrInput
 	GroupAuthenticationSecret  pulumi.StringPtrInput
 	HaSyncEspSeqno             pulumi.StringPtrInput
@@ -497,6 +504,7 @@ type vpnIpsecPhase1Args struct {
 	Esn                        *string                          `pulumi:"esn"`
 	FecBase                    *int                             `pulumi:"fecBase"`
 	FecCodec                   *int                             `pulumi:"fecCodec"`
+	FecCodecString             *string                          `pulumi:"fecCodecString"`
 	FecEgress                  *string                          `pulumi:"fecEgress"`
 	FecHealthCheck             *string                          `pulumi:"fecHealthCheck"`
 	FecIngress                 *string                          `pulumi:"fecIngress"`
@@ -508,6 +516,7 @@ type vpnIpsecPhase1Args struct {
 	ForticlientEnforcement     *string                          `pulumi:"forticlientEnforcement"`
 	Fragmentation              *string                          `pulumi:"fragmentation"`
 	FragmentationMtu           *int                             `pulumi:"fragmentationMtu"`
+	GetAllTables               *string                          `pulumi:"getAllTables"`
 	GroupAuthentication        *string                          `pulumi:"groupAuthentication"`
 	GroupAuthenticationSecret  *string                          `pulumi:"groupAuthenticationSecret"`
 	HaSyncEspSeqno             *string                          `pulumi:"haSyncEspSeqno"`
@@ -625,6 +634,7 @@ type VpnIpsecPhase1Args struct {
 	Esn                        pulumi.StringPtrInput
 	FecBase                    pulumi.IntPtrInput
 	FecCodec                   pulumi.IntPtrInput
+	FecCodecString             pulumi.StringPtrInput
 	FecEgress                  pulumi.StringPtrInput
 	FecHealthCheck             pulumi.StringPtrInput
 	FecIngress                 pulumi.StringPtrInput
@@ -636,6 +646,7 @@ type VpnIpsecPhase1Args struct {
 	ForticlientEnforcement     pulumi.StringPtrInput
 	Fragmentation              pulumi.StringPtrInput
 	FragmentationMtu           pulumi.IntPtrInput
+	GetAllTables               pulumi.StringPtrInput
 	GroupAuthentication        pulumi.StringPtrInput
 	GroupAuthenticationSecret  pulumi.StringPtrInput
 	HaSyncEspSeqno             pulumi.StringPtrInput
@@ -949,6 +960,10 @@ func (o VpnIpsecPhase1Output) FecCodec() pulumi.IntOutput {
 	return o.ApplyT(func(v *VpnIpsecPhase1) pulumi.IntOutput { return v.FecCodec }).(pulumi.IntOutput)
 }
 
+func (o VpnIpsecPhase1Output) FecCodecString() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnIpsecPhase1) pulumi.StringOutput { return v.FecCodecString }).(pulumi.StringOutput)
+}
+
 func (o VpnIpsecPhase1Output) FecEgress() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpnIpsecPhase1) pulumi.StringOutput { return v.FecEgress }).(pulumi.StringOutput)
 }
@@ -991,6 +1006,10 @@ func (o VpnIpsecPhase1Output) Fragmentation() pulumi.StringOutput {
 
 func (o VpnIpsecPhase1Output) FragmentationMtu() pulumi.IntOutput {
 	return o.ApplyT(func(v *VpnIpsecPhase1) pulumi.IntOutput { return v.FragmentationMtu }).(pulumi.IntOutput)
+}
+
+func (o VpnIpsecPhase1Output) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnIpsecPhase1) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o VpnIpsecPhase1Output) GroupAuthentication() pulumi.StringOutput {

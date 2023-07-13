@@ -43,12 +43,14 @@ export interface GetRouterStaticResult {
     readonly internetService: number;
     readonly internetServiceCustom: string;
     readonly linkMonitorExempt: string;
+    readonly preferredSource: string;
     readonly priority: number;
     readonly sdwan: string;
     readonly sdwanZones: outputs.GetRouterStaticSdwanZone[];
     readonly seqNum: number;
     readonly src: string;
     readonly status: string;
+    readonly tag: number;
     readonly vdomparam?: string;
     readonly virtualWanLink: string;
     readonly vrf: number;

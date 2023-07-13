@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupFirewallDosPolicy6(ctx *pulumi.Context, args *LookupFirewallDosPolicy6Args, opts ...pulumi.InvokeOption) (*LookupFirewallDosPolicy6Result, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallDosPolicy6Result
 	err := ctx.Invoke("fortios:index/getFirewallDosPolicy6:GetFirewallDosPolicy6", args, &rv, opts...)
 	if err != nil {

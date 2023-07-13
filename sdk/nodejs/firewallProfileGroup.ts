@@ -42,6 +42,7 @@ export class FirewallProfileGroup extends pulumi.CustomResource {
     public readonly fileFilterProfile!: pulumi.Output<string>;
     public readonly icapProfile!: pulumi.Output<string>;
     public readonly ipsSensor!: pulumi.Output<string>;
+    public readonly ipsVoipFilter!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
     public readonly profileProtocolOptions!: pulumi.Output<string>;
     public readonly sctpFilterProfile!: pulumi.Output<string>;
@@ -77,6 +78,7 @@ export class FirewallProfileGroup extends pulumi.CustomResource {
             resourceInputs["fileFilterProfile"] = state ? state.fileFilterProfile : undefined;
             resourceInputs["icapProfile"] = state ? state.icapProfile : undefined;
             resourceInputs["ipsSensor"] = state ? state.ipsSensor : undefined;
+            resourceInputs["ipsVoipFilter"] = state ? state.ipsVoipFilter : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["profileProtocolOptions"] = state ? state.profileProtocolOptions : undefined;
             resourceInputs["sctpFilterProfile"] = state ? state.sctpFilterProfile : undefined;
@@ -100,6 +102,7 @@ export class FirewallProfileGroup extends pulumi.CustomResource {
             resourceInputs["fileFilterProfile"] = args ? args.fileFilterProfile : undefined;
             resourceInputs["icapProfile"] = args ? args.icapProfile : undefined;
             resourceInputs["ipsSensor"] = args ? args.ipsSensor : undefined;
+            resourceInputs["ipsVoipFilter"] = args ? args.ipsVoipFilter : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["profileProtocolOptions"] = args ? args.profileProtocolOptions : undefined;
             resourceInputs["sctpFilterProfile"] = args ? args.sctpFilterProfile : undefined;
@@ -131,6 +134,7 @@ export interface FirewallProfileGroupState {
     fileFilterProfile?: pulumi.Input<string>;
     icapProfile?: pulumi.Input<string>;
     ipsSensor?: pulumi.Input<string>;
+    ipsVoipFilter?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     profileProtocolOptions?: pulumi.Input<string>;
     sctpFilterProfile?: pulumi.Input<string>;
@@ -158,6 +162,7 @@ export interface FirewallProfileGroupArgs {
     fileFilterProfile?: pulumi.Input<string>;
     icapProfile?: pulumi.Input<string>;
     ipsSensor?: pulumi.Input<string>;
+    ipsVoipFilter?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     profileProtocolOptions?: pulumi.Input<string>;
     sctpFilterProfile?: pulumi.Input<string>;

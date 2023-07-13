@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -16,6 +17,7 @@ type SwitchControllerSnmpCommunity struct {
 	DynamicSortSubtable pulumi.StringPtrOutput                       `pulumi:"dynamicSortSubtable"`
 	Events              pulumi.StringOutput                          `pulumi:"events"`
 	Fosid               pulumi.IntOutput                             `pulumi:"fosid"`
+	GetAllTables        pulumi.StringPtrOutput                       `pulumi:"getAllTables"`
 	Hosts               SwitchControllerSnmpCommunityHostArrayOutput `pulumi:"hosts"`
 	Name                pulumi.StringOutput                          `pulumi:"name"`
 	QueryV1Port         pulumi.IntOutput                             `pulumi:"queryV1Port"`
@@ -39,7 +41,7 @@ func NewSwitchControllerSnmpCommunity(ctx *pulumi.Context,
 		args = &SwitchControllerSnmpCommunityArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SwitchControllerSnmpCommunity
 	err := ctx.RegisterResource("fortios:index/switchControllerSnmpCommunity:SwitchControllerSnmpCommunity", name, args, &resource, opts...)
 	if err != nil {
@@ -65,6 +67,7 @@ type switchControllerSnmpCommunityState struct {
 	DynamicSortSubtable *string                             `pulumi:"dynamicSortSubtable"`
 	Events              *string                             `pulumi:"events"`
 	Fosid               *int                                `pulumi:"fosid"`
+	GetAllTables        *string                             `pulumi:"getAllTables"`
 	Hosts               []SwitchControllerSnmpCommunityHost `pulumi:"hosts"`
 	Name                *string                             `pulumi:"name"`
 	QueryV1Port         *int                                `pulumi:"queryV1Port"`
@@ -85,6 +88,7 @@ type SwitchControllerSnmpCommunityState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	Events              pulumi.StringPtrInput
 	Fosid               pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Hosts               SwitchControllerSnmpCommunityHostArrayInput
 	Name                pulumi.StringPtrInput
 	QueryV1Port         pulumi.IntPtrInput
@@ -109,6 +113,7 @@ type switchControllerSnmpCommunityArgs struct {
 	DynamicSortSubtable *string                             `pulumi:"dynamicSortSubtable"`
 	Events              *string                             `pulumi:"events"`
 	Fosid               *int                                `pulumi:"fosid"`
+	GetAllTables        *string                             `pulumi:"getAllTables"`
 	Hosts               []SwitchControllerSnmpCommunityHost `pulumi:"hosts"`
 	Name                *string                             `pulumi:"name"`
 	QueryV1Port         *int                                `pulumi:"queryV1Port"`
@@ -130,6 +135,7 @@ type SwitchControllerSnmpCommunityArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	Events              pulumi.StringPtrInput
 	Fosid               pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Hosts               SwitchControllerSnmpCommunityHostArrayInput
 	Name                pulumi.StringPtrInput
 	QueryV1Port         pulumi.IntPtrInput
@@ -243,6 +249,10 @@ func (o SwitchControllerSnmpCommunityOutput) Events() pulumi.StringOutput {
 
 func (o SwitchControllerSnmpCommunityOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *SwitchControllerSnmpCommunity) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerSnmpCommunityOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerSnmpCommunity) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SwitchControllerSnmpCommunityOutput) Hosts() SwitchControllerSnmpCommunityHostArrayOutput {

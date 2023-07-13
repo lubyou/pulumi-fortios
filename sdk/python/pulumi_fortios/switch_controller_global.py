@@ -20,11 +20,18 @@ class SwitchControllerGlobalArgs:
                  bounce_quarantined_link: Optional[pulumi.Input[str]] = None,
                  custom_commands: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerGlobalCustomCommandArgs']]]] = None,
                  default_virtual_switch_vlan: Optional[pulumi.Input[str]] = None,
+                 dhcp_option82_circuit_id: Optional[pulumi.Input[str]] = None,
+                 dhcp_option82_format: Optional[pulumi.Input[str]] = None,
+                 dhcp_option82_remote_id: Optional[pulumi.Input[str]] = None,
                  dhcp_server_access_list: Optional[pulumi.Input[str]] = None,
+                 dhcp_snoop_client_db_exp: Optional[pulumi.Input[int]] = None,
+                 dhcp_snoop_client_req: Optional[pulumi.Input[str]] = None,
+                 dhcp_snoop_db_per_port_learn_limit: Optional[pulumi.Input[int]] = None,
                  disable_discoveries: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerGlobalDisableDiscoveryArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fips_enforce: Optional[pulumi.Input[str]] = None,
                  firmware_provision_on_authorization: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  https_image_push: Optional[pulumi.Input[str]] = None,
                  log_mac_limit_violations: Optional[pulumi.Input[str]] = None,
                  mac_aging_interval: Optional[pulumi.Input[int]] = None,
@@ -48,8 +55,20 @@ class SwitchControllerGlobalArgs:
             pulumi.set(__self__, "custom_commands", custom_commands)
         if default_virtual_switch_vlan is not None:
             pulumi.set(__self__, "default_virtual_switch_vlan", default_virtual_switch_vlan)
+        if dhcp_option82_circuit_id is not None:
+            pulumi.set(__self__, "dhcp_option82_circuit_id", dhcp_option82_circuit_id)
+        if dhcp_option82_format is not None:
+            pulumi.set(__self__, "dhcp_option82_format", dhcp_option82_format)
+        if dhcp_option82_remote_id is not None:
+            pulumi.set(__self__, "dhcp_option82_remote_id", dhcp_option82_remote_id)
         if dhcp_server_access_list is not None:
             pulumi.set(__self__, "dhcp_server_access_list", dhcp_server_access_list)
+        if dhcp_snoop_client_db_exp is not None:
+            pulumi.set(__self__, "dhcp_snoop_client_db_exp", dhcp_snoop_client_db_exp)
+        if dhcp_snoop_client_req is not None:
+            pulumi.set(__self__, "dhcp_snoop_client_req", dhcp_snoop_client_req)
+        if dhcp_snoop_db_per_port_learn_limit is not None:
+            pulumi.set(__self__, "dhcp_snoop_db_per_port_learn_limit", dhcp_snoop_db_per_port_learn_limit)
         if disable_discoveries is not None:
             pulumi.set(__self__, "disable_discoveries", disable_discoveries)
         if dynamic_sort_subtable is not None:
@@ -58,6 +77,8 @@ class SwitchControllerGlobalArgs:
             pulumi.set(__self__, "fips_enforce", fips_enforce)
         if firmware_provision_on_authorization is not None:
             pulumi.set(__self__, "firmware_provision_on_authorization", firmware_provision_on_authorization)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if https_image_push is not None:
             pulumi.set(__self__, "https_image_push", https_image_push)
         if log_mac_limit_violations is not None:
@@ -120,6 +141,33 @@ class SwitchControllerGlobalArgs:
         pulumi.set(self, "default_virtual_switch_vlan", value)
 
     @property
+    @pulumi.getter(name="dhcpOption82CircuitId")
+    def dhcp_option82_circuit_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "dhcp_option82_circuit_id")
+
+    @dhcp_option82_circuit_id.setter
+    def dhcp_option82_circuit_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_option82_circuit_id", value)
+
+    @property
+    @pulumi.getter(name="dhcpOption82Format")
+    def dhcp_option82_format(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "dhcp_option82_format")
+
+    @dhcp_option82_format.setter
+    def dhcp_option82_format(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_option82_format", value)
+
+    @property
+    @pulumi.getter(name="dhcpOption82RemoteId")
+    def dhcp_option82_remote_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "dhcp_option82_remote_id")
+
+    @dhcp_option82_remote_id.setter
+    def dhcp_option82_remote_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_option82_remote_id", value)
+
+    @property
     @pulumi.getter(name="dhcpServerAccessList")
     def dhcp_server_access_list(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "dhcp_server_access_list")
@@ -127,6 +175,33 @@ class SwitchControllerGlobalArgs:
     @dhcp_server_access_list.setter
     def dhcp_server_access_list(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dhcp_server_access_list", value)
+
+    @property
+    @pulumi.getter(name="dhcpSnoopClientDbExp")
+    def dhcp_snoop_client_db_exp(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "dhcp_snoop_client_db_exp")
+
+    @dhcp_snoop_client_db_exp.setter
+    def dhcp_snoop_client_db_exp(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "dhcp_snoop_client_db_exp", value)
+
+    @property
+    @pulumi.getter(name="dhcpSnoopClientReq")
+    def dhcp_snoop_client_req(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "dhcp_snoop_client_req")
+
+    @dhcp_snoop_client_req.setter
+    def dhcp_snoop_client_req(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_snoop_client_req", value)
+
+    @property
+    @pulumi.getter(name="dhcpSnoopDbPerPortLearnLimit")
+    def dhcp_snoop_db_per_port_learn_limit(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "dhcp_snoop_db_per_port_learn_limit")
+
+    @dhcp_snoop_db_per_port_learn_limit.setter
+    def dhcp_snoop_db_per_port_learn_limit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "dhcp_snoop_db_per_port_learn_limit", value)
 
     @property
     @pulumi.getter(name="disableDiscoveries")
@@ -163,6 +238,15 @@ class SwitchControllerGlobalArgs:
     @firmware_provision_on_authorization.setter
     def firmware_provision_on_authorization(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "firmware_provision_on_authorization", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="httpsImagePush")
@@ -280,11 +364,18 @@ class _SwitchControllerGlobalState:
                  bounce_quarantined_link: Optional[pulumi.Input[str]] = None,
                  custom_commands: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerGlobalCustomCommandArgs']]]] = None,
                  default_virtual_switch_vlan: Optional[pulumi.Input[str]] = None,
+                 dhcp_option82_circuit_id: Optional[pulumi.Input[str]] = None,
+                 dhcp_option82_format: Optional[pulumi.Input[str]] = None,
+                 dhcp_option82_remote_id: Optional[pulumi.Input[str]] = None,
                  dhcp_server_access_list: Optional[pulumi.Input[str]] = None,
+                 dhcp_snoop_client_db_exp: Optional[pulumi.Input[int]] = None,
+                 dhcp_snoop_client_req: Optional[pulumi.Input[str]] = None,
+                 dhcp_snoop_db_per_port_learn_limit: Optional[pulumi.Input[int]] = None,
                  disable_discoveries: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerGlobalDisableDiscoveryArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fips_enforce: Optional[pulumi.Input[str]] = None,
                  firmware_provision_on_authorization: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  https_image_push: Optional[pulumi.Input[str]] = None,
                  log_mac_limit_violations: Optional[pulumi.Input[str]] = None,
                  mac_aging_interval: Optional[pulumi.Input[int]] = None,
@@ -308,8 +399,20 @@ class _SwitchControllerGlobalState:
             pulumi.set(__self__, "custom_commands", custom_commands)
         if default_virtual_switch_vlan is not None:
             pulumi.set(__self__, "default_virtual_switch_vlan", default_virtual_switch_vlan)
+        if dhcp_option82_circuit_id is not None:
+            pulumi.set(__self__, "dhcp_option82_circuit_id", dhcp_option82_circuit_id)
+        if dhcp_option82_format is not None:
+            pulumi.set(__self__, "dhcp_option82_format", dhcp_option82_format)
+        if dhcp_option82_remote_id is not None:
+            pulumi.set(__self__, "dhcp_option82_remote_id", dhcp_option82_remote_id)
         if dhcp_server_access_list is not None:
             pulumi.set(__self__, "dhcp_server_access_list", dhcp_server_access_list)
+        if dhcp_snoop_client_db_exp is not None:
+            pulumi.set(__self__, "dhcp_snoop_client_db_exp", dhcp_snoop_client_db_exp)
+        if dhcp_snoop_client_req is not None:
+            pulumi.set(__self__, "dhcp_snoop_client_req", dhcp_snoop_client_req)
+        if dhcp_snoop_db_per_port_learn_limit is not None:
+            pulumi.set(__self__, "dhcp_snoop_db_per_port_learn_limit", dhcp_snoop_db_per_port_learn_limit)
         if disable_discoveries is not None:
             pulumi.set(__self__, "disable_discoveries", disable_discoveries)
         if dynamic_sort_subtable is not None:
@@ -318,6 +421,8 @@ class _SwitchControllerGlobalState:
             pulumi.set(__self__, "fips_enforce", fips_enforce)
         if firmware_provision_on_authorization is not None:
             pulumi.set(__self__, "firmware_provision_on_authorization", firmware_provision_on_authorization)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if https_image_push is not None:
             pulumi.set(__self__, "https_image_push", https_image_push)
         if log_mac_limit_violations is not None:
@@ -380,6 +485,33 @@ class _SwitchControllerGlobalState:
         pulumi.set(self, "default_virtual_switch_vlan", value)
 
     @property
+    @pulumi.getter(name="dhcpOption82CircuitId")
+    def dhcp_option82_circuit_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "dhcp_option82_circuit_id")
+
+    @dhcp_option82_circuit_id.setter
+    def dhcp_option82_circuit_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_option82_circuit_id", value)
+
+    @property
+    @pulumi.getter(name="dhcpOption82Format")
+    def dhcp_option82_format(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "dhcp_option82_format")
+
+    @dhcp_option82_format.setter
+    def dhcp_option82_format(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_option82_format", value)
+
+    @property
+    @pulumi.getter(name="dhcpOption82RemoteId")
+    def dhcp_option82_remote_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "dhcp_option82_remote_id")
+
+    @dhcp_option82_remote_id.setter
+    def dhcp_option82_remote_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_option82_remote_id", value)
+
+    @property
     @pulumi.getter(name="dhcpServerAccessList")
     def dhcp_server_access_list(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "dhcp_server_access_list")
@@ -387,6 +519,33 @@ class _SwitchControllerGlobalState:
     @dhcp_server_access_list.setter
     def dhcp_server_access_list(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dhcp_server_access_list", value)
+
+    @property
+    @pulumi.getter(name="dhcpSnoopClientDbExp")
+    def dhcp_snoop_client_db_exp(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "dhcp_snoop_client_db_exp")
+
+    @dhcp_snoop_client_db_exp.setter
+    def dhcp_snoop_client_db_exp(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "dhcp_snoop_client_db_exp", value)
+
+    @property
+    @pulumi.getter(name="dhcpSnoopClientReq")
+    def dhcp_snoop_client_req(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "dhcp_snoop_client_req")
+
+    @dhcp_snoop_client_req.setter
+    def dhcp_snoop_client_req(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_snoop_client_req", value)
+
+    @property
+    @pulumi.getter(name="dhcpSnoopDbPerPortLearnLimit")
+    def dhcp_snoop_db_per_port_learn_limit(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "dhcp_snoop_db_per_port_learn_limit")
+
+    @dhcp_snoop_db_per_port_learn_limit.setter
+    def dhcp_snoop_db_per_port_learn_limit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "dhcp_snoop_db_per_port_learn_limit", value)
 
     @property
     @pulumi.getter(name="disableDiscoveries")
@@ -423,6 +582,15 @@ class _SwitchControllerGlobalState:
     @firmware_provision_on_authorization.setter
     def firmware_provision_on_authorization(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "firmware_provision_on_authorization", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="httpsImagePush")
@@ -542,11 +710,18 @@ class SwitchControllerGlobal(pulumi.CustomResource):
                  bounce_quarantined_link: Optional[pulumi.Input[str]] = None,
                  custom_commands: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerGlobalCustomCommandArgs']]]]] = None,
                  default_virtual_switch_vlan: Optional[pulumi.Input[str]] = None,
+                 dhcp_option82_circuit_id: Optional[pulumi.Input[str]] = None,
+                 dhcp_option82_format: Optional[pulumi.Input[str]] = None,
+                 dhcp_option82_remote_id: Optional[pulumi.Input[str]] = None,
                  dhcp_server_access_list: Optional[pulumi.Input[str]] = None,
+                 dhcp_snoop_client_db_exp: Optional[pulumi.Input[int]] = None,
+                 dhcp_snoop_client_req: Optional[pulumi.Input[str]] = None,
+                 dhcp_snoop_db_per_port_learn_limit: Optional[pulumi.Input[int]] = None,
                  disable_discoveries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerGlobalDisableDiscoveryArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fips_enforce: Optional[pulumi.Input[str]] = None,
                  firmware_provision_on_authorization: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  https_image_push: Optional[pulumi.Input[str]] = None,
                  log_mac_limit_violations: Optional[pulumi.Input[str]] = None,
                  mac_aging_interval: Optional[pulumi.Input[int]] = None,
@@ -592,11 +767,18 @@ class SwitchControllerGlobal(pulumi.CustomResource):
                  bounce_quarantined_link: Optional[pulumi.Input[str]] = None,
                  custom_commands: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerGlobalCustomCommandArgs']]]]] = None,
                  default_virtual_switch_vlan: Optional[pulumi.Input[str]] = None,
+                 dhcp_option82_circuit_id: Optional[pulumi.Input[str]] = None,
+                 dhcp_option82_format: Optional[pulumi.Input[str]] = None,
+                 dhcp_option82_remote_id: Optional[pulumi.Input[str]] = None,
                  dhcp_server_access_list: Optional[pulumi.Input[str]] = None,
+                 dhcp_snoop_client_db_exp: Optional[pulumi.Input[int]] = None,
+                 dhcp_snoop_client_req: Optional[pulumi.Input[str]] = None,
+                 dhcp_snoop_db_per_port_learn_limit: Optional[pulumi.Input[int]] = None,
                  disable_discoveries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerGlobalDisableDiscoveryArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fips_enforce: Optional[pulumi.Input[str]] = None,
                  firmware_provision_on_authorization: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  https_image_push: Optional[pulumi.Input[str]] = None,
                  log_mac_limit_violations: Optional[pulumi.Input[str]] = None,
                  mac_aging_interval: Optional[pulumi.Input[int]] = None,
@@ -622,11 +804,18 @@ class SwitchControllerGlobal(pulumi.CustomResource):
             __props__.__dict__["bounce_quarantined_link"] = bounce_quarantined_link
             __props__.__dict__["custom_commands"] = custom_commands
             __props__.__dict__["default_virtual_switch_vlan"] = default_virtual_switch_vlan
+            __props__.__dict__["dhcp_option82_circuit_id"] = dhcp_option82_circuit_id
+            __props__.__dict__["dhcp_option82_format"] = dhcp_option82_format
+            __props__.__dict__["dhcp_option82_remote_id"] = dhcp_option82_remote_id
             __props__.__dict__["dhcp_server_access_list"] = dhcp_server_access_list
+            __props__.__dict__["dhcp_snoop_client_db_exp"] = dhcp_snoop_client_db_exp
+            __props__.__dict__["dhcp_snoop_client_req"] = dhcp_snoop_client_req
+            __props__.__dict__["dhcp_snoop_db_per_port_learn_limit"] = dhcp_snoop_db_per_port_learn_limit
             __props__.__dict__["disable_discoveries"] = disable_discoveries
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["fips_enforce"] = fips_enforce
             __props__.__dict__["firmware_provision_on_authorization"] = firmware_provision_on_authorization
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["https_image_push"] = https_image_push
             __props__.__dict__["log_mac_limit_violations"] = log_mac_limit_violations
             __props__.__dict__["mac_aging_interval"] = mac_aging_interval
@@ -653,11 +842,18 @@ class SwitchControllerGlobal(pulumi.CustomResource):
             bounce_quarantined_link: Optional[pulumi.Input[str]] = None,
             custom_commands: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerGlobalCustomCommandArgs']]]]] = None,
             default_virtual_switch_vlan: Optional[pulumi.Input[str]] = None,
+            dhcp_option82_circuit_id: Optional[pulumi.Input[str]] = None,
+            dhcp_option82_format: Optional[pulumi.Input[str]] = None,
+            dhcp_option82_remote_id: Optional[pulumi.Input[str]] = None,
             dhcp_server_access_list: Optional[pulumi.Input[str]] = None,
+            dhcp_snoop_client_db_exp: Optional[pulumi.Input[int]] = None,
+            dhcp_snoop_client_req: Optional[pulumi.Input[str]] = None,
+            dhcp_snoop_db_per_port_learn_limit: Optional[pulumi.Input[int]] = None,
             disable_discoveries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerGlobalDisableDiscoveryArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             fips_enforce: Optional[pulumi.Input[str]] = None,
             firmware_provision_on_authorization: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             https_image_push: Optional[pulumi.Input[str]] = None,
             log_mac_limit_violations: Optional[pulumi.Input[str]] = None,
             mac_aging_interval: Optional[pulumi.Input[int]] = None,
@@ -686,11 +882,18 @@ class SwitchControllerGlobal(pulumi.CustomResource):
         __props__.__dict__["bounce_quarantined_link"] = bounce_quarantined_link
         __props__.__dict__["custom_commands"] = custom_commands
         __props__.__dict__["default_virtual_switch_vlan"] = default_virtual_switch_vlan
+        __props__.__dict__["dhcp_option82_circuit_id"] = dhcp_option82_circuit_id
+        __props__.__dict__["dhcp_option82_format"] = dhcp_option82_format
+        __props__.__dict__["dhcp_option82_remote_id"] = dhcp_option82_remote_id
         __props__.__dict__["dhcp_server_access_list"] = dhcp_server_access_list
+        __props__.__dict__["dhcp_snoop_client_db_exp"] = dhcp_snoop_client_db_exp
+        __props__.__dict__["dhcp_snoop_client_req"] = dhcp_snoop_client_req
+        __props__.__dict__["dhcp_snoop_db_per_port_learn_limit"] = dhcp_snoop_db_per_port_learn_limit
         __props__.__dict__["disable_discoveries"] = disable_discoveries
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["fips_enforce"] = fips_enforce
         __props__.__dict__["firmware_provision_on_authorization"] = firmware_provision_on_authorization
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["https_image_push"] = https_image_push
         __props__.__dict__["log_mac_limit_violations"] = log_mac_limit_violations
         __props__.__dict__["mac_aging_interval"] = mac_aging_interval
@@ -726,9 +929,39 @@ class SwitchControllerGlobal(pulumi.CustomResource):
         return pulumi.get(self, "default_virtual_switch_vlan")
 
     @property
+    @pulumi.getter(name="dhcpOption82CircuitId")
+    def dhcp_option82_circuit_id(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "dhcp_option82_circuit_id")
+
+    @property
+    @pulumi.getter(name="dhcpOption82Format")
+    def dhcp_option82_format(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "dhcp_option82_format")
+
+    @property
+    @pulumi.getter(name="dhcpOption82RemoteId")
+    def dhcp_option82_remote_id(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "dhcp_option82_remote_id")
+
+    @property
     @pulumi.getter(name="dhcpServerAccessList")
     def dhcp_server_access_list(self) -> pulumi.Output[str]:
         return pulumi.get(self, "dhcp_server_access_list")
+
+    @property
+    @pulumi.getter(name="dhcpSnoopClientDbExp")
+    def dhcp_snoop_client_db_exp(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "dhcp_snoop_client_db_exp")
+
+    @property
+    @pulumi.getter(name="dhcpSnoopClientReq")
+    def dhcp_snoop_client_req(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "dhcp_snoop_client_req")
+
+    @property
+    @pulumi.getter(name="dhcpSnoopDbPerPortLearnLimit")
+    def dhcp_snoop_db_per_port_learn_limit(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "dhcp_snoop_db_per_port_learn_limit")
 
     @property
     @pulumi.getter(name="disableDiscoveries")
@@ -749,6 +982,11 @@ class SwitchControllerGlobal(pulumi.CustomResource):
     @pulumi.getter(name="firmwareProvisionOnAuthorization")
     def firmware_provision_on_authorization(self) -> pulumi.Output[str]:
         return pulumi.get(self, "firmware_provision_on_authorization")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="httpsImagePush")

@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -17,6 +18,7 @@ type SystemNat64 struct {
 	AlwaysSynthesizeAaaaRecord     pulumi.StringOutput                   `pulumi:"alwaysSynthesizeAaaaRecord"`
 	DynamicSortSubtable            pulumi.StringPtrOutput                `pulumi:"dynamicSortSubtable"`
 	GenerateIpv6FragmentHeader     pulumi.StringOutput                   `pulumi:"generateIpv6FragmentHeader"`
+	GetAllTables                   pulumi.StringPtrOutput                `pulumi:"getAllTables"`
 	Nat46ForceIpv4PacketForwarding pulumi.StringOutput                   `pulumi:"nat46ForceIpv4PacketForwarding"`
 	Nat64Prefix                    pulumi.StringOutput                   `pulumi:"nat64Prefix"`
 	SecondaryPrefixStatus          pulumi.StringOutput                   `pulumi:"secondaryPrefixStatus"`
@@ -35,7 +37,7 @@ func NewSystemNat64(ctx *pulumi.Context,
 	if args.Nat64Prefix == nil {
 		return nil, errors.New("invalid value for required argument 'Nat64Prefix'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemNat64
 	err := ctx.RegisterResource("fortios:index/systemNat64:SystemNat64", name, args, &resource, opts...)
 	if err != nil {
@@ -61,6 +63,7 @@ type systemNat64State struct {
 	AlwaysSynthesizeAaaaRecord     *string                      `pulumi:"alwaysSynthesizeAaaaRecord"`
 	DynamicSortSubtable            *string                      `pulumi:"dynamicSortSubtable"`
 	GenerateIpv6FragmentHeader     *string                      `pulumi:"generateIpv6FragmentHeader"`
+	GetAllTables                   *string                      `pulumi:"getAllTables"`
 	Nat46ForceIpv4PacketForwarding *string                      `pulumi:"nat46ForceIpv4PacketForwarding"`
 	Nat64Prefix                    *string                      `pulumi:"nat64Prefix"`
 	SecondaryPrefixStatus          *string                      `pulumi:"secondaryPrefixStatus"`
@@ -73,6 +76,7 @@ type SystemNat64State struct {
 	AlwaysSynthesizeAaaaRecord     pulumi.StringPtrInput
 	DynamicSortSubtable            pulumi.StringPtrInput
 	GenerateIpv6FragmentHeader     pulumi.StringPtrInput
+	GetAllTables                   pulumi.StringPtrInput
 	Nat46ForceIpv4PacketForwarding pulumi.StringPtrInput
 	Nat64Prefix                    pulumi.StringPtrInput
 	SecondaryPrefixStatus          pulumi.StringPtrInput
@@ -89,6 +93,7 @@ type systemNat64Args struct {
 	AlwaysSynthesizeAaaaRecord     *string                      `pulumi:"alwaysSynthesizeAaaaRecord"`
 	DynamicSortSubtable            *string                      `pulumi:"dynamicSortSubtable"`
 	GenerateIpv6FragmentHeader     *string                      `pulumi:"generateIpv6FragmentHeader"`
+	GetAllTables                   *string                      `pulumi:"getAllTables"`
 	Nat46ForceIpv4PacketForwarding *string                      `pulumi:"nat46ForceIpv4PacketForwarding"`
 	Nat64Prefix                    string                       `pulumi:"nat64Prefix"`
 	SecondaryPrefixStatus          *string                      `pulumi:"secondaryPrefixStatus"`
@@ -102,6 +107,7 @@ type SystemNat64Args struct {
 	AlwaysSynthesizeAaaaRecord     pulumi.StringPtrInput
 	DynamicSortSubtable            pulumi.StringPtrInput
 	GenerateIpv6FragmentHeader     pulumi.StringPtrInput
+	GetAllTables                   pulumi.StringPtrInput
 	Nat46ForceIpv4PacketForwarding pulumi.StringPtrInput
 	Nat64Prefix                    pulumi.StringInput
 	SecondaryPrefixStatus          pulumi.StringPtrInput
@@ -207,6 +213,10 @@ func (o SystemNat64Output) DynamicSortSubtable() pulumi.StringPtrOutput {
 
 func (o SystemNat64Output) GenerateIpv6FragmentHeader() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemNat64) pulumi.StringOutput { return v.GenerateIpv6FragmentHeader }).(pulumi.StringOutput)
+}
+
+func (o SystemNat64Output) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemNat64) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemNat64Output) Nat46ForceIpv4PacketForwarding() pulumi.StringOutput {

@@ -18,6 +18,7 @@ class FtpProxyExplicitArgs:
                  incoming_port: Optional[pulumi.Input[str]] = None,
                  outgoing_ip: Optional[pulumi.Input[str]] = None,
                  sec_default_action: Optional[pulumi.Input[str]] = None,
+                 server_data_mode: Optional[pulumi.Input[str]] = None,
                  ssl: Optional[pulumi.Input[str]] = None,
                  ssl_algorithm: Optional[pulumi.Input[str]] = None,
                  ssl_cert: Optional[pulumi.Input[str]] = None,
@@ -35,6 +36,8 @@ class FtpProxyExplicitArgs:
             pulumi.set(__self__, "outgoing_ip", outgoing_ip)
         if sec_default_action is not None:
             pulumi.set(__self__, "sec_default_action", sec_default_action)
+        if server_data_mode is not None:
+            pulumi.set(__self__, "server_data_mode", server_data_mode)
         if ssl is not None:
             pulumi.set(__self__, "ssl", ssl)
         if ssl_algorithm is not None:
@@ -83,6 +86,15 @@ class FtpProxyExplicitArgs:
     @sec_default_action.setter
     def sec_default_action(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sec_default_action", value)
+
+    @property
+    @pulumi.getter(name="serverDataMode")
+    def server_data_mode(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "server_data_mode")
+
+    @server_data_mode.setter
+    def server_data_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "server_data_mode", value)
 
     @property
     @pulumi.getter
@@ -146,6 +158,7 @@ class _FtpProxyExplicitState:
                  incoming_port: Optional[pulumi.Input[str]] = None,
                  outgoing_ip: Optional[pulumi.Input[str]] = None,
                  sec_default_action: Optional[pulumi.Input[str]] = None,
+                 server_data_mode: Optional[pulumi.Input[str]] = None,
                  ssl: Optional[pulumi.Input[str]] = None,
                  ssl_algorithm: Optional[pulumi.Input[str]] = None,
                  ssl_cert: Optional[pulumi.Input[str]] = None,
@@ -163,6 +176,8 @@ class _FtpProxyExplicitState:
             pulumi.set(__self__, "outgoing_ip", outgoing_ip)
         if sec_default_action is not None:
             pulumi.set(__self__, "sec_default_action", sec_default_action)
+        if server_data_mode is not None:
+            pulumi.set(__self__, "server_data_mode", server_data_mode)
         if ssl is not None:
             pulumi.set(__self__, "ssl", ssl)
         if ssl_algorithm is not None:
@@ -211,6 +226,15 @@ class _FtpProxyExplicitState:
     @sec_default_action.setter
     def sec_default_action(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sec_default_action", value)
+
+    @property
+    @pulumi.getter(name="serverDataMode")
+    def server_data_mode(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "server_data_mode")
+
+    @server_data_mode.setter
+    def server_data_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "server_data_mode", value)
 
     @property
     @pulumi.getter
@@ -276,6 +300,7 @@ class FtpProxyExplicit(pulumi.CustomResource):
                  incoming_port: Optional[pulumi.Input[str]] = None,
                  outgoing_ip: Optional[pulumi.Input[str]] = None,
                  sec_default_action: Optional[pulumi.Input[str]] = None,
+                 server_data_mode: Optional[pulumi.Input[str]] = None,
                  ssl: Optional[pulumi.Input[str]] = None,
                  ssl_algorithm: Optional[pulumi.Input[str]] = None,
                  ssl_cert: Optional[pulumi.Input[str]] = None,
@@ -315,6 +340,7 @@ class FtpProxyExplicit(pulumi.CustomResource):
                  incoming_port: Optional[pulumi.Input[str]] = None,
                  outgoing_ip: Optional[pulumi.Input[str]] = None,
                  sec_default_action: Optional[pulumi.Input[str]] = None,
+                 server_data_mode: Optional[pulumi.Input[str]] = None,
                  ssl: Optional[pulumi.Input[str]] = None,
                  ssl_algorithm: Optional[pulumi.Input[str]] = None,
                  ssl_cert: Optional[pulumi.Input[str]] = None,
@@ -334,6 +360,7 @@ class FtpProxyExplicit(pulumi.CustomResource):
             __props__.__dict__["incoming_port"] = incoming_port
             __props__.__dict__["outgoing_ip"] = outgoing_ip
             __props__.__dict__["sec_default_action"] = sec_default_action
+            __props__.__dict__["server_data_mode"] = server_data_mode
             __props__.__dict__["ssl"] = ssl
             __props__.__dict__["ssl_algorithm"] = ssl_algorithm
             __props__.__dict__["ssl_cert"] = ssl_cert
@@ -354,6 +381,7 @@ class FtpProxyExplicit(pulumi.CustomResource):
             incoming_port: Optional[pulumi.Input[str]] = None,
             outgoing_ip: Optional[pulumi.Input[str]] = None,
             sec_default_action: Optional[pulumi.Input[str]] = None,
+            server_data_mode: Optional[pulumi.Input[str]] = None,
             ssl: Optional[pulumi.Input[str]] = None,
             ssl_algorithm: Optional[pulumi.Input[str]] = None,
             ssl_cert: Optional[pulumi.Input[str]] = None,
@@ -376,6 +404,7 @@ class FtpProxyExplicit(pulumi.CustomResource):
         __props__.__dict__["incoming_port"] = incoming_port
         __props__.__dict__["outgoing_ip"] = outgoing_ip
         __props__.__dict__["sec_default_action"] = sec_default_action
+        __props__.__dict__["server_data_mode"] = server_data_mode
         __props__.__dict__["ssl"] = ssl
         __props__.__dict__["ssl_algorithm"] = ssl_algorithm
         __props__.__dict__["ssl_cert"] = ssl_cert
@@ -403,6 +432,11 @@ class FtpProxyExplicit(pulumi.CustomResource):
     @pulumi.getter(name="secDefaultAction")
     def sec_default_action(self) -> pulumi.Output[str]:
         return pulumi.get(self, "sec_default_action")
+
+    @property
+    @pulumi.getter(name="serverDataMode")
+    def server_data_mode(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "server_data_mode")
 
     @property
     @pulumi.getter

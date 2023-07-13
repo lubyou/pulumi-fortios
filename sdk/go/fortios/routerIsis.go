@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -29,6 +30,7 @@ type RouterIsis struct {
 	DefaultOriginate6    pulumi.StringOutput                  `pulumi:"defaultOriginate6"`
 	DynamicHostname      pulumi.StringOutput                  `pulumi:"dynamicHostname"`
 	DynamicSortSubtable  pulumi.StringPtrOutput               `pulumi:"dynamicSortSubtable"`
+	GetAllTables         pulumi.StringPtrOutput               `pulumi:"getAllTables"`
 	IgnoreLspErrors      pulumi.StringOutput                  `pulumi:"ignoreLspErrors"`
 	IsType               pulumi.StringOutput                  `pulumi:"isType"`
 	IsisInterfaces       RouterIsisIsisInterfaceArrayOutput   `pulumi:"isisInterfaces"`
@@ -76,7 +78,7 @@ func NewRouterIsis(ctx *pulumi.Context,
 		"authPasswordL2",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RouterIsis
 	err := ctx.RegisterResource("fortios:index/routerIsis:RouterIsis", name, args, &resource, opts...)
 	if err != nil {
@@ -115,6 +117,7 @@ type routerIsisState struct {
 	DefaultOriginate6    *string                     `pulumi:"defaultOriginate6"`
 	DynamicHostname      *string                     `pulumi:"dynamicHostname"`
 	DynamicSortSubtable  *string                     `pulumi:"dynamicSortSubtable"`
+	GetAllTables         *string                     `pulumi:"getAllTables"`
 	IgnoreLspErrors      *string                     `pulumi:"ignoreLspErrors"`
 	IsType               *string                     `pulumi:"isType"`
 	IsisInterfaces       []RouterIsisIsisInterface   `pulumi:"isisInterfaces"`
@@ -161,6 +164,7 @@ type RouterIsisState struct {
 	DefaultOriginate6    pulumi.StringPtrInput
 	DynamicHostname      pulumi.StringPtrInput
 	DynamicSortSubtable  pulumi.StringPtrInput
+	GetAllTables         pulumi.StringPtrInput
 	IgnoreLspErrors      pulumi.StringPtrInput
 	IsType               pulumi.StringPtrInput
 	IsisInterfaces       RouterIsisIsisInterfaceArrayInput
@@ -211,6 +215,7 @@ type routerIsisArgs struct {
 	DefaultOriginate6    *string                     `pulumi:"defaultOriginate6"`
 	DynamicHostname      *string                     `pulumi:"dynamicHostname"`
 	DynamicSortSubtable  *string                     `pulumi:"dynamicSortSubtable"`
+	GetAllTables         *string                     `pulumi:"getAllTables"`
 	IgnoreLspErrors      *string                     `pulumi:"ignoreLspErrors"`
 	IsType               *string                     `pulumi:"isType"`
 	IsisInterfaces       []RouterIsisIsisInterface   `pulumi:"isisInterfaces"`
@@ -258,6 +263,7 @@ type RouterIsisArgs struct {
 	DefaultOriginate6    pulumi.StringPtrInput
 	DynamicHostname      pulumi.StringPtrInput
 	DynamicSortSubtable  pulumi.StringPtrInput
+	GetAllTables         pulumi.StringPtrInput
 	IgnoreLspErrors      pulumi.StringPtrInput
 	IsType               pulumi.StringPtrInput
 	IsisInterfaces       RouterIsisIsisInterfaceArrayInput
@@ -436,6 +442,10 @@ func (o RouterIsisOutput) DynamicHostname() pulumi.StringOutput {
 
 func (o RouterIsisOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RouterIsis) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o RouterIsisOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterIsis) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o RouterIsisOutput) IgnoreLspErrors() pulumi.StringOutput {

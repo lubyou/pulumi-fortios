@@ -20,6 +20,7 @@ class FirewallProxyAddrgrpArgs:
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyAddrgrpTaggingArgs']]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -36,6 +37,8 @@ class FirewallProxyAddrgrpArgs:
             pulumi.set(__self__, "comment", comment)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if taggings is not None:
@@ -84,6 +87,15 @@ class FirewallProxyAddrgrpArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -146,6 +158,7 @@ class _FirewallProxyAddrgrpState:
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyAddrgrpMemberArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyAddrgrpTaggingArgs']]]] = None,
@@ -162,6 +175,8 @@ class _FirewallProxyAddrgrpState:
             pulumi.set(__self__, "comment", comment)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if members is not None:
             pulumi.set(__self__, "members", members)
         if name is not None:
@@ -203,6 +218,15 @@ class _FirewallProxyAddrgrpState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -276,6 +300,7 @@ class FirewallProxyAddrgrp(pulumi.CustomResource):
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyAddrgrpMemberArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyAddrgrpTaggingArgs']]]]] = None,
@@ -315,6 +340,7 @@ class FirewallProxyAddrgrp(pulumi.CustomResource):
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyAddrgrpMemberArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyAddrgrpTaggingArgs']]]]] = None,
@@ -334,6 +360,7 @@ class FirewallProxyAddrgrp(pulumi.CustomResource):
             __props__.__dict__["color"] = color
             __props__.__dict__["comment"] = comment
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             if members is None and not opts.urn:
                 raise TypeError("Missing required property 'members'")
             __props__.__dict__["members"] = members
@@ -356,6 +383,7 @@ class FirewallProxyAddrgrp(pulumi.CustomResource):
             color: Optional[pulumi.Input[int]] = None,
             comment: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyAddrgrpMemberArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             taggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyAddrgrpTaggingArgs']]]]] = None,
@@ -378,6 +406,7 @@ class FirewallProxyAddrgrp(pulumi.CustomResource):
         __props__.__dict__["color"] = color
         __props__.__dict__["comment"] = comment
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["members"] = members
         __props__.__dict__["name"] = name
         __props__.__dict__["taggings"] = taggings
@@ -401,6 +430,11 @@ class FirewallProxyAddrgrp(pulumi.CustomResource):
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

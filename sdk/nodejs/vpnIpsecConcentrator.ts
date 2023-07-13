@@ -36,6 +36,7 @@ export class VpnIpsecConcentrator extends pulumi.CustomResource {
 
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly fosid!: pulumi.Output<number>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly members!: pulumi.Output<outputs.VpnIpsecConcentratorMember[] | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly srcCheck!: pulumi.Output<string>;
@@ -56,6 +57,7 @@ export class VpnIpsecConcentrator extends pulumi.CustomResource {
             const state = argsOrState as VpnIpsecConcentratorState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["members"] = state ? state.members : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["srcCheck"] = state ? state.srcCheck : undefined;
@@ -64,6 +66,7 @@ export class VpnIpsecConcentrator extends pulumi.CustomResource {
             const args = argsOrState as VpnIpsecConcentratorArgs | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["members"] = args ? args.members : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["srcCheck"] = args ? args.srcCheck : undefined;
@@ -80,6 +83,7 @@ export class VpnIpsecConcentrator extends pulumi.CustomResource {
 export interface VpnIpsecConcentratorState {
     dynamicSortSubtable?: pulumi.Input<string>;
     fosid?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     members?: pulumi.Input<pulumi.Input<inputs.VpnIpsecConcentratorMember>[]>;
     name?: pulumi.Input<string>;
     srcCheck?: pulumi.Input<string>;
@@ -92,6 +96,7 @@ export interface VpnIpsecConcentratorState {
 export interface VpnIpsecConcentratorArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
     fosid?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     members?: pulumi.Input<pulumi.Input<inputs.VpnIpsecConcentratorMember>[]>;
     name?: pulumi.Input<string>;
     srcCheck?: pulumi.Input<string>;

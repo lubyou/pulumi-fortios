@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupFirewallAddressList(ctx *pulumi.Context, args *LookupFirewallAddressListArgs, opts ...pulumi.InvokeOption) (*LookupFirewallAddressListResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallAddressListResult
 	err := ctx.Invoke("fortios:index/getFirewallAddressList:GetFirewallAddressList", args, &rv, opts...)
 	if err != nil {

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,6 +16,7 @@ type WirelessControllerHotspot20H2QpAdviceOfCharge struct {
 
 	AocLists            WirelessControllerHotspot20H2QpAdviceOfChargeAocListArrayOutput `pulumi:"aocLists"`
 	DynamicSortSubtable pulumi.StringPtrOutput                                          `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                                          `pulumi:"getAllTables"`
 	Name                pulumi.StringOutput                                             `pulumi:"name"`
 	Vdomparam           pulumi.StringPtrOutput                                          `pulumi:"vdomparam"`
 }
@@ -26,7 +28,7 @@ func NewWirelessControllerHotspot20H2QpAdviceOfCharge(ctx *pulumi.Context,
 		args = &WirelessControllerHotspot20H2QpAdviceOfChargeArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WirelessControllerHotspot20H2QpAdviceOfCharge
 	err := ctx.RegisterResource("fortios:index/wirelessControllerHotspot20H2QpAdviceOfCharge:WirelessControllerHotspot20H2QpAdviceOfCharge", name, args, &resource, opts...)
 	if err != nil {
@@ -51,6 +53,7 @@ func GetWirelessControllerHotspot20H2QpAdviceOfCharge(ctx *pulumi.Context,
 type wirelessControllerHotspot20H2QpAdviceOfChargeState struct {
 	AocLists            []WirelessControllerHotspot20H2QpAdviceOfChargeAocList `pulumi:"aocLists"`
 	DynamicSortSubtable *string                                                `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                                                `pulumi:"getAllTables"`
 	Name                *string                                                `pulumi:"name"`
 	Vdomparam           *string                                                `pulumi:"vdomparam"`
 }
@@ -58,6 +61,7 @@ type wirelessControllerHotspot20H2QpAdviceOfChargeState struct {
 type WirelessControllerHotspot20H2QpAdviceOfChargeState struct {
 	AocLists            WirelessControllerHotspot20H2QpAdviceOfChargeAocListArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
 }
@@ -69,6 +73,7 @@ func (WirelessControllerHotspot20H2QpAdviceOfChargeState) ElementType() reflect.
 type wirelessControllerHotspot20H2QpAdviceOfChargeArgs struct {
 	AocLists            []WirelessControllerHotspot20H2QpAdviceOfChargeAocList `pulumi:"aocLists"`
 	DynamicSortSubtable *string                                                `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                                                `pulumi:"getAllTables"`
 	Name                *string                                                `pulumi:"name"`
 	Vdomparam           *string                                                `pulumi:"vdomparam"`
 }
@@ -77,6 +82,7 @@ type wirelessControllerHotspot20H2QpAdviceOfChargeArgs struct {
 type WirelessControllerHotspot20H2QpAdviceOfChargeArgs struct {
 	AocLists            WirelessControllerHotspot20H2QpAdviceOfChargeAocListArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
 }
@@ -178,6 +184,10 @@ func (o WirelessControllerHotspot20H2QpAdviceOfChargeOutput) DynamicSortSubtable
 	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpAdviceOfCharge) pulumi.StringPtrOutput {
 		return v.DynamicSortSubtable
 	}).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerHotspot20H2QpAdviceOfChargeOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20H2QpAdviceOfCharge) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o WirelessControllerHotspot20H2QpAdviceOfChargeOutput) Name() pulumi.StringOutput {

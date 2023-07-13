@@ -25,6 +25,8 @@ class FirewallShapingPolicyArgs:
                  applications: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallShapingPolicyApplicationArgs']]]] = None,
                  class_id: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
+                 cos: Optional[pulumi.Input[str]] = None,
+                 cos_mask: Optional[pulumi.Input[str]] = None,
                  diffserv_forward: Optional[pulumi.Input[str]] = None,
                  diffserv_reverse: Optional[pulumi.Input[str]] = None,
                  diffservcode_forward: Optional[pulumi.Input[str]] = None,
@@ -32,6 +34,7 @@ class FirewallShapingPolicyArgs:
                  dstaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallShapingPolicyDstaddr6Args']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallShapingPolicyGroupArgs']]]] = None,
                  internet_service: Optional[pulumi.Input[str]] = None,
                  internet_service_custom_groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallShapingPolicyInternetServiceCustomGroupArgs']]]] = None,
@@ -57,6 +60,7 @@ class FirewallShapingPolicyArgs:
                  tos_negate: Optional[pulumi.Input[str]] = None,
                  traffic_shaper: Optional[pulumi.Input[str]] = None,
                  traffic_shaper_reverse: Optional[pulumi.Input[str]] = None,
+                 traffic_type: Optional[pulumi.Input[str]] = None,
                  url_categories: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallShapingPolicyUrlCategoryArgs']]]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallShapingPolicyUserArgs']]]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
@@ -78,6 +82,10 @@ class FirewallShapingPolicyArgs:
             pulumi.set(__self__, "class_id", class_id)
         if comment is not None:
             pulumi.set(__self__, "comment", comment)
+        if cos is not None:
+            pulumi.set(__self__, "cos", cos)
+        if cos_mask is not None:
+            pulumi.set(__self__, "cos_mask", cos_mask)
         if diffserv_forward is not None:
             pulumi.set(__self__, "diffserv_forward", diffserv_forward)
         if diffserv_reverse is not None:
@@ -92,6 +100,8 @@ class FirewallShapingPolicyArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if groups is not None:
             pulumi.set(__self__, "groups", groups)
         if internet_service is not None:
@@ -142,6 +152,8 @@ class FirewallShapingPolicyArgs:
             pulumi.set(__self__, "traffic_shaper", traffic_shaper)
         if traffic_shaper_reverse is not None:
             pulumi.set(__self__, "traffic_shaper_reverse", traffic_shaper_reverse)
+        if traffic_type is not None:
+            pulumi.set(__self__, "traffic_type", traffic_type)
         if url_categories is not None:
             pulumi.set(__self__, "url_categories", url_categories)
         if users is not None:
@@ -233,6 +245,24 @@ class FirewallShapingPolicyArgs:
         pulumi.set(self, "comment", value)
 
     @property
+    @pulumi.getter
+    def cos(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "cos")
+
+    @cos.setter
+    def cos(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cos", value)
+
+    @property
+    @pulumi.getter(name="cosMask")
+    def cos_mask(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "cos_mask")
+
+    @cos_mask.setter
+    def cos_mask(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cos_mask", value)
+
+    @property
     @pulumi.getter(name="diffservForward")
     def diffserv_forward(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "diffserv_forward")
@@ -294,6 +324,15 @@ class FirewallShapingPolicyArgs:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -521,6 +560,15 @@ class FirewallShapingPolicyArgs:
         pulumi.set(self, "traffic_shaper_reverse", value)
 
     @property
+    @pulumi.getter(name="trafficType")
+    def traffic_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "traffic_type")
+
+    @traffic_type.setter
+    def traffic_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "traffic_type", value)
+
+    @property
     @pulumi.getter(name="urlCategories")
     def url_categories(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallShapingPolicyUrlCategoryArgs']]]]:
         return pulumi.get(self, "url_categories")
@@ -565,6 +613,8 @@ class _FirewallShapingPolicyState:
                  applications: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallShapingPolicyApplicationArgs']]]] = None,
                  class_id: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
+                 cos: Optional[pulumi.Input[str]] = None,
+                 cos_mask: Optional[pulumi.Input[str]] = None,
                  diffserv_forward: Optional[pulumi.Input[str]] = None,
                  diffserv_reverse: Optional[pulumi.Input[str]] = None,
                  diffservcode_forward: Optional[pulumi.Input[str]] = None,
@@ -574,6 +624,7 @@ class _FirewallShapingPolicyState:
                  dstintfs: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallShapingPolicyDstintfArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallShapingPolicyGroupArgs']]]] = None,
                  internet_service: Optional[pulumi.Input[str]] = None,
                  internet_service_custom_groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallShapingPolicyInternetServiceCustomGroupArgs']]]] = None,
@@ -601,6 +652,7 @@ class _FirewallShapingPolicyState:
                  tos_negate: Optional[pulumi.Input[str]] = None,
                  traffic_shaper: Optional[pulumi.Input[str]] = None,
                  traffic_shaper_reverse: Optional[pulumi.Input[str]] = None,
+                 traffic_type: Optional[pulumi.Input[str]] = None,
                  url_categories: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallShapingPolicyUrlCategoryArgs']]]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallShapingPolicyUserArgs']]]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
@@ -618,6 +670,10 @@ class _FirewallShapingPolicyState:
             pulumi.set(__self__, "class_id", class_id)
         if comment is not None:
             pulumi.set(__self__, "comment", comment)
+        if cos is not None:
+            pulumi.set(__self__, "cos", cos)
+        if cos_mask is not None:
+            pulumi.set(__self__, "cos_mask", cos_mask)
         if diffserv_forward is not None:
             pulumi.set(__self__, "diffserv_forward", diffserv_forward)
         if diffserv_reverse is not None:
@@ -636,6 +692,8 @@ class _FirewallShapingPolicyState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if groups is not None:
             pulumi.set(__self__, "groups", groups)
         if internet_service is not None:
@@ -690,6 +748,8 @@ class _FirewallShapingPolicyState:
             pulumi.set(__self__, "traffic_shaper", traffic_shaper)
         if traffic_shaper_reverse is not None:
             pulumi.set(__self__, "traffic_shaper_reverse", traffic_shaper_reverse)
+        if traffic_type is not None:
+            pulumi.set(__self__, "traffic_type", traffic_type)
         if url_categories is not None:
             pulumi.set(__self__, "url_categories", url_categories)
         if users is not None:
@@ -743,6 +803,24 @@ class _FirewallShapingPolicyState:
     @comment.setter
     def comment(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "comment", value)
+
+    @property
+    @pulumi.getter
+    def cos(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "cos")
+
+    @cos.setter
+    def cos(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cos", value)
+
+    @property
+    @pulumi.getter(name="cosMask")
+    def cos_mask(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "cos_mask")
+
+    @cos_mask.setter
+    def cos_mask(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cos_mask", value)
 
     @property
     @pulumi.getter(name="diffservForward")
@@ -824,6 +902,15 @@ class _FirewallShapingPolicyState:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -1069,6 +1156,15 @@ class _FirewallShapingPolicyState:
         pulumi.set(self, "traffic_shaper_reverse", value)
 
     @property
+    @pulumi.getter(name="trafficType")
+    def traffic_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "traffic_type")
+
+    @traffic_type.setter
+    def traffic_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "traffic_type", value)
+
+    @property
     @pulumi.getter(name="urlCategories")
     def url_categories(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallShapingPolicyUrlCategoryArgs']]]]:
         return pulumi.get(self, "url_categories")
@@ -1115,6 +1211,8 @@ class FirewallShapingPolicy(pulumi.CustomResource):
                  applications: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallShapingPolicyApplicationArgs']]]]] = None,
                  class_id: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
+                 cos: Optional[pulumi.Input[str]] = None,
+                 cos_mask: Optional[pulumi.Input[str]] = None,
                  diffserv_forward: Optional[pulumi.Input[str]] = None,
                  diffserv_reverse: Optional[pulumi.Input[str]] = None,
                  diffservcode_forward: Optional[pulumi.Input[str]] = None,
@@ -1124,6 +1222,7 @@ class FirewallShapingPolicy(pulumi.CustomResource):
                  dstintfs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallShapingPolicyDstintfArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallShapingPolicyGroupArgs']]]]] = None,
                  internet_service: Optional[pulumi.Input[str]] = None,
                  internet_service_custom_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallShapingPolicyInternetServiceCustomGroupArgs']]]]] = None,
@@ -1151,6 +1250,7 @@ class FirewallShapingPolicy(pulumi.CustomResource):
                  tos_negate: Optional[pulumi.Input[str]] = None,
                  traffic_shaper: Optional[pulumi.Input[str]] = None,
                  traffic_shaper_reverse: Optional[pulumi.Input[str]] = None,
+                 traffic_type: Optional[pulumi.Input[str]] = None,
                  url_categories: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallShapingPolicyUrlCategoryArgs']]]]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallShapingPolicyUserArgs']]]]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
@@ -1189,6 +1289,8 @@ class FirewallShapingPolicy(pulumi.CustomResource):
                  applications: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallShapingPolicyApplicationArgs']]]]] = None,
                  class_id: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
+                 cos: Optional[pulumi.Input[str]] = None,
+                 cos_mask: Optional[pulumi.Input[str]] = None,
                  diffserv_forward: Optional[pulumi.Input[str]] = None,
                  diffserv_reverse: Optional[pulumi.Input[str]] = None,
                  diffservcode_forward: Optional[pulumi.Input[str]] = None,
@@ -1198,6 +1300,7 @@ class FirewallShapingPolicy(pulumi.CustomResource):
                  dstintfs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallShapingPolicyDstintfArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallShapingPolicyGroupArgs']]]]] = None,
                  internet_service: Optional[pulumi.Input[str]] = None,
                  internet_service_custom_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallShapingPolicyInternetServiceCustomGroupArgs']]]]] = None,
@@ -1225,6 +1328,7 @@ class FirewallShapingPolicy(pulumi.CustomResource):
                  tos_negate: Optional[pulumi.Input[str]] = None,
                  traffic_shaper: Optional[pulumi.Input[str]] = None,
                  traffic_shaper_reverse: Optional[pulumi.Input[str]] = None,
+                 traffic_type: Optional[pulumi.Input[str]] = None,
                  url_categories: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallShapingPolicyUrlCategoryArgs']]]]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallShapingPolicyUserArgs']]]]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
@@ -1243,6 +1347,8 @@ class FirewallShapingPolicy(pulumi.CustomResource):
             __props__.__dict__["applications"] = applications
             __props__.__dict__["class_id"] = class_id
             __props__.__dict__["comment"] = comment
+            __props__.__dict__["cos"] = cos
+            __props__.__dict__["cos_mask"] = cos_mask
             __props__.__dict__["diffserv_forward"] = diffserv_forward
             __props__.__dict__["diffserv_reverse"] = diffserv_reverse
             __props__.__dict__["diffservcode_forward"] = diffservcode_forward
@@ -1256,6 +1362,7 @@ class FirewallShapingPolicy(pulumi.CustomResource):
             __props__.__dict__["dstintfs"] = dstintfs
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["groups"] = groups
             __props__.__dict__["internet_service"] = internet_service
             __props__.__dict__["internet_service_custom_groups"] = internet_service_custom_groups
@@ -1287,6 +1394,7 @@ class FirewallShapingPolicy(pulumi.CustomResource):
             __props__.__dict__["tos_negate"] = tos_negate
             __props__.__dict__["traffic_shaper"] = traffic_shaper
             __props__.__dict__["traffic_shaper_reverse"] = traffic_shaper_reverse
+            __props__.__dict__["traffic_type"] = traffic_type
             __props__.__dict__["url_categories"] = url_categories
             __props__.__dict__["users"] = users
             __props__.__dict__["uuid"] = uuid
@@ -1306,6 +1414,8 @@ class FirewallShapingPolicy(pulumi.CustomResource):
             applications: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallShapingPolicyApplicationArgs']]]]] = None,
             class_id: Optional[pulumi.Input[int]] = None,
             comment: Optional[pulumi.Input[str]] = None,
+            cos: Optional[pulumi.Input[str]] = None,
+            cos_mask: Optional[pulumi.Input[str]] = None,
             diffserv_forward: Optional[pulumi.Input[str]] = None,
             diffserv_reverse: Optional[pulumi.Input[str]] = None,
             diffservcode_forward: Optional[pulumi.Input[str]] = None,
@@ -1315,6 +1425,7 @@ class FirewallShapingPolicy(pulumi.CustomResource):
             dstintfs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallShapingPolicyDstintfArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallShapingPolicyGroupArgs']]]]] = None,
             internet_service: Optional[pulumi.Input[str]] = None,
             internet_service_custom_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallShapingPolicyInternetServiceCustomGroupArgs']]]]] = None,
@@ -1342,6 +1453,7 @@ class FirewallShapingPolicy(pulumi.CustomResource):
             tos_negate: Optional[pulumi.Input[str]] = None,
             traffic_shaper: Optional[pulumi.Input[str]] = None,
             traffic_shaper_reverse: Optional[pulumi.Input[str]] = None,
+            traffic_type: Optional[pulumi.Input[str]] = None,
             url_categories: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallShapingPolicyUrlCategoryArgs']]]]] = None,
             users: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallShapingPolicyUserArgs']]]]] = None,
             uuid: Optional[pulumi.Input[str]] = None,
@@ -1363,6 +1475,8 @@ class FirewallShapingPolicy(pulumi.CustomResource):
         __props__.__dict__["applications"] = applications
         __props__.__dict__["class_id"] = class_id
         __props__.__dict__["comment"] = comment
+        __props__.__dict__["cos"] = cos
+        __props__.__dict__["cos_mask"] = cos_mask
         __props__.__dict__["diffserv_forward"] = diffserv_forward
         __props__.__dict__["diffserv_reverse"] = diffserv_reverse
         __props__.__dict__["diffservcode_forward"] = diffservcode_forward
@@ -1372,6 +1486,7 @@ class FirewallShapingPolicy(pulumi.CustomResource):
         __props__.__dict__["dstintfs"] = dstintfs
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["groups"] = groups
         __props__.__dict__["internet_service"] = internet_service
         __props__.__dict__["internet_service_custom_groups"] = internet_service_custom_groups
@@ -1399,6 +1514,7 @@ class FirewallShapingPolicy(pulumi.CustomResource):
         __props__.__dict__["tos_negate"] = tos_negate
         __props__.__dict__["traffic_shaper"] = traffic_shaper
         __props__.__dict__["traffic_shaper_reverse"] = traffic_shaper_reverse
+        __props__.__dict__["traffic_type"] = traffic_type
         __props__.__dict__["url_categories"] = url_categories
         __props__.__dict__["users"] = users
         __props__.__dict__["uuid"] = uuid
@@ -1429,6 +1545,16 @@ class FirewallShapingPolicy(pulumi.CustomResource):
     @pulumi.getter
     def comment(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "comment")
+
+    @property
+    @pulumi.getter
+    def cos(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "cos")
+
+    @property
+    @pulumi.getter(name="cosMask")
+    def cos_mask(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "cos_mask")
 
     @property
     @pulumi.getter(name="diffservForward")
@@ -1474,6 +1600,11 @@ class FirewallShapingPolicy(pulumi.CustomResource):
     @pulumi.getter
     def fosid(self) -> pulumi.Output[int]:
         return pulumi.get(self, "fosid")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter
@@ -1609,6 +1740,11 @@ class FirewallShapingPolicy(pulumi.CustomResource):
     @pulumi.getter(name="trafficShaperReverse")
     def traffic_shaper_reverse(self) -> pulumi.Output[str]:
         return pulumi.get(self, "traffic_shaper_reverse")
+
+    @property
+    @pulumi.getter(name="trafficType")
+    def traffic_type(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "traffic_type")
 
     @property
     @pulumi.getter(name="urlCategories")

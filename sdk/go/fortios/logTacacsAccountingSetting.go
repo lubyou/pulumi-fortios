@@ -7,16 +7,20 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type LogTacacsAccountingSetting struct {
 	pulumi.CustomResourceState
 
-	Server    pulumi.StringOutput    `pulumi:"server"`
-	ServerKey pulumi.StringPtrOutput `pulumi:"serverKey"`
-	Status    pulumi.StringOutput    `pulumi:"status"`
-	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Interface             pulumi.StringOutput    `pulumi:"interface"`
+	InterfaceSelectMethod pulumi.StringOutput    `pulumi:"interfaceSelectMethod"`
+	Server                pulumi.StringOutput    `pulumi:"server"`
+	ServerKey             pulumi.StringPtrOutput `pulumi:"serverKey"`
+	SourceIp              pulumi.StringOutput    `pulumi:"sourceIp"`
+	Status                pulumi.StringOutput    `pulumi:"status"`
+	Vdomparam             pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewLogTacacsAccountingSetting registers a new resource with the given unique name, arguments, and options.
@@ -26,7 +30,7 @@ func NewLogTacacsAccountingSetting(ctx *pulumi.Context,
 		args = &LogTacacsAccountingSettingArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource LogTacacsAccountingSetting
 	err := ctx.RegisterResource("fortios:index/logTacacsAccountingSetting:LogTacacsAccountingSetting", name, args, &resource, opts...)
 	if err != nil {
@@ -49,17 +53,23 @@ func GetLogTacacsAccountingSetting(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LogTacacsAccountingSetting resources.
 type logTacacsAccountingSettingState struct {
-	Server    *string `pulumi:"server"`
-	ServerKey *string `pulumi:"serverKey"`
-	Status    *string `pulumi:"status"`
-	Vdomparam *string `pulumi:"vdomparam"`
+	Interface             *string `pulumi:"interface"`
+	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
+	Server                *string `pulumi:"server"`
+	ServerKey             *string `pulumi:"serverKey"`
+	SourceIp              *string `pulumi:"sourceIp"`
+	Status                *string `pulumi:"status"`
+	Vdomparam             *string `pulumi:"vdomparam"`
 }
 
 type LogTacacsAccountingSettingState struct {
-	Server    pulumi.StringPtrInput
-	ServerKey pulumi.StringPtrInput
-	Status    pulumi.StringPtrInput
-	Vdomparam pulumi.StringPtrInput
+	Interface             pulumi.StringPtrInput
+	InterfaceSelectMethod pulumi.StringPtrInput
+	Server                pulumi.StringPtrInput
+	ServerKey             pulumi.StringPtrInput
+	SourceIp              pulumi.StringPtrInput
+	Status                pulumi.StringPtrInput
+	Vdomparam             pulumi.StringPtrInput
 }
 
 func (LogTacacsAccountingSettingState) ElementType() reflect.Type {
@@ -67,18 +77,24 @@ func (LogTacacsAccountingSettingState) ElementType() reflect.Type {
 }
 
 type logTacacsAccountingSettingArgs struct {
-	Server    *string `pulumi:"server"`
-	ServerKey *string `pulumi:"serverKey"`
-	Status    *string `pulumi:"status"`
-	Vdomparam *string `pulumi:"vdomparam"`
+	Interface             *string `pulumi:"interface"`
+	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
+	Server                *string `pulumi:"server"`
+	ServerKey             *string `pulumi:"serverKey"`
+	SourceIp              *string `pulumi:"sourceIp"`
+	Status                *string `pulumi:"status"`
+	Vdomparam             *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a LogTacacsAccountingSetting resource.
 type LogTacacsAccountingSettingArgs struct {
-	Server    pulumi.StringPtrInput
-	ServerKey pulumi.StringPtrInput
-	Status    pulumi.StringPtrInput
-	Vdomparam pulumi.StringPtrInput
+	Interface             pulumi.StringPtrInput
+	InterfaceSelectMethod pulumi.StringPtrInput
+	Server                pulumi.StringPtrInput
+	ServerKey             pulumi.StringPtrInput
+	SourceIp              pulumi.StringPtrInput
+	Status                pulumi.StringPtrInput
+	Vdomparam             pulumi.StringPtrInput
 }
 
 func (LogTacacsAccountingSettingArgs) ElementType() reflect.Type {
@@ -168,12 +184,24 @@ func (o LogTacacsAccountingSettingOutput) ToLogTacacsAccountingSettingOutputWith
 	return o
 }
 
+func (o LogTacacsAccountingSettingOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogTacacsAccountingSetting) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o LogTacacsAccountingSettingOutput) InterfaceSelectMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogTacacsAccountingSetting) pulumi.StringOutput { return v.InterfaceSelectMethod }).(pulumi.StringOutput)
+}
+
 func (o LogTacacsAccountingSettingOutput) Server() pulumi.StringOutput {
 	return o.ApplyT(func(v *LogTacacsAccountingSetting) pulumi.StringOutput { return v.Server }).(pulumi.StringOutput)
 }
 
 func (o LogTacacsAccountingSettingOutput) ServerKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LogTacacsAccountingSetting) pulumi.StringPtrOutput { return v.ServerKey }).(pulumi.StringPtrOutput)
+}
+
+func (o LogTacacsAccountingSettingOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogTacacsAccountingSetting) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
 }
 
 func (o LogTacacsAccountingSettingOutput) Status() pulumi.StringOutput {

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -18,9 +19,12 @@ type UserRadius struct {
 	AcctInterimInterval                    pulumi.IntOutput                      `pulumi:"acctInterimInterval"`
 	AllUsergroup                           pulumi.StringOutput                   `pulumi:"allUsergroup"`
 	AuthType                               pulumi.StringOutput                   `pulumi:"authType"`
+	CaCert                                 pulumi.StringOutput                   `pulumi:"caCert"`
 	Classes                                UserRadiusClassArrayOutput            `pulumi:"classes"`
+	ClientCert                             pulumi.StringOutput                   `pulumi:"clientCert"`
 	Delimiter                              pulumi.StringOutput                   `pulumi:"delimiter"`
 	DynamicSortSubtable                    pulumi.StringPtrOutput                `pulumi:"dynamicSortSubtable"`
+	GetAllTables                           pulumi.StringPtrOutput                `pulumi:"getAllTables"`
 	GroupOverrideAttrType                  pulumi.StringOutput                   `pulumi:"groupOverrideAttrType"`
 	H3cCompatibility                       pulumi.StringOutput                   `pulumi:"h3cCompatibility"`
 	Interface                              pulumi.StringOutput                   `pulumi:"interface"`
@@ -29,6 +33,8 @@ type UserRadius struct {
 	MacPasswordDelimiter                   pulumi.StringOutput                   `pulumi:"macPasswordDelimiter"`
 	MacUsernameDelimiter                   pulumi.StringOutput                   `pulumi:"macUsernameDelimiter"`
 	Name                                   pulumi.StringOutput                   `pulumi:"name"`
+	NasId                                  pulumi.StringOutput                   `pulumi:"nasId"`
+	NasIdType                              pulumi.StringOutput                   `pulumi:"nasIdType"`
 	NasIp                                  pulumi.StringOutput                   `pulumi:"nasIp"`
 	PasswordEncoding                       pulumi.StringOutput                   `pulumi:"passwordEncoding"`
 	PasswordRenewal                        pulumi.StringOutput                   `pulumi:"passwordRenewal"`
@@ -50,15 +56,19 @@ type UserRadius struct {
 	SecondaryServer                        pulumi.StringOutput                   `pulumi:"secondaryServer"`
 	Secret                                 pulumi.StringPtrOutput                `pulumi:"secret"`
 	Server                                 pulumi.StringOutput                   `pulumi:"server"`
+	ServerIdentityCheck                    pulumi.StringOutput                   `pulumi:"serverIdentityCheck"`
 	SourceIp                               pulumi.StringOutput                   `pulumi:"sourceIp"`
 	SsoAttribute                           pulumi.StringOutput                   `pulumi:"ssoAttribute"`
 	SsoAttributeKey                        pulumi.StringOutput                   `pulumi:"ssoAttributeKey"`
 	SsoAttributeValueOverride              pulumi.StringOutput                   `pulumi:"ssoAttributeValueOverride"`
+	StatusTtl                              pulumi.IntOutput                      `pulumi:"statusTtl"`
 	SwitchControllerAcctFastFramedipDetect pulumi.IntOutput                      `pulumi:"switchControllerAcctFastFramedipDetect"`
 	SwitchControllerServiceType            pulumi.StringOutput                   `pulumi:"switchControllerServiceType"`
 	TertiarySecret                         pulumi.StringPtrOutput                `pulumi:"tertiarySecret"`
 	TertiaryServer                         pulumi.StringOutput                   `pulumi:"tertiaryServer"`
 	Timeout                                pulumi.IntOutput                      `pulumi:"timeout"`
+	TlsMinProtoVersion                     pulumi.StringOutput                   `pulumi:"tlsMinProtoVersion"`
+	TransportProtocol                      pulumi.StringOutput                   `pulumi:"transportProtocol"`
 	UseManagementVdom                      pulumi.StringOutput                   `pulumi:"useManagementVdom"`
 	UsernameCaseSensitive                  pulumi.StringOutput                   `pulumi:"usernameCaseSensitive"`
 	Vdomparam                              pulumi.StringPtrOutput                `pulumi:"vdomparam"`
@@ -94,7 +104,7 @@ func NewUserRadius(ctx *pulumi.Context,
 		"tertiarySecret",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource UserRadius
 	err := ctx.RegisterResource("fortios:index/userRadius:UserRadius", name, args, &resource, opts...)
 	if err != nil {
@@ -122,9 +132,12 @@ type userRadiusState struct {
 	AcctInterimInterval                    *int                         `pulumi:"acctInterimInterval"`
 	AllUsergroup                           *string                      `pulumi:"allUsergroup"`
 	AuthType                               *string                      `pulumi:"authType"`
+	CaCert                                 *string                      `pulumi:"caCert"`
 	Classes                                []UserRadiusClass            `pulumi:"classes"`
+	ClientCert                             *string                      `pulumi:"clientCert"`
 	Delimiter                              *string                      `pulumi:"delimiter"`
 	DynamicSortSubtable                    *string                      `pulumi:"dynamicSortSubtable"`
+	GetAllTables                           *string                      `pulumi:"getAllTables"`
 	GroupOverrideAttrType                  *string                      `pulumi:"groupOverrideAttrType"`
 	H3cCompatibility                       *string                      `pulumi:"h3cCompatibility"`
 	Interface                              *string                      `pulumi:"interface"`
@@ -133,6 +146,8 @@ type userRadiusState struct {
 	MacPasswordDelimiter                   *string                      `pulumi:"macPasswordDelimiter"`
 	MacUsernameDelimiter                   *string                      `pulumi:"macUsernameDelimiter"`
 	Name                                   *string                      `pulumi:"name"`
+	NasId                                  *string                      `pulumi:"nasId"`
+	NasIdType                              *string                      `pulumi:"nasIdType"`
 	NasIp                                  *string                      `pulumi:"nasIp"`
 	PasswordEncoding                       *string                      `pulumi:"passwordEncoding"`
 	PasswordRenewal                        *string                      `pulumi:"passwordRenewal"`
@@ -154,15 +169,19 @@ type userRadiusState struct {
 	SecondaryServer                        *string                      `pulumi:"secondaryServer"`
 	Secret                                 *string                      `pulumi:"secret"`
 	Server                                 *string                      `pulumi:"server"`
+	ServerIdentityCheck                    *string                      `pulumi:"serverIdentityCheck"`
 	SourceIp                               *string                      `pulumi:"sourceIp"`
 	SsoAttribute                           *string                      `pulumi:"ssoAttribute"`
 	SsoAttributeKey                        *string                      `pulumi:"ssoAttributeKey"`
 	SsoAttributeValueOverride              *string                      `pulumi:"ssoAttributeValueOverride"`
+	StatusTtl                              *int                         `pulumi:"statusTtl"`
 	SwitchControllerAcctFastFramedipDetect *int                         `pulumi:"switchControllerAcctFastFramedipDetect"`
 	SwitchControllerServiceType            *string                      `pulumi:"switchControllerServiceType"`
 	TertiarySecret                         *string                      `pulumi:"tertiarySecret"`
 	TertiaryServer                         *string                      `pulumi:"tertiaryServer"`
 	Timeout                                *int                         `pulumi:"timeout"`
+	TlsMinProtoVersion                     *string                      `pulumi:"tlsMinProtoVersion"`
+	TransportProtocol                      *string                      `pulumi:"transportProtocol"`
 	UseManagementVdom                      *string                      `pulumi:"useManagementVdom"`
 	UsernameCaseSensitive                  *string                      `pulumi:"usernameCaseSensitive"`
 	Vdomparam                              *string                      `pulumi:"vdomparam"`
@@ -174,9 +193,12 @@ type UserRadiusState struct {
 	AcctInterimInterval                    pulumi.IntPtrInput
 	AllUsergroup                           pulumi.StringPtrInput
 	AuthType                               pulumi.StringPtrInput
+	CaCert                                 pulumi.StringPtrInput
 	Classes                                UserRadiusClassArrayInput
+	ClientCert                             pulumi.StringPtrInput
 	Delimiter                              pulumi.StringPtrInput
 	DynamicSortSubtable                    pulumi.StringPtrInput
+	GetAllTables                           pulumi.StringPtrInput
 	GroupOverrideAttrType                  pulumi.StringPtrInput
 	H3cCompatibility                       pulumi.StringPtrInput
 	Interface                              pulumi.StringPtrInput
@@ -185,6 +207,8 @@ type UserRadiusState struct {
 	MacPasswordDelimiter                   pulumi.StringPtrInput
 	MacUsernameDelimiter                   pulumi.StringPtrInput
 	Name                                   pulumi.StringPtrInput
+	NasId                                  pulumi.StringPtrInput
+	NasIdType                              pulumi.StringPtrInput
 	NasIp                                  pulumi.StringPtrInput
 	PasswordEncoding                       pulumi.StringPtrInput
 	PasswordRenewal                        pulumi.StringPtrInput
@@ -206,15 +230,19 @@ type UserRadiusState struct {
 	SecondaryServer                        pulumi.StringPtrInput
 	Secret                                 pulumi.StringPtrInput
 	Server                                 pulumi.StringPtrInput
+	ServerIdentityCheck                    pulumi.StringPtrInput
 	SourceIp                               pulumi.StringPtrInput
 	SsoAttribute                           pulumi.StringPtrInput
 	SsoAttributeKey                        pulumi.StringPtrInput
 	SsoAttributeValueOverride              pulumi.StringPtrInput
+	StatusTtl                              pulumi.IntPtrInput
 	SwitchControllerAcctFastFramedipDetect pulumi.IntPtrInput
 	SwitchControllerServiceType            pulumi.StringPtrInput
 	TertiarySecret                         pulumi.StringPtrInput
 	TertiaryServer                         pulumi.StringPtrInput
 	Timeout                                pulumi.IntPtrInput
+	TlsMinProtoVersion                     pulumi.StringPtrInput
+	TransportProtocol                      pulumi.StringPtrInput
 	UseManagementVdom                      pulumi.StringPtrInput
 	UsernameCaseSensitive                  pulumi.StringPtrInput
 	Vdomparam                              pulumi.StringPtrInput
@@ -230,9 +258,12 @@ type userRadiusArgs struct {
 	AcctInterimInterval                    *int                         `pulumi:"acctInterimInterval"`
 	AllUsergroup                           *string                      `pulumi:"allUsergroup"`
 	AuthType                               *string                      `pulumi:"authType"`
+	CaCert                                 *string                      `pulumi:"caCert"`
 	Classes                                []UserRadiusClass            `pulumi:"classes"`
+	ClientCert                             *string                      `pulumi:"clientCert"`
 	Delimiter                              *string                      `pulumi:"delimiter"`
 	DynamicSortSubtable                    *string                      `pulumi:"dynamicSortSubtable"`
+	GetAllTables                           *string                      `pulumi:"getAllTables"`
 	GroupOverrideAttrType                  *string                      `pulumi:"groupOverrideAttrType"`
 	H3cCompatibility                       *string                      `pulumi:"h3cCompatibility"`
 	Interface                              *string                      `pulumi:"interface"`
@@ -241,6 +272,8 @@ type userRadiusArgs struct {
 	MacPasswordDelimiter                   *string                      `pulumi:"macPasswordDelimiter"`
 	MacUsernameDelimiter                   *string                      `pulumi:"macUsernameDelimiter"`
 	Name                                   *string                      `pulumi:"name"`
+	NasId                                  *string                      `pulumi:"nasId"`
+	NasIdType                              *string                      `pulumi:"nasIdType"`
 	NasIp                                  *string                      `pulumi:"nasIp"`
 	PasswordEncoding                       *string                      `pulumi:"passwordEncoding"`
 	PasswordRenewal                        *string                      `pulumi:"passwordRenewal"`
@@ -262,15 +295,19 @@ type userRadiusArgs struct {
 	SecondaryServer                        *string                      `pulumi:"secondaryServer"`
 	Secret                                 *string                      `pulumi:"secret"`
 	Server                                 *string                      `pulumi:"server"`
+	ServerIdentityCheck                    *string                      `pulumi:"serverIdentityCheck"`
 	SourceIp                               *string                      `pulumi:"sourceIp"`
 	SsoAttribute                           *string                      `pulumi:"ssoAttribute"`
 	SsoAttributeKey                        *string                      `pulumi:"ssoAttributeKey"`
 	SsoAttributeValueOverride              *string                      `pulumi:"ssoAttributeValueOverride"`
+	StatusTtl                              *int                         `pulumi:"statusTtl"`
 	SwitchControllerAcctFastFramedipDetect *int                         `pulumi:"switchControllerAcctFastFramedipDetect"`
 	SwitchControllerServiceType            *string                      `pulumi:"switchControllerServiceType"`
 	TertiarySecret                         *string                      `pulumi:"tertiarySecret"`
 	TertiaryServer                         *string                      `pulumi:"tertiaryServer"`
 	Timeout                                *int                         `pulumi:"timeout"`
+	TlsMinProtoVersion                     *string                      `pulumi:"tlsMinProtoVersion"`
+	TransportProtocol                      *string                      `pulumi:"transportProtocol"`
 	UseManagementVdom                      *string                      `pulumi:"useManagementVdom"`
 	UsernameCaseSensitive                  *string                      `pulumi:"usernameCaseSensitive"`
 	Vdomparam                              *string                      `pulumi:"vdomparam"`
@@ -283,9 +320,12 @@ type UserRadiusArgs struct {
 	AcctInterimInterval                    pulumi.IntPtrInput
 	AllUsergroup                           pulumi.StringPtrInput
 	AuthType                               pulumi.StringPtrInput
+	CaCert                                 pulumi.StringPtrInput
 	Classes                                UserRadiusClassArrayInput
+	ClientCert                             pulumi.StringPtrInput
 	Delimiter                              pulumi.StringPtrInput
 	DynamicSortSubtable                    pulumi.StringPtrInput
+	GetAllTables                           pulumi.StringPtrInput
 	GroupOverrideAttrType                  pulumi.StringPtrInput
 	H3cCompatibility                       pulumi.StringPtrInput
 	Interface                              pulumi.StringPtrInput
@@ -294,6 +334,8 @@ type UserRadiusArgs struct {
 	MacPasswordDelimiter                   pulumi.StringPtrInput
 	MacUsernameDelimiter                   pulumi.StringPtrInput
 	Name                                   pulumi.StringPtrInput
+	NasId                                  pulumi.StringPtrInput
+	NasIdType                              pulumi.StringPtrInput
 	NasIp                                  pulumi.StringPtrInput
 	PasswordEncoding                       pulumi.StringPtrInput
 	PasswordRenewal                        pulumi.StringPtrInput
@@ -315,15 +357,19 @@ type UserRadiusArgs struct {
 	SecondaryServer                        pulumi.StringPtrInput
 	Secret                                 pulumi.StringPtrInput
 	Server                                 pulumi.StringPtrInput
+	ServerIdentityCheck                    pulumi.StringPtrInput
 	SourceIp                               pulumi.StringPtrInput
 	SsoAttribute                           pulumi.StringPtrInput
 	SsoAttributeKey                        pulumi.StringPtrInput
 	SsoAttributeValueOverride              pulumi.StringPtrInput
+	StatusTtl                              pulumi.IntPtrInput
 	SwitchControllerAcctFastFramedipDetect pulumi.IntPtrInput
 	SwitchControllerServiceType            pulumi.StringPtrInput
 	TertiarySecret                         pulumi.StringPtrInput
 	TertiaryServer                         pulumi.StringPtrInput
 	Timeout                                pulumi.IntPtrInput
+	TlsMinProtoVersion                     pulumi.StringPtrInput
+	TransportProtocol                      pulumi.StringPtrInput
 	UseManagementVdom                      pulumi.StringPtrInput
 	UsernameCaseSensitive                  pulumi.StringPtrInput
 	Vdomparam                              pulumi.StringPtrInput
@@ -436,8 +482,16 @@ func (o UserRadiusOutput) AuthType() pulumi.StringOutput {
 	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.AuthType }).(pulumi.StringOutput)
 }
 
+func (o UserRadiusOutput) CaCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.CaCert }).(pulumi.StringOutput)
+}
+
 func (o UserRadiusOutput) Classes() UserRadiusClassArrayOutput {
 	return o.ApplyT(func(v *UserRadius) UserRadiusClassArrayOutput { return v.Classes }).(UserRadiusClassArrayOutput)
+}
+
+func (o UserRadiusOutput) ClientCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.ClientCert }).(pulumi.StringOutput)
 }
 
 func (o UserRadiusOutput) Delimiter() pulumi.StringOutput {
@@ -446,6 +500,10 @@ func (o UserRadiusOutput) Delimiter() pulumi.StringOutput {
 
 func (o UserRadiusOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *UserRadius) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o UserRadiusOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o UserRadiusOutput) GroupOverrideAttrType() pulumi.StringOutput {
@@ -478,6 +536,14 @@ func (o UserRadiusOutput) MacUsernameDelimiter() pulumi.StringOutput {
 
 func (o UserRadiusOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) NasId() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.NasId }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) NasIdType() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.NasIdType }).(pulumi.StringOutput)
 }
 
 func (o UserRadiusOutput) NasIp() pulumi.StringOutput {
@@ -564,6 +630,10 @@ func (o UserRadiusOutput) Server() pulumi.StringOutput {
 	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.Server }).(pulumi.StringOutput)
 }
 
+func (o UserRadiusOutput) ServerIdentityCheck() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.ServerIdentityCheck }).(pulumi.StringOutput)
+}
+
 func (o UserRadiusOutput) SourceIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
 }
@@ -578,6 +648,10 @@ func (o UserRadiusOutput) SsoAttributeKey() pulumi.StringOutput {
 
 func (o UserRadiusOutput) SsoAttributeValueOverride() pulumi.StringOutput {
 	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.SsoAttributeValueOverride }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) StatusTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.IntOutput { return v.StatusTtl }).(pulumi.IntOutput)
 }
 
 func (o UserRadiusOutput) SwitchControllerAcctFastFramedipDetect() pulumi.IntOutput {
@@ -598,6 +672,14 @@ func (o UserRadiusOutput) TertiaryServer() pulumi.StringOutput {
 
 func (o UserRadiusOutput) Timeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *UserRadius) pulumi.IntOutput { return v.Timeout }).(pulumi.IntOutput)
+}
+
+func (o UserRadiusOutput) TlsMinProtoVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.TlsMinProtoVersion }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) TransportProtocol() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.TransportProtocol }).(pulumi.StringOutput)
 }
 
 func (o UserRadiusOutput) UseManagementVdom() pulumi.StringOutput {

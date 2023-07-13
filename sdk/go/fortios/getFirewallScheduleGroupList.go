@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func GetFirewallScheduleGroupList(ctx *pulumi.Context, args *GetFirewallScheduleGroupListArgs, opts ...pulumi.InvokeOption) (*GetFirewallScheduleGroupListResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetFirewallScheduleGroupListResult
 	err := ctx.Invoke("fortios:index/getFirewallScheduleGroupList:GetFirewallScheduleGroupList", args, &rv, opts...)
 	if err != nil {

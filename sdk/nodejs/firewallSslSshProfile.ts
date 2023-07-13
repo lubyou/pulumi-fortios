@@ -42,6 +42,7 @@ export class FirewallSslSshProfile extends pulumi.CustomResource {
     public readonly dot!: pulumi.Output<outputs.FirewallSslSshProfileDot>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly ftps!: pulumi.Output<outputs.FirewallSslSshProfileFtps>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly https!: pulumi.Output<outputs.FirewallSslSshProfileHttps>;
     public readonly imaps!: pulumi.Output<outputs.FirewallSslSshProfileImaps>;
     public readonly mapiOverHttps!: pulumi.Output<string>;
@@ -90,6 +91,7 @@ export class FirewallSslSshProfile extends pulumi.CustomResource {
             resourceInputs["dot"] = state ? state.dot : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["ftps"] = state ? state.ftps : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["https"] = state ? state.https : undefined;
             resourceInputs["imaps"] = state ? state.imaps : undefined;
             resourceInputs["mapiOverHttps"] = state ? state.mapiOverHttps : undefined;
@@ -126,6 +128,7 @@ export class FirewallSslSshProfile extends pulumi.CustomResource {
             resourceInputs["dot"] = args ? args.dot : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["ftps"] = args ? args.ftps : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["https"] = args ? args.https : undefined;
             resourceInputs["imaps"] = args ? args.imaps : undefined;
             resourceInputs["mapiOverHttps"] = args ? args.mapiOverHttps : undefined;
@@ -170,6 +173,7 @@ export interface FirewallSslSshProfileState {
     dot?: pulumi.Input<inputs.FirewallSslSshProfileDot>;
     dynamicSortSubtable?: pulumi.Input<string>;
     ftps?: pulumi.Input<inputs.FirewallSslSshProfileFtps>;
+    getAllTables?: pulumi.Input<string>;
     https?: pulumi.Input<inputs.FirewallSslSshProfileHttps>;
     imaps?: pulumi.Input<inputs.FirewallSslSshProfileImaps>;
     mapiOverHttps?: pulumi.Input<string>;
@@ -210,6 +214,7 @@ export interface FirewallSslSshProfileArgs {
     dot?: pulumi.Input<inputs.FirewallSslSshProfileDot>;
     dynamicSortSubtable?: pulumi.Input<string>;
     ftps?: pulumi.Input<inputs.FirewallSslSshProfileFtps>;
+    getAllTables?: pulumi.Input<string>;
     https?: pulumi.Input<inputs.FirewallSslSshProfileHttps>;
     imaps?: pulumi.Input<inputs.FirewallSslSshProfileImaps>;
     mapiOverHttps?: pulumi.Input<string>;

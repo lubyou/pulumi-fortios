@@ -36,6 +36,9 @@ export interface GetSystemCsfResult {
     readonly fabricDevices: outputs.GetSystemCsfFabricDevice[];
     readonly fabricObjectUnification: string;
     readonly fabricWorkers: number;
+    readonly fileMgmt: string;
+    readonly fileQuota: number;
+    readonly fileQuotaWarning: number;
     readonly fixedKey: string;
     readonly forticloudAccountEnforcement: string;
     readonly groupName: string;

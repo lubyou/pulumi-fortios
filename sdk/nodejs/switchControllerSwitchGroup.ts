@@ -37,6 +37,7 @@ export class SwitchControllerSwitchGroup extends pulumi.CustomResource {
     public readonly description!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly fortilink!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly members!: pulumi.Output<outputs.SwitchControllerSwitchGroupMember[] | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -57,6 +58,7 @@ export class SwitchControllerSwitchGroup extends pulumi.CustomResource {
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fortilink"] = state ? state.fortilink : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["members"] = state ? state.members : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
@@ -65,6 +67,7 @@ export class SwitchControllerSwitchGroup extends pulumi.CustomResource {
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fortilink"] = args ? args.fortilink : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["members"] = args ? args.members : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -81,6 +84,7 @@ export interface SwitchControllerSwitchGroupState {
     description?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     fortilink?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     members?: pulumi.Input<pulumi.Input<inputs.SwitchControllerSwitchGroupMember>[]>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
@@ -93,6 +97,7 @@ export interface SwitchControllerSwitchGroupArgs {
     description?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     fortilink?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     members?: pulumi.Input<pulumi.Input<inputs.SwitchControllerSwitchGroupMember>[]>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;

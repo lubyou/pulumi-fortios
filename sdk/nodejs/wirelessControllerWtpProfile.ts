@@ -50,6 +50,7 @@ export class WirelessControllerWtpProfile extends pulumi.CustomResource {
     public readonly eslSesDongle!: pulumi.Output<outputs.WirelessControllerWtpProfileEslSesDongle>;
     public readonly extInfoEnable!: pulumi.Output<string>;
     public readonly frequencyHandoff!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly handoffRoaming!: pulumi.Output<string>;
     public readonly handoffRssi!: pulumi.Output<number>;
     public readonly handoffStaThresh!: pulumi.Output<number>;
@@ -76,6 +77,7 @@ export class WirelessControllerWtpProfile extends pulumi.CustomResource {
     public readonly syslogProfile!: pulumi.Output<string>;
     public readonly tunMtuDownlink!: pulumi.Output<number>;
     public readonly tunMtuUplink!: pulumi.Output<number>;
+    public readonly unii45ghzBand!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
     public readonly wanPortAuth!: pulumi.Output<string>;
     public readonly wanPortAuthMethods!: pulumi.Output<string>;
@@ -112,6 +114,7 @@ export class WirelessControllerWtpProfile extends pulumi.CustomResource {
             resourceInputs["eslSesDongle"] = state ? state.eslSesDongle : undefined;
             resourceInputs["extInfoEnable"] = state ? state.extInfoEnable : undefined;
             resourceInputs["frequencyHandoff"] = state ? state.frequencyHandoff : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["handoffRoaming"] = state ? state.handoffRoaming : undefined;
             resourceInputs["handoffRssi"] = state ? state.handoffRssi : undefined;
             resourceInputs["handoffStaThresh"] = state ? state.handoffStaThresh : undefined;
@@ -138,6 +141,7 @@ export class WirelessControllerWtpProfile extends pulumi.CustomResource {
             resourceInputs["syslogProfile"] = state ? state.syslogProfile : undefined;
             resourceInputs["tunMtuDownlink"] = state ? state.tunMtuDownlink : undefined;
             resourceInputs["tunMtuUplink"] = state ? state.tunMtuUplink : undefined;
+            resourceInputs["unii45ghzBand"] = state ? state.unii45ghzBand : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["wanPortAuth"] = state ? state.wanPortAuth : undefined;
             resourceInputs["wanPortAuthMethods"] = state ? state.wanPortAuthMethods : undefined;
@@ -162,6 +166,7 @@ export class WirelessControllerWtpProfile extends pulumi.CustomResource {
             resourceInputs["eslSesDongle"] = args ? args.eslSesDongle : undefined;
             resourceInputs["extInfoEnable"] = args ? args.extInfoEnable : undefined;
             resourceInputs["frequencyHandoff"] = args ? args.frequencyHandoff : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["handoffRoaming"] = args ? args.handoffRoaming : undefined;
             resourceInputs["handoffRssi"] = args ? args.handoffRssi : undefined;
             resourceInputs["handoffStaThresh"] = args ? args.handoffStaThresh : undefined;
@@ -188,6 +193,7 @@ export class WirelessControllerWtpProfile extends pulumi.CustomResource {
             resourceInputs["syslogProfile"] = args ? args.syslogProfile : undefined;
             resourceInputs["tunMtuDownlink"] = args ? args.tunMtuDownlink : undefined;
             resourceInputs["tunMtuUplink"] = args ? args.tunMtuUplink : undefined;
+            resourceInputs["unii45ghzBand"] = args ? args.unii45ghzBand : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["wanPortAuth"] = args ? args.wanPortAuth : undefined;
             resourceInputs["wanPortAuthMethods"] = args ? args.wanPortAuthMethods : undefined;
@@ -222,6 +228,7 @@ export interface WirelessControllerWtpProfileState {
     eslSesDongle?: pulumi.Input<inputs.WirelessControllerWtpProfileEslSesDongle>;
     extInfoEnable?: pulumi.Input<string>;
     frequencyHandoff?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     handoffRoaming?: pulumi.Input<string>;
     handoffRssi?: pulumi.Input<number>;
     handoffStaThresh?: pulumi.Input<number>;
@@ -248,6 +255,7 @@ export interface WirelessControllerWtpProfileState {
     syslogProfile?: pulumi.Input<string>;
     tunMtuDownlink?: pulumi.Input<number>;
     tunMtuUplink?: pulumi.Input<number>;
+    unii45ghzBand?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
     wanPortAuth?: pulumi.Input<string>;
     wanPortAuthMethods?: pulumi.Input<string>;
@@ -276,6 +284,7 @@ export interface WirelessControllerWtpProfileArgs {
     eslSesDongle?: pulumi.Input<inputs.WirelessControllerWtpProfileEslSesDongle>;
     extInfoEnable?: pulumi.Input<string>;
     frequencyHandoff?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     handoffRoaming?: pulumi.Input<string>;
     handoffRssi?: pulumi.Input<number>;
     handoffStaThresh?: pulumi.Input<number>;
@@ -302,6 +311,7 @@ export interface WirelessControllerWtpProfileArgs {
     syslogProfile?: pulumi.Input<string>;
     tunMtuDownlink?: pulumi.Input<number>;
     tunMtuUplink?: pulumi.Input<number>;
+    unii45ghzBand?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
     wanPortAuth?: pulumi.Input<string>;
     wanPortAuthMethods?: pulumi.Input<string>;

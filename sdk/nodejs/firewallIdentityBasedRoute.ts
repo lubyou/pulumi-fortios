@@ -36,6 +36,7 @@ export class FirewallIdentityBasedRoute extends pulumi.CustomResource {
 
     public readonly comments!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly rules!: pulumi.Output<outputs.FirewallIdentityBasedRouteRule[] | undefined>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -55,6 +56,7 @@ export class FirewallIdentityBasedRoute extends pulumi.CustomResource {
             const state = argsOrState as FirewallIdentityBasedRouteState | undefined;
             resourceInputs["comments"] = state ? state.comments : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["rules"] = state ? state.rules : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
@@ -62,6 +64,7 @@ export class FirewallIdentityBasedRoute extends pulumi.CustomResource {
             const args = argsOrState as FirewallIdentityBasedRouteArgs | undefined;
             resourceInputs["comments"] = args ? args.comments : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["rules"] = args ? args.rules : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -77,6 +80,7 @@ export class FirewallIdentityBasedRoute extends pulumi.CustomResource {
 export interface FirewallIdentityBasedRouteState {
     comments?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     rules?: pulumi.Input<pulumi.Input<inputs.FirewallIdentityBasedRouteRule>[]>;
     vdomparam?: pulumi.Input<string>;
@@ -88,6 +92,7 @@ export interface FirewallIdentityBasedRouteState {
 export interface FirewallIdentityBasedRouteArgs {
     comments?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     rules?: pulumi.Input<pulumi.Input<inputs.FirewallIdentityBasedRouteRule>[]>;
     vdomparam?: pulumi.Input<string>;

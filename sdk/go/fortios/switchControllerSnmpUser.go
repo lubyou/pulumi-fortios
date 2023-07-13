@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -42,7 +43,7 @@ func NewSwitchControllerSnmpUser(ctx *pulumi.Context,
 		"privPwd",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SwitchControllerSnmpUser
 	err := ctx.RegisterResource("fortios:index/switchControllerSnmpUser:SwitchControllerSnmpUser", name, args, &resource, opts...)
 	if err != nil {

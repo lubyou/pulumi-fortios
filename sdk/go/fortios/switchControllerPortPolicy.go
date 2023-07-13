@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -31,7 +32,7 @@ func NewSwitchControllerPortPolicy(ctx *pulumi.Context,
 		args = &SwitchControllerPortPolicyArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SwitchControllerPortPolicy
 	err := ctx.RegisterResource("fortios:index/switchControllerPortPolicy:SwitchControllerPortPolicy", name, args, &resource, opts...)
 	if err != nil {

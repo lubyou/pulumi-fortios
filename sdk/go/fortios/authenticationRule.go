@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -18,6 +19,7 @@ type AuthenticationRule struct {
 	Dstaddr6s           AuthenticationRuleDstaddr6ArrayOutput `pulumi:"dstaddr6s"`
 	Dstaddrs            AuthenticationRuleDstaddrArrayOutput  `pulumi:"dstaddrs"`
 	DynamicSortSubtable pulumi.StringPtrOutput                `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                `pulumi:"getAllTables"`
 	IpBased             pulumi.StringOutput                   `pulumi:"ipBased"`
 	Name                pulumi.StringOutput                   `pulumi:"name"`
 	Protocol            pulumi.StringOutput                   `pulumi:"protocol"`
@@ -39,7 +41,7 @@ func NewAuthenticationRule(ctx *pulumi.Context,
 		args = &AuthenticationRuleArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AuthenticationRule
 	err := ctx.RegisterResource("fortios:index/authenticationRule:AuthenticationRule", name, args, &resource, opts...)
 	if err != nil {
@@ -67,6 +69,7 @@ type authenticationRuleState struct {
 	Dstaddr6s           []AuthenticationRuleDstaddr6 `pulumi:"dstaddr6s"`
 	Dstaddrs            []AuthenticationRuleDstaddr  `pulumi:"dstaddrs"`
 	DynamicSortSubtable *string                      `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                      `pulumi:"getAllTables"`
 	IpBased             *string                      `pulumi:"ipBased"`
 	Name                *string                      `pulumi:"name"`
 	Protocol            *string                      `pulumi:"protocol"`
@@ -87,6 +90,7 @@ type AuthenticationRuleState struct {
 	Dstaddr6s           AuthenticationRuleDstaddr6ArrayInput
 	Dstaddrs            AuthenticationRuleDstaddrArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	IpBased             pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Protocol            pulumi.StringPtrInput
@@ -111,6 +115,7 @@ type authenticationRuleArgs struct {
 	Dstaddr6s           []AuthenticationRuleDstaddr6 `pulumi:"dstaddr6s"`
 	Dstaddrs            []AuthenticationRuleDstaddr  `pulumi:"dstaddrs"`
 	DynamicSortSubtable *string                      `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                      `pulumi:"getAllTables"`
 	IpBased             *string                      `pulumi:"ipBased"`
 	Name                *string                      `pulumi:"name"`
 	Protocol            *string                      `pulumi:"protocol"`
@@ -132,6 +137,7 @@ type AuthenticationRuleArgs struct {
 	Dstaddr6s           AuthenticationRuleDstaddr6ArrayInput
 	Dstaddrs            AuthenticationRuleDstaddrArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	IpBased             pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Protocol            pulumi.StringPtrInput
@@ -251,6 +257,10 @@ func (o AuthenticationRuleOutput) Dstaddrs() AuthenticationRuleDstaddrArrayOutpu
 
 func (o AuthenticationRuleOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthenticationRule) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthenticationRuleOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthenticationRule) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o AuthenticationRuleOutput) IpBased() pulumi.StringOutput {

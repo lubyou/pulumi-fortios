@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -18,6 +19,8 @@ type VpnSslClient struct {
 	Comment     pulumi.StringPtrOutput `pulumi:"comment"`
 	Distance    pulumi.IntOutput       `pulumi:"distance"`
 	Interface   pulumi.StringOutput    `pulumi:"interface"`
+	Ipv4Subnets pulumi.StringOutput    `pulumi:"ipv4Subnets"`
+	Ipv6Subnets pulumi.StringOutput    `pulumi:"ipv6Subnets"`
 	Name        pulumi.StringOutput    `pulumi:"name"`
 	Peer        pulumi.StringOutput    `pulumi:"peer"`
 	Port        pulumi.IntOutput       `pulumi:"port"`
@@ -38,7 +41,7 @@ func NewVpnSslClient(ctx *pulumi.Context,
 		args = &VpnSslClientArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource VpnSslClient
 	err := ctx.RegisterResource("fortios:index/vpnSslClient:VpnSslClient", name, args, &resource, opts...)
 	if err != nil {
@@ -66,6 +69,8 @@ type vpnSslClientState struct {
 	Comment     *string `pulumi:"comment"`
 	Distance    *int    `pulumi:"distance"`
 	Interface   *string `pulumi:"interface"`
+	Ipv4Subnets *string `pulumi:"ipv4Subnets"`
+	Ipv6Subnets *string `pulumi:"ipv6Subnets"`
 	Name        *string `pulumi:"name"`
 	Peer        *string `pulumi:"peer"`
 	Port        *int    `pulumi:"port"`
@@ -85,6 +90,8 @@ type VpnSslClientState struct {
 	Comment     pulumi.StringPtrInput
 	Distance    pulumi.IntPtrInput
 	Interface   pulumi.StringPtrInput
+	Ipv4Subnets pulumi.StringPtrInput
+	Ipv6Subnets pulumi.StringPtrInput
 	Name        pulumi.StringPtrInput
 	Peer        pulumi.StringPtrInput
 	Port        pulumi.IntPtrInput
@@ -108,6 +115,8 @@ type vpnSslClientArgs struct {
 	Comment     *string `pulumi:"comment"`
 	Distance    *int    `pulumi:"distance"`
 	Interface   *string `pulumi:"interface"`
+	Ipv4Subnets *string `pulumi:"ipv4Subnets"`
+	Ipv6Subnets *string `pulumi:"ipv6Subnets"`
 	Name        *string `pulumi:"name"`
 	Peer        *string `pulumi:"peer"`
 	Port        *int    `pulumi:"port"`
@@ -128,6 +137,8 @@ type VpnSslClientArgs struct {
 	Comment     pulumi.StringPtrInput
 	Distance    pulumi.IntPtrInput
 	Interface   pulumi.StringPtrInput
+	Ipv4Subnets pulumi.StringPtrInput
+	Ipv6Subnets pulumi.StringPtrInput
 	Name        pulumi.StringPtrInput
 	Peer        pulumi.StringPtrInput
 	Port        pulumi.IntPtrInput
@@ -246,6 +257,14 @@ func (o VpnSslClientOutput) Distance() pulumi.IntOutput {
 
 func (o VpnSslClientOutput) Interface() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpnSslClient) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o VpnSslClientOutput) Ipv4Subnets() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslClient) pulumi.StringOutput { return v.Ipv4Subnets }).(pulumi.StringOutput)
+}
+
+func (o VpnSslClientOutput) Ipv6Subnets() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslClient) pulumi.StringOutput { return v.Ipv6Subnets }).(pulumi.StringOutput)
 }
 
 func (o VpnSslClientOutput) Name() pulumi.StringOutput {

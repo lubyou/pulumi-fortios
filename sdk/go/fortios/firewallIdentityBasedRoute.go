@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,6 +16,7 @@ type FirewallIdentityBasedRoute struct {
 
 	Comments            pulumi.StringOutput                       `pulumi:"comments"`
 	DynamicSortSubtable pulumi.StringPtrOutput                    `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                    `pulumi:"getAllTables"`
 	Name                pulumi.StringOutput                       `pulumi:"name"`
 	Rules               FirewallIdentityBasedRouteRuleArrayOutput `pulumi:"rules"`
 	Vdomparam           pulumi.StringPtrOutput                    `pulumi:"vdomparam"`
@@ -27,7 +29,7 @@ func NewFirewallIdentityBasedRoute(ctx *pulumi.Context,
 		args = &FirewallIdentityBasedRouteArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallIdentityBasedRoute
 	err := ctx.RegisterResource("fortios:index/firewallIdentityBasedRoute:FirewallIdentityBasedRoute", name, args, &resource, opts...)
 	if err != nil {
@@ -52,6 +54,7 @@ func GetFirewallIdentityBasedRoute(ctx *pulumi.Context,
 type firewallIdentityBasedRouteState struct {
 	Comments            *string                          `pulumi:"comments"`
 	DynamicSortSubtable *string                          `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                          `pulumi:"getAllTables"`
 	Name                *string                          `pulumi:"name"`
 	Rules               []FirewallIdentityBasedRouteRule `pulumi:"rules"`
 	Vdomparam           *string                          `pulumi:"vdomparam"`
@@ -60,6 +63,7 @@ type firewallIdentityBasedRouteState struct {
 type FirewallIdentityBasedRouteState struct {
 	Comments            pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Rules               FirewallIdentityBasedRouteRuleArrayInput
 	Vdomparam           pulumi.StringPtrInput
@@ -72,6 +76,7 @@ func (FirewallIdentityBasedRouteState) ElementType() reflect.Type {
 type firewallIdentityBasedRouteArgs struct {
 	Comments            *string                          `pulumi:"comments"`
 	DynamicSortSubtable *string                          `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                          `pulumi:"getAllTables"`
 	Name                *string                          `pulumi:"name"`
 	Rules               []FirewallIdentityBasedRouteRule `pulumi:"rules"`
 	Vdomparam           *string                          `pulumi:"vdomparam"`
@@ -81,6 +86,7 @@ type firewallIdentityBasedRouteArgs struct {
 type FirewallIdentityBasedRouteArgs struct {
 	Comments            pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Rules               FirewallIdentityBasedRouteRuleArrayInput
 	Vdomparam           pulumi.StringPtrInput
@@ -179,6 +185,10 @@ func (o FirewallIdentityBasedRouteOutput) Comments() pulumi.StringOutput {
 
 func (o FirewallIdentityBasedRouteOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FirewallIdentityBasedRoute) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallIdentityBasedRouteOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallIdentityBasedRoute) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallIdentityBasedRouteOutput) Name() pulumi.StringOutput {

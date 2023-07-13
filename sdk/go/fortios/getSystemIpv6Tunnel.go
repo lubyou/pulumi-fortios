@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemIpv6Tunnel(ctx *pulumi.Context, args *LookupSystemIpv6TunnelArgs, opts ...pulumi.InvokeOption) (*LookupSystemIpv6TunnelResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemIpv6TunnelResult
 	err := ctx.Invoke("fortios:index/getSystemIpv6Tunnel:GetSystemIpv6Tunnel", args, &rv, opts...)
 	if err != nil {

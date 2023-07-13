@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -50,7 +51,7 @@ func NewSystemPppoeInterface(ctx *pulumi.Context,
 		"password",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemPppoeInterface
 	err := ctx.RegisterResource("fortios:index/systemPppoeInterface:SystemPppoeInterface", name, args, &resource, opts...)
 	if err != nil {

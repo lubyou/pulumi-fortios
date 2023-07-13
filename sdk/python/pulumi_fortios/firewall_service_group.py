@@ -20,6 +20,7 @@ class FirewallServiceGroupArgs:
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallServiceGroupMemberArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  proxy: Optional[pulumi.Input[str]] = None,
@@ -35,6 +36,8 @@ class FirewallServiceGroupArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fabric_object is not None:
             pulumi.set(__self__, "fabric_object", fabric_object)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if members is not None:
             pulumi.set(__self__, "members", members)
         if name is not None:
@@ -79,6 +82,15 @@ class FirewallServiceGroupArgs:
     @fabric_object.setter
     def fabric_object(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fabric_object", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -124,6 +136,7 @@ class _FirewallServiceGroupState:
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallServiceGroupMemberArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  proxy: Optional[pulumi.Input[str]] = None,
@@ -139,6 +152,8 @@ class _FirewallServiceGroupState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fabric_object is not None:
             pulumi.set(__self__, "fabric_object", fabric_object)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if members is not None:
             pulumi.set(__self__, "members", members)
         if name is not None:
@@ -183,6 +198,15 @@ class _FirewallServiceGroupState:
     @fabric_object.setter
     def fabric_object(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fabric_object", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -230,6 +254,7 @@ class FirewallServiceGroup(pulumi.CustomResource):
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallServiceGroupMemberArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  proxy: Optional[pulumi.Input[str]] = None,
@@ -267,6 +292,7 @@ class FirewallServiceGroup(pulumi.CustomResource):
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallServiceGroupMemberArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  proxy: Optional[pulumi.Input[str]] = None,
@@ -284,6 +310,7 @@ class FirewallServiceGroup(pulumi.CustomResource):
             __props__.__dict__["comment"] = comment
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["fabric_object"] = fabric_object
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["members"] = members
             __props__.__dict__["name"] = name
             __props__.__dict__["proxy"] = proxy
@@ -302,6 +329,7 @@ class FirewallServiceGroup(pulumi.CustomResource):
             comment: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             fabric_object: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallServiceGroupMemberArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             proxy: Optional[pulumi.Input[str]] = None,
@@ -322,6 +350,7 @@ class FirewallServiceGroup(pulumi.CustomResource):
         __props__.__dict__["comment"] = comment
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["fabric_object"] = fabric_object
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["members"] = members
         __props__.__dict__["name"] = name
         __props__.__dict__["proxy"] = proxy
@@ -347,6 +376,11 @@ class FirewallServiceGroup(pulumi.CustomResource):
     @pulumi.getter(name="fabricObject")
     def fabric_object(self) -> pulumi.Output[str]:
         return pulumi.get(self, "fabric_object")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

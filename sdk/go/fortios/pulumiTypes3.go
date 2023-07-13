@@ -7,8 +7,7618 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
+
+var _ = internal.GetEnvOrDefault
+
+type UserSecurityExemptListRuleDevice struct {
+	Name *string `pulumi:"name"`
+}
+
+// UserSecurityExemptListRuleDeviceInput is an input type that accepts UserSecurityExemptListRuleDeviceArgs and UserSecurityExemptListRuleDeviceOutput values.
+// You can construct a concrete instance of `UserSecurityExemptListRuleDeviceInput` via:
+//
+//	UserSecurityExemptListRuleDeviceArgs{...}
+type UserSecurityExemptListRuleDeviceInput interface {
+	pulumi.Input
+
+	ToUserSecurityExemptListRuleDeviceOutput() UserSecurityExemptListRuleDeviceOutput
+	ToUserSecurityExemptListRuleDeviceOutputWithContext(context.Context) UserSecurityExemptListRuleDeviceOutput
+}
+
+type UserSecurityExemptListRuleDeviceArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (UserSecurityExemptListRuleDeviceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserSecurityExemptListRuleDevice)(nil)).Elem()
+}
+
+func (i UserSecurityExemptListRuleDeviceArgs) ToUserSecurityExemptListRuleDeviceOutput() UserSecurityExemptListRuleDeviceOutput {
+	return i.ToUserSecurityExemptListRuleDeviceOutputWithContext(context.Background())
+}
+
+func (i UserSecurityExemptListRuleDeviceArgs) ToUserSecurityExemptListRuleDeviceOutputWithContext(ctx context.Context) UserSecurityExemptListRuleDeviceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserSecurityExemptListRuleDeviceOutput)
+}
+
+// UserSecurityExemptListRuleDeviceArrayInput is an input type that accepts UserSecurityExemptListRuleDeviceArray and UserSecurityExemptListRuleDeviceArrayOutput values.
+// You can construct a concrete instance of `UserSecurityExemptListRuleDeviceArrayInput` via:
+//
+//	UserSecurityExemptListRuleDeviceArray{ UserSecurityExemptListRuleDeviceArgs{...} }
+type UserSecurityExemptListRuleDeviceArrayInput interface {
+	pulumi.Input
+
+	ToUserSecurityExemptListRuleDeviceArrayOutput() UserSecurityExemptListRuleDeviceArrayOutput
+	ToUserSecurityExemptListRuleDeviceArrayOutputWithContext(context.Context) UserSecurityExemptListRuleDeviceArrayOutput
+}
+
+type UserSecurityExemptListRuleDeviceArray []UserSecurityExemptListRuleDeviceInput
+
+func (UserSecurityExemptListRuleDeviceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserSecurityExemptListRuleDevice)(nil)).Elem()
+}
+
+func (i UserSecurityExemptListRuleDeviceArray) ToUserSecurityExemptListRuleDeviceArrayOutput() UserSecurityExemptListRuleDeviceArrayOutput {
+	return i.ToUserSecurityExemptListRuleDeviceArrayOutputWithContext(context.Background())
+}
+
+func (i UserSecurityExemptListRuleDeviceArray) ToUserSecurityExemptListRuleDeviceArrayOutputWithContext(ctx context.Context) UserSecurityExemptListRuleDeviceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserSecurityExemptListRuleDeviceArrayOutput)
+}
+
+type UserSecurityExemptListRuleDeviceOutput struct{ *pulumi.OutputState }
+
+func (UserSecurityExemptListRuleDeviceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserSecurityExemptListRuleDevice)(nil)).Elem()
+}
+
+func (o UserSecurityExemptListRuleDeviceOutput) ToUserSecurityExemptListRuleDeviceOutput() UserSecurityExemptListRuleDeviceOutput {
+	return o
+}
+
+func (o UserSecurityExemptListRuleDeviceOutput) ToUserSecurityExemptListRuleDeviceOutputWithContext(ctx context.Context) UserSecurityExemptListRuleDeviceOutput {
+	return o
+}
+
+func (o UserSecurityExemptListRuleDeviceOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserSecurityExemptListRuleDevice) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type UserSecurityExemptListRuleDeviceArrayOutput struct{ *pulumi.OutputState }
+
+func (UserSecurityExemptListRuleDeviceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserSecurityExemptListRuleDevice)(nil)).Elem()
+}
+
+func (o UserSecurityExemptListRuleDeviceArrayOutput) ToUserSecurityExemptListRuleDeviceArrayOutput() UserSecurityExemptListRuleDeviceArrayOutput {
+	return o
+}
+
+func (o UserSecurityExemptListRuleDeviceArrayOutput) ToUserSecurityExemptListRuleDeviceArrayOutputWithContext(ctx context.Context) UserSecurityExemptListRuleDeviceArrayOutput {
+	return o
+}
+
+func (o UserSecurityExemptListRuleDeviceArrayOutput) Index(i pulumi.IntInput) UserSecurityExemptListRuleDeviceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserSecurityExemptListRuleDevice {
+		return vs[0].([]UserSecurityExemptListRuleDevice)[vs[1].(int)]
+	}).(UserSecurityExemptListRuleDeviceOutput)
+}
+
+type UserSecurityExemptListRuleDstaddr struct {
+	Name *string `pulumi:"name"`
+}
+
+// UserSecurityExemptListRuleDstaddrInput is an input type that accepts UserSecurityExemptListRuleDstaddrArgs and UserSecurityExemptListRuleDstaddrOutput values.
+// You can construct a concrete instance of `UserSecurityExemptListRuleDstaddrInput` via:
+//
+//	UserSecurityExemptListRuleDstaddrArgs{...}
+type UserSecurityExemptListRuleDstaddrInput interface {
+	pulumi.Input
+
+	ToUserSecurityExemptListRuleDstaddrOutput() UserSecurityExemptListRuleDstaddrOutput
+	ToUserSecurityExemptListRuleDstaddrOutputWithContext(context.Context) UserSecurityExemptListRuleDstaddrOutput
+}
+
+type UserSecurityExemptListRuleDstaddrArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (UserSecurityExemptListRuleDstaddrArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserSecurityExemptListRuleDstaddr)(nil)).Elem()
+}
+
+func (i UserSecurityExemptListRuleDstaddrArgs) ToUserSecurityExemptListRuleDstaddrOutput() UserSecurityExemptListRuleDstaddrOutput {
+	return i.ToUserSecurityExemptListRuleDstaddrOutputWithContext(context.Background())
+}
+
+func (i UserSecurityExemptListRuleDstaddrArgs) ToUserSecurityExemptListRuleDstaddrOutputWithContext(ctx context.Context) UserSecurityExemptListRuleDstaddrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserSecurityExemptListRuleDstaddrOutput)
+}
+
+// UserSecurityExemptListRuleDstaddrArrayInput is an input type that accepts UserSecurityExemptListRuleDstaddrArray and UserSecurityExemptListRuleDstaddrArrayOutput values.
+// You can construct a concrete instance of `UserSecurityExemptListRuleDstaddrArrayInput` via:
+//
+//	UserSecurityExemptListRuleDstaddrArray{ UserSecurityExemptListRuleDstaddrArgs{...} }
+type UserSecurityExemptListRuleDstaddrArrayInput interface {
+	pulumi.Input
+
+	ToUserSecurityExemptListRuleDstaddrArrayOutput() UserSecurityExemptListRuleDstaddrArrayOutput
+	ToUserSecurityExemptListRuleDstaddrArrayOutputWithContext(context.Context) UserSecurityExemptListRuleDstaddrArrayOutput
+}
+
+type UserSecurityExemptListRuleDstaddrArray []UserSecurityExemptListRuleDstaddrInput
+
+func (UserSecurityExemptListRuleDstaddrArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserSecurityExemptListRuleDstaddr)(nil)).Elem()
+}
+
+func (i UserSecurityExemptListRuleDstaddrArray) ToUserSecurityExemptListRuleDstaddrArrayOutput() UserSecurityExemptListRuleDstaddrArrayOutput {
+	return i.ToUserSecurityExemptListRuleDstaddrArrayOutputWithContext(context.Background())
+}
+
+func (i UserSecurityExemptListRuleDstaddrArray) ToUserSecurityExemptListRuleDstaddrArrayOutputWithContext(ctx context.Context) UserSecurityExemptListRuleDstaddrArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserSecurityExemptListRuleDstaddrArrayOutput)
+}
+
+type UserSecurityExemptListRuleDstaddrOutput struct{ *pulumi.OutputState }
+
+func (UserSecurityExemptListRuleDstaddrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserSecurityExemptListRuleDstaddr)(nil)).Elem()
+}
+
+func (o UserSecurityExemptListRuleDstaddrOutput) ToUserSecurityExemptListRuleDstaddrOutput() UserSecurityExemptListRuleDstaddrOutput {
+	return o
+}
+
+func (o UserSecurityExemptListRuleDstaddrOutput) ToUserSecurityExemptListRuleDstaddrOutputWithContext(ctx context.Context) UserSecurityExemptListRuleDstaddrOutput {
+	return o
+}
+
+func (o UserSecurityExemptListRuleDstaddrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserSecurityExemptListRuleDstaddr) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type UserSecurityExemptListRuleDstaddrArrayOutput struct{ *pulumi.OutputState }
+
+func (UserSecurityExemptListRuleDstaddrArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserSecurityExemptListRuleDstaddr)(nil)).Elem()
+}
+
+func (o UserSecurityExemptListRuleDstaddrArrayOutput) ToUserSecurityExemptListRuleDstaddrArrayOutput() UserSecurityExemptListRuleDstaddrArrayOutput {
+	return o
+}
+
+func (o UserSecurityExemptListRuleDstaddrArrayOutput) ToUserSecurityExemptListRuleDstaddrArrayOutputWithContext(ctx context.Context) UserSecurityExemptListRuleDstaddrArrayOutput {
+	return o
+}
+
+func (o UserSecurityExemptListRuleDstaddrArrayOutput) Index(i pulumi.IntInput) UserSecurityExemptListRuleDstaddrOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserSecurityExemptListRuleDstaddr {
+		return vs[0].([]UserSecurityExemptListRuleDstaddr)[vs[1].(int)]
+	}).(UserSecurityExemptListRuleDstaddrOutput)
+}
+
+type UserSecurityExemptListRuleService struct {
+	Name *string `pulumi:"name"`
+}
+
+// UserSecurityExemptListRuleServiceInput is an input type that accepts UserSecurityExemptListRuleServiceArgs and UserSecurityExemptListRuleServiceOutput values.
+// You can construct a concrete instance of `UserSecurityExemptListRuleServiceInput` via:
+//
+//	UserSecurityExemptListRuleServiceArgs{...}
+type UserSecurityExemptListRuleServiceInput interface {
+	pulumi.Input
+
+	ToUserSecurityExemptListRuleServiceOutput() UserSecurityExemptListRuleServiceOutput
+	ToUserSecurityExemptListRuleServiceOutputWithContext(context.Context) UserSecurityExemptListRuleServiceOutput
+}
+
+type UserSecurityExemptListRuleServiceArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (UserSecurityExemptListRuleServiceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserSecurityExemptListRuleService)(nil)).Elem()
+}
+
+func (i UserSecurityExemptListRuleServiceArgs) ToUserSecurityExemptListRuleServiceOutput() UserSecurityExemptListRuleServiceOutput {
+	return i.ToUserSecurityExemptListRuleServiceOutputWithContext(context.Background())
+}
+
+func (i UserSecurityExemptListRuleServiceArgs) ToUserSecurityExemptListRuleServiceOutputWithContext(ctx context.Context) UserSecurityExemptListRuleServiceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserSecurityExemptListRuleServiceOutput)
+}
+
+// UserSecurityExemptListRuleServiceArrayInput is an input type that accepts UserSecurityExemptListRuleServiceArray and UserSecurityExemptListRuleServiceArrayOutput values.
+// You can construct a concrete instance of `UserSecurityExemptListRuleServiceArrayInput` via:
+//
+//	UserSecurityExemptListRuleServiceArray{ UserSecurityExemptListRuleServiceArgs{...} }
+type UserSecurityExemptListRuleServiceArrayInput interface {
+	pulumi.Input
+
+	ToUserSecurityExemptListRuleServiceArrayOutput() UserSecurityExemptListRuleServiceArrayOutput
+	ToUserSecurityExemptListRuleServiceArrayOutputWithContext(context.Context) UserSecurityExemptListRuleServiceArrayOutput
+}
+
+type UserSecurityExemptListRuleServiceArray []UserSecurityExemptListRuleServiceInput
+
+func (UserSecurityExemptListRuleServiceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserSecurityExemptListRuleService)(nil)).Elem()
+}
+
+func (i UserSecurityExemptListRuleServiceArray) ToUserSecurityExemptListRuleServiceArrayOutput() UserSecurityExemptListRuleServiceArrayOutput {
+	return i.ToUserSecurityExemptListRuleServiceArrayOutputWithContext(context.Background())
+}
+
+func (i UserSecurityExemptListRuleServiceArray) ToUserSecurityExemptListRuleServiceArrayOutputWithContext(ctx context.Context) UserSecurityExemptListRuleServiceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserSecurityExemptListRuleServiceArrayOutput)
+}
+
+type UserSecurityExemptListRuleServiceOutput struct{ *pulumi.OutputState }
+
+func (UserSecurityExemptListRuleServiceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserSecurityExemptListRuleService)(nil)).Elem()
+}
+
+func (o UserSecurityExemptListRuleServiceOutput) ToUserSecurityExemptListRuleServiceOutput() UserSecurityExemptListRuleServiceOutput {
+	return o
+}
+
+func (o UserSecurityExemptListRuleServiceOutput) ToUserSecurityExemptListRuleServiceOutputWithContext(ctx context.Context) UserSecurityExemptListRuleServiceOutput {
+	return o
+}
+
+func (o UserSecurityExemptListRuleServiceOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserSecurityExemptListRuleService) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type UserSecurityExemptListRuleServiceArrayOutput struct{ *pulumi.OutputState }
+
+func (UserSecurityExemptListRuleServiceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserSecurityExemptListRuleService)(nil)).Elem()
+}
+
+func (o UserSecurityExemptListRuleServiceArrayOutput) ToUserSecurityExemptListRuleServiceArrayOutput() UserSecurityExemptListRuleServiceArrayOutput {
+	return o
+}
+
+func (o UserSecurityExemptListRuleServiceArrayOutput) ToUserSecurityExemptListRuleServiceArrayOutputWithContext(ctx context.Context) UserSecurityExemptListRuleServiceArrayOutput {
+	return o
+}
+
+func (o UserSecurityExemptListRuleServiceArrayOutput) Index(i pulumi.IntInput) UserSecurityExemptListRuleServiceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserSecurityExemptListRuleService {
+		return vs[0].([]UserSecurityExemptListRuleService)[vs[1].(int)]
+	}).(UserSecurityExemptListRuleServiceOutput)
+}
+
+type UserSecurityExemptListRuleSrcaddr struct {
+	Name *string `pulumi:"name"`
+}
+
+// UserSecurityExemptListRuleSrcaddrInput is an input type that accepts UserSecurityExemptListRuleSrcaddrArgs and UserSecurityExemptListRuleSrcaddrOutput values.
+// You can construct a concrete instance of `UserSecurityExemptListRuleSrcaddrInput` via:
+//
+//	UserSecurityExemptListRuleSrcaddrArgs{...}
+type UserSecurityExemptListRuleSrcaddrInput interface {
+	pulumi.Input
+
+	ToUserSecurityExemptListRuleSrcaddrOutput() UserSecurityExemptListRuleSrcaddrOutput
+	ToUserSecurityExemptListRuleSrcaddrOutputWithContext(context.Context) UserSecurityExemptListRuleSrcaddrOutput
+}
+
+type UserSecurityExemptListRuleSrcaddrArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (UserSecurityExemptListRuleSrcaddrArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserSecurityExemptListRuleSrcaddr)(nil)).Elem()
+}
+
+func (i UserSecurityExemptListRuleSrcaddrArgs) ToUserSecurityExemptListRuleSrcaddrOutput() UserSecurityExemptListRuleSrcaddrOutput {
+	return i.ToUserSecurityExemptListRuleSrcaddrOutputWithContext(context.Background())
+}
+
+func (i UserSecurityExemptListRuleSrcaddrArgs) ToUserSecurityExemptListRuleSrcaddrOutputWithContext(ctx context.Context) UserSecurityExemptListRuleSrcaddrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserSecurityExemptListRuleSrcaddrOutput)
+}
+
+// UserSecurityExemptListRuleSrcaddrArrayInput is an input type that accepts UserSecurityExemptListRuleSrcaddrArray and UserSecurityExemptListRuleSrcaddrArrayOutput values.
+// You can construct a concrete instance of `UserSecurityExemptListRuleSrcaddrArrayInput` via:
+//
+//	UserSecurityExemptListRuleSrcaddrArray{ UserSecurityExemptListRuleSrcaddrArgs{...} }
+type UserSecurityExemptListRuleSrcaddrArrayInput interface {
+	pulumi.Input
+
+	ToUserSecurityExemptListRuleSrcaddrArrayOutput() UserSecurityExemptListRuleSrcaddrArrayOutput
+	ToUserSecurityExemptListRuleSrcaddrArrayOutputWithContext(context.Context) UserSecurityExemptListRuleSrcaddrArrayOutput
+}
+
+type UserSecurityExemptListRuleSrcaddrArray []UserSecurityExemptListRuleSrcaddrInput
+
+func (UserSecurityExemptListRuleSrcaddrArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserSecurityExemptListRuleSrcaddr)(nil)).Elem()
+}
+
+func (i UserSecurityExemptListRuleSrcaddrArray) ToUserSecurityExemptListRuleSrcaddrArrayOutput() UserSecurityExemptListRuleSrcaddrArrayOutput {
+	return i.ToUserSecurityExemptListRuleSrcaddrArrayOutputWithContext(context.Background())
+}
+
+func (i UserSecurityExemptListRuleSrcaddrArray) ToUserSecurityExemptListRuleSrcaddrArrayOutputWithContext(ctx context.Context) UserSecurityExemptListRuleSrcaddrArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserSecurityExemptListRuleSrcaddrArrayOutput)
+}
+
+type UserSecurityExemptListRuleSrcaddrOutput struct{ *pulumi.OutputState }
+
+func (UserSecurityExemptListRuleSrcaddrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserSecurityExemptListRuleSrcaddr)(nil)).Elem()
+}
+
+func (o UserSecurityExemptListRuleSrcaddrOutput) ToUserSecurityExemptListRuleSrcaddrOutput() UserSecurityExemptListRuleSrcaddrOutput {
+	return o
+}
+
+func (o UserSecurityExemptListRuleSrcaddrOutput) ToUserSecurityExemptListRuleSrcaddrOutputWithContext(ctx context.Context) UserSecurityExemptListRuleSrcaddrOutput {
+	return o
+}
+
+func (o UserSecurityExemptListRuleSrcaddrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserSecurityExemptListRuleSrcaddr) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type UserSecurityExemptListRuleSrcaddrArrayOutput struct{ *pulumi.OutputState }
+
+func (UserSecurityExemptListRuleSrcaddrArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserSecurityExemptListRuleSrcaddr)(nil)).Elem()
+}
+
+func (o UserSecurityExemptListRuleSrcaddrArrayOutput) ToUserSecurityExemptListRuleSrcaddrArrayOutput() UserSecurityExemptListRuleSrcaddrArrayOutput {
+	return o
+}
+
+func (o UserSecurityExemptListRuleSrcaddrArrayOutput) ToUserSecurityExemptListRuleSrcaddrArrayOutputWithContext(ctx context.Context) UserSecurityExemptListRuleSrcaddrArrayOutput {
+	return o
+}
+
+func (o UserSecurityExemptListRuleSrcaddrArrayOutput) Index(i pulumi.IntInput) UserSecurityExemptListRuleSrcaddrOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserSecurityExemptListRuleSrcaddr {
+		return vs[0].([]UserSecurityExemptListRuleSrcaddr)[vs[1].(int)]
+	}).(UserSecurityExemptListRuleSrcaddrOutput)
+}
+
+type UserSettingAuthPort struct {
+	Id   *int    `pulumi:"id"`
+	Port *int    `pulumi:"port"`
+	Type *string `pulumi:"type"`
+}
+
+// UserSettingAuthPortInput is an input type that accepts UserSettingAuthPortArgs and UserSettingAuthPortOutput values.
+// You can construct a concrete instance of `UserSettingAuthPortInput` via:
+//
+//	UserSettingAuthPortArgs{...}
+type UserSettingAuthPortInput interface {
+	pulumi.Input
+
+	ToUserSettingAuthPortOutput() UserSettingAuthPortOutput
+	ToUserSettingAuthPortOutputWithContext(context.Context) UserSettingAuthPortOutput
+}
+
+type UserSettingAuthPortArgs struct {
+	Id   pulumi.IntPtrInput    `pulumi:"id"`
+	Port pulumi.IntPtrInput    `pulumi:"port"`
+	Type pulumi.StringPtrInput `pulumi:"type"`
+}
+
+func (UserSettingAuthPortArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserSettingAuthPort)(nil)).Elem()
+}
+
+func (i UserSettingAuthPortArgs) ToUserSettingAuthPortOutput() UserSettingAuthPortOutput {
+	return i.ToUserSettingAuthPortOutputWithContext(context.Background())
+}
+
+func (i UserSettingAuthPortArgs) ToUserSettingAuthPortOutputWithContext(ctx context.Context) UserSettingAuthPortOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserSettingAuthPortOutput)
+}
+
+// UserSettingAuthPortArrayInput is an input type that accepts UserSettingAuthPortArray and UserSettingAuthPortArrayOutput values.
+// You can construct a concrete instance of `UserSettingAuthPortArrayInput` via:
+//
+//	UserSettingAuthPortArray{ UserSettingAuthPortArgs{...} }
+type UserSettingAuthPortArrayInput interface {
+	pulumi.Input
+
+	ToUserSettingAuthPortArrayOutput() UserSettingAuthPortArrayOutput
+	ToUserSettingAuthPortArrayOutputWithContext(context.Context) UserSettingAuthPortArrayOutput
+}
+
+type UserSettingAuthPortArray []UserSettingAuthPortInput
+
+func (UserSettingAuthPortArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserSettingAuthPort)(nil)).Elem()
+}
+
+func (i UserSettingAuthPortArray) ToUserSettingAuthPortArrayOutput() UserSettingAuthPortArrayOutput {
+	return i.ToUserSettingAuthPortArrayOutputWithContext(context.Background())
+}
+
+func (i UserSettingAuthPortArray) ToUserSettingAuthPortArrayOutputWithContext(ctx context.Context) UserSettingAuthPortArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserSettingAuthPortArrayOutput)
+}
+
+type UserSettingAuthPortOutput struct{ *pulumi.OutputState }
+
+func (UserSettingAuthPortOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserSettingAuthPort)(nil)).Elem()
+}
+
+func (o UserSettingAuthPortOutput) ToUserSettingAuthPortOutput() UserSettingAuthPortOutput {
+	return o
+}
+
+func (o UserSettingAuthPortOutput) ToUserSettingAuthPortOutputWithContext(ctx context.Context) UserSettingAuthPortOutput {
+	return o
+}
+
+func (o UserSettingAuthPortOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v UserSettingAuthPort) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+func (o UserSettingAuthPortOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v UserSettingAuthPort) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+func (o UserSettingAuthPortOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserSettingAuthPort) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+type UserSettingAuthPortArrayOutput struct{ *pulumi.OutputState }
+
+func (UserSettingAuthPortArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserSettingAuthPort)(nil)).Elem()
+}
+
+func (o UserSettingAuthPortArrayOutput) ToUserSettingAuthPortArrayOutput() UserSettingAuthPortArrayOutput {
+	return o
+}
+
+func (o UserSettingAuthPortArrayOutput) ToUserSettingAuthPortArrayOutputWithContext(ctx context.Context) UserSettingAuthPortArrayOutput {
+	return o
+}
+
+func (o UserSettingAuthPortArrayOutput) Index(i pulumi.IntInput) UserSettingAuthPortOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserSettingAuthPort {
+		return vs[0].([]UserSettingAuthPort)[vs[1].(int)]
+	}).(UserSettingAuthPortOutput)
+}
+
+type VideofilterProfileFortiguardCategory struct {
+	Filters []VideofilterProfileFortiguardCategoryFilter `pulumi:"filters"`
+}
+
+// VideofilterProfileFortiguardCategoryInput is an input type that accepts VideofilterProfileFortiguardCategoryArgs and VideofilterProfileFortiguardCategoryOutput values.
+// You can construct a concrete instance of `VideofilterProfileFortiguardCategoryInput` via:
+//
+//	VideofilterProfileFortiguardCategoryArgs{...}
+type VideofilterProfileFortiguardCategoryInput interface {
+	pulumi.Input
+
+	ToVideofilterProfileFortiguardCategoryOutput() VideofilterProfileFortiguardCategoryOutput
+	ToVideofilterProfileFortiguardCategoryOutputWithContext(context.Context) VideofilterProfileFortiguardCategoryOutput
+}
+
+type VideofilterProfileFortiguardCategoryArgs struct {
+	Filters VideofilterProfileFortiguardCategoryFilterArrayInput `pulumi:"filters"`
+}
+
+func (VideofilterProfileFortiguardCategoryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VideofilterProfileFortiguardCategory)(nil)).Elem()
+}
+
+func (i VideofilterProfileFortiguardCategoryArgs) ToVideofilterProfileFortiguardCategoryOutput() VideofilterProfileFortiguardCategoryOutput {
+	return i.ToVideofilterProfileFortiguardCategoryOutputWithContext(context.Background())
+}
+
+func (i VideofilterProfileFortiguardCategoryArgs) ToVideofilterProfileFortiguardCategoryOutputWithContext(ctx context.Context) VideofilterProfileFortiguardCategoryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VideofilterProfileFortiguardCategoryOutput)
+}
+
+func (i VideofilterProfileFortiguardCategoryArgs) ToVideofilterProfileFortiguardCategoryPtrOutput() VideofilterProfileFortiguardCategoryPtrOutput {
+	return i.ToVideofilterProfileFortiguardCategoryPtrOutputWithContext(context.Background())
+}
+
+func (i VideofilterProfileFortiguardCategoryArgs) ToVideofilterProfileFortiguardCategoryPtrOutputWithContext(ctx context.Context) VideofilterProfileFortiguardCategoryPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VideofilterProfileFortiguardCategoryOutput).ToVideofilterProfileFortiguardCategoryPtrOutputWithContext(ctx)
+}
+
+// VideofilterProfileFortiguardCategoryPtrInput is an input type that accepts VideofilterProfileFortiguardCategoryArgs, VideofilterProfileFortiguardCategoryPtr and VideofilterProfileFortiguardCategoryPtrOutput values.
+// You can construct a concrete instance of `VideofilterProfileFortiguardCategoryPtrInput` via:
+//
+//	        VideofilterProfileFortiguardCategoryArgs{...}
+//
+//	or:
+//
+//	        nil
+type VideofilterProfileFortiguardCategoryPtrInput interface {
+	pulumi.Input
+
+	ToVideofilterProfileFortiguardCategoryPtrOutput() VideofilterProfileFortiguardCategoryPtrOutput
+	ToVideofilterProfileFortiguardCategoryPtrOutputWithContext(context.Context) VideofilterProfileFortiguardCategoryPtrOutput
+}
+
+type videofilterProfileFortiguardCategoryPtrType VideofilterProfileFortiguardCategoryArgs
+
+func VideofilterProfileFortiguardCategoryPtr(v *VideofilterProfileFortiguardCategoryArgs) VideofilterProfileFortiguardCategoryPtrInput {
+	return (*videofilterProfileFortiguardCategoryPtrType)(v)
+}
+
+func (*videofilterProfileFortiguardCategoryPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**VideofilterProfileFortiguardCategory)(nil)).Elem()
+}
+
+func (i *videofilterProfileFortiguardCategoryPtrType) ToVideofilterProfileFortiguardCategoryPtrOutput() VideofilterProfileFortiguardCategoryPtrOutput {
+	return i.ToVideofilterProfileFortiguardCategoryPtrOutputWithContext(context.Background())
+}
+
+func (i *videofilterProfileFortiguardCategoryPtrType) ToVideofilterProfileFortiguardCategoryPtrOutputWithContext(ctx context.Context) VideofilterProfileFortiguardCategoryPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VideofilterProfileFortiguardCategoryPtrOutput)
+}
+
+type VideofilterProfileFortiguardCategoryOutput struct{ *pulumi.OutputState }
+
+func (VideofilterProfileFortiguardCategoryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VideofilterProfileFortiguardCategory)(nil)).Elem()
+}
+
+func (o VideofilterProfileFortiguardCategoryOutput) ToVideofilterProfileFortiguardCategoryOutput() VideofilterProfileFortiguardCategoryOutput {
+	return o
+}
+
+func (o VideofilterProfileFortiguardCategoryOutput) ToVideofilterProfileFortiguardCategoryOutputWithContext(ctx context.Context) VideofilterProfileFortiguardCategoryOutput {
+	return o
+}
+
+func (o VideofilterProfileFortiguardCategoryOutput) ToVideofilterProfileFortiguardCategoryPtrOutput() VideofilterProfileFortiguardCategoryPtrOutput {
+	return o.ToVideofilterProfileFortiguardCategoryPtrOutputWithContext(context.Background())
+}
+
+func (o VideofilterProfileFortiguardCategoryOutput) ToVideofilterProfileFortiguardCategoryPtrOutputWithContext(ctx context.Context) VideofilterProfileFortiguardCategoryPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v VideofilterProfileFortiguardCategory) *VideofilterProfileFortiguardCategory {
+		return &v
+	}).(VideofilterProfileFortiguardCategoryPtrOutput)
+}
+
+func (o VideofilterProfileFortiguardCategoryOutput) Filters() VideofilterProfileFortiguardCategoryFilterArrayOutput {
+	return o.ApplyT(func(v VideofilterProfileFortiguardCategory) []VideofilterProfileFortiguardCategoryFilter {
+		return v.Filters
+	}).(VideofilterProfileFortiguardCategoryFilterArrayOutput)
+}
+
+type VideofilterProfileFortiguardCategoryPtrOutput struct{ *pulumi.OutputState }
+
+func (VideofilterProfileFortiguardCategoryPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**VideofilterProfileFortiguardCategory)(nil)).Elem()
+}
+
+func (o VideofilterProfileFortiguardCategoryPtrOutput) ToVideofilterProfileFortiguardCategoryPtrOutput() VideofilterProfileFortiguardCategoryPtrOutput {
+	return o
+}
+
+func (o VideofilterProfileFortiguardCategoryPtrOutput) ToVideofilterProfileFortiguardCategoryPtrOutputWithContext(ctx context.Context) VideofilterProfileFortiguardCategoryPtrOutput {
+	return o
+}
+
+func (o VideofilterProfileFortiguardCategoryPtrOutput) Elem() VideofilterProfileFortiguardCategoryOutput {
+	return o.ApplyT(func(v *VideofilterProfileFortiguardCategory) VideofilterProfileFortiguardCategory {
+		if v != nil {
+			return *v
+		}
+		var ret VideofilterProfileFortiguardCategory
+		return ret
+	}).(VideofilterProfileFortiguardCategoryOutput)
+}
+
+func (o VideofilterProfileFortiguardCategoryPtrOutput) Filters() VideofilterProfileFortiguardCategoryFilterArrayOutput {
+	return o.ApplyT(func(v *VideofilterProfileFortiguardCategory) []VideofilterProfileFortiguardCategoryFilter {
+		if v == nil {
+			return nil
+		}
+		return v.Filters
+	}).(VideofilterProfileFortiguardCategoryFilterArrayOutput)
+}
+
+type VideofilterProfileFortiguardCategoryFilter struct {
+	Action     *string `pulumi:"action"`
+	CategoryId *int    `pulumi:"categoryId"`
+	Id         *int    `pulumi:"id"`
+	Log        *string `pulumi:"log"`
+}
+
+// VideofilterProfileFortiguardCategoryFilterInput is an input type that accepts VideofilterProfileFortiguardCategoryFilterArgs and VideofilterProfileFortiguardCategoryFilterOutput values.
+// You can construct a concrete instance of `VideofilterProfileFortiguardCategoryFilterInput` via:
+//
+//	VideofilterProfileFortiguardCategoryFilterArgs{...}
+type VideofilterProfileFortiguardCategoryFilterInput interface {
+	pulumi.Input
+
+	ToVideofilterProfileFortiguardCategoryFilterOutput() VideofilterProfileFortiguardCategoryFilterOutput
+	ToVideofilterProfileFortiguardCategoryFilterOutputWithContext(context.Context) VideofilterProfileFortiguardCategoryFilterOutput
+}
+
+type VideofilterProfileFortiguardCategoryFilterArgs struct {
+	Action     pulumi.StringPtrInput `pulumi:"action"`
+	CategoryId pulumi.IntPtrInput    `pulumi:"categoryId"`
+	Id         pulumi.IntPtrInput    `pulumi:"id"`
+	Log        pulumi.StringPtrInput `pulumi:"log"`
+}
+
+func (VideofilterProfileFortiguardCategoryFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VideofilterProfileFortiguardCategoryFilter)(nil)).Elem()
+}
+
+func (i VideofilterProfileFortiguardCategoryFilterArgs) ToVideofilterProfileFortiguardCategoryFilterOutput() VideofilterProfileFortiguardCategoryFilterOutput {
+	return i.ToVideofilterProfileFortiguardCategoryFilterOutputWithContext(context.Background())
+}
+
+func (i VideofilterProfileFortiguardCategoryFilterArgs) ToVideofilterProfileFortiguardCategoryFilterOutputWithContext(ctx context.Context) VideofilterProfileFortiguardCategoryFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VideofilterProfileFortiguardCategoryFilterOutput)
+}
+
+// VideofilterProfileFortiguardCategoryFilterArrayInput is an input type that accepts VideofilterProfileFortiguardCategoryFilterArray and VideofilterProfileFortiguardCategoryFilterArrayOutput values.
+// You can construct a concrete instance of `VideofilterProfileFortiguardCategoryFilterArrayInput` via:
+//
+//	VideofilterProfileFortiguardCategoryFilterArray{ VideofilterProfileFortiguardCategoryFilterArgs{...} }
+type VideofilterProfileFortiguardCategoryFilterArrayInput interface {
+	pulumi.Input
+
+	ToVideofilterProfileFortiguardCategoryFilterArrayOutput() VideofilterProfileFortiguardCategoryFilterArrayOutput
+	ToVideofilterProfileFortiguardCategoryFilterArrayOutputWithContext(context.Context) VideofilterProfileFortiguardCategoryFilterArrayOutput
+}
+
+type VideofilterProfileFortiguardCategoryFilterArray []VideofilterProfileFortiguardCategoryFilterInput
+
+func (VideofilterProfileFortiguardCategoryFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VideofilterProfileFortiguardCategoryFilter)(nil)).Elem()
+}
+
+func (i VideofilterProfileFortiguardCategoryFilterArray) ToVideofilterProfileFortiguardCategoryFilterArrayOutput() VideofilterProfileFortiguardCategoryFilterArrayOutput {
+	return i.ToVideofilterProfileFortiguardCategoryFilterArrayOutputWithContext(context.Background())
+}
+
+func (i VideofilterProfileFortiguardCategoryFilterArray) ToVideofilterProfileFortiguardCategoryFilterArrayOutputWithContext(ctx context.Context) VideofilterProfileFortiguardCategoryFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VideofilterProfileFortiguardCategoryFilterArrayOutput)
+}
+
+type VideofilterProfileFortiguardCategoryFilterOutput struct{ *pulumi.OutputState }
+
+func (VideofilterProfileFortiguardCategoryFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VideofilterProfileFortiguardCategoryFilter)(nil)).Elem()
+}
+
+func (o VideofilterProfileFortiguardCategoryFilterOutput) ToVideofilterProfileFortiguardCategoryFilterOutput() VideofilterProfileFortiguardCategoryFilterOutput {
+	return o
+}
+
+func (o VideofilterProfileFortiguardCategoryFilterOutput) ToVideofilterProfileFortiguardCategoryFilterOutputWithContext(ctx context.Context) VideofilterProfileFortiguardCategoryFilterOutput {
+	return o
+}
+
+func (o VideofilterProfileFortiguardCategoryFilterOutput) Action() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VideofilterProfileFortiguardCategoryFilter) *string { return v.Action }).(pulumi.StringPtrOutput)
+}
+
+func (o VideofilterProfileFortiguardCategoryFilterOutput) CategoryId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VideofilterProfileFortiguardCategoryFilter) *int { return v.CategoryId }).(pulumi.IntPtrOutput)
+}
+
+func (o VideofilterProfileFortiguardCategoryFilterOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VideofilterProfileFortiguardCategoryFilter) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+func (o VideofilterProfileFortiguardCategoryFilterOutput) Log() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VideofilterProfileFortiguardCategoryFilter) *string { return v.Log }).(pulumi.StringPtrOutput)
+}
+
+type VideofilterProfileFortiguardCategoryFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (VideofilterProfileFortiguardCategoryFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VideofilterProfileFortiguardCategoryFilter)(nil)).Elem()
+}
+
+func (o VideofilterProfileFortiguardCategoryFilterArrayOutput) ToVideofilterProfileFortiguardCategoryFilterArrayOutput() VideofilterProfileFortiguardCategoryFilterArrayOutput {
+	return o
+}
+
+func (o VideofilterProfileFortiguardCategoryFilterArrayOutput) ToVideofilterProfileFortiguardCategoryFilterArrayOutputWithContext(ctx context.Context) VideofilterProfileFortiguardCategoryFilterArrayOutput {
+	return o
+}
+
+func (o VideofilterProfileFortiguardCategoryFilterArrayOutput) Index(i pulumi.IntInput) VideofilterProfileFortiguardCategoryFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VideofilterProfileFortiguardCategoryFilter {
+		return vs[0].([]VideofilterProfileFortiguardCategoryFilter)[vs[1].(int)]
+	}).(VideofilterProfileFortiguardCategoryFilterOutput)
+}
+
+type VideofilterYoutubeChannelFilterEntry struct {
+	Action    *string `pulumi:"action"`
+	ChannelId *string `pulumi:"channelId"`
+	Comment   *string `pulumi:"comment"`
+	Id        *int    `pulumi:"id"`
+}
+
+// VideofilterYoutubeChannelFilterEntryInput is an input type that accepts VideofilterYoutubeChannelFilterEntryArgs and VideofilterYoutubeChannelFilterEntryOutput values.
+// You can construct a concrete instance of `VideofilterYoutubeChannelFilterEntryInput` via:
+//
+//	VideofilterYoutubeChannelFilterEntryArgs{...}
+type VideofilterYoutubeChannelFilterEntryInput interface {
+	pulumi.Input
+
+	ToVideofilterYoutubeChannelFilterEntryOutput() VideofilterYoutubeChannelFilterEntryOutput
+	ToVideofilterYoutubeChannelFilterEntryOutputWithContext(context.Context) VideofilterYoutubeChannelFilterEntryOutput
+}
+
+type VideofilterYoutubeChannelFilterEntryArgs struct {
+	Action    pulumi.StringPtrInput `pulumi:"action"`
+	ChannelId pulumi.StringPtrInput `pulumi:"channelId"`
+	Comment   pulumi.StringPtrInput `pulumi:"comment"`
+	Id        pulumi.IntPtrInput    `pulumi:"id"`
+}
+
+func (VideofilterYoutubeChannelFilterEntryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VideofilterYoutubeChannelFilterEntry)(nil)).Elem()
+}
+
+func (i VideofilterYoutubeChannelFilterEntryArgs) ToVideofilterYoutubeChannelFilterEntryOutput() VideofilterYoutubeChannelFilterEntryOutput {
+	return i.ToVideofilterYoutubeChannelFilterEntryOutputWithContext(context.Background())
+}
+
+func (i VideofilterYoutubeChannelFilterEntryArgs) ToVideofilterYoutubeChannelFilterEntryOutputWithContext(ctx context.Context) VideofilterYoutubeChannelFilterEntryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VideofilterYoutubeChannelFilterEntryOutput)
+}
+
+// VideofilterYoutubeChannelFilterEntryArrayInput is an input type that accepts VideofilterYoutubeChannelFilterEntryArray and VideofilterYoutubeChannelFilterEntryArrayOutput values.
+// You can construct a concrete instance of `VideofilterYoutubeChannelFilterEntryArrayInput` via:
+//
+//	VideofilterYoutubeChannelFilterEntryArray{ VideofilterYoutubeChannelFilterEntryArgs{...} }
+type VideofilterYoutubeChannelFilterEntryArrayInput interface {
+	pulumi.Input
+
+	ToVideofilterYoutubeChannelFilterEntryArrayOutput() VideofilterYoutubeChannelFilterEntryArrayOutput
+	ToVideofilterYoutubeChannelFilterEntryArrayOutputWithContext(context.Context) VideofilterYoutubeChannelFilterEntryArrayOutput
+}
+
+type VideofilterYoutubeChannelFilterEntryArray []VideofilterYoutubeChannelFilterEntryInput
+
+func (VideofilterYoutubeChannelFilterEntryArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VideofilterYoutubeChannelFilterEntry)(nil)).Elem()
+}
+
+func (i VideofilterYoutubeChannelFilterEntryArray) ToVideofilterYoutubeChannelFilterEntryArrayOutput() VideofilterYoutubeChannelFilterEntryArrayOutput {
+	return i.ToVideofilterYoutubeChannelFilterEntryArrayOutputWithContext(context.Background())
+}
+
+func (i VideofilterYoutubeChannelFilterEntryArray) ToVideofilterYoutubeChannelFilterEntryArrayOutputWithContext(ctx context.Context) VideofilterYoutubeChannelFilterEntryArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VideofilterYoutubeChannelFilterEntryArrayOutput)
+}
+
+type VideofilterYoutubeChannelFilterEntryOutput struct{ *pulumi.OutputState }
+
+func (VideofilterYoutubeChannelFilterEntryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VideofilterYoutubeChannelFilterEntry)(nil)).Elem()
+}
+
+func (o VideofilterYoutubeChannelFilterEntryOutput) ToVideofilterYoutubeChannelFilterEntryOutput() VideofilterYoutubeChannelFilterEntryOutput {
+	return o
+}
+
+func (o VideofilterYoutubeChannelFilterEntryOutput) ToVideofilterYoutubeChannelFilterEntryOutputWithContext(ctx context.Context) VideofilterYoutubeChannelFilterEntryOutput {
+	return o
+}
+
+func (o VideofilterYoutubeChannelFilterEntryOutput) Action() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VideofilterYoutubeChannelFilterEntry) *string { return v.Action }).(pulumi.StringPtrOutput)
+}
+
+func (o VideofilterYoutubeChannelFilterEntryOutput) ChannelId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VideofilterYoutubeChannelFilterEntry) *string { return v.ChannelId }).(pulumi.StringPtrOutput)
+}
+
+func (o VideofilterYoutubeChannelFilterEntryOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VideofilterYoutubeChannelFilterEntry) *string { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o VideofilterYoutubeChannelFilterEntryOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VideofilterYoutubeChannelFilterEntry) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+type VideofilterYoutubeChannelFilterEntryArrayOutput struct{ *pulumi.OutputState }
+
+func (VideofilterYoutubeChannelFilterEntryArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VideofilterYoutubeChannelFilterEntry)(nil)).Elem()
+}
+
+func (o VideofilterYoutubeChannelFilterEntryArrayOutput) ToVideofilterYoutubeChannelFilterEntryArrayOutput() VideofilterYoutubeChannelFilterEntryArrayOutput {
+	return o
+}
+
+func (o VideofilterYoutubeChannelFilterEntryArrayOutput) ToVideofilterYoutubeChannelFilterEntryArrayOutputWithContext(ctx context.Context) VideofilterYoutubeChannelFilterEntryArrayOutput {
+	return o
+}
+
+func (o VideofilterYoutubeChannelFilterEntryArrayOutput) Index(i pulumi.IntInput) VideofilterYoutubeChannelFilterEntryOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VideofilterYoutubeChannelFilterEntry {
+		return vs[0].([]VideofilterYoutubeChannelFilterEntry)[vs[1].(int)]
+	}).(VideofilterYoutubeChannelFilterEntryOutput)
+}
+
+type VoipProfileMsrp struct {
+	LogViolations    *string `pulumi:"logViolations"`
+	MaxMsgSize       *int    `pulumi:"maxMsgSize"`
+	MaxMsgSizeAction *string `pulumi:"maxMsgSizeAction"`
+	Status           *string `pulumi:"status"`
+}
+
+// VoipProfileMsrpInput is an input type that accepts VoipProfileMsrpArgs and VoipProfileMsrpOutput values.
+// You can construct a concrete instance of `VoipProfileMsrpInput` via:
+//
+//	VoipProfileMsrpArgs{...}
+type VoipProfileMsrpInput interface {
+	pulumi.Input
+
+	ToVoipProfileMsrpOutput() VoipProfileMsrpOutput
+	ToVoipProfileMsrpOutputWithContext(context.Context) VoipProfileMsrpOutput
+}
+
+type VoipProfileMsrpArgs struct {
+	LogViolations    pulumi.StringPtrInput `pulumi:"logViolations"`
+	MaxMsgSize       pulumi.IntPtrInput    `pulumi:"maxMsgSize"`
+	MaxMsgSizeAction pulumi.StringPtrInput `pulumi:"maxMsgSizeAction"`
+	Status           pulumi.StringPtrInput `pulumi:"status"`
+}
+
+func (VoipProfileMsrpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VoipProfileMsrp)(nil)).Elem()
+}
+
+func (i VoipProfileMsrpArgs) ToVoipProfileMsrpOutput() VoipProfileMsrpOutput {
+	return i.ToVoipProfileMsrpOutputWithContext(context.Background())
+}
+
+func (i VoipProfileMsrpArgs) ToVoipProfileMsrpOutputWithContext(ctx context.Context) VoipProfileMsrpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VoipProfileMsrpOutput)
+}
+
+func (i VoipProfileMsrpArgs) ToVoipProfileMsrpPtrOutput() VoipProfileMsrpPtrOutput {
+	return i.ToVoipProfileMsrpPtrOutputWithContext(context.Background())
+}
+
+func (i VoipProfileMsrpArgs) ToVoipProfileMsrpPtrOutputWithContext(ctx context.Context) VoipProfileMsrpPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VoipProfileMsrpOutput).ToVoipProfileMsrpPtrOutputWithContext(ctx)
+}
+
+// VoipProfileMsrpPtrInput is an input type that accepts VoipProfileMsrpArgs, VoipProfileMsrpPtr and VoipProfileMsrpPtrOutput values.
+// You can construct a concrete instance of `VoipProfileMsrpPtrInput` via:
+//
+//	        VoipProfileMsrpArgs{...}
+//
+//	or:
+//
+//	        nil
+type VoipProfileMsrpPtrInput interface {
+	pulumi.Input
+
+	ToVoipProfileMsrpPtrOutput() VoipProfileMsrpPtrOutput
+	ToVoipProfileMsrpPtrOutputWithContext(context.Context) VoipProfileMsrpPtrOutput
+}
+
+type voipProfileMsrpPtrType VoipProfileMsrpArgs
+
+func VoipProfileMsrpPtr(v *VoipProfileMsrpArgs) VoipProfileMsrpPtrInput {
+	return (*voipProfileMsrpPtrType)(v)
+}
+
+func (*voipProfileMsrpPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**VoipProfileMsrp)(nil)).Elem()
+}
+
+func (i *voipProfileMsrpPtrType) ToVoipProfileMsrpPtrOutput() VoipProfileMsrpPtrOutput {
+	return i.ToVoipProfileMsrpPtrOutputWithContext(context.Background())
+}
+
+func (i *voipProfileMsrpPtrType) ToVoipProfileMsrpPtrOutputWithContext(ctx context.Context) VoipProfileMsrpPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VoipProfileMsrpPtrOutput)
+}
+
+type VoipProfileMsrpOutput struct{ *pulumi.OutputState }
+
+func (VoipProfileMsrpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VoipProfileMsrp)(nil)).Elem()
+}
+
+func (o VoipProfileMsrpOutput) ToVoipProfileMsrpOutput() VoipProfileMsrpOutput {
+	return o
+}
+
+func (o VoipProfileMsrpOutput) ToVoipProfileMsrpOutputWithContext(ctx context.Context) VoipProfileMsrpOutput {
+	return o
+}
+
+func (o VoipProfileMsrpOutput) ToVoipProfileMsrpPtrOutput() VoipProfileMsrpPtrOutput {
+	return o.ToVoipProfileMsrpPtrOutputWithContext(context.Background())
+}
+
+func (o VoipProfileMsrpOutput) ToVoipProfileMsrpPtrOutputWithContext(ctx context.Context) VoipProfileMsrpPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v VoipProfileMsrp) *VoipProfileMsrp {
+		return &v
+	}).(VoipProfileMsrpPtrOutput)
+}
+
+func (o VoipProfileMsrpOutput) LogViolations() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileMsrp) *string { return v.LogViolations }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileMsrpOutput) MaxMsgSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VoipProfileMsrp) *int { return v.MaxMsgSize }).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileMsrpOutput) MaxMsgSizeAction() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileMsrp) *string { return v.MaxMsgSizeAction }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileMsrpOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileMsrp) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+type VoipProfileMsrpPtrOutput struct{ *pulumi.OutputState }
+
+func (VoipProfileMsrpPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**VoipProfileMsrp)(nil)).Elem()
+}
+
+func (o VoipProfileMsrpPtrOutput) ToVoipProfileMsrpPtrOutput() VoipProfileMsrpPtrOutput {
+	return o
+}
+
+func (o VoipProfileMsrpPtrOutput) ToVoipProfileMsrpPtrOutputWithContext(ctx context.Context) VoipProfileMsrpPtrOutput {
+	return o
+}
+
+func (o VoipProfileMsrpPtrOutput) Elem() VoipProfileMsrpOutput {
+	return o.ApplyT(func(v *VoipProfileMsrp) VoipProfileMsrp {
+		if v != nil {
+			return *v
+		}
+		var ret VoipProfileMsrp
+		return ret
+	}).(VoipProfileMsrpOutput)
+}
+
+func (o VoipProfileMsrpPtrOutput) LogViolations() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileMsrp) *string {
+		if v == nil {
+			return nil
+		}
+		return v.LogViolations
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileMsrpPtrOutput) MaxMsgSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VoipProfileMsrp) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxMsgSize
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileMsrpPtrOutput) MaxMsgSizeAction() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileMsrp) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MaxMsgSizeAction
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileMsrpPtrOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileMsrp) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Status
+	}).(pulumi.StringPtrOutput)
+}
+
+type VoipProfileSccp struct {
+	BlockMcast     *string `pulumi:"blockMcast"`
+	LogCallSummary *string `pulumi:"logCallSummary"`
+	LogViolations  *string `pulumi:"logViolations"`
+	MaxCalls       *int    `pulumi:"maxCalls"`
+	Status         *string `pulumi:"status"`
+	VerifyHeader   *string `pulumi:"verifyHeader"`
+}
+
+// VoipProfileSccpInput is an input type that accepts VoipProfileSccpArgs and VoipProfileSccpOutput values.
+// You can construct a concrete instance of `VoipProfileSccpInput` via:
+//
+//	VoipProfileSccpArgs{...}
+type VoipProfileSccpInput interface {
+	pulumi.Input
+
+	ToVoipProfileSccpOutput() VoipProfileSccpOutput
+	ToVoipProfileSccpOutputWithContext(context.Context) VoipProfileSccpOutput
+}
+
+type VoipProfileSccpArgs struct {
+	BlockMcast     pulumi.StringPtrInput `pulumi:"blockMcast"`
+	LogCallSummary pulumi.StringPtrInput `pulumi:"logCallSummary"`
+	LogViolations  pulumi.StringPtrInput `pulumi:"logViolations"`
+	MaxCalls       pulumi.IntPtrInput    `pulumi:"maxCalls"`
+	Status         pulumi.StringPtrInput `pulumi:"status"`
+	VerifyHeader   pulumi.StringPtrInput `pulumi:"verifyHeader"`
+}
+
+func (VoipProfileSccpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VoipProfileSccp)(nil)).Elem()
+}
+
+func (i VoipProfileSccpArgs) ToVoipProfileSccpOutput() VoipProfileSccpOutput {
+	return i.ToVoipProfileSccpOutputWithContext(context.Background())
+}
+
+func (i VoipProfileSccpArgs) ToVoipProfileSccpOutputWithContext(ctx context.Context) VoipProfileSccpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VoipProfileSccpOutput)
+}
+
+func (i VoipProfileSccpArgs) ToVoipProfileSccpPtrOutput() VoipProfileSccpPtrOutput {
+	return i.ToVoipProfileSccpPtrOutputWithContext(context.Background())
+}
+
+func (i VoipProfileSccpArgs) ToVoipProfileSccpPtrOutputWithContext(ctx context.Context) VoipProfileSccpPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VoipProfileSccpOutput).ToVoipProfileSccpPtrOutputWithContext(ctx)
+}
+
+// VoipProfileSccpPtrInput is an input type that accepts VoipProfileSccpArgs, VoipProfileSccpPtr and VoipProfileSccpPtrOutput values.
+// You can construct a concrete instance of `VoipProfileSccpPtrInput` via:
+//
+//	        VoipProfileSccpArgs{...}
+//
+//	or:
+//
+//	        nil
+type VoipProfileSccpPtrInput interface {
+	pulumi.Input
+
+	ToVoipProfileSccpPtrOutput() VoipProfileSccpPtrOutput
+	ToVoipProfileSccpPtrOutputWithContext(context.Context) VoipProfileSccpPtrOutput
+}
+
+type voipProfileSccpPtrType VoipProfileSccpArgs
+
+func VoipProfileSccpPtr(v *VoipProfileSccpArgs) VoipProfileSccpPtrInput {
+	return (*voipProfileSccpPtrType)(v)
+}
+
+func (*voipProfileSccpPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**VoipProfileSccp)(nil)).Elem()
+}
+
+func (i *voipProfileSccpPtrType) ToVoipProfileSccpPtrOutput() VoipProfileSccpPtrOutput {
+	return i.ToVoipProfileSccpPtrOutputWithContext(context.Background())
+}
+
+func (i *voipProfileSccpPtrType) ToVoipProfileSccpPtrOutputWithContext(ctx context.Context) VoipProfileSccpPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VoipProfileSccpPtrOutput)
+}
+
+type VoipProfileSccpOutput struct{ *pulumi.OutputState }
+
+func (VoipProfileSccpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VoipProfileSccp)(nil)).Elem()
+}
+
+func (o VoipProfileSccpOutput) ToVoipProfileSccpOutput() VoipProfileSccpOutput {
+	return o
+}
+
+func (o VoipProfileSccpOutput) ToVoipProfileSccpOutputWithContext(ctx context.Context) VoipProfileSccpOutput {
+	return o
+}
+
+func (o VoipProfileSccpOutput) ToVoipProfileSccpPtrOutput() VoipProfileSccpPtrOutput {
+	return o.ToVoipProfileSccpPtrOutputWithContext(context.Background())
+}
+
+func (o VoipProfileSccpOutput) ToVoipProfileSccpPtrOutputWithContext(ctx context.Context) VoipProfileSccpPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v VoipProfileSccp) *VoipProfileSccp {
+		return &v
+	}).(VoipProfileSccpPtrOutput)
+}
+
+func (o VoipProfileSccpOutput) BlockMcast() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSccp) *string { return v.BlockMcast }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSccpOutput) LogCallSummary() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSccp) *string { return v.LogCallSummary }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSccpOutput) LogViolations() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSccp) *string { return v.LogViolations }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSccpOutput) MaxCalls() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VoipProfileSccp) *int { return v.MaxCalls }).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSccpOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSccp) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSccpOutput) VerifyHeader() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSccp) *string { return v.VerifyHeader }).(pulumi.StringPtrOutput)
+}
+
+type VoipProfileSccpPtrOutput struct{ *pulumi.OutputState }
+
+func (VoipProfileSccpPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**VoipProfileSccp)(nil)).Elem()
+}
+
+func (o VoipProfileSccpPtrOutput) ToVoipProfileSccpPtrOutput() VoipProfileSccpPtrOutput {
+	return o
+}
+
+func (o VoipProfileSccpPtrOutput) ToVoipProfileSccpPtrOutputWithContext(ctx context.Context) VoipProfileSccpPtrOutput {
+	return o
+}
+
+func (o VoipProfileSccpPtrOutput) Elem() VoipProfileSccpOutput {
+	return o.ApplyT(func(v *VoipProfileSccp) VoipProfileSccp {
+		if v != nil {
+			return *v
+		}
+		var ret VoipProfileSccp
+		return ret
+	}).(VoipProfileSccpOutput)
+}
+
+func (o VoipProfileSccpPtrOutput) BlockMcast() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSccp) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BlockMcast
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSccpPtrOutput) LogCallSummary() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSccp) *string {
+		if v == nil {
+			return nil
+		}
+		return v.LogCallSummary
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSccpPtrOutput) LogViolations() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSccp) *string {
+		if v == nil {
+			return nil
+		}
+		return v.LogViolations
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSccpPtrOutput) MaxCalls() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSccp) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxCalls
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSccpPtrOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSccp) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Status
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSccpPtrOutput) VerifyHeader() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSccp) *string {
+		if v == nil {
+			return nil
+		}
+		return v.VerifyHeader
+	}).(pulumi.StringPtrOutput)
+}
+
+type VoipProfileSip struct {
+	AckRate                          *int    `pulumi:"ackRate"`
+	AckRateTrack                     *string `pulumi:"ackRateTrack"`
+	BlockAck                         *string `pulumi:"blockAck"`
+	BlockBye                         *string `pulumi:"blockBye"`
+	BlockCancel                      *string `pulumi:"blockCancel"`
+	BlockGeoRedOptions               *string `pulumi:"blockGeoRedOptions"`
+	BlockInfo                        *string `pulumi:"blockInfo"`
+	BlockInvite                      *string `pulumi:"blockInvite"`
+	BlockLongLines                   *string `pulumi:"blockLongLines"`
+	BlockMessage                     *string `pulumi:"blockMessage"`
+	BlockNotify                      *string `pulumi:"blockNotify"`
+	BlockOptions                     *string `pulumi:"blockOptions"`
+	BlockPrack                       *string `pulumi:"blockPrack"`
+	BlockPublish                     *string `pulumi:"blockPublish"`
+	BlockRefer                       *string `pulumi:"blockRefer"`
+	BlockRegister                    *string `pulumi:"blockRegister"`
+	BlockSubscribe                   *string `pulumi:"blockSubscribe"`
+	BlockUnknown                     *string `pulumi:"blockUnknown"`
+	BlockUpdate                      *string `pulumi:"blockUpdate"`
+	ByeRate                          *int    `pulumi:"byeRate"`
+	ByeRateTrack                     *string `pulumi:"byeRateTrack"`
+	CallIdRegex                      *string `pulumi:"callIdRegex"`
+	CallKeepalive                    *int    `pulumi:"callKeepalive"`
+	CancelRate                       *int    `pulumi:"cancelRate"`
+	CancelRateTrack                  *string `pulumi:"cancelRateTrack"`
+	ContactFixup                     *string `pulumi:"contactFixup"`
+	ContentTypeRegex                 *string `pulumi:"contentTypeRegex"`
+	HntRestrictSourceIp              *string `pulumi:"hntRestrictSourceIp"`
+	HostedNatTraversal               *string `pulumi:"hostedNatTraversal"`
+	InfoRate                         *int    `pulumi:"infoRate"`
+	InfoRateTrack                    *string `pulumi:"infoRateTrack"`
+	InviteRate                       *int    `pulumi:"inviteRate"`
+	InviteRateTrack                  *string `pulumi:"inviteRateTrack"`
+	IpsRtp                           *string `pulumi:"ipsRtp"`
+	LogCallSummary                   *string `pulumi:"logCallSummary"`
+	LogViolations                    *string `pulumi:"logViolations"`
+	MalformedHeaderAllow             *string `pulumi:"malformedHeaderAllow"`
+	MalformedHeaderCallId            *string `pulumi:"malformedHeaderCallId"`
+	MalformedHeaderContact           *string `pulumi:"malformedHeaderContact"`
+	MalformedHeaderContentLength     *string `pulumi:"malformedHeaderContentLength"`
+	MalformedHeaderContentType       *string `pulumi:"malformedHeaderContentType"`
+	MalformedHeaderCseq              *string `pulumi:"malformedHeaderCseq"`
+	MalformedHeaderExpires           *string `pulumi:"malformedHeaderExpires"`
+	MalformedHeaderFrom              *string `pulumi:"malformedHeaderFrom"`
+	MalformedHeaderMaxForwards       *string `pulumi:"malformedHeaderMaxForwards"`
+	MalformedHeaderNoProxyRequire    *string `pulumi:"malformedHeaderNoProxyRequire"`
+	MalformedHeaderNoRequire         *string `pulumi:"malformedHeaderNoRequire"`
+	MalformedHeaderPAssertedIdentity *string `pulumi:"malformedHeaderPAssertedIdentity"`
+	MalformedHeaderRack              *string `pulumi:"malformedHeaderRack"`
+	MalformedHeaderRecordRoute       *string `pulumi:"malformedHeaderRecordRoute"`
+	MalformedHeaderRoute             *string `pulumi:"malformedHeaderRoute"`
+	MalformedHeaderRseq              *string `pulumi:"malformedHeaderRseq"`
+	MalformedHeaderSdpA              *string `pulumi:"malformedHeaderSdpA"`
+	MalformedHeaderSdpB              *string `pulumi:"malformedHeaderSdpB"`
+	MalformedHeaderSdpC              *string `pulumi:"malformedHeaderSdpC"`
+	MalformedHeaderSdpI              *string `pulumi:"malformedHeaderSdpI"`
+	MalformedHeaderSdpK              *string `pulumi:"malformedHeaderSdpK"`
+	MalformedHeaderSdpM              *string `pulumi:"malformedHeaderSdpM"`
+	MalformedHeaderSdpO              *string `pulumi:"malformedHeaderSdpO"`
+	MalformedHeaderSdpR              *string `pulumi:"malformedHeaderSdpR"`
+	MalformedHeaderSdpS              *string `pulumi:"malformedHeaderSdpS"`
+	MalformedHeaderSdpT              *string `pulumi:"malformedHeaderSdpT"`
+	MalformedHeaderSdpV              *string `pulumi:"malformedHeaderSdpV"`
+	MalformedHeaderSdpZ              *string `pulumi:"malformedHeaderSdpZ"`
+	MalformedHeaderTo                *string `pulumi:"malformedHeaderTo"`
+	MalformedHeaderVia               *string `pulumi:"malformedHeaderVia"`
+	MalformedRequestLine             *string `pulumi:"malformedRequestLine"`
+	MaxBodyLength                    *int    `pulumi:"maxBodyLength"`
+	MaxDialogs                       *int    `pulumi:"maxDialogs"`
+	MaxIdleDialogs                   *int    `pulumi:"maxIdleDialogs"`
+	MaxLineLength                    *int    `pulumi:"maxLineLength"`
+	MessageRate                      *int    `pulumi:"messageRate"`
+	MessageRateTrack                 *string `pulumi:"messageRateTrack"`
+	NatPortRange                     *string `pulumi:"natPortRange"`
+	NatTrace                         *string `pulumi:"natTrace"`
+	NoSdpFixup                       *string `pulumi:"noSdpFixup"`
+	NotifyRate                       *int    `pulumi:"notifyRate"`
+	NotifyRateTrack                  *string `pulumi:"notifyRateTrack"`
+	OpenContactPinhole               *string `pulumi:"openContactPinhole"`
+	OpenRecordRoutePinhole           *string `pulumi:"openRecordRoutePinhole"`
+	OpenRegisterPinhole              *string `pulumi:"openRegisterPinhole"`
+	OpenViaPinhole                   *string `pulumi:"openViaPinhole"`
+	OptionsRate                      *int    `pulumi:"optionsRate"`
+	OptionsRateTrack                 *string `pulumi:"optionsRateTrack"`
+	PrackRate                        *int    `pulumi:"prackRate"`
+	PrackRateTrack                   *string `pulumi:"prackRateTrack"`
+	PreserveOverride                 *string `pulumi:"preserveOverride"`
+	ProvisionalInviteExpiryTime      *int    `pulumi:"provisionalInviteExpiryTime"`
+	PublishRate                      *int    `pulumi:"publishRate"`
+	PublishRateTrack                 *string `pulumi:"publishRateTrack"`
+	ReferRate                        *int    `pulumi:"referRate"`
+	ReferRateTrack                   *string `pulumi:"referRateTrack"`
+	RegisterContactTrace             *string `pulumi:"registerContactTrace"`
+	RegisterRate                     *int    `pulumi:"registerRate"`
+	RegisterRateTrack                *string `pulumi:"registerRateTrack"`
+	Rfc2543Branch                    *string `pulumi:"rfc2543Branch"`
+	Rtp                              *string `pulumi:"rtp"`
+	SslAlgorithm                     *string `pulumi:"sslAlgorithm"`
+	SslAuthClient                    *string `pulumi:"sslAuthClient"`
+	SslAuthServer                    *string `pulumi:"sslAuthServer"`
+	SslClientCertificate             *string `pulumi:"sslClientCertificate"`
+	SslClientRenegotiation           *string `pulumi:"sslClientRenegotiation"`
+	SslMaxVersion                    *string `pulumi:"sslMaxVersion"`
+	SslMinVersion                    *string `pulumi:"sslMinVersion"`
+	SslMode                          *string `pulumi:"sslMode"`
+	SslPfs                           *string `pulumi:"sslPfs"`
+	SslSendEmptyFrags                *string `pulumi:"sslSendEmptyFrags"`
+	SslServerCertificate             *string `pulumi:"sslServerCertificate"`
+	Status                           *string `pulumi:"status"`
+	StrictRegister                   *string `pulumi:"strictRegister"`
+	SubscribeRate                    *int    `pulumi:"subscribeRate"`
+	SubscribeRateTrack               *string `pulumi:"subscribeRateTrack"`
+	UnknownHeader                    *string `pulumi:"unknownHeader"`
+	UpdateRate                       *int    `pulumi:"updateRate"`
+	UpdateRateTrack                  *string `pulumi:"updateRateTrack"`
+}
+
+// VoipProfileSipInput is an input type that accepts VoipProfileSipArgs and VoipProfileSipOutput values.
+// You can construct a concrete instance of `VoipProfileSipInput` via:
+//
+//	VoipProfileSipArgs{...}
+type VoipProfileSipInput interface {
+	pulumi.Input
+
+	ToVoipProfileSipOutput() VoipProfileSipOutput
+	ToVoipProfileSipOutputWithContext(context.Context) VoipProfileSipOutput
+}
+
+type VoipProfileSipArgs struct {
+	AckRate                          pulumi.IntPtrInput    `pulumi:"ackRate"`
+	AckRateTrack                     pulumi.StringPtrInput `pulumi:"ackRateTrack"`
+	BlockAck                         pulumi.StringPtrInput `pulumi:"blockAck"`
+	BlockBye                         pulumi.StringPtrInput `pulumi:"blockBye"`
+	BlockCancel                      pulumi.StringPtrInput `pulumi:"blockCancel"`
+	BlockGeoRedOptions               pulumi.StringPtrInput `pulumi:"blockGeoRedOptions"`
+	BlockInfo                        pulumi.StringPtrInput `pulumi:"blockInfo"`
+	BlockInvite                      pulumi.StringPtrInput `pulumi:"blockInvite"`
+	BlockLongLines                   pulumi.StringPtrInput `pulumi:"blockLongLines"`
+	BlockMessage                     pulumi.StringPtrInput `pulumi:"blockMessage"`
+	BlockNotify                      pulumi.StringPtrInput `pulumi:"blockNotify"`
+	BlockOptions                     pulumi.StringPtrInput `pulumi:"blockOptions"`
+	BlockPrack                       pulumi.StringPtrInput `pulumi:"blockPrack"`
+	BlockPublish                     pulumi.StringPtrInput `pulumi:"blockPublish"`
+	BlockRefer                       pulumi.StringPtrInput `pulumi:"blockRefer"`
+	BlockRegister                    pulumi.StringPtrInput `pulumi:"blockRegister"`
+	BlockSubscribe                   pulumi.StringPtrInput `pulumi:"blockSubscribe"`
+	BlockUnknown                     pulumi.StringPtrInput `pulumi:"blockUnknown"`
+	BlockUpdate                      pulumi.StringPtrInput `pulumi:"blockUpdate"`
+	ByeRate                          pulumi.IntPtrInput    `pulumi:"byeRate"`
+	ByeRateTrack                     pulumi.StringPtrInput `pulumi:"byeRateTrack"`
+	CallIdRegex                      pulumi.StringPtrInput `pulumi:"callIdRegex"`
+	CallKeepalive                    pulumi.IntPtrInput    `pulumi:"callKeepalive"`
+	CancelRate                       pulumi.IntPtrInput    `pulumi:"cancelRate"`
+	CancelRateTrack                  pulumi.StringPtrInput `pulumi:"cancelRateTrack"`
+	ContactFixup                     pulumi.StringPtrInput `pulumi:"contactFixup"`
+	ContentTypeRegex                 pulumi.StringPtrInput `pulumi:"contentTypeRegex"`
+	HntRestrictSourceIp              pulumi.StringPtrInput `pulumi:"hntRestrictSourceIp"`
+	HostedNatTraversal               pulumi.StringPtrInput `pulumi:"hostedNatTraversal"`
+	InfoRate                         pulumi.IntPtrInput    `pulumi:"infoRate"`
+	InfoRateTrack                    pulumi.StringPtrInput `pulumi:"infoRateTrack"`
+	InviteRate                       pulumi.IntPtrInput    `pulumi:"inviteRate"`
+	InviteRateTrack                  pulumi.StringPtrInput `pulumi:"inviteRateTrack"`
+	IpsRtp                           pulumi.StringPtrInput `pulumi:"ipsRtp"`
+	LogCallSummary                   pulumi.StringPtrInput `pulumi:"logCallSummary"`
+	LogViolations                    pulumi.StringPtrInput `pulumi:"logViolations"`
+	MalformedHeaderAllow             pulumi.StringPtrInput `pulumi:"malformedHeaderAllow"`
+	MalformedHeaderCallId            pulumi.StringPtrInput `pulumi:"malformedHeaderCallId"`
+	MalformedHeaderContact           pulumi.StringPtrInput `pulumi:"malformedHeaderContact"`
+	MalformedHeaderContentLength     pulumi.StringPtrInput `pulumi:"malformedHeaderContentLength"`
+	MalformedHeaderContentType       pulumi.StringPtrInput `pulumi:"malformedHeaderContentType"`
+	MalformedHeaderCseq              pulumi.StringPtrInput `pulumi:"malformedHeaderCseq"`
+	MalformedHeaderExpires           pulumi.StringPtrInput `pulumi:"malformedHeaderExpires"`
+	MalformedHeaderFrom              pulumi.StringPtrInput `pulumi:"malformedHeaderFrom"`
+	MalformedHeaderMaxForwards       pulumi.StringPtrInput `pulumi:"malformedHeaderMaxForwards"`
+	MalformedHeaderNoProxyRequire    pulumi.StringPtrInput `pulumi:"malformedHeaderNoProxyRequire"`
+	MalformedHeaderNoRequire         pulumi.StringPtrInput `pulumi:"malformedHeaderNoRequire"`
+	MalformedHeaderPAssertedIdentity pulumi.StringPtrInput `pulumi:"malformedHeaderPAssertedIdentity"`
+	MalformedHeaderRack              pulumi.StringPtrInput `pulumi:"malformedHeaderRack"`
+	MalformedHeaderRecordRoute       pulumi.StringPtrInput `pulumi:"malformedHeaderRecordRoute"`
+	MalformedHeaderRoute             pulumi.StringPtrInput `pulumi:"malformedHeaderRoute"`
+	MalformedHeaderRseq              pulumi.StringPtrInput `pulumi:"malformedHeaderRseq"`
+	MalformedHeaderSdpA              pulumi.StringPtrInput `pulumi:"malformedHeaderSdpA"`
+	MalformedHeaderSdpB              pulumi.StringPtrInput `pulumi:"malformedHeaderSdpB"`
+	MalformedHeaderSdpC              pulumi.StringPtrInput `pulumi:"malformedHeaderSdpC"`
+	MalformedHeaderSdpI              pulumi.StringPtrInput `pulumi:"malformedHeaderSdpI"`
+	MalformedHeaderSdpK              pulumi.StringPtrInput `pulumi:"malformedHeaderSdpK"`
+	MalformedHeaderSdpM              pulumi.StringPtrInput `pulumi:"malformedHeaderSdpM"`
+	MalformedHeaderSdpO              pulumi.StringPtrInput `pulumi:"malformedHeaderSdpO"`
+	MalformedHeaderSdpR              pulumi.StringPtrInput `pulumi:"malformedHeaderSdpR"`
+	MalformedHeaderSdpS              pulumi.StringPtrInput `pulumi:"malformedHeaderSdpS"`
+	MalformedHeaderSdpT              pulumi.StringPtrInput `pulumi:"malformedHeaderSdpT"`
+	MalformedHeaderSdpV              pulumi.StringPtrInput `pulumi:"malformedHeaderSdpV"`
+	MalformedHeaderSdpZ              pulumi.StringPtrInput `pulumi:"malformedHeaderSdpZ"`
+	MalformedHeaderTo                pulumi.StringPtrInput `pulumi:"malformedHeaderTo"`
+	MalformedHeaderVia               pulumi.StringPtrInput `pulumi:"malformedHeaderVia"`
+	MalformedRequestLine             pulumi.StringPtrInput `pulumi:"malformedRequestLine"`
+	MaxBodyLength                    pulumi.IntPtrInput    `pulumi:"maxBodyLength"`
+	MaxDialogs                       pulumi.IntPtrInput    `pulumi:"maxDialogs"`
+	MaxIdleDialogs                   pulumi.IntPtrInput    `pulumi:"maxIdleDialogs"`
+	MaxLineLength                    pulumi.IntPtrInput    `pulumi:"maxLineLength"`
+	MessageRate                      pulumi.IntPtrInput    `pulumi:"messageRate"`
+	MessageRateTrack                 pulumi.StringPtrInput `pulumi:"messageRateTrack"`
+	NatPortRange                     pulumi.StringPtrInput `pulumi:"natPortRange"`
+	NatTrace                         pulumi.StringPtrInput `pulumi:"natTrace"`
+	NoSdpFixup                       pulumi.StringPtrInput `pulumi:"noSdpFixup"`
+	NotifyRate                       pulumi.IntPtrInput    `pulumi:"notifyRate"`
+	NotifyRateTrack                  pulumi.StringPtrInput `pulumi:"notifyRateTrack"`
+	OpenContactPinhole               pulumi.StringPtrInput `pulumi:"openContactPinhole"`
+	OpenRecordRoutePinhole           pulumi.StringPtrInput `pulumi:"openRecordRoutePinhole"`
+	OpenRegisterPinhole              pulumi.StringPtrInput `pulumi:"openRegisterPinhole"`
+	OpenViaPinhole                   pulumi.StringPtrInput `pulumi:"openViaPinhole"`
+	OptionsRate                      pulumi.IntPtrInput    `pulumi:"optionsRate"`
+	OptionsRateTrack                 pulumi.StringPtrInput `pulumi:"optionsRateTrack"`
+	PrackRate                        pulumi.IntPtrInput    `pulumi:"prackRate"`
+	PrackRateTrack                   pulumi.StringPtrInput `pulumi:"prackRateTrack"`
+	PreserveOverride                 pulumi.StringPtrInput `pulumi:"preserveOverride"`
+	ProvisionalInviteExpiryTime      pulumi.IntPtrInput    `pulumi:"provisionalInviteExpiryTime"`
+	PublishRate                      pulumi.IntPtrInput    `pulumi:"publishRate"`
+	PublishRateTrack                 pulumi.StringPtrInput `pulumi:"publishRateTrack"`
+	ReferRate                        pulumi.IntPtrInput    `pulumi:"referRate"`
+	ReferRateTrack                   pulumi.StringPtrInput `pulumi:"referRateTrack"`
+	RegisterContactTrace             pulumi.StringPtrInput `pulumi:"registerContactTrace"`
+	RegisterRate                     pulumi.IntPtrInput    `pulumi:"registerRate"`
+	RegisterRateTrack                pulumi.StringPtrInput `pulumi:"registerRateTrack"`
+	Rfc2543Branch                    pulumi.StringPtrInput `pulumi:"rfc2543Branch"`
+	Rtp                              pulumi.StringPtrInput `pulumi:"rtp"`
+	SslAlgorithm                     pulumi.StringPtrInput `pulumi:"sslAlgorithm"`
+	SslAuthClient                    pulumi.StringPtrInput `pulumi:"sslAuthClient"`
+	SslAuthServer                    pulumi.StringPtrInput `pulumi:"sslAuthServer"`
+	SslClientCertificate             pulumi.StringPtrInput `pulumi:"sslClientCertificate"`
+	SslClientRenegotiation           pulumi.StringPtrInput `pulumi:"sslClientRenegotiation"`
+	SslMaxVersion                    pulumi.StringPtrInput `pulumi:"sslMaxVersion"`
+	SslMinVersion                    pulumi.StringPtrInput `pulumi:"sslMinVersion"`
+	SslMode                          pulumi.StringPtrInput `pulumi:"sslMode"`
+	SslPfs                           pulumi.StringPtrInput `pulumi:"sslPfs"`
+	SslSendEmptyFrags                pulumi.StringPtrInput `pulumi:"sslSendEmptyFrags"`
+	SslServerCertificate             pulumi.StringPtrInput `pulumi:"sslServerCertificate"`
+	Status                           pulumi.StringPtrInput `pulumi:"status"`
+	StrictRegister                   pulumi.StringPtrInput `pulumi:"strictRegister"`
+	SubscribeRate                    pulumi.IntPtrInput    `pulumi:"subscribeRate"`
+	SubscribeRateTrack               pulumi.StringPtrInput `pulumi:"subscribeRateTrack"`
+	UnknownHeader                    pulumi.StringPtrInput `pulumi:"unknownHeader"`
+	UpdateRate                       pulumi.IntPtrInput    `pulumi:"updateRate"`
+	UpdateRateTrack                  pulumi.StringPtrInput `pulumi:"updateRateTrack"`
+}
+
+func (VoipProfileSipArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VoipProfileSip)(nil)).Elem()
+}
+
+func (i VoipProfileSipArgs) ToVoipProfileSipOutput() VoipProfileSipOutput {
+	return i.ToVoipProfileSipOutputWithContext(context.Background())
+}
+
+func (i VoipProfileSipArgs) ToVoipProfileSipOutputWithContext(ctx context.Context) VoipProfileSipOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VoipProfileSipOutput)
+}
+
+func (i VoipProfileSipArgs) ToVoipProfileSipPtrOutput() VoipProfileSipPtrOutput {
+	return i.ToVoipProfileSipPtrOutputWithContext(context.Background())
+}
+
+func (i VoipProfileSipArgs) ToVoipProfileSipPtrOutputWithContext(ctx context.Context) VoipProfileSipPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VoipProfileSipOutput).ToVoipProfileSipPtrOutputWithContext(ctx)
+}
+
+// VoipProfileSipPtrInput is an input type that accepts VoipProfileSipArgs, VoipProfileSipPtr and VoipProfileSipPtrOutput values.
+// You can construct a concrete instance of `VoipProfileSipPtrInput` via:
+//
+//	        VoipProfileSipArgs{...}
+//
+//	or:
+//
+//	        nil
+type VoipProfileSipPtrInput interface {
+	pulumi.Input
+
+	ToVoipProfileSipPtrOutput() VoipProfileSipPtrOutput
+	ToVoipProfileSipPtrOutputWithContext(context.Context) VoipProfileSipPtrOutput
+}
+
+type voipProfileSipPtrType VoipProfileSipArgs
+
+func VoipProfileSipPtr(v *VoipProfileSipArgs) VoipProfileSipPtrInput {
+	return (*voipProfileSipPtrType)(v)
+}
+
+func (*voipProfileSipPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**VoipProfileSip)(nil)).Elem()
+}
+
+func (i *voipProfileSipPtrType) ToVoipProfileSipPtrOutput() VoipProfileSipPtrOutput {
+	return i.ToVoipProfileSipPtrOutputWithContext(context.Background())
+}
+
+func (i *voipProfileSipPtrType) ToVoipProfileSipPtrOutputWithContext(ctx context.Context) VoipProfileSipPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VoipProfileSipPtrOutput)
+}
+
+type VoipProfileSipOutput struct{ *pulumi.OutputState }
+
+func (VoipProfileSipOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VoipProfileSip)(nil)).Elem()
+}
+
+func (o VoipProfileSipOutput) ToVoipProfileSipOutput() VoipProfileSipOutput {
+	return o
+}
+
+func (o VoipProfileSipOutput) ToVoipProfileSipOutputWithContext(ctx context.Context) VoipProfileSipOutput {
+	return o
+}
+
+func (o VoipProfileSipOutput) ToVoipProfileSipPtrOutput() VoipProfileSipPtrOutput {
+	return o.ToVoipProfileSipPtrOutputWithContext(context.Background())
+}
+
+func (o VoipProfileSipOutput) ToVoipProfileSipPtrOutputWithContext(ctx context.Context) VoipProfileSipPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v VoipProfileSip) *VoipProfileSip {
+		return &v
+	}).(VoipProfileSipPtrOutput)
+}
+
+func (o VoipProfileSipOutput) AckRate() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *int { return v.AckRate }).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipOutput) AckRateTrack() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.AckRateTrack }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) BlockAck() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.BlockAck }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) BlockBye() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.BlockBye }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) BlockCancel() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.BlockCancel }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) BlockGeoRedOptions() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.BlockGeoRedOptions }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) BlockInfo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.BlockInfo }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) BlockInvite() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.BlockInvite }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) BlockLongLines() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.BlockLongLines }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) BlockMessage() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.BlockMessage }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) BlockNotify() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.BlockNotify }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) BlockOptions() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.BlockOptions }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) BlockPrack() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.BlockPrack }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) BlockPublish() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.BlockPublish }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) BlockRefer() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.BlockRefer }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) BlockRegister() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.BlockRegister }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) BlockSubscribe() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.BlockSubscribe }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) BlockUnknown() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.BlockUnknown }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) BlockUpdate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.BlockUpdate }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) ByeRate() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *int { return v.ByeRate }).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipOutput) ByeRateTrack() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.ByeRateTrack }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) CallIdRegex() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.CallIdRegex }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) CallKeepalive() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *int { return v.CallKeepalive }).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipOutput) CancelRate() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *int { return v.CancelRate }).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipOutput) CancelRateTrack() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.CancelRateTrack }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) ContactFixup() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.ContactFixup }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) ContentTypeRegex() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.ContentTypeRegex }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) HntRestrictSourceIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.HntRestrictSourceIp }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) HostedNatTraversal() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.HostedNatTraversal }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) InfoRate() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *int { return v.InfoRate }).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipOutput) InfoRateTrack() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.InfoRateTrack }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) InviteRate() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *int { return v.InviteRate }).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipOutput) InviteRateTrack() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.InviteRateTrack }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) IpsRtp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.IpsRtp }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) LogCallSummary() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.LogCallSummary }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) LogViolations() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.LogViolations }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MalformedHeaderAllow() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.MalformedHeaderAllow }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MalformedHeaderCallId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.MalformedHeaderCallId }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MalformedHeaderContact() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.MalformedHeaderContact }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MalformedHeaderContentLength() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.MalformedHeaderContentLength }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MalformedHeaderContentType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.MalformedHeaderContentType }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MalformedHeaderCseq() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.MalformedHeaderCseq }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MalformedHeaderExpires() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.MalformedHeaderExpires }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MalformedHeaderFrom() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.MalformedHeaderFrom }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MalformedHeaderMaxForwards() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.MalformedHeaderMaxForwards }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MalformedHeaderNoProxyRequire() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.MalformedHeaderNoProxyRequire }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MalformedHeaderNoRequire() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.MalformedHeaderNoRequire }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MalformedHeaderPAssertedIdentity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.MalformedHeaderPAssertedIdentity }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MalformedHeaderRack() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.MalformedHeaderRack }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MalformedHeaderRecordRoute() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.MalformedHeaderRecordRoute }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MalformedHeaderRoute() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.MalformedHeaderRoute }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MalformedHeaderRseq() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.MalformedHeaderRseq }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MalformedHeaderSdpA() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.MalformedHeaderSdpA }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MalformedHeaderSdpB() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.MalformedHeaderSdpB }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MalformedHeaderSdpC() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.MalformedHeaderSdpC }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MalformedHeaderSdpI() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.MalformedHeaderSdpI }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MalformedHeaderSdpK() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.MalformedHeaderSdpK }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MalformedHeaderSdpM() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.MalformedHeaderSdpM }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MalformedHeaderSdpO() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.MalformedHeaderSdpO }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MalformedHeaderSdpR() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.MalformedHeaderSdpR }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MalformedHeaderSdpS() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.MalformedHeaderSdpS }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MalformedHeaderSdpT() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.MalformedHeaderSdpT }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MalformedHeaderSdpV() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.MalformedHeaderSdpV }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MalformedHeaderSdpZ() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.MalformedHeaderSdpZ }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MalformedHeaderTo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.MalformedHeaderTo }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MalformedHeaderVia() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.MalformedHeaderVia }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MalformedRequestLine() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.MalformedRequestLine }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MaxBodyLength() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *int { return v.MaxBodyLength }).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MaxDialogs() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *int { return v.MaxDialogs }).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MaxIdleDialogs() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *int { return v.MaxIdleDialogs }).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MaxLineLength() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *int { return v.MaxLineLength }).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MessageRate() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *int { return v.MessageRate }).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipOutput) MessageRateTrack() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.MessageRateTrack }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) NatPortRange() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.NatPortRange }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) NatTrace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.NatTrace }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) NoSdpFixup() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.NoSdpFixup }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) NotifyRate() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *int { return v.NotifyRate }).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipOutput) NotifyRateTrack() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.NotifyRateTrack }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) OpenContactPinhole() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.OpenContactPinhole }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) OpenRecordRoutePinhole() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.OpenRecordRoutePinhole }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) OpenRegisterPinhole() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.OpenRegisterPinhole }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) OpenViaPinhole() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.OpenViaPinhole }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) OptionsRate() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *int { return v.OptionsRate }).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipOutput) OptionsRateTrack() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.OptionsRateTrack }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) PrackRate() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *int { return v.PrackRate }).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipOutput) PrackRateTrack() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.PrackRateTrack }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) PreserveOverride() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.PreserveOverride }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) ProvisionalInviteExpiryTime() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *int { return v.ProvisionalInviteExpiryTime }).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipOutput) PublishRate() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *int { return v.PublishRate }).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipOutput) PublishRateTrack() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.PublishRateTrack }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) ReferRate() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *int { return v.ReferRate }).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipOutput) ReferRateTrack() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.ReferRateTrack }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) RegisterContactTrace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.RegisterContactTrace }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) RegisterRate() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *int { return v.RegisterRate }).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipOutput) RegisterRateTrack() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.RegisterRateTrack }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) Rfc2543Branch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.Rfc2543Branch }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) Rtp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.Rtp }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) SslAlgorithm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.SslAlgorithm }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) SslAuthClient() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.SslAuthClient }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) SslAuthServer() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.SslAuthServer }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) SslClientCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.SslClientCertificate }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) SslClientRenegotiation() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.SslClientRenegotiation }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) SslMaxVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.SslMaxVersion }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) SslMinVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.SslMinVersion }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) SslMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.SslMode }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) SslPfs() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.SslPfs }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) SslSendEmptyFrags() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.SslSendEmptyFrags }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) SslServerCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.SslServerCertificate }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) StrictRegister() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.StrictRegister }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) SubscribeRate() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *int { return v.SubscribeRate }).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipOutput) SubscribeRateTrack() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.SubscribeRateTrack }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) UnknownHeader() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.UnknownHeader }).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipOutput) UpdateRate() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *int { return v.UpdateRate }).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipOutput) UpdateRateTrack() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VoipProfileSip) *string { return v.UpdateRateTrack }).(pulumi.StringPtrOutput)
+}
+
+type VoipProfileSipPtrOutput struct{ *pulumi.OutputState }
+
+func (VoipProfileSipPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**VoipProfileSip)(nil)).Elem()
+}
+
+func (o VoipProfileSipPtrOutput) ToVoipProfileSipPtrOutput() VoipProfileSipPtrOutput {
+	return o
+}
+
+func (o VoipProfileSipPtrOutput) ToVoipProfileSipPtrOutputWithContext(ctx context.Context) VoipProfileSipPtrOutput {
+	return o
+}
+
+func (o VoipProfileSipPtrOutput) Elem() VoipProfileSipOutput {
+	return o.ApplyT(func(v *VoipProfileSip) VoipProfileSip {
+		if v != nil {
+			return *v
+		}
+		var ret VoipProfileSip
+		return ret
+	}).(VoipProfileSipOutput)
+}
+
+func (o VoipProfileSipPtrOutput) AckRate() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *int {
+		if v == nil {
+			return nil
+		}
+		return v.AckRate
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) AckRateTrack() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.AckRateTrack
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) BlockAck() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BlockAck
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) BlockBye() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BlockBye
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) BlockCancel() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BlockCancel
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) BlockGeoRedOptions() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BlockGeoRedOptions
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) BlockInfo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BlockInfo
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) BlockInvite() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BlockInvite
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) BlockLongLines() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BlockLongLines
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) BlockMessage() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BlockMessage
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) BlockNotify() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BlockNotify
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) BlockOptions() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BlockOptions
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) BlockPrack() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BlockPrack
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) BlockPublish() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BlockPublish
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) BlockRefer() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BlockRefer
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) BlockRegister() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BlockRegister
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) BlockSubscribe() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BlockSubscribe
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) BlockUnknown() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BlockUnknown
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) BlockUpdate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BlockUpdate
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) ByeRate() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ByeRate
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) ByeRateTrack() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ByeRateTrack
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) CallIdRegex() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CallIdRegex
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) CallKeepalive() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *int {
+		if v == nil {
+			return nil
+		}
+		return v.CallKeepalive
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) CancelRate() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *int {
+		if v == nil {
+			return nil
+		}
+		return v.CancelRate
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) CancelRateTrack() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CancelRateTrack
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) ContactFixup() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ContactFixup
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) ContentTypeRegex() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ContentTypeRegex
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) HntRestrictSourceIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.HntRestrictSourceIp
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) HostedNatTraversal() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.HostedNatTraversal
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) InfoRate() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *int {
+		if v == nil {
+			return nil
+		}
+		return v.InfoRate
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) InfoRateTrack() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.InfoRateTrack
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) InviteRate() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *int {
+		if v == nil {
+			return nil
+		}
+		return v.InviteRate
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) InviteRateTrack() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.InviteRateTrack
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) IpsRtp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.IpsRtp
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) LogCallSummary() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.LogCallSummary
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) LogViolations() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.LogViolations
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MalformedHeaderAllow() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MalformedHeaderAllow
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MalformedHeaderCallId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MalformedHeaderCallId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MalformedHeaderContact() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MalformedHeaderContact
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MalformedHeaderContentLength() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MalformedHeaderContentLength
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MalformedHeaderContentType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MalformedHeaderContentType
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MalformedHeaderCseq() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MalformedHeaderCseq
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MalformedHeaderExpires() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MalformedHeaderExpires
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MalformedHeaderFrom() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MalformedHeaderFrom
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MalformedHeaderMaxForwards() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MalformedHeaderMaxForwards
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MalformedHeaderNoProxyRequire() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MalformedHeaderNoProxyRequire
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MalformedHeaderNoRequire() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MalformedHeaderNoRequire
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MalformedHeaderPAssertedIdentity() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MalformedHeaderPAssertedIdentity
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MalformedHeaderRack() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MalformedHeaderRack
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MalformedHeaderRecordRoute() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MalformedHeaderRecordRoute
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MalformedHeaderRoute() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MalformedHeaderRoute
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MalformedHeaderRseq() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MalformedHeaderRseq
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MalformedHeaderSdpA() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MalformedHeaderSdpA
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MalformedHeaderSdpB() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MalformedHeaderSdpB
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MalformedHeaderSdpC() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MalformedHeaderSdpC
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MalformedHeaderSdpI() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MalformedHeaderSdpI
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MalformedHeaderSdpK() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MalformedHeaderSdpK
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MalformedHeaderSdpM() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MalformedHeaderSdpM
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MalformedHeaderSdpO() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MalformedHeaderSdpO
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MalformedHeaderSdpR() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MalformedHeaderSdpR
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MalformedHeaderSdpS() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MalformedHeaderSdpS
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MalformedHeaderSdpT() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MalformedHeaderSdpT
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MalformedHeaderSdpV() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MalformedHeaderSdpV
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MalformedHeaderSdpZ() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MalformedHeaderSdpZ
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MalformedHeaderTo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MalformedHeaderTo
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MalformedHeaderVia() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MalformedHeaderVia
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MalformedRequestLine() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MalformedRequestLine
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MaxBodyLength() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxBodyLength
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MaxDialogs() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxDialogs
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MaxIdleDialogs() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxIdleDialogs
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MaxLineLength() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MaxLineLength
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MessageRate() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *int {
+		if v == nil {
+			return nil
+		}
+		return v.MessageRate
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) MessageRateTrack() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MessageRateTrack
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) NatPortRange() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NatPortRange
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) NatTrace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NatTrace
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) NoSdpFixup() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NoSdpFixup
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) NotifyRate() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *int {
+		if v == nil {
+			return nil
+		}
+		return v.NotifyRate
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) NotifyRateTrack() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.NotifyRateTrack
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) OpenContactPinhole() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.OpenContactPinhole
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) OpenRecordRoutePinhole() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.OpenRecordRoutePinhole
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) OpenRegisterPinhole() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.OpenRegisterPinhole
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) OpenViaPinhole() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.OpenViaPinhole
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) OptionsRate() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *int {
+		if v == nil {
+			return nil
+		}
+		return v.OptionsRate
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) OptionsRateTrack() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.OptionsRateTrack
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) PrackRate() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PrackRate
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) PrackRateTrack() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PrackRateTrack
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) PreserveOverride() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PreserveOverride
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) ProvisionalInviteExpiryTime() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ProvisionalInviteExpiryTime
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) PublishRate() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PublishRate
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) PublishRateTrack() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PublishRateTrack
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) ReferRate() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *int {
+		if v == nil {
+			return nil
+		}
+		return v.ReferRate
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) ReferRateTrack() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ReferRateTrack
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) RegisterContactTrace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RegisterContactTrace
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) RegisterRate() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *int {
+		if v == nil {
+			return nil
+		}
+		return v.RegisterRate
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) RegisterRateTrack() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.RegisterRateTrack
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) Rfc2543Branch() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Rfc2543Branch
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) Rtp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Rtp
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) SslAlgorithm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SslAlgorithm
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) SslAuthClient() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SslAuthClient
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) SslAuthServer() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SslAuthServer
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) SslClientCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SslClientCertificate
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) SslClientRenegotiation() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SslClientRenegotiation
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) SslMaxVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SslMaxVersion
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) SslMinVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SslMinVersion
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) SslMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SslMode
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) SslPfs() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SslPfs
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) SslSendEmptyFrags() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SslSendEmptyFrags
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) SslServerCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SslServerCertificate
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Status
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) StrictRegister() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.StrictRegister
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) SubscribeRate() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *int {
+		if v == nil {
+			return nil
+		}
+		return v.SubscribeRate
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) SubscribeRateTrack() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SubscribeRateTrack
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) UnknownHeader() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UnknownHeader
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) UpdateRate() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *int {
+		if v == nil {
+			return nil
+		}
+		return v.UpdateRate
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o VoipProfileSipPtrOutput) UpdateRateTrack() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfileSip) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UpdateRateTrack
+	}).(pulumi.StringPtrOutput)
+}
+
+type VpnCertificateSettingCrlVerification struct {
+	ChainCrlAbsence *string `pulumi:"chainCrlAbsence"`
+	Expiry          *string `pulumi:"expiry"`
+	LeafCrlAbsence  *string `pulumi:"leafCrlAbsence"`
+}
+
+// VpnCertificateSettingCrlVerificationInput is an input type that accepts VpnCertificateSettingCrlVerificationArgs and VpnCertificateSettingCrlVerificationOutput values.
+// You can construct a concrete instance of `VpnCertificateSettingCrlVerificationInput` via:
+//
+//	VpnCertificateSettingCrlVerificationArgs{...}
+type VpnCertificateSettingCrlVerificationInput interface {
+	pulumi.Input
+
+	ToVpnCertificateSettingCrlVerificationOutput() VpnCertificateSettingCrlVerificationOutput
+	ToVpnCertificateSettingCrlVerificationOutputWithContext(context.Context) VpnCertificateSettingCrlVerificationOutput
+}
+
+type VpnCertificateSettingCrlVerificationArgs struct {
+	ChainCrlAbsence pulumi.StringPtrInput `pulumi:"chainCrlAbsence"`
+	Expiry          pulumi.StringPtrInput `pulumi:"expiry"`
+	LeafCrlAbsence  pulumi.StringPtrInput `pulumi:"leafCrlAbsence"`
+}
+
+func (VpnCertificateSettingCrlVerificationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnCertificateSettingCrlVerification)(nil)).Elem()
+}
+
+func (i VpnCertificateSettingCrlVerificationArgs) ToVpnCertificateSettingCrlVerificationOutput() VpnCertificateSettingCrlVerificationOutput {
+	return i.ToVpnCertificateSettingCrlVerificationOutputWithContext(context.Background())
+}
+
+func (i VpnCertificateSettingCrlVerificationArgs) ToVpnCertificateSettingCrlVerificationOutputWithContext(ctx context.Context) VpnCertificateSettingCrlVerificationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnCertificateSettingCrlVerificationOutput)
+}
+
+func (i VpnCertificateSettingCrlVerificationArgs) ToVpnCertificateSettingCrlVerificationPtrOutput() VpnCertificateSettingCrlVerificationPtrOutput {
+	return i.ToVpnCertificateSettingCrlVerificationPtrOutputWithContext(context.Background())
+}
+
+func (i VpnCertificateSettingCrlVerificationArgs) ToVpnCertificateSettingCrlVerificationPtrOutputWithContext(ctx context.Context) VpnCertificateSettingCrlVerificationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnCertificateSettingCrlVerificationOutput).ToVpnCertificateSettingCrlVerificationPtrOutputWithContext(ctx)
+}
+
+// VpnCertificateSettingCrlVerificationPtrInput is an input type that accepts VpnCertificateSettingCrlVerificationArgs, VpnCertificateSettingCrlVerificationPtr and VpnCertificateSettingCrlVerificationPtrOutput values.
+// You can construct a concrete instance of `VpnCertificateSettingCrlVerificationPtrInput` via:
+//
+//	        VpnCertificateSettingCrlVerificationArgs{...}
+//
+//	or:
+//
+//	        nil
+type VpnCertificateSettingCrlVerificationPtrInput interface {
+	pulumi.Input
+
+	ToVpnCertificateSettingCrlVerificationPtrOutput() VpnCertificateSettingCrlVerificationPtrOutput
+	ToVpnCertificateSettingCrlVerificationPtrOutputWithContext(context.Context) VpnCertificateSettingCrlVerificationPtrOutput
+}
+
+type vpnCertificateSettingCrlVerificationPtrType VpnCertificateSettingCrlVerificationArgs
+
+func VpnCertificateSettingCrlVerificationPtr(v *VpnCertificateSettingCrlVerificationArgs) VpnCertificateSettingCrlVerificationPtrInput {
+	return (*vpnCertificateSettingCrlVerificationPtrType)(v)
+}
+
+func (*vpnCertificateSettingCrlVerificationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**VpnCertificateSettingCrlVerification)(nil)).Elem()
+}
+
+func (i *vpnCertificateSettingCrlVerificationPtrType) ToVpnCertificateSettingCrlVerificationPtrOutput() VpnCertificateSettingCrlVerificationPtrOutput {
+	return i.ToVpnCertificateSettingCrlVerificationPtrOutputWithContext(context.Background())
+}
+
+func (i *vpnCertificateSettingCrlVerificationPtrType) ToVpnCertificateSettingCrlVerificationPtrOutputWithContext(ctx context.Context) VpnCertificateSettingCrlVerificationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnCertificateSettingCrlVerificationPtrOutput)
+}
+
+type VpnCertificateSettingCrlVerificationOutput struct{ *pulumi.OutputState }
+
+func (VpnCertificateSettingCrlVerificationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnCertificateSettingCrlVerification)(nil)).Elem()
+}
+
+func (o VpnCertificateSettingCrlVerificationOutput) ToVpnCertificateSettingCrlVerificationOutput() VpnCertificateSettingCrlVerificationOutput {
+	return o
+}
+
+func (o VpnCertificateSettingCrlVerificationOutput) ToVpnCertificateSettingCrlVerificationOutputWithContext(ctx context.Context) VpnCertificateSettingCrlVerificationOutput {
+	return o
+}
+
+func (o VpnCertificateSettingCrlVerificationOutput) ToVpnCertificateSettingCrlVerificationPtrOutput() VpnCertificateSettingCrlVerificationPtrOutput {
+	return o.ToVpnCertificateSettingCrlVerificationPtrOutputWithContext(context.Background())
+}
+
+func (o VpnCertificateSettingCrlVerificationOutput) ToVpnCertificateSettingCrlVerificationPtrOutputWithContext(ctx context.Context) VpnCertificateSettingCrlVerificationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v VpnCertificateSettingCrlVerification) *VpnCertificateSettingCrlVerification {
+		return &v
+	}).(VpnCertificateSettingCrlVerificationPtrOutput)
+}
+
+func (o VpnCertificateSettingCrlVerificationOutput) ChainCrlAbsence() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnCertificateSettingCrlVerification) *string { return v.ChainCrlAbsence }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnCertificateSettingCrlVerificationOutput) Expiry() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnCertificateSettingCrlVerification) *string { return v.Expiry }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnCertificateSettingCrlVerificationOutput) LeafCrlAbsence() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnCertificateSettingCrlVerification) *string { return v.LeafCrlAbsence }).(pulumi.StringPtrOutput)
+}
+
+type VpnCertificateSettingCrlVerificationPtrOutput struct{ *pulumi.OutputState }
+
+func (VpnCertificateSettingCrlVerificationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**VpnCertificateSettingCrlVerification)(nil)).Elem()
+}
+
+func (o VpnCertificateSettingCrlVerificationPtrOutput) ToVpnCertificateSettingCrlVerificationPtrOutput() VpnCertificateSettingCrlVerificationPtrOutput {
+	return o
+}
+
+func (o VpnCertificateSettingCrlVerificationPtrOutput) ToVpnCertificateSettingCrlVerificationPtrOutputWithContext(ctx context.Context) VpnCertificateSettingCrlVerificationPtrOutput {
+	return o
+}
+
+func (o VpnCertificateSettingCrlVerificationPtrOutput) Elem() VpnCertificateSettingCrlVerificationOutput {
+	return o.ApplyT(func(v *VpnCertificateSettingCrlVerification) VpnCertificateSettingCrlVerification {
+		if v != nil {
+			return *v
+		}
+		var ret VpnCertificateSettingCrlVerification
+		return ret
+	}).(VpnCertificateSettingCrlVerificationOutput)
+}
+
+func (o VpnCertificateSettingCrlVerificationPtrOutput) ChainCrlAbsence() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnCertificateSettingCrlVerification) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ChainCrlAbsence
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VpnCertificateSettingCrlVerificationPtrOutput) Expiry() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnCertificateSettingCrlVerification) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Expiry
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VpnCertificateSettingCrlVerificationPtrOutput) LeafCrlAbsence() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnCertificateSettingCrlVerification) *string {
+		if v == nil {
+			return nil
+		}
+		return v.LeafCrlAbsence
+	}).(pulumi.StringPtrOutput)
+}
+
+type VpnIpsecConcentratorMember struct {
+	Name *string `pulumi:"name"`
+}
+
+// VpnIpsecConcentratorMemberInput is an input type that accepts VpnIpsecConcentratorMemberArgs and VpnIpsecConcentratorMemberOutput values.
+// You can construct a concrete instance of `VpnIpsecConcentratorMemberInput` via:
+//
+//	VpnIpsecConcentratorMemberArgs{...}
+type VpnIpsecConcentratorMemberInput interface {
+	pulumi.Input
+
+	ToVpnIpsecConcentratorMemberOutput() VpnIpsecConcentratorMemberOutput
+	ToVpnIpsecConcentratorMemberOutputWithContext(context.Context) VpnIpsecConcentratorMemberOutput
+}
+
+type VpnIpsecConcentratorMemberArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (VpnIpsecConcentratorMemberArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnIpsecConcentratorMember)(nil)).Elem()
+}
+
+func (i VpnIpsecConcentratorMemberArgs) ToVpnIpsecConcentratorMemberOutput() VpnIpsecConcentratorMemberOutput {
+	return i.ToVpnIpsecConcentratorMemberOutputWithContext(context.Background())
+}
+
+func (i VpnIpsecConcentratorMemberArgs) ToVpnIpsecConcentratorMemberOutputWithContext(ctx context.Context) VpnIpsecConcentratorMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecConcentratorMemberOutput)
+}
+
+// VpnIpsecConcentratorMemberArrayInput is an input type that accepts VpnIpsecConcentratorMemberArray and VpnIpsecConcentratorMemberArrayOutput values.
+// You can construct a concrete instance of `VpnIpsecConcentratorMemberArrayInput` via:
+//
+//	VpnIpsecConcentratorMemberArray{ VpnIpsecConcentratorMemberArgs{...} }
+type VpnIpsecConcentratorMemberArrayInput interface {
+	pulumi.Input
+
+	ToVpnIpsecConcentratorMemberArrayOutput() VpnIpsecConcentratorMemberArrayOutput
+	ToVpnIpsecConcentratorMemberArrayOutputWithContext(context.Context) VpnIpsecConcentratorMemberArrayOutput
+}
+
+type VpnIpsecConcentratorMemberArray []VpnIpsecConcentratorMemberInput
+
+func (VpnIpsecConcentratorMemberArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnIpsecConcentratorMember)(nil)).Elem()
+}
+
+func (i VpnIpsecConcentratorMemberArray) ToVpnIpsecConcentratorMemberArrayOutput() VpnIpsecConcentratorMemberArrayOutput {
+	return i.ToVpnIpsecConcentratorMemberArrayOutputWithContext(context.Background())
+}
+
+func (i VpnIpsecConcentratorMemberArray) ToVpnIpsecConcentratorMemberArrayOutputWithContext(ctx context.Context) VpnIpsecConcentratorMemberArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecConcentratorMemberArrayOutput)
+}
+
+type VpnIpsecConcentratorMemberOutput struct{ *pulumi.OutputState }
+
+func (VpnIpsecConcentratorMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnIpsecConcentratorMember)(nil)).Elem()
+}
+
+func (o VpnIpsecConcentratorMemberOutput) ToVpnIpsecConcentratorMemberOutput() VpnIpsecConcentratorMemberOutput {
+	return o
+}
+
+func (o VpnIpsecConcentratorMemberOutput) ToVpnIpsecConcentratorMemberOutputWithContext(ctx context.Context) VpnIpsecConcentratorMemberOutput {
+	return o
+}
+
+func (o VpnIpsecConcentratorMemberOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnIpsecConcentratorMember) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type VpnIpsecConcentratorMemberArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnIpsecConcentratorMemberArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnIpsecConcentratorMember)(nil)).Elem()
+}
+
+func (o VpnIpsecConcentratorMemberArrayOutput) ToVpnIpsecConcentratorMemberArrayOutput() VpnIpsecConcentratorMemberArrayOutput {
+	return o
+}
+
+func (o VpnIpsecConcentratorMemberArrayOutput) ToVpnIpsecConcentratorMemberArrayOutputWithContext(ctx context.Context) VpnIpsecConcentratorMemberArrayOutput {
+	return o
+}
+
+func (o VpnIpsecConcentratorMemberArrayOutput) Index(i pulumi.IntInput) VpnIpsecConcentratorMemberOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnIpsecConcentratorMember {
+		return vs[0].([]VpnIpsecConcentratorMember)[vs[1].(int)]
+	}).(VpnIpsecConcentratorMemberOutput)
+}
+
+type VpnIpsecFecMapping struct {
+	BandwidthBiThreshold   *int `pulumi:"bandwidthBiThreshold"`
+	BandwidthDownThreshold *int `pulumi:"bandwidthDownThreshold"`
+	BandwidthUpThreshold   *int `pulumi:"bandwidthUpThreshold"`
+	Base                   *int `pulumi:"base"`
+	LatencyThreshold       *int `pulumi:"latencyThreshold"`
+	PacketLossThreshold    *int `pulumi:"packetLossThreshold"`
+	Redundant              *int `pulumi:"redundant"`
+	Seqno                  *int `pulumi:"seqno"`
+}
+
+// VpnIpsecFecMappingInput is an input type that accepts VpnIpsecFecMappingArgs and VpnIpsecFecMappingOutput values.
+// You can construct a concrete instance of `VpnIpsecFecMappingInput` via:
+//
+//	VpnIpsecFecMappingArgs{...}
+type VpnIpsecFecMappingInput interface {
+	pulumi.Input
+
+	ToVpnIpsecFecMappingOutput() VpnIpsecFecMappingOutput
+	ToVpnIpsecFecMappingOutputWithContext(context.Context) VpnIpsecFecMappingOutput
+}
+
+type VpnIpsecFecMappingArgs struct {
+	BandwidthBiThreshold   pulumi.IntPtrInput `pulumi:"bandwidthBiThreshold"`
+	BandwidthDownThreshold pulumi.IntPtrInput `pulumi:"bandwidthDownThreshold"`
+	BandwidthUpThreshold   pulumi.IntPtrInput `pulumi:"bandwidthUpThreshold"`
+	Base                   pulumi.IntPtrInput `pulumi:"base"`
+	LatencyThreshold       pulumi.IntPtrInput `pulumi:"latencyThreshold"`
+	PacketLossThreshold    pulumi.IntPtrInput `pulumi:"packetLossThreshold"`
+	Redundant              pulumi.IntPtrInput `pulumi:"redundant"`
+	Seqno                  pulumi.IntPtrInput `pulumi:"seqno"`
+}
+
+func (VpnIpsecFecMappingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnIpsecFecMapping)(nil)).Elem()
+}
+
+func (i VpnIpsecFecMappingArgs) ToVpnIpsecFecMappingOutput() VpnIpsecFecMappingOutput {
+	return i.ToVpnIpsecFecMappingOutputWithContext(context.Background())
+}
+
+func (i VpnIpsecFecMappingArgs) ToVpnIpsecFecMappingOutputWithContext(ctx context.Context) VpnIpsecFecMappingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecFecMappingOutput)
+}
+
+// VpnIpsecFecMappingArrayInput is an input type that accepts VpnIpsecFecMappingArray and VpnIpsecFecMappingArrayOutput values.
+// You can construct a concrete instance of `VpnIpsecFecMappingArrayInput` via:
+//
+//	VpnIpsecFecMappingArray{ VpnIpsecFecMappingArgs{...} }
+type VpnIpsecFecMappingArrayInput interface {
+	pulumi.Input
+
+	ToVpnIpsecFecMappingArrayOutput() VpnIpsecFecMappingArrayOutput
+	ToVpnIpsecFecMappingArrayOutputWithContext(context.Context) VpnIpsecFecMappingArrayOutput
+}
+
+type VpnIpsecFecMappingArray []VpnIpsecFecMappingInput
+
+func (VpnIpsecFecMappingArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnIpsecFecMapping)(nil)).Elem()
+}
+
+func (i VpnIpsecFecMappingArray) ToVpnIpsecFecMappingArrayOutput() VpnIpsecFecMappingArrayOutput {
+	return i.ToVpnIpsecFecMappingArrayOutputWithContext(context.Background())
+}
+
+func (i VpnIpsecFecMappingArray) ToVpnIpsecFecMappingArrayOutputWithContext(ctx context.Context) VpnIpsecFecMappingArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecFecMappingArrayOutput)
+}
+
+type VpnIpsecFecMappingOutput struct{ *pulumi.OutputState }
+
+func (VpnIpsecFecMappingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnIpsecFecMapping)(nil)).Elem()
+}
+
+func (o VpnIpsecFecMappingOutput) ToVpnIpsecFecMappingOutput() VpnIpsecFecMappingOutput {
+	return o
+}
+
+func (o VpnIpsecFecMappingOutput) ToVpnIpsecFecMappingOutputWithContext(ctx context.Context) VpnIpsecFecMappingOutput {
+	return o
+}
+
+func (o VpnIpsecFecMappingOutput) BandwidthBiThreshold() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VpnIpsecFecMapping) *int { return v.BandwidthBiThreshold }).(pulumi.IntPtrOutput)
+}
+
+func (o VpnIpsecFecMappingOutput) BandwidthDownThreshold() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VpnIpsecFecMapping) *int { return v.BandwidthDownThreshold }).(pulumi.IntPtrOutput)
+}
+
+func (o VpnIpsecFecMappingOutput) BandwidthUpThreshold() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VpnIpsecFecMapping) *int { return v.BandwidthUpThreshold }).(pulumi.IntPtrOutput)
+}
+
+func (o VpnIpsecFecMappingOutput) Base() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VpnIpsecFecMapping) *int { return v.Base }).(pulumi.IntPtrOutput)
+}
+
+func (o VpnIpsecFecMappingOutput) LatencyThreshold() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VpnIpsecFecMapping) *int { return v.LatencyThreshold }).(pulumi.IntPtrOutput)
+}
+
+func (o VpnIpsecFecMappingOutput) PacketLossThreshold() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VpnIpsecFecMapping) *int { return v.PacketLossThreshold }).(pulumi.IntPtrOutput)
+}
+
+func (o VpnIpsecFecMappingOutput) Redundant() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VpnIpsecFecMapping) *int { return v.Redundant }).(pulumi.IntPtrOutput)
+}
+
+func (o VpnIpsecFecMappingOutput) Seqno() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VpnIpsecFecMapping) *int { return v.Seqno }).(pulumi.IntPtrOutput)
+}
+
+type VpnIpsecFecMappingArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnIpsecFecMappingArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnIpsecFecMapping)(nil)).Elem()
+}
+
+func (o VpnIpsecFecMappingArrayOutput) ToVpnIpsecFecMappingArrayOutput() VpnIpsecFecMappingArrayOutput {
+	return o
+}
+
+func (o VpnIpsecFecMappingArrayOutput) ToVpnIpsecFecMappingArrayOutputWithContext(ctx context.Context) VpnIpsecFecMappingArrayOutput {
+	return o
+}
+
+func (o VpnIpsecFecMappingArrayOutput) Index(i pulumi.IntInput) VpnIpsecFecMappingOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnIpsecFecMapping {
+		return vs[0].([]VpnIpsecFecMapping)[vs[1].(int)]
+	}).(VpnIpsecFecMappingOutput)
+}
+
+type VpnIpsecPhase1BackupGateway struct {
+	Address *string `pulumi:"address"`
+}
+
+// VpnIpsecPhase1BackupGatewayInput is an input type that accepts VpnIpsecPhase1BackupGatewayArgs and VpnIpsecPhase1BackupGatewayOutput values.
+// You can construct a concrete instance of `VpnIpsecPhase1BackupGatewayInput` via:
+//
+//	VpnIpsecPhase1BackupGatewayArgs{...}
+type VpnIpsecPhase1BackupGatewayInput interface {
+	pulumi.Input
+
+	ToVpnIpsecPhase1BackupGatewayOutput() VpnIpsecPhase1BackupGatewayOutput
+	ToVpnIpsecPhase1BackupGatewayOutputWithContext(context.Context) VpnIpsecPhase1BackupGatewayOutput
+}
+
+type VpnIpsecPhase1BackupGatewayArgs struct {
+	Address pulumi.StringPtrInput `pulumi:"address"`
+}
+
+func (VpnIpsecPhase1BackupGatewayArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnIpsecPhase1BackupGateway)(nil)).Elem()
+}
+
+func (i VpnIpsecPhase1BackupGatewayArgs) ToVpnIpsecPhase1BackupGatewayOutput() VpnIpsecPhase1BackupGatewayOutput {
+	return i.ToVpnIpsecPhase1BackupGatewayOutputWithContext(context.Background())
+}
+
+func (i VpnIpsecPhase1BackupGatewayArgs) ToVpnIpsecPhase1BackupGatewayOutputWithContext(ctx context.Context) VpnIpsecPhase1BackupGatewayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1BackupGatewayOutput)
+}
+
+// VpnIpsecPhase1BackupGatewayArrayInput is an input type that accepts VpnIpsecPhase1BackupGatewayArray and VpnIpsecPhase1BackupGatewayArrayOutput values.
+// You can construct a concrete instance of `VpnIpsecPhase1BackupGatewayArrayInput` via:
+//
+//	VpnIpsecPhase1BackupGatewayArray{ VpnIpsecPhase1BackupGatewayArgs{...} }
+type VpnIpsecPhase1BackupGatewayArrayInput interface {
+	pulumi.Input
+
+	ToVpnIpsecPhase1BackupGatewayArrayOutput() VpnIpsecPhase1BackupGatewayArrayOutput
+	ToVpnIpsecPhase1BackupGatewayArrayOutputWithContext(context.Context) VpnIpsecPhase1BackupGatewayArrayOutput
+}
+
+type VpnIpsecPhase1BackupGatewayArray []VpnIpsecPhase1BackupGatewayInput
+
+func (VpnIpsecPhase1BackupGatewayArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnIpsecPhase1BackupGateway)(nil)).Elem()
+}
+
+func (i VpnIpsecPhase1BackupGatewayArray) ToVpnIpsecPhase1BackupGatewayArrayOutput() VpnIpsecPhase1BackupGatewayArrayOutput {
+	return i.ToVpnIpsecPhase1BackupGatewayArrayOutputWithContext(context.Background())
+}
+
+func (i VpnIpsecPhase1BackupGatewayArray) ToVpnIpsecPhase1BackupGatewayArrayOutputWithContext(ctx context.Context) VpnIpsecPhase1BackupGatewayArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1BackupGatewayArrayOutput)
+}
+
+type VpnIpsecPhase1BackupGatewayOutput struct{ *pulumi.OutputState }
+
+func (VpnIpsecPhase1BackupGatewayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnIpsecPhase1BackupGateway)(nil)).Elem()
+}
+
+func (o VpnIpsecPhase1BackupGatewayOutput) ToVpnIpsecPhase1BackupGatewayOutput() VpnIpsecPhase1BackupGatewayOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1BackupGatewayOutput) ToVpnIpsecPhase1BackupGatewayOutputWithContext(ctx context.Context) VpnIpsecPhase1BackupGatewayOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1BackupGatewayOutput) Address() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnIpsecPhase1BackupGateway) *string { return v.Address }).(pulumi.StringPtrOutput)
+}
+
+type VpnIpsecPhase1BackupGatewayArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnIpsecPhase1BackupGatewayArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnIpsecPhase1BackupGateway)(nil)).Elem()
+}
+
+func (o VpnIpsecPhase1BackupGatewayArrayOutput) ToVpnIpsecPhase1BackupGatewayArrayOutput() VpnIpsecPhase1BackupGatewayArrayOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1BackupGatewayArrayOutput) ToVpnIpsecPhase1BackupGatewayArrayOutputWithContext(ctx context.Context) VpnIpsecPhase1BackupGatewayArrayOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1BackupGatewayArrayOutput) Index(i pulumi.IntInput) VpnIpsecPhase1BackupGatewayOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnIpsecPhase1BackupGateway {
+		return vs[0].([]VpnIpsecPhase1BackupGateway)[vs[1].(int)]
+	}).(VpnIpsecPhase1BackupGatewayOutput)
+}
+
+type VpnIpsecPhase1Certificate struct {
+	Name *string `pulumi:"name"`
+}
+
+// VpnIpsecPhase1CertificateInput is an input type that accepts VpnIpsecPhase1CertificateArgs and VpnIpsecPhase1CertificateOutput values.
+// You can construct a concrete instance of `VpnIpsecPhase1CertificateInput` via:
+//
+//	VpnIpsecPhase1CertificateArgs{...}
+type VpnIpsecPhase1CertificateInput interface {
+	pulumi.Input
+
+	ToVpnIpsecPhase1CertificateOutput() VpnIpsecPhase1CertificateOutput
+	ToVpnIpsecPhase1CertificateOutputWithContext(context.Context) VpnIpsecPhase1CertificateOutput
+}
+
+type VpnIpsecPhase1CertificateArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (VpnIpsecPhase1CertificateArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnIpsecPhase1Certificate)(nil)).Elem()
+}
+
+func (i VpnIpsecPhase1CertificateArgs) ToVpnIpsecPhase1CertificateOutput() VpnIpsecPhase1CertificateOutput {
+	return i.ToVpnIpsecPhase1CertificateOutputWithContext(context.Background())
+}
+
+func (i VpnIpsecPhase1CertificateArgs) ToVpnIpsecPhase1CertificateOutputWithContext(ctx context.Context) VpnIpsecPhase1CertificateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1CertificateOutput)
+}
+
+// VpnIpsecPhase1CertificateArrayInput is an input type that accepts VpnIpsecPhase1CertificateArray and VpnIpsecPhase1CertificateArrayOutput values.
+// You can construct a concrete instance of `VpnIpsecPhase1CertificateArrayInput` via:
+//
+//	VpnIpsecPhase1CertificateArray{ VpnIpsecPhase1CertificateArgs{...} }
+type VpnIpsecPhase1CertificateArrayInput interface {
+	pulumi.Input
+
+	ToVpnIpsecPhase1CertificateArrayOutput() VpnIpsecPhase1CertificateArrayOutput
+	ToVpnIpsecPhase1CertificateArrayOutputWithContext(context.Context) VpnIpsecPhase1CertificateArrayOutput
+}
+
+type VpnIpsecPhase1CertificateArray []VpnIpsecPhase1CertificateInput
+
+func (VpnIpsecPhase1CertificateArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnIpsecPhase1Certificate)(nil)).Elem()
+}
+
+func (i VpnIpsecPhase1CertificateArray) ToVpnIpsecPhase1CertificateArrayOutput() VpnIpsecPhase1CertificateArrayOutput {
+	return i.ToVpnIpsecPhase1CertificateArrayOutputWithContext(context.Background())
+}
+
+func (i VpnIpsecPhase1CertificateArray) ToVpnIpsecPhase1CertificateArrayOutputWithContext(ctx context.Context) VpnIpsecPhase1CertificateArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1CertificateArrayOutput)
+}
+
+type VpnIpsecPhase1CertificateOutput struct{ *pulumi.OutputState }
+
+func (VpnIpsecPhase1CertificateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnIpsecPhase1Certificate)(nil)).Elem()
+}
+
+func (o VpnIpsecPhase1CertificateOutput) ToVpnIpsecPhase1CertificateOutput() VpnIpsecPhase1CertificateOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1CertificateOutput) ToVpnIpsecPhase1CertificateOutputWithContext(ctx context.Context) VpnIpsecPhase1CertificateOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1CertificateOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnIpsecPhase1Certificate) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type VpnIpsecPhase1CertificateArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnIpsecPhase1CertificateArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnIpsecPhase1Certificate)(nil)).Elem()
+}
+
+func (o VpnIpsecPhase1CertificateArrayOutput) ToVpnIpsecPhase1CertificateArrayOutput() VpnIpsecPhase1CertificateArrayOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1CertificateArrayOutput) ToVpnIpsecPhase1CertificateArrayOutputWithContext(ctx context.Context) VpnIpsecPhase1CertificateArrayOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1CertificateArrayOutput) Index(i pulumi.IntInput) VpnIpsecPhase1CertificateOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnIpsecPhase1Certificate {
+		return vs[0].([]VpnIpsecPhase1Certificate)[vs[1].(int)]
+	}).(VpnIpsecPhase1CertificateOutput)
+}
+
+type VpnIpsecPhase1InterfaceBackupGateway struct {
+	Address *string `pulumi:"address"`
+}
+
+// VpnIpsecPhase1InterfaceBackupGatewayInput is an input type that accepts VpnIpsecPhase1InterfaceBackupGatewayArgs and VpnIpsecPhase1InterfaceBackupGatewayOutput values.
+// You can construct a concrete instance of `VpnIpsecPhase1InterfaceBackupGatewayInput` via:
+//
+//	VpnIpsecPhase1InterfaceBackupGatewayArgs{...}
+type VpnIpsecPhase1InterfaceBackupGatewayInput interface {
+	pulumi.Input
+
+	ToVpnIpsecPhase1InterfaceBackupGatewayOutput() VpnIpsecPhase1InterfaceBackupGatewayOutput
+	ToVpnIpsecPhase1InterfaceBackupGatewayOutputWithContext(context.Context) VpnIpsecPhase1InterfaceBackupGatewayOutput
+}
+
+type VpnIpsecPhase1InterfaceBackupGatewayArgs struct {
+	Address pulumi.StringPtrInput `pulumi:"address"`
+}
+
+func (VpnIpsecPhase1InterfaceBackupGatewayArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnIpsecPhase1InterfaceBackupGateway)(nil)).Elem()
+}
+
+func (i VpnIpsecPhase1InterfaceBackupGatewayArgs) ToVpnIpsecPhase1InterfaceBackupGatewayOutput() VpnIpsecPhase1InterfaceBackupGatewayOutput {
+	return i.ToVpnIpsecPhase1InterfaceBackupGatewayOutputWithContext(context.Background())
+}
+
+func (i VpnIpsecPhase1InterfaceBackupGatewayArgs) ToVpnIpsecPhase1InterfaceBackupGatewayOutputWithContext(ctx context.Context) VpnIpsecPhase1InterfaceBackupGatewayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1InterfaceBackupGatewayOutput)
+}
+
+// VpnIpsecPhase1InterfaceBackupGatewayArrayInput is an input type that accepts VpnIpsecPhase1InterfaceBackupGatewayArray and VpnIpsecPhase1InterfaceBackupGatewayArrayOutput values.
+// You can construct a concrete instance of `VpnIpsecPhase1InterfaceBackupGatewayArrayInput` via:
+//
+//	VpnIpsecPhase1InterfaceBackupGatewayArray{ VpnIpsecPhase1InterfaceBackupGatewayArgs{...} }
+type VpnIpsecPhase1InterfaceBackupGatewayArrayInput interface {
+	pulumi.Input
+
+	ToVpnIpsecPhase1InterfaceBackupGatewayArrayOutput() VpnIpsecPhase1InterfaceBackupGatewayArrayOutput
+	ToVpnIpsecPhase1InterfaceBackupGatewayArrayOutputWithContext(context.Context) VpnIpsecPhase1InterfaceBackupGatewayArrayOutput
+}
+
+type VpnIpsecPhase1InterfaceBackupGatewayArray []VpnIpsecPhase1InterfaceBackupGatewayInput
+
+func (VpnIpsecPhase1InterfaceBackupGatewayArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnIpsecPhase1InterfaceBackupGateway)(nil)).Elem()
+}
+
+func (i VpnIpsecPhase1InterfaceBackupGatewayArray) ToVpnIpsecPhase1InterfaceBackupGatewayArrayOutput() VpnIpsecPhase1InterfaceBackupGatewayArrayOutput {
+	return i.ToVpnIpsecPhase1InterfaceBackupGatewayArrayOutputWithContext(context.Background())
+}
+
+func (i VpnIpsecPhase1InterfaceBackupGatewayArray) ToVpnIpsecPhase1InterfaceBackupGatewayArrayOutputWithContext(ctx context.Context) VpnIpsecPhase1InterfaceBackupGatewayArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1InterfaceBackupGatewayArrayOutput)
+}
+
+type VpnIpsecPhase1InterfaceBackupGatewayOutput struct{ *pulumi.OutputState }
+
+func (VpnIpsecPhase1InterfaceBackupGatewayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnIpsecPhase1InterfaceBackupGateway)(nil)).Elem()
+}
+
+func (o VpnIpsecPhase1InterfaceBackupGatewayOutput) ToVpnIpsecPhase1InterfaceBackupGatewayOutput() VpnIpsecPhase1InterfaceBackupGatewayOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1InterfaceBackupGatewayOutput) ToVpnIpsecPhase1InterfaceBackupGatewayOutputWithContext(ctx context.Context) VpnIpsecPhase1InterfaceBackupGatewayOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1InterfaceBackupGatewayOutput) Address() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnIpsecPhase1InterfaceBackupGateway) *string { return v.Address }).(pulumi.StringPtrOutput)
+}
+
+type VpnIpsecPhase1InterfaceBackupGatewayArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnIpsecPhase1InterfaceBackupGatewayArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnIpsecPhase1InterfaceBackupGateway)(nil)).Elem()
+}
+
+func (o VpnIpsecPhase1InterfaceBackupGatewayArrayOutput) ToVpnIpsecPhase1InterfaceBackupGatewayArrayOutput() VpnIpsecPhase1InterfaceBackupGatewayArrayOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1InterfaceBackupGatewayArrayOutput) ToVpnIpsecPhase1InterfaceBackupGatewayArrayOutputWithContext(ctx context.Context) VpnIpsecPhase1InterfaceBackupGatewayArrayOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1InterfaceBackupGatewayArrayOutput) Index(i pulumi.IntInput) VpnIpsecPhase1InterfaceBackupGatewayOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnIpsecPhase1InterfaceBackupGateway {
+		return vs[0].([]VpnIpsecPhase1InterfaceBackupGateway)[vs[1].(int)]
+	}).(VpnIpsecPhase1InterfaceBackupGatewayOutput)
+}
+
+type VpnIpsecPhase1InterfaceCertificate struct {
+	Name *string `pulumi:"name"`
+}
+
+// VpnIpsecPhase1InterfaceCertificateInput is an input type that accepts VpnIpsecPhase1InterfaceCertificateArgs and VpnIpsecPhase1InterfaceCertificateOutput values.
+// You can construct a concrete instance of `VpnIpsecPhase1InterfaceCertificateInput` via:
+//
+//	VpnIpsecPhase1InterfaceCertificateArgs{...}
+type VpnIpsecPhase1InterfaceCertificateInput interface {
+	pulumi.Input
+
+	ToVpnIpsecPhase1InterfaceCertificateOutput() VpnIpsecPhase1InterfaceCertificateOutput
+	ToVpnIpsecPhase1InterfaceCertificateOutputWithContext(context.Context) VpnIpsecPhase1InterfaceCertificateOutput
+}
+
+type VpnIpsecPhase1InterfaceCertificateArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (VpnIpsecPhase1InterfaceCertificateArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnIpsecPhase1InterfaceCertificate)(nil)).Elem()
+}
+
+func (i VpnIpsecPhase1InterfaceCertificateArgs) ToVpnIpsecPhase1InterfaceCertificateOutput() VpnIpsecPhase1InterfaceCertificateOutput {
+	return i.ToVpnIpsecPhase1InterfaceCertificateOutputWithContext(context.Background())
+}
+
+func (i VpnIpsecPhase1InterfaceCertificateArgs) ToVpnIpsecPhase1InterfaceCertificateOutputWithContext(ctx context.Context) VpnIpsecPhase1InterfaceCertificateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1InterfaceCertificateOutput)
+}
+
+// VpnIpsecPhase1InterfaceCertificateArrayInput is an input type that accepts VpnIpsecPhase1InterfaceCertificateArray and VpnIpsecPhase1InterfaceCertificateArrayOutput values.
+// You can construct a concrete instance of `VpnIpsecPhase1InterfaceCertificateArrayInput` via:
+//
+//	VpnIpsecPhase1InterfaceCertificateArray{ VpnIpsecPhase1InterfaceCertificateArgs{...} }
+type VpnIpsecPhase1InterfaceCertificateArrayInput interface {
+	pulumi.Input
+
+	ToVpnIpsecPhase1InterfaceCertificateArrayOutput() VpnIpsecPhase1InterfaceCertificateArrayOutput
+	ToVpnIpsecPhase1InterfaceCertificateArrayOutputWithContext(context.Context) VpnIpsecPhase1InterfaceCertificateArrayOutput
+}
+
+type VpnIpsecPhase1InterfaceCertificateArray []VpnIpsecPhase1InterfaceCertificateInput
+
+func (VpnIpsecPhase1InterfaceCertificateArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnIpsecPhase1InterfaceCertificate)(nil)).Elem()
+}
+
+func (i VpnIpsecPhase1InterfaceCertificateArray) ToVpnIpsecPhase1InterfaceCertificateArrayOutput() VpnIpsecPhase1InterfaceCertificateArrayOutput {
+	return i.ToVpnIpsecPhase1InterfaceCertificateArrayOutputWithContext(context.Background())
+}
+
+func (i VpnIpsecPhase1InterfaceCertificateArray) ToVpnIpsecPhase1InterfaceCertificateArrayOutputWithContext(ctx context.Context) VpnIpsecPhase1InterfaceCertificateArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1InterfaceCertificateArrayOutput)
+}
+
+type VpnIpsecPhase1InterfaceCertificateOutput struct{ *pulumi.OutputState }
+
+func (VpnIpsecPhase1InterfaceCertificateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnIpsecPhase1InterfaceCertificate)(nil)).Elem()
+}
+
+func (o VpnIpsecPhase1InterfaceCertificateOutput) ToVpnIpsecPhase1InterfaceCertificateOutput() VpnIpsecPhase1InterfaceCertificateOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1InterfaceCertificateOutput) ToVpnIpsecPhase1InterfaceCertificateOutputWithContext(ctx context.Context) VpnIpsecPhase1InterfaceCertificateOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1InterfaceCertificateOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnIpsecPhase1InterfaceCertificate) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type VpnIpsecPhase1InterfaceCertificateArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnIpsecPhase1InterfaceCertificateArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnIpsecPhase1InterfaceCertificate)(nil)).Elem()
+}
+
+func (o VpnIpsecPhase1InterfaceCertificateArrayOutput) ToVpnIpsecPhase1InterfaceCertificateArrayOutput() VpnIpsecPhase1InterfaceCertificateArrayOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1InterfaceCertificateArrayOutput) ToVpnIpsecPhase1InterfaceCertificateArrayOutputWithContext(ctx context.Context) VpnIpsecPhase1InterfaceCertificateArrayOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1InterfaceCertificateArrayOutput) Index(i pulumi.IntInput) VpnIpsecPhase1InterfaceCertificateOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnIpsecPhase1InterfaceCertificate {
+		return vs[0].([]VpnIpsecPhase1InterfaceCertificate)[vs[1].(int)]
+	}).(VpnIpsecPhase1InterfaceCertificateOutput)
+}
+
+type VpnIpsecPhase1InterfaceIpv4ExcludeRange struct {
+	EndIp   *string `pulumi:"endIp"`
+	Id      *int    `pulumi:"id"`
+	StartIp *string `pulumi:"startIp"`
+}
+
+// VpnIpsecPhase1InterfaceIpv4ExcludeRangeInput is an input type that accepts VpnIpsecPhase1InterfaceIpv4ExcludeRangeArgs and VpnIpsecPhase1InterfaceIpv4ExcludeRangeOutput values.
+// You can construct a concrete instance of `VpnIpsecPhase1InterfaceIpv4ExcludeRangeInput` via:
+//
+//	VpnIpsecPhase1InterfaceIpv4ExcludeRangeArgs{...}
+type VpnIpsecPhase1InterfaceIpv4ExcludeRangeInput interface {
+	pulumi.Input
+
+	ToVpnIpsecPhase1InterfaceIpv4ExcludeRangeOutput() VpnIpsecPhase1InterfaceIpv4ExcludeRangeOutput
+	ToVpnIpsecPhase1InterfaceIpv4ExcludeRangeOutputWithContext(context.Context) VpnIpsecPhase1InterfaceIpv4ExcludeRangeOutput
+}
+
+type VpnIpsecPhase1InterfaceIpv4ExcludeRangeArgs struct {
+	EndIp   pulumi.StringPtrInput `pulumi:"endIp"`
+	Id      pulumi.IntPtrInput    `pulumi:"id"`
+	StartIp pulumi.StringPtrInput `pulumi:"startIp"`
+}
+
+func (VpnIpsecPhase1InterfaceIpv4ExcludeRangeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnIpsecPhase1InterfaceIpv4ExcludeRange)(nil)).Elem()
+}
+
+func (i VpnIpsecPhase1InterfaceIpv4ExcludeRangeArgs) ToVpnIpsecPhase1InterfaceIpv4ExcludeRangeOutput() VpnIpsecPhase1InterfaceIpv4ExcludeRangeOutput {
+	return i.ToVpnIpsecPhase1InterfaceIpv4ExcludeRangeOutputWithContext(context.Background())
+}
+
+func (i VpnIpsecPhase1InterfaceIpv4ExcludeRangeArgs) ToVpnIpsecPhase1InterfaceIpv4ExcludeRangeOutputWithContext(ctx context.Context) VpnIpsecPhase1InterfaceIpv4ExcludeRangeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1InterfaceIpv4ExcludeRangeOutput)
+}
+
+// VpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayInput is an input type that accepts VpnIpsecPhase1InterfaceIpv4ExcludeRangeArray and VpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayOutput values.
+// You can construct a concrete instance of `VpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayInput` via:
+//
+//	VpnIpsecPhase1InterfaceIpv4ExcludeRangeArray{ VpnIpsecPhase1InterfaceIpv4ExcludeRangeArgs{...} }
+type VpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayInput interface {
+	pulumi.Input
+
+	ToVpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayOutput() VpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayOutput
+	ToVpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayOutputWithContext(context.Context) VpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayOutput
+}
+
+type VpnIpsecPhase1InterfaceIpv4ExcludeRangeArray []VpnIpsecPhase1InterfaceIpv4ExcludeRangeInput
+
+func (VpnIpsecPhase1InterfaceIpv4ExcludeRangeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnIpsecPhase1InterfaceIpv4ExcludeRange)(nil)).Elem()
+}
+
+func (i VpnIpsecPhase1InterfaceIpv4ExcludeRangeArray) ToVpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayOutput() VpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayOutput {
+	return i.ToVpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayOutputWithContext(context.Background())
+}
+
+func (i VpnIpsecPhase1InterfaceIpv4ExcludeRangeArray) ToVpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayOutputWithContext(ctx context.Context) VpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayOutput)
+}
+
+type VpnIpsecPhase1InterfaceIpv4ExcludeRangeOutput struct{ *pulumi.OutputState }
+
+func (VpnIpsecPhase1InterfaceIpv4ExcludeRangeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnIpsecPhase1InterfaceIpv4ExcludeRange)(nil)).Elem()
+}
+
+func (o VpnIpsecPhase1InterfaceIpv4ExcludeRangeOutput) ToVpnIpsecPhase1InterfaceIpv4ExcludeRangeOutput() VpnIpsecPhase1InterfaceIpv4ExcludeRangeOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1InterfaceIpv4ExcludeRangeOutput) ToVpnIpsecPhase1InterfaceIpv4ExcludeRangeOutputWithContext(ctx context.Context) VpnIpsecPhase1InterfaceIpv4ExcludeRangeOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1InterfaceIpv4ExcludeRangeOutput) EndIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnIpsecPhase1InterfaceIpv4ExcludeRange) *string { return v.EndIp }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnIpsecPhase1InterfaceIpv4ExcludeRangeOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VpnIpsecPhase1InterfaceIpv4ExcludeRange) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+func (o VpnIpsecPhase1InterfaceIpv4ExcludeRangeOutput) StartIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnIpsecPhase1InterfaceIpv4ExcludeRange) *string { return v.StartIp }).(pulumi.StringPtrOutput)
+}
+
+type VpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnIpsecPhase1InterfaceIpv4ExcludeRange)(nil)).Elem()
+}
+
+func (o VpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayOutput) ToVpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayOutput() VpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayOutput) ToVpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayOutputWithContext(ctx context.Context) VpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayOutput) Index(i pulumi.IntInput) VpnIpsecPhase1InterfaceIpv4ExcludeRangeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnIpsecPhase1InterfaceIpv4ExcludeRange {
+		return vs[0].([]VpnIpsecPhase1InterfaceIpv4ExcludeRange)[vs[1].(int)]
+	}).(VpnIpsecPhase1InterfaceIpv4ExcludeRangeOutput)
+}
+
+type VpnIpsecPhase1InterfaceIpv6ExcludeRange struct {
+	EndIp   *string `pulumi:"endIp"`
+	Id      *int    `pulumi:"id"`
+	StartIp *string `pulumi:"startIp"`
+}
+
+// VpnIpsecPhase1InterfaceIpv6ExcludeRangeInput is an input type that accepts VpnIpsecPhase1InterfaceIpv6ExcludeRangeArgs and VpnIpsecPhase1InterfaceIpv6ExcludeRangeOutput values.
+// You can construct a concrete instance of `VpnIpsecPhase1InterfaceIpv6ExcludeRangeInput` via:
+//
+//	VpnIpsecPhase1InterfaceIpv6ExcludeRangeArgs{...}
+type VpnIpsecPhase1InterfaceIpv6ExcludeRangeInput interface {
+	pulumi.Input
+
+	ToVpnIpsecPhase1InterfaceIpv6ExcludeRangeOutput() VpnIpsecPhase1InterfaceIpv6ExcludeRangeOutput
+	ToVpnIpsecPhase1InterfaceIpv6ExcludeRangeOutputWithContext(context.Context) VpnIpsecPhase1InterfaceIpv6ExcludeRangeOutput
+}
+
+type VpnIpsecPhase1InterfaceIpv6ExcludeRangeArgs struct {
+	EndIp   pulumi.StringPtrInput `pulumi:"endIp"`
+	Id      pulumi.IntPtrInput    `pulumi:"id"`
+	StartIp pulumi.StringPtrInput `pulumi:"startIp"`
+}
+
+func (VpnIpsecPhase1InterfaceIpv6ExcludeRangeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnIpsecPhase1InterfaceIpv6ExcludeRange)(nil)).Elem()
+}
+
+func (i VpnIpsecPhase1InterfaceIpv6ExcludeRangeArgs) ToVpnIpsecPhase1InterfaceIpv6ExcludeRangeOutput() VpnIpsecPhase1InterfaceIpv6ExcludeRangeOutput {
+	return i.ToVpnIpsecPhase1InterfaceIpv6ExcludeRangeOutputWithContext(context.Background())
+}
+
+func (i VpnIpsecPhase1InterfaceIpv6ExcludeRangeArgs) ToVpnIpsecPhase1InterfaceIpv6ExcludeRangeOutputWithContext(ctx context.Context) VpnIpsecPhase1InterfaceIpv6ExcludeRangeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1InterfaceIpv6ExcludeRangeOutput)
+}
+
+// VpnIpsecPhase1InterfaceIpv6ExcludeRangeArrayInput is an input type that accepts VpnIpsecPhase1InterfaceIpv6ExcludeRangeArray and VpnIpsecPhase1InterfaceIpv6ExcludeRangeArrayOutput values.
+// You can construct a concrete instance of `VpnIpsecPhase1InterfaceIpv6ExcludeRangeArrayInput` via:
+//
+//	VpnIpsecPhase1InterfaceIpv6ExcludeRangeArray{ VpnIpsecPhase1InterfaceIpv6ExcludeRangeArgs{...} }
+type VpnIpsecPhase1InterfaceIpv6ExcludeRangeArrayInput interface {
+	pulumi.Input
+
+	ToVpnIpsecPhase1InterfaceIpv6ExcludeRangeArrayOutput() VpnIpsecPhase1InterfaceIpv6ExcludeRangeArrayOutput
+	ToVpnIpsecPhase1InterfaceIpv6ExcludeRangeArrayOutputWithContext(context.Context) VpnIpsecPhase1InterfaceIpv6ExcludeRangeArrayOutput
+}
+
+type VpnIpsecPhase1InterfaceIpv6ExcludeRangeArray []VpnIpsecPhase1InterfaceIpv6ExcludeRangeInput
+
+func (VpnIpsecPhase1InterfaceIpv6ExcludeRangeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnIpsecPhase1InterfaceIpv6ExcludeRange)(nil)).Elem()
+}
+
+func (i VpnIpsecPhase1InterfaceIpv6ExcludeRangeArray) ToVpnIpsecPhase1InterfaceIpv6ExcludeRangeArrayOutput() VpnIpsecPhase1InterfaceIpv6ExcludeRangeArrayOutput {
+	return i.ToVpnIpsecPhase1InterfaceIpv6ExcludeRangeArrayOutputWithContext(context.Background())
+}
+
+func (i VpnIpsecPhase1InterfaceIpv6ExcludeRangeArray) ToVpnIpsecPhase1InterfaceIpv6ExcludeRangeArrayOutputWithContext(ctx context.Context) VpnIpsecPhase1InterfaceIpv6ExcludeRangeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1InterfaceIpv6ExcludeRangeArrayOutput)
+}
+
+type VpnIpsecPhase1InterfaceIpv6ExcludeRangeOutput struct{ *pulumi.OutputState }
+
+func (VpnIpsecPhase1InterfaceIpv6ExcludeRangeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnIpsecPhase1InterfaceIpv6ExcludeRange)(nil)).Elem()
+}
+
+func (o VpnIpsecPhase1InterfaceIpv6ExcludeRangeOutput) ToVpnIpsecPhase1InterfaceIpv6ExcludeRangeOutput() VpnIpsecPhase1InterfaceIpv6ExcludeRangeOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1InterfaceIpv6ExcludeRangeOutput) ToVpnIpsecPhase1InterfaceIpv6ExcludeRangeOutputWithContext(ctx context.Context) VpnIpsecPhase1InterfaceIpv6ExcludeRangeOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1InterfaceIpv6ExcludeRangeOutput) EndIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnIpsecPhase1InterfaceIpv6ExcludeRange) *string { return v.EndIp }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnIpsecPhase1InterfaceIpv6ExcludeRangeOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VpnIpsecPhase1InterfaceIpv6ExcludeRange) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+func (o VpnIpsecPhase1InterfaceIpv6ExcludeRangeOutput) StartIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnIpsecPhase1InterfaceIpv6ExcludeRange) *string { return v.StartIp }).(pulumi.StringPtrOutput)
+}
+
+type VpnIpsecPhase1InterfaceIpv6ExcludeRangeArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnIpsecPhase1InterfaceIpv6ExcludeRangeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnIpsecPhase1InterfaceIpv6ExcludeRange)(nil)).Elem()
+}
+
+func (o VpnIpsecPhase1InterfaceIpv6ExcludeRangeArrayOutput) ToVpnIpsecPhase1InterfaceIpv6ExcludeRangeArrayOutput() VpnIpsecPhase1InterfaceIpv6ExcludeRangeArrayOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1InterfaceIpv6ExcludeRangeArrayOutput) ToVpnIpsecPhase1InterfaceIpv6ExcludeRangeArrayOutputWithContext(ctx context.Context) VpnIpsecPhase1InterfaceIpv6ExcludeRangeArrayOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1InterfaceIpv6ExcludeRangeArrayOutput) Index(i pulumi.IntInput) VpnIpsecPhase1InterfaceIpv6ExcludeRangeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnIpsecPhase1InterfaceIpv6ExcludeRange {
+		return vs[0].([]VpnIpsecPhase1InterfaceIpv6ExcludeRange)[vs[1].(int)]
+	}).(VpnIpsecPhase1InterfaceIpv6ExcludeRangeOutput)
+}
+
+type VpnIpsecPhase1Ipv4ExcludeRange struct {
+	EndIp   *string `pulumi:"endIp"`
+	Id      *int    `pulumi:"id"`
+	StartIp *string `pulumi:"startIp"`
+}
+
+// VpnIpsecPhase1Ipv4ExcludeRangeInput is an input type that accepts VpnIpsecPhase1Ipv4ExcludeRangeArgs and VpnIpsecPhase1Ipv4ExcludeRangeOutput values.
+// You can construct a concrete instance of `VpnIpsecPhase1Ipv4ExcludeRangeInput` via:
+//
+//	VpnIpsecPhase1Ipv4ExcludeRangeArgs{...}
+type VpnIpsecPhase1Ipv4ExcludeRangeInput interface {
+	pulumi.Input
+
+	ToVpnIpsecPhase1Ipv4ExcludeRangeOutput() VpnIpsecPhase1Ipv4ExcludeRangeOutput
+	ToVpnIpsecPhase1Ipv4ExcludeRangeOutputWithContext(context.Context) VpnIpsecPhase1Ipv4ExcludeRangeOutput
+}
+
+type VpnIpsecPhase1Ipv4ExcludeRangeArgs struct {
+	EndIp   pulumi.StringPtrInput `pulumi:"endIp"`
+	Id      pulumi.IntPtrInput    `pulumi:"id"`
+	StartIp pulumi.StringPtrInput `pulumi:"startIp"`
+}
+
+func (VpnIpsecPhase1Ipv4ExcludeRangeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnIpsecPhase1Ipv4ExcludeRange)(nil)).Elem()
+}
+
+func (i VpnIpsecPhase1Ipv4ExcludeRangeArgs) ToVpnIpsecPhase1Ipv4ExcludeRangeOutput() VpnIpsecPhase1Ipv4ExcludeRangeOutput {
+	return i.ToVpnIpsecPhase1Ipv4ExcludeRangeOutputWithContext(context.Background())
+}
+
+func (i VpnIpsecPhase1Ipv4ExcludeRangeArgs) ToVpnIpsecPhase1Ipv4ExcludeRangeOutputWithContext(ctx context.Context) VpnIpsecPhase1Ipv4ExcludeRangeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1Ipv4ExcludeRangeOutput)
+}
+
+// VpnIpsecPhase1Ipv4ExcludeRangeArrayInput is an input type that accepts VpnIpsecPhase1Ipv4ExcludeRangeArray and VpnIpsecPhase1Ipv4ExcludeRangeArrayOutput values.
+// You can construct a concrete instance of `VpnIpsecPhase1Ipv4ExcludeRangeArrayInput` via:
+//
+//	VpnIpsecPhase1Ipv4ExcludeRangeArray{ VpnIpsecPhase1Ipv4ExcludeRangeArgs{...} }
+type VpnIpsecPhase1Ipv4ExcludeRangeArrayInput interface {
+	pulumi.Input
+
+	ToVpnIpsecPhase1Ipv4ExcludeRangeArrayOutput() VpnIpsecPhase1Ipv4ExcludeRangeArrayOutput
+	ToVpnIpsecPhase1Ipv4ExcludeRangeArrayOutputWithContext(context.Context) VpnIpsecPhase1Ipv4ExcludeRangeArrayOutput
+}
+
+type VpnIpsecPhase1Ipv4ExcludeRangeArray []VpnIpsecPhase1Ipv4ExcludeRangeInput
+
+func (VpnIpsecPhase1Ipv4ExcludeRangeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnIpsecPhase1Ipv4ExcludeRange)(nil)).Elem()
+}
+
+func (i VpnIpsecPhase1Ipv4ExcludeRangeArray) ToVpnIpsecPhase1Ipv4ExcludeRangeArrayOutput() VpnIpsecPhase1Ipv4ExcludeRangeArrayOutput {
+	return i.ToVpnIpsecPhase1Ipv4ExcludeRangeArrayOutputWithContext(context.Background())
+}
+
+func (i VpnIpsecPhase1Ipv4ExcludeRangeArray) ToVpnIpsecPhase1Ipv4ExcludeRangeArrayOutputWithContext(ctx context.Context) VpnIpsecPhase1Ipv4ExcludeRangeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1Ipv4ExcludeRangeArrayOutput)
+}
+
+type VpnIpsecPhase1Ipv4ExcludeRangeOutput struct{ *pulumi.OutputState }
+
+func (VpnIpsecPhase1Ipv4ExcludeRangeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnIpsecPhase1Ipv4ExcludeRange)(nil)).Elem()
+}
+
+func (o VpnIpsecPhase1Ipv4ExcludeRangeOutput) ToVpnIpsecPhase1Ipv4ExcludeRangeOutput() VpnIpsecPhase1Ipv4ExcludeRangeOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1Ipv4ExcludeRangeOutput) ToVpnIpsecPhase1Ipv4ExcludeRangeOutputWithContext(ctx context.Context) VpnIpsecPhase1Ipv4ExcludeRangeOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1Ipv4ExcludeRangeOutput) EndIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnIpsecPhase1Ipv4ExcludeRange) *string { return v.EndIp }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnIpsecPhase1Ipv4ExcludeRangeOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VpnIpsecPhase1Ipv4ExcludeRange) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+func (o VpnIpsecPhase1Ipv4ExcludeRangeOutput) StartIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnIpsecPhase1Ipv4ExcludeRange) *string { return v.StartIp }).(pulumi.StringPtrOutput)
+}
+
+type VpnIpsecPhase1Ipv4ExcludeRangeArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnIpsecPhase1Ipv4ExcludeRangeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnIpsecPhase1Ipv4ExcludeRange)(nil)).Elem()
+}
+
+func (o VpnIpsecPhase1Ipv4ExcludeRangeArrayOutput) ToVpnIpsecPhase1Ipv4ExcludeRangeArrayOutput() VpnIpsecPhase1Ipv4ExcludeRangeArrayOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1Ipv4ExcludeRangeArrayOutput) ToVpnIpsecPhase1Ipv4ExcludeRangeArrayOutputWithContext(ctx context.Context) VpnIpsecPhase1Ipv4ExcludeRangeArrayOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1Ipv4ExcludeRangeArrayOutput) Index(i pulumi.IntInput) VpnIpsecPhase1Ipv4ExcludeRangeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnIpsecPhase1Ipv4ExcludeRange {
+		return vs[0].([]VpnIpsecPhase1Ipv4ExcludeRange)[vs[1].(int)]
+	}).(VpnIpsecPhase1Ipv4ExcludeRangeOutput)
+}
+
+type VpnIpsecPhase1Ipv6ExcludeRange struct {
+	EndIp   *string `pulumi:"endIp"`
+	Id      *int    `pulumi:"id"`
+	StartIp *string `pulumi:"startIp"`
+}
+
+// VpnIpsecPhase1Ipv6ExcludeRangeInput is an input type that accepts VpnIpsecPhase1Ipv6ExcludeRangeArgs and VpnIpsecPhase1Ipv6ExcludeRangeOutput values.
+// You can construct a concrete instance of `VpnIpsecPhase1Ipv6ExcludeRangeInput` via:
+//
+//	VpnIpsecPhase1Ipv6ExcludeRangeArgs{...}
+type VpnIpsecPhase1Ipv6ExcludeRangeInput interface {
+	pulumi.Input
+
+	ToVpnIpsecPhase1Ipv6ExcludeRangeOutput() VpnIpsecPhase1Ipv6ExcludeRangeOutput
+	ToVpnIpsecPhase1Ipv6ExcludeRangeOutputWithContext(context.Context) VpnIpsecPhase1Ipv6ExcludeRangeOutput
+}
+
+type VpnIpsecPhase1Ipv6ExcludeRangeArgs struct {
+	EndIp   pulumi.StringPtrInput `pulumi:"endIp"`
+	Id      pulumi.IntPtrInput    `pulumi:"id"`
+	StartIp pulumi.StringPtrInput `pulumi:"startIp"`
+}
+
+func (VpnIpsecPhase1Ipv6ExcludeRangeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnIpsecPhase1Ipv6ExcludeRange)(nil)).Elem()
+}
+
+func (i VpnIpsecPhase1Ipv6ExcludeRangeArgs) ToVpnIpsecPhase1Ipv6ExcludeRangeOutput() VpnIpsecPhase1Ipv6ExcludeRangeOutput {
+	return i.ToVpnIpsecPhase1Ipv6ExcludeRangeOutputWithContext(context.Background())
+}
+
+func (i VpnIpsecPhase1Ipv6ExcludeRangeArgs) ToVpnIpsecPhase1Ipv6ExcludeRangeOutputWithContext(ctx context.Context) VpnIpsecPhase1Ipv6ExcludeRangeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1Ipv6ExcludeRangeOutput)
+}
+
+// VpnIpsecPhase1Ipv6ExcludeRangeArrayInput is an input type that accepts VpnIpsecPhase1Ipv6ExcludeRangeArray and VpnIpsecPhase1Ipv6ExcludeRangeArrayOutput values.
+// You can construct a concrete instance of `VpnIpsecPhase1Ipv6ExcludeRangeArrayInput` via:
+//
+//	VpnIpsecPhase1Ipv6ExcludeRangeArray{ VpnIpsecPhase1Ipv6ExcludeRangeArgs{...} }
+type VpnIpsecPhase1Ipv6ExcludeRangeArrayInput interface {
+	pulumi.Input
+
+	ToVpnIpsecPhase1Ipv6ExcludeRangeArrayOutput() VpnIpsecPhase1Ipv6ExcludeRangeArrayOutput
+	ToVpnIpsecPhase1Ipv6ExcludeRangeArrayOutputWithContext(context.Context) VpnIpsecPhase1Ipv6ExcludeRangeArrayOutput
+}
+
+type VpnIpsecPhase1Ipv6ExcludeRangeArray []VpnIpsecPhase1Ipv6ExcludeRangeInput
+
+func (VpnIpsecPhase1Ipv6ExcludeRangeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnIpsecPhase1Ipv6ExcludeRange)(nil)).Elem()
+}
+
+func (i VpnIpsecPhase1Ipv6ExcludeRangeArray) ToVpnIpsecPhase1Ipv6ExcludeRangeArrayOutput() VpnIpsecPhase1Ipv6ExcludeRangeArrayOutput {
+	return i.ToVpnIpsecPhase1Ipv6ExcludeRangeArrayOutputWithContext(context.Background())
+}
+
+func (i VpnIpsecPhase1Ipv6ExcludeRangeArray) ToVpnIpsecPhase1Ipv6ExcludeRangeArrayOutputWithContext(ctx context.Context) VpnIpsecPhase1Ipv6ExcludeRangeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1Ipv6ExcludeRangeArrayOutput)
+}
+
+type VpnIpsecPhase1Ipv6ExcludeRangeOutput struct{ *pulumi.OutputState }
+
+func (VpnIpsecPhase1Ipv6ExcludeRangeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnIpsecPhase1Ipv6ExcludeRange)(nil)).Elem()
+}
+
+func (o VpnIpsecPhase1Ipv6ExcludeRangeOutput) ToVpnIpsecPhase1Ipv6ExcludeRangeOutput() VpnIpsecPhase1Ipv6ExcludeRangeOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1Ipv6ExcludeRangeOutput) ToVpnIpsecPhase1Ipv6ExcludeRangeOutputWithContext(ctx context.Context) VpnIpsecPhase1Ipv6ExcludeRangeOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1Ipv6ExcludeRangeOutput) EndIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnIpsecPhase1Ipv6ExcludeRange) *string { return v.EndIp }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnIpsecPhase1Ipv6ExcludeRangeOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VpnIpsecPhase1Ipv6ExcludeRange) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+func (o VpnIpsecPhase1Ipv6ExcludeRangeOutput) StartIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnIpsecPhase1Ipv6ExcludeRange) *string { return v.StartIp }).(pulumi.StringPtrOutput)
+}
+
+type VpnIpsecPhase1Ipv6ExcludeRangeArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnIpsecPhase1Ipv6ExcludeRangeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnIpsecPhase1Ipv6ExcludeRange)(nil)).Elem()
+}
+
+func (o VpnIpsecPhase1Ipv6ExcludeRangeArrayOutput) ToVpnIpsecPhase1Ipv6ExcludeRangeArrayOutput() VpnIpsecPhase1Ipv6ExcludeRangeArrayOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1Ipv6ExcludeRangeArrayOutput) ToVpnIpsecPhase1Ipv6ExcludeRangeArrayOutputWithContext(ctx context.Context) VpnIpsecPhase1Ipv6ExcludeRangeArrayOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1Ipv6ExcludeRangeArrayOutput) Index(i pulumi.IntInput) VpnIpsecPhase1Ipv6ExcludeRangeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnIpsecPhase1Ipv6ExcludeRange {
+		return vs[0].([]VpnIpsecPhase1Ipv6ExcludeRange)[vs[1].(int)]
+	}).(VpnIpsecPhase1Ipv6ExcludeRangeOutput)
+}
+
+type VpnKmipServerServerList struct {
+	Cert   *string `pulumi:"cert"`
+	Id     *int    `pulumi:"id"`
+	Port   *int    `pulumi:"port"`
+	Server *string `pulumi:"server"`
+	Status *string `pulumi:"status"`
+}
+
+// VpnKmipServerServerListInput is an input type that accepts VpnKmipServerServerListArgs and VpnKmipServerServerListOutput values.
+// You can construct a concrete instance of `VpnKmipServerServerListInput` via:
+//
+//	VpnKmipServerServerListArgs{...}
+type VpnKmipServerServerListInput interface {
+	pulumi.Input
+
+	ToVpnKmipServerServerListOutput() VpnKmipServerServerListOutput
+	ToVpnKmipServerServerListOutputWithContext(context.Context) VpnKmipServerServerListOutput
+}
+
+type VpnKmipServerServerListArgs struct {
+	Cert   pulumi.StringPtrInput `pulumi:"cert"`
+	Id     pulumi.IntPtrInput    `pulumi:"id"`
+	Port   pulumi.IntPtrInput    `pulumi:"port"`
+	Server pulumi.StringPtrInput `pulumi:"server"`
+	Status pulumi.StringPtrInput `pulumi:"status"`
+}
+
+func (VpnKmipServerServerListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnKmipServerServerList)(nil)).Elem()
+}
+
+func (i VpnKmipServerServerListArgs) ToVpnKmipServerServerListOutput() VpnKmipServerServerListOutput {
+	return i.ToVpnKmipServerServerListOutputWithContext(context.Background())
+}
+
+func (i VpnKmipServerServerListArgs) ToVpnKmipServerServerListOutputWithContext(ctx context.Context) VpnKmipServerServerListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnKmipServerServerListOutput)
+}
+
+// VpnKmipServerServerListArrayInput is an input type that accepts VpnKmipServerServerListArray and VpnKmipServerServerListArrayOutput values.
+// You can construct a concrete instance of `VpnKmipServerServerListArrayInput` via:
+//
+//	VpnKmipServerServerListArray{ VpnKmipServerServerListArgs{...} }
+type VpnKmipServerServerListArrayInput interface {
+	pulumi.Input
+
+	ToVpnKmipServerServerListArrayOutput() VpnKmipServerServerListArrayOutput
+	ToVpnKmipServerServerListArrayOutputWithContext(context.Context) VpnKmipServerServerListArrayOutput
+}
+
+type VpnKmipServerServerListArray []VpnKmipServerServerListInput
+
+func (VpnKmipServerServerListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnKmipServerServerList)(nil)).Elem()
+}
+
+func (i VpnKmipServerServerListArray) ToVpnKmipServerServerListArrayOutput() VpnKmipServerServerListArrayOutput {
+	return i.ToVpnKmipServerServerListArrayOutputWithContext(context.Background())
+}
+
+func (i VpnKmipServerServerListArray) ToVpnKmipServerServerListArrayOutputWithContext(ctx context.Context) VpnKmipServerServerListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnKmipServerServerListArrayOutput)
+}
+
+type VpnKmipServerServerListOutput struct{ *pulumi.OutputState }
+
+func (VpnKmipServerServerListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnKmipServerServerList)(nil)).Elem()
+}
+
+func (o VpnKmipServerServerListOutput) ToVpnKmipServerServerListOutput() VpnKmipServerServerListOutput {
+	return o
+}
+
+func (o VpnKmipServerServerListOutput) ToVpnKmipServerServerListOutputWithContext(ctx context.Context) VpnKmipServerServerListOutput {
+	return o
+}
+
+func (o VpnKmipServerServerListOutput) Cert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnKmipServerServerList) *string { return v.Cert }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnKmipServerServerListOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VpnKmipServerServerList) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+func (o VpnKmipServerServerListOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VpnKmipServerServerList) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+func (o VpnKmipServerServerListOutput) Server() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnKmipServerServerList) *string { return v.Server }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnKmipServerServerListOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnKmipServerServerList) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+type VpnKmipServerServerListArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnKmipServerServerListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnKmipServerServerList)(nil)).Elem()
+}
+
+func (o VpnKmipServerServerListArrayOutput) ToVpnKmipServerServerListArrayOutput() VpnKmipServerServerListArrayOutput {
+	return o
+}
+
+func (o VpnKmipServerServerListArrayOutput) ToVpnKmipServerServerListArrayOutputWithContext(ctx context.Context) VpnKmipServerServerListArrayOutput {
+	return o
+}
+
+func (o VpnKmipServerServerListArrayOutput) Index(i pulumi.IntInput) VpnKmipServerServerListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnKmipServerServerList {
+		return vs[0].([]VpnKmipServerServerList)[vs[1].(int)]
+	}).(VpnKmipServerServerListOutput)
+}
+
+type VpnOcvpnForticlientAccess struct {
+	AuthGroups []VpnOcvpnForticlientAccessAuthGroup `pulumi:"authGroups"`
+	Psksecret  *string                              `pulumi:"psksecret"`
+	Status     *string                              `pulumi:"status"`
+}
+
+// VpnOcvpnForticlientAccessInput is an input type that accepts VpnOcvpnForticlientAccessArgs and VpnOcvpnForticlientAccessOutput values.
+// You can construct a concrete instance of `VpnOcvpnForticlientAccessInput` via:
+//
+//	VpnOcvpnForticlientAccessArgs{...}
+type VpnOcvpnForticlientAccessInput interface {
+	pulumi.Input
+
+	ToVpnOcvpnForticlientAccessOutput() VpnOcvpnForticlientAccessOutput
+	ToVpnOcvpnForticlientAccessOutputWithContext(context.Context) VpnOcvpnForticlientAccessOutput
+}
+
+type VpnOcvpnForticlientAccessArgs struct {
+	AuthGroups VpnOcvpnForticlientAccessAuthGroupArrayInput `pulumi:"authGroups"`
+	Psksecret  pulumi.StringPtrInput                        `pulumi:"psksecret"`
+	Status     pulumi.StringPtrInput                        `pulumi:"status"`
+}
+
+func (VpnOcvpnForticlientAccessArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnOcvpnForticlientAccess)(nil)).Elem()
+}
+
+func (i VpnOcvpnForticlientAccessArgs) ToVpnOcvpnForticlientAccessOutput() VpnOcvpnForticlientAccessOutput {
+	return i.ToVpnOcvpnForticlientAccessOutputWithContext(context.Background())
+}
+
+func (i VpnOcvpnForticlientAccessArgs) ToVpnOcvpnForticlientAccessOutputWithContext(ctx context.Context) VpnOcvpnForticlientAccessOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnOcvpnForticlientAccessOutput)
+}
+
+func (i VpnOcvpnForticlientAccessArgs) ToVpnOcvpnForticlientAccessPtrOutput() VpnOcvpnForticlientAccessPtrOutput {
+	return i.ToVpnOcvpnForticlientAccessPtrOutputWithContext(context.Background())
+}
+
+func (i VpnOcvpnForticlientAccessArgs) ToVpnOcvpnForticlientAccessPtrOutputWithContext(ctx context.Context) VpnOcvpnForticlientAccessPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnOcvpnForticlientAccessOutput).ToVpnOcvpnForticlientAccessPtrOutputWithContext(ctx)
+}
+
+// VpnOcvpnForticlientAccessPtrInput is an input type that accepts VpnOcvpnForticlientAccessArgs, VpnOcvpnForticlientAccessPtr and VpnOcvpnForticlientAccessPtrOutput values.
+// You can construct a concrete instance of `VpnOcvpnForticlientAccessPtrInput` via:
+//
+//	        VpnOcvpnForticlientAccessArgs{...}
+//
+//	or:
+//
+//	        nil
+type VpnOcvpnForticlientAccessPtrInput interface {
+	pulumi.Input
+
+	ToVpnOcvpnForticlientAccessPtrOutput() VpnOcvpnForticlientAccessPtrOutput
+	ToVpnOcvpnForticlientAccessPtrOutputWithContext(context.Context) VpnOcvpnForticlientAccessPtrOutput
+}
+
+type vpnOcvpnForticlientAccessPtrType VpnOcvpnForticlientAccessArgs
+
+func VpnOcvpnForticlientAccessPtr(v *VpnOcvpnForticlientAccessArgs) VpnOcvpnForticlientAccessPtrInput {
+	return (*vpnOcvpnForticlientAccessPtrType)(v)
+}
+
+func (*vpnOcvpnForticlientAccessPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**VpnOcvpnForticlientAccess)(nil)).Elem()
+}
+
+func (i *vpnOcvpnForticlientAccessPtrType) ToVpnOcvpnForticlientAccessPtrOutput() VpnOcvpnForticlientAccessPtrOutput {
+	return i.ToVpnOcvpnForticlientAccessPtrOutputWithContext(context.Background())
+}
+
+func (i *vpnOcvpnForticlientAccessPtrType) ToVpnOcvpnForticlientAccessPtrOutputWithContext(ctx context.Context) VpnOcvpnForticlientAccessPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnOcvpnForticlientAccessPtrOutput)
+}
+
+type VpnOcvpnForticlientAccessOutput struct{ *pulumi.OutputState }
+
+func (VpnOcvpnForticlientAccessOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnOcvpnForticlientAccess)(nil)).Elem()
+}
+
+func (o VpnOcvpnForticlientAccessOutput) ToVpnOcvpnForticlientAccessOutput() VpnOcvpnForticlientAccessOutput {
+	return o
+}
+
+func (o VpnOcvpnForticlientAccessOutput) ToVpnOcvpnForticlientAccessOutputWithContext(ctx context.Context) VpnOcvpnForticlientAccessOutput {
+	return o
+}
+
+func (o VpnOcvpnForticlientAccessOutput) ToVpnOcvpnForticlientAccessPtrOutput() VpnOcvpnForticlientAccessPtrOutput {
+	return o.ToVpnOcvpnForticlientAccessPtrOutputWithContext(context.Background())
+}
+
+func (o VpnOcvpnForticlientAccessOutput) ToVpnOcvpnForticlientAccessPtrOutputWithContext(ctx context.Context) VpnOcvpnForticlientAccessPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v VpnOcvpnForticlientAccess) *VpnOcvpnForticlientAccess {
+		return &v
+	}).(VpnOcvpnForticlientAccessPtrOutput)
+}
+
+func (o VpnOcvpnForticlientAccessOutput) AuthGroups() VpnOcvpnForticlientAccessAuthGroupArrayOutput {
+	return o.ApplyT(func(v VpnOcvpnForticlientAccess) []VpnOcvpnForticlientAccessAuthGroup { return v.AuthGroups }).(VpnOcvpnForticlientAccessAuthGroupArrayOutput)
+}
+
+func (o VpnOcvpnForticlientAccessOutput) Psksecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnOcvpnForticlientAccess) *string { return v.Psksecret }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnOcvpnForticlientAccessOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnOcvpnForticlientAccess) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+type VpnOcvpnForticlientAccessPtrOutput struct{ *pulumi.OutputState }
+
+func (VpnOcvpnForticlientAccessPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**VpnOcvpnForticlientAccess)(nil)).Elem()
+}
+
+func (o VpnOcvpnForticlientAccessPtrOutput) ToVpnOcvpnForticlientAccessPtrOutput() VpnOcvpnForticlientAccessPtrOutput {
+	return o
+}
+
+func (o VpnOcvpnForticlientAccessPtrOutput) ToVpnOcvpnForticlientAccessPtrOutputWithContext(ctx context.Context) VpnOcvpnForticlientAccessPtrOutput {
+	return o
+}
+
+func (o VpnOcvpnForticlientAccessPtrOutput) Elem() VpnOcvpnForticlientAccessOutput {
+	return o.ApplyT(func(v *VpnOcvpnForticlientAccess) VpnOcvpnForticlientAccess {
+		if v != nil {
+			return *v
+		}
+		var ret VpnOcvpnForticlientAccess
+		return ret
+	}).(VpnOcvpnForticlientAccessOutput)
+}
+
+func (o VpnOcvpnForticlientAccessPtrOutput) AuthGroups() VpnOcvpnForticlientAccessAuthGroupArrayOutput {
+	return o.ApplyT(func(v *VpnOcvpnForticlientAccess) []VpnOcvpnForticlientAccessAuthGroup {
+		if v == nil {
+			return nil
+		}
+		return v.AuthGroups
+	}).(VpnOcvpnForticlientAccessAuthGroupArrayOutput)
+}
+
+func (o VpnOcvpnForticlientAccessPtrOutput) Psksecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnOcvpnForticlientAccess) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Psksecret
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VpnOcvpnForticlientAccessPtrOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnOcvpnForticlientAccess) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Status
+	}).(pulumi.StringPtrOutput)
+}
+
+type VpnOcvpnForticlientAccessAuthGroup struct {
+	AuthGroup *string                                     `pulumi:"authGroup"`
+	Name      *string                                     `pulumi:"name"`
+	Overlays  []VpnOcvpnForticlientAccessAuthGroupOverlay `pulumi:"overlays"`
+}
+
+// VpnOcvpnForticlientAccessAuthGroupInput is an input type that accepts VpnOcvpnForticlientAccessAuthGroupArgs and VpnOcvpnForticlientAccessAuthGroupOutput values.
+// You can construct a concrete instance of `VpnOcvpnForticlientAccessAuthGroupInput` via:
+//
+//	VpnOcvpnForticlientAccessAuthGroupArgs{...}
+type VpnOcvpnForticlientAccessAuthGroupInput interface {
+	pulumi.Input
+
+	ToVpnOcvpnForticlientAccessAuthGroupOutput() VpnOcvpnForticlientAccessAuthGroupOutput
+	ToVpnOcvpnForticlientAccessAuthGroupOutputWithContext(context.Context) VpnOcvpnForticlientAccessAuthGroupOutput
+}
+
+type VpnOcvpnForticlientAccessAuthGroupArgs struct {
+	AuthGroup pulumi.StringPtrInput                               `pulumi:"authGroup"`
+	Name      pulumi.StringPtrInput                               `pulumi:"name"`
+	Overlays  VpnOcvpnForticlientAccessAuthGroupOverlayArrayInput `pulumi:"overlays"`
+}
+
+func (VpnOcvpnForticlientAccessAuthGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnOcvpnForticlientAccessAuthGroup)(nil)).Elem()
+}
+
+func (i VpnOcvpnForticlientAccessAuthGroupArgs) ToVpnOcvpnForticlientAccessAuthGroupOutput() VpnOcvpnForticlientAccessAuthGroupOutput {
+	return i.ToVpnOcvpnForticlientAccessAuthGroupOutputWithContext(context.Background())
+}
+
+func (i VpnOcvpnForticlientAccessAuthGroupArgs) ToVpnOcvpnForticlientAccessAuthGroupOutputWithContext(ctx context.Context) VpnOcvpnForticlientAccessAuthGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnOcvpnForticlientAccessAuthGroupOutput)
+}
+
+// VpnOcvpnForticlientAccessAuthGroupArrayInput is an input type that accepts VpnOcvpnForticlientAccessAuthGroupArray and VpnOcvpnForticlientAccessAuthGroupArrayOutput values.
+// You can construct a concrete instance of `VpnOcvpnForticlientAccessAuthGroupArrayInput` via:
+//
+//	VpnOcvpnForticlientAccessAuthGroupArray{ VpnOcvpnForticlientAccessAuthGroupArgs{...} }
+type VpnOcvpnForticlientAccessAuthGroupArrayInput interface {
+	pulumi.Input
+
+	ToVpnOcvpnForticlientAccessAuthGroupArrayOutput() VpnOcvpnForticlientAccessAuthGroupArrayOutput
+	ToVpnOcvpnForticlientAccessAuthGroupArrayOutputWithContext(context.Context) VpnOcvpnForticlientAccessAuthGroupArrayOutput
+}
+
+type VpnOcvpnForticlientAccessAuthGroupArray []VpnOcvpnForticlientAccessAuthGroupInput
+
+func (VpnOcvpnForticlientAccessAuthGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnOcvpnForticlientAccessAuthGroup)(nil)).Elem()
+}
+
+func (i VpnOcvpnForticlientAccessAuthGroupArray) ToVpnOcvpnForticlientAccessAuthGroupArrayOutput() VpnOcvpnForticlientAccessAuthGroupArrayOutput {
+	return i.ToVpnOcvpnForticlientAccessAuthGroupArrayOutputWithContext(context.Background())
+}
+
+func (i VpnOcvpnForticlientAccessAuthGroupArray) ToVpnOcvpnForticlientAccessAuthGroupArrayOutputWithContext(ctx context.Context) VpnOcvpnForticlientAccessAuthGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnOcvpnForticlientAccessAuthGroupArrayOutput)
+}
+
+type VpnOcvpnForticlientAccessAuthGroupOutput struct{ *pulumi.OutputState }
+
+func (VpnOcvpnForticlientAccessAuthGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnOcvpnForticlientAccessAuthGroup)(nil)).Elem()
+}
+
+func (o VpnOcvpnForticlientAccessAuthGroupOutput) ToVpnOcvpnForticlientAccessAuthGroupOutput() VpnOcvpnForticlientAccessAuthGroupOutput {
+	return o
+}
+
+func (o VpnOcvpnForticlientAccessAuthGroupOutput) ToVpnOcvpnForticlientAccessAuthGroupOutputWithContext(ctx context.Context) VpnOcvpnForticlientAccessAuthGroupOutput {
+	return o
+}
+
+func (o VpnOcvpnForticlientAccessAuthGroupOutput) AuthGroup() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnOcvpnForticlientAccessAuthGroup) *string { return v.AuthGroup }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnOcvpnForticlientAccessAuthGroupOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnOcvpnForticlientAccessAuthGroup) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnOcvpnForticlientAccessAuthGroupOutput) Overlays() VpnOcvpnForticlientAccessAuthGroupOverlayArrayOutput {
+	return o.ApplyT(func(v VpnOcvpnForticlientAccessAuthGroup) []VpnOcvpnForticlientAccessAuthGroupOverlay {
+		return v.Overlays
+	}).(VpnOcvpnForticlientAccessAuthGroupOverlayArrayOutput)
+}
+
+type VpnOcvpnForticlientAccessAuthGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnOcvpnForticlientAccessAuthGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnOcvpnForticlientAccessAuthGroup)(nil)).Elem()
+}
+
+func (o VpnOcvpnForticlientAccessAuthGroupArrayOutput) ToVpnOcvpnForticlientAccessAuthGroupArrayOutput() VpnOcvpnForticlientAccessAuthGroupArrayOutput {
+	return o
+}
+
+func (o VpnOcvpnForticlientAccessAuthGroupArrayOutput) ToVpnOcvpnForticlientAccessAuthGroupArrayOutputWithContext(ctx context.Context) VpnOcvpnForticlientAccessAuthGroupArrayOutput {
+	return o
+}
+
+func (o VpnOcvpnForticlientAccessAuthGroupArrayOutput) Index(i pulumi.IntInput) VpnOcvpnForticlientAccessAuthGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnOcvpnForticlientAccessAuthGroup {
+		return vs[0].([]VpnOcvpnForticlientAccessAuthGroup)[vs[1].(int)]
+	}).(VpnOcvpnForticlientAccessAuthGroupOutput)
+}
+
+type VpnOcvpnForticlientAccessAuthGroupOverlay struct {
+	OverlayName *string `pulumi:"overlayName"`
+}
+
+// VpnOcvpnForticlientAccessAuthGroupOverlayInput is an input type that accepts VpnOcvpnForticlientAccessAuthGroupOverlayArgs and VpnOcvpnForticlientAccessAuthGroupOverlayOutput values.
+// You can construct a concrete instance of `VpnOcvpnForticlientAccessAuthGroupOverlayInput` via:
+//
+//	VpnOcvpnForticlientAccessAuthGroupOverlayArgs{...}
+type VpnOcvpnForticlientAccessAuthGroupOverlayInput interface {
+	pulumi.Input
+
+	ToVpnOcvpnForticlientAccessAuthGroupOverlayOutput() VpnOcvpnForticlientAccessAuthGroupOverlayOutput
+	ToVpnOcvpnForticlientAccessAuthGroupOverlayOutputWithContext(context.Context) VpnOcvpnForticlientAccessAuthGroupOverlayOutput
+}
+
+type VpnOcvpnForticlientAccessAuthGroupOverlayArgs struct {
+	OverlayName pulumi.StringPtrInput `pulumi:"overlayName"`
+}
+
+func (VpnOcvpnForticlientAccessAuthGroupOverlayArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnOcvpnForticlientAccessAuthGroupOverlay)(nil)).Elem()
+}
+
+func (i VpnOcvpnForticlientAccessAuthGroupOverlayArgs) ToVpnOcvpnForticlientAccessAuthGroupOverlayOutput() VpnOcvpnForticlientAccessAuthGroupOverlayOutput {
+	return i.ToVpnOcvpnForticlientAccessAuthGroupOverlayOutputWithContext(context.Background())
+}
+
+func (i VpnOcvpnForticlientAccessAuthGroupOverlayArgs) ToVpnOcvpnForticlientAccessAuthGroupOverlayOutputWithContext(ctx context.Context) VpnOcvpnForticlientAccessAuthGroupOverlayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnOcvpnForticlientAccessAuthGroupOverlayOutput)
+}
+
+// VpnOcvpnForticlientAccessAuthGroupOverlayArrayInput is an input type that accepts VpnOcvpnForticlientAccessAuthGroupOverlayArray and VpnOcvpnForticlientAccessAuthGroupOverlayArrayOutput values.
+// You can construct a concrete instance of `VpnOcvpnForticlientAccessAuthGroupOverlayArrayInput` via:
+//
+//	VpnOcvpnForticlientAccessAuthGroupOverlayArray{ VpnOcvpnForticlientAccessAuthGroupOverlayArgs{...} }
+type VpnOcvpnForticlientAccessAuthGroupOverlayArrayInput interface {
+	pulumi.Input
+
+	ToVpnOcvpnForticlientAccessAuthGroupOverlayArrayOutput() VpnOcvpnForticlientAccessAuthGroupOverlayArrayOutput
+	ToVpnOcvpnForticlientAccessAuthGroupOverlayArrayOutputWithContext(context.Context) VpnOcvpnForticlientAccessAuthGroupOverlayArrayOutput
+}
+
+type VpnOcvpnForticlientAccessAuthGroupOverlayArray []VpnOcvpnForticlientAccessAuthGroupOverlayInput
+
+func (VpnOcvpnForticlientAccessAuthGroupOverlayArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnOcvpnForticlientAccessAuthGroupOverlay)(nil)).Elem()
+}
+
+func (i VpnOcvpnForticlientAccessAuthGroupOverlayArray) ToVpnOcvpnForticlientAccessAuthGroupOverlayArrayOutput() VpnOcvpnForticlientAccessAuthGroupOverlayArrayOutput {
+	return i.ToVpnOcvpnForticlientAccessAuthGroupOverlayArrayOutputWithContext(context.Background())
+}
+
+func (i VpnOcvpnForticlientAccessAuthGroupOverlayArray) ToVpnOcvpnForticlientAccessAuthGroupOverlayArrayOutputWithContext(ctx context.Context) VpnOcvpnForticlientAccessAuthGroupOverlayArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnOcvpnForticlientAccessAuthGroupOverlayArrayOutput)
+}
+
+type VpnOcvpnForticlientAccessAuthGroupOverlayOutput struct{ *pulumi.OutputState }
+
+func (VpnOcvpnForticlientAccessAuthGroupOverlayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnOcvpnForticlientAccessAuthGroupOverlay)(nil)).Elem()
+}
+
+func (o VpnOcvpnForticlientAccessAuthGroupOverlayOutput) ToVpnOcvpnForticlientAccessAuthGroupOverlayOutput() VpnOcvpnForticlientAccessAuthGroupOverlayOutput {
+	return o
+}
+
+func (o VpnOcvpnForticlientAccessAuthGroupOverlayOutput) ToVpnOcvpnForticlientAccessAuthGroupOverlayOutputWithContext(ctx context.Context) VpnOcvpnForticlientAccessAuthGroupOverlayOutput {
+	return o
+}
+
+func (o VpnOcvpnForticlientAccessAuthGroupOverlayOutput) OverlayName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnOcvpnForticlientAccessAuthGroupOverlay) *string { return v.OverlayName }).(pulumi.StringPtrOutput)
+}
+
+type VpnOcvpnForticlientAccessAuthGroupOverlayArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnOcvpnForticlientAccessAuthGroupOverlayArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnOcvpnForticlientAccessAuthGroupOverlay)(nil)).Elem()
+}
+
+func (o VpnOcvpnForticlientAccessAuthGroupOverlayArrayOutput) ToVpnOcvpnForticlientAccessAuthGroupOverlayArrayOutput() VpnOcvpnForticlientAccessAuthGroupOverlayArrayOutput {
+	return o
+}
+
+func (o VpnOcvpnForticlientAccessAuthGroupOverlayArrayOutput) ToVpnOcvpnForticlientAccessAuthGroupOverlayArrayOutputWithContext(ctx context.Context) VpnOcvpnForticlientAccessAuthGroupOverlayArrayOutput {
+	return o
+}
+
+func (o VpnOcvpnForticlientAccessAuthGroupOverlayArrayOutput) Index(i pulumi.IntInput) VpnOcvpnForticlientAccessAuthGroupOverlayOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnOcvpnForticlientAccessAuthGroupOverlay {
+		return vs[0].([]VpnOcvpnForticlientAccessAuthGroupOverlay)[vs[1].(int)]
+	}).(VpnOcvpnForticlientAccessAuthGroupOverlayOutput)
+}
+
+type VpnOcvpnOverlay struct {
+	AssignIp     *string                 `pulumi:"assignIp"`
+	Id           *int                    `pulumi:"id"`
+	InterOverlay *string                 `pulumi:"interOverlay"`
+	Ipv4EndIp    *string                 `pulumi:"ipv4EndIp"`
+	Ipv4StartIp  *string                 `pulumi:"ipv4StartIp"`
+	Name         *string                 `pulumi:"name"`
+	OverlayName  *string                 `pulumi:"overlayName"`
+	Subnets      []VpnOcvpnOverlaySubnet `pulumi:"subnets"`
+}
+
+// VpnOcvpnOverlayInput is an input type that accepts VpnOcvpnOverlayArgs and VpnOcvpnOverlayOutput values.
+// You can construct a concrete instance of `VpnOcvpnOverlayInput` via:
+//
+//	VpnOcvpnOverlayArgs{...}
+type VpnOcvpnOverlayInput interface {
+	pulumi.Input
+
+	ToVpnOcvpnOverlayOutput() VpnOcvpnOverlayOutput
+	ToVpnOcvpnOverlayOutputWithContext(context.Context) VpnOcvpnOverlayOutput
+}
+
+type VpnOcvpnOverlayArgs struct {
+	AssignIp     pulumi.StringPtrInput           `pulumi:"assignIp"`
+	Id           pulumi.IntPtrInput              `pulumi:"id"`
+	InterOverlay pulumi.StringPtrInput           `pulumi:"interOverlay"`
+	Ipv4EndIp    pulumi.StringPtrInput           `pulumi:"ipv4EndIp"`
+	Ipv4StartIp  pulumi.StringPtrInput           `pulumi:"ipv4StartIp"`
+	Name         pulumi.StringPtrInput           `pulumi:"name"`
+	OverlayName  pulumi.StringPtrInput           `pulumi:"overlayName"`
+	Subnets      VpnOcvpnOverlaySubnetArrayInput `pulumi:"subnets"`
+}
+
+func (VpnOcvpnOverlayArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnOcvpnOverlay)(nil)).Elem()
+}
+
+func (i VpnOcvpnOverlayArgs) ToVpnOcvpnOverlayOutput() VpnOcvpnOverlayOutput {
+	return i.ToVpnOcvpnOverlayOutputWithContext(context.Background())
+}
+
+func (i VpnOcvpnOverlayArgs) ToVpnOcvpnOverlayOutputWithContext(ctx context.Context) VpnOcvpnOverlayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnOcvpnOverlayOutput)
+}
+
+// VpnOcvpnOverlayArrayInput is an input type that accepts VpnOcvpnOverlayArray and VpnOcvpnOverlayArrayOutput values.
+// You can construct a concrete instance of `VpnOcvpnOverlayArrayInput` via:
+//
+//	VpnOcvpnOverlayArray{ VpnOcvpnOverlayArgs{...} }
+type VpnOcvpnOverlayArrayInput interface {
+	pulumi.Input
+
+	ToVpnOcvpnOverlayArrayOutput() VpnOcvpnOverlayArrayOutput
+	ToVpnOcvpnOverlayArrayOutputWithContext(context.Context) VpnOcvpnOverlayArrayOutput
+}
+
+type VpnOcvpnOverlayArray []VpnOcvpnOverlayInput
+
+func (VpnOcvpnOverlayArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnOcvpnOverlay)(nil)).Elem()
+}
+
+func (i VpnOcvpnOverlayArray) ToVpnOcvpnOverlayArrayOutput() VpnOcvpnOverlayArrayOutput {
+	return i.ToVpnOcvpnOverlayArrayOutputWithContext(context.Background())
+}
+
+func (i VpnOcvpnOverlayArray) ToVpnOcvpnOverlayArrayOutputWithContext(ctx context.Context) VpnOcvpnOverlayArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnOcvpnOverlayArrayOutput)
+}
+
+type VpnOcvpnOverlayOutput struct{ *pulumi.OutputState }
+
+func (VpnOcvpnOverlayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnOcvpnOverlay)(nil)).Elem()
+}
+
+func (o VpnOcvpnOverlayOutput) ToVpnOcvpnOverlayOutput() VpnOcvpnOverlayOutput {
+	return o
+}
+
+func (o VpnOcvpnOverlayOutput) ToVpnOcvpnOverlayOutputWithContext(ctx context.Context) VpnOcvpnOverlayOutput {
+	return o
+}
+
+func (o VpnOcvpnOverlayOutput) AssignIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnOcvpnOverlay) *string { return v.AssignIp }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnOcvpnOverlayOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VpnOcvpnOverlay) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+func (o VpnOcvpnOverlayOutput) InterOverlay() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnOcvpnOverlay) *string { return v.InterOverlay }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnOcvpnOverlayOutput) Ipv4EndIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnOcvpnOverlay) *string { return v.Ipv4EndIp }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnOcvpnOverlayOutput) Ipv4StartIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnOcvpnOverlay) *string { return v.Ipv4StartIp }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnOcvpnOverlayOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnOcvpnOverlay) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnOcvpnOverlayOutput) OverlayName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnOcvpnOverlay) *string { return v.OverlayName }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnOcvpnOverlayOutput) Subnets() VpnOcvpnOverlaySubnetArrayOutput {
+	return o.ApplyT(func(v VpnOcvpnOverlay) []VpnOcvpnOverlaySubnet { return v.Subnets }).(VpnOcvpnOverlaySubnetArrayOutput)
+}
+
+type VpnOcvpnOverlayArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnOcvpnOverlayArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnOcvpnOverlay)(nil)).Elem()
+}
+
+func (o VpnOcvpnOverlayArrayOutput) ToVpnOcvpnOverlayArrayOutput() VpnOcvpnOverlayArrayOutput {
+	return o
+}
+
+func (o VpnOcvpnOverlayArrayOutput) ToVpnOcvpnOverlayArrayOutputWithContext(ctx context.Context) VpnOcvpnOverlayArrayOutput {
+	return o
+}
+
+func (o VpnOcvpnOverlayArrayOutput) Index(i pulumi.IntInput) VpnOcvpnOverlayOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnOcvpnOverlay {
+		return vs[0].([]VpnOcvpnOverlay)[vs[1].(int)]
+	}).(VpnOcvpnOverlayOutput)
+}
+
+type VpnOcvpnOverlaySubnet struct {
+	Id        *int    `pulumi:"id"`
+	Interface *string `pulumi:"interface"`
+	Subnet    *string `pulumi:"subnet"`
+	Type      *string `pulumi:"type"`
+}
+
+// VpnOcvpnOverlaySubnetInput is an input type that accepts VpnOcvpnOverlaySubnetArgs and VpnOcvpnOverlaySubnetOutput values.
+// You can construct a concrete instance of `VpnOcvpnOverlaySubnetInput` via:
+//
+//	VpnOcvpnOverlaySubnetArgs{...}
+type VpnOcvpnOverlaySubnetInput interface {
+	pulumi.Input
+
+	ToVpnOcvpnOverlaySubnetOutput() VpnOcvpnOverlaySubnetOutput
+	ToVpnOcvpnOverlaySubnetOutputWithContext(context.Context) VpnOcvpnOverlaySubnetOutput
+}
+
+type VpnOcvpnOverlaySubnetArgs struct {
+	Id        pulumi.IntPtrInput    `pulumi:"id"`
+	Interface pulumi.StringPtrInput `pulumi:"interface"`
+	Subnet    pulumi.StringPtrInput `pulumi:"subnet"`
+	Type      pulumi.StringPtrInput `pulumi:"type"`
+}
+
+func (VpnOcvpnOverlaySubnetArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnOcvpnOverlaySubnet)(nil)).Elem()
+}
+
+func (i VpnOcvpnOverlaySubnetArgs) ToVpnOcvpnOverlaySubnetOutput() VpnOcvpnOverlaySubnetOutput {
+	return i.ToVpnOcvpnOverlaySubnetOutputWithContext(context.Background())
+}
+
+func (i VpnOcvpnOverlaySubnetArgs) ToVpnOcvpnOverlaySubnetOutputWithContext(ctx context.Context) VpnOcvpnOverlaySubnetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnOcvpnOverlaySubnetOutput)
+}
+
+// VpnOcvpnOverlaySubnetArrayInput is an input type that accepts VpnOcvpnOverlaySubnetArray and VpnOcvpnOverlaySubnetArrayOutput values.
+// You can construct a concrete instance of `VpnOcvpnOverlaySubnetArrayInput` via:
+//
+//	VpnOcvpnOverlaySubnetArray{ VpnOcvpnOverlaySubnetArgs{...} }
+type VpnOcvpnOverlaySubnetArrayInput interface {
+	pulumi.Input
+
+	ToVpnOcvpnOverlaySubnetArrayOutput() VpnOcvpnOverlaySubnetArrayOutput
+	ToVpnOcvpnOverlaySubnetArrayOutputWithContext(context.Context) VpnOcvpnOverlaySubnetArrayOutput
+}
+
+type VpnOcvpnOverlaySubnetArray []VpnOcvpnOverlaySubnetInput
+
+func (VpnOcvpnOverlaySubnetArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnOcvpnOverlaySubnet)(nil)).Elem()
+}
+
+func (i VpnOcvpnOverlaySubnetArray) ToVpnOcvpnOverlaySubnetArrayOutput() VpnOcvpnOverlaySubnetArrayOutput {
+	return i.ToVpnOcvpnOverlaySubnetArrayOutputWithContext(context.Background())
+}
+
+func (i VpnOcvpnOverlaySubnetArray) ToVpnOcvpnOverlaySubnetArrayOutputWithContext(ctx context.Context) VpnOcvpnOverlaySubnetArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnOcvpnOverlaySubnetArrayOutput)
+}
+
+type VpnOcvpnOverlaySubnetOutput struct{ *pulumi.OutputState }
+
+func (VpnOcvpnOverlaySubnetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnOcvpnOverlaySubnet)(nil)).Elem()
+}
+
+func (o VpnOcvpnOverlaySubnetOutput) ToVpnOcvpnOverlaySubnetOutput() VpnOcvpnOverlaySubnetOutput {
+	return o
+}
+
+func (o VpnOcvpnOverlaySubnetOutput) ToVpnOcvpnOverlaySubnetOutputWithContext(ctx context.Context) VpnOcvpnOverlaySubnetOutput {
+	return o
+}
+
+func (o VpnOcvpnOverlaySubnetOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VpnOcvpnOverlaySubnet) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+func (o VpnOcvpnOverlaySubnetOutput) Interface() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnOcvpnOverlaySubnet) *string { return v.Interface }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnOcvpnOverlaySubnetOutput) Subnet() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnOcvpnOverlaySubnet) *string { return v.Subnet }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnOcvpnOverlaySubnetOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnOcvpnOverlaySubnet) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+type VpnOcvpnOverlaySubnetArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnOcvpnOverlaySubnetArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnOcvpnOverlaySubnet)(nil)).Elem()
+}
+
+func (o VpnOcvpnOverlaySubnetArrayOutput) ToVpnOcvpnOverlaySubnetArrayOutput() VpnOcvpnOverlaySubnetArrayOutput {
+	return o
+}
+
+func (o VpnOcvpnOverlaySubnetArrayOutput) ToVpnOcvpnOverlaySubnetArrayOutputWithContext(ctx context.Context) VpnOcvpnOverlaySubnetArrayOutput {
+	return o
+}
+
+func (o VpnOcvpnOverlaySubnetArrayOutput) Index(i pulumi.IntInput) VpnOcvpnOverlaySubnetOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnOcvpnOverlaySubnet {
+		return vs[0].([]VpnOcvpnOverlaySubnet)[vs[1].(int)]
+	}).(VpnOcvpnOverlaySubnetOutput)
+}
+
+type VpnOcvpnWanInterface struct {
+	Name *string `pulumi:"name"`
+}
+
+// VpnOcvpnWanInterfaceInput is an input type that accepts VpnOcvpnWanInterfaceArgs and VpnOcvpnWanInterfaceOutput values.
+// You can construct a concrete instance of `VpnOcvpnWanInterfaceInput` via:
+//
+//	VpnOcvpnWanInterfaceArgs{...}
+type VpnOcvpnWanInterfaceInput interface {
+	pulumi.Input
+
+	ToVpnOcvpnWanInterfaceOutput() VpnOcvpnWanInterfaceOutput
+	ToVpnOcvpnWanInterfaceOutputWithContext(context.Context) VpnOcvpnWanInterfaceOutput
+}
+
+type VpnOcvpnWanInterfaceArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (VpnOcvpnWanInterfaceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnOcvpnWanInterface)(nil)).Elem()
+}
+
+func (i VpnOcvpnWanInterfaceArgs) ToVpnOcvpnWanInterfaceOutput() VpnOcvpnWanInterfaceOutput {
+	return i.ToVpnOcvpnWanInterfaceOutputWithContext(context.Background())
+}
+
+func (i VpnOcvpnWanInterfaceArgs) ToVpnOcvpnWanInterfaceOutputWithContext(ctx context.Context) VpnOcvpnWanInterfaceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnOcvpnWanInterfaceOutput)
+}
+
+// VpnOcvpnWanInterfaceArrayInput is an input type that accepts VpnOcvpnWanInterfaceArray and VpnOcvpnWanInterfaceArrayOutput values.
+// You can construct a concrete instance of `VpnOcvpnWanInterfaceArrayInput` via:
+//
+//	VpnOcvpnWanInterfaceArray{ VpnOcvpnWanInterfaceArgs{...} }
+type VpnOcvpnWanInterfaceArrayInput interface {
+	pulumi.Input
+
+	ToVpnOcvpnWanInterfaceArrayOutput() VpnOcvpnWanInterfaceArrayOutput
+	ToVpnOcvpnWanInterfaceArrayOutputWithContext(context.Context) VpnOcvpnWanInterfaceArrayOutput
+}
+
+type VpnOcvpnWanInterfaceArray []VpnOcvpnWanInterfaceInput
+
+func (VpnOcvpnWanInterfaceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnOcvpnWanInterface)(nil)).Elem()
+}
+
+func (i VpnOcvpnWanInterfaceArray) ToVpnOcvpnWanInterfaceArrayOutput() VpnOcvpnWanInterfaceArrayOutput {
+	return i.ToVpnOcvpnWanInterfaceArrayOutputWithContext(context.Background())
+}
+
+func (i VpnOcvpnWanInterfaceArray) ToVpnOcvpnWanInterfaceArrayOutputWithContext(ctx context.Context) VpnOcvpnWanInterfaceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnOcvpnWanInterfaceArrayOutput)
+}
+
+type VpnOcvpnWanInterfaceOutput struct{ *pulumi.OutputState }
+
+func (VpnOcvpnWanInterfaceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnOcvpnWanInterface)(nil)).Elem()
+}
+
+func (o VpnOcvpnWanInterfaceOutput) ToVpnOcvpnWanInterfaceOutput() VpnOcvpnWanInterfaceOutput {
+	return o
+}
+
+func (o VpnOcvpnWanInterfaceOutput) ToVpnOcvpnWanInterfaceOutputWithContext(ctx context.Context) VpnOcvpnWanInterfaceOutput {
+	return o
+}
+
+func (o VpnOcvpnWanInterfaceOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnOcvpnWanInterface) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type VpnOcvpnWanInterfaceArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnOcvpnWanInterfaceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnOcvpnWanInterface)(nil)).Elem()
+}
+
+func (o VpnOcvpnWanInterfaceArrayOutput) ToVpnOcvpnWanInterfaceArrayOutput() VpnOcvpnWanInterfaceArrayOutput {
+	return o
+}
+
+func (o VpnOcvpnWanInterfaceArrayOutput) ToVpnOcvpnWanInterfaceArrayOutputWithContext(ctx context.Context) VpnOcvpnWanInterfaceArrayOutput {
+	return o
+}
+
+func (o VpnOcvpnWanInterfaceArrayOutput) Index(i pulumi.IntInput) VpnOcvpnWanInterfaceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnOcvpnWanInterface {
+		return vs[0].([]VpnOcvpnWanInterface)[vs[1].(int)]
+	}).(VpnOcvpnWanInterfaceOutput)
+}
+
+type VpnSslSettingsAuthenticationRule struct {
+	Auth                 *string                                           `pulumi:"auth"`
+	Cipher               *string                                           `pulumi:"cipher"`
+	ClientCert           *string                                           `pulumi:"clientCert"`
+	Groups               []VpnSslSettingsAuthenticationRuleGroup           `pulumi:"groups"`
+	Id                   *int                                              `pulumi:"id"`
+	Portal               *string                                           `pulumi:"portal"`
+	Realm                *string                                           `pulumi:"realm"`
+	SourceAddress6Negate *string                                           `pulumi:"sourceAddress6Negate"`
+	SourceAddress6s      []VpnSslSettingsAuthenticationRuleSourceAddress6  `pulumi:"sourceAddress6s"`
+	SourceAddressNegate  *string                                           `pulumi:"sourceAddressNegate"`
+	SourceAddresses      []VpnSslSettingsAuthenticationRuleSourceAddress   `pulumi:"sourceAddresses"`
+	SourceInterfaces     []VpnSslSettingsAuthenticationRuleSourceInterface `pulumi:"sourceInterfaces"`
+	UserPeer             *string                                           `pulumi:"userPeer"`
+	Users                []VpnSslSettingsAuthenticationRuleUser            `pulumi:"users"`
+}
+
+// VpnSslSettingsAuthenticationRuleInput is an input type that accepts VpnSslSettingsAuthenticationRuleArgs and VpnSslSettingsAuthenticationRuleOutput values.
+// You can construct a concrete instance of `VpnSslSettingsAuthenticationRuleInput` via:
+//
+//	VpnSslSettingsAuthenticationRuleArgs{...}
+type VpnSslSettingsAuthenticationRuleInput interface {
+	pulumi.Input
+
+	ToVpnSslSettingsAuthenticationRuleOutput() VpnSslSettingsAuthenticationRuleOutput
+	ToVpnSslSettingsAuthenticationRuleOutputWithContext(context.Context) VpnSslSettingsAuthenticationRuleOutput
+}
+
+type VpnSslSettingsAuthenticationRuleArgs struct {
+	Auth                 pulumi.StringPtrInput                                     `pulumi:"auth"`
+	Cipher               pulumi.StringPtrInput                                     `pulumi:"cipher"`
+	ClientCert           pulumi.StringPtrInput                                     `pulumi:"clientCert"`
+	Groups               VpnSslSettingsAuthenticationRuleGroupArrayInput           `pulumi:"groups"`
+	Id                   pulumi.IntPtrInput                                        `pulumi:"id"`
+	Portal               pulumi.StringPtrInput                                     `pulumi:"portal"`
+	Realm                pulumi.StringPtrInput                                     `pulumi:"realm"`
+	SourceAddress6Negate pulumi.StringPtrInput                                     `pulumi:"sourceAddress6Negate"`
+	SourceAddress6s      VpnSslSettingsAuthenticationRuleSourceAddress6ArrayInput  `pulumi:"sourceAddress6s"`
+	SourceAddressNegate  pulumi.StringPtrInput                                     `pulumi:"sourceAddressNegate"`
+	SourceAddresses      VpnSslSettingsAuthenticationRuleSourceAddressArrayInput   `pulumi:"sourceAddresses"`
+	SourceInterfaces     VpnSslSettingsAuthenticationRuleSourceInterfaceArrayInput `pulumi:"sourceInterfaces"`
+	UserPeer             pulumi.StringPtrInput                                     `pulumi:"userPeer"`
+	Users                VpnSslSettingsAuthenticationRuleUserArrayInput            `pulumi:"users"`
+}
+
+func (VpnSslSettingsAuthenticationRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslSettingsAuthenticationRule)(nil)).Elem()
+}
+
+func (i VpnSslSettingsAuthenticationRuleArgs) ToVpnSslSettingsAuthenticationRuleOutput() VpnSslSettingsAuthenticationRuleOutput {
+	return i.ToVpnSslSettingsAuthenticationRuleOutputWithContext(context.Background())
+}
+
+func (i VpnSslSettingsAuthenticationRuleArgs) ToVpnSslSettingsAuthenticationRuleOutputWithContext(ctx context.Context) VpnSslSettingsAuthenticationRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsAuthenticationRuleOutput)
+}
+
+// VpnSslSettingsAuthenticationRuleArrayInput is an input type that accepts VpnSslSettingsAuthenticationRuleArray and VpnSslSettingsAuthenticationRuleArrayOutput values.
+// You can construct a concrete instance of `VpnSslSettingsAuthenticationRuleArrayInput` via:
+//
+//	VpnSslSettingsAuthenticationRuleArray{ VpnSslSettingsAuthenticationRuleArgs{...} }
+type VpnSslSettingsAuthenticationRuleArrayInput interface {
+	pulumi.Input
+
+	ToVpnSslSettingsAuthenticationRuleArrayOutput() VpnSslSettingsAuthenticationRuleArrayOutput
+	ToVpnSslSettingsAuthenticationRuleArrayOutputWithContext(context.Context) VpnSslSettingsAuthenticationRuleArrayOutput
+}
+
+type VpnSslSettingsAuthenticationRuleArray []VpnSslSettingsAuthenticationRuleInput
+
+func (VpnSslSettingsAuthenticationRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslSettingsAuthenticationRule)(nil)).Elem()
+}
+
+func (i VpnSslSettingsAuthenticationRuleArray) ToVpnSslSettingsAuthenticationRuleArrayOutput() VpnSslSettingsAuthenticationRuleArrayOutput {
+	return i.ToVpnSslSettingsAuthenticationRuleArrayOutputWithContext(context.Background())
+}
+
+func (i VpnSslSettingsAuthenticationRuleArray) ToVpnSslSettingsAuthenticationRuleArrayOutputWithContext(ctx context.Context) VpnSslSettingsAuthenticationRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsAuthenticationRuleArrayOutput)
+}
+
+type VpnSslSettingsAuthenticationRuleOutput struct{ *pulumi.OutputState }
+
+func (VpnSslSettingsAuthenticationRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslSettingsAuthenticationRule)(nil)).Elem()
+}
+
+func (o VpnSslSettingsAuthenticationRuleOutput) ToVpnSslSettingsAuthenticationRuleOutput() VpnSslSettingsAuthenticationRuleOutput {
+	return o
+}
+
+func (o VpnSslSettingsAuthenticationRuleOutput) ToVpnSslSettingsAuthenticationRuleOutputWithContext(ctx context.Context) VpnSslSettingsAuthenticationRuleOutput {
+	return o
+}
+
+func (o VpnSslSettingsAuthenticationRuleOutput) Auth() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslSettingsAuthenticationRule) *string { return v.Auth }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslSettingsAuthenticationRuleOutput) Cipher() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslSettingsAuthenticationRule) *string { return v.Cipher }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslSettingsAuthenticationRuleOutput) ClientCert() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslSettingsAuthenticationRule) *string { return v.ClientCert }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslSettingsAuthenticationRuleOutput) Groups() VpnSslSettingsAuthenticationRuleGroupArrayOutput {
+	return o.ApplyT(func(v VpnSslSettingsAuthenticationRule) []VpnSslSettingsAuthenticationRuleGroup { return v.Groups }).(VpnSslSettingsAuthenticationRuleGroupArrayOutput)
+}
+
+func (o VpnSslSettingsAuthenticationRuleOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VpnSslSettingsAuthenticationRule) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+func (o VpnSslSettingsAuthenticationRuleOutput) Portal() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslSettingsAuthenticationRule) *string { return v.Portal }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslSettingsAuthenticationRuleOutput) Realm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslSettingsAuthenticationRule) *string { return v.Realm }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslSettingsAuthenticationRuleOutput) SourceAddress6Negate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslSettingsAuthenticationRule) *string { return v.SourceAddress6Negate }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslSettingsAuthenticationRuleOutput) SourceAddress6s() VpnSslSettingsAuthenticationRuleSourceAddress6ArrayOutput {
+	return o.ApplyT(func(v VpnSslSettingsAuthenticationRule) []VpnSslSettingsAuthenticationRuleSourceAddress6 {
+		return v.SourceAddress6s
+	}).(VpnSslSettingsAuthenticationRuleSourceAddress6ArrayOutput)
+}
+
+func (o VpnSslSettingsAuthenticationRuleOutput) SourceAddressNegate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslSettingsAuthenticationRule) *string { return v.SourceAddressNegate }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslSettingsAuthenticationRuleOutput) SourceAddresses() VpnSslSettingsAuthenticationRuleSourceAddressArrayOutput {
+	return o.ApplyT(func(v VpnSslSettingsAuthenticationRule) []VpnSslSettingsAuthenticationRuleSourceAddress {
+		return v.SourceAddresses
+	}).(VpnSslSettingsAuthenticationRuleSourceAddressArrayOutput)
+}
+
+func (o VpnSslSettingsAuthenticationRuleOutput) SourceInterfaces() VpnSslSettingsAuthenticationRuleSourceInterfaceArrayOutput {
+	return o.ApplyT(func(v VpnSslSettingsAuthenticationRule) []VpnSslSettingsAuthenticationRuleSourceInterface {
+		return v.SourceInterfaces
+	}).(VpnSslSettingsAuthenticationRuleSourceInterfaceArrayOutput)
+}
+
+func (o VpnSslSettingsAuthenticationRuleOutput) UserPeer() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslSettingsAuthenticationRule) *string { return v.UserPeer }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslSettingsAuthenticationRuleOutput) Users() VpnSslSettingsAuthenticationRuleUserArrayOutput {
+	return o.ApplyT(func(v VpnSslSettingsAuthenticationRule) []VpnSslSettingsAuthenticationRuleUser { return v.Users }).(VpnSslSettingsAuthenticationRuleUserArrayOutput)
+}
+
+type VpnSslSettingsAuthenticationRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnSslSettingsAuthenticationRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslSettingsAuthenticationRule)(nil)).Elem()
+}
+
+func (o VpnSslSettingsAuthenticationRuleArrayOutput) ToVpnSslSettingsAuthenticationRuleArrayOutput() VpnSslSettingsAuthenticationRuleArrayOutput {
+	return o
+}
+
+func (o VpnSslSettingsAuthenticationRuleArrayOutput) ToVpnSslSettingsAuthenticationRuleArrayOutputWithContext(ctx context.Context) VpnSslSettingsAuthenticationRuleArrayOutput {
+	return o
+}
+
+func (o VpnSslSettingsAuthenticationRuleArrayOutput) Index(i pulumi.IntInput) VpnSslSettingsAuthenticationRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnSslSettingsAuthenticationRule {
+		return vs[0].([]VpnSslSettingsAuthenticationRule)[vs[1].(int)]
+	}).(VpnSslSettingsAuthenticationRuleOutput)
+}
+
+type VpnSslSettingsAuthenticationRuleGroup struct {
+	Name *string `pulumi:"name"`
+}
+
+// VpnSslSettingsAuthenticationRuleGroupInput is an input type that accepts VpnSslSettingsAuthenticationRuleGroupArgs and VpnSslSettingsAuthenticationRuleGroupOutput values.
+// You can construct a concrete instance of `VpnSslSettingsAuthenticationRuleGroupInput` via:
+//
+//	VpnSslSettingsAuthenticationRuleGroupArgs{...}
+type VpnSslSettingsAuthenticationRuleGroupInput interface {
+	pulumi.Input
+
+	ToVpnSslSettingsAuthenticationRuleGroupOutput() VpnSslSettingsAuthenticationRuleGroupOutput
+	ToVpnSslSettingsAuthenticationRuleGroupOutputWithContext(context.Context) VpnSslSettingsAuthenticationRuleGroupOutput
+}
+
+type VpnSslSettingsAuthenticationRuleGroupArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (VpnSslSettingsAuthenticationRuleGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslSettingsAuthenticationRuleGroup)(nil)).Elem()
+}
+
+func (i VpnSslSettingsAuthenticationRuleGroupArgs) ToVpnSslSettingsAuthenticationRuleGroupOutput() VpnSslSettingsAuthenticationRuleGroupOutput {
+	return i.ToVpnSslSettingsAuthenticationRuleGroupOutputWithContext(context.Background())
+}
+
+func (i VpnSslSettingsAuthenticationRuleGroupArgs) ToVpnSslSettingsAuthenticationRuleGroupOutputWithContext(ctx context.Context) VpnSslSettingsAuthenticationRuleGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsAuthenticationRuleGroupOutput)
+}
+
+// VpnSslSettingsAuthenticationRuleGroupArrayInput is an input type that accepts VpnSslSettingsAuthenticationRuleGroupArray and VpnSslSettingsAuthenticationRuleGroupArrayOutput values.
+// You can construct a concrete instance of `VpnSslSettingsAuthenticationRuleGroupArrayInput` via:
+//
+//	VpnSslSettingsAuthenticationRuleGroupArray{ VpnSslSettingsAuthenticationRuleGroupArgs{...} }
+type VpnSslSettingsAuthenticationRuleGroupArrayInput interface {
+	pulumi.Input
+
+	ToVpnSslSettingsAuthenticationRuleGroupArrayOutput() VpnSslSettingsAuthenticationRuleGroupArrayOutput
+	ToVpnSslSettingsAuthenticationRuleGroupArrayOutputWithContext(context.Context) VpnSslSettingsAuthenticationRuleGroupArrayOutput
+}
+
+type VpnSslSettingsAuthenticationRuleGroupArray []VpnSslSettingsAuthenticationRuleGroupInput
+
+func (VpnSslSettingsAuthenticationRuleGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslSettingsAuthenticationRuleGroup)(nil)).Elem()
+}
+
+func (i VpnSslSettingsAuthenticationRuleGroupArray) ToVpnSslSettingsAuthenticationRuleGroupArrayOutput() VpnSslSettingsAuthenticationRuleGroupArrayOutput {
+	return i.ToVpnSslSettingsAuthenticationRuleGroupArrayOutputWithContext(context.Background())
+}
+
+func (i VpnSslSettingsAuthenticationRuleGroupArray) ToVpnSslSettingsAuthenticationRuleGroupArrayOutputWithContext(ctx context.Context) VpnSslSettingsAuthenticationRuleGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsAuthenticationRuleGroupArrayOutput)
+}
+
+type VpnSslSettingsAuthenticationRuleGroupOutput struct{ *pulumi.OutputState }
+
+func (VpnSslSettingsAuthenticationRuleGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslSettingsAuthenticationRuleGroup)(nil)).Elem()
+}
+
+func (o VpnSslSettingsAuthenticationRuleGroupOutput) ToVpnSslSettingsAuthenticationRuleGroupOutput() VpnSslSettingsAuthenticationRuleGroupOutput {
+	return o
+}
+
+func (o VpnSslSettingsAuthenticationRuleGroupOutput) ToVpnSslSettingsAuthenticationRuleGroupOutputWithContext(ctx context.Context) VpnSslSettingsAuthenticationRuleGroupOutput {
+	return o
+}
+
+func (o VpnSslSettingsAuthenticationRuleGroupOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslSettingsAuthenticationRuleGroup) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type VpnSslSettingsAuthenticationRuleGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnSslSettingsAuthenticationRuleGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslSettingsAuthenticationRuleGroup)(nil)).Elem()
+}
+
+func (o VpnSslSettingsAuthenticationRuleGroupArrayOutput) ToVpnSslSettingsAuthenticationRuleGroupArrayOutput() VpnSslSettingsAuthenticationRuleGroupArrayOutput {
+	return o
+}
+
+func (o VpnSslSettingsAuthenticationRuleGroupArrayOutput) ToVpnSslSettingsAuthenticationRuleGroupArrayOutputWithContext(ctx context.Context) VpnSslSettingsAuthenticationRuleGroupArrayOutput {
+	return o
+}
+
+func (o VpnSslSettingsAuthenticationRuleGroupArrayOutput) Index(i pulumi.IntInput) VpnSslSettingsAuthenticationRuleGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnSslSettingsAuthenticationRuleGroup {
+		return vs[0].([]VpnSslSettingsAuthenticationRuleGroup)[vs[1].(int)]
+	}).(VpnSslSettingsAuthenticationRuleGroupOutput)
+}
+
+type VpnSslSettingsAuthenticationRuleSourceAddress6 struct {
+	Name *string `pulumi:"name"`
+}
+
+// VpnSslSettingsAuthenticationRuleSourceAddress6Input is an input type that accepts VpnSslSettingsAuthenticationRuleSourceAddress6Args and VpnSslSettingsAuthenticationRuleSourceAddress6Output values.
+// You can construct a concrete instance of `VpnSslSettingsAuthenticationRuleSourceAddress6Input` via:
+//
+//	VpnSslSettingsAuthenticationRuleSourceAddress6Args{...}
+type VpnSslSettingsAuthenticationRuleSourceAddress6Input interface {
+	pulumi.Input
+
+	ToVpnSslSettingsAuthenticationRuleSourceAddress6Output() VpnSslSettingsAuthenticationRuleSourceAddress6Output
+	ToVpnSslSettingsAuthenticationRuleSourceAddress6OutputWithContext(context.Context) VpnSslSettingsAuthenticationRuleSourceAddress6Output
+}
+
+type VpnSslSettingsAuthenticationRuleSourceAddress6Args struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (VpnSslSettingsAuthenticationRuleSourceAddress6Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslSettingsAuthenticationRuleSourceAddress6)(nil)).Elem()
+}
+
+func (i VpnSslSettingsAuthenticationRuleSourceAddress6Args) ToVpnSslSettingsAuthenticationRuleSourceAddress6Output() VpnSslSettingsAuthenticationRuleSourceAddress6Output {
+	return i.ToVpnSslSettingsAuthenticationRuleSourceAddress6OutputWithContext(context.Background())
+}
+
+func (i VpnSslSettingsAuthenticationRuleSourceAddress6Args) ToVpnSslSettingsAuthenticationRuleSourceAddress6OutputWithContext(ctx context.Context) VpnSslSettingsAuthenticationRuleSourceAddress6Output {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsAuthenticationRuleSourceAddress6Output)
+}
+
+// VpnSslSettingsAuthenticationRuleSourceAddress6ArrayInput is an input type that accepts VpnSslSettingsAuthenticationRuleSourceAddress6Array and VpnSslSettingsAuthenticationRuleSourceAddress6ArrayOutput values.
+// You can construct a concrete instance of `VpnSslSettingsAuthenticationRuleSourceAddress6ArrayInput` via:
+//
+//	VpnSslSettingsAuthenticationRuleSourceAddress6Array{ VpnSslSettingsAuthenticationRuleSourceAddress6Args{...} }
+type VpnSslSettingsAuthenticationRuleSourceAddress6ArrayInput interface {
+	pulumi.Input
+
+	ToVpnSslSettingsAuthenticationRuleSourceAddress6ArrayOutput() VpnSslSettingsAuthenticationRuleSourceAddress6ArrayOutput
+	ToVpnSslSettingsAuthenticationRuleSourceAddress6ArrayOutputWithContext(context.Context) VpnSslSettingsAuthenticationRuleSourceAddress6ArrayOutput
+}
+
+type VpnSslSettingsAuthenticationRuleSourceAddress6Array []VpnSslSettingsAuthenticationRuleSourceAddress6Input
+
+func (VpnSslSettingsAuthenticationRuleSourceAddress6Array) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslSettingsAuthenticationRuleSourceAddress6)(nil)).Elem()
+}
+
+func (i VpnSslSettingsAuthenticationRuleSourceAddress6Array) ToVpnSslSettingsAuthenticationRuleSourceAddress6ArrayOutput() VpnSslSettingsAuthenticationRuleSourceAddress6ArrayOutput {
+	return i.ToVpnSslSettingsAuthenticationRuleSourceAddress6ArrayOutputWithContext(context.Background())
+}
+
+func (i VpnSslSettingsAuthenticationRuleSourceAddress6Array) ToVpnSslSettingsAuthenticationRuleSourceAddress6ArrayOutputWithContext(ctx context.Context) VpnSslSettingsAuthenticationRuleSourceAddress6ArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsAuthenticationRuleSourceAddress6ArrayOutput)
+}
+
+type VpnSslSettingsAuthenticationRuleSourceAddress6Output struct{ *pulumi.OutputState }
+
+func (VpnSslSettingsAuthenticationRuleSourceAddress6Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslSettingsAuthenticationRuleSourceAddress6)(nil)).Elem()
+}
+
+func (o VpnSslSettingsAuthenticationRuleSourceAddress6Output) ToVpnSslSettingsAuthenticationRuleSourceAddress6Output() VpnSslSettingsAuthenticationRuleSourceAddress6Output {
+	return o
+}
+
+func (o VpnSslSettingsAuthenticationRuleSourceAddress6Output) ToVpnSslSettingsAuthenticationRuleSourceAddress6OutputWithContext(ctx context.Context) VpnSslSettingsAuthenticationRuleSourceAddress6Output {
+	return o
+}
+
+func (o VpnSslSettingsAuthenticationRuleSourceAddress6Output) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslSettingsAuthenticationRuleSourceAddress6) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type VpnSslSettingsAuthenticationRuleSourceAddress6ArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnSslSettingsAuthenticationRuleSourceAddress6ArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslSettingsAuthenticationRuleSourceAddress6)(nil)).Elem()
+}
+
+func (o VpnSslSettingsAuthenticationRuleSourceAddress6ArrayOutput) ToVpnSslSettingsAuthenticationRuleSourceAddress6ArrayOutput() VpnSslSettingsAuthenticationRuleSourceAddress6ArrayOutput {
+	return o
+}
+
+func (o VpnSslSettingsAuthenticationRuleSourceAddress6ArrayOutput) ToVpnSslSettingsAuthenticationRuleSourceAddress6ArrayOutputWithContext(ctx context.Context) VpnSslSettingsAuthenticationRuleSourceAddress6ArrayOutput {
+	return o
+}
+
+func (o VpnSslSettingsAuthenticationRuleSourceAddress6ArrayOutput) Index(i pulumi.IntInput) VpnSslSettingsAuthenticationRuleSourceAddress6Output {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnSslSettingsAuthenticationRuleSourceAddress6 {
+		return vs[0].([]VpnSslSettingsAuthenticationRuleSourceAddress6)[vs[1].(int)]
+	}).(VpnSslSettingsAuthenticationRuleSourceAddress6Output)
+}
+
+type VpnSslSettingsAuthenticationRuleSourceAddress struct {
+	Name *string `pulumi:"name"`
+}
+
+// VpnSslSettingsAuthenticationRuleSourceAddressInput is an input type that accepts VpnSslSettingsAuthenticationRuleSourceAddressArgs and VpnSslSettingsAuthenticationRuleSourceAddressOutput values.
+// You can construct a concrete instance of `VpnSslSettingsAuthenticationRuleSourceAddressInput` via:
+//
+//	VpnSslSettingsAuthenticationRuleSourceAddressArgs{...}
+type VpnSslSettingsAuthenticationRuleSourceAddressInput interface {
+	pulumi.Input
+
+	ToVpnSslSettingsAuthenticationRuleSourceAddressOutput() VpnSslSettingsAuthenticationRuleSourceAddressOutput
+	ToVpnSslSettingsAuthenticationRuleSourceAddressOutputWithContext(context.Context) VpnSslSettingsAuthenticationRuleSourceAddressOutput
+}
+
+type VpnSslSettingsAuthenticationRuleSourceAddressArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (VpnSslSettingsAuthenticationRuleSourceAddressArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslSettingsAuthenticationRuleSourceAddress)(nil)).Elem()
+}
+
+func (i VpnSslSettingsAuthenticationRuleSourceAddressArgs) ToVpnSslSettingsAuthenticationRuleSourceAddressOutput() VpnSslSettingsAuthenticationRuleSourceAddressOutput {
+	return i.ToVpnSslSettingsAuthenticationRuleSourceAddressOutputWithContext(context.Background())
+}
+
+func (i VpnSslSettingsAuthenticationRuleSourceAddressArgs) ToVpnSslSettingsAuthenticationRuleSourceAddressOutputWithContext(ctx context.Context) VpnSslSettingsAuthenticationRuleSourceAddressOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsAuthenticationRuleSourceAddressOutput)
+}
+
+// VpnSslSettingsAuthenticationRuleSourceAddressArrayInput is an input type that accepts VpnSslSettingsAuthenticationRuleSourceAddressArray and VpnSslSettingsAuthenticationRuleSourceAddressArrayOutput values.
+// You can construct a concrete instance of `VpnSslSettingsAuthenticationRuleSourceAddressArrayInput` via:
+//
+//	VpnSslSettingsAuthenticationRuleSourceAddressArray{ VpnSslSettingsAuthenticationRuleSourceAddressArgs{...} }
+type VpnSslSettingsAuthenticationRuleSourceAddressArrayInput interface {
+	pulumi.Input
+
+	ToVpnSslSettingsAuthenticationRuleSourceAddressArrayOutput() VpnSslSettingsAuthenticationRuleSourceAddressArrayOutput
+	ToVpnSslSettingsAuthenticationRuleSourceAddressArrayOutputWithContext(context.Context) VpnSslSettingsAuthenticationRuleSourceAddressArrayOutput
+}
+
+type VpnSslSettingsAuthenticationRuleSourceAddressArray []VpnSslSettingsAuthenticationRuleSourceAddressInput
+
+func (VpnSslSettingsAuthenticationRuleSourceAddressArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslSettingsAuthenticationRuleSourceAddress)(nil)).Elem()
+}
+
+func (i VpnSslSettingsAuthenticationRuleSourceAddressArray) ToVpnSslSettingsAuthenticationRuleSourceAddressArrayOutput() VpnSslSettingsAuthenticationRuleSourceAddressArrayOutput {
+	return i.ToVpnSslSettingsAuthenticationRuleSourceAddressArrayOutputWithContext(context.Background())
+}
+
+func (i VpnSslSettingsAuthenticationRuleSourceAddressArray) ToVpnSslSettingsAuthenticationRuleSourceAddressArrayOutputWithContext(ctx context.Context) VpnSslSettingsAuthenticationRuleSourceAddressArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsAuthenticationRuleSourceAddressArrayOutput)
+}
+
+type VpnSslSettingsAuthenticationRuleSourceAddressOutput struct{ *pulumi.OutputState }
+
+func (VpnSslSettingsAuthenticationRuleSourceAddressOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslSettingsAuthenticationRuleSourceAddress)(nil)).Elem()
+}
+
+func (o VpnSslSettingsAuthenticationRuleSourceAddressOutput) ToVpnSslSettingsAuthenticationRuleSourceAddressOutput() VpnSslSettingsAuthenticationRuleSourceAddressOutput {
+	return o
+}
+
+func (o VpnSslSettingsAuthenticationRuleSourceAddressOutput) ToVpnSslSettingsAuthenticationRuleSourceAddressOutputWithContext(ctx context.Context) VpnSslSettingsAuthenticationRuleSourceAddressOutput {
+	return o
+}
+
+func (o VpnSslSettingsAuthenticationRuleSourceAddressOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslSettingsAuthenticationRuleSourceAddress) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type VpnSslSettingsAuthenticationRuleSourceAddressArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnSslSettingsAuthenticationRuleSourceAddressArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslSettingsAuthenticationRuleSourceAddress)(nil)).Elem()
+}
+
+func (o VpnSslSettingsAuthenticationRuleSourceAddressArrayOutput) ToVpnSslSettingsAuthenticationRuleSourceAddressArrayOutput() VpnSslSettingsAuthenticationRuleSourceAddressArrayOutput {
+	return o
+}
+
+func (o VpnSslSettingsAuthenticationRuleSourceAddressArrayOutput) ToVpnSslSettingsAuthenticationRuleSourceAddressArrayOutputWithContext(ctx context.Context) VpnSslSettingsAuthenticationRuleSourceAddressArrayOutput {
+	return o
+}
+
+func (o VpnSslSettingsAuthenticationRuleSourceAddressArrayOutput) Index(i pulumi.IntInput) VpnSslSettingsAuthenticationRuleSourceAddressOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnSslSettingsAuthenticationRuleSourceAddress {
+		return vs[0].([]VpnSslSettingsAuthenticationRuleSourceAddress)[vs[1].(int)]
+	}).(VpnSslSettingsAuthenticationRuleSourceAddressOutput)
+}
+
+type VpnSslSettingsAuthenticationRuleSourceInterface struct {
+	Name *string `pulumi:"name"`
+}
+
+// VpnSslSettingsAuthenticationRuleSourceInterfaceInput is an input type that accepts VpnSslSettingsAuthenticationRuleSourceInterfaceArgs and VpnSslSettingsAuthenticationRuleSourceInterfaceOutput values.
+// You can construct a concrete instance of `VpnSslSettingsAuthenticationRuleSourceInterfaceInput` via:
+//
+//	VpnSslSettingsAuthenticationRuleSourceInterfaceArgs{...}
+type VpnSslSettingsAuthenticationRuleSourceInterfaceInput interface {
+	pulumi.Input
+
+	ToVpnSslSettingsAuthenticationRuleSourceInterfaceOutput() VpnSslSettingsAuthenticationRuleSourceInterfaceOutput
+	ToVpnSslSettingsAuthenticationRuleSourceInterfaceOutputWithContext(context.Context) VpnSslSettingsAuthenticationRuleSourceInterfaceOutput
+}
+
+type VpnSslSettingsAuthenticationRuleSourceInterfaceArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (VpnSslSettingsAuthenticationRuleSourceInterfaceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslSettingsAuthenticationRuleSourceInterface)(nil)).Elem()
+}
+
+func (i VpnSslSettingsAuthenticationRuleSourceInterfaceArgs) ToVpnSslSettingsAuthenticationRuleSourceInterfaceOutput() VpnSslSettingsAuthenticationRuleSourceInterfaceOutput {
+	return i.ToVpnSslSettingsAuthenticationRuleSourceInterfaceOutputWithContext(context.Background())
+}
+
+func (i VpnSslSettingsAuthenticationRuleSourceInterfaceArgs) ToVpnSslSettingsAuthenticationRuleSourceInterfaceOutputWithContext(ctx context.Context) VpnSslSettingsAuthenticationRuleSourceInterfaceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsAuthenticationRuleSourceInterfaceOutput)
+}
+
+// VpnSslSettingsAuthenticationRuleSourceInterfaceArrayInput is an input type that accepts VpnSslSettingsAuthenticationRuleSourceInterfaceArray and VpnSslSettingsAuthenticationRuleSourceInterfaceArrayOutput values.
+// You can construct a concrete instance of `VpnSslSettingsAuthenticationRuleSourceInterfaceArrayInput` via:
+//
+//	VpnSslSettingsAuthenticationRuleSourceInterfaceArray{ VpnSslSettingsAuthenticationRuleSourceInterfaceArgs{...} }
+type VpnSslSettingsAuthenticationRuleSourceInterfaceArrayInput interface {
+	pulumi.Input
+
+	ToVpnSslSettingsAuthenticationRuleSourceInterfaceArrayOutput() VpnSslSettingsAuthenticationRuleSourceInterfaceArrayOutput
+	ToVpnSslSettingsAuthenticationRuleSourceInterfaceArrayOutputWithContext(context.Context) VpnSslSettingsAuthenticationRuleSourceInterfaceArrayOutput
+}
+
+type VpnSslSettingsAuthenticationRuleSourceInterfaceArray []VpnSslSettingsAuthenticationRuleSourceInterfaceInput
+
+func (VpnSslSettingsAuthenticationRuleSourceInterfaceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslSettingsAuthenticationRuleSourceInterface)(nil)).Elem()
+}
+
+func (i VpnSslSettingsAuthenticationRuleSourceInterfaceArray) ToVpnSslSettingsAuthenticationRuleSourceInterfaceArrayOutput() VpnSslSettingsAuthenticationRuleSourceInterfaceArrayOutput {
+	return i.ToVpnSslSettingsAuthenticationRuleSourceInterfaceArrayOutputWithContext(context.Background())
+}
+
+func (i VpnSslSettingsAuthenticationRuleSourceInterfaceArray) ToVpnSslSettingsAuthenticationRuleSourceInterfaceArrayOutputWithContext(ctx context.Context) VpnSslSettingsAuthenticationRuleSourceInterfaceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsAuthenticationRuleSourceInterfaceArrayOutput)
+}
+
+type VpnSslSettingsAuthenticationRuleSourceInterfaceOutput struct{ *pulumi.OutputState }
+
+func (VpnSslSettingsAuthenticationRuleSourceInterfaceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslSettingsAuthenticationRuleSourceInterface)(nil)).Elem()
+}
+
+func (o VpnSslSettingsAuthenticationRuleSourceInterfaceOutput) ToVpnSslSettingsAuthenticationRuleSourceInterfaceOutput() VpnSslSettingsAuthenticationRuleSourceInterfaceOutput {
+	return o
+}
+
+func (o VpnSslSettingsAuthenticationRuleSourceInterfaceOutput) ToVpnSslSettingsAuthenticationRuleSourceInterfaceOutputWithContext(ctx context.Context) VpnSslSettingsAuthenticationRuleSourceInterfaceOutput {
+	return o
+}
+
+func (o VpnSslSettingsAuthenticationRuleSourceInterfaceOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslSettingsAuthenticationRuleSourceInterface) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type VpnSslSettingsAuthenticationRuleSourceInterfaceArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnSslSettingsAuthenticationRuleSourceInterfaceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslSettingsAuthenticationRuleSourceInterface)(nil)).Elem()
+}
+
+func (o VpnSslSettingsAuthenticationRuleSourceInterfaceArrayOutput) ToVpnSslSettingsAuthenticationRuleSourceInterfaceArrayOutput() VpnSslSettingsAuthenticationRuleSourceInterfaceArrayOutput {
+	return o
+}
+
+func (o VpnSslSettingsAuthenticationRuleSourceInterfaceArrayOutput) ToVpnSslSettingsAuthenticationRuleSourceInterfaceArrayOutputWithContext(ctx context.Context) VpnSslSettingsAuthenticationRuleSourceInterfaceArrayOutput {
+	return o
+}
+
+func (o VpnSslSettingsAuthenticationRuleSourceInterfaceArrayOutput) Index(i pulumi.IntInput) VpnSslSettingsAuthenticationRuleSourceInterfaceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnSslSettingsAuthenticationRuleSourceInterface {
+		return vs[0].([]VpnSslSettingsAuthenticationRuleSourceInterface)[vs[1].(int)]
+	}).(VpnSslSettingsAuthenticationRuleSourceInterfaceOutput)
+}
+
+type VpnSslSettingsAuthenticationRuleUser struct {
+	Name *string `pulumi:"name"`
+}
+
+// VpnSslSettingsAuthenticationRuleUserInput is an input type that accepts VpnSslSettingsAuthenticationRuleUserArgs and VpnSslSettingsAuthenticationRuleUserOutput values.
+// You can construct a concrete instance of `VpnSslSettingsAuthenticationRuleUserInput` via:
+//
+//	VpnSslSettingsAuthenticationRuleUserArgs{...}
+type VpnSslSettingsAuthenticationRuleUserInput interface {
+	pulumi.Input
+
+	ToVpnSslSettingsAuthenticationRuleUserOutput() VpnSslSettingsAuthenticationRuleUserOutput
+	ToVpnSslSettingsAuthenticationRuleUserOutputWithContext(context.Context) VpnSslSettingsAuthenticationRuleUserOutput
+}
+
+type VpnSslSettingsAuthenticationRuleUserArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (VpnSslSettingsAuthenticationRuleUserArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslSettingsAuthenticationRuleUser)(nil)).Elem()
+}
+
+func (i VpnSslSettingsAuthenticationRuleUserArgs) ToVpnSslSettingsAuthenticationRuleUserOutput() VpnSslSettingsAuthenticationRuleUserOutput {
+	return i.ToVpnSslSettingsAuthenticationRuleUserOutputWithContext(context.Background())
+}
+
+func (i VpnSslSettingsAuthenticationRuleUserArgs) ToVpnSslSettingsAuthenticationRuleUserOutputWithContext(ctx context.Context) VpnSslSettingsAuthenticationRuleUserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsAuthenticationRuleUserOutput)
+}
+
+// VpnSslSettingsAuthenticationRuleUserArrayInput is an input type that accepts VpnSslSettingsAuthenticationRuleUserArray and VpnSslSettingsAuthenticationRuleUserArrayOutput values.
+// You can construct a concrete instance of `VpnSslSettingsAuthenticationRuleUserArrayInput` via:
+//
+//	VpnSslSettingsAuthenticationRuleUserArray{ VpnSslSettingsAuthenticationRuleUserArgs{...} }
+type VpnSslSettingsAuthenticationRuleUserArrayInput interface {
+	pulumi.Input
+
+	ToVpnSslSettingsAuthenticationRuleUserArrayOutput() VpnSslSettingsAuthenticationRuleUserArrayOutput
+	ToVpnSslSettingsAuthenticationRuleUserArrayOutputWithContext(context.Context) VpnSslSettingsAuthenticationRuleUserArrayOutput
+}
+
+type VpnSslSettingsAuthenticationRuleUserArray []VpnSslSettingsAuthenticationRuleUserInput
+
+func (VpnSslSettingsAuthenticationRuleUserArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslSettingsAuthenticationRuleUser)(nil)).Elem()
+}
+
+func (i VpnSslSettingsAuthenticationRuleUserArray) ToVpnSslSettingsAuthenticationRuleUserArrayOutput() VpnSslSettingsAuthenticationRuleUserArrayOutput {
+	return i.ToVpnSslSettingsAuthenticationRuleUserArrayOutputWithContext(context.Background())
+}
+
+func (i VpnSslSettingsAuthenticationRuleUserArray) ToVpnSslSettingsAuthenticationRuleUserArrayOutputWithContext(ctx context.Context) VpnSslSettingsAuthenticationRuleUserArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsAuthenticationRuleUserArrayOutput)
+}
+
+type VpnSslSettingsAuthenticationRuleUserOutput struct{ *pulumi.OutputState }
+
+func (VpnSslSettingsAuthenticationRuleUserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslSettingsAuthenticationRuleUser)(nil)).Elem()
+}
+
+func (o VpnSslSettingsAuthenticationRuleUserOutput) ToVpnSslSettingsAuthenticationRuleUserOutput() VpnSslSettingsAuthenticationRuleUserOutput {
+	return o
+}
+
+func (o VpnSslSettingsAuthenticationRuleUserOutput) ToVpnSslSettingsAuthenticationRuleUserOutputWithContext(ctx context.Context) VpnSslSettingsAuthenticationRuleUserOutput {
+	return o
+}
+
+func (o VpnSslSettingsAuthenticationRuleUserOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslSettingsAuthenticationRuleUser) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type VpnSslSettingsAuthenticationRuleUserArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnSslSettingsAuthenticationRuleUserArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslSettingsAuthenticationRuleUser)(nil)).Elem()
+}
+
+func (o VpnSslSettingsAuthenticationRuleUserArrayOutput) ToVpnSslSettingsAuthenticationRuleUserArrayOutput() VpnSslSettingsAuthenticationRuleUserArrayOutput {
+	return o
+}
+
+func (o VpnSslSettingsAuthenticationRuleUserArrayOutput) ToVpnSslSettingsAuthenticationRuleUserArrayOutputWithContext(ctx context.Context) VpnSslSettingsAuthenticationRuleUserArrayOutput {
+	return o
+}
+
+func (o VpnSslSettingsAuthenticationRuleUserArrayOutput) Index(i pulumi.IntInput) VpnSslSettingsAuthenticationRuleUserOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnSslSettingsAuthenticationRuleUser {
+		return vs[0].([]VpnSslSettingsAuthenticationRuleUser)[vs[1].(int)]
+	}).(VpnSslSettingsAuthenticationRuleUserOutput)
+}
+
+type VpnSslSettingsSourceAddress6 struct {
+	Name *string `pulumi:"name"`
+}
+
+// VpnSslSettingsSourceAddress6Input is an input type that accepts VpnSslSettingsSourceAddress6Args and VpnSslSettingsSourceAddress6Output values.
+// You can construct a concrete instance of `VpnSslSettingsSourceAddress6Input` via:
+//
+//	VpnSslSettingsSourceAddress6Args{...}
+type VpnSslSettingsSourceAddress6Input interface {
+	pulumi.Input
+
+	ToVpnSslSettingsSourceAddress6Output() VpnSslSettingsSourceAddress6Output
+	ToVpnSslSettingsSourceAddress6OutputWithContext(context.Context) VpnSslSettingsSourceAddress6Output
+}
+
+type VpnSslSettingsSourceAddress6Args struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (VpnSslSettingsSourceAddress6Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslSettingsSourceAddress6)(nil)).Elem()
+}
+
+func (i VpnSslSettingsSourceAddress6Args) ToVpnSslSettingsSourceAddress6Output() VpnSslSettingsSourceAddress6Output {
+	return i.ToVpnSslSettingsSourceAddress6OutputWithContext(context.Background())
+}
+
+func (i VpnSslSettingsSourceAddress6Args) ToVpnSslSettingsSourceAddress6OutputWithContext(ctx context.Context) VpnSslSettingsSourceAddress6Output {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsSourceAddress6Output)
+}
+
+// VpnSslSettingsSourceAddress6ArrayInput is an input type that accepts VpnSslSettingsSourceAddress6Array and VpnSslSettingsSourceAddress6ArrayOutput values.
+// You can construct a concrete instance of `VpnSslSettingsSourceAddress6ArrayInput` via:
+//
+//	VpnSslSettingsSourceAddress6Array{ VpnSslSettingsSourceAddress6Args{...} }
+type VpnSslSettingsSourceAddress6ArrayInput interface {
+	pulumi.Input
+
+	ToVpnSslSettingsSourceAddress6ArrayOutput() VpnSslSettingsSourceAddress6ArrayOutput
+	ToVpnSslSettingsSourceAddress6ArrayOutputWithContext(context.Context) VpnSslSettingsSourceAddress6ArrayOutput
+}
+
+type VpnSslSettingsSourceAddress6Array []VpnSslSettingsSourceAddress6Input
+
+func (VpnSslSettingsSourceAddress6Array) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslSettingsSourceAddress6)(nil)).Elem()
+}
+
+func (i VpnSslSettingsSourceAddress6Array) ToVpnSslSettingsSourceAddress6ArrayOutput() VpnSslSettingsSourceAddress6ArrayOutput {
+	return i.ToVpnSslSettingsSourceAddress6ArrayOutputWithContext(context.Background())
+}
+
+func (i VpnSslSettingsSourceAddress6Array) ToVpnSslSettingsSourceAddress6ArrayOutputWithContext(ctx context.Context) VpnSslSettingsSourceAddress6ArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsSourceAddress6ArrayOutput)
+}
+
+type VpnSslSettingsSourceAddress6Output struct{ *pulumi.OutputState }
+
+func (VpnSslSettingsSourceAddress6Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslSettingsSourceAddress6)(nil)).Elem()
+}
+
+func (o VpnSslSettingsSourceAddress6Output) ToVpnSslSettingsSourceAddress6Output() VpnSslSettingsSourceAddress6Output {
+	return o
+}
+
+func (o VpnSslSettingsSourceAddress6Output) ToVpnSslSettingsSourceAddress6OutputWithContext(ctx context.Context) VpnSslSettingsSourceAddress6Output {
+	return o
+}
+
+func (o VpnSslSettingsSourceAddress6Output) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslSettingsSourceAddress6) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type VpnSslSettingsSourceAddress6ArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnSslSettingsSourceAddress6ArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslSettingsSourceAddress6)(nil)).Elem()
+}
+
+func (o VpnSslSettingsSourceAddress6ArrayOutput) ToVpnSslSettingsSourceAddress6ArrayOutput() VpnSslSettingsSourceAddress6ArrayOutput {
+	return o
+}
+
+func (o VpnSslSettingsSourceAddress6ArrayOutput) ToVpnSslSettingsSourceAddress6ArrayOutputWithContext(ctx context.Context) VpnSslSettingsSourceAddress6ArrayOutput {
+	return o
+}
+
+func (o VpnSslSettingsSourceAddress6ArrayOutput) Index(i pulumi.IntInput) VpnSslSettingsSourceAddress6Output {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnSslSettingsSourceAddress6 {
+		return vs[0].([]VpnSslSettingsSourceAddress6)[vs[1].(int)]
+	}).(VpnSslSettingsSourceAddress6Output)
+}
+
+type VpnSslSettingsSourceAddress struct {
+	Name *string `pulumi:"name"`
+}
+
+// VpnSslSettingsSourceAddressInput is an input type that accepts VpnSslSettingsSourceAddressArgs and VpnSslSettingsSourceAddressOutput values.
+// You can construct a concrete instance of `VpnSslSettingsSourceAddressInput` via:
+//
+//	VpnSslSettingsSourceAddressArgs{...}
+type VpnSslSettingsSourceAddressInput interface {
+	pulumi.Input
+
+	ToVpnSslSettingsSourceAddressOutput() VpnSslSettingsSourceAddressOutput
+	ToVpnSslSettingsSourceAddressOutputWithContext(context.Context) VpnSslSettingsSourceAddressOutput
+}
+
+type VpnSslSettingsSourceAddressArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (VpnSslSettingsSourceAddressArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslSettingsSourceAddress)(nil)).Elem()
+}
+
+func (i VpnSslSettingsSourceAddressArgs) ToVpnSslSettingsSourceAddressOutput() VpnSslSettingsSourceAddressOutput {
+	return i.ToVpnSslSettingsSourceAddressOutputWithContext(context.Background())
+}
+
+func (i VpnSslSettingsSourceAddressArgs) ToVpnSslSettingsSourceAddressOutputWithContext(ctx context.Context) VpnSslSettingsSourceAddressOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsSourceAddressOutput)
+}
+
+// VpnSslSettingsSourceAddressArrayInput is an input type that accepts VpnSslSettingsSourceAddressArray and VpnSslSettingsSourceAddressArrayOutput values.
+// You can construct a concrete instance of `VpnSslSettingsSourceAddressArrayInput` via:
+//
+//	VpnSslSettingsSourceAddressArray{ VpnSslSettingsSourceAddressArgs{...} }
+type VpnSslSettingsSourceAddressArrayInput interface {
+	pulumi.Input
+
+	ToVpnSslSettingsSourceAddressArrayOutput() VpnSslSettingsSourceAddressArrayOutput
+	ToVpnSslSettingsSourceAddressArrayOutputWithContext(context.Context) VpnSslSettingsSourceAddressArrayOutput
+}
+
+type VpnSslSettingsSourceAddressArray []VpnSslSettingsSourceAddressInput
+
+func (VpnSslSettingsSourceAddressArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslSettingsSourceAddress)(nil)).Elem()
+}
+
+func (i VpnSslSettingsSourceAddressArray) ToVpnSslSettingsSourceAddressArrayOutput() VpnSslSettingsSourceAddressArrayOutput {
+	return i.ToVpnSslSettingsSourceAddressArrayOutputWithContext(context.Background())
+}
+
+func (i VpnSslSettingsSourceAddressArray) ToVpnSslSettingsSourceAddressArrayOutputWithContext(ctx context.Context) VpnSslSettingsSourceAddressArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsSourceAddressArrayOutput)
+}
+
+type VpnSslSettingsSourceAddressOutput struct{ *pulumi.OutputState }
+
+func (VpnSslSettingsSourceAddressOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslSettingsSourceAddress)(nil)).Elem()
+}
+
+func (o VpnSslSettingsSourceAddressOutput) ToVpnSslSettingsSourceAddressOutput() VpnSslSettingsSourceAddressOutput {
+	return o
+}
+
+func (o VpnSslSettingsSourceAddressOutput) ToVpnSslSettingsSourceAddressOutputWithContext(ctx context.Context) VpnSslSettingsSourceAddressOutput {
+	return o
+}
+
+func (o VpnSslSettingsSourceAddressOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslSettingsSourceAddress) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type VpnSslSettingsSourceAddressArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnSslSettingsSourceAddressArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslSettingsSourceAddress)(nil)).Elem()
+}
+
+func (o VpnSslSettingsSourceAddressArrayOutput) ToVpnSslSettingsSourceAddressArrayOutput() VpnSslSettingsSourceAddressArrayOutput {
+	return o
+}
+
+func (o VpnSslSettingsSourceAddressArrayOutput) ToVpnSslSettingsSourceAddressArrayOutputWithContext(ctx context.Context) VpnSslSettingsSourceAddressArrayOutput {
+	return o
+}
+
+func (o VpnSslSettingsSourceAddressArrayOutput) Index(i pulumi.IntInput) VpnSslSettingsSourceAddressOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnSslSettingsSourceAddress {
+		return vs[0].([]VpnSslSettingsSourceAddress)[vs[1].(int)]
+	}).(VpnSslSettingsSourceAddressOutput)
+}
+
+type VpnSslSettingsSourceInterface struct {
+	Name *string `pulumi:"name"`
+}
+
+// VpnSslSettingsSourceInterfaceInput is an input type that accepts VpnSslSettingsSourceInterfaceArgs and VpnSslSettingsSourceInterfaceOutput values.
+// You can construct a concrete instance of `VpnSslSettingsSourceInterfaceInput` via:
+//
+//	VpnSslSettingsSourceInterfaceArgs{...}
+type VpnSslSettingsSourceInterfaceInput interface {
+	pulumi.Input
+
+	ToVpnSslSettingsSourceInterfaceOutput() VpnSslSettingsSourceInterfaceOutput
+	ToVpnSslSettingsSourceInterfaceOutputWithContext(context.Context) VpnSslSettingsSourceInterfaceOutput
+}
+
+type VpnSslSettingsSourceInterfaceArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (VpnSslSettingsSourceInterfaceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslSettingsSourceInterface)(nil)).Elem()
+}
+
+func (i VpnSslSettingsSourceInterfaceArgs) ToVpnSslSettingsSourceInterfaceOutput() VpnSslSettingsSourceInterfaceOutput {
+	return i.ToVpnSslSettingsSourceInterfaceOutputWithContext(context.Background())
+}
+
+func (i VpnSslSettingsSourceInterfaceArgs) ToVpnSslSettingsSourceInterfaceOutputWithContext(ctx context.Context) VpnSslSettingsSourceInterfaceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsSourceInterfaceOutput)
+}
+
+// VpnSslSettingsSourceInterfaceArrayInput is an input type that accepts VpnSslSettingsSourceInterfaceArray and VpnSslSettingsSourceInterfaceArrayOutput values.
+// You can construct a concrete instance of `VpnSslSettingsSourceInterfaceArrayInput` via:
+//
+//	VpnSslSettingsSourceInterfaceArray{ VpnSslSettingsSourceInterfaceArgs{...} }
+type VpnSslSettingsSourceInterfaceArrayInput interface {
+	pulumi.Input
+
+	ToVpnSslSettingsSourceInterfaceArrayOutput() VpnSslSettingsSourceInterfaceArrayOutput
+	ToVpnSslSettingsSourceInterfaceArrayOutputWithContext(context.Context) VpnSslSettingsSourceInterfaceArrayOutput
+}
+
+type VpnSslSettingsSourceInterfaceArray []VpnSslSettingsSourceInterfaceInput
+
+func (VpnSslSettingsSourceInterfaceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslSettingsSourceInterface)(nil)).Elem()
+}
+
+func (i VpnSslSettingsSourceInterfaceArray) ToVpnSslSettingsSourceInterfaceArrayOutput() VpnSslSettingsSourceInterfaceArrayOutput {
+	return i.ToVpnSslSettingsSourceInterfaceArrayOutputWithContext(context.Background())
+}
+
+func (i VpnSslSettingsSourceInterfaceArray) ToVpnSslSettingsSourceInterfaceArrayOutputWithContext(ctx context.Context) VpnSslSettingsSourceInterfaceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsSourceInterfaceArrayOutput)
+}
+
+type VpnSslSettingsSourceInterfaceOutput struct{ *pulumi.OutputState }
+
+func (VpnSslSettingsSourceInterfaceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslSettingsSourceInterface)(nil)).Elem()
+}
+
+func (o VpnSslSettingsSourceInterfaceOutput) ToVpnSslSettingsSourceInterfaceOutput() VpnSslSettingsSourceInterfaceOutput {
+	return o
+}
+
+func (o VpnSslSettingsSourceInterfaceOutput) ToVpnSslSettingsSourceInterfaceOutputWithContext(ctx context.Context) VpnSslSettingsSourceInterfaceOutput {
+	return o
+}
+
+func (o VpnSslSettingsSourceInterfaceOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslSettingsSourceInterface) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type VpnSslSettingsSourceInterfaceArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnSslSettingsSourceInterfaceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslSettingsSourceInterface)(nil)).Elem()
+}
+
+func (o VpnSslSettingsSourceInterfaceArrayOutput) ToVpnSslSettingsSourceInterfaceArrayOutput() VpnSslSettingsSourceInterfaceArrayOutput {
+	return o
+}
+
+func (o VpnSslSettingsSourceInterfaceArrayOutput) ToVpnSslSettingsSourceInterfaceArrayOutputWithContext(ctx context.Context) VpnSslSettingsSourceInterfaceArrayOutput {
+	return o
+}
+
+func (o VpnSslSettingsSourceInterfaceArrayOutput) Index(i pulumi.IntInput) VpnSslSettingsSourceInterfaceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnSslSettingsSourceInterface {
+		return vs[0].([]VpnSslSettingsSourceInterface)[vs[1].(int)]
+	}).(VpnSslSettingsSourceInterfaceOutput)
+}
+
+type VpnSslSettingsTunnelIpPool struct {
+	Name *string `pulumi:"name"`
+}
+
+// VpnSslSettingsTunnelIpPoolInput is an input type that accepts VpnSslSettingsTunnelIpPoolArgs and VpnSslSettingsTunnelIpPoolOutput values.
+// You can construct a concrete instance of `VpnSslSettingsTunnelIpPoolInput` via:
+//
+//	VpnSslSettingsTunnelIpPoolArgs{...}
+type VpnSslSettingsTunnelIpPoolInput interface {
+	pulumi.Input
+
+	ToVpnSslSettingsTunnelIpPoolOutput() VpnSslSettingsTunnelIpPoolOutput
+	ToVpnSslSettingsTunnelIpPoolOutputWithContext(context.Context) VpnSslSettingsTunnelIpPoolOutput
+}
+
+type VpnSslSettingsTunnelIpPoolArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (VpnSslSettingsTunnelIpPoolArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslSettingsTunnelIpPool)(nil)).Elem()
+}
+
+func (i VpnSslSettingsTunnelIpPoolArgs) ToVpnSslSettingsTunnelIpPoolOutput() VpnSslSettingsTunnelIpPoolOutput {
+	return i.ToVpnSslSettingsTunnelIpPoolOutputWithContext(context.Background())
+}
+
+func (i VpnSslSettingsTunnelIpPoolArgs) ToVpnSslSettingsTunnelIpPoolOutputWithContext(ctx context.Context) VpnSslSettingsTunnelIpPoolOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsTunnelIpPoolOutput)
+}
+
+// VpnSslSettingsTunnelIpPoolArrayInput is an input type that accepts VpnSslSettingsTunnelIpPoolArray and VpnSslSettingsTunnelIpPoolArrayOutput values.
+// You can construct a concrete instance of `VpnSslSettingsTunnelIpPoolArrayInput` via:
+//
+//	VpnSslSettingsTunnelIpPoolArray{ VpnSslSettingsTunnelIpPoolArgs{...} }
+type VpnSslSettingsTunnelIpPoolArrayInput interface {
+	pulumi.Input
+
+	ToVpnSslSettingsTunnelIpPoolArrayOutput() VpnSslSettingsTunnelIpPoolArrayOutput
+	ToVpnSslSettingsTunnelIpPoolArrayOutputWithContext(context.Context) VpnSslSettingsTunnelIpPoolArrayOutput
+}
+
+type VpnSslSettingsTunnelIpPoolArray []VpnSslSettingsTunnelIpPoolInput
+
+func (VpnSslSettingsTunnelIpPoolArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslSettingsTunnelIpPool)(nil)).Elem()
+}
+
+func (i VpnSslSettingsTunnelIpPoolArray) ToVpnSslSettingsTunnelIpPoolArrayOutput() VpnSslSettingsTunnelIpPoolArrayOutput {
+	return i.ToVpnSslSettingsTunnelIpPoolArrayOutputWithContext(context.Background())
+}
+
+func (i VpnSslSettingsTunnelIpPoolArray) ToVpnSslSettingsTunnelIpPoolArrayOutputWithContext(ctx context.Context) VpnSslSettingsTunnelIpPoolArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsTunnelIpPoolArrayOutput)
+}
+
+type VpnSslSettingsTunnelIpPoolOutput struct{ *pulumi.OutputState }
+
+func (VpnSslSettingsTunnelIpPoolOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslSettingsTunnelIpPool)(nil)).Elem()
+}
+
+func (o VpnSslSettingsTunnelIpPoolOutput) ToVpnSslSettingsTunnelIpPoolOutput() VpnSslSettingsTunnelIpPoolOutput {
+	return o
+}
+
+func (o VpnSslSettingsTunnelIpPoolOutput) ToVpnSslSettingsTunnelIpPoolOutputWithContext(ctx context.Context) VpnSslSettingsTunnelIpPoolOutput {
+	return o
+}
+
+func (o VpnSslSettingsTunnelIpPoolOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslSettingsTunnelIpPool) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type VpnSslSettingsTunnelIpPoolArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnSslSettingsTunnelIpPoolArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslSettingsTunnelIpPool)(nil)).Elem()
+}
+
+func (o VpnSslSettingsTunnelIpPoolArrayOutput) ToVpnSslSettingsTunnelIpPoolArrayOutput() VpnSslSettingsTunnelIpPoolArrayOutput {
+	return o
+}
+
+func (o VpnSslSettingsTunnelIpPoolArrayOutput) ToVpnSslSettingsTunnelIpPoolArrayOutputWithContext(ctx context.Context) VpnSslSettingsTunnelIpPoolArrayOutput {
+	return o
+}
+
+func (o VpnSslSettingsTunnelIpPoolArrayOutput) Index(i pulumi.IntInput) VpnSslSettingsTunnelIpPoolOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnSslSettingsTunnelIpPool {
+		return vs[0].([]VpnSslSettingsTunnelIpPool)[vs[1].(int)]
+	}).(VpnSslSettingsTunnelIpPoolOutput)
+}
+
+type VpnSslSettingsTunnelIpv6Pool struct {
+	Name *string `pulumi:"name"`
+}
+
+// VpnSslSettingsTunnelIpv6PoolInput is an input type that accepts VpnSslSettingsTunnelIpv6PoolArgs and VpnSslSettingsTunnelIpv6PoolOutput values.
+// You can construct a concrete instance of `VpnSslSettingsTunnelIpv6PoolInput` via:
+//
+//	VpnSslSettingsTunnelIpv6PoolArgs{...}
+type VpnSslSettingsTunnelIpv6PoolInput interface {
+	pulumi.Input
+
+	ToVpnSslSettingsTunnelIpv6PoolOutput() VpnSslSettingsTunnelIpv6PoolOutput
+	ToVpnSslSettingsTunnelIpv6PoolOutputWithContext(context.Context) VpnSslSettingsTunnelIpv6PoolOutput
+}
+
+type VpnSslSettingsTunnelIpv6PoolArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (VpnSslSettingsTunnelIpv6PoolArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslSettingsTunnelIpv6Pool)(nil)).Elem()
+}
+
+func (i VpnSslSettingsTunnelIpv6PoolArgs) ToVpnSslSettingsTunnelIpv6PoolOutput() VpnSslSettingsTunnelIpv6PoolOutput {
+	return i.ToVpnSslSettingsTunnelIpv6PoolOutputWithContext(context.Background())
+}
+
+func (i VpnSslSettingsTunnelIpv6PoolArgs) ToVpnSslSettingsTunnelIpv6PoolOutputWithContext(ctx context.Context) VpnSslSettingsTunnelIpv6PoolOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsTunnelIpv6PoolOutput)
+}
+
+// VpnSslSettingsTunnelIpv6PoolArrayInput is an input type that accepts VpnSslSettingsTunnelIpv6PoolArray and VpnSslSettingsTunnelIpv6PoolArrayOutput values.
+// You can construct a concrete instance of `VpnSslSettingsTunnelIpv6PoolArrayInput` via:
+//
+//	VpnSslSettingsTunnelIpv6PoolArray{ VpnSslSettingsTunnelIpv6PoolArgs{...} }
+type VpnSslSettingsTunnelIpv6PoolArrayInput interface {
+	pulumi.Input
+
+	ToVpnSslSettingsTunnelIpv6PoolArrayOutput() VpnSslSettingsTunnelIpv6PoolArrayOutput
+	ToVpnSslSettingsTunnelIpv6PoolArrayOutputWithContext(context.Context) VpnSslSettingsTunnelIpv6PoolArrayOutput
+}
+
+type VpnSslSettingsTunnelIpv6PoolArray []VpnSslSettingsTunnelIpv6PoolInput
+
+func (VpnSslSettingsTunnelIpv6PoolArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslSettingsTunnelIpv6Pool)(nil)).Elem()
+}
+
+func (i VpnSslSettingsTunnelIpv6PoolArray) ToVpnSslSettingsTunnelIpv6PoolArrayOutput() VpnSslSettingsTunnelIpv6PoolArrayOutput {
+	return i.ToVpnSslSettingsTunnelIpv6PoolArrayOutputWithContext(context.Background())
+}
+
+func (i VpnSslSettingsTunnelIpv6PoolArray) ToVpnSslSettingsTunnelIpv6PoolArrayOutputWithContext(ctx context.Context) VpnSslSettingsTunnelIpv6PoolArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsTunnelIpv6PoolArrayOutput)
+}
+
+type VpnSslSettingsTunnelIpv6PoolOutput struct{ *pulumi.OutputState }
+
+func (VpnSslSettingsTunnelIpv6PoolOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslSettingsTunnelIpv6Pool)(nil)).Elem()
+}
+
+func (o VpnSslSettingsTunnelIpv6PoolOutput) ToVpnSslSettingsTunnelIpv6PoolOutput() VpnSslSettingsTunnelIpv6PoolOutput {
+	return o
+}
+
+func (o VpnSslSettingsTunnelIpv6PoolOutput) ToVpnSslSettingsTunnelIpv6PoolOutputWithContext(ctx context.Context) VpnSslSettingsTunnelIpv6PoolOutput {
+	return o
+}
+
+func (o VpnSslSettingsTunnelIpv6PoolOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslSettingsTunnelIpv6Pool) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type VpnSslSettingsTunnelIpv6PoolArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnSslSettingsTunnelIpv6PoolArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslSettingsTunnelIpv6Pool)(nil)).Elem()
+}
+
+func (o VpnSslSettingsTunnelIpv6PoolArrayOutput) ToVpnSslSettingsTunnelIpv6PoolArrayOutput() VpnSslSettingsTunnelIpv6PoolArrayOutput {
+	return o
+}
+
+func (o VpnSslSettingsTunnelIpv6PoolArrayOutput) ToVpnSslSettingsTunnelIpv6PoolArrayOutputWithContext(ctx context.Context) VpnSslSettingsTunnelIpv6PoolArrayOutput {
+	return o
+}
+
+func (o VpnSslSettingsTunnelIpv6PoolArrayOutput) Index(i pulumi.IntInput) VpnSslSettingsTunnelIpv6PoolOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnSslSettingsTunnelIpv6Pool {
+		return vs[0].([]VpnSslSettingsTunnelIpv6Pool)[vs[1].(int)]
+	}).(VpnSslSettingsTunnelIpv6PoolOutput)
+}
+
+type VpnSslWebHostCheckSoftwareCheckItemList struct {
+	Action  *string                                      `pulumi:"action"`
+	Id      *int                                         `pulumi:"id"`
+	Md5s    []VpnSslWebHostCheckSoftwareCheckItemListMd5 `pulumi:"md5s"`
+	Target  *string                                      `pulumi:"target"`
+	Type    *string                                      `pulumi:"type"`
+	Version *string                                      `pulumi:"version"`
+}
+
+// VpnSslWebHostCheckSoftwareCheckItemListInput is an input type that accepts VpnSslWebHostCheckSoftwareCheckItemListArgs and VpnSslWebHostCheckSoftwareCheckItemListOutput values.
+// You can construct a concrete instance of `VpnSslWebHostCheckSoftwareCheckItemListInput` via:
+//
+//	VpnSslWebHostCheckSoftwareCheckItemListArgs{...}
+type VpnSslWebHostCheckSoftwareCheckItemListInput interface {
+	pulumi.Input
+
+	ToVpnSslWebHostCheckSoftwareCheckItemListOutput() VpnSslWebHostCheckSoftwareCheckItemListOutput
+	ToVpnSslWebHostCheckSoftwareCheckItemListOutputWithContext(context.Context) VpnSslWebHostCheckSoftwareCheckItemListOutput
+}
+
+type VpnSslWebHostCheckSoftwareCheckItemListArgs struct {
+	Action  pulumi.StringPtrInput                                `pulumi:"action"`
+	Id      pulumi.IntPtrInput                                   `pulumi:"id"`
+	Md5s    VpnSslWebHostCheckSoftwareCheckItemListMd5ArrayInput `pulumi:"md5s"`
+	Target  pulumi.StringPtrInput                                `pulumi:"target"`
+	Type    pulumi.StringPtrInput                                `pulumi:"type"`
+	Version pulumi.StringPtrInput                                `pulumi:"version"`
+}
+
+func (VpnSslWebHostCheckSoftwareCheckItemListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslWebHostCheckSoftwareCheckItemList)(nil)).Elem()
+}
+
+func (i VpnSslWebHostCheckSoftwareCheckItemListArgs) ToVpnSslWebHostCheckSoftwareCheckItemListOutput() VpnSslWebHostCheckSoftwareCheckItemListOutput {
+	return i.ToVpnSslWebHostCheckSoftwareCheckItemListOutputWithContext(context.Background())
+}
+
+func (i VpnSslWebHostCheckSoftwareCheckItemListArgs) ToVpnSslWebHostCheckSoftwareCheckItemListOutputWithContext(ctx context.Context) VpnSslWebHostCheckSoftwareCheckItemListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebHostCheckSoftwareCheckItemListOutput)
+}
+
+// VpnSslWebHostCheckSoftwareCheckItemListArrayInput is an input type that accepts VpnSslWebHostCheckSoftwareCheckItemListArray and VpnSslWebHostCheckSoftwareCheckItemListArrayOutput values.
+// You can construct a concrete instance of `VpnSslWebHostCheckSoftwareCheckItemListArrayInput` via:
+//
+//	VpnSslWebHostCheckSoftwareCheckItemListArray{ VpnSslWebHostCheckSoftwareCheckItemListArgs{...} }
+type VpnSslWebHostCheckSoftwareCheckItemListArrayInput interface {
+	pulumi.Input
+
+	ToVpnSslWebHostCheckSoftwareCheckItemListArrayOutput() VpnSslWebHostCheckSoftwareCheckItemListArrayOutput
+	ToVpnSslWebHostCheckSoftwareCheckItemListArrayOutputWithContext(context.Context) VpnSslWebHostCheckSoftwareCheckItemListArrayOutput
+}
+
+type VpnSslWebHostCheckSoftwareCheckItemListArray []VpnSslWebHostCheckSoftwareCheckItemListInput
+
+func (VpnSslWebHostCheckSoftwareCheckItemListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslWebHostCheckSoftwareCheckItemList)(nil)).Elem()
+}
+
+func (i VpnSslWebHostCheckSoftwareCheckItemListArray) ToVpnSslWebHostCheckSoftwareCheckItemListArrayOutput() VpnSslWebHostCheckSoftwareCheckItemListArrayOutput {
+	return i.ToVpnSslWebHostCheckSoftwareCheckItemListArrayOutputWithContext(context.Background())
+}
+
+func (i VpnSslWebHostCheckSoftwareCheckItemListArray) ToVpnSslWebHostCheckSoftwareCheckItemListArrayOutputWithContext(ctx context.Context) VpnSslWebHostCheckSoftwareCheckItemListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebHostCheckSoftwareCheckItemListArrayOutput)
+}
+
+type VpnSslWebHostCheckSoftwareCheckItemListOutput struct{ *pulumi.OutputState }
+
+func (VpnSslWebHostCheckSoftwareCheckItemListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslWebHostCheckSoftwareCheckItemList)(nil)).Elem()
+}
+
+func (o VpnSslWebHostCheckSoftwareCheckItemListOutput) ToVpnSslWebHostCheckSoftwareCheckItemListOutput() VpnSslWebHostCheckSoftwareCheckItemListOutput {
+	return o
+}
+
+func (o VpnSslWebHostCheckSoftwareCheckItemListOutput) ToVpnSslWebHostCheckSoftwareCheckItemListOutputWithContext(ctx context.Context) VpnSslWebHostCheckSoftwareCheckItemListOutput {
+	return o
+}
+
+func (o VpnSslWebHostCheckSoftwareCheckItemListOutput) Action() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebHostCheckSoftwareCheckItemList) *string { return v.Action }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebHostCheckSoftwareCheckItemListOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VpnSslWebHostCheckSoftwareCheckItemList) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+func (o VpnSslWebHostCheckSoftwareCheckItemListOutput) Md5s() VpnSslWebHostCheckSoftwareCheckItemListMd5ArrayOutput {
+	return o.ApplyT(func(v VpnSslWebHostCheckSoftwareCheckItemList) []VpnSslWebHostCheckSoftwareCheckItemListMd5 {
+		return v.Md5s
+	}).(VpnSslWebHostCheckSoftwareCheckItemListMd5ArrayOutput)
+}
+
+func (o VpnSslWebHostCheckSoftwareCheckItemListOutput) Target() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebHostCheckSoftwareCheckItemList) *string { return v.Target }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebHostCheckSoftwareCheckItemListOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebHostCheckSoftwareCheckItemList) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebHostCheckSoftwareCheckItemListOutput) Version() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebHostCheckSoftwareCheckItemList) *string { return v.Version }).(pulumi.StringPtrOutput)
+}
+
+type VpnSslWebHostCheckSoftwareCheckItemListArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnSslWebHostCheckSoftwareCheckItemListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslWebHostCheckSoftwareCheckItemList)(nil)).Elem()
+}
+
+func (o VpnSslWebHostCheckSoftwareCheckItemListArrayOutput) ToVpnSslWebHostCheckSoftwareCheckItemListArrayOutput() VpnSslWebHostCheckSoftwareCheckItemListArrayOutput {
+	return o
+}
+
+func (o VpnSslWebHostCheckSoftwareCheckItemListArrayOutput) ToVpnSslWebHostCheckSoftwareCheckItemListArrayOutputWithContext(ctx context.Context) VpnSslWebHostCheckSoftwareCheckItemListArrayOutput {
+	return o
+}
+
+func (o VpnSslWebHostCheckSoftwareCheckItemListArrayOutput) Index(i pulumi.IntInput) VpnSslWebHostCheckSoftwareCheckItemListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnSslWebHostCheckSoftwareCheckItemList {
+		return vs[0].([]VpnSslWebHostCheckSoftwareCheckItemList)[vs[1].(int)]
+	}).(VpnSslWebHostCheckSoftwareCheckItemListOutput)
+}
+
+type VpnSslWebHostCheckSoftwareCheckItemListMd5 struct {
+	Id *string `pulumi:"id"`
+}
+
+// VpnSslWebHostCheckSoftwareCheckItemListMd5Input is an input type that accepts VpnSslWebHostCheckSoftwareCheckItemListMd5Args and VpnSslWebHostCheckSoftwareCheckItemListMd5Output values.
+// You can construct a concrete instance of `VpnSslWebHostCheckSoftwareCheckItemListMd5Input` via:
+//
+//	VpnSslWebHostCheckSoftwareCheckItemListMd5Args{...}
+type VpnSslWebHostCheckSoftwareCheckItemListMd5Input interface {
+	pulumi.Input
+
+	ToVpnSslWebHostCheckSoftwareCheckItemListMd5Output() VpnSslWebHostCheckSoftwareCheckItemListMd5Output
+	ToVpnSslWebHostCheckSoftwareCheckItemListMd5OutputWithContext(context.Context) VpnSslWebHostCheckSoftwareCheckItemListMd5Output
+}
+
+type VpnSslWebHostCheckSoftwareCheckItemListMd5Args struct {
+	Id pulumi.StringPtrInput `pulumi:"id"`
+}
+
+func (VpnSslWebHostCheckSoftwareCheckItemListMd5Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslWebHostCheckSoftwareCheckItemListMd5)(nil)).Elem()
+}
+
+func (i VpnSslWebHostCheckSoftwareCheckItemListMd5Args) ToVpnSslWebHostCheckSoftwareCheckItemListMd5Output() VpnSslWebHostCheckSoftwareCheckItemListMd5Output {
+	return i.ToVpnSslWebHostCheckSoftwareCheckItemListMd5OutputWithContext(context.Background())
+}
+
+func (i VpnSslWebHostCheckSoftwareCheckItemListMd5Args) ToVpnSslWebHostCheckSoftwareCheckItemListMd5OutputWithContext(ctx context.Context) VpnSslWebHostCheckSoftwareCheckItemListMd5Output {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebHostCheckSoftwareCheckItemListMd5Output)
+}
+
+// VpnSslWebHostCheckSoftwareCheckItemListMd5ArrayInput is an input type that accepts VpnSslWebHostCheckSoftwareCheckItemListMd5Array and VpnSslWebHostCheckSoftwareCheckItemListMd5ArrayOutput values.
+// You can construct a concrete instance of `VpnSslWebHostCheckSoftwareCheckItemListMd5ArrayInput` via:
+//
+//	VpnSslWebHostCheckSoftwareCheckItemListMd5Array{ VpnSslWebHostCheckSoftwareCheckItemListMd5Args{...} }
+type VpnSslWebHostCheckSoftwareCheckItemListMd5ArrayInput interface {
+	pulumi.Input
+
+	ToVpnSslWebHostCheckSoftwareCheckItemListMd5ArrayOutput() VpnSslWebHostCheckSoftwareCheckItemListMd5ArrayOutput
+	ToVpnSslWebHostCheckSoftwareCheckItemListMd5ArrayOutputWithContext(context.Context) VpnSslWebHostCheckSoftwareCheckItemListMd5ArrayOutput
+}
+
+type VpnSslWebHostCheckSoftwareCheckItemListMd5Array []VpnSslWebHostCheckSoftwareCheckItemListMd5Input
+
+func (VpnSslWebHostCheckSoftwareCheckItemListMd5Array) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslWebHostCheckSoftwareCheckItemListMd5)(nil)).Elem()
+}
+
+func (i VpnSslWebHostCheckSoftwareCheckItemListMd5Array) ToVpnSslWebHostCheckSoftwareCheckItemListMd5ArrayOutput() VpnSslWebHostCheckSoftwareCheckItemListMd5ArrayOutput {
+	return i.ToVpnSslWebHostCheckSoftwareCheckItemListMd5ArrayOutputWithContext(context.Background())
+}
+
+func (i VpnSslWebHostCheckSoftwareCheckItemListMd5Array) ToVpnSslWebHostCheckSoftwareCheckItemListMd5ArrayOutputWithContext(ctx context.Context) VpnSslWebHostCheckSoftwareCheckItemListMd5ArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebHostCheckSoftwareCheckItemListMd5ArrayOutput)
+}
+
+type VpnSslWebHostCheckSoftwareCheckItemListMd5Output struct{ *pulumi.OutputState }
+
+func (VpnSslWebHostCheckSoftwareCheckItemListMd5Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslWebHostCheckSoftwareCheckItemListMd5)(nil)).Elem()
+}
+
+func (o VpnSslWebHostCheckSoftwareCheckItemListMd5Output) ToVpnSslWebHostCheckSoftwareCheckItemListMd5Output() VpnSslWebHostCheckSoftwareCheckItemListMd5Output {
+	return o
+}
+
+func (o VpnSslWebHostCheckSoftwareCheckItemListMd5Output) ToVpnSslWebHostCheckSoftwareCheckItemListMd5OutputWithContext(ctx context.Context) VpnSslWebHostCheckSoftwareCheckItemListMd5Output {
+	return o
+}
+
+func (o VpnSslWebHostCheckSoftwareCheckItemListMd5Output) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebHostCheckSoftwareCheckItemListMd5) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+type VpnSslWebHostCheckSoftwareCheckItemListMd5ArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnSslWebHostCheckSoftwareCheckItemListMd5ArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslWebHostCheckSoftwareCheckItemListMd5)(nil)).Elem()
+}
+
+func (o VpnSslWebHostCheckSoftwareCheckItemListMd5ArrayOutput) ToVpnSslWebHostCheckSoftwareCheckItemListMd5ArrayOutput() VpnSslWebHostCheckSoftwareCheckItemListMd5ArrayOutput {
+	return o
+}
+
+func (o VpnSslWebHostCheckSoftwareCheckItemListMd5ArrayOutput) ToVpnSslWebHostCheckSoftwareCheckItemListMd5ArrayOutputWithContext(ctx context.Context) VpnSslWebHostCheckSoftwareCheckItemListMd5ArrayOutput {
+	return o
+}
+
+func (o VpnSslWebHostCheckSoftwareCheckItemListMd5ArrayOutput) Index(i pulumi.IntInput) VpnSslWebHostCheckSoftwareCheckItemListMd5Output {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnSslWebHostCheckSoftwareCheckItemListMd5 {
+		return vs[0].([]VpnSslWebHostCheckSoftwareCheckItemListMd5)[vs[1].(int)]
+	}).(VpnSslWebHostCheckSoftwareCheckItemListMd5Output)
+}
+
+type VpnSslWebPortalBookmarkGroup struct {
+	Bookmarks []VpnSslWebPortalBookmarkGroupBookmark `pulumi:"bookmarks"`
+	Name      *string                                `pulumi:"name"`
+}
+
+// VpnSslWebPortalBookmarkGroupInput is an input type that accepts VpnSslWebPortalBookmarkGroupArgs and VpnSslWebPortalBookmarkGroupOutput values.
+// You can construct a concrete instance of `VpnSslWebPortalBookmarkGroupInput` via:
+//
+//	VpnSslWebPortalBookmarkGroupArgs{...}
+type VpnSslWebPortalBookmarkGroupInput interface {
+	pulumi.Input
+
+	ToVpnSslWebPortalBookmarkGroupOutput() VpnSslWebPortalBookmarkGroupOutput
+	ToVpnSslWebPortalBookmarkGroupOutputWithContext(context.Context) VpnSslWebPortalBookmarkGroupOutput
+}
+
+type VpnSslWebPortalBookmarkGroupArgs struct {
+	Bookmarks VpnSslWebPortalBookmarkGroupBookmarkArrayInput `pulumi:"bookmarks"`
+	Name      pulumi.StringPtrInput                          `pulumi:"name"`
+}
+
+func (VpnSslWebPortalBookmarkGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslWebPortalBookmarkGroup)(nil)).Elem()
+}
+
+func (i VpnSslWebPortalBookmarkGroupArgs) ToVpnSslWebPortalBookmarkGroupOutput() VpnSslWebPortalBookmarkGroupOutput {
+	return i.ToVpnSslWebPortalBookmarkGroupOutputWithContext(context.Background())
+}
+
+func (i VpnSslWebPortalBookmarkGroupArgs) ToVpnSslWebPortalBookmarkGroupOutputWithContext(ctx context.Context) VpnSslWebPortalBookmarkGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalBookmarkGroupOutput)
+}
+
+// VpnSslWebPortalBookmarkGroupArrayInput is an input type that accepts VpnSslWebPortalBookmarkGroupArray and VpnSslWebPortalBookmarkGroupArrayOutput values.
+// You can construct a concrete instance of `VpnSslWebPortalBookmarkGroupArrayInput` via:
+//
+//	VpnSslWebPortalBookmarkGroupArray{ VpnSslWebPortalBookmarkGroupArgs{...} }
+type VpnSslWebPortalBookmarkGroupArrayInput interface {
+	pulumi.Input
+
+	ToVpnSslWebPortalBookmarkGroupArrayOutput() VpnSslWebPortalBookmarkGroupArrayOutput
+	ToVpnSslWebPortalBookmarkGroupArrayOutputWithContext(context.Context) VpnSslWebPortalBookmarkGroupArrayOutput
+}
+
+type VpnSslWebPortalBookmarkGroupArray []VpnSslWebPortalBookmarkGroupInput
+
+func (VpnSslWebPortalBookmarkGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslWebPortalBookmarkGroup)(nil)).Elem()
+}
+
+func (i VpnSslWebPortalBookmarkGroupArray) ToVpnSslWebPortalBookmarkGroupArrayOutput() VpnSslWebPortalBookmarkGroupArrayOutput {
+	return i.ToVpnSslWebPortalBookmarkGroupArrayOutputWithContext(context.Background())
+}
+
+func (i VpnSslWebPortalBookmarkGroupArray) ToVpnSslWebPortalBookmarkGroupArrayOutputWithContext(ctx context.Context) VpnSslWebPortalBookmarkGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalBookmarkGroupArrayOutput)
+}
+
+type VpnSslWebPortalBookmarkGroupOutput struct{ *pulumi.OutputState }
+
+func (VpnSslWebPortalBookmarkGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslWebPortalBookmarkGroup)(nil)).Elem()
+}
+
+func (o VpnSslWebPortalBookmarkGroupOutput) ToVpnSslWebPortalBookmarkGroupOutput() VpnSslWebPortalBookmarkGroupOutput {
+	return o
+}
+
+func (o VpnSslWebPortalBookmarkGroupOutput) ToVpnSslWebPortalBookmarkGroupOutputWithContext(ctx context.Context) VpnSslWebPortalBookmarkGroupOutput {
+	return o
+}
+
+func (o VpnSslWebPortalBookmarkGroupOutput) Bookmarks() VpnSslWebPortalBookmarkGroupBookmarkArrayOutput {
+	return o.ApplyT(func(v VpnSslWebPortalBookmarkGroup) []VpnSslWebPortalBookmarkGroupBookmark { return v.Bookmarks }).(VpnSslWebPortalBookmarkGroupBookmarkArrayOutput)
+}
+
+func (o VpnSslWebPortalBookmarkGroupOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalBookmarkGroup) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type VpnSslWebPortalBookmarkGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnSslWebPortalBookmarkGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslWebPortalBookmarkGroup)(nil)).Elem()
+}
+
+func (o VpnSslWebPortalBookmarkGroupArrayOutput) ToVpnSslWebPortalBookmarkGroupArrayOutput() VpnSslWebPortalBookmarkGroupArrayOutput {
+	return o
+}
+
+func (o VpnSslWebPortalBookmarkGroupArrayOutput) ToVpnSslWebPortalBookmarkGroupArrayOutputWithContext(ctx context.Context) VpnSslWebPortalBookmarkGroupArrayOutput {
+	return o
+}
+
+func (o VpnSslWebPortalBookmarkGroupArrayOutput) Index(i pulumi.IntInput) VpnSslWebPortalBookmarkGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnSslWebPortalBookmarkGroup {
+		return vs[0].([]VpnSslWebPortalBookmarkGroup)[vs[1].(int)]
+	}).(VpnSslWebPortalBookmarkGroupOutput)
+}
+
+type VpnSslWebPortalBookmarkGroupBookmark struct {
+	AdditionalParams      *string                                        `pulumi:"additionalParams"`
+	Apptype               *string                                        `pulumi:"apptype"`
+	ColorDepth            *string                                        `pulumi:"colorDepth"`
+	Description           *string                                        `pulumi:"description"`
+	Domain                *string                                        `pulumi:"domain"`
+	Folder                *string                                        `pulumi:"folder"`
+	FormDatas             []VpnSslWebPortalBookmarkGroupBookmarkFormData `pulumi:"formDatas"`
+	Height                *int                                           `pulumi:"height"`
+	Host                  *string                                        `pulumi:"host"`
+	KeyboardLayout        *string                                        `pulumi:"keyboardLayout"`
+	ListeningPort         *int                                           `pulumi:"listeningPort"`
+	LoadBalancingInfo     *string                                        `pulumi:"loadBalancingInfo"`
+	LogonPassword         *string                                        `pulumi:"logonPassword"`
+	LogonUser             *string                                        `pulumi:"logonUser"`
+	Name                  *string                                        `pulumi:"name"`
+	Port                  *int                                           `pulumi:"port"`
+	PreconnectionBlob     *string                                        `pulumi:"preconnectionBlob"`
+	PreconnectionId       *int                                           `pulumi:"preconnectionId"`
+	RemotePort            *int                                           `pulumi:"remotePort"`
+	RestrictedAdmin       *string                                        `pulumi:"restrictedAdmin"`
+	Security              *string                                        `pulumi:"security"`
+	SendPreconnectionId   *string                                        `pulumi:"sendPreconnectionId"`
+	ServerLayout          *string                                        `pulumi:"serverLayout"`
+	ShowStatusWindow      *string                                        `pulumi:"showStatusWindow"`
+	Sso                   *string                                        `pulumi:"sso"`
+	SsoCredential         *string                                        `pulumi:"ssoCredential"`
+	SsoCredentialSentOnce *string                                        `pulumi:"ssoCredentialSentOnce"`
+	SsoPassword           *string                                        `pulumi:"ssoPassword"`
+	SsoUsername           *string                                        `pulumi:"ssoUsername"`
+	Url                   *string                                        `pulumi:"url"`
+	VncKeyboardLayout     *string                                        `pulumi:"vncKeyboardLayout"`
+	Width                 *int                                           `pulumi:"width"`
+}
+
+// VpnSslWebPortalBookmarkGroupBookmarkInput is an input type that accepts VpnSslWebPortalBookmarkGroupBookmarkArgs and VpnSslWebPortalBookmarkGroupBookmarkOutput values.
+// You can construct a concrete instance of `VpnSslWebPortalBookmarkGroupBookmarkInput` via:
+//
+//	VpnSslWebPortalBookmarkGroupBookmarkArgs{...}
+type VpnSslWebPortalBookmarkGroupBookmarkInput interface {
+	pulumi.Input
+
+	ToVpnSslWebPortalBookmarkGroupBookmarkOutput() VpnSslWebPortalBookmarkGroupBookmarkOutput
+	ToVpnSslWebPortalBookmarkGroupBookmarkOutputWithContext(context.Context) VpnSslWebPortalBookmarkGroupBookmarkOutput
+}
+
+type VpnSslWebPortalBookmarkGroupBookmarkArgs struct {
+	AdditionalParams      pulumi.StringPtrInput                                  `pulumi:"additionalParams"`
+	Apptype               pulumi.StringPtrInput                                  `pulumi:"apptype"`
+	ColorDepth            pulumi.StringPtrInput                                  `pulumi:"colorDepth"`
+	Description           pulumi.StringPtrInput                                  `pulumi:"description"`
+	Domain                pulumi.StringPtrInput                                  `pulumi:"domain"`
+	Folder                pulumi.StringPtrInput                                  `pulumi:"folder"`
+	FormDatas             VpnSslWebPortalBookmarkGroupBookmarkFormDataArrayInput `pulumi:"formDatas"`
+	Height                pulumi.IntPtrInput                                     `pulumi:"height"`
+	Host                  pulumi.StringPtrInput                                  `pulumi:"host"`
+	KeyboardLayout        pulumi.StringPtrInput                                  `pulumi:"keyboardLayout"`
+	ListeningPort         pulumi.IntPtrInput                                     `pulumi:"listeningPort"`
+	LoadBalancingInfo     pulumi.StringPtrInput                                  `pulumi:"loadBalancingInfo"`
+	LogonPassword         pulumi.StringPtrInput                                  `pulumi:"logonPassword"`
+	LogonUser             pulumi.StringPtrInput                                  `pulumi:"logonUser"`
+	Name                  pulumi.StringPtrInput                                  `pulumi:"name"`
+	Port                  pulumi.IntPtrInput                                     `pulumi:"port"`
+	PreconnectionBlob     pulumi.StringPtrInput                                  `pulumi:"preconnectionBlob"`
+	PreconnectionId       pulumi.IntPtrInput                                     `pulumi:"preconnectionId"`
+	RemotePort            pulumi.IntPtrInput                                     `pulumi:"remotePort"`
+	RestrictedAdmin       pulumi.StringPtrInput                                  `pulumi:"restrictedAdmin"`
+	Security              pulumi.StringPtrInput                                  `pulumi:"security"`
+	SendPreconnectionId   pulumi.StringPtrInput                                  `pulumi:"sendPreconnectionId"`
+	ServerLayout          pulumi.StringPtrInput                                  `pulumi:"serverLayout"`
+	ShowStatusWindow      pulumi.StringPtrInput                                  `pulumi:"showStatusWindow"`
+	Sso                   pulumi.StringPtrInput                                  `pulumi:"sso"`
+	SsoCredential         pulumi.StringPtrInput                                  `pulumi:"ssoCredential"`
+	SsoCredentialSentOnce pulumi.StringPtrInput                                  `pulumi:"ssoCredentialSentOnce"`
+	SsoPassword           pulumi.StringPtrInput                                  `pulumi:"ssoPassword"`
+	SsoUsername           pulumi.StringPtrInput                                  `pulumi:"ssoUsername"`
+	Url                   pulumi.StringPtrInput                                  `pulumi:"url"`
+	VncKeyboardLayout     pulumi.StringPtrInput                                  `pulumi:"vncKeyboardLayout"`
+	Width                 pulumi.IntPtrInput                                     `pulumi:"width"`
+}
+
+func (VpnSslWebPortalBookmarkGroupBookmarkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslWebPortalBookmarkGroupBookmark)(nil)).Elem()
+}
+
+func (i VpnSslWebPortalBookmarkGroupBookmarkArgs) ToVpnSslWebPortalBookmarkGroupBookmarkOutput() VpnSslWebPortalBookmarkGroupBookmarkOutput {
+	return i.ToVpnSslWebPortalBookmarkGroupBookmarkOutputWithContext(context.Background())
+}
+
+func (i VpnSslWebPortalBookmarkGroupBookmarkArgs) ToVpnSslWebPortalBookmarkGroupBookmarkOutputWithContext(ctx context.Context) VpnSslWebPortalBookmarkGroupBookmarkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalBookmarkGroupBookmarkOutput)
+}
+
+// VpnSslWebPortalBookmarkGroupBookmarkArrayInput is an input type that accepts VpnSslWebPortalBookmarkGroupBookmarkArray and VpnSslWebPortalBookmarkGroupBookmarkArrayOutput values.
+// You can construct a concrete instance of `VpnSslWebPortalBookmarkGroupBookmarkArrayInput` via:
+//
+//	VpnSslWebPortalBookmarkGroupBookmarkArray{ VpnSslWebPortalBookmarkGroupBookmarkArgs{...} }
+type VpnSslWebPortalBookmarkGroupBookmarkArrayInput interface {
+	pulumi.Input
+
+	ToVpnSslWebPortalBookmarkGroupBookmarkArrayOutput() VpnSslWebPortalBookmarkGroupBookmarkArrayOutput
+	ToVpnSslWebPortalBookmarkGroupBookmarkArrayOutputWithContext(context.Context) VpnSslWebPortalBookmarkGroupBookmarkArrayOutput
+}
+
+type VpnSslWebPortalBookmarkGroupBookmarkArray []VpnSslWebPortalBookmarkGroupBookmarkInput
+
+func (VpnSslWebPortalBookmarkGroupBookmarkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslWebPortalBookmarkGroupBookmark)(nil)).Elem()
+}
+
+func (i VpnSslWebPortalBookmarkGroupBookmarkArray) ToVpnSslWebPortalBookmarkGroupBookmarkArrayOutput() VpnSslWebPortalBookmarkGroupBookmarkArrayOutput {
+	return i.ToVpnSslWebPortalBookmarkGroupBookmarkArrayOutputWithContext(context.Background())
+}
+
+func (i VpnSslWebPortalBookmarkGroupBookmarkArray) ToVpnSslWebPortalBookmarkGroupBookmarkArrayOutputWithContext(ctx context.Context) VpnSslWebPortalBookmarkGroupBookmarkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalBookmarkGroupBookmarkArrayOutput)
+}
+
+type VpnSslWebPortalBookmarkGroupBookmarkOutput struct{ *pulumi.OutputState }
+
+func (VpnSslWebPortalBookmarkGroupBookmarkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslWebPortalBookmarkGroupBookmark)(nil)).Elem()
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) ToVpnSslWebPortalBookmarkGroupBookmarkOutput() VpnSslWebPortalBookmarkGroupBookmarkOutput {
+	return o
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) ToVpnSslWebPortalBookmarkGroupBookmarkOutputWithContext(ctx context.Context) VpnSslWebPortalBookmarkGroupBookmarkOutput {
+	return o
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) AdditionalParams() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalBookmarkGroupBookmark) *string { return v.AdditionalParams }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) Apptype() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalBookmarkGroupBookmark) *string { return v.Apptype }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) ColorDepth() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalBookmarkGroupBookmark) *string { return v.ColorDepth }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalBookmarkGroupBookmark) *string { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) Domain() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalBookmarkGroupBookmark) *string { return v.Domain }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) Folder() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalBookmarkGroupBookmark) *string { return v.Folder }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) FormDatas() VpnSslWebPortalBookmarkGroupBookmarkFormDataArrayOutput {
+	return o.ApplyT(func(v VpnSslWebPortalBookmarkGroupBookmark) []VpnSslWebPortalBookmarkGroupBookmarkFormData {
+		return v.FormDatas
+	}).(VpnSslWebPortalBookmarkGroupBookmarkFormDataArrayOutput)
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) Height() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalBookmarkGroupBookmark) *int { return v.Height }).(pulumi.IntPtrOutput)
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) Host() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalBookmarkGroupBookmark) *string { return v.Host }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) KeyboardLayout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalBookmarkGroupBookmark) *string { return v.KeyboardLayout }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) ListeningPort() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalBookmarkGroupBookmark) *int { return v.ListeningPort }).(pulumi.IntPtrOutput)
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) LoadBalancingInfo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalBookmarkGroupBookmark) *string { return v.LoadBalancingInfo }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) LogonPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalBookmarkGroupBookmark) *string { return v.LogonPassword }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) LogonUser() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalBookmarkGroupBookmark) *string { return v.LogonUser }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalBookmarkGroupBookmark) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalBookmarkGroupBookmark) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) PreconnectionBlob() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalBookmarkGroupBookmark) *string { return v.PreconnectionBlob }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) PreconnectionId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalBookmarkGroupBookmark) *int { return v.PreconnectionId }).(pulumi.IntPtrOutput)
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) RemotePort() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalBookmarkGroupBookmark) *int { return v.RemotePort }).(pulumi.IntPtrOutput)
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) RestrictedAdmin() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalBookmarkGroupBookmark) *string { return v.RestrictedAdmin }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) Security() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalBookmarkGroupBookmark) *string { return v.Security }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) SendPreconnectionId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalBookmarkGroupBookmark) *string { return v.SendPreconnectionId }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) ServerLayout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalBookmarkGroupBookmark) *string { return v.ServerLayout }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) ShowStatusWindow() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalBookmarkGroupBookmark) *string { return v.ShowStatusWindow }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) Sso() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalBookmarkGroupBookmark) *string { return v.Sso }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) SsoCredential() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalBookmarkGroupBookmark) *string { return v.SsoCredential }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) SsoCredentialSentOnce() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalBookmarkGroupBookmark) *string { return v.SsoCredentialSentOnce }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) SsoPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalBookmarkGroupBookmark) *string { return v.SsoPassword }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) SsoUsername() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalBookmarkGroupBookmark) *string { return v.SsoUsername }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalBookmarkGroupBookmark) *string { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) VncKeyboardLayout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalBookmarkGroupBookmark) *string { return v.VncKeyboardLayout }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) Width() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalBookmarkGroupBookmark) *int { return v.Width }).(pulumi.IntPtrOutput)
+}
+
+type VpnSslWebPortalBookmarkGroupBookmarkArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnSslWebPortalBookmarkGroupBookmarkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslWebPortalBookmarkGroupBookmark)(nil)).Elem()
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkArrayOutput) ToVpnSslWebPortalBookmarkGroupBookmarkArrayOutput() VpnSslWebPortalBookmarkGroupBookmarkArrayOutput {
+	return o
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkArrayOutput) ToVpnSslWebPortalBookmarkGroupBookmarkArrayOutputWithContext(ctx context.Context) VpnSslWebPortalBookmarkGroupBookmarkArrayOutput {
+	return o
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkArrayOutput) Index(i pulumi.IntInput) VpnSslWebPortalBookmarkGroupBookmarkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnSslWebPortalBookmarkGroupBookmark {
+		return vs[0].([]VpnSslWebPortalBookmarkGroupBookmark)[vs[1].(int)]
+	}).(VpnSslWebPortalBookmarkGroupBookmarkOutput)
+}
+
+type VpnSslWebPortalBookmarkGroupBookmarkFormData struct {
+	Name  *string `pulumi:"name"`
+	Value *string `pulumi:"value"`
+}
+
+// VpnSslWebPortalBookmarkGroupBookmarkFormDataInput is an input type that accepts VpnSslWebPortalBookmarkGroupBookmarkFormDataArgs and VpnSslWebPortalBookmarkGroupBookmarkFormDataOutput values.
+// You can construct a concrete instance of `VpnSslWebPortalBookmarkGroupBookmarkFormDataInput` via:
+//
+//	VpnSslWebPortalBookmarkGroupBookmarkFormDataArgs{...}
+type VpnSslWebPortalBookmarkGroupBookmarkFormDataInput interface {
+	pulumi.Input
+
+	ToVpnSslWebPortalBookmarkGroupBookmarkFormDataOutput() VpnSslWebPortalBookmarkGroupBookmarkFormDataOutput
+	ToVpnSslWebPortalBookmarkGroupBookmarkFormDataOutputWithContext(context.Context) VpnSslWebPortalBookmarkGroupBookmarkFormDataOutput
+}
+
+type VpnSslWebPortalBookmarkGroupBookmarkFormDataArgs struct {
+	Name  pulumi.StringPtrInput `pulumi:"name"`
+	Value pulumi.StringPtrInput `pulumi:"value"`
+}
+
+func (VpnSslWebPortalBookmarkGroupBookmarkFormDataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslWebPortalBookmarkGroupBookmarkFormData)(nil)).Elem()
+}
+
+func (i VpnSslWebPortalBookmarkGroupBookmarkFormDataArgs) ToVpnSslWebPortalBookmarkGroupBookmarkFormDataOutput() VpnSslWebPortalBookmarkGroupBookmarkFormDataOutput {
+	return i.ToVpnSslWebPortalBookmarkGroupBookmarkFormDataOutputWithContext(context.Background())
+}
+
+func (i VpnSslWebPortalBookmarkGroupBookmarkFormDataArgs) ToVpnSslWebPortalBookmarkGroupBookmarkFormDataOutputWithContext(ctx context.Context) VpnSslWebPortalBookmarkGroupBookmarkFormDataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalBookmarkGroupBookmarkFormDataOutput)
+}
+
+// VpnSslWebPortalBookmarkGroupBookmarkFormDataArrayInput is an input type that accepts VpnSslWebPortalBookmarkGroupBookmarkFormDataArray and VpnSslWebPortalBookmarkGroupBookmarkFormDataArrayOutput values.
+// You can construct a concrete instance of `VpnSslWebPortalBookmarkGroupBookmarkFormDataArrayInput` via:
+//
+//	VpnSslWebPortalBookmarkGroupBookmarkFormDataArray{ VpnSslWebPortalBookmarkGroupBookmarkFormDataArgs{...} }
+type VpnSslWebPortalBookmarkGroupBookmarkFormDataArrayInput interface {
+	pulumi.Input
+
+	ToVpnSslWebPortalBookmarkGroupBookmarkFormDataArrayOutput() VpnSslWebPortalBookmarkGroupBookmarkFormDataArrayOutput
+	ToVpnSslWebPortalBookmarkGroupBookmarkFormDataArrayOutputWithContext(context.Context) VpnSslWebPortalBookmarkGroupBookmarkFormDataArrayOutput
+}
+
+type VpnSslWebPortalBookmarkGroupBookmarkFormDataArray []VpnSslWebPortalBookmarkGroupBookmarkFormDataInput
+
+func (VpnSslWebPortalBookmarkGroupBookmarkFormDataArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslWebPortalBookmarkGroupBookmarkFormData)(nil)).Elem()
+}
+
+func (i VpnSslWebPortalBookmarkGroupBookmarkFormDataArray) ToVpnSslWebPortalBookmarkGroupBookmarkFormDataArrayOutput() VpnSslWebPortalBookmarkGroupBookmarkFormDataArrayOutput {
+	return i.ToVpnSslWebPortalBookmarkGroupBookmarkFormDataArrayOutputWithContext(context.Background())
+}
+
+func (i VpnSslWebPortalBookmarkGroupBookmarkFormDataArray) ToVpnSslWebPortalBookmarkGroupBookmarkFormDataArrayOutputWithContext(ctx context.Context) VpnSslWebPortalBookmarkGroupBookmarkFormDataArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalBookmarkGroupBookmarkFormDataArrayOutput)
+}
+
+type VpnSslWebPortalBookmarkGroupBookmarkFormDataOutput struct{ *pulumi.OutputState }
+
+func (VpnSslWebPortalBookmarkGroupBookmarkFormDataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslWebPortalBookmarkGroupBookmarkFormData)(nil)).Elem()
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkFormDataOutput) ToVpnSslWebPortalBookmarkGroupBookmarkFormDataOutput() VpnSslWebPortalBookmarkGroupBookmarkFormDataOutput {
+	return o
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkFormDataOutput) ToVpnSslWebPortalBookmarkGroupBookmarkFormDataOutputWithContext(ctx context.Context) VpnSslWebPortalBookmarkGroupBookmarkFormDataOutput {
+	return o
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkFormDataOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalBookmarkGroupBookmarkFormData) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkFormDataOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalBookmarkGroupBookmarkFormData) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type VpnSslWebPortalBookmarkGroupBookmarkFormDataArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnSslWebPortalBookmarkGroupBookmarkFormDataArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslWebPortalBookmarkGroupBookmarkFormData)(nil)).Elem()
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkFormDataArrayOutput) ToVpnSslWebPortalBookmarkGroupBookmarkFormDataArrayOutput() VpnSslWebPortalBookmarkGroupBookmarkFormDataArrayOutput {
+	return o
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkFormDataArrayOutput) ToVpnSslWebPortalBookmarkGroupBookmarkFormDataArrayOutputWithContext(ctx context.Context) VpnSslWebPortalBookmarkGroupBookmarkFormDataArrayOutput {
+	return o
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkFormDataArrayOutput) Index(i pulumi.IntInput) VpnSslWebPortalBookmarkGroupBookmarkFormDataOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnSslWebPortalBookmarkGroupBookmarkFormData {
+		return vs[0].([]VpnSslWebPortalBookmarkGroupBookmarkFormData)[vs[1].(int)]
+	}).(VpnSslWebPortalBookmarkGroupBookmarkFormDataOutput)
+}
+
+type VpnSslWebPortalHostCheckPolicy struct {
+	Name *string `pulumi:"name"`
+}
+
+// VpnSslWebPortalHostCheckPolicyInput is an input type that accepts VpnSslWebPortalHostCheckPolicyArgs and VpnSslWebPortalHostCheckPolicyOutput values.
+// You can construct a concrete instance of `VpnSslWebPortalHostCheckPolicyInput` via:
+//
+//	VpnSslWebPortalHostCheckPolicyArgs{...}
+type VpnSslWebPortalHostCheckPolicyInput interface {
+	pulumi.Input
+
+	ToVpnSslWebPortalHostCheckPolicyOutput() VpnSslWebPortalHostCheckPolicyOutput
+	ToVpnSslWebPortalHostCheckPolicyOutputWithContext(context.Context) VpnSslWebPortalHostCheckPolicyOutput
+}
+
+type VpnSslWebPortalHostCheckPolicyArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (VpnSslWebPortalHostCheckPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslWebPortalHostCheckPolicy)(nil)).Elem()
+}
+
+func (i VpnSslWebPortalHostCheckPolicyArgs) ToVpnSslWebPortalHostCheckPolicyOutput() VpnSslWebPortalHostCheckPolicyOutput {
+	return i.ToVpnSslWebPortalHostCheckPolicyOutputWithContext(context.Background())
+}
+
+func (i VpnSslWebPortalHostCheckPolicyArgs) ToVpnSslWebPortalHostCheckPolicyOutputWithContext(ctx context.Context) VpnSslWebPortalHostCheckPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalHostCheckPolicyOutput)
+}
+
+// VpnSslWebPortalHostCheckPolicyArrayInput is an input type that accepts VpnSslWebPortalHostCheckPolicyArray and VpnSslWebPortalHostCheckPolicyArrayOutput values.
+// You can construct a concrete instance of `VpnSslWebPortalHostCheckPolicyArrayInput` via:
+//
+//	VpnSslWebPortalHostCheckPolicyArray{ VpnSslWebPortalHostCheckPolicyArgs{...} }
+type VpnSslWebPortalHostCheckPolicyArrayInput interface {
+	pulumi.Input
+
+	ToVpnSslWebPortalHostCheckPolicyArrayOutput() VpnSslWebPortalHostCheckPolicyArrayOutput
+	ToVpnSslWebPortalHostCheckPolicyArrayOutputWithContext(context.Context) VpnSslWebPortalHostCheckPolicyArrayOutput
+}
+
+type VpnSslWebPortalHostCheckPolicyArray []VpnSslWebPortalHostCheckPolicyInput
+
+func (VpnSslWebPortalHostCheckPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslWebPortalHostCheckPolicy)(nil)).Elem()
+}
+
+func (i VpnSslWebPortalHostCheckPolicyArray) ToVpnSslWebPortalHostCheckPolicyArrayOutput() VpnSslWebPortalHostCheckPolicyArrayOutput {
+	return i.ToVpnSslWebPortalHostCheckPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i VpnSslWebPortalHostCheckPolicyArray) ToVpnSslWebPortalHostCheckPolicyArrayOutputWithContext(ctx context.Context) VpnSslWebPortalHostCheckPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalHostCheckPolicyArrayOutput)
+}
+
+type VpnSslWebPortalHostCheckPolicyOutput struct{ *pulumi.OutputState }
+
+func (VpnSslWebPortalHostCheckPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslWebPortalHostCheckPolicy)(nil)).Elem()
+}
+
+func (o VpnSslWebPortalHostCheckPolicyOutput) ToVpnSslWebPortalHostCheckPolicyOutput() VpnSslWebPortalHostCheckPolicyOutput {
+	return o
+}
+
+func (o VpnSslWebPortalHostCheckPolicyOutput) ToVpnSslWebPortalHostCheckPolicyOutputWithContext(ctx context.Context) VpnSslWebPortalHostCheckPolicyOutput {
+	return o
+}
+
+func (o VpnSslWebPortalHostCheckPolicyOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalHostCheckPolicy) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type VpnSslWebPortalHostCheckPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnSslWebPortalHostCheckPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslWebPortalHostCheckPolicy)(nil)).Elem()
+}
+
+func (o VpnSslWebPortalHostCheckPolicyArrayOutput) ToVpnSslWebPortalHostCheckPolicyArrayOutput() VpnSslWebPortalHostCheckPolicyArrayOutput {
+	return o
+}
+
+func (o VpnSslWebPortalHostCheckPolicyArrayOutput) ToVpnSslWebPortalHostCheckPolicyArrayOutputWithContext(ctx context.Context) VpnSslWebPortalHostCheckPolicyArrayOutput {
+	return o
+}
+
+func (o VpnSslWebPortalHostCheckPolicyArrayOutput) Index(i pulumi.IntInput) VpnSslWebPortalHostCheckPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnSslWebPortalHostCheckPolicy {
+		return vs[0].([]VpnSslWebPortalHostCheckPolicy)[vs[1].(int)]
+	}).(VpnSslWebPortalHostCheckPolicyOutput)
+}
+
+type VpnSslWebPortalIpPool struct {
+	Name *string `pulumi:"name"`
+}
+
+// VpnSslWebPortalIpPoolInput is an input type that accepts VpnSslWebPortalIpPoolArgs and VpnSslWebPortalIpPoolOutput values.
+// You can construct a concrete instance of `VpnSslWebPortalIpPoolInput` via:
+//
+//	VpnSslWebPortalIpPoolArgs{...}
+type VpnSslWebPortalIpPoolInput interface {
+	pulumi.Input
+
+	ToVpnSslWebPortalIpPoolOutput() VpnSslWebPortalIpPoolOutput
+	ToVpnSslWebPortalIpPoolOutputWithContext(context.Context) VpnSslWebPortalIpPoolOutput
+}
+
+type VpnSslWebPortalIpPoolArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (VpnSslWebPortalIpPoolArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslWebPortalIpPool)(nil)).Elem()
+}
+
+func (i VpnSslWebPortalIpPoolArgs) ToVpnSslWebPortalIpPoolOutput() VpnSslWebPortalIpPoolOutput {
+	return i.ToVpnSslWebPortalIpPoolOutputWithContext(context.Background())
+}
+
+func (i VpnSslWebPortalIpPoolArgs) ToVpnSslWebPortalIpPoolOutputWithContext(ctx context.Context) VpnSslWebPortalIpPoolOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalIpPoolOutput)
+}
+
+// VpnSslWebPortalIpPoolArrayInput is an input type that accepts VpnSslWebPortalIpPoolArray and VpnSslWebPortalIpPoolArrayOutput values.
+// You can construct a concrete instance of `VpnSslWebPortalIpPoolArrayInput` via:
+//
+//	VpnSslWebPortalIpPoolArray{ VpnSslWebPortalIpPoolArgs{...} }
+type VpnSslWebPortalIpPoolArrayInput interface {
+	pulumi.Input
+
+	ToVpnSslWebPortalIpPoolArrayOutput() VpnSslWebPortalIpPoolArrayOutput
+	ToVpnSslWebPortalIpPoolArrayOutputWithContext(context.Context) VpnSslWebPortalIpPoolArrayOutput
+}
+
+type VpnSslWebPortalIpPoolArray []VpnSslWebPortalIpPoolInput
+
+func (VpnSslWebPortalIpPoolArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslWebPortalIpPool)(nil)).Elem()
+}
+
+func (i VpnSslWebPortalIpPoolArray) ToVpnSslWebPortalIpPoolArrayOutput() VpnSslWebPortalIpPoolArrayOutput {
+	return i.ToVpnSslWebPortalIpPoolArrayOutputWithContext(context.Background())
+}
+
+func (i VpnSslWebPortalIpPoolArray) ToVpnSslWebPortalIpPoolArrayOutputWithContext(ctx context.Context) VpnSslWebPortalIpPoolArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalIpPoolArrayOutput)
+}
+
+type VpnSslWebPortalIpPoolOutput struct{ *pulumi.OutputState }
+
+func (VpnSslWebPortalIpPoolOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslWebPortalIpPool)(nil)).Elem()
+}
+
+func (o VpnSslWebPortalIpPoolOutput) ToVpnSslWebPortalIpPoolOutput() VpnSslWebPortalIpPoolOutput {
+	return o
+}
+
+func (o VpnSslWebPortalIpPoolOutput) ToVpnSslWebPortalIpPoolOutputWithContext(ctx context.Context) VpnSslWebPortalIpPoolOutput {
+	return o
+}
+
+func (o VpnSslWebPortalIpPoolOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalIpPool) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type VpnSslWebPortalIpPoolArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnSslWebPortalIpPoolArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslWebPortalIpPool)(nil)).Elem()
+}
+
+func (o VpnSslWebPortalIpPoolArrayOutput) ToVpnSslWebPortalIpPoolArrayOutput() VpnSslWebPortalIpPoolArrayOutput {
+	return o
+}
+
+func (o VpnSslWebPortalIpPoolArrayOutput) ToVpnSslWebPortalIpPoolArrayOutputWithContext(ctx context.Context) VpnSslWebPortalIpPoolArrayOutput {
+	return o
+}
+
+func (o VpnSslWebPortalIpPoolArrayOutput) Index(i pulumi.IntInput) VpnSslWebPortalIpPoolOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnSslWebPortalIpPool {
+		return vs[0].([]VpnSslWebPortalIpPool)[vs[1].(int)]
+	}).(VpnSslWebPortalIpPoolOutput)
+}
+
+type VpnSslWebPortalIpv6Pool struct {
+	Name *string `pulumi:"name"`
+}
+
+// VpnSslWebPortalIpv6PoolInput is an input type that accepts VpnSslWebPortalIpv6PoolArgs and VpnSslWebPortalIpv6PoolOutput values.
+// You can construct a concrete instance of `VpnSslWebPortalIpv6PoolInput` via:
+//
+//	VpnSslWebPortalIpv6PoolArgs{...}
+type VpnSslWebPortalIpv6PoolInput interface {
+	pulumi.Input
+
+	ToVpnSslWebPortalIpv6PoolOutput() VpnSslWebPortalIpv6PoolOutput
+	ToVpnSslWebPortalIpv6PoolOutputWithContext(context.Context) VpnSslWebPortalIpv6PoolOutput
+}
+
+type VpnSslWebPortalIpv6PoolArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (VpnSslWebPortalIpv6PoolArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslWebPortalIpv6Pool)(nil)).Elem()
+}
+
+func (i VpnSslWebPortalIpv6PoolArgs) ToVpnSslWebPortalIpv6PoolOutput() VpnSslWebPortalIpv6PoolOutput {
+	return i.ToVpnSslWebPortalIpv6PoolOutputWithContext(context.Background())
+}
+
+func (i VpnSslWebPortalIpv6PoolArgs) ToVpnSslWebPortalIpv6PoolOutputWithContext(ctx context.Context) VpnSslWebPortalIpv6PoolOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalIpv6PoolOutput)
+}
+
+// VpnSslWebPortalIpv6PoolArrayInput is an input type that accepts VpnSslWebPortalIpv6PoolArray and VpnSslWebPortalIpv6PoolArrayOutput values.
+// You can construct a concrete instance of `VpnSslWebPortalIpv6PoolArrayInput` via:
+//
+//	VpnSslWebPortalIpv6PoolArray{ VpnSslWebPortalIpv6PoolArgs{...} }
+type VpnSslWebPortalIpv6PoolArrayInput interface {
+	pulumi.Input
+
+	ToVpnSslWebPortalIpv6PoolArrayOutput() VpnSslWebPortalIpv6PoolArrayOutput
+	ToVpnSslWebPortalIpv6PoolArrayOutputWithContext(context.Context) VpnSslWebPortalIpv6PoolArrayOutput
+}
+
+type VpnSslWebPortalIpv6PoolArray []VpnSslWebPortalIpv6PoolInput
+
+func (VpnSslWebPortalIpv6PoolArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslWebPortalIpv6Pool)(nil)).Elem()
+}
+
+func (i VpnSslWebPortalIpv6PoolArray) ToVpnSslWebPortalIpv6PoolArrayOutput() VpnSslWebPortalIpv6PoolArrayOutput {
+	return i.ToVpnSslWebPortalIpv6PoolArrayOutputWithContext(context.Background())
+}
+
+func (i VpnSslWebPortalIpv6PoolArray) ToVpnSslWebPortalIpv6PoolArrayOutputWithContext(ctx context.Context) VpnSslWebPortalIpv6PoolArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalIpv6PoolArrayOutput)
+}
+
+type VpnSslWebPortalIpv6PoolOutput struct{ *pulumi.OutputState }
+
+func (VpnSslWebPortalIpv6PoolOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslWebPortalIpv6Pool)(nil)).Elem()
+}
+
+func (o VpnSslWebPortalIpv6PoolOutput) ToVpnSslWebPortalIpv6PoolOutput() VpnSslWebPortalIpv6PoolOutput {
+	return o
+}
+
+func (o VpnSslWebPortalIpv6PoolOutput) ToVpnSslWebPortalIpv6PoolOutputWithContext(ctx context.Context) VpnSslWebPortalIpv6PoolOutput {
+	return o
+}
+
+func (o VpnSslWebPortalIpv6PoolOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalIpv6Pool) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type VpnSslWebPortalIpv6PoolArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnSslWebPortalIpv6PoolArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslWebPortalIpv6Pool)(nil)).Elem()
+}
+
+func (o VpnSslWebPortalIpv6PoolArrayOutput) ToVpnSslWebPortalIpv6PoolArrayOutput() VpnSslWebPortalIpv6PoolArrayOutput {
+	return o
+}
+
+func (o VpnSslWebPortalIpv6PoolArrayOutput) ToVpnSslWebPortalIpv6PoolArrayOutputWithContext(ctx context.Context) VpnSslWebPortalIpv6PoolArrayOutput {
+	return o
+}
+
+func (o VpnSslWebPortalIpv6PoolArrayOutput) Index(i pulumi.IntInput) VpnSslWebPortalIpv6PoolOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnSslWebPortalIpv6Pool {
+		return vs[0].([]VpnSslWebPortalIpv6Pool)[vs[1].(int)]
+	}).(VpnSslWebPortalIpv6PoolOutput)
+}
+
+type VpnSslWebPortalIpv6SplitTunnelingRoutingAddress struct {
+	Name *string `pulumi:"name"`
+}
+
+// VpnSslWebPortalIpv6SplitTunnelingRoutingAddressInput is an input type that accepts VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArgs and VpnSslWebPortalIpv6SplitTunnelingRoutingAddressOutput values.
+// You can construct a concrete instance of `VpnSslWebPortalIpv6SplitTunnelingRoutingAddressInput` via:
+//
+//	VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArgs{...}
+type VpnSslWebPortalIpv6SplitTunnelingRoutingAddressInput interface {
+	pulumi.Input
+
+	ToVpnSslWebPortalIpv6SplitTunnelingRoutingAddressOutput() VpnSslWebPortalIpv6SplitTunnelingRoutingAddressOutput
+	ToVpnSslWebPortalIpv6SplitTunnelingRoutingAddressOutputWithContext(context.Context) VpnSslWebPortalIpv6SplitTunnelingRoutingAddressOutput
+}
+
+type VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslWebPortalIpv6SplitTunnelingRoutingAddress)(nil)).Elem()
+}
+
+func (i VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArgs) ToVpnSslWebPortalIpv6SplitTunnelingRoutingAddressOutput() VpnSslWebPortalIpv6SplitTunnelingRoutingAddressOutput {
+	return i.ToVpnSslWebPortalIpv6SplitTunnelingRoutingAddressOutputWithContext(context.Background())
+}
+
+func (i VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArgs) ToVpnSslWebPortalIpv6SplitTunnelingRoutingAddressOutputWithContext(ctx context.Context) VpnSslWebPortalIpv6SplitTunnelingRoutingAddressOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalIpv6SplitTunnelingRoutingAddressOutput)
+}
+
+// VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayInput is an input type that accepts VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArray and VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayOutput values.
+// You can construct a concrete instance of `VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayInput` via:
+//
+//	VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArray{ VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArgs{...} }
+type VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayInput interface {
+	pulumi.Input
+
+	ToVpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayOutput() VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayOutput
+	ToVpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayOutputWithContext(context.Context) VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayOutput
+}
+
+type VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArray []VpnSslWebPortalIpv6SplitTunnelingRoutingAddressInput
+
+func (VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslWebPortalIpv6SplitTunnelingRoutingAddress)(nil)).Elem()
+}
+
+func (i VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArray) ToVpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayOutput() VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayOutput {
+	return i.ToVpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayOutputWithContext(context.Background())
+}
+
+func (i VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArray) ToVpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayOutputWithContext(ctx context.Context) VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayOutput)
+}
+
+type VpnSslWebPortalIpv6SplitTunnelingRoutingAddressOutput struct{ *pulumi.OutputState }
+
+func (VpnSslWebPortalIpv6SplitTunnelingRoutingAddressOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslWebPortalIpv6SplitTunnelingRoutingAddress)(nil)).Elem()
+}
+
+func (o VpnSslWebPortalIpv6SplitTunnelingRoutingAddressOutput) ToVpnSslWebPortalIpv6SplitTunnelingRoutingAddressOutput() VpnSslWebPortalIpv6SplitTunnelingRoutingAddressOutput {
+	return o
+}
+
+func (o VpnSslWebPortalIpv6SplitTunnelingRoutingAddressOutput) ToVpnSslWebPortalIpv6SplitTunnelingRoutingAddressOutputWithContext(ctx context.Context) VpnSslWebPortalIpv6SplitTunnelingRoutingAddressOutput {
+	return o
+}
+
+func (o VpnSslWebPortalIpv6SplitTunnelingRoutingAddressOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalIpv6SplitTunnelingRoutingAddress) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslWebPortalIpv6SplitTunnelingRoutingAddress)(nil)).Elem()
+}
+
+func (o VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayOutput) ToVpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayOutput() VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayOutput {
+	return o
+}
+
+func (o VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayOutput) ToVpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayOutputWithContext(ctx context.Context) VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayOutput {
+	return o
+}
+
+func (o VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayOutput) Index(i pulumi.IntInput) VpnSslWebPortalIpv6SplitTunnelingRoutingAddressOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnSslWebPortalIpv6SplitTunnelingRoutingAddress {
+		return vs[0].([]VpnSslWebPortalIpv6SplitTunnelingRoutingAddress)[vs[1].(int)]
+	}).(VpnSslWebPortalIpv6SplitTunnelingRoutingAddressOutput)
+}
+
+type VpnSslWebPortalLandingPage struct {
+	FormDatas     []VpnSslWebPortalLandingPageFormData `pulumi:"formDatas"`
+	LogoutUrl     *string                              `pulumi:"logoutUrl"`
+	Sso           *string                              `pulumi:"sso"`
+	SsoCredential *string                              `pulumi:"ssoCredential"`
+	SsoPassword   *string                              `pulumi:"ssoPassword"`
+	SsoUsername   *string                              `pulumi:"ssoUsername"`
+	Url           *string                              `pulumi:"url"`
+}
+
+// VpnSslWebPortalLandingPageInput is an input type that accepts VpnSslWebPortalLandingPageArgs and VpnSslWebPortalLandingPageOutput values.
+// You can construct a concrete instance of `VpnSslWebPortalLandingPageInput` via:
+//
+//	VpnSslWebPortalLandingPageArgs{...}
+type VpnSslWebPortalLandingPageInput interface {
+	pulumi.Input
+
+	ToVpnSslWebPortalLandingPageOutput() VpnSslWebPortalLandingPageOutput
+	ToVpnSslWebPortalLandingPageOutputWithContext(context.Context) VpnSslWebPortalLandingPageOutput
+}
+
+type VpnSslWebPortalLandingPageArgs struct {
+	FormDatas     VpnSslWebPortalLandingPageFormDataArrayInput `pulumi:"formDatas"`
+	LogoutUrl     pulumi.StringPtrInput                        `pulumi:"logoutUrl"`
+	Sso           pulumi.StringPtrInput                        `pulumi:"sso"`
+	SsoCredential pulumi.StringPtrInput                        `pulumi:"ssoCredential"`
+	SsoPassword   pulumi.StringPtrInput                        `pulumi:"ssoPassword"`
+	SsoUsername   pulumi.StringPtrInput                        `pulumi:"ssoUsername"`
+	Url           pulumi.StringPtrInput                        `pulumi:"url"`
+}
+
+func (VpnSslWebPortalLandingPageArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslWebPortalLandingPage)(nil)).Elem()
+}
+
+func (i VpnSslWebPortalLandingPageArgs) ToVpnSslWebPortalLandingPageOutput() VpnSslWebPortalLandingPageOutput {
+	return i.ToVpnSslWebPortalLandingPageOutputWithContext(context.Background())
+}
+
+func (i VpnSslWebPortalLandingPageArgs) ToVpnSslWebPortalLandingPageOutputWithContext(ctx context.Context) VpnSslWebPortalLandingPageOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalLandingPageOutput)
+}
+
+func (i VpnSslWebPortalLandingPageArgs) ToVpnSslWebPortalLandingPagePtrOutput() VpnSslWebPortalLandingPagePtrOutput {
+	return i.ToVpnSslWebPortalLandingPagePtrOutputWithContext(context.Background())
+}
+
+func (i VpnSslWebPortalLandingPageArgs) ToVpnSslWebPortalLandingPagePtrOutputWithContext(ctx context.Context) VpnSslWebPortalLandingPagePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalLandingPageOutput).ToVpnSslWebPortalLandingPagePtrOutputWithContext(ctx)
+}
+
+// VpnSslWebPortalLandingPagePtrInput is an input type that accepts VpnSslWebPortalLandingPageArgs, VpnSslWebPortalLandingPagePtr and VpnSslWebPortalLandingPagePtrOutput values.
+// You can construct a concrete instance of `VpnSslWebPortalLandingPagePtrInput` via:
+//
+//	        VpnSslWebPortalLandingPageArgs{...}
+//
+//	or:
+//
+//	        nil
+type VpnSslWebPortalLandingPagePtrInput interface {
+	pulumi.Input
+
+	ToVpnSslWebPortalLandingPagePtrOutput() VpnSslWebPortalLandingPagePtrOutput
+	ToVpnSslWebPortalLandingPagePtrOutputWithContext(context.Context) VpnSslWebPortalLandingPagePtrOutput
+}
+
+type vpnSslWebPortalLandingPagePtrType VpnSslWebPortalLandingPageArgs
+
+func VpnSslWebPortalLandingPagePtr(v *VpnSslWebPortalLandingPageArgs) VpnSslWebPortalLandingPagePtrInput {
+	return (*vpnSslWebPortalLandingPagePtrType)(v)
+}
+
+func (*vpnSslWebPortalLandingPagePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**VpnSslWebPortalLandingPage)(nil)).Elem()
+}
+
+func (i *vpnSslWebPortalLandingPagePtrType) ToVpnSslWebPortalLandingPagePtrOutput() VpnSslWebPortalLandingPagePtrOutput {
+	return i.ToVpnSslWebPortalLandingPagePtrOutputWithContext(context.Background())
+}
+
+func (i *vpnSslWebPortalLandingPagePtrType) ToVpnSslWebPortalLandingPagePtrOutputWithContext(ctx context.Context) VpnSslWebPortalLandingPagePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalLandingPagePtrOutput)
+}
+
+type VpnSslWebPortalLandingPageOutput struct{ *pulumi.OutputState }
+
+func (VpnSslWebPortalLandingPageOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslWebPortalLandingPage)(nil)).Elem()
+}
+
+func (o VpnSslWebPortalLandingPageOutput) ToVpnSslWebPortalLandingPageOutput() VpnSslWebPortalLandingPageOutput {
+	return o
+}
+
+func (o VpnSslWebPortalLandingPageOutput) ToVpnSslWebPortalLandingPageOutputWithContext(ctx context.Context) VpnSslWebPortalLandingPageOutput {
+	return o
+}
+
+func (o VpnSslWebPortalLandingPageOutput) ToVpnSslWebPortalLandingPagePtrOutput() VpnSslWebPortalLandingPagePtrOutput {
+	return o.ToVpnSslWebPortalLandingPagePtrOutputWithContext(context.Background())
+}
+
+func (o VpnSslWebPortalLandingPageOutput) ToVpnSslWebPortalLandingPagePtrOutputWithContext(ctx context.Context) VpnSslWebPortalLandingPagePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v VpnSslWebPortalLandingPage) *VpnSslWebPortalLandingPage {
+		return &v
+	}).(VpnSslWebPortalLandingPagePtrOutput)
+}
+
+func (o VpnSslWebPortalLandingPageOutput) FormDatas() VpnSslWebPortalLandingPageFormDataArrayOutput {
+	return o.ApplyT(func(v VpnSslWebPortalLandingPage) []VpnSslWebPortalLandingPageFormData { return v.FormDatas }).(VpnSslWebPortalLandingPageFormDataArrayOutput)
+}
+
+func (o VpnSslWebPortalLandingPageOutput) LogoutUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalLandingPage) *string { return v.LogoutUrl }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalLandingPageOutput) Sso() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalLandingPage) *string { return v.Sso }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalLandingPageOutput) SsoCredential() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalLandingPage) *string { return v.SsoCredential }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalLandingPageOutput) SsoPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalLandingPage) *string { return v.SsoPassword }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalLandingPageOutput) SsoUsername() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalLandingPage) *string { return v.SsoUsername }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalLandingPageOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalLandingPage) *string { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+type VpnSslWebPortalLandingPagePtrOutput struct{ *pulumi.OutputState }
+
+func (VpnSslWebPortalLandingPagePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**VpnSslWebPortalLandingPage)(nil)).Elem()
+}
+
+func (o VpnSslWebPortalLandingPagePtrOutput) ToVpnSslWebPortalLandingPagePtrOutput() VpnSslWebPortalLandingPagePtrOutput {
+	return o
+}
+
+func (o VpnSslWebPortalLandingPagePtrOutput) ToVpnSslWebPortalLandingPagePtrOutputWithContext(ctx context.Context) VpnSslWebPortalLandingPagePtrOutput {
+	return o
+}
+
+func (o VpnSslWebPortalLandingPagePtrOutput) Elem() VpnSslWebPortalLandingPageOutput {
+	return o.ApplyT(func(v *VpnSslWebPortalLandingPage) VpnSslWebPortalLandingPage {
+		if v != nil {
+			return *v
+		}
+		var ret VpnSslWebPortalLandingPage
+		return ret
+	}).(VpnSslWebPortalLandingPageOutput)
+}
+
+func (o VpnSslWebPortalLandingPagePtrOutput) FormDatas() VpnSslWebPortalLandingPageFormDataArrayOutput {
+	return o.ApplyT(func(v *VpnSslWebPortalLandingPage) []VpnSslWebPortalLandingPageFormData {
+		if v == nil {
+			return nil
+		}
+		return v.FormDatas
+	}).(VpnSslWebPortalLandingPageFormDataArrayOutput)
+}
+
+func (o VpnSslWebPortalLandingPagePtrOutput) LogoutUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnSslWebPortalLandingPage) *string {
+		if v == nil {
+			return nil
+		}
+		return v.LogoutUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalLandingPagePtrOutput) Sso() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnSslWebPortalLandingPage) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Sso
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalLandingPagePtrOutput) SsoCredential() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnSslWebPortalLandingPage) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SsoCredential
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalLandingPagePtrOutput) SsoPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnSslWebPortalLandingPage) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SsoPassword
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalLandingPagePtrOutput) SsoUsername() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnSslWebPortalLandingPage) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SsoUsername
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalLandingPagePtrOutput) Url() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnSslWebPortalLandingPage) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Url
+	}).(pulumi.StringPtrOutput)
+}
+
+type VpnSslWebPortalLandingPageFormData struct {
+	Name  *string `pulumi:"name"`
+	Value *string `pulumi:"value"`
+}
+
+// VpnSslWebPortalLandingPageFormDataInput is an input type that accepts VpnSslWebPortalLandingPageFormDataArgs and VpnSslWebPortalLandingPageFormDataOutput values.
+// You can construct a concrete instance of `VpnSslWebPortalLandingPageFormDataInput` via:
+//
+//	VpnSslWebPortalLandingPageFormDataArgs{...}
+type VpnSslWebPortalLandingPageFormDataInput interface {
+	pulumi.Input
+
+	ToVpnSslWebPortalLandingPageFormDataOutput() VpnSslWebPortalLandingPageFormDataOutput
+	ToVpnSslWebPortalLandingPageFormDataOutputWithContext(context.Context) VpnSslWebPortalLandingPageFormDataOutput
+}
+
+type VpnSslWebPortalLandingPageFormDataArgs struct {
+	Name  pulumi.StringPtrInput `pulumi:"name"`
+	Value pulumi.StringPtrInput `pulumi:"value"`
+}
+
+func (VpnSslWebPortalLandingPageFormDataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslWebPortalLandingPageFormData)(nil)).Elem()
+}
+
+func (i VpnSslWebPortalLandingPageFormDataArgs) ToVpnSslWebPortalLandingPageFormDataOutput() VpnSslWebPortalLandingPageFormDataOutput {
+	return i.ToVpnSslWebPortalLandingPageFormDataOutputWithContext(context.Background())
+}
+
+func (i VpnSslWebPortalLandingPageFormDataArgs) ToVpnSslWebPortalLandingPageFormDataOutputWithContext(ctx context.Context) VpnSslWebPortalLandingPageFormDataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalLandingPageFormDataOutput)
+}
+
+// VpnSslWebPortalLandingPageFormDataArrayInput is an input type that accepts VpnSslWebPortalLandingPageFormDataArray and VpnSslWebPortalLandingPageFormDataArrayOutput values.
+// You can construct a concrete instance of `VpnSslWebPortalLandingPageFormDataArrayInput` via:
+//
+//	VpnSslWebPortalLandingPageFormDataArray{ VpnSslWebPortalLandingPageFormDataArgs{...} }
+type VpnSslWebPortalLandingPageFormDataArrayInput interface {
+	pulumi.Input
+
+	ToVpnSslWebPortalLandingPageFormDataArrayOutput() VpnSslWebPortalLandingPageFormDataArrayOutput
+	ToVpnSslWebPortalLandingPageFormDataArrayOutputWithContext(context.Context) VpnSslWebPortalLandingPageFormDataArrayOutput
+}
+
+type VpnSslWebPortalLandingPageFormDataArray []VpnSslWebPortalLandingPageFormDataInput
+
+func (VpnSslWebPortalLandingPageFormDataArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslWebPortalLandingPageFormData)(nil)).Elem()
+}
+
+func (i VpnSslWebPortalLandingPageFormDataArray) ToVpnSslWebPortalLandingPageFormDataArrayOutput() VpnSslWebPortalLandingPageFormDataArrayOutput {
+	return i.ToVpnSslWebPortalLandingPageFormDataArrayOutputWithContext(context.Background())
+}
+
+func (i VpnSslWebPortalLandingPageFormDataArray) ToVpnSslWebPortalLandingPageFormDataArrayOutputWithContext(ctx context.Context) VpnSslWebPortalLandingPageFormDataArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalLandingPageFormDataArrayOutput)
+}
+
+type VpnSslWebPortalLandingPageFormDataOutput struct{ *pulumi.OutputState }
+
+func (VpnSslWebPortalLandingPageFormDataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnSslWebPortalLandingPageFormData)(nil)).Elem()
+}
+
+func (o VpnSslWebPortalLandingPageFormDataOutput) ToVpnSslWebPortalLandingPageFormDataOutput() VpnSslWebPortalLandingPageFormDataOutput {
+	return o
+}
+
+func (o VpnSslWebPortalLandingPageFormDataOutput) ToVpnSslWebPortalLandingPageFormDataOutputWithContext(ctx context.Context) VpnSslWebPortalLandingPageFormDataOutput {
+	return o
+}
+
+func (o VpnSslWebPortalLandingPageFormDataOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalLandingPageFormData) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebPortalLandingPageFormDataOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebPortalLandingPageFormData) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type VpnSslWebPortalLandingPageFormDataArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnSslWebPortalLandingPageFormDataArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnSslWebPortalLandingPageFormData)(nil)).Elem()
+}
+
+func (o VpnSslWebPortalLandingPageFormDataArrayOutput) ToVpnSslWebPortalLandingPageFormDataArrayOutput() VpnSslWebPortalLandingPageFormDataArrayOutput {
+	return o
+}
+
+func (o VpnSslWebPortalLandingPageFormDataArrayOutput) ToVpnSslWebPortalLandingPageFormDataArrayOutputWithContext(ctx context.Context) VpnSslWebPortalLandingPageFormDataArrayOutput {
+	return o
+}
+
+func (o VpnSslWebPortalLandingPageFormDataArrayOutput) Index(i pulumi.IntInput) VpnSslWebPortalLandingPageFormDataOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnSslWebPortalLandingPageFormData {
+		return vs[0].([]VpnSslWebPortalLandingPageFormData)[vs[1].(int)]
+	}).(VpnSslWebPortalLandingPageFormDataOutput)
+}
 
 type VpnSslWebPortalMacAddrCheckRule struct {
 	MacAddrLists []VpnSslWebPortalMacAddrCheckRuleMacAddrList `pulumi:"macAddrLists"`
@@ -573,6 +8183,7 @@ type VpnSslWebUserBookmarkBookmark struct {
 	SsoPassword           *string                                 `pulumi:"ssoPassword"`
 	SsoUsername           *string                                 `pulumi:"ssoUsername"`
 	Url                   *string                                 `pulumi:"url"`
+	VncKeyboardLayout     *string                                 `pulumi:"vncKeyboardLayout"`
 	Width                 *int                                    `pulumi:"width"`
 }
 
@@ -618,6 +8229,7 @@ type VpnSslWebUserBookmarkBookmarkArgs struct {
 	SsoPassword           pulumi.StringPtrInput                           `pulumi:"ssoPassword"`
 	SsoUsername           pulumi.StringPtrInput                           `pulumi:"ssoUsername"`
 	Url                   pulumi.StringPtrInput                           `pulumi:"url"`
+	VncKeyboardLayout     pulumi.StringPtrInput                           `pulumi:"vncKeyboardLayout"`
 	Width                 pulumi.IntPtrInput                              `pulumi:"width"`
 }
 
@@ -792,6 +8404,10 @@ func (o VpnSslWebUserBookmarkBookmarkOutput) Url() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VpnSslWebUserBookmarkBookmark) *string { return v.Url }).(pulumi.StringPtrOutput)
 }
 
+func (o VpnSslWebUserBookmarkBookmarkOutput) VncKeyboardLayout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebUserBookmarkBookmark) *string { return v.VncKeyboardLayout }).(pulumi.StringPtrOutput)
+}
+
 func (o VpnSslWebUserBookmarkBookmarkOutput) Width() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v VpnSslWebUserBookmarkBookmark) *int { return v.Width }).(pulumi.IntPtrOutput)
 }
@@ -947,6 +8563,7 @@ type VpnSslWebUserGroupBookmarkBookmark struct {
 	SsoPassword           *string                                      `pulumi:"ssoPassword"`
 	SsoUsername           *string                                      `pulumi:"ssoUsername"`
 	Url                   *string                                      `pulumi:"url"`
+	VncKeyboardLayout     *string                                      `pulumi:"vncKeyboardLayout"`
 	Width                 *int                                         `pulumi:"width"`
 }
 
@@ -992,6 +8609,7 @@ type VpnSslWebUserGroupBookmarkBookmarkArgs struct {
 	SsoPassword           pulumi.StringPtrInput                                `pulumi:"ssoPassword"`
 	SsoUsername           pulumi.StringPtrInput                                `pulumi:"ssoUsername"`
 	Url                   pulumi.StringPtrInput                                `pulumi:"url"`
+	VncKeyboardLayout     pulumi.StringPtrInput                                `pulumi:"vncKeyboardLayout"`
 	Width                 pulumi.IntPtrInput                                   `pulumi:"width"`
 }
 
@@ -1166,6 +8784,10 @@ func (o VpnSslWebUserGroupBookmarkBookmarkOutput) SsoUsername() pulumi.StringPtr
 
 func (o VpnSslWebUserGroupBookmarkBookmarkOutput) Url() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v VpnSslWebUserGroupBookmarkBookmark) *string { return v.Url }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebUserGroupBookmarkBookmarkOutput) VncKeyboardLayout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnSslWebUserGroupBookmarkBookmark) *string { return v.VncKeyboardLayout }).(pulumi.StringPtrOutput)
 }
 
 func (o VpnSslWebUserGroupBookmarkBookmarkOutput) Width() pulumi.IntPtrOutput {
@@ -8602,6 +16224,100 @@ func (o WebProxyExplicitPacPolicySrcaddrArrayOutput) Index(i pulumi.IntInput) We
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WebProxyExplicitPacPolicySrcaddr {
 		return vs[0].([]WebProxyExplicitPacPolicySrcaddr)[vs[1].(int)]
 	}).(WebProxyExplicitPacPolicySrcaddrOutput)
+}
+
+type WebProxyExplicitSecureWebProxyCert struct {
+	Name *string `pulumi:"name"`
+}
+
+// WebProxyExplicitSecureWebProxyCertInput is an input type that accepts WebProxyExplicitSecureWebProxyCertArgs and WebProxyExplicitSecureWebProxyCertOutput values.
+// You can construct a concrete instance of `WebProxyExplicitSecureWebProxyCertInput` via:
+//
+//	WebProxyExplicitSecureWebProxyCertArgs{...}
+type WebProxyExplicitSecureWebProxyCertInput interface {
+	pulumi.Input
+
+	ToWebProxyExplicitSecureWebProxyCertOutput() WebProxyExplicitSecureWebProxyCertOutput
+	ToWebProxyExplicitSecureWebProxyCertOutputWithContext(context.Context) WebProxyExplicitSecureWebProxyCertOutput
+}
+
+type WebProxyExplicitSecureWebProxyCertArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (WebProxyExplicitSecureWebProxyCertArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebProxyExplicitSecureWebProxyCert)(nil)).Elem()
+}
+
+func (i WebProxyExplicitSecureWebProxyCertArgs) ToWebProxyExplicitSecureWebProxyCertOutput() WebProxyExplicitSecureWebProxyCertOutput {
+	return i.ToWebProxyExplicitSecureWebProxyCertOutputWithContext(context.Background())
+}
+
+func (i WebProxyExplicitSecureWebProxyCertArgs) ToWebProxyExplicitSecureWebProxyCertOutputWithContext(ctx context.Context) WebProxyExplicitSecureWebProxyCertOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebProxyExplicitSecureWebProxyCertOutput)
+}
+
+// WebProxyExplicitSecureWebProxyCertArrayInput is an input type that accepts WebProxyExplicitSecureWebProxyCertArray and WebProxyExplicitSecureWebProxyCertArrayOutput values.
+// You can construct a concrete instance of `WebProxyExplicitSecureWebProxyCertArrayInput` via:
+//
+//	WebProxyExplicitSecureWebProxyCertArray{ WebProxyExplicitSecureWebProxyCertArgs{...} }
+type WebProxyExplicitSecureWebProxyCertArrayInput interface {
+	pulumi.Input
+
+	ToWebProxyExplicitSecureWebProxyCertArrayOutput() WebProxyExplicitSecureWebProxyCertArrayOutput
+	ToWebProxyExplicitSecureWebProxyCertArrayOutputWithContext(context.Context) WebProxyExplicitSecureWebProxyCertArrayOutput
+}
+
+type WebProxyExplicitSecureWebProxyCertArray []WebProxyExplicitSecureWebProxyCertInput
+
+func (WebProxyExplicitSecureWebProxyCertArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]WebProxyExplicitSecureWebProxyCert)(nil)).Elem()
+}
+
+func (i WebProxyExplicitSecureWebProxyCertArray) ToWebProxyExplicitSecureWebProxyCertArrayOutput() WebProxyExplicitSecureWebProxyCertArrayOutput {
+	return i.ToWebProxyExplicitSecureWebProxyCertArrayOutputWithContext(context.Background())
+}
+
+func (i WebProxyExplicitSecureWebProxyCertArray) ToWebProxyExplicitSecureWebProxyCertArrayOutputWithContext(ctx context.Context) WebProxyExplicitSecureWebProxyCertArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebProxyExplicitSecureWebProxyCertArrayOutput)
+}
+
+type WebProxyExplicitSecureWebProxyCertOutput struct{ *pulumi.OutputState }
+
+func (WebProxyExplicitSecureWebProxyCertOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebProxyExplicitSecureWebProxyCert)(nil)).Elem()
+}
+
+func (o WebProxyExplicitSecureWebProxyCertOutput) ToWebProxyExplicitSecureWebProxyCertOutput() WebProxyExplicitSecureWebProxyCertOutput {
+	return o
+}
+
+func (o WebProxyExplicitSecureWebProxyCertOutput) ToWebProxyExplicitSecureWebProxyCertOutputWithContext(ctx context.Context) WebProxyExplicitSecureWebProxyCertOutput {
+	return o
+}
+
+func (o WebProxyExplicitSecureWebProxyCertOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WebProxyExplicitSecureWebProxyCert) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type WebProxyExplicitSecureWebProxyCertArrayOutput struct{ *pulumi.OutputState }
+
+func (WebProxyExplicitSecureWebProxyCertArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]WebProxyExplicitSecureWebProxyCert)(nil)).Elem()
+}
+
+func (o WebProxyExplicitSecureWebProxyCertArrayOutput) ToWebProxyExplicitSecureWebProxyCertArrayOutput() WebProxyExplicitSecureWebProxyCertArrayOutput {
+	return o
+}
+
+func (o WebProxyExplicitSecureWebProxyCertArrayOutput) ToWebProxyExplicitSecureWebProxyCertArrayOutputWithContext(ctx context.Context) WebProxyExplicitSecureWebProxyCertArrayOutput {
+	return o
+}
+
+func (o WebProxyExplicitSecureWebProxyCertArrayOutput) Index(i pulumi.IntInput) WebProxyExplicitSecureWebProxyCertOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WebProxyExplicitSecureWebProxyCert {
+		return vs[0].([]WebProxyExplicitSecureWebProxyCert)[vs[1].(int)]
+	}).(WebProxyExplicitSecureWebProxyCertOutput)
 }
 
 type WebProxyForwardServerGroupServerList struct {
@@ -19466,6 +27182,7 @@ type WirelessControllerWtpProfileRadio1 struct {
 	MaxDistance               *int                                        `pulumi:"maxDistance"`
 	Mode                      *string                                     `pulumi:"mode"`
 	N80211d                   *string                                     `pulumi:"n80211d"`
+	OptionalAntenna           *string                                     `pulumi:"optionalAntenna"`
 	PowerLevel                *int                                        `pulumi:"powerLevel"`
 	PowerMode                 *string                                     `pulumi:"powerMode"`
 	PowerValue                *int                                        `pulumi:"powerValue"`
@@ -19552,6 +27269,7 @@ type WirelessControllerWtpProfileRadio1Args struct {
 	MaxDistance               pulumi.IntPtrInput                                  `pulumi:"maxDistance"`
 	Mode                      pulumi.StringPtrInput                               `pulumi:"mode"`
 	N80211d                   pulumi.StringPtrInput                               `pulumi:"n80211d"`
+	OptionalAntenna           pulumi.StringPtrInput                               `pulumi:"optionalAntenna"`
 	PowerLevel                pulumi.IntPtrInput                                  `pulumi:"powerLevel"`
 	PowerMode                 pulumi.StringPtrInput                               `pulumi:"powerMode"`
 	PowerValue                pulumi.IntPtrInput                                  `pulumi:"powerValue"`
@@ -19826,6 +27544,10 @@ func (o WirelessControllerWtpProfileRadio1Output) Mode() pulumi.StringPtrOutput 
 
 func (o WirelessControllerWtpProfileRadio1Output) N80211d() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WirelessControllerWtpProfileRadio1) *string { return v.N80211d }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerWtpProfileRadio1Output) OptionalAntenna() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WirelessControllerWtpProfileRadio1) *string { return v.OptionalAntenna }).(pulumi.StringPtrOutput)
 }
 
 func (o WirelessControllerWtpProfileRadio1Output) PowerLevel() pulumi.IntPtrOutput {
@@ -20345,6 +28067,15 @@ func (o WirelessControllerWtpProfileRadio1PtrOutput) N80211d() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
+func (o WirelessControllerWtpProfileRadio1PtrOutput) OptionalAntenna() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfileRadio1) *string {
+		if v == nil {
+			return nil
+		}
+		return v.OptionalAntenna
+	}).(pulumi.StringPtrOutput)
+}
+
 func (o WirelessControllerWtpProfileRadio1PtrOutput) PowerLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WirelessControllerWtpProfileRadio1) *int {
 		if v == nil {
@@ -20854,6 +28585,7 @@ type WirelessControllerWtpProfileRadio2 struct {
 	MaxDistance               *int                                        `pulumi:"maxDistance"`
 	Mode                      *string                                     `pulumi:"mode"`
 	N80211d                   *string                                     `pulumi:"n80211d"`
+	OptionalAntenna           *string                                     `pulumi:"optionalAntenna"`
 	PowerLevel                *int                                        `pulumi:"powerLevel"`
 	PowerMode                 *string                                     `pulumi:"powerMode"`
 	PowerValue                *int                                        `pulumi:"powerValue"`
@@ -20940,6 +28672,7 @@ type WirelessControllerWtpProfileRadio2Args struct {
 	MaxDistance               pulumi.IntPtrInput                                  `pulumi:"maxDistance"`
 	Mode                      pulumi.StringPtrInput                               `pulumi:"mode"`
 	N80211d                   pulumi.StringPtrInput                               `pulumi:"n80211d"`
+	OptionalAntenna           pulumi.StringPtrInput                               `pulumi:"optionalAntenna"`
 	PowerLevel                pulumi.IntPtrInput                                  `pulumi:"powerLevel"`
 	PowerMode                 pulumi.StringPtrInput                               `pulumi:"powerMode"`
 	PowerValue                pulumi.IntPtrInput                                  `pulumi:"powerValue"`
@@ -21214,6 +28947,10 @@ func (o WirelessControllerWtpProfileRadio2Output) Mode() pulumi.StringPtrOutput 
 
 func (o WirelessControllerWtpProfileRadio2Output) N80211d() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WirelessControllerWtpProfileRadio2) *string { return v.N80211d }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerWtpProfileRadio2Output) OptionalAntenna() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WirelessControllerWtpProfileRadio2) *string { return v.OptionalAntenna }).(pulumi.StringPtrOutput)
 }
 
 func (o WirelessControllerWtpProfileRadio2Output) PowerLevel() pulumi.IntPtrOutput {
@@ -21733,6 +29470,15 @@ func (o WirelessControllerWtpProfileRadio2PtrOutput) N80211d() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
+func (o WirelessControllerWtpProfileRadio2PtrOutput) OptionalAntenna() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfileRadio2) *string {
+		if v == nil {
+			return nil
+		}
+		return v.OptionalAntenna
+	}).(pulumi.StringPtrOutput)
+}
+
 func (o WirelessControllerWtpProfileRadio2PtrOutput) PowerLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WirelessControllerWtpProfileRadio2) *int {
 		if v == nil {
@@ -22242,6 +29988,7 @@ type WirelessControllerWtpProfileRadio3 struct {
 	MaxDistance               *int                                        `pulumi:"maxDistance"`
 	Mode                      *string                                     `pulumi:"mode"`
 	N80211d                   *string                                     `pulumi:"n80211d"`
+	OptionalAntenna           *string                                     `pulumi:"optionalAntenna"`
 	PowerLevel                *int                                        `pulumi:"powerLevel"`
 	PowerMode                 *string                                     `pulumi:"powerMode"`
 	PowerValue                *int                                        `pulumi:"powerValue"`
@@ -22327,6 +30074,7 @@ type WirelessControllerWtpProfileRadio3Args struct {
 	MaxDistance               pulumi.IntPtrInput                                  `pulumi:"maxDistance"`
 	Mode                      pulumi.StringPtrInput                               `pulumi:"mode"`
 	N80211d                   pulumi.StringPtrInput                               `pulumi:"n80211d"`
+	OptionalAntenna           pulumi.StringPtrInput                               `pulumi:"optionalAntenna"`
 	PowerLevel                pulumi.IntPtrInput                                  `pulumi:"powerLevel"`
 	PowerMode                 pulumi.StringPtrInput                               `pulumi:"powerMode"`
 	PowerValue                pulumi.IntPtrInput                                  `pulumi:"powerValue"`
@@ -22600,6 +30348,10 @@ func (o WirelessControllerWtpProfileRadio3Output) Mode() pulumi.StringPtrOutput 
 
 func (o WirelessControllerWtpProfileRadio3Output) N80211d() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WirelessControllerWtpProfileRadio3) *string { return v.N80211d }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerWtpProfileRadio3Output) OptionalAntenna() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WirelessControllerWtpProfileRadio3) *string { return v.OptionalAntenna }).(pulumi.StringPtrOutput)
 }
 
 func (o WirelessControllerWtpProfileRadio3Output) PowerLevel() pulumi.IntPtrOutput {
@@ -23115,6 +30867,15 @@ func (o WirelessControllerWtpProfileRadio3PtrOutput) N80211d() pulumi.StringPtrO
 	}).(pulumi.StringPtrOutput)
 }
 
+func (o WirelessControllerWtpProfileRadio3PtrOutput) OptionalAntenna() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfileRadio3) *string {
+		if v == nil {
+			return nil
+		}
+		return v.OptionalAntenna
+	}).(pulumi.StringPtrOutput)
+}
+
 func (o WirelessControllerWtpProfileRadio3PtrOutput) PowerLevel() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *WirelessControllerWtpProfileRadio3) *int {
 		if v == nil {
@@ -23615,6 +31376,7 @@ type WirelessControllerWtpProfileRadio4 struct {
 	MaxDistance               *int                                        `pulumi:"maxDistance"`
 	Mode                      *string                                     `pulumi:"mode"`
 	N80211d                   *string                                     `pulumi:"n80211d"`
+	OptionalAntenna           *string                                     `pulumi:"optionalAntenna"`
 	PowerLevel                *int                                        `pulumi:"powerLevel"`
 	PowerMode                 *string                                     `pulumi:"powerMode"`
 	PowerValue                *int                                        `pulumi:"powerValue"`
@@ -23700,6 +31462,7 @@ type WirelessControllerWtpProfileRadio4Args struct {
 	MaxDistance               pulumi.IntPtrInput                                  `pulumi:"maxDistance"`
 	Mode                      pulumi.StringPtrInput                               `pulumi:"mode"`
 	N80211d                   pulumi.StringPtrInput                               `pulumi:"n80211d"`
+	OptionalAntenna           pulumi.StringPtrInput                               `pulumi:"optionalAntenna"`
 	PowerLevel                pulumi.IntPtrInput                                  `pulumi:"powerLevel"`
 	PowerMode                 pulumi.StringPtrInput                               `pulumi:"powerMode"`
 	PowerValue                pulumi.IntPtrInput                                  `pulumi:"powerValue"`
@@ -23973,6 +31736,10 @@ func (o WirelessControllerWtpProfileRadio4Output) Mode() pulumi.StringPtrOutput 
 
 func (o WirelessControllerWtpProfileRadio4Output) N80211d() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WirelessControllerWtpProfileRadio4) *string { return v.N80211d }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerWtpProfileRadio4Output) OptionalAntenna() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WirelessControllerWtpProfileRadio4) *string { return v.OptionalAntenna }).(pulumi.StringPtrOutput)
 }
 
 func (o WirelessControllerWtpProfileRadio4Output) PowerLevel() pulumi.IntPtrOutput {
@@ -24485,6 +32252,15 @@ func (o WirelessControllerWtpProfileRadio4PtrOutput) N80211d() pulumi.StringPtrO
 			return nil
 		}
 		return v.N80211d
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerWtpProfileRadio4PtrOutput) OptionalAntenna() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfileRadio4) *string {
+		if v == nil {
+			return nil
+		}
+		return v.OptionalAntenna
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -27481,6 +35257,108 @@ func (o WirelessControllerWtpSplitTunnelingAclArrayOutput) Index(i pulumi.IntInp
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*UserSecurityExemptListRuleDeviceInput)(nil)).Elem(), UserSecurityExemptListRuleDeviceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserSecurityExemptListRuleDeviceArrayInput)(nil)).Elem(), UserSecurityExemptListRuleDeviceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserSecurityExemptListRuleDstaddrInput)(nil)).Elem(), UserSecurityExemptListRuleDstaddrArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserSecurityExemptListRuleDstaddrArrayInput)(nil)).Elem(), UserSecurityExemptListRuleDstaddrArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserSecurityExemptListRuleServiceInput)(nil)).Elem(), UserSecurityExemptListRuleServiceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserSecurityExemptListRuleServiceArrayInput)(nil)).Elem(), UserSecurityExemptListRuleServiceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserSecurityExemptListRuleSrcaddrInput)(nil)).Elem(), UserSecurityExemptListRuleSrcaddrArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserSecurityExemptListRuleSrcaddrArrayInput)(nil)).Elem(), UserSecurityExemptListRuleSrcaddrArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserSettingAuthPortInput)(nil)).Elem(), UserSettingAuthPortArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserSettingAuthPortArrayInput)(nil)).Elem(), UserSettingAuthPortArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VideofilterProfileFortiguardCategoryInput)(nil)).Elem(), VideofilterProfileFortiguardCategoryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VideofilterProfileFortiguardCategoryPtrInput)(nil)).Elem(), VideofilterProfileFortiguardCategoryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VideofilterProfileFortiguardCategoryFilterInput)(nil)).Elem(), VideofilterProfileFortiguardCategoryFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VideofilterProfileFortiguardCategoryFilterArrayInput)(nil)).Elem(), VideofilterProfileFortiguardCategoryFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VideofilterYoutubeChannelFilterEntryInput)(nil)).Elem(), VideofilterYoutubeChannelFilterEntryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VideofilterYoutubeChannelFilterEntryArrayInput)(nil)).Elem(), VideofilterYoutubeChannelFilterEntryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VoipProfileMsrpInput)(nil)).Elem(), VoipProfileMsrpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VoipProfileMsrpPtrInput)(nil)).Elem(), VoipProfileMsrpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VoipProfileSccpInput)(nil)).Elem(), VoipProfileSccpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VoipProfileSccpPtrInput)(nil)).Elem(), VoipProfileSccpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VoipProfileSipInput)(nil)).Elem(), VoipProfileSipArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VoipProfileSipPtrInput)(nil)).Elem(), VoipProfileSipArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnCertificateSettingCrlVerificationInput)(nil)).Elem(), VpnCertificateSettingCrlVerificationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnCertificateSettingCrlVerificationPtrInput)(nil)).Elem(), VpnCertificateSettingCrlVerificationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecConcentratorMemberInput)(nil)).Elem(), VpnIpsecConcentratorMemberArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecConcentratorMemberArrayInput)(nil)).Elem(), VpnIpsecConcentratorMemberArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecFecMappingInput)(nil)).Elem(), VpnIpsecFecMappingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecFecMappingArrayInput)(nil)).Elem(), VpnIpsecFecMappingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecPhase1BackupGatewayInput)(nil)).Elem(), VpnIpsecPhase1BackupGatewayArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecPhase1BackupGatewayArrayInput)(nil)).Elem(), VpnIpsecPhase1BackupGatewayArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecPhase1CertificateInput)(nil)).Elem(), VpnIpsecPhase1CertificateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecPhase1CertificateArrayInput)(nil)).Elem(), VpnIpsecPhase1CertificateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecPhase1InterfaceBackupGatewayInput)(nil)).Elem(), VpnIpsecPhase1InterfaceBackupGatewayArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecPhase1InterfaceBackupGatewayArrayInput)(nil)).Elem(), VpnIpsecPhase1InterfaceBackupGatewayArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecPhase1InterfaceCertificateInput)(nil)).Elem(), VpnIpsecPhase1InterfaceCertificateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecPhase1InterfaceCertificateArrayInput)(nil)).Elem(), VpnIpsecPhase1InterfaceCertificateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecPhase1InterfaceIpv4ExcludeRangeInput)(nil)).Elem(), VpnIpsecPhase1InterfaceIpv4ExcludeRangeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayInput)(nil)).Elem(), VpnIpsecPhase1InterfaceIpv4ExcludeRangeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecPhase1InterfaceIpv6ExcludeRangeInput)(nil)).Elem(), VpnIpsecPhase1InterfaceIpv6ExcludeRangeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecPhase1InterfaceIpv6ExcludeRangeArrayInput)(nil)).Elem(), VpnIpsecPhase1InterfaceIpv6ExcludeRangeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecPhase1Ipv4ExcludeRangeInput)(nil)).Elem(), VpnIpsecPhase1Ipv4ExcludeRangeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecPhase1Ipv4ExcludeRangeArrayInput)(nil)).Elem(), VpnIpsecPhase1Ipv4ExcludeRangeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecPhase1Ipv6ExcludeRangeInput)(nil)).Elem(), VpnIpsecPhase1Ipv6ExcludeRangeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecPhase1Ipv6ExcludeRangeArrayInput)(nil)).Elem(), VpnIpsecPhase1Ipv6ExcludeRangeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnKmipServerServerListInput)(nil)).Elem(), VpnKmipServerServerListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnKmipServerServerListArrayInput)(nil)).Elem(), VpnKmipServerServerListArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnOcvpnForticlientAccessInput)(nil)).Elem(), VpnOcvpnForticlientAccessArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnOcvpnForticlientAccessPtrInput)(nil)).Elem(), VpnOcvpnForticlientAccessArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnOcvpnForticlientAccessAuthGroupInput)(nil)).Elem(), VpnOcvpnForticlientAccessAuthGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnOcvpnForticlientAccessAuthGroupArrayInput)(nil)).Elem(), VpnOcvpnForticlientAccessAuthGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnOcvpnForticlientAccessAuthGroupOverlayInput)(nil)).Elem(), VpnOcvpnForticlientAccessAuthGroupOverlayArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnOcvpnForticlientAccessAuthGroupOverlayArrayInput)(nil)).Elem(), VpnOcvpnForticlientAccessAuthGroupOverlayArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnOcvpnOverlayInput)(nil)).Elem(), VpnOcvpnOverlayArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnOcvpnOverlayArrayInput)(nil)).Elem(), VpnOcvpnOverlayArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnOcvpnOverlaySubnetInput)(nil)).Elem(), VpnOcvpnOverlaySubnetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnOcvpnOverlaySubnetArrayInput)(nil)).Elem(), VpnOcvpnOverlaySubnetArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnOcvpnWanInterfaceInput)(nil)).Elem(), VpnOcvpnWanInterfaceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnOcvpnWanInterfaceArrayInput)(nil)).Elem(), VpnOcvpnWanInterfaceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslSettingsAuthenticationRuleInput)(nil)).Elem(), VpnSslSettingsAuthenticationRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslSettingsAuthenticationRuleArrayInput)(nil)).Elem(), VpnSslSettingsAuthenticationRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslSettingsAuthenticationRuleGroupInput)(nil)).Elem(), VpnSslSettingsAuthenticationRuleGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslSettingsAuthenticationRuleGroupArrayInput)(nil)).Elem(), VpnSslSettingsAuthenticationRuleGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslSettingsAuthenticationRuleSourceAddress6Input)(nil)).Elem(), VpnSslSettingsAuthenticationRuleSourceAddress6Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslSettingsAuthenticationRuleSourceAddress6ArrayInput)(nil)).Elem(), VpnSslSettingsAuthenticationRuleSourceAddress6Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslSettingsAuthenticationRuleSourceAddressInput)(nil)).Elem(), VpnSslSettingsAuthenticationRuleSourceAddressArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslSettingsAuthenticationRuleSourceAddressArrayInput)(nil)).Elem(), VpnSslSettingsAuthenticationRuleSourceAddressArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslSettingsAuthenticationRuleSourceInterfaceInput)(nil)).Elem(), VpnSslSettingsAuthenticationRuleSourceInterfaceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslSettingsAuthenticationRuleSourceInterfaceArrayInput)(nil)).Elem(), VpnSslSettingsAuthenticationRuleSourceInterfaceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslSettingsAuthenticationRuleUserInput)(nil)).Elem(), VpnSslSettingsAuthenticationRuleUserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslSettingsAuthenticationRuleUserArrayInput)(nil)).Elem(), VpnSslSettingsAuthenticationRuleUserArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslSettingsSourceAddress6Input)(nil)).Elem(), VpnSslSettingsSourceAddress6Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslSettingsSourceAddress6ArrayInput)(nil)).Elem(), VpnSslSettingsSourceAddress6Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslSettingsSourceAddressInput)(nil)).Elem(), VpnSslSettingsSourceAddressArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslSettingsSourceAddressArrayInput)(nil)).Elem(), VpnSslSettingsSourceAddressArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslSettingsSourceInterfaceInput)(nil)).Elem(), VpnSslSettingsSourceInterfaceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslSettingsSourceInterfaceArrayInput)(nil)).Elem(), VpnSslSettingsSourceInterfaceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslSettingsTunnelIpPoolInput)(nil)).Elem(), VpnSslSettingsTunnelIpPoolArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslSettingsTunnelIpPoolArrayInput)(nil)).Elem(), VpnSslSettingsTunnelIpPoolArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslSettingsTunnelIpv6PoolInput)(nil)).Elem(), VpnSslSettingsTunnelIpv6PoolArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslSettingsTunnelIpv6PoolArrayInput)(nil)).Elem(), VpnSslSettingsTunnelIpv6PoolArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebHostCheckSoftwareCheckItemListInput)(nil)).Elem(), VpnSslWebHostCheckSoftwareCheckItemListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebHostCheckSoftwareCheckItemListArrayInput)(nil)).Elem(), VpnSslWebHostCheckSoftwareCheckItemListArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebHostCheckSoftwareCheckItemListMd5Input)(nil)).Elem(), VpnSslWebHostCheckSoftwareCheckItemListMd5Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebHostCheckSoftwareCheckItemListMd5ArrayInput)(nil)).Elem(), VpnSslWebHostCheckSoftwareCheckItemListMd5Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebPortalBookmarkGroupInput)(nil)).Elem(), VpnSslWebPortalBookmarkGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebPortalBookmarkGroupArrayInput)(nil)).Elem(), VpnSslWebPortalBookmarkGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebPortalBookmarkGroupBookmarkInput)(nil)).Elem(), VpnSslWebPortalBookmarkGroupBookmarkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebPortalBookmarkGroupBookmarkArrayInput)(nil)).Elem(), VpnSslWebPortalBookmarkGroupBookmarkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebPortalBookmarkGroupBookmarkFormDataInput)(nil)).Elem(), VpnSslWebPortalBookmarkGroupBookmarkFormDataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebPortalBookmarkGroupBookmarkFormDataArrayInput)(nil)).Elem(), VpnSslWebPortalBookmarkGroupBookmarkFormDataArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebPortalHostCheckPolicyInput)(nil)).Elem(), VpnSslWebPortalHostCheckPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebPortalHostCheckPolicyArrayInput)(nil)).Elem(), VpnSslWebPortalHostCheckPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebPortalIpPoolInput)(nil)).Elem(), VpnSslWebPortalIpPoolArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebPortalIpPoolArrayInput)(nil)).Elem(), VpnSslWebPortalIpPoolArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebPortalIpv6PoolInput)(nil)).Elem(), VpnSslWebPortalIpv6PoolArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebPortalIpv6PoolArrayInput)(nil)).Elem(), VpnSslWebPortalIpv6PoolArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebPortalIpv6SplitTunnelingRoutingAddressInput)(nil)).Elem(), VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayInput)(nil)).Elem(), VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebPortalLandingPageInput)(nil)).Elem(), VpnSslWebPortalLandingPageArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebPortalLandingPagePtrInput)(nil)).Elem(), VpnSslWebPortalLandingPageArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebPortalLandingPageFormDataInput)(nil)).Elem(), VpnSslWebPortalLandingPageFormDataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebPortalLandingPageFormDataArrayInput)(nil)).Elem(), VpnSslWebPortalLandingPageFormDataArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebPortalMacAddrCheckRuleInput)(nil)).Elem(), VpnSslWebPortalMacAddrCheckRuleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebPortalMacAddrCheckRuleArrayInput)(nil)).Elem(), VpnSslWebPortalMacAddrCheckRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebPortalMacAddrCheckRuleMacAddrListInput)(nil)).Elem(), VpnSslWebPortalMacAddrCheckRuleMacAddrListArgs{})
@@ -27589,6 +35467,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*WebProxyExplicitPacPolicySrcaddr6ArrayInput)(nil)).Elem(), WebProxyExplicitPacPolicySrcaddr6Array{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WebProxyExplicitPacPolicySrcaddrInput)(nil)).Elem(), WebProxyExplicitPacPolicySrcaddrArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WebProxyExplicitPacPolicySrcaddrArrayInput)(nil)).Elem(), WebProxyExplicitPacPolicySrcaddrArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebProxyExplicitSecureWebProxyCertInput)(nil)).Elem(), WebProxyExplicitSecureWebProxyCertArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebProxyExplicitSecureWebProxyCertArrayInput)(nil)).Elem(), WebProxyExplicitSecureWebProxyCertArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WebProxyForwardServerGroupServerListInput)(nil)).Elem(), WebProxyForwardServerGroupServerListArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WebProxyForwardServerGroupServerListArrayInput)(nil)).Elem(), WebProxyForwardServerGroupServerListArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WebProxyGlobalLearnClientIpSrcaddr6Input)(nil)).Elem(), WebProxyGlobalLearnClientIpSrcaddr6Args{})
@@ -27805,6 +35685,108 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerWtpRadio4VapArrayInput)(nil)).Elem(), WirelessControllerWtpRadio4VapArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerWtpSplitTunnelingAclInput)(nil)).Elem(), WirelessControllerWtpSplitTunnelingAclArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerWtpSplitTunnelingAclArrayInput)(nil)).Elem(), WirelessControllerWtpSplitTunnelingAclArray{})
+	pulumi.RegisterOutputType(UserSecurityExemptListRuleDeviceOutput{})
+	pulumi.RegisterOutputType(UserSecurityExemptListRuleDeviceArrayOutput{})
+	pulumi.RegisterOutputType(UserSecurityExemptListRuleDstaddrOutput{})
+	pulumi.RegisterOutputType(UserSecurityExemptListRuleDstaddrArrayOutput{})
+	pulumi.RegisterOutputType(UserSecurityExemptListRuleServiceOutput{})
+	pulumi.RegisterOutputType(UserSecurityExemptListRuleServiceArrayOutput{})
+	pulumi.RegisterOutputType(UserSecurityExemptListRuleSrcaddrOutput{})
+	pulumi.RegisterOutputType(UserSecurityExemptListRuleSrcaddrArrayOutput{})
+	pulumi.RegisterOutputType(UserSettingAuthPortOutput{})
+	pulumi.RegisterOutputType(UserSettingAuthPortArrayOutput{})
+	pulumi.RegisterOutputType(VideofilterProfileFortiguardCategoryOutput{})
+	pulumi.RegisterOutputType(VideofilterProfileFortiguardCategoryPtrOutput{})
+	pulumi.RegisterOutputType(VideofilterProfileFortiguardCategoryFilterOutput{})
+	pulumi.RegisterOutputType(VideofilterProfileFortiguardCategoryFilterArrayOutput{})
+	pulumi.RegisterOutputType(VideofilterYoutubeChannelFilterEntryOutput{})
+	pulumi.RegisterOutputType(VideofilterYoutubeChannelFilterEntryArrayOutput{})
+	pulumi.RegisterOutputType(VoipProfileMsrpOutput{})
+	pulumi.RegisterOutputType(VoipProfileMsrpPtrOutput{})
+	pulumi.RegisterOutputType(VoipProfileSccpOutput{})
+	pulumi.RegisterOutputType(VoipProfileSccpPtrOutput{})
+	pulumi.RegisterOutputType(VoipProfileSipOutput{})
+	pulumi.RegisterOutputType(VoipProfileSipPtrOutput{})
+	pulumi.RegisterOutputType(VpnCertificateSettingCrlVerificationOutput{})
+	pulumi.RegisterOutputType(VpnCertificateSettingCrlVerificationPtrOutput{})
+	pulumi.RegisterOutputType(VpnIpsecConcentratorMemberOutput{})
+	pulumi.RegisterOutputType(VpnIpsecConcentratorMemberArrayOutput{})
+	pulumi.RegisterOutputType(VpnIpsecFecMappingOutput{})
+	pulumi.RegisterOutputType(VpnIpsecFecMappingArrayOutput{})
+	pulumi.RegisterOutputType(VpnIpsecPhase1BackupGatewayOutput{})
+	pulumi.RegisterOutputType(VpnIpsecPhase1BackupGatewayArrayOutput{})
+	pulumi.RegisterOutputType(VpnIpsecPhase1CertificateOutput{})
+	pulumi.RegisterOutputType(VpnIpsecPhase1CertificateArrayOutput{})
+	pulumi.RegisterOutputType(VpnIpsecPhase1InterfaceBackupGatewayOutput{})
+	pulumi.RegisterOutputType(VpnIpsecPhase1InterfaceBackupGatewayArrayOutput{})
+	pulumi.RegisterOutputType(VpnIpsecPhase1InterfaceCertificateOutput{})
+	pulumi.RegisterOutputType(VpnIpsecPhase1InterfaceCertificateArrayOutput{})
+	pulumi.RegisterOutputType(VpnIpsecPhase1InterfaceIpv4ExcludeRangeOutput{})
+	pulumi.RegisterOutputType(VpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayOutput{})
+	pulumi.RegisterOutputType(VpnIpsecPhase1InterfaceIpv6ExcludeRangeOutput{})
+	pulumi.RegisterOutputType(VpnIpsecPhase1InterfaceIpv6ExcludeRangeArrayOutput{})
+	pulumi.RegisterOutputType(VpnIpsecPhase1Ipv4ExcludeRangeOutput{})
+	pulumi.RegisterOutputType(VpnIpsecPhase1Ipv4ExcludeRangeArrayOutput{})
+	pulumi.RegisterOutputType(VpnIpsecPhase1Ipv6ExcludeRangeOutput{})
+	pulumi.RegisterOutputType(VpnIpsecPhase1Ipv6ExcludeRangeArrayOutput{})
+	pulumi.RegisterOutputType(VpnKmipServerServerListOutput{})
+	pulumi.RegisterOutputType(VpnKmipServerServerListArrayOutput{})
+	pulumi.RegisterOutputType(VpnOcvpnForticlientAccessOutput{})
+	pulumi.RegisterOutputType(VpnOcvpnForticlientAccessPtrOutput{})
+	pulumi.RegisterOutputType(VpnOcvpnForticlientAccessAuthGroupOutput{})
+	pulumi.RegisterOutputType(VpnOcvpnForticlientAccessAuthGroupArrayOutput{})
+	pulumi.RegisterOutputType(VpnOcvpnForticlientAccessAuthGroupOverlayOutput{})
+	pulumi.RegisterOutputType(VpnOcvpnForticlientAccessAuthGroupOverlayArrayOutput{})
+	pulumi.RegisterOutputType(VpnOcvpnOverlayOutput{})
+	pulumi.RegisterOutputType(VpnOcvpnOverlayArrayOutput{})
+	pulumi.RegisterOutputType(VpnOcvpnOverlaySubnetOutput{})
+	pulumi.RegisterOutputType(VpnOcvpnOverlaySubnetArrayOutput{})
+	pulumi.RegisterOutputType(VpnOcvpnWanInterfaceOutput{})
+	pulumi.RegisterOutputType(VpnOcvpnWanInterfaceArrayOutput{})
+	pulumi.RegisterOutputType(VpnSslSettingsAuthenticationRuleOutput{})
+	pulumi.RegisterOutputType(VpnSslSettingsAuthenticationRuleArrayOutput{})
+	pulumi.RegisterOutputType(VpnSslSettingsAuthenticationRuleGroupOutput{})
+	pulumi.RegisterOutputType(VpnSslSettingsAuthenticationRuleGroupArrayOutput{})
+	pulumi.RegisterOutputType(VpnSslSettingsAuthenticationRuleSourceAddress6Output{})
+	pulumi.RegisterOutputType(VpnSslSettingsAuthenticationRuleSourceAddress6ArrayOutput{})
+	pulumi.RegisterOutputType(VpnSslSettingsAuthenticationRuleSourceAddressOutput{})
+	pulumi.RegisterOutputType(VpnSslSettingsAuthenticationRuleSourceAddressArrayOutput{})
+	pulumi.RegisterOutputType(VpnSslSettingsAuthenticationRuleSourceInterfaceOutput{})
+	pulumi.RegisterOutputType(VpnSslSettingsAuthenticationRuleSourceInterfaceArrayOutput{})
+	pulumi.RegisterOutputType(VpnSslSettingsAuthenticationRuleUserOutput{})
+	pulumi.RegisterOutputType(VpnSslSettingsAuthenticationRuleUserArrayOutput{})
+	pulumi.RegisterOutputType(VpnSslSettingsSourceAddress6Output{})
+	pulumi.RegisterOutputType(VpnSslSettingsSourceAddress6ArrayOutput{})
+	pulumi.RegisterOutputType(VpnSslSettingsSourceAddressOutput{})
+	pulumi.RegisterOutputType(VpnSslSettingsSourceAddressArrayOutput{})
+	pulumi.RegisterOutputType(VpnSslSettingsSourceInterfaceOutput{})
+	pulumi.RegisterOutputType(VpnSslSettingsSourceInterfaceArrayOutput{})
+	pulumi.RegisterOutputType(VpnSslSettingsTunnelIpPoolOutput{})
+	pulumi.RegisterOutputType(VpnSslSettingsTunnelIpPoolArrayOutput{})
+	pulumi.RegisterOutputType(VpnSslSettingsTunnelIpv6PoolOutput{})
+	pulumi.RegisterOutputType(VpnSslSettingsTunnelIpv6PoolArrayOutput{})
+	pulumi.RegisterOutputType(VpnSslWebHostCheckSoftwareCheckItemListOutput{})
+	pulumi.RegisterOutputType(VpnSslWebHostCheckSoftwareCheckItemListArrayOutput{})
+	pulumi.RegisterOutputType(VpnSslWebHostCheckSoftwareCheckItemListMd5Output{})
+	pulumi.RegisterOutputType(VpnSslWebHostCheckSoftwareCheckItemListMd5ArrayOutput{})
+	pulumi.RegisterOutputType(VpnSslWebPortalBookmarkGroupOutput{})
+	pulumi.RegisterOutputType(VpnSslWebPortalBookmarkGroupArrayOutput{})
+	pulumi.RegisterOutputType(VpnSslWebPortalBookmarkGroupBookmarkOutput{})
+	pulumi.RegisterOutputType(VpnSslWebPortalBookmarkGroupBookmarkArrayOutput{})
+	pulumi.RegisterOutputType(VpnSslWebPortalBookmarkGroupBookmarkFormDataOutput{})
+	pulumi.RegisterOutputType(VpnSslWebPortalBookmarkGroupBookmarkFormDataArrayOutput{})
+	pulumi.RegisterOutputType(VpnSslWebPortalHostCheckPolicyOutput{})
+	pulumi.RegisterOutputType(VpnSslWebPortalHostCheckPolicyArrayOutput{})
+	pulumi.RegisterOutputType(VpnSslWebPortalIpPoolOutput{})
+	pulumi.RegisterOutputType(VpnSslWebPortalIpPoolArrayOutput{})
+	pulumi.RegisterOutputType(VpnSslWebPortalIpv6PoolOutput{})
+	pulumi.RegisterOutputType(VpnSslWebPortalIpv6PoolArrayOutput{})
+	pulumi.RegisterOutputType(VpnSslWebPortalIpv6SplitTunnelingRoutingAddressOutput{})
+	pulumi.RegisterOutputType(VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayOutput{})
+	pulumi.RegisterOutputType(VpnSslWebPortalLandingPageOutput{})
+	pulumi.RegisterOutputType(VpnSslWebPortalLandingPagePtrOutput{})
+	pulumi.RegisterOutputType(VpnSslWebPortalLandingPageFormDataOutput{})
+	pulumi.RegisterOutputType(VpnSslWebPortalLandingPageFormDataArrayOutput{})
 	pulumi.RegisterOutputType(VpnSslWebPortalMacAddrCheckRuleOutput{})
 	pulumi.RegisterOutputType(VpnSslWebPortalMacAddrCheckRuleArrayOutput{})
 	pulumi.RegisterOutputType(VpnSslWebPortalMacAddrCheckRuleMacAddrListOutput{})
@@ -27913,6 +35895,8 @@ func init() {
 	pulumi.RegisterOutputType(WebProxyExplicitPacPolicySrcaddr6ArrayOutput{})
 	pulumi.RegisterOutputType(WebProxyExplicitPacPolicySrcaddrOutput{})
 	pulumi.RegisterOutputType(WebProxyExplicitPacPolicySrcaddrArrayOutput{})
+	pulumi.RegisterOutputType(WebProxyExplicitSecureWebProxyCertOutput{})
+	pulumi.RegisterOutputType(WebProxyExplicitSecureWebProxyCertArrayOutput{})
 	pulumi.RegisterOutputType(WebProxyForwardServerGroupServerListOutput{})
 	pulumi.RegisterOutputType(WebProxyForwardServerGroupServerListArrayOutput{})
 	pulumi.RegisterOutputType(WebProxyGlobalLearnClientIpSrcaddr6Output{})

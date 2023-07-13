@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,6 +16,7 @@ type SystemSessionTtl struct {
 
 	Default             pulumi.StringOutput             `pulumi:"default"`
 	DynamicSortSubtable pulumi.StringPtrOutput          `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput          `pulumi:"getAllTables"`
 	Ports               SystemSessionTtlPortArrayOutput `pulumi:"ports"`
 	Vdomparam           pulumi.StringPtrOutput          `pulumi:"vdomparam"`
 }
@@ -26,7 +28,7 @@ func NewSystemSessionTtl(ctx *pulumi.Context,
 		args = &SystemSessionTtlArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemSessionTtl
 	err := ctx.RegisterResource("fortios:index/systemSessionTtl:SystemSessionTtl", name, args, &resource, opts...)
 	if err != nil {
@@ -51,6 +53,7 @@ func GetSystemSessionTtl(ctx *pulumi.Context,
 type systemSessionTtlState struct {
 	Default             *string                `pulumi:"default"`
 	DynamicSortSubtable *string                `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                `pulumi:"getAllTables"`
 	Ports               []SystemSessionTtlPort `pulumi:"ports"`
 	Vdomparam           *string                `pulumi:"vdomparam"`
 }
@@ -58,6 +61,7 @@ type systemSessionTtlState struct {
 type SystemSessionTtlState struct {
 	Default             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Ports               SystemSessionTtlPortArrayInput
 	Vdomparam           pulumi.StringPtrInput
 }
@@ -69,6 +73,7 @@ func (SystemSessionTtlState) ElementType() reflect.Type {
 type systemSessionTtlArgs struct {
 	Default             *string                `pulumi:"default"`
 	DynamicSortSubtable *string                `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                `pulumi:"getAllTables"`
 	Ports               []SystemSessionTtlPort `pulumi:"ports"`
 	Vdomparam           *string                `pulumi:"vdomparam"`
 }
@@ -77,6 +82,7 @@ type systemSessionTtlArgs struct {
 type SystemSessionTtlArgs struct {
 	Default             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Ports               SystemSessionTtlPortArrayInput
 	Vdomparam           pulumi.StringPtrInput
 }
@@ -174,6 +180,10 @@ func (o SystemSessionTtlOutput) Default() pulumi.StringOutput {
 
 func (o SystemSessionTtlOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SystemSessionTtl) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemSessionTtlOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemSessionTtl) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemSessionTtlOutput) Ports() SystemSessionTtlPortArrayOutput {

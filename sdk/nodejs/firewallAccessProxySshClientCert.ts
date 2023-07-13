@@ -37,6 +37,7 @@ export class FirewallAccessProxySshClientCert extends pulumi.CustomResource {
     public readonly authCa!: pulumi.Output<string>;
     public readonly certExtensions!: pulumi.Output<outputs.FirewallAccessProxySshClientCertCertExtension[] | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly permitAgentForwarding!: pulumi.Output<string>;
     public readonly permitPortForwarding!: pulumi.Output<string>;
@@ -62,6 +63,7 @@ export class FirewallAccessProxySshClientCert extends pulumi.CustomResource {
             resourceInputs["authCa"] = state ? state.authCa : undefined;
             resourceInputs["certExtensions"] = state ? state.certExtensions : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["permitAgentForwarding"] = state ? state.permitAgentForwarding : undefined;
             resourceInputs["permitPortForwarding"] = state ? state.permitPortForwarding : undefined;
@@ -75,6 +77,7 @@ export class FirewallAccessProxySshClientCert extends pulumi.CustomResource {
             resourceInputs["authCa"] = args ? args.authCa : undefined;
             resourceInputs["certExtensions"] = args ? args.certExtensions : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["permitAgentForwarding"] = args ? args.permitAgentForwarding : undefined;
             resourceInputs["permitPortForwarding"] = args ? args.permitPortForwarding : undefined;
@@ -96,6 +99,7 @@ export interface FirewallAccessProxySshClientCertState {
     authCa?: pulumi.Input<string>;
     certExtensions?: pulumi.Input<pulumi.Input<inputs.FirewallAccessProxySshClientCertCertExtension>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     permitAgentForwarding?: pulumi.Input<string>;
     permitPortForwarding?: pulumi.Input<string>;
@@ -113,6 +117,7 @@ export interface FirewallAccessProxySshClientCertArgs {
     authCa?: pulumi.Input<string>;
     certExtensions?: pulumi.Input<pulumi.Input<inputs.FirewallAccessProxySshClientCertCertExtension>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     permitAgentForwarding?: pulumi.Input<string>;
     permitPortForwarding?: pulumi.Input<string>;

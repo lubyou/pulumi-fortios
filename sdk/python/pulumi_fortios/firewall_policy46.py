@@ -25,6 +25,7 @@ class FirewallPolicy46Args:
                  comments: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fixedport: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ippool: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
                  logtraffic_start: Optional[pulumi.Input[str]] = None,
@@ -57,6 +58,8 @@ class FirewallPolicy46Args:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fixedport is not None:
             pulumi.set(__self__, "fixedport", fixedport)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ippool is not None:
             pulumi.set(__self__, "ippool", ippool)
         if logtraffic is not None:
@@ -170,6 +173,15 @@ class FirewallPolicy46Args:
     @fixedport.setter
     def fixedport(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fixedport", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -325,6 +337,7 @@ class _FirewallPolicy46State:
                  dstintf: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fixedport: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ippool: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
                  logtraffic_start: Optional[pulumi.Input[str]] = None,
@@ -359,6 +372,8 @@ class _FirewallPolicy46State:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fixedport is not None:
             pulumi.set(__self__, "fixedport", fixedport)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ippool is not None:
             pulumi.set(__self__, "ippool", ippool)
         if logtraffic is not None:
@@ -451,6 +466,15 @@ class _FirewallPolicy46State:
     @fixedport.setter
     def fixedport(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fixedport", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -635,6 +659,7 @@ class FirewallPolicy46(pulumi.CustomResource):
                  dstintf: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fixedport: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ippool: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
                  logtraffic_start: Optional[pulumi.Input[str]] = None,
@@ -689,6 +714,7 @@ class FirewallPolicy46(pulumi.CustomResource):
                  dstintf: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fixedport: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ippool: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
                  logtraffic_start: Optional[pulumi.Input[str]] = None,
@@ -727,6 +753,7 @@ class FirewallPolicy46(pulumi.CustomResource):
             __props__.__dict__["dstintf"] = dstintf
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["fixedport"] = fixedport
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["ippool"] = ippool
             __props__.__dict__["logtraffic"] = logtraffic
             __props__.__dict__["logtraffic_start"] = logtraffic_start
@@ -768,6 +795,7 @@ class FirewallPolicy46(pulumi.CustomResource):
             dstintf: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             fixedport: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             ippool: Optional[pulumi.Input[str]] = None,
             logtraffic: Optional[pulumi.Input[str]] = None,
             logtraffic_start: Optional[pulumi.Input[str]] = None,
@@ -805,6 +833,7 @@ class FirewallPolicy46(pulumi.CustomResource):
         __props__.__dict__["dstintf"] = dstintf
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["fixedport"] = fixedport
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["ippool"] = ippool
         __props__.__dict__["logtraffic"] = logtraffic
         __props__.__dict__["logtraffic_start"] = logtraffic_start
@@ -855,6 +884,11 @@ class FirewallPolicy46(pulumi.CustomResource):
     @pulumi.getter
     def fixedport(self) -> pulumi.Output[str]:
         return pulumi.get(self, "fixedport")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

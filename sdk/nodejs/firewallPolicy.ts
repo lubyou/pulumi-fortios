@@ -82,6 +82,7 @@ export class FirewallPolicy extends pulumi.CustomResource {
     public readonly fssoGroups!: pulumi.Output<outputs.FirewallPolicyFssoGroup[] | undefined>;
     public readonly geoipAnycast!: pulumi.Output<string>;
     public readonly geoipMatch!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly globalLabel!: pulumi.Output<string | undefined>;
     public readonly groups!: pulumi.Output<outputs.FirewallPolicyGroup[] | undefined>;
     public readonly httpPolicyRedirect!: pulumi.Output<string>;
@@ -117,6 +118,7 @@ export class FirewallPolicy extends pulumi.CustomResource {
     public readonly internetServiceSrcNegate!: pulumi.Output<string>;
     public readonly ippool!: pulumi.Output<string>;
     public readonly ipsSensor!: pulumi.Output<string | undefined>;
+    public readonly ipsVoipFilter!: pulumi.Output<string | undefined>;
     public readonly label!: pulumi.Output<string | undefined>;
     public readonly learningMode!: pulumi.Output<string | undefined>;
     public readonly logtraffic!: pulumi.Output<string>;
@@ -138,11 +140,15 @@ export class FirewallPolicy extends pulumi.CustomResource {
     public readonly ntlmGuest!: pulumi.Output<string>;
     public readonly outbound!: pulumi.Output<string>;
     public readonly passiveWanHealthMeasurement!: pulumi.Output<string>;
+    public readonly pcpInbound!: pulumi.Output<string>;
+    public readonly pcpOutbound!: pulumi.Output<string>;
+    public readonly pcpPoolnames!: pulumi.Output<outputs.FirewallPolicyPcpPoolname[] | undefined>;
     public readonly perIpShaper!: pulumi.Output<string | undefined>;
     public readonly permitAnyHost!: pulumi.Output<string>;
     public readonly permitStunHost!: pulumi.Output<string>;
     public readonly policyExpiry!: pulumi.Output<string>;
     public readonly policyExpiryDate!: pulumi.Output<string>;
+    public readonly policyExpiryDateUtc!: pulumi.Output<string | undefined>;
     public readonly policyid!: pulumi.Output<number>;
     public readonly poolname6s!: pulumi.Output<outputs.FirewallPolicyPoolname6[] | undefined>;
     public readonly poolnames!: pulumi.Output<outputs.FirewallPolicyPoolname[] | undefined>;
@@ -215,9 +221,13 @@ export class FirewallPolicy extends pulumi.CustomResource {
     public readonly webproxyForwardServer!: pulumi.Output<string | undefined>;
     public readonly webproxyProfile!: pulumi.Output<string | undefined>;
     public readonly wsso!: pulumi.Output<string | undefined>;
+    public readonly ztnaDeviceOwnership!: pulumi.Output<string>;
+    public readonly ztnaEmsTagSecondaries!: pulumi.Output<outputs.FirewallPolicyZtnaEmsTagSecondary[] | undefined>;
     public readonly ztnaEmsTags!: pulumi.Output<outputs.FirewallPolicyZtnaEmsTag[] | undefined>;
     public readonly ztnaGeoTags!: pulumi.Output<outputs.FirewallPolicyZtnaGeoTag[] | undefined>;
+    public readonly ztnaPolicyRedirect!: pulumi.Output<string>;
     public readonly ztnaStatus!: pulumi.Output<string>;
+    public readonly ztnaTagsMatchLogic!: pulumi.Output<string>;
 
     /**
      * Create a FirewallPolicy resource with the given unique name, arguments, and options.
@@ -280,6 +290,7 @@ export class FirewallPolicy extends pulumi.CustomResource {
             resourceInputs["fssoGroups"] = state ? state.fssoGroups : undefined;
             resourceInputs["geoipAnycast"] = state ? state.geoipAnycast : undefined;
             resourceInputs["geoipMatch"] = state ? state.geoipMatch : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["globalLabel"] = state ? state.globalLabel : undefined;
             resourceInputs["groups"] = state ? state.groups : undefined;
             resourceInputs["httpPolicyRedirect"] = state ? state.httpPolicyRedirect : undefined;
@@ -315,6 +326,7 @@ export class FirewallPolicy extends pulumi.CustomResource {
             resourceInputs["internetServiceSrcNegate"] = state ? state.internetServiceSrcNegate : undefined;
             resourceInputs["ippool"] = state ? state.ippool : undefined;
             resourceInputs["ipsSensor"] = state ? state.ipsSensor : undefined;
+            resourceInputs["ipsVoipFilter"] = state ? state.ipsVoipFilter : undefined;
             resourceInputs["label"] = state ? state.label : undefined;
             resourceInputs["learningMode"] = state ? state.learningMode : undefined;
             resourceInputs["logtraffic"] = state ? state.logtraffic : undefined;
@@ -336,11 +348,15 @@ export class FirewallPolicy extends pulumi.CustomResource {
             resourceInputs["ntlmGuest"] = state ? state.ntlmGuest : undefined;
             resourceInputs["outbound"] = state ? state.outbound : undefined;
             resourceInputs["passiveWanHealthMeasurement"] = state ? state.passiveWanHealthMeasurement : undefined;
+            resourceInputs["pcpInbound"] = state ? state.pcpInbound : undefined;
+            resourceInputs["pcpOutbound"] = state ? state.pcpOutbound : undefined;
+            resourceInputs["pcpPoolnames"] = state ? state.pcpPoolnames : undefined;
             resourceInputs["perIpShaper"] = state ? state.perIpShaper : undefined;
             resourceInputs["permitAnyHost"] = state ? state.permitAnyHost : undefined;
             resourceInputs["permitStunHost"] = state ? state.permitStunHost : undefined;
             resourceInputs["policyExpiry"] = state ? state.policyExpiry : undefined;
             resourceInputs["policyExpiryDate"] = state ? state.policyExpiryDate : undefined;
+            resourceInputs["policyExpiryDateUtc"] = state ? state.policyExpiryDateUtc : undefined;
             resourceInputs["policyid"] = state ? state.policyid : undefined;
             resourceInputs["poolname6s"] = state ? state.poolname6s : undefined;
             resourceInputs["poolnames"] = state ? state.poolnames : undefined;
@@ -413,9 +429,13 @@ export class FirewallPolicy extends pulumi.CustomResource {
             resourceInputs["webproxyForwardServer"] = state ? state.webproxyForwardServer : undefined;
             resourceInputs["webproxyProfile"] = state ? state.webproxyProfile : undefined;
             resourceInputs["wsso"] = state ? state.wsso : undefined;
+            resourceInputs["ztnaDeviceOwnership"] = state ? state.ztnaDeviceOwnership : undefined;
+            resourceInputs["ztnaEmsTagSecondaries"] = state ? state.ztnaEmsTagSecondaries : undefined;
             resourceInputs["ztnaEmsTags"] = state ? state.ztnaEmsTags : undefined;
             resourceInputs["ztnaGeoTags"] = state ? state.ztnaGeoTags : undefined;
+            resourceInputs["ztnaPolicyRedirect"] = state ? state.ztnaPolicyRedirect : undefined;
             resourceInputs["ztnaStatus"] = state ? state.ztnaStatus : undefined;
+            resourceInputs["ztnaTagsMatchLogic"] = state ? state.ztnaTagsMatchLogic : undefined;
         } else {
             const args = argsOrState as FirewallPolicyArgs | undefined;
             if ((!args || args.dstintfs === undefined) && !opts.urn) {
@@ -472,6 +492,7 @@ export class FirewallPolicy extends pulumi.CustomResource {
             resourceInputs["fssoGroups"] = args ? args.fssoGroups : undefined;
             resourceInputs["geoipAnycast"] = args ? args.geoipAnycast : undefined;
             resourceInputs["geoipMatch"] = args ? args.geoipMatch : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["globalLabel"] = args ? args.globalLabel : undefined;
             resourceInputs["groups"] = args ? args.groups : undefined;
             resourceInputs["httpPolicyRedirect"] = args ? args.httpPolicyRedirect : undefined;
@@ -507,6 +528,7 @@ export class FirewallPolicy extends pulumi.CustomResource {
             resourceInputs["internetServiceSrcNegate"] = args ? args.internetServiceSrcNegate : undefined;
             resourceInputs["ippool"] = args ? args.ippool : undefined;
             resourceInputs["ipsSensor"] = args ? args.ipsSensor : undefined;
+            resourceInputs["ipsVoipFilter"] = args ? args.ipsVoipFilter : undefined;
             resourceInputs["label"] = args ? args.label : undefined;
             resourceInputs["learningMode"] = args ? args.learningMode : undefined;
             resourceInputs["logtraffic"] = args ? args.logtraffic : undefined;
@@ -528,11 +550,15 @@ export class FirewallPolicy extends pulumi.CustomResource {
             resourceInputs["ntlmGuest"] = args ? args.ntlmGuest : undefined;
             resourceInputs["outbound"] = args ? args.outbound : undefined;
             resourceInputs["passiveWanHealthMeasurement"] = args ? args.passiveWanHealthMeasurement : undefined;
+            resourceInputs["pcpInbound"] = args ? args.pcpInbound : undefined;
+            resourceInputs["pcpOutbound"] = args ? args.pcpOutbound : undefined;
+            resourceInputs["pcpPoolnames"] = args ? args.pcpPoolnames : undefined;
             resourceInputs["perIpShaper"] = args ? args.perIpShaper : undefined;
             resourceInputs["permitAnyHost"] = args ? args.permitAnyHost : undefined;
             resourceInputs["permitStunHost"] = args ? args.permitStunHost : undefined;
             resourceInputs["policyExpiry"] = args ? args.policyExpiry : undefined;
             resourceInputs["policyExpiryDate"] = args ? args.policyExpiryDate : undefined;
+            resourceInputs["policyExpiryDateUtc"] = args ? args.policyExpiryDateUtc : undefined;
             resourceInputs["policyid"] = args ? args.policyid : undefined;
             resourceInputs["poolname6s"] = args ? args.poolname6s : undefined;
             resourceInputs["poolnames"] = args ? args.poolnames : undefined;
@@ -605,9 +631,13 @@ export class FirewallPolicy extends pulumi.CustomResource {
             resourceInputs["webproxyForwardServer"] = args ? args.webproxyForwardServer : undefined;
             resourceInputs["webproxyProfile"] = args ? args.webproxyProfile : undefined;
             resourceInputs["wsso"] = args ? args.wsso : undefined;
+            resourceInputs["ztnaDeviceOwnership"] = args ? args.ztnaDeviceOwnership : undefined;
+            resourceInputs["ztnaEmsTagSecondaries"] = args ? args.ztnaEmsTagSecondaries : undefined;
             resourceInputs["ztnaEmsTags"] = args ? args.ztnaEmsTags : undefined;
             resourceInputs["ztnaGeoTags"] = args ? args.ztnaGeoTags : undefined;
+            resourceInputs["ztnaPolicyRedirect"] = args ? args.ztnaPolicyRedirect : undefined;
             resourceInputs["ztnaStatus"] = args ? args.ztnaStatus : undefined;
+            resourceInputs["ztnaTagsMatchLogic"] = args ? args.ztnaTagsMatchLogic : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(FirewallPolicy.__pulumiType, name, resourceInputs, opts);
@@ -666,6 +696,7 @@ export interface FirewallPolicyState {
     fssoGroups?: pulumi.Input<pulumi.Input<inputs.FirewallPolicyFssoGroup>[]>;
     geoipAnycast?: pulumi.Input<string>;
     geoipMatch?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     globalLabel?: pulumi.Input<string>;
     groups?: pulumi.Input<pulumi.Input<inputs.FirewallPolicyGroup>[]>;
     httpPolicyRedirect?: pulumi.Input<string>;
@@ -701,6 +732,7 @@ export interface FirewallPolicyState {
     internetServiceSrcNegate?: pulumi.Input<string>;
     ippool?: pulumi.Input<string>;
     ipsSensor?: pulumi.Input<string>;
+    ipsVoipFilter?: pulumi.Input<string>;
     label?: pulumi.Input<string>;
     learningMode?: pulumi.Input<string>;
     logtraffic?: pulumi.Input<string>;
@@ -722,11 +754,15 @@ export interface FirewallPolicyState {
     ntlmGuest?: pulumi.Input<string>;
     outbound?: pulumi.Input<string>;
     passiveWanHealthMeasurement?: pulumi.Input<string>;
+    pcpInbound?: pulumi.Input<string>;
+    pcpOutbound?: pulumi.Input<string>;
+    pcpPoolnames?: pulumi.Input<pulumi.Input<inputs.FirewallPolicyPcpPoolname>[]>;
     perIpShaper?: pulumi.Input<string>;
     permitAnyHost?: pulumi.Input<string>;
     permitStunHost?: pulumi.Input<string>;
     policyExpiry?: pulumi.Input<string>;
     policyExpiryDate?: pulumi.Input<string>;
+    policyExpiryDateUtc?: pulumi.Input<string>;
     policyid?: pulumi.Input<number>;
     poolname6s?: pulumi.Input<pulumi.Input<inputs.FirewallPolicyPoolname6>[]>;
     poolnames?: pulumi.Input<pulumi.Input<inputs.FirewallPolicyPoolname>[]>;
@@ -799,9 +835,13 @@ export interface FirewallPolicyState {
     webproxyForwardServer?: pulumi.Input<string>;
     webproxyProfile?: pulumi.Input<string>;
     wsso?: pulumi.Input<string>;
+    ztnaDeviceOwnership?: pulumi.Input<string>;
+    ztnaEmsTagSecondaries?: pulumi.Input<pulumi.Input<inputs.FirewallPolicyZtnaEmsTagSecondary>[]>;
     ztnaEmsTags?: pulumi.Input<pulumi.Input<inputs.FirewallPolicyZtnaEmsTag>[]>;
     ztnaGeoTags?: pulumi.Input<pulumi.Input<inputs.FirewallPolicyZtnaGeoTag>[]>;
+    ztnaPolicyRedirect?: pulumi.Input<string>;
     ztnaStatus?: pulumi.Input<string>;
+    ztnaTagsMatchLogic?: pulumi.Input<string>;
 }
 
 /**
@@ -856,6 +896,7 @@ export interface FirewallPolicyArgs {
     fssoGroups?: pulumi.Input<pulumi.Input<inputs.FirewallPolicyFssoGroup>[]>;
     geoipAnycast?: pulumi.Input<string>;
     geoipMatch?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     globalLabel?: pulumi.Input<string>;
     groups?: pulumi.Input<pulumi.Input<inputs.FirewallPolicyGroup>[]>;
     httpPolicyRedirect?: pulumi.Input<string>;
@@ -891,6 +932,7 @@ export interface FirewallPolicyArgs {
     internetServiceSrcNegate?: pulumi.Input<string>;
     ippool?: pulumi.Input<string>;
     ipsSensor?: pulumi.Input<string>;
+    ipsVoipFilter?: pulumi.Input<string>;
     label?: pulumi.Input<string>;
     learningMode?: pulumi.Input<string>;
     logtraffic?: pulumi.Input<string>;
@@ -912,11 +954,15 @@ export interface FirewallPolicyArgs {
     ntlmGuest?: pulumi.Input<string>;
     outbound?: pulumi.Input<string>;
     passiveWanHealthMeasurement?: pulumi.Input<string>;
+    pcpInbound?: pulumi.Input<string>;
+    pcpOutbound?: pulumi.Input<string>;
+    pcpPoolnames?: pulumi.Input<pulumi.Input<inputs.FirewallPolicyPcpPoolname>[]>;
     perIpShaper?: pulumi.Input<string>;
     permitAnyHost?: pulumi.Input<string>;
     permitStunHost?: pulumi.Input<string>;
     policyExpiry?: pulumi.Input<string>;
     policyExpiryDate?: pulumi.Input<string>;
+    policyExpiryDateUtc?: pulumi.Input<string>;
     policyid?: pulumi.Input<number>;
     poolname6s?: pulumi.Input<pulumi.Input<inputs.FirewallPolicyPoolname6>[]>;
     poolnames?: pulumi.Input<pulumi.Input<inputs.FirewallPolicyPoolname>[]>;
@@ -989,7 +1035,11 @@ export interface FirewallPolicyArgs {
     webproxyForwardServer?: pulumi.Input<string>;
     webproxyProfile?: pulumi.Input<string>;
     wsso?: pulumi.Input<string>;
+    ztnaDeviceOwnership?: pulumi.Input<string>;
+    ztnaEmsTagSecondaries?: pulumi.Input<pulumi.Input<inputs.FirewallPolicyZtnaEmsTagSecondary>[]>;
     ztnaEmsTags?: pulumi.Input<pulumi.Input<inputs.FirewallPolicyZtnaEmsTag>[]>;
     ztnaGeoTags?: pulumi.Input<pulumi.Input<inputs.FirewallPolicyZtnaGeoTag>[]>;
+    ztnaPolicyRedirect?: pulumi.Input<string>;
     ztnaStatus?: pulumi.Input<string>;
+    ztnaTagsMatchLogic?: pulumi.Input<string>;
 }

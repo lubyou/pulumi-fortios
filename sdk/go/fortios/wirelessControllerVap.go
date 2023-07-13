@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -37,6 +38,7 @@ type WirelessControllerVap struct {
 	BstmRssiDisassocTimer               pulumi.IntOutput                                       `pulumi:"bstmRssiDisassocTimer"`
 	CaptivePortalAcName                 pulumi.StringOutput                                    `pulumi:"captivePortalAcName"`
 	CaptivePortalAuthTimeout            pulumi.IntOutput                                       `pulumi:"captivePortalAuthTimeout"`
+	CaptivePortalFwAccounting           pulumi.StringOutput                                    `pulumi:"captivePortalFwAccounting"`
 	CaptivePortalMacauthRadiusSecret    pulumi.StringPtrOutput                                 `pulumi:"captivePortalMacauthRadiusSecret"`
 	CaptivePortalMacauthRadiusServer    pulumi.StringOutput                                    `pulumi:"captivePortalMacauthRadiusServer"`
 	CaptivePortalRadiusSecret           pulumi.StringPtrOutput                                 `pulumi:"captivePortalRadiusSecret"`
@@ -65,6 +67,7 @@ type WirelessControllerVap struct {
 	FtR0KeyLifetime                     pulumi.IntOutput                                       `pulumi:"ftR0KeyLifetime"`
 	GasComebackDelay                    pulumi.IntOutput                                       `pulumi:"gasComebackDelay"`
 	GasFragmentationLimit               pulumi.IntOutput                                       `pulumi:"gasFragmentationLimit"`
+	GetAllTables                        pulumi.StringPtrOutput                                 `pulumi:"getAllTables"`
 	GtkRekey                            pulumi.StringOutput                                    `pulumi:"gtkRekey"`
 	GtkRekeyIntv                        pulumi.IntOutput                                       `pulumi:"gtkRekeyIntv"`
 	HighEfficiency                      pulumi.StringOutput                                    `pulumi:"highEfficiency"`
@@ -138,6 +141,7 @@ type WirelessControllerVap struct {
 	Radio5gThreshold                    pulumi.StringOutput                                    `pulumi:"radio5gThreshold"`
 	RadioSensitivity                    pulumi.StringOutput                                    `pulumi:"radioSensitivity"`
 	RadiusMacAuth                       pulumi.StringOutput                                    `pulumi:"radiusMacAuth"`
+	RadiusMacAuthBlockInterval          pulumi.IntOutput                                       `pulumi:"radiusMacAuthBlockInterval"`
 	RadiusMacAuthServer                 pulumi.StringOutput                                    `pulumi:"radiusMacAuthServer"`
 	RadiusMacAuthUsergroups             WirelessControllerVapRadiusMacAuthUsergroupArrayOutput `pulumi:"radiusMacAuthUsergroups"`
 	RadiusMacMpskAuth                   pulumi.StringOutput                                    `pulumi:"radiusMacMpskAuth"`
@@ -220,7 +224,7 @@ func NewWirelessControllerVap(ctx *pulumi.Context,
 		"saePassword",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WirelessControllerVap
 	err := ctx.RegisterResource("fortios:index/wirelessControllerVap:WirelessControllerVap", name, args, &resource, opts...)
 	if err != nil {
@@ -267,6 +271,7 @@ type wirelessControllerVapState struct {
 	BstmRssiDisassocTimer               *int                                          `pulumi:"bstmRssiDisassocTimer"`
 	CaptivePortalAcName                 *string                                       `pulumi:"captivePortalAcName"`
 	CaptivePortalAuthTimeout            *int                                          `pulumi:"captivePortalAuthTimeout"`
+	CaptivePortalFwAccounting           *string                                       `pulumi:"captivePortalFwAccounting"`
 	CaptivePortalMacauthRadiusSecret    *string                                       `pulumi:"captivePortalMacauthRadiusSecret"`
 	CaptivePortalMacauthRadiusServer    *string                                       `pulumi:"captivePortalMacauthRadiusServer"`
 	CaptivePortalRadiusSecret           *string                                       `pulumi:"captivePortalRadiusSecret"`
@@ -295,6 +300,7 @@ type wirelessControllerVapState struct {
 	FtR0KeyLifetime                     *int                                          `pulumi:"ftR0KeyLifetime"`
 	GasComebackDelay                    *int                                          `pulumi:"gasComebackDelay"`
 	GasFragmentationLimit               *int                                          `pulumi:"gasFragmentationLimit"`
+	GetAllTables                        *string                                       `pulumi:"getAllTables"`
 	GtkRekey                            *string                                       `pulumi:"gtkRekey"`
 	GtkRekeyIntv                        *int                                          `pulumi:"gtkRekeyIntv"`
 	HighEfficiency                      *string                                       `pulumi:"highEfficiency"`
@@ -368,6 +374,7 @@ type wirelessControllerVapState struct {
 	Radio5gThreshold                    *string                                       `pulumi:"radio5gThreshold"`
 	RadioSensitivity                    *string                                       `pulumi:"radioSensitivity"`
 	RadiusMacAuth                       *string                                       `pulumi:"radiusMacAuth"`
+	RadiusMacAuthBlockInterval          *int                                          `pulumi:"radiusMacAuthBlockInterval"`
 	RadiusMacAuthServer                 *string                                       `pulumi:"radiusMacAuthServer"`
 	RadiusMacAuthUsergroups             []WirelessControllerVapRadiusMacAuthUsergroup `pulumi:"radiusMacAuthUsergroups"`
 	RadiusMacMpskAuth                   *string                                       `pulumi:"radiusMacMpskAuth"`
@@ -445,6 +452,7 @@ type WirelessControllerVapState struct {
 	BstmRssiDisassocTimer               pulumi.IntPtrInput
 	CaptivePortalAcName                 pulumi.StringPtrInput
 	CaptivePortalAuthTimeout            pulumi.IntPtrInput
+	CaptivePortalFwAccounting           pulumi.StringPtrInput
 	CaptivePortalMacauthRadiusSecret    pulumi.StringPtrInput
 	CaptivePortalMacauthRadiusServer    pulumi.StringPtrInput
 	CaptivePortalRadiusSecret           pulumi.StringPtrInput
@@ -473,6 +481,7 @@ type WirelessControllerVapState struct {
 	FtR0KeyLifetime                     pulumi.IntPtrInput
 	GasComebackDelay                    pulumi.IntPtrInput
 	GasFragmentationLimit               pulumi.IntPtrInput
+	GetAllTables                        pulumi.StringPtrInput
 	GtkRekey                            pulumi.StringPtrInput
 	GtkRekeyIntv                        pulumi.IntPtrInput
 	HighEfficiency                      pulumi.StringPtrInput
@@ -546,6 +555,7 @@ type WirelessControllerVapState struct {
 	Radio5gThreshold                    pulumi.StringPtrInput
 	RadioSensitivity                    pulumi.StringPtrInput
 	RadiusMacAuth                       pulumi.StringPtrInput
+	RadiusMacAuthBlockInterval          pulumi.IntPtrInput
 	RadiusMacAuthServer                 pulumi.StringPtrInput
 	RadiusMacAuthUsergroups             WirelessControllerVapRadiusMacAuthUsergroupArrayInput
 	RadiusMacMpskAuth                   pulumi.StringPtrInput
@@ -627,6 +637,7 @@ type wirelessControllerVapArgs struct {
 	BstmRssiDisassocTimer               *int                                          `pulumi:"bstmRssiDisassocTimer"`
 	CaptivePortalAcName                 *string                                       `pulumi:"captivePortalAcName"`
 	CaptivePortalAuthTimeout            *int                                          `pulumi:"captivePortalAuthTimeout"`
+	CaptivePortalFwAccounting           *string                                       `pulumi:"captivePortalFwAccounting"`
 	CaptivePortalMacauthRadiusSecret    *string                                       `pulumi:"captivePortalMacauthRadiusSecret"`
 	CaptivePortalMacauthRadiusServer    *string                                       `pulumi:"captivePortalMacauthRadiusServer"`
 	CaptivePortalRadiusSecret           *string                                       `pulumi:"captivePortalRadiusSecret"`
@@ -655,6 +666,7 @@ type wirelessControllerVapArgs struct {
 	FtR0KeyLifetime                     *int                                          `pulumi:"ftR0KeyLifetime"`
 	GasComebackDelay                    *int                                          `pulumi:"gasComebackDelay"`
 	GasFragmentationLimit               *int                                          `pulumi:"gasFragmentationLimit"`
+	GetAllTables                        *string                                       `pulumi:"getAllTables"`
 	GtkRekey                            *string                                       `pulumi:"gtkRekey"`
 	GtkRekeyIntv                        *int                                          `pulumi:"gtkRekeyIntv"`
 	HighEfficiency                      *string                                       `pulumi:"highEfficiency"`
@@ -728,6 +740,7 @@ type wirelessControllerVapArgs struct {
 	Radio5gThreshold                    *string                                       `pulumi:"radio5gThreshold"`
 	RadioSensitivity                    *string                                       `pulumi:"radioSensitivity"`
 	RadiusMacAuth                       *string                                       `pulumi:"radiusMacAuth"`
+	RadiusMacAuthBlockInterval          *int                                          `pulumi:"radiusMacAuthBlockInterval"`
 	RadiusMacAuthServer                 *string                                       `pulumi:"radiusMacAuthServer"`
 	RadiusMacAuthUsergroups             []WirelessControllerVapRadiusMacAuthUsergroup `pulumi:"radiusMacAuthUsergroups"`
 	RadiusMacMpskAuth                   *string                                       `pulumi:"radiusMacMpskAuth"`
@@ -806,6 +819,7 @@ type WirelessControllerVapArgs struct {
 	BstmRssiDisassocTimer               pulumi.IntPtrInput
 	CaptivePortalAcName                 pulumi.StringPtrInput
 	CaptivePortalAuthTimeout            pulumi.IntPtrInput
+	CaptivePortalFwAccounting           pulumi.StringPtrInput
 	CaptivePortalMacauthRadiusSecret    pulumi.StringPtrInput
 	CaptivePortalMacauthRadiusServer    pulumi.StringPtrInput
 	CaptivePortalRadiusSecret           pulumi.StringPtrInput
@@ -834,6 +848,7 @@ type WirelessControllerVapArgs struct {
 	FtR0KeyLifetime                     pulumi.IntPtrInput
 	GasComebackDelay                    pulumi.IntPtrInput
 	GasFragmentationLimit               pulumi.IntPtrInput
+	GetAllTables                        pulumi.StringPtrInput
 	GtkRekey                            pulumi.StringPtrInput
 	GtkRekeyIntv                        pulumi.IntPtrInput
 	HighEfficiency                      pulumi.StringPtrInput
@@ -907,6 +922,7 @@ type WirelessControllerVapArgs struct {
 	Radio5gThreshold                    pulumi.StringPtrInput
 	RadioSensitivity                    pulumi.StringPtrInput
 	RadiusMacAuth                       pulumi.StringPtrInput
+	RadiusMacAuthBlockInterval          pulumi.IntPtrInput
 	RadiusMacAuthServer                 pulumi.StringPtrInput
 	RadiusMacAuthUsergroups             WirelessControllerVapRadiusMacAuthUsergroupArrayInput
 	RadiusMacMpskAuth                   pulumi.StringPtrInput
@@ -1142,6 +1158,10 @@ func (o WirelessControllerVapOutput) CaptivePortalAuthTimeout() pulumi.IntOutput
 	return o.ApplyT(func(v *WirelessControllerVap) pulumi.IntOutput { return v.CaptivePortalAuthTimeout }).(pulumi.IntOutput)
 }
 
+func (o WirelessControllerVapOutput) CaptivePortalFwAccounting() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerVap) pulumi.StringOutput { return v.CaptivePortalFwAccounting }).(pulumi.StringOutput)
+}
+
 func (o WirelessControllerVapOutput) CaptivePortalMacauthRadiusSecret() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WirelessControllerVap) pulumi.StringPtrOutput { return v.CaptivePortalMacauthRadiusSecret }).(pulumi.StringPtrOutput)
 }
@@ -1252,6 +1272,10 @@ func (o WirelessControllerVapOutput) GasComebackDelay() pulumi.IntOutput {
 
 func (o WirelessControllerVapOutput) GasFragmentationLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v *WirelessControllerVap) pulumi.IntOutput { return v.GasFragmentationLimit }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerVapOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerVap) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o WirelessControllerVapOutput) GtkRekey() pulumi.StringOutput {
@@ -1546,6 +1570,10 @@ func (o WirelessControllerVapOutput) RadioSensitivity() pulumi.StringOutput {
 
 func (o WirelessControllerVapOutput) RadiusMacAuth() pulumi.StringOutput {
 	return o.ApplyT(func(v *WirelessControllerVap) pulumi.StringOutput { return v.RadiusMacAuth }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerVapOutput) RadiusMacAuthBlockInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerVap) pulumi.IntOutput { return v.RadiusMacAuthBlockInterval }).(pulumi.IntOutput)
 }
 
 func (o WirelessControllerVapOutput) RadiusMacAuthServer() pulumi.StringOutput {

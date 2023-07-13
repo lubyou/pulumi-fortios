@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupRouterbgpNeighbor(ctx *pulumi.Context, args *LookupRouterbgpNeighborArgs, opts ...pulumi.InvokeOption) (*LookupRouterbgpNeighborResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupRouterbgpNeighborResult
 	err := ctx.Invoke("fortios:index/getRouterbgpNeighbor:GetRouterbgpNeighbor", args, &rv, opts...)
 	if err != nil {
@@ -30,6 +31,7 @@ type LookupRouterbgpNeighborArgs struct {
 type LookupRouterbgpNeighborResult struct {
 	Activate                       string                                      `pulumi:"activate"`
 	Activate6                      string                                      `pulumi:"activate6"`
+	ActivateEvpn                   string                                      `pulumi:"activateEvpn"`
 	ActivateVpnv4                  string                                      `pulumi:"activateVpnv4"`
 	AdditionalPath                 string                                      `pulumi:"additionalPath"`
 	AdditionalPath6                string                                      `pulumi:"additionalPath6"`
@@ -42,6 +44,9 @@ type LookupRouterbgpNeighborResult struct {
 	AllowasIn6                     int                                         `pulumi:"allowasIn6"`
 	AllowasInEnable                string                                      `pulumi:"allowasInEnable"`
 	AllowasInEnable6               string                                      `pulumi:"allowasInEnable6"`
+	AllowasInEnableEvpn            string                                      `pulumi:"allowasInEnableEvpn"`
+	AllowasInEnableVpnv4           string                                      `pulumi:"allowasInEnableVpnv4"`
+	AllowasInEvpn                  int                                         `pulumi:"allowasInEvpn"`
 	AllowasInVpnv4                 int                                         `pulumi:"allowasInVpnv4"`
 	AsOverride                     string                                      `pulumi:"asOverride"`
 	AsOverride6                    string                                      `pulumi:"asOverride6"`
@@ -54,6 +59,7 @@ type LookupRouterbgpNeighborResult struct {
 	CapabilityDynamic              string                                      `pulumi:"capabilityDynamic"`
 	CapabilityGracefulRestart      string                                      `pulumi:"capabilityGracefulRestart"`
 	CapabilityGracefulRestart6     string                                      `pulumi:"capabilityGracefulRestart6"`
+	CapabilityGracefulRestartEvpn  string                                      `pulumi:"capabilityGracefulRestartEvpn"`
 	CapabilityGracefulRestartVpnv4 string                                      `pulumi:"capabilityGracefulRestartVpnv4"`
 	CapabilityOrf                  string                                      `pulumi:"capabilityOrf"`
 	CapabilityOrf6                 string                                      `pulumi:"capabilityOrf6"`
@@ -89,12 +95,15 @@ type LookupRouterbgpNeighborResult struct {
 	LocalAsReplaceAs              string  `pulumi:"localAsReplaceAs"`
 	MaximumPrefix                 int     `pulumi:"maximumPrefix"`
 	MaximumPrefix6                int     `pulumi:"maximumPrefix6"`
+	MaximumPrefixEvpn             int     `pulumi:"maximumPrefixEvpn"`
 	MaximumPrefixThreshold        int     `pulumi:"maximumPrefixThreshold"`
 	MaximumPrefixThreshold6       int     `pulumi:"maximumPrefixThreshold6"`
+	MaximumPrefixThresholdEvpn    int     `pulumi:"maximumPrefixThresholdEvpn"`
 	MaximumPrefixThresholdVpnv4   int     `pulumi:"maximumPrefixThresholdVpnv4"`
 	MaximumPrefixVpnv4            int     `pulumi:"maximumPrefixVpnv4"`
 	MaximumPrefixWarningOnly      string  `pulumi:"maximumPrefixWarningOnly"`
 	MaximumPrefixWarningOnly6     string  `pulumi:"maximumPrefixWarningOnly6"`
+	MaximumPrefixWarningOnlyEvpn  string  `pulumi:"maximumPrefixWarningOnlyEvpn"`
 	MaximumPrefixWarningOnlyVpnv4 string  `pulumi:"maximumPrefixWarningOnlyVpnv4"`
 	NextHopSelf                   string  `pulumi:"nextHopSelf"`
 	NextHopSelf6                  string  `pulumi:"nextHopSelf6"`
@@ -113,30 +122,37 @@ type LookupRouterbgpNeighborResult struct {
 	RemoteAs                      int     `pulumi:"remoteAs"`
 	RemovePrivateAs               string  `pulumi:"removePrivateAs"`
 	RemovePrivateAs6              string  `pulumi:"removePrivateAs6"`
+	RemovePrivateAsEvpn           string  `pulumi:"removePrivateAsEvpn"`
 	RemovePrivateAsVpnv4          string  `pulumi:"removePrivateAsVpnv4"`
 	RestartTime                   int     `pulumi:"restartTime"`
 	RetainStaleTime               int     `pulumi:"retainStaleTime"`
 	RouteMapIn                    string  `pulumi:"routeMapIn"`
 	RouteMapIn6                   string  `pulumi:"routeMapIn6"`
+	RouteMapInEvpn                string  `pulumi:"routeMapInEvpn"`
 	RouteMapInVpnv4               string  `pulumi:"routeMapInVpnv4"`
 	RouteMapOut                   string  `pulumi:"routeMapOut"`
 	RouteMapOut6                  string  `pulumi:"routeMapOut6"`
 	RouteMapOut6Preferable        string  `pulumi:"routeMapOut6Preferable"`
+	RouteMapOutEvpn               string  `pulumi:"routeMapOutEvpn"`
 	RouteMapOutPreferable         string  `pulumi:"routeMapOutPreferable"`
 	RouteMapOutVpnv4              string  `pulumi:"routeMapOutVpnv4"`
 	RouteMapOutVpnv4Preferable    string  `pulumi:"routeMapOutVpnv4Preferable"`
 	RouteReflectorClient          string  `pulumi:"routeReflectorClient"`
 	RouteReflectorClient6         string  `pulumi:"routeReflectorClient6"`
+	RouteReflectorClientEvpn      string  `pulumi:"routeReflectorClientEvpn"`
 	RouteReflectorClientVpnv4     string  `pulumi:"routeReflectorClientVpnv4"`
 	RouteServerClient             string  `pulumi:"routeServerClient"`
 	RouteServerClient6            string  `pulumi:"routeServerClient6"`
+	RouteServerClientEvpn         string  `pulumi:"routeServerClientEvpn"`
 	RouteServerClientVpnv4        string  `pulumi:"routeServerClientVpnv4"`
 	SendCommunity                 string  `pulumi:"sendCommunity"`
 	SendCommunity6                string  `pulumi:"sendCommunity6"`
+	SendCommunityEvpn             string  `pulumi:"sendCommunityEvpn"`
 	SendCommunityVpnv4            string  `pulumi:"sendCommunityVpnv4"`
 	Shutdown                      string  `pulumi:"shutdown"`
 	SoftReconfiguration           string  `pulumi:"softReconfiguration"`
 	SoftReconfiguration6          string  `pulumi:"softReconfiguration6"`
+	SoftReconfigurationEvpn       string  `pulumi:"softReconfigurationEvpn"`
 	SoftReconfigurationVpnv4      string  `pulumi:"softReconfigurationVpnv4"`
 	StaleRoute                    string  `pulumi:"staleRoute"`
 	StrictCapabilityMatch         string  `pulumi:"strictCapabilityMatch"`
@@ -193,6 +209,10 @@ func (o LookupRouterbgpNeighborResultOutput) Activate6() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterbgpNeighborResult) string { return v.Activate6 }).(pulumi.StringOutput)
 }
 
+func (o LookupRouterbgpNeighborResultOutput) ActivateEvpn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterbgpNeighborResult) string { return v.ActivateEvpn }).(pulumi.StringOutput)
+}
+
 func (o LookupRouterbgpNeighborResultOutput) ActivateVpnv4() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterbgpNeighborResult) string { return v.ActivateVpnv4 }).(pulumi.StringOutput)
 }
@@ -241,6 +261,18 @@ func (o LookupRouterbgpNeighborResultOutput) AllowasInEnable6() pulumi.StringOut
 	return o.ApplyT(func(v LookupRouterbgpNeighborResult) string { return v.AllowasInEnable6 }).(pulumi.StringOutput)
 }
 
+func (o LookupRouterbgpNeighborResultOutput) AllowasInEnableEvpn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterbgpNeighborResult) string { return v.AllowasInEnableEvpn }).(pulumi.StringOutput)
+}
+
+func (o LookupRouterbgpNeighborResultOutput) AllowasInEnableVpnv4() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterbgpNeighborResult) string { return v.AllowasInEnableVpnv4 }).(pulumi.StringOutput)
+}
+
+func (o LookupRouterbgpNeighborResultOutput) AllowasInEvpn() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupRouterbgpNeighborResult) int { return v.AllowasInEvpn }).(pulumi.IntOutput)
+}
+
 func (o LookupRouterbgpNeighborResultOutput) AllowasInVpnv4() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupRouterbgpNeighborResult) int { return v.AllowasInVpnv4 }).(pulumi.IntOutput)
 }
@@ -287,6 +319,10 @@ func (o LookupRouterbgpNeighborResultOutput) CapabilityGracefulRestart() pulumi.
 
 func (o LookupRouterbgpNeighborResultOutput) CapabilityGracefulRestart6() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterbgpNeighborResult) string { return v.CapabilityGracefulRestart6 }).(pulumi.StringOutput)
+}
+
+func (o LookupRouterbgpNeighborResultOutput) CapabilityGracefulRestartEvpn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterbgpNeighborResult) string { return v.CapabilityGracefulRestartEvpn }).(pulumi.StringOutput)
 }
 
 func (o LookupRouterbgpNeighborResultOutput) CapabilityGracefulRestartVpnv4() pulumi.StringOutput {
@@ -430,12 +466,20 @@ func (o LookupRouterbgpNeighborResultOutput) MaximumPrefix6() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupRouterbgpNeighborResult) int { return v.MaximumPrefix6 }).(pulumi.IntOutput)
 }
 
+func (o LookupRouterbgpNeighborResultOutput) MaximumPrefixEvpn() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupRouterbgpNeighborResult) int { return v.MaximumPrefixEvpn }).(pulumi.IntOutput)
+}
+
 func (o LookupRouterbgpNeighborResultOutput) MaximumPrefixThreshold() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupRouterbgpNeighborResult) int { return v.MaximumPrefixThreshold }).(pulumi.IntOutput)
 }
 
 func (o LookupRouterbgpNeighborResultOutput) MaximumPrefixThreshold6() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupRouterbgpNeighborResult) int { return v.MaximumPrefixThreshold6 }).(pulumi.IntOutput)
+}
+
+func (o LookupRouterbgpNeighborResultOutput) MaximumPrefixThresholdEvpn() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupRouterbgpNeighborResult) int { return v.MaximumPrefixThresholdEvpn }).(pulumi.IntOutput)
 }
 
 func (o LookupRouterbgpNeighborResultOutput) MaximumPrefixThresholdVpnv4() pulumi.IntOutput {
@@ -452,6 +496,10 @@ func (o LookupRouterbgpNeighborResultOutput) MaximumPrefixWarningOnly() pulumi.S
 
 func (o LookupRouterbgpNeighborResultOutput) MaximumPrefixWarningOnly6() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterbgpNeighborResult) string { return v.MaximumPrefixWarningOnly6 }).(pulumi.StringOutput)
+}
+
+func (o LookupRouterbgpNeighborResultOutput) MaximumPrefixWarningOnlyEvpn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterbgpNeighborResult) string { return v.MaximumPrefixWarningOnlyEvpn }).(pulumi.StringOutput)
 }
 
 func (o LookupRouterbgpNeighborResultOutput) MaximumPrefixWarningOnlyVpnv4() pulumi.StringOutput {
@@ -526,6 +574,10 @@ func (o LookupRouterbgpNeighborResultOutput) RemovePrivateAs6() pulumi.StringOut
 	return o.ApplyT(func(v LookupRouterbgpNeighborResult) string { return v.RemovePrivateAs6 }).(pulumi.StringOutput)
 }
 
+func (o LookupRouterbgpNeighborResultOutput) RemovePrivateAsEvpn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterbgpNeighborResult) string { return v.RemovePrivateAsEvpn }).(pulumi.StringOutput)
+}
+
 func (o LookupRouterbgpNeighborResultOutput) RemovePrivateAsVpnv4() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterbgpNeighborResult) string { return v.RemovePrivateAsVpnv4 }).(pulumi.StringOutput)
 }
@@ -546,6 +598,10 @@ func (o LookupRouterbgpNeighborResultOutput) RouteMapIn6() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterbgpNeighborResult) string { return v.RouteMapIn6 }).(pulumi.StringOutput)
 }
 
+func (o LookupRouterbgpNeighborResultOutput) RouteMapInEvpn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterbgpNeighborResult) string { return v.RouteMapInEvpn }).(pulumi.StringOutput)
+}
+
 func (o LookupRouterbgpNeighborResultOutput) RouteMapInVpnv4() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterbgpNeighborResult) string { return v.RouteMapInVpnv4 }).(pulumi.StringOutput)
 }
@@ -560,6 +616,10 @@ func (o LookupRouterbgpNeighborResultOutput) RouteMapOut6() pulumi.StringOutput 
 
 func (o LookupRouterbgpNeighborResultOutput) RouteMapOut6Preferable() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterbgpNeighborResult) string { return v.RouteMapOut6Preferable }).(pulumi.StringOutput)
+}
+
+func (o LookupRouterbgpNeighborResultOutput) RouteMapOutEvpn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterbgpNeighborResult) string { return v.RouteMapOutEvpn }).(pulumi.StringOutput)
 }
 
 func (o LookupRouterbgpNeighborResultOutput) RouteMapOutPreferable() pulumi.StringOutput {
@@ -582,6 +642,10 @@ func (o LookupRouterbgpNeighborResultOutput) RouteReflectorClient6() pulumi.Stri
 	return o.ApplyT(func(v LookupRouterbgpNeighborResult) string { return v.RouteReflectorClient6 }).(pulumi.StringOutput)
 }
 
+func (o LookupRouterbgpNeighborResultOutput) RouteReflectorClientEvpn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterbgpNeighborResult) string { return v.RouteReflectorClientEvpn }).(pulumi.StringOutput)
+}
+
 func (o LookupRouterbgpNeighborResultOutput) RouteReflectorClientVpnv4() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterbgpNeighborResult) string { return v.RouteReflectorClientVpnv4 }).(pulumi.StringOutput)
 }
@@ -594,6 +658,10 @@ func (o LookupRouterbgpNeighborResultOutput) RouteServerClient6() pulumi.StringO
 	return o.ApplyT(func(v LookupRouterbgpNeighborResult) string { return v.RouteServerClient6 }).(pulumi.StringOutput)
 }
 
+func (o LookupRouterbgpNeighborResultOutput) RouteServerClientEvpn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterbgpNeighborResult) string { return v.RouteServerClientEvpn }).(pulumi.StringOutput)
+}
+
 func (o LookupRouterbgpNeighborResultOutput) RouteServerClientVpnv4() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterbgpNeighborResult) string { return v.RouteServerClientVpnv4 }).(pulumi.StringOutput)
 }
@@ -604,6 +672,10 @@ func (o LookupRouterbgpNeighborResultOutput) SendCommunity() pulumi.StringOutput
 
 func (o LookupRouterbgpNeighborResultOutput) SendCommunity6() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterbgpNeighborResult) string { return v.SendCommunity6 }).(pulumi.StringOutput)
+}
+
+func (o LookupRouterbgpNeighborResultOutput) SendCommunityEvpn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterbgpNeighborResult) string { return v.SendCommunityEvpn }).(pulumi.StringOutput)
 }
 
 func (o LookupRouterbgpNeighborResultOutput) SendCommunityVpnv4() pulumi.StringOutput {
@@ -620,6 +692,10 @@ func (o LookupRouterbgpNeighborResultOutput) SoftReconfiguration() pulumi.String
 
 func (o LookupRouterbgpNeighborResultOutput) SoftReconfiguration6() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterbgpNeighborResult) string { return v.SoftReconfiguration6 }).(pulumi.StringOutput)
+}
+
+func (o LookupRouterbgpNeighborResultOutput) SoftReconfigurationEvpn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterbgpNeighborResult) string { return v.SoftReconfigurationEvpn }).(pulumi.StringOutput)
 }
 
 func (o LookupRouterbgpNeighborResultOutput) SoftReconfigurationVpnv4() pulumi.StringOutput {

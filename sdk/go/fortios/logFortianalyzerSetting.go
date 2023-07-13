@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -21,6 +22,7 @@ type LogFortianalyzerSetting struct {
 	DynamicSortSubtable       pulumi.StringPtrOutput                   `pulumi:"dynamicSortSubtable"`
 	EncAlgorithm              pulumi.StringOutput                      `pulumi:"encAlgorithm"`
 	FazType                   pulumi.IntOutput                         `pulumi:"fazType"`
+	GetAllTables              pulumi.StringPtrOutput                   `pulumi:"getAllTables"`
 	HmacAlgorithm             pulumi.StringOutput                      `pulumi:"hmacAlgorithm"`
 	Interface                 pulumi.StringOutput                      `pulumi:"interface"`
 	InterfaceSelectMethod     pulumi.StringOutput                      `pulumi:"interfaceSelectMethod"`
@@ -51,7 +53,7 @@ func NewLogFortianalyzerSetting(ctx *pulumi.Context,
 		args = &LogFortianalyzerSettingArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource LogFortianalyzerSetting
 	err := ctx.RegisterResource("fortios:index/logFortianalyzerSetting:LogFortianalyzerSetting", name, args, &resource, opts...)
 	if err != nil {
@@ -82,6 +84,7 @@ type logFortianalyzerSettingState struct {
 	DynamicSortSubtable       *string                         `pulumi:"dynamicSortSubtable"`
 	EncAlgorithm              *string                         `pulumi:"encAlgorithm"`
 	FazType                   *int                            `pulumi:"fazType"`
+	GetAllTables              *string                         `pulumi:"getAllTables"`
 	HmacAlgorithm             *string                         `pulumi:"hmacAlgorithm"`
 	Interface                 *string                         `pulumi:"interface"`
 	InterfaceSelectMethod     *string                         `pulumi:"interfaceSelectMethod"`
@@ -114,6 +117,7 @@ type LogFortianalyzerSettingState struct {
 	DynamicSortSubtable       pulumi.StringPtrInput
 	EncAlgorithm              pulumi.StringPtrInput
 	FazType                   pulumi.IntPtrInput
+	GetAllTables              pulumi.StringPtrInput
 	HmacAlgorithm             pulumi.StringPtrInput
 	Interface                 pulumi.StringPtrInput
 	InterfaceSelectMethod     pulumi.StringPtrInput
@@ -150,6 +154,7 @@ type logFortianalyzerSettingArgs struct {
 	DynamicSortSubtable       *string                         `pulumi:"dynamicSortSubtable"`
 	EncAlgorithm              *string                         `pulumi:"encAlgorithm"`
 	FazType                   *int                            `pulumi:"fazType"`
+	GetAllTables              *string                         `pulumi:"getAllTables"`
 	HmacAlgorithm             *string                         `pulumi:"hmacAlgorithm"`
 	Interface                 *string                         `pulumi:"interface"`
 	InterfaceSelectMethod     *string                         `pulumi:"interfaceSelectMethod"`
@@ -183,6 +188,7 @@ type LogFortianalyzerSettingArgs struct {
 	DynamicSortSubtable       pulumi.StringPtrInput
 	EncAlgorithm              pulumi.StringPtrInput
 	FazType                   pulumi.IntPtrInput
+	GetAllTables              pulumi.StringPtrInput
 	HmacAlgorithm             pulumi.StringPtrInput
 	Interface                 pulumi.StringPtrInput
 	InterfaceSelectMethod     pulumi.StringPtrInput
@@ -323,6 +329,10 @@ func (o LogFortianalyzerSettingOutput) EncAlgorithm() pulumi.StringOutput {
 
 func (o LogFortianalyzerSettingOutput) FazType() pulumi.IntOutput {
 	return o.ApplyT(func(v *LogFortianalyzerSetting) pulumi.IntOutput { return v.FazType }).(pulumi.IntOutput)
+}
+
+func (o LogFortianalyzerSettingOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogFortianalyzerSetting) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o LogFortianalyzerSettingOutput) HmacAlgorithm() pulumi.StringOutput {

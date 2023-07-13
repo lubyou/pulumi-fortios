@@ -154,18 +154,18 @@ def get_system_fortisandbox(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemFortisandbox:GetSystemFortisandbox', __args__, opts=opts, typ=GetSystemFortisandboxResult).value
 
     return AwaitableGetSystemFortisandboxResult(
-        email=__ret__.email,
-        enc_algorithm=__ret__.enc_algorithm,
-        forticloud=__ret__.forticloud,
-        id=__ret__.id,
-        inline_scan=__ret__.inline_scan,
-        interface=__ret__.interface,
-        interface_select_method=__ret__.interface_select_method,
-        server=__ret__.server,
-        source_ip=__ret__.source_ip,
-        ssl_min_proto_version=__ret__.ssl_min_proto_version,
-        status=__ret__.status,
-        vdomparam=__ret__.vdomparam)
+        email=pulumi.get(__ret__, 'email'),
+        enc_algorithm=pulumi.get(__ret__, 'enc_algorithm'),
+        forticloud=pulumi.get(__ret__, 'forticloud'),
+        id=pulumi.get(__ret__, 'id'),
+        inline_scan=pulumi.get(__ret__, 'inline_scan'),
+        interface=pulumi.get(__ret__, 'interface'),
+        interface_select_method=pulumi.get(__ret__, 'interface_select_method'),
+        server=pulumi.get(__ret__, 'server'),
+        source_ip=pulumi.get(__ret__, 'source_ip'),
+        ssl_min_proto_version=pulumi.get(__ret__, 'ssl_min_proto_version'),
+        status=pulumi.get(__ret__, 'status'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_fortisandbox)

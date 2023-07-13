@@ -26,6 +26,7 @@ class FirewallServiceCustomArgs:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  helper: Optional[pulumi.Input[str]] = None,
                  icmpcode: Optional[pulumi.Input[int]] = None,
                  icmptype: Optional[pulumi.Input[int]] = None,
@@ -68,6 +69,8 @@ class FirewallServiceCustomArgs:
             pulumi.set(__self__, "fabric_object", fabric_object)
         if fqdn is not None:
             pulumi.set(__self__, "fqdn", fqdn)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if helper is not None:
             pulumi.set(__self__, "helper", helper)
         if icmpcode is not None:
@@ -196,6 +199,15 @@ class FirewallServiceCustomArgs:
     @fqdn.setter
     def fqdn(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fqdn", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -382,6 +394,7 @@ class _FirewallServiceCustomState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  helper: Optional[pulumi.Input[str]] = None,
                  icmpcode: Optional[pulumi.Input[int]] = None,
                  icmptype: Optional[pulumi.Input[int]] = None,
@@ -424,6 +437,8 @@ class _FirewallServiceCustomState:
             pulumi.set(__self__, "fabric_object", fabric_object)
         if fqdn is not None:
             pulumi.set(__self__, "fqdn", fqdn)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if helper is not None:
             pulumi.set(__self__, "helper", helper)
         if icmpcode is not None:
@@ -552,6 +567,15 @@ class _FirewallServiceCustomState:
     @fqdn.setter
     def fqdn(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fqdn", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -740,6 +764,7 @@ class FirewallServiceCustom(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  helper: Optional[pulumi.Input[str]] = None,
                  icmpcode: Optional[pulumi.Input[int]] = None,
                  icmptype: Optional[pulumi.Input[int]] = None,
@@ -798,6 +823,7 @@ class FirewallServiceCustom(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  helper: Optional[pulumi.Input[str]] = None,
                  icmpcode: Optional[pulumi.Input[int]] = None,
                  icmptype: Optional[pulumi.Input[int]] = None,
@@ -836,6 +862,7 @@ class FirewallServiceCustom(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["fabric_object"] = fabric_object
             __props__.__dict__["fqdn"] = fqdn
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["helper"] = helper
             __props__.__dict__["icmpcode"] = icmpcode
             __props__.__dict__["icmptype"] = icmptype
@@ -875,6 +902,7 @@ class FirewallServiceCustom(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             fabric_object: Optional[pulumi.Input[str]] = None,
             fqdn: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             helper: Optional[pulumi.Input[str]] = None,
             icmpcode: Optional[pulumi.Input[int]] = None,
             icmptype: Optional[pulumi.Input[int]] = None,
@@ -916,6 +944,7 @@ class FirewallServiceCustom(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["fabric_object"] = fabric_object
         __props__.__dict__["fqdn"] = fqdn
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["helper"] = helper
         __props__.__dict__["icmpcode"] = icmpcode
         __props__.__dict__["icmptype"] = icmptype
@@ -986,6 +1015,11 @@ class FirewallServiceCustom(pulumi.CustomResource):
     @pulumi.getter
     def fqdn(self) -> pulumi.Output[str]:
         return pulumi.get(self, "fqdn")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -37,6 +38,7 @@ type SystemIke struct {
 	DhMultiprocess    pulumi.StringOutput      `pulumi:"dhMultiprocess"`
 	DhWorkerCount     pulumi.IntOutput         `pulumi:"dhWorkerCount"`
 	EmbryonicLimit    pulumi.IntOutput         `pulumi:"embryonicLimit"`
+	GetAllTables      pulumi.StringPtrOutput   `pulumi:"getAllTables"`
 	Vdomparam         pulumi.StringPtrOutput   `pulumi:"vdomparam"`
 }
 
@@ -47,7 +49,7 @@ func NewSystemIke(ctx *pulumi.Context,
 		args = &SystemIkeArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemIke
 	err := ctx.RegisterResource("fortios:index/systemIke:SystemIke", name, args, &resource, opts...)
 	if err != nil {
@@ -94,6 +96,7 @@ type systemIkeState struct {
 	DhMultiprocess    *string             `pulumi:"dhMultiprocess"`
 	DhWorkerCount     *int                `pulumi:"dhWorkerCount"`
 	EmbryonicLimit    *int                `pulumi:"embryonicLimit"`
+	GetAllTables      *string             `pulumi:"getAllTables"`
 	Vdomparam         *string             `pulumi:"vdomparam"`
 }
 
@@ -122,6 +125,7 @@ type SystemIkeState struct {
 	DhMultiprocess    pulumi.StringPtrInput
 	DhWorkerCount     pulumi.IntPtrInput
 	EmbryonicLimit    pulumi.IntPtrInput
+	GetAllTables      pulumi.StringPtrInput
 	Vdomparam         pulumi.StringPtrInput
 }
 
@@ -154,6 +158,7 @@ type systemIkeArgs struct {
 	DhMultiprocess    *string             `pulumi:"dhMultiprocess"`
 	DhWorkerCount     *int                `pulumi:"dhWorkerCount"`
 	EmbryonicLimit    *int                `pulumi:"embryonicLimit"`
+	GetAllTables      *string             `pulumi:"getAllTables"`
 	Vdomparam         *string             `pulumi:"vdomparam"`
 }
 
@@ -183,6 +188,7 @@ type SystemIkeArgs struct {
 	DhMultiprocess    pulumi.StringPtrInput
 	DhWorkerCount     pulumi.IntPtrInput
 	EmbryonicLimit    pulumi.IntPtrInput
+	GetAllTables      pulumi.StringPtrInput
 	Vdomparam         pulumi.StringPtrInput
 }
 
@@ -367,6 +373,10 @@ func (o SystemIkeOutput) DhWorkerCount() pulumi.IntOutput {
 
 func (o SystemIkeOutput) EmbryonicLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v *SystemIke) pulumi.IntOutput { return v.EmbryonicLimit }).(pulumi.IntOutput)
+}
+
+func (o SystemIkeOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemIke) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemIkeOutput) Vdomparam() pulumi.StringPtrOutput {

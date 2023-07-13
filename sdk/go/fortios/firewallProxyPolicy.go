@@ -8,86 +8,95 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type FirewallProxyPolicy struct {
 	pulumi.CustomResourceState
 
-	AccessProxies               FirewallProxyPolicyAccessProxyArrayOutput                `pulumi:"accessProxies"`
-	AccessProxy6s               FirewallProxyPolicyAccessProxy6ArrayOutput               `pulumi:"accessProxy6s"`
-	Action                      pulumi.StringOutput                                      `pulumi:"action"`
-	ApplicationList             pulumi.StringOutput                                      `pulumi:"applicationList"`
-	AvProfile                   pulumi.StringOutput                                      `pulumi:"avProfile"`
-	BlockNotification           pulumi.StringOutput                                      `pulumi:"blockNotification"`
-	CifsProfile                 pulumi.StringOutput                                      `pulumi:"cifsProfile"`
-	Comments                    pulumi.StringPtrOutput                                   `pulumi:"comments"`
-	DecryptedTrafficMirror      pulumi.StringOutput                                      `pulumi:"decryptedTrafficMirror"`
-	DeviceOwnership             pulumi.StringOutput                                      `pulumi:"deviceOwnership"`
-	Disclaimer                  pulumi.StringOutput                                      `pulumi:"disclaimer"`
-	DlpProfile                  pulumi.StringOutput                                      `pulumi:"dlpProfile"`
-	DlpSensor                   pulumi.StringOutput                                      `pulumi:"dlpSensor"`
-	Dstaddr6s                   FirewallProxyPolicyDstaddr6ArrayOutput                   `pulumi:"dstaddr6s"`
-	DstaddrNegate               pulumi.StringOutput                                      `pulumi:"dstaddrNegate"`
-	Dstaddrs                    FirewallProxyPolicyDstaddrArrayOutput                    `pulumi:"dstaddrs"`
-	Dstintfs                    FirewallProxyPolicyDstintfArrayOutput                    `pulumi:"dstintfs"`
-	DynamicSortSubtable         pulumi.StringPtrOutput                                   `pulumi:"dynamicSortSubtable"`
-	EmailfilterProfile          pulumi.StringOutput                                      `pulumi:"emailfilterProfile"`
-	FileFilterProfile           pulumi.StringOutput                                      `pulumi:"fileFilterProfile"`
-	GlobalLabel                 pulumi.StringOutput                                      `pulumi:"globalLabel"`
-	Groups                      FirewallProxyPolicyGroupArrayOutput                      `pulumi:"groups"`
-	HttpTunnelAuth              pulumi.StringOutput                                      `pulumi:"httpTunnelAuth"`
-	IcapProfile                 pulumi.StringOutput                                      `pulumi:"icapProfile"`
-	InternetService             pulumi.StringOutput                                      `pulumi:"internetService"`
-	InternetServiceCustomGroups FirewallProxyPolicyInternetServiceCustomGroupArrayOutput `pulumi:"internetServiceCustomGroups"`
-	InternetServiceCustoms      FirewallProxyPolicyInternetServiceCustomArrayOutput      `pulumi:"internetServiceCustoms"`
-	InternetServiceGroups       FirewallProxyPolicyInternetServiceGroupArrayOutput       `pulumi:"internetServiceGroups"`
-	InternetServiceIds          FirewallProxyPolicyInternetServiceIdArrayOutput          `pulumi:"internetServiceIds"`
-	InternetServiceNames        FirewallProxyPolicyInternetServiceNameArrayOutput        `pulumi:"internetServiceNames"`
-	InternetServiceNegate       pulumi.StringOutput                                      `pulumi:"internetServiceNegate"`
-	IpsSensor                   pulumi.StringOutput                                      `pulumi:"ipsSensor"`
-	Label                       pulumi.StringOutput                                      `pulumi:"label"`
-	Logtraffic                  pulumi.StringOutput                                      `pulumi:"logtraffic"`
-	LogtrafficStart             pulumi.StringOutput                                      `pulumi:"logtrafficStart"`
-	Name                        pulumi.StringOutput                                      `pulumi:"name"`
-	Policyid                    pulumi.IntOutput                                         `pulumi:"policyid"`
-	Poolnames                   FirewallProxyPolicyPoolnameArrayOutput                   `pulumi:"poolnames"`
-	ProfileGroup                pulumi.StringOutput                                      `pulumi:"profileGroup"`
-	ProfileProtocolOptions      pulumi.StringOutput                                      `pulumi:"profileProtocolOptions"`
-	ProfileType                 pulumi.StringOutput                                      `pulumi:"profileType"`
-	Proxy                       pulumi.StringOutput                                      `pulumi:"proxy"`
-	RedirectUrl                 pulumi.StringPtrOutput                                   `pulumi:"redirectUrl"`
-	ReplacemsgOverrideGroup     pulumi.StringOutput                                      `pulumi:"replacemsgOverrideGroup"`
-	ScanBotnetConnections       pulumi.StringOutput                                      `pulumi:"scanBotnetConnections"`
-	Schedule                    pulumi.StringOutput                                      `pulumi:"schedule"`
-	SctpFilterProfile           pulumi.StringOutput                                      `pulumi:"sctpFilterProfile"`
-	ServiceNegate               pulumi.StringOutput                                      `pulumi:"serviceNegate"`
-	Services                    FirewallProxyPolicyServiceArrayOutput                    `pulumi:"services"`
-	SessionTtl                  pulumi.IntOutput                                         `pulumi:"sessionTtl"`
-	SpamfilterProfile           pulumi.StringOutput                                      `pulumi:"spamfilterProfile"`
-	Srcaddr6s                   FirewallProxyPolicySrcaddr6ArrayOutput                   `pulumi:"srcaddr6s"`
-	SrcaddrNegate               pulumi.StringOutput                                      `pulumi:"srcaddrNegate"`
-	Srcaddrs                    FirewallProxyPolicySrcaddrArrayOutput                    `pulumi:"srcaddrs"`
-	Srcintfs                    FirewallProxyPolicySrcintfArrayOutput                    `pulumi:"srcintfs"`
-	SshFilterProfile            pulumi.StringOutput                                      `pulumi:"sshFilterProfile"`
-	SshPolicyRedirect           pulumi.StringOutput                                      `pulumi:"sshPolicyRedirect"`
-	SslSshProfile               pulumi.StringOutput                                      `pulumi:"sslSshProfile"`
-	Status                      pulumi.StringOutput                                      `pulumi:"status"`
-	Transparent                 pulumi.StringOutput                                      `pulumi:"transparent"`
-	Users                       FirewallProxyPolicyUserArrayOutput                       `pulumi:"users"`
-	UtmStatus                   pulumi.StringOutput                                      `pulumi:"utmStatus"`
-	Uuid                        pulumi.StringOutput                                      `pulumi:"uuid"`
-	Vdomparam                   pulumi.StringPtrOutput                                   `pulumi:"vdomparam"`
-	VideofilterProfile          pulumi.StringOutput                                      `pulumi:"videofilterProfile"`
-	VoipProfile                 pulumi.StringOutput                                      `pulumi:"voipProfile"`
-	WafProfile                  pulumi.StringOutput                                      `pulumi:"wafProfile"`
-	Webcache                    pulumi.StringOutput                                      `pulumi:"webcache"`
-	WebcacheHttps               pulumi.StringOutput                                      `pulumi:"webcacheHttps"`
-	WebfilterProfile            pulumi.StringOutput                                      `pulumi:"webfilterProfile"`
-	WebproxyForwardServer       pulumi.StringOutput                                      `pulumi:"webproxyForwardServer"`
-	WebproxyProfile             pulumi.StringOutput                                      `pulumi:"webproxyProfile"`
-	ZtnaEmsTags                 FirewallProxyPolicyZtnaEmsTagArrayOutput                 `pulumi:"ztnaEmsTags"`
-	ZtnaTagsMatchLogic          pulumi.StringOutput                                      `pulumi:"ztnaTagsMatchLogic"`
+	AccessProxies                FirewallProxyPolicyAccessProxyArrayOutput                 `pulumi:"accessProxies"`
+	AccessProxy6s                FirewallProxyPolicyAccessProxy6ArrayOutput                `pulumi:"accessProxy6s"`
+	Action                       pulumi.StringOutput                                       `pulumi:"action"`
+	ApplicationList              pulumi.StringOutput                                       `pulumi:"applicationList"`
+	AvProfile                    pulumi.StringOutput                                       `pulumi:"avProfile"`
+	BlockNotification            pulumi.StringOutput                                       `pulumi:"blockNotification"`
+	CifsProfile                  pulumi.StringOutput                                       `pulumi:"cifsProfile"`
+	Comments                     pulumi.StringPtrOutput                                    `pulumi:"comments"`
+	DecryptedTrafficMirror       pulumi.StringOutput                                       `pulumi:"decryptedTrafficMirror"`
+	DeviceOwnership              pulumi.StringOutput                                       `pulumi:"deviceOwnership"`
+	Disclaimer                   pulumi.StringOutput                                       `pulumi:"disclaimer"`
+	DlpProfile                   pulumi.StringOutput                                       `pulumi:"dlpProfile"`
+	DlpSensor                    pulumi.StringOutput                                       `pulumi:"dlpSensor"`
+	Dstaddr6s                    FirewallProxyPolicyDstaddr6ArrayOutput                    `pulumi:"dstaddr6s"`
+	DstaddrNegate                pulumi.StringOutput                                       `pulumi:"dstaddrNegate"`
+	Dstaddrs                     FirewallProxyPolicyDstaddrArrayOutput                     `pulumi:"dstaddrs"`
+	Dstintfs                     FirewallProxyPolicyDstintfArrayOutput                     `pulumi:"dstintfs"`
+	DynamicSortSubtable          pulumi.StringPtrOutput                                    `pulumi:"dynamicSortSubtable"`
+	EmailfilterProfile           pulumi.StringOutput                                       `pulumi:"emailfilterProfile"`
+	FileFilterProfile            pulumi.StringOutput                                       `pulumi:"fileFilterProfile"`
+	GetAllTables                 pulumi.StringPtrOutput                                    `pulumi:"getAllTables"`
+	GlobalLabel                  pulumi.StringOutput                                       `pulumi:"globalLabel"`
+	Groups                       FirewallProxyPolicyGroupArrayOutput                       `pulumi:"groups"`
+	HttpTunnelAuth               pulumi.StringOutput                                       `pulumi:"httpTunnelAuth"`
+	IcapProfile                  pulumi.StringOutput                                       `pulumi:"icapProfile"`
+	InternetService              pulumi.StringOutput                                       `pulumi:"internetService"`
+	InternetService6             pulumi.StringOutput                                       `pulumi:"internetService6"`
+	InternetService6CustomGroups FirewallProxyPolicyInternetService6CustomGroupArrayOutput `pulumi:"internetService6CustomGroups"`
+	InternetService6Customs      FirewallProxyPolicyInternetService6CustomArrayOutput      `pulumi:"internetService6Customs"`
+	InternetService6Groups       FirewallProxyPolicyInternetService6GroupArrayOutput       `pulumi:"internetService6Groups"`
+	InternetService6Names        FirewallProxyPolicyInternetService6NameArrayOutput        `pulumi:"internetService6Names"`
+	InternetService6Negate       pulumi.StringOutput                                       `pulumi:"internetService6Negate"`
+	InternetServiceCustomGroups  FirewallProxyPolicyInternetServiceCustomGroupArrayOutput  `pulumi:"internetServiceCustomGroups"`
+	InternetServiceCustoms       FirewallProxyPolicyInternetServiceCustomArrayOutput       `pulumi:"internetServiceCustoms"`
+	InternetServiceGroups        FirewallProxyPolicyInternetServiceGroupArrayOutput        `pulumi:"internetServiceGroups"`
+	InternetServiceIds           FirewallProxyPolicyInternetServiceIdArrayOutput           `pulumi:"internetServiceIds"`
+	InternetServiceNames         FirewallProxyPolicyInternetServiceNameArrayOutput         `pulumi:"internetServiceNames"`
+	InternetServiceNegate        pulumi.StringOutput                                       `pulumi:"internetServiceNegate"`
+	IpsSensor                    pulumi.StringOutput                                       `pulumi:"ipsSensor"`
+	IpsVoipFilter                pulumi.StringOutput                                       `pulumi:"ipsVoipFilter"`
+	Label                        pulumi.StringOutput                                       `pulumi:"label"`
+	Logtraffic                   pulumi.StringOutput                                       `pulumi:"logtraffic"`
+	LogtrafficStart              pulumi.StringOutput                                       `pulumi:"logtrafficStart"`
+	Name                         pulumi.StringOutput                                       `pulumi:"name"`
+	Policyid                     pulumi.IntOutput                                          `pulumi:"policyid"`
+	Poolnames                    FirewallProxyPolicyPoolnameArrayOutput                    `pulumi:"poolnames"`
+	ProfileGroup                 pulumi.StringOutput                                       `pulumi:"profileGroup"`
+	ProfileProtocolOptions       pulumi.StringOutput                                       `pulumi:"profileProtocolOptions"`
+	ProfileType                  pulumi.StringOutput                                       `pulumi:"profileType"`
+	Proxy                        pulumi.StringOutput                                       `pulumi:"proxy"`
+	RedirectUrl                  pulumi.StringPtrOutput                                    `pulumi:"redirectUrl"`
+	ReplacemsgOverrideGroup      pulumi.StringOutput                                       `pulumi:"replacemsgOverrideGroup"`
+	ScanBotnetConnections        pulumi.StringOutput                                       `pulumi:"scanBotnetConnections"`
+	Schedule                     pulumi.StringOutput                                       `pulumi:"schedule"`
+	SctpFilterProfile            pulumi.StringOutput                                       `pulumi:"sctpFilterProfile"`
+	ServiceNegate                pulumi.StringOutput                                       `pulumi:"serviceNegate"`
+	Services                     FirewallProxyPolicyServiceArrayOutput                     `pulumi:"services"`
+	SessionTtl                   pulumi.IntOutput                                          `pulumi:"sessionTtl"`
+	SpamfilterProfile            pulumi.StringOutput                                       `pulumi:"spamfilterProfile"`
+	Srcaddr6s                    FirewallProxyPolicySrcaddr6ArrayOutput                    `pulumi:"srcaddr6s"`
+	SrcaddrNegate                pulumi.StringOutput                                       `pulumi:"srcaddrNegate"`
+	Srcaddrs                     FirewallProxyPolicySrcaddrArrayOutput                     `pulumi:"srcaddrs"`
+	Srcintfs                     FirewallProxyPolicySrcintfArrayOutput                     `pulumi:"srcintfs"`
+	SshFilterProfile             pulumi.StringOutput                                       `pulumi:"sshFilterProfile"`
+	SshPolicyRedirect            pulumi.StringOutput                                       `pulumi:"sshPolicyRedirect"`
+	SslSshProfile                pulumi.StringOutput                                       `pulumi:"sslSshProfile"`
+	Status                       pulumi.StringOutput                                       `pulumi:"status"`
+	Transparent                  pulumi.StringOutput                                       `pulumi:"transparent"`
+	Users                        FirewallProxyPolicyUserArrayOutput                        `pulumi:"users"`
+	UtmStatus                    pulumi.StringOutput                                       `pulumi:"utmStatus"`
+	Uuid                         pulumi.StringOutput                                       `pulumi:"uuid"`
+	Vdomparam                    pulumi.StringPtrOutput                                    `pulumi:"vdomparam"`
+	VideofilterProfile           pulumi.StringOutput                                       `pulumi:"videofilterProfile"`
+	VoipProfile                  pulumi.StringOutput                                       `pulumi:"voipProfile"`
+	WafProfile                   pulumi.StringOutput                                       `pulumi:"wafProfile"`
+	Webcache                     pulumi.StringOutput                                       `pulumi:"webcache"`
+	WebcacheHttps                pulumi.StringOutput                                       `pulumi:"webcacheHttps"`
+	WebfilterProfile             pulumi.StringOutput                                       `pulumi:"webfilterProfile"`
+	WebproxyForwardServer        pulumi.StringOutput                                       `pulumi:"webproxyForwardServer"`
+	WebproxyProfile              pulumi.StringOutput                                       `pulumi:"webproxyProfile"`
+	ZtnaEmsTags                  FirewallProxyPolicyZtnaEmsTagArrayOutput                  `pulumi:"ztnaEmsTags"`
+	ZtnaTagsMatchLogic           pulumi.StringOutput                                       `pulumi:"ztnaTagsMatchLogic"`
 }
 
 // NewFirewallProxyPolicy registers a new resource with the given unique name, arguments, and options.
@@ -106,7 +115,7 @@ func NewFirewallProxyPolicy(ctx *pulumi.Context,
 	if args.Schedule == nil {
 		return nil, errors.New("invalid value for required argument 'Schedule'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallProxyPolicy
 	err := ctx.RegisterResource("fortios:index/firewallProxyPolicy:FirewallProxyPolicy", name, args, &resource, opts...)
 	if err != nil {
@@ -129,157 +138,173 @@ func GetFirewallProxyPolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallProxyPolicy resources.
 type firewallProxyPolicyState struct {
-	AccessProxies               []FirewallProxyPolicyAccessProxy                `pulumi:"accessProxies"`
-	AccessProxy6s               []FirewallProxyPolicyAccessProxy6               `pulumi:"accessProxy6s"`
-	Action                      *string                                         `pulumi:"action"`
-	ApplicationList             *string                                         `pulumi:"applicationList"`
-	AvProfile                   *string                                         `pulumi:"avProfile"`
-	BlockNotification           *string                                         `pulumi:"blockNotification"`
-	CifsProfile                 *string                                         `pulumi:"cifsProfile"`
-	Comments                    *string                                         `pulumi:"comments"`
-	DecryptedTrafficMirror      *string                                         `pulumi:"decryptedTrafficMirror"`
-	DeviceOwnership             *string                                         `pulumi:"deviceOwnership"`
-	Disclaimer                  *string                                         `pulumi:"disclaimer"`
-	DlpProfile                  *string                                         `pulumi:"dlpProfile"`
-	DlpSensor                   *string                                         `pulumi:"dlpSensor"`
-	Dstaddr6s                   []FirewallProxyPolicyDstaddr6                   `pulumi:"dstaddr6s"`
-	DstaddrNegate               *string                                         `pulumi:"dstaddrNegate"`
-	Dstaddrs                    []FirewallProxyPolicyDstaddr                    `pulumi:"dstaddrs"`
-	Dstintfs                    []FirewallProxyPolicyDstintf                    `pulumi:"dstintfs"`
-	DynamicSortSubtable         *string                                         `pulumi:"dynamicSortSubtable"`
-	EmailfilterProfile          *string                                         `pulumi:"emailfilterProfile"`
-	FileFilterProfile           *string                                         `pulumi:"fileFilterProfile"`
-	GlobalLabel                 *string                                         `pulumi:"globalLabel"`
-	Groups                      []FirewallProxyPolicyGroup                      `pulumi:"groups"`
-	HttpTunnelAuth              *string                                         `pulumi:"httpTunnelAuth"`
-	IcapProfile                 *string                                         `pulumi:"icapProfile"`
-	InternetService             *string                                         `pulumi:"internetService"`
-	InternetServiceCustomGroups []FirewallProxyPolicyInternetServiceCustomGroup `pulumi:"internetServiceCustomGroups"`
-	InternetServiceCustoms      []FirewallProxyPolicyInternetServiceCustom      `pulumi:"internetServiceCustoms"`
-	InternetServiceGroups       []FirewallProxyPolicyInternetServiceGroup       `pulumi:"internetServiceGroups"`
-	InternetServiceIds          []FirewallProxyPolicyInternetServiceId          `pulumi:"internetServiceIds"`
-	InternetServiceNames        []FirewallProxyPolicyInternetServiceName        `pulumi:"internetServiceNames"`
-	InternetServiceNegate       *string                                         `pulumi:"internetServiceNegate"`
-	IpsSensor                   *string                                         `pulumi:"ipsSensor"`
-	Label                       *string                                         `pulumi:"label"`
-	Logtraffic                  *string                                         `pulumi:"logtraffic"`
-	LogtrafficStart             *string                                         `pulumi:"logtrafficStart"`
-	Name                        *string                                         `pulumi:"name"`
-	Policyid                    *int                                            `pulumi:"policyid"`
-	Poolnames                   []FirewallProxyPolicyPoolname                   `pulumi:"poolnames"`
-	ProfileGroup                *string                                         `pulumi:"profileGroup"`
-	ProfileProtocolOptions      *string                                         `pulumi:"profileProtocolOptions"`
-	ProfileType                 *string                                         `pulumi:"profileType"`
-	Proxy                       *string                                         `pulumi:"proxy"`
-	RedirectUrl                 *string                                         `pulumi:"redirectUrl"`
-	ReplacemsgOverrideGroup     *string                                         `pulumi:"replacemsgOverrideGroup"`
-	ScanBotnetConnections       *string                                         `pulumi:"scanBotnetConnections"`
-	Schedule                    *string                                         `pulumi:"schedule"`
-	SctpFilterProfile           *string                                         `pulumi:"sctpFilterProfile"`
-	ServiceNegate               *string                                         `pulumi:"serviceNegate"`
-	Services                    []FirewallProxyPolicyService                    `pulumi:"services"`
-	SessionTtl                  *int                                            `pulumi:"sessionTtl"`
-	SpamfilterProfile           *string                                         `pulumi:"spamfilterProfile"`
-	Srcaddr6s                   []FirewallProxyPolicySrcaddr6                   `pulumi:"srcaddr6s"`
-	SrcaddrNegate               *string                                         `pulumi:"srcaddrNegate"`
-	Srcaddrs                    []FirewallProxyPolicySrcaddr                    `pulumi:"srcaddrs"`
-	Srcintfs                    []FirewallProxyPolicySrcintf                    `pulumi:"srcintfs"`
-	SshFilterProfile            *string                                         `pulumi:"sshFilterProfile"`
-	SshPolicyRedirect           *string                                         `pulumi:"sshPolicyRedirect"`
-	SslSshProfile               *string                                         `pulumi:"sslSshProfile"`
-	Status                      *string                                         `pulumi:"status"`
-	Transparent                 *string                                         `pulumi:"transparent"`
-	Users                       []FirewallProxyPolicyUser                       `pulumi:"users"`
-	UtmStatus                   *string                                         `pulumi:"utmStatus"`
-	Uuid                        *string                                         `pulumi:"uuid"`
-	Vdomparam                   *string                                         `pulumi:"vdomparam"`
-	VideofilterProfile          *string                                         `pulumi:"videofilterProfile"`
-	VoipProfile                 *string                                         `pulumi:"voipProfile"`
-	WafProfile                  *string                                         `pulumi:"wafProfile"`
-	Webcache                    *string                                         `pulumi:"webcache"`
-	WebcacheHttps               *string                                         `pulumi:"webcacheHttps"`
-	WebfilterProfile            *string                                         `pulumi:"webfilterProfile"`
-	WebproxyForwardServer       *string                                         `pulumi:"webproxyForwardServer"`
-	WebproxyProfile             *string                                         `pulumi:"webproxyProfile"`
-	ZtnaEmsTags                 []FirewallProxyPolicyZtnaEmsTag                 `pulumi:"ztnaEmsTags"`
-	ZtnaTagsMatchLogic          *string                                         `pulumi:"ztnaTagsMatchLogic"`
+	AccessProxies                []FirewallProxyPolicyAccessProxy                 `pulumi:"accessProxies"`
+	AccessProxy6s                []FirewallProxyPolicyAccessProxy6                `pulumi:"accessProxy6s"`
+	Action                       *string                                          `pulumi:"action"`
+	ApplicationList              *string                                          `pulumi:"applicationList"`
+	AvProfile                    *string                                          `pulumi:"avProfile"`
+	BlockNotification            *string                                          `pulumi:"blockNotification"`
+	CifsProfile                  *string                                          `pulumi:"cifsProfile"`
+	Comments                     *string                                          `pulumi:"comments"`
+	DecryptedTrafficMirror       *string                                          `pulumi:"decryptedTrafficMirror"`
+	DeviceOwnership              *string                                          `pulumi:"deviceOwnership"`
+	Disclaimer                   *string                                          `pulumi:"disclaimer"`
+	DlpProfile                   *string                                          `pulumi:"dlpProfile"`
+	DlpSensor                    *string                                          `pulumi:"dlpSensor"`
+	Dstaddr6s                    []FirewallProxyPolicyDstaddr6                    `pulumi:"dstaddr6s"`
+	DstaddrNegate                *string                                          `pulumi:"dstaddrNegate"`
+	Dstaddrs                     []FirewallProxyPolicyDstaddr                     `pulumi:"dstaddrs"`
+	Dstintfs                     []FirewallProxyPolicyDstintf                     `pulumi:"dstintfs"`
+	DynamicSortSubtable          *string                                          `pulumi:"dynamicSortSubtable"`
+	EmailfilterProfile           *string                                          `pulumi:"emailfilterProfile"`
+	FileFilterProfile            *string                                          `pulumi:"fileFilterProfile"`
+	GetAllTables                 *string                                          `pulumi:"getAllTables"`
+	GlobalLabel                  *string                                          `pulumi:"globalLabel"`
+	Groups                       []FirewallProxyPolicyGroup                       `pulumi:"groups"`
+	HttpTunnelAuth               *string                                          `pulumi:"httpTunnelAuth"`
+	IcapProfile                  *string                                          `pulumi:"icapProfile"`
+	InternetService              *string                                          `pulumi:"internetService"`
+	InternetService6             *string                                          `pulumi:"internetService6"`
+	InternetService6CustomGroups []FirewallProxyPolicyInternetService6CustomGroup `pulumi:"internetService6CustomGroups"`
+	InternetService6Customs      []FirewallProxyPolicyInternetService6Custom      `pulumi:"internetService6Customs"`
+	InternetService6Groups       []FirewallProxyPolicyInternetService6Group       `pulumi:"internetService6Groups"`
+	InternetService6Names        []FirewallProxyPolicyInternetService6Name        `pulumi:"internetService6Names"`
+	InternetService6Negate       *string                                          `pulumi:"internetService6Negate"`
+	InternetServiceCustomGroups  []FirewallProxyPolicyInternetServiceCustomGroup  `pulumi:"internetServiceCustomGroups"`
+	InternetServiceCustoms       []FirewallProxyPolicyInternetServiceCustom       `pulumi:"internetServiceCustoms"`
+	InternetServiceGroups        []FirewallProxyPolicyInternetServiceGroup        `pulumi:"internetServiceGroups"`
+	InternetServiceIds           []FirewallProxyPolicyInternetServiceId           `pulumi:"internetServiceIds"`
+	InternetServiceNames         []FirewallProxyPolicyInternetServiceName         `pulumi:"internetServiceNames"`
+	InternetServiceNegate        *string                                          `pulumi:"internetServiceNegate"`
+	IpsSensor                    *string                                          `pulumi:"ipsSensor"`
+	IpsVoipFilter                *string                                          `pulumi:"ipsVoipFilter"`
+	Label                        *string                                          `pulumi:"label"`
+	Logtraffic                   *string                                          `pulumi:"logtraffic"`
+	LogtrafficStart              *string                                          `pulumi:"logtrafficStart"`
+	Name                         *string                                          `pulumi:"name"`
+	Policyid                     *int                                             `pulumi:"policyid"`
+	Poolnames                    []FirewallProxyPolicyPoolname                    `pulumi:"poolnames"`
+	ProfileGroup                 *string                                          `pulumi:"profileGroup"`
+	ProfileProtocolOptions       *string                                          `pulumi:"profileProtocolOptions"`
+	ProfileType                  *string                                          `pulumi:"profileType"`
+	Proxy                        *string                                          `pulumi:"proxy"`
+	RedirectUrl                  *string                                          `pulumi:"redirectUrl"`
+	ReplacemsgOverrideGroup      *string                                          `pulumi:"replacemsgOverrideGroup"`
+	ScanBotnetConnections        *string                                          `pulumi:"scanBotnetConnections"`
+	Schedule                     *string                                          `pulumi:"schedule"`
+	SctpFilterProfile            *string                                          `pulumi:"sctpFilterProfile"`
+	ServiceNegate                *string                                          `pulumi:"serviceNegate"`
+	Services                     []FirewallProxyPolicyService                     `pulumi:"services"`
+	SessionTtl                   *int                                             `pulumi:"sessionTtl"`
+	SpamfilterProfile            *string                                          `pulumi:"spamfilterProfile"`
+	Srcaddr6s                    []FirewallProxyPolicySrcaddr6                    `pulumi:"srcaddr6s"`
+	SrcaddrNegate                *string                                          `pulumi:"srcaddrNegate"`
+	Srcaddrs                     []FirewallProxyPolicySrcaddr                     `pulumi:"srcaddrs"`
+	Srcintfs                     []FirewallProxyPolicySrcintf                     `pulumi:"srcintfs"`
+	SshFilterProfile             *string                                          `pulumi:"sshFilterProfile"`
+	SshPolicyRedirect            *string                                          `pulumi:"sshPolicyRedirect"`
+	SslSshProfile                *string                                          `pulumi:"sslSshProfile"`
+	Status                       *string                                          `pulumi:"status"`
+	Transparent                  *string                                          `pulumi:"transparent"`
+	Users                        []FirewallProxyPolicyUser                        `pulumi:"users"`
+	UtmStatus                    *string                                          `pulumi:"utmStatus"`
+	Uuid                         *string                                          `pulumi:"uuid"`
+	Vdomparam                    *string                                          `pulumi:"vdomparam"`
+	VideofilterProfile           *string                                          `pulumi:"videofilterProfile"`
+	VoipProfile                  *string                                          `pulumi:"voipProfile"`
+	WafProfile                   *string                                          `pulumi:"wafProfile"`
+	Webcache                     *string                                          `pulumi:"webcache"`
+	WebcacheHttps                *string                                          `pulumi:"webcacheHttps"`
+	WebfilterProfile             *string                                          `pulumi:"webfilterProfile"`
+	WebproxyForwardServer        *string                                          `pulumi:"webproxyForwardServer"`
+	WebproxyProfile              *string                                          `pulumi:"webproxyProfile"`
+	ZtnaEmsTags                  []FirewallProxyPolicyZtnaEmsTag                  `pulumi:"ztnaEmsTags"`
+	ZtnaTagsMatchLogic           *string                                          `pulumi:"ztnaTagsMatchLogic"`
 }
 
 type FirewallProxyPolicyState struct {
-	AccessProxies               FirewallProxyPolicyAccessProxyArrayInput
-	AccessProxy6s               FirewallProxyPolicyAccessProxy6ArrayInput
-	Action                      pulumi.StringPtrInput
-	ApplicationList             pulumi.StringPtrInput
-	AvProfile                   pulumi.StringPtrInput
-	BlockNotification           pulumi.StringPtrInput
-	CifsProfile                 pulumi.StringPtrInput
-	Comments                    pulumi.StringPtrInput
-	DecryptedTrafficMirror      pulumi.StringPtrInput
-	DeviceOwnership             pulumi.StringPtrInput
-	Disclaimer                  pulumi.StringPtrInput
-	DlpProfile                  pulumi.StringPtrInput
-	DlpSensor                   pulumi.StringPtrInput
-	Dstaddr6s                   FirewallProxyPolicyDstaddr6ArrayInput
-	DstaddrNegate               pulumi.StringPtrInput
-	Dstaddrs                    FirewallProxyPolicyDstaddrArrayInput
-	Dstintfs                    FirewallProxyPolicyDstintfArrayInput
-	DynamicSortSubtable         pulumi.StringPtrInput
-	EmailfilterProfile          pulumi.StringPtrInput
-	FileFilterProfile           pulumi.StringPtrInput
-	GlobalLabel                 pulumi.StringPtrInput
-	Groups                      FirewallProxyPolicyGroupArrayInput
-	HttpTunnelAuth              pulumi.StringPtrInput
-	IcapProfile                 pulumi.StringPtrInput
-	InternetService             pulumi.StringPtrInput
-	InternetServiceCustomGroups FirewallProxyPolicyInternetServiceCustomGroupArrayInput
-	InternetServiceCustoms      FirewallProxyPolicyInternetServiceCustomArrayInput
-	InternetServiceGroups       FirewallProxyPolicyInternetServiceGroupArrayInput
-	InternetServiceIds          FirewallProxyPolicyInternetServiceIdArrayInput
-	InternetServiceNames        FirewallProxyPolicyInternetServiceNameArrayInput
-	InternetServiceNegate       pulumi.StringPtrInput
-	IpsSensor                   pulumi.StringPtrInput
-	Label                       pulumi.StringPtrInput
-	Logtraffic                  pulumi.StringPtrInput
-	LogtrafficStart             pulumi.StringPtrInput
-	Name                        pulumi.StringPtrInput
-	Policyid                    pulumi.IntPtrInput
-	Poolnames                   FirewallProxyPolicyPoolnameArrayInput
-	ProfileGroup                pulumi.StringPtrInput
-	ProfileProtocolOptions      pulumi.StringPtrInput
-	ProfileType                 pulumi.StringPtrInput
-	Proxy                       pulumi.StringPtrInput
-	RedirectUrl                 pulumi.StringPtrInput
-	ReplacemsgOverrideGroup     pulumi.StringPtrInput
-	ScanBotnetConnections       pulumi.StringPtrInput
-	Schedule                    pulumi.StringPtrInput
-	SctpFilterProfile           pulumi.StringPtrInput
-	ServiceNegate               pulumi.StringPtrInput
-	Services                    FirewallProxyPolicyServiceArrayInput
-	SessionTtl                  pulumi.IntPtrInput
-	SpamfilterProfile           pulumi.StringPtrInput
-	Srcaddr6s                   FirewallProxyPolicySrcaddr6ArrayInput
-	SrcaddrNegate               pulumi.StringPtrInput
-	Srcaddrs                    FirewallProxyPolicySrcaddrArrayInput
-	Srcintfs                    FirewallProxyPolicySrcintfArrayInput
-	SshFilterProfile            pulumi.StringPtrInput
-	SshPolicyRedirect           pulumi.StringPtrInput
-	SslSshProfile               pulumi.StringPtrInput
-	Status                      pulumi.StringPtrInput
-	Transparent                 pulumi.StringPtrInput
-	Users                       FirewallProxyPolicyUserArrayInput
-	UtmStatus                   pulumi.StringPtrInput
-	Uuid                        pulumi.StringPtrInput
-	Vdomparam                   pulumi.StringPtrInput
-	VideofilterProfile          pulumi.StringPtrInput
-	VoipProfile                 pulumi.StringPtrInput
-	WafProfile                  pulumi.StringPtrInput
-	Webcache                    pulumi.StringPtrInput
-	WebcacheHttps               pulumi.StringPtrInput
-	WebfilterProfile            pulumi.StringPtrInput
-	WebproxyForwardServer       pulumi.StringPtrInput
-	WebproxyProfile             pulumi.StringPtrInput
-	ZtnaEmsTags                 FirewallProxyPolicyZtnaEmsTagArrayInput
-	ZtnaTagsMatchLogic          pulumi.StringPtrInput
+	AccessProxies                FirewallProxyPolicyAccessProxyArrayInput
+	AccessProxy6s                FirewallProxyPolicyAccessProxy6ArrayInput
+	Action                       pulumi.StringPtrInput
+	ApplicationList              pulumi.StringPtrInput
+	AvProfile                    pulumi.StringPtrInput
+	BlockNotification            pulumi.StringPtrInput
+	CifsProfile                  pulumi.StringPtrInput
+	Comments                     pulumi.StringPtrInput
+	DecryptedTrafficMirror       pulumi.StringPtrInput
+	DeviceOwnership              pulumi.StringPtrInput
+	Disclaimer                   pulumi.StringPtrInput
+	DlpProfile                   pulumi.StringPtrInput
+	DlpSensor                    pulumi.StringPtrInput
+	Dstaddr6s                    FirewallProxyPolicyDstaddr6ArrayInput
+	DstaddrNegate                pulumi.StringPtrInput
+	Dstaddrs                     FirewallProxyPolicyDstaddrArrayInput
+	Dstintfs                     FirewallProxyPolicyDstintfArrayInput
+	DynamicSortSubtable          pulumi.StringPtrInput
+	EmailfilterProfile           pulumi.StringPtrInput
+	FileFilterProfile            pulumi.StringPtrInput
+	GetAllTables                 pulumi.StringPtrInput
+	GlobalLabel                  pulumi.StringPtrInput
+	Groups                       FirewallProxyPolicyGroupArrayInput
+	HttpTunnelAuth               pulumi.StringPtrInput
+	IcapProfile                  pulumi.StringPtrInput
+	InternetService              pulumi.StringPtrInput
+	InternetService6             pulumi.StringPtrInput
+	InternetService6CustomGroups FirewallProxyPolicyInternetService6CustomGroupArrayInput
+	InternetService6Customs      FirewallProxyPolicyInternetService6CustomArrayInput
+	InternetService6Groups       FirewallProxyPolicyInternetService6GroupArrayInput
+	InternetService6Names        FirewallProxyPolicyInternetService6NameArrayInput
+	InternetService6Negate       pulumi.StringPtrInput
+	InternetServiceCustomGroups  FirewallProxyPolicyInternetServiceCustomGroupArrayInput
+	InternetServiceCustoms       FirewallProxyPolicyInternetServiceCustomArrayInput
+	InternetServiceGroups        FirewallProxyPolicyInternetServiceGroupArrayInput
+	InternetServiceIds           FirewallProxyPolicyInternetServiceIdArrayInput
+	InternetServiceNames         FirewallProxyPolicyInternetServiceNameArrayInput
+	InternetServiceNegate        pulumi.StringPtrInput
+	IpsSensor                    pulumi.StringPtrInput
+	IpsVoipFilter                pulumi.StringPtrInput
+	Label                        pulumi.StringPtrInput
+	Logtraffic                   pulumi.StringPtrInput
+	LogtrafficStart              pulumi.StringPtrInput
+	Name                         pulumi.StringPtrInput
+	Policyid                     pulumi.IntPtrInput
+	Poolnames                    FirewallProxyPolicyPoolnameArrayInput
+	ProfileGroup                 pulumi.StringPtrInput
+	ProfileProtocolOptions       pulumi.StringPtrInput
+	ProfileType                  pulumi.StringPtrInput
+	Proxy                        pulumi.StringPtrInput
+	RedirectUrl                  pulumi.StringPtrInput
+	ReplacemsgOverrideGroup      pulumi.StringPtrInput
+	ScanBotnetConnections        pulumi.StringPtrInput
+	Schedule                     pulumi.StringPtrInput
+	SctpFilterProfile            pulumi.StringPtrInput
+	ServiceNegate                pulumi.StringPtrInput
+	Services                     FirewallProxyPolicyServiceArrayInput
+	SessionTtl                   pulumi.IntPtrInput
+	SpamfilterProfile            pulumi.StringPtrInput
+	Srcaddr6s                    FirewallProxyPolicySrcaddr6ArrayInput
+	SrcaddrNegate                pulumi.StringPtrInput
+	Srcaddrs                     FirewallProxyPolicySrcaddrArrayInput
+	Srcintfs                     FirewallProxyPolicySrcintfArrayInput
+	SshFilterProfile             pulumi.StringPtrInput
+	SshPolicyRedirect            pulumi.StringPtrInput
+	SslSshProfile                pulumi.StringPtrInput
+	Status                       pulumi.StringPtrInput
+	Transparent                  pulumi.StringPtrInput
+	Users                        FirewallProxyPolicyUserArrayInput
+	UtmStatus                    pulumi.StringPtrInput
+	Uuid                         pulumi.StringPtrInput
+	Vdomparam                    pulumi.StringPtrInput
+	VideofilterProfile           pulumi.StringPtrInput
+	VoipProfile                  pulumi.StringPtrInput
+	WafProfile                   pulumi.StringPtrInput
+	Webcache                     pulumi.StringPtrInput
+	WebcacheHttps                pulumi.StringPtrInput
+	WebfilterProfile             pulumi.StringPtrInput
+	WebproxyForwardServer        pulumi.StringPtrInput
+	WebproxyProfile              pulumi.StringPtrInput
+	ZtnaEmsTags                  FirewallProxyPolicyZtnaEmsTagArrayInput
+	ZtnaTagsMatchLogic           pulumi.StringPtrInput
 }
 
 func (FirewallProxyPolicyState) ElementType() reflect.Type {
@@ -287,158 +312,174 @@ func (FirewallProxyPolicyState) ElementType() reflect.Type {
 }
 
 type firewallProxyPolicyArgs struct {
-	AccessProxies               []FirewallProxyPolicyAccessProxy                `pulumi:"accessProxies"`
-	AccessProxy6s               []FirewallProxyPolicyAccessProxy6               `pulumi:"accessProxy6s"`
-	Action                      *string                                         `pulumi:"action"`
-	ApplicationList             *string                                         `pulumi:"applicationList"`
-	AvProfile                   *string                                         `pulumi:"avProfile"`
-	BlockNotification           *string                                         `pulumi:"blockNotification"`
-	CifsProfile                 *string                                         `pulumi:"cifsProfile"`
-	Comments                    *string                                         `pulumi:"comments"`
-	DecryptedTrafficMirror      *string                                         `pulumi:"decryptedTrafficMirror"`
-	DeviceOwnership             *string                                         `pulumi:"deviceOwnership"`
-	Disclaimer                  *string                                         `pulumi:"disclaimer"`
-	DlpProfile                  *string                                         `pulumi:"dlpProfile"`
-	DlpSensor                   *string                                         `pulumi:"dlpSensor"`
-	Dstaddr6s                   []FirewallProxyPolicyDstaddr6                   `pulumi:"dstaddr6s"`
-	DstaddrNegate               *string                                         `pulumi:"dstaddrNegate"`
-	Dstaddrs                    []FirewallProxyPolicyDstaddr                    `pulumi:"dstaddrs"`
-	Dstintfs                    []FirewallProxyPolicyDstintf                    `pulumi:"dstintfs"`
-	DynamicSortSubtable         *string                                         `pulumi:"dynamicSortSubtable"`
-	EmailfilterProfile          *string                                         `pulumi:"emailfilterProfile"`
-	FileFilterProfile           *string                                         `pulumi:"fileFilterProfile"`
-	GlobalLabel                 *string                                         `pulumi:"globalLabel"`
-	Groups                      []FirewallProxyPolicyGroup                      `pulumi:"groups"`
-	HttpTunnelAuth              *string                                         `pulumi:"httpTunnelAuth"`
-	IcapProfile                 *string                                         `pulumi:"icapProfile"`
-	InternetService             *string                                         `pulumi:"internetService"`
-	InternetServiceCustomGroups []FirewallProxyPolicyInternetServiceCustomGroup `pulumi:"internetServiceCustomGroups"`
-	InternetServiceCustoms      []FirewallProxyPolicyInternetServiceCustom      `pulumi:"internetServiceCustoms"`
-	InternetServiceGroups       []FirewallProxyPolicyInternetServiceGroup       `pulumi:"internetServiceGroups"`
-	InternetServiceIds          []FirewallProxyPolicyInternetServiceId          `pulumi:"internetServiceIds"`
-	InternetServiceNames        []FirewallProxyPolicyInternetServiceName        `pulumi:"internetServiceNames"`
-	InternetServiceNegate       *string                                         `pulumi:"internetServiceNegate"`
-	IpsSensor                   *string                                         `pulumi:"ipsSensor"`
-	Label                       *string                                         `pulumi:"label"`
-	Logtraffic                  *string                                         `pulumi:"logtraffic"`
-	LogtrafficStart             *string                                         `pulumi:"logtrafficStart"`
-	Name                        *string                                         `pulumi:"name"`
-	Policyid                    *int                                            `pulumi:"policyid"`
-	Poolnames                   []FirewallProxyPolicyPoolname                   `pulumi:"poolnames"`
-	ProfileGroup                *string                                         `pulumi:"profileGroup"`
-	ProfileProtocolOptions      *string                                         `pulumi:"profileProtocolOptions"`
-	ProfileType                 *string                                         `pulumi:"profileType"`
-	Proxy                       string                                          `pulumi:"proxy"`
-	RedirectUrl                 *string                                         `pulumi:"redirectUrl"`
-	ReplacemsgOverrideGroup     *string                                         `pulumi:"replacemsgOverrideGroup"`
-	ScanBotnetConnections       *string                                         `pulumi:"scanBotnetConnections"`
-	Schedule                    string                                          `pulumi:"schedule"`
-	SctpFilterProfile           *string                                         `pulumi:"sctpFilterProfile"`
-	ServiceNegate               *string                                         `pulumi:"serviceNegate"`
-	Services                    []FirewallProxyPolicyService                    `pulumi:"services"`
-	SessionTtl                  *int                                            `pulumi:"sessionTtl"`
-	SpamfilterProfile           *string                                         `pulumi:"spamfilterProfile"`
-	Srcaddr6s                   []FirewallProxyPolicySrcaddr6                   `pulumi:"srcaddr6s"`
-	SrcaddrNegate               *string                                         `pulumi:"srcaddrNegate"`
-	Srcaddrs                    []FirewallProxyPolicySrcaddr                    `pulumi:"srcaddrs"`
-	Srcintfs                    []FirewallProxyPolicySrcintf                    `pulumi:"srcintfs"`
-	SshFilterProfile            *string                                         `pulumi:"sshFilterProfile"`
-	SshPolicyRedirect           *string                                         `pulumi:"sshPolicyRedirect"`
-	SslSshProfile               *string                                         `pulumi:"sslSshProfile"`
-	Status                      *string                                         `pulumi:"status"`
-	Transparent                 *string                                         `pulumi:"transparent"`
-	Users                       []FirewallProxyPolicyUser                       `pulumi:"users"`
-	UtmStatus                   *string                                         `pulumi:"utmStatus"`
-	Uuid                        *string                                         `pulumi:"uuid"`
-	Vdomparam                   *string                                         `pulumi:"vdomparam"`
-	VideofilterProfile          *string                                         `pulumi:"videofilterProfile"`
-	VoipProfile                 *string                                         `pulumi:"voipProfile"`
-	WafProfile                  *string                                         `pulumi:"wafProfile"`
-	Webcache                    *string                                         `pulumi:"webcache"`
-	WebcacheHttps               *string                                         `pulumi:"webcacheHttps"`
-	WebfilterProfile            *string                                         `pulumi:"webfilterProfile"`
-	WebproxyForwardServer       *string                                         `pulumi:"webproxyForwardServer"`
-	WebproxyProfile             *string                                         `pulumi:"webproxyProfile"`
-	ZtnaEmsTags                 []FirewallProxyPolicyZtnaEmsTag                 `pulumi:"ztnaEmsTags"`
-	ZtnaTagsMatchLogic          *string                                         `pulumi:"ztnaTagsMatchLogic"`
+	AccessProxies                []FirewallProxyPolicyAccessProxy                 `pulumi:"accessProxies"`
+	AccessProxy6s                []FirewallProxyPolicyAccessProxy6                `pulumi:"accessProxy6s"`
+	Action                       *string                                          `pulumi:"action"`
+	ApplicationList              *string                                          `pulumi:"applicationList"`
+	AvProfile                    *string                                          `pulumi:"avProfile"`
+	BlockNotification            *string                                          `pulumi:"blockNotification"`
+	CifsProfile                  *string                                          `pulumi:"cifsProfile"`
+	Comments                     *string                                          `pulumi:"comments"`
+	DecryptedTrafficMirror       *string                                          `pulumi:"decryptedTrafficMirror"`
+	DeviceOwnership              *string                                          `pulumi:"deviceOwnership"`
+	Disclaimer                   *string                                          `pulumi:"disclaimer"`
+	DlpProfile                   *string                                          `pulumi:"dlpProfile"`
+	DlpSensor                    *string                                          `pulumi:"dlpSensor"`
+	Dstaddr6s                    []FirewallProxyPolicyDstaddr6                    `pulumi:"dstaddr6s"`
+	DstaddrNegate                *string                                          `pulumi:"dstaddrNegate"`
+	Dstaddrs                     []FirewallProxyPolicyDstaddr                     `pulumi:"dstaddrs"`
+	Dstintfs                     []FirewallProxyPolicyDstintf                     `pulumi:"dstintfs"`
+	DynamicSortSubtable          *string                                          `pulumi:"dynamicSortSubtable"`
+	EmailfilterProfile           *string                                          `pulumi:"emailfilterProfile"`
+	FileFilterProfile            *string                                          `pulumi:"fileFilterProfile"`
+	GetAllTables                 *string                                          `pulumi:"getAllTables"`
+	GlobalLabel                  *string                                          `pulumi:"globalLabel"`
+	Groups                       []FirewallProxyPolicyGroup                       `pulumi:"groups"`
+	HttpTunnelAuth               *string                                          `pulumi:"httpTunnelAuth"`
+	IcapProfile                  *string                                          `pulumi:"icapProfile"`
+	InternetService              *string                                          `pulumi:"internetService"`
+	InternetService6             *string                                          `pulumi:"internetService6"`
+	InternetService6CustomGroups []FirewallProxyPolicyInternetService6CustomGroup `pulumi:"internetService6CustomGroups"`
+	InternetService6Customs      []FirewallProxyPolicyInternetService6Custom      `pulumi:"internetService6Customs"`
+	InternetService6Groups       []FirewallProxyPolicyInternetService6Group       `pulumi:"internetService6Groups"`
+	InternetService6Names        []FirewallProxyPolicyInternetService6Name        `pulumi:"internetService6Names"`
+	InternetService6Negate       *string                                          `pulumi:"internetService6Negate"`
+	InternetServiceCustomGroups  []FirewallProxyPolicyInternetServiceCustomGroup  `pulumi:"internetServiceCustomGroups"`
+	InternetServiceCustoms       []FirewallProxyPolicyInternetServiceCustom       `pulumi:"internetServiceCustoms"`
+	InternetServiceGroups        []FirewallProxyPolicyInternetServiceGroup        `pulumi:"internetServiceGroups"`
+	InternetServiceIds           []FirewallProxyPolicyInternetServiceId           `pulumi:"internetServiceIds"`
+	InternetServiceNames         []FirewallProxyPolicyInternetServiceName         `pulumi:"internetServiceNames"`
+	InternetServiceNegate        *string                                          `pulumi:"internetServiceNegate"`
+	IpsSensor                    *string                                          `pulumi:"ipsSensor"`
+	IpsVoipFilter                *string                                          `pulumi:"ipsVoipFilter"`
+	Label                        *string                                          `pulumi:"label"`
+	Logtraffic                   *string                                          `pulumi:"logtraffic"`
+	LogtrafficStart              *string                                          `pulumi:"logtrafficStart"`
+	Name                         *string                                          `pulumi:"name"`
+	Policyid                     *int                                             `pulumi:"policyid"`
+	Poolnames                    []FirewallProxyPolicyPoolname                    `pulumi:"poolnames"`
+	ProfileGroup                 *string                                          `pulumi:"profileGroup"`
+	ProfileProtocolOptions       *string                                          `pulumi:"profileProtocolOptions"`
+	ProfileType                  *string                                          `pulumi:"profileType"`
+	Proxy                        string                                           `pulumi:"proxy"`
+	RedirectUrl                  *string                                          `pulumi:"redirectUrl"`
+	ReplacemsgOverrideGroup      *string                                          `pulumi:"replacemsgOverrideGroup"`
+	ScanBotnetConnections        *string                                          `pulumi:"scanBotnetConnections"`
+	Schedule                     string                                           `pulumi:"schedule"`
+	SctpFilterProfile            *string                                          `pulumi:"sctpFilterProfile"`
+	ServiceNegate                *string                                          `pulumi:"serviceNegate"`
+	Services                     []FirewallProxyPolicyService                     `pulumi:"services"`
+	SessionTtl                   *int                                             `pulumi:"sessionTtl"`
+	SpamfilterProfile            *string                                          `pulumi:"spamfilterProfile"`
+	Srcaddr6s                    []FirewallProxyPolicySrcaddr6                    `pulumi:"srcaddr6s"`
+	SrcaddrNegate                *string                                          `pulumi:"srcaddrNegate"`
+	Srcaddrs                     []FirewallProxyPolicySrcaddr                     `pulumi:"srcaddrs"`
+	Srcintfs                     []FirewallProxyPolicySrcintf                     `pulumi:"srcintfs"`
+	SshFilterProfile             *string                                          `pulumi:"sshFilterProfile"`
+	SshPolicyRedirect            *string                                          `pulumi:"sshPolicyRedirect"`
+	SslSshProfile                *string                                          `pulumi:"sslSshProfile"`
+	Status                       *string                                          `pulumi:"status"`
+	Transparent                  *string                                          `pulumi:"transparent"`
+	Users                        []FirewallProxyPolicyUser                        `pulumi:"users"`
+	UtmStatus                    *string                                          `pulumi:"utmStatus"`
+	Uuid                         *string                                          `pulumi:"uuid"`
+	Vdomparam                    *string                                          `pulumi:"vdomparam"`
+	VideofilterProfile           *string                                          `pulumi:"videofilterProfile"`
+	VoipProfile                  *string                                          `pulumi:"voipProfile"`
+	WafProfile                   *string                                          `pulumi:"wafProfile"`
+	Webcache                     *string                                          `pulumi:"webcache"`
+	WebcacheHttps                *string                                          `pulumi:"webcacheHttps"`
+	WebfilterProfile             *string                                          `pulumi:"webfilterProfile"`
+	WebproxyForwardServer        *string                                          `pulumi:"webproxyForwardServer"`
+	WebproxyProfile              *string                                          `pulumi:"webproxyProfile"`
+	ZtnaEmsTags                  []FirewallProxyPolicyZtnaEmsTag                  `pulumi:"ztnaEmsTags"`
+	ZtnaTagsMatchLogic           *string                                          `pulumi:"ztnaTagsMatchLogic"`
 }
 
 // The set of arguments for constructing a FirewallProxyPolicy resource.
 type FirewallProxyPolicyArgs struct {
-	AccessProxies               FirewallProxyPolicyAccessProxyArrayInput
-	AccessProxy6s               FirewallProxyPolicyAccessProxy6ArrayInput
-	Action                      pulumi.StringPtrInput
-	ApplicationList             pulumi.StringPtrInput
-	AvProfile                   pulumi.StringPtrInput
-	BlockNotification           pulumi.StringPtrInput
-	CifsProfile                 pulumi.StringPtrInput
-	Comments                    pulumi.StringPtrInput
-	DecryptedTrafficMirror      pulumi.StringPtrInput
-	DeviceOwnership             pulumi.StringPtrInput
-	Disclaimer                  pulumi.StringPtrInput
-	DlpProfile                  pulumi.StringPtrInput
-	DlpSensor                   pulumi.StringPtrInput
-	Dstaddr6s                   FirewallProxyPolicyDstaddr6ArrayInput
-	DstaddrNegate               pulumi.StringPtrInput
-	Dstaddrs                    FirewallProxyPolicyDstaddrArrayInput
-	Dstintfs                    FirewallProxyPolicyDstintfArrayInput
-	DynamicSortSubtable         pulumi.StringPtrInput
-	EmailfilterProfile          pulumi.StringPtrInput
-	FileFilterProfile           pulumi.StringPtrInput
-	GlobalLabel                 pulumi.StringPtrInput
-	Groups                      FirewallProxyPolicyGroupArrayInput
-	HttpTunnelAuth              pulumi.StringPtrInput
-	IcapProfile                 pulumi.StringPtrInput
-	InternetService             pulumi.StringPtrInput
-	InternetServiceCustomGroups FirewallProxyPolicyInternetServiceCustomGroupArrayInput
-	InternetServiceCustoms      FirewallProxyPolicyInternetServiceCustomArrayInput
-	InternetServiceGroups       FirewallProxyPolicyInternetServiceGroupArrayInput
-	InternetServiceIds          FirewallProxyPolicyInternetServiceIdArrayInput
-	InternetServiceNames        FirewallProxyPolicyInternetServiceNameArrayInput
-	InternetServiceNegate       pulumi.StringPtrInput
-	IpsSensor                   pulumi.StringPtrInput
-	Label                       pulumi.StringPtrInput
-	Logtraffic                  pulumi.StringPtrInput
-	LogtrafficStart             pulumi.StringPtrInput
-	Name                        pulumi.StringPtrInput
-	Policyid                    pulumi.IntPtrInput
-	Poolnames                   FirewallProxyPolicyPoolnameArrayInput
-	ProfileGroup                pulumi.StringPtrInput
-	ProfileProtocolOptions      pulumi.StringPtrInput
-	ProfileType                 pulumi.StringPtrInput
-	Proxy                       pulumi.StringInput
-	RedirectUrl                 pulumi.StringPtrInput
-	ReplacemsgOverrideGroup     pulumi.StringPtrInput
-	ScanBotnetConnections       pulumi.StringPtrInput
-	Schedule                    pulumi.StringInput
-	SctpFilterProfile           pulumi.StringPtrInput
-	ServiceNegate               pulumi.StringPtrInput
-	Services                    FirewallProxyPolicyServiceArrayInput
-	SessionTtl                  pulumi.IntPtrInput
-	SpamfilterProfile           pulumi.StringPtrInput
-	Srcaddr6s                   FirewallProxyPolicySrcaddr6ArrayInput
-	SrcaddrNegate               pulumi.StringPtrInput
-	Srcaddrs                    FirewallProxyPolicySrcaddrArrayInput
-	Srcintfs                    FirewallProxyPolicySrcintfArrayInput
-	SshFilterProfile            pulumi.StringPtrInput
-	SshPolicyRedirect           pulumi.StringPtrInput
-	SslSshProfile               pulumi.StringPtrInput
-	Status                      pulumi.StringPtrInput
-	Transparent                 pulumi.StringPtrInput
-	Users                       FirewallProxyPolicyUserArrayInput
-	UtmStatus                   pulumi.StringPtrInput
-	Uuid                        pulumi.StringPtrInput
-	Vdomparam                   pulumi.StringPtrInput
-	VideofilterProfile          pulumi.StringPtrInput
-	VoipProfile                 pulumi.StringPtrInput
-	WafProfile                  pulumi.StringPtrInput
-	Webcache                    pulumi.StringPtrInput
-	WebcacheHttps               pulumi.StringPtrInput
-	WebfilterProfile            pulumi.StringPtrInput
-	WebproxyForwardServer       pulumi.StringPtrInput
-	WebproxyProfile             pulumi.StringPtrInput
-	ZtnaEmsTags                 FirewallProxyPolicyZtnaEmsTagArrayInput
-	ZtnaTagsMatchLogic          pulumi.StringPtrInput
+	AccessProxies                FirewallProxyPolicyAccessProxyArrayInput
+	AccessProxy6s                FirewallProxyPolicyAccessProxy6ArrayInput
+	Action                       pulumi.StringPtrInput
+	ApplicationList              pulumi.StringPtrInput
+	AvProfile                    pulumi.StringPtrInput
+	BlockNotification            pulumi.StringPtrInput
+	CifsProfile                  pulumi.StringPtrInput
+	Comments                     pulumi.StringPtrInput
+	DecryptedTrafficMirror       pulumi.StringPtrInput
+	DeviceOwnership              pulumi.StringPtrInput
+	Disclaimer                   pulumi.StringPtrInput
+	DlpProfile                   pulumi.StringPtrInput
+	DlpSensor                    pulumi.StringPtrInput
+	Dstaddr6s                    FirewallProxyPolicyDstaddr6ArrayInput
+	DstaddrNegate                pulumi.StringPtrInput
+	Dstaddrs                     FirewallProxyPolicyDstaddrArrayInput
+	Dstintfs                     FirewallProxyPolicyDstintfArrayInput
+	DynamicSortSubtable          pulumi.StringPtrInput
+	EmailfilterProfile           pulumi.StringPtrInput
+	FileFilterProfile            pulumi.StringPtrInput
+	GetAllTables                 pulumi.StringPtrInput
+	GlobalLabel                  pulumi.StringPtrInput
+	Groups                       FirewallProxyPolicyGroupArrayInput
+	HttpTunnelAuth               pulumi.StringPtrInput
+	IcapProfile                  pulumi.StringPtrInput
+	InternetService              pulumi.StringPtrInput
+	InternetService6             pulumi.StringPtrInput
+	InternetService6CustomGroups FirewallProxyPolicyInternetService6CustomGroupArrayInput
+	InternetService6Customs      FirewallProxyPolicyInternetService6CustomArrayInput
+	InternetService6Groups       FirewallProxyPolicyInternetService6GroupArrayInput
+	InternetService6Names        FirewallProxyPolicyInternetService6NameArrayInput
+	InternetService6Negate       pulumi.StringPtrInput
+	InternetServiceCustomGroups  FirewallProxyPolicyInternetServiceCustomGroupArrayInput
+	InternetServiceCustoms       FirewallProxyPolicyInternetServiceCustomArrayInput
+	InternetServiceGroups        FirewallProxyPolicyInternetServiceGroupArrayInput
+	InternetServiceIds           FirewallProxyPolicyInternetServiceIdArrayInput
+	InternetServiceNames         FirewallProxyPolicyInternetServiceNameArrayInput
+	InternetServiceNegate        pulumi.StringPtrInput
+	IpsSensor                    pulumi.StringPtrInput
+	IpsVoipFilter                pulumi.StringPtrInput
+	Label                        pulumi.StringPtrInput
+	Logtraffic                   pulumi.StringPtrInput
+	LogtrafficStart              pulumi.StringPtrInput
+	Name                         pulumi.StringPtrInput
+	Policyid                     pulumi.IntPtrInput
+	Poolnames                    FirewallProxyPolicyPoolnameArrayInput
+	ProfileGroup                 pulumi.StringPtrInput
+	ProfileProtocolOptions       pulumi.StringPtrInput
+	ProfileType                  pulumi.StringPtrInput
+	Proxy                        pulumi.StringInput
+	RedirectUrl                  pulumi.StringPtrInput
+	ReplacemsgOverrideGroup      pulumi.StringPtrInput
+	ScanBotnetConnections        pulumi.StringPtrInput
+	Schedule                     pulumi.StringInput
+	SctpFilterProfile            pulumi.StringPtrInput
+	ServiceNegate                pulumi.StringPtrInput
+	Services                     FirewallProxyPolicyServiceArrayInput
+	SessionTtl                   pulumi.IntPtrInput
+	SpamfilterProfile            pulumi.StringPtrInput
+	Srcaddr6s                    FirewallProxyPolicySrcaddr6ArrayInput
+	SrcaddrNegate                pulumi.StringPtrInput
+	Srcaddrs                     FirewallProxyPolicySrcaddrArrayInput
+	Srcintfs                     FirewallProxyPolicySrcintfArrayInput
+	SshFilterProfile             pulumi.StringPtrInput
+	SshPolicyRedirect            pulumi.StringPtrInput
+	SslSshProfile                pulumi.StringPtrInput
+	Status                       pulumi.StringPtrInput
+	Transparent                  pulumi.StringPtrInput
+	Users                        FirewallProxyPolicyUserArrayInput
+	UtmStatus                    pulumi.StringPtrInput
+	Uuid                         pulumi.StringPtrInput
+	Vdomparam                    pulumi.StringPtrInput
+	VideofilterProfile           pulumi.StringPtrInput
+	VoipProfile                  pulumi.StringPtrInput
+	WafProfile                   pulumi.StringPtrInput
+	Webcache                     pulumi.StringPtrInput
+	WebcacheHttps                pulumi.StringPtrInput
+	WebfilterProfile             pulumi.StringPtrInput
+	WebproxyForwardServer        pulumi.StringPtrInput
+	WebproxyProfile              pulumi.StringPtrInput
+	ZtnaEmsTags                  FirewallProxyPolicyZtnaEmsTagArrayInput
+	ZtnaTagsMatchLogic           pulumi.StringPtrInput
 }
 
 func (FirewallProxyPolicyArgs) ElementType() reflect.Type {
@@ -608,6 +649,10 @@ func (o FirewallProxyPolicyOutput) FileFilterProfile() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallProxyPolicy) pulumi.StringOutput { return v.FileFilterProfile }).(pulumi.StringOutput)
 }
 
+func (o FirewallProxyPolicyOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallProxyPolicy) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 func (o FirewallProxyPolicyOutput) GlobalLabel() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallProxyPolicy) pulumi.StringOutput { return v.GlobalLabel }).(pulumi.StringOutput)
 }
@@ -626,6 +671,38 @@ func (o FirewallProxyPolicyOutput) IcapProfile() pulumi.StringOutput {
 
 func (o FirewallProxyPolicyOutput) InternetService() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallProxyPolicy) pulumi.StringOutput { return v.InternetService }).(pulumi.StringOutput)
+}
+
+func (o FirewallProxyPolicyOutput) InternetService6() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProxyPolicy) pulumi.StringOutput { return v.InternetService6 }).(pulumi.StringOutput)
+}
+
+func (o FirewallProxyPolicyOutput) InternetService6CustomGroups() FirewallProxyPolicyInternetService6CustomGroupArrayOutput {
+	return o.ApplyT(func(v *FirewallProxyPolicy) FirewallProxyPolicyInternetService6CustomGroupArrayOutput {
+		return v.InternetService6CustomGroups
+	}).(FirewallProxyPolicyInternetService6CustomGroupArrayOutput)
+}
+
+func (o FirewallProxyPolicyOutput) InternetService6Customs() FirewallProxyPolicyInternetService6CustomArrayOutput {
+	return o.ApplyT(func(v *FirewallProxyPolicy) FirewallProxyPolicyInternetService6CustomArrayOutput {
+		return v.InternetService6Customs
+	}).(FirewallProxyPolicyInternetService6CustomArrayOutput)
+}
+
+func (o FirewallProxyPolicyOutput) InternetService6Groups() FirewallProxyPolicyInternetService6GroupArrayOutput {
+	return o.ApplyT(func(v *FirewallProxyPolicy) FirewallProxyPolicyInternetService6GroupArrayOutput {
+		return v.InternetService6Groups
+	}).(FirewallProxyPolicyInternetService6GroupArrayOutput)
+}
+
+func (o FirewallProxyPolicyOutput) InternetService6Names() FirewallProxyPolicyInternetService6NameArrayOutput {
+	return o.ApplyT(func(v *FirewallProxyPolicy) FirewallProxyPolicyInternetService6NameArrayOutput {
+		return v.InternetService6Names
+	}).(FirewallProxyPolicyInternetService6NameArrayOutput)
+}
+
+func (o FirewallProxyPolicyOutput) InternetService6Negate() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProxyPolicy) pulumi.StringOutput { return v.InternetService6Negate }).(pulumi.StringOutput)
 }
 
 func (o FirewallProxyPolicyOutput) InternetServiceCustomGroups() FirewallProxyPolicyInternetServiceCustomGroupArrayOutput {
@@ -664,6 +741,10 @@ func (o FirewallProxyPolicyOutput) InternetServiceNegate() pulumi.StringOutput {
 
 func (o FirewallProxyPolicyOutput) IpsSensor() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallProxyPolicy) pulumi.StringOutput { return v.IpsSensor }).(pulumi.StringOutput)
+}
+
+func (o FirewallProxyPolicyOutput) IpsVoipFilter() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProxyPolicy) pulumi.StringOutput { return v.IpsVoipFilter }).(pulumi.StringOutput)
 }
 
 func (o FirewallProxyPolicyOutput) Label() pulumi.StringOutput {

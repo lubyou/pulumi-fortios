@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupFirewallAddress6(ctx *pulumi.Context, args *LookupFirewallAddress6Args, opts ...pulumi.InvokeOption) (*LookupFirewallAddress6Result, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallAddress6Result
 	err := ctx.Invoke("fortios:index/getFirewallAddress6:GetFirewallAddress6", args, &rv, opts...)
 	if err != nil {
@@ -46,6 +47,7 @@ type LookupFirewallAddress6Result struct {
 	Macaddrs       []GetFirewallAddress6Macaddr       `pulumi:"macaddrs"`
 	Name           string                             `pulumi:"name"`
 	ObjId          string                             `pulumi:"objId"`
+	RouteTag       int                                `pulumi:"routeTag"`
 	Sdn            string                             `pulumi:"sdn"`
 	SdnTag         string                             `pulumi:"sdnTag"`
 	StartIp        string                             `pulumi:"startIp"`
@@ -165,6 +167,10 @@ func (o LookupFirewallAddress6ResultOutput) Name() pulumi.StringOutput {
 
 func (o LookupFirewallAddress6ResultOutput) ObjId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallAddress6Result) string { return v.ObjId }).(pulumi.StringOutput)
+}
+
+func (o LookupFirewallAddress6ResultOutput) RouteTag() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupFirewallAddress6Result) int { return v.RouteTag }).(pulumi.IntOutput)
 }
 
 func (o LookupFirewallAddress6ResultOutput) Sdn() pulumi.StringOutput {

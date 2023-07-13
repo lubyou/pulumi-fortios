@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,6 +16,7 @@ type ExtensionControllerFortigateProfile struct {
 
 	Extension    pulumi.StringOutput                                   `pulumi:"extension"`
 	Fosid        pulumi.IntOutput                                      `pulumi:"fosid"`
+	GetAllTables pulumi.StringPtrOutput                                `pulumi:"getAllTables"`
 	LanExtension ExtensionControllerFortigateProfileLanExtensionOutput `pulumi:"lanExtension"`
 	Name         pulumi.StringOutput                                   `pulumi:"name"`
 	Vdomparam    pulumi.StringPtrOutput                                `pulumi:"vdomparam"`
@@ -27,7 +29,7 @@ func NewExtensionControllerFortigateProfile(ctx *pulumi.Context,
 		args = &ExtensionControllerFortigateProfileArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ExtensionControllerFortigateProfile
 	err := ctx.RegisterResource("fortios:index/extensionControllerFortigateProfile:ExtensionControllerFortigateProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -52,6 +54,7 @@ func GetExtensionControllerFortigateProfile(ctx *pulumi.Context,
 type extensionControllerFortigateProfileState struct {
 	Extension    *string                                          `pulumi:"extension"`
 	Fosid        *int                                             `pulumi:"fosid"`
+	GetAllTables *string                                          `pulumi:"getAllTables"`
 	LanExtension *ExtensionControllerFortigateProfileLanExtension `pulumi:"lanExtension"`
 	Name         *string                                          `pulumi:"name"`
 	Vdomparam    *string                                          `pulumi:"vdomparam"`
@@ -60,6 +63,7 @@ type extensionControllerFortigateProfileState struct {
 type ExtensionControllerFortigateProfileState struct {
 	Extension    pulumi.StringPtrInput
 	Fosid        pulumi.IntPtrInput
+	GetAllTables pulumi.StringPtrInput
 	LanExtension ExtensionControllerFortigateProfileLanExtensionPtrInput
 	Name         pulumi.StringPtrInput
 	Vdomparam    pulumi.StringPtrInput
@@ -72,6 +76,7 @@ func (ExtensionControllerFortigateProfileState) ElementType() reflect.Type {
 type extensionControllerFortigateProfileArgs struct {
 	Extension    *string                                          `pulumi:"extension"`
 	Fosid        *int                                             `pulumi:"fosid"`
+	GetAllTables *string                                          `pulumi:"getAllTables"`
 	LanExtension *ExtensionControllerFortigateProfileLanExtension `pulumi:"lanExtension"`
 	Name         *string                                          `pulumi:"name"`
 	Vdomparam    *string                                          `pulumi:"vdomparam"`
@@ -81,6 +86,7 @@ type extensionControllerFortigateProfileArgs struct {
 type ExtensionControllerFortigateProfileArgs struct {
 	Extension    pulumi.StringPtrInput
 	Fosid        pulumi.IntPtrInput
+	GetAllTables pulumi.StringPtrInput
 	LanExtension ExtensionControllerFortigateProfileLanExtensionPtrInput
 	Name         pulumi.StringPtrInput
 	Vdomparam    pulumi.StringPtrInput
@@ -179,6 +185,10 @@ func (o ExtensionControllerFortigateProfileOutput) Extension() pulumi.StringOutp
 
 func (o ExtensionControllerFortigateProfileOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *ExtensionControllerFortigateProfile) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o ExtensionControllerFortigateProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtensionControllerFortigateProfile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o ExtensionControllerFortigateProfileOutput) LanExtension() ExtensionControllerFortigateProfileLanExtensionOutput {

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -44,7 +45,7 @@ func NewSystemVdomProperty(ctx *pulumi.Context,
 		args = &SystemVdomPropertyArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemVdomProperty
 	err := ctx.RegisterResource("fortios:index/systemVdomProperty:SystemVdomProperty", name, args, &resource, opts...)
 	if err != nil {

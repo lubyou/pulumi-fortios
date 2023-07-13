@@ -25,7 +25,9 @@ class FirewallCentralSnatMapArgs:
                  srcintfs: pulumi.Input[Sequence[pulumi.Input['FirewallCentralSnatMapSrcintfArgs']]],
                  comments: Optional[pulumi.Input[str]] = None,
                  dst_addr6s: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallCentralSnatMapDstAddr6Args']]]] = None,
+                 dst_port: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  nat46: Optional[pulumi.Input[str]] = None,
                  nat64: Optional[pulumi.Input[str]] = None,
                  nat_ippool6s: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallCentralSnatMapNatIppool6Args']]]] = None,
@@ -51,8 +53,12 @@ class FirewallCentralSnatMapArgs:
             pulumi.set(__self__, "comments", comments)
         if dst_addr6s is not None:
             pulumi.set(__self__, "dst_addr6s", dst_addr6s)
+        if dst_port is not None:
+            pulumi.set(__self__, "dst_port", dst_port)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if nat46 is not None:
             pulumi.set(__self__, "nat46", nat46)
         if nat64 is not None:
@@ -158,6 +164,15 @@ class FirewallCentralSnatMapArgs:
         pulumi.set(self, "dst_addr6s", value)
 
     @property
+    @pulumi.getter(name="dstPort")
+    def dst_port(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "dst_port")
+
+    @dst_port.setter
+    def dst_port(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dst_port", value)
+
+    @property
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
@@ -165,6 +180,15 @@ class FirewallCentralSnatMapArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -272,8 +296,10 @@ class _FirewallCentralSnatMapState:
                  comments: Optional[pulumi.Input[str]] = None,
                  dst_addr6s: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallCentralSnatMapDstAddr6Args']]]] = None,
                  dst_addrs: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallCentralSnatMapDstAddrArgs']]]] = None,
+                 dst_port: Optional[pulumi.Input[str]] = None,
                  dstintfs: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallCentralSnatMapDstintfArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  nat: Optional[pulumi.Input[str]] = None,
                  nat46: Optional[pulumi.Input[str]] = None,
                  nat64: Optional[pulumi.Input[str]] = None,
@@ -299,10 +325,14 @@ class _FirewallCentralSnatMapState:
             pulumi.set(__self__, "dst_addr6s", dst_addr6s)
         if dst_addrs is not None:
             pulumi.set(__self__, "dst_addrs", dst_addrs)
+        if dst_port is not None:
+            pulumi.set(__self__, "dst_port", dst_port)
         if dstintfs is not None:
             pulumi.set(__self__, "dstintfs", dstintfs)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if nat is not None:
             pulumi.set(__self__, "nat", nat)
         if nat46 is not None:
@@ -364,6 +394,15 @@ class _FirewallCentralSnatMapState:
         pulumi.set(self, "dst_addrs", value)
 
     @property
+    @pulumi.getter(name="dstPort")
+    def dst_port(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "dst_port")
+
+    @dst_port.setter
+    def dst_port(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dst_port", value)
+
+    @property
     @pulumi.getter
     def dstintfs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallCentralSnatMapDstintfArgs']]]]:
         return pulumi.get(self, "dstintfs")
@@ -380,6 +419,15 @@ class _FirewallCentralSnatMapState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -534,8 +582,10 @@ class FirewallCentralSnatMap(pulumi.CustomResource):
                  comments: Optional[pulumi.Input[str]] = None,
                  dst_addr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallCentralSnatMapDstAddr6Args']]]]] = None,
                  dst_addrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallCentralSnatMapDstAddrArgs']]]]] = None,
+                 dst_port: Optional[pulumi.Input[str]] = None,
                  dstintfs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallCentralSnatMapDstintfArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  nat: Optional[pulumi.Input[str]] = None,
                  nat46: Optional[pulumi.Input[str]] = None,
                  nat64: Optional[pulumi.Input[str]] = None,
@@ -584,8 +634,10 @@ class FirewallCentralSnatMap(pulumi.CustomResource):
                  comments: Optional[pulumi.Input[str]] = None,
                  dst_addr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallCentralSnatMapDstAddr6Args']]]]] = None,
                  dst_addrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallCentralSnatMapDstAddrArgs']]]]] = None,
+                 dst_port: Optional[pulumi.Input[str]] = None,
                  dstintfs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallCentralSnatMapDstintfArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  nat: Optional[pulumi.Input[str]] = None,
                  nat46: Optional[pulumi.Input[str]] = None,
                  nat64: Optional[pulumi.Input[str]] = None,
@@ -616,10 +668,12 @@ class FirewallCentralSnatMap(pulumi.CustomResource):
             if dst_addrs is None and not opts.urn:
                 raise TypeError("Missing required property 'dst_addrs'")
             __props__.__dict__["dst_addrs"] = dst_addrs
+            __props__.__dict__["dst_port"] = dst_port
             if dstintfs is None and not opts.urn:
                 raise TypeError("Missing required property 'dstintfs'")
             __props__.__dict__["dstintfs"] = dstintfs
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             if nat is None and not opts.urn:
                 raise TypeError("Missing required property 'nat'")
             __props__.__dict__["nat"] = nat
@@ -659,8 +713,10 @@ class FirewallCentralSnatMap(pulumi.CustomResource):
             comments: Optional[pulumi.Input[str]] = None,
             dst_addr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallCentralSnatMapDstAddr6Args']]]]] = None,
             dst_addrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallCentralSnatMapDstAddrArgs']]]]] = None,
+            dst_port: Optional[pulumi.Input[str]] = None,
             dstintfs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallCentralSnatMapDstintfArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             nat: Optional[pulumi.Input[str]] = None,
             nat46: Optional[pulumi.Input[str]] = None,
             nat64: Optional[pulumi.Input[str]] = None,
@@ -692,8 +748,10 @@ class FirewallCentralSnatMap(pulumi.CustomResource):
         __props__.__dict__["comments"] = comments
         __props__.__dict__["dst_addr6s"] = dst_addr6s
         __props__.__dict__["dst_addrs"] = dst_addrs
+        __props__.__dict__["dst_port"] = dst_port
         __props__.__dict__["dstintfs"] = dstintfs
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["nat"] = nat
         __props__.__dict__["nat46"] = nat46
         __props__.__dict__["nat64"] = nat64
@@ -728,6 +786,11 @@ class FirewallCentralSnatMap(pulumi.CustomResource):
         return pulumi.get(self, "dst_addrs")
 
     @property
+    @pulumi.getter(name="dstPort")
+    def dst_port(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "dst_port")
+
+    @property
     @pulumi.getter
     def dstintfs(self) -> pulumi.Output[Sequence['outputs.FirewallCentralSnatMapDstintf']]:
         return pulumi.get(self, "dstintfs")
@@ -736,6 +799,11 @@ class FirewallCentralSnatMap(pulumi.CustomResource):
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

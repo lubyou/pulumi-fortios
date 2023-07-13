@@ -7,19 +7,25 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type SystemIpam struct {
 	pulumi.CustomResourceState
 
-	DynamicSortSubtable pulumi.StringPtrOutput    `pulumi:"dynamicSortSubtable"`
-	PoolSubnet          pulumi.StringOutput       `pulumi:"poolSubnet"`
-	Pools               SystemIpamPoolArrayOutput `pulumi:"pools"`
-	Rules               SystemIpamRuleArrayOutput `pulumi:"rules"`
-	ServerType          pulumi.StringOutput       `pulumi:"serverType"`
-	Status              pulumi.StringOutput       `pulumi:"status"`
-	Vdomparam           pulumi.StringPtrOutput    `pulumi:"vdomparam"`
+	AutomaticConflictResolution pulumi.StringOutput       `pulumi:"automaticConflictResolution"`
+	DynamicSortSubtable         pulumi.StringPtrOutput    `pulumi:"dynamicSortSubtable"`
+	GetAllTables                pulumi.StringPtrOutput    `pulumi:"getAllTables"`
+	ManageLanAddresses          pulumi.StringOutput       `pulumi:"manageLanAddresses"`
+	ManageLanExtensionAddresses pulumi.StringOutput       `pulumi:"manageLanExtensionAddresses"`
+	ManageSsidAddresses         pulumi.StringOutput       `pulumi:"manageSsidAddresses"`
+	PoolSubnet                  pulumi.StringOutput       `pulumi:"poolSubnet"`
+	Pools                       SystemIpamPoolArrayOutput `pulumi:"pools"`
+	Rules                       SystemIpamRuleArrayOutput `pulumi:"rules"`
+	ServerType                  pulumi.StringOutput       `pulumi:"serverType"`
+	Status                      pulumi.StringOutput       `pulumi:"status"`
+	Vdomparam                   pulumi.StringPtrOutput    `pulumi:"vdomparam"`
 }
 
 // NewSystemIpam registers a new resource with the given unique name, arguments, and options.
@@ -29,7 +35,7 @@ func NewSystemIpam(ctx *pulumi.Context,
 		args = &SystemIpamArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemIpam
 	err := ctx.RegisterResource("fortios:index/systemIpam:SystemIpam", name, args, &resource, opts...)
 	if err != nil {
@@ -52,23 +58,33 @@ func GetSystemIpam(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemIpam resources.
 type systemIpamState struct {
-	DynamicSortSubtable *string          `pulumi:"dynamicSortSubtable"`
-	PoolSubnet          *string          `pulumi:"poolSubnet"`
-	Pools               []SystemIpamPool `pulumi:"pools"`
-	Rules               []SystemIpamRule `pulumi:"rules"`
-	ServerType          *string          `pulumi:"serverType"`
-	Status              *string          `pulumi:"status"`
-	Vdomparam           *string          `pulumi:"vdomparam"`
+	AutomaticConflictResolution *string          `pulumi:"automaticConflictResolution"`
+	DynamicSortSubtable         *string          `pulumi:"dynamicSortSubtable"`
+	GetAllTables                *string          `pulumi:"getAllTables"`
+	ManageLanAddresses          *string          `pulumi:"manageLanAddresses"`
+	ManageLanExtensionAddresses *string          `pulumi:"manageLanExtensionAddresses"`
+	ManageSsidAddresses         *string          `pulumi:"manageSsidAddresses"`
+	PoolSubnet                  *string          `pulumi:"poolSubnet"`
+	Pools                       []SystemIpamPool `pulumi:"pools"`
+	Rules                       []SystemIpamRule `pulumi:"rules"`
+	ServerType                  *string          `pulumi:"serverType"`
+	Status                      *string          `pulumi:"status"`
+	Vdomparam                   *string          `pulumi:"vdomparam"`
 }
 
 type SystemIpamState struct {
-	DynamicSortSubtable pulumi.StringPtrInput
-	PoolSubnet          pulumi.StringPtrInput
-	Pools               SystemIpamPoolArrayInput
-	Rules               SystemIpamRuleArrayInput
-	ServerType          pulumi.StringPtrInput
-	Status              pulumi.StringPtrInput
-	Vdomparam           pulumi.StringPtrInput
+	AutomaticConflictResolution pulumi.StringPtrInput
+	DynamicSortSubtable         pulumi.StringPtrInput
+	GetAllTables                pulumi.StringPtrInput
+	ManageLanAddresses          pulumi.StringPtrInput
+	ManageLanExtensionAddresses pulumi.StringPtrInput
+	ManageSsidAddresses         pulumi.StringPtrInput
+	PoolSubnet                  pulumi.StringPtrInput
+	Pools                       SystemIpamPoolArrayInput
+	Rules                       SystemIpamRuleArrayInput
+	ServerType                  pulumi.StringPtrInput
+	Status                      pulumi.StringPtrInput
+	Vdomparam                   pulumi.StringPtrInput
 }
 
 func (SystemIpamState) ElementType() reflect.Type {
@@ -76,24 +92,34 @@ func (SystemIpamState) ElementType() reflect.Type {
 }
 
 type systemIpamArgs struct {
-	DynamicSortSubtable *string          `pulumi:"dynamicSortSubtable"`
-	PoolSubnet          *string          `pulumi:"poolSubnet"`
-	Pools               []SystemIpamPool `pulumi:"pools"`
-	Rules               []SystemIpamRule `pulumi:"rules"`
-	ServerType          *string          `pulumi:"serverType"`
-	Status              *string          `pulumi:"status"`
-	Vdomparam           *string          `pulumi:"vdomparam"`
+	AutomaticConflictResolution *string          `pulumi:"automaticConflictResolution"`
+	DynamicSortSubtable         *string          `pulumi:"dynamicSortSubtable"`
+	GetAllTables                *string          `pulumi:"getAllTables"`
+	ManageLanAddresses          *string          `pulumi:"manageLanAddresses"`
+	ManageLanExtensionAddresses *string          `pulumi:"manageLanExtensionAddresses"`
+	ManageSsidAddresses         *string          `pulumi:"manageSsidAddresses"`
+	PoolSubnet                  *string          `pulumi:"poolSubnet"`
+	Pools                       []SystemIpamPool `pulumi:"pools"`
+	Rules                       []SystemIpamRule `pulumi:"rules"`
+	ServerType                  *string          `pulumi:"serverType"`
+	Status                      *string          `pulumi:"status"`
+	Vdomparam                   *string          `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemIpam resource.
 type SystemIpamArgs struct {
-	DynamicSortSubtable pulumi.StringPtrInput
-	PoolSubnet          pulumi.StringPtrInput
-	Pools               SystemIpamPoolArrayInput
-	Rules               SystemIpamRuleArrayInput
-	ServerType          pulumi.StringPtrInput
-	Status              pulumi.StringPtrInput
-	Vdomparam           pulumi.StringPtrInput
+	AutomaticConflictResolution pulumi.StringPtrInput
+	DynamicSortSubtable         pulumi.StringPtrInput
+	GetAllTables                pulumi.StringPtrInput
+	ManageLanAddresses          pulumi.StringPtrInput
+	ManageLanExtensionAddresses pulumi.StringPtrInput
+	ManageSsidAddresses         pulumi.StringPtrInput
+	PoolSubnet                  pulumi.StringPtrInput
+	Pools                       SystemIpamPoolArrayInput
+	Rules                       SystemIpamRuleArrayInput
+	ServerType                  pulumi.StringPtrInput
+	Status                      pulumi.StringPtrInput
+	Vdomparam                   pulumi.StringPtrInput
 }
 
 func (SystemIpamArgs) ElementType() reflect.Type {
@@ -183,8 +209,28 @@ func (o SystemIpamOutput) ToSystemIpamOutputWithContext(ctx context.Context) Sys
 	return o
 }
 
+func (o SystemIpamOutput) AutomaticConflictResolution() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemIpam) pulumi.StringOutput { return v.AutomaticConflictResolution }).(pulumi.StringOutput)
+}
+
 func (o SystemIpamOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SystemIpam) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemIpamOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemIpam) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemIpamOutput) ManageLanAddresses() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemIpam) pulumi.StringOutput { return v.ManageLanAddresses }).(pulumi.StringOutput)
+}
+
+func (o SystemIpamOutput) ManageLanExtensionAddresses() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemIpam) pulumi.StringOutput { return v.ManageLanExtensionAddresses }).(pulumi.StringOutput)
+}
+
+func (o SystemIpamOutput) ManageSsidAddresses() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemIpam) pulumi.StringOutput { return v.ManageSsidAddresses }).(pulumi.StringOutput)
 }
 
 func (o SystemIpamOutput) PoolSubnet() pulumi.StringOutput {

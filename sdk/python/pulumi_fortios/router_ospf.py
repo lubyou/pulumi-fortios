@@ -37,6 +37,7 @@ class RouterOspfArgs:
                  distribute_lists: Optional[pulumi.Input[Sequence[pulumi.Input['RouterOspfDistributeListArgs']]]] = None,
                  distribute_route_map_in: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  log_neighbour_changes: Optional[pulumi.Input[str]] = None,
                  neighbors: Optional[pulumi.Input[Sequence[pulumi.Input['RouterOspfNeighborArgs']]]] = None,
                  networks: Optional[pulumi.Input[Sequence[pulumi.Input['RouterOspfNetworkArgs']]]] = None,
@@ -94,6 +95,8 @@ class RouterOspfArgs:
             pulumi.set(__self__, "distribute_route_map_in", distribute_route_map_in)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if log_neighbour_changes is not None:
             pulumi.set(__self__, "log_neighbour_changes", log_neighbour_changes)
         if neighbors is not None:
@@ -311,6 +314,15 @@ class RouterOspfArgs:
         pulumi.set(self, "dynamic_sort_subtable", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="logNeighbourChanges")
     def log_neighbour_changes(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "log_neighbour_changes")
@@ -451,6 +463,7 @@ class _RouterOspfState:
                  distribute_lists: Optional[pulumi.Input[Sequence[pulumi.Input['RouterOspfDistributeListArgs']]]] = None,
                  distribute_route_map_in: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  log_neighbour_changes: Optional[pulumi.Input[str]] = None,
                  neighbors: Optional[pulumi.Input[Sequence[pulumi.Input['RouterOspfNeighborArgs']]]] = None,
                  networks: Optional[pulumi.Input[Sequence[pulumi.Input['RouterOspfNetworkArgs']]]] = None,
@@ -508,6 +521,8 @@ class _RouterOspfState:
             pulumi.set(__self__, "distribute_route_map_in", distribute_route_map_in)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if log_neighbour_changes is not None:
             pulumi.set(__self__, "log_neighbour_changes", log_neighbour_changes)
         if neighbors is not None:
@@ -718,6 +733,15 @@ class _RouterOspfState:
         pulumi.set(self, "dynamic_sort_subtable", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="logNeighbourChanges")
     def log_neighbour_changes(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "log_neighbour_changes")
@@ -869,6 +893,7 @@ class RouterOspf(pulumi.CustomResource):
                  distribute_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterOspfDistributeListArgs']]]]] = None,
                  distribute_route_map_in: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  log_neighbour_changes: Optional[pulumi.Input[str]] = None,
                  neighbors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterOspfNeighborArgs']]]]] = None,
                  networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterOspfNetworkArgs']]]]] = None,
@@ -932,6 +957,7 @@ class RouterOspf(pulumi.CustomResource):
                  distribute_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterOspfDistributeListArgs']]]]] = None,
                  distribute_route_map_in: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  log_neighbour_changes: Optional[pulumi.Input[str]] = None,
                  neighbors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterOspfNeighborArgs']]]]] = None,
                  networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterOspfNetworkArgs']]]]] = None,
@@ -975,6 +1001,7 @@ class RouterOspf(pulumi.CustomResource):
             __props__.__dict__["distribute_lists"] = distribute_lists
             __props__.__dict__["distribute_route_map_in"] = distribute_route_map_in
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["log_neighbour_changes"] = log_neighbour_changes
             __props__.__dict__["neighbors"] = neighbors
             __props__.__dict__["networks"] = networks
@@ -1021,6 +1048,7 @@ class RouterOspf(pulumi.CustomResource):
             distribute_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterOspfDistributeListArgs']]]]] = None,
             distribute_route_map_in: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             log_neighbour_changes: Optional[pulumi.Input[str]] = None,
             neighbors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterOspfNeighborArgs']]]]] = None,
             networks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterOspfNetworkArgs']]]]] = None,
@@ -1067,6 +1095,7 @@ class RouterOspf(pulumi.CustomResource):
         __props__.__dict__["distribute_lists"] = distribute_lists
         __props__.__dict__["distribute_route_map_in"] = distribute_route_map_in
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["log_neighbour_changes"] = log_neighbour_changes
         __props__.__dict__["neighbors"] = neighbors
         __props__.__dict__["networks"] = networks
@@ -1182,6 +1211,11 @@ class RouterOspf(pulumi.CustomResource):
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="logNeighbourChanges")

@@ -22,6 +22,7 @@ class Routerospf6Ospf6InterfaceArgs:
                  cost: Optional[pulumi.Input[int]] = None,
                  dead_interval: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hello_interval: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ipsec_auth_alg: Optional[pulumi.Input[str]] = None,
@@ -53,6 +54,8 @@ class Routerospf6Ospf6InterfaceArgs:
             pulumi.set(__self__, "dead_interval", dead_interval)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if hello_interval is not None:
             pulumi.set(__self__, "hello_interval", hello_interval)
         if interface is not None:
@@ -139,6 +142,15 @@ class Routerospf6Ospf6InterfaceArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="helloInterval")
@@ -294,6 +306,7 @@ class _Routerospf6Ospf6InterfaceState:
                  cost: Optional[pulumi.Input[int]] = None,
                  dead_interval: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hello_interval: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ipsec_auth_alg: Optional[pulumi.Input[str]] = None,
@@ -325,6 +338,8 @@ class _Routerospf6Ospf6InterfaceState:
             pulumi.set(__self__, "dead_interval", dead_interval)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if hello_interval is not None:
             pulumi.set(__self__, "hello_interval", hello_interval)
         if interface is not None:
@@ -411,6 +426,15 @@ class _Routerospf6Ospf6InterfaceState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="helloInterval")
@@ -568,6 +592,7 @@ class Routerospf6Ospf6Interface(pulumi.CustomResource):
                  cost: Optional[pulumi.Input[int]] = None,
                  dead_interval: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hello_interval: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ipsec_auth_alg: Optional[pulumi.Input[str]] = None,
@@ -619,6 +644,7 @@ class Routerospf6Ospf6Interface(pulumi.CustomResource):
                  cost: Optional[pulumi.Input[int]] = None,
                  dead_interval: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hello_interval: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ipsec_auth_alg: Optional[pulumi.Input[str]] = None,
@@ -650,6 +676,7 @@ class Routerospf6Ospf6Interface(pulumi.CustomResource):
             __props__.__dict__["cost"] = cost
             __props__.__dict__["dead_interval"] = dead_interval
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["hello_interval"] = hello_interval
             __props__.__dict__["interface"] = interface
             __props__.__dict__["ipsec_auth_alg"] = ipsec_auth_alg
@@ -682,6 +709,7 @@ class Routerospf6Ospf6Interface(pulumi.CustomResource):
             cost: Optional[pulumi.Input[int]] = None,
             dead_interval: Optional[pulumi.Input[int]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             hello_interval: Optional[pulumi.Input[int]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             ipsec_auth_alg: Optional[pulumi.Input[str]] = None,
@@ -716,6 +744,7 @@ class Routerospf6Ospf6Interface(pulumi.CustomResource):
         __props__.__dict__["cost"] = cost
         __props__.__dict__["dead_interval"] = dead_interval
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["hello_interval"] = hello_interval
         __props__.__dict__["interface"] = interface
         __props__.__dict__["ipsec_auth_alg"] = ipsec_auth_alg
@@ -763,6 +792,11 @@ class Routerospf6Ospf6Interface(pulumi.CustomResource):
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="helloInterval")

@@ -145,17 +145,17 @@ def get_system_netflow(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemNetflow:GetSystemNetflow', __args__, opts=opts, typ=GetSystemNetflowResult).value
 
     return AwaitableGetSystemNetflowResult(
-        active_flow_timeout=__ret__.active_flow_timeout,
-        collector_ip=__ret__.collector_ip,
-        collector_port=__ret__.collector_port,
-        id=__ret__.id,
-        inactive_flow_timeout=__ret__.inactive_flow_timeout,
-        interface=__ret__.interface,
-        interface_select_method=__ret__.interface_select_method,
-        source_ip=__ret__.source_ip,
-        template_tx_counter=__ret__.template_tx_counter,
-        template_tx_timeout=__ret__.template_tx_timeout,
-        vdomparam=__ret__.vdomparam)
+        active_flow_timeout=pulumi.get(__ret__, 'active_flow_timeout'),
+        collector_ip=pulumi.get(__ret__, 'collector_ip'),
+        collector_port=pulumi.get(__ret__, 'collector_port'),
+        id=pulumi.get(__ret__, 'id'),
+        inactive_flow_timeout=pulumi.get(__ret__, 'inactive_flow_timeout'),
+        interface=pulumi.get(__ret__, 'interface'),
+        interface_select_method=pulumi.get(__ret__, 'interface_select_method'),
+        source_ip=pulumi.get(__ret__, 'source_ip'),
+        template_tx_counter=pulumi.get(__ret__, 'template_tx_counter'),
+        template_tx_timeout=pulumi.get(__ret__, 'template_tx_timeout'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_netflow)

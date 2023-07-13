@@ -44,6 +44,7 @@ export class ExtensionControllerExtender extends pulumi.CustomResource {
     public readonly extensionType!: pulumi.Output<string>;
     public readonly firmwareProvisionLatest!: pulumi.Output<string>;
     public readonly fosid!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly loginPassword!: pulumi.Output<string | undefined>;
     public readonly loginPasswordChange!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
@@ -78,6 +79,7 @@ export class ExtensionControllerExtender extends pulumi.CustomResource {
             resourceInputs["extensionType"] = state ? state.extensionType : undefined;
             resourceInputs["firmwareProvisionLatest"] = state ? state.firmwareProvisionLatest : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["loginPassword"] = state ? state.loginPassword : undefined;
             resourceInputs["loginPasswordChange"] = state ? state.loginPasswordChange : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -100,6 +102,7 @@ export class ExtensionControllerExtender extends pulumi.CustomResource {
             resourceInputs["extensionType"] = args ? args.extensionType : undefined;
             resourceInputs["firmwareProvisionLatest"] = args ? args.firmwareProvisionLatest : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["loginPassword"] = args ? args.loginPassword : undefined;
             resourceInputs["loginPasswordChange"] = args ? args.loginPasswordChange : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -130,6 +133,7 @@ export interface ExtensionControllerExtenderState {
     extensionType?: pulumi.Input<string>;
     firmwareProvisionLatest?: pulumi.Input<string>;
     fosid?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     loginPassword?: pulumi.Input<string>;
     loginPasswordChange?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
@@ -156,6 +160,7 @@ export interface ExtensionControllerExtenderArgs {
     extensionType?: pulumi.Input<string>;
     firmwareProvisionLatest?: pulumi.Input<string>;
     fosid?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     loginPassword?: pulumi.Input<string>;
     loginPasswordChange?: pulumi.Input<string>;
     name?: pulumi.Input<string>;

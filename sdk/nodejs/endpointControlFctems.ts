@@ -58,6 +58,7 @@ export class EndpointControlFctems extends pulumi.CustomResource {
     public readonly status!: pulumi.Output<string>;
     public readonly statusCheckInterval!: pulumi.Output<number>;
     public readonly tenantId!: pulumi.Output<string>;
+    public readonly trustCaCn!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
     public readonly websocketOverride!: pulumi.Output<string>;
 
@@ -100,6 +101,7 @@ export class EndpointControlFctems extends pulumi.CustomResource {
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["statusCheckInterval"] = state ? state.statusCheckInterval : undefined;
             resourceInputs["tenantId"] = state ? state.tenantId : undefined;
+            resourceInputs["trustCaCn"] = state ? state.trustCaCn : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["websocketOverride"] = state ? state.websocketOverride : undefined;
         } else {
@@ -130,6 +132,7 @@ export class EndpointControlFctems extends pulumi.CustomResource {
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["statusCheckInterval"] = args ? args.statusCheckInterval : undefined;
             resourceInputs["tenantId"] = args ? args.tenantId : undefined;
+            resourceInputs["trustCaCn"] = args ? args.trustCaCn : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["websocketOverride"] = args ? args.websocketOverride : undefined;
         }
@@ -170,6 +173,7 @@ export interface EndpointControlFctemsState {
     status?: pulumi.Input<string>;
     statusCheckInterval?: pulumi.Input<number>;
     tenantId?: pulumi.Input<string>;
+    trustCaCn?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
     websocketOverride?: pulumi.Input<string>;
 }
@@ -204,6 +208,7 @@ export interface EndpointControlFctemsArgs {
     status?: pulumi.Input<string>;
     statusCheckInterval?: pulumi.Input<number>;
     tenantId?: pulumi.Input<string>;
+    trustCaCn?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
     websocketOverride?: pulumi.Input<string>;
 }

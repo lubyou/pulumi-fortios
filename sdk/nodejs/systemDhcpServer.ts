@@ -58,6 +58,7 @@ export class SystemDhcpServer extends pulumi.CustomResource {
     public readonly filename!: pulumi.Output<string>;
     public readonly forticlientOnNetStatus!: pulumi.Output<string>;
     public readonly fosid!: pulumi.Output<number>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly interface!: pulumi.Output<string>;
     public readonly ipMode!: pulumi.Output<string>;
     public readonly ipRanges!: pulumi.Output<outputs.SystemDhcpServerIpRange[] | undefined>;
@@ -71,8 +72,10 @@ export class SystemDhcpServer extends pulumi.CustomResource {
     public readonly ntpServer3!: pulumi.Output<string>;
     public readonly ntpService!: pulumi.Output<string>;
     public readonly options!: pulumi.Output<outputs.SystemDhcpServerOption[] | undefined>;
+    public readonly relayAgent!: pulumi.Output<string>;
     public readonly reservedAddresses!: pulumi.Output<outputs.SystemDhcpServerReservedAddress[] | undefined>;
     public readonly serverType!: pulumi.Output<string>;
+    public readonly sharedSubnet!: pulumi.Output<string>;
     public readonly status!: pulumi.Output<string>;
     public readonly tftpServers!: pulumi.Output<outputs.SystemDhcpServerTftpServer[] | undefined>;
     public readonly timezone!: pulumi.Output<string>;
@@ -124,6 +127,7 @@ export class SystemDhcpServer extends pulumi.CustomResource {
             resourceInputs["filename"] = state ? state.filename : undefined;
             resourceInputs["forticlientOnNetStatus"] = state ? state.forticlientOnNetStatus : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
             resourceInputs["ipMode"] = state ? state.ipMode : undefined;
             resourceInputs["ipRanges"] = state ? state.ipRanges : undefined;
@@ -137,8 +141,10 @@ export class SystemDhcpServer extends pulumi.CustomResource {
             resourceInputs["ntpServer3"] = state ? state.ntpServer3 : undefined;
             resourceInputs["ntpService"] = state ? state.ntpService : undefined;
             resourceInputs["options"] = state ? state.options : undefined;
+            resourceInputs["relayAgent"] = state ? state.relayAgent : undefined;
             resourceInputs["reservedAddresses"] = state ? state.reservedAddresses : undefined;
             resourceInputs["serverType"] = state ? state.serverType : undefined;
+            resourceInputs["sharedSubnet"] = state ? state.sharedSubnet : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["tftpServers"] = state ? state.tftpServers : undefined;
             resourceInputs["timezone"] = state ? state.timezone : undefined;
@@ -184,6 +190,7 @@ export class SystemDhcpServer extends pulumi.CustomResource {
             resourceInputs["filename"] = args ? args.filename : undefined;
             resourceInputs["forticlientOnNetStatus"] = args ? args.forticlientOnNetStatus : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["ipMode"] = args ? args.ipMode : undefined;
             resourceInputs["ipRanges"] = args ? args.ipRanges : undefined;
@@ -197,8 +204,10 @@ export class SystemDhcpServer extends pulumi.CustomResource {
             resourceInputs["ntpServer3"] = args ? args.ntpServer3 : undefined;
             resourceInputs["ntpService"] = args ? args.ntpService : undefined;
             resourceInputs["options"] = args ? args.options : undefined;
+            resourceInputs["relayAgent"] = args ? args.relayAgent : undefined;
             resourceInputs["reservedAddresses"] = args ? args.reservedAddresses : undefined;
             resourceInputs["serverType"] = args ? args.serverType : undefined;
+            resourceInputs["sharedSubnet"] = args ? args.sharedSubnet : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["tftpServers"] = args ? args.tftpServers : undefined;
             resourceInputs["timezone"] = args ? args.timezone : undefined;
@@ -248,6 +257,7 @@ export interface SystemDhcpServerState {
     filename?: pulumi.Input<string>;
     forticlientOnNetStatus?: pulumi.Input<string>;
     fosid?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     interface?: pulumi.Input<string>;
     ipMode?: pulumi.Input<string>;
     ipRanges?: pulumi.Input<pulumi.Input<inputs.SystemDhcpServerIpRange>[]>;
@@ -261,8 +271,10 @@ export interface SystemDhcpServerState {
     ntpServer3?: pulumi.Input<string>;
     ntpService?: pulumi.Input<string>;
     options?: pulumi.Input<pulumi.Input<inputs.SystemDhcpServerOption>[]>;
+    relayAgent?: pulumi.Input<string>;
     reservedAddresses?: pulumi.Input<pulumi.Input<inputs.SystemDhcpServerReservedAddress>[]>;
     serverType?: pulumi.Input<string>;
+    sharedSubnet?: pulumi.Input<string>;
     status?: pulumi.Input<string>;
     tftpServers?: pulumi.Input<pulumi.Input<inputs.SystemDhcpServerTftpServer>[]>;
     timezone?: pulumi.Input<string>;
@@ -306,6 +318,7 @@ export interface SystemDhcpServerArgs {
     filename?: pulumi.Input<string>;
     forticlientOnNetStatus?: pulumi.Input<string>;
     fosid?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     interface: pulumi.Input<string>;
     ipMode?: pulumi.Input<string>;
     ipRanges?: pulumi.Input<pulumi.Input<inputs.SystemDhcpServerIpRange>[]>;
@@ -319,8 +332,10 @@ export interface SystemDhcpServerArgs {
     ntpServer3?: pulumi.Input<string>;
     ntpService?: pulumi.Input<string>;
     options?: pulumi.Input<pulumi.Input<inputs.SystemDhcpServerOption>[]>;
+    relayAgent?: pulumi.Input<string>;
     reservedAddresses?: pulumi.Input<pulumi.Input<inputs.SystemDhcpServerReservedAddress>[]>;
     serverType?: pulumi.Input<string>;
+    sharedSubnet?: pulumi.Input<string>;
     status?: pulumi.Input<string>;
     tftpServers?: pulumi.Input<pulumi.Input<inputs.SystemDhcpServerTftpServer>[]>;
     timezone?: pulumi.Input<string>;

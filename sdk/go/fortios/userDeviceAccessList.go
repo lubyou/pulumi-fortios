@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -16,6 +17,7 @@ type UserDeviceAccessList struct {
 	DefaultAction       pulumi.StringOutput                       `pulumi:"defaultAction"`
 	DeviceLists         UserDeviceAccessListDeviceListArrayOutput `pulumi:"deviceLists"`
 	DynamicSortSubtable pulumi.StringPtrOutput                    `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                    `pulumi:"getAllTables"`
 	Name                pulumi.StringOutput                       `pulumi:"name"`
 	Vdomparam           pulumi.StringPtrOutput                    `pulumi:"vdomparam"`
 }
@@ -27,7 +29,7 @@ func NewUserDeviceAccessList(ctx *pulumi.Context,
 		args = &UserDeviceAccessListArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource UserDeviceAccessList
 	err := ctx.RegisterResource("fortios:index/userDeviceAccessList:UserDeviceAccessList", name, args, &resource, opts...)
 	if err != nil {
@@ -53,6 +55,7 @@ type userDeviceAccessListState struct {
 	DefaultAction       *string                          `pulumi:"defaultAction"`
 	DeviceLists         []UserDeviceAccessListDeviceList `pulumi:"deviceLists"`
 	DynamicSortSubtable *string                          `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                          `pulumi:"getAllTables"`
 	Name                *string                          `pulumi:"name"`
 	Vdomparam           *string                          `pulumi:"vdomparam"`
 }
@@ -61,6 +64,7 @@ type UserDeviceAccessListState struct {
 	DefaultAction       pulumi.StringPtrInput
 	DeviceLists         UserDeviceAccessListDeviceListArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
 }
@@ -73,6 +77,7 @@ type userDeviceAccessListArgs struct {
 	DefaultAction       *string                          `pulumi:"defaultAction"`
 	DeviceLists         []UserDeviceAccessListDeviceList `pulumi:"deviceLists"`
 	DynamicSortSubtable *string                          `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                          `pulumi:"getAllTables"`
 	Name                *string                          `pulumi:"name"`
 	Vdomparam           *string                          `pulumi:"vdomparam"`
 }
@@ -82,6 +87,7 @@ type UserDeviceAccessListArgs struct {
 	DefaultAction       pulumi.StringPtrInput
 	DeviceLists         UserDeviceAccessListDeviceListArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
 }
@@ -183,6 +189,10 @@ func (o UserDeviceAccessListOutput) DeviceLists() UserDeviceAccessListDeviceList
 
 func (o UserDeviceAccessListOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *UserDeviceAccessList) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o UserDeviceAccessListOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserDeviceAccessList) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o UserDeviceAccessListOutput) Name() pulumi.StringOutput {

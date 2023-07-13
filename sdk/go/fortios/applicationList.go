@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -23,6 +24,7 @@ type ApplicationList struct {
 	Entries                       ApplicationListEntryArrayOutput                 `pulumi:"entries"`
 	ExtendedLog                   pulumi.StringOutput                             `pulumi:"extendedLog"`
 	ForceInclusionSslDiSigs       pulumi.StringOutput                             `pulumi:"forceInclusionSslDiSigs"`
+	GetAllTables                  pulumi.StringPtrOutput                          `pulumi:"getAllTables"`
 	Name                          pulumi.StringOutput                             `pulumi:"name"`
 	Options                       pulumi.StringOutput                             `pulumi:"options"`
 	OtherApplicationAction        pulumi.StringOutput                             `pulumi:"otherApplicationAction"`
@@ -42,7 +44,7 @@ func NewApplicationList(ctx *pulumi.Context,
 		args = &ApplicationListArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ApplicationList
 	err := ctx.RegisterResource("fortios:index/applicationList:ApplicationList", name, args, &resource, opts...)
 	if err != nil {
@@ -75,6 +77,7 @@ type applicationListState struct {
 	Entries                       []ApplicationListEntry                 `pulumi:"entries"`
 	ExtendedLog                   *string                                `pulumi:"extendedLog"`
 	ForceInclusionSslDiSigs       *string                                `pulumi:"forceInclusionSslDiSigs"`
+	GetAllTables                  *string                                `pulumi:"getAllTables"`
 	Name                          *string                                `pulumi:"name"`
 	Options                       *string                                `pulumi:"options"`
 	OtherApplicationAction        *string                                `pulumi:"otherApplicationAction"`
@@ -98,6 +101,7 @@ type ApplicationListState struct {
 	Entries                       ApplicationListEntryArrayInput
 	ExtendedLog                   pulumi.StringPtrInput
 	ForceInclusionSslDiSigs       pulumi.StringPtrInput
+	GetAllTables                  pulumi.StringPtrInput
 	Name                          pulumi.StringPtrInput
 	Options                       pulumi.StringPtrInput
 	OtherApplicationAction        pulumi.StringPtrInput
@@ -125,6 +129,7 @@ type applicationListArgs struct {
 	Entries                       []ApplicationListEntry                 `pulumi:"entries"`
 	ExtendedLog                   *string                                `pulumi:"extendedLog"`
 	ForceInclusionSslDiSigs       *string                                `pulumi:"forceInclusionSslDiSigs"`
+	GetAllTables                  *string                                `pulumi:"getAllTables"`
 	Name                          *string                                `pulumi:"name"`
 	Options                       *string                                `pulumi:"options"`
 	OtherApplicationAction        *string                                `pulumi:"otherApplicationAction"`
@@ -149,6 +154,7 @@ type ApplicationListArgs struct {
 	Entries                       ApplicationListEntryArrayInput
 	ExtendedLog                   pulumi.StringPtrInput
 	ForceInclusionSslDiSigs       pulumi.StringPtrInput
+	GetAllTables                  pulumi.StringPtrInput
 	Name                          pulumi.StringPtrInput
 	Options                       pulumi.StringPtrInput
 	OtherApplicationAction        pulumi.StringPtrInput
@@ -288,6 +294,10 @@ func (o ApplicationListOutput) ExtendedLog() pulumi.StringOutput {
 
 func (o ApplicationListOutput) ForceInclusionSslDiSigs() pulumi.StringOutput {
 	return o.ApplyT(func(v *ApplicationList) pulumi.StringOutput { return v.ForceInclusionSslDiSigs }).(pulumi.StringOutput)
+}
+
+func (o ApplicationListOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ApplicationList) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o ApplicationListOutput) Name() pulumi.StringOutput {

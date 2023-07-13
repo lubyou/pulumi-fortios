@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,6 +20,7 @@ type LogSyslogd2OverrideSetting struct {
 	EncAlgorithm          pulumi.StringOutput                                  `pulumi:"encAlgorithm"`
 	Facility              pulumi.StringOutput                                  `pulumi:"facility"`
 	Format                pulumi.StringOutput                                  `pulumi:"format"`
+	GetAllTables          pulumi.StringPtrOutput                               `pulumi:"getAllTables"`
 	Interface             pulumi.StringOutput                                  `pulumi:"interface"`
 	InterfaceSelectMethod pulumi.StringOutput                                  `pulumi:"interfaceSelectMethod"`
 	MaxLogRate            pulumi.IntOutput                                     `pulumi:"maxLogRate"`
@@ -41,7 +43,7 @@ func NewLogSyslogd2OverrideSetting(ctx *pulumi.Context,
 		args = &LogSyslogd2OverrideSettingArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource LogSyslogd2OverrideSetting
 	err := ctx.RegisterResource("fortios:index/logSyslogd2OverrideSetting:LogSyslogd2OverrideSetting", name, args, &resource, opts...)
 	if err != nil {
@@ -70,6 +72,7 @@ type logSyslogd2OverrideSettingState struct {
 	EncAlgorithm          *string                                     `pulumi:"encAlgorithm"`
 	Facility              *string                                     `pulumi:"facility"`
 	Format                *string                                     `pulumi:"format"`
+	GetAllTables          *string                                     `pulumi:"getAllTables"`
 	Interface             *string                                     `pulumi:"interface"`
 	InterfaceSelectMethod *string                                     `pulumi:"interfaceSelectMethod"`
 	MaxLogRate            *int                                        `pulumi:"maxLogRate"`
@@ -92,6 +95,7 @@ type LogSyslogd2OverrideSettingState struct {
 	EncAlgorithm          pulumi.StringPtrInput
 	Facility              pulumi.StringPtrInput
 	Format                pulumi.StringPtrInput
+	GetAllTables          pulumi.StringPtrInput
 	Interface             pulumi.StringPtrInput
 	InterfaceSelectMethod pulumi.StringPtrInput
 	MaxLogRate            pulumi.IntPtrInput
@@ -118,6 +122,7 @@ type logSyslogd2OverrideSettingArgs struct {
 	EncAlgorithm          *string                                     `pulumi:"encAlgorithm"`
 	Facility              *string                                     `pulumi:"facility"`
 	Format                *string                                     `pulumi:"format"`
+	GetAllTables          *string                                     `pulumi:"getAllTables"`
 	Interface             *string                                     `pulumi:"interface"`
 	InterfaceSelectMethod *string                                     `pulumi:"interfaceSelectMethod"`
 	MaxLogRate            *int                                        `pulumi:"maxLogRate"`
@@ -141,6 +146,7 @@ type LogSyslogd2OverrideSettingArgs struct {
 	EncAlgorithm          pulumi.StringPtrInput
 	Facility              pulumi.StringPtrInput
 	Format                pulumi.StringPtrInput
+	GetAllTables          pulumi.StringPtrInput
 	Interface             pulumi.StringPtrInput
 	InterfaceSelectMethod pulumi.StringPtrInput
 	MaxLogRate            pulumi.IntPtrInput
@@ -267,6 +273,10 @@ func (o LogSyslogd2OverrideSettingOutput) Facility() pulumi.StringOutput {
 
 func (o LogSyslogd2OverrideSettingOutput) Format() pulumi.StringOutput {
 	return o.ApplyT(func(v *LogSyslogd2OverrideSetting) pulumi.StringOutput { return v.Format }).(pulumi.StringOutput)
+}
+
+func (o LogSyslogd2OverrideSettingOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogSyslogd2OverrideSetting) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o LogSyslogd2OverrideSettingOutput) Interface() pulumi.StringOutput {

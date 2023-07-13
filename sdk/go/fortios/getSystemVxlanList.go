@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func GetSystemVxlanList(ctx *pulumi.Context, args *GetSystemVxlanListArgs, opts ...pulumi.InvokeOption) (*GetSystemVxlanListResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetSystemVxlanListResult
 	err := ctx.Invoke("fortios:index/getSystemVxlanList:GetSystemVxlanList", args, &rv, opts...)
 	if err != nil {

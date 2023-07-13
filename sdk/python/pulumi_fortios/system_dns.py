@@ -26,7 +26,9 @@ class SystemDnsArgs:
                  domains: Optional[pulumi.Input[Sequence[pulumi.Input['SystemDnsDomainArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fqdn_cache_ttl: Optional[pulumi.Input[int]] = None,
+                 fqdn_max_refresh: Optional[pulumi.Input[int]] = None,
                  fqdn_min_refresh: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  ip6_primary: Optional[pulumi.Input[str]] = None,
@@ -63,8 +65,12 @@ class SystemDnsArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fqdn_cache_ttl is not None:
             pulumi.set(__self__, "fqdn_cache_ttl", fqdn_cache_ttl)
+        if fqdn_max_refresh is not None:
+            pulumi.set(__self__, "fqdn_max_refresh", fqdn_max_refresh)
         if fqdn_min_refresh is not None:
             pulumi.set(__self__, "fqdn_min_refresh", fqdn_min_refresh)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
         if interface_select_method is not None:
@@ -185,6 +191,15 @@ class SystemDnsArgs:
         pulumi.set(self, "fqdn_cache_ttl", value)
 
     @property
+    @pulumi.getter(name="fqdnMaxRefresh")
+    def fqdn_max_refresh(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "fqdn_max_refresh")
+
+    @fqdn_max_refresh.setter
+    def fqdn_max_refresh(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "fqdn_max_refresh", value)
+
+    @property
     @pulumi.getter(name="fqdnMinRefresh")
     def fqdn_min_refresh(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "fqdn_min_refresh")
@@ -192,6 +207,15 @@ class SystemDnsArgs:
     @fqdn_min_refresh.setter
     def fqdn_min_refresh(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fqdn_min_refresh", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -332,7 +356,9 @@ class _SystemDnsState:
                  domains: Optional[pulumi.Input[Sequence[pulumi.Input['SystemDnsDomainArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fqdn_cache_ttl: Optional[pulumi.Input[int]] = None,
+                 fqdn_max_refresh: Optional[pulumi.Input[int]] = None,
                  fqdn_min_refresh: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  ip6_primary: Optional[pulumi.Input[str]] = None,
@@ -369,8 +395,12 @@ class _SystemDnsState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fqdn_cache_ttl is not None:
             pulumi.set(__self__, "fqdn_cache_ttl", fqdn_cache_ttl)
+        if fqdn_max_refresh is not None:
+            pulumi.set(__self__, "fqdn_max_refresh", fqdn_max_refresh)
         if fqdn_min_refresh is not None:
             pulumi.set(__self__, "fqdn_min_refresh", fqdn_min_refresh)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
         if interface_select_method is not None:
@@ -484,6 +514,15 @@ class _SystemDnsState:
         pulumi.set(self, "fqdn_cache_ttl", value)
 
     @property
+    @pulumi.getter(name="fqdnMaxRefresh")
+    def fqdn_max_refresh(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "fqdn_max_refresh")
+
+    @fqdn_max_refresh.setter
+    def fqdn_max_refresh(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "fqdn_max_refresh", value)
+
+    @property
     @pulumi.getter(name="fqdnMinRefresh")
     def fqdn_min_refresh(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "fqdn_min_refresh")
@@ -491,6 +530,15 @@ class _SystemDnsState:
     @fqdn_min_refresh.setter
     def fqdn_min_refresh(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fqdn_min_refresh", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -642,7 +690,9 @@ class SystemDns(pulumi.CustomResource):
                  domains: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemDnsDomainArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fqdn_cache_ttl: Optional[pulumi.Input[int]] = None,
+                 fqdn_max_refresh: Optional[pulumi.Input[int]] = None,
                  fqdn_min_refresh: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  ip6_primary: Optional[pulumi.Input[str]] = None,
@@ -696,7 +746,9 @@ class SystemDns(pulumi.CustomResource):
                  domains: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemDnsDomainArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fqdn_cache_ttl: Optional[pulumi.Input[int]] = None,
+                 fqdn_max_refresh: Optional[pulumi.Input[int]] = None,
                  fqdn_min_refresh: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  ip6_primary: Optional[pulumi.Input[str]] = None,
@@ -730,7 +782,9 @@ class SystemDns(pulumi.CustomResource):
             __props__.__dict__["domains"] = domains
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["fqdn_cache_ttl"] = fqdn_cache_ttl
+            __props__.__dict__["fqdn_max_refresh"] = fqdn_max_refresh
             __props__.__dict__["fqdn_min_refresh"] = fqdn_min_refresh
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["interface"] = interface
             __props__.__dict__["interface_select_method"] = interface_select_method
             __props__.__dict__["ip6_primary"] = ip6_primary
@@ -767,7 +821,9 @@ class SystemDns(pulumi.CustomResource):
             domains: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemDnsDomainArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             fqdn_cache_ttl: Optional[pulumi.Input[int]] = None,
+            fqdn_max_refresh: Optional[pulumi.Input[int]] = None,
             fqdn_min_refresh: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             interface_select_method: Optional[pulumi.Input[str]] = None,
             ip6_primary: Optional[pulumi.Input[str]] = None,
@@ -804,7 +860,9 @@ class SystemDns(pulumi.CustomResource):
         __props__.__dict__["domains"] = domains
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["fqdn_cache_ttl"] = fqdn_cache_ttl
+        __props__.__dict__["fqdn_max_refresh"] = fqdn_max_refresh
         __props__.__dict__["fqdn_min_refresh"] = fqdn_min_refresh
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["interface"] = interface
         __props__.__dict__["interface_select_method"] = interface_select_method
         __props__.__dict__["ip6_primary"] = ip6_primary
@@ -868,9 +926,19 @@ class SystemDns(pulumi.CustomResource):
         return pulumi.get(self, "fqdn_cache_ttl")
 
     @property
+    @pulumi.getter(name="fqdnMaxRefresh")
+    def fqdn_max_refresh(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "fqdn_max_refresh")
+
+    @property
     @pulumi.getter(name="fqdnMinRefresh")
     def fqdn_min_refresh(self) -> pulumi.Output[int]:
         return pulumi.get(self, "fqdn_min_refresh")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

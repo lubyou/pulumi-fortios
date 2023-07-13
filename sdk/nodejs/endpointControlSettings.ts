@@ -47,6 +47,7 @@ export class EndpointControlSettings extends pulumi.CustomResource {
     public readonly forticlientSysUpdateInterval!: pulumi.Output<number>;
     public readonly forticlientUserAvatar!: pulumi.Output<string>;
     public readonly forticlientWarningInterval!: pulumi.Output<number>;
+    public readonly override!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -77,6 +78,7 @@ export class EndpointControlSettings extends pulumi.CustomResource {
             resourceInputs["forticlientSysUpdateInterval"] = state ? state.forticlientSysUpdateInterval : undefined;
             resourceInputs["forticlientUserAvatar"] = state ? state.forticlientUserAvatar : undefined;
             resourceInputs["forticlientWarningInterval"] = state ? state.forticlientWarningInterval : undefined;
+            resourceInputs["override"] = state ? state.override : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as EndpointControlSettingsArgs | undefined;
@@ -95,6 +97,7 @@ export class EndpointControlSettings extends pulumi.CustomResource {
             resourceInputs["forticlientSysUpdateInterval"] = args ? args.forticlientSysUpdateInterval : undefined;
             resourceInputs["forticlientUserAvatar"] = args ? args.forticlientUserAvatar : undefined;
             resourceInputs["forticlientWarningInterval"] = args ? args.forticlientWarningInterval : undefined;
+            resourceInputs["override"] = args ? args.override : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -123,6 +126,7 @@ export interface EndpointControlSettingsState {
     forticlientSysUpdateInterval?: pulumi.Input<number>;
     forticlientUserAvatar?: pulumi.Input<string>;
     forticlientWarningInterval?: pulumi.Input<number>;
+    override?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -145,5 +149,6 @@ export interface EndpointControlSettingsArgs {
     forticlientSysUpdateInterval?: pulumi.Input<number>;
     forticlientUserAvatar?: pulumi.Input<string>;
     forticlientWarningInterval?: pulumi.Input<number>;
+    override?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }

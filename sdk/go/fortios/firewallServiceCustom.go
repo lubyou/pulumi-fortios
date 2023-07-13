@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -23,6 +24,7 @@ type FirewallServiceCustom struct {
 	DynamicSortSubtable pulumi.StringPtrOutput                      `pulumi:"dynamicSortSubtable"`
 	FabricObject        pulumi.StringOutput                         `pulumi:"fabricObject"`
 	Fqdn                pulumi.StringOutput                         `pulumi:"fqdn"`
+	GetAllTables        pulumi.StringPtrOutput                      `pulumi:"getAllTables"`
 	Helper              pulumi.StringOutput                         `pulumi:"helper"`
 	Icmpcode            pulumi.IntOutput                            `pulumi:"icmpcode"`
 	Icmptype            pulumi.IntOutput                            `pulumi:"icmptype"`
@@ -51,7 +53,7 @@ func NewFirewallServiceCustom(ctx *pulumi.Context,
 		args = &FirewallServiceCustomArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallServiceCustom
 	err := ctx.RegisterResource("fortios:index/firewallServiceCustom:FirewallServiceCustom", name, args, &resource, opts...)
 	if err != nil {
@@ -84,6 +86,7 @@ type firewallServiceCustomState struct {
 	DynamicSortSubtable *string                            `pulumi:"dynamicSortSubtable"`
 	FabricObject        *string                            `pulumi:"fabricObject"`
 	Fqdn                *string                            `pulumi:"fqdn"`
+	GetAllTables        *string                            `pulumi:"getAllTables"`
 	Helper              *string                            `pulumi:"helper"`
 	Icmpcode            *int                               `pulumi:"icmpcode"`
 	Icmptype            *int                               `pulumi:"icmptype"`
@@ -116,6 +119,7 @@ type FirewallServiceCustomState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	FabricObject        pulumi.StringPtrInput
 	Fqdn                pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Helper              pulumi.StringPtrInput
 	Icmpcode            pulumi.IntPtrInput
 	Icmptype            pulumi.IntPtrInput
@@ -152,6 +156,7 @@ type firewallServiceCustomArgs struct {
 	DynamicSortSubtable *string                            `pulumi:"dynamicSortSubtable"`
 	FabricObject        *string                            `pulumi:"fabricObject"`
 	Fqdn                *string                            `pulumi:"fqdn"`
+	GetAllTables        *string                            `pulumi:"getAllTables"`
 	Helper              *string                            `pulumi:"helper"`
 	Icmpcode            *int                               `pulumi:"icmpcode"`
 	Icmptype            *int                               `pulumi:"icmptype"`
@@ -185,6 +190,7 @@ type FirewallServiceCustomArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	FabricObject        pulumi.StringPtrInput
 	Fqdn                pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Helper              pulumi.StringPtrInput
 	Icmpcode            pulumi.IntPtrInput
 	Icmptype            pulumi.IntPtrInput
@@ -331,6 +337,10 @@ func (o FirewallServiceCustomOutput) FabricObject() pulumi.StringOutput {
 
 func (o FirewallServiceCustomOutput) Fqdn() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallServiceCustom) pulumi.StringOutput { return v.Fqdn }).(pulumi.StringOutput)
+}
+
+func (o FirewallServiceCustomOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallServiceCustom) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallServiceCustomOutput) Helper() pulumi.StringOutput {

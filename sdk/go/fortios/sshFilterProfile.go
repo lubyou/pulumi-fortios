@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -17,6 +18,7 @@ type SshFilterProfile struct {
 	DefaultCommandLog   pulumi.StringOutput                     `pulumi:"defaultCommandLog"`
 	DynamicSortSubtable pulumi.StringPtrOutput                  `pulumi:"dynamicSortSubtable"`
 	FileFilter          SshFilterProfileFileFilterOutput        `pulumi:"fileFilter"`
+	GetAllTables        pulumi.StringPtrOutput                  `pulumi:"getAllTables"`
 	Log                 pulumi.StringOutput                     `pulumi:"log"`
 	Name                pulumi.StringOutput                     `pulumi:"name"`
 	ShellCommands       SshFilterProfileShellCommandArrayOutput `pulumi:"shellCommands"`
@@ -30,7 +32,7 @@ func NewSshFilterProfile(ctx *pulumi.Context,
 		args = &SshFilterProfileArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SshFilterProfile
 	err := ctx.RegisterResource("fortios:index/sshFilterProfile:SshFilterProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -57,6 +59,7 @@ type sshFilterProfileState struct {
 	DefaultCommandLog   *string                        `pulumi:"defaultCommandLog"`
 	DynamicSortSubtable *string                        `pulumi:"dynamicSortSubtable"`
 	FileFilter          *SshFilterProfileFileFilter    `pulumi:"fileFilter"`
+	GetAllTables        *string                        `pulumi:"getAllTables"`
 	Log                 *string                        `pulumi:"log"`
 	Name                *string                        `pulumi:"name"`
 	ShellCommands       []SshFilterProfileShellCommand `pulumi:"shellCommands"`
@@ -68,6 +71,7 @@ type SshFilterProfileState struct {
 	DefaultCommandLog   pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	FileFilter          SshFilterProfileFileFilterPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Log                 pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	ShellCommands       SshFilterProfileShellCommandArrayInput
@@ -83,6 +87,7 @@ type sshFilterProfileArgs struct {
 	DefaultCommandLog   *string                        `pulumi:"defaultCommandLog"`
 	DynamicSortSubtable *string                        `pulumi:"dynamicSortSubtable"`
 	FileFilter          *SshFilterProfileFileFilter    `pulumi:"fileFilter"`
+	GetAllTables        *string                        `pulumi:"getAllTables"`
 	Log                 *string                        `pulumi:"log"`
 	Name                *string                        `pulumi:"name"`
 	ShellCommands       []SshFilterProfileShellCommand `pulumi:"shellCommands"`
@@ -95,6 +100,7 @@ type SshFilterProfileArgs struct {
 	DefaultCommandLog   pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	FileFilter          SshFilterProfileFileFilterPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Log                 pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	ShellCommands       SshFilterProfileShellCommandArrayInput
@@ -202,6 +208,10 @@ func (o SshFilterProfileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 
 func (o SshFilterProfileOutput) FileFilter() SshFilterProfileFileFilterOutput {
 	return o.ApplyT(func(v *SshFilterProfile) SshFilterProfileFileFilterOutput { return v.FileFilter }).(SshFilterProfileFileFilterOutput)
+}
+
+func (o SshFilterProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SshFilterProfile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SshFilterProfileOutput) Log() pulumi.StringOutput {

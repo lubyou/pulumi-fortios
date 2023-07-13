@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemNat64(ctx *pulumi.Context, args *LookupSystemNat64Args, opts ...pulumi.InvokeOption) (*LookupSystemNat64Result, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemNat64Result
 	err := ctx.Invoke("fortios:index/getSystemNat64:GetSystemNat64", args, &rv, opts...)
 	if err != nil {

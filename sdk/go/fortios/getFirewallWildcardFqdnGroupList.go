@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func GetFirewallWildcardFqdnGroupList(ctx *pulumi.Context, args *GetFirewallWildcardFqdnGroupListArgs, opts ...pulumi.InvokeOption) (*GetFirewallWildcardFqdnGroupListResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetFirewallWildcardFqdnGroupListResult
 	err := ctx.Invoke("fortios:index/getFirewallWildcardFqdnGroupList:GetFirewallWildcardFqdnGroupList", args, &rv, opts...)
 	if err != nil {

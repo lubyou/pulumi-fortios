@@ -118,14 +118,14 @@ def get_system_network_visibility(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemNetworkVisibility:GetSystemNetworkVisibility', __args__, opts=opts, typ=GetSystemNetworkVisibilityResult).value
 
     return AwaitableGetSystemNetworkVisibilityResult(
-        destination_hostname_visibility=__ret__.destination_hostname_visibility,
-        destination_location=__ret__.destination_location,
-        destination_visibility=__ret__.destination_visibility,
-        hostname_limit=__ret__.hostname_limit,
-        hostname_ttl=__ret__.hostname_ttl,
-        id=__ret__.id,
-        source_location=__ret__.source_location,
-        vdomparam=__ret__.vdomparam)
+        destination_hostname_visibility=pulumi.get(__ret__, 'destination_hostname_visibility'),
+        destination_location=pulumi.get(__ret__, 'destination_location'),
+        destination_visibility=pulumi.get(__ret__, 'destination_visibility'),
+        hostname_limit=pulumi.get(__ret__, 'hostname_limit'),
+        hostname_ttl=pulumi.get(__ret__, 'hostname_ttl'),
+        id=pulumi.get(__ret__, 'id'),
+        source_location=pulumi.get(__ret__, 'source_location'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_network_visibility)

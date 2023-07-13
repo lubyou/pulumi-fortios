@@ -35,6 +35,7 @@ export class SystemNdProxy extends pulumi.CustomResource {
     }
 
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly members!: pulumi.Output<outputs.SystemNdProxyMember[] | undefined>;
     public readonly status!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -53,12 +54,14 @@ export class SystemNdProxy extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as SystemNdProxyState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["members"] = state ? state.members : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemNdProxyArgs | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["members"] = args ? args.members : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -73,6 +76,7 @@ export class SystemNdProxy extends pulumi.CustomResource {
  */
 export interface SystemNdProxyState {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     members?: pulumi.Input<pulumi.Input<inputs.SystemNdProxyMember>[]>;
     status?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
@@ -83,6 +87,7 @@ export interface SystemNdProxyState {
  */
 export interface SystemNdProxyArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     members?: pulumi.Input<pulumi.Input<inputs.SystemNdProxyMember>[]>;
     status?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;

@@ -8,71 +8,77 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type SystemFortiguard struct {
 	pulumi.CustomResourceState
 
-	AntispamCache                   pulumi.StringOutput    `pulumi:"antispamCache"`
-	AntispamCacheMpercent           pulumi.IntOutput       `pulumi:"antispamCacheMpercent"`
-	AntispamCacheTtl                pulumi.IntOutput       `pulumi:"antispamCacheTtl"`
-	AntispamExpiration              pulumi.IntOutput       `pulumi:"antispamExpiration"`
-	AntispamForceOff                pulumi.StringOutput    `pulumi:"antispamForceOff"`
-	AntispamLicense                 pulumi.IntOutput       `pulumi:"antispamLicense"`
-	AntispamTimeout                 pulumi.IntOutput       `pulumi:"antispamTimeout"`
-	AnycastSdnsServerIp             pulumi.StringOutput    `pulumi:"anycastSdnsServerIp"`
-	AnycastSdnsServerPort           pulumi.IntOutput       `pulumi:"anycastSdnsServerPort"`
-	AutoFirmwareUpgrade             pulumi.StringOutput    `pulumi:"autoFirmwareUpgrade"`
-	AutoFirmwareUpgradeDay          pulumi.StringOutput    `pulumi:"autoFirmwareUpgradeDay"`
-	AutoFirmwareUpgradeEndHour      pulumi.IntOutput       `pulumi:"autoFirmwareUpgradeEndHour"`
-	AutoFirmwareUpgradeStartHour    pulumi.IntOutput       `pulumi:"autoFirmwareUpgradeStartHour"`
-	AutoJoinForticloud              pulumi.StringOutput    `pulumi:"autoJoinForticloud"`
-	DdnsServerIp                    pulumi.StringOutput    `pulumi:"ddnsServerIp"`
-	DdnsServerIp6                   pulumi.StringOutput    `pulumi:"ddnsServerIp6"`
-	DdnsServerPort                  pulumi.IntOutput       `pulumi:"ddnsServerPort"`
-	FortiguardAnycast               pulumi.StringOutput    `pulumi:"fortiguardAnycast"`
-	FortiguardAnycastSource         pulumi.StringOutput    `pulumi:"fortiguardAnycastSource"`
-	Interface                       pulumi.StringOutput    `pulumi:"interface"`
-	InterfaceSelectMethod           pulumi.StringOutput    `pulumi:"interfaceSelectMethod"`
-	LoadBalanceServers              pulumi.IntOutput       `pulumi:"loadBalanceServers"`
-	OutbreakPreventionCache         pulumi.StringOutput    `pulumi:"outbreakPreventionCache"`
-	OutbreakPreventionCacheMpercent pulumi.IntOutput       `pulumi:"outbreakPreventionCacheMpercent"`
-	OutbreakPreventionCacheTtl      pulumi.IntOutput       `pulumi:"outbreakPreventionCacheTtl"`
-	OutbreakPreventionExpiration    pulumi.IntOutput       `pulumi:"outbreakPreventionExpiration"`
-	OutbreakPreventionForceOff      pulumi.StringOutput    `pulumi:"outbreakPreventionForceOff"`
-	OutbreakPreventionLicense       pulumi.IntOutput       `pulumi:"outbreakPreventionLicense"`
-	OutbreakPreventionTimeout       pulumi.IntOutput       `pulumi:"outbreakPreventionTimeout"`
-	PersistentConnection            pulumi.StringOutput    `pulumi:"persistentConnection"`
-	Port                            pulumi.StringOutput    `pulumi:"port"`
-	Protocol                        pulumi.StringOutput    `pulumi:"protocol"`
-	ProxyPassword                   pulumi.StringPtrOutput `pulumi:"proxyPassword"`
-	ProxyServerIp                   pulumi.StringOutput    `pulumi:"proxyServerIp"`
-	ProxyServerPort                 pulumi.IntOutput       `pulumi:"proxyServerPort"`
-	ProxyUsername                   pulumi.StringOutput    `pulumi:"proxyUsername"`
-	SandboxInlineScan               pulumi.StringOutput    `pulumi:"sandboxInlineScan"`
-	SandboxRegion                   pulumi.StringOutput    `pulumi:"sandboxRegion"`
-	SdnsOptions                     pulumi.StringOutput    `pulumi:"sdnsOptions"`
-	SdnsServerIp                    pulumi.StringOutput    `pulumi:"sdnsServerIp"`
-	SdnsServerPort                  pulumi.IntOutput       `pulumi:"sdnsServerPort"`
-	ServiceAccountId                pulumi.StringOutput    `pulumi:"serviceAccountId"`
-	SourceIp                        pulumi.StringOutput    `pulumi:"sourceIp"`
-	SourceIp6                       pulumi.StringOutput    `pulumi:"sourceIp6"`
-	UpdateBuildProxy                pulumi.StringOutput    `pulumi:"updateBuildProxy"`
-	UpdateExtdb                     pulumi.StringOutput    `pulumi:"updateExtdb"`
-	UpdateFfdb                      pulumi.StringOutput    `pulumi:"updateFfdb"`
-	UpdateServerLocation            pulumi.StringOutput    `pulumi:"updateServerLocation"`
-	UpdateUwdb                      pulumi.StringOutput    `pulumi:"updateUwdb"`
-	Vdom                            pulumi.StringOutput    `pulumi:"vdom"`
-	Vdomparam                       pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	VideofilterExpiration           pulumi.IntOutput       `pulumi:"videofilterExpiration"`
-	VideofilterLicense              pulumi.IntOutput       `pulumi:"videofilterLicense"`
-	WebfilterCache                  pulumi.StringOutput    `pulumi:"webfilterCache"`
-	WebfilterCacheTtl               pulumi.IntOutput       `pulumi:"webfilterCacheTtl"`
-	WebfilterExpiration             pulumi.IntOutput       `pulumi:"webfilterExpiration"`
-	WebfilterForceOff               pulumi.StringOutput    `pulumi:"webfilterForceOff"`
-	WebfilterLicense                pulumi.IntOutput       `pulumi:"webfilterLicense"`
-	WebfilterTimeout                pulumi.IntOutput       `pulumi:"webfilterTimeout"`
+	AntispamCache                    pulumi.StringOutput    `pulumi:"antispamCache"`
+	AntispamCacheMpercent            pulumi.IntOutput       `pulumi:"antispamCacheMpercent"`
+	AntispamCacheMpermille           pulumi.IntOutput       `pulumi:"antispamCacheMpermille"`
+	AntispamCacheTtl                 pulumi.IntOutput       `pulumi:"antispamCacheTtl"`
+	AntispamExpiration               pulumi.IntOutput       `pulumi:"antispamExpiration"`
+	AntispamForceOff                 pulumi.StringOutput    `pulumi:"antispamForceOff"`
+	AntispamLicense                  pulumi.IntOutput       `pulumi:"antispamLicense"`
+	AntispamTimeout                  pulumi.IntOutput       `pulumi:"antispamTimeout"`
+	AnycastSdnsServerIp              pulumi.StringOutput    `pulumi:"anycastSdnsServerIp"`
+	AnycastSdnsServerPort            pulumi.IntOutput       `pulumi:"anycastSdnsServerPort"`
+	AutoFirmwareUpgrade              pulumi.StringOutput    `pulumi:"autoFirmwareUpgrade"`
+	AutoFirmwareUpgradeDay           pulumi.StringOutput    `pulumi:"autoFirmwareUpgradeDay"`
+	AutoFirmwareUpgradeDelay         pulumi.IntOutput       `pulumi:"autoFirmwareUpgradeDelay"`
+	AutoFirmwareUpgradeEndHour       pulumi.IntOutput       `pulumi:"autoFirmwareUpgradeEndHour"`
+	AutoFirmwareUpgradeStartHour     pulumi.IntOutput       `pulumi:"autoFirmwareUpgradeStartHour"`
+	AutoJoinForticloud               pulumi.StringOutput    `pulumi:"autoJoinForticloud"`
+	DdnsServerIp                     pulumi.StringOutput    `pulumi:"ddnsServerIp"`
+	DdnsServerIp6                    pulumi.StringOutput    `pulumi:"ddnsServerIp6"`
+	DdnsServerPort                   pulumi.IntOutput       `pulumi:"ddnsServerPort"`
+	FdsLicenseExpiringDays           pulumi.IntOutput       `pulumi:"fdsLicenseExpiringDays"`
+	FortiguardAnycast                pulumi.StringOutput    `pulumi:"fortiguardAnycast"`
+	FortiguardAnycastSource          pulumi.StringOutput    `pulumi:"fortiguardAnycastSource"`
+	Interface                        pulumi.StringOutput    `pulumi:"interface"`
+	InterfaceSelectMethod            pulumi.StringOutput    `pulumi:"interfaceSelectMethod"`
+	LoadBalanceServers               pulumi.IntOutput       `pulumi:"loadBalanceServers"`
+	OutbreakPreventionCache          pulumi.StringOutput    `pulumi:"outbreakPreventionCache"`
+	OutbreakPreventionCacheMpercent  pulumi.IntOutput       `pulumi:"outbreakPreventionCacheMpercent"`
+	OutbreakPreventionCacheMpermille pulumi.IntOutput       `pulumi:"outbreakPreventionCacheMpermille"`
+	OutbreakPreventionCacheTtl       pulumi.IntOutput       `pulumi:"outbreakPreventionCacheTtl"`
+	OutbreakPreventionExpiration     pulumi.IntOutput       `pulumi:"outbreakPreventionExpiration"`
+	OutbreakPreventionForceOff       pulumi.StringOutput    `pulumi:"outbreakPreventionForceOff"`
+	OutbreakPreventionLicense        pulumi.IntOutput       `pulumi:"outbreakPreventionLicense"`
+	OutbreakPreventionTimeout        pulumi.IntOutput       `pulumi:"outbreakPreventionTimeout"`
+	PersistentConnection             pulumi.StringOutput    `pulumi:"persistentConnection"`
+	Port                             pulumi.StringOutput    `pulumi:"port"`
+	Protocol                         pulumi.StringOutput    `pulumi:"protocol"`
+	ProxyPassword                    pulumi.StringPtrOutput `pulumi:"proxyPassword"`
+	ProxyServerIp                    pulumi.StringOutput    `pulumi:"proxyServerIp"`
+	ProxyServerPort                  pulumi.IntOutput       `pulumi:"proxyServerPort"`
+	ProxyUsername                    pulumi.StringOutput    `pulumi:"proxyUsername"`
+	SandboxInlineScan                pulumi.StringOutput    `pulumi:"sandboxInlineScan"`
+	SandboxRegion                    pulumi.StringOutput    `pulumi:"sandboxRegion"`
+	SdnsOptions                      pulumi.StringOutput    `pulumi:"sdnsOptions"`
+	SdnsServerIp                     pulumi.StringOutput    `pulumi:"sdnsServerIp"`
+	SdnsServerPort                   pulumi.IntOutput       `pulumi:"sdnsServerPort"`
+	ServiceAccountId                 pulumi.StringOutput    `pulumi:"serviceAccountId"`
+	SourceIp                         pulumi.StringOutput    `pulumi:"sourceIp"`
+	SourceIp6                        pulumi.StringOutput    `pulumi:"sourceIp6"`
+	UpdateBuildProxy                 pulumi.StringOutput    `pulumi:"updateBuildProxy"`
+	UpdateDldb                       pulumi.StringOutput    `pulumi:"updateDldb"`
+	UpdateExtdb                      pulumi.StringOutput    `pulumi:"updateExtdb"`
+	UpdateFfdb                       pulumi.StringOutput    `pulumi:"updateFfdb"`
+	UpdateServerLocation             pulumi.StringOutput    `pulumi:"updateServerLocation"`
+	UpdateUwdb                       pulumi.StringOutput    `pulumi:"updateUwdb"`
+	Vdom                             pulumi.StringOutput    `pulumi:"vdom"`
+	Vdomparam                        pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	VideofilterExpiration            pulumi.IntOutput       `pulumi:"videofilterExpiration"`
+	VideofilterLicense               pulumi.IntOutput       `pulumi:"videofilterLicense"`
+	WebfilterCache                   pulumi.StringOutput    `pulumi:"webfilterCache"`
+	WebfilterCacheTtl                pulumi.IntOutput       `pulumi:"webfilterCacheTtl"`
+	WebfilterExpiration              pulumi.IntOutput       `pulumi:"webfilterExpiration"`
+	WebfilterForceOff                pulumi.StringOutput    `pulumi:"webfilterForceOff"`
+	WebfilterLicense                 pulumi.IntOutput       `pulumi:"webfilterLicense"`
+	WebfilterTimeout                 pulumi.IntOutput       `pulumi:"webfilterTimeout"`
 }
 
 // NewSystemFortiguard registers a new resource with the given unique name, arguments, and options.
@@ -98,7 +104,7 @@ func NewSystemFortiguard(ctx *pulumi.Context,
 		"proxyPassword",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemFortiguard
 	err := ctx.RegisterResource("fortios:index/systemFortiguard:SystemFortiguard", name, args, &resource, opts...)
 	if err != nil {
@@ -121,127 +127,137 @@ func GetSystemFortiguard(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemFortiguard resources.
 type systemFortiguardState struct {
-	AntispamCache                   *string `pulumi:"antispamCache"`
-	AntispamCacheMpercent           *int    `pulumi:"antispamCacheMpercent"`
-	AntispamCacheTtl                *int    `pulumi:"antispamCacheTtl"`
-	AntispamExpiration              *int    `pulumi:"antispamExpiration"`
-	AntispamForceOff                *string `pulumi:"antispamForceOff"`
-	AntispamLicense                 *int    `pulumi:"antispamLicense"`
-	AntispamTimeout                 *int    `pulumi:"antispamTimeout"`
-	AnycastSdnsServerIp             *string `pulumi:"anycastSdnsServerIp"`
-	AnycastSdnsServerPort           *int    `pulumi:"anycastSdnsServerPort"`
-	AutoFirmwareUpgrade             *string `pulumi:"autoFirmwareUpgrade"`
-	AutoFirmwareUpgradeDay          *string `pulumi:"autoFirmwareUpgradeDay"`
-	AutoFirmwareUpgradeEndHour      *int    `pulumi:"autoFirmwareUpgradeEndHour"`
-	AutoFirmwareUpgradeStartHour    *int    `pulumi:"autoFirmwareUpgradeStartHour"`
-	AutoJoinForticloud              *string `pulumi:"autoJoinForticloud"`
-	DdnsServerIp                    *string `pulumi:"ddnsServerIp"`
-	DdnsServerIp6                   *string `pulumi:"ddnsServerIp6"`
-	DdnsServerPort                  *int    `pulumi:"ddnsServerPort"`
-	FortiguardAnycast               *string `pulumi:"fortiguardAnycast"`
-	FortiguardAnycastSource         *string `pulumi:"fortiguardAnycastSource"`
-	Interface                       *string `pulumi:"interface"`
-	InterfaceSelectMethod           *string `pulumi:"interfaceSelectMethod"`
-	LoadBalanceServers              *int    `pulumi:"loadBalanceServers"`
-	OutbreakPreventionCache         *string `pulumi:"outbreakPreventionCache"`
-	OutbreakPreventionCacheMpercent *int    `pulumi:"outbreakPreventionCacheMpercent"`
-	OutbreakPreventionCacheTtl      *int    `pulumi:"outbreakPreventionCacheTtl"`
-	OutbreakPreventionExpiration    *int    `pulumi:"outbreakPreventionExpiration"`
-	OutbreakPreventionForceOff      *string `pulumi:"outbreakPreventionForceOff"`
-	OutbreakPreventionLicense       *int    `pulumi:"outbreakPreventionLicense"`
-	OutbreakPreventionTimeout       *int    `pulumi:"outbreakPreventionTimeout"`
-	PersistentConnection            *string `pulumi:"persistentConnection"`
-	Port                            *string `pulumi:"port"`
-	Protocol                        *string `pulumi:"protocol"`
-	ProxyPassword                   *string `pulumi:"proxyPassword"`
-	ProxyServerIp                   *string `pulumi:"proxyServerIp"`
-	ProxyServerPort                 *int    `pulumi:"proxyServerPort"`
-	ProxyUsername                   *string `pulumi:"proxyUsername"`
-	SandboxInlineScan               *string `pulumi:"sandboxInlineScan"`
-	SandboxRegion                   *string `pulumi:"sandboxRegion"`
-	SdnsOptions                     *string `pulumi:"sdnsOptions"`
-	SdnsServerIp                    *string `pulumi:"sdnsServerIp"`
-	SdnsServerPort                  *int    `pulumi:"sdnsServerPort"`
-	ServiceAccountId                *string `pulumi:"serviceAccountId"`
-	SourceIp                        *string `pulumi:"sourceIp"`
-	SourceIp6                       *string `pulumi:"sourceIp6"`
-	UpdateBuildProxy                *string `pulumi:"updateBuildProxy"`
-	UpdateExtdb                     *string `pulumi:"updateExtdb"`
-	UpdateFfdb                      *string `pulumi:"updateFfdb"`
-	UpdateServerLocation            *string `pulumi:"updateServerLocation"`
-	UpdateUwdb                      *string `pulumi:"updateUwdb"`
-	Vdom                            *string `pulumi:"vdom"`
-	Vdomparam                       *string `pulumi:"vdomparam"`
-	VideofilterExpiration           *int    `pulumi:"videofilterExpiration"`
-	VideofilterLicense              *int    `pulumi:"videofilterLicense"`
-	WebfilterCache                  *string `pulumi:"webfilterCache"`
-	WebfilterCacheTtl               *int    `pulumi:"webfilterCacheTtl"`
-	WebfilterExpiration             *int    `pulumi:"webfilterExpiration"`
-	WebfilterForceOff               *string `pulumi:"webfilterForceOff"`
-	WebfilterLicense                *int    `pulumi:"webfilterLicense"`
-	WebfilterTimeout                *int    `pulumi:"webfilterTimeout"`
+	AntispamCache                    *string `pulumi:"antispamCache"`
+	AntispamCacheMpercent            *int    `pulumi:"antispamCacheMpercent"`
+	AntispamCacheMpermille           *int    `pulumi:"antispamCacheMpermille"`
+	AntispamCacheTtl                 *int    `pulumi:"antispamCacheTtl"`
+	AntispamExpiration               *int    `pulumi:"antispamExpiration"`
+	AntispamForceOff                 *string `pulumi:"antispamForceOff"`
+	AntispamLicense                  *int    `pulumi:"antispamLicense"`
+	AntispamTimeout                  *int    `pulumi:"antispamTimeout"`
+	AnycastSdnsServerIp              *string `pulumi:"anycastSdnsServerIp"`
+	AnycastSdnsServerPort            *int    `pulumi:"anycastSdnsServerPort"`
+	AutoFirmwareUpgrade              *string `pulumi:"autoFirmwareUpgrade"`
+	AutoFirmwareUpgradeDay           *string `pulumi:"autoFirmwareUpgradeDay"`
+	AutoFirmwareUpgradeDelay         *int    `pulumi:"autoFirmwareUpgradeDelay"`
+	AutoFirmwareUpgradeEndHour       *int    `pulumi:"autoFirmwareUpgradeEndHour"`
+	AutoFirmwareUpgradeStartHour     *int    `pulumi:"autoFirmwareUpgradeStartHour"`
+	AutoJoinForticloud               *string `pulumi:"autoJoinForticloud"`
+	DdnsServerIp                     *string `pulumi:"ddnsServerIp"`
+	DdnsServerIp6                    *string `pulumi:"ddnsServerIp6"`
+	DdnsServerPort                   *int    `pulumi:"ddnsServerPort"`
+	FdsLicenseExpiringDays           *int    `pulumi:"fdsLicenseExpiringDays"`
+	FortiguardAnycast                *string `pulumi:"fortiguardAnycast"`
+	FortiguardAnycastSource          *string `pulumi:"fortiguardAnycastSource"`
+	Interface                        *string `pulumi:"interface"`
+	InterfaceSelectMethod            *string `pulumi:"interfaceSelectMethod"`
+	LoadBalanceServers               *int    `pulumi:"loadBalanceServers"`
+	OutbreakPreventionCache          *string `pulumi:"outbreakPreventionCache"`
+	OutbreakPreventionCacheMpercent  *int    `pulumi:"outbreakPreventionCacheMpercent"`
+	OutbreakPreventionCacheMpermille *int    `pulumi:"outbreakPreventionCacheMpermille"`
+	OutbreakPreventionCacheTtl       *int    `pulumi:"outbreakPreventionCacheTtl"`
+	OutbreakPreventionExpiration     *int    `pulumi:"outbreakPreventionExpiration"`
+	OutbreakPreventionForceOff       *string `pulumi:"outbreakPreventionForceOff"`
+	OutbreakPreventionLicense        *int    `pulumi:"outbreakPreventionLicense"`
+	OutbreakPreventionTimeout        *int    `pulumi:"outbreakPreventionTimeout"`
+	PersistentConnection             *string `pulumi:"persistentConnection"`
+	Port                             *string `pulumi:"port"`
+	Protocol                         *string `pulumi:"protocol"`
+	ProxyPassword                    *string `pulumi:"proxyPassword"`
+	ProxyServerIp                    *string `pulumi:"proxyServerIp"`
+	ProxyServerPort                  *int    `pulumi:"proxyServerPort"`
+	ProxyUsername                    *string `pulumi:"proxyUsername"`
+	SandboxInlineScan                *string `pulumi:"sandboxInlineScan"`
+	SandboxRegion                    *string `pulumi:"sandboxRegion"`
+	SdnsOptions                      *string `pulumi:"sdnsOptions"`
+	SdnsServerIp                     *string `pulumi:"sdnsServerIp"`
+	SdnsServerPort                   *int    `pulumi:"sdnsServerPort"`
+	ServiceAccountId                 *string `pulumi:"serviceAccountId"`
+	SourceIp                         *string `pulumi:"sourceIp"`
+	SourceIp6                        *string `pulumi:"sourceIp6"`
+	UpdateBuildProxy                 *string `pulumi:"updateBuildProxy"`
+	UpdateDldb                       *string `pulumi:"updateDldb"`
+	UpdateExtdb                      *string `pulumi:"updateExtdb"`
+	UpdateFfdb                       *string `pulumi:"updateFfdb"`
+	UpdateServerLocation             *string `pulumi:"updateServerLocation"`
+	UpdateUwdb                       *string `pulumi:"updateUwdb"`
+	Vdom                             *string `pulumi:"vdom"`
+	Vdomparam                        *string `pulumi:"vdomparam"`
+	VideofilterExpiration            *int    `pulumi:"videofilterExpiration"`
+	VideofilterLicense               *int    `pulumi:"videofilterLicense"`
+	WebfilterCache                   *string `pulumi:"webfilterCache"`
+	WebfilterCacheTtl                *int    `pulumi:"webfilterCacheTtl"`
+	WebfilterExpiration              *int    `pulumi:"webfilterExpiration"`
+	WebfilterForceOff                *string `pulumi:"webfilterForceOff"`
+	WebfilterLicense                 *int    `pulumi:"webfilterLicense"`
+	WebfilterTimeout                 *int    `pulumi:"webfilterTimeout"`
 }
 
 type SystemFortiguardState struct {
-	AntispamCache                   pulumi.StringPtrInput
-	AntispamCacheMpercent           pulumi.IntPtrInput
-	AntispamCacheTtl                pulumi.IntPtrInput
-	AntispamExpiration              pulumi.IntPtrInput
-	AntispamForceOff                pulumi.StringPtrInput
-	AntispamLicense                 pulumi.IntPtrInput
-	AntispamTimeout                 pulumi.IntPtrInput
-	AnycastSdnsServerIp             pulumi.StringPtrInput
-	AnycastSdnsServerPort           pulumi.IntPtrInput
-	AutoFirmwareUpgrade             pulumi.StringPtrInput
-	AutoFirmwareUpgradeDay          pulumi.StringPtrInput
-	AutoFirmwareUpgradeEndHour      pulumi.IntPtrInput
-	AutoFirmwareUpgradeStartHour    pulumi.IntPtrInput
-	AutoJoinForticloud              pulumi.StringPtrInput
-	DdnsServerIp                    pulumi.StringPtrInput
-	DdnsServerIp6                   pulumi.StringPtrInput
-	DdnsServerPort                  pulumi.IntPtrInput
-	FortiguardAnycast               pulumi.StringPtrInput
-	FortiguardAnycastSource         pulumi.StringPtrInput
-	Interface                       pulumi.StringPtrInput
-	InterfaceSelectMethod           pulumi.StringPtrInput
-	LoadBalanceServers              pulumi.IntPtrInput
-	OutbreakPreventionCache         pulumi.StringPtrInput
-	OutbreakPreventionCacheMpercent pulumi.IntPtrInput
-	OutbreakPreventionCacheTtl      pulumi.IntPtrInput
-	OutbreakPreventionExpiration    pulumi.IntPtrInput
-	OutbreakPreventionForceOff      pulumi.StringPtrInput
-	OutbreakPreventionLicense       pulumi.IntPtrInput
-	OutbreakPreventionTimeout       pulumi.IntPtrInput
-	PersistentConnection            pulumi.StringPtrInput
-	Port                            pulumi.StringPtrInput
-	Protocol                        pulumi.StringPtrInput
-	ProxyPassword                   pulumi.StringPtrInput
-	ProxyServerIp                   pulumi.StringPtrInput
-	ProxyServerPort                 pulumi.IntPtrInput
-	ProxyUsername                   pulumi.StringPtrInput
-	SandboxInlineScan               pulumi.StringPtrInput
-	SandboxRegion                   pulumi.StringPtrInput
-	SdnsOptions                     pulumi.StringPtrInput
-	SdnsServerIp                    pulumi.StringPtrInput
-	SdnsServerPort                  pulumi.IntPtrInput
-	ServiceAccountId                pulumi.StringPtrInput
-	SourceIp                        pulumi.StringPtrInput
-	SourceIp6                       pulumi.StringPtrInput
-	UpdateBuildProxy                pulumi.StringPtrInput
-	UpdateExtdb                     pulumi.StringPtrInput
-	UpdateFfdb                      pulumi.StringPtrInput
-	UpdateServerLocation            pulumi.StringPtrInput
-	UpdateUwdb                      pulumi.StringPtrInput
-	Vdom                            pulumi.StringPtrInput
-	Vdomparam                       pulumi.StringPtrInput
-	VideofilterExpiration           pulumi.IntPtrInput
-	VideofilterLicense              pulumi.IntPtrInput
-	WebfilterCache                  pulumi.StringPtrInput
-	WebfilterCacheTtl               pulumi.IntPtrInput
-	WebfilterExpiration             pulumi.IntPtrInput
-	WebfilterForceOff               pulumi.StringPtrInput
-	WebfilterLicense                pulumi.IntPtrInput
-	WebfilterTimeout                pulumi.IntPtrInput
+	AntispamCache                    pulumi.StringPtrInput
+	AntispamCacheMpercent            pulumi.IntPtrInput
+	AntispamCacheMpermille           pulumi.IntPtrInput
+	AntispamCacheTtl                 pulumi.IntPtrInput
+	AntispamExpiration               pulumi.IntPtrInput
+	AntispamForceOff                 pulumi.StringPtrInput
+	AntispamLicense                  pulumi.IntPtrInput
+	AntispamTimeout                  pulumi.IntPtrInput
+	AnycastSdnsServerIp              pulumi.StringPtrInput
+	AnycastSdnsServerPort            pulumi.IntPtrInput
+	AutoFirmwareUpgrade              pulumi.StringPtrInput
+	AutoFirmwareUpgradeDay           pulumi.StringPtrInput
+	AutoFirmwareUpgradeDelay         pulumi.IntPtrInput
+	AutoFirmwareUpgradeEndHour       pulumi.IntPtrInput
+	AutoFirmwareUpgradeStartHour     pulumi.IntPtrInput
+	AutoJoinForticloud               pulumi.StringPtrInput
+	DdnsServerIp                     pulumi.StringPtrInput
+	DdnsServerIp6                    pulumi.StringPtrInput
+	DdnsServerPort                   pulumi.IntPtrInput
+	FdsLicenseExpiringDays           pulumi.IntPtrInput
+	FortiguardAnycast                pulumi.StringPtrInput
+	FortiguardAnycastSource          pulumi.StringPtrInput
+	Interface                        pulumi.StringPtrInput
+	InterfaceSelectMethod            pulumi.StringPtrInput
+	LoadBalanceServers               pulumi.IntPtrInput
+	OutbreakPreventionCache          pulumi.StringPtrInput
+	OutbreakPreventionCacheMpercent  pulumi.IntPtrInput
+	OutbreakPreventionCacheMpermille pulumi.IntPtrInput
+	OutbreakPreventionCacheTtl       pulumi.IntPtrInput
+	OutbreakPreventionExpiration     pulumi.IntPtrInput
+	OutbreakPreventionForceOff       pulumi.StringPtrInput
+	OutbreakPreventionLicense        pulumi.IntPtrInput
+	OutbreakPreventionTimeout        pulumi.IntPtrInput
+	PersistentConnection             pulumi.StringPtrInput
+	Port                             pulumi.StringPtrInput
+	Protocol                         pulumi.StringPtrInput
+	ProxyPassword                    pulumi.StringPtrInput
+	ProxyServerIp                    pulumi.StringPtrInput
+	ProxyServerPort                  pulumi.IntPtrInput
+	ProxyUsername                    pulumi.StringPtrInput
+	SandboxInlineScan                pulumi.StringPtrInput
+	SandboxRegion                    pulumi.StringPtrInput
+	SdnsOptions                      pulumi.StringPtrInput
+	SdnsServerIp                     pulumi.StringPtrInput
+	SdnsServerPort                   pulumi.IntPtrInput
+	ServiceAccountId                 pulumi.StringPtrInput
+	SourceIp                         pulumi.StringPtrInput
+	SourceIp6                        pulumi.StringPtrInput
+	UpdateBuildProxy                 pulumi.StringPtrInput
+	UpdateDldb                       pulumi.StringPtrInput
+	UpdateExtdb                      pulumi.StringPtrInput
+	UpdateFfdb                       pulumi.StringPtrInput
+	UpdateServerLocation             pulumi.StringPtrInput
+	UpdateUwdb                       pulumi.StringPtrInput
+	Vdom                             pulumi.StringPtrInput
+	Vdomparam                        pulumi.StringPtrInput
+	VideofilterExpiration            pulumi.IntPtrInput
+	VideofilterLicense               pulumi.IntPtrInput
+	WebfilterCache                   pulumi.StringPtrInput
+	WebfilterCacheTtl                pulumi.IntPtrInput
+	WebfilterExpiration              pulumi.IntPtrInput
+	WebfilterForceOff                pulumi.StringPtrInput
+	WebfilterLicense                 pulumi.IntPtrInput
+	WebfilterTimeout                 pulumi.IntPtrInput
 }
 
 func (SystemFortiguardState) ElementType() reflect.Type {
@@ -249,128 +265,138 @@ func (SystemFortiguardState) ElementType() reflect.Type {
 }
 
 type systemFortiguardArgs struct {
-	AntispamCache                   *string `pulumi:"antispamCache"`
-	AntispamCacheMpercent           *int    `pulumi:"antispamCacheMpercent"`
-	AntispamCacheTtl                *int    `pulumi:"antispamCacheTtl"`
-	AntispamExpiration              *int    `pulumi:"antispamExpiration"`
-	AntispamForceOff                *string `pulumi:"antispamForceOff"`
-	AntispamLicense                 *int    `pulumi:"antispamLicense"`
-	AntispamTimeout                 int     `pulumi:"antispamTimeout"`
-	AnycastSdnsServerIp             *string `pulumi:"anycastSdnsServerIp"`
-	AnycastSdnsServerPort           *int    `pulumi:"anycastSdnsServerPort"`
-	AutoFirmwareUpgrade             *string `pulumi:"autoFirmwareUpgrade"`
-	AutoFirmwareUpgradeDay          *string `pulumi:"autoFirmwareUpgradeDay"`
-	AutoFirmwareUpgradeEndHour      *int    `pulumi:"autoFirmwareUpgradeEndHour"`
-	AutoFirmwareUpgradeStartHour    *int    `pulumi:"autoFirmwareUpgradeStartHour"`
-	AutoJoinForticloud              *string `pulumi:"autoJoinForticloud"`
-	DdnsServerIp                    *string `pulumi:"ddnsServerIp"`
-	DdnsServerIp6                   *string `pulumi:"ddnsServerIp6"`
-	DdnsServerPort                  *int    `pulumi:"ddnsServerPort"`
-	FortiguardAnycast               *string `pulumi:"fortiguardAnycast"`
-	FortiguardAnycastSource         *string `pulumi:"fortiguardAnycastSource"`
-	Interface                       *string `pulumi:"interface"`
-	InterfaceSelectMethod           *string `pulumi:"interfaceSelectMethod"`
-	LoadBalanceServers              *int    `pulumi:"loadBalanceServers"`
-	OutbreakPreventionCache         *string `pulumi:"outbreakPreventionCache"`
-	OutbreakPreventionCacheMpercent *int    `pulumi:"outbreakPreventionCacheMpercent"`
-	OutbreakPreventionCacheTtl      *int    `pulumi:"outbreakPreventionCacheTtl"`
-	OutbreakPreventionExpiration    *int    `pulumi:"outbreakPreventionExpiration"`
-	OutbreakPreventionForceOff      *string `pulumi:"outbreakPreventionForceOff"`
-	OutbreakPreventionLicense       *int    `pulumi:"outbreakPreventionLicense"`
-	OutbreakPreventionTimeout       int     `pulumi:"outbreakPreventionTimeout"`
-	PersistentConnection            *string `pulumi:"persistentConnection"`
-	Port                            *string `pulumi:"port"`
-	Protocol                        *string `pulumi:"protocol"`
-	ProxyPassword                   *string `pulumi:"proxyPassword"`
-	ProxyServerIp                   *string `pulumi:"proxyServerIp"`
-	ProxyServerPort                 *int    `pulumi:"proxyServerPort"`
-	ProxyUsername                   *string `pulumi:"proxyUsername"`
-	SandboxInlineScan               *string `pulumi:"sandboxInlineScan"`
-	SandboxRegion                   *string `pulumi:"sandboxRegion"`
-	SdnsOptions                     *string `pulumi:"sdnsOptions"`
-	SdnsServerIp                    *string `pulumi:"sdnsServerIp"`
-	SdnsServerPort                  *int    `pulumi:"sdnsServerPort"`
-	ServiceAccountId                *string `pulumi:"serviceAccountId"`
-	SourceIp                        *string `pulumi:"sourceIp"`
-	SourceIp6                       *string `pulumi:"sourceIp6"`
-	UpdateBuildProxy                *string `pulumi:"updateBuildProxy"`
-	UpdateExtdb                     *string `pulumi:"updateExtdb"`
-	UpdateFfdb                      *string `pulumi:"updateFfdb"`
-	UpdateServerLocation            *string `pulumi:"updateServerLocation"`
-	UpdateUwdb                      *string `pulumi:"updateUwdb"`
-	Vdom                            *string `pulumi:"vdom"`
-	Vdomparam                       *string `pulumi:"vdomparam"`
-	VideofilterExpiration           *int    `pulumi:"videofilterExpiration"`
-	VideofilterLicense              *int    `pulumi:"videofilterLicense"`
-	WebfilterCache                  *string `pulumi:"webfilterCache"`
-	WebfilterCacheTtl               *int    `pulumi:"webfilterCacheTtl"`
-	WebfilterExpiration             *int    `pulumi:"webfilterExpiration"`
-	WebfilterForceOff               *string `pulumi:"webfilterForceOff"`
-	WebfilterLicense                *int    `pulumi:"webfilterLicense"`
-	WebfilterTimeout                int     `pulumi:"webfilterTimeout"`
+	AntispamCache                    *string `pulumi:"antispamCache"`
+	AntispamCacheMpercent            *int    `pulumi:"antispamCacheMpercent"`
+	AntispamCacheMpermille           *int    `pulumi:"antispamCacheMpermille"`
+	AntispamCacheTtl                 *int    `pulumi:"antispamCacheTtl"`
+	AntispamExpiration               *int    `pulumi:"antispamExpiration"`
+	AntispamForceOff                 *string `pulumi:"antispamForceOff"`
+	AntispamLicense                  *int    `pulumi:"antispamLicense"`
+	AntispamTimeout                  int     `pulumi:"antispamTimeout"`
+	AnycastSdnsServerIp              *string `pulumi:"anycastSdnsServerIp"`
+	AnycastSdnsServerPort            *int    `pulumi:"anycastSdnsServerPort"`
+	AutoFirmwareUpgrade              *string `pulumi:"autoFirmwareUpgrade"`
+	AutoFirmwareUpgradeDay           *string `pulumi:"autoFirmwareUpgradeDay"`
+	AutoFirmwareUpgradeDelay         *int    `pulumi:"autoFirmwareUpgradeDelay"`
+	AutoFirmwareUpgradeEndHour       *int    `pulumi:"autoFirmwareUpgradeEndHour"`
+	AutoFirmwareUpgradeStartHour     *int    `pulumi:"autoFirmwareUpgradeStartHour"`
+	AutoJoinForticloud               *string `pulumi:"autoJoinForticloud"`
+	DdnsServerIp                     *string `pulumi:"ddnsServerIp"`
+	DdnsServerIp6                    *string `pulumi:"ddnsServerIp6"`
+	DdnsServerPort                   *int    `pulumi:"ddnsServerPort"`
+	FdsLicenseExpiringDays           *int    `pulumi:"fdsLicenseExpiringDays"`
+	FortiguardAnycast                *string `pulumi:"fortiguardAnycast"`
+	FortiguardAnycastSource          *string `pulumi:"fortiguardAnycastSource"`
+	Interface                        *string `pulumi:"interface"`
+	InterfaceSelectMethod            *string `pulumi:"interfaceSelectMethod"`
+	LoadBalanceServers               *int    `pulumi:"loadBalanceServers"`
+	OutbreakPreventionCache          *string `pulumi:"outbreakPreventionCache"`
+	OutbreakPreventionCacheMpercent  *int    `pulumi:"outbreakPreventionCacheMpercent"`
+	OutbreakPreventionCacheMpermille *int    `pulumi:"outbreakPreventionCacheMpermille"`
+	OutbreakPreventionCacheTtl       *int    `pulumi:"outbreakPreventionCacheTtl"`
+	OutbreakPreventionExpiration     *int    `pulumi:"outbreakPreventionExpiration"`
+	OutbreakPreventionForceOff       *string `pulumi:"outbreakPreventionForceOff"`
+	OutbreakPreventionLicense        *int    `pulumi:"outbreakPreventionLicense"`
+	OutbreakPreventionTimeout        int     `pulumi:"outbreakPreventionTimeout"`
+	PersistentConnection             *string `pulumi:"persistentConnection"`
+	Port                             *string `pulumi:"port"`
+	Protocol                         *string `pulumi:"protocol"`
+	ProxyPassword                    *string `pulumi:"proxyPassword"`
+	ProxyServerIp                    *string `pulumi:"proxyServerIp"`
+	ProxyServerPort                  *int    `pulumi:"proxyServerPort"`
+	ProxyUsername                    *string `pulumi:"proxyUsername"`
+	SandboxInlineScan                *string `pulumi:"sandboxInlineScan"`
+	SandboxRegion                    *string `pulumi:"sandboxRegion"`
+	SdnsOptions                      *string `pulumi:"sdnsOptions"`
+	SdnsServerIp                     *string `pulumi:"sdnsServerIp"`
+	SdnsServerPort                   *int    `pulumi:"sdnsServerPort"`
+	ServiceAccountId                 *string `pulumi:"serviceAccountId"`
+	SourceIp                         *string `pulumi:"sourceIp"`
+	SourceIp6                        *string `pulumi:"sourceIp6"`
+	UpdateBuildProxy                 *string `pulumi:"updateBuildProxy"`
+	UpdateDldb                       *string `pulumi:"updateDldb"`
+	UpdateExtdb                      *string `pulumi:"updateExtdb"`
+	UpdateFfdb                       *string `pulumi:"updateFfdb"`
+	UpdateServerLocation             *string `pulumi:"updateServerLocation"`
+	UpdateUwdb                       *string `pulumi:"updateUwdb"`
+	Vdom                             *string `pulumi:"vdom"`
+	Vdomparam                        *string `pulumi:"vdomparam"`
+	VideofilterExpiration            *int    `pulumi:"videofilterExpiration"`
+	VideofilterLicense               *int    `pulumi:"videofilterLicense"`
+	WebfilterCache                   *string `pulumi:"webfilterCache"`
+	WebfilterCacheTtl                *int    `pulumi:"webfilterCacheTtl"`
+	WebfilterExpiration              *int    `pulumi:"webfilterExpiration"`
+	WebfilterForceOff                *string `pulumi:"webfilterForceOff"`
+	WebfilterLicense                 *int    `pulumi:"webfilterLicense"`
+	WebfilterTimeout                 int     `pulumi:"webfilterTimeout"`
 }
 
 // The set of arguments for constructing a SystemFortiguard resource.
 type SystemFortiguardArgs struct {
-	AntispamCache                   pulumi.StringPtrInput
-	AntispamCacheMpercent           pulumi.IntPtrInput
-	AntispamCacheTtl                pulumi.IntPtrInput
-	AntispamExpiration              pulumi.IntPtrInput
-	AntispamForceOff                pulumi.StringPtrInput
-	AntispamLicense                 pulumi.IntPtrInput
-	AntispamTimeout                 pulumi.IntInput
-	AnycastSdnsServerIp             pulumi.StringPtrInput
-	AnycastSdnsServerPort           pulumi.IntPtrInput
-	AutoFirmwareUpgrade             pulumi.StringPtrInput
-	AutoFirmwareUpgradeDay          pulumi.StringPtrInput
-	AutoFirmwareUpgradeEndHour      pulumi.IntPtrInput
-	AutoFirmwareUpgradeStartHour    pulumi.IntPtrInput
-	AutoJoinForticloud              pulumi.StringPtrInput
-	DdnsServerIp                    pulumi.StringPtrInput
-	DdnsServerIp6                   pulumi.StringPtrInput
-	DdnsServerPort                  pulumi.IntPtrInput
-	FortiguardAnycast               pulumi.StringPtrInput
-	FortiguardAnycastSource         pulumi.StringPtrInput
-	Interface                       pulumi.StringPtrInput
-	InterfaceSelectMethod           pulumi.StringPtrInput
-	LoadBalanceServers              pulumi.IntPtrInput
-	OutbreakPreventionCache         pulumi.StringPtrInput
-	OutbreakPreventionCacheMpercent pulumi.IntPtrInput
-	OutbreakPreventionCacheTtl      pulumi.IntPtrInput
-	OutbreakPreventionExpiration    pulumi.IntPtrInput
-	OutbreakPreventionForceOff      pulumi.StringPtrInput
-	OutbreakPreventionLicense       pulumi.IntPtrInput
-	OutbreakPreventionTimeout       pulumi.IntInput
-	PersistentConnection            pulumi.StringPtrInput
-	Port                            pulumi.StringPtrInput
-	Protocol                        pulumi.StringPtrInput
-	ProxyPassword                   pulumi.StringPtrInput
-	ProxyServerIp                   pulumi.StringPtrInput
-	ProxyServerPort                 pulumi.IntPtrInput
-	ProxyUsername                   pulumi.StringPtrInput
-	SandboxInlineScan               pulumi.StringPtrInput
-	SandboxRegion                   pulumi.StringPtrInput
-	SdnsOptions                     pulumi.StringPtrInput
-	SdnsServerIp                    pulumi.StringPtrInput
-	SdnsServerPort                  pulumi.IntPtrInput
-	ServiceAccountId                pulumi.StringPtrInput
-	SourceIp                        pulumi.StringPtrInput
-	SourceIp6                       pulumi.StringPtrInput
-	UpdateBuildProxy                pulumi.StringPtrInput
-	UpdateExtdb                     pulumi.StringPtrInput
-	UpdateFfdb                      pulumi.StringPtrInput
-	UpdateServerLocation            pulumi.StringPtrInput
-	UpdateUwdb                      pulumi.StringPtrInput
-	Vdom                            pulumi.StringPtrInput
-	Vdomparam                       pulumi.StringPtrInput
-	VideofilterExpiration           pulumi.IntPtrInput
-	VideofilterLicense              pulumi.IntPtrInput
-	WebfilterCache                  pulumi.StringPtrInput
-	WebfilterCacheTtl               pulumi.IntPtrInput
-	WebfilterExpiration             pulumi.IntPtrInput
-	WebfilterForceOff               pulumi.StringPtrInput
-	WebfilterLicense                pulumi.IntPtrInput
-	WebfilterTimeout                pulumi.IntInput
+	AntispamCache                    pulumi.StringPtrInput
+	AntispamCacheMpercent            pulumi.IntPtrInput
+	AntispamCacheMpermille           pulumi.IntPtrInput
+	AntispamCacheTtl                 pulumi.IntPtrInput
+	AntispamExpiration               pulumi.IntPtrInput
+	AntispamForceOff                 pulumi.StringPtrInput
+	AntispamLicense                  pulumi.IntPtrInput
+	AntispamTimeout                  pulumi.IntInput
+	AnycastSdnsServerIp              pulumi.StringPtrInput
+	AnycastSdnsServerPort            pulumi.IntPtrInput
+	AutoFirmwareUpgrade              pulumi.StringPtrInput
+	AutoFirmwareUpgradeDay           pulumi.StringPtrInput
+	AutoFirmwareUpgradeDelay         pulumi.IntPtrInput
+	AutoFirmwareUpgradeEndHour       pulumi.IntPtrInput
+	AutoFirmwareUpgradeStartHour     pulumi.IntPtrInput
+	AutoJoinForticloud               pulumi.StringPtrInput
+	DdnsServerIp                     pulumi.StringPtrInput
+	DdnsServerIp6                    pulumi.StringPtrInput
+	DdnsServerPort                   pulumi.IntPtrInput
+	FdsLicenseExpiringDays           pulumi.IntPtrInput
+	FortiguardAnycast                pulumi.StringPtrInput
+	FortiguardAnycastSource          pulumi.StringPtrInput
+	Interface                        pulumi.StringPtrInput
+	InterfaceSelectMethod            pulumi.StringPtrInput
+	LoadBalanceServers               pulumi.IntPtrInput
+	OutbreakPreventionCache          pulumi.StringPtrInput
+	OutbreakPreventionCacheMpercent  pulumi.IntPtrInput
+	OutbreakPreventionCacheMpermille pulumi.IntPtrInput
+	OutbreakPreventionCacheTtl       pulumi.IntPtrInput
+	OutbreakPreventionExpiration     pulumi.IntPtrInput
+	OutbreakPreventionForceOff       pulumi.StringPtrInput
+	OutbreakPreventionLicense        pulumi.IntPtrInput
+	OutbreakPreventionTimeout        pulumi.IntInput
+	PersistentConnection             pulumi.StringPtrInput
+	Port                             pulumi.StringPtrInput
+	Protocol                         pulumi.StringPtrInput
+	ProxyPassword                    pulumi.StringPtrInput
+	ProxyServerIp                    pulumi.StringPtrInput
+	ProxyServerPort                  pulumi.IntPtrInput
+	ProxyUsername                    pulumi.StringPtrInput
+	SandboxInlineScan                pulumi.StringPtrInput
+	SandboxRegion                    pulumi.StringPtrInput
+	SdnsOptions                      pulumi.StringPtrInput
+	SdnsServerIp                     pulumi.StringPtrInput
+	SdnsServerPort                   pulumi.IntPtrInput
+	ServiceAccountId                 pulumi.StringPtrInput
+	SourceIp                         pulumi.StringPtrInput
+	SourceIp6                        pulumi.StringPtrInput
+	UpdateBuildProxy                 pulumi.StringPtrInput
+	UpdateDldb                       pulumi.StringPtrInput
+	UpdateExtdb                      pulumi.StringPtrInput
+	UpdateFfdb                       pulumi.StringPtrInput
+	UpdateServerLocation             pulumi.StringPtrInput
+	UpdateUwdb                       pulumi.StringPtrInput
+	Vdom                             pulumi.StringPtrInput
+	Vdomparam                        pulumi.StringPtrInput
+	VideofilterExpiration            pulumi.IntPtrInput
+	VideofilterLicense               pulumi.IntPtrInput
+	WebfilterCache                   pulumi.StringPtrInput
+	WebfilterCacheTtl                pulumi.IntPtrInput
+	WebfilterExpiration              pulumi.IntPtrInput
+	WebfilterForceOff                pulumi.StringPtrInput
+	WebfilterLicense                 pulumi.IntPtrInput
+	WebfilterTimeout                 pulumi.IntInput
 }
 
 func (SystemFortiguardArgs) ElementType() reflect.Type {
@@ -468,6 +494,10 @@ func (o SystemFortiguardOutput) AntispamCacheMpercent() pulumi.IntOutput {
 	return o.ApplyT(func(v *SystemFortiguard) pulumi.IntOutput { return v.AntispamCacheMpercent }).(pulumi.IntOutput)
 }
 
+func (o SystemFortiguardOutput) AntispamCacheMpermille() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.IntOutput { return v.AntispamCacheMpermille }).(pulumi.IntOutput)
+}
+
 func (o SystemFortiguardOutput) AntispamCacheTtl() pulumi.IntOutput {
 	return o.ApplyT(func(v *SystemFortiguard) pulumi.IntOutput { return v.AntispamCacheTtl }).(pulumi.IntOutput)
 }
@@ -504,6 +534,10 @@ func (o SystemFortiguardOutput) AutoFirmwareUpgradeDay() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.AutoFirmwareUpgradeDay }).(pulumi.StringOutput)
 }
 
+func (o SystemFortiguardOutput) AutoFirmwareUpgradeDelay() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.IntOutput { return v.AutoFirmwareUpgradeDelay }).(pulumi.IntOutput)
+}
+
 func (o SystemFortiguardOutput) AutoFirmwareUpgradeEndHour() pulumi.IntOutput {
 	return o.ApplyT(func(v *SystemFortiguard) pulumi.IntOutput { return v.AutoFirmwareUpgradeEndHour }).(pulumi.IntOutput)
 }
@@ -526,6 +560,10 @@ func (o SystemFortiguardOutput) DdnsServerIp6() pulumi.StringOutput {
 
 func (o SystemFortiguardOutput) DdnsServerPort() pulumi.IntOutput {
 	return o.ApplyT(func(v *SystemFortiguard) pulumi.IntOutput { return v.DdnsServerPort }).(pulumi.IntOutput)
+}
+
+func (o SystemFortiguardOutput) FdsLicenseExpiringDays() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.IntOutput { return v.FdsLicenseExpiringDays }).(pulumi.IntOutput)
 }
 
 func (o SystemFortiguardOutput) FortiguardAnycast() pulumi.StringOutput {
@@ -554,6 +592,10 @@ func (o SystemFortiguardOutput) OutbreakPreventionCache() pulumi.StringOutput {
 
 func (o SystemFortiguardOutput) OutbreakPreventionCacheMpercent() pulumi.IntOutput {
 	return o.ApplyT(func(v *SystemFortiguard) pulumi.IntOutput { return v.OutbreakPreventionCacheMpercent }).(pulumi.IntOutput)
+}
+
+func (o SystemFortiguardOutput) OutbreakPreventionCacheMpermille() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.IntOutput { return v.OutbreakPreventionCacheMpermille }).(pulumi.IntOutput)
 }
 
 func (o SystemFortiguardOutput) OutbreakPreventionCacheTtl() pulumi.IntOutput {
@@ -638,6 +680,10 @@ func (o SystemFortiguardOutput) SourceIp6() pulumi.StringOutput {
 
 func (o SystemFortiguardOutput) UpdateBuildProxy() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.UpdateBuildProxy }).(pulumi.StringOutput)
+}
+
+func (o SystemFortiguardOutput) UpdateDldb() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFortiguard) pulumi.StringOutput { return v.UpdateDldb }).(pulumi.StringOutput)
 }
 
 func (o SystemFortiguardOutput) UpdateExtdb() pulumi.StringOutput {

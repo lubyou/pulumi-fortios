@@ -36,6 +36,7 @@ export class VoipProfile extends pulumi.CustomResource {
 
     public readonly comment!: pulumi.Output<string | undefined>;
     public readonly featureSet!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly msrp!: pulumi.Output<outputs.VoipProfileMsrp>;
     public readonly name!: pulumi.Output<string>;
     public readonly sccp!: pulumi.Output<outputs.VoipProfileSccp>;
@@ -57,6 +58,7 @@ export class VoipProfile extends pulumi.CustomResource {
             const state = argsOrState as VoipProfileState | undefined;
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["featureSet"] = state ? state.featureSet : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["msrp"] = state ? state.msrp : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["sccp"] = state ? state.sccp : undefined;
@@ -66,6 +68,7 @@ export class VoipProfile extends pulumi.CustomResource {
             const args = argsOrState as VoipProfileArgs | undefined;
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["featureSet"] = args ? args.featureSet : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["msrp"] = args ? args.msrp : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["sccp"] = args ? args.sccp : undefined;
@@ -83,6 +86,7 @@ export class VoipProfile extends pulumi.CustomResource {
 export interface VoipProfileState {
     comment?: pulumi.Input<string>;
     featureSet?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     msrp?: pulumi.Input<inputs.VoipProfileMsrp>;
     name?: pulumi.Input<string>;
     sccp?: pulumi.Input<inputs.VoipProfileSccp>;
@@ -96,6 +100,7 @@ export interface VoipProfileState {
 export interface VoipProfileArgs {
     comment?: pulumi.Input<string>;
     featureSet?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     msrp?: pulumi.Input<inputs.VoipProfileMsrp>;
     name?: pulumi.Input<string>;
     sccp?: pulumi.Input<inputs.VoipProfileSccp>;

@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -17,6 +18,7 @@ type FirewallTtlPolicy struct {
 	Action              pulumi.StringOutput                 `pulumi:"action"`
 	DynamicSortSubtable pulumi.StringPtrOutput              `pulumi:"dynamicSortSubtable"`
 	Fosid               pulumi.IntOutput                    `pulumi:"fosid"`
+	GetAllTables        pulumi.StringPtrOutput              `pulumi:"getAllTables"`
 	Schedule            pulumi.StringOutput                 `pulumi:"schedule"`
 	Services            FirewallTtlPolicyServiceArrayOutput `pulumi:"services"`
 	Srcaddrs            FirewallTtlPolicySrcaddrArrayOutput `pulumi:"srcaddrs"`
@@ -51,7 +53,7 @@ func NewFirewallTtlPolicy(ctx *pulumi.Context,
 	if args.Ttl == nil {
 		return nil, errors.New("invalid value for required argument 'Ttl'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallTtlPolicy
 	err := ctx.RegisterResource("fortios:index/firewallTtlPolicy:FirewallTtlPolicy", name, args, &resource, opts...)
 	if err != nil {
@@ -77,6 +79,7 @@ type firewallTtlPolicyState struct {
 	Action              *string                    `pulumi:"action"`
 	DynamicSortSubtable *string                    `pulumi:"dynamicSortSubtable"`
 	Fosid               *int                       `pulumi:"fosid"`
+	GetAllTables        *string                    `pulumi:"getAllTables"`
 	Schedule            *string                    `pulumi:"schedule"`
 	Services            []FirewallTtlPolicyService `pulumi:"services"`
 	Srcaddrs            []FirewallTtlPolicySrcaddr `pulumi:"srcaddrs"`
@@ -90,6 +93,7 @@ type FirewallTtlPolicyState struct {
 	Action              pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	Fosid               pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Schedule            pulumi.StringPtrInput
 	Services            FirewallTtlPolicyServiceArrayInput
 	Srcaddrs            FirewallTtlPolicySrcaddrArrayInput
@@ -107,6 +111,7 @@ type firewallTtlPolicyArgs struct {
 	Action              *string                    `pulumi:"action"`
 	DynamicSortSubtable *string                    `pulumi:"dynamicSortSubtable"`
 	Fosid               int                        `pulumi:"fosid"`
+	GetAllTables        *string                    `pulumi:"getAllTables"`
 	Schedule            string                     `pulumi:"schedule"`
 	Services            []FirewallTtlPolicyService `pulumi:"services"`
 	Srcaddrs            []FirewallTtlPolicySrcaddr `pulumi:"srcaddrs"`
@@ -121,6 +126,7 @@ type FirewallTtlPolicyArgs struct {
 	Action              pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	Fosid               pulumi.IntInput
+	GetAllTables        pulumi.StringPtrInput
 	Schedule            pulumi.StringInput
 	Services            FirewallTtlPolicyServiceArrayInput
 	Srcaddrs            FirewallTtlPolicySrcaddrArrayInput
@@ -227,6 +233,10 @@ func (o FirewallTtlPolicyOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 
 func (o FirewallTtlPolicyOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *FirewallTtlPolicy) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o FirewallTtlPolicyOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallTtlPolicy) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallTtlPolicyOutput) Schedule() pulumi.StringOutput {

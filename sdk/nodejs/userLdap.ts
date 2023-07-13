@@ -34,6 +34,7 @@ export class UserLdap extends pulumi.CustomResource {
 
     public readonly accountKeyFilter!: pulumi.Output<string>;
     public readonly accountKeyProcessing!: pulumi.Output<string>;
+    public readonly accountKeyUpnSan!: pulumi.Output<string>;
     public readonly antiphish!: pulumi.Output<string>;
     public readonly caCert!: pulumi.Output<string>;
     public readonly clientCert!: pulumi.Output<string>;
@@ -87,6 +88,7 @@ export class UserLdap extends pulumi.CustomResource {
             const state = argsOrState as UserLdapState | undefined;
             resourceInputs["accountKeyFilter"] = state ? state.accountKeyFilter : undefined;
             resourceInputs["accountKeyProcessing"] = state ? state.accountKeyProcessing : undefined;
+            resourceInputs["accountKeyUpnSan"] = state ? state.accountKeyUpnSan : undefined;
             resourceInputs["antiphish"] = state ? state.antiphish : undefined;
             resourceInputs["caCert"] = state ? state.caCert : undefined;
             resourceInputs["clientCert"] = state ? state.clientCert : undefined;
@@ -134,6 +136,7 @@ export class UserLdap extends pulumi.CustomResource {
             }
             resourceInputs["accountKeyFilter"] = args ? args.accountKeyFilter : undefined;
             resourceInputs["accountKeyProcessing"] = args ? args.accountKeyProcessing : undefined;
+            resourceInputs["accountKeyUpnSan"] = args ? args.accountKeyUpnSan : undefined;
             resourceInputs["antiphish"] = args ? args.antiphish : undefined;
             resourceInputs["caCert"] = args ? args.caCert : undefined;
             resourceInputs["clientCert"] = args ? args.clientCert : undefined;
@@ -185,6 +188,7 @@ export class UserLdap extends pulumi.CustomResource {
 export interface UserLdapState {
     accountKeyFilter?: pulumi.Input<string>;
     accountKeyProcessing?: pulumi.Input<string>;
+    accountKeyUpnSan?: pulumi.Input<string>;
     antiphish?: pulumi.Input<string>;
     caCert?: pulumi.Input<string>;
     clientCert?: pulumi.Input<string>;
@@ -230,6 +234,7 @@ export interface UserLdapState {
 export interface UserLdapArgs {
     accountKeyFilter?: pulumi.Input<string>;
     accountKeyProcessing?: pulumi.Input<string>;
+    accountKeyUpnSan?: pulumi.Input<string>;
     antiphish?: pulumi.Input<string>;
     caCert?: pulumi.Input<string>;
     clientCert?: pulumi.Input<string>;

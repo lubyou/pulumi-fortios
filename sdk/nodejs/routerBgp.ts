@@ -45,6 +45,7 @@ export class RouterBgp extends pulumi.CustomResource {
     public readonly aggregateAddresses!: pulumi.Output<outputs.RouterBgpAggregateAddress[] | undefined>;
     public readonly alwaysCompareMed!: pulumi.Output<string>;
     public readonly as!: pulumi.Output<number>;
+    public readonly asString!: pulumi.Output<string>;
     public readonly bestpathAsPathIgnore!: pulumi.Output<string>;
     public readonly bestpathCmpConfedAspath!: pulumi.Output<string>;
     public readonly bestpathCmpRouterid!: pulumi.Output<string>;
@@ -54,6 +55,7 @@ export class RouterBgp extends pulumi.CustomResource {
     public readonly clusterId!: pulumi.Output<string>;
     public readonly confederationIdentifier!: pulumi.Output<number>;
     public readonly confederationPeers!: pulumi.Output<outputs.RouterBgpConfederationPeer[] | undefined>;
+    public readonly crossFamilyConditionalAdv!: pulumi.Output<string>;
     public readonly dampening!: pulumi.Output<string>;
     public readonly dampeningMaxSuppressTime!: pulumi.Output<number>;
     public readonly dampeningReachabilityHalfLife!: pulumi.Output<number>;
@@ -70,6 +72,7 @@ export class RouterBgp extends pulumi.CustomResource {
     public readonly ebgpMultipath!: pulumi.Output<string>;
     public readonly enforceFirstAs!: pulumi.Output<string>;
     public readonly fastExternalFailover!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly gracefulEndOnTimer!: pulumi.Output<string>;
     public readonly gracefulRestart!: pulumi.Output<string>;
     public readonly gracefulRestartTime!: pulumi.Output<number>;
@@ -81,10 +84,10 @@ export class RouterBgp extends pulumi.CustomResource {
     public readonly keepaliveTimer!: pulumi.Output<number>;
     public readonly logNeighbourChanges!: pulumi.Output<string>;
     public readonly multipathRecursiveDistance!: pulumi.Output<string>;
-    public readonly neighborGroups!: pulumi.Output<outputs.RouterBgpNeighborGroup[] | undefined>;
+    public readonly neighborGroups!: pulumi.Output<outputs.RouterBgpNeighborGroup[]>;
     public readonly neighborRange6s!: pulumi.Output<outputs.RouterBgpNeighborRange6[] | undefined>;
     public readonly neighborRanges!: pulumi.Output<outputs.RouterBgpNeighborRange[] | undefined>;
-    public readonly neighbors!: pulumi.Output<outputs.RouterBgpNeighbor[] | undefined>;
+    public readonly neighbors!: pulumi.Output<outputs.RouterBgpNeighbor[]>;
     public readonly network6s!: pulumi.Output<outputs.RouterBgpNetwork6[] | undefined>;
     public readonly networkImportCheck!: pulumi.Output<string>;
     public readonly networks!: pulumi.Output<outputs.RouterBgpNetwork[] | undefined>;
@@ -126,6 +129,7 @@ export class RouterBgp extends pulumi.CustomResource {
             resourceInputs["aggregateAddresses"] = state ? state.aggregateAddresses : undefined;
             resourceInputs["alwaysCompareMed"] = state ? state.alwaysCompareMed : undefined;
             resourceInputs["as"] = state ? state.as : undefined;
+            resourceInputs["asString"] = state ? state.asString : undefined;
             resourceInputs["bestpathAsPathIgnore"] = state ? state.bestpathAsPathIgnore : undefined;
             resourceInputs["bestpathCmpConfedAspath"] = state ? state.bestpathCmpConfedAspath : undefined;
             resourceInputs["bestpathCmpRouterid"] = state ? state.bestpathCmpRouterid : undefined;
@@ -135,6 +139,7 @@ export class RouterBgp extends pulumi.CustomResource {
             resourceInputs["clusterId"] = state ? state.clusterId : undefined;
             resourceInputs["confederationIdentifier"] = state ? state.confederationIdentifier : undefined;
             resourceInputs["confederationPeers"] = state ? state.confederationPeers : undefined;
+            resourceInputs["crossFamilyConditionalAdv"] = state ? state.crossFamilyConditionalAdv : undefined;
             resourceInputs["dampening"] = state ? state.dampening : undefined;
             resourceInputs["dampeningMaxSuppressTime"] = state ? state.dampeningMaxSuppressTime : undefined;
             resourceInputs["dampeningReachabilityHalfLife"] = state ? state.dampeningReachabilityHalfLife : undefined;
@@ -151,6 +156,7 @@ export class RouterBgp extends pulumi.CustomResource {
             resourceInputs["ebgpMultipath"] = state ? state.ebgpMultipath : undefined;
             resourceInputs["enforceFirstAs"] = state ? state.enforceFirstAs : undefined;
             resourceInputs["fastExternalFailover"] = state ? state.fastExternalFailover : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["gracefulEndOnTimer"] = state ? state.gracefulEndOnTimer : undefined;
             resourceInputs["gracefulRestart"] = state ? state.gracefulRestart : undefined;
             resourceInputs["gracefulRestartTime"] = state ? state.gracefulRestartTime : undefined;
@@ -198,6 +204,7 @@ export class RouterBgp extends pulumi.CustomResource {
             resourceInputs["aggregateAddresses"] = args ? args.aggregateAddresses : undefined;
             resourceInputs["alwaysCompareMed"] = args ? args.alwaysCompareMed : undefined;
             resourceInputs["as"] = args ? args.as : undefined;
+            resourceInputs["asString"] = args ? args.asString : undefined;
             resourceInputs["bestpathAsPathIgnore"] = args ? args.bestpathAsPathIgnore : undefined;
             resourceInputs["bestpathCmpConfedAspath"] = args ? args.bestpathCmpConfedAspath : undefined;
             resourceInputs["bestpathCmpRouterid"] = args ? args.bestpathCmpRouterid : undefined;
@@ -207,6 +214,7 @@ export class RouterBgp extends pulumi.CustomResource {
             resourceInputs["clusterId"] = args ? args.clusterId : undefined;
             resourceInputs["confederationIdentifier"] = args ? args.confederationIdentifier : undefined;
             resourceInputs["confederationPeers"] = args ? args.confederationPeers : undefined;
+            resourceInputs["crossFamilyConditionalAdv"] = args ? args.crossFamilyConditionalAdv : undefined;
             resourceInputs["dampening"] = args ? args.dampening : undefined;
             resourceInputs["dampeningMaxSuppressTime"] = args ? args.dampeningMaxSuppressTime : undefined;
             resourceInputs["dampeningReachabilityHalfLife"] = args ? args.dampeningReachabilityHalfLife : undefined;
@@ -223,6 +231,7 @@ export class RouterBgp extends pulumi.CustomResource {
             resourceInputs["ebgpMultipath"] = args ? args.ebgpMultipath : undefined;
             resourceInputs["enforceFirstAs"] = args ? args.enforceFirstAs : undefined;
             resourceInputs["fastExternalFailover"] = args ? args.fastExternalFailover : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["gracefulEndOnTimer"] = args ? args.gracefulEndOnTimer : undefined;
             resourceInputs["gracefulRestart"] = args ? args.gracefulRestart : undefined;
             resourceInputs["gracefulRestartTime"] = args ? args.gracefulRestartTime : undefined;
@@ -275,6 +284,7 @@ export interface RouterBgpState {
     aggregateAddresses?: pulumi.Input<pulumi.Input<inputs.RouterBgpAggregateAddress>[]>;
     alwaysCompareMed?: pulumi.Input<string>;
     as?: pulumi.Input<number>;
+    asString?: pulumi.Input<string>;
     bestpathAsPathIgnore?: pulumi.Input<string>;
     bestpathCmpConfedAspath?: pulumi.Input<string>;
     bestpathCmpRouterid?: pulumi.Input<string>;
@@ -284,6 +294,7 @@ export interface RouterBgpState {
     clusterId?: pulumi.Input<string>;
     confederationIdentifier?: pulumi.Input<number>;
     confederationPeers?: pulumi.Input<pulumi.Input<inputs.RouterBgpConfederationPeer>[]>;
+    crossFamilyConditionalAdv?: pulumi.Input<string>;
     dampening?: pulumi.Input<string>;
     dampeningMaxSuppressTime?: pulumi.Input<number>;
     dampeningReachabilityHalfLife?: pulumi.Input<number>;
@@ -300,6 +311,7 @@ export interface RouterBgpState {
     ebgpMultipath?: pulumi.Input<string>;
     enforceFirstAs?: pulumi.Input<string>;
     fastExternalFailover?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     gracefulEndOnTimer?: pulumi.Input<string>;
     gracefulRestart?: pulumi.Input<string>;
     gracefulRestartTime?: pulumi.Input<number>;
@@ -348,6 +360,7 @@ export interface RouterBgpArgs {
     aggregateAddresses?: pulumi.Input<pulumi.Input<inputs.RouterBgpAggregateAddress>[]>;
     alwaysCompareMed?: pulumi.Input<string>;
     as: pulumi.Input<number>;
+    asString?: pulumi.Input<string>;
     bestpathAsPathIgnore?: pulumi.Input<string>;
     bestpathCmpConfedAspath?: pulumi.Input<string>;
     bestpathCmpRouterid?: pulumi.Input<string>;
@@ -357,6 +370,7 @@ export interface RouterBgpArgs {
     clusterId?: pulumi.Input<string>;
     confederationIdentifier?: pulumi.Input<number>;
     confederationPeers?: pulumi.Input<pulumi.Input<inputs.RouterBgpConfederationPeer>[]>;
+    crossFamilyConditionalAdv?: pulumi.Input<string>;
     dampening?: pulumi.Input<string>;
     dampeningMaxSuppressTime?: pulumi.Input<number>;
     dampeningReachabilityHalfLife?: pulumi.Input<number>;
@@ -373,6 +387,7 @@ export interface RouterBgpArgs {
     ebgpMultipath?: pulumi.Input<string>;
     enforceFirstAs?: pulumi.Input<string>;
     fastExternalFailover?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     gracefulEndOnTimer?: pulumi.Input<string>;
     gracefulRestart?: pulumi.Input<string>;
     gracefulRestartTime?: pulumi.Input<number>;

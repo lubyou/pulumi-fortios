@@ -129,15 +129,15 @@ def get_system_sit_tunnel(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemSitTunnel:GetSystemSitTunnel', __args__, opts=opts, typ=GetSystemSitTunnelResult).value
 
     return AwaitableGetSystemSitTunnelResult(
-        auto_asic_offload=__ret__.auto_asic_offload,
-        destination=__ret__.destination,
-        id=__ret__.id,
-        interface=__ret__.interface,
-        ip6=__ret__.ip6,
-        name=__ret__.name,
-        source=__ret__.source,
-        use_sdwan=__ret__.use_sdwan,
-        vdomparam=__ret__.vdomparam)
+        auto_asic_offload=pulumi.get(__ret__, 'auto_asic_offload'),
+        destination=pulumi.get(__ret__, 'destination'),
+        id=pulumi.get(__ret__, 'id'),
+        interface=pulumi.get(__ret__, 'interface'),
+        ip6=pulumi.get(__ret__, 'ip6'),
+        name=pulumi.get(__ret__, 'name'),
+        source=pulumi.get(__ret__, 'source'),
+        use_sdwan=pulumi.get(__ret__, 'use_sdwan'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_sit_tunnel)

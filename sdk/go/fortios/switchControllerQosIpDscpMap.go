@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,6 +16,7 @@ type SwitchControllerQosIpDscpMap struct {
 
 	Description         pulumi.StringOutput                            `pulumi:"description"`
 	DynamicSortSubtable pulumi.StringPtrOutput                         `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                         `pulumi:"getAllTables"`
 	Maps                SwitchControllerQosIpDscpMapMapTypeArrayOutput `pulumi:"maps"`
 	Name                pulumi.StringOutput                            `pulumi:"name"`
 	Vdomparam           pulumi.StringPtrOutput                         `pulumi:"vdomparam"`
@@ -27,7 +29,7 @@ func NewSwitchControllerQosIpDscpMap(ctx *pulumi.Context,
 		args = &SwitchControllerQosIpDscpMapArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SwitchControllerQosIpDscpMap
 	err := ctx.RegisterResource("fortios:index/switchControllerQosIpDscpMap:SwitchControllerQosIpDscpMap", name, args, &resource, opts...)
 	if err != nil {
@@ -52,6 +54,7 @@ func GetSwitchControllerQosIpDscpMap(ctx *pulumi.Context,
 type switchControllerQosIpDscpMapState struct {
 	Description         *string                               `pulumi:"description"`
 	DynamicSortSubtable *string                               `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                               `pulumi:"getAllTables"`
 	Maps                []SwitchControllerQosIpDscpMapMapType `pulumi:"maps"`
 	Name                *string                               `pulumi:"name"`
 	Vdomparam           *string                               `pulumi:"vdomparam"`
@@ -60,6 +63,7 @@ type switchControllerQosIpDscpMapState struct {
 type SwitchControllerQosIpDscpMapState struct {
 	Description         pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Maps                SwitchControllerQosIpDscpMapMapTypeArrayInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
@@ -72,6 +76,7 @@ func (SwitchControllerQosIpDscpMapState) ElementType() reflect.Type {
 type switchControllerQosIpDscpMapArgs struct {
 	Description         *string                               `pulumi:"description"`
 	DynamicSortSubtable *string                               `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                               `pulumi:"getAllTables"`
 	Maps                []SwitchControllerQosIpDscpMapMapType `pulumi:"maps"`
 	Name                *string                               `pulumi:"name"`
 	Vdomparam           *string                               `pulumi:"vdomparam"`
@@ -81,6 +86,7 @@ type switchControllerQosIpDscpMapArgs struct {
 type SwitchControllerQosIpDscpMapArgs struct {
 	Description         pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Maps                SwitchControllerQosIpDscpMapMapTypeArrayInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
@@ -179,6 +185,10 @@ func (o SwitchControllerQosIpDscpMapOutput) Description() pulumi.StringOutput {
 
 func (o SwitchControllerQosIpDscpMapOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SwitchControllerQosIpDscpMap) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SwitchControllerQosIpDscpMapOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerQosIpDscpMap) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SwitchControllerQosIpDscpMapOutput) Maps() SwitchControllerQosIpDscpMapMapTypeArrayOutput {

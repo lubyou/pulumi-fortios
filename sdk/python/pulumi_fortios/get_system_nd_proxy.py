@@ -83,10 +83,10 @@ def get_system_nd_proxy(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemNdProxy:GetSystemNdProxy', __args__, opts=opts, typ=GetSystemNdProxyResult).value
 
     return AwaitableGetSystemNdProxyResult(
-        id=__ret__.id,
-        members=__ret__.members,
-        status=__ret__.status,
-        vdomparam=__ret__.vdomparam)
+        id=pulumi.get(__ret__, 'id'),
+        members=pulumi.get(__ret__, 'members'),
+        status=pulumi.get(__ret__, 'status'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_nd_proxy)

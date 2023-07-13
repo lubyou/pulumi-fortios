@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -16,6 +17,7 @@ type WirelessControllerInterController struct {
 	DynamicSortSubtable  pulumi.StringPtrOutput                                          `pulumi:"dynamicSortSubtable"`
 	FastFailoverMax      pulumi.IntOutput                                                `pulumi:"fastFailoverMax"`
 	FastFailoverWait     pulumi.IntOutput                                                `pulumi:"fastFailoverWait"`
+	GetAllTables         pulumi.StringPtrOutput                                          `pulumi:"getAllTables"`
 	InterControllerKey   pulumi.StringPtrOutput                                          `pulumi:"interControllerKey"`
 	InterControllerMode  pulumi.StringOutput                                             `pulumi:"interControllerMode"`
 	InterControllerPeers WirelessControllerInterControllerInterControllerPeerArrayOutput `pulumi:"interControllerPeers"`
@@ -38,7 +40,7 @@ func NewWirelessControllerInterController(ctx *pulumi.Context,
 		"interControllerKey",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WirelessControllerInterController
 	err := ctx.RegisterResource("fortios:index/wirelessControllerInterController:WirelessControllerInterController", name, args, &resource, opts...)
 	if err != nil {
@@ -64,6 +66,7 @@ type wirelessControllerInterControllerState struct {
 	DynamicSortSubtable  *string                                                `pulumi:"dynamicSortSubtable"`
 	FastFailoverMax      *int                                                   `pulumi:"fastFailoverMax"`
 	FastFailoverWait     *int                                                   `pulumi:"fastFailoverWait"`
+	GetAllTables         *string                                                `pulumi:"getAllTables"`
 	InterControllerKey   *string                                                `pulumi:"interControllerKey"`
 	InterControllerMode  *string                                                `pulumi:"interControllerMode"`
 	InterControllerPeers []WirelessControllerInterControllerInterControllerPeer `pulumi:"interControllerPeers"`
@@ -76,6 +79,7 @@ type WirelessControllerInterControllerState struct {
 	DynamicSortSubtable  pulumi.StringPtrInput
 	FastFailoverMax      pulumi.IntPtrInput
 	FastFailoverWait     pulumi.IntPtrInput
+	GetAllTables         pulumi.StringPtrInput
 	InterControllerKey   pulumi.StringPtrInput
 	InterControllerMode  pulumi.StringPtrInput
 	InterControllerPeers WirelessControllerInterControllerInterControllerPeerArrayInput
@@ -92,6 +96,7 @@ type wirelessControllerInterControllerArgs struct {
 	DynamicSortSubtable  *string                                                `pulumi:"dynamicSortSubtable"`
 	FastFailoverMax      *int                                                   `pulumi:"fastFailoverMax"`
 	FastFailoverWait     *int                                                   `pulumi:"fastFailoverWait"`
+	GetAllTables         *string                                                `pulumi:"getAllTables"`
 	InterControllerKey   *string                                                `pulumi:"interControllerKey"`
 	InterControllerMode  *string                                                `pulumi:"interControllerMode"`
 	InterControllerPeers []WirelessControllerInterControllerInterControllerPeer `pulumi:"interControllerPeers"`
@@ -105,6 +110,7 @@ type WirelessControllerInterControllerArgs struct {
 	DynamicSortSubtable  pulumi.StringPtrInput
 	FastFailoverMax      pulumi.IntPtrInput
 	FastFailoverWait     pulumi.IntPtrInput
+	GetAllTables         pulumi.StringPtrInput
 	InterControllerKey   pulumi.StringPtrInput
 	InterControllerMode  pulumi.StringPtrInput
 	InterControllerPeers WirelessControllerInterControllerInterControllerPeerArrayInput
@@ -210,6 +216,10 @@ func (o WirelessControllerInterControllerOutput) FastFailoverMax() pulumi.IntOut
 
 func (o WirelessControllerInterControllerOutput) FastFailoverWait() pulumi.IntOutput {
 	return o.ApplyT(func(v *WirelessControllerInterController) pulumi.IntOutput { return v.FastFailoverWait }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerInterControllerOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerInterController) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o WirelessControllerInterControllerOutput) InterControllerKey() pulumi.StringPtrOutput {

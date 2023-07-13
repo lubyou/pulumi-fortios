@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupFirewallIpv6EhFilter(ctx *pulumi.Context, args *LookupFirewallIpv6EhFilterArgs, opts ...pulumi.InvokeOption) (*LookupFirewallIpv6EhFilterResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallIpv6EhFilterResult
 	err := ctx.Invoke("fortios:index/getFirewallIpv6EhFilter:GetFirewallIpv6EhFilter", args, &rv, opts...)
 	if err != nil {

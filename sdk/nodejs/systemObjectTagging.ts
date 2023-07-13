@@ -39,6 +39,7 @@ export class SystemObjectTagging extends pulumi.CustomResource {
     public readonly color!: pulumi.Output<number>;
     public readonly device!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly interface!: pulumi.Output<string>;
     public readonly multiple!: pulumi.Output<string>;
     public readonly tags!: pulumi.Output<outputs.SystemObjectTaggingTag[] | undefined>;
@@ -62,6 +63,7 @@ export class SystemObjectTagging extends pulumi.CustomResource {
             resourceInputs["color"] = state ? state.color : undefined;
             resourceInputs["device"] = state ? state.device : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
             resourceInputs["multiple"] = state ? state.multiple : undefined;
             resourceInputs["tags"] = state ? state.tags : undefined;
@@ -73,6 +75,7 @@ export class SystemObjectTagging extends pulumi.CustomResource {
             resourceInputs["color"] = args ? args.color : undefined;
             resourceInputs["device"] = args ? args.device : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["multiple"] = args ? args.multiple : undefined;
             resourceInputs["tags"] = args ? args.tags : undefined;
@@ -92,6 +95,7 @@ export interface SystemObjectTaggingState {
     color?: pulumi.Input<number>;
     device?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     interface?: pulumi.Input<string>;
     multiple?: pulumi.Input<string>;
     tags?: pulumi.Input<pulumi.Input<inputs.SystemObjectTaggingTag>[]>;
@@ -107,6 +111,7 @@ export interface SystemObjectTaggingArgs {
     color?: pulumi.Input<number>;
     device?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     interface?: pulumi.Input<string>;
     multiple?: pulumi.Input<string>;
     tags?: pulumi.Input<pulumi.Input<inputs.SystemObjectTaggingTag>[]>;

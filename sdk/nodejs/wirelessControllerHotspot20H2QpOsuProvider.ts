@@ -36,6 +36,7 @@ export class WirelessControllerHotspot20H2QpOsuProvider extends pulumi.CustomRes
 
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly friendlyNames!: pulumi.Output<outputs.WirelessControllerHotspot20H2QpOsuProviderFriendlyName[] | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly icon!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
     public readonly osuMethod!: pulumi.Output<string>;
@@ -59,6 +60,7 @@ export class WirelessControllerHotspot20H2QpOsuProvider extends pulumi.CustomRes
             const state = argsOrState as WirelessControllerHotspot20H2QpOsuProviderState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["friendlyNames"] = state ? state.friendlyNames : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["icon"] = state ? state.icon : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["osuMethod"] = state ? state.osuMethod : undefined;
@@ -70,6 +72,7 @@ export class WirelessControllerHotspot20H2QpOsuProvider extends pulumi.CustomRes
             const args = argsOrState as WirelessControllerHotspot20H2QpOsuProviderArgs | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["friendlyNames"] = args ? args.friendlyNames : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["icon"] = args ? args.icon : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["osuMethod"] = args ? args.osuMethod : undefined;
@@ -89,6 +92,7 @@ export class WirelessControllerHotspot20H2QpOsuProvider extends pulumi.CustomRes
 export interface WirelessControllerHotspot20H2QpOsuProviderState {
     dynamicSortSubtable?: pulumi.Input<string>;
     friendlyNames?: pulumi.Input<pulumi.Input<inputs.WirelessControllerHotspot20H2QpOsuProviderFriendlyName>[]>;
+    getAllTables?: pulumi.Input<string>;
     icon?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     osuMethod?: pulumi.Input<string>;
@@ -104,6 +108,7 @@ export interface WirelessControllerHotspot20H2QpOsuProviderState {
 export interface WirelessControllerHotspot20H2QpOsuProviderArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
     friendlyNames?: pulumi.Input<pulumi.Input<inputs.WirelessControllerHotspot20H2QpOsuProviderFriendlyName>[]>;
+    getAllTables?: pulumi.Input<string>;
     icon?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     osuMethod?: pulumi.Input<string>;

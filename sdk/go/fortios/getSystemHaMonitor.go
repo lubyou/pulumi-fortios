@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemHaMonitor(ctx *pulumi.Context, args *LookupSystemHaMonitorArgs, opts ...pulumi.InvokeOption) (*LookupSystemHaMonitorResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemHaMonitorResult
 	err := ctx.Invoke("fortios:index/getSystemHaMonitor:GetSystemHaMonitor", args, &rv, opts...)
 	if err != nil {

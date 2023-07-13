@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemDnsDatabase(ctx *pulumi.Context, args *LookupSystemDnsDatabaseArgs, opts ...pulumi.InvokeOption) (*LookupSystemDnsDatabaseResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemDnsDatabaseResult
 	err := ctx.Invoke("fortios:index/getSystemDnsDatabase:GetSystemDnsDatabase", args, &rv, opts...)
 	if err != nil {

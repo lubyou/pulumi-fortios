@@ -70,8 +70,7 @@ func Provider() tfbridge.ProviderInfo {
 		// for use in Pulumi programs
 		// e.g https://github.com/org/pulumi-provider-name/releases/
 		PluginDownloadURL: "github://api.github.com/lubyou/pulumi-fortios",
-
-		Description: "A Pulumi package for creating and managing fortios cloud resources.",
+		Description:       "A Pulumi package for creating and managing fortios cloud resources.",
 		// category/cloud tag helps with categorizing the package in the Pulumi Registry.
 		// For all available categories, see `Keywords` in
 		// https://www.pulumi.com/docs/guides/pulumi-packages/schema/#package.
@@ -93,6 +92,8 @@ func Provider() tfbridge.ProviderInfo {
 					EnvVars: []string{"FORTIOS_ACCESS_TOKEN"},
 				},
 			},
+			"username": {},
+			"password": {},
 			"insecure": {
 				Default: &tfbridge.DefaultInfo{
 					EnvVars: []string{"FORTIOS_INSECURE"},
@@ -139,6 +140,7 @@ func Provider() tfbridge.ProviderInfo {
 		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"fortios_alertemail_setting":                                 {Tok: tfbridge.MakeResource(mainPkg, mainMod, "AlertemailSetting")},
+			"fortios_antivirus_exemptlist":                               {Tok: tfbridge.MakeResource(mainPkg, mainMod, "AntivirusExemptList")},
 			"fortios_antivirus_heuristic":                                {Tok: tfbridge.MakeResource(mainPkg, mainMod, "AntivirusHeuristic")},
 			"fortios_antivirus_profile":                                  {Tok: tfbridge.MakeResource(mainPkg, mainMod, "AntivirusProfile")},
 			"fortios_antivirus_quarantine":                               {Tok: tfbridge.MakeResource(mainPkg, mainMod, "AntivirusQuarantine")},
@@ -183,6 +185,7 @@ func Provider() tfbridge.ProviderInfo {
 			"fortios_emailfilter_profile":                                {Tok: tfbridge.MakeResource(mainPkg, mainMod, "EmailfilterProfile")},
 			"fortios_endpointcontrol_client":                             {Tok: tfbridge.MakeResource(mainPkg, mainMod, "EndpointControlClient")},
 			"fortios_endpointcontrol_fctems":                             {Tok: tfbridge.MakeResource(mainPkg, mainMod, "EndpointControlFctems")},
+			"fortios_endpointcontrol_fctemsoverride":                     {Tok: tfbridge.MakeResource(mainPkg, mainMod, "EndpointControlFctemsOverride")},
 			"fortios_endpointcontrol_forticlientems":                     {Tok: tfbridge.MakeResource(mainPkg, mainMod, "EndpointControlForticlientEms")},
 			"fortios_endpointcontrol_forticlientregistrationsync":        {Tok: tfbridge.MakeResource(mainPkg, mainMod, "EndpointControlForticlientRegistrationSync")},
 			"fortios_endpointcontrol_profile":                            {Tok: tfbridge.MakeResource(mainPkg, mainMod, "EndpointControlProfile")},
@@ -236,6 +239,7 @@ func Provider() tfbridge.ProviderInfo {
 			"fortios_firewall_internetservicename":                       {Tok: tfbridge.MakeResource(mainPkg, mainMod, "FirewallInternetServiceName")},
 			"fortios_firewall_internetserviceowner":                      {Tok: tfbridge.MakeResource(mainPkg, mainMod, "FirewallInternetServiceOwner")},
 			"fortios_firewall_internetservicereputation":                 {Tok: tfbridge.MakeResource(mainPkg, mainMod, "FirewallInternetServiceReputation")},
+			"fortios_firewall_internetservicesubapp":                     {Tok: tfbridge.MakeResource(mainPkg, mainMod, "FirewallInternetServiceSubapp")},
 			"fortios_firewall_ippool":                                    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "FirewallIppool")},
 			"fortios_firewall_ippool6":                                   {Tok: tfbridge.MakeResource(mainPkg, mainMod, "FirewallIppool6")},
 			"fortios_firewall_iptranslation":                             {Tok: tfbridge.MakeResource(mainPkg, mainMod, "FirewallIpTranslation")},
@@ -420,6 +424,7 @@ func Provider() tfbridge.ProviderInfo {
 			"fortios_router_bfd6":                                        {Tok: tfbridge.MakeResource(mainPkg, mainMod, "RouterBfd6")},
 			"fortios_router_bgp":                                         {Tok: tfbridge.MakeResource(mainPkg, mainMod, "RouterBgp")},
 			"fortios_router_communitylist":                               {Tok: tfbridge.MakeResource(mainPkg, mainMod, "RouterCommunityList")},
+			"fortios_router_extcommunitylist":                            {Tok: tfbridge.MakeResource(mainPkg, mainMod, "RouterExtcommunityList")},
 			"fortios_router_isis":                                        {Tok: tfbridge.MakeResource(mainPkg, mainMod, "RouterIsis")},
 			"fortios_router_keychain":                                    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "RouterKeyChain")},
 			"fortios_router_multicast":                                   {Tok: tfbridge.MakeResource(mainPkg, mainMod, "RouterMulticast")},
@@ -491,6 +496,8 @@ func Provider() tfbridge.ProviderInfo {
 			"fortios_switchcontroller_virtualportpool":                   {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SwitchControllerVirtualPortPool")},
 			"fortios_switchcontroller_vlan":                              {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SwitchControllerVlan")},
 			"fortios_switchcontroller_vlanpolicy":                        {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SwitchControllerVlanPolicy")},
+			"fortios_switchcontrolleracl_group":                          {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SwitchControllerAclGroup")},
+			"fortios_switchcontrolleracl_ingress":                        {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SwitchControllerAclIngress")},
 			"fortios_switchcontrollerautoconfig_custom":                  {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SwitchControllerAutoConfigCustom")},
 			"fortios_switchcontrollerautoconfig_default":                 {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SwitchControllerAutoConfigDefault")},
 			"fortios_switchcontrollerautoconfig_policy":                  {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SwitchControllerAutoConfigPolicy")},
@@ -531,13 +538,16 @@ func Provider() tfbridge.ProviderInfo {
 			"fortios_system_customlanguage":                              {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemCustomLanguage")},
 			"fortios_system_ddns":                                        {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemDdns")},
 			"fortios_system_dedicatedmgmt":                               {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemDedicatedMgmt")},
+			"fortios_system_deviceupgrade":                               {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemDeviceUpgrade")},
 			"fortios_system_dns":                                         {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemDns")},
 			"fortios_system_dns64":                                       {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemDns64")},
 			"fortios_system_dnsdatabase":                                 {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemDnsDatabase")},
 			"fortios_system_dnsserver":                                   {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemDnsServer")},
 			"fortios_system_dscpbasedpriority":                           {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemDscpBasedPriority")},
 			"fortios_system_emailserver":                                 {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemEmailServer")},
+			"fortios_system_evpn":                                        {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemEvpn")},
 			"fortios_system_externalresource":                            {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemExternalResource")},
+			"fortios_system_fabricvpn":                                   {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemFabricVpn")},
 			"fortios_system_federatedupgrade":                            {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemFederatedUpgrade")},
 			"fortios_system_fipscc":                                      {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemFipsCc")},
 			"fortios_system_fm":                                          {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemFm")},
@@ -583,6 +593,7 @@ func Provider() tfbridge.ProviderInfo {
 			"fortios_system_objecttagging":                               {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemObjectTagging")},
 			"fortios_system_passwordpolicy":                              {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemPasswordPolicy")},
 			"fortios_system_passwordpolicyguestadmin":                    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemPasswordPolicyGuestAdmin")},
+			"fortios_system_pcpserver":                                   {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemPcpServer")},
 			"fortios_system_physicalswitch":                              {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemPhysicalSwitch")},
 			"fortios_system_pppoeinterface":                              {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemPppoeInterface")},
 			"fortios_system_proberesponse":                               {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemProbeResponse")},
@@ -593,6 +604,7 @@ func Provider() tfbridge.ProviderInfo {
 			"fortios_system_resourcelimits":                              {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemResourceLimits")},
 			"fortios_system_saml":                                        {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemSaml")},
 			"fortios_system_sdnconnector":                                {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemSdnConnector")},
+			"fortios_system_sdnproxy":                                    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemSdnProxy")},
 			"fortios_system_sdwan":                                       {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemSdwan")},
 			"fortios_system_sessionhelper":                               {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemSessionHelper")},
 			"fortios_system_sessionttl":                                  {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemSessionTtl")},
@@ -607,6 +619,7 @@ func Provider() tfbridge.ProviderInfo {
 			"fortios_system_speedtestserver":                             {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemSpeedTestServer")},
 			"fortios_system_ssoadmin":                                    {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemSsoAdmin")},
 			"fortios_system_ssoforticloudadmin":                          {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemSsoForticloudAdmin")},
+			"fortios_system_ssofortigatecloudadmin":                      {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemSsoFortigateCloudAdmin")},
 			"fortios_system_standalonecluster":                           {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemStandaloneCluster")},
 			"fortios_system_storage":                                     {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemStorage")},
 			"fortios_system_stp":                                         {Tok: tfbridge.MakeResource(mainPkg, mainMod, "SystemStp")},
@@ -688,6 +701,7 @@ func Provider() tfbridge.ProviderInfo {
 			"fortios_voip_profile":                                       {Tok: tfbridge.MakeResource(mainPkg, mainMod, "VoipProfile")},
 			"fortios_vpn_ipsec_phase1interface":                          {Tok: tfbridge.MakeResource(mainPkg, mainMod, "VPNIPsecPhase1InterfaceLegacy")},
 			"fortios_vpn_ipsec_phase2interface":                          {Tok: tfbridge.MakeResource(mainPkg, mainMod, "VPNIPsecPhase2InterfaceLegacy")},
+			"fortios_vpn_kmipserver":                                     {Tok: tfbridge.MakeResource(mainPkg, mainMod, "VpnKmipServer")},
 			"fortios_vpn_l2tp":                                           {Tok: tfbridge.MakeResource(mainPkg, mainMod, "VpnL2Tp")},
 			"fortios_vpn_ocvpn":                                          {Tok: tfbridge.MakeResource(mainPkg, mainMod, "VpnOcvpn")},
 			"fortios_vpn_pptp":                                           {Tok: tfbridge.MakeResource(mainPkg, mainMod, "VpnPptp")},

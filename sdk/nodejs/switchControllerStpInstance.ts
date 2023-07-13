@@ -36,6 +36,7 @@ export class SwitchControllerStpInstance extends pulumi.CustomResource {
 
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly fosid!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
     public readonly vlanRanges!: pulumi.Output<outputs.SwitchControllerStpInstanceVlanRange[] | undefined>;
 
@@ -54,12 +55,14 @@ export class SwitchControllerStpInstance extends pulumi.CustomResource {
             const state = argsOrState as SwitchControllerStpInstanceState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["vlanRanges"] = state ? state.vlanRanges : undefined;
         } else {
             const args = argsOrState as SwitchControllerStpInstanceArgs | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["vlanRanges"] = args ? args.vlanRanges : undefined;
         }
@@ -74,6 +77,7 @@ export class SwitchControllerStpInstance extends pulumi.CustomResource {
 export interface SwitchControllerStpInstanceState {
     dynamicSortSubtable?: pulumi.Input<string>;
     fosid?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
     vlanRanges?: pulumi.Input<pulumi.Input<inputs.SwitchControllerStpInstanceVlanRange>[]>;
 }
@@ -84,6 +88,7 @@ export interface SwitchControllerStpInstanceState {
 export interface SwitchControllerStpInstanceArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
     fosid?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
     vlanRanges?: pulumi.Input<pulumi.Input<inputs.SwitchControllerStpInstanceVlanRange>[]>;
 }

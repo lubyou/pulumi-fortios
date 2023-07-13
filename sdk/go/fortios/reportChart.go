@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -25,6 +26,7 @@ type ReportChart struct {
 	DrillDownCharts     ReportChartDrillDownChartArrayOutput `pulumi:"drillDownCharts"`
 	DynamicSortSubtable pulumi.StringPtrOutput               `pulumi:"dynamicSortSubtable"`
 	Favorite            pulumi.StringOutput                  `pulumi:"favorite"`
+	GetAllTables        pulumi.StringPtrOutput               `pulumi:"getAllTables"`
 	GraphType           pulumi.StringOutput                  `pulumi:"graphType"`
 	Legend              pulumi.StringOutput                  `pulumi:"legend"`
 	LegendFontSize      pulumi.IntOutput                     `pulumi:"legendFontSize"`
@@ -54,7 +56,7 @@ func NewReportChart(ctx *pulumi.Context,
 	if args.Dataset == nil {
 		return nil, errors.New("invalid value for required argument 'Dataset'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ReportChart
 	err := ctx.RegisterResource("fortios:index/reportChart:ReportChart", name, args, &resource, opts...)
 	if err != nil {
@@ -88,6 +90,7 @@ type reportChartState struct {
 	DrillDownCharts     []ReportChartDrillDownChart `pulumi:"drillDownCharts"`
 	DynamicSortSubtable *string                     `pulumi:"dynamicSortSubtable"`
 	Favorite            *string                     `pulumi:"favorite"`
+	GetAllTables        *string                     `pulumi:"getAllTables"`
 	GraphType           *string                     `pulumi:"graphType"`
 	Legend              *string                     `pulumi:"legend"`
 	LegendFontSize      *int                        `pulumi:"legendFontSize"`
@@ -116,6 +119,7 @@ type ReportChartState struct {
 	DrillDownCharts     ReportChartDrillDownChartArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	Favorite            pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	GraphType           pulumi.StringPtrInput
 	Legend              pulumi.StringPtrInput
 	LegendFontSize      pulumi.IntPtrInput
@@ -148,6 +152,7 @@ type reportChartArgs struct {
 	DrillDownCharts     []ReportChartDrillDownChart `pulumi:"drillDownCharts"`
 	DynamicSortSubtable *string                     `pulumi:"dynamicSortSubtable"`
 	Favorite            *string                     `pulumi:"favorite"`
+	GetAllTables        *string                     `pulumi:"getAllTables"`
 	GraphType           *string                     `pulumi:"graphType"`
 	Legend              *string                     `pulumi:"legend"`
 	LegendFontSize      *int                        `pulumi:"legendFontSize"`
@@ -177,6 +182,7 @@ type ReportChartArgs struct {
 	DrillDownCharts     ReportChartDrillDownChartArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	Favorite            pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	GraphType           pulumi.StringPtrInput
 	Legend              pulumi.StringPtrInput
 	LegendFontSize      pulumi.IntPtrInput
@@ -322,6 +328,10 @@ func (o ReportChartOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 
 func (o ReportChartOutput) Favorite() pulumi.StringOutput {
 	return o.ApplyT(func(v *ReportChart) pulumi.StringOutput { return v.Favorite }).(pulumi.StringOutput)
+}
+
+func (o ReportChartOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ReportChart) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o ReportChartOutput) GraphType() pulumi.StringOutput {

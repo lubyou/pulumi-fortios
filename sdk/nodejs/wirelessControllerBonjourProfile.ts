@@ -36,6 +36,7 @@ export class WirelessControllerBonjourProfile extends pulumi.CustomResource {
 
     public readonly comment!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly policyLists!: pulumi.Output<outputs.WirelessControllerBonjourProfilePolicyList[] | undefined>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -55,6 +56,7 @@ export class WirelessControllerBonjourProfile extends pulumi.CustomResource {
             const state = argsOrState as WirelessControllerBonjourProfileState | undefined;
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["policyLists"] = state ? state.policyLists : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
@@ -62,6 +64,7 @@ export class WirelessControllerBonjourProfile extends pulumi.CustomResource {
             const args = argsOrState as WirelessControllerBonjourProfileArgs | undefined;
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["policyLists"] = args ? args.policyLists : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -77,6 +80,7 @@ export class WirelessControllerBonjourProfile extends pulumi.CustomResource {
 export interface WirelessControllerBonjourProfileState {
     comment?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     policyLists?: pulumi.Input<pulumi.Input<inputs.WirelessControllerBonjourProfilePolicyList>[]>;
     vdomparam?: pulumi.Input<string>;
@@ -88,6 +92,7 @@ export interface WirelessControllerBonjourProfileState {
 export interface WirelessControllerBonjourProfileArgs {
     comment?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     policyLists?: pulumi.Input<pulumi.Input<inputs.WirelessControllerBonjourProfilePolicyList>[]>;
     vdomparam?: pulumi.Input<string>;

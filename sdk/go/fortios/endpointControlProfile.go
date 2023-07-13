@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,6 +20,7 @@ type EndpointControlProfile struct {
 	ForticlientAndroidSettings EndpointControlProfileForticlientAndroidSettingsOutput `pulumi:"forticlientAndroidSettings"`
 	ForticlientIosSettings     EndpointControlProfileForticlientIosSettingsOutput     `pulumi:"forticlientIosSettings"`
 	ForticlientWinmacSettings  EndpointControlProfileForticlientWinmacSettingsOutput  `pulumi:"forticlientWinmacSettings"`
+	GetAllTables               pulumi.StringPtrOutput                                 `pulumi:"getAllTables"`
 	OnNetAddrs                 EndpointControlProfileOnNetAddrArrayOutput             `pulumi:"onNetAddrs"`
 	ProfileName                pulumi.StringOutput                                    `pulumi:"profileName"`
 	ReplacemsgOverrideGroup    pulumi.StringOutput                                    `pulumi:"replacemsgOverrideGroup"`
@@ -35,7 +37,7 @@ func NewEndpointControlProfile(ctx *pulumi.Context,
 		args = &EndpointControlProfileArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource EndpointControlProfile
 	err := ctx.RegisterResource("fortios:index/endpointControlProfile:EndpointControlProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -64,6 +66,7 @@ type endpointControlProfileState struct {
 	ForticlientAndroidSettings *EndpointControlProfileForticlientAndroidSettings `pulumi:"forticlientAndroidSettings"`
 	ForticlientIosSettings     *EndpointControlProfileForticlientIosSettings     `pulumi:"forticlientIosSettings"`
 	ForticlientWinmacSettings  *EndpointControlProfileForticlientWinmacSettings  `pulumi:"forticlientWinmacSettings"`
+	GetAllTables               *string                                           `pulumi:"getAllTables"`
 	OnNetAddrs                 []EndpointControlProfileOnNetAddr                 `pulumi:"onNetAddrs"`
 	ProfileName                *string                                           `pulumi:"profileName"`
 	ReplacemsgOverrideGroup    *string                                           `pulumi:"replacemsgOverrideGroup"`
@@ -80,6 +83,7 @@ type EndpointControlProfileState struct {
 	ForticlientAndroidSettings EndpointControlProfileForticlientAndroidSettingsPtrInput
 	ForticlientIosSettings     EndpointControlProfileForticlientIosSettingsPtrInput
 	ForticlientWinmacSettings  EndpointControlProfileForticlientWinmacSettingsPtrInput
+	GetAllTables               pulumi.StringPtrInput
 	OnNetAddrs                 EndpointControlProfileOnNetAddrArrayInput
 	ProfileName                pulumi.StringPtrInput
 	ReplacemsgOverrideGroup    pulumi.StringPtrInput
@@ -100,6 +104,7 @@ type endpointControlProfileArgs struct {
 	ForticlientAndroidSettings *EndpointControlProfileForticlientAndroidSettings `pulumi:"forticlientAndroidSettings"`
 	ForticlientIosSettings     *EndpointControlProfileForticlientIosSettings     `pulumi:"forticlientIosSettings"`
 	ForticlientWinmacSettings  *EndpointControlProfileForticlientWinmacSettings  `pulumi:"forticlientWinmacSettings"`
+	GetAllTables               *string                                           `pulumi:"getAllTables"`
 	OnNetAddrs                 []EndpointControlProfileOnNetAddr                 `pulumi:"onNetAddrs"`
 	ProfileName                *string                                           `pulumi:"profileName"`
 	ReplacemsgOverrideGroup    *string                                           `pulumi:"replacemsgOverrideGroup"`
@@ -117,6 +122,7 @@ type EndpointControlProfileArgs struct {
 	ForticlientAndroidSettings EndpointControlProfileForticlientAndroidSettingsPtrInput
 	ForticlientIosSettings     EndpointControlProfileForticlientIosSettingsPtrInput
 	ForticlientWinmacSettings  EndpointControlProfileForticlientWinmacSettingsPtrInput
+	GetAllTables               pulumi.StringPtrInput
 	OnNetAddrs                 EndpointControlProfileOnNetAddrArrayInput
 	ProfileName                pulumi.StringPtrInput
 	ReplacemsgOverrideGroup    pulumi.StringPtrInput
@@ -241,6 +247,10 @@ func (o EndpointControlProfileOutput) ForticlientWinmacSettings() EndpointContro
 	return o.ApplyT(func(v *EndpointControlProfile) EndpointControlProfileForticlientWinmacSettingsOutput {
 		return v.ForticlientWinmacSettings
 	}).(EndpointControlProfileForticlientWinmacSettingsOutput)
+}
+
+func (o EndpointControlProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EndpointControlProfile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o EndpointControlProfileOutput) OnNetAddrs() EndpointControlProfileOnNetAddrArrayOutput {

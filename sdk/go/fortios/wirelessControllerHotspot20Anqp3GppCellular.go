@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -14,6 +15,7 @@ type WirelessControllerHotspot20Anqp3GppCellular struct {
 	pulumi.CustomResourceState
 
 	DynamicSortSubtable pulumi.StringPtrOutput                                           `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                                           `pulumi:"getAllTables"`
 	MccMncLists         WirelessControllerHotspot20Anqp3GppCellularMccMncListArrayOutput `pulumi:"mccMncLists"`
 	Name                pulumi.StringOutput                                              `pulumi:"name"`
 	Vdomparam           pulumi.StringPtrOutput                                           `pulumi:"vdomparam"`
@@ -26,7 +28,7 @@ func NewWirelessControllerHotspot20Anqp3GppCellular(ctx *pulumi.Context,
 		args = &WirelessControllerHotspot20Anqp3GppCellularArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WirelessControllerHotspot20Anqp3GppCellular
 	err := ctx.RegisterResource("fortios:index/wirelessControllerHotspot20Anqp3GppCellular:WirelessControllerHotspot20Anqp3GppCellular", name, args, &resource, opts...)
 	if err != nil {
@@ -50,6 +52,7 @@ func GetWirelessControllerHotspot20Anqp3GppCellular(ctx *pulumi.Context,
 // Input properties used for looking up and filtering WirelessControllerHotspot20Anqp3GppCellular resources.
 type wirelessControllerHotspot20Anqp3GppCellularState struct {
 	DynamicSortSubtable *string                                                 `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                                                 `pulumi:"getAllTables"`
 	MccMncLists         []WirelessControllerHotspot20Anqp3GppCellularMccMncList `pulumi:"mccMncLists"`
 	Name                *string                                                 `pulumi:"name"`
 	Vdomparam           *string                                                 `pulumi:"vdomparam"`
@@ -57,6 +60,7 @@ type wirelessControllerHotspot20Anqp3GppCellularState struct {
 
 type WirelessControllerHotspot20Anqp3GppCellularState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	MccMncLists         WirelessControllerHotspot20Anqp3GppCellularMccMncListArrayInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
@@ -68,6 +72,7 @@ func (WirelessControllerHotspot20Anqp3GppCellularState) ElementType() reflect.Ty
 
 type wirelessControllerHotspot20Anqp3GppCellularArgs struct {
 	DynamicSortSubtable *string                                                 `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                                                 `pulumi:"getAllTables"`
 	MccMncLists         []WirelessControllerHotspot20Anqp3GppCellularMccMncList `pulumi:"mccMncLists"`
 	Name                *string                                                 `pulumi:"name"`
 	Vdomparam           *string                                                 `pulumi:"vdomparam"`
@@ -76,6 +81,7 @@ type wirelessControllerHotspot20Anqp3GppCellularArgs struct {
 // The set of arguments for constructing a WirelessControllerHotspot20Anqp3GppCellular resource.
 type WirelessControllerHotspot20Anqp3GppCellularArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	MccMncLists         WirelessControllerHotspot20Anqp3GppCellularMccMncListArrayInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
@@ -172,6 +178,10 @@ func (o WirelessControllerHotspot20Anqp3GppCellularOutput) DynamicSortSubtable()
 	return o.ApplyT(func(v *WirelessControllerHotspot20Anqp3GppCellular) pulumi.StringPtrOutput {
 		return v.DynamicSortSubtable
 	}).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerHotspot20Anqp3GppCellularOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20Anqp3GppCellular) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o WirelessControllerHotspot20Anqp3GppCellularOutput) MccMncLists() WirelessControllerHotspot20Anqp3GppCellularMccMncListArrayOutput {

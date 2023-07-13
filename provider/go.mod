@@ -4,24 +4,24 @@ go 1.19
 
 replace (
 	github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20220824175045-450992f2f5b9
-	github.com/terraform-providers/terraform-provider-fortios => ../terraform-provider-fortios
+	github.com/terraform-providers/terraform-provider-fortios => ../upstream
 )
 
 require (
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.46.1
-	github.com/pulumi/pulumi/sdk/v3 v3.66.0
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.53.0
+	github.com/pulumi/pulumi/sdk/v3 v3.75.0
 	github.com/terraform-providers/terraform-provider-fortios v2.3.1+incompatible
 )
 
 require (
-	cloud.google.com/go v0.110.0 // indirect
-	cloud.google.com/go/compute v1.19.0 // indirect
+	cloud.google.com/go v0.110.4 // indirect
+	cloud.google.com/go/compute v1.20.1 // indirect
 	cloud.google.com/go/compute/metadata v0.2.3 // indirect
-	cloud.google.com/go/iam v0.13.0 // indirect
-	cloud.google.com/go/kms v1.10.1 // indirect
+	cloud.google.com/go/iam v1.1.0 // indirect
+	cloud.google.com/go/kms v1.12.1 // indirect
 	cloud.google.com/go/logging v1.7.0 // indirect
-	cloud.google.com/go/longrunning v0.4.1 // indirect
-	cloud.google.com/go/storage v1.29.0 // indirect
+	cloud.google.com/go/longrunning v0.5.1 // indirect
+	cloud.google.com/go/storage v1.30.1 // indirect
 	github.com/AlecAivazis/survey/v2 v2.0.5 // indirect
 	github.com/Azure/azure-sdk-for-go v66.0.0+incompatible // indirect
 	github.com/Azure/azure-sdk-for-go/sdk/azcore v1.1.1 // indirect
@@ -39,11 +39,13 @@ require (
 	github.com/Azure/go-autorest/logger v0.2.1 // indirect
 	github.com/Azure/go-autorest/tracing v0.6.0 // indirect
 	github.com/AzureAD/microsoft-authentication-library-for-go v0.4.0 // indirect
+	github.com/BurntSushi/toml v1.2.1 // indirect
 	github.com/Masterminds/goutils v1.1.1 // indirect
+	github.com/Masterminds/semver v1.5.0 // indirect
 	github.com/Masterminds/semver/v3 v3.2.0 // indirect
 	github.com/Masterminds/sprig/v3 v3.2.3 // indirect
 	github.com/Microsoft/go-winio v0.6.1 // indirect
-	github.com/ProtonMail/go-crypto v0.0.0-20230426101702-58e86b294756 // indirect
+	github.com/ProtonMail/go-crypto v0.0.0-20230710112148-e01326fd72eb // indirect
 	github.com/acomagu/bufpipe v1.0.4 // indirect
 	github.com/aead/chacha20 v0.0.0-20180709150244-8b13a72661da // indirect
 	github.com/agext/levenshtein v1.2.3 // indirect
@@ -87,9 +89,9 @@ require (
 	github.com/fatih/color v1.15.0 // indirect
 	github.com/fortinetdev/forti-sdk-go v1.9.5 // indirect
 	github.com/gedex/inflector v0.0.0-20170307190818-16278e9db813 // indirect
-	github.com/go-git/gcfg v1.5.0 // indirect
+	github.com/go-git/gcfg v1.5.1-0.20230307220236-3a3c6141e376 // indirect
 	github.com/go-git/go-billy/v5 v5.4.1 // indirect
-	github.com/go-git/go-git/v5 v5.6.1 // indirect
+	github.com/go-git/go-git/v5 v5.7.0 // indirect
 	github.com/gofrs/uuid v4.4.0+incompatible // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang-jwt/jwt v3.2.1+incompatible // indirect
@@ -100,11 +102,12 @@ require (
 	github.com/golang/snappy v0.0.4 // indirect
 	github.com/google/go-cmp v0.5.9 // indirect
 	github.com/google/go-querystring v1.1.0 // indirect
+	github.com/google/s2a-go v0.1.4 // indirect
 	github.com/google/shlex v0.0.0-20191202100458-e7afc7fbc510 // indirect
 	github.com/google/uuid v1.3.0 // indirect
 	github.com/google/wire v0.5.0 // indirect
 	github.com/googleapis/enterprise-certificate-proxy v0.2.3 // indirect
-	github.com/googleapis/gax-go/v2 v2.7.1 // indirect
+	github.com/googleapis/gax-go/v2 v2.11.0 // indirect
 	github.com/gorilla/mux v1.8.0 // indirect
 	github.com/grpc-ecosystem/grpc-opentracing v0.0.0-20180507213350-8e809c8a8645 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
@@ -114,7 +117,7 @@ require (
 	github.com/hashicorp/go-hclog v1.5.0 // indirect
 	github.com/hashicorp/go-immutable-radix v1.3.1 // indirect
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
-	github.com/hashicorp/go-plugin v1.4.9 // indirect
+	github.com/hashicorp/go-plugin v1.4.10 // indirect
 	github.com/hashicorp/go-retryablehttp v0.7.1 // indirect
 	github.com/hashicorp/go-rootcerts v1.0.2 // indirect
 	github.com/hashicorp/go-safetemp v1.0.0 // indirect
@@ -126,21 +129,21 @@ require (
 	github.com/hashicorp/go-version v1.6.0 // indirect
 	github.com/hashicorp/golang-lru v0.5.4 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
-	github.com/hashicorp/hcl/v2 v2.16.2 // indirect
+	github.com/hashicorp/hcl/v2 v2.17.0 // indirect
 	github.com/hashicorp/hil v0.0.0-20190212132231-97b3a9cdfa93 // indirect
 	github.com/hashicorp/logutils v1.0.0 // indirect
-	github.com/hashicorp/terraform-plugin-go v0.15.0 // indirect
-	github.com/hashicorp/terraform-plugin-log v0.8.0 // indirect
+	github.com/hashicorp/terraform-plugin-go v0.18.0 // indirect
+	github.com/hashicorp/terraform-plugin-log v0.9.0 // indirect
 	github.com/hashicorp/terraform-plugin-sdk v1.17.2 // indirect
-	github.com/hashicorp/terraform-plugin-sdk/v2 v2.26.1 // indirect
-	github.com/hashicorp/terraform-svchost v0.1.0 // indirect
+	github.com/hashicorp/terraform-plugin-sdk/v2 v2.27.0 // indirect
+	github.com/hashicorp/terraform-svchost v0.1.1 // indirect
 	github.com/hashicorp/vault/api v1.8.2 // indirect
 	github.com/hashicorp/vault/sdk v0.6.1 // indirect
 	github.com/hashicorp/yamux v0.1.1 // indirect
 	github.com/huandu/xstrings v1.4.0 // indirect
 	github.com/iancoleman/strcase v0.2.0 // indirect
 	github.com/ijc/Gotty v0.0.0-20170406111628-a8b993ba6abd // indirect
-	github.com/imdario/mergo v0.3.15 // indirect
+	github.com/imdario/mergo v0.3.16 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
@@ -150,7 +153,7 @@ require (
 	github.com/klauspost/compress v1.16.3 // indirect
 	github.com/kylelemons/godebug v1.1.0 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
-	github.com/mattn/go-isatty v0.0.18 // indirect
+	github.com/mattn/go-isatty v0.0.19 // indirect
 	github.com/mattn/go-runewidth v0.0.14 // indirect
 	github.com/mgutz/ansi v0.0.0-20170206155736-9520e82c474b // indirect
 	github.com/mitchellh/cli v1.1.5 // indirect
@@ -177,14 +180,14 @@ require (
 	github.com/pkg/term v1.1.0 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/posener/complete v1.2.3 // indirect
-	github.com/pulumi/pulumi-java/pkg v0.9.2 // indirect
-	github.com/pulumi/pulumi-terraform-bridge/x/muxer v0.0.3 // indirect
+	github.com/pulumi/pulumi-java/pkg v0.9.4 // indirect
+	github.com/pulumi/pulumi-terraform-bridge/x/muxer v0.0.4 // indirect
 	github.com/pulumi/pulumi-yaml v1.1.1 // indirect
-	github.com/pulumi/pulumi/pkg/v3 v3.66.0 // indirect
+	github.com/pulumi/pulumi/pkg/v3 v3.75.0 // indirect
 	github.com/pulumi/schema-tools v0.1.2 // indirect
-	github.com/pulumi/terraform-diff-reader v0.0.0-20201211191010-ad4715e9285e // indirect
+	github.com/pulumi/terraform-diff-reader v0.0.2 // indirect
 	github.com/rivo/uniseg v0.4.4 // indirect
-	github.com/rogpeppe/go-internal v1.10.0 // indirect
+	github.com/rogpeppe/go-internal v1.11.0 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/ryanuber/go-glob v1.0.0 // indirect
 	github.com/sabhiram/go-gitignore v0.0.0-20210923224102-525f6e181f06 // indirect
@@ -193,12 +196,12 @@ require (
 	github.com/segmentio/encoding v0.3.6 // indirect
 	github.com/sergi/go-diff v1.3.1 // indirect
 	github.com/shopspring/decimal v1.3.1 // indirect
-	github.com/skeema/knownhosts v1.1.0 // indirect
+	github.com/skeema/knownhosts v1.2.0 // indirect
 	github.com/spf13/afero v1.9.5 // indirect
 	github.com/spf13/cast v1.5.0 // indirect
 	github.com/spf13/cobra v1.7.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
-	github.com/stretchr/testify v1.8.2 // indirect
+	github.com/stretchr/testify v1.8.3 // indirect
 	github.com/texttheater/golang-levenshtein v1.0.1 // indirect
 	github.com/tweekmonster/luser v0.0.0-20161003172636-3fa38070dbd7 // indirect
 	github.com/uber/jaeger-client-go v2.30.0+incompatible // indirect
@@ -211,28 +214,30 @@ require (
 	github.com/xeipuuv/gojsonpointer v0.0.0-20180127040702-4e3ac2762d5f // indirect
 	github.com/xeipuuv/gojsonreference v0.0.0-20180127040603-bd5ef7bd5415 // indirect
 	github.com/xeipuuv/gojsonschema v1.2.0 // indirect
-	github.com/zclconf/go-cty v1.13.1 // indirect
+	github.com/zclconf/go-cty v1.13.2 // indirect
 	github.com/zclconf/go-cty-yaml v1.0.3 // indirect
 	go.opencensus.io v0.24.0 // indirect
 	go.uber.org/atomic v1.11.0 // indirect
 	gocloud.dev v0.27.0 // indirect
 	gocloud.dev/secrets/hashivault v0.27.0 // indirect
-	golang.org/x/crypto v0.9.0 // indirect
-	golang.org/x/mod v0.10.0 // indirect
-	golang.org/x/net v0.10.0 // indirect
-	golang.org/x/oauth2 v0.6.0 // indirect
-	golang.org/x/sync v0.2.0 // indirect
-	golang.org/x/sys v0.8.0 // indirect
-	golang.org/x/term v0.8.0 // indirect
-	golang.org/x/text v0.9.0 // indirect
-	golang.org/x/time v0.0.0-20220722155302-e5dcc9cfc0b9 // indirect
-	golang.org/x/tools v0.9.1 // indirect
+	golang.org/x/crypto v0.11.0 // indirect
+	golang.org/x/mod v0.12.0 // indirect
+	golang.org/x/net v0.12.0 // indirect
+	golang.org/x/oauth2 v0.8.0 // indirect
+	golang.org/x/sync v0.3.0 // indirect
+	golang.org/x/sys v0.10.0 // indirect
+	golang.org/x/term v0.10.0 // indirect
+	golang.org/x/text v0.11.0 // indirect
+	golang.org/x/time v0.1.0 // indirect
+	golang.org/x/tools v0.11.0 // indirect
 	golang.org/x/xerrors v0.0.0-20220907171357-04be3eba64a2 // indirect
-	google.golang.org/api v0.114.0 // indirect
+	google.golang.org/api v0.126.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
-	google.golang.org/genproto v0.0.0-20230410155749-daa745c078e1 // indirect
-	google.golang.org/grpc v1.55.0 // indirect
-	google.golang.org/protobuf v1.30.0 // indirect
+	google.golang.org/genproto v0.0.0-20230706204954-ccb25ca9f130 // indirect
+	google.golang.org/genproto/googleapis/api v0.0.0-20230629202037-9506855d4529 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20230711160842-782d3b101e98 // indirect
+	google.golang.org/grpc v1.56.2 // indirect
+	google.golang.org/protobuf v1.31.0 // indirect
 	gopkg.in/square/go-jose.v2 v2.6.0 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect

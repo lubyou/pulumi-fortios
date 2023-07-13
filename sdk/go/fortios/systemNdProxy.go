@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -14,6 +15,7 @@ type SystemNdProxy struct {
 	pulumi.CustomResourceState
 
 	DynamicSortSubtable pulumi.StringPtrOutput         `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput         `pulumi:"getAllTables"`
 	Members             SystemNdProxyMemberArrayOutput `pulumi:"members"`
 	Status              pulumi.StringOutput            `pulumi:"status"`
 	Vdomparam           pulumi.StringPtrOutput         `pulumi:"vdomparam"`
@@ -26,7 +28,7 @@ func NewSystemNdProxy(ctx *pulumi.Context,
 		args = &SystemNdProxyArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemNdProxy
 	err := ctx.RegisterResource("fortios:index/systemNdProxy:SystemNdProxy", name, args, &resource, opts...)
 	if err != nil {
@@ -50,6 +52,7 @@ func GetSystemNdProxy(ctx *pulumi.Context,
 // Input properties used for looking up and filtering SystemNdProxy resources.
 type systemNdProxyState struct {
 	DynamicSortSubtable *string               `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string               `pulumi:"getAllTables"`
 	Members             []SystemNdProxyMember `pulumi:"members"`
 	Status              *string               `pulumi:"status"`
 	Vdomparam           *string               `pulumi:"vdomparam"`
@@ -57,6 +60,7 @@ type systemNdProxyState struct {
 
 type SystemNdProxyState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Members             SystemNdProxyMemberArrayInput
 	Status              pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
@@ -68,6 +72,7 @@ func (SystemNdProxyState) ElementType() reflect.Type {
 
 type systemNdProxyArgs struct {
 	DynamicSortSubtable *string               `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string               `pulumi:"getAllTables"`
 	Members             []SystemNdProxyMember `pulumi:"members"`
 	Status              *string               `pulumi:"status"`
 	Vdomparam           *string               `pulumi:"vdomparam"`
@@ -76,6 +81,7 @@ type systemNdProxyArgs struct {
 // The set of arguments for constructing a SystemNdProxy resource.
 type SystemNdProxyArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Members             SystemNdProxyMemberArrayInput
 	Status              pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
@@ -170,6 +176,10 @@ func (o SystemNdProxyOutput) ToSystemNdProxyOutputWithContext(ctx context.Contex
 
 func (o SystemNdProxyOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SystemNdProxy) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemNdProxyOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemNdProxy) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemNdProxyOutput) Members() SystemNdProxyMemberArrayOutput {

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -24,7 +25,7 @@ func NewSwitchControllerSwitchInterfaceTag(ctx *pulumi.Context,
 		args = &SwitchControllerSwitchInterfaceTagArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SwitchControllerSwitchInterfaceTag
 	err := ctx.RegisterResource("fortios:index/switchControllerSwitchInterfaceTag:SwitchControllerSwitchInterfaceTag", name, args, &resource, opts...)
 	if err != nil {

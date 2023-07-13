@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemAutoupdatePushUpdate(ctx *pulumi.Context, args *LookupSystemAutoupdatePushUpdateArgs, opts ...pulumi.InvokeOption) (*LookupSystemAutoupdatePushUpdateResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemAutoupdatePushUpdateResult
 	err := ctx.Invoke("fortios:index/getSystemAutoupdatePushUpdate:GetSystemAutoupdatePushUpdate", args, &rv, opts...)
 	if err != nil {

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -17,6 +18,7 @@ type WirelessControllerArrpProfile struct {
 	DarrpOptimize          pulumi.IntOutput                                              `pulumi:"darrpOptimize"`
 	DarrpOptimizeSchedules WirelessControllerArrpProfileDarrpOptimizeScheduleArrayOutput `pulumi:"darrpOptimizeSchedules"`
 	DynamicSortSubtable    pulumi.StringPtrOutput                                        `pulumi:"dynamicSortSubtable"`
+	GetAllTables           pulumi.StringPtrOutput                                        `pulumi:"getAllTables"`
 	IncludeDfsChannel      pulumi.StringOutput                                           `pulumi:"includeDfsChannel"`
 	IncludeWeatherChannel  pulumi.StringOutput                                           `pulumi:"includeWeatherChannel"`
 	MonitorPeriod          pulumi.IntOutput                                              `pulumi:"monitorPeriod"`
@@ -46,7 +48,7 @@ func NewWirelessControllerArrpProfile(ctx *pulumi.Context,
 		args = &WirelessControllerArrpProfileArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WirelessControllerArrpProfile
 	err := ctx.RegisterResource("fortios:index/wirelessControllerArrpProfile:WirelessControllerArrpProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -73,6 +75,7 @@ type wirelessControllerArrpProfileState struct {
 	DarrpOptimize          *int                                                 `pulumi:"darrpOptimize"`
 	DarrpOptimizeSchedules []WirelessControllerArrpProfileDarrpOptimizeSchedule `pulumi:"darrpOptimizeSchedules"`
 	DynamicSortSubtable    *string                                              `pulumi:"dynamicSortSubtable"`
+	GetAllTables           *string                                              `pulumi:"getAllTables"`
 	IncludeDfsChannel      *string                                              `pulumi:"includeDfsChannel"`
 	IncludeWeatherChannel  *string                                              `pulumi:"includeWeatherChannel"`
 	MonitorPeriod          *int                                                 `pulumi:"monitorPeriod"`
@@ -100,6 +103,7 @@ type WirelessControllerArrpProfileState struct {
 	DarrpOptimize          pulumi.IntPtrInput
 	DarrpOptimizeSchedules WirelessControllerArrpProfileDarrpOptimizeScheduleArrayInput
 	DynamicSortSubtable    pulumi.StringPtrInput
+	GetAllTables           pulumi.StringPtrInput
 	IncludeDfsChannel      pulumi.StringPtrInput
 	IncludeWeatherChannel  pulumi.StringPtrInput
 	MonitorPeriod          pulumi.IntPtrInput
@@ -131,6 +135,7 @@ type wirelessControllerArrpProfileArgs struct {
 	DarrpOptimize          *int                                                 `pulumi:"darrpOptimize"`
 	DarrpOptimizeSchedules []WirelessControllerArrpProfileDarrpOptimizeSchedule `pulumi:"darrpOptimizeSchedules"`
 	DynamicSortSubtable    *string                                              `pulumi:"dynamicSortSubtable"`
+	GetAllTables           *string                                              `pulumi:"getAllTables"`
 	IncludeDfsChannel      *string                                              `pulumi:"includeDfsChannel"`
 	IncludeWeatherChannel  *string                                              `pulumi:"includeWeatherChannel"`
 	MonitorPeriod          *int                                                 `pulumi:"monitorPeriod"`
@@ -159,6 +164,7 @@ type WirelessControllerArrpProfileArgs struct {
 	DarrpOptimize          pulumi.IntPtrInput
 	DarrpOptimizeSchedules WirelessControllerArrpProfileDarrpOptimizeScheduleArrayInput
 	DynamicSortSubtable    pulumi.StringPtrInput
+	GetAllTables           pulumi.StringPtrInput
 	IncludeDfsChannel      pulumi.StringPtrInput
 	IncludeWeatherChannel  pulumi.StringPtrInput
 	MonitorPeriod          pulumi.IntPtrInput
@@ -284,6 +290,10 @@ func (o WirelessControllerArrpProfileOutput) DarrpOptimizeSchedules() WirelessCo
 
 func (o WirelessControllerArrpProfileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WirelessControllerArrpProfile) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerArrpProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerArrpProfile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o WirelessControllerArrpProfileOutput) IncludeDfsChannel() pulumi.StringOutput {

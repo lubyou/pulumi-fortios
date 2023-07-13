@@ -61,6 +61,7 @@ export class AntivirusProfile extends pulumi.CustomResource {
     public readonly fortisandboxTimeoutAction!: pulumi.Output<string>;
     public readonly ftgdAnalytics!: pulumi.Output<string>;
     public readonly ftp!: pulumi.Output<outputs.AntivirusProfileFtp>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly http!: pulumi.Output<outputs.AntivirusProfileHttp>;
     public readonly imap!: pulumi.Output<outputs.AntivirusProfileImap>;
     public readonly inspectionMode!: pulumi.Output<string>;
@@ -119,6 +120,7 @@ export class AntivirusProfile extends pulumi.CustomResource {
             resourceInputs["fortisandboxTimeoutAction"] = state ? state.fortisandboxTimeoutAction : undefined;
             resourceInputs["ftgdAnalytics"] = state ? state.ftgdAnalytics : undefined;
             resourceInputs["ftp"] = state ? state.ftp : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["http"] = state ? state.http : undefined;
             resourceInputs["imap"] = state ? state.imap : undefined;
             resourceInputs["inspectionMode"] = state ? state.inspectionMode : undefined;
@@ -165,6 +167,7 @@ export class AntivirusProfile extends pulumi.CustomResource {
             resourceInputs["fortisandboxTimeoutAction"] = args ? args.fortisandboxTimeoutAction : undefined;
             resourceInputs["ftgdAnalytics"] = args ? args.ftgdAnalytics : undefined;
             resourceInputs["ftp"] = args ? args.ftp : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["http"] = args ? args.http : undefined;
             resourceInputs["imap"] = args ? args.imap : undefined;
             resourceInputs["inspectionMode"] = args ? args.inspectionMode : undefined;
@@ -219,6 +222,7 @@ export interface AntivirusProfileState {
     fortisandboxTimeoutAction?: pulumi.Input<string>;
     ftgdAnalytics?: pulumi.Input<string>;
     ftp?: pulumi.Input<inputs.AntivirusProfileFtp>;
+    getAllTables?: pulumi.Input<string>;
     http?: pulumi.Input<inputs.AntivirusProfileHttp>;
     imap?: pulumi.Input<inputs.AntivirusProfileImap>;
     inspectionMode?: pulumi.Input<string>;
@@ -269,6 +273,7 @@ export interface AntivirusProfileArgs {
     fortisandboxTimeoutAction?: pulumi.Input<string>;
     ftgdAnalytics?: pulumi.Input<string>;
     ftp?: pulumi.Input<inputs.AntivirusProfileFtp>;
+    getAllTables?: pulumi.Input<string>;
     http?: pulumi.Input<inputs.AntivirusProfileHttp>;
     imap?: pulumi.Input<inputs.AntivirusProfileImap>;
     inspectionMode?: pulumi.Input<string>;

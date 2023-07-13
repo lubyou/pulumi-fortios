@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -16,6 +17,7 @@ type CifsProfile struct {
 	DomainController     pulumi.StringOutput                `pulumi:"domainController"`
 	DynamicSortSubtable  pulumi.StringPtrOutput             `pulumi:"dynamicSortSubtable"`
 	FileFilter           CifsProfileFileFilterOutput        `pulumi:"fileFilter"`
+	GetAllTables         pulumi.StringPtrOutput             `pulumi:"getAllTables"`
 	Name                 pulumi.StringOutput                `pulumi:"name"`
 	ServerCredentialType pulumi.StringOutput                `pulumi:"serverCredentialType"`
 	ServerKeytabs        CifsProfileServerKeytabArrayOutput `pulumi:"serverKeytabs"`
@@ -29,7 +31,7 @@ func NewCifsProfile(ctx *pulumi.Context,
 		args = &CifsProfileArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource CifsProfile
 	err := ctx.RegisterResource("fortios:index/cifsProfile:CifsProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -55,6 +57,7 @@ type cifsProfileState struct {
 	DomainController     *string                   `pulumi:"domainController"`
 	DynamicSortSubtable  *string                   `pulumi:"dynamicSortSubtable"`
 	FileFilter           *CifsProfileFileFilter    `pulumi:"fileFilter"`
+	GetAllTables         *string                   `pulumi:"getAllTables"`
 	Name                 *string                   `pulumi:"name"`
 	ServerCredentialType *string                   `pulumi:"serverCredentialType"`
 	ServerKeytabs        []CifsProfileServerKeytab `pulumi:"serverKeytabs"`
@@ -65,6 +68,7 @@ type CifsProfileState struct {
 	DomainController     pulumi.StringPtrInput
 	DynamicSortSubtable  pulumi.StringPtrInput
 	FileFilter           CifsProfileFileFilterPtrInput
+	GetAllTables         pulumi.StringPtrInput
 	Name                 pulumi.StringPtrInput
 	ServerCredentialType pulumi.StringPtrInput
 	ServerKeytabs        CifsProfileServerKeytabArrayInput
@@ -79,6 +83,7 @@ type cifsProfileArgs struct {
 	DomainController     *string                   `pulumi:"domainController"`
 	DynamicSortSubtable  *string                   `pulumi:"dynamicSortSubtable"`
 	FileFilter           *CifsProfileFileFilter    `pulumi:"fileFilter"`
+	GetAllTables         *string                   `pulumi:"getAllTables"`
 	Name                 *string                   `pulumi:"name"`
 	ServerCredentialType *string                   `pulumi:"serverCredentialType"`
 	ServerKeytabs        []CifsProfileServerKeytab `pulumi:"serverKeytabs"`
@@ -90,6 +95,7 @@ type CifsProfileArgs struct {
 	DomainController     pulumi.StringPtrInput
 	DynamicSortSubtable  pulumi.StringPtrInput
 	FileFilter           CifsProfileFileFilterPtrInput
+	GetAllTables         pulumi.StringPtrInput
 	Name                 pulumi.StringPtrInput
 	ServerCredentialType pulumi.StringPtrInput
 	ServerKeytabs        CifsProfileServerKeytabArrayInput
@@ -193,6 +199,10 @@ func (o CifsProfileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 
 func (o CifsProfileOutput) FileFilter() CifsProfileFileFilterOutput {
 	return o.ApplyT(func(v *CifsProfile) CifsProfileFileFilterOutput { return v.FileFilter }).(CifsProfileFileFilterOutput)
+}
+
+func (o CifsProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CifsProfile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o CifsProfileOutput) Name() pulumi.StringOutput {

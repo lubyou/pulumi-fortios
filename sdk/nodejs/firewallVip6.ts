@@ -43,6 +43,7 @@ export class FirewallVip6 extends pulumi.CustomResource {
     public readonly extip!: pulumi.Output<string>;
     public readonly extport!: pulumi.Output<string>;
     public readonly fosid!: pulumi.Output<number>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly httpCookieAge!: pulumi.Output<number>;
     public readonly httpCookieDomain!: pulumi.Output<string>;
     public readonly httpCookieDomainFromHost!: pulumi.Output<string>;
@@ -65,6 +66,7 @@ export class FirewallVip6 extends pulumi.CustomResource {
     public readonly nat64!: pulumi.Output<string>;
     public readonly nat66!: pulumi.Output<string>;
     public readonly natSourceVip!: pulumi.Output<string>;
+    public readonly ndpReply!: pulumi.Output<string>;
     public readonly outlookWebAccess!: pulumi.Output<string>;
     public readonly persistence!: pulumi.Output<string>;
     public readonly portforward!: pulumi.Output<string>;
@@ -103,6 +105,7 @@ export class FirewallVip6 extends pulumi.CustomResource {
     public readonly sslServerCipherSuites!: pulumi.Output<outputs.FirewallVip6SslServerCipherSuite[] | undefined>;
     public readonly sslServerMaxVersion!: pulumi.Output<string>;
     public readonly sslServerMinVersion!: pulumi.Output<string>;
+    public readonly sslServerRenegotiation!: pulumi.Output<string>;
     public readonly sslServerSessionStateMax!: pulumi.Output<number>;
     public readonly sslServerSessionStateTimeout!: pulumi.Output<number>;
     public readonly sslServerSessionStateType!: pulumi.Output<string>;
@@ -134,6 +137,7 @@ export class FirewallVip6 extends pulumi.CustomResource {
             resourceInputs["extip"] = state ? state.extip : undefined;
             resourceInputs["extport"] = state ? state.extport : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["httpCookieAge"] = state ? state.httpCookieAge : undefined;
             resourceInputs["httpCookieDomain"] = state ? state.httpCookieDomain : undefined;
             resourceInputs["httpCookieDomainFromHost"] = state ? state.httpCookieDomainFromHost : undefined;
@@ -156,6 +160,7 @@ export class FirewallVip6 extends pulumi.CustomResource {
             resourceInputs["nat64"] = state ? state.nat64 : undefined;
             resourceInputs["nat66"] = state ? state.nat66 : undefined;
             resourceInputs["natSourceVip"] = state ? state.natSourceVip : undefined;
+            resourceInputs["ndpReply"] = state ? state.ndpReply : undefined;
             resourceInputs["outlookWebAccess"] = state ? state.outlookWebAccess : undefined;
             resourceInputs["persistence"] = state ? state.persistence : undefined;
             resourceInputs["portforward"] = state ? state.portforward : undefined;
@@ -194,6 +199,7 @@ export class FirewallVip6 extends pulumi.CustomResource {
             resourceInputs["sslServerCipherSuites"] = state ? state.sslServerCipherSuites : undefined;
             resourceInputs["sslServerMaxVersion"] = state ? state.sslServerMaxVersion : undefined;
             resourceInputs["sslServerMinVersion"] = state ? state.sslServerMinVersion : undefined;
+            resourceInputs["sslServerRenegotiation"] = state ? state.sslServerRenegotiation : undefined;
             resourceInputs["sslServerSessionStateMax"] = state ? state.sslServerSessionStateMax : undefined;
             resourceInputs["sslServerSessionStateTimeout"] = state ? state.sslServerSessionStateTimeout : undefined;
             resourceInputs["sslServerSessionStateType"] = state ? state.sslServerSessionStateType : undefined;
@@ -219,6 +225,7 @@ export class FirewallVip6 extends pulumi.CustomResource {
             resourceInputs["extip"] = args ? args.extip : undefined;
             resourceInputs["extport"] = args ? args.extport : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["httpCookieAge"] = args ? args.httpCookieAge : undefined;
             resourceInputs["httpCookieDomain"] = args ? args.httpCookieDomain : undefined;
             resourceInputs["httpCookieDomainFromHost"] = args ? args.httpCookieDomainFromHost : undefined;
@@ -241,6 +248,7 @@ export class FirewallVip6 extends pulumi.CustomResource {
             resourceInputs["nat64"] = args ? args.nat64 : undefined;
             resourceInputs["nat66"] = args ? args.nat66 : undefined;
             resourceInputs["natSourceVip"] = args ? args.natSourceVip : undefined;
+            resourceInputs["ndpReply"] = args ? args.ndpReply : undefined;
             resourceInputs["outlookWebAccess"] = args ? args.outlookWebAccess : undefined;
             resourceInputs["persistence"] = args ? args.persistence : undefined;
             resourceInputs["portforward"] = args ? args.portforward : undefined;
@@ -279,6 +287,7 @@ export class FirewallVip6 extends pulumi.CustomResource {
             resourceInputs["sslServerCipherSuites"] = args ? args.sslServerCipherSuites : undefined;
             resourceInputs["sslServerMaxVersion"] = args ? args.sslServerMaxVersion : undefined;
             resourceInputs["sslServerMinVersion"] = args ? args.sslServerMinVersion : undefined;
+            resourceInputs["sslServerRenegotiation"] = args ? args.sslServerRenegotiation : undefined;
             resourceInputs["sslServerSessionStateMax"] = args ? args.sslServerSessionStateMax : undefined;
             resourceInputs["sslServerSessionStateTimeout"] = args ? args.sslServerSessionStateTimeout : undefined;
             resourceInputs["sslServerSessionStateType"] = args ? args.sslServerSessionStateType : undefined;
@@ -306,6 +315,7 @@ export interface FirewallVip6State {
     extip?: pulumi.Input<string>;
     extport?: pulumi.Input<string>;
     fosid?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     httpCookieAge?: pulumi.Input<number>;
     httpCookieDomain?: pulumi.Input<string>;
     httpCookieDomainFromHost?: pulumi.Input<string>;
@@ -328,6 +338,7 @@ export interface FirewallVip6State {
     nat64?: pulumi.Input<string>;
     nat66?: pulumi.Input<string>;
     natSourceVip?: pulumi.Input<string>;
+    ndpReply?: pulumi.Input<string>;
     outlookWebAccess?: pulumi.Input<string>;
     persistence?: pulumi.Input<string>;
     portforward?: pulumi.Input<string>;
@@ -366,6 +377,7 @@ export interface FirewallVip6State {
     sslServerCipherSuites?: pulumi.Input<pulumi.Input<inputs.FirewallVip6SslServerCipherSuite>[]>;
     sslServerMaxVersion?: pulumi.Input<string>;
     sslServerMinVersion?: pulumi.Input<string>;
+    sslServerRenegotiation?: pulumi.Input<string>;
     sslServerSessionStateMax?: pulumi.Input<number>;
     sslServerSessionStateTimeout?: pulumi.Input<number>;
     sslServerSessionStateType?: pulumi.Input<string>;
@@ -389,6 +401,7 @@ export interface FirewallVip6Args {
     extip: pulumi.Input<string>;
     extport?: pulumi.Input<string>;
     fosid?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     httpCookieAge?: pulumi.Input<number>;
     httpCookieDomain?: pulumi.Input<string>;
     httpCookieDomainFromHost?: pulumi.Input<string>;
@@ -411,6 +424,7 @@ export interface FirewallVip6Args {
     nat64?: pulumi.Input<string>;
     nat66?: pulumi.Input<string>;
     natSourceVip?: pulumi.Input<string>;
+    ndpReply?: pulumi.Input<string>;
     outlookWebAccess?: pulumi.Input<string>;
     persistence?: pulumi.Input<string>;
     portforward?: pulumi.Input<string>;
@@ -449,6 +463,7 @@ export interface FirewallVip6Args {
     sslServerCipherSuites?: pulumi.Input<pulumi.Input<inputs.FirewallVip6SslServerCipherSuite>[]>;
     sslServerMaxVersion?: pulumi.Input<string>;
     sslServerMinVersion?: pulumi.Input<string>;
+    sslServerRenegotiation?: pulumi.Input<string>;
     sslServerSessionStateMax?: pulumi.Input<number>;
     sslServerSessionStateTimeout?: pulumi.Input<number>;
     sslServerSessionStateType?: pulumi.Input<string>;

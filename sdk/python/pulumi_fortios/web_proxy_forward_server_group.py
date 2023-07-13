@@ -18,6 +18,7 @@ class WebProxyForwardServerGroupArgs:
     def __init__(__self__, *,
                  affinity: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_down_option: Optional[pulumi.Input[str]] = None,
                  ldb_method: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -30,6 +31,8 @@ class WebProxyForwardServerGroupArgs:
             pulumi.set(__self__, "affinity", affinity)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if group_down_option is not None:
             pulumi.set(__self__, "group_down_option", group_down_option)
         if ldb_method is not None:
@@ -58,6 +61,15 @@ class WebProxyForwardServerGroupArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="groupDownOption")
@@ -110,6 +122,7 @@ class _WebProxyForwardServerGroupState:
     def __init__(__self__, *,
                  affinity: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_down_option: Optional[pulumi.Input[str]] = None,
                  ldb_method: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -122,6 +135,8 @@ class _WebProxyForwardServerGroupState:
             pulumi.set(__self__, "affinity", affinity)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if group_down_option is not None:
             pulumi.set(__self__, "group_down_option", group_down_option)
         if ldb_method is not None:
@@ -150,6 +165,15 @@ class _WebProxyForwardServerGroupState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="groupDownOption")
@@ -204,6 +228,7 @@ class WebProxyForwardServerGroup(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  affinity: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_down_option: Optional[pulumi.Input[str]] = None,
                  ldb_method: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -240,6 +265,7 @@ class WebProxyForwardServerGroup(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  affinity: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_down_option: Optional[pulumi.Input[str]] = None,
                  ldb_method: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -256,6 +282,7 @@ class WebProxyForwardServerGroup(pulumi.CustomResource):
 
             __props__.__dict__["affinity"] = affinity
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["group_down_option"] = group_down_option
             __props__.__dict__["ldb_method"] = ldb_method
             __props__.__dict__["name"] = name
@@ -273,6 +300,7 @@ class WebProxyForwardServerGroup(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             affinity: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             group_down_option: Optional[pulumi.Input[str]] = None,
             ldb_method: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -292,6 +320,7 @@ class WebProxyForwardServerGroup(pulumi.CustomResource):
 
         __props__.__dict__["affinity"] = affinity
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["group_down_option"] = group_down_option
         __props__.__dict__["ldb_method"] = ldb_method
         __props__.__dict__["name"] = name
@@ -308,6 +337,11 @@ class WebProxyForwardServerGroup(pulumi.CustomResource):
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="groupDownOption")

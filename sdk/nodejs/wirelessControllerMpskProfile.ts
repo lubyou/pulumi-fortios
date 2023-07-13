@@ -35,6 +35,7 @@ export class WirelessControllerMpskProfile extends pulumi.CustomResource {
     }
 
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly mpskConcurrentClients!: pulumi.Output<number>;
     public readonly mpskGroups!: pulumi.Output<outputs.WirelessControllerMpskProfileMpskGroup[] | undefined>;
     public readonly name!: pulumi.Output<string>;
@@ -54,6 +55,7 @@ export class WirelessControllerMpskProfile extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as WirelessControllerMpskProfileState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["mpskConcurrentClients"] = state ? state.mpskConcurrentClients : undefined;
             resourceInputs["mpskGroups"] = state ? state.mpskGroups : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -61,6 +63,7 @@ export class WirelessControllerMpskProfile extends pulumi.CustomResource {
         } else {
             const args = argsOrState as WirelessControllerMpskProfileArgs | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["mpskConcurrentClients"] = args ? args.mpskConcurrentClients : undefined;
             resourceInputs["mpskGroups"] = args ? args.mpskGroups : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -76,6 +79,7 @@ export class WirelessControllerMpskProfile extends pulumi.CustomResource {
  */
 export interface WirelessControllerMpskProfileState {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     mpskConcurrentClients?: pulumi.Input<number>;
     mpskGroups?: pulumi.Input<pulumi.Input<inputs.WirelessControllerMpskProfileMpskGroup>[]>;
     name?: pulumi.Input<string>;
@@ -87,6 +91,7 @@ export interface WirelessControllerMpskProfileState {
  */
 export interface WirelessControllerMpskProfileArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     mpskConcurrentClients?: pulumi.Input<number>;
     mpskGroups?: pulumi.Input<pulumi.Input<inputs.WirelessControllerMpskProfileMpskGroup>[]>;
     name?: pulumi.Input<string>;

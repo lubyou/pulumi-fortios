@@ -43,7 +43,9 @@ export class SystemDns extends pulumi.CustomResource {
     public readonly domains!: pulumi.Output<outputs.SystemDnsDomain[] | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly fqdnCacheTtl!: pulumi.Output<number>;
+    public readonly fqdnMaxRefresh!: pulumi.Output<number>;
     public readonly fqdnMinRefresh!: pulumi.Output<number>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly interface!: pulumi.Output<string>;
     public readonly interfaceSelectMethod!: pulumi.Output<string>;
     public readonly ip6Primary!: pulumi.Output<string>;
@@ -82,7 +84,9 @@ export class SystemDns extends pulumi.CustomResource {
             resourceInputs["domains"] = state ? state.domains : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fqdnCacheTtl"] = state ? state.fqdnCacheTtl : undefined;
+            resourceInputs["fqdnMaxRefresh"] = state ? state.fqdnMaxRefresh : undefined;
             resourceInputs["fqdnMinRefresh"] = state ? state.fqdnMinRefresh : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
             resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
             resourceInputs["ip6Primary"] = state ? state.ip6Primary : undefined;
@@ -112,7 +116,9 @@ export class SystemDns extends pulumi.CustomResource {
             resourceInputs["domains"] = args ? args.domains : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fqdnCacheTtl"] = args ? args.fqdnCacheTtl : undefined;
+            resourceInputs["fqdnMaxRefresh"] = args ? args.fqdnMaxRefresh : undefined;
             resourceInputs["fqdnMinRefresh"] = args ? args.fqdnMinRefresh : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
             resourceInputs["ip6Primary"] = args ? args.ip6Primary : undefined;
@@ -147,7 +153,9 @@ export interface SystemDnsState {
     domains?: pulumi.Input<pulumi.Input<inputs.SystemDnsDomain>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
     fqdnCacheTtl?: pulumi.Input<number>;
+    fqdnMaxRefresh?: pulumi.Input<number>;
     fqdnMinRefresh?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     interface?: pulumi.Input<string>;
     interfaceSelectMethod?: pulumi.Input<string>;
     ip6Primary?: pulumi.Input<string>;
@@ -178,7 +186,9 @@ export interface SystemDnsArgs {
     domains?: pulumi.Input<pulumi.Input<inputs.SystemDnsDomain>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
     fqdnCacheTtl?: pulumi.Input<number>;
+    fqdnMaxRefresh?: pulumi.Input<number>;
     fqdnMinRefresh?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     interface?: pulumi.Input<string>;
     interfaceSelectMethod?: pulumi.Input<string>;
     ip6Primary?: pulumi.Input<string>;

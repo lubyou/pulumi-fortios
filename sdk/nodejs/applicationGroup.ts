@@ -39,6 +39,7 @@ export class ApplicationGroup extends pulumi.CustomResource {
     public readonly categories!: pulumi.Output<outputs.ApplicationGroupCategory[] | undefined>;
     public readonly comment!: pulumi.Output<string | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly popularity!: pulumi.Output<string>;
     public readonly protocols!: pulumi.Output<string>;
@@ -66,6 +67,7 @@ export class ApplicationGroup extends pulumi.CustomResource {
             resourceInputs["categories"] = state ? state.categories : undefined;
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["popularity"] = state ? state.popularity : undefined;
             resourceInputs["protocols"] = state ? state.protocols : undefined;
@@ -81,6 +83,7 @@ export class ApplicationGroup extends pulumi.CustomResource {
             resourceInputs["categories"] = args ? args.categories : undefined;
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["popularity"] = args ? args.popularity : undefined;
             resourceInputs["protocols"] = args ? args.protocols : undefined;
@@ -104,6 +107,7 @@ export interface ApplicationGroupState {
     categories?: pulumi.Input<pulumi.Input<inputs.ApplicationGroupCategory>[]>;
     comment?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     popularity?: pulumi.Input<string>;
     protocols?: pulumi.Input<string>;
@@ -123,6 +127,7 @@ export interface ApplicationGroupArgs {
     categories?: pulumi.Input<pulumi.Input<inputs.ApplicationGroupCategory>[]>;
     comment?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     popularity?: pulumi.Input<string>;
     protocols?: pulumi.Input<string>;

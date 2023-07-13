@@ -38,6 +38,7 @@ export class SystemVdomDns extends pulumi.CustomResource {
     public readonly altSecondary!: pulumi.Output<string>;
     public readonly dnsOverTls!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly interface!: pulumi.Output<string>;
     public readonly interfaceSelectMethod!: pulumi.Output<string>;
     public readonly ip6Primary!: pulumi.Output<string>;
@@ -69,6 +70,7 @@ export class SystemVdomDns extends pulumi.CustomResource {
             resourceInputs["altSecondary"] = state ? state.altSecondary : undefined;
             resourceInputs["dnsOverTls"] = state ? state.dnsOverTls : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
             resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
             resourceInputs["ip6Primary"] = state ? state.ip6Primary : undefined;
@@ -88,6 +90,7 @@ export class SystemVdomDns extends pulumi.CustomResource {
             resourceInputs["altSecondary"] = args ? args.altSecondary : undefined;
             resourceInputs["dnsOverTls"] = args ? args.dnsOverTls : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
             resourceInputs["ip6Primary"] = args ? args.ip6Primary : undefined;
@@ -115,6 +118,7 @@ export interface SystemVdomDnsState {
     altSecondary?: pulumi.Input<string>;
     dnsOverTls?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     interface?: pulumi.Input<string>;
     interfaceSelectMethod?: pulumi.Input<string>;
     ip6Primary?: pulumi.Input<string>;
@@ -138,6 +142,7 @@ export interface SystemVdomDnsArgs {
     altSecondary?: pulumi.Input<string>;
     dnsOverTls?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     interface?: pulumi.Input<string>;
     interfaceSelectMethod?: pulumi.Input<string>;
     ip6Primary?: pulumi.Input<string>;

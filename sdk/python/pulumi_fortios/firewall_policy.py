@@ -65,6 +65,7 @@ class FirewallPolicyArgs:
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyFssoGroupArgs']]]] = None,
                  geoip_anycast: Optional[pulumi.Input[str]] = None,
                  geoip_match: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  global_label: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyGroupArgs']]]] = None,
                  http_policy_redirect: Optional[pulumi.Input[str]] = None,
@@ -100,6 +101,7 @@ class FirewallPolicyArgs:
                  internet_service_src_negate: Optional[pulumi.Input[str]] = None,
                  ippool: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
+                 ips_voip_filter: Optional[pulumi.Input[str]] = None,
                  label: Optional[pulumi.Input[str]] = None,
                  learning_mode: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
@@ -121,11 +123,15 @@ class FirewallPolicyArgs:
                  ntlm_guest: Optional[pulumi.Input[str]] = None,
                  outbound: Optional[pulumi.Input[str]] = None,
                  passive_wan_health_measurement: Optional[pulumi.Input[str]] = None,
+                 pcp_inbound: Optional[pulumi.Input[str]] = None,
+                 pcp_outbound: Optional[pulumi.Input[str]] = None,
+                 pcp_poolnames: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyPcpPoolnameArgs']]]] = None,
                  per_ip_shaper: Optional[pulumi.Input[str]] = None,
                  permit_any_host: Optional[pulumi.Input[str]] = None,
                  permit_stun_host: Optional[pulumi.Input[str]] = None,
                  policy_expiry: Optional[pulumi.Input[str]] = None,
                  policy_expiry_date: Optional[pulumi.Input[str]] = None,
+                 policy_expiry_date_utc: Optional[pulumi.Input[str]] = None,
                  policyid: Optional[pulumi.Input[int]] = None,
                  poolname6s: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyPoolname6Args']]]] = None,
                  poolnames: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyPoolnameArgs']]]] = None,
@@ -197,9 +203,13 @@ class FirewallPolicyArgs:
                  webproxy_forward_server: Optional[pulumi.Input[str]] = None,
                  webproxy_profile: Optional[pulumi.Input[str]] = None,
                  wsso: Optional[pulumi.Input[str]] = None,
+                 ztna_device_ownership: Optional[pulumi.Input[str]] = None,
+                 ztna_ems_tag_secondaries: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyZtnaEmsTagSecondaryArgs']]]] = None,
                  ztna_ems_tags: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyZtnaEmsTagArgs']]]] = None,
                  ztna_geo_tags: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyZtnaGeoTagArgs']]]] = None,
-                 ztna_status: Optional[pulumi.Input[str]] = None):
+                 ztna_policy_redirect: Optional[pulumi.Input[str]] = None,
+                 ztna_status: Optional[pulumi.Input[str]] = None,
+                 ztna_tags_match_logic: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a FirewallPolicy resource.
         """
@@ -299,6 +309,8 @@ class FirewallPolicyArgs:
             pulumi.set(__self__, "geoip_anycast", geoip_anycast)
         if geoip_match is not None:
             pulumi.set(__self__, "geoip_match", geoip_match)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if global_label is not None:
             pulumi.set(__self__, "global_label", global_label)
         if groups is not None:
@@ -369,6 +381,8 @@ class FirewallPolicyArgs:
             pulumi.set(__self__, "ippool", ippool)
         if ips_sensor is not None:
             pulumi.set(__self__, "ips_sensor", ips_sensor)
+        if ips_voip_filter is not None:
+            pulumi.set(__self__, "ips_voip_filter", ips_voip_filter)
         if label is not None:
             pulumi.set(__self__, "label", label)
         if learning_mode is not None:
@@ -411,6 +425,12 @@ class FirewallPolicyArgs:
             pulumi.set(__self__, "outbound", outbound)
         if passive_wan_health_measurement is not None:
             pulumi.set(__self__, "passive_wan_health_measurement", passive_wan_health_measurement)
+        if pcp_inbound is not None:
+            pulumi.set(__self__, "pcp_inbound", pcp_inbound)
+        if pcp_outbound is not None:
+            pulumi.set(__self__, "pcp_outbound", pcp_outbound)
+        if pcp_poolnames is not None:
+            pulumi.set(__self__, "pcp_poolnames", pcp_poolnames)
         if per_ip_shaper is not None:
             pulumi.set(__self__, "per_ip_shaper", per_ip_shaper)
         if permit_any_host is not None:
@@ -421,6 +441,8 @@ class FirewallPolicyArgs:
             pulumi.set(__self__, "policy_expiry", policy_expiry)
         if policy_expiry_date is not None:
             pulumi.set(__self__, "policy_expiry_date", policy_expiry_date)
+        if policy_expiry_date_utc is not None:
+            pulumi.set(__self__, "policy_expiry_date_utc", policy_expiry_date_utc)
         if policyid is not None:
             pulumi.set(__self__, "policyid", policyid)
         if poolname6s is not None:
@@ -563,12 +585,20 @@ class FirewallPolicyArgs:
             pulumi.set(__self__, "webproxy_profile", webproxy_profile)
         if wsso is not None:
             pulumi.set(__self__, "wsso", wsso)
+        if ztna_device_ownership is not None:
+            pulumi.set(__self__, "ztna_device_ownership", ztna_device_ownership)
+        if ztna_ems_tag_secondaries is not None:
+            pulumi.set(__self__, "ztna_ems_tag_secondaries", ztna_ems_tag_secondaries)
         if ztna_ems_tags is not None:
             pulumi.set(__self__, "ztna_ems_tags", ztna_ems_tags)
         if ztna_geo_tags is not None:
             pulumi.set(__self__, "ztna_geo_tags", ztna_geo_tags)
+        if ztna_policy_redirect is not None:
+            pulumi.set(__self__, "ztna_policy_redirect", ztna_policy_redirect)
         if ztna_status is not None:
             pulumi.set(__self__, "ztna_status", ztna_status)
+        if ztna_tags_match_logic is not None:
+            pulumi.set(__self__, "ztna_tags_match_logic", ztna_tags_match_logic)
 
     @property
     @pulumi.getter
@@ -1012,6 +1042,15 @@ class FirewallPolicyArgs:
         pulumi.set(self, "geoip_match", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="globalLabel")
     def global_label(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "global_label")
@@ -1327,6 +1366,15 @@ class FirewallPolicyArgs:
         pulumi.set(self, "ips_sensor", value)
 
     @property
+    @pulumi.getter(name="ipsVoipFilter")
+    def ips_voip_filter(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ips_voip_filter")
+
+    @ips_voip_filter.setter
+    def ips_voip_filter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ips_voip_filter", value)
+
+    @property
     @pulumi.getter
     def label(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "label")
@@ -1516,6 +1564,33 @@ class FirewallPolicyArgs:
         pulumi.set(self, "passive_wan_health_measurement", value)
 
     @property
+    @pulumi.getter(name="pcpInbound")
+    def pcp_inbound(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "pcp_inbound")
+
+    @pcp_inbound.setter
+    def pcp_inbound(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pcp_inbound", value)
+
+    @property
+    @pulumi.getter(name="pcpOutbound")
+    def pcp_outbound(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "pcp_outbound")
+
+    @pcp_outbound.setter
+    def pcp_outbound(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pcp_outbound", value)
+
+    @property
+    @pulumi.getter(name="pcpPoolnames")
+    def pcp_poolnames(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyPcpPoolnameArgs']]]]:
+        return pulumi.get(self, "pcp_poolnames")
+
+    @pcp_poolnames.setter
+    def pcp_poolnames(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyPcpPoolnameArgs']]]]):
+        pulumi.set(self, "pcp_poolnames", value)
+
+    @property
     @pulumi.getter(name="perIpShaper")
     def per_ip_shaper(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "per_ip_shaper")
@@ -1559,6 +1634,15 @@ class FirewallPolicyArgs:
     @policy_expiry_date.setter
     def policy_expiry_date(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "policy_expiry_date", value)
+
+    @property
+    @pulumi.getter(name="policyExpiryDateUtc")
+    def policy_expiry_date_utc(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "policy_expiry_date_utc")
+
+    @policy_expiry_date_utc.setter
+    def policy_expiry_date_utc(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "policy_expiry_date_utc", value)
 
     @property
     @pulumi.getter
@@ -2200,6 +2284,24 @@ class FirewallPolicyArgs:
         pulumi.set(self, "wsso", value)
 
     @property
+    @pulumi.getter(name="ztnaDeviceOwnership")
+    def ztna_device_ownership(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ztna_device_ownership")
+
+    @ztna_device_ownership.setter
+    def ztna_device_ownership(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ztna_device_ownership", value)
+
+    @property
+    @pulumi.getter(name="ztnaEmsTagSecondaries")
+    def ztna_ems_tag_secondaries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyZtnaEmsTagSecondaryArgs']]]]:
+        return pulumi.get(self, "ztna_ems_tag_secondaries")
+
+    @ztna_ems_tag_secondaries.setter
+    def ztna_ems_tag_secondaries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyZtnaEmsTagSecondaryArgs']]]]):
+        pulumi.set(self, "ztna_ems_tag_secondaries", value)
+
+    @property
     @pulumi.getter(name="ztnaEmsTags")
     def ztna_ems_tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyZtnaEmsTagArgs']]]]:
         return pulumi.get(self, "ztna_ems_tags")
@@ -2218,6 +2320,15 @@ class FirewallPolicyArgs:
         pulumi.set(self, "ztna_geo_tags", value)
 
     @property
+    @pulumi.getter(name="ztnaPolicyRedirect")
+    def ztna_policy_redirect(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ztna_policy_redirect")
+
+    @ztna_policy_redirect.setter
+    def ztna_policy_redirect(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ztna_policy_redirect", value)
+
+    @property
     @pulumi.getter(name="ztnaStatus")
     def ztna_status(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "ztna_status")
@@ -2225,6 +2336,15 @@ class FirewallPolicyArgs:
     @ztna_status.setter
     def ztna_status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ztna_status", value)
+
+    @property
+    @pulumi.getter(name="ztnaTagsMatchLogic")
+    def ztna_tags_match_logic(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ztna_tags_match_logic")
+
+    @ztna_tags_match_logic.setter
+    def ztna_tags_match_logic(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ztna_tags_match_logic", value)
 
 
 @pulumi.input_type
@@ -2278,6 +2398,7 @@ class _FirewallPolicyState:
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyFssoGroupArgs']]]] = None,
                  geoip_anycast: Optional[pulumi.Input[str]] = None,
                  geoip_match: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  global_label: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyGroupArgs']]]] = None,
                  http_policy_redirect: Optional[pulumi.Input[str]] = None,
@@ -2313,6 +2434,7 @@ class _FirewallPolicyState:
                  internet_service_src_negate: Optional[pulumi.Input[str]] = None,
                  ippool: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
+                 ips_voip_filter: Optional[pulumi.Input[str]] = None,
                  label: Optional[pulumi.Input[str]] = None,
                  learning_mode: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
@@ -2334,11 +2456,15 @@ class _FirewallPolicyState:
                  ntlm_guest: Optional[pulumi.Input[str]] = None,
                  outbound: Optional[pulumi.Input[str]] = None,
                  passive_wan_health_measurement: Optional[pulumi.Input[str]] = None,
+                 pcp_inbound: Optional[pulumi.Input[str]] = None,
+                 pcp_outbound: Optional[pulumi.Input[str]] = None,
+                 pcp_poolnames: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyPcpPoolnameArgs']]]] = None,
                  per_ip_shaper: Optional[pulumi.Input[str]] = None,
                  permit_any_host: Optional[pulumi.Input[str]] = None,
                  permit_stun_host: Optional[pulumi.Input[str]] = None,
                  policy_expiry: Optional[pulumi.Input[str]] = None,
                  policy_expiry_date: Optional[pulumi.Input[str]] = None,
+                 policy_expiry_date_utc: Optional[pulumi.Input[str]] = None,
                  policyid: Optional[pulumi.Input[int]] = None,
                  poolname6s: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyPoolname6Args']]]] = None,
                  poolnames: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyPoolnameArgs']]]] = None,
@@ -2411,9 +2537,13 @@ class _FirewallPolicyState:
                  webproxy_forward_server: Optional[pulumi.Input[str]] = None,
                  webproxy_profile: Optional[pulumi.Input[str]] = None,
                  wsso: Optional[pulumi.Input[str]] = None,
+                 ztna_device_ownership: Optional[pulumi.Input[str]] = None,
+                 ztna_ems_tag_secondaries: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyZtnaEmsTagSecondaryArgs']]]] = None,
                  ztna_ems_tags: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyZtnaEmsTagArgs']]]] = None,
                  ztna_geo_tags: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyZtnaGeoTagArgs']]]] = None,
-                 ztna_status: Optional[pulumi.Input[str]] = None):
+                 ztna_policy_redirect: Optional[pulumi.Input[str]] = None,
+                 ztna_status: Optional[pulumi.Input[str]] = None,
+                 ztna_tags_match_logic: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering FirewallPolicy resources.
         """
@@ -2513,6 +2643,8 @@ class _FirewallPolicyState:
             pulumi.set(__self__, "geoip_anycast", geoip_anycast)
         if geoip_match is not None:
             pulumi.set(__self__, "geoip_match", geoip_match)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if global_label is not None:
             pulumi.set(__self__, "global_label", global_label)
         if groups is not None:
@@ -2583,6 +2715,8 @@ class _FirewallPolicyState:
             pulumi.set(__self__, "ippool", ippool)
         if ips_sensor is not None:
             pulumi.set(__self__, "ips_sensor", ips_sensor)
+        if ips_voip_filter is not None:
+            pulumi.set(__self__, "ips_voip_filter", ips_voip_filter)
         if label is not None:
             pulumi.set(__self__, "label", label)
         if learning_mode is not None:
@@ -2625,6 +2759,12 @@ class _FirewallPolicyState:
             pulumi.set(__self__, "outbound", outbound)
         if passive_wan_health_measurement is not None:
             pulumi.set(__self__, "passive_wan_health_measurement", passive_wan_health_measurement)
+        if pcp_inbound is not None:
+            pulumi.set(__self__, "pcp_inbound", pcp_inbound)
+        if pcp_outbound is not None:
+            pulumi.set(__self__, "pcp_outbound", pcp_outbound)
+        if pcp_poolnames is not None:
+            pulumi.set(__self__, "pcp_poolnames", pcp_poolnames)
         if per_ip_shaper is not None:
             pulumi.set(__self__, "per_ip_shaper", per_ip_shaper)
         if permit_any_host is not None:
@@ -2635,6 +2775,8 @@ class _FirewallPolicyState:
             pulumi.set(__self__, "policy_expiry", policy_expiry)
         if policy_expiry_date is not None:
             pulumi.set(__self__, "policy_expiry_date", policy_expiry_date)
+        if policy_expiry_date_utc is not None:
+            pulumi.set(__self__, "policy_expiry_date_utc", policy_expiry_date_utc)
         if policyid is not None:
             pulumi.set(__self__, "policyid", policyid)
         if poolname6s is not None:
@@ -2779,12 +2921,20 @@ class _FirewallPolicyState:
             pulumi.set(__self__, "webproxy_profile", webproxy_profile)
         if wsso is not None:
             pulumi.set(__self__, "wsso", wsso)
+        if ztna_device_ownership is not None:
+            pulumi.set(__self__, "ztna_device_ownership", ztna_device_ownership)
+        if ztna_ems_tag_secondaries is not None:
+            pulumi.set(__self__, "ztna_ems_tag_secondaries", ztna_ems_tag_secondaries)
         if ztna_ems_tags is not None:
             pulumi.set(__self__, "ztna_ems_tags", ztna_ems_tags)
         if ztna_geo_tags is not None:
             pulumi.set(__self__, "ztna_geo_tags", ztna_geo_tags)
+        if ztna_policy_redirect is not None:
+            pulumi.set(__self__, "ztna_policy_redirect", ztna_policy_redirect)
         if ztna_status is not None:
             pulumi.set(__self__, "ztna_status", ztna_status)
+        if ztna_tags_match_logic is not None:
+            pulumi.set(__self__, "ztna_tags_match_logic", ztna_tags_match_logic)
 
     @property
     @pulumi.getter
@@ -3219,6 +3369,15 @@ class _FirewallPolicyState:
         pulumi.set(self, "geoip_match", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="globalLabel")
     def global_label(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "global_label")
@@ -3534,6 +3693,15 @@ class _FirewallPolicyState:
         pulumi.set(self, "ips_sensor", value)
 
     @property
+    @pulumi.getter(name="ipsVoipFilter")
+    def ips_voip_filter(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ips_voip_filter")
+
+    @ips_voip_filter.setter
+    def ips_voip_filter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ips_voip_filter", value)
+
+    @property
     @pulumi.getter
     def label(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "label")
@@ -3723,6 +3891,33 @@ class _FirewallPolicyState:
         pulumi.set(self, "passive_wan_health_measurement", value)
 
     @property
+    @pulumi.getter(name="pcpInbound")
+    def pcp_inbound(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "pcp_inbound")
+
+    @pcp_inbound.setter
+    def pcp_inbound(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pcp_inbound", value)
+
+    @property
+    @pulumi.getter(name="pcpOutbound")
+    def pcp_outbound(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "pcp_outbound")
+
+    @pcp_outbound.setter
+    def pcp_outbound(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pcp_outbound", value)
+
+    @property
+    @pulumi.getter(name="pcpPoolnames")
+    def pcp_poolnames(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyPcpPoolnameArgs']]]]:
+        return pulumi.get(self, "pcp_poolnames")
+
+    @pcp_poolnames.setter
+    def pcp_poolnames(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyPcpPoolnameArgs']]]]):
+        pulumi.set(self, "pcp_poolnames", value)
+
+    @property
     @pulumi.getter(name="perIpShaper")
     def per_ip_shaper(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "per_ip_shaper")
@@ -3766,6 +3961,15 @@ class _FirewallPolicyState:
     @policy_expiry_date.setter
     def policy_expiry_date(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "policy_expiry_date", value)
+
+    @property
+    @pulumi.getter(name="policyExpiryDateUtc")
+    def policy_expiry_date_utc(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "policy_expiry_date_utc")
+
+    @policy_expiry_date_utc.setter
+    def policy_expiry_date_utc(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "policy_expiry_date_utc", value)
 
     @property
     @pulumi.getter
@@ -4416,6 +4620,24 @@ class _FirewallPolicyState:
         pulumi.set(self, "wsso", value)
 
     @property
+    @pulumi.getter(name="ztnaDeviceOwnership")
+    def ztna_device_ownership(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ztna_device_ownership")
+
+    @ztna_device_ownership.setter
+    def ztna_device_ownership(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ztna_device_ownership", value)
+
+    @property
+    @pulumi.getter(name="ztnaEmsTagSecondaries")
+    def ztna_ems_tag_secondaries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyZtnaEmsTagSecondaryArgs']]]]:
+        return pulumi.get(self, "ztna_ems_tag_secondaries")
+
+    @ztna_ems_tag_secondaries.setter
+    def ztna_ems_tag_secondaries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyZtnaEmsTagSecondaryArgs']]]]):
+        pulumi.set(self, "ztna_ems_tag_secondaries", value)
+
+    @property
     @pulumi.getter(name="ztnaEmsTags")
     def ztna_ems_tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyZtnaEmsTagArgs']]]]:
         return pulumi.get(self, "ztna_ems_tags")
@@ -4434,6 +4656,15 @@ class _FirewallPolicyState:
         pulumi.set(self, "ztna_geo_tags", value)
 
     @property
+    @pulumi.getter(name="ztnaPolicyRedirect")
+    def ztna_policy_redirect(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ztna_policy_redirect")
+
+    @ztna_policy_redirect.setter
+    def ztna_policy_redirect(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ztna_policy_redirect", value)
+
+    @property
     @pulumi.getter(name="ztnaStatus")
     def ztna_status(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "ztna_status")
@@ -4441,6 +4672,15 @@ class _FirewallPolicyState:
     @ztna_status.setter
     def ztna_status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ztna_status", value)
+
+    @property
+    @pulumi.getter(name="ztnaTagsMatchLogic")
+    def ztna_tags_match_logic(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ztna_tags_match_logic")
+
+    @ztna_tags_match_logic.setter
+    def ztna_tags_match_logic(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ztna_tags_match_logic", value)
 
 
 class FirewallPolicy(pulumi.CustomResource):
@@ -4496,6 +4736,7 @@ class FirewallPolicy(pulumi.CustomResource):
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyFssoGroupArgs']]]]] = None,
                  geoip_anycast: Optional[pulumi.Input[str]] = None,
                  geoip_match: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  global_label: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyGroupArgs']]]]] = None,
                  http_policy_redirect: Optional[pulumi.Input[str]] = None,
@@ -4531,6 +4772,7 @@ class FirewallPolicy(pulumi.CustomResource):
                  internet_service_src_negate: Optional[pulumi.Input[str]] = None,
                  ippool: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
+                 ips_voip_filter: Optional[pulumi.Input[str]] = None,
                  label: Optional[pulumi.Input[str]] = None,
                  learning_mode: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
@@ -4552,11 +4794,15 @@ class FirewallPolicy(pulumi.CustomResource):
                  ntlm_guest: Optional[pulumi.Input[str]] = None,
                  outbound: Optional[pulumi.Input[str]] = None,
                  passive_wan_health_measurement: Optional[pulumi.Input[str]] = None,
+                 pcp_inbound: Optional[pulumi.Input[str]] = None,
+                 pcp_outbound: Optional[pulumi.Input[str]] = None,
+                 pcp_poolnames: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyPcpPoolnameArgs']]]]] = None,
                  per_ip_shaper: Optional[pulumi.Input[str]] = None,
                  permit_any_host: Optional[pulumi.Input[str]] = None,
                  permit_stun_host: Optional[pulumi.Input[str]] = None,
                  policy_expiry: Optional[pulumi.Input[str]] = None,
                  policy_expiry_date: Optional[pulumi.Input[str]] = None,
+                 policy_expiry_date_utc: Optional[pulumi.Input[str]] = None,
                  policyid: Optional[pulumi.Input[int]] = None,
                  poolname6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyPoolname6Args']]]]] = None,
                  poolnames: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyPoolnameArgs']]]]] = None,
@@ -4629,9 +4875,13 @@ class FirewallPolicy(pulumi.CustomResource):
                  webproxy_forward_server: Optional[pulumi.Input[str]] = None,
                  webproxy_profile: Optional[pulumi.Input[str]] = None,
                  wsso: Optional[pulumi.Input[str]] = None,
+                 ztna_device_ownership: Optional[pulumi.Input[str]] = None,
+                 ztna_ems_tag_secondaries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyZtnaEmsTagSecondaryArgs']]]]] = None,
                  ztna_ems_tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyZtnaEmsTagArgs']]]]] = None,
                  ztna_geo_tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyZtnaGeoTagArgs']]]]] = None,
+                 ztna_policy_redirect: Optional[pulumi.Input[str]] = None,
                  ztna_status: Optional[pulumi.Input[str]] = None,
+                 ztna_tags_match_logic: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Create a FirewallPolicy resource with the given unique name, props, and options.
@@ -4709,6 +4959,7 @@ class FirewallPolicy(pulumi.CustomResource):
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyFssoGroupArgs']]]]] = None,
                  geoip_anycast: Optional[pulumi.Input[str]] = None,
                  geoip_match: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  global_label: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyGroupArgs']]]]] = None,
                  http_policy_redirect: Optional[pulumi.Input[str]] = None,
@@ -4744,6 +4995,7 @@ class FirewallPolicy(pulumi.CustomResource):
                  internet_service_src_negate: Optional[pulumi.Input[str]] = None,
                  ippool: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
+                 ips_voip_filter: Optional[pulumi.Input[str]] = None,
                  label: Optional[pulumi.Input[str]] = None,
                  learning_mode: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
@@ -4765,11 +5017,15 @@ class FirewallPolicy(pulumi.CustomResource):
                  ntlm_guest: Optional[pulumi.Input[str]] = None,
                  outbound: Optional[pulumi.Input[str]] = None,
                  passive_wan_health_measurement: Optional[pulumi.Input[str]] = None,
+                 pcp_inbound: Optional[pulumi.Input[str]] = None,
+                 pcp_outbound: Optional[pulumi.Input[str]] = None,
+                 pcp_poolnames: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyPcpPoolnameArgs']]]]] = None,
                  per_ip_shaper: Optional[pulumi.Input[str]] = None,
                  permit_any_host: Optional[pulumi.Input[str]] = None,
                  permit_stun_host: Optional[pulumi.Input[str]] = None,
                  policy_expiry: Optional[pulumi.Input[str]] = None,
                  policy_expiry_date: Optional[pulumi.Input[str]] = None,
+                 policy_expiry_date_utc: Optional[pulumi.Input[str]] = None,
                  policyid: Optional[pulumi.Input[int]] = None,
                  poolname6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyPoolname6Args']]]]] = None,
                  poolnames: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyPoolnameArgs']]]]] = None,
@@ -4842,9 +5098,13 @@ class FirewallPolicy(pulumi.CustomResource):
                  webproxy_forward_server: Optional[pulumi.Input[str]] = None,
                  webproxy_profile: Optional[pulumi.Input[str]] = None,
                  wsso: Optional[pulumi.Input[str]] = None,
+                 ztna_device_ownership: Optional[pulumi.Input[str]] = None,
+                 ztna_ems_tag_secondaries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyZtnaEmsTagSecondaryArgs']]]]] = None,
                  ztna_ems_tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyZtnaEmsTagArgs']]]]] = None,
                  ztna_geo_tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyZtnaGeoTagArgs']]]]] = None,
+                 ztna_policy_redirect: Optional[pulumi.Input[str]] = None,
                  ztna_status: Optional[pulumi.Input[str]] = None,
+                 ztna_tags_match_logic: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -4904,6 +5164,7 @@ class FirewallPolicy(pulumi.CustomResource):
             __props__.__dict__["fsso_groups"] = fsso_groups
             __props__.__dict__["geoip_anycast"] = geoip_anycast
             __props__.__dict__["geoip_match"] = geoip_match
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["global_label"] = global_label
             __props__.__dict__["groups"] = groups
             __props__.__dict__["http_policy_redirect"] = http_policy_redirect
@@ -4939,6 +5200,7 @@ class FirewallPolicy(pulumi.CustomResource):
             __props__.__dict__["internet_service_src_negate"] = internet_service_src_negate
             __props__.__dict__["ippool"] = ippool
             __props__.__dict__["ips_sensor"] = ips_sensor
+            __props__.__dict__["ips_voip_filter"] = ips_voip_filter
             __props__.__dict__["label"] = label
             __props__.__dict__["learning_mode"] = learning_mode
             __props__.__dict__["logtraffic"] = logtraffic
@@ -4960,11 +5222,15 @@ class FirewallPolicy(pulumi.CustomResource):
             __props__.__dict__["ntlm_guest"] = ntlm_guest
             __props__.__dict__["outbound"] = outbound
             __props__.__dict__["passive_wan_health_measurement"] = passive_wan_health_measurement
+            __props__.__dict__["pcp_inbound"] = pcp_inbound
+            __props__.__dict__["pcp_outbound"] = pcp_outbound
+            __props__.__dict__["pcp_poolnames"] = pcp_poolnames
             __props__.__dict__["per_ip_shaper"] = per_ip_shaper
             __props__.__dict__["permit_any_host"] = permit_any_host
             __props__.__dict__["permit_stun_host"] = permit_stun_host
             __props__.__dict__["policy_expiry"] = policy_expiry
             __props__.__dict__["policy_expiry_date"] = policy_expiry_date
+            __props__.__dict__["policy_expiry_date_utc"] = policy_expiry_date_utc
             __props__.__dict__["policyid"] = policyid
             __props__.__dict__["poolname6s"] = poolname6s
             __props__.__dict__["poolnames"] = poolnames
@@ -5039,9 +5305,13 @@ class FirewallPolicy(pulumi.CustomResource):
             __props__.__dict__["webproxy_forward_server"] = webproxy_forward_server
             __props__.__dict__["webproxy_profile"] = webproxy_profile
             __props__.__dict__["wsso"] = wsso
+            __props__.__dict__["ztna_device_ownership"] = ztna_device_ownership
+            __props__.__dict__["ztna_ems_tag_secondaries"] = ztna_ems_tag_secondaries
             __props__.__dict__["ztna_ems_tags"] = ztna_ems_tags
             __props__.__dict__["ztna_geo_tags"] = ztna_geo_tags
+            __props__.__dict__["ztna_policy_redirect"] = ztna_policy_redirect
             __props__.__dict__["ztna_status"] = ztna_status
+            __props__.__dict__["ztna_tags_match_logic"] = ztna_tags_match_logic
         super(FirewallPolicy, __self__).__init__(
             'fortios:index/firewallPolicy:FirewallPolicy',
             resource_name,
@@ -5100,6 +5370,7 @@ class FirewallPolicy(pulumi.CustomResource):
             fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyFssoGroupArgs']]]]] = None,
             geoip_anycast: Optional[pulumi.Input[str]] = None,
             geoip_match: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             global_label: Optional[pulumi.Input[str]] = None,
             groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyGroupArgs']]]]] = None,
             http_policy_redirect: Optional[pulumi.Input[str]] = None,
@@ -5135,6 +5406,7 @@ class FirewallPolicy(pulumi.CustomResource):
             internet_service_src_negate: Optional[pulumi.Input[str]] = None,
             ippool: Optional[pulumi.Input[str]] = None,
             ips_sensor: Optional[pulumi.Input[str]] = None,
+            ips_voip_filter: Optional[pulumi.Input[str]] = None,
             label: Optional[pulumi.Input[str]] = None,
             learning_mode: Optional[pulumi.Input[str]] = None,
             logtraffic: Optional[pulumi.Input[str]] = None,
@@ -5156,11 +5428,15 @@ class FirewallPolicy(pulumi.CustomResource):
             ntlm_guest: Optional[pulumi.Input[str]] = None,
             outbound: Optional[pulumi.Input[str]] = None,
             passive_wan_health_measurement: Optional[pulumi.Input[str]] = None,
+            pcp_inbound: Optional[pulumi.Input[str]] = None,
+            pcp_outbound: Optional[pulumi.Input[str]] = None,
+            pcp_poolnames: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyPcpPoolnameArgs']]]]] = None,
             per_ip_shaper: Optional[pulumi.Input[str]] = None,
             permit_any_host: Optional[pulumi.Input[str]] = None,
             permit_stun_host: Optional[pulumi.Input[str]] = None,
             policy_expiry: Optional[pulumi.Input[str]] = None,
             policy_expiry_date: Optional[pulumi.Input[str]] = None,
+            policy_expiry_date_utc: Optional[pulumi.Input[str]] = None,
             policyid: Optional[pulumi.Input[int]] = None,
             poolname6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyPoolname6Args']]]]] = None,
             poolnames: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyPoolnameArgs']]]]] = None,
@@ -5233,9 +5509,13 @@ class FirewallPolicy(pulumi.CustomResource):
             webproxy_forward_server: Optional[pulumi.Input[str]] = None,
             webproxy_profile: Optional[pulumi.Input[str]] = None,
             wsso: Optional[pulumi.Input[str]] = None,
+            ztna_device_ownership: Optional[pulumi.Input[str]] = None,
+            ztna_ems_tag_secondaries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyZtnaEmsTagSecondaryArgs']]]]] = None,
             ztna_ems_tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyZtnaEmsTagArgs']]]]] = None,
             ztna_geo_tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyZtnaGeoTagArgs']]]]] = None,
-            ztna_status: Optional[pulumi.Input[str]] = None) -> 'FirewallPolicy':
+            ztna_policy_redirect: Optional[pulumi.Input[str]] = None,
+            ztna_status: Optional[pulumi.Input[str]] = None,
+            ztna_tags_match_logic: Optional[pulumi.Input[str]] = None) -> 'FirewallPolicy':
         """
         Get an existing FirewallPolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -5296,6 +5576,7 @@ class FirewallPolicy(pulumi.CustomResource):
         __props__.__dict__["fsso_groups"] = fsso_groups
         __props__.__dict__["geoip_anycast"] = geoip_anycast
         __props__.__dict__["geoip_match"] = geoip_match
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["global_label"] = global_label
         __props__.__dict__["groups"] = groups
         __props__.__dict__["http_policy_redirect"] = http_policy_redirect
@@ -5331,6 +5612,7 @@ class FirewallPolicy(pulumi.CustomResource):
         __props__.__dict__["internet_service_src_negate"] = internet_service_src_negate
         __props__.__dict__["ippool"] = ippool
         __props__.__dict__["ips_sensor"] = ips_sensor
+        __props__.__dict__["ips_voip_filter"] = ips_voip_filter
         __props__.__dict__["label"] = label
         __props__.__dict__["learning_mode"] = learning_mode
         __props__.__dict__["logtraffic"] = logtraffic
@@ -5352,11 +5634,15 @@ class FirewallPolicy(pulumi.CustomResource):
         __props__.__dict__["ntlm_guest"] = ntlm_guest
         __props__.__dict__["outbound"] = outbound
         __props__.__dict__["passive_wan_health_measurement"] = passive_wan_health_measurement
+        __props__.__dict__["pcp_inbound"] = pcp_inbound
+        __props__.__dict__["pcp_outbound"] = pcp_outbound
+        __props__.__dict__["pcp_poolnames"] = pcp_poolnames
         __props__.__dict__["per_ip_shaper"] = per_ip_shaper
         __props__.__dict__["permit_any_host"] = permit_any_host
         __props__.__dict__["permit_stun_host"] = permit_stun_host
         __props__.__dict__["policy_expiry"] = policy_expiry
         __props__.__dict__["policy_expiry_date"] = policy_expiry_date
+        __props__.__dict__["policy_expiry_date_utc"] = policy_expiry_date_utc
         __props__.__dict__["policyid"] = policyid
         __props__.__dict__["poolname6s"] = poolname6s
         __props__.__dict__["poolnames"] = poolnames
@@ -5429,9 +5715,13 @@ class FirewallPolicy(pulumi.CustomResource):
         __props__.__dict__["webproxy_forward_server"] = webproxy_forward_server
         __props__.__dict__["webproxy_profile"] = webproxy_profile
         __props__.__dict__["wsso"] = wsso
+        __props__.__dict__["ztna_device_ownership"] = ztna_device_ownership
+        __props__.__dict__["ztna_ems_tag_secondaries"] = ztna_ems_tag_secondaries
         __props__.__dict__["ztna_ems_tags"] = ztna_ems_tags
         __props__.__dict__["ztna_geo_tags"] = ztna_geo_tags
+        __props__.__dict__["ztna_policy_redirect"] = ztna_policy_redirect
         __props__.__dict__["ztna_status"] = ztna_status
+        __props__.__dict__["ztna_tags_match_logic"] = ztna_tags_match_logic
         return FirewallPolicy(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -5675,6 +5965,11 @@ class FirewallPolicy(pulumi.CustomResource):
         return pulumi.get(self, "geoip_match")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter(name="globalLabel")
     def global_label(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "global_label")
@@ -5850,6 +6145,11 @@ class FirewallPolicy(pulumi.CustomResource):
         return pulumi.get(self, "ips_sensor")
 
     @property
+    @pulumi.getter(name="ipsVoipFilter")
+    def ips_voip_filter(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "ips_voip_filter")
+
+    @property
     @pulumi.getter
     def label(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "label")
@@ -5955,6 +6255,21 @@ class FirewallPolicy(pulumi.CustomResource):
         return pulumi.get(self, "passive_wan_health_measurement")
 
     @property
+    @pulumi.getter(name="pcpInbound")
+    def pcp_inbound(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "pcp_inbound")
+
+    @property
+    @pulumi.getter(name="pcpOutbound")
+    def pcp_outbound(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "pcp_outbound")
+
+    @property
+    @pulumi.getter(name="pcpPoolnames")
+    def pcp_poolnames(self) -> pulumi.Output[Optional[Sequence['outputs.FirewallPolicyPcpPoolname']]]:
+        return pulumi.get(self, "pcp_poolnames")
+
+    @property
     @pulumi.getter(name="perIpShaper")
     def per_ip_shaper(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "per_ip_shaper")
@@ -5978,6 +6293,11 @@ class FirewallPolicy(pulumi.CustomResource):
     @pulumi.getter(name="policyExpiryDate")
     def policy_expiry_date(self) -> pulumi.Output[str]:
         return pulumi.get(self, "policy_expiry_date")
+
+    @property
+    @pulumi.getter(name="policyExpiryDateUtc")
+    def policy_expiry_date_utc(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "policy_expiry_date_utc")
 
     @property
     @pulumi.getter
@@ -6340,6 +6660,16 @@ class FirewallPolicy(pulumi.CustomResource):
         return pulumi.get(self, "wsso")
 
     @property
+    @pulumi.getter(name="ztnaDeviceOwnership")
+    def ztna_device_ownership(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "ztna_device_ownership")
+
+    @property
+    @pulumi.getter(name="ztnaEmsTagSecondaries")
+    def ztna_ems_tag_secondaries(self) -> pulumi.Output[Optional[Sequence['outputs.FirewallPolicyZtnaEmsTagSecondary']]]:
+        return pulumi.get(self, "ztna_ems_tag_secondaries")
+
+    @property
     @pulumi.getter(name="ztnaEmsTags")
     def ztna_ems_tags(self) -> pulumi.Output[Optional[Sequence['outputs.FirewallPolicyZtnaEmsTag']]]:
         return pulumi.get(self, "ztna_ems_tags")
@@ -6350,7 +6680,17 @@ class FirewallPolicy(pulumi.CustomResource):
         return pulumi.get(self, "ztna_geo_tags")
 
     @property
+    @pulumi.getter(name="ztnaPolicyRedirect")
+    def ztna_policy_redirect(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "ztna_policy_redirect")
+
+    @property
     @pulumi.getter(name="ztnaStatus")
     def ztna_status(self) -> pulumi.Output[str]:
         return pulumi.get(self, "ztna_status")
+
+    @property
+    @pulumi.getter(name="ztnaTagsMatchLogic")
+    def ztna_tags_match_logic(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "ztna_tags_match_logic")
 

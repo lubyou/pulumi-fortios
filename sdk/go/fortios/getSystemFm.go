@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemFm(ctx *pulumi.Context, args *LookupSystemFmArgs, opts ...pulumi.InvokeOption) (*LookupSystemFmResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemFmResult
 	err := ctx.Invoke("fortios:index/getSystemFm:GetSystemFm", args, &rv, opts...)
 	if err != nil {

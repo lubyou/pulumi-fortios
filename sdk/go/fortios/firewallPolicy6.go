@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -42,6 +43,7 @@ type FirewallPolicy6 struct {
 	FirewallSessionDirty    pulumi.StringOutput                      `pulumi:"firewallSessionDirty"`
 	Fixedport               pulumi.StringOutput                      `pulumi:"fixedport"`
 	FssoGroups              FirewallPolicy6FssoGroupArrayOutput      `pulumi:"fssoGroups"`
+	GetAllTables            pulumi.StringPtrOutput                   `pulumi:"getAllTables"`
 	GlobalLabel             pulumi.StringOutput                      `pulumi:"globalLabel"`
 	Groups                  FirewallPolicy6GroupArrayOutput          `pulumi:"groups"`
 	HttpPolicyRedirect      pulumi.StringOutput                      `pulumi:"httpPolicyRedirect"`
@@ -130,7 +132,7 @@ func NewFirewallPolicy6(ctx *pulumi.Context,
 	if args.Srcintfs == nil {
 		return nil, errors.New("invalid value for required argument 'Srcintfs'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallPolicy6
 	err := ctx.RegisterResource("fortios:index/firewallPolicy6:FirewallPolicy6", name, args, &resource, opts...)
 	if err != nil {
@@ -181,6 +183,7 @@ type firewallPolicy6State struct {
 	FirewallSessionDirty    *string                         `pulumi:"firewallSessionDirty"`
 	Fixedport               *string                         `pulumi:"fixedport"`
 	FssoGroups              []FirewallPolicy6FssoGroup      `pulumi:"fssoGroups"`
+	GetAllTables            *string                         `pulumi:"getAllTables"`
 	GlobalLabel             *string                         `pulumi:"globalLabel"`
 	Groups                  []FirewallPolicy6Group          `pulumi:"groups"`
 	HttpPolicyRedirect      *string                         `pulumi:"httpPolicyRedirect"`
@@ -276,6 +279,7 @@ type FirewallPolicy6State struct {
 	FirewallSessionDirty    pulumi.StringPtrInput
 	Fixedport               pulumi.StringPtrInput
 	FssoGroups              FirewallPolicy6FssoGroupArrayInput
+	GetAllTables            pulumi.StringPtrInput
 	GlobalLabel             pulumi.StringPtrInput
 	Groups                  FirewallPolicy6GroupArrayInput
 	HttpPolicyRedirect      pulumi.StringPtrInput
@@ -375,6 +379,7 @@ type firewallPolicy6Args struct {
 	FirewallSessionDirty    *string                         `pulumi:"firewallSessionDirty"`
 	Fixedport               *string                         `pulumi:"fixedport"`
 	FssoGroups              []FirewallPolicy6FssoGroup      `pulumi:"fssoGroups"`
+	GetAllTables            *string                         `pulumi:"getAllTables"`
 	GlobalLabel             *string                         `pulumi:"globalLabel"`
 	Groups                  []FirewallPolicy6Group          `pulumi:"groups"`
 	HttpPolicyRedirect      *string                         `pulumi:"httpPolicyRedirect"`
@@ -471,6 +476,7 @@ type FirewallPolicy6Args struct {
 	FirewallSessionDirty    pulumi.StringPtrInput
 	Fixedport               pulumi.StringPtrInput
 	FssoGroups              FirewallPolicy6FssoGroupArrayInput
+	GetAllTables            pulumi.StringPtrInput
 	GlobalLabel             pulumi.StringPtrInput
 	Groups                  FirewallPolicy6GroupArrayInput
 	HttpPolicyRedirect      pulumi.StringPtrInput
@@ -734,6 +740,10 @@ func (o FirewallPolicy6Output) Fixedport() pulumi.StringOutput {
 
 func (o FirewallPolicy6Output) FssoGroups() FirewallPolicy6FssoGroupArrayOutput {
 	return o.ApplyT(func(v *FirewallPolicy6) FirewallPolicy6FssoGroupArrayOutput { return v.FssoGroups }).(FirewallPolicy6FssoGroupArrayOutput)
+}
+
+func (o FirewallPolicy6Output) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallPolicy6) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallPolicy6Output) GlobalLabel() pulumi.StringOutput {

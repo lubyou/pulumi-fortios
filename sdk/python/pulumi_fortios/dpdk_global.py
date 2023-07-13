@@ -18,6 +18,7 @@ class DpdkGlobalArgs:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  elasticbuffer: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hugepage_percentage: Optional[pulumi.Input[int]] = None,
                  interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['DpdkGlobalInterfaceArgs']]]] = None,
                  ipsec_offload: Optional[pulumi.Input[str]] = None,
@@ -34,6 +35,8 @@ class DpdkGlobalArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if elasticbuffer is not None:
             pulumi.set(__self__, "elasticbuffer", elasticbuffer)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if hugepage_percentage is not None:
             pulumi.set(__self__, "hugepage_percentage", hugepage_percentage)
         if interfaces is not None:
@@ -70,6 +73,15 @@ class DpdkGlobalArgs:
     @elasticbuffer.setter
     def elasticbuffer(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "elasticbuffer", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="hugepagePercentage")
@@ -158,6 +170,7 @@ class _DpdkGlobalState:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  elasticbuffer: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hugepage_percentage: Optional[pulumi.Input[int]] = None,
                  interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['DpdkGlobalInterfaceArgs']]]] = None,
                  ipsec_offload: Optional[pulumi.Input[str]] = None,
@@ -174,6 +187,8 @@ class _DpdkGlobalState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if elasticbuffer is not None:
             pulumi.set(__self__, "elasticbuffer", elasticbuffer)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if hugepage_percentage is not None:
             pulumi.set(__self__, "hugepage_percentage", hugepage_percentage)
         if interfaces is not None:
@@ -210,6 +225,15 @@ class _DpdkGlobalState:
     @elasticbuffer.setter
     def elasticbuffer(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "elasticbuffer", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="hugepagePercentage")
@@ -300,6 +324,7 @@ class DpdkGlobal(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  elasticbuffer: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hugepage_percentage: Optional[pulumi.Input[int]] = None,
                  interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DpdkGlobalInterfaceArgs']]]]] = None,
                  ipsec_offload: Optional[pulumi.Input[str]] = None,
@@ -340,6 +365,7 @@ class DpdkGlobal(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  elasticbuffer: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hugepage_percentage: Optional[pulumi.Input[int]] = None,
                  interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DpdkGlobalInterfaceArgs']]]]] = None,
                  ipsec_offload: Optional[pulumi.Input[str]] = None,
@@ -360,6 +386,7 @@ class DpdkGlobal(pulumi.CustomResource):
 
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["elasticbuffer"] = elasticbuffer
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["hugepage_percentage"] = hugepage_percentage
             __props__.__dict__["interfaces"] = interfaces
             __props__.__dict__["ipsec_offload"] = ipsec_offload
@@ -381,6 +408,7 @@ class DpdkGlobal(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             elasticbuffer: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             hugepage_percentage: Optional[pulumi.Input[int]] = None,
             interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DpdkGlobalInterfaceArgs']]]]] = None,
             ipsec_offload: Optional[pulumi.Input[str]] = None,
@@ -404,6 +432,7 @@ class DpdkGlobal(pulumi.CustomResource):
 
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["elasticbuffer"] = elasticbuffer
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["hugepage_percentage"] = hugepage_percentage
         __props__.__dict__["interfaces"] = interfaces
         __props__.__dict__["ipsec_offload"] = ipsec_offload
@@ -424,6 +453,11 @@ class DpdkGlobal(pulumi.CustomResource):
     @pulumi.getter
     def elasticbuffer(self) -> pulumi.Output[str]:
         return pulumi.get(self, "elasticbuffer")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="hugepagePercentage")

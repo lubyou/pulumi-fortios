@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func GetFirewallCentralSnatMapList(ctx *pulumi.Context, args *GetFirewallCentralSnatMapListArgs, opts ...pulumi.InvokeOption) (*GetFirewallCentralSnatMapListResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetFirewallCentralSnatMapListResult
 	err := ctx.Invoke("fortios:index/getFirewallCentralSnatMapList:GetFirewallCentralSnatMapList", args, &rv, opts...)
 	if err != nil {

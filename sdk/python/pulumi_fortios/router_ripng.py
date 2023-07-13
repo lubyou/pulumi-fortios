@@ -23,6 +23,7 @@ class RouterRipngArgs:
                  distribute_lists: Optional[pulumi.Input[Sequence[pulumi.Input['RouterRipngDistributeListArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  garbage_timer: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['RouterRipngInterfaceArgs']]]] = None,
                  max_out_metric: Optional[pulumi.Input[int]] = None,
                  neighbors: Optional[pulumi.Input[Sequence[pulumi.Input['RouterRipngNeighborArgs']]]] = None,
@@ -50,6 +51,8 @@ class RouterRipngArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if garbage_timer is not None:
             pulumi.set(__self__, "garbage_timer", garbage_timer)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interfaces is not None:
             pulumi.set(__self__, "interfaces", interfaces)
         if max_out_metric is not None:
@@ -133,6 +136,15 @@ class RouterRipngArgs:
     @garbage_timer.setter
     def garbage_timer(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "garbage_timer", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -235,6 +247,7 @@ class _RouterRipngState:
                  distribute_lists: Optional[pulumi.Input[Sequence[pulumi.Input['RouterRipngDistributeListArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  garbage_timer: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['RouterRipngInterfaceArgs']]]] = None,
                  max_out_metric: Optional[pulumi.Input[int]] = None,
                  neighbors: Optional[pulumi.Input[Sequence[pulumi.Input['RouterRipngNeighborArgs']]]] = None,
@@ -262,6 +275,8 @@ class _RouterRipngState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if garbage_timer is not None:
             pulumi.set(__self__, "garbage_timer", garbage_timer)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interfaces is not None:
             pulumi.set(__self__, "interfaces", interfaces)
         if max_out_metric is not None:
@@ -345,6 +360,15 @@ class _RouterRipngState:
     @garbage_timer.setter
     def garbage_timer(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "garbage_timer", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -449,6 +473,7 @@ class RouterRipng(pulumi.CustomResource):
                  distribute_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterRipngDistributeListArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  garbage_timer: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterRipngInterfaceArgs']]]]] = None,
                  max_out_metric: Optional[pulumi.Input[int]] = None,
                  neighbors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterRipngNeighborArgs']]]]] = None,
@@ -495,6 +520,7 @@ class RouterRipng(pulumi.CustomResource):
                  distribute_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterRipngDistributeListArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  garbage_timer: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterRipngInterfaceArgs']]]]] = None,
                  max_out_metric: Optional[pulumi.Input[int]] = None,
                  neighbors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterRipngNeighborArgs']]]]] = None,
@@ -521,6 +547,7 @@ class RouterRipng(pulumi.CustomResource):
             __props__.__dict__["distribute_lists"] = distribute_lists
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["garbage_timer"] = garbage_timer
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["interfaces"] = interfaces
             __props__.__dict__["max_out_metric"] = max_out_metric
             __props__.__dict__["neighbors"] = neighbors
@@ -548,6 +575,7 @@ class RouterRipng(pulumi.CustomResource):
             distribute_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterRipngDistributeListArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             garbage_timer: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterRipngInterfaceArgs']]]]] = None,
             max_out_metric: Optional[pulumi.Input[int]] = None,
             neighbors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterRipngNeighborArgs']]]]] = None,
@@ -577,6 +605,7 @@ class RouterRipng(pulumi.CustomResource):
         __props__.__dict__["distribute_lists"] = distribute_lists
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["garbage_timer"] = garbage_timer
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["interfaces"] = interfaces
         __props__.__dict__["max_out_metric"] = max_out_metric
         __props__.__dict__["neighbors"] = neighbors
@@ -623,6 +652,11 @@ class RouterRipng(pulumi.CustomResource):
     @pulumi.getter(name="garbageTimer")
     def garbage_timer(self) -> pulumi.Output[int]:
         return pulumi.get(self, "garbage_timer")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

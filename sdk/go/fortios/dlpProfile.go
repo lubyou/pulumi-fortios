@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,6 +20,7 @@ type DlpProfile struct {
 	ExtendedLog         pulumi.StringOutput       `pulumi:"extendedLog"`
 	FeatureSet          pulumi.StringOutput       `pulumi:"featureSet"`
 	FullArchiveProto    pulumi.StringOutput       `pulumi:"fullArchiveProto"`
+	GetAllTables        pulumi.StringPtrOutput    `pulumi:"getAllTables"`
 	NacQuarLog          pulumi.StringOutput       `pulumi:"nacQuarLog"`
 	Name                pulumi.StringOutput       `pulumi:"name"`
 	ReplacemsgGroup     pulumi.StringOutput       `pulumi:"replacemsgGroup"`
@@ -34,7 +36,7 @@ func NewDlpProfile(ctx *pulumi.Context,
 		args = &DlpProfileArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DlpProfile
 	err := ctx.RegisterResource("fortios:index/dlpProfile:DlpProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -63,6 +65,7 @@ type dlpProfileState struct {
 	ExtendedLog         *string          `pulumi:"extendedLog"`
 	FeatureSet          *string          `pulumi:"featureSet"`
 	FullArchiveProto    *string          `pulumi:"fullArchiveProto"`
+	GetAllTables        *string          `pulumi:"getAllTables"`
 	NacQuarLog          *string          `pulumi:"nacQuarLog"`
 	Name                *string          `pulumi:"name"`
 	ReplacemsgGroup     *string          `pulumi:"replacemsgGroup"`
@@ -78,6 +81,7 @@ type DlpProfileState struct {
 	ExtendedLog         pulumi.StringPtrInput
 	FeatureSet          pulumi.StringPtrInput
 	FullArchiveProto    pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	NacQuarLog          pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	ReplacemsgGroup     pulumi.StringPtrInput
@@ -97,6 +101,7 @@ type dlpProfileArgs struct {
 	ExtendedLog         *string          `pulumi:"extendedLog"`
 	FeatureSet          *string          `pulumi:"featureSet"`
 	FullArchiveProto    *string          `pulumi:"fullArchiveProto"`
+	GetAllTables        *string          `pulumi:"getAllTables"`
 	NacQuarLog          *string          `pulumi:"nacQuarLog"`
 	Name                *string          `pulumi:"name"`
 	ReplacemsgGroup     *string          `pulumi:"replacemsgGroup"`
@@ -113,6 +118,7 @@ type DlpProfileArgs struct {
 	ExtendedLog         pulumi.StringPtrInput
 	FeatureSet          pulumi.StringPtrInput
 	FullArchiveProto    pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	NacQuarLog          pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	ReplacemsgGroup     pulumi.StringPtrInput
@@ -230,6 +236,10 @@ func (o DlpProfileOutput) FeatureSet() pulumi.StringOutput {
 
 func (o DlpProfileOutput) FullArchiveProto() pulumi.StringOutput {
 	return o.ApplyT(func(v *DlpProfile) pulumi.StringOutput { return v.FullArchiveProto }).(pulumi.StringOutput)
+}
+
+func (o DlpProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DlpProfile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o DlpProfileOutput) NacQuarLog() pulumi.StringOutput {

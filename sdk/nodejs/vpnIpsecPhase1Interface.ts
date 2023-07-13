@@ -46,6 +46,7 @@ export class VpnIpsecPhase1Interface extends pulumi.CustomResource {
     public readonly authpasswd!: pulumi.Output<string | undefined>;
     public readonly authusr!: pulumi.Output<string>;
     public readonly authusrgrp!: pulumi.Output<string>;
+    public readonly autoDiscoveryCrossover!: pulumi.Output<string>;
     public readonly autoDiscoveryForwarder!: pulumi.Output<string>;
     public readonly autoDiscoveryOfferInterval!: pulumi.Output<number>;
     public readonly autoDiscoveryPsk!: pulumi.Output<string>;
@@ -63,6 +64,8 @@ export class VpnIpsecPhase1Interface extends pulumi.CustomResource {
     public readonly comments!: pulumi.Output<string | undefined>;
     public readonly defaultGw!: pulumi.Output<string>;
     public readonly defaultGwPriority!: pulumi.Output<number>;
+    public readonly devId!: pulumi.Output<string>;
+    public readonly devIdNotification!: pulumi.Output<string>;
     public readonly dhcp6RaLinkaddr!: pulumi.Output<string>;
     public readonly dhcpRaGiaddr!: pulumi.Output<string>;
     public readonly dhgrp!: pulumi.Output<string>;
@@ -85,11 +88,13 @@ export class VpnIpsecPhase1Interface extends pulumi.CustomResource {
     public readonly encapsulationAddress!: pulumi.Output<string>;
     public readonly enforceUniqueId!: pulumi.Output<string>;
     public readonly esn!: pulumi.Output<string>;
+    public readonly exchangeFgtDeviceId!: pulumi.Output<string>;
     public readonly exchangeInterfaceIp!: pulumi.Output<string>;
     public readonly exchangeIpAddr4!: pulumi.Output<string>;
     public readonly exchangeIpAddr6!: pulumi.Output<string>;
     public readonly fecBase!: pulumi.Output<number>;
     public readonly fecCodec!: pulumi.Output<number>;
+    public readonly fecCodecString!: pulumi.Output<string>;
     public readonly fecEgress!: pulumi.Output<string>;
     public readonly fecHealthCheck!: pulumi.Output<string>;
     public readonly fecIngress!: pulumi.Output<string>;
@@ -101,6 +106,7 @@ export class VpnIpsecPhase1Interface extends pulumi.CustomResource {
     public readonly forticlientEnforcement!: pulumi.Output<string>;
     public readonly fragmentation!: pulumi.Output<string>;
     public readonly fragmentationMtu!: pulumi.Output<number>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly groupAuthentication!: pulumi.Output<string>;
     public readonly groupAuthenticationSecret!: pulumi.Output<string | undefined>;
     public readonly haSyncEspSeqno!: pulumi.Output<string>;
@@ -137,6 +143,7 @@ export class VpnIpsecPhase1Interface extends pulumi.CustomResource {
     public readonly ipv6StartIp!: pulumi.Output<string>;
     public readonly keepalive!: pulumi.Output<number>;
     public readonly keylife!: pulumi.Output<number>;
+    public readonly kms!: pulumi.Output<string>;
     public readonly linkCost!: pulumi.Output<number>;
     public readonly localGw!: pulumi.Output<string>;
     public readonly localGw6!: pulumi.Output<string>;
@@ -218,6 +225,7 @@ export class VpnIpsecPhase1Interface extends pulumi.CustomResource {
             resourceInputs["authpasswd"] = state ? state.authpasswd : undefined;
             resourceInputs["authusr"] = state ? state.authusr : undefined;
             resourceInputs["authusrgrp"] = state ? state.authusrgrp : undefined;
+            resourceInputs["autoDiscoveryCrossover"] = state ? state.autoDiscoveryCrossover : undefined;
             resourceInputs["autoDiscoveryForwarder"] = state ? state.autoDiscoveryForwarder : undefined;
             resourceInputs["autoDiscoveryOfferInterval"] = state ? state.autoDiscoveryOfferInterval : undefined;
             resourceInputs["autoDiscoveryPsk"] = state ? state.autoDiscoveryPsk : undefined;
@@ -235,6 +243,8 @@ export class VpnIpsecPhase1Interface extends pulumi.CustomResource {
             resourceInputs["comments"] = state ? state.comments : undefined;
             resourceInputs["defaultGw"] = state ? state.defaultGw : undefined;
             resourceInputs["defaultGwPriority"] = state ? state.defaultGwPriority : undefined;
+            resourceInputs["devId"] = state ? state.devId : undefined;
+            resourceInputs["devIdNotification"] = state ? state.devIdNotification : undefined;
             resourceInputs["dhcp6RaLinkaddr"] = state ? state.dhcp6RaLinkaddr : undefined;
             resourceInputs["dhcpRaGiaddr"] = state ? state.dhcpRaGiaddr : undefined;
             resourceInputs["dhgrp"] = state ? state.dhgrp : undefined;
@@ -257,11 +267,13 @@ export class VpnIpsecPhase1Interface extends pulumi.CustomResource {
             resourceInputs["encapsulationAddress"] = state ? state.encapsulationAddress : undefined;
             resourceInputs["enforceUniqueId"] = state ? state.enforceUniqueId : undefined;
             resourceInputs["esn"] = state ? state.esn : undefined;
+            resourceInputs["exchangeFgtDeviceId"] = state ? state.exchangeFgtDeviceId : undefined;
             resourceInputs["exchangeInterfaceIp"] = state ? state.exchangeInterfaceIp : undefined;
             resourceInputs["exchangeIpAddr4"] = state ? state.exchangeIpAddr4 : undefined;
             resourceInputs["exchangeIpAddr6"] = state ? state.exchangeIpAddr6 : undefined;
             resourceInputs["fecBase"] = state ? state.fecBase : undefined;
             resourceInputs["fecCodec"] = state ? state.fecCodec : undefined;
+            resourceInputs["fecCodecString"] = state ? state.fecCodecString : undefined;
             resourceInputs["fecEgress"] = state ? state.fecEgress : undefined;
             resourceInputs["fecHealthCheck"] = state ? state.fecHealthCheck : undefined;
             resourceInputs["fecIngress"] = state ? state.fecIngress : undefined;
@@ -273,6 +285,7 @@ export class VpnIpsecPhase1Interface extends pulumi.CustomResource {
             resourceInputs["forticlientEnforcement"] = state ? state.forticlientEnforcement : undefined;
             resourceInputs["fragmentation"] = state ? state.fragmentation : undefined;
             resourceInputs["fragmentationMtu"] = state ? state.fragmentationMtu : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["groupAuthentication"] = state ? state.groupAuthentication : undefined;
             resourceInputs["groupAuthenticationSecret"] = state ? state.groupAuthenticationSecret : undefined;
             resourceInputs["haSyncEspSeqno"] = state ? state.haSyncEspSeqno : undefined;
@@ -309,6 +322,7 @@ export class VpnIpsecPhase1Interface extends pulumi.CustomResource {
             resourceInputs["ipv6StartIp"] = state ? state.ipv6StartIp : undefined;
             resourceInputs["keepalive"] = state ? state.keepalive : undefined;
             resourceInputs["keylife"] = state ? state.keylife : undefined;
+            resourceInputs["kms"] = state ? state.kms : undefined;
             resourceInputs["linkCost"] = state ? state.linkCost : undefined;
             resourceInputs["localGw"] = state ? state.localGw : undefined;
             resourceInputs["localGw6"] = state ? state.localGw6 : undefined;
@@ -384,6 +398,7 @@ export class VpnIpsecPhase1Interface extends pulumi.CustomResource {
             resourceInputs["authpasswd"] = args?.authpasswd ? pulumi.secret(args.authpasswd) : undefined;
             resourceInputs["authusr"] = args ? args.authusr : undefined;
             resourceInputs["authusrgrp"] = args ? args.authusrgrp : undefined;
+            resourceInputs["autoDiscoveryCrossover"] = args ? args.autoDiscoveryCrossover : undefined;
             resourceInputs["autoDiscoveryForwarder"] = args ? args.autoDiscoveryForwarder : undefined;
             resourceInputs["autoDiscoveryOfferInterval"] = args ? args.autoDiscoveryOfferInterval : undefined;
             resourceInputs["autoDiscoveryPsk"] = args ? args.autoDiscoveryPsk : undefined;
@@ -401,6 +416,8 @@ export class VpnIpsecPhase1Interface extends pulumi.CustomResource {
             resourceInputs["comments"] = args ? args.comments : undefined;
             resourceInputs["defaultGw"] = args ? args.defaultGw : undefined;
             resourceInputs["defaultGwPriority"] = args ? args.defaultGwPriority : undefined;
+            resourceInputs["devId"] = args ? args.devId : undefined;
+            resourceInputs["devIdNotification"] = args ? args.devIdNotification : undefined;
             resourceInputs["dhcp6RaLinkaddr"] = args ? args.dhcp6RaLinkaddr : undefined;
             resourceInputs["dhcpRaGiaddr"] = args ? args.dhcpRaGiaddr : undefined;
             resourceInputs["dhgrp"] = args ? args.dhgrp : undefined;
@@ -423,11 +440,13 @@ export class VpnIpsecPhase1Interface extends pulumi.CustomResource {
             resourceInputs["encapsulationAddress"] = args ? args.encapsulationAddress : undefined;
             resourceInputs["enforceUniqueId"] = args ? args.enforceUniqueId : undefined;
             resourceInputs["esn"] = args ? args.esn : undefined;
+            resourceInputs["exchangeFgtDeviceId"] = args ? args.exchangeFgtDeviceId : undefined;
             resourceInputs["exchangeInterfaceIp"] = args ? args.exchangeInterfaceIp : undefined;
             resourceInputs["exchangeIpAddr4"] = args ? args.exchangeIpAddr4 : undefined;
             resourceInputs["exchangeIpAddr6"] = args ? args.exchangeIpAddr6 : undefined;
             resourceInputs["fecBase"] = args ? args.fecBase : undefined;
             resourceInputs["fecCodec"] = args ? args.fecCodec : undefined;
+            resourceInputs["fecCodecString"] = args ? args.fecCodecString : undefined;
             resourceInputs["fecEgress"] = args ? args.fecEgress : undefined;
             resourceInputs["fecHealthCheck"] = args ? args.fecHealthCheck : undefined;
             resourceInputs["fecIngress"] = args ? args.fecIngress : undefined;
@@ -439,6 +458,7 @@ export class VpnIpsecPhase1Interface extends pulumi.CustomResource {
             resourceInputs["forticlientEnforcement"] = args ? args.forticlientEnforcement : undefined;
             resourceInputs["fragmentation"] = args ? args.fragmentation : undefined;
             resourceInputs["fragmentationMtu"] = args ? args.fragmentationMtu : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["groupAuthentication"] = args ? args.groupAuthentication : undefined;
             resourceInputs["groupAuthenticationSecret"] = args?.groupAuthenticationSecret ? pulumi.secret(args.groupAuthenticationSecret) : undefined;
             resourceInputs["haSyncEspSeqno"] = args ? args.haSyncEspSeqno : undefined;
@@ -475,6 +495,7 @@ export class VpnIpsecPhase1Interface extends pulumi.CustomResource {
             resourceInputs["ipv6StartIp"] = args ? args.ipv6StartIp : undefined;
             resourceInputs["keepalive"] = args ? args.keepalive : undefined;
             resourceInputs["keylife"] = args ? args.keylife : undefined;
+            resourceInputs["kms"] = args ? args.kms : undefined;
             resourceInputs["linkCost"] = args ? args.linkCost : undefined;
             resourceInputs["localGw"] = args ? args.localGw : undefined;
             resourceInputs["localGw6"] = args ? args.localGw6 : undefined;
@@ -554,6 +575,7 @@ export interface VpnIpsecPhase1InterfaceState {
     authpasswd?: pulumi.Input<string>;
     authusr?: pulumi.Input<string>;
     authusrgrp?: pulumi.Input<string>;
+    autoDiscoveryCrossover?: pulumi.Input<string>;
     autoDiscoveryForwarder?: pulumi.Input<string>;
     autoDiscoveryOfferInterval?: pulumi.Input<number>;
     autoDiscoveryPsk?: pulumi.Input<string>;
@@ -571,6 +593,8 @@ export interface VpnIpsecPhase1InterfaceState {
     comments?: pulumi.Input<string>;
     defaultGw?: pulumi.Input<string>;
     defaultGwPriority?: pulumi.Input<number>;
+    devId?: pulumi.Input<string>;
+    devIdNotification?: pulumi.Input<string>;
     dhcp6RaLinkaddr?: pulumi.Input<string>;
     dhcpRaGiaddr?: pulumi.Input<string>;
     dhgrp?: pulumi.Input<string>;
@@ -593,11 +617,13 @@ export interface VpnIpsecPhase1InterfaceState {
     encapsulationAddress?: pulumi.Input<string>;
     enforceUniqueId?: pulumi.Input<string>;
     esn?: pulumi.Input<string>;
+    exchangeFgtDeviceId?: pulumi.Input<string>;
     exchangeInterfaceIp?: pulumi.Input<string>;
     exchangeIpAddr4?: pulumi.Input<string>;
     exchangeIpAddr6?: pulumi.Input<string>;
     fecBase?: pulumi.Input<number>;
     fecCodec?: pulumi.Input<number>;
+    fecCodecString?: pulumi.Input<string>;
     fecEgress?: pulumi.Input<string>;
     fecHealthCheck?: pulumi.Input<string>;
     fecIngress?: pulumi.Input<string>;
@@ -609,6 +635,7 @@ export interface VpnIpsecPhase1InterfaceState {
     forticlientEnforcement?: pulumi.Input<string>;
     fragmentation?: pulumi.Input<string>;
     fragmentationMtu?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     groupAuthentication?: pulumi.Input<string>;
     groupAuthenticationSecret?: pulumi.Input<string>;
     haSyncEspSeqno?: pulumi.Input<string>;
@@ -645,6 +672,7 @@ export interface VpnIpsecPhase1InterfaceState {
     ipv6StartIp?: pulumi.Input<string>;
     keepalive?: pulumi.Input<number>;
     keylife?: pulumi.Input<number>;
+    kms?: pulumi.Input<string>;
     linkCost?: pulumi.Input<number>;
     localGw?: pulumi.Input<string>;
     localGw6?: pulumi.Input<string>;
@@ -718,6 +746,7 @@ export interface VpnIpsecPhase1InterfaceArgs {
     authpasswd?: pulumi.Input<string>;
     authusr?: pulumi.Input<string>;
     authusrgrp?: pulumi.Input<string>;
+    autoDiscoveryCrossover?: pulumi.Input<string>;
     autoDiscoveryForwarder?: pulumi.Input<string>;
     autoDiscoveryOfferInterval?: pulumi.Input<number>;
     autoDiscoveryPsk?: pulumi.Input<string>;
@@ -735,6 +764,8 @@ export interface VpnIpsecPhase1InterfaceArgs {
     comments?: pulumi.Input<string>;
     defaultGw?: pulumi.Input<string>;
     defaultGwPriority?: pulumi.Input<number>;
+    devId?: pulumi.Input<string>;
+    devIdNotification?: pulumi.Input<string>;
     dhcp6RaLinkaddr?: pulumi.Input<string>;
     dhcpRaGiaddr?: pulumi.Input<string>;
     dhgrp?: pulumi.Input<string>;
@@ -757,11 +788,13 @@ export interface VpnIpsecPhase1InterfaceArgs {
     encapsulationAddress?: pulumi.Input<string>;
     enforceUniqueId?: pulumi.Input<string>;
     esn?: pulumi.Input<string>;
+    exchangeFgtDeviceId?: pulumi.Input<string>;
     exchangeInterfaceIp?: pulumi.Input<string>;
     exchangeIpAddr4?: pulumi.Input<string>;
     exchangeIpAddr6?: pulumi.Input<string>;
     fecBase?: pulumi.Input<number>;
     fecCodec?: pulumi.Input<number>;
+    fecCodecString?: pulumi.Input<string>;
     fecEgress?: pulumi.Input<string>;
     fecHealthCheck?: pulumi.Input<string>;
     fecIngress?: pulumi.Input<string>;
@@ -773,6 +806,7 @@ export interface VpnIpsecPhase1InterfaceArgs {
     forticlientEnforcement?: pulumi.Input<string>;
     fragmentation?: pulumi.Input<string>;
     fragmentationMtu?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     groupAuthentication?: pulumi.Input<string>;
     groupAuthenticationSecret?: pulumi.Input<string>;
     haSyncEspSeqno?: pulumi.Input<string>;
@@ -809,6 +843,7 @@ export interface VpnIpsecPhase1InterfaceArgs {
     ipv6StartIp?: pulumi.Input<string>;
     keepalive?: pulumi.Input<number>;
     keylife?: pulumi.Input<number>;
+    kms?: pulumi.Input<string>;
     linkCost?: pulumi.Input<number>;
     localGw?: pulumi.Input<string>;
     localGw6?: pulumi.Input<string>;

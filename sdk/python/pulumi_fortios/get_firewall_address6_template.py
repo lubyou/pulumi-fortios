@@ -112,13 +112,13 @@ def get_firewall_address6_template(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getFirewallAddress6Template:GetFirewallAddress6Template', __args__, opts=opts, typ=GetFirewallAddress6TemplateResult).value
 
     return AwaitableGetFirewallAddress6TemplateResult(
-        fabric_object=__ret__.fabric_object,
-        id=__ret__.id,
-        ip6=__ret__.ip6,
-        name=__ret__.name,
-        subnet_segment_count=__ret__.subnet_segment_count,
-        subnet_segments=__ret__.subnet_segments,
-        vdomparam=__ret__.vdomparam)
+        fabric_object=pulumi.get(__ret__, 'fabric_object'),
+        id=pulumi.get(__ret__, 'id'),
+        ip6=pulumi.get(__ret__, 'ip6'),
+        name=pulumi.get(__ret__, 'name'),
+        subnet_segment_count=pulumi.get(__ret__, 'subnet_segment_count'),
+        subnet_segments=pulumi.get(__ret__, 'subnet_segments'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_firewall_address6_template)

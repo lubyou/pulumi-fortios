@@ -26,6 +26,7 @@ class SwitchControllerSecurityPolicy8021XArgs:
                  eap_auto_untagged_vlans: Optional[pulumi.Input[str]] = None,
                  eap_passthru: Optional[pulumi.Input[str]] = None,
                  framevid_apply: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  guest_auth_delay: Optional[pulumi.Input[int]] = None,
                  guest_vlan: Optional[pulumi.Input[str]] = None,
                  guest_vlan_id: Optional[pulumi.Input[str]] = None,
@@ -61,6 +62,8 @@ class SwitchControllerSecurityPolicy8021XArgs:
             pulumi.set(__self__, "eap_passthru", eap_passthru)
         if framevid_apply is not None:
             pulumi.set(__self__, "framevid_apply", framevid_apply)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if guest_auth_delay is not None:
             pulumi.set(__self__, "guest_auth_delay", guest_auth_delay)
         if guest_vlan is not None:
@@ -175,6 +178,15 @@ class SwitchControllerSecurityPolicy8021XArgs:
     @framevid_apply.setter
     def framevid_apply(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "framevid_apply", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="guestAuthDelay")
@@ -298,6 +310,7 @@ class _SwitchControllerSecurityPolicy8021XState:
                  eap_auto_untagged_vlans: Optional[pulumi.Input[str]] = None,
                  eap_passthru: Optional[pulumi.Input[str]] = None,
                  framevid_apply: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  guest_auth_delay: Optional[pulumi.Input[int]] = None,
                  guest_vlan: Optional[pulumi.Input[str]] = None,
                  guest_vlan_id: Optional[pulumi.Input[str]] = None,
@@ -333,6 +346,8 @@ class _SwitchControllerSecurityPolicy8021XState:
             pulumi.set(__self__, "eap_passthru", eap_passthru)
         if framevid_apply is not None:
             pulumi.set(__self__, "framevid_apply", framevid_apply)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if guest_auth_delay is not None:
             pulumi.set(__self__, "guest_auth_delay", guest_auth_delay)
         if guest_vlan is not None:
@@ -447,6 +462,15 @@ class _SwitchControllerSecurityPolicy8021XState:
     @framevid_apply.setter
     def framevid_apply(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "framevid_apply", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="guestAuthDelay")
@@ -572,6 +596,7 @@ class SwitchControllerSecurityPolicy8021X(pulumi.CustomResource):
                  eap_auto_untagged_vlans: Optional[pulumi.Input[str]] = None,
                  eap_passthru: Optional[pulumi.Input[str]] = None,
                  framevid_apply: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  guest_auth_delay: Optional[pulumi.Input[int]] = None,
                  guest_vlan: Optional[pulumi.Input[str]] = None,
                  guest_vlan_id: Optional[pulumi.Input[str]] = None,
@@ -623,6 +648,7 @@ class SwitchControllerSecurityPolicy8021X(pulumi.CustomResource):
                  eap_auto_untagged_vlans: Optional[pulumi.Input[str]] = None,
                  eap_passthru: Optional[pulumi.Input[str]] = None,
                  framevid_apply: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  guest_auth_delay: Optional[pulumi.Input[int]] = None,
                  guest_vlan: Optional[pulumi.Input[str]] = None,
                  guest_vlan_id: Optional[pulumi.Input[str]] = None,
@@ -654,6 +680,7 @@ class SwitchControllerSecurityPolicy8021X(pulumi.CustomResource):
             __props__.__dict__["eap_auto_untagged_vlans"] = eap_auto_untagged_vlans
             __props__.__dict__["eap_passthru"] = eap_passthru
             __props__.__dict__["framevid_apply"] = framevid_apply
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["guest_auth_delay"] = guest_auth_delay
             __props__.__dict__["guest_vlan"] = guest_vlan
             __props__.__dict__["guest_vlan_id"] = guest_vlan_id
@@ -686,6 +713,7 @@ class SwitchControllerSecurityPolicy8021X(pulumi.CustomResource):
             eap_auto_untagged_vlans: Optional[pulumi.Input[str]] = None,
             eap_passthru: Optional[pulumi.Input[str]] = None,
             framevid_apply: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             guest_auth_delay: Optional[pulumi.Input[int]] = None,
             guest_vlan: Optional[pulumi.Input[str]] = None,
             guest_vlan_id: Optional[pulumi.Input[str]] = None,
@@ -720,6 +748,7 @@ class SwitchControllerSecurityPolicy8021X(pulumi.CustomResource):
         __props__.__dict__["eap_auto_untagged_vlans"] = eap_auto_untagged_vlans
         __props__.__dict__["eap_passthru"] = eap_passthru
         __props__.__dict__["framevid_apply"] = framevid_apply
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["guest_auth_delay"] = guest_auth_delay
         __props__.__dict__["guest_vlan"] = guest_vlan
         __props__.__dict__["guest_vlan_id"] = guest_vlan_id
@@ -783,6 +812,11 @@ class SwitchControllerSecurityPolicy8021X(pulumi.CustomResource):
     @pulumi.getter(name="framevidApply")
     def framevid_apply(self) -> pulumi.Output[str]:
         return pulumi.get(self, "framevid_apply")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="guestAuthDelay")

@@ -36,6 +36,7 @@ export class SwitchControllerQosQueuePolicy extends pulumi.CustomResource {
 
     public readonly cosQueues!: pulumi.Output<outputs.SwitchControllerQosQueuePolicyCosQueue[] | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly rateBy!: pulumi.Output<string>;
     public readonly schedule!: pulumi.Output<string>;
@@ -56,6 +57,7 @@ export class SwitchControllerQosQueuePolicy extends pulumi.CustomResource {
             const state = argsOrState as SwitchControllerQosQueuePolicyState | undefined;
             resourceInputs["cosQueues"] = state ? state.cosQueues : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["rateBy"] = state ? state.rateBy : undefined;
             resourceInputs["schedule"] = state ? state.schedule : undefined;
@@ -70,6 +72,7 @@ export class SwitchControllerQosQueuePolicy extends pulumi.CustomResource {
             }
             resourceInputs["cosQueues"] = args ? args.cosQueues : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["rateBy"] = args ? args.rateBy : undefined;
             resourceInputs["schedule"] = args ? args.schedule : undefined;
@@ -86,6 +89,7 @@ export class SwitchControllerQosQueuePolicy extends pulumi.CustomResource {
 export interface SwitchControllerQosQueuePolicyState {
     cosQueues?: pulumi.Input<pulumi.Input<inputs.SwitchControllerQosQueuePolicyCosQueue>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     rateBy?: pulumi.Input<string>;
     schedule?: pulumi.Input<string>;
@@ -98,6 +102,7 @@ export interface SwitchControllerQosQueuePolicyState {
 export interface SwitchControllerQosQueuePolicyArgs {
     cosQueues?: pulumi.Input<pulumi.Input<inputs.SwitchControllerQosQueuePolicyCosQueue>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     rateBy: pulumi.Input<string>;
     schedule: pulumi.Input<string>;

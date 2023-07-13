@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemAutoScript(ctx *pulumi.Context, args *LookupSystemAutoScriptArgs, opts ...pulumi.InvokeOption) (*LookupSystemAutoScriptResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemAutoScriptResult
 	err := ctx.Invoke("fortios:index/getSystemAutoScript:GetSystemAutoScript", args, &rv, opts...)
 	if err != nil {

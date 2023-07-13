@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -65,7 +66,7 @@ func NewVpnIpsecManualkeyInterface(ctx *pulumi.Context,
 		"encKey",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource VpnIpsecManualkeyInterface
 	err := ctx.RegisterResource("fortios:index/vpnIpsecManualkeyInterface:VpnIpsecManualkeyInterface", name, args, &resource, opts...)
 	if err != nil {

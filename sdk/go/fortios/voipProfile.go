@@ -7,19 +7,21 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type VoipProfile struct {
 	pulumi.CustomResourceState
 
-	Comment    pulumi.StringPtrOutput `pulumi:"comment"`
-	FeatureSet pulumi.StringOutput    `pulumi:"featureSet"`
-	Msrp       VoipProfileMsrpOutput  `pulumi:"msrp"`
-	Name       pulumi.StringOutput    `pulumi:"name"`
-	Sccp       VoipProfileSccpOutput  `pulumi:"sccp"`
-	Sip        VoipProfileSipOutput   `pulumi:"sip"`
-	Vdomparam  pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comment      pulumi.StringPtrOutput `pulumi:"comment"`
+	FeatureSet   pulumi.StringOutput    `pulumi:"featureSet"`
+	GetAllTables pulumi.StringPtrOutput `pulumi:"getAllTables"`
+	Msrp         VoipProfileMsrpOutput  `pulumi:"msrp"`
+	Name         pulumi.StringOutput    `pulumi:"name"`
+	Sccp         VoipProfileSccpOutput  `pulumi:"sccp"`
+	Sip          VoipProfileSipOutput   `pulumi:"sip"`
+	Vdomparam    pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewVoipProfile registers a new resource with the given unique name, arguments, and options.
@@ -29,7 +31,7 @@ func NewVoipProfile(ctx *pulumi.Context,
 		args = &VoipProfileArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource VoipProfile
 	err := ctx.RegisterResource("fortios:index/voipProfile:VoipProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -52,23 +54,25 @@ func GetVoipProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VoipProfile resources.
 type voipProfileState struct {
-	Comment    *string          `pulumi:"comment"`
-	FeatureSet *string          `pulumi:"featureSet"`
-	Msrp       *VoipProfileMsrp `pulumi:"msrp"`
-	Name       *string          `pulumi:"name"`
-	Sccp       *VoipProfileSccp `pulumi:"sccp"`
-	Sip        *VoipProfileSip  `pulumi:"sip"`
-	Vdomparam  *string          `pulumi:"vdomparam"`
+	Comment      *string          `pulumi:"comment"`
+	FeatureSet   *string          `pulumi:"featureSet"`
+	GetAllTables *string          `pulumi:"getAllTables"`
+	Msrp         *VoipProfileMsrp `pulumi:"msrp"`
+	Name         *string          `pulumi:"name"`
+	Sccp         *VoipProfileSccp `pulumi:"sccp"`
+	Sip          *VoipProfileSip  `pulumi:"sip"`
+	Vdomparam    *string          `pulumi:"vdomparam"`
 }
 
 type VoipProfileState struct {
-	Comment    pulumi.StringPtrInput
-	FeatureSet pulumi.StringPtrInput
-	Msrp       VoipProfileMsrpPtrInput
-	Name       pulumi.StringPtrInput
-	Sccp       VoipProfileSccpPtrInput
-	Sip        VoipProfileSipPtrInput
-	Vdomparam  pulumi.StringPtrInput
+	Comment      pulumi.StringPtrInput
+	FeatureSet   pulumi.StringPtrInput
+	GetAllTables pulumi.StringPtrInput
+	Msrp         VoipProfileMsrpPtrInput
+	Name         pulumi.StringPtrInput
+	Sccp         VoipProfileSccpPtrInput
+	Sip          VoipProfileSipPtrInput
+	Vdomparam    pulumi.StringPtrInput
 }
 
 func (VoipProfileState) ElementType() reflect.Type {
@@ -76,24 +80,26 @@ func (VoipProfileState) ElementType() reflect.Type {
 }
 
 type voipProfileArgs struct {
-	Comment    *string          `pulumi:"comment"`
-	FeatureSet *string          `pulumi:"featureSet"`
-	Msrp       *VoipProfileMsrp `pulumi:"msrp"`
-	Name       *string          `pulumi:"name"`
-	Sccp       *VoipProfileSccp `pulumi:"sccp"`
-	Sip        *VoipProfileSip  `pulumi:"sip"`
-	Vdomparam  *string          `pulumi:"vdomparam"`
+	Comment      *string          `pulumi:"comment"`
+	FeatureSet   *string          `pulumi:"featureSet"`
+	GetAllTables *string          `pulumi:"getAllTables"`
+	Msrp         *VoipProfileMsrp `pulumi:"msrp"`
+	Name         *string          `pulumi:"name"`
+	Sccp         *VoipProfileSccp `pulumi:"sccp"`
+	Sip          *VoipProfileSip  `pulumi:"sip"`
+	Vdomparam    *string          `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a VoipProfile resource.
 type VoipProfileArgs struct {
-	Comment    pulumi.StringPtrInput
-	FeatureSet pulumi.StringPtrInput
-	Msrp       VoipProfileMsrpPtrInput
-	Name       pulumi.StringPtrInput
-	Sccp       VoipProfileSccpPtrInput
-	Sip        VoipProfileSipPtrInput
-	Vdomparam  pulumi.StringPtrInput
+	Comment      pulumi.StringPtrInput
+	FeatureSet   pulumi.StringPtrInput
+	GetAllTables pulumi.StringPtrInput
+	Msrp         VoipProfileMsrpPtrInput
+	Name         pulumi.StringPtrInput
+	Sccp         VoipProfileSccpPtrInput
+	Sip          VoipProfileSipPtrInput
+	Vdomparam    pulumi.StringPtrInput
 }
 
 func (VoipProfileArgs) ElementType() reflect.Type {
@@ -189,6 +195,10 @@ func (o VoipProfileOutput) Comment() pulumi.StringPtrOutput {
 
 func (o VoipProfileOutput) FeatureSet() pulumi.StringOutput {
 	return o.ApplyT(func(v *VoipProfile) pulumi.StringOutput { return v.FeatureSet }).(pulumi.StringOutput)
+}
+
+func (o VoipProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VoipProfile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o VoipProfileOutput) Msrp() VoipProfileMsrpOutput {

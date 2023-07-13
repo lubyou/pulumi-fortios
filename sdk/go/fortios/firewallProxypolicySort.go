@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -35,7 +36,7 @@ func NewFirewallProxypolicySort(ctx *pulumi.Context,
 	if args.Sortdirection == nil {
 		return nil, errors.New("invalid value for required argument 'Sortdirection'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallProxypolicySort
 	err := ctx.RegisterResource("fortios:index/firewallProxypolicySort:FirewallProxypolicySort", name, args, &resource, opts...)
 	if err != nil {

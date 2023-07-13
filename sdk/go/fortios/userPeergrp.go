@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -14,6 +15,7 @@ type UserPeergrp struct {
 	pulumi.CustomResourceState
 
 	DynamicSortSubtable pulumi.StringPtrOutput       `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput       `pulumi:"getAllTables"`
 	Members             UserPeergrpMemberArrayOutput `pulumi:"members"`
 	Name                pulumi.StringOutput          `pulumi:"name"`
 	Vdomparam           pulumi.StringPtrOutput       `pulumi:"vdomparam"`
@@ -26,7 +28,7 @@ func NewUserPeergrp(ctx *pulumi.Context,
 		args = &UserPeergrpArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource UserPeergrp
 	err := ctx.RegisterResource("fortios:index/userPeergrp:UserPeergrp", name, args, &resource, opts...)
 	if err != nil {
@@ -50,6 +52,7 @@ func GetUserPeergrp(ctx *pulumi.Context,
 // Input properties used for looking up and filtering UserPeergrp resources.
 type userPeergrpState struct {
 	DynamicSortSubtable *string             `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string             `pulumi:"getAllTables"`
 	Members             []UserPeergrpMember `pulumi:"members"`
 	Name                *string             `pulumi:"name"`
 	Vdomparam           *string             `pulumi:"vdomparam"`
@@ -57,6 +60,7 @@ type userPeergrpState struct {
 
 type UserPeergrpState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Members             UserPeergrpMemberArrayInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
@@ -68,6 +72,7 @@ func (UserPeergrpState) ElementType() reflect.Type {
 
 type userPeergrpArgs struct {
 	DynamicSortSubtable *string             `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string             `pulumi:"getAllTables"`
 	Members             []UserPeergrpMember `pulumi:"members"`
 	Name                *string             `pulumi:"name"`
 	Vdomparam           *string             `pulumi:"vdomparam"`
@@ -76,6 +81,7 @@ type userPeergrpArgs struct {
 // The set of arguments for constructing a UserPeergrp resource.
 type UserPeergrpArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Members             UserPeergrpMemberArrayInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
@@ -170,6 +176,10 @@ func (o UserPeergrpOutput) ToUserPeergrpOutputWithContext(ctx context.Context) U
 
 func (o UserPeergrpOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *UserPeergrp) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o UserPeergrpOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserPeergrp) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o UserPeergrpOutput) Members() UserPeergrpMemberArrayOutput {

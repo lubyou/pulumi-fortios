@@ -20,6 +20,7 @@ class SshFilterProfileArgs:
                  default_command_log: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  file_filter: Optional[pulumi.Input['SshFilterProfileFileFilterArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  log: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  shell_commands: Optional[pulumi.Input[Sequence[pulumi.Input['SshFilterProfileShellCommandArgs']]]] = None,
@@ -35,6 +36,8 @@ class SshFilterProfileArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if file_filter is not None:
             pulumi.set(__self__, "file_filter", file_filter)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if log is not None:
             pulumi.set(__self__, "log", log)
         if name is not None:
@@ -79,6 +82,15 @@ class SshFilterProfileArgs:
     @file_filter.setter
     def file_filter(self, value: Optional[pulumi.Input['SshFilterProfileFileFilterArgs']]):
         pulumi.set(self, "file_filter", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -124,6 +136,7 @@ class _SshFilterProfileState:
                  default_command_log: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  file_filter: Optional[pulumi.Input['SshFilterProfileFileFilterArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  log: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  shell_commands: Optional[pulumi.Input[Sequence[pulumi.Input['SshFilterProfileShellCommandArgs']]]] = None,
@@ -139,6 +152,8 @@ class _SshFilterProfileState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if file_filter is not None:
             pulumi.set(__self__, "file_filter", file_filter)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if log is not None:
             pulumi.set(__self__, "log", log)
         if name is not None:
@@ -183,6 +198,15 @@ class _SshFilterProfileState:
     @file_filter.setter
     def file_filter(self, value: Optional[pulumi.Input['SshFilterProfileFileFilterArgs']]):
         pulumi.set(self, "file_filter", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -230,6 +254,7 @@ class SshFilterProfile(pulumi.CustomResource):
                  default_command_log: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  file_filter: Optional[pulumi.Input[pulumi.InputType['SshFilterProfileFileFilterArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  log: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  shell_commands: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SshFilterProfileShellCommandArgs']]]]] = None,
@@ -267,6 +292,7 @@ class SshFilterProfile(pulumi.CustomResource):
                  default_command_log: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  file_filter: Optional[pulumi.Input[pulumi.InputType['SshFilterProfileFileFilterArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  log: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  shell_commands: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SshFilterProfileShellCommandArgs']]]]] = None,
@@ -284,6 +310,7 @@ class SshFilterProfile(pulumi.CustomResource):
             __props__.__dict__["default_command_log"] = default_command_log
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["file_filter"] = file_filter
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["log"] = log
             __props__.__dict__["name"] = name
             __props__.__dict__["shell_commands"] = shell_commands
@@ -302,6 +329,7 @@ class SshFilterProfile(pulumi.CustomResource):
             default_command_log: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             file_filter: Optional[pulumi.Input[pulumi.InputType['SshFilterProfileFileFilterArgs']]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             log: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             shell_commands: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SshFilterProfileShellCommandArgs']]]]] = None,
@@ -322,6 +350,7 @@ class SshFilterProfile(pulumi.CustomResource):
         __props__.__dict__["default_command_log"] = default_command_log
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["file_filter"] = file_filter
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["log"] = log
         __props__.__dict__["name"] = name
         __props__.__dict__["shell_commands"] = shell_commands
@@ -347,6 +376,11 @@ class SshFilterProfile(pulumi.CustomResource):
     @pulumi.getter(name="fileFilter")
     def file_filter(self) -> pulumi.Output['outputs.SshFilterProfileFileFilter']:
         return pulumi.get(self, "file_filter")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

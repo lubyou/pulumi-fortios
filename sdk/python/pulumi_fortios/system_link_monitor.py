@@ -25,6 +25,7 @@ class SystemLinkMonitorArgs:
                  failtime: Optional[pulumi.Input[int]] = None,
                  gateway_ip: Optional[pulumi.Input[str]] = None,
                  gateway_ip6: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ha_priority: Optional[pulumi.Input[int]] = None,
                  http_agent: Optional[pulumi.Input[str]] = None,
                  http_get: Optional[pulumi.Input[str]] = None,
@@ -72,6 +73,8 @@ class SystemLinkMonitorArgs:
             pulumi.set(__self__, "gateway_ip", gateway_ip)
         if gateway_ip6 is not None:
             pulumi.set(__self__, "gateway_ip6", gateway_ip6)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ha_priority is not None:
             pulumi.set(__self__, "ha_priority", ha_priority)
         if http_agent is not None:
@@ -207,6 +210,15 @@ class SystemLinkMonitorArgs:
     @gateway_ip6.setter
     def gateway_ip6(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gateway_ip6", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="haPriority")
@@ -463,6 +475,7 @@ class _SystemLinkMonitorState:
                  failtime: Optional[pulumi.Input[int]] = None,
                  gateway_ip: Optional[pulumi.Input[str]] = None,
                  gateway_ip6: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ha_priority: Optional[pulumi.Input[int]] = None,
                  http_agent: Optional[pulumi.Input[str]] = None,
                  http_get: Optional[pulumi.Input[str]] = None,
@@ -510,6 +523,8 @@ class _SystemLinkMonitorState:
             pulumi.set(__self__, "gateway_ip", gateway_ip)
         if gateway_ip6 is not None:
             pulumi.set(__self__, "gateway_ip6", gateway_ip6)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ha_priority is not None:
             pulumi.set(__self__, "ha_priority", ha_priority)
         if http_agent is not None:
@@ -638,6 +653,15 @@ class _SystemLinkMonitorState:
     @gateway_ip6.setter
     def gateway_ip6(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gateway_ip6", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="haPriority")
@@ -905,6 +929,7 @@ class SystemLinkMonitor(pulumi.CustomResource):
                  failtime: Optional[pulumi.Input[int]] = None,
                  gateway_ip: Optional[pulumi.Input[str]] = None,
                  gateway_ip6: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ha_priority: Optional[pulumi.Input[int]] = None,
                  http_agent: Optional[pulumi.Input[str]] = None,
                  http_get: Optional[pulumi.Input[str]] = None,
@@ -970,6 +995,7 @@ class SystemLinkMonitor(pulumi.CustomResource):
                  failtime: Optional[pulumi.Input[int]] = None,
                  gateway_ip: Optional[pulumi.Input[str]] = None,
                  gateway_ip6: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ha_priority: Optional[pulumi.Input[int]] = None,
                  http_agent: Optional[pulumi.Input[str]] = None,
                  http_get: Optional[pulumi.Input[str]] = None,
@@ -1015,6 +1041,7 @@ class SystemLinkMonitor(pulumi.CustomResource):
             __props__.__dict__["failtime"] = failtime
             __props__.__dict__["gateway_ip"] = gateway_ip
             __props__.__dict__["gateway_ip6"] = gateway_ip6
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["ha_priority"] = ha_priority
             __props__.__dict__["http_agent"] = http_agent
             __props__.__dict__["http_get"] = http_get
@@ -1065,6 +1092,7 @@ class SystemLinkMonitor(pulumi.CustomResource):
             failtime: Optional[pulumi.Input[int]] = None,
             gateway_ip: Optional[pulumi.Input[str]] = None,
             gateway_ip6: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             ha_priority: Optional[pulumi.Input[int]] = None,
             http_agent: Optional[pulumi.Input[str]] = None,
             http_get: Optional[pulumi.Input[str]] = None,
@@ -1113,6 +1141,7 @@ class SystemLinkMonitor(pulumi.CustomResource):
         __props__.__dict__["failtime"] = failtime
         __props__.__dict__["gateway_ip"] = gateway_ip
         __props__.__dict__["gateway_ip6"] = gateway_ip6
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["ha_priority"] = ha_priority
         __props__.__dict__["http_agent"] = http_agent
         __props__.__dict__["http_get"] = http_get
@@ -1182,6 +1211,11 @@ class SystemLinkMonitor(pulumi.CustomResource):
     @pulumi.getter(name="gatewayIp6")
     def gateway_ip6(self) -> pulumi.Output[str]:
         return pulumi.get(self, "gateway_ip6")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="haPriority")

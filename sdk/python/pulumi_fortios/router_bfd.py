@@ -17,6 +17,7 @@ __all__ = ['RouterBfdArgs', 'RouterBfd']
 class RouterBfdArgs:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  multihop_templates: Optional[pulumi.Input[Sequence[pulumi.Input['RouterBfdMultihopTemplateArgs']]]] = None,
                  neighbors: Optional[pulumi.Input[Sequence[pulumi.Input['RouterBfdNeighborArgs']]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -25,6 +26,8 @@ class RouterBfdArgs:
         """
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if multihop_templates is not None:
             pulumi.set(__self__, "multihop_templates", multihop_templates)
         if neighbors is not None:
@@ -40,6 +43,15 @@ class RouterBfdArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="multihopTemplates")
@@ -73,6 +85,7 @@ class RouterBfdArgs:
 class _RouterBfdState:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  multihop_templates: Optional[pulumi.Input[Sequence[pulumi.Input['RouterBfdMultihopTemplateArgs']]]] = None,
                  neighbors: Optional[pulumi.Input[Sequence[pulumi.Input['RouterBfdNeighborArgs']]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -81,6 +94,8 @@ class _RouterBfdState:
         """
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if multihop_templates is not None:
             pulumi.set(__self__, "multihop_templates", multihop_templates)
         if neighbors is not None:
@@ -96,6 +111,15 @@ class _RouterBfdState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="multihopTemplates")
@@ -131,6 +155,7 @@ class RouterBfd(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  multihop_templates: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterBfdMultihopTemplateArgs']]]]] = None,
                  neighbors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterBfdNeighborArgs']]]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -164,6 +189,7 @@ class RouterBfd(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  multihop_templates: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterBfdMultihopTemplateArgs']]]]] = None,
                  neighbors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterBfdNeighborArgs']]]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -177,6 +203,7 @@ class RouterBfd(pulumi.CustomResource):
             __props__ = RouterBfdArgs.__new__(RouterBfdArgs)
 
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["multihop_templates"] = multihop_templates
             __props__.__dict__["neighbors"] = neighbors
             __props__.__dict__["vdomparam"] = vdomparam
@@ -191,6 +218,7 @@ class RouterBfd(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             multihop_templates: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterBfdMultihopTemplateArgs']]]]] = None,
             neighbors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterBfdNeighborArgs']]]]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'RouterBfd':
@@ -207,6 +235,7 @@ class RouterBfd(pulumi.CustomResource):
         __props__ = _RouterBfdState.__new__(_RouterBfdState)
 
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["multihop_templates"] = multihop_templates
         __props__.__dict__["neighbors"] = neighbors
         __props__.__dict__["vdomparam"] = vdomparam
@@ -216,6 +245,11 @@ class RouterBfd(pulumi.CustomResource):
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="multihopTemplates")

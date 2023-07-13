@@ -38,6 +38,7 @@ export class WirelessControllerArrpProfile extends pulumi.CustomResource {
     public readonly darrpOptimize!: pulumi.Output<number>;
     public readonly darrpOptimizeSchedules!: pulumi.Output<outputs.WirelessControllerArrpProfileDarrpOptimizeSchedule[] | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly includeDfsChannel!: pulumi.Output<string>;
     public readonly includeWeatherChannel!: pulumi.Output<string>;
     public readonly monitorPeriod!: pulumi.Output<number>;
@@ -76,6 +77,7 @@ export class WirelessControllerArrpProfile extends pulumi.CustomResource {
             resourceInputs["darrpOptimize"] = state ? state.darrpOptimize : undefined;
             resourceInputs["darrpOptimizeSchedules"] = state ? state.darrpOptimizeSchedules : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["includeDfsChannel"] = state ? state.includeDfsChannel : undefined;
             resourceInputs["includeWeatherChannel"] = state ? state.includeWeatherChannel : undefined;
             resourceInputs["monitorPeriod"] = state ? state.monitorPeriod : undefined;
@@ -102,6 +104,7 @@ export class WirelessControllerArrpProfile extends pulumi.CustomResource {
             resourceInputs["darrpOptimize"] = args ? args.darrpOptimize : undefined;
             resourceInputs["darrpOptimizeSchedules"] = args ? args.darrpOptimizeSchedules : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["includeDfsChannel"] = args ? args.includeDfsChannel : undefined;
             resourceInputs["includeWeatherChannel"] = args ? args.includeWeatherChannel : undefined;
             resourceInputs["monitorPeriod"] = args ? args.monitorPeriod : undefined;
@@ -136,6 +139,7 @@ export interface WirelessControllerArrpProfileState {
     darrpOptimize?: pulumi.Input<number>;
     darrpOptimizeSchedules?: pulumi.Input<pulumi.Input<inputs.WirelessControllerArrpProfileDarrpOptimizeSchedule>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     includeDfsChannel?: pulumi.Input<string>;
     includeWeatherChannel?: pulumi.Input<string>;
     monitorPeriod?: pulumi.Input<number>;
@@ -166,6 +170,7 @@ export interface WirelessControllerArrpProfileArgs {
     darrpOptimize?: pulumi.Input<number>;
     darrpOptimizeSchedules?: pulumi.Input<pulumi.Input<inputs.WirelessControllerArrpProfileDarrpOptimizeSchedule>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     includeDfsChannel?: pulumi.Input<string>;
     includeWeatherChannel?: pulumi.Input<string>;
     monitorPeriod?: pulumi.Input<number>;

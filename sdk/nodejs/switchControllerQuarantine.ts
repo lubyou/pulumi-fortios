@@ -35,6 +35,7 @@ export class SwitchControllerQuarantine extends pulumi.CustomResource {
     }
 
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly quarantine!: pulumi.Output<string>;
     public readonly targets!: pulumi.Output<outputs.SwitchControllerQuarantineTarget[] | undefined>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -53,12 +54,14 @@ export class SwitchControllerQuarantine extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as SwitchControllerQuarantineState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["quarantine"] = state ? state.quarantine : undefined;
             resourceInputs["targets"] = state ? state.targets : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerQuarantineArgs | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["quarantine"] = args ? args.quarantine : undefined;
             resourceInputs["targets"] = args ? args.targets : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -73,6 +76,7 @@ export class SwitchControllerQuarantine extends pulumi.CustomResource {
  */
 export interface SwitchControllerQuarantineState {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     quarantine?: pulumi.Input<string>;
     targets?: pulumi.Input<pulumi.Input<inputs.SwitchControllerQuarantineTarget>[]>;
     vdomparam?: pulumi.Input<string>;
@@ -83,6 +87,7 @@ export interface SwitchControllerQuarantineState {
  */
 export interface SwitchControllerQuarantineArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     quarantine?: pulumi.Input<string>;
     targets?: pulumi.Input<pulumi.Input<inputs.SwitchControllerQuarantineTarget>[]>;
     vdomparam?: pulumi.Input<string>;

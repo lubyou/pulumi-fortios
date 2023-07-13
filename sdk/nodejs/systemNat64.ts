@@ -37,6 +37,7 @@ export class SystemNat64 extends pulumi.CustomResource {
     public readonly alwaysSynthesizeAaaaRecord!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly generateIpv6FragmentHeader!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly nat46ForceIpv4PacketForwarding!: pulumi.Output<string>;
     public readonly nat64Prefix!: pulumi.Output<string>;
     public readonly secondaryPrefixStatus!: pulumi.Output<string>;
@@ -60,6 +61,7 @@ export class SystemNat64 extends pulumi.CustomResource {
             resourceInputs["alwaysSynthesizeAaaaRecord"] = state ? state.alwaysSynthesizeAaaaRecord : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["generateIpv6FragmentHeader"] = state ? state.generateIpv6FragmentHeader : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["nat46ForceIpv4PacketForwarding"] = state ? state.nat46ForceIpv4PacketForwarding : undefined;
             resourceInputs["nat64Prefix"] = state ? state.nat64Prefix : undefined;
             resourceInputs["secondaryPrefixStatus"] = state ? state.secondaryPrefixStatus : undefined;
@@ -74,6 +76,7 @@ export class SystemNat64 extends pulumi.CustomResource {
             resourceInputs["alwaysSynthesizeAaaaRecord"] = args ? args.alwaysSynthesizeAaaaRecord : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["generateIpv6FragmentHeader"] = args ? args.generateIpv6FragmentHeader : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["nat46ForceIpv4PacketForwarding"] = args ? args.nat46ForceIpv4PacketForwarding : undefined;
             resourceInputs["nat64Prefix"] = args ? args.nat64Prefix : undefined;
             resourceInputs["secondaryPrefixStatus"] = args ? args.secondaryPrefixStatus : undefined;
@@ -93,6 +96,7 @@ export interface SystemNat64State {
     alwaysSynthesizeAaaaRecord?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     generateIpv6FragmentHeader?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     nat46ForceIpv4PacketForwarding?: pulumi.Input<string>;
     nat64Prefix?: pulumi.Input<string>;
     secondaryPrefixStatus?: pulumi.Input<string>;
@@ -108,6 +112,7 @@ export interface SystemNat64Args {
     alwaysSynthesizeAaaaRecord?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     generateIpv6FragmentHeader?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     nat46ForceIpv4PacketForwarding?: pulumi.Input<string>;
     nat64Prefix: pulumi.Input<string>;
     secondaryPrefixStatus?: pulumi.Input<string>;

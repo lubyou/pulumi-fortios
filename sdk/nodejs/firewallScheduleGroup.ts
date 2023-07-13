@@ -37,6 +37,7 @@ export class FirewallScheduleGroup extends pulumi.CustomResource {
     public readonly color!: pulumi.Output<number>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly fabricObject!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly members!: pulumi.Output<outputs.FirewallScheduleGroupMember[]>;
     public readonly name!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -57,6 +58,7 @@ export class FirewallScheduleGroup extends pulumi.CustomResource {
             resourceInputs["color"] = state ? state.color : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fabricObject"] = state ? state.fabricObject : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["members"] = state ? state.members : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
@@ -68,6 +70,7 @@ export class FirewallScheduleGroup extends pulumi.CustomResource {
             resourceInputs["color"] = args ? args.color : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fabricObject"] = args ? args.fabricObject : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["members"] = args ? args.members : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -84,6 +87,7 @@ export interface FirewallScheduleGroupState {
     color?: pulumi.Input<number>;
     dynamicSortSubtable?: pulumi.Input<string>;
     fabricObject?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     members?: pulumi.Input<pulumi.Input<inputs.FirewallScheduleGroupMember>[]>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
@@ -96,6 +100,7 @@ export interface FirewallScheduleGroupArgs {
     color?: pulumi.Input<number>;
     dynamicSortSubtable?: pulumi.Input<string>;
     fabricObject?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     members: pulumi.Input<pulumi.Input<inputs.FirewallScheduleGroupMember>[]>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;

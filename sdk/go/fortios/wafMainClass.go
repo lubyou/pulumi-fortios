@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -25,7 +26,7 @@ func NewWafMainClass(ctx *pulumi.Context,
 		args = &WafMainClassArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WafMainClass
 	err := ctx.RegisterResource("fortios:index/wafMainClass:WafMainClass", name, args, &resource, opts...)
 	if err != nil {

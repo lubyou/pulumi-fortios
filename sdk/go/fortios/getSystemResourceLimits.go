@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemResourceLimits(ctx *pulumi.Context, args *LookupSystemResourceLimitsArgs, opts ...pulumi.InvokeOption) (*LookupSystemResourceLimitsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemResourceLimitsResult
 	err := ctx.Invoke("fortios:index/getSystemResourceLimits:GetSystemResourceLimits", args, &rv, opts...)
 	if err != nil {

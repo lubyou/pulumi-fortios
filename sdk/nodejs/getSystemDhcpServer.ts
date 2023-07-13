@@ -67,8 +67,10 @@ export interface GetSystemDhcpServerResult {
     readonly ntpServer3: string;
     readonly ntpService: string;
     readonly options: outputs.GetSystemDhcpServerOption[];
+    readonly relayAgent: string;
     readonly reservedAddresses: outputs.GetSystemDhcpServerReservedAddress[];
     readonly serverType: string;
+    readonly sharedSubnet: string;
     readonly status: string;
     readonly tftpServers: outputs.GetSystemDhcpServerTftpServer[];
     readonly timezone: string;

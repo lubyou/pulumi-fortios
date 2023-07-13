@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -17,6 +18,7 @@ type SystemAffinityPacketRedistribution struct {
 	AffinityCpumask pulumi.StringOutput    `pulumi:"affinityCpumask"`
 	Fosid           pulumi.IntOutput       `pulumi:"fosid"`
 	Interface       pulumi.StringOutput    `pulumi:"interface"`
+	RoundRobin      pulumi.StringOutput    `pulumi:"roundRobin"`
 	Rxqid           pulumi.IntOutput       `pulumi:"rxqid"`
 	Vdomparam       pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
@@ -40,7 +42,7 @@ func NewSystemAffinityPacketRedistribution(ctx *pulumi.Context,
 	if args.Rxqid == nil {
 		return nil, errors.New("invalid value for required argument 'Rxqid'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemAffinityPacketRedistribution
 	err := ctx.RegisterResource("fortios:index/systemAffinityPacketRedistribution:SystemAffinityPacketRedistribution", name, args, &resource, opts...)
 	if err != nil {
@@ -66,6 +68,7 @@ type systemAffinityPacketRedistributionState struct {
 	AffinityCpumask *string `pulumi:"affinityCpumask"`
 	Fosid           *int    `pulumi:"fosid"`
 	Interface       *string `pulumi:"interface"`
+	RoundRobin      *string `pulumi:"roundRobin"`
 	Rxqid           *int    `pulumi:"rxqid"`
 	Vdomparam       *string `pulumi:"vdomparam"`
 }
@@ -74,6 +77,7 @@ type SystemAffinityPacketRedistributionState struct {
 	AffinityCpumask pulumi.StringPtrInput
 	Fosid           pulumi.IntPtrInput
 	Interface       pulumi.StringPtrInput
+	RoundRobin      pulumi.StringPtrInput
 	Rxqid           pulumi.IntPtrInput
 	Vdomparam       pulumi.StringPtrInput
 }
@@ -86,6 +90,7 @@ type systemAffinityPacketRedistributionArgs struct {
 	AffinityCpumask string  `pulumi:"affinityCpumask"`
 	Fosid           int     `pulumi:"fosid"`
 	Interface       string  `pulumi:"interface"`
+	RoundRobin      *string `pulumi:"roundRobin"`
 	Rxqid           int     `pulumi:"rxqid"`
 	Vdomparam       *string `pulumi:"vdomparam"`
 }
@@ -95,6 +100,7 @@ type SystemAffinityPacketRedistributionArgs struct {
 	AffinityCpumask pulumi.StringInput
 	Fosid           pulumi.IntInput
 	Interface       pulumi.StringInput
+	RoundRobin      pulumi.StringPtrInput
 	Rxqid           pulumi.IntInput
 	Vdomparam       pulumi.StringPtrInput
 }
@@ -196,6 +202,10 @@ func (o SystemAffinityPacketRedistributionOutput) Fosid() pulumi.IntOutput {
 
 func (o SystemAffinityPacketRedistributionOutput) Interface() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemAffinityPacketRedistribution) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o SystemAffinityPacketRedistributionOutput) RoundRobin() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAffinityPacketRedistribution) pulumi.StringOutput { return v.RoundRobin }).(pulumi.StringOutput)
 }
 
 func (o SystemAffinityPacketRedistributionOutput) Rxqid() pulumi.IntOutput {

@@ -21,6 +21,7 @@ class SystemObjectTaggingArgs:
                  color: Optional[pulumi.Input[int]] = None,
                  device: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  multiple: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['SystemObjectTaggingTagArgs']]]] = None,
@@ -38,6 +39,8 @@ class SystemObjectTaggingArgs:
             pulumi.set(__self__, "device", device)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
         if multiple is not None:
@@ -91,6 +94,15 @@ class SystemObjectTaggingArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -137,6 +149,7 @@ class _SystemObjectTaggingState:
                  color: Optional[pulumi.Input[int]] = None,
                  device: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  multiple: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input['SystemObjectTaggingTagArgs']]]] = None,
@@ -154,6 +167,8 @@ class _SystemObjectTaggingState:
             pulumi.set(__self__, "device", device)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
         if multiple is not None:
@@ -207,6 +222,15 @@ class _SystemObjectTaggingState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -255,6 +279,7 @@ class SystemObjectTagging(pulumi.CustomResource):
                  color: Optional[pulumi.Input[int]] = None,
                  device: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  multiple: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemObjectTaggingTagArgs']]]]] = None,
@@ -293,6 +318,7 @@ class SystemObjectTagging(pulumi.CustomResource):
                  color: Optional[pulumi.Input[int]] = None,
                  device: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  multiple: Optional[pulumi.Input[str]] = None,
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemObjectTaggingTagArgs']]]]] = None,
@@ -311,6 +337,7 @@ class SystemObjectTagging(pulumi.CustomResource):
             __props__.__dict__["color"] = color
             __props__.__dict__["device"] = device
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["interface"] = interface
             __props__.__dict__["multiple"] = multiple
             __props__.__dict__["tags"] = tags
@@ -330,6 +357,7 @@ class SystemObjectTagging(pulumi.CustomResource):
             color: Optional[pulumi.Input[int]] = None,
             device: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             multiple: Optional[pulumi.Input[str]] = None,
             tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemObjectTaggingTagArgs']]]]] = None,
@@ -351,6 +379,7 @@ class SystemObjectTagging(pulumi.CustomResource):
         __props__.__dict__["color"] = color
         __props__.__dict__["device"] = device
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["interface"] = interface
         __props__.__dict__["multiple"] = multiple
         __props__.__dict__["tags"] = tags
@@ -381,6 +410,11 @@ class SystemObjectTagging(pulumi.CustomResource):
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

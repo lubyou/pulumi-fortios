@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemDhcpServer(ctx *pulumi.Context, args *LookupSystemDhcpServerArgs, opts ...pulumi.InvokeOption) (*LookupSystemDhcpServerResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemDhcpServerResult
 	err := ctx.Invoke("fortios:index/getSystemDhcpServer:GetSystemDhcpServer", args, &rv, opts...)
 	if err != nil {
@@ -66,8 +67,10 @@ type LookupSystemDhcpServerResult struct {
 	NtpServer3          string                               `pulumi:"ntpServer3"`
 	NtpService          string                               `pulumi:"ntpService"`
 	Options             []GetSystemDhcpServerOption          `pulumi:"options"`
+	RelayAgent          string                               `pulumi:"relayAgent"`
 	ReservedAddresses   []GetSystemDhcpServerReservedAddress `pulumi:"reservedAddresses"`
 	ServerType          string                               `pulumi:"serverType"`
+	SharedSubnet        string                               `pulumi:"sharedSubnet"`
 	Status              string                               `pulumi:"status"`
 	TftpServers         []GetSystemDhcpServerTftpServer      `pulumi:"tftpServers"`
 	Timezone            string                               `pulumi:"timezone"`
@@ -270,12 +273,20 @@ func (o LookupSystemDhcpServerResultOutput) Options() GetSystemDhcpServerOptionA
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) []GetSystemDhcpServerOption { return v.Options }).(GetSystemDhcpServerOptionArrayOutput)
 }
 
+func (o LookupSystemDhcpServerResultOutput) RelayAgent() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.RelayAgent }).(pulumi.StringOutput)
+}
+
 func (o LookupSystemDhcpServerResultOutput) ReservedAddresses() GetSystemDhcpServerReservedAddressArrayOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) []GetSystemDhcpServerReservedAddress { return v.ReservedAddresses }).(GetSystemDhcpServerReservedAddressArrayOutput)
 }
 
 func (o LookupSystemDhcpServerResultOutput) ServerType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.ServerType }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemDhcpServerResultOutput) SharedSubnet() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemDhcpServerResult) string { return v.SharedSubnet }).(pulumi.StringOutput)
 }
 
 func (o LookupSystemDhcpServerResultOutput) Status() pulumi.StringOutput {

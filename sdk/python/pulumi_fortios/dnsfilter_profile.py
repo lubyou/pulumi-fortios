@@ -24,6 +24,7 @@ class DnsfilterProfileArgs:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  external_ip_blocklists: Optional[pulumi.Input[Sequence[pulumi.Input['DnsfilterProfileExternalIpBlocklistArgs']]]] = None,
                  ftgd_dns: Optional[pulumi.Input['DnsfilterProfileFtgdDnsArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  log_all_domain: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  redirect_portal: Optional[pulumi.Input[str]] = None,
@@ -52,6 +53,8 @@ class DnsfilterProfileArgs:
             pulumi.set(__self__, "external_ip_blocklists", external_ip_blocklists)
         if ftgd_dns is not None:
             pulumi.set(__self__, "ftgd_dns", ftgd_dns)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if log_all_domain is not None:
             pulumi.set(__self__, "log_all_domain", log_all_domain)
         if name is not None:
@@ -142,6 +145,15 @@ class DnsfilterProfileArgs:
     @ftgd_dns.setter
     def ftgd_dns(self, value: Optional[pulumi.Input['DnsfilterProfileFtgdDnsArgs']]):
         pulumi.set(self, "ftgd_dns", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="logAllDomain")
@@ -236,6 +248,7 @@ class _DnsfilterProfileState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  external_ip_blocklists: Optional[pulumi.Input[Sequence[pulumi.Input['DnsfilterProfileExternalIpBlocklistArgs']]]] = None,
                  ftgd_dns: Optional[pulumi.Input['DnsfilterProfileFtgdDnsArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  log_all_domain: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  redirect_portal: Optional[pulumi.Input[str]] = None,
@@ -264,6 +277,8 @@ class _DnsfilterProfileState:
             pulumi.set(__self__, "external_ip_blocklists", external_ip_blocklists)
         if ftgd_dns is not None:
             pulumi.set(__self__, "ftgd_dns", ftgd_dns)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if log_all_domain is not None:
             pulumi.set(__self__, "log_all_domain", log_all_domain)
         if name is not None:
@@ -354,6 +369,15 @@ class _DnsfilterProfileState:
     @ftgd_dns.setter
     def ftgd_dns(self, value: Optional[pulumi.Input['DnsfilterProfileFtgdDnsArgs']]):
         pulumi.set(self, "ftgd_dns", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="logAllDomain")
@@ -450,6 +474,7 @@ class DnsfilterProfile(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  external_ip_blocklists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DnsfilterProfileExternalIpBlocklistArgs']]]]] = None,
                  ftgd_dns: Optional[pulumi.Input[pulumi.InputType['DnsfilterProfileFtgdDnsArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  log_all_domain: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  redirect_portal: Optional[pulumi.Input[str]] = None,
@@ -496,6 +521,7 @@ class DnsfilterProfile(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  external_ip_blocklists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DnsfilterProfileExternalIpBlocklistArgs']]]]] = None,
                  ftgd_dns: Optional[pulumi.Input[pulumi.InputType['DnsfilterProfileFtgdDnsArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  log_all_domain: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  redirect_portal: Optional[pulumi.Input[str]] = None,
@@ -522,6 +548,7 @@ class DnsfilterProfile(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["external_ip_blocklists"] = external_ip_blocklists
             __props__.__dict__["ftgd_dns"] = ftgd_dns
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["log_all_domain"] = log_all_domain
             __props__.__dict__["name"] = name
             __props__.__dict__["redirect_portal"] = redirect_portal
@@ -549,6 +576,7 @@ class DnsfilterProfile(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             external_ip_blocklists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DnsfilterProfileExternalIpBlocklistArgs']]]]] = None,
             ftgd_dns: Optional[pulumi.Input[pulumi.InputType['DnsfilterProfileFtgdDnsArgs']]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             log_all_domain: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             redirect_portal: Optional[pulumi.Input[str]] = None,
@@ -578,6 +606,7 @@ class DnsfilterProfile(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["external_ip_blocklists"] = external_ip_blocklists
         __props__.__dict__["ftgd_dns"] = ftgd_dns
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["log_all_domain"] = log_all_domain
         __props__.__dict__["name"] = name
         __props__.__dict__["redirect_portal"] = redirect_portal
@@ -628,6 +657,11 @@ class DnsfilterProfile(pulumi.CustomResource):
     @pulumi.getter(name="ftgdDns")
     def ftgd_dns(self) -> pulumi.Output['outputs.DnsfilterProfileFtgdDns']:
         return pulumi.get(self, "ftgd_dns")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="logAllDomain")

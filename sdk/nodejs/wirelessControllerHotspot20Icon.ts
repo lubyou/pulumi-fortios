@@ -35,6 +35,7 @@ export class WirelessControllerHotspot20Icon extends pulumi.CustomResource {
     }
 
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly iconLists!: pulumi.Output<outputs.WirelessControllerHotspot20IconIconList[] | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -53,12 +54,14 @@ export class WirelessControllerHotspot20Icon extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as WirelessControllerHotspot20IconState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["iconLists"] = state ? state.iconLists : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WirelessControllerHotspot20IconArgs | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["iconLists"] = args ? args.iconLists : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -73,6 +76,7 @@ export class WirelessControllerHotspot20Icon extends pulumi.CustomResource {
  */
 export interface WirelessControllerHotspot20IconState {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     iconLists?: pulumi.Input<pulumi.Input<inputs.WirelessControllerHotspot20IconIconList>[]>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
@@ -83,6 +87,7 @@ export interface WirelessControllerHotspot20IconState {
  */
 export interface WirelessControllerHotspot20IconArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     iconLists?: pulumi.Input<pulumi.Input<inputs.WirelessControllerHotspot20IconIconList>[]>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;

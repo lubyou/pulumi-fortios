@@ -35,6 +35,7 @@ export class SystemSwitchInterface extends pulumi.CustomResource {
     }
 
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly intraSwitchPolicy!: pulumi.Output<string>;
     public readonly macTtl!: pulumi.Output<number>;
     public readonly members!: pulumi.Output<outputs.SystemSwitchInterfaceMember[] | undefined>;
@@ -61,6 +62,7 @@ export class SystemSwitchInterface extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as SystemSwitchInterfaceState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["intraSwitchPolicy"] = state ? state.intraSwitchPolicy : undefined;
             resourceInputs["macTtl"] = state ? state.macTtl : undefined;
             resourceInputs["members"] = state ? state.members : undefined;
@@ -75,6 +77,7 @@ export class SystemSwitchInterface extends pulumi.CustomResource {
         } else {
             const args = argsOrState as SystemSwitchInterfaceArgs | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["intraSwitchPolicy"] = args ? args.intraSwitchPolicy : undefined;
             resourceInputs["macTtl"] = args ? args.macTtl : undefined;
             resourceInputs["members"] = args ? args.members : undefined;
@@ -97,6 +100,7 @@ export class SystemSwitchInterface extends pulumi.CustomResource {
  */
 export interface SystemSwitchInterfaceState {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     intraSwitchPolicy?: pulumi.Input<string>;
     macTtl?: pulumi.Input<number>;
     members?: pulumi.Input<pulumi.Input<inputs.SystemSwitchInterfaceMember>[]>;
@@ -115,6 +119,7 @@ export interface SystemSwitchInterfaceState {
  */
 export interface SystemSwitchInterfaceArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     intraSwitchPolicy?: pulumi.Input<string>;
     macTtl?: pulumi.Input<number>;
     members?: pulumi.Input<pulumi.Input<inputs.SystemSwitchInterfaceMember>[]>;

@@ -40,6 +40,7 @@ export class DlpProfile extends pulumi.CustomResource {
     public readonly extendedLog!: pulumi.Output<string>;
     public readonly featureSet!: pulumi.Output<string>;
     public readonly fullArchiveProto!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly nacQuarLog!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
     public readonly replacemsgGroup!: pulumi.Output<string>;
@@ -66,6 +67,7 @@ export class DlpProfile extends pulumi.CustomResource {
             resourceInputs["extendedLog"] = state ? state.extendedLog : undefined;
             resourceInputs["featureSet"] = state ? state.featureSet : undefined;
             resourceInputs["fullArchiveProto"] = state ? state.fullArchiveProto : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["nacQuarLog"] = state ? state.nacQuarLog : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["replacemsgGroup"] = state ? state.replacemsgGroup : undefined;
@@ -80,6 +82,7 @@ export class DlpProfile extends pulumi.CustomResource {
             resourceInputs["extendedLog"] = args ? args.extendedLog : undefined;
             resourceInputs["featureSet"] = args ? args.featureSet : undefined;
             resourceInputs["fullArchiveProto"] = args ? args.fullArchiveProto : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["nacQuarLog"] = args ? args.nacQuarLog : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["replacemsgGroup"] = args ? args.replacemsgGroup : undefined;
@@ -102,6 +105,7 @@ export interface DlpProfileState {
     extendedLog?: pulumi.Input<string>;
     featureSet?: pulumi.Input<string>;
     fullArchiveProto?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     nacQuarLog?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     replacemsgGroup?: pulumi.Input<string>;
@@ -120,6 +124,7 @@ export interface DlpProfileArgs {
     extendedLog?: pulumi.Input<string>;
     featureSet?: pulumi.Input<string>;
     fullArchiveProto?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     nacQuarLog?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     replacemsgGroup?: pulumi.Input<string>;

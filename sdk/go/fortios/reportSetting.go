@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -28,7 +29,7 @@ func NewReportSetting(ctx *pulumi.Context,
 		args = &ReportSettingArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ReportSetting
 	err := ctx.RegisterResource("fortios:index/reportSetting:ReportSetting", name, args, &resource, opts...)
 	if err != nil {

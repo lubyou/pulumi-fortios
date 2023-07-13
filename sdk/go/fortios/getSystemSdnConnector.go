@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemSdnConnector(ctx *pulumi.Context, args *LookupSystemSdnConnectorArgs, opts ...pulumi.InvokeOption) (*LookupSystemSdnConnectorResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemSdnConnectorResult
 	err := ctx.Invoke("fortios:index/getSystemSdnConnector:GetSystemSdnConnector", args, &rv, opts...)
 	if err != nil {
@@ -29,11 +30,13 @@ type LookupSystemSdnConnectorArgs struct {
 // A collection of values returned by GetSystemSdnConnector.
 type LookupSystemSdnConnectorResult struct {
 	AccessKey            string                                     `pulumi:"accessKey"`
+	AltResourceIp        string                                     `pulumi:"altResourceIp"`
 	ApiKey               string                                     `pulumi:"apiKey"`
 	AzureRegion          string                                     `pulumi:"azureRegion"`
 	ClientId             string                                     `pulumi:"clientId"`
 	ClientSecret         string                                     `pulumi:"clientSecret"`
 	CompartmentId        string                                     `pulumi:"compartmentId"`
+	CompartmentLists     []GetSystemSdnConnectorCompartmentList     `pulumi:"compartmentLists"`
 	ComputeGeneration    int                                        `pulumi:"computeGeneration"`
 	Domain               string                                     `pulumi:"domain"`
 	ExternalAccountLists []GetSystemSdnConnectorExternalAccountList `pulumi:"externalAccountLists"`
@@ -47,42 +50,46 @@ type LookupSystemSdnConnectorResult struct {
 	IbmRegionGen1        string                                     `pulumi:"ibmRegionGen1"`
 	IbmRegionGen2        string                                     `pulumi:"ibmRegionGen2"`
 	// The provider-assigned unique ID for this managed resource.
-	Id                string                            `pulumi:"id"`
-	KeyPasswd         string                            `pulumi:"keyPasswd"`
-	LoginEndpoint     string                            `pulumi:"loginEndpoint"`
-	Name              string                            `pulumi:"name"`
-	Nics              []GetSystemSdnConnectorNic        `pulumi:"nics"`
-	OciCert           string                            `pulumi:"ociCert"`
-	OciFingerprint    string                            `pulumi:"ociFingerprint"`
-	OciRegion         string                            `pulumi:"ociRegion"`
-	OciRegionType     string                            `pulumi:"ociRegionType"`
-	Password          string                            `pulumi:"password"`
-	PrivateKey        string                            `pulumi:"privateKey"`
-	Region            string                            `pulumi:"region"`
-	ResourceGroup     string                            `pulumi:"resourceGroup"`
-	ResourceUrl       string                            `pulumi:"resourceUrl"`
-	RouteTables       []GetSystemSdnConnectorRouteTable `pulumi:"routeTables"`
-	Routes            []GetSystemSdnConnectorRoute      `pulumi:"routes"`
-	SecretKey         string                            `pulumi:"secretKey"`
-	SecretToken       string                            `pulumi:"secretToken"`
-	Server            string                            `pulumi:"server"`
-	ServerLists       []GetSystemSdnConnectorServerList `pulumi:"serverLists"`
-	ServerPort        int                               `pulumi:"serverPort"`
-	ServiceAccount    string                            `pulumi:"serviceAccount"`
-	Status            string                            `pulumi:"status"`
-	SubscriptionId    string                            `pulumi:"subscriptionId"`
-	TenantId          string                            `pulumi:"tenantId"`
-	Type              string                            `pulumi:"type"`
-	UpdateInterval    int                               `pulumi:"updateInterval"`
-	UseMetadataIam    string                            `pulumi:"useMetadataIam"`
-	UserId            string                            `pulumi:"userId"`
-	Username          string                            `pulumi:"username"`
-	VcenterPassword   string                            `pulumi:"vcenterPassword"`
-	VcenterServer     string                            `pulumi:"vcenterServer"`
-	VcenterUsername   string                            `pulumi:"vcenterUsername"`
-	Vdomparam         *string                           `pulumi:"vdomparam"`
-	VerifyCertificate string                            `pulumi:"verifyCertificate"`
-	VpcId             string                            `pulumi:"vpcId"`
+	Id                string                               `pulumi:"id"`
+	KeyPasswd         string                               `pulumi:"keyPasswd"`
+	LoginEndpoint     string                               `pulumi:"loginEndpoint"`
+	Name              string                               `pulumi:"name"`
+	Nics              []GetSystemSdnConnectorNic           `pulumi:"nics"`
+	OciCert           string                               `pulumi:"ociCert"`
+	OciFingerprint    string                               `pulumi:"ociFingerprint"`
+	OciRegion         string                               `pulumi:"ociRegion"`
+	OciRegionLists    []GetSystemSdnConnectorOciRegionList `pulumi:"ociRegionLists"`
+	OciRegionType     string                               `pulumi:"ociRegionType"`
+	Password          string                               `pulumi:"password"`
+	PrivateKey        string                               `pulumi:"privateKey"`
+	Proxy             string                               `pulumi:"proxy"`
+	Region            string                               `pulumi:"region"`
+	ResourceGroup     string                               `pulumi:"resourceGroup"`
+	ResourceUrl       string                               `pulumi:"resourceUrl"`
+	RouteTables       []GetSystemSdnConnectorRouteTable    `pulumi:"routeTables"`
+	Routes            []GetSystemSdnConnectorRoute         `pulumi:"routes"`
+	SecretKey         string                               `pulumi:"secretKey"`
+	SecretToken       string                               `pulumi:"secretToken"`
+	Server            string                               `pulumi:"server"`
+	ServerCaCert      string                               `pulumi:"serverCaCert"`
+	ServerCert        string                               `pulumi:"serverCert"`
+	ServerLists       []GetSystemSdnConnectorServerList    `pulumi:"serverLists"`
+	ServerPort        int                                  `pulumi:"serverPort"`
+	ServiceAccount    string                               `pulumi:"serviceAccount"`
+	Status            string                               `pulumi:"status"`
+	SubscriptionId    string                               `pulumi:"subscriptionId"`
+	TenantId          string                               `pulumi:"tenantId"`
+	Type              string                               `pulumi:"type"`
+	UpdateInterval    int                                  `pulumi:"updateInterval"`
+	UseMetadataIam    string                               `pulumi:"useMetadataIam"`
+	UserId            string                               `pulumi:"userId"`
+	Username          string                               `pulumi:"username"`
+	VcenterPassword   string                               `pulumi:"vcenterPassword"`
+	VcenterServer     string                               `pulumi:"vcenterServer"`
+	VcenterUsername   string                               `pulumi:"vcenterUsername"`
+	Vdomparam         *string                              `pulumi:"vdomparam"`
+	VerifyCertificate string                               `pulumi:"verifyCertificate"`
+	VpcId             string                               `pulumi:"vpcId"`
 }
 
 func LookupSystemSdnConnectorOutput(ctx *pulumi.Context, args LookupSystemSdnConnectorOutputArgs, opts ...pulumi.InvokeOption) LookupSystemSdnConnectorResultOutput {
@@ -127,6 +134,10 @@ func (o LookupSystemSdnConnectorResultOutput) AccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.AccessKey }).(pulumi.StringOutput)
 }
 
+func (o LookupSystemSdnConnectorResultOutput) AltResourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.AltResourceIp }).(pulumi.StringOutput)
+}
+
 func (o LookupSystemSdnConnectorResultOutput) ApiKey() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.ApiKey }).(pulumi.StringOutput)
 }
@@ -145,6 +156,12 @@ func (o LookupSystemSdnConnectorResultOutput) ClientSecret() pulumi.StringOutput
 
 func (o LookupSystemSdnConnectorResultOutput) CompartmentId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.CompartmentId }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemSdnConnectorResultOutput) CompartmentLists() GetSystemSdnConnectorCompartmentListArrayOutput {
+	return o.ApplyT(func(v LookupSystemSdnConnectorResult) []GetSystemSdnConnectorCompartmentList {
+		return v.CompartmentLists
+	}).(GetSystemSdnConnectorCompartmentListArrayOutput)
 }
 
 func (o LookupSystemSdnConnectorResultOutput) ComputeGeneration() pulumi.IntOutput {
@@ -230,6 +247,10 @@ func (o LookupSystemSdnConnectorResultOutput) OciRegion() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.OciRegion }).(pulumi.StringOutput)
 }
 
+func (o LookupSystemSdnConnectorResultOutput) OciRegionLists() GetSystemSdnConnectorOciRegionListArrayOutput {
+	return o.ApplyT(func(v LookupSystemSdnConnectorResult) []GetSystemSdnConnectorOciRegionList { return v.OciRegionLists }).(GetSystemSdnConnectorOciRegionListArrayOutput)
+}
+
 func (o LookupSystemSdnConnectorResultOutput) OciRegionType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.OciRegionType }).(pulumi.StringOutput)
 }
@@ -240,6 +261,10 @@ func (o LookupSystemSdnConnectorResultOutput) Password() pulumi.StringOutput {
 
 func (o LookupSystemSdnConnectorResultOutput) PrivateKey() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.PrivateKey }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemSdnConnectorResultOutput) Proxy() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.Proxy }).(pulumi.StringOutput)
 }
 
 func (o LookupSystemSdnConnectorResultOutput) Region() pulumi.StringOutput {
@@ -272,6 +297,14 @@ func (o LookupSystemSdnConnectorResultOutput) SecretToken() pulumi.StringOutput 
 
 func (o LookupSystemSdnConnectorResultOutput) Server() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.Server }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemSdnConnectorResultOutput) ServerCaCert() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.ServerCaCert }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemSdnConnectorResultOutput) ServerCert() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemSdnConnectorResult) string { return v.ServerCert }).(pulumi.StringOutput)
 }
 
 func (o LookupSystemSdnConnectorResultOutput) ServerLists() GetSystemSdnConnectorServerListArrayOutput {

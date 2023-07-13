@@ -48,6 +48,7 @@ export class WirelessControllerQosProfile extends pulumi.CustomResource {
     public readonly dscpWmmVis!: pulumi.Output<outputs.WirelessControllerQosProfileDscpWmmVi[] | undefined>;
     public readonly dscpWmmVos!: pulumi.Output<outputs.WirelessControllerQosProfileDscpWmmVo[] | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly uplink!: pulumi.Output<number>;
     public readonly uplinkSta!: pulumi.Output<number>;
@@ -87,6 +88,7 @@ export class WirelessControllerQosProfile extends pulumi.CustomResource {
             resourceInputs["dscpWmmVis"] = state ? state.dscpWmmVis : undefined;
             resourceInputs["dscpWmmVos"] = state ? state.dscpWmmVos : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["uplink"] = state ? state.uplink : undefined;
             resourceInputs["uplinkSta"] = state ? state.uplinkSta : undefined;
@@ -114,6 +116,7 @@ export class WirelessControllerQosProfile extends pulumi.CustomResource {
             resourceInputs["dscpWmmVis"] = args ? args.dscpWmmVis : undefined;
             resourceInputs["dscpWmmVos"] = args ? args.dscpWmmVos : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["uplink"] = args ? args.uplink : undefined;
             resourceInputs["uplinkSta"] = args ? args.uplinkSta : undefined;
@@ -149,6 +152,7 @@ export interface WirelessControllerQosProfileState {
     dscpWmmVis?: pulumi.Input<pulumi.Input<inputs.WirelessControllerQosProfileDscpWmmVi>[]>;
     dscpWmmVos?: pulumi.Input<pulumi.Input<inputs.WirelessControllerQosProfileDscpWmmVo>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     uplink?: pulumi.Input<number>;
     uplinkSta?: pulumi.Input<number>;
@@ -180,6 +184,7 @@ export interface WirelessControllerQosProfileArgs {
     dscpWmmVis?: pulumi.Input<pulumi.Input<inputs.WirelessControllerQosProfileDscpWmmVi>[]>;
     dscpWmmVos?: pulumi.Input<pulumi.Input<inputs.WirelessControllerQosProfileDscpWmmVo>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     uplink?: pulumi.Input<number>;
     uplinkSta?: pulumi.Input<number>;

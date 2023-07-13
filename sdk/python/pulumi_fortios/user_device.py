@@ -21,6 +21,7 @@ class UserDeviceArgs:
                  category: Optional[pulumi.Input[str]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  mac: Optional[pulumi.Input[str]] = None,
                  master_device: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input['UserDeviceTaggingArgs']]]] = None,
@@ -40,6 +41,8 @@ class UserDeviceArgs:
             pulumi.set(__self__, "comment", comment)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if mac is not None:
             pulumi.set(__self__, "mac", mac)
         if master_device is not None:
@@ -97,6 +100,15 @@ class UserDeviceArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -161,6 +173,7 @@ class _UserDeviceState:
                  category: Optional[pulumi.Input[str]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  mac: Optional[pulumi.Input[str]] = None,
                  master_device: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input['UserDeviceTaggingArgs']]]] = None,
@@ -180,6 +193,8 @@ class _UserDeviceState:
             pulumi.set(__self__, "comment", comment)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if mac is not None:
             pulumi.set(__self__, "mac", mac)
         if master_device is not None:
@@ -237,6 +252,15 @@ class _UserDeviceState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -303,6 +327,7 @@ class UserDevice(pulumi.CustomResource):
                  category: Optional[pulumi.Input[str]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  mac: Optional[pulumi.Input[str]] = None,
                  master_device: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserDeviceTaggingArgs']]]]] = None,
@@ -343,6 +368,7 @@ class UserDevice(pulumi.CustomResource):
                  category: Optional[pulumi.Input[str]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  mac: Optional[pulumi.Input[str]] = None,
                  master_device: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserDeviceTaggingArgs']]]]] = None,
@@ -363,6 +389,7 @@ class UserDevice(pulumi.CustomResource):
             __props__.__dict__["category"] = category
             __props__.__dict__["comment"] = comment
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["mac"] = mac
             __props__.__dict__["master_device"] = master_device
             __props__.__dict__["taggings"] = taggings
@@ -384,6 +411,7 @@ class UserDevice(pulumi.CustomResource):
             category: Optional[pulumi.Input[str]] = None,
             comment: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             mac: Optional[pulumi.Input[str]] = None,
             master_device: Optional[pulumi.Input[str]] = None,
             taggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserDeviceTaggingArgs']]]]] = None,
@@ -407,6 +435,7 @@ class UserDevice(pulumi.CustomResource):
         __props__.__dict__["category"] = category
         __props__.__dict__["comment"] = comment
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["mac"] = mac
         __props__.__dict__["master_device"] = master_device
         __props__.__dict__["taggings"] = taggings
@@ -439,6 +468,11 @@ class UserDevice(pulumi.CustomResource):
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

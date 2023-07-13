@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -16,6 +17,7 @@ type FirewallInternetServiceGroup struct {
 	Comment             pulumi.StringPtrOutput                        `pulumi:"comment"`
 	Direction           pulumi.StringOutput                           `pulumi:"direction"`
 	DynamicSortSubtable pulumi.StringPtrOutput                        `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                        `pulumi:"getAllTables"`
 	Members             FirewallInternetServiceGroupMemberArrayOutput `pulumi:"members"`
 	Name                pulumi.StringOutput                           `pulumi:"name"`
 	Vdomparam           pulumi.StringPtrOutput                        `pulumi:"vdomparam"`
@@ -28,7 +30,7 @@ func NewFirewallInternetServiceGroup(ctx *pulumi.Context,
 		args = &FirewallInternetServiceGroupArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallInternetServiceGroup
 	err := ctx.RegisterResource("fortios:index/firewallInternetServiceGroup:FirewallInternetServiceGroup", name, args, &resource, opts...)
 	if err != nil {
@@ -54,6 +56,7 @@ type firewallInternetServiceGroupState struct {
 	Comment             *string                              `pulumi:"comment"`
 	Direction           *string                              `pulumi:"direction"`
 	DynamicSortSubtable *string                              `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                              `pulumi:"getAllTables"`
 	Members             []FirewallInternetServiceGroupMember `pulumi:"members"`
 	Name                *string                              `pulumi:"name"`
 	Vdomparam           *string                              `pulumi:"vdomparam"`
@@ -63,6 +66,7 @@ type FirewallInternetServiceGroupState struct {
 	Comment             pulumi.StringPtrInput
 	Direction           pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Members             FirewallInternetServiceGroupMemberArrayInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
@@ -76,6 +80,7 @@ type firewallInternetServiceGroupArgs struct {
 	Comment             *string                              `pulumi:"comment"`
 	Direction           *string                              `pulumi:"direction"`
 	DynamicSortSubtable *string                              `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                              `pulumi:"getAllTables"`
 	Members             []FirewallInternetServiceGroupMember `pulumi:"members"`
 	Name                *string                              `pulumi:"name"`
 	Vdomparam           *string                              `pulumi:"vdomparam"`
@@ -86,6 +91,7 @@ type FirewallInternetServiceGroupArgs struct {
 	Comment             pulumi.StringPtrInput
 	Direction           pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Members             FirewallInternetServiceGroupMemberArrayInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
@@ -188,6 +194,10 @@ func (o FirewallInternetServiceGroupOutput) Direction() pulumi.StringOutput {
 
 func (o FirewallInternetServiceGroupOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FirewallInternetServiceGroup) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallInternetServiceGroupOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceGroup) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallInternetServiceGroupOutput) Members() FirewallInternetServiceGroupMemberArrayOutput {

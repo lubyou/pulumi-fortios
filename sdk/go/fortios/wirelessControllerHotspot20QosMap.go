@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -16,6 +17,7 @@ type WirelessControllerHotspot20QosMap struct {
 	DscpExcepts         WirelessControllerHotspot20QosMapDscpExceptArrayOutput `pulumi:"dscpExcepts"`
 	DscpRanges          WirelessControllerHotspot20QosMapDscpRangeArrayOutput  `pulumi:"dscpRanges"`
 	DynamicSortSubtable pulumi.StringPtrOutput                                 `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                                 `pulumi:"getAllTables"`
 	Name                pulumi.StringOutput                                    `pulumi:"name"`
 	Vdomparam           pulumi.StringPtrOutput                                 `pulumi:"vdomparam"`
 }
@@ -27,7 +29,7 @@ func NewWirelessControllerHotspot20QosMap(ctx *pulumi.Context,
 		args = &WirelessControllerHotspot20QosMapArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WirelessControllerHotspot20QosMap
 	err := ctx.RegisterResource("fortios:index/wirelessControllerHotspot20QosMap:WirelessControllerHotspot20QosMap", name, args, &resource, opts...)
 	if err != nil {
@@ -53,6 +55,7 @@ type wirelessControllerHotspot20QosMapState struct {
 	DscpExcepts         []WirelessControllerHotspot20QosMapDscpExcept `pulumi:"dscpExcepts"`
 	DscpRanges          []WirelessControllerHotspot20QosMapDscpRange  `pulumi:"dscpRanges"`
 	DynamicSortSubtable *string                                       `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                                       `pulumi:"getAllTables"`
 	Name                *string                                       `pulumi:"name"`
 	Vdomparam           *string                                       `pulumi:"vdomparam"`
 }
@@ -61,6 +64,7 @@ type WirelessControllerHotspot20QosMapState struct {
 	DscpExcepts         WirelessControllerHotspot20QosMapDscpExceptArrayInput
 	DscpRanges          WirelessControllerHotspot20QosMapDscpRangeArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
 }
@@ -73,6 +77,7 @@ type wirelessControllerHotspot20QosMapArgs struct {
 	DscpExcepts         []WirelessControllerHotspot20QosMapDscpExcept `pulumi:"dscpExcepts"`
 	DscpRanges          []WirelessControllerHotspot20QosMapDscpRange  `pulumi:"dscpRanges"`
 	DynamicSortSubtable *string                                       `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                                       `pulumi:"getAllTables"`
 	Name                *string                                       `pulumi:"name"`
 	Vdomparam           *string                                       `pulumi:"vdomparam"`
 }
@@ -82,6 +87,7 @@ type WirelessControllerHotspot20QosMapArgs struct {
 	DscpExcepts         WirelessControllerHotspot20QosMapDscpExceptArrayInput
 	DscpRanges          WirelessControllerHotspot20QosMapDscpRangeArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
 }
@@ -187,6 +193,10 @@ func (o WirelessControllerHotspot20QosMapOutput) DscpRanges() WirelessController
 
 func (o WirelessControllerHotspot20QosMapOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WirelessControllerHotspot20QosMap) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerHotspot20QosMapOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20QosMap) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o WirelessControllerHotspot20QosMapOutput) Name() pulumi.StringOutput {

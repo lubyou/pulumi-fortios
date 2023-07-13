@@ -25,8 +25,13 @@ class FirewallAccessProxy6Args:
                  decrypted_traffic_mirror: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  empty_cert_action: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 http_supported_max_version: Optional[pulumi.Input[str]] = None,
                  log_blocked_traffic: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 svr_pool_multiplex: Optional[pulumi.Input[str]] = None,
+                 svr_pool_server_max_request: Optional[pulumi.Input[int]] = None,
+                 svr_pool_ttl: Optional[pulumi.Input[int]] = None,
                  user_agent_detect: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vip: Optional[pulumi.Input[str]] = None):
@@ -51,10 +56,20 @@ class FirewallAccessProxy6Args:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if empty_cert_action is not None:
             pulumi.set(__self__, "empty_cert_action", empty_cert_action)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
+        if http_supported_max_version is not None:
+            pulumi.set(__self__, "http_supported_max_version", http_supported_max_version)
         if log_blocked_traffic is not None:
             pulumi.set(__self__, "log_blocked_traffic", log_blocked_traffic)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if svr_pool_multiplex is not None:
+            pulumi.set(__self__, "svr_pool_multiplex", svr_pool_multiplex)
+        if svr_pool_server_max_request is not None:
+            pulumi.set(__self__, "svr_pool_server_max_request", svr_pool_server_max_request)
+        if svr_pool_ttl is not None:
+            pulumi.set(__self__, "svr_pool_ttl", svr_pool_ttl)
         if user_agent_detect is not None:
             pulumi.set(__self__, "user_agent_detect", user_agent_detect)
         if vdomparam is not None:
@@ -144,6 +159,24 @@ class FirewallAccessProxy6Args:
         pulumi.set(self, "empty_cert_action", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
+    @pulumi.getter(name="httpSupportedMaxVersion")
+    def http_supported_max_version(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "http_supported_max_version")
+
+    @http_supported_max_version.setter
+    def http_supported_max_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "http_supported_max_version", value)
+
+    @property
     @pulumi.getter(name="logBlockedTraffic")
     def log_blocked_traffic(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "log_blocked_traffic")
@@ -160,6 +193,33 @@ class FirewallAccessProxy6Args:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="svrPoolMultiplex")
+    def svr_pool_multiplex(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "svr_pool_multiplex")
+
+    @svr_pool_multiplex.setter
+    def svr_pool_multiplex(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "svr_pool_multiplex", value)
+
+    @property
+    @pulumi.getter(name="svrPoolServerMaxRequest")
+    def svr_pool_server_max_request(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "svr_pool_server_max_request")
+
+    @svr_pool_server_max_request.setter
+    def svr_pool_server_max_request(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "svr_pool_server_max_request", value)
+
+    @property
+    @pulumi.getter(name="svrPoolTtl")
+    def svr_pool_ttl(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "svr_pool_ttl")
+
+    @svr_pool_ttl.setter
+    def svr_pool_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "svr_pool_ttl", value)
 
     @property
     @pulumi.getter(name="userAgentDetect")
@@ -201,8 +261,13 @@ class _FirewallAccessProxy6State:
                  decrypted_traffic_mirror: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  empty_cert_action: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 http_supported_max_version: Optional[pulumi.Input[str]] = None,
                  log_blocked_traffic: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 svr_pool_multiplex: Optional[pulumi.Input[str]] = None,
+                 svr_pool_server_max_request: Optional[pulumi.Input[int]] = None,
+                 svr_pool_ttl: Optional[pulumi.Input[int]] = None,
                  user_agent_detect: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vip: Optional[pulumi.Input[str]] = None):
@@ -227,10 +292,20 @@ class _FirewallAccessProxy6State:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if empty_cert_action is not None:
             pulumi.set(__self__, "empty_cert_action", empty_cert_action)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
+        if http_supported_max_version is not None:
+            pulumi.set(__self__, "http_supported_max_version", http_supported_max_version)
         if log_blocked_traffic is not None:
             pulumi.set(__self__, "log_blocked_traffic", log_blocked_traffic)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if svr_pool_multiplex is not None:
+            pulumi.set(__self__, "svr_pool_multiplex", svr_pool_multiplex)
+        if svr_pool_server_max_request is not None:
+            pulumi.set(__self__, "svr_pool_server_max_request", svr_pool_server_max_request)
+        if svr_pool_ttl is not None:
+            pulumi.set(__self__, "svr_pool_ttl", svr_pool_ttl)
         if user_agent_detect is not None:
             pulumi.set(__self__, "user_agent_detect", user_agent_detect)
         if vdomparam is not None:
@@ -320,6 +395,24 @@ class _FirewallAccessProxy6State:
         pulumi.set(self, "empty_cert_action", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
+    @pulumi.getter(name="httpSupportedMaxVersion")
+    def http_supported_max_version(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "http_supported_max_version")
+
+    @http_supported_max_version.setter
+    def http_supported_max_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "http_supported_max_version", value)
+
+    @property
     @pulumi.getter(name="logBlockedTraffic")
     def log_blocked_traffic(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "log_blocked_traffic")
@@ -336,6 +429,33 @@ class _FirewallAccessProxy6State:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="svrPoolMultiplex")
+    def svr_pool_multiplex(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "svr_pool_multiplex")
+
+    @svr_pool_multiplex.setter
+    def svr_pool_multiplex(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "svr_pool_multiplex", value)
+
+    @property
+    @pulumi.getter(name="svrPoolServerMaxRequest")
+    def svr_pool_server_max_request(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "svr_pool_server_max_request")
+
+    @svr_pool_server_max_request.setter
+    def svr_pool_server_max_request(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "svr_pool_server_max_request", value)
+
+    @property
+    @pulumi.getter(name="svrPoolTtl")
+    def svr_pool_ttl(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "svr_pool_ttl")
+
+    @svr_pool_ttl.setter
+    def svr_pool_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "svr_pool_ttl", value)
 
     @property
     @pulumi.getter(name="userAgentDetect")
@@ -379,8 +499,13 @@ class FirewallAccessProxy6(pulumi.CustomResource):
                  decrypted_traffic_mirror: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  empty_cert_action: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 http_supported_max_version: Optional[pulumi.Input[str]] = None,
                  log_blocked_traffic: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 svr_pool_multiplex: Optional[pulumi.Input[str]] = None,
+                 svr_pool_server_max_request: Optional[pulumi.Input[int]] = None,
+                 svr_pool_ttl: Optional[pulumi.Input[int]] = None,
                  user_agent_detect: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vip: Optional[pulumi.Input[str]] = None,
@@ -422,8 +547,13 @@ class FirewallAccessProxy6(pulumi.CustomResource):
                  decrypted_traffic_mirror: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  empty_cert_action: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 http_supported_max_version: Optional[pulumi.Input[str]] = None,
                  log_blocked_traffic: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 svr_pool_multiplex: Optional[pulumi.Input[str]] = None,
+                 svr_pool_server_max_request: Optional[pulumi.Input[int]] = None,
+                 svr_pool_ttl: Optional[pulumi.Input[int]] = None,
                  user_agent_detect: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vip: Optional[pulumi.Input[str]] = None,
@@ -445,8 +575,13 @@ class FirewallAccessProxy6(pulumi.CustomResource):
             __props__.__dict__["decrypted_traffic_mirror"] = decrypted_traffic_mirror
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["empty_cert_action"] = empty_cert_action
+            __props__.__dict__["get_all_tables"] = get_all_tables
+            __props__.__dict__["http_supported_max_version"] = http_supported_max_version
             __props__.__dict__["log_blocked_traffic"] = log_blocked_traffic
             __props__.__dict__["name"] = name
+            __props__.__dict__["svr_pool_multiplex"] = svr_pool_multiplex
+            __props__.__dict__["svr_pool_server_max_request"] = svr_pool_server_max_request
+            __props__.__dict__["svr_pool_ttl"] = svr_pool_ttl
             __props__.__dict__["user_agent_detect"] = user_agent_detect
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["vip"] = vip
@@ -469,8 +604,13 @@ class FirewallAccessProxy6(pulumi.CustomResource):
             decrypted_traffic_mirror: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             empty_cert_action: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
+            http_supported_max_version: Optional[pulumi.Input[str]] = None,
             log_blocked_traffic: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            svr_pool_multiplex: Optional[pulumi.Input[str]] = None,
+            svr_pool_server_max_request: Optional[pulumi.Input[int]] = None,
+            svr_pool_ttl: Optional[pulumi.Input[int]] = None,
             user_agent_detect: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             vip: Optional[pulumi.Input[str]] = None) -> 'FirewallAccessProxy6':
@@ -495,8 +635,13 @@ class FirewallAccessProxy6(pulumi.CustomResource):
         __props__.__dict__["decrypted_traffic_mirror"] = decrypted_traffic_mirror
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["empty_cert_action"] = empty_cert_action
+        __props__.__dict__["get_all_tables"] = get_all_tables
+        __props__.__dict__["http_supported_max_version"] = http_supported_max_version
         __props__.__dict__["log_blocked_traffic"] = log_blocked_traffic
         __props__.__dict__["name"] = name
+        __props__.__dict__["svr_pool_multiplex"] = svr_pool_multiplex
+        __props__.__dict__["svr_pool_server_max_request"] = svr_pool_server_max_request
+        __props__.__dict__["svr_pool_ttl"] = svr_pool_ttl
         __props__.__dict__["user_agent_detect"] = user_agent_detect
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["vip"] = vip
@@ -548,6 +693,16 @@ class FirewallAccessProxy6(pulumi.CustomResource):
         return pulumi.get(self, "empty_cert_action")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @property
+    @pulumi.getter(name="httpSupportedMaxVersion")
+    def http_supported_max_version(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "http_supported_max_version")
+
+    @property
     @pulumi.getter(name="logBlockedTraffic")
     def log_blocked_traffic(self) -> pulumi.Output[str]:
         return pulumi.get(self, "log_blocked_traffic")
@@ -556,6 +711,21 @@ class FirewallAccessProxy6(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="svrPoolMultiplex")
+    def svr_pool_multiplex(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "svr_pool_multiplex")
+
+    @property
+    @pulumi.getter(name="svrPoolServerMaxRequest")
+    def svr_pool_server_max_request(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "svr_pool_server_max_request")
+
+    @property
+    @pulumi.getter(name="svrPoolTtl")
+    def svr_pool_ttl(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "svr_pool_ttl")
 
     @property
     @pulumi.getter(name="userAgentDetect")

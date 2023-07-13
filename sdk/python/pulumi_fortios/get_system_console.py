@@ -109,13 +109,13 @@ def get_system_console(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemConsole:GetSystemConsole', __args__, opts=opts, typ=GetSystemConsoleResult).value
 
     return AwaitableGetSystemConsoleResult(
-        baudrate=__ret__.baudrate,
-        fortiexplorer=__ret__.fortiexplorer,
-        id=__ret__.id,
-        login=__ret__.login,
-        mode=__ret__.mode,
-        output=__ret__.output,
-        vdomparam=__ret__.vdomparam)
+        baudrate=pulumi.get(__ret__, 'baudrate'),
+        fortiexplorer=pulumi.get(__ret__, 'fortiexplorer'),
+        id=pulumi.get(__ret__, 'id'),
+        login=pulumi.get(__ret__, 'login'),
+        mode=pulumi.get(__ret__, 'mode'),
+        output=pulumi.get(__ret__, 'output'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_console)

@@ -8,32 +8,34 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type FirewallIppool struct {
 	pulumi.CustomResourceState
 
-	AddNat64Route       pulumi.StringOutput    `pulumi:"addNat64Route"`
-	ArpIntf             pulumi.StringOutput    `pulumi:"arpIntf"`
-	ArpReply            pulumi.StringOutput    `pulumi:"arpReply"`
-	AssociatedInterface pulumi.StringOutput    `pulumi:"associatedInterface"`
-	BlockSize           pulumi.IntOutput       `pulumi:"blockSize"`
-	Comments            pulumi.StringPtrOutput `pulumi:"comments"`
-	Endip               pulumi.StringOutput    `pulumi:"endip"`
-	Endport             pulumi.IntOutput       `pulumi:"endport"`
-	Name                pulumi.StringOutput    `pulumi:"name"`
-	Nat64               pulumi.StringOutput    `pulumi:"nat64"`
-	NumBlocksPerUser    pulumi.IntOutput       `pulumi:"numBlocksPerUser"`
-	PbaTimeout          pulumi.IntOutput       `pulumi:"pbaTimeout"`
-	PermitAnyHost       pulumi.StringOutput    `pulumi:"permitAnyHost"`
-	PortPerUser         pulumi.IntOutput       `pulumi:"portPerUser"`
-	SourceEndip         pulumi.StringOutput    `pulumi:"sourceEndip"`
-	SourceStartip       pulumi.StringOutput    `pulumi:"sourceStartip"`
-	Startip             pulumi.StringOutput    `pulumi:"startip"`
-	Startport           pulumi.IntOutput       `pulumi:"startport"`
-	Type                pulumi.StringOutput    `pulumi:"type"`
-	Vdomparam           pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AddNat64Route           pulumi.StringOutput    `pulumi:"addNat64Route"`
+	ArpIntf                 pulumi.StringOutput    `pulumi:"arpIntf"`
+	ArpReply                pulumi.StringOutput    `pulumi:"arpReply"`
+	AssociatedInterface     pulumi.StringOutput    `pulumi:"associatedInterface"`
+	BlockSize               pulumi.IntOutput       `pulumi:"blockSize"`
+	Comments                pulumi.StringPtrOutput `pulumi:"comments"`
+	Endip                   pulumi.StringOutput    `pulumi:"endip"`
+	Endport                 pulumi.IntOutput       `pulumi:"endport"`
+	Name                    pulumi.StringOutput    `pulumi:"name"`
+	Nat64                   pulumi.StringOutput    `pulumi:"nat64"`
+	NumBlocksPerUser        pulumi.IntOutput       `pulumi:"numBlocksPerUser"`
+	PbaTimeout              pulumi.IntOutput       `pulumi:"pbaTimeout"`
+	PermitAnyHost           pulumi.StringOutput    `pulumi:"permitAnyHost"`
+	PortPerUser             pulumi.IntOutput       `pulumi:"portPerUser"`
+	SourceEndip             pulumi.StringOutput    `pulumi:"sourceEndip"`
+	SourceStartip           pulumi.StringOutput    `pulumi:"sourceStartip"`
+	Startip                 pulumi.StringOutput    `pulumi:"startip"`
+	Startport               pulumi.IntOutput       `pulumi:"startport"`
+	SubnetBroadcastInIppool pulumi.StringOutput    `pulumi:"subnetBroadcastInIppool"`
+	Type                    pulumi.StringOutput    `pulumi:"type"`
+	Vdomparam               pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewFirewallIppool registers a new resource with the given unique name, arguments, and options.
@@ -49,7 +51,7 @@ func NewFirewallIppool(ctx *pulumi.Context,
 	if args.Startip == nil {
 		return nil, errors.New("invalid value for required argument 'Startip'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallIppool
 	err := ctx.RegisterResource("fortios:index/firewallIppool:FirewallIppool", name, args, &resource, opts...)
 	if err != nil {
@@ -72,49 +74,51 @@ func GetFirewallIppool(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallIppool resources.
 type firewallIppoolState struct {
-	AddNat64Route       *string `pulumi:"addNat64Route"`
-	ArpIntf             *string `pulumi:"arpIntf"`
-	ArpReply            *string `pulumi:"arpReply"`
-	AssociatedInterface *string `pulumi:"associatedInterface"`
-	BlockSize           *int    `pulumi:"blockSize"`
-	Comments            *string `pulumi:"comments"`
-	Endip               *string `pulumi:"endip"`
-	Endport             *int    `pulumi:"endport"`
-	Name                *string `pulumi:"name"`
-	Nat64               *string `pulumi:"nat64"`
-	NumBlocksPerUser    *int    `pulumi:"numBlocksPerUser"`
-	PbaTimeout          *int    `pulumi:"pbaTimeout"`
-	PermitAnyHost       *string `pulumi:"permitAnyHost"`
-	PortPerUser         *int    `pulumi:"portPerUser"`
-	SourceEndip         *string `pulumi:"sourceEndip"`
-	SourceStartip       *string `pulumi:"sourceStartip"`
-	Startip             *string `pulumi:"startip"`
-	Startport           *int    `pulumi:"startport"`
-	Type                *string `pulumi:"type"`
-	Vdomparam           *string `pulumi:"vdomparam"`
+	AddNat64Route           *string `pulumi:"addNat64Route"`
+	ArpIntf                 *string `pulumi:"arpIntf"`
+	ArpReply                *string `pulumi:"arpReply"`
+	AssociatedInterface     *string `pulumi:"associatedInterface"`
+	BlockSize               *int    `pulumi:"blockSize"`
+	Comments                *string `pulumi:"comments"`
+	Endip                   *string `pulumi:"endip"`
+	Endport                 *int    `pulumi:"endport"`
+	Name                    *string `pulumi:"name"`
+	Nat64                   *string `pulumi:"nat64"`
+	NumBlocksPerUser        *int    `pulumi:"numBlocksPerUser"`
+	PbaTimeout              *int    `pulumi:"pbaTimeout"`
+	PermitAnyHost           *string `pulumi:"permitAnyHost"`
+	PortPerUser             *int    `pulumi:"portPerUser"`
+	SourceEndip             *string `pulumi:"sourceEndip"`
+	SourceStartip           *string `pulumi:"sourceStartip"`
+	Startip                 *string `pulumi:"startip"`
+	Startport               *int    `pulumi:"startport"`
+	SubnetBroadcastInIppool *string `pulumi:"subnetBroadcastInIppool"`
+	Type                    *string `pulumi:"type"`
+	Vdomparam               *string `pulumi:"vdomparam"`
 }
 
 type FirewallIppoolState struct {
-	AddNat64Route       pulumi.StringPtrInput
-	ArpIntf             pulumi.StringPtrInput
-	ArpReply            pulumi.StringPtrInput
-	AssociatedInterface pulumi.StringPtrInput
-	BlockSize           pulumi.IntPtrInput
-	Comments            pulumi.StringPtrInput
-	Endip               pulumi.StringPtrInput
-	Endport             pulumi.IntPtrInput
-	Name                pulumi.StringPtrInput
-	Nat64               pulumi.StringPtrInput
-	NumBlocksPerUser    pulumi.IntPtrInput
-	PbaTimeout          pulumi.IntPtrInput
-	PermitAnyHost       pulumi.StringPtrInput
-	PortPerUser         pulumi.IntPtrInput
-	SourceEndip         pulumi.StringPtrInput
-	SourceStartip       pulumi.StringPtrInput
-	Startip             pulumi.StringPtrInput
-	Startport           pulumi.IntPtrInput
-	Type                pulumi.StringPtrInput
-	Vdomparam           pulumi.StringPtrInput
+	AddNat64Route           pulumi.StringPtrInput
+	ArpIntf                 pulumi.StringPtrInput
+	ArpReply                pulumi.StringPtrInput
+	AssociatedInterface     pulumi.StringPtrInput
+	BlockSize               pulumi.IntPtrInput
+	Comments                pulumi.StringPtrInput
+	Endip                   pulumi.StringPtrInput
+	Endport                 pulumi.IntPtrInput
+	Name                    pulumi.StringPtrInput
+	Nat64                   pulumi.StringPtrInput
+	NumBlocksPerUser        pulumi.IntPtrInput
+	PbaTimeout              pulumi.IntPtrInput
+	PermitAnyHost           pulumi.StringPtrInput
+	PortPerUser             pulumi.IntPtrInput
+	SourceEndip             pulumi.StringPtrInput
+	SourceStartip           pulumi.StringPtrInput
+	Startip                 pulumi.StringPtrInput
+	Startport               pulumi.IntPtrInput
+	SubnetBroadcastInIppool pulumi.StringPtrInput
+	Type                    pulumi.StringPtrInput
+	Vdomparam               pulumi.StringPtrInput
 }
 
 func (FirewallIppoolState) ElementType() reflect.Type {
@@ -122,50 +126,52 @@ func (FirewallIppoolState) ElementType() reflect.Type {
 }
 
 type firewallIppoolArgs struct {
-	AddNat64Route       *string `pulumi:"addNat64Route"`
-	ArpIntf             *string `pulumi:"arpIntf"`
-	ArpReply            *string `pulumi:"arpReply"`
-	AssociatedInterface *string `pulumi:"associatedInterface"`
-	BlockSize           *int    `pulumi:"blockSize"`
-	Comments            *string `pulumi:"comments"`
-	Endip               string  `pulumi:"endip"`
-	Endport             *int    `pulumi:"endport"`
-	Name                *string `pulumi:"name"`
-	Nat64               *string `pulumi:"nat64"`
-	NumBlocksPerUser    *int    `pulumi:"numBlocksPerUser"`
-	PbaTimeout          *int    `pulumi:"pbaTimeout"`
-	PermitAnyHost       *string `pulumi:"permitAnyHost"`
-	PortPerUser         *int    `pulumi:"portPerUser"`
-	SourceEndip         *string `pulumi:"sourceEndip"`
-	SourceStartip       *string `pulumi:"sourceStartip"`
-	Startip             string  `pulumi:"startip"`
-	Startport           *int    `pulumi:"startport"`
-	Type                *string `pulumi:"type"`
-	Vdomparam           *string `pulumi:"vdomparam"`
+	AddNat64Route           *string `pulumi:"addNat64Route"`
+	ArpIntf                 *string `pulumi:"arpIntf"`
+	ArpReply                *string `pulumi:"arpReply"`
+	AssociatedInterface     *string `pulumi:"associatedInterface"`
+	BlockSize               *int    `pulumi:"blockSize"`
+	Comments                *string `pulumi:"comments"`
+	Endip                   string  `pulumi:"endip"`
+	Endport                 *int    `pulumi:"endport"`
+	Name                    *string `pulumi:"name"`
+	Nat64                   *string `pulumi:"nat64"`
+	NumBlocksPerUser        *int    `pulumi:"numBlocksPerUser"`
+	PbaTimeout              *int    `pulumi:"pbaTimeout"`
+	PermitAnyHost           *string `pulumi:"permitAnyHost"`
+	PortPerUser             *int    `pulumi:"portPerUser"`
+	SourceEndip             *string `pulumi:"sourceEndip"`
+	SourceStartip           *string `pulumi:"sourceStartip"`
+	Startip                 string  `pulumi:"startip"`
+	Startport               *int    `pulumi:"startport"`
+	SubnetBroadcastInIppool *string `pulumi:"subnetBroadcastInIppool"`
+	Type                    *string `pulumi:"type"`
+	Vdomparam               *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallIppool resource.
 type FirewallIppoolArgs struct {
-	AddNat64Route       pulumi.StringPtrInput
-	ArpIntf             pulumi.StringPtrInput
-	ArpReply            pulumi.StringPtrInput
-	AssociatedInterface pulumi.StringPtrInput
-	BlockSize           pulumi.IntPtrInput
-	Comments            pulumi.StringPtrInput
-	Endip               pulumi.StringInput
-	Endport             pulumi.IntPtrInput
-	Name                pulumi.StringPtrInput
-	Nat64               pulumi.StringPtrInput
-	NumBlocksPerUser    pulumi.IntPtrInput
-	PbaTimeout          pulumi.IntPtrInput
-	PermitAnyHost       pulumi.StringPtrInput
-	PortPerUser         pulumi.IntPtrInput
-	SourceEndip         pulumi.StringPtrInput
-	SourceStartip       pulumi.StringPtrInput
-	Startip             pulumi.StringInput
-	Startport           pulumi.IntPtrInput
-	Type                pulumi.StringPtrInput
-	Vdomparam           pulumi.StringPtrInput
+	AddNat64Route           pulumi.StringPtrInput
+	ArpIntf                 pulumi.StringPtrInput
+	ArpReply                pulumi.StringPtrInput
+	AssociatedInterface     pulumi.StringPtrInput
+	BlockSize               pulumi.IntPtrInput
+	Comments                pulumi.StringPtrInput
+	Endip                   pulumi.StringInput
+	Endport                 pulumi.IntPtrInput
+	Name                    pulumi.StringPtrInput
+	Nat64                   pulumi.StringPtrInput
+	NumBlocksPerUser        pulumi.IntPtrInput
+	PbaTimeout              pulumi.IntPtrInput
+	PermitAnyHost           pulumi.StringPtrInput
+	PortPerUser             pulumi.IntPtrInput
+	SourceEndip             pulumi.StringPtrInput
+	SourceStartip           pulumi.StringPtrInput
+	Startip                 pulumi.StringInput
+	Startport               pulumi.IntPtrInput
+	SubnetBroadcastInIppool pulumi.StringPtrInput
+	Type                    pulumi.StringPtrInput
+	Vdomparam               pulumi.StringPtrInput
 }
 
 func (FirewallIppoolArgs) ElementType() reflect.Type {
@@ -325,6 +331,10 @@ func (o FirewallIppoolOutput) Startip() pulumi.StringOutput {
 
 func (o FirewallIppoolOutput) Startport() pulumi.IntOutput {
 	return o.ApplyT(func(v *FirewallIppool) pulumi.IntOutput { return v.Startport }).(pulumi.IntOutput)
+}
+
+func (o FirewallIppoolOutput) SubnetBroadcastInIppool() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallIppool) pulumi.StringOutput { return v.SubnetBroadcastInIppool }).(pulumi.StringOutput)
 }
 
 func (o FirewallIppoolOutput) Type() pulumi.StringOutput {

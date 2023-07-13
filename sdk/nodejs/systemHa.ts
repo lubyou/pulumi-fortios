@@ -40,8 +40,10 @@ export class SystemHa extends pulumi.CustomResource {
     public readonly cpuThreshold!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly encryption!: pulumi.Output<string>;
+    public readonly evpnTtl!: pulumi.Output<number>;
     public readonly failoverHoldTime!: pulumi.Output<number>;
     public readonly ftpProxyThreshold!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly gratuitousArps!: pulumi.Output<string>;
     public readonly groupId!: pulumi.Output<number>;
     public readonly groupName!: pulumi.Output<string>;
@@ -137,8 +139,10 @@ export class SystemHa extends pulumi.CustomResource {
             resourceInputs["cpuThreshold"] = state ? state.cpuThreshold : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["encryption"] = state ? state.encryption : undefined;
+            resourceInputs["evpnTtl"] = state ? state.evpnTtl : undefined;
             resourceInputs["failoverHoldTime"] = state ? state.failoverHoldTime : undefined;
             resourceInputs["ftpProxyThreshold"] = state ? state.ftpProxyThreshold : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["gratuitousArps"] = state ? state.gratuitousArps : undefined;
             resourceInputs["groupId"] = state ? state.groupId : undefined;
             resourceInputs["groupName"] = state ? state.groupName : undefined;
@@ -222,8 +226,10 @@ export class SystemHa extends pulumi.CustomResource {
             resourceInputs["cpuThreshold"] = args ? args.cpuThreshold : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["encryption"] = args ? args.encryption : undefined;
+            resourceInputs["evpnTtl"] = args ? args.evpnTtl : undefined;
             resourceInputs["failoverHoldTime"] = args ? args.failoverHoldTime : undefined;
             resourceInputs["ftpProxyThreshold"] = args ? args.ftpProxyThreshold : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["gratuitousArps"] = args ? args.gratuitousArps : undefined;
             resourceInputs["groupId"] = args ? args.groupId : undefined;
             resourceInputs["groupName"] = args ? args.groupName : undefined;
@@ -317,8 +323,10 @@ export interface SystemHaState {
     cpuThreshold?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     encryption?: pulumi.Input<string>;
+    evpnTtl?: pulumi.Input<number>;
     failoverHoldTime?: pulumi.Input<number>;
     ftpProxyThreshold?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     gratuitousArps?: pulumi.Input<string>;
     groupId?: pulumi.Input<number>;
     groupName?: pulumi.Input<string>;
@@ -406,8 +414,10 @@ export interface SystemHaArgs {
     cpuThreshold?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     encryption?: pulumi.Input<string>;
+    evpnTtl?: pulumi.Input<number>;
     failoverHoldTime?: pulumi.Input<number>;
     ftpProxyThreshold?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     gratuitousArps?: pulumi.Input<string>;
     groupId?: pulumi.Input<number>;
     groupName?: pulumi.Input<string>;

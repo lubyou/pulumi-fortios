@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupFirewallShaperPerIpShaper(ctx *pulumi.Context, args *LookupFirewallShaperPerIpShaperArgs, opts ...pulumi.InvokeOption) (*LookupFirewallShaperPerIpShaperResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallShaperPerIpShaperResult
 	err := ctx.Invoke("fortios:index/getFirewallShaperPerIpShaper:GetFirewallShaperPerIpShaper", args, &rv, opts...)
 	if err != nil {

@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func GetRouterbgpNeighborList(ctx *pulumi.Context, args *GetRouterbgpNeighborListArgs, opts ...pulumi.InvokeOption) (*GetRouterbgpNeighborListResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetRouterbgpNeighborListResult
 	err := ctx.Invoke("fortios:index/getRouterbgpNeighborList:GetRouterbgpNeighborList", args, &rv, opts...)
 	if err != nil {

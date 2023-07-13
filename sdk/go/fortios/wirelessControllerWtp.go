@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -23,6 +24,7 @@ type WirelessControllerWtp struct {
 	DynamicSortSubtable            pulumi.StringPtrOutput                            `pulumi:"dynamicSortSubtable"`
 	FirmwareProvision              pulumi.StringOutput                               `pulumi:"firmwareProvision"`
 	FirmwareProvisionLatest        pulumi.StringOutput                               `pulumi:"firmwareProvisionLatest"`
+	GetAllTables                   pulumi.StringPtrOutput                            `pulumi:"getAllTables"`
 	ImageDownload                  pulumi.StringOutput                               `pulumi:"imageDownload"`
 	Index                          pulumi.IntOutput                                  `pulumi:"index"`
 	IpFragmentPreventing           pulumi.StringOutput                               `pulumi:"ipFragmentPreventing"`
@@ -77,7 +79,7 @@ func NewWirelessControllerWtp(ctx *pulumi.Context,
 		"loginPasswd",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WirelessControllerWtp
 	err := ctx.RegisterResource("fortios:index/wirelessControllerWtp:WirelessControllerWtp", name, args, &resource, opts...)
 	if err != nil {
@@ -109,6 +111,7 @@ type wirelessControllerWtpState struct {
 	DynamicSortSubtable            *string                                  `pulumi:"dynamicSortSubtable"`
 	FirmwareProvision              *string                                  `pulumi:"firmwareProvision"`
 	FirmwareProvisionLatest        *string                                  `pulumi:"firmwareProvisionLatest"`
+	GetAllTables                   *string                                  `pulumi:"getAllTables"`
 	ImageDownload                  *string                                  `pulumi:"imageDownload"`
 	Index                          *int                                     `pulumi:"index"`
 	IpFragmentPreventing           *string                                  `pulumi:"ipFragmentPreventing"`
@@ -156,6 +159,7 @@ type WirelessControllerWtpState struct {
 	DynamicSortSubtable            pulumi.StringPtrInput
 	FirmwareProvision              pulumi.StringPtrInput
 	FirmwareProvisionLatest        pulumi.StringPtrInput
+	GetAllTables                   pulumi.StringPtrInput
 	ImageDownload                  pulumi.StringPtrInput
 	Index                          pulumi.IntPtrInput
 	IpFragmentPreventing           pulumi.StringPtrInput
@@ -207,6 +211,7 @@ type wirelessControllerWtpArgs struct {
 	DynamicSortSubtable            *string                                  `pulumi:"dynamicSortSubtable"`
 	FirmwareProvision              *string                                  `pulumi:"firmwareProvision"`
 	FirmwareProvisionLatest        *string                                  `pulumi:"firmwareProvisionLatest"`
+	GetAllTables                   *string                                  `pulumi:"getAllTables"`
 	ImageDownload                  *string                                  `pulumi:"imageDownload"`
 	Index                          *int                                     `pulumi:"index"`
 	IpFragmentPreventing           *string                                  `pulumi:"ipFragmentPreventing"`
@@ -255,6 +260,7 @@ type WirelessControllerWtpArgs struct {
 	DynamicSortSubtable            pulumi.StringPtrInput
 	FirmwareProvision              pulumi.StringPtrInput
 	FirmwareProvisionLatest        pulumi.StringPtrInput
+	GetAllTables                   pulumi.StringPtrInput
 	ImageDownload                  pulumi.StringPtrInput
 	Index                          pulumi.IntPtrInput
 	IpFragmentPreventing           pulumi.StringPtrInput
@@ -413,6 +419,10 @@ func (o WirelessControllerWtpOutput) FirmwareProvision() pulumi.StringOutput {
 
 func (o WirelessControllerWtpOutput) FirmwareProvisionLatest() pulumi.StringOutput {
 	return o.ApplyT(func(v *WirelessControllerWtp) pulumi.StringOutput { return v.FirmwareProvisionLatest }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWtpOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerWtp) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o WirelessControllerWtpOutput) ImageDownload() pulumi.StringOutput {

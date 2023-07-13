@@ -22,7 +22,7 @@ class GetRouterBgpResult:
     """
     A collection of values returned by GetRouterBgp.
     """
-    def __init__(__self__, additional_path=None, additional_path6=None, additional_path_select=None, additional_path_select6=None, additional_path_select_vpnv4=None, additional_path_vpnv4=None, admin_distances=None, aggregate_address6s=None, aggregate_addresses=None, always_compare_med=None, as_=None, bestpath_as_path_ignore=None, bestpath_cmp_confed_aspath=None, bestpath_cmp_routerid=None, bestpath_med_confed=None, bestpath_med_missing_as_worst=None, client_to_client_reflection=None, cluster_id=None, confederation_identifier=None, confederation_peers=None, dampening=None, dampening_max_suppress_time=None, dampening_reachability_half_life=None, dampening_reuse=None, dampening_route_map=None, dampening_suppress=None, dampening_unreachability_half_life=None, default_local_preference=None, deterministic_med=None, distance_external=None, distance_internal=None, distance_local=None, ebgp_multipath=None, enforce_first_as=None, fast_external_failover=None, graceful_end_on_timer=None, graceful_restart=None, graceful_restart_time=None, graceful_stalepath_time=None, graceful_update_delay=None, holdtime_timer=None, ibgp_multipath=None, id=None, ignore_optional_capability=None, keepalive_timer=None, log_neighbour_changes=None, multipath_recursive_distance=None, neighbor_groups=None, neighbor_range6s=None, neighbor_ranges=None, neighbors=None, network6s=None, network_import_check=None, networks=None, recursive_inherit_priority=None, recursive_next_hop=None, redistribute6s=None, redistributes=None, router_id=None, scan_time=None, synchronization=None, tag_resolve_mode=None, vdomparam=None, vrf6s=None, vrf_leak6s=None, vrf_leaks=None, vrves=None):
+    def __init__(__self__, additional_path=None, additional_path6=None, additional_path_select=None, additional_path_select6=None, additional_path_select_vpnv4=None, additional_path_vpnv4=None, admin_distances=None, aggregate_address6s=None, aggregate_addresses=None, always_compare_med=None, as_=None, as_string=None, bestpath_as_path_ignore=None, bestpath_cmp_confed_aspath=None, bestpath_cmp_routerid=None, bestpath_med_confed=None, bestpath_med_missing_as_worst=None, client_to_client_reflection=None, cluster_id=None, confederation_identifier=None, confederation_peers=None, cross_family_conditional_adv=None, dampening=None, dampening_max_suppress_time=None, dampening_reachability_half_life=None, dampening_reuse=None, dampening_route_map=None, dampening_suppress=None, dampening_unreachability_half_life=None, default_local_preference=None, deterministic_med=None, distance_external=None, distance_internal=None, distance_local=None, ebgp_multipath=None, enforce_first_as=None, fast_external_failover=None, graceful_end_on_timer=None, graceful_restart=None, graceful_restart_time=None, graceful_stalepath_time=None, graceful_update_delay=None, holdtime_timer=None, ibgp_multipath=None, id=None, ignore_optional_capability=None, keepalive_timer=None, log_neighbour_changes=None, multipath_recursive_distance=None, neighbor_groups=None, neighbor_range6s=None, neighbor_ranges=None, neighbors=None, network6s=None, network_import_check=None, networks=None, recursive_inherit_priority=None, recursive_next_hop=None, redistribute6s=None, redistributes=None, router_id=None, scan_time=None, synchronization=None, tag_resolve_mode=None, vdomparam=None, vrf6s=None, vrf_leak6s=None, vrf_leaks=None, vrves=None):
         if additional_path and not isinstance(additional_path, str):
             raise TypeError("Expected argument 'additional_path' to be a str")
         pulumi.set(__self__, "additional_path", additional_path)
@@ -56,6 +56,9 @@ class GetRouterBgpResult:
         if as_ and not isinstance(as_, int):
             raise TypeError("Expected argument 'as_' to be a int")
         pulumi.set(__self__, "as_", as_)
+        if as_string and not isinstance(as_string, str):
+            raise TypeError("Expected argument 'as_string' to be a str")
+        pulumi.set(__self__, "as_string", as_string)
         if bestpath_as_path_ignore and not isinstance(bestpath_as_path_ignore, str):
             raise TypeError("Expected argument 'bestpath_as_path_ignore' to be a str")
         pulumi.set(__self__, "bestpath_as_path_ignore", bestpath_as_path_ignore)
@@ -83,6 +86,9 @@ class GetRouterBgpResult:
         if confederation_peers and not isinstance(confederation_peers, list):
             raise TypeError("Expected argument 'confederation_peers' to be a list")
         pulumi.set(__self__, "confederation_peers", confederation_peers)
+        if cross_family_conditional_adv and not isinstance(cross_family_conditional_adv, str):
+            raise TypeError("Expected argument 'cross_family_conditional_adv' to be a str")
+        pulumi.set(__self__, "cross_family_conditional_adv", cross_family_conditional_adv)
         if dampening and not isinstance(dampening, str):
             raise TypeError("Expected argument 'dampening' to be a str")
         pulumi.set(__self__, "dampening", dampening)
@@ -281,6 +287,11 @@ class GetRouterBgpResult:
         return pulumi.get(self, "as_")
 
     @property
+    @pulumi.getter(name="asString")
+    def as_string(self) -> str:
+        return pulumi.get(self, "as_string")
+
+    @property
     @pulumi.getter(name="bestpathAsPathIgnore")
     def bestpath_as_path_ignore(self) -> str:
         return pulumi.get(self, "bestpath_as_path_ignore")
@@ -324,6 +335,11 @@ class GetRouterBgpResult:
     @pulumi.getter(name="confederationPeers")
     def confederation_peers(self) -> Sequence['outputs.GetRouterBgpConfederationPeerResult']:
         return pulumi.get(self, "confederation_peers")
+
+    @property
+    @pulumi.getter(name="crossFamilyConditionalAdv")
+    def cross_family_conditional_adv(self) -> str:
+        return pulumi.get(self, "cross_family_conditional_adv")
 
     @property
     @pulumi.getter
@@ -581,6 +597,7 @@ class AwaitableGetRouterBgpResult(GetRouterBgpResult):
             aggregate_addresses=self.aggregate_addresses,
             always_compare_med=self.always_compare_med,
             as_=self.as_,
+            as_string=self.as_string,
             bestpath_as_path_ignore=self.bestpath_as_path_ignore,
             bestpath_cmp_confed_aspath=self.bestpath_cmp_confed_aspath,
             bestpath_cmp_routerid=self.bestpath_cmp_routerid,
@@ -590,6 +607,7 @@ class AwaitableGetRouterBgpResult(GetRouterBgpResult):
             cluster_id=self.cluster_id,
             confederation_identifier=self.confederation_identifier,
             confederation_peers=self.confederation_peers,
+            cross_family_conditional_adv=self.cross_family_conditional_adv,
             dampening=self.dampening,
             dampening_max_suppress_time=self.dampening_max_suppress_time,
             dampening_reachability_half_life=self.dampening_reachability_half_life,
@@ -650,73 +668,75 @@ def get_router_bgp(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getRouterBgp:GetRouterBgp', __args__, opts=opts, typ=GetRouterBgpResult).value
 
     return AwaitableGetRouterBgpResult(
-        additional_path=__ret__.additional_path,
-        additional_path6=__ret__.additional_path6,
-        additional_path_select=__ret__.additional_path_select,
-        additional_path_select6=__ret__.additional_path_select6,
-        additional_path_select_vpnv4=__ret__.additional_path_select_vpnv4,
-        additional_path_vpnv4=__ret__.additional_path_vpnv4,
-        admin_distances=__ret__.admin_distances,
-        aggregate_address6s=__ret__.aggregate_address6s,
-        aggregate_addresses=__ret__.aggregate_addresses,
-        always_compare_med=__ret__.always_compare_med,
-        as_=__ret__.as_,
-        bestpath_as_path_ignore=__ret__.bestpath_as_path_ignore,
-        bestpath_cmp_confed_aspath=__ret__.bestpath_cmp_confed_aspath,
-        bestpath_cmp_routerid=__ret__.bestpath_cmp_routerid,
-        bestpath_med_confed=__ret__.bestpath_med_confed,
-        bestpath_med_missing_as_worst=__ret__.bestpath_med_missing_as_worst,
-        client_to_client_reflection=__ret__.client_to_client_reflection,
-        cluster_id=__ret__.cluster_id,
-        confederation_identifier=__ret__.confederation_identifier,
-        confederation_peers=__ret__.confederation_peers,
-        dampening=__ret__.dampening,
-        dampening_max_suppress_time=__ret__.dampening_max_suppress_time,
-        dampening_reachability_half_life=__ret__.dampening_reachability_half_life,
-        dampening_reuse=__ret__.dampening_reuse,
-        dampening_route_map=__ret__.dampening_route_map,
-        dampening_suppress=__ret__.dampening_suppress,
-        dampening_unreachability_half_life=__ret__.dampening_unreachability_half_life,
-        default_local_preference=__ret__.default_local_preference,
-        deterministic_med=__ret__.deterministic_med,
-        distance_external=__ret__.distance_external,
-        distance_internal=__ret__.distance_internal,
-        distance_local=__ret__.distance_local,
-        ebgp_multipath=__ret__.ebgp_multipath,
-        enforce_first_as=__ret__.enforce_first_as,
-        fast_external_failover=__ret__.fast_external_failover,
-        graceful_end_on_timer=__ret__.graceful_end_on_timer,
-        graceful_restart=__ret__.graceful_restart,
-        graceful_restart_time=__ret__.graceful_restart_time,
-        graceful_stalepath_time=__ret__.graceful_stalepath_time,
-        graceful_update_delay=__ret__.graceful_update_delay,
-        holdtime_timer=__ret__.holdtime_timer,
-        ibgp_multipath=__ret__.ibgp_multipath,
-        id=__ret__.id,
-        ignore_optional_capability=__ret__.ignore_optional_capability,
-        keepalive_timer=__ret__.keepalive_timer,
-        log_neighbour_changes=__ret__.log_neighbour_changes,
-        multipath_recursive_distance=__ret__.multipath_recursive_distance,
-        neighbor_groups=__ret__.neighbor_groups,
-        neighbor_range6s=__ret__.neighbor_range6s,
-        neighbor_ranges=__ret__.neighbor_ranges,
-        neighbors=__ret__.neighbors,
-        network6s=__ret__.network6s,
-        network_import_check=__ret__.network_import_check,
-        networks=__ret__.networks,
-        recursive_inherit_priority=__ret__.recursive_inherit_priority,
-        recursive_next_hop=__ret__.recursive_next_hop,
-        redistribute6s=__ret__.redistribute6s,
-        redistributes=__ret__.redistributes,
-        router_id=__ret__.router_id,
-        scan_time=__ret__.scan_time,
-        synchronization=__ret__.synchronization,
-        tag_resolve_mode=__ret__.tag_resolve_mode,
-        vdomparam=__ret__.vdomparam,
-        vrf6s=__ret__.vrf6s,
-        vrf_leak6s=__ret__.vrf_leak6s,
-        vrf_leaks=__ret__.vrf_leaks,
-        vrves=__ret__.vrves)
+        additional_path=pulumi.get(__ret__, 'additional_path'),
+        additional_path6=pulumi.get(__ret__, 'additional_path6'),
+        additional_path_select=pulumi.get(__ret__, 'additional_path_select'),
+        additional_path_select6=pulumi.get(__ret__, 'additional_path_select6'),
+        additional_path_select_vpnv4=pulumi.get(__ret__, 'additional_path_select_vpnv4'),
+        additional_path_vpnv4=pulumi.get(__ret__, 'additional_path_vpnv4'),
+        admin_distances=pulumi.get(__ret__, 'admin_distances'),
+        aggregate_address6s=pulumi.get(__ret__, 'aggregate_address6s'),
+        aggregate_addresses=pulumi.get(__ret__, 'aggregate_addresses'),
+        always_compare_med=pulumi.get(__ret__, 'always_compare_med'),
+        as_=pulumi.get(__ret__, 'as_'),
+        as_string=pulumi.get(__ret__, 'as_string'),
+        bestpath_as_path_ignore=pulumi.get(__ret__, 'bestpath_as_path_ignore'),
+        bestpath_cmp_confed_aspath=pulumi.get(__ret__, 'bestpath_cmp_confed_aspath'),
+        bestpath_cmp_routerid=pulumi.get(__ret__, 'bestpath_cmp_routerid'),
+        bestpath_med_confed=pulumi.get(__ret__, 'bestpath_med_confed'),
+        bestpath_med_missing_as_worst=pulumi.get(__ret__, 'bestpath_med_missing_as_worst'),
+        client_to_client_reflection=pulumi.get(__ret__, 'client_to_client_reflection'),
+        cluster_id=pulumi.get(__ret__, 'cluster_id'),
+        confederation_identifier=pulumi.get(__ret__, 'confederation_identifier'),
+        confederation_peers=pulumi.get(__ret__, 'confederation_peers'),
+        cross_family_conditional_adv=pulumi.get(__ret__, 'cross_family_conditional_adv'),
+        dampening=pulumi.get(__ret__, 'dampening'),
+        dampening_max_suppress_time=pulumi.get(__ret__, 'dampening_max_suppress_time'),
+        dampening_reachability_half_life=pulumi.get(__ret__, 'dampening_reachability_half_life'),
+        dampening_reuse=pulumi.get(__ret__, 'dampening_reuse'),
+        dampening_route_map=pulumi.get(__ret__, 'dampening_route_map'),
+        dampening_suppress=pulumi.get(__ret__, 'dampening_suppress'),
+        dampening_unreachability_half_life=pulumi.get(__ret__, 'dampening_unreachability_half_life'),
+        default_local_preference=pulumi.get(__ret__, 'default_local_preference'),
+        deterministic_med=pulumi.get(__ret__, 'deterministic_med'),
+        distance_external=pulumi.get(__ret__, 'distance_external'),
+        distance_internal=pulumi.get(__ret__, 'distance_internal'),
+        distance_local=pulumi.get(__ret__, 'distance_local'),
+        ebgp_multipath=pulumi.get(__ret__, 'ebgp_multipath'),
+        enforce_first_as=pulumi.get(__ret__, 'enforce_first_as'),
+        fast_external_failover=pulumi.get(__ret__, 'fast_external_failover'),
+        graceful_end_on_timer=pulumi.get(__ret__, 'graceful_end_on_timer'),
+        graceful_restart=pulumi.get(__ret__, 'graceful_restart'),
+        graceful_restart_time=pulumi.get(__ret__, 'graceful_restart_time'),
+        graceful_stalepath_time=pulumi.get(__ret__, 'graceful_stalepath_time'),
+        graceful_update_delay=pulumi.get(__ret__, 'graceful_update_delay'),
+        holdtime_timer=pulumi.get(__ret__, 'holdtime_timer'),
+        ibgp_multipath=pulumi.get(__ret__, 'ibgp_multipath'),
+        id=pulumi.get(__ret__, 'id'),
+        ignore_optional_capability=pulumi.get(__ret__, 'ignore_optional_capability'),
+        keepalive_timer=pulumi.get(__ret__, 'keepalive_timer'),
+        log_neighbour_changes=pulumi.get(__ret__, 'log_neighbour_changes'),
+        multipath_recursive_distance=pulumi.get(__ret__, 'multipath_recursive_distance'),
+        neighbor_groups=pulumi.get(__ret__, 'neighbor_groups'),
+        neighbor_range6s=pulumi.get(__ret__, 'neighbor_range6s'),
+        neighbor_ranges=pulumi.get(__ret__, 'neighbor_ranges'),
+        neighbors=pulumi.get(__ret__, 'neighbors'),
+        network6s=pulumi.get(__ret__, 'network6s'),
+        network_import_check=pulumi.get(__ret__, 'network_import_check'),
+        networks=pulumi.get(__ret__, 'networks'),
+        recursive_inherit_priority=pulumi.get(__ret__, 'recursive_inherit_priority'),
+        recursive_next_hop=pulumi.get(__ret__, 'recursive_next_hop'),
+        redistribute6s=pulumi.get(__ret__, 'redistribute6s'),
+        redistributes=pulumi.get(__ret__, 'redistributes'),
+        router_id=pulumi.get(__ret__, 'router_id'),
+        scan_time=pulumi.get(__ret__, 'scan_time'),
+        synchronization=pulumi.get(__ret__, 'synchronization'),
+        tag_resolve_mode=pulumi.get(__ret__, 'tag_resolve_mode'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'),
+        vrf6s=pulumi.get(__ret__, 'vrf6s'),
+        vrf_leak6s=pulumi.get(__ret__, 'vrf_leak6s'),
+        vrf_leaks=pulumi.get(__ret__, 'vrf_leaks'),
+        vrves=pulumi.get(__ret__, 'vrves'))
 
 
 @_utilities.lift_output_func(get_router_bgp)

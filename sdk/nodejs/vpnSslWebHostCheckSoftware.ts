@@ -36,6 +36,7 @@ export class VpnSslWebHostCheckSoftware extends pulumi.CustomResource {
 
     public readonly checkItemLists!: pulumi.Output<outputs.VpnSslWebHostCheckSoftwareCheckItemList[] | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly guid!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
     public readonly osType!: pulumi.Output<string>;
@@ -58,6 +59,7 @@ export class VpnSslWebHostCheckSoftware extends pulumi.CustomResource {
             const state = argsOrState as VpnSslWebHostCheckSoftwareState | undefined;
             resourceInputs["checkItemLists"] = state ? state.checkItemLists : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["guid"] = state ? state.guid : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["osType"] = state ? state.osType : undefined;
@@ -68,6 +70,7 @@ export class VpnSslWebHostCheckSoftware extends pulumi.CustomResource {
             const args = argsOrState as VpnSslWebHostCheckSoftwareArgs | undefined;
             resourceInputs["checkItemLists"] = args ? args.checkItemLists : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["guid"] = args ? args.guid : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["osType"] = args ? args.osType : undefined;
@@ -86,6 +89,7 @@ export class VpnSslWebHostCheckSoftware extends pulumi.CustomResource {
 export interface VpnSslWebHostCheckSoftwareState {
     checkItemLists?: pulumi.Input<pulumi.Input<inputs.VpnSslWebHostCheckSoftwareCheckItemList>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     guid?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     osType?: pulumi.Input<string>;
@@ -100,6 +104,7 @@ export interface VpnSslWebHostCheckSoftwareState {
 export interface VpnSslWebHostCheckSoftwareArgs {
     checkItemLists?: pulumi.Input<pulumi.Input<inputs.VpnSslWebHostCheckSoftwareCheckItemList>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     guid?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     osType?: pulumi.Input<string>;

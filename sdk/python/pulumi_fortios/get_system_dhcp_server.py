@@ -22,7 +22,7 @@ class GetSystemDhcpServerResult:
     """
     A collection of values returned by GetSystemDhcpServer.
     """
-    def __init__(__self__, auto_configuration=None, auto_managed_status=None, conflicted_ip_timeout=None, ddns_auth=None, ddns_key=None, ddns_keyname=None, ddns_server_ip=None, ddns_ttl=None, ddns_update=None, ddns_update_override=None, ddns_zone=None, default_gateway=None, dhcp_settings_from_fortiipam=None, dns_server1=None, dns_server2=None, dns_server3=None, dns_server4=None, dns_service=None, domain=None, exclude_ranges=None, filename=None, forticlient_on_net_status=None, fosid=None, id=None, interface=None, ip_mode=None, ip_ranges=None, ipsec_lease_hold=None, lease_time=None, mac_acl_default_action=None, netmask=None, next_server=None, ntp_server1=None, ntp_server2=None, ntp_server3=None, ntp_service=None, options=None, reserved_addresses=None, server_type=None, status=None, tftp_servers=None, timezone=None, timezone_option=None, vci_match=None, vci_strings=None, vdomparam=None, wifi_ac1=None, wifi_ac2=None, wifi_ac3=None, wifi_ac_service=None, wins_server1=None, wins_server2=None):
+    def __init__(__self__, auto_configuration=None, auto_managed_status=None, conflicted_ip_timeout=None, ddns_auth=None, ddns_key=None, ddns_keyname=None, ddns_server_ip=None, ddns_ttl=None, ddns_update=None, ddns_update_override=None, ddns_zone=None, default_gateway=None, dhcp_settings_from_fortiipam=None, dns_server1=None, dns_server2=None, dns_server3=None, dns_server4=None, dns_service=None, domain=None, exclude_ranges=None, filename=None, forticlient_on_net_status=None, fosid=None, id=None, interface=None, ip_mode=None, ip_ranges=None, ipsec_lease_hold=None, lease_time=None, mac_acl_default_action=None, netmask=None, next_server=None, ntp_server1=None, ntp_server2=None, ntp_server3=None, ntp_service=None, options=None, relay_agent=None, reserved_addresses=None, server_type=None, shared_subnet=None, status=None, tftp_servers=None, timezone=None, timezone_option=None, vci_match=None, vci_strings=None, vdomparam=None, wifi_ac1=None, wifi_ac2=None, wifi_ac3=None, wifi_ac_service=None, wins_server1=None, wins_server2=None):
         if auto_configuration and not isinstance(auto_configuration, str):
             raise TypeError("Expected argument 'auto_configuration' to be a str")
         pulumi.set(__self__, "auto_configuration", auto_configuration)
@@ -134,12 +134,18 @@ class GetSystemDhcpServerResult:
         if options and not isinstance(options, list):
             raise TypeError("Expected argument 'options' to be a list")
         pulumi.set(__self__, "options", options)
+        if relay_agent and not isinstance(relay_agent, str):
+            raise TypeError("Expected argument 'relay_agent' to be a str")
+        pulumi.set(__self__, "relay_agent", relay_agent)
         if reserved_addresses and not isinstance(reserved_addresses, list):
             raise TypeError("Expected argument 'reserved_addresses' to be a list")
         pulumi.set(__self__, "reserved_addresses", reserved_addresses)
         if server_type and not isinstance(server_type, str):
             raise TypeError("Expected argument 'server_type' to be a str")
         pulumi.set(__self__, "server_type", server_type)
+        if shared_subnet and not isinstance(shared_subnet, str):
+            raise TypeError("Expected argument 'shared_subnet' to be a str")
+        pulumi.set(__self__, "shared_subnet", shared_subnet)
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
@@ -369,6 +375,11 @@ class GetSystemDhcpServerResult:
         return pulumi.get(self, "options")
 
     @property
+    @pulumi.getter(name="relayAgent")
+    def relay_agent(self) -> str:
+        return pulumi.get(self, "relay_agent")
+
+    @property
     @pulumi.getter(name="reservedAddresses")
     def reserved_addresses(self) -> Sequence['outputs.GetSystemDhcpServerReservedAddressResult']:
         return pulumi.get(self, "reserved_addresses")
@@ -377,6 +388,11 @@ class GetSystemDhcpServerResult:
     @pulumi.getter(name="serverType")
     def server_type(self) -> str:
         return pulumi.get(self, "server_type")
+
+    @property
+    @pulumi.getter(name="sharedSubnet")
+    def shared_subnet(self) -> str:
+        return pulumi.get(self, "shared_subnet")
 
     @property
     @pulumi.getter
@@ -487,8 +503,10 @@ class AwaitableGetSystemDhcpServerResult(GetSystemDhcpServerResult):
             ntp_server3=self.ntp_server3,
             ntp_service=self.ntp_service,
             options=self.options,
+            relay_agent=self.relay_agent,
             reserved_addresses=self.reserved_addresses,
             server_type=self.server_type,
+            shared_subnet=self.shared_subnet,
             status=self.status,
             tftp_servers=self.tftp_servers,
             timezone=self.timezone,
@@ -517,58 +535,60 @@ def get_system_dhcp_server(fosid: Optional[int] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemDhcpServer:GetSystemDhcpServer', __args__, opts=opts, typ=GetSystemDhcpServerResult).value
 
     return AwaitableGetSystemDhcpServerResult(
-        auto_configuration=__ret__.auto_configuration,
-        auto_managed_status=__ret__.auto_managed_status,
-        conflicted_ip_timeout=__ret__.conflicted_ip_timeout,
-        ddns_auth=__ret__.ddns_auth,
-        ddns_key=__ret__.ddns_key,
-        ddns_keyname=__ret__.ddns_keyname,
-        ddns_server_ip=__ret__.ddns_server_ip,
-        ddns_ttl=__ret__.ddns_ttl,
-        ddns_update=__ret__.ddns_update,
-        ddns_update_override=__ret__.ddns_update_override,
-        ddns_zone=__ret__.ddns_zone,
-        default_gateway=__ret__.default_gateway,
-        dhcp_settings_from_fortiipam=__ret__.dhcp_settings_from_fortiipam,
-        dns_server1=__ret__.dns_server1,
-        dns_server2=__ret__.dns_server2,
-        dns_server3=__ret__.dns_server3,
-        dns_server4=__ret__.dns_server4,
-        dns_service=__ret__.dns_service,
-        domain=__ret__.domain,
-        exclude_ranges=__ret__.exclude_ranges,
-        filename=__ret__.filename,
-        forticlient_on_net_status=__ret__.forticlient_on_net_status,
-        fosid=__ret__.fosid,
-        id=__ret__.id,
-        interface=__ret__.interface,
-        ip_mode=__ret__.ip_mode,
-        ip_ranges=__ret__.ip_ranges,
-        ipsec_lease_hold=__ret__.ipsec_lease_hold,
-        lease_time=__ret__.lease_time,
-        mac_acl_default_action=__ret__.mac_acl_default_action,
-        netmask=__ret__.netmask,
-        next_server=__ret__.next_server,
-        ntp_server1=__ret__.ntp_server1,
-        ntp_server2=__ret__.ntp_server2,
-        ntp_server3=__ret__.ntp_server3,
-        ntp_service=__ret__.ntp_service,
-        options=__ret__.options,
-        reserved_addresses=__ret__.reserved_addresses,
-        server_type=__ret__.server_type,
-        status=__ret__.status,
-        tftp_servers=__ret__.tftp_servers,
-        timezone=__ret__.timezone,
-        timezone_option=__ret__.timezone_option,
-        vci_match=__ret__.vci_match,
-        vci_strings=__ret__.vci_strings,
-        vdomparam=__ret__.vdomparam,
-        wifi_ac1=__ret__.wifi_ac1,
-        wifi_ac2=__ret__.wifi_ac2,
-        wifi_ac3=__ret__.wifi_ac3,
-        wifi_ac_service=__ret__.wifi_ac_service,
-        wins_server1=__ret__.wins_server1,
-        wins_server2=__ret__.wins_server2)
+        auto_configuration=pulumi.get(__ret__, 'auto_configuration'),
+        auto_managed_status=pulumi.get(__ret__, 'auto_managed_status'),
+        conflicted_ip_timeout=pulumi.get(__ret__, 'conflicted_ip_timeout'),
+        ddns_auth=pulumi.get(__ret__, 'ddns_auth'),
+        ddns_key=pulumi.get(__ret__, 'ddns_key'),
+        ddns_keyname=pulumi.get(__ret__, 'ddns_keyname'),
+        ddns_server_ip=pulumi.get(__ret__, 'ddns_server_ip'),
+        ddns_ttl=pulumi.get(__ret__, 'ddns_ttl'),
+        ddns_update=pulumi.get(__ret__, 'ddns_update'),
+        ddns_update_override=pulumi.get(__ret__, 'ddns_update_override'),
+        ddns_zone=pulumi.get(__ret__, 'ddns_zone'),
+        default_gateway=pulumi.get(__ret__, 'default_gateway'),
+        dhcp_settings_from_fortiipam=pulumi.get(__ret__, 'dhcp_settings_from_fortiipam'),
+        dns_server1=pulumi.get(__ret__, 'dns_server1'),
+        dns_server2=pulumi.get(__ret__, 'dns_server2'),
+        dns_server3=pulumi.get(__ret__, 'dns_server3'),
+        dns_server4=pulumi.get(__ret__, 'dns_server4'),
+        dns_service=pulumi.get(__ret__, 'dns_service'),
+        domain=pulumi.get(__ret__, 'domain'),
+        exclude_ranges=pulumi.get(__ret__, 'exclude_ranges'),
+        filename=pulumi.get(__ret__, 'filename'),
+        forticlient_on_net_status=pulumi.get(__ret__, 'forticlient_on_net_status'),
+        fosid=pulumi.get(__ret__, 'fosid'),
+        id=pulumi.get(__ret__, 'id'),
+        interface=pulumi.get(__ret__, 'interface'),
+        ip_mode=pulumi.get(__ret__, 'ip_mode'),
+        ip_ranges=pulumi.get(__ret__, 'ip_ranges'),
+        ipsec_lease_hold=pulumi.get(__ret__, 'ipsec_lease_hold'),
+        lease_time=pulumi.get(__ret__, 'lease_time'),
+        mac_acl_default_action=pulumi.get(__ret__, 'mac_acl_default_action'),
+        netmask=pulumi.get(__ret__, 'netmask'),
+        next_server=pulumi.get(__ret__, 'next_server'),
+        ntp_server1=pulumi.get(__ret__, 'ntp_server1'),
+        ntp_server2=pulumi.get(__ret__, 'ntp_server2'),
+        ntp_server3=pulumi.get(__ret__, 'ntp_server3'),
+        ntp_service=pulumi.get(__ret__, 'ntp_service'),
+        options=pulumi.get(__ret__, 'options'),
+        relay_agent=pulumi.get(__ret__, 'relay_agent'),
+        reserved_addresses=pulumi.get(__ret__, 'reserved_addresses'),
+        server_type=pulumi.get(__ret__, 'server_type'),
+        shared_subnet=pulumi.get(__ret__, 'shared_subnet'),
+        status=pulumi.get(__ret__, 'status'),
+        tftp_servers=pulumi.get(__ret__, 'tftp_servers'),
+        timezone=pulumi.get(__ret__, 'timezone'),
+        timezone_option=pulumi.get(__ret__, 'timezone_option'),
+        vci_match=pulumi.get(__ret__, 'vci_match'),
+        vci_strings=pulumi.get(__ret__, 'vci_strings'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'),
+        wifi_ac1=pulumi.get(__ret__, 'wifi_ac1'),
+        wifi_ac2=pulumi.get(__ret__, 'wifi_ac2'),
+        wifi_ac3=pulumi.get(__ret__, 'wifi_ac3'),
+        wifi_ac_service=pulumi.get(__ret__, 'wifi_ac_service'),
+        wins_server1=pulumi.get(__ret__, 'wins_server1'),
+        wins_server2=pulumi.get(__ret__, 'wins_server2'))
 
 
 @_utilities.lift_output_func(get_system_dhcp_server)

@@ -1094,6 +1094,7 @@ export interface FirewallAccessProxy6ApiGateway {
     sslDhBits: string;
     sslMaxVersion: string;
     sslMinVersion: string;
+    sslRenegotiation: string;
     sslVpnWebPortal: string;
     urlMap: string;
     urlMapType: string;
@@ -1121,6 +1122,7 @@ export interface FirewallAccessProxy6ApiGateway6 {
     sslDhBits: string;
     sslMaxVersion: string;
     sslMinVersion: string;
+    sslRenegotiation: string;
     sslVpnWebPortal: string;
     urlMap: string;
     urlMapType: string;
@@ -1135,6 +1137,7 @@ export interface FirewallAccessProxy6ApiGateway6Realserver {
     addrType: string;
     address: string;
     domain: string;
+    externalAuth: string;
     healthCheck: string;
     healthCheckProto: string;
     holddownInterval: string;
@@ -1147,6 +1150,8 @@ export interface FirewallAccessProxy6ApiGateway6Realserver {
     sshHostKeyValidation: string;
     sshHostKeys?: outputs.FirewallAccessProxy6ApiGateway6RealserverSshHostKey[];
     status: string;
+    translateHost: string;
+    tunnelEncryption: string;
     type: string;
     weight: number;
 }
@@ -1169,6 +1174,7 @@ export interface FirewallAccessProxy6ApiGatewayRealserver {
     addrType: string;
     address: string;
     domain: string;
+    externalAuth: string;
     healthCheck: string;
     healthCheckProto: string;
     holddownInterval: string;
@@ -1181,6 +1187,8 @@ export interface FirewallAccessProxy6ApiGatewayRealserver {
     sshHostKeyValidation: string;
     sshHostKeys?: outputs.FirewallAccessProxy6ApiGatewayRealserverSshHostKey[];
     status: string;
+    translateHost: string;
+    tunnelEncryption: string;
     type: string;
     weight: number;
 }
@@ -1216,6 +1224,7 @@ export interface FirewallAccessProxyApiGateway {
     sslDhBits: string;
     sslMaxVersion: string;
     sslMinVersion: string;
+    sslRenegotiation: string;
     sslVpnWebPortal: string;
     urlMap: string;
     urlMapType: string;
@@ -1243,6 +1252,7 @@ export interface FirewallAccessProxyApiGateway6 {
     sslDhBits: string;
     sslMaxVersion: string;
     sslMinVersion: string;
+    sslRenegotiation: string;
     sslVpnWebPortal: string;
     urlMap: string;
     urlMapType: string;
@@ -1257,6 +1267,7 @@ export interface FirewallAccessProxyApiGateway6Realserver {
     addrType: string;
     address: string;
     domain: string;
+    externalAuth: string;
     healthCheck: string;
     healthCheckProto: string;
     holddownInterval: string;
@@ -1269,6 +1280,8 @@ export interface FirewallAccessProxyApiGateway6Realserver {
     sshHostKeyValidation: string;
     sshHostKeys?: outputs.FirewallAccessProxyApiGateway6RealserverSshHostKey[];
     status: string;
+    translateHost: string;
+    tunnelEncryption: string;
     type: string;
     weight: number;
 }
@@ -1291,6 +1304,7 @@ export interface FirewallAccessProxyApiGatewayRealserver {
     addrType: string;
     address: string;
     domain: string;
+    externalAuth: string;
     healthCheck: string;
     healthCheckProto: string;
     holddownInterval: string;
@@ -1303,6 +1317,8 @@ export interface FirewallAccessProxyApiGatewayRealserver {
     sshHostKeyValidation: string;
     sshHostKeys?: outputs.FirewallAccessProxyApiGatewayRealserverSshHostKey[];
     status: string;
+    translateHost: string;
+    tunnelEncryption: string;
     type: string;
     weight: number;
 }
@@ -1380,6 +1396,10 @@ export interface FirewallAddressTagging {
 }
 
 export interface FirewallAddressTaggingTag {
+    name: string;
+}
+
+export interface FirewallAddrgrp6ExcludeMember {
     name: string;
 }
 
@@ -1757,6 +1777,10 @@ export interface FirewallInternetServiceGroupMember {
     name: string;
 }
 
+export interface FirewallInternetServiceSubappSubApp {
+    id: number;
+}
+
 export interface FirewallLocalInPolicy6Dstaddr {
     name: string;
 }
@@ -2037,6 +2061,10 @@ export interface FirewallPolicyNtlmEnabledBrowser {
     userAgentString: string;
 }
 
+export interface FirewallPolicyPcpPoolname {
+    name: string;
+}
+
 export interface FirewallPolicyPoolname {
     name: string;
 }
@@ -2086,6 +2114,10 @@ export interface FirewallPolicyUser {
 }
 
 export interface FirewallPolicyZtnaEmsTag {
+    name: string;
+}
+
+export interface FirewallPolicyZtnaEmsTagSecondary {
     name: string;
 }
 
@@ -2171,6 +2203,7 @@ export interface FirewallProfileProtocolOptionsHttp {
     tunnelNonHttp: string;
     uncompressedNestLimit: number;
     uncompressedOversizeLimit: number;
+    unknownContentEncoding: string;
     unknownHttpVersion: string;
     verifyDnsForPolicyMatching: string;
 }
@@ -2318,6 +2351,22 @@ export interface FirewallProxyPolicyDstintf {
 }
 
 export interface FirewallProxyPolicyGroup {
+    name: string;
+}
+
+export interface FirewallProxyPolicyInternetService6Custom {
+    name: string;
+}
+
+export interface FirewallProxyPolicyInternetService6CustomGroup {
+    name: string;
+}
+
+export interface FirewallProxyPolicyInternetService6Group {
+    name: string;
+}
+
+export interface FirewallProxyPolicyInternetService6Name {
     name: string;
 }
 
@@ -2897,6 +2946,7 @@ export interface FirewallVip6Realserver {
     monitor: string;
     port: number;
     status: string;
+    translateHost: string;
     weight: number;
 }
 
@@ -2940,6 +2990,7 @@ export interface FirewallVipRealserver {
     monitor: string;
     port: number;
     status: string;
+    translateHost: string;
     type: string;
     weight: number;
 }
@@ -3044,6 +3095,10 @@ export interface GetFirewallAddressTagging {
 }
 
 export interface GetFirewallAddressTaggingTag {
+    name: string;
+}
+
+export interface GetFirewallAddrgrp6ExcludeMember {
     name: string;
 }
 
@@ -3601,6 +3656,10 @@ export interface GetFirewallPolicyNtlmEnabledBrowser {
     userAgentString: string;
 }
 
+export interface GetFirewallPolicyPcpPoolname {
+    name: string;
+}
+
 export interface GetFirewallPolicyPoolname {
     name: string;
 }
@@ -3650,6 +3709,10 @@ export interface GetFirewallPolicyUser {
 }
 
 export interface GetFirewallPolicyZtnaEmsTag {
+    name: string;
+}
+
+export interface GetFirewallPolicyZtnaEmsTagSecondary {
     name: string;
 }
 
@@ -3735,6 +3798,7 @@ export interface GetFirewallProfileProtocolOptionsHttp {
     tunnelNonHttp: string;
     uncompressedNestLimit: number;
     uncompressedOversizeLimit: number;
+    unknownContentEncoding: string;
     unknownHttpVersion: string;
     verifyDnsForPolicyMatching: string;
 }
@@ -3882,6 +3946,22 @@ export interface GetFirewallProxyPolicyDstintf {
 }
 
 export interface GetFirewallProxyPolicyGroup {
+    name: string;
+}
+
+export interface GetFirewallProxyPolicyInternetService6Custom {
+    name: string;
+}
+
+export interface GetFirewallProxyPolicyInternetService6CustomGroup {
+    name: string;
+}
+
+export interface GetFirewallProxyPolicyInternetService6Group {
+    name: string;
+}
+
+export interface GetFirewallProxyPolicyInternetService6Name {
     name: string;
 }
 
@@ -4036,6 +4116,7 @@ export interface GetRouterBgpConfederationPeer {
 export interface GetRouterBgpNeighbor {
     activate: string;
     activate6: string;
+    activateEvpn: string;
     activateVpnv4: string;
     additionalPath: string;
     additionalPath6: string;
@@ -4048,6 +4129,9 @@ export interface GetRouterBgpNeighbor {
     allowasIn6: number;
     allowasInEnable: string;
     allowasInEnable6: string;
+    allowasInEnableEvpn: string;
+    allowasInEnableVpnv4: string;
+    allowasInEvpn: number;
     allowasInVpnv4: number;
     asOverride: string;
     asOverride6: string;
@@ -4060,6 +4144,7 @@ export interface GetRouterBgpNeighbor {
     capabilityDynamic: string;
     capabilityGracefulRestart: string;
     capabilityGracefulRestart6: string;
+    capabilityGracefulRestartEvpn: string;
     capabilityGracefulRestartVpnv4: string;
     capabilityOrf: string;
     capabilityOrf6: string;
@@ -4093,12 +4178,15 @@ export interface GetRouterBgpNeighbor {
     localAsReplaceAs: string;
     maximumPrefix: number;
     maximumPrefix6: number;
+    maximumPrefixEvpn: number;
     maximumPrefixThreshold: number;
     maximumPrefixThreshold6: number;
+    maximumPrefixThresholdEvpn: number;
     maximumPrefixThresholdVpnv4: number;
     maximumPrefixVpnv4: number;
     maximumPrefixWarningOnly: string;
     maximumPrefixWarningOnly6: string;
+    maximumPrefixWarningOnlyEvpn: string;
     maximumPrefixWarningOnlyVpnv4: string;
     nextHopSelf: string;
     nextHopSelf6: string;
@@ -4117,30 +4205,37 @@ export interface GetRouterBgpNeighbor {
     remoteAs: number;
     removePrivateAs: string;
     removePrivateAs6: string;
+    removePrivateAsEvpn: string;
     removePrivateAsVpnv4: string;
     restartTime: number;
     retainStaleTime: number;
     routeMapIn: string;
     routeMapIn6: string;
+    routeMapInEvpn: string;
     routeMapInVpnv4: string;
     routeMapOut: string;
     routeMapOut6: string;
     routeMapOut6Preferable: string;
+    routeMapOutEvpn: string;
     routeMapOutPreferable: string;
     routeMapOutVpnv4: string;
     routeMapOutVpnv4Preferable: string;
     routeReflectorClient: string;
     routeReflectorClient6: string;
+    routeReflectorClientEvpn: string;
     routeReflectorClientVpnv4: string;
     routeServerClient: string;
     routeServerClient6: string;
+    routeServerClientEvpn: string;
     routeServerClientVpnv4: string;
     sendCommunity: string;
     sendCommunity6: string;
+    sendCommunityEvpn: string;
     sendCommunityVpnv4: string;
     shutdown: string;
     softReconfiguration: string;
     softReconfiguration6: string;
+    softReconfigurationEvpn: string;
     softReconfigurationVpnv4: string;
     staleRoute: string;
     strictCapabilityMatch: string;
@@ -4165,6 +4260,7 @@ export interface GetRouterBgpNeighborConditionalAdvertise6 {
 export interface GetRouterBgpNeighborGroup {
     activate: string;
     activate6: string;
+    activateEvpn: string;
     activateVpnv4: string;
     additionalPath: string;
     additionalPath6: string;
@@ -4177,6 +4273,9 @@ export interface GetRouterBgpNeighborGroup {
     allowasIn6: number;
     allowasInEnable: string;
     allowasInEnable6: string;
+    allowasInEnableEvpn: string;
+    allowasInEnableVpnv4: string;
+    allowasInEvpn: number;
     allowasInVpnv4: number;
     asOverride: string;
     asOverride6: string;
@@ -4189,6 +4288,7 @@ export interface GetRouterBgpNeighborGroup {
     capabilityDynamic: string;
     capabilityGracefulRestart: string;
     capabilityGracefulRestart6: string;
+    capabilityGracefulRestartEvpn: string;
     capabilityGracefulRestartVpnv4: string;
     capabilityOrf: string;
     capabilityOrf6: string;
@@ -4219,12 +4319,15 @@ export interface GetRouterBgpNeighborGroup {
     localAsReplaceAs: string;
     maximumPrefix: number;
     maximumPrefix6: number;
+    maximumPrefixEvpn: number;
     maximumPrefixThreshold: number;
     maximumPrefixThreshold6: number;
+    maximumPrefixThresholdEvpn: number;
     maximumPrefixThresholdVpnv4: number;
     maximumPrefixVpnv4: number;
     maximumPrefixWarningOnly: string;
     maximumPrefixWarningOnly6: string;
+    maximumPrefixWarningOnlyEvpn: string;
     maximumPrefixWarningOnlyVpnv4: string;
     name: string;
     nextHopSelf: string;
@@ -4234,6 +4337,7 @@ export interface GetRouterBgpNeighborGroup {
     nextHopSelfVpnv4: string;
     overrideCapability: string;
     passive: string;
+    password: string;
     prefixListIn: string;
     prefixListIn6: string;
     prefixListInVpnv4: string;
@@ -4243,30 +4347,37 @@ export interface GetRouterBgpNeighborGroup {
     remoteAs: number;
     removePrivateAs: string;
     removePrivateAs6: string;
+    removePrivateAsEvpn: string;
     removePrivateAsVpnv4: string;
     restartTime: number;
     retainStaleTime: number;
     routeMapIn: string;
     routeMapIn6: string;
+    routeMapInEvpn: string;
     routeMapInVpnv4: string;
     routeMapOut: string;
     routeMapOut6: string;
     routeMapOut6Preferable: string;
+    routeMapOutEvpn: string;
     routeMapOutPreferable: string;
     routeMapOutVpnv4: string;
     routeMapOutVpnv4Preferable: string;
     routeReflectorClient: string;
     routeReflectorClient6: string;
+    routeReflectorClientEvpn: string;
     routeReflectorClientVpnv4: string;
     routeServerClient: string;
     routeServerClient6: string;
+    routeServerClientEvpn: string;
     routeServerClientVpnv4: string;
     sendCommunity: string;
     sendCommunity6: string;
+    sendCommunityEvpn: string;
     sendCommunityVpnv4: string;
     shutdown: string;
     softReconfiguration: string;
     softReconfiguration6: string;
+    softReconfigurationEvpn: string;
     softReconfigurationVpnv4: string;
     staleRoute: string;
     strictCapabilityMatch: string;
@@ -4530,6 +4641,7 @@ export interface GetRouterMulticastPimSmGlobal {
     joinPruneHoldtime: number;
     messageInterval: number;
     nullRegisterRetries: number;
+    pimUseSdwan: string;
     registerRateLimit: number;
     registerRpReachability: string;
     registerSource: string;
@@ -4966,6 +5078,8 @@ export interface GetRouterRouteMapRule {
     matchAsPath: string;
     matchCommunity: string;
     matchCommunityExact: string;
+    matchExtcommunity: string;
+    matchExtcommunityExact: string;
     matchFlags: number;
     matchInterface: string;
     matchIp6Address: string;
@@ -4996,6 +5110,7 @@ export interface GetRouterRouteMapRule {
     setIp6Nexthop: string;
     setIp6NexthopLocal: string;
     setIpNexthop: string;
+    setIpPrefsrc: string;
     setLocalPreference: number;
     setMetric: number;
     setMetricType: string;
@@ -5074,6 +5189,7 @@ export interface GetSystemAccprofileSysgrpPermission {
 export interface GetSystemAccprofileUtmgrpPermission {
     antivirus: string;
     applicationControl: string;
+    dataLeakPrevention: string;
     dataLossPrevention: string;
     dnsfilter: string;
     emailfilter: string;
@@ -5232,6 +5348,11 @@ export interface GetSystemCsfFabricConnector {
     accprofile: string;
     configurationWriteAccess: string;
     serial: string;
+    vdoms: outputs.GetSystemCsfFabricConnectorVdom[];
+}
+
+export interface GetSystemCsfFabricConnectorVdom {
+    name: string;
 }
 
 export interface GetSystemCsfFabricDevice {
@@ -5250,6 +5371,7 @@ export interface GetSystemCsfTrustedList {
     certificate: string;
     downstreamAuthorization: string;
     haMembers: string;
+    index: number;
     name: string;
     serial: string;
 }
@@ -5265,9 +5387,16 @@ export interface GetSystemDdnsMonitorInterface {
 export interface GetSystemDhcpServerExcludeRange {
     endIp: string;
     id: number;
+    leaseTime: number;
     startIp: string;
+    uciMatch: string;
+    uciStrings: outputs.GetSystemDhcpServerExcludeRangeUciString[];
     vciMatch: string;
     vciStrings: outputs.GetSystemDhcpServerExcludeRangeVciString[];
+}
+
+export interface GetSystemDhcpServerExcludeRangeUciString {
+    uciString: string;
 }
 
 export interface GetSystemDhcpServerExcludeRangeVciString {
@@ -5277,9 +5406,16 @@ export interface GetSystemDhcpServerExcludeRangeVciString {
 export interface GetSystemDhcpServerIpRange {
     endIp: string;
     id: number;
+    leaseTime: number;
     startIp: string;
+    uciMatch: string;
+    uciStrings: outputs.GetSystemDhcpServerIpRangeUciString[];
     vciMatch: string;
     vciStrings: outputs.GetSystemDhcpServerIpRangeVciString[];
+}
+
+export interface GetSystemDhcpServerIpRangeUciString {
+    uciString: string;
 }
 
 export interface GetSystemDhcpServerIpRangeVciString {
@@ -5291,9 +5427,15 @@ export interface GetSystemDhcpServerOption {
     id: number;
     ip: string;
     type: string;
+    uciMatch: string;
+    uciStrings: outputs.GetSystemDhcpServerOptionUciString[];
     value: string;
     vciMatch: string;
     vciStrings: outputs.GetSystemDhcpServerOptionVciString[];
+}
+
+export interface GetSystemDhcpServerOptionUciString {
+    uciString: string;
 }
 
 export interface GetSystemDhcpServerOptionVciString {
@@ -5339,6 +5481,10 @@ export interface GetSystemDnsDomain {
 
 export interface GetSystemDnsServerHostname {
     hostname: string;
+}
+
+export interface GetSystemGlobalInternetServiceDownloadList {
+    id: number;
 }
 
 export interface GetSystemHaHaMgmtInterface {
@@ -5413,6 +5559,7 @@ export interface GetSystemInterfaceIpv6 {
     dhcp6PrefixHintVlt: number;
     dhcp6RelayIp: string;
     dhcp6RelayService: string;
+    dhcp6RelaySourceInterface: string;
     dhcp6RelayType: string;
     icmp6SendRedirect: string;
     interfaceIdentifier: string;
@@ -5516,6 +5663,7 @@ export interface GetSystemInterfaceSecondaryip {
     id: number;
     ip: string;
     pingServStatus: number;
+    secipRelayIp: string;
 }
 
 export interface GetSystemInterfaceSecurityGroup {
@@ -5801,6 +5949,10 @@ export interface GetSystemReplacemsgGroupWebproxy {
     msgType: string;
 }
 
+export interface GetSystemSdnConnectorCompartmentList {
+    compartmentId: string;
+}
+
 export interface GetSystemSdnConnectorExternalAccountList {
     externalId: string;
     regionLists: outputs.GetSystemSdnConnectorExternalAccountListRegionList[];
@@ -5838,6 +5990,10 @@ export interface GetSystemSdnConnectorNicIp {
     name: string;
     publicIp: string;
     resourceGroup: string;
+}
+
+export interface GetSystemSdnConnectorOciRegionList {
+    region: string;
 }
 
 export interface GetSystemSdnConnectorRoute {
@@ -6523,6 +6679,7 @@ export interface LogThreatWeightMalware {
     fsaHighRisk: string;
     fsaMalicious: string;
     fsaMediumRisk: string;
+    inlineBlock: string;
     malwareList: string;
     mimefragmented: string;
     oversized: string;
@@ -6787,6 +6944,7 @@ export interface RouterBgpConfederationPeer {
 export interface RouterBgpNeighbor {
     activate: string;
     activate6: string;
+    activateEvpn: string;
     activateVpnv4: string;
     additionalPath: string;
     additionalPath6: string;
@@ -6799,6 +6957,9 @@ export interface RouterBgpNeighbor {
     allowasIn6: number;
     allowasInEnable: string;
     allowasInEnable6: string;
+    allowasInEnableEvpn: string;
+    allowasInEnableVpnv4: string;
+    allowasInEvpn: number;
     allowasInVpnv4: number;
     asOverride: string;
     asOverride6: string;
@@ -6811,6 +6972,7 @@ export interface RouterBgpNeighbor {
     capabilityDynamic: string;
     capabilityGracefulRestart: string;
     capabilityGracefulRestart6: string;
+    capabilityGracefulRestartEvpn: string;
     capabilityGracefulRestartVpnv4: string;
     capabilityOrf: string;
     capabilityOrf6: string;
@@ -6844,12 +7006,15 @@ export interface RouterBgpNeighbor {
     localAsReplaceAs: string;
     maximumPrefix: number;
     maximumPrefix6: number;
+    maximumPrefixEvpn: number;
     maximumPrefixThreshold: number;
     maximumPrefixThreshold6: number;
+    maximumPrefixThresholdEvpn: number;
     maximumPrefixThresholdVpnv4: number;
     maximumPrefixVpnv4: number;
     maximumPrefixWarningOnly: string;
     maximumPrefixWarningOnly6: string;
+    maximumPrefixWarningOnlyEvpn: string;
     maximumPrefixWarningOnlyVpnv4: string;
     nextHopSelf: string;
     nextHopSelf6: string;
@@ -6868,30 +7033,37 @@ export interface RouterBgpNeighbor {
     remoteAs: number;
     removePrivateAs: string;
     removePrivateAs6: string;
+    removePrivateAsEvpn: string;
     removePrivateAsVpnv4: string;
     restartTime: number;
     retainStaleTime: number;
     routeMapIn: string;
     routeMapIn6: string;
+    routeMapInEvpn: string;
     routeMapInVpnv4: string;
     routeMapOut: string;
     routeMapOut6: string;
     routeMapOut6Preferable: string;
+    routeMapOutEvpn: string;
     routeMapOutPreferable: string;
     routeMapOutVpnv4: string;
     routeMapOutVpnv4Preferable: string;
     routeReflectorClient: string;
     routeReflectorClient6: string;
+    routeReflectorClientEvpn: string;
     routeReflectorClientVpnv4: string;
     routeServerClient: string;
     routeServerClient6: string;
+    routeServerClientEvpn: string;
     routeServerClientVpnv4: string;
     sendCommunity: string;
     sendCommunity6: string;
+    sendCommunityEvpn: string;
     sendCommunityVpnv4: string;
     shutdown: string;
     softReconfiguration: string;
     softReconfiguration6: string;
+    softReconfigurationEvpn: string;
     softReconfigurationVpnv4: string;
     staleRoute: string;
     strictCapabilityMatch: string;
@@ -6916,6 +7088,7 @@ export interface RouterBgpNeighborConditionalAdvertise6 {
 export interface RouterBgpNeighborGroup {
     activate: string;
     activate6: string;
+    activateEvpn: string;
     activateVpnv4: string;
     additionalPath: string;
     additionalPath6: string;
@@ -6928,6 +7101,9 @@ export interface RouterBgpNeighborGroup {
     allowasIn6: number;
     allowasInEnable: string;
     allowasInEnable6: string;
+    allowasInEnableEvpn: string;
+    allowasInEnableVpnv4: string;
+    allowasInEvpn: number;
     allowasInVpnv4: number;
     asOverride: string;
     asOverride6: string;
@@ -6940,6 +7116,7 @@ export interface RouterBgpNeighborGroup {
     capabilityDynamic: string;
     capabilityGracefulRestart: string;
     capabilityGracefulRestart6: string;
+    capabilityGracefulRestartEvpn: string;
     capabilityGracefulRestartVpnv4: string;
     capabilityOrf: string;
     capabilityOrf6: string;
@@ -6970,12 +7147,15 @@ export interface RouterBgpNeighborGroup {
     localAsReplaceAs: string;
     maximumPrefix: number;
     maximumPrefix6: number;
+    maximumPrefixEvpn: number;
     maximumPrefixThreshold: number;
     maximumPrefixThreshold6: number;
+    maximumPrefixThresholdEvpn: number;
     maximumPrefixThresholdVpnv4: number;
     maximumPrefixVpnv4: number;
     maximumPrefixWarningOnly: string;
     maximumPrefixWarningOnly6: string;
+    maximumPrefixWarningOnlyEvpn: string;
     maximumPrefixWarningOnlyVpnv4: string;
     name: string;
     nextHopSelf: string;
@@ -6985,6 +7165,7 @@ export interface RouterBgpNeighborGroup {
     nextHopSelfVpnv4: string;
     overrideCapability: string;
     passive: string;
+    password?: string;
     prefixListIn: string;
     prefixListIn6: string;
     prefixListInVpnv4: string;
@@ -6994,30 +7175,37 @@ export interface RouterBgpNeighborGroup {
     remoteAs: number;
     removePrivateAs: string;
     removePrivateAs6: string;
+    removePrivateAsEvpn: string;
     removePrivateAsVpnv4: string;
     restartTime: number;
     retainStaleTime: number;
     routeMapIn: string;
     routeMapIn6: string;
+    routeMapInEvpn: string;
     routeMapInVpnv4: string;
     routeMapOut: string;
     routeMapOut6: string;
     routeMapOut6Preferable: string;
+    routeMapOutEvpn: string;
     routeMapOutPreferable: string;
     routeMapOutVpnv4: string;
     routeMapOutVpnv4Preferable: string;
     routeReflectorClient: string;
     routeReflectorClient6: string;
+    routeReflectorClientEvpn: string;
     routeReflectorClientVpnv4: string;
     routeServerClient: string;
     routeServerClient6: string;
+    routeServerClientEvpn: string;
     routeServerClientVpnv4: string;
     sendCommunity: string;
     sendCommunity6: string;
+    sendCommunityEvpn: string;
     sendCommunityVpnv4: string;
     shutdown: string;
     softReconfiguration: string;
     softReconfiguration6: string;
+    softReconfigurationEvpn: string;
     softReconfigurationVpnv4: string;
     staleRoute: string;
     strictCapabilityMatch: string;
@@ -7125,6 +7313,14 @@ export interface RouterCommunityListRule {
     id: number;
     match: string;
     regexp: string;
+}
+
+export interface RouterExtcommunityListRule {
+    action: string;
+    id: number;
+    match: string;
+    regexp: string;
+    type: string;
 }
 
 export interface RouterIsisIsisInterface {
@@ -7281,6 +7477,7 @@ export interface RouterMulticastPimSmGlobal {
     joinPruneHoldtime: number;
     messageInterval: number;
     nullRegisterRetries: number;
+    pimUseSdwan: string;
     registerRateLimit: number;
     registerRpReachability: string;
     registerSource: string;
@@ -7717,6 +7914,8 @@ export interface RouterRouteMapRule {
     matchAsPath: string;
     matchCommunity: string;
     matchCommunityExact: string;
+    matchExtcommunity: string;
+    matchExtcommunityExact: string;
     matchFlags: number;
     matchInterface: string;
     matchIp6Address: string;
@@ -7747,6 +7946,7 @@ export interface RouterRouteMapRule {
     setIp6Nexthop: string;
     setIp6NexthopLocal: string;
     setIpNexthop: string;
+    setIpPrefsrc: string;
     setLocalPreference: number;
     setMetric: number;
     setMetricType: string;
@@ -7936,6 +8136,23 @@ export interface SshFilterProfileShellCommand {
     type: string;
 }
 
+export interface SwitchControllerAclGroupIngress {
+    id: number;
+}
+
+export interface SwitchControllerAclIngressAction {
+    count: string;
+    drop: string;
+}
+
+export interface SwitchControllerAclIngressClassifier {
+    dstIpPrefix: string;
+    dstMac: string;
+    srcIpPrefix: string;
+    srcMac: string;
+    vlan: number;
+}
+
 export interface SwitchControllerAutoConfigCustomSwitchBinding {
     policy: string;
     switchId: string;
@@ -8077,6 +8294,14 @@ export interface SwitchControllerManagedSwitchCustomCommand {
     commandName: string;
 }
 
+export interface SwitchControllerManagedSwitchDhcpSnoopingStaticClient {
+    ip: string;
+    mac: string;
+    name: string;
+    port: string;
+    vlan: string;
+}
+
 export interface SwitchControllerManagedSwitchIgmpSnooping {
     agingTime: number;
     floodUnknownMulticast: string;
@@ -8132,12 +8357,14 @@ export interface SwitchControllerManagedSwitchN8021xSettings {
 
 export interface SwitchControllerManagedSwitchPort {
     accessMode: string;
+    aclGroups?: outputs.SwitchControllerManagedSwitchPortAclGroup[];
     aggregatorMode: string;
     allowedVlans?: outputs.SwitchControllerManagedSwitchPortAllowedVlan[];
     allowedVlansAll: string;
     arpInspectionTrust: string;
     bundle: string;
     description: string;
+    dhcpSnoopOption82Overrides?: outputs.SwitchControllerManagedSwitchPortDhcpSnoopOption82Override[];
     dhcpSnoopOption82Trust: string;
     dhcpSnooping: string;
     discardMode: string;
@@ -8158,6 +8385,7 @@ export interface SwitchControllerManagedSwitchPort {
     flapguard: string;
     flowControl: string;
     fortilinkPort: number;
+    fortiswitchAcls?: outputs.SwitchControllerManagedSwitchPortFortiswitchAcl[];
     igmpSnooping: string;
     igmpSnoopingFloodReports: string;
     igmpsFloodReports: string;
@@ -8166,9 +8394,11 @@ export interface SwitchControllerManagedSwitchPort {
     ipSourceGuard: string;
     islLocalTrunkName: string;
     islPeerDeviceName: string;
+    islPeerDeviceSn: string;
     islPeerPortName: string;
     lacpSpeed: string;
     learningLimit: number;
+    linkStatus: string;
     lldpProfile: string;
     lldpStatus: string;
     loopGuard: string;
@@ -8192,6 +8422,10 @@ export interface SwitchControllerManagedSwitchPort {
     pauseMeterResume: string;
     poeCapable: number;
     poeMaxPower: string;
+    poeModeBtCabable: number;
+    poePortMode: string;
+    poePortPower: string;
+    poePortPriority: string;
     poePreStandardDetection: string;
     poeStandard: string;
     poeStatus: string;
@@ -8226,12 +8460,26 @@ export interface SwitchControllerManagedSwitchPort {
     vlan: string;
 }
 
+export interface SwitchControllerManagedSwitchPortAclGroup {
+    name: string;
+}
+
 export interface SwitchControllerManagedSwitchPortAllowedVlan {
+    vlanName: string;
+}
+
+export interface SwitchControllerManagedSwitchPortDhcpSnoopOption82Override {
+    circuitId: string;
+    remoteId: string;
     vlanName: string;
 }
 
 export interface SwitchControllerManagedSwitchPortExportTag {
     tagName: string;
+}
+
+export interface SwitchControllerManagedSwitchPortFortiswitchAcl {
+    id: number;
 }
 
 export interface SwitchControllerManagedSwitchPortInterfaceTag {
@@ -8477,6 +8725,7 @@ export interface SystemAccprofileSysgrpPermission {
 export interface SystemAccprofileUtmgrpPermission {
     antivirus: string;
     applicationControl: string;
+    dataLeakPrevention: string;
     dataLossPrevention: string;
     dnsfilter: string;
     emailfilter: string;
@@ -8685,6 +8934,11 @@ export interface SystemCsfFabricConnector {
     accprofile: string;
     configurationWriteAccess: string;
     serial: string;
+    vdoms?: outputs.SystemCsfFabricConnectorVdom[];
+}
+
+export interface SystemCsfFabricConnectorVdom {
+    name: string;
 }
 
 export interface SystemCsfFabricDevice {
@@ -8703,6 +8957,7 @@ export interface SystemCsfTrustedList {
     certificate?: string;
     downstreamAuthorization: string;
     haMembers: string;
+    index: number;
     name: string;
     serial: string;
 }
@@ -8731,9 +8986,16 @@ export interface SystemDhcp6ServerPrefixRange {
 export interface SystemDhcpServerExcludeRange {
     endIp: string;
     id: number;
+    leaseTime: number;
     startIp: string;
+    uciMatch: string;
+    uciStrings?: outputs.SystemDhcpServerExcludeRangeUciString[];
     vciMatch: string;
     vciStrings?: outputs.SystemDhcpServerExcludeRangeVciString[];
+}
+
+export interface SystemDhcpServerExcludeRangeUciString {
+    uciString: string;
 }
 
 export interface SystemDhcpServerExcludeRangeVciString {
@@ -8743,9 +9005,16 @@ export interface SystemDhcpServerExcludeRangeVciString {
 export interface SystemDhcpServerIpRange {
     endIp: string;
     id: number;
+    leaseTime: number;
     startIp: string;
+    uciMatch: string;
+    uciStrings?: outputs.SystemDhcpServerIpRangeUciString[];
     vciMatch: string;
     vciStrings?: outputs.SystemDhcpServerIpRangeVciString[];
+}
+
+export interface SystemDhcpServerIpRangeUciString {
+    uciString: string;
 }
 
 export interface SystemDhcpServerIpRangeVciString {
@@ -8757,9 +9026,15 @@ export interface SystemDhcpServerOption {
     id: number;
     ip: string;
     type: string;
+    uciMatch: string;
+    uciStrings?: outputs.SystemDhcpServerOptionUciString[];
     value: string;
     vciMatch: string;
     vciStrings?: outputs.SystemDhcpServerOptionVciString[];
+}
+
+export interface SystemDhcpServerOptionUciString {
+    uciString: string;
 }
 
 export interface SystemDhcpServerOptionVciString {
@@ -8807,9 +9082,42 @@ export interface SystemDnsServerHostname {
     hostname: string;
 }
 
+export interface SystemEvpnExportRt {
+    routeTarget: string;
+}
+
+export interface SystemEvpnImportRt {
+    routeTarget: string;
+}
+
+export interface SystemFabricVpnAdvertisedSubnet {
+    access: string;
+    bgpNetwork: number;
+    firewallAddress: string;
+    id: number;
+    policies: number;
+    prefix: string;
+}
+
+export interface SystemFabricVpnOverlay {
+    bgpNeighbor: string;
+    bgpNeighborGroup: string;
+    bgpNeighborRange: number;
+    bgpNetwork: number;
+    interface: string;
+    ipsecPhase1: string;
+    name: string;
+    overlayPolicy: number;
+    overlayTunnelBlock: string;
+    remoteGw: string;
+    routePolicy: number;
+    sdwanMember: number;
+}
+
 export interface SystemFederatedUpgradeNodeList {
     coordinatingFortigate: string;
     deviceType: string;
+    maximumMinutes: number;
     serial: string;
     setupTime: string;
     time: string;
@@ -8827,6 +9135,10 @@ export interface SystemGeoipOverrideIpRange {
     endIp: string;
     id: number;
     startIp: string;
+}
+
+export interface SystemGlobalInternetServiceDownloadList {
+    id: number;
 }
 
 export interface SystemHaHaMgmtInterface {
@@ -9003,6 +9315,7 @@ export interface SystemInterfaceIpv6 {
     dhcp6PrefixHintVlt: number;
     dhcp6RelayIp: string;
     dhcp6RelayService: string;
+    dhcp6RelaySourceInterface: string;
     dhcp6RelayType: string;
     icmp6SendRedirect: string;
     interfaceIdentifier: string;
@@ -9106,6 +9419,7 @@ export interface SystemInterfaceSecondaryip {
     id: number;
     ip: string;
     pingServStatus: number;
+    secipRelayIp: string;
 }
 
 export interface SystemInterfaceSecurityGroup {
@@ -9296,6 +9610,40 @@ export interface SystemObjectTaggingTag {
     name: string;
 }
 
+export interface SystemPcpServerPool {
+    allowOpcode: string;
+    announcementCount: number;
+    arpReply: string;
+    clientMappingLimit: number;
+    clientSubnets?: outputs.SystemPcpServerPoolClientSubnet[];
+    description: string;
+    extIntf: string;
+    extip: string;
+    extport: string;
+    id: number;
+    intlIntfs?: outputs.SystemPcpServerPoolIntlIntf[];
+    mappingFilterLimit: number;
+    maximalLifetime: number;
+    minimalLifetime: number;
+    multicastAnnouncement: string;
+    name: string;
+    recycleDelay: number;
+    thirdParty: string;
+    thirdPartySubnets?: outputs.SystemPcpServerPoolThirdPartySubnet[];
+}
+
+export interface SystemPcpServerPoolClientSubnet {
+    subnet: string;
+}
+
+export interface SystemPcpServerPoolIntlIntf {
+    interfaceName: string;
+}
+
+export interface SystemPcpServerPoolThirdPartySubnet {
+    subnet: string;
+}
+
 export interface SystemPtpServerInterface {
     delayMechanism: string;
     id: number;
@@ -9455,6 +9803,10 @@ export interface SystemSamlServiceProviderAssertionAttribute {
     type: string;
 }
 
+export interface SystemSdnConnectorCompartmentList {
+    compartmentId: string;
+}
+
 export interface SystemSdnConnectorExternalAccountList {
     externalId: string;
     regionLists?: outputs.SystemSdnConnectorExternalAccountListRegionList[];
@@ -9492,6 +9844,10 @@ export interface SystemSdnConnectorNicIp {
     name: string;
     publicIp: string;
     resourceGroup: string;
+}
+
+export interface SystemSdnConnectorOciRegionList {
+    region: string;
 }
 
 export interface SystemSdnConnectorRoute {
@@ -9567,6 +9923,7 @@ export interface SystemSdwanFailAlertInterface {
 
 export interface SystemSdwanHealthCheck {
     addrMode: string;
+    classId: number;
     detectMode: string;
     diffservcode: string;
     dnsMatchIp: string;
@@ -9599,6 +9956,7 @@ export interface SystemSdwanHealthCheck {
     slaPassLogPeriod: number;
     slas?: outputs.SystemSdwanHealthCheckSla[];
     source: string;
+    source6: string;
     systemDns: string;
     thresholdAlertJitter: number;
     thresholdAlertLatency: number;
@@ -9634,6 +9992,7 @@ export interface SystemSdwanMember {
     gateway6: string;
     ingressSpilloverThreshold: number;
     interface: string;
+    preferredSource: string;
     priority: number;
     priority6: number;
     seqNum: number;
@@ -9650,14 +10009,20 @@ export interface SystemSdwanNeighbor {
     healthCheck: string;
     ip: string;
     member: number;
+    memberBlocks?: outputs.SystemSdwanNeighborMemberBlock[];
     minimumSlaMeetMembers: number;
     mode: string;
     role: string;
     slaId: number;
 }
 
+export interface SystemSdwanNeighborMemberBlock {
+    seqNum: number;
+}
+
 export interface SystemSdwanService {
     addrMode: string;
+    agentExclusive: string;
     bandwidthWeight: number;
     default: string;
     dscpForward: string;
@@ -9700,6 +10065,8 @@ export interface SystemSdwanService {
     qualityLink: number;
     role: string;
     routeTag: number;
+    shortcut: string;
+    shortcutStickiness: string;
     slaCompareMethod: string;
     slas?: outputs.SystemSdwanServiceSla[];
     src6s?: outputs.SystemSdwanServiceSrc6[];
@@ -9838,8 +10205,11 @@ export interface SystemSpeedTestScheduleSchedule {
 }
 
 export interface SystemSpeedTestServerHost {
+    distance: number;
     id: number;
     ip: string;
+    latitude: string;
+    longitude: string;
     password?: string;
     port: number;
     user: string;
@@ -9850,6 +10220,10 @@ export interface SystemSsoAdminVdom {
 }
 
 export interface SystemSsoForticloudAdminVdom {
+    name: string;
+}
+
+export interface SystemSsoFortigateCloudAdminVdom {
     name: string;
 }
 
@@ -10215,6 +10589,10 @@ export interface UserGroupMember {
     name: string;
 }
 
+export interface UserNacPolicySeverity {
+    severityNum: number;
+}
+
 export interface UserNacPolicySwitchGroup {
     name: string;
 }
@@ -10342,10 +10720,12 @@ export interface VoipProfileSip {
     blockUpdate: string;
     byeRate: number;
     byeRateTrack: string;
+    callIdRegex?: string;
     callKeepalive: number;
     cancelRate: number;
     cancelRateTrack: string;
     contactFixup: string;
+    contentTypeRegex?: string;
     hntRestrictSourceIp: string;
     hostedNatTraversal: string;
     infoRate: number;
@@ -10497,6 +10877,14 @@ export interface VpnIpsecPhase1Ipv6ExcludeRange {
     startIp: string;
 }
 
+export interface VpnKmipServerServerList {
+    cert: string;
+    id: number;
+    port: number;
+    server: string;
+    status: string;
+}
+
 export interface VpnOcvpnForticlientAccess {
     authGroups?: outputs.VpnOcvpnForticlientAccessAuthGroup[];
     psksecret?: string;
@@ -10641,6 +11029,7 @@ export interface VpnSslWebPortalBookmarkGroupBookmark {
     ssoPassword?: string;
     ssoUsername?: string;
     url?: string;
+    vncKeyboardLayout: string;
     width: number;
 }
 
@@ -10663,6 +11052,21 @@ export interface VpnSslWebPortalIpv6Pool {
 
 export interface VpnSslWebPortalIpv6SplitTunnelingRoutingAddress {
     name: string;
+}
+
+export interface VpnSslWebPortalLandingPage {
+    formDatas?: outputs.VpnSslWebPortalLandingPageFormData[];
+    logoutUrl?: string;
+    sso: string;
+    ssoCredential: string;
+    ssoPassword?: string;
+    ssoUsername?: string;
+    url?: string;
+}
+
+export interface VpnSslWebPortalLandingPageFormData {
+    name: string;
+    value?: string;
 }
 
 export interface VpnSslWebPortalMacAddrCheckRule {
@@ -10726,6 +11130,7 @@ export interface VpnSslWebUserBookmarkBookmark {
     ssoPassword?: string;
     ssoUsername?: string;
     url?: string;
+    vncKeyboardLayout: string;
     width: number;
 }
 
@@ -10765,6 +11170,7 @@ export interface VpnSslWebUserGroupBookmarkBookmark {
     ssoPassword?: string;
     ssoUsername?: string;
     url?: string;
+    vncKeyboardLayout: string;
     width: number;
 }
 
@@ -11134,6 +11540,10 @@ export interface WebProxyExplicitPacPolicySrcaddr {
 }
 
 export interface WebProxyExplicitPacPolicySrcaddr6 {
+    name: string;
+}
+
+export interface WebProxyExplicitSecureWebProxyCert {
     name: string;
 }
 
@@ -11776,6 +12186,7 @@ export interface WirelessControllerWtpProfileRadio1 {
     maxDistance: number;
     mode: string;
     n80211d: string;
+    optionalAntenna: string;
     powerLevel: number;
     powerMode: string;
     powerValue: number;
@@ -11859,6 +12270,7 @@ export interface WirelessControllerWtpProfileRadio2 {
     maxDistance: number;
     mode: string;
     n80211d: string;
+    optionalAntenna: string;
     powerLevel: number;
     powerMode: string;
     powerValue: number;
@@ -11942,6 +12354,7 @@ export interface WirelessControllerWtpProfileRadio3 {
     maxDistance: number;
     mode: string;
     n80211d: string;
+    optionalAntenna: string;
     powerLevel: number;
     powerMode: string;
     powerValue: number;
@@ -12024,6 +12437,7 @@ export interface WirelessControllerWtpProfileRadio4 {
     maxDistance: number;
     mode: string;
     n80211d: string;
+    optionalAntenna: string;
     powerLevel: number;
     powerMode: string;
     powerValue: number;

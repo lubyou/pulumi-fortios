@@ -42,6 +42,7 @@ export class WirelessControllerApcfgProfile extends pulumi.CustomResource {
     public readonly commandLists!: pulumi.Output<outputs.WirelessControllerApcfgProfileCommandList[] | undefined>;
     public readonly comment!: pulumi.Output<string | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
@@ -66,6 +67,7 @@ export class WirelessControllerApcfgProfile extends pulumi.CustomResource {
             resourceInputs["commandLists"] = state ? state.commandLists : undefined;
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
@@ -78,6 +80,7 @@ export class WirelessControllerApcfgProfile extends pulumi.CustomResource {
             resourceInputs["commandLists"] = args ? args.commandLists : undefined;
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
@@ -98,6 +101,7 @@ export interface WirelessControllerApcfgProfileState {
     commandLists?: pulumi.Input<pulumi.Input<inputs.WirelessControllerApcfgProfileCommandList>[]>;
     comment?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }
@@ -114,6 +118,7 @@ export interface WirelessControllerApcfgProfileArgs {
     commandLists?: pulumi.Input<pulumi.Input<inputs.WirelessControllerApcfgProfileCommandList>[]>;
     comment?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }

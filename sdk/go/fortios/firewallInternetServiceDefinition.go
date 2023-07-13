@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -16,6 +17,7 @@ type FirewallInternetServiceDefinition struct {
 	DynamicSortSubtable pulumi.StringPtrOutput                            `pulumi:"dynamicSortSubtable"`
 	Entries             FirewallInternetServiceDefinitionEntryArrayOutput `pulumi:"entries"`
 	Fosid               pulumi.IntOutput                                  `pulumi:"fosid"`
+	GetAllTables        pulumi.StringPtrOutput                            `pulumi:"getAllTables"`
 	Vdomparam           pulumi.StringPtrOutput                            `pulumi:"vdomparam"`
 }
 
@@ -26,7 +28,7 @@ func NewFirewallInternetServiceDefinition(ctx *pulumi.Context,
 		args = &FirewallInternetServiceDefinitionArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallInternetServiceDefinition
 	err := ctx.RegisterResource("fortios:index/firewallInternetServiceDefinition:FirewallInternetServiceDefinition", name, args, &resource, opts...)
 	if err != nil {
@@ -52,6 +54,7 @@ type firewallInternetServiceDefinitionState struct {
 	DynamicSortSubtable *string                                  `pulumi:"dynamicSortSubtable"`
 	Entries             []FirewallInternetServiceDefinitionEntry `pulumi:"entries"`
 	Fosid               *int                                     `pulumi:"fosid"`
+	GetAllTables        *string                                  `pulumi:"getAllTables"`
 	Vdomparam           *string                                  `pulumi:"vdomparam"`
 }
 
@@ -59,6 +62,7 @@ type FirewallInternetServiceDefinitionState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	Entries             FirewallInternetServiceDefinitionEntryArrayInput
 	Fosid               pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
 }
 
@@ -70,6 +74,7 @@ type firewallInternetServiceDefinitionArgs struct {
 	DynamicSortSubtable *string                                  `pulumi:"dynamicSortSubtable"`
 	Entries             []FirewallInternetServiceDefinitionEntry `pulumi:"entries"`
 	Fosid               *int                                     `pulumi:"fosid"`
+	GetAllTables        *string                                  `pulumi:"getAllTables"`
 	Vdomparam           *string                                  `pulumi:"vdomparam"`
 }
 
@@ -78,6 +83,7 @@ type FirewallInternetServiceDefinitionArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	Entries             FirewallInternetServiceDefinitionEntryArrayInput
 	Fosid               pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
 }
 
@@ -180,6 +186,10 @@ func (o FirewallInternetServiceDefinitionOutput) Entries() FirewallInternetServi
 
 func (o FirewallInternetServiceDefinitionOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *FirewallInternetServiceDefinition) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o FirewallInternetServiceDefinitionOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallInternetServiceDefinition) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallInternetServiceDefinitionOutput) Vdomparam() pulumi.StringPtrOutput {

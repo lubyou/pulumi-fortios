@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -14,6 +15,7 @@ type VpnIpsecFec struct {
 	pulumi.CustomResourceState
 
 	DynamicSortSubtable pulumi.StringPtrOutput        `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput        `pulumi:"getAllTables"`
 	Mappings            VpnIpsecFecMappingArrayOutput `pulumi:"mappings"`
 	Name                pulumi.StringOutput           `pulumi:"name"`
 	Vdomparam           pulumi.StringPtrOutput        `pulumi:"vdomparam"`
@@ -26,7 +28,7 @@ func NewVpnIpsecFec(ctx *pulumi.Context,
 		args = &VpnIpsecFecArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource VpnIpsecFec
 	err := ctx.RegisterResource("fortios:index/vpnIpsecFec:VpnIpsecFec", name, args, &resource, opts...)
 	if err != nil {
@@ -50,6 +52,7 @@ func GetVpnIpsecFec(ctx *pulumi.Context,
 // Input properties used for looking up and filtering VpnIpsecFec resources.
 type vpnIpsecFecState struct {
 	DynamicSortSubtable *string              `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string              `pulumi:"getAllTables"`
 	Mappings            []VpnIpsecFecMapping `pulumi:"mappings"`
 	Name                *string              `pulumi:"name"`
 	Vdomparam           *string              `pulumi:"vdomparam"`
@@ -57,6 +60,7 @@ type vpnIpsecFecState struct {
 
 type VpnIpsecFecState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Mappings            VpnIpsecFecMappingArrayInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
@@ -68,6 +72,7 @@ func (VpnIpsecFecState) ElementType() reflect.Type {
 
 type vpnIpsecFecArgs struct {
 	DynamicSortSubtable *string              `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string              `pulumi:"getAllTables"`
 	Mappings            []VpnIpsecFecMapping `pulumi:"mappings"`
 	Name                *string              `pulumi:"name"`
 	Vdomparam           *string              `pulumi:"vdomparam"`
@@ -76,6 +81,7 @@ type vpnIpsecFecArgs struct {
 // The set of arguments for constructing a VpnIpsecFec resource.
 type VpnIpsecFecArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Mappings            VpnIpsecFecMappingArrayInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
@@ -170,6 +176,10 @@ func (o VpnIpsecFecOutput) ToVpnIpsecFecOutputWithContext(ctx context.Context) V
 
 func (o VpnIpsecFecOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VpnIpsecFec) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnIpsecFecOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnIpsecFec) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o VpnIpsecFecOutput) Mappings() VpnIpsecFecMappingArrayOutput {

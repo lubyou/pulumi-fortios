@@ -102,12 +102,12 @@ def get_system_dns_server(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemDnsServer:GetSystemDnsServer', __args__, opts=opts, typ=GetSystemDnsServerResult).value
 
     return AwaitableGetSystemDnsServerResult(
-        dnsfilter_profile=__ret__.dnsfilter_profile,
-        doh=__ret__.doh,
-        id=__ret__.id,
-        mode=__ret__.mode,
-        name=__ret__.name,
-        vdomparam=__ret__.vdomparam)
+        dnsfilter_profile=pulumi.get(__ret__, 'dnsfilter_profile'),
+        doh=pulumi.get(__ret__, 'doh'),
+        id=pulumi.get(__ret__, 'id'),
+        mode=pulumi.get(__ret__, 'mode'),
+        name=pulumi.get(__ret__, 'name'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_dns_server)

@@ -7,13 +7,16 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type SystemSsoForticloudAdmin struct {
 	pulumi.CustomResourceState
 
+	Accprofile          pulumi.StringOutput                     `pulumi:"accprofile"`
 	DynamicSortSubtable pulumi.StringPtrOutput                  `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                  `pulumi:"getAllTables"`
 	Name                pulumi.StringOutput                     `pulumi:"name"`
 	Vdomparam           pulumi.StringPtrOutput                  `pulumi:"vdomparam"`
 	Vdoms               SystemSsoForticloudAdminVdomArrayOutput `pulumi:"vdoms"`
@@ -26,7 +29,7 @@ func NewSystemSsoForticloudAdmin(ctx *pulumi.Context,
 		args = &SystemSsoForticloudAdminArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemSsoForticloudAdmin
 	err := ctx.RegisterResource("fortios:index/systemSsoForticloudAdmin:SystemSsoForticloudAdmin", name, args, &resource, opts...)
 	if err != nil {
@@ -49,14 +52,18 @@ func GetSystemSsoForticloudAdmin(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemSsoForticloudAdmin resources.
 type systemSsoForticloudAdminState struct {
+	Accprofile          *string                        `pulumi:"accprofile"`
 	DynamicSortSubtable *string                        `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                        `pulumi:"getAllTables"`
 	Name                *string                        `pulumi:"name"`
 	Vdomparam           *string                        `pulumi:"vdomparam"`
 	Vdoms               []SystemSsoForticloudAdminVdom `pulumi:"vdoms"`
 }
 
 type SystemSsoForticloudAdminState struct {
+	Accprofile          pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
 	Vdoms               SystemSsoForticloudAdminVdomArrayInput
@@ -67,7 +74,9 @@ func (SystemSsoForticloudAdminState) ElementType() reflect.Type {
 }
 
 type systemSsoForticloudAdminArgs struct {
+	Accprofile          *string                        `pulumi:"accprofile"`
 	DynamicSortSubtable *string                        `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                        `pulumi:"getAllTables"`
 	Name                *string                        `pulumi:"name"`
 	Vdomparam           *string                        `pulumi:"vdomparam"`
 	Vdoms               []SystemSsoForticloudAdminVdom `pulumi:"vdoms"`
@@ -75,7 +84,9 @@ type systemSsoForticloudAdminArgs struct {
 
 // The set of arguments for constructing a SystemSsoForticloudAdmin resource.
 type SystemSsoForticloudAdminArgs struct {
+	Accprofile          pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
 	Vdoms               SystemSsoForticloudAdminVdomArrayInput
@@ -168,8 +179,16 @@ func (o SystemSsoForticloudAdminOutput) ToSystemSsoForticloudAdminOutputWithCont
 	return o
 }
 
+func (o SystemSsoForticloudAdminOutput) Accprofile() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSsoForticloudAdmin) pulumi.StringOutput { return v.Accprofile }).(pulumi.StringOutput)
+}
+
 func (o SystemSsoForticloudAdminOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SystemSsoForticloudAdmin) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemSsoForticloudAdminOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemSsoForticloudAdmin) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemSsoForticloudAdminOutput) Name() pulumi.StringOutput {

@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func GetSystemPppoeInterfaceList(ctx *pulumi.Context, args *GetSystemPppoeInterfaceListArgs, opts ...pulumi.InvokeOption) (*GetSystemPppoeInterfaceListResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetSystemPppoeInterfaceListResult
 	err := ctx.Invoke("fortios:index/getSystemPppoeInterfaceList:GetSystemPppoeInterfaceList", args, &rv, opts...)
 	if err != nil {

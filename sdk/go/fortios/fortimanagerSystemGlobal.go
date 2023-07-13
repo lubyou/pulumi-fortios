@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -27,7 +28,7 @@ func NewFortimanagerSystemGlobal(ctx *pulumi.Context,
 		args = &FortimanagerSystemGlobalArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FortimanagerSystemGlobal
 	err := ctx.RegisterResource("fortios:index/fortimanagerSystemGlobal:FortimanagerSystemGlobal", name, args, &resource, opts...)
 	if err != nil {

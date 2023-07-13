@@ -28,11 +28,13 @@ export interface GetSystemSdnConnectorArgs {
  */
 export interface GetSystemSdnConnectorResult {
     readonly accessKey: string;
+    readonly altResourceIp: string;
     readonly apiKey: string;
     readonly azureRegion: string;
     readonly clientId: string;
     readonly clientSecret: string;
     readonly compartmentId: string;
+    readonly compartmentLists: outputs.GetSystemSdnConnectorCompartmentList[];
     readonly computeGeneration: number;
     readonly domain: string;
     readonly externalAccountLists: outputs.GetSystemSdnConnectorExternalAccountList[];
@@ -56,9 +58,11 @@ export interface GetSystemSdnConnectorResult {
     readonly ociCert: string;
     readonly ociFingerprint: string;
     readonly ociRegion: string;
+    readonly ociRegionLists: outputs.GetSystemSdnConnectorOciRegionList[];
     readonly ociRegionType: string;
     readonly password: string;
     readonly privateKey: string;
+    readonly proxy: string;
     readonly region: string;
     readonly resourceGroup: string;
     readonly resourceUrl: string;
@@ -67,6 +71,8 @@ export interface GetSystemSdnConnectorResult {
     readonly secretKey: string;
     readonly secretToken: string;
     readonly server: string;
+    readonly serverCaCert: string;
+    readonly serverCert: string;
     readonly serverLists: outputs.GetSystemSdnConnectorServerList[];
     readonly serverPort: number;
     readonly serviceAccount: string;

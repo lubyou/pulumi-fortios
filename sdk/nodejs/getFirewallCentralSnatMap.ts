@@ -30,6 +30,7 @@ export interface GetFirewallCentralSnatMapResult {
     readonly comments: string;
     readonly dstAddr6s: outputs.GetFirewallCentralSnatMapDstAddr6[];
     readonly dstAddrs: outputs.GetFirewallCentralSnatMapDstAddr[];
+    readonly dstPort: string;
     readonly dstintfs: outputs.GetFirewallCentralSnatMapDstintf[];
     /**
      * The provider-assigned unique ID for this managed resource.

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,7 +16,10 @@ type VideofilterProfile struct {
 
 	Comment              pulumi.StringPtrOutput                     `pulumi:"comment"`
 	Dailymotion          pulumi.StringOutput                        `pulumi:"dailymotion"`
+	DefaultAction        pulumi.StringOutput                        `pulumi:"defaultAction"`
 	FortiguardCategory   VideofilterProfileFortiguardCategoryOutput `pulumi:"fortiguardCategory"`
+	GetAllTables         pulumi.StringPtrOutput                     `pulumi:"getAllTables"`
+	Log                  pulumi.StringOutput                        `pulumi:"log"`
 	Name                 pulumi.StringOutput                        `pulumi:"name"`
 	ReplacemsgGroup      pulumi.StringOutput                        `pulumi:"replacemsgGroup"`
 	Vdomparam            pulumi.StringPtrOutput                     `pulumi:"vdomparam"`
@@ -31,7 +35,7 @@ func NewVideofilterProfile(ctx *pulumi.Context,
 		args = &VideofilterProfileArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource VideofilterProfile
 	err := ctx.RegisterResource("fortios:index/videofilterProfile:VideofilterProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -56,7 +60,10 @@ func GetVideofilterProfile(ctx *pulumi.Context,
 type videofilterProfileState struct {
 	Comment              *string                               `pulumi:"comment"`
 	Dailymotion          *string                               `pulumi:"dailymotion"`
+	DefaultAction        *string                               `pulumi:"defaultAction"`
 	FortiguardCategory   *VideofilterProfileFortiguardCategory `pulumi:"fortiguardCategory"`
+	GetAllTables         *string                               `pulumi:"getAllTables"`
+	Log                  *string                               `pulumi:"log"`
 	Name                 *string                               `pulumi:"name"`
 	ReplacemsgGroup      *string                               `pulumi:"replacemsgGroup"`
 	Vdomparam            *string                               `pulumi:"vdomparam"`
@@ -68,7 +75,10 @@ type videofilterProfileState struct {
 type VideofilterProfileState struct {
 	Comment              pulumi.StringPtrInput
 	Dailymotion          pulumi.StringPtrInput
+	DefaultAction        pulumi.StringPtrInput
 	FortiguardCategory   VideofilterProfileFortiguardCategoryPtrInput
+	GetAllTables         pulumi.StringPtrInput
+	Log                  pulumi.StringPtrInput
 	Name                 pulumi.StringPtrInput
 	ReplacemsgGroup      pulumi.StringPtrInput
 	Vdomparam            pulumi.StringPtrInput
@@ -84,7 +94,10 @@ func (VideofilterProfileState) ElementType() reflect.Type {
 type videofilterProfileArgs struct {
 	Comment              *string                               `pulumi:"comment"`
 	Dailymotion          *string                               `pulumi:"dailymotion"`
+	DefaultAction        *string                               `pulumi:"defaultAction"`
 	FortiguardCategory   *VideofilterProfileFortiguardCategory `pulumi:"fortiguardCategory"`
+	GetAllTables         *string                               `pulumi:"getAllTables"`
+	Log                  *string                               `pulumi:"log"`
 	Name                 *string                               `pulumi:"name"`
 	ReplacemsgGroup      *string                               `pulumi:"replacemsgGroup"`
 	Vdomparam            *string                               `pulumi:"vdomparam"`
@@ -97,7 +110,10 @@ type videofilterProfileArgs struct {
 type VideofilterProfileArgs struct {
 	Comment              pulumi.StringPtrInput
 	Dailymotion          pulumi.StringPtrInput
+	DefaultAction        pulumi.StringPtrInput
 	FortiguardCategory   VideofilterProfileFortiguardCategoryPtrInput
+	GetAllTables         pulumi.StringPtrInput
+	Log                  pulumi.StringPtrInput
 	Name                 pulumi.StringPtrInput
 	ReplacemsgGroup      pulumi.StringPtrInput
 	Vdomparam            pulumi.StringPtrInput
@@ -201,8 +217,20 @@ func (o VideofilterProfileOutput) Dailymotion() pulumi.StringOutput {
 	return o.ApplyT(func(v *VideofilterProfile) pulumi.StringOutput { return v.Dailymotion }).(pulumi.StringOutput)
 }
 
+func (o VideofilterProfileOutput) DefaultAction() pulumi.StringOutput {
+	return o.ApplyT(func(v *VideofilterProfile) pulumi.StringOutput { return v.DefaultAction }).(pulumi.StringOutput)
+}
+
 func (o VideofilterProfileOutput) FortiguardCategory() VideofilterProfileFortiguardCategoryOutput {
 	return o.ApplyT(func(v *VideofilterProfile) VideofilterProfileFortiguardCategoryOutput { return v.FortiguardCategory }).(VideofilterProfileFortiguardCategoryOutput)
+}
+
+func (o VideofilterProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VideofilterProfile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
+func (o VideofilterProfileOutput) Log() pulumi.StringOutput {
+	return o.ApplyT(func(v *VideofilterProfile) pulumi.StringOutput { return v.Log }).(pulumi.StringOutput)
 }
 
 func (o VideofilterProfileOutput) Name() pulumi.StringOutput {

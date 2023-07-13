@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupRouterMulticast(ctx *pulumi.Context, args *LookupRouterMulticastArgs, opts ...pulumi.InvokeOption) (*LookupRouterMulticastResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupRouterMulticastResult
 	err := ctx.Invoke("fortios:index/getRouterMulticast:GetRouterMulticast", args, &rv, opts...)
 	if err != nil {

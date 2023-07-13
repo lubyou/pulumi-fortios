@@ -23,10 +23,13 @@ class UserDomainControllerArgs:
                  adlds_ip6: Optional[pulumi.Input[str]] = None,
                  adlds_ip_address: Optional[pulumi.Input[str]] = None,
                  adlds_port: Optional[pulumi.Input[int]] = None,
+                 change_detection: Optional[pulumi.Input[str]] = None,
+                 change_detection_period: Optional[pulumi.Input[int]] = None,
                  dns_srv_lookup: Optional[pulumi.Input[str]] = None,
                  domain_name: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  extra_servers: Optional[pulumi.Input[Sequence[pulumi.Input['UserDomainControllerExtraServerArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -55,6 +58,10 @@ class UserDomainControllerArgs:
             pulumi.set(__self__, "adlds_ip_address", adlds_ip_address)
         if adlds_port is not None:
             pulumi.set(__self__, "adlds_port", adlds_port)
+        if change_detection is not None:
+            pulumi.set(__self__, "change_detection", change_detection)
+        if change_detection_period is not None:
+            pulumi.set(__self__, "change_detection_period", change_detection_period)
         if dns_srv_lookup is not None:
             pulumi.set(__self__, "dns_srv_lookup", dns_srv_lookup)
         if domain_name is not None:
@@ -63,6 +70,8 @@ class UserDomainControllerArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if extra_servers is not None:
             pulumi.set(__self__, "extra_servers", extra_servers)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if hostname is not None:
             pulumi.set(__self__, "hostname", hostname)
         if interface is not None:
@@ -154,6 +163,24 @@ class UserDomainControllerArgs:
         pulumi.set(self, "adlds_port", value)
 
     @property
+    @pulumi.getter(name="changeDetection")
+    def change_detection(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "change_detection")
+
+    @change_detection.setter
+    def change_detection(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "change_detection", value)
+
+    @property
+    @pulumi.getter(name="changeDetectionPeriod")
+    def change_detection_period(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "change_detection_period")
+
+    @change_detection_period.setter
+    def change_detection_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "change_detection_period", value)
+
+    @property
     @pulumi.getter(name="dnsSrvLookup")
     def dns_srv_lookup(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "dns_srv_lookup")
@@ -188,6 +215,15 @@ class UserDomainControllerArgs:
     @extra_servers.setter
     def extra_servers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['UserDomainControllerExtraServerArgs']]]]):
         pulumi.set(self, "extra_servers", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -315,10 +351,13 @@ class _UserDomainControllerState:
                  adlds_ip6: Optional[pulumi.Input[str]] = None,
                  adlds_ip_address: Optional[pulumi.Input[str]] = None,
                  adlds_port: Optional[pulumi.Input[int]] = None,
+                 change_detection: Optional[pulumi.Input[str]] = None,
+                 change_detection_period: Optional[pulumi.Input[int]] = None,
                  dns_srv_lookup: Optional[pulumi.Input[str]] = None,
                  domain_name: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  extra_servers: Optional[pulumi.Input[Sequence[pulumi.Input['UserDomainControllerExtraServerArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -347,6 +386,10 @@ class _UserDomainControllerState:
             pulumi.set(__self__, "adlds_ip_address", adlds_ip_address)
         if adlds_port is not None:
             pulumi.set(__self__, "adlds_port", adlds_port)
+        if change_detection is not None:
+            pulumi.set(__self__, "change_detection", change_detection)
+        if change_detection_period is not None:
+            pulumi.set(__self__, "change_detection_period", change_detection_period)
         if dns_srv_lookup is not None:
             pulumi.set(__self__, "dns_srv_lookup", dns_srv_lookup)
         if domain_name is not None:
@@ -355,6 +398,8 @@ class _UserDomainControllerState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if extra_servers is not None:
             pulumi.set(__self__, "extra_servers", extra_servers)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if hostname is not None:
             pulumi.set(__self__, "hostname", hostname)
         if interface is not None:
@@ -432,6 +477,24 @@ class _UserDomainControllerState:
         pulumi.set(self, "adlds_port", value)
 
     @property
+    @pulumi.getter(name="changeDetection")
+    def change_detection(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "change_detection")
+
+    @change_detection.setter
+    def change_detection(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "change_detection", value)
+
+    @property
+    @pulumi.getter(name="changeDetectionPeriod")
+    def change_detection_period(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "change_detection_period")
+
+    @change_detection_period.setter
+    def change_detection_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "change_detection_period", value)
+
+    @property
     @pulumi.getter(name="dnsSrvLookup")
     def dns_srv_lookup(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "dns_srv_lookup")
@@ -466,6 +529,15 @@ class _UserDomainControllerState:
     @extra_servers.setter
     def extra_servers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['UserDomainControllerExtraServerArgs']]]]):
         pulumi.set(self, "extra_servers", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -613,10 +685,13 @@ class UserDomainController(pulumi.CustomResource):
                  adlds_ip6: Optional[pulumi.Input[str]] = None,
                  adlds_ip_address: Optional[pulumi.Input[str]] = None,
                  adlds_port: Optional[pulumi.Input[int]] = None,
+                 change_detection: Optional[pulumi.Input[str]] = None,
+                 change_detection_period: Optional[pulumi.Input[int]] = None,
                  dns_srv_lookup: Optional[pulumi.Input[str]] = None,
                  domain_name: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  extra_servers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserDomainControllerExtraServerArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -666,10 +741,13 @@ class UserDomainController(pulumi.CustomResource):
                  adlds_ip6: Optional[pulumi.Input[str]] = None,
                  adlds_ip_address: Optional[pulumi.Input[str]] = None,
                  adlds_port: Optional[pulumi.Input[int]] = None,
+                 change_detection: Optional[pulumi.Input[str]] = None,
+                 change_detection_period: Optional[pulumi.Input[int]] = None,
                  dns_srv_lookup: Optional[pulumi.Input[str]] = None,
                  domain_name: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  extra_servers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserDomainControllerExtraServerArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -699,10 +777,13 @@ class UserDomainController(pulumi.CustomResource):
             __props__.__dict__["adlds_ip6"] = adlds_ip6
             __props__.__dict__["adlds_ip_address"] = adlds_ip_address
             __props__.__dict__["adlds_port"] = adlds_port
+            __props__.__dict__["change_detection"] = change_detection
+            __props__.__dict__["change_detection_period"] = change_detection_period
             __props__.__dict__["dns_srv_lookup"] = dns_srv_lookup
             __props__.__dict__["domain_name"] = domain_name
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["extra_servers"] = extra_servers
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["hostname"] = hostname
             __props__.__dict__["interface"] = interface
             __props__.__dict__["interface_select_method"] = interface_select_method
@@ -737,10 +818,13 @@ class UserDomainController(pulumi.CustomResource):
             adlds_ip6: Optional[pulumi.Input[str]] = None,
             adlds_ip_address: Optional[pulumi.Input[str]] = None,
             adlds_port: Optional[pulumi.Input[int]] = None,
+            change_detection: Optional[pulumi.Input[str]] = None,
+            change_detection_period: Optional[pulumi.Input[int]] = None,
             dns_srv_lookup: Optional[pulumi.Input[str]] = None,
             domain_name: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             extra_servers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserDomainControllerExtraServerArgs']]]]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             hostname: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             interface_select_method: Optional[pulumi.Input[str]] = None,
@@ -773,10 +857,13 @@ class UserDomainController(pulumi.CustomResource):
         __props__.__dict__["adlds_ip6"] = adlds_ip6
         __props__.__dict__["adlds_ip_address"] = adlds_ip_address
         __props__.__dict__["adlds_port"] = adlds_port
+        __props__.__dict__["change_detection"] = change_detection
+        __props__.__dict__["change_detection_period"] = change_detection_period
         __props__.__dict__["dns_srv_lookup"] = dns_srv_lookup
         __props__.__dict__["domain_name"] = domain_name
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["extra_servers"] = extra_servers
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["hostname"] = hostname
         __props__.__dict__["interface"] = interface
         __props__.__dict__["interface_select_method"] = interface_select_method
@@ -820,6 +907,16 @@ class UserDomainController(pulumi.CustomResource):
         return pulumi.get(self, "adlds_port")
 
     @property
+    @pulumi.getter(name="changeDetection")
+    def change_detection(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "change_detection")
+
+    @property
+    @pulumi.getter(name="changeDetectionPeriod")
+    def change_detection_period(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "change_detection_period")
+
+    @property
     @pulumi.getter(name="dnsSrvLookup")
     def dns_srv_lookup(self) -> pulumi.Output[str]:
         return pulumi.get(self, "dns_srv_lookup")
@@ -838,6 +935,11 @@ class UserDomainController(pulumi.CustomResource):
     @pulumi.getter(name="extraServers")
     def extra_servers(self) -> pulumi.Output[Optional[Sequence['outputs.UserDomainControllerExtraServer']]]:
         return pulumi.get(self, "extra_servers")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

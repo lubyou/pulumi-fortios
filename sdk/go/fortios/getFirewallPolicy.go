@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupFirewallPolicy(ctx *pulumi.Context, args *LookupFirewallPolicyArgs, opts ...pulumi.InvokeOption) (*LookupFirewallPolicyResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallPolicyResult
 	err := ctx.Invoke("fortios:index/getFirewallPolicy:GetFirewallPolicy", args, &rv, opts...)
 	if err != nil {
@@ -112,6 +113,7 @@ type LookupFirewallPolicyResult struct {
 	InternetServiceSrcNegate        string                                            `pulumi:"internetServiceSrcNegate"`
 	Ippool                          string                                            `pulumi:"ippool"`
 	IpsSensor                       string                                            `pulumi:"ipsSensor"`
+	IpsVoipFilter                   string                                            `pulumi:"ipsVoipFilter"`
 	Label                           string                                            `pulumi:"label"`
 	LearningMode                    string                                            `pulumi:"learningMode"`
 	Logtraffic                      string                                            `pulumi:"logtraffic"`
@@ -133,11 +135,15 @@ type LookupFirewallPolicyResult struct {
 	NtlmGuest                       string                                            `pulumi:"ntlmGuest"`
 	Outbound                        string                                            `pulumi:"outbound"`
 	PassiveWanHealthMeasurement     string                                            `pulumi:"passiveWanHealthMeasurement"`
+	PcpInbound                      string                                            `pulumi:"pcpInbound"`
+	PcpOutbound                     string                                            `pulumi:"pcpOutbound"`
+	PcpPoolnames                    []GetFirewallPolicyPcpPoolname                    `pulumi:"pcpPoolnames"`
 	PerIpShaper                     string                                            `pulumi:"perIpShaper"`
 	PermitAnyHost                   string                                            `pulumi:"permitAnyHost"`
 	PermitStunHost                  string                                            `pulumi:"permitStunHost"`
 	PolicyExpiry                    string                                            `pulumi:"policyExpiry"`
 	PolicyExpiryDate                string                                            `pulumi:"policyExpiryDate"`
+	PolicyExpiryDateUtc             string                                            `pulumi:"policyExpiryDateUtc"`
 	Policyid                        int                                               `pulumi:"policyid"`
 	Poolname6s                      []GetFirewallPolicyPoolname6                      `pulumi:"poolname6s"`
 	Poolnames                       []GetFirewallPolicyPoolname                       `pulumi:"poolnames"`
@@ -210,9 +216,13 @@ type LookupFirewallPolicyResult struct {
 	WebproxyForwardServer           string                                            `pulumi:"webproxyForwardServer"`
 	WebproxyProfile                 string                                            `pulumi:"webproxyProfile"`
 	Wsso                            string                                            `pulumi:"wsso"`
+	ZtnaDeviceOwnership             string                                            `pulumi:"ztnaDeviceOwnership"`
+	ZtnaEmsTagSecondaries           []GetFirewallPolicyZtnaEmsTagSecondary            `pulumi:"ztnaEmsTagSecondaries"`
 	ZtnaEmsTags                     []GetFirewallPolicyZtnaEmsTag                     `pulumi:"ztnaEmsTags"`
 	ZtnaGeoTags                     []GetFirewallPolicyZtnaGeoTag                     `pulumi:"ztnaGeoTags"`
+	ZtnaPolicyRedirect              string                                            `pulumi:"ztnaPolicyRedirect"`
 	ZtnaStatus                      string                                            `pulumi:"ztnaStatus"`
+	ZtnaTagsMatchLogic              string                                            `pulumi:"ztnaTagsMatchLogic"`
 }
 
 func LookupFirewallPolicyOutput(ctx *pulumi.Context, args LookupFirewallPolicyOutputArgs, opts ...pulumi.InvokeOption) LookupFirewallPolicyResultOutput {
@@ -620,6 +630,10 @@ func (o LookupFirewallPolicyResultOutput) IpsSensor() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallPolicyResult) string { return v.IpsSensor }).(pulumi.StringOutput)
 }
 
+func (o LookupFirewallPolicyResultOutput) IpsVoipFilter() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallPolicyResult) string { return v.IpsVoipFilter }).(pulumi.StringOutput)
+}
+
 func (o LookupFirewallPolicyResultOutput) Label() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallPolicyResult) string { return v.Label }).(pulumi.StringOutput)
 }
@@ -708,6 +722,18 @@ func (o LookupFirewallPolicyResultOutput) PassiveWanHealthMeasurement() pulumi.S
 	return o.ApplyT(func(v LookupFirewallPolicyResult) string { return v.PassiveWanHealthMeasurement }).(pulumi.StringOutput)
 }
 
+func (o LookupFirewallPolicyResultOutput) PcpInbound() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallPolicyResult) string { return v.PcpInbound }).(pulumi.StringOutput)
+}
+
+func (o LookupFirewallPolicyResultOutput) PcpOutbound() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallPolicyResult) string { return v.PcpOutbound }).(pulumi.StringOutput)
+}
+
+func (o LookupFirewallPolicyResultOutput) PcpPoolnames() GetFirewallPolicyPcpPoolnameArrayOutput {
+	return o.ApplyT(func(v LookupFirewallPolicyResult) []GetFirewallPolicyPcpPoolname { return v.PcpPoolnames }).(GetFirewallPolicyPcpPoolnameArrayOutput)
+}
+
 func (o LookupFirewallPolicyResultOutput) PerIpShaper() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallPolicyResult) string { return v.PerIpShaper }).(pulumi.StringOutput)
 }
@@ -726,6 +752,10 @@ func (o LookupFirewallPolicyResultOutput) PolicyExpiry() pulumi.StringOutput {
 
 func (o LookupFirewallPolicyResultOutput) PolicyExpiryDate() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallPolicyResult) string { return v.PolicyExpiryDate }).(pulumi.StringOutput)
+}
+
+func (o LookupFirewallPolicyResultOutput) PolicyExpiryDateUtc() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallPolicyResult) string { return v.PolicyExpiryDateUtc }).(pulumi.StringOutput)
 }
 
 func (o LookupFirewallPolicyResultOutput) Policyid() pulumi.IntOutput {
@@ -1016,6 +1046,16 @@ func (o LookupFirewallPolicyResultOutput) Wsso() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallPolicyResult) string { return v.Wsso }).(pulumi.StringOutput)
 }
 
+func (o LookupFirewallPolicyResultOutput) ZtnaDeviceOwnership() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallPolicyResult) string { return v.ZtnaDeviceOwnership }).(pulumi.StringOutput)
+}
+
+func (o LookupFirewallPolicyResultOutput) ZtnaEmsTagSecondaries() GetFirewallPolicyZtnaEmsTagSecondaryArrayOutput {
+	return o.ApplyT(func(v LookupFirewallPolicyResult) []GetFirewallPolicyZtnaEmsTagSecondary {
+		return v.ZtnaEmsTagSecondaries
+	}).(GetFirewallPolicyZtnaEmsTagSecondaryArrayOutput)
+}
+
 func (o LookupFirewallPolicyResultOutput) ZtnaEmsTags() GetFirewallPolicyZtnaEmsTagArrayOutput {
 	return o.ApplyT(func(v LookupFirewallPolicyResult) []GetFirewallPolicyZtnaEmsTag { return v.ZtnaEmsTags }).(GetFirewallPolicyZtnaEmsTagArrayOutput)
 }
@@ -1024,8 +1064,16 @@ func (o LookupFirewallPolicyResultOutput) ZtnaGeoTags() GetFirewallPolicyZtnaGeo
 	return o.ApplyT(func(v LookupFirewallPolicyResult) []GetFirewallPolicyZtnaGeoTag { return v.ZtnaGeoTags }).(GetFirewallPolicyZtnaGeoTagArrayOutput)
 }
 
+func (o LookupFirewallPolicyResultOutput) ZtnaPolicyRedirect() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallPolicyResult) string { return v.ZtnaPolicyRedirect }).(pulumi.StringOutput)
+}
+
 func (o LookupFirewallPolicyResultOutput) ZtnaStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallPolicyResult) string { return v.ZtnaStatus }).(pulumi.StringOutput)
+}
+
+func (o LookupFirewallPolicyResultOutput) ZtnaTagsMatchLogic() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallPolicyResult) string { return v.ZtnaTagsMatchLogic }).(pulumi.StringOutput)
 }
 
 func init() {

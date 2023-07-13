@@ -31,6 +31,9 @@ class FirewallAddressArgs:
                  filter: Optional[pulumi.Input[str]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddressFssoGroupArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 hw_model: Optional[pulumi.Input[str]] = None,
+                 hw_vendor: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  lists: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddressListArgs']]]] = None,
                  macaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddressMacaddrArgs']]]] = None,
@@ -40,7 +43,9 @@ class FirewallAddressArgs:
                  obj_tag: Optional[pulumi.Input[str]] = None,
                  obj_type: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
+                 os: Optional[pulumi.Input[str]] = None,
                  policy_group: Optional[pulumi.Input[str]] = None,
+                 route_tag: Optional[pulumi.Input[int]] = None,
                  sdn: Optional[pulumi.Input[str]] = None,
                  sdn_addr_type: Optional[pulumi.Input[str]] = None,
                  sdn_tag: Optional[pulumi.Input[str]] = None,
@@ -49,6 +54,7 @@ class FirewallAddressArgs:
                  sub_type: Optional[pulumi.Input[str]] = None,
                  subnet: Optional[pulumi.Input[str]] = None,
                  subnet_name: Optional[pulumi.Input[str]] = None,
+                 sw_version: Optional[pulumi.Input[str]] = None,
                  tag_detection_level: Optional[pulumi.Input[str]] = None,
                  tag_type: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddressTaggingArgs']]]] = None,
@@ -92,6 +98,12 @@ class FirewallAddressArgs:
             pulumi.set(__self__, "fqdn", fqdn)
         if fsso_groups is not None:
             pulumi.set(__self__, "fsso_groups", fsso_groups)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
+        if hw_model is not None:
+            pulumi.set(__self__, "hw_model", hw_model)
+        if hw_vendor is not None:
+            pulumi.set(__self__, "hw_vendor", hw_vendor)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
         if lists is not None:
@@ -110,8 +122,12 @@ class FirewallAddressArgs:
             pulumi.set(__self__, "obj_type", obj_type)
         if organization is not None:
             pulumi.set(__self__, "organization", organization)
+        if os is not None:
+            pulumi.set(__self__, "os", os)
         if policy_group is not None:
             pulumi.set(__self__, "policy_group", policy_group)
+        if route_tag is not None:
+            pulumi.set(__self__, "route_tag", route_tag)
         if sdn is not None:
             pulumi.set(__self__, "sdn", sdn)
         if sdn_addr_type is not None:
@@ -128,6 +144,8 @@ class FirewallAddressArgs:
             pulumi.set(__self__, "subnet", subnet)
         if subnet_name is not None:
             pulumi.set(__self__, "subnet_name", subnet_name)
+        if sw_version is not None:
+            pulumi.set(__self__, "sw_version", sw_version)
         if tag_detection_level is not None:
             pulumi.set(__self__, "tag_detection_level", tag_detection_level)
         if tag_type is not None:
@@ -285,6 +303,33 @@ class FirewallAddressArgs:
         pulumi.set(self, "fsso_groups", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
+    @pulumi.getter(name="hwModel")
+    def hw_model(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "hw_model")
+
+    @hw_model.setter
+    def hw_model(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hw_model", value)
+
+    @property
+    @pulumi.getter(name="hwVendor")
+    def hw_vendor(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "hw_vendor")
+
+    @hw_vendor.setter
+    def hw_vendor(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hw_vendor", value)
+
+    @property
     @pulumi.getter
     def interface(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "interface")
@@ -366,6 +411,15 @@ class FirewallAddressArgs:
         pulumi.set(self, "organization", value)
 
     @property
+    @pulumi.getter
+    def os(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "os")
+
+    @os.setter
+    def os(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "os", value)
+
+    @property
     @pulumi.getter(name="policyGroup")
     def policy_group(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "policy_group")
@@ -373,6 +427,15 @@ class FirewallAddressArgs:
     @policy_group.setter
     def policy_group(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "policy_group", value)
+
+    @property
+    @pulumi.getter(name="routeTag")
+    def route_tag(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "route_tag")
+
+    @route_tag.setter
+    def route_tag(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "route_tag", value)
 
     @property
     @pulumi.getter
@@ -445,6 +508,15 @@ class FirewallAddressArgs:
     @subnet_name.setter
     def subnet_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "subnet_name", value)
+
+    @property
+    @pulumi.getter(name="swVersion")
+    def sw_version(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "sw_version")
+
+    @sw_version.setter
+    def sw_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sw_version", value)
 
     @property
     @pulumi.getter(name="tagDetectionLevel")
@@ -555,6 +627,9 @@ class _FirewallAddressState:
                  filter: Optional[pulumi.Input[str]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddressFssoGroupArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 hw_model: Optional[pulumi.Input[str]] = None,
+                 hw_vendor: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  lists: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddressListArgs']]]] = None,
                  macaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddressMacaddrArgs']]]] = None,
@@ -564,7 +639,9 @@ class _FirewallAddressState:
                  obj_tag: Optional[pulumi.Input[str]] = None,
                  obj_type: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
+                 os: Optional[pulumi.Input[str]] = None,
                  policy_group: Optional[pulumi.Input[str]] = None,
+                 route_tag: Optional[pulumi.Input[int]] = None,
                  sdn: Optional[pulumi.Input[str]] = None,
                  sdn_addr_type: Optional[pulumi.Input[str]] = None,
                  sdn_tag: Optional[pulumi.Input[str]] = None,
@@ -573,6 +650,7 @@ class _FirewallAddressState:
                  sub_type: Optional[pulumi.Input[str]] = None,
                  subnet: Optional[pulumi.Input[str]] = None,
                  subnet_name: Optional[pulumi.Input[str]] = None,
+                 sw_version: Optional[pulumi.Input[str]] = None,
                  tag_detection_level: Optional[pulumi.Input[str]] = None,
                  tag_type: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddressTaggingArgs']]]] = None,
@@ -616,6 +694,12 @@ class _FirewallAddressState:
             pulumi.set(__self__, "fqdn", fqdn)
         if fsso_groups is not None:
             pulumi.set(__self__, "fsso_groups", fsso_groups)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
+        if hw_model is not None:
+            pulumi.set(__self__, "hw_model", hw_model)
+        if hw_vendor is not None:
+            pulumi.set(__self__, "hw_vendor", hw_vendor)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
         if lists is not None:
@@ -634,8 +718,12 @@ class _FirewallAddressState:
             pulumi.set(__self__, "obj_type", obj_type)
         if organization is not None:
             pulumi.set(__self__, "organization", organization)
+        if os is not None:
+            pulumi.set(__self__, "os", os)
         if policy_group is not None:
             pulumi.set(__self__, "policy_group", policy_group)
+        if route_tag is not None:
+            pulumi.set(__self__, "route_tag", route_tag)
         if sdn is not None:
             pulumi.set(__self__, "sdn", sdn)
         if sdn_addr_type is not None:
@@ -652,6 +740,8 @@ class _FirewallAddressState:
             pulumi.set(__self__, "subnet", subnet)
         if subnet_name is not None:
             pulumi.set(__self__, "subnet_name", subnet_name)
+        if sw_version is not None:
+            pulumi.set(__self__, "sw_version", sw_version)
         if tag_detection_level is not None:
             pulumi.set(__self__, "tag_detection_level", tag_detection_level)
         if tag_type is not None:
@@ -809,6 +899,33 @@ class _FirewallAddressState:
         pulumi.set(self, "fsso_groups", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
+    @pulumi.getter(name="hwModel")
+    def hw_model(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "hw_model")
+
+    @hw_model.setter
+    def hw_model(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hw_model", value)
+
+    @property
+    @pulumi.getter(name="hwVendor")
+    def hw_vendor(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "hw_vendor")
+
+    @hw_vendor.setter
+    def hw_vendor(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hw_vendor", value)
+
+    @property
     @pulumi.getter
     def interface(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "interface")
@@ -890,6 +1007,15 @@ class _FirewallAddressState:
         pulumi.set(self, "organization", value)
 
     @property
+    @pulumi.getter
+    def os(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "os")
+
+    @os.setter
+    def os(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "os", value)
+
+    @property
     @pulumi.getter(name="policyGroup")
     def policy_group(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "policy_group")
@@ -897,6 +1023,15 @@ class _FirewallAddressState:
     @policy_group.setter
     def policy_group(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "policy_group", value)
+
+    @property
+    @pulumi.getter(name="routeTag")
+    def route_tag(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "route_tag")
+
+    @route_tag.setter
+    def route_tag(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "route_tag", value)
 
     @property
     @pulumi.getter
@@ -969,6 +1104,15 @@ class _FirewallAddressState:
     @subnet_name.setter
     def subnet_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "subnet_name", value)
+
+    @property
+    @pulumi.getter(name="swVersion")
+    def sw_version(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "sw_version")
+
+    @sw_version.setter
+    def sw_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sw_version", value)
 
     @property
     @pulumi.getter(name="tagDetectionLevel")
@@ -1081,6 +1225,9 @@ class FirewallAddress(pulumi.CustomResource):
                  filter: Optional[pulumi.Input[str]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddressFssoGroupArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 hw_model: Optional[pulumi.Input[str]] = None,
+                 hw_vendor: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddressListArgs']]]]] = None,
                  macaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddressMacaddrArgs']]]]] = None,
@@ -1090,7 +1237,9 @@ class FirewallAddress(pulumi.CustomResource):
                  obj_tag: Optional[pulumi.Input[str]] = None,
                  obj_type: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
+                 os: Optional[pulumi.Input[str]] = None,
                  policy_group: Optional[pulumi.Input[str]] = None,
+                 route_tag: Optional[pulumi.Input[int]] = None,
                  sdn: Optional[pulumi.Input[str]] = None,
                  sdn_addr_type: Optional[pulumi.Input[str]] = None,
                  sdn_tag: Optional[pulumi.Input[str]] = None,
@@ -1099,6 +1248,7 @@ class FirewallAddress(pulumi.CustomResource):
                  sub_type: Optional[pulumi.Input[str]] = None,
                  subnet: Optional[pulumi.Input[str]] = None,
                  subnet_name: Optional[pulumi.Input[str]] = None,
+                 sw_version: Optional[pulumi.Input[str]] = None,
                  tag_detection_level: Optional[pulumi.Input[str]] = None,
                  tag_type: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddressTaggingArgs']]]]] = None,
@@ -1153,6 +1303,9 @@ class FirewallAddress(pulumi.CustomResource):
                  filter: Optional[pulumi.Input[str]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddressFssoGroupArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 hw_model: Optional[pulumi.Input[str]] = None,
+                 hw_vendor: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddressListArgs']]]]] = None,
                  macaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddressMacaddrArgs']]]]] = None,
@@ -1162,7 +1315,9 @@ class FirewallAddress(pulumi.CustomResource):
                  obj_tag: Optional[pulumi.Input[str]] = None,
                  obj_type: Optional[pulumi.Input[str]] = None,
                  organization: Optional[pulumi.Input[str]] = None,
+                 os: Optional[pulumi.Input[str]] = None,
                  policy_group: Optional[pulumi.Input[str]] = None,
+                 route_tag: Optional[pulumi.Input[int]] = None,
                  sdn: Optional[pulumi.Input[str]] = None,
                  sdn_addr_type: Optional[pulumi.Input[str]] = None,
                  sdn_tag: Optional[pulumi.Input[str]] = None,
@@ -1171,6 +1326,7 @@ class FirewallAddress(pulumi.CustomResource):
                  sub_type: Optional[pulumi.Input[str]] = None,
                  subnet: Optional[pulumi.Input[str]] = None,
                  subnet_name: Optional[pulumi.Input[str]] = None,
+                 sw_version: Optional[pulumi.Input[str]] = None,
                  tag_detection_level: Optional[pulumi.Input[str]] = None,
                  tag_type: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddressTaggingArgs']]]]] = None,
@@ -1205,6 +1361,9 @@ class FirewallAddress(pulumi.CustomResource):
             __props__.__dict__["filter"] = filter
             __props__.__dict__["fqdn"] = fqdn
             __props__.__dict__["fsso_groups"] = fsso_groups
+            __props__.__dict__["get_all_tables"] = get_all_tables
+            __props__.__dict__["hw_model"] = hw_model
+            __props__.__dict__["hw_vendor"] = hw_vendor
             __props__.__dict__["interface"] = interface
             __props__.__dict__["lists"] = lists
             __props__.__dict__["macaddrs"] = macaddrs
@@ -1214,7 +1373,9 @@ class FirewallAddress(pulumi.CustomResource):
             __props__.__dict__["obj_tag"] = obj_tag
             __props__.__dict__["obj_type"] = obj_type
             __props__.__dict__["organization"] = organization
+            __props__.__dict__["os"] = os
             __props__.__dict__["policy_group"] = policy_group
+            __props__.__dict__["route_tag"] = route_tag
             __props__.__dict__["sdn"] = sdn
             __props__.__dict__["sdn_addr_type"] = sdn_addr_type
             __props__.__dict__["sdn_tag"] = sdn_tag
@@ -1223,6 +1384,7 @@ class FirewallAddress(pulumi.CustomResource):
             __props__.__dict__["sub_type"] = sub_type
             __props__.__dict__["subnet"] = subnet
             __props__.__dict__["subnet_name"] = subnet_name
+            __props__.__dict__["sw_version"] = sw_version
             __props__.__dict__["tag_detection_level"] = tag_detection_level
             __props__.__dict__["tag_type"] = tag_type
             __props__.__dict__["taggings"] = taggings
@@ -1258,6 +1420,9 @@ class FirewallAddress(pulumi.CustomResource):
             filter: Optional[pulumi.Input[str]] = None,
             fqdn: Optional[pulumi.Input[str]] = None,
             fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddressFssoGroupArgs']]]]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
+            hw_model: Optional[pulumi.Input[str]] = None,
+            hw_vendor: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddressListArgs']]]]] = None,
             macaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddressMacaddrArgs']]]]] = None,
@@ -1267,7 +1432,9 @@ class FirewallAddress(pulumi.CustomResource):
             obj_tag: Optional[pulumi.Input[str]] = None,
             obj_type: Optional[pulumi.Input[str]] = None,
             organization: Optional[pulumi.Input[str]] = None,
+            os: Optional[pulumi.Input[str]] = None,
             policy_group: Optional[pulumi.Input[str]] = None,
+            route_tag: Optional[pulumi.Input[int]] = None,
             sdn: Optional[pulumi.Input[str]] = None,
             sdn_addr_type: Optional[pulumi.Input[str]] = None,
             sdn_tag: Optional[pulumi.Input[str]] = None,
@@ -1276,6 +1443,7 @@ class FirewallAddress(pulumi.CustomResource):
             sub_type: Optional[pulumi.Input[str]] = None,
             subnet: Optional[pulumi.Input[str]] = None,
             subnet_name: Optional[pulumi.Input[str]] = None,
+            sw_version: Optional[pulumi.Input[str]] = None,
             tag_detection_level: Optional[pulumi.Input[str]] = None,
             tag_type: Optional[pulumi.Input[str]] = None,
             taggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddressTaggingArgs']]]]] = None,
@@ -1313,6 +1481,9 @@ class FirewallAddress(pulumi.CustomResource):
         __props__.__dict__["filter"] = filter
         __props__.__dict__["fqdn"] = fqdn
         __props__.__dict__["fsso_groups"] = fsso_groups
+        __props__.__dict__["get_all_tables"] = get_all_tables
+        __props__.__dict__["hw_model"] = hw_model
+        __props__.__dict__["hw_vendor"] = hw_vendor
         __props__.__dict__["interface"] = interface
         __props__.__dict__["lists"] = lists
         __props__.__dict__["macaddrs"] = macaddrs
@@ -1322,7 +1493,9 @@ class FirewallAddress(pulumi.CustomResource):
         __props__.__dict__["obj_tag"] = obj_tag
         __props__.__dict__["obj_type"] = obj_type
         __props__.__dict__["organization"] = organization
+        __props__.__dict__["os"] = os
         __props__.__dict__["policy_group"] = policy_group
+        __props__.__dict__["route_tag"] = route_tag
         __props__.__dict__["sdn"] = sdn
         __props__.__dict__["sdn_addr_type"] = sdn_addr_type
         __props__.__dict__["sdn_tag"] = sdn_tag
@@ -1331,6 +1504,7 @@ class FirewallAddress(pulumi.CustomResource):
         __props__.__dict__["sub_type"] = sub_type
         __props__.__dict__["subnet"] = subnet
         __props__.__dict__["subnet_name"] = subnet_name
+        __props__.__dict__["sw_version"] = sw_version
         __props__.__dict__["tag_detection_level"] = tag_detection_level
         __props__.__dict__["tag_type"] = tag_type
         __props__.__dict__["taggings"] = taggings
@@ -1419,6 +1593,21 @@ class FirewallAddress(pulumi.CustomResource):
         return pulumi.get(self, "fsso_groups")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @property
+    @pulumi.getter(name="hwModel")
+    def hw_model(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "hw_model")
+
+    @property
+    @pulumi.getter(name="hwVendor")
+    def hw_vendor(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "hw_vendor")
+
+    @property
     @pulumi.getter
     def interface(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "interface")
@@ -1464,9 +1653,19 @@ class FirewallAddress(pulumi.CustomResource):
         return pulumi.get(self, "organization")
 
     @property
+    @pulumi.getter
+    def os(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "os")
+
+    @property
     @pulumi.getter(name="policyGroup")
     def policy_group(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "policy_group")
+
+    @property
+    @pulumi.getter(name="routeTag")
+    def route_tag(self) -> pulumi.Output[Optional[int]]:
+        return pulumi.get(self, "route_tag")
 
     @property
     @pulumi.getter
@@ -1507,6 +1706,11 @@ class FirewallAddress(pulumi.CustomResource):
     @pulumi.getter(name="subnetName")
     def subnet_name(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "subnet_name")
+
+    @property
+    @pulumi.getter(name="swVersion")
+    def sw_version(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "sw_version")
 
     @property
     @pulumi.getter(name="tagDetectionLevel")

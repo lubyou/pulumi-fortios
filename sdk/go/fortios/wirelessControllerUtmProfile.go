@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -31,7 +32,7 @@ func NewWirelessControllerUtmProfile(ctx *pulumi.Context,
 		args = &WirelessControllerUtmProfileArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WirelessControllerUtmProfile
 	err := ctx.RegisterResource("fortios:index/wirelessControllerUtmProfile:WirelessControllerUtmProfile", name, args, &resource, opts...)
 	if err != nil {

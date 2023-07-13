@@ -18,6 +18,7 @@ class SwitchControllerTrafficSnifferArgs:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  erspan_ip: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  target_ips: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerTrafficSnifferTargetIpArgs']]]] = None,
                  target_macs: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerTrafficSnifferTargetMacArgs']]]] = None,
@@ -30,6 +31,8 @@ class SwitchControllerTrafficSnifferArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if erspan_ip is not None:
             pulumi.set(__self__, "erspan_ip", erspan_ip)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if mode is not None:
             pulumi.set(__self__, "mode", mode)
         if target_ips is not None:
@@ -58,6 +61,15 @@ class SwitchControllerTrafficSnifferArgs:
     @erspan_ip.setter
     def erspan_ip(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "erspan_ip", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -110,6 +122,7 @@ class _SwitchControllerTrafficSnifferState:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  erspan_ip: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  target_ips: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerTrafficSnifferTargetIpArgs']]]] = None,
                  target_macs: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerTrafficSnifferTargetMacArgs']]]] = None,
@@ -122,6 +135,8 @@ class _SwitchControllerTrafficSnifferState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if erspan_ip is not None:
             pulumi.set(__self__, "erspan_ip", erspan_ip)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if mode is not None:
             pulumi.set(__self__, "mode", mode)
         if target_ips is not None:
@@ -150,6 +165,15 @@ class _SwitchControllerTrafficSnifferState:
     @erspan_ip.setter
     def erspan_ip(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "erspan_ip", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -204,6 +228,7 @@ class SwitchControllerTrafficSniffer(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  erspan_ip: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  target_ips: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerTrafficSnifferTargetIpArgs']]]]] = None,
                  target_macs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerTrafficSnifferTargetMacArgs']]]]] = None,
@@ -240,6 +265,7 @@ class SwitchControllerTrafficSniffer(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  erspan_ip: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  target_ips: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerTrafficSnifferTargetIpArgs']]]]] = None,
                  target_macs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerTrafficSnifferTargetMacArgs']]]]] = None,
@@ -256,6 +282,7 @@ class SwitchControllerTrafficSniffer(pulumi.CustomResource):
 
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["erspan_ip"] = erspan_ip
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["mode"] = mode
             __props__.__dict__["target_ips"] = target_ips
             __props__.__dict__["target_macs"] = target_macs
@@ -273,6 +300,7 @@ class SwitchControllerTrafficSniffer(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             erspan_ip: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             mode: Optional[pulumi.Input[str]] = None,
             target_ips: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerTrafficSnifferTargetIpArgs']]]]] = None,
             target_macs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerTrafficSnifferTargetMacArgs']]]]] = None,
@@ -292,6 +320,7 @@ class SwitchControllerTrafficSniffer(pulumi.CustomResource):
 
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["erspan_ip"] = erspan_ip
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["mode"] = mode
         __props__.__dict__["target_ips"] = target_ips
         __props__.__dict__["target_macs"] = target_macs
@@ -308,6 +337,11 @@ class SwitchControllerTrafficSniffer(pulumi.CustomResource):
     @pulumi.getter(name="erspanIp")
     def erspan_ip(self) -> pulumi.Output[str]:
         return pulumi.get(self, "erspan_ip")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

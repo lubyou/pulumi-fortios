@@ -24,6 +24,7 @@ class FirewallTtlPolicyArgs:
                  ttl: pulumi.Input[str],
                  action: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
@@ -39,6 +40,8 @@ class FirewallTtlPolicyArgs:
             pulumi.set(__self__, "action", action)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if vdomparam is not None:
@@ -117,6 +120,15 @@ class FirewallTtlPolicyArgs:
         pulumi.set(self, "dynamic_sort_subtable", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "status")
@@ -141,6 +153,7 @@ class _FirewallTtlPolicyState:
                  action: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallTtlPolicyServiceArgs']]]] = None,
                  srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallTtlPolicySrcaddrArgs']]]] = None,
@@ -157,6 +170,8 @@ class _FirewallTtlPolicyState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if schedule is not None:
             pulumi.set(__self__, "schedule", schedule)
         if services is not None:
@@ -198,6 +213,15 @@ class _FirewallTtlPolicyState:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -271,6 +295,7 @@ class FirewallTtlPolicy(pulumi.CustomResource):
                  action: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallTtlPolicyServiceArgs']]]]] = None,
                  srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallTtlPolicySrcaddrArgs']]]]] = None,
@@ -310,6 +335,7 @@ class FirewallTtlPolicy(pulumi.CustomResource):
                  action: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallTtlPolicyServiceArgs']]]]] = None,
                  srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallTtlPolicySrcaddrArgs']]]]] = None,
@@ -331,6 +357,7 @@ class FirewallTtlPolicy(pulumi.CustomResource):
             if fosid is None and not opts.urn:
                 raise TypeError("Missing required property 'fosid'")
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["get_all_tables"] = get_all_tables
             if schedule is None and not opts.urn:
                 raise TypeError("Missing required property 'schedule'")
             __props__.__dict__["schedule"] = schedule
@@ -361,6 +388,7 @@ class FirewallTtlPolicy(pulumi.CustomResource):
             action: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             schedule: Optional[pulumi.Input[str]] = None,
             services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallTtlPolicyServiceArgs']]]]] = None,
             srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallTtlPolicySrcaddrArgs']]]]] = None,
@@ -383,6 +411,7 @@ class FirewallTtlPolicy(pulumi.CustomResource):
         __props__.__dict__["action"] = action
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["schedule"] = schedule
         __props__.__dict__["services"] = services
         __props__.__dict__["srcaddrs"] = srcaddrs
@@ -406,6 +435,11 @@ class FirewallTtlPolicy(pulumi.CustomResource):
     @pulumi.getter
     def fosid(self) -> pulumi.Output[int]:
         return pulumi.get(self, "fosid")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

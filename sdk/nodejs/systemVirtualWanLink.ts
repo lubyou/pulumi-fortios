@@ -37,6 +37,7 @@ export class SystemVirtualWanLink extends pulumi.CustomResource {
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly failAlertInterfaces!: pulumi.Output<outputs.SystemVirtualWanLinkFailAlertInterface[] | undefined>;
     public readonly failDetect!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly healthChecks!: pulumi.Output<outputs.SystemVirtualWanLinkHealthCheck[] | undefined>;
     public readonly loadBalanceMode!: pulumi.Output<string>;
     public readonly members!: pulumi.Output<outputs.SystemVirtualWanLinkMember[] | undefined>;
@@ -65,6 +66,7 @@ export class SystemVirtualWanLink extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["failAlertInterfaces"] = state ? state.failAlertInterfaces : undefined;
             resourceInputs["failDetect"] = state ? state.failDetect : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["healthChecks"] = state ? state.healthChecks : undefined;
             resourceInputs["loadBalanceMode"] = state ? state.loadBalanceMode : undefined;
             resourceInputs["members"] = state ? state.members : undefined;
@@ -81,6 +83,7 @@ export class SystemVirtualWanLink extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["failAlertInterfaces"] = args ? args.failAlertInterfaces : undefined;
             resourceInputs["failDetect"] = args ? args.failDetect : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["healthChecks"] = args ? args.healthChecks : undefined;
             resourceInputs["loadBalanceMode"] = args ? args.loadBalanceMode : undefined;
             resourceInputs["members"] = args ? args.members : undefined;
@@ -105,6 +108,7 @@ export interface SystemVirtualWanLinkState {
     dynamicSortSubtable?: pulumi.Input<string>;
     failAlertInterfaces?: pulumi.Input<pulumi.Input<inputs.SystemVirtualWanLinkFailAlertInterface>[]>;
     failDetect?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     healthChecks?: pulumi.Input<pulumi.Input<inputs.SystemVirtualWanLinkHealthCheck>[]>;
     loadBalanceMode?: pulumi.Input<string>;
     members?: pulumi.Input<pulumi.Input<inputs.SystemVirtualWanLinkMember>[]>;
@@ -125,6 +129,7 @@ export interface SystemVirtualWanLinkArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
     failAlertInterfaces?: pulumi.Input<pulumi.Input<inputs.SystemVirtualWanLinkFailAlertInterface>[]>;
     failDetect?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     healthChecks?: pulumi.Input<pulumi.Input<inputs.SystemVirtualWanLinkHealthCheck>[]>;
     loadBalanceMode?: pulumi.Input<string>;
     members?: pulumi.Input<pulumi.Input<inputs.SystemVirtualWanLinkMember>[]>;

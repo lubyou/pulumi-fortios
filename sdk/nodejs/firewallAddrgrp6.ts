@@ -37,7 +37,10 @@ export class FirewallAddrgrp6 extends pulumi.CustomResource {
     public readonly color!: pulumi.Output<number>;
     public readonly comment!: pulumi.Output<string | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly exclude!: pulumi.Output<string>;
+    public readonly excludeMembers!: pulumi.Output<outputs.FirewallAddrgrp6ExcludeMember[] | undefined>;
     public readonly fabricObject!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly members!: pulumi.Output<outputs.FirewallAddrgrp6Member[]>;
     public readonly name!: pulumi.Output<string>;
     public readonly taggings!: pulumi.Output<outputs.FirewallAddrgrp6Tagging[] | undefined>;
@@ -61,7 +64,10 @@ export class FirewallAddrgrp6 extends pulumi.CustomResource {
             resourceInputs["color"] = state ? state.color : undefined;
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["exclude"] = state ? state.exclude : undefined;
+            resourceInputs["excludeMembers"] = state ? state.excludeMembers : undefined;
             resourceInputs["fabricObject"] = state ? state.fabricObject : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["members"] = state ? state.members : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["taggings"] = state ? state.taggings : undefined;
@@ -76,7 +82,10 @@ export class FirewallAddrgrp6 extends pulumi.CustomResource {
             resourceInputs["color"] = args ? args.color : undefined;
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["exclude"] = args ? args.exclude : undefined;
+            resourceInputs["excludeMembers"] = args ? args.excludeMembers : undefined;
             resourceInputs["fabricObject"] = args ? args.fabricObject : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["members"] = args ? args.members : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["taggings"] = args ? args.taggings : undefined;
@@ -96,7 +105,10 @@ export interface FirewallAddrgrp6State {
     color?: pulumi.Input<number>;
     comment?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    exclude?: pulumi.Input<string>;
+    excludeMembers?: pulumi.Input<pulumi.Input<inputs.FirewallAddrgrp6ExcludeMember>[]>;
     fabricObject?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     members?: pulumi.Input<pulumi.Input<inputs.FirewallAddrgrp6Member>[]>;
     name?: pulumi.Input<string>;
     taggings?: pulumi.Input<pulumi.Input<inputs.FirewallAddrgrp6Tagging>[]>;
@@ -112,7 +124,10 @@ export interface FirewallAddrgrp6Args {
     color?: pulumi.Input<number>;
     comment?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    exclude?: pulumi.Input<string>;
+    excludeMembers?: pulumi.Input<pulumi.Input<inputs.FirewallAddrgrp6ExcludeMember>[]>;
     fabricObject?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     members: pulumi.Input<pulumi.Input<inputs.FirewallAddrgrp6Member>[]>;
     name?: pulumi.Input<string>;
     taggings?: pulumi.Input<pulumi.Input<inputs.FirewallAddrgrp6Tagging>[]>;

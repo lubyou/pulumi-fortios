@@ -93,11 +93,11 @@ def get_router_auth_path(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getRouterAuthPath:GetRouterAuthPath', __args__, opts=opts, typ=GetRouterAuthPathResult).value
 
     return AwaitableGetRouterAuthPathResult(
-        device=__ret__.device,
-        gateway=__ret__.gateway,
-        id=__ret__.id,
-        name=__ret__.name,
-        vdomparam=__ret__.vdomparam)
+        device=pulumi.get(__ret__, 'device'),
+        gateway=pulumi.get(__ret__, 'gateway'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_router_auth_path)

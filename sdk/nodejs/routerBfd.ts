@@ -35,6 +35,7 @@ export class RouterBfd extends pulumi.CustomResource {
     }
 
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly multihopTemplates!: pulumi.Output<outputs.RouterBfdMultihopTemplate[] | undefined>;
     public readonly neighbors!: pulumi.Output<outputs.RouterBfdNeighbor[] | undefined>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -53,12 +54,14 @@ export class RouterBfd extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as RouterBfdState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["multihopTemplates"] = state ? state.multihopTemplates : undefined;
             resourceInputs["neighbors"] = state ? state.neighbors : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as RouterBfdArgs | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["multihopTemplates"] = args ? args.multihopTemplates : undefined;
             resourceInputs["neighbors"] = args ? args.neighbors : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -73,6 +76,7 @@ export class RouterBfd extends pulumi.CustomResource {
  */
 export interface RouterBfdState {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     multihopTemplates?: pulumi.Input<pulumi.Input<inputs.RouterBfdMultihopTemplate>[]>;
     neighbors?: pulumi.Input<pulumi.Input<inputs.RouterBfdNeighbor>[]>;
     vdomparam?: pulumi.Input<string>;
@@ -83,6 +87,7 @@ export interface RouterBfdState {
  */
 export interface RouterBfdArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     multihopTemplates?: pulumi.Input<pulumi.Input<inputs.RouterBfdMultihopTemplate>[]>;
     neighbors?: pulumi.Input<pulumi.Input<inputs.RouterBfdNeighbor>[]>;
     vdomparam?: pulumi.Input<string>;

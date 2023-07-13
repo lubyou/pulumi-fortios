@@ -19,6 +19,7 @@ class SystemFortiguardArgs:
                  webfilter_timeout: pulumi.Input[int],
                  antispam_cache: Optional[pulumi.Input[str]] = None,
                  antispam_cache_mpercent: Optional[pulumi.Input[int]] = None,
+                 antispam_cache_mpermille: Optional[pulumi.Input[int]] = None,
                  antispam_cache_ttl: Optional[pulumi.Input[int]] = None,
                  antispam_expiration: Optional[pulumi.Input[int]] = None,
                  antispam_force_off: Optional[pulumi.Input[str]] = None,
@@ -27,12 +28,14 @@ class SystemFortiguardArgs:
                  anycast_sdns_server_port: Optional[pulumi.Input[int]] = None,
                  auto_firmware_upgrade: Optional[pulumi.Input[str]] = None,
                  auto_firmware_upgrade_day: Optional[pulumi.Input[str]] = None,
+                 auto_firmware_upgrade_delay: Optional[pulumi.Input[int]] = None,
                  auto_firmware_upgrade_end_hour: Optional[pulumi.Input[int]] = None,
                  auto_firmware_upgrade_start_hour: Optional[pulumi.Input[int]] = None,
                  auto_join_forticloud: Optional[pulumi.Input[str]] = None,
                  ddns_server_ip: Optional[pulumi.Input[str]] = None,
                  ddns_server_ip6: Optional[pulumi.Input[str]] = None,
                  ddns_server_port: Optional[pulumi.Input[int]] = None,
+                 fds_license_expiring_days: Optional[pulumi.Input[int]] = None,
                  fortiguard_anycast: Optional[pulumi.Input[str]] = None,
                  fortiguard_anycast_source: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
@@ -40,6 +43,7 @@ class SystemFortiguardArgs:
                  load_balance_servers: Optional[pulumi.Input[int]] = None,
                  outbreak_prevention_cache: Optional[pulumi.Input[str]] = None,
                  outbreak_prevention_cache_mpercent: Optional[pulumi.Input[int]] = None,
+                 outbreak_prevention_cache_mpermille: Optional[pulumi.Input[int]] = None,
                  outbreak_prevention_cache_ttl: Optional[pulumi.Input[int]] = None,
                  outbreak_prevention_expiration: Optional[pulumi.Input[int]] = None,
                  outbreak_prevention_force_off: Optional[pulumi.Input[str]] = None,
@@ -60,6 +64,7 @@ class SystemFortiguardArgs:
                  source_ip: Optional[pulumi.Input[str]] = None,
                  source_ip6: Optional[pulumi.Input[str]] = None,
                  update_build_proxy: Optional[pulumi.Input[str]] = None,
+                 update_dldb: Optional[pulumi.Input[str]] = None,
                  update_extdb: Optional[pulumi.Input[str]] = None,
                  update_ffdb: Optional[pulumi.Input[str]] = None,
                  update_server_location: Optional[pulumi.Input[str]] = None,
@@ -83,6 +88,8 @@ class SystemFortiguardArgs:
             pulumi.set(__self__, "antispam_cache", antispam_cache)
         if antispam_cache_mpercent is not None:
             pulumi.set(__self__, "antispam_cache_mpercent", antispam_cache_mpercent)
+        if antispam_cache_mpermille is not None:
+            pulumi.set(__self__, "antispam_cache_mpermille", antispam_cache_mpermille)
         if antispam_cache_ttl is not None:
             pulumi.set(__self__, "antispam_cache_ttl", antispam_cache_ttl)
         if antispam_expiration is not None:
@@ -99,6 +106,8 @@ class SystemFortiguardArgs:
             pulumi.set(__self__, "auto_firmware_upgrade", auto_firmware_upgrade)
         if auto_firmware_upgrade_day is not None:
             pulumi.set(__self__, "auto_firmware_upgrade_day", auto_firmware_upgrade_day)
+        if auto_firmware_upgrade_delay is not None:
+            pulumi.set(__self__, "auto_firmware_upgrade_delay", auto_firmware_upgrade_delay)
         if auto_firmware_upgrade_end_hour is not None:
             pulumi.set(__self__, "auto_firmware_upgrade_end_hour", auto_firmware_upgrade_end_hour)
         if auto_firmware_upgrade_start_hour is not None:
@@ -111,6 +120,8 @@ class SystemFortiguardArgs:
             pulumi.set(__self__, "ddns_server_ip6", ddns_server_ip6)
         if ddns_server_port is not None:
             pulumi.set(__self__, "ddns_server_port", ddns_server_port)
+        if fds_license_expiring_days is not None:
+            pulumi.set(__self__, "fds_license_expiring_days", fds_license_expiring_days)
         if fortiguard_anycast is not None:
             pulumi.set(__self__, "fortiguard_anycast", fortiguard_anycast)
         if fortiguard_anycast_source is not None:
@@ -125,6 +136,8 @@ class SystemFortiguardArgs:
             pulumi.set(__self__, "outbreak_prevention_cache", outbreak_prevention_cache)
         if outbreak_prevention_cache_mpercent is not None:
             pulumi.set(__self__, "outbreak_prevention_cache_mpercent", outbreak_prevention_cache_mpercent)
+        if outbreak_prevention_cache_mpermille is not None:
+            pulumi.set(__self__, "outbreak_prevention_cache_mpermille", outbreak_prevention_cache_mpermille)
         if outbreak_prevention_cache_ttl is not None:
             pulumi.set(__self__, "outbreak_prevention_cache_ttl", outbreak_prevention_cache_ttl)
         if outbreak_prevention_expiration is not None:
@@ -165,6 +178,8 @@ class SystemFortiguardArgs:
             pulumi.set(__self__, "source_ip6", source_ip6)
         if update_build_proxy is not None:
             pulumi.set(__self__, "update_build_proxy", update_build_proxy)
+        if update_dldb is not None:
+            pulumi.set(__self__, "update_dldb", update_dldb)
         if update_extdb is not None:
             pulumi.set(__self__, "update_extdb", update_extdb)
         if update_ffdb is not None:
@@ -236,6 +251,15 @@ class SystemFortiguardArgs:
     @antispam_cache_mpercent.setter
     def antispam_cache_mpercent(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "antispam_cache_mpercent", value)
+
+    @property
+    @pulumi.getter(name="antispamCacheMpermille")
+    def antispam_cache_mpermille(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "antispam_cache_mpermille")
+
+    @antispam_cache_mpermille.setter
+    def antispam_cache_mpermille(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "antispam_cache_mpermille", value)
 
     @property
     @pulumi.getter(name="antispamCacheTtl")
@@ -310,6 +334,15 @@ class SystemFortiguardArgs:
         pulumi.set(self, "auto_firmware_upgrade_day", value)
 
     @property
+    @pulumi.getter(name="autoFirmwareUpgradeDelay")
+    def auto_firmware_upgrade_delay(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "auto_firmware_upgrade_delay")
+
+    @auto_firmware_upgrade_delay.setter
+    def auto_firmware_upgrade_delay(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "auto_firmware_upgrade_delay", value)
+
+    @property
     @pulumi.getter(name="autoFirmwareUpgradeEndHour")
     def auto_firmware_upgrade_end_hour(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "auto_firmware_upgrade_end_hour")
@@ -362,6 +395,15 @@ class SystemFortiguardArgs:
     @ddns_server_port.setter
     def ddns_server_port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "ddns_server_port", value)
+
+    @property
+    @pulumi.getter(name="fdsLicenseExpiringDays")
+    def fds_license_expiring_days(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "fds_license_expiring_days")
+
+    @fds_license_expiring_days.setter
+    def fds_license_expiring_days(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "fds_license_expiring_days", value)
 
     @property
     @pulumi.getter(name="fortiguardAnycast")
@@ -425,6 +467,15 @@ class SystemFortiguardArgs:
     @outbreak_prevention_cache_mpercent.setter
     def outbreak_prevention_cache_mpercent(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "outbreak_prevention_cache_mpercent", value)
+
+    @property
+    @pulumi.getter(name="outbreakPreventionCacheMpermille")
+    def outbreak_prevention_cache_mpermille(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "outbreak_prevention_cache_mpermille")
+
+    @outbreak_prevention_cache_mpermille.setter
+    def outbreak_prevention_cache_mpermille(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "outbreak_prevention_cache_mpermille", value)
 
     @property
     @pulumi.getter(name="outbreakPreventionCacheTtl")
@@ -607,6 +658,15 @@ class SystemFortiguardArgs:
         pulumi.set(self, "update_build_proxy", value)
 
     @property
+    @pulumi.getter(name="updateDldb")
+    def update_dldb(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "update_dldb")
+
+    @update_dldb.setter
+    def update_dldb(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "update_dldb", value)
+
+    @property
     @pulumi.getter(name="updateExtdb")
     def update_extdb(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "update_extdb")
@@ -729,6 +789,7 @@ class _SystemFortiguardState:
     def __init__(__self__, *,
                  antispam_cache: Optional[pulumi.Input[str]] = None,
                  antispam_cache_mpercent: Optional[pulumi.Input[int]] = None,
+                 antispam_cache_mpermille: Optional[pulumi.Input[int]] = None,
                  antispam_cache_ttl: Optional[pulumi.Input[int]] = None,
                  antispam_expiration: Optional[pulumi.Input[int]] = None,
                  antispam_force_off: Optional[pulumi.Input[str]] = None,
@@ -738,12 +799,14 @@ class _SystemFortiguardState:
                  anycast_sdns_server_port: Optional[pulumi.Input[int]] = None,
                  auto_firmware_upgrade: Optional[pulumi.Input[str]] = None,
                  auto_firmware_upgrade_day: Optional[pulumi.Input[str]] = None,
+                 auto_firmware_upgrade_delay: Optional[pulumi.Input[int]] = None,
                  auto_firmware_upgrade_end_hour: Optional[pulumi.Input[int]] = None,
                  auto_firmware_upgrade_start_hour: Optional[pulumi.Input[int]] = None,
                  auto_join_forticloud: Optional[pulumi.Input[str]] = None,
                  ddns_server_ip: Optional[pulumi.Input[str]] = None,
                  ddns_server_ip6: Optional[pulumi.Input[str]] = None,
                  ddns_server_port: Optional[pulumi.Input[int]] = None,
+                 fds_license_expiring_days: Optional[pulumi.Input[int]] = None,
                  fortiguard_anycast: Optional[pulumi.Input[str]] = None,
                  fortiguard_anycast_source: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
@@ -751,6 +814,7 @@ class _SystemFortiguardState:
                  load_balance_servers: Optional[pulumi.Input[int]] = None,
                  outbreak_prevention_cache: Optional[pulumi.Input[str]] = None,
                  outbreak_prevention_cache_mpercent: Optional[pulumi.Input[int]] = None,
+                 outbreak_prevention_cache_mpermille: Optional[pulumi.Input[int]] = None,
                  outbreak_prevention_cache_ttl: Optional[pulumi.Input[int]] = None,
                  outbreak_prevention_expiration: Optional[pulumi.Input[int]] = None,
                  outbreak_prevention_force_off: Optional[pulumi.Input[str]] = None,
@@ -772,6 +836,7 @@ class _SystemFortiguardState:
                  source_ip: Optional[pulumi.Input[str]] = None,
                  source_ip6: Optional[pulumi.Input[str]] = None,
                  update_build_proxy: Optional[pulumi.Input[str]] = None,
+                 update_dldb: Optional[pulumi.Input[str]] = None,
                  update_extdb: Optional[pulumi.Input[str]] = None,
                  update_ffdb: Optional[pulumi.Input[str]] = None,
                  update_server_location: Optional[pulumi.Input[str]] = None,
@@ -793,6 +858,8 @@ class _SystemFortiguardState:
             pulumi.set(__self__, "antispam_cache", antispam_cache)
         if antispam_cache_mpercent is not None:
             pulumi.set(__self__, "antispam_cache_mpercent", antispam_cache_mpercent)
+        if antispam_cache_mpermille is not None:
+            pulumi.set(__self__, "antispam_cache_mpermille", antispam_cache_mpermille)
         if antispam_cache_ttl is not None:
             pulumi.set(__self__, "antispam_cache_ttl", antispam_cache_ttl)
         if antispam_expiration is not None:
@@ -811,6 +878,8 @@ class _SystemFortiguardState:
             pulumi.set(__self__, "auto_firmware_upgrade", auto_firmware_upgrade)
         if auto_firmware_upgrade_day is not None:
             pulumi.set(__self__, "auto_firmware_upgrade_day", auto_firmware_upgrade_day)
+        if auto_firmware_upgrade_delay is not None:
+            pulumi.set(__self__, "auto_firmware_upgrade_delay", auto_firmware_upgrade_delay)
         if auto_firmware_upgrade_end_hour is not None:
             pulumi.set(__self__, "auto_firmware_upgrade_end_hour", auto_firmware_upgrade_end_hour)
         if auto_firmware_upgrade_start_hour is not None:
@@ -823,6 +892,8 @@ class _SystemFortiguardState:
             pulumi.set(__self__, "ddns_server_ip6", ddns_server_ip6)
         if ddns_server_port is not None:
             pulumi.set(__self__, "ddns_server_port", ddns_server_port)
+        if fds_license_expiring_days is not None:
+            pulumi.set(__self__, "fds_license_expiring_days", fds_license_expiring_days)
         if fortiguard_anycast is not None:
             pulumi.set(__self__, "fortiguard_anycast", fortiguard_anycast)
         if fortiguard_anycast_source is not None:
@@ -837,6 +908,8 @@ class _SystemFortiguardState:
             pulumi.set(__self__, "outbreak_prevention_cache", outbreak_prevention_cache)
         if outbreak_prevention_cache_mpercent is not None:
             pulumi.set(__self__, "outbreak_prevention_cache_mpercent", outbreak_prevention_cache_mpercent)
+        if outbreak_prevention_cache_mpermille is not None:
+            pulumi.set(__self__, "outbreak_prevention_cache_mpermille", outbreak_prevention_cache_mpermille)
         if outbreak_prevention_cache_ttl is not None:
             pulumi.set(__self__, "outbreak_prevention_cache_ttl", outbreak_prevention_cache_ttl)
         if outbreak_prevention_expiration is not None:
@@ -879,6 +952,8 @@ class _SystemFortiguardState:
             pulumi.set(__self__, "source_ip6", source_ip6)
         if update_build_proxy is not None:
             pulumi.set(__self__, "update_build_proxy", update_build_proxy)
+        if update_dldb is not None:
+            pulumi.set(__self__, "update_dldb", update_dldb)
         if update_extdb is not None:
             pulumi.set(__self__, "update_extdb", update_extdb)
         if update_ffdb is not None:
@@ -925,6 +1000,15 @@ class _SystemFortiguardState:
     @antispam_cache_mpercent.setter
     def antispam_cache_mpercent(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "antispam_cache_mpercent", value)
+
+    @property
+    @pulumi.getter(name="antispamCacheMpermille")
+    def antispam_cache_mpermille(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "antispam_cache_mpermille")
+
+    @antispam_cache_mpermille.setter
+    def antispam_cache_mpermille(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "antispam_cache_mpermille", value)
 
     @property
     @pulumi.getter(name="antispamCacheTtl")
@@ -1008,6 +1092,15 @@ class _SystemFortiguardState:
         pulumi.set(self, "auto_firmware_upgrade_day", value)
 
     @property
+    @pulumi.getter(name="autoFirmwareUpgradeDelay")
+    def auto_firmware_upgrade_delay(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "auto_firmware_upgrade_delay")
+
+    @auto_firmware_upgrade_delay.setter
+    def auto_firmware_upgrade_delay(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "auto_firmware_upgrade_delay", value)
+
+    @property
     @pulumi.getter(name="autoFirmwareUpgradeEndHour")
     def auto_firmware_upgrade_end_hour(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "auto_firmware_upgrade_end_hour")
@@ -1060,6 +1153,15 @@ class _SystemFortiguardState:
     @ddns_server_port.setter
     def ddns_server_port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "ddns_server_port", value)
+
+    @property
+    @pulumi.getter(name="fdsLicenseExpiringDays")
+    def fds_license_expiring_days(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "fds_license_expiring_days")
+
+    @fds_license_expiring_days.setter
+    def fds_license_expiring_days(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "fds_license_expiring_days", value)
 
     @property
     @pulumi.getter(name="fortiguardAnycast")
@@ -1123,6 +1225,15 @@ class _SystemFortiguardState:
     @outbreak_prevention_cache_mpercent.setter
     def outbreak_prevention_cache_mpercent(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "outbreak_prevention_cache_mpercent", value)
+
+    @property
+    @pulumi.getter(name="outbreakPreventionCacheMpermille")
+    def outbreak_prevention_cache_mpermille(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "outbreak_prevention_cache_mpermille")
+
+    @outbreak_prevention_cache_mpermille.setter
+    def outbreak_prevention_cache_mpermille(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "outbreak_prevention_cache_mpermille", value)
 
     @property
     @pulumi.getter(name="outbreakPreventionCacheTtl")
@@ -1314,6 +1425,15 @@ class _SystemFortiguardState:
         pulumi.set(self, "update_build_proxy", value)
 
     @property
+    @pulumi.getter(name="updateDldb")
+    def update_dldb(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "update_dldb")
+
+    @update_dldb.setter
+    def update_dldb(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "update_dldb", value)
+
+    @property
     @pulumi.getter(name="updateExtdb")
     def update_extdb(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "update_extdb")
@@ -1447,6 +1567,7 @@ class SystemFortiguard(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  antispam_cache: Optional[pulumi.Input[str]] = None,
                  antispam_cache_mpercent: Optional[pulumi.Input[int]] = None,
+                 antispam_cache_mpermille: Optional[pulumi.Input[int]] = None,
                  antispam_cache_ttl: Optional[pulumi.Input[int]] = None,
                  antispam_expiration: Optional[pulumi.Input[int]] = None,
                  antispam_force_off: Optional[pulumi.Input[str]] = None,
@@ -1456,12 +1577,14 @@ class SystemFortiguard(pulumi.CustomResource):
                  anycast_sdns_server_port: Optional[pulumi.Input[int]] = None,
                  auto_firmware_upgrade: Optional[pulumi.Input[str]] = None,
                  auto_firmware_upgrade_day: Optional[pulumi.Input[str]] = None,
+                 auto_firmware_upgrade_delay: Optional[pulumi.Input[int]] = None,
                  auto_firmware_upgrade_end_hour: Optional[pulumi.Input[int]] = None,
                  auto_firmware_upgrade_start_hour: Optional[pulumi.Input[int]] = None,
                  auto_join_forticloud: Optional[pulumi.Input[str]] = None,
                  ddns_server_ip: Optional[pulumi.Input[str]] = None,
                  ddns_server_ip6: Optional[pulumi.Input[str]] = None,
                  ddns_server_port: Optional[pulumi.Input[int]] = None,
+                 fds_license_expiring_days: Optional[pulumi.Input[int]] = None,
                  fortiguard_anycast: Optional[pulumi.Input[str]] = None,
                  fortiguard_anycast_source: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
@@ -1469,6 +1592,7 @@ class SystemFortiguard(pulumi.CustomResource):
                  load_balance_servers: Optional[pulumi.Input[int]] = None,
                  outbreak_prevention_cache: Optional[pulumi.Input[str]] = None,
                  outbreak_prevention_cache_mpercent: Optional[pulumi.Input[int]] = None,
+                 outbreak_prevention_cache_mpermille: Optional[pulumi.Input[int]] = None,
                  outbreak_prevention_cache_ttl: Optional[pulumi.Input[int]] = None,
                  outbreak_prevention_expiration: Optional[pulumi.Input[int]] = None,
                  outbreak_prevention_force_off: Optional[pulumi.Input[str]] = None,
@@ -1490,6 +1614,7 @@ class SystemFortiguard(pulumi.CustomResource):
                  source_ip: Optional[pulumi.Input[str]] = None,
                  source_ip6: Optional[pulumi.Input[str]] = None,
                  update_build_proxy: Optional[pulumi.Input[str]] = None,
+                 update_dldb: Optional[pulumi.Input[str]] = None,
                  update_extdb: Optional[pulumi.Input[str]] = None,
                  update_ffdb: Optional[pulumi.Input[str]] = None,
                  update_server_location: Optional[pulumi.Input[str]] = None,
@@ -1535,6 +1660,7 @@ class SystemFortiguard(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  antispam_cache: Optional[pulumi.Input[str]] = None,
                  antispam_cache_mpercent: Optional[pulumi.Input[int]] = None,
+                 antispam_cache_mpermille: Optional[pulumi.Input[int]] = None,
                  antispam_cache_ttl: Optional[pulumi.Input[int]] = None,
                  antispam_expiration: Optional[pulumi.Input[int]] = None,
                  antispam_force_off: Optional[pulumi.Input[str]] = None,
@@ -1544,12 +1670,14 @@ class SystemFortiguard(pulumi.CustomResource):
                  anycast_sdns_server_port: Optional[pulumi.Input[int]] = None,
                  auto_firmware_upgrade: Optional[pulumi.Input[str]] = None,
                  auto_firmware_upgrade_day: Optional[pulumi.Input[str]] = None,
+                 auto_firmware_upgrade_delay: Optional[pulumi.Input[int]] = None,
                  auto_firmware_upgrade_end_hour: Optional[pulumi.Input[int]] = None,
                  auto_firmware_upgrade_start_hour: Optional[pulumi.Input[int]] = None,
                  auto_join_forticloud: Optional[pulumi.Input[str]] = None,
                  ddns_server_ip: Optional[pulumi.Input[str]] = None,
                  ddns_server_ip6: Optional[pulumi.Input[str]] = None,
                  ddns_server_port: Optional[pulumi.Input[int]] = None,
+                 fds_license_expiring_days: Optional[pulumi.Input[int]] = None,
                  fortiguard_anycast: Optional[pulumi.Input[str]] = None,
                  fortiguard_anycast_source: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
@@ -1557,6 +1685,7 @@ class SystemFortiguard(pulumi.CustomResource):
                  load_balance_servers: Optional[pulumi.Input[int]] = None,
                  outbreak_prevention_cache: Optional[pulumi.Input[str]] = None,
                  outbreak_prevention_cache_mpercent: Optional[pulumi.Input[int]] = None,
+                 outbreak_prevention_cache_mpermille: Optional[pulumi.Input[int]] = None,
                  outbreak_prevention_cache_ttl: Optional[pulumi.Input[int]] = None,
                  outbreak_prevention_expiration: Optional[pulumi.Input[int]] = None,
                  outbreak_prevention_force_off: Optional[pulumi.Input[str]] = None,
@@ -1578,6 +1707,7 @@ class SystemFortiguard(pulumi.CustomResource):
                  source_ip: Optional[pulumi.Input[str]] = None,
                  source_ip6: Optional[pulumi.Input[str]] = None,
                  update_build_proxy: Optional[pulumi.Input[str]] = None,
+                 update_dldb: Optional[pulumi.Input[str]] = None,
                  update_extdb: Optional[pulumi.Input[str]] = None,
                  update_ffdb: Optional[pulumi.Input[str]] = None,
                  update_server_location: Optional[pulumi.Input[str]] = None,
@@ -1603,6 +1733,7 @@ class SystemFortiguard(pulumi.CustomResource):
 
             __props__.__dict__["antispam_cache"] = antispam_cache
             __props__.__dict__["antispam_cache_mpercent"] = antispam_cache_mpercent
+            __props__.__dict__["antispam_cache_mpermille"] = antispam_cache_mpermille
             __props__.__dict__["antispam_cache_ttl"] = antispam_cache_ttl
             __props__.__dict__["antispam_expiration"] = antispam_expiration
             __props__.__dict__["antispam_force_off"] = antispam_force_off
@@ -1614,12 +1745,14 @@ class SystemFortiguard(pulumi.CustomResource):
             __props__.__dict__["anycast_sdns_server_port"] = anycast_sdns_server_port
             __props__.__dict__["auto_firmware_upgrade"] = auto_firmware_upgrade
             __props__.__dict__["auto_firmware_upgrade_day"] = auto_firmware_upgrade_day
+            __props__.__dict__["auto_firmware_upgrade_delay"] = auto_firmware_upgrade_delay
             __props__.__dict__["auto_firmware_upgrade_end_hour"] = auto_firmware_upgrade_end_hour
             __props__.__dict__["auto_firmware_upgrade_start_hour"] = auto_firmware_upgrade_start_hour
             __props__.__dict__["auto_join_forticloud"] = auto_join_forticloud
             __props__.__dict__["ddns_server_ip"] = ddns_server_ip
             __props__.__dict__["ddns_server_ip6"] = ddns_server_ip6
             __props__.__dict__["ddns_server_port"] = ddns_server_port
+            __props__.__dict__["fds_license_expiring_days"] = fds_license_expiring_days
             __props__.__dict__["fortiguard_anycast"] = fortiguard_anycast
             __props__.__dict__["fortiguard_anycast_source"] = fortiguard_anycast_source
             __props__.__dict__["interface"] = interface
@@ -1627,6 +1760,7 @@ class SystemFortiguard(pulumi.CustomResource):
             __props__.__dict__["load_balance_servers"] = load_balance_servers
             __props__.__dict__["outbreak_prevention_cache"] = outbreak_prevention_cache
             __props__.__dict__["outbreak_prevention_cache_mpercent"] = outbreak_prevention_cache_mpercent
+            __props__.__dict__["outbreak_prevention_cache_mpermille"] = outbreak_prevention_cache_mpermille
             __props__.__dict__["outbreak_prevention_cache_ttl"] = outbreak_prevention_cache_ttl
             __props__.__dict__["outbreak_prevention_expiration"] = outbreak_prevention_expiration
             __props__.__dict__["outbreak_prevention_force_off"] = outbreak_prevention_force_off
@@ -1650,6 +1784,7 @@ class SystemFortiguard(pulumi.CustomResource):
             __props__.__dict__["source_ip"] = source_ip
             __props__.__dict__["source_ip6"] = source_ip6
             __props__.__dict__["update_build_proxy"] = update_build_proxy
+            __props__.__dict__["update_dldb"] = update_dldb
             __props__.__dict__["update_extdb"] = update_extdb
             __props__.__dict__["update_ffdb"] = update_ffdb
             __props__.__dict__["update_server_location"] = update_server_location
@@ -1680,6 +1815,7 @@ class SystemFortiguard(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             antispam_cache: Optional[pulumi.Input[str]] = None,
             antispam_cache_mpercent: Optional[pulumi.Input[int]] = None,
+            antispam_cache_mpermille: Optional[pulumi.Input[int]] = None,
             antispam_cache_ttl: Optional[pulumi.Input[int]] = None,
             antispam_expiration: Optional[pulumi.Input[int]] = None,
             antispam_force_off: Optional[pulumi.Input[str]] = None,
@@ -1689,12 +1825,14 @@ class SystemFortiguard(pulumi.CustomResource):
             anycast_sdns_server_port: Optional[pulumi.Input[int]] = None,
             auto_firmware_upgrade: Optional[pulumi.Input[str]] = None,
             auto_firmware_upgrade_day: Optional[pulumi.Input[str]] = None,
+            auto_firmware_upgrade_delay: Optional[pulumi.Input[int]] = None,
             auto_firmware_upgrade_end_hour: Optional[pulumi.Input[int]] = None,
             auto_firmware_upgrade_start_hour: Optional[pulumi.Input[int]] = None,
             auto_join_forticloud: Optional[pulumi.Input[str]] = None,
             ddns_server_ip: Optional[pulumi.Input[str]] = None,
             ddns_server_ip6: Optional[pulumi.Input[str]] = None,
             ddns_server_port: Optional[pulumi.Input[int]] = None,
+            fds_license_expiring_days: Optional[pulumi.Input[int]] = None,
             fortiguard_anycast: Optional[pulumi.Input[str]] = None,
             fortiguard_anycast_source: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
@@ -1702,6 +1840,7 @@ class SystemFortiguard(pulumi.CustomResource):
             load_balance_servers: Optional[pulumi.Input[int]] = None,
             outbreak_prevention_cache: Optional[pulumi.Input[str]] = None,
             outbreak_prevention_cache_mpercent: Optional[pulumi.Input[int]] = None,
+            outbreak_prevention_cache_mpermille: Optional[pulumi.Input[int]] = None,
             outbreak_prevention_cache_ttl: Optional[pulumi.Input[int]] = None,
             outbreak_prevention_expiration: Optional[pulumi.Input[int]] = None,
             outbreak_prevention_force_off: Optional[pulumi.Input[str]] = None,
@@ -1723,6 +1862,7 @@ class SystemFortiguard(pulumi.CustomResource):
             source_ip: Optional[pulumi.Input[str]] = None,
             source_ip6: Optional[pulumi.Input[str]] = None,
             update_build_proxy: Optional[pulumi.Input[str]] = None,
+            update_dldb: Optional[pulumi.Input[str]] = None,
             update_extdb: Optional[pulumi.Input[str]] = None,
             update_ffdb: Optional[pulumi.Input[str]] = None,
             update_server_location: Optional[pulumi.Input[str]] = None,
@@ -1751,6 +1891,7 @@ class SystemFortiguard(pulumi.CustomResource):
 
         __props__.__dict__["antispam_cache"] = antispam_cache
         __props__.__dict__["antispam_cache_mpercent"] = antispam_cache_mpercent
+        __props__.__dict__["antispam_cache_mpermille"] = antispam_cache_mpermille
         __props__.__dict__["antispam_cache_ttl"] = antispam_cache_ttl
         __props__.__dict__["antispam_expiration"] = antispam_expiration
         __props__.__dict__["antispam_force_off"] = antispam_force_off
@@ -1760,12 +1901,14 @@ class SystemFortiguard(pulumi.CustomResource):
         __props__.__dict__["anycast_sdns_server_port"] = anycast_sdns_server_port
         __props__.__dict__["auto_firmware_upgrade"] = auto_firmware_upgrade
         __props__.__dict__["auto_firmware_upgrade_day"] = auto_firmware_upgrade_day
+        __props__.__dict__["auto_firmware_upgrade_delay"] = auto_firmware_upgrade_delay
         __props__.__dict__["auto_firmware_upgrade_end_hour"] = auto_firmware_upgrade_end_hour
         __props__.__dict__["auto_firmware_upgrade_start_hour"] = auto_firmware_upgrade_start_hour
         __props__.__dict__["auto_join_forticloud"] = auto_join_forticloud
         __props__.__dict__["ddns_server_ip"] = ddns_server_ip
         __props__.__dict__["ddns_server_ip6"] = ddns_server_ip6
         __props__.__dict__["ddns_server_port"] = ddns_server_port
+        __props__.__dict__["fds_license_expiring_days"] = fds_license_expiring_days
         __props__.__dict__["fortiguard_anycast"] = fortiguard_anycast
         __props__.__dict__["fortiguard_anycast_source"] = fortiguard_anycast_source
         __props__.__dict__["interface"] = interface
@@ -1773,6 +1916,7 @@ class SystemFortiguard(pulumi.CustomResource):
         __props__.__dict__["load_balance_servers"] = load_balance_servers
         __props__.__dict__["outbreak_prevention_cache"] = outbreak_prevention_cache
         __props__.__dict__["outbreak_prevention_cache_mpercent"] = outbreak_prevention_cache_mpercent
+        __props__.__dict__["outbreak_prevention_cache_mpermille"] = outbreak_prevention_cache_mpermille
         __props__.__dict__["outbreak_prevention_cache_ttl"] = outbreak_prevention_cache_ttl
         __props__.__dict__["outbreak_prevention_expiration"] = outbreak_prevention_expiration
         __props__.__dict__["outbreak_prevention_force_off"] = outbreak_prevention_force_off
@@ -1794,6 +1938,7 @@ class SystemFortiguard(pulumi.CustomResource):
         __props__.__dict__["source_ip"] = source_ip
         __props__.__dict__["source_ip6"] = source_ip6
         __props__.__dict__["update_build_proxy"] = update_build_proxy
+        __props__.__dict__["update_dldb"] = update_dldb
         __props__.__dict__["update_extdb"] = update_extdb
         __props__.__dict__["update_ffdb"] = update_ffdb
         __props__.__dict__["update_server_location"] = update_server_location
@@ -1819,6 +1964,11 @@ class SystemFortiguard(pulumi.CustomResource):
     @pulumi.getter(name="antispamCacheMpercent")
     def antispam_cache_mpercent(self) -> pulumi.Output[int]:
         return pulumi.get(self, "antispam_cache_mpercent")
+
+    @property
+    @pulumi.getter(name="antispamCacheMpermille")
+    def antispam_cache_mpermille(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "antispam_cache_mpermille")
 
     @property
     @pulumi.getter(name="antispamCacheTtl")
@@ -1866,6 +2016,11 @@ class SystemFortiguard(pulumi.CustomResource):
         return pulumi.get(self, "auto_firmware_upgrade_day")
 
     @property
+    @pulumi.getter(name="autoFirmwareUpgradeDelay")
+    def auto_firmware_upgrade_delay(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "auto_firmware_upgrade_delay")
+
+    @property
     @pulumi.getter(name="autoFirmwareUpgradeEndHour")
     def auto_firmware_upgrade_end_hour(self) -> pulumi.Output[int]:
         return pulumi.get(self, "auto_firmware_upgrade_end_hour")
@@ -1894,6 +2049,11 @@ class SystemFortiguard(pulumi.CustomResource):
     @pulumi.getter(name="ddnsServerPort")
     def ddns_server_port(self) -> pulumi.Output[int]:
         return pulumi.get(self, "ddns_server_port")
+
+    @property
+    @pulumi.getter(name="fdsLicenseExpiringDays")
+    def fds_license_expiring_days(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "fds_license_expiring_days")
 
     @property
     @pulumi.getter(name="fortiguardAnycast")
@@ -1929,6 +2089,11 @@ class SystemFortiguard(pulumi.CustomResource):
     @pulumi.getter(name="outbreakPreventionCacheMpercent")
     def outbreak_prevention_cache_mpercent(self) -> pulumi.Output[int]:
         return pulumi.get(self, "outbreak_prevention_cache_mpercent")
+
+    @property
+    @pulumi.getter(name="outbreakPreventionCacheMpermille")
+    def outbreak_prevention_cache_mpermille(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "outbreak_prevention_cache_mpermille")
 
     @property
     @pulumi.getter(name="outbreakPreventionCacheTtl")
@@ -2034,6 +2199,11 @@ class SystemFortiguard(pulumi.CustomResource):
     @pulumi.getter(name="updateBuildProxy")
     def update_build_proxy(self) -> pulumi.Output[str]:
         return pulumi.get(self, "update_build_proxy")
+
+    @property
+    @pulumi.getter(name="updateDldb")
+    def update_dldb(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "update_dldb")
 
     @property
     @pulumi.getter(name="updateExtdb")

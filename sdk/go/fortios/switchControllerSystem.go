@@ -7,12 +7,15 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type SwitchControllerSystem struct {
 	pulumi.CustomResourceState
 
+	CaputpEchoInterval      pulumi.IntOutput       `pulumi:"caputpEchoInterval"`
+	CaputpMaxRetransmit     pulumi.IntOutput       `pulumi:"caputpMaxRetransmit"`
 	DataSyncInterval        pulumi.IntOutput       `pulumi:"dataSyncInterval"`
 	DynamicPeriodicInterval pulumi.IntOutput       `pulumi:"dynamicPeriodicInterval"`
 	IotHoldoff              pulumi.IntOutput       `pulumi:"iotHoldoff"`
@@ -33,7 +36,7 @@ func NewSwitchControllerSystem(ctx *pulumi.Context,
 		args = &SwitchControllerSystemArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SwitchControllerSystem
 	err := ctx.RegisterResource("fortios:index/switchControllerSystem:SwitchControllerSystem", name, args, &resource, opts...)
 	if err != nil {
@@ -56,6 +59,8 @@ func GetSwitchControllerSystem(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerSystem resources.
 type switchControllerSystemState struct {
+	CaputpEchoInterval      *int    `pulumi:"caputpEchoInterval"`
+	CaputpMaxRetransmit     *int    `pulumi:"caputpMaxRetransmit"`
 	DataSyncInterval        *int    `pulumi:"dataSyncInterval"`
 	DynamicPeriodicInterval *int    `pulumi:"dynamicPeriodicInterval"`
 	IotHoldoff              *int    `pulumi:"iotHoldoff"`
@@ -70,6 +75,8 @@ type switchControllerSystemState struct {
 }
 
 type SwitchControllerSystemState struct {
+	CaputpEchoInterval      pulumi.IntPtrInput
+	CaputpMaxRetransmit     pulumi.IntPtrInput
 	DataSyncInterval        pulumi.IntPtrInput
 	DynamicPeriodicInterval pulumi.IntPtrInput
 	IotHoldoff              pulumi.IntPtrInput
@@ -88,6 +95,8 @@ func (SwitchControllerSystemState) ElementType() reflect.Type {
 }
 
 type switchControllerSystemArgs struct {
+	CaputpEchoInterval      *int    `pulumi:"caputpEchoInterval"`
+	CaputpMaxRetransmit     *int    `pulumi:"caputpMaxRetransmit"`
 	DataSyncInterval        *int    `pulumi:"dataSyncInterval"`
 	DynamicPeriodicInterval *int    `pulumi:"dynamicPeriodicInterval"`
 	IotHoldoff              *int    `pulumi:"iotHoldoff"`
@@ -103,6 +112,8 @@ type switchControllerSystemArgs struct {
 
 // The set of arguments for constructing a SwitchControllerSystem resource.
 type SwitchControllerSystemArgs struct {
+	CaputpEchoInterval      pulumi.IntPtrInput
+	CaputpMaxRetransmit     pulumi.IntPtrInput
 	DataSyncInterval        pulumi.IntPtrInput
 	DynamicPeriodicInterval pulumi.IntPtrInput
 	IotHoldoff              pulumi.IntPtrInput
@@ -201,6 +212,14 @@ func (o SwitchControllerSystemOutput) ToSwitchControllerSystemOutput() SwitchCon
 
 func (o SwitchControllerSystemOutput) ToSwitchControllerSystemOutputWithContext(ctx context.Context) SwitchControllerSystemOutput {
 	return o
+}
+
+func (o SwitchControllerSystemOutput) CaputpEchoInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerSystem) pulumi.IntOutput { return v.CaputpEchoInterval }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerSystemOutput) CaputpMaxRetransmit() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerSystem) pulumi.IntOutput { return v.CaputpMaxRetransmit }).(pulumi.IntOutput)
 }
 
 func (o SwitchControllerSystemOutput) DataSyncInterval() pulumi.IntOutput {

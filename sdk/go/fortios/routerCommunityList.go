@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,6 +16,7 @@ type RouterCommunityList struct {
 	pulumi.CustomResourceState
 
 	DynamicSortSubtable pulumi.StringPtrOutput             `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput             `pulumi:"getAllTables"`
 	Name                pulumi.StringOutput                `pulumi:"name"`
 	Rules               RouterCommunityListRuleArrayOutput `pulumi:"rules"`
 	Type                pulumi.StringOutput                `pulumi:"type"`
@@ -31,7 +33,7 @@ func NewRouterCommunityList(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RouterCommunityList
 	err := ctx.RegisterResource("fortios:index/routerCommunityList:RouterCommunityList", name, args, &resource, opts...)
 	if err != nil {
@@ -55,6 +57,7 @@ func GetRouterCommunityList(ctx *pulumi.Context,
 // Input properties used for looking up and filtering RouterCommunityList resources.
 type routerCommunityListState struct {
 	DynamicSortSubtable *string                   `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                   `pulumi:"getAllTables"`
 	Name                *string                   `pulumi:"name"`
 	Rules               []RouterCommunityListRule `pulumi:"rules"`
 	Type                *string                   `pulumi:"type"`
@@ -63,6 +66,7 @@ type routerCommunityListState struct {
 
 type RouterCommunityListState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Rules               RouterCommunityListRuleArrayInput
 	Type                pulumi.StringPtrInput
@@ -75,6 +79,7 @@ func (RouterCommunityListState) ElementType() reflect.Type {
 
 type routerCommunityListArgs struct {
 	DynamicSortSubtable *string                   `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                   `pulumi:"getAllTables"`
 	Name                *string                   `pulumi:"name"`
 	Rules               []RouterCommunityListRule `pulumi:"rules"`
 	Type                string                    `pulumi:"type"`
@@ -84,6 +89,7 @@ type routerCommunityListArgs struct {
 // The set of arguments for constructing a RouterCommunityList resource.
 type RouterCommunityListArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Rules               RouterCommunityListRuleArrayInput
 	Type                pulumi.StringInput
@@ -179,6 +185,10 @@ func (o RouterCommunityListOutput) ToRouterCommunityListOutputWithContext(ctx co
 
 func (o RouterCommunityListOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RouterCommunityList) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o RouterCommunityListOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterCommunityList) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o RouterCommunityListOutput) Name() pulumi.StringOutput {

@@ -41,6 +41,7 @@ export class FirewallVip46 extends pulumi.CustomResource {
     public readonly extip!: pulumi.Output<string>;
     public readonly extport!: pulumi.Output<string>;
     public readonly fosid!: pulumi.Output<number>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly ldbMethod!: pulumi.Output<string>;
     public readonly mappedip!: pulumi.Output<string>;
     public readonly mappedport!: pulumi.Output<string>;
@@ -76,6 +77,7 @@ export class FirewallVip46 extends pulumi.CustomResource {
             resourceInputs["extip"] = state ? state.extip : undefined;
             resourceInputs["extport"] = state ? state.extport : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["ldbMethod"] = state ? state.ldbMethod : undefined;
             resourceInputs["mappedip"] = state ? state.mappedip : undefined;
             resourceInputs["mappedport"] = state ? state.mappedport : undefined;
@@ -105,6 +107,7 @@ export class FirewallVip46 extends pulumi.CustomResource {
             resourceInputs["extip"] = args ? args.extip : undefined;
             resourceInputs["extport"] = args ? args.extport : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["ldbMethod"] = args ? args.ldbMethod : undefined;
             resourceInputs["mappedip"] = args ? args.mappedip : undefined;
             resourceInputs["mappedport"] = args ? args.mappedport : undefined;
@@ -136,6 +139,7 @@ export interface FirewallVip46State {
     extip?: pulumi.Input<string>;
     extport?: pulumi.Input<string>;
     fosid?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     ldbMethod?: pulumi.Input<string>;
     mappedip?: pulumi.Input<string>;
     mappedport?: pulumi.Input<string>;
@@ -163,6 +167,7 @@ export interface FirewallVip46Args {
     extip: pulumi.Input<string>;
     extport?: pulumi.Input<string>;
     fosid?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     ldbMethod?: pulumi.Input<string>;
     mappedip: pulumi.Input<string>;
     mappedport?: pulumi.Input<string>;

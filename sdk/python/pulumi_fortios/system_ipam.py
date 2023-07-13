@@ -16,7 +16,12 @@ __all__ = ['SystemIpamArgs', 'SystemIpam']
 @pulumi.input_type
 class SystemIpamArgs:
     def __init__(__self__, *,
+                 automatic_conflict_resolution: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 manage_lan_addresses: Optional[pulumi.Input[str]] = None,
+                 manage_lan_extension_addresses: Optional[pulumi.Input[str]] = None,
+                 manage_ssid_addresses: Optional[pulumi.Input[str]] = None,
                  pool_subnet: Optional[pulumi.Input[str]] = None,
                  pools: Optional[pulumi.Input[Sequence[pulumi.Input['SystemIpamPoolArgs']]]] = None,
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input['SystemIpamRuleArgs']]]] = None,
@@ -26,8 +31,18 @@ class SystemIpamArgs:
         """
         The set of arguments for constructing a SystemIpam resource.
         """
+        if automatic_conflict_resolution is not None:
+            pulumi.set(__self__, "automatic_conflict_resolution", automatic_conflict_resolution)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
+        if manage_lan_addresses is not None:
+            pulumi.set(__self__, "manage_lan_addresses", manage_lan_addresses)
+        if manage_lan_extension_addresses is not None:
+            pulumi.set(__self__, "manage_lan_extension_addresses", manage_lan_extension_addresses)
+        if manage_ssid_addresses is not None:
+            pulumi.set(__self__, "manage_ssid_addresses", manage_ssid_addresses)
         if pool_subnet is not None:
             pulumi.set(__self__, "pool_subnet", pool_subnet)
         if pools is not None:
@@ -42,6 +57,15 @@ class SystemIpamArgs:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
     @property
+    @pulumi.getter(name="automaticConflictResolution")
+    def automatic_conflict_resolution(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "automatic_conflict_resolution")
+
+    @automatic_conflict_resolution.setter
+    def automatic_conflict_resolution(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "automatic_conflict_resolution", value)
+
+    @property
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
@@ -49,6 +73,42 @@ class SystemIpamArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
+    @pulumi.getter(name="manageLanAddresses")
+    def manage_lan_addresses(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "manage_lan_addresses")
+
+    @manage_lan_addresses.setter
+    def manage_lan_addresses(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "manage_lan_addresses", value)
+
+    @property
+    @pulumi.getter(name="manageLanExtensionAddresses")
+    def manage_lan_extension_addresses(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "manage_lan_extension_addresses")
+
+    @manage_lan_extension_addresses.setter
+    def manage_lan_extension_addresses(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "manage_lan_extension_addresses", value)
+
+    @property
+    @pulumi.getter(name="manageSsidAddresses")
+    def manage_ssid_addresses(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "manage_ssid_addresses")
+
+    @manage_ssid_addresses.setter
+    def manage_ssid_addresses(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "manage_ssid_addresses", value)
 
     @property
     @pulumi.getter(name="poolSubnet")
@@ -108,7 +168,12 @@ class SystemIpamArgs:
 @pulumi.input_type
 class _SystemIpamState:
     def __init__(__self__, *,
+                 automatic_conflict_resolution: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 manage_lan_addresses: Optional[pulumi.Input[str]] = None,
+                 manage_lan_extension_addresses: Optional[pulumi.Input[str]] = None,
+                 manage_ssid_addresses: Optional[pulumi.Input[str]] = None,
                  pool_subnet: Optional[pulumi.Input[str]] = None,
                  pools: Optional[pulumi.Input[Sequence[pulumi.Input['SystemIpamPoolArgs']]]] = None,
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input['SystemIpamRuleArgs']]]] = None,
@@ -118,8 +183,18 @@ class _SystemIpamState:
         """
         Input properties used for looking up and filtering SystemIpam resources.
         """
+        if automatic_conflict_resolution is not None:
+            pulumi.set(__self__, "automatic_conflict_resolution", automatic_conflict_resolution)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
+        if manage_lan_addresses is not None:
+            pulumi.set(__self__, "manage_lan_addresses", manage_lan_addresses)
+        if manage_lan_extension_addresses is not None:
+            pulumi.set(__self__, "manage_lan_extension_addresses", manage_lan_extension_addresses)
+        if manage_ssid_addresses is not None:
+            pulumi.set(__self__, "manage_ssid_addresses", manage_ssid_addresses)
         if pool_subnet is not None:
             pulumi.set(__self__, "pool_subnet", pool_subnet)
         if pools is not None:
@@ -134,6 +209,15 @@ class _SystemIpamState:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
     @property
+    @pulumi.getter(name="automaticConflictResolution")
+    def automatic_conflict_resolution(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "automatic_conflict_resolution")
+
+    @automatic_conflict_resolution.setter
+    def automatic_conflict_resolution(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "automatic_conflict_resolution", value)
+
+    @property
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
@@ -141,6 +225,42 @@ class _SystemIpamState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
+    @pulumi.getter(name="manageLanAddresses")
+    def manage_lan_addresses(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "manage_lan_addresses")
+
+    @manage_lan_addresses.setter
+    def manage_lan_addresses(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "manage_lan_addresses", value)
+
+    @property
+    @pulumi.getter(name="manageLanExtensionAddresses")
+    def manage_lan_extension_addresses(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "manage_lan_extension_addresses")
+
+    @manage_lan_extension_addresses.setter
+    def manage_lan_extension_addresses(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "manage_lan_extension_addresses", value)
+
+    @property
+    @pulumi.getter(name="manageSsidAddresses")
+    def manage_ssid_addresses(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "manage_ssid_addresses")
+
+    @manage_ssid_addresses.setter
+    def manage_ssid_addresses(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "manage_ssid_addresses", value)
 
     @property
     @pulumi.getter(name="poolSubnet")
@@ -202,7 +322,12 @@ class SystemIpam(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 automatic_conflict_resolution: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 manage_lan_addresses: Optional[pulumi.Input[str]] = None,
+                 manage_lan_extension_addresses: Optional[pulumi.Input[str]] = None,
+                 manage_ssid_addresses: Optional[pulumi.Input[str]] = None,
                  pool_subnet: Optional[pulumi.Input[str]] = None,
                  pools: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemIpamPoolArgs']]]]] = None,
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemIpamRuleArgs']]]]] = None,
@@ -238,7 +363,12 @@ class SystemIpam(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 automatic_conflict_resolution: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 manage_lan_addresses: Optional[pulumi.Input[str]] = None,
+                 manage_lan_extension_addresses: Optional[pulumi.Input[str]] = None,
+                 manage_ssid_addresses: Optional[pulumi.Input[str]] = None,
                  pool_subnet: Optional[pulumi.Input[str]] = None,
                  pools: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemIpamPoolArgs']]]]] = None,
                  rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemIpamRuleArgs']]]]] = None,
@@ -254,7 +384,12 @@ class SystemIpam(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SystemIpamArgs.__new__(SystemIpamArgs)
 
+            __props__.__dict__["automatic_conflict_resolution"] = automatic_conflict_resolution
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
+            __props__.__dict__["manage_lan_addresses"] = manage_lan_addresses
+            __props__.__dict__["manage_lan_extension_addresses"] = manage_lan_extension_addresses
+            __props__.__dict__["manage_ssid_addresses"] = manage_ssid_addresses
             __props__.__dict__["pool_subnet"] = pool_subnet
             __props__.__dict__["pools"] = pools
             __props__.__dict__["rules"] = rules
@@ -271,7 +406,12 @@ class SystemIpam(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            automatic_conflict_resolution: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
+            manage_lan_addresses: Optional[pulumi.Input[str]] = None,
+            manage_lan_extension_addresses: Optional[pulumi.Input[str]] = None,
+            manage_ssid_addresses: Optional[pulumi.Input[str]] = None,
             pool_subnet: Optional[pulumi.Input[str]] = None,
             pools: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemIpamPoolArgs']]]]] = None,
             rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemIpamRuleArgs']]]]] = None,
@@ -290,7 +430,12 @@ class SystemIpam(pulumi.CustomResource):
 
         __props__ = _SystemIpamState.__new__(_SystemIpamState)
 
+        __props__.__dict__["automatic_conflict_resolution"] = automatic_conflict_resolution
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
+        __props__.__dict__["manage_lan_addresses"] = manage_lan_addresses
+        __props__.__dict__["manage_lan_extension_addresses"] = manage_lan_extension_addresses
+        __props__.__dict__["manage_ssid_addresses"] = manage_ssid_addresses
         __props__.__dict__["pool_subnet"] = pool_subnet
         __props__.__dict__["pools"] = pools
         __props__.__dict__["rules"] = rules
@@ -300,9 +445,34 @@ class SystemIpam(pulumi.CustomResource):
         return SystemIpam(resource_name, opts=opts, __props__=__props__)
 
     @property
+    @pulumi.getter(name="automaticConflictResolution")
+    def automatic_conflict_resolution(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "automatic_conflict_resolution")
+
+    @property
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @property
+    @pulumi.getter(name="manageLanAddresses")
+    def manage_lan_addresses(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "manage_lan_addresses")
+
+    @property
+    @pulumi.getter(name="manageLanExtensionAddresses")
+    def manage_lan_extension_addresses(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "manage_lan_extension_addresses")
+
+    @property
+    @pulumi.getter(name="manageSsidAddresses")
+    def manage_ssid_addresses(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "manage_ssid_addresses")
 
     @property
     @pulumi.getter(name="poolSubnet")

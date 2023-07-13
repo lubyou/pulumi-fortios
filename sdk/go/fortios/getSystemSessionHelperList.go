@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func GetSystemSessionHelperList(ctx *pulumi.Context, args *GetSystemSessionHelperListArgs, opts ...pulumi.InvokeOption) (*GetSystemSessionHelperListResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetSystemSessionHelperListResult
 	err := ctx.Invoke("fortios:index/getSystemSessionHelperList:GetSystemSessionHelperList", args, &rv, opts...)
 	if err != nil {

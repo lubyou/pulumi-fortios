@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -30,6 +31,7 @@ type LogEventfilter struct {
 	Vdomparam        pulumi.StringPtrOutput `pulumi:"vdomparam"`
 	Vpn              pulumi.StringOutput    `pulumi:"vpn"`
 	WanOpt           pulumi.StringOutput    `pulumi:"wanOpt"`
+	Webproxy         pulumi.StringOutput    `pulumi:"webproxy"`
 	WirelessActivity pulumi.StringOutput    `pulumi:"wirelessActivity"`
 }
 
@@ -40,7 +42,7 @@ func NewLogEventfilter(ctx *pulumi.Context,
 		args = &LogEventfilterArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource LogEventfilter
 	err := ctx.RegisterResource("fortios:index/logEventfilter:LogEventfilter", name, args, &resource, opts...)
 	if err != nil {
@@ -80,6 +82,7 @@ type logEventfilterState struct {
 	Vdomparam        *string `pulumi:"vdomparam"`
 	Vpn              *string `pulumi:"vpn"`
 	WanOpt           *string `pulumi:"wanOpt"`
+	Webproxy         *string `pulumi:"webproxy"`
 	WirelessActivity *string `pulumi:"wirelessActivity"`
 }
 
@@ -101,6 +104,7 @@ type LogEventfilterState struct {
 	Vdomparam        pulumi.StringPtrInput
 	Vpn              pulumi.StringPtrInput
 	WanOpt           pulumi.StringPtrInput
+	Webproxy         pulumi.StringPtrInput
 	WirelessActivity pulumi.StringPtrInput
 }
 
@@ -126,6 +130,7 @@ type logEventfilterArgs struct {
 	Vdomparam        *string `pulumi:"vdomparam"`
 	Vpn              *string `pulumi:"vpn"`
 	WanOpt           *string `pulumi:"wanOpt"`
+	Webproxy         *string `pulumi:"webproxy"`
 	WirelessActivity *string `pulumi:"wirelessActivity"`
 }
 
@@ -148,6 +153,7 @@ type LogEventfilterArgs struct {
 	Vdomparam        pulumi.StringPtrInput
 	Vpn              pulumi.StringPtrInput
 	WanOpt           pulumi.StringPtrInput
+	Webproxy         pulumi.StringPtrInput
 	WirelessActivity pulumi.StringPtrInput
 }
 
@@ -304,6 +310,10 @@ func (o LogEventfilterOutput) Vpn() pulumi.StringOutput {
 
 func (o LogEventfilterOutput) WanOpt() pulumi.StringOutput {
 	return o.ApplyT(func(v *LogEventfilter) pulumi.StringOutput { return v.WanOpt }).(pulumi.StringOutput)
+}
+
+func (o LogEventfilterOutput) Webproxy() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogEventfilter) pulumi.StringOutput { return v.Webproxy }).(pulumi.StringOutput)
 }
 
 func (o LogEventfilterOutput) WirelessActivity() pulumi.StringOutput {

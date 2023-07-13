@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -17,6 +18,7 @@ type FirewallWildcardFqdnGroup struct {
 	Color               pulumi.IntOutput                           `pulumi:"color"`
 	Comment             pulumi.StringPtrOutput                     `pulumi:"comment"`
 	DynamicSortSubtable pulumi.StringPtrOutput                     `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                     `pulumi:"getAllTables"`
 	Members             FirewallWildcardFqdnGroupMemberArrayOutput `pulumi:"members"`
 	Name                pulumi.StringOutput                        `pulumi:"name"`
 	Uuid                pulumi.StringOutput                        `pulumi:"uuid"`
@@ -34,7 +36,7 @@ func NewFirewallWildcardFqdnGroup(ctx *pulumi.Context,
 	if args.Members == nil {
 		return nil, errors.New("invalid value for required argument 'Members'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallWildcardFqdnGroup
 	err := ctx.RegisterResource("fortios:index/firewallWildcardFqdnGroup:FirewallWildcardFqdnGroup", name, args, &resource, opts...)
 	if err != nil {
@@ -60,6 +62,7 @@ type firewallWildcardFqdnGroupState struct {
 	Color               *int                              `pulumi:"color"`
 	Comment             *string                           `pulumi:"comment"`
 	DynamicSortSubtable *string                           `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                           `pulumi:"getAllTables"`
 	Members             []FirewallWildcardFqdnGroupMember `pulumi:"members"`
 	Name                *string                           `pulumi:"name"`
 	Uuid                *string                           `pulumi:"uuid"`
@@ -71,6 +74,7 @@ type FirewallWildcardFqdnGroupState struct {
 	Color               pulumi.IntPtrInput
 	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Members             FirewallWildcardFqdnGroupMemberArrayInput
 	Name                pulumi.StringPtrInput
 	Uuid                pulumi.StringPtrInput
@@ -86,6 +90,7 @@ type firewallWildcardFqdnGroupArgs struct {
 	Color               *int                              `pulumi:"color"`
 	Comment             *string                           `pulumi:"comment"`
 	DynamicSortSubtable *string                           `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                           `pulumi:"getAllTables"`
 	Members             []FirewallWildcardFqdnGroupMember `pulumi:"members"`
 	Name                *string                           `pulumi:"name"`
 	Uuid                *string                           `pulumi:"uuid"`
@@ -98,6 +103,7 @@ type FirewallWildcardFqdnGroupArgs struct {
 	Color               pulumi.IntPtrInput
 	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Members             FirewallWildcardFqdnGroupMemberArrayInput
 	Name                pulumi.StringPtrInput
 	Uuid                pulumi.StringPtrInput
@@ -202,6 +208,10 @@ func (o FirewallWildcardFqdnGroupOutput) Comment() pulumi.StringPtrOutput {
 
 func (o FirewallWildcardFqdnGroupOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FirewallWildcardFqdnGroup) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallWildcardFqdnGroupOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallWildcardFqdnGroup) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallWildcardFqdnGroupOutput) Members() FirewallWildcardFqdnGroupMemberArrayOutput {

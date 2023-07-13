@@ -21,6 +21,7 @@ class FirewallProfileProtocolOptionsArgs:
                  dns: Optional[pulumi.Input['FirewallProfileProtocolOptionsDnsArgs']] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
                  ftp: Optional[pulumi.Input['FirewallProfileProtocolOptionsFtpArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  http: Optional[pulumi.Input['FirewallProfileProtocolOptionsHttpArgs']] = None,
                  imap: Optional[pulumi.Input['FirewallProfileProtocolOptionsImapArgs']] = None,
                  mail_signature: Optional[pulumi.Input['FirewallProfileProtocolOptionsMailSignatureArgs']] = None,
@@ -48,6 +49,8 @@ class FirewallProfileProtocolOptionsArgs:
             pulumi.set(__self__, "feature_set", feature_set)
         if ftp is not None:
             pulumi.set(__self__, "ftp", ftp)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if http is not None:
             pulumi.set(__self__, "http", http)
         if imap is not None:
@@ -121,6 +124,15 @@ class FirewallProfileProtocolOptionsArgs:
     @ftp.setter
     def ftp(self, value: Optional[pulumi.Input['FirewallProfileProtocolOptionsFtpArgs']]):
         pulumi.set(self, "ftp", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -257,6 +269,7 @@ class _FirewallProfileProtocolOptionsState:
                  dns: Optional[pulumi.Input['FirewallProfileProtocolOptionsDnsArgs']] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
                  ftp: Optional[pulumi.Input['FirewallProfileProtocolOptionsFtpArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  http: Optional[pulumi.Input['FirewallProfileProtocolOptionsHttpArgs']] = None,
                  imap: Optional[pulumi.Input['FirewallProfileProtocolOptionsImapArgs']] = None,
                  mail_signature: Optional[pulumi.Input['FirewallProfileProtocolOptionsMailSignatureArgs']] = None,
@@ -284,6 +297,8 @@ class _FirewallProfileProtocolOptionsState:
             pulumi.set(__self__, "feature_set", feature_set)
         if ftp is not None:
             pulumi.set(__self__, "ftp", ftp)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if http is not None:
             pulumi.set(__self__, "http", http)
         if imap is not None:
@@ -357,6 +372,15 @@ class _FirewallProfileProtocolOptionsState:
     @ftp.setter
     def ftp(self, value: Optional[pulumi.Input['FirewallProfileProtocolOptionsFtpArgs']]):
         pulumi.set(self, "ftp", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -495,6 +519,7 @@ class FirewallProfileProtocolOptions(pulumi.CustomResource):
                  dns: Optional[pulumi.Input[pulumi.InputType['FirewallProfileProtocolOptionsDnsArgs']]] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
                  ftp: Optional[pulumi.Input[pulumi.InputType['FirewallProfileProtocolOptionsFtpArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  http: Optional[pulumi.Input[pulumi.InputType['FirewallProfileProtocolOptionsHttpArgs']]] = None,
                  imap: Optional[pulumi.Input[pulumi.InputType['FirewallProfileProtocolOptionsImapArgs']]] = None,
                  mail_signature: Optional[pulumi.Input[pulumi.InputType['FirewallProfileProtocolOptionsMailSignatureArgs']]] = None,
@@ -543,6 +568,7 @@ class FirewallProfileProtocolOptions(pulumi.CustomResource):
                  dns: Optional[pulumi.Input[pulumi.InputType['FirewallProfileProtocolOptionsDnsArgs']]] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
                  ftp: Optional[pulumi.Input[pulumi.InputType['FirewallProfileProtocolOptionsFtpArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  http: Optional[pulumi.Input[pulumi.InputType['FirewallProfileProtocolOptionsHttpArgs']]] = None,
                  imap: Optional[pulumi.Input[pulumi.InputType['FirewallProfileProtocolOptionsImapArgs']]] = None,
                  mail_signature: Optional[pulumi.Input[pulumi.InputType['FirewallProfileProtocolOptionsMailSignatureArgs']]] = None,
@@ -571,6 +597,7 @@ class FirewallProfileProtocolOptions(pulumi.CustomResource):
             __props__.__dict__["dns"] = dns
             __props__.__dict__["feature_set"] = feature_set
             __props__.__dict__["ftp"] = ftp
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["http"] = http
             __props__.__dict__["imap"] = imap
             __props__.__dict__["mail_signature"] = mail_signature
@@ -600,6 +627,7 @@ class FirewallProfileProtocolOptions(pulumi.CustomResource):
             dns: Optional[pulumi.Input[pulumi.InputType['FirewallProfileProtocolOptionsDnsArgs']]] = None,
             feature_set: Optional[pulumi.Input[str]] = None,
             ftp: Optional[pulumi.Input[pulumi.InputType['FirewallProfileProtocolOptionsFtpArgs']]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             http: Optional[pulumi.Input[pulumi.InputType['FirewallProfileProtocolOptionsHttpArgs']]] = None,
             imap: Optional[pulumi.Input[pulumi.InputType['FirewallProfileProtocolOptionsImapArgs']]] = None,
             mail_signature: Optional[pulumi.Input[pulumi.InputType['FirewallProfileProtocolOptionsMailSignatureArgs']]] = None,
@@ -631,6 +659,7 @@ class FirewallProfileProtocolOptions(pulumi.CustomResource):
         __props__.__dict__["dns"] = dns
         __props__.__dict__["feature_set"] = feature_set
         __props__.__dict__["ftp"] = ftp
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["http"] = http
         __props__.__dict__["imap"] = imap
         __props__.__dict__["mail_signature"] = mail_signature
@@ -671,6 +700,11 @@ class FirewallProfileProtocolOptions(pulumi.CustomResource):
     @pulumi.getter
     def ftp(self) -> pulumi.Output['outputs.FirewallProfileProtocolOptionsFtp']:
         return pulumi.get(self, "ftp")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

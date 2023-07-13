@@ -37,6 +37,7 @@ export class SpamfilterProfile extends pulumi.CustomResource {
     public readonly comment!: pulumi.Output<string | undefined>;
     public readonly external!: pulumi.Output<string>;
     public readonly flowBased!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly gmail!: pulumi.Output<outputs.SpamfilterProfileGmail>;
     public readonly imap!: pulumi.Output<outputs.SpamfilterProfileImap>;
     public readonly mapi!: pulumi.Output<outputs.SpamfilterProfileMapi>;
@@ -74,6 +75,7 @@ export class SpamfilterProfile extends pulumi.CustomResource {
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["external"] = state ? state.external : undefined;
             resourceInputs["flowBased"] = state ? state.flowBased : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["gmail"] = state ? state.gmail : undefined;
             resourceInputs["imap"] = state ? state.imap : undefined;
             resourceInputs["mapi"] = state ? state.mapi : undefined;
@@ -99,6 +101,7 @@ export class SpamfilterProfile extends pulumi.CustomResource {
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["external"] = args ? args.external : undefined;
             resourceInputs["flowBased"] = args ? args.flowBased : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["gmail"] = args ? args.gmail : undefined;
             resourceInputs["imap"] = args ? args.imap : undefined;
             resourceInputs["mapi"] = args ? args.mapi : undefined;
@@ -132,6 +135,7 @@ export interface SpamfilterProfileState {
     comment?: pulumi.Input<string>;
     external?: pulumi.Input<string>;
     flowBased?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     gmail?: pulumi.Input<inputs.SpamfilterProfileGmail>;
     imap?: pulumi.Input<inputs.SpamfilterProfileImap>;
     mapi?: pulumi.Input<inputs.SpamfilterProfileMapi>;
@@ -161,6 +165,7 @@ export interface SpamfilterProfileArgs {
     comment?: pulumi.Input<string>;
     external?: pulumi.Input<string>;
     flowBased?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     gmail?: pulumi.Input<inputs.SpamfilterProfileGmail>;
     imap?: pulumi.Input<inputs.SpamfilterProfileImap>;
     mapi?: pulumi.Input<inputs.SpamfilterProfileMapi>;

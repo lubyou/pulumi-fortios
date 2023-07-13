@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,6 +20,7 @@ type SystemAutomationStitch struct {
 	Description         pulumi.StringPtrOutput                       `pulumi:"description"`
 	Destinations        SystemAutomationStitchDestinationArrayOutput `pulumi:"destinations"`
 	DynamicSortSubtable pulumi.StringPtrOutput                       `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                       `pulumi:"getAllTables"`
 	Name                pulumi.StringOutput                          `pulumi:"name"`
 	Status              pulumi.StringOutput                          `pulumi:"status"`
 	Trigger             pulumi.StringOutput                          `pulumi:"trigger"`
@@ -38,7 +40,7 @@ func NewSystemAutomationStitch(ctx *pulumi.Context,
 	if args.Trigger == nil {
 		return nil, errors.New("invalid value for required argument 'Trigger'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemAutomationStitch
 	err := ctx.RegisterResource("fortios:index/systemAutomationStitch:SystemAutomationStitch", name, args, &resource, opts...)
 	if err != nil {
@@ -66,6 +68,7 @@ type systemAutomationStitchState struct {
 	Description         *string                             `pulumi:"description"`
 	Destinations        []SystemAutomationStitchDestination `pulumi:"destinations"`
 	DynamicSortSubtable *string                             `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                             `pulumi:"getAllTables"`
 	Name                *string                             `pulumi:"name"`
 	Status              *string                             `pulumi:"status"`
 	Trigger             *string                             `pulumi:"trigger"`
@@ -78,6 +81,7 @@ type SystemAutomationStitchState struct {
 	Description         pulumi.StringPtrInput
 	Destinations        SystemAutomationStitchDestinationArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Status              pulumi.StringPtrInput
 	Trigger             pulumi.StringPtrInput
@@ -94,6 +98,7 @@ type systemAutomationStitchArgs struct {
 	Description         *string                             `pulumi:"description"`
 	Destinations        []SystemAutomationStitchDestination `pulumi:"destinations"`
 	DynamicSortSubtable *string                             `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                             `pulumi:"getAllTables"`
 	Name                *string                             `pulumi:"name"`
 	Status              string                              `pulumi:"status"`
 	Trigger             string                              `pulumi:"trigger"`
@@ -107,6 +112,7 @@ type SystemAutomationStitchArgs struct {
 	Description         pulumi.StringPtrInput
 	Destinations        SystemAutomationStitchDestinationArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Status              pulumi.StringInput
 	Trigger             pulumi.StringInput
@@ -218,6 +224,10 @@ func (o SystemAutomationStitchOutput) Destinations() SystemAutomationStitchDesti
 
 func (o SystemAutomationStitchOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SystemAutomationStitch) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemAutomationStitchOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAutomationStitch) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemAutomationStitchOutput) Name() pulumi.StringOutput {

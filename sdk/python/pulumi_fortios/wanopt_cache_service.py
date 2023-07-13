@@ -21,6 +21,7 @@ class WanoptCacheServiceArgs:
                  device_id: Optional[pulumi.Input[str]] = None,
                  dst_peers: Optional[pulumi.Input[Sequence[pulumi.Input['WanoptCacheServiceDstPeerArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  prefer_scenario: Optional[pulumi.Input[str]] = None,
                  src_peers: Optional[pulumi.Input[Sequence[pulumi.Input['WanoptCacheServiceSrcPeerArgs']]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -37,6 +38,8 @@ class WanoptCacheServiceArgs:
             pulumi.set(__self__, "dst_peers", dst_peers)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if prefer_scenario is not None:
             pulumi.set(__self__, "prefer_scenario", prefer_scenario)
         if src_peers is not None:
@@ -88,6 +91,15 @@ class WanoptCacheServiceArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="preferScenario")
@@ -125,6 +137,7 @@ class _WanoptCacheServiceState:
                  device_id: Optional[pulumi.Input[str]] = None,
                  dst_peers: Optional[pulumi.Input[Sequence[pulumi.Input['WanoptCacheServiceDstPeerArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  prefer_scenario: Optional[pulumi.Input[str]] = None,
                  src_peers: Optional[pulumi.Input[Sequence[pulumi.Input['WanoptCacheServiceSrcPeerArgs']]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -141,6 +154,8 @@ class _WanoptCacheServiceState:
             pulumi.set(__self__, "dst_peers", dst_peers)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if prefer_scenario is not None:
             pulumi.set(__self__, "prefer_scenario", prefer_scenario)
         if src_peers is not None:
@@ -192,6 +207,15 @@ class _WanoptCacheServiceState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="preferScenario")
@@ -231,6 +255,7 @@ class WanoptCacheService(pulumi.CustomResource):
                  device_id: Optional[pulumi.Input[str]] = None,
                  dst_peers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WanoptCacheServiceDstPeerArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  prefer_scenario: Optional[pulumi.Input[str]] = None,
                  src_peers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WanoptCacheServiceSrcPeerArgs']]]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -268,6 +293,7 @@ class WanoptCacheService(pulumi.CustomResource):
                  device_id: Optional[pulumi.Input[str]] = None,
                  dst_peers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WanoptCacheServiceDstPeerArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  prefer_scenario: Optional[pulumi.Input[str]] = None,
                  src_peers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WanoptCacheServiceSrcPeerArgs']]]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -285,6 +311,7 @@ class WanoptCacheService(pulumi.CustomResource):
             __props__.__dict__["device_id"] = device_id
             __props__.__dict__["dst_peers"] = dst_peers
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["prefer_scenario"] = prefer_scenario
             __props__.__dict__["src_peers"] = src_peers
             __props__.__dict__["vdomparam"] = vdomparam
@@ -303,6 +330,7 @@ class WanoptCacheService(pulumi.CustomResource):
             device_id: Optional[pulumi.Input[str]] = None,
             dst_peers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WanoptCacheServiceDstPeerArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             prefer_scenario: Optional[pulumi.Input[str]] = None,
             src_peers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WanoptCacheServiceSrcPeerArgs']]]]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'WanoptCacheService':
@@ -323,6 +351,7 @@ class WanoptCacheService(pulumi.CustomResource):
         __props__.__dict__["device_id"] = device_id
         __props__.__dict__["dst_peers"] = dst_peers
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["prefer_scenario"] = prefer_scenario
         __props__.__dict__["src_peers"] = src_peers
         __props__.__dict__["vdomparam"] = vdomparam
@@ -352,6 +381,11 @@ class WanoptCacheService(pulumi.CustomResource):
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="preferScenario")

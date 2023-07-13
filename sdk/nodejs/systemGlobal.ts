@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export class SystemGlobal extends pulumi.CustomResource {
@@ -34,6 +36,7 @@ export class SystemGlobal extends pulumi.CustomResource {
 
     public readonly adminConcurrent!: pulumi.Output<string>;
     public readonly adminConsoleTimeout!: pulumi.Output<number>;
+    public readonly adminForticloudSsoDefaultProfile!: pulumi.Output<string>;
     public readonly adminForticloudSsoLogin!: pulumi.Output<string>;
     public readonly adminHost!: pulumi.Output<string>;
     public readonly adminHstsMaxAge!: pulumi.Output<number>;
@@ -97,6 +100,7 @@ export class SystemGlobal extends pulumi.CustomResource {
     public readonly dhParams!: pulumi.Output<string>;
     public readonly dnsproxyWorkerCount!: pulumi.Output<number>;
     public readonly dst!: pulumi.Output<string>;
+    public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly earlyTcpNpuSession!: pulumi.Output<string>;
     public readonly editVdomPrompt!: pulumi.Output<string>;
     public readonly endpointControlFdsAccess!: pulumi.Output<string>;
@@ -108,6 +112,8 @@ export class SystemGlobal extends pulumi.CustomResource {
     public readonly fdsStatisticsPeriod!: pulumi.Output<number>;
     public readonly fecPort!: pulumi.Output<number>;
     public readonly fgdAlertSubscription!: pulumi.Output<string>;
+    public readonly forticonverterConfigUpload!: pulumi.Output<string>;
+    public readonly forticonverterIntegration!: pulumi.Output<string>;
     public readonly fortiextender!: pulumi.Output<string>;
     public readonly fortiextenderDataPort!: pulumi.Output<number>;
     public readonly fortiextenderDiscoveryLockdown!: pulumi.Output<string>;
@@ -116,8 +122,11 @@ export class SystemGlobal extends pulumi.CustomResource {
     public readonly fortiipamIntegration!: pulumi.Output<string>;
     public readonly fortiservicePort!: pulumi.Output<number>;
     public readonly fortitokenCloud!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly guiAllowDefaultHostname!: pulumi.Output<string>;
+    public readonly guiAllowIncompatibleFabricFgt!: pulumi.Output<string>;
     public readonly guiAppDetectionSdwan!: pulumi.Output<string>;
+    public readonly guiCdnDomainOverride!: pulumi.Output<string>;
     public readonly guiCdnUsage!: pulumi.Output<string>;
     public readonly guiCertificates!: pulumi.Output<string>;
     public readonly guiCustomLanguage!: pulumi.Output<string>;
@@ -145,8 +154,11 @@ export class SystemGlobal extends pulumi.CustomResource {
     public readonly hostname!: pulumi.Output<string>;
     public readonly igmpStateLimit!: pulumi.Output<number>;
     public readonly ikeEmbryonicLimit!: pulumi.Output<number>;
+    public readonly interfaceSubnetUsage!: pulumi.Output<string>;
     public readonly internetServiceDatabase!: pulumi.Output<string>;
+    public readonly internetServiceDownloadLists!: pulumi.Output<outputs.SystemGlobalInternetServiceDownloadList[] | undefined>;
     public readonly interval!: pulumi.Output<number>;
+    public readonly ipFragmentMemThresholds!: pulumi.Output<number>;
     public readonly ipSrcPortRange!: pulumi.Output<string>;
     public readonly ipsAffinity!: pulumi.Output<string>;
     public readonly ipsecAsicOffload!: pulumi.Output<string>;
@@ -164,6 +176,7 @@ export class SystemGlobal extends pulumi.CustomResource {
     public readonly ldapconntimeout!: pulumi.Output<number>;
     public readonly lldpReception!: pulumi.Output<string>;
     public readonly lldpTransmission!: pulumi.Output<string>;
+    public readonly logSingleCpuHigh!: pulumi.Output<string>;
     public readonly logSslConnection!: pulumi.Output<string>;
     public readonly logUuidAddress!: pulumi.Output<string>;
     public readonly logUuidPolicy!: pulumi.Output<string>;
@@ -197,8 +210,10 @@ export class SystemGlobal extends pulumi.CustomResource {
     public readonly proxyCertUseMgmtVdom!: pulumi.Output<string>;
     public readonly proxyCipherHardwareAcceleration!: pulumi.Output<string>;
     public readonly proxyHardwareAcceleration!: pulumi.Output<string>;
+    public readonly proxyKeepAliveMode!: pulumi.Output<string>;
     public readonly proxyKxpHardwareAcceleration!: pulumi.Output<string>;
     public readonly proxyReAuthenticationMode!: pulumi.Output<string>;
+    public readonly proxyReAuthenticationTime!: pulumi.Output<number>;
     public readonly proxyResourceMode!: pulumi.Output<string>;
     public readonly proxyWorkerCount!: pulumi.Output<number>;
     public readonly radiusPort!: pulumi.Output<number>;
@@ -213,6 +228,7 @@ export class SystemGlobal extends pulumi.CustomResource {
     public readonly securityRatingResultSubmission!: pulumi.Output<string>;
     public readonly securityRatingRunOnSchedule!: pulumi.Output<string>;
     public readonly sendPmtuIcmp!: pulumi.Output<string>;
+    public readonly sflowdMaxChildrenNum!: pulumi.Output<number>;
     public readonly snatRouteChange!: pulumi.Output<string>;
     public readonly specialFile23Support!: pulumi.Output<string>;
     public readonly speedtestServer!: pulumi.Output<string>;
@@ -225,6 +241,7 @@ export class SystemGlobal extends pulumi.CustomResource {
     public readonly sshCbcCipher!: pulumi.Output<string>;
     public readonly sshEncAlgo!: pulumi.Output<string>;
     public readonly sshHmacMd5!: pulumi.Output<string>;
+    public readonly sshHostkeyAlgo!: pulumi.Output<string>;
     public readonly sshKexAlgo!: pulumi.Output<string>;
     public readonly sshKexSha1!: pulumi.Output<string>;
     public readonly sshMacAlgo!: pulumi.Output<string>;
@@ -241,6 +258,7 @@ export class SystemGlobal extends pulumi.CustomResource {
     public readonly switchController!: pulumi.Output<string>;
     public readonly switchControllerReservedNetwork!: pulumi.Output<string>;
     public readonly sysPerfLogInterval!: pulumi.Output<number>;
+    public readonly syslogAffinity!: pulumi.Output<string>;
     public readonly tcpHalfcloseTimer!: pulumi.Output<number>;
     public readonly tcpHalfopenTimer!: pulumi.Output<number>;
     public readonly tcpOption!: pulumi.Output<string>;
@@ -270,10 +288,14 @@ export class SystemGlobal extends pulumi.CustomResource {
     public readonly virtualServerCount!: pulumi.Output<number>;
     public readonly virtualServerHardwareAcceleration!: pulumi.Output<string>;
     public readonly virtualSwitchVlan!: pulumi.Output<string>;
+    public readonly vpnEmsSnCheck!: pulumi.Output<string>;
     public readonly wadAffinity!: pulumi.Output<string>;
     public readonly wadCsvcCsCount!: pulumi.Output<number>;
     public readonly wadCsvcDbCount!: pulumi.Output<number>;
     public readonly wadMemoryChangeGranularity!: pulumi.Output<number>;
+    public readonly wadRestartEndTime!: pulumi.Output<string>;
+    public readonly wadRestartMode!: pulumi.Output<string>;
+    public readonly wadRestartStartTime!: pulumi.Output<string>;
     public readonly wadSourceAffinity!: pulumi.Output<string>;
     public readonly wadWorkerCount!: pulumi.Output<number>;
     public readonly wifiCaCertificate!: pulumi.Output<string>;
@@ -297,6 +319,7 @@ export class SystemGlobal extends pulumi.CustomResource {
             const state = argsOrState as SystemGlobalState | undefined;
             resourceInputs["adminConcurrent"] = state ? state.adminConcurrent : undefined;
             resourceInputs["adminConsoleTimeout"] = state ? state.adminConsoleTimeout : undefined;
+            resourceInputs["adminForticloudSsoDefaultProfile"] = state ? state.adminForticloudSsoDefaultProfile : undefined;
             resourceInputs["adminForticloudSsoLogin"] = state ? state.adminForticloudSsoLogin : undefined;
             resourceInputs["adminHost"] = state ? state.adminHost : undefined;
             resourceInputs["adminHstsMaxAge"] = state ? state.adminHstsMaxAge : undefined;
@@ -360,6 +383,7 @@ export class SystemGlobal extends pulumi.CustomResource {
             resourceInputs["dhParams"] = state ? state.dhParams : undefined;
             resourceInputs["dnsproxyWorkerCount"] = state ? state.dnsproxyWorkerCount : undefined;
             resourceInputs["dst"] = state ? state.dst : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["earlyTcpNpuSession"] = state ? state.earlyTcpNpuSession : undefined;
             resourceInputs["editVdomPrompt"] = state ? state.editVdomPrompt : undefined;
             resourceInputs["endpointControlFdsAccess"] = state ? state.endpointControlFdsAccess : undefined;
@@ -371,6 +395,8 @@ export class SystemGlobal extends pulumi.CustomResource {
             resourceInputs["fdsStatisticsPeriod"] = state ? state.fdsStatisticsPeriod : undefined;
             resourceInputs["fecPort"] = state ? state.fecPort : undefined;
             resourceInputs["fgdAlertSubscription"] = state ? state.fgdAlertSubscription : undefined;
+            resourceInputs["forticonverterConfigUpload"] = state ? state.forticonverterConfigUpload : undefined;
+            resourceInputs["forticonverterIntegration"] = state ? state.forticonverterIntegration : undefined;
             resourceInputs["fortiextender"] = state ? state.fortiextender : undefined;
             resourceInputs["fortiextenderDataPort"] = state ? state.fortiextenderDataPort : undefined;
             resourceInputs["fortiextenderDiscoveryLockdown"] = state ? state.fortiextenderDiscoveryLockdown : undefined;
@@ -379,8 +405,11 @@ export class SystemGlobal extends pulumi.CustomResource {
             resourceInputs["fortiipamIntegration"] = state ? state.fortiipamIntegration : undefined;
             resourceInputs["fortiservicePort"] = state ? state.fortiservicePort : undefined;
             resourceInputs["fortitokenCloud"] = state ? state.fortitokenCloud : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["guiAllowDefaultHostname"] = state ? state.guiAllowDefaultHostname : undefined;
+            resourceInputs["guiAllowIncompatibleFabricFgt"] = state ? state.guiAllowIncompatibleFabricFgt : undefined;
             resourceInputs["guiAppDetectionSdwan"] = state ? state.guiAppDetectionSdwan : undefined;
+            resourceInputs["guiCdnDomainOverride"] = state ? state.guiCdnDomainOverride : undefined;
             resourceInputs["guiCdnUsage"] = state ? state.guiCdnUsage : undefined;
             resourceInputs["guiCertificates"] = state ? state.guiCertificates : undefined;
             resourceInputs["guiCustomLanguage"] = state ? state.guiCustomLanguage : undefined;
@@ -408,8 +437,11 @@ export class SystemGlobal extends pulumi.CustomResource {
             resourceInputs["hostname"] = state ? state.hostname : undefined;
             resourceInputs["igmpStateLimit"] = state ? state.igmpStateLimit : undefined;
             resourceInputs["ikeEmbryonicLimit"] = state ? state.ikeEmbryonicLimit : undefined;
+            resourceInputs["interfaceSubnetUsage"] = state ? state.interfaceSubnetUsage : undefined;
             resourceInputs["internetServiceDatabase"] = state ? state.internetServiceDatabase : undefined;
+            resourceInputs["internetServiceDownloadLists"] = state ? state.internetServiceDownloadLists : undefined;
             resourceInputs["interval"] = state ? state.interval : undefined;
+            resourceInputs["ipFragmentMemThresholds"] = state ? state.ipFragmentMemThresholds : undefined;
             resourceInputs["ipSrcPortRange"] = state ? state.ipSrcPortRange : undefined;
             resourceInputs["ipsAffinity"] = state ? state.ipsAffinity : undefined;
             resourceInputs["ipsecAsicOffload"] = state ? state.ipsecAsicOffload : undefined;
@@ -427,6 +459,7 @@ export class SystemGlobal extends pulumi.CustomResource {
             resourceInputs["ldapconntimeout"] = state ? state.ldapconntimeout : undefined;
             resourceInputs["lldpReception"] = state ? state.lldpReception : undefined;
             resourceInputs["lldpTransmission"] = state ? state.lldpTransmission : undefined;
+            resourceInputs["logSingleCpuHigh"] = state ? state.logSingleCpuHigh : undefined;
             resourceInputs["logSslConnection"] = state ? state.logSslConnection : undefined;
             resourceInputs["logUuidAddress"] = state ? state.logUuidAddress : undefined;
             resourceInputs["logUuidPolicy"] = state ? state.logUuidPolicy : undefined;
@@ -460,8 +493,10 @@ export class SystemGlobal extends pulumi.CustomResource {
             resourceInputs["proxyCertUseMgmtVdom"] = state ? state.proxyCertUseMgmtVdom : undefined;
             resourceInputs["proxyCipherHardwareAcceleration"] = state ? state.proxyCipherHardwareAcceleration : undefined;
             resourceInputs["proxyHardwareAcceleration"] = state ? state.proxyHardwareAcceleration : undefined;
+            resourceInputs["proxyKeepAliveMode"] = state ? state.proxyKeepAliveMode : undefined;
             resourceInputs["proxyKxpHardwareAcceleration"] = state ? state.proxyKxpHardwareAcceleration : undefined;
             resourceInputs["proxyReAuthenticationMode"] = state ? state.proxyReAuthenticationMode : undefined;
+            resourceInputs["proxyReAuthenticationTime"] = state ? state.proxyReAuthenticationTime : undefined;
             resourceInputs["proxyResourceMode"] = state ? state.proxyResourceMode : undefined;
             resourceInputs["proxyWorkerCount"] = state ? state.proxyWorkerCount : undefined;
             resourceInputs["radiusPort"] = state ? state.radiusPort : undefined;
@@ -476,6 +511,7 @@ export class SystemGlobal extends pulumi.CustomResource {
             resourceInputs["securityRatingResultSubmission"] = state ? state.securityRatingResultSubmission : undefined;
             resourceInputs["securityRatingRunOnSchedule"] = state ? state.securityRatingRunOnSchedule : undefined;
             resourceInputs["sendPmtuIcmp"] = state ? state.sendPmtuIcmp : undefined;
+            resourceInputs["sflowdMaxChildrenNum"] = state ? state.sflowdMaxChildrenNum : undefined;
             resourceInputs["snatRouteChange"] = state ? state.snatRouteChange : undefined;
             resourceInputs["specialFile23Support"] = state ? state.specialFile23Support : undefined;
             resourceInputs["speedtestServer"] = state ? state.speedtestServer : undefined;
@@ -488,6 +524,7 @@ export class SystemGlobal extends pulumi.CustomResource {
             resourceInputs["sshCbcCipher"] = state ? state.sshCbcCipher : undefined;
             resourceInputs["sshEncAlgo"] = state ? state.sshEncAlgo : undefined;
             resourceInputs["sshHmacMd5"] = state ? state.sshHmacMd5 : undefined;
+            resourceInputs["sshHostkeyAlgo"] = state ? state.sshHostkeyAlgo : undefined;
             resourceInputs["sshKexAlgo"] = state ? state.sshKexAlgo : undefined;
             resourceInputs["sshKexSha1"] = state ? state.sshKexSha1 : undefined;
             resourceInputs["sshMacAlgo"] = state ? state.sshMacAlgo : undefined;
@@ -504,6 +541,7 @@ export class SystemGlobal extends pulumi.CustomResource {
             resourceInputs["switchController"] = state ? state.switchController : undefined;
             resourceInputs["switchControllerReservedNetwork"] = state ? state.switchControllerReservedNetwork : undefined;
             resourceInputs["sysPerfLogInterval"] = state ? state.sysPerfLogInterval : undefined;
+            resourceInputs["syslogAffinity"] = state ? state.syslogAffinity : undefined;
             resourceInputs["tcpHalfcloseTimer"] = state ? state.tcpHalfcloseTimer : undefined;
             resourceInputs["tcpHalfopenTimer"] = state ? state.tcpHalfopenTimer : undefined;
             resourceInputs["tcpOption"] = state ? state.tcpOption : undefined;
@@ -533,10 +571,14 @@ export class SystemGlobal extends pulumi.CustomResource {
             resourceInputs["virtualServerCount"] = state ? state.virtualServerCount : undefined;
             resourceInputs["virtualServerHardwareAcceleration"] = state ? state.virtualServerHardwareAcceleration : undefined;
             resourceInputs["virtualSwitchVlan"] = state ? state.virtualSwitchVlan : undefined;
+            resourceInputs["vpnEmsSnCheck"] = state ? state.vpnEmsSnCheck : undefined;
             resourceInputs["wadAffinity"] = state ? state.wadAffinity : undefined;
             resourceInputs["wadCsvcCsCount"] = state ? state.wadCsvcCsCount : undefined;
             resourceInputs["wadCsvcDbCount"] = state ? state.wadCsvcDbCount : undefined;
             resourceInputs["wadMemoryChangeGranularity"] = state ? state.wadMemoryChangeGranularity : undefined;
+            resourceInputs["wadRestartEndTime"] = state ? state.wadRestartEndTime : undefined;
+            resourceInputs["wadRestartMode"] = state ? state.wadRestartMode : undefined;
+            resourceInputs["wadRestartStartTime"] = state ? state.wadRestartStartTime : undefined;
             resourceInputs["wadSourceAffinity"] = state ? state.wadSourceAffinity : undefined;
             resourceInputs["wadWorkerCount"] = state ? state.wadWorkerCount : undefined;
             resourceInputs["wifiCaCertificate"] = state ? state.wifiCaCertificate : undefined;
@@ -548,6 +590,7 @@ export class SystemGlobal extends pulumi.CustomResource {
             const args = argsOrState as SystemGlobalArgs | undefined;
             resourceInputs["adminConcurrent"] = args ? args.adminConcurrent : undefined;
             resourceInputs["adminConsoleTimeout"] = args ? args.adminConsoleTimeout : undefined;
+            resourceInputs["adminForticloudSsoDefaultProfile"] = args ? args.adminForticloudSsoDefaultProfile : undefined;
             resourceInputs["adminForticloudSsoLogin"] = args ? args.adminForticloudSsoLogin : undefined;
             resourceInputs["adminHost"] = args ? args.adminHost : undefined;
             resourceInputs["adminHstsMaxAge"] = args ? args.adminHstsMaxAge : undefined;
@@ -611,6 +654,7 @@ export class SystemGlobal extends pulumi.CustomResource {
             resourceInputs["dhParams"] = args ? args.dhParams : undefined;
             resourceInputs["dnsproxyWorkerCount"] = args ? args.dnsproxyWorkerCount : undefined;
             resourceInputs["dst"] = args ? args.dst : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["earlyTcpNpuSession"] = args ? args.earlyTcpNpuSession : undefined;
             resourceInputs["editVdomPrompt"] = args ? args.editVdomPrompt : undefined;
             resourceInputs["endpointControlFdsAccess"] = args ? args.endpointControlFdsAccess : undefined;
@@ -622,6 +666,8 @@ export class SystemGlobal extends pulumi.CustomResource {
             resourceInputs["fdsStatisticsPeriod"] = args ? args.fdsStatisticsPeriod : undefined;
             resourceInputs["fecPort"] = args ? args.fecPort : undefined;
             resourceInputs["fgdAlertSubscription"] = args ? args.fgdAlertSubscription : undefined;
+            resourceInputs["forticonverterConfigUpload"] = args ? args.forticonverterConfigUpload : undefined;
+            resourceInputs["forticonverterIntegration"] = args ? args.forticonverterIntegration : undefined;
             resourceInputs["fortiextender"] = args ? args.fortiextender : undefined;
             resourceInputs["fortiextenderDataPort"] = args ? args.fortiextenderDataPort : undefined;
             resourceInputs["fortiextenderDiscoveryLockdown"] = args ? args.fortiextenderDiscoveryLockdown : undefined;
@@ -630,8 +676,11 @@ export class SystemGlobal extends pulumi.CustomResource {
             resourceInputs["fortiipamIntegration"] = args ? args.fortiipamIntegration : undefined;
             resourceInputs["fortiservicePort"] = args ? args.fortiservicePort : undefined;
             resourceInputs["fortitokenCloud"] = args ? args.fortitokenCloud : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["guiAllowDefaultHostname"] = args ? args.guiAllowDefaultHostname : undefined;
+            resourceInputs["guiAllowIncompatibleFabricFgt"] = args ? args.guiAllowIncompatibleFabricFgt : undefined;
             resourceInputs["guiAppDetectionSdwan"] = args ? args.guiAppDetectionSdwan : undefined;
+            resourceInputs["guiCdnDomainOverride"] = args ? args.guiCdnDomainOverride : undefined;
             resourceInputs["guiCdnUsage"] = args ? args.guiCdnUsage : undefined;
             resourceInputs["guiCertificates"] = args ? args.guiCertificates : undefined;
             resourceInputs["guiCustomLanguage"] = args ? args.guiCustomLanguage : undefined;
@@ -659,8 +708,11 @@ export class SystemGlobal extends pulumi.CustomResource {
             resourceInputs["hostname"] = args ? args.hostname : undefined;
             resourceInputs["igmpStateLimit"] = args ? args.igmpStateLimit : undefined;
             resourceInputs["ikeEmbryonicLimit"] = args ? args.ikeEmbryonicLimit : undefined;
+            resourceInputs["interfaceSubnetUsage"] = args ? args.interfaceSubnetUsage : undefined;
             resourceInputs["internetServiceDatabase"] = args ? args.internetServiceDatabase : undefined;
+            resourceInputs["internetServiceDownloadLists"] = args ? args.internetServiceDownloadLists : undefined;
             resourceInputs["interval"] = args ? args.interval : undefined;
+            resourceInputs["ipFragmentMemThresholds"] = args ? args.ipFragmentMemThresholds : undefined;
             resourceInputs["ipSrcPortRange"] = args ? args.ipSrcPortRange : undefined;
             resourceInputs["ipsAffinity"] = args ? args.ipsAffinity : undefined;
             resourceInputs["ipsecAsicOffload"] = args ? args.ipsecAsicOffload : undefined;
@@ -678,6 +730,7 @@ export class SystemGlobal extends pulumi.CustomResource {
             resourceInputs["ldapconntimeout"] = args ? args.ldapconntimeout : undefined;
             resourceInputs["lldpReception"] = args ? args.lldpReception : undefined;
             resourceInputs["lldpTransmission"] = args ? args.lldpTransmission : undefined;
+            resourceInputs["logSingleCpuHigh"] = args ? args.logSingleCpuHigh : undefined;
             resourceInputs["logSslConnection"] = args ? args.logSslConnection : undefined;
             resourceInputs["logUuidAddress"] = args ? args.logUuidAddress : undefined;
             resourceInputs["logUuidPolicy"] = args ? args.logUuidPolicy : undefined;
@@ -711,8 +764,10 @@ export class SystemGlobal extends pulumi.CustomResource {
             resourceInputs["proxyCertUseMgmtVdom"] = args ? args.proxyCertUseMgmtVdom : undefined;
             resourceInputs["proxyCipherHardwareAcceleration"] = args ? args.proxyCipherHardwareAcceleration : undefined;
             resourceInputs["proxyHardwareAcceleration"] = args ? args.proxyHardwareAcceleration : undefined;
+            resourceInputs["proxyKeepAliveMode"] = args ? args.proxyKeepAliveMode : undefined;
             resourceInputs["proxyKxpHardwareAcceleration"] = args ? args.proxyKxpHardwareAcceleration : undefined;
             resourceInputs["proxyReAuthenticationMode"] = args ? args.proxyReAuthenticationMode : undefined;
+            resourceInputs["proxyReAuthenticationTime"] = args ? args.proxyReAuthenticationTime : undefined;
             resourceInputs["proxyResourceMode"] = args ? args.proxyResourceMode : undefined;
             resourceInputs["proxyWorkerCount"] = args ? args.proxyWorkerCount : undefined;
             resourceInputs["radiusPort"] = args ? args.radiusPort : undefined;
@@ -727,6 +782,7 @@ export class SystemGlobal extends pulumi.CustomResource {
             resourceInputs["securityRatingResultSubmission"] = args ? args.securityRatingResultSubmission : undefined;
             resourceInputs["securityRatingRunOnSchedule"] = args ? args.securityRatingRunOnSchedule : undefined;
             resourceInputs["sendPmtuIcmp"] = args ? args.sendPmtuIcmp : undefined;
+            resourceInputs["sflowdMaxChildrenNum"] = args ? args.sflowdMaxChildrenNum : undefined;
             resourceInputs["snatRouteChange"] = args ? args.snatRouteChange : undefined;
             resourceInputs["specialFile23Support"] = args ? args.specialFile23Support : undefined;
             resourceInputs["speedtestServer"] = args ? args.speedtestServer : undefined;
@@ -739,6 +795,7 @@ export class SystemGlobal extends pulumi.CustomResource {
             resourceInputs["sshCbcCipher"] = args ? args.sshCbcCipher : undefined;
             resourceInputs["sshEncAlgo"] = args ? args.sshEncAlgo : undefined;
             resourceInputs["sshHmacMd5"] = args ? args.sshHmacMd5 : undefined;
+            resourceInputs["sshHostkeyAlgo"] = args ? args.sshHostkeyAlgo : undefined;
             resourceInputs["sshKexAlgo"] = args ? args.sshKexAlgo : undefined;
             resourceInputs["sshKexSha1"] = args ? args.sshKexSha1 : undefined;
             resourceInputs["sshMacAlgo"] = args ? args.sshMacAlgo : undefined;
@@ -755,6 +812,7 @@ export class SystemGlobal extends pulumi.CustomResource {
             resourceInputs["switchController"] = args ? args.switchController : undefined;
             resourceInputs["switchControllerReservedNetwork"] = args ? args.switchControllerReservedNetwork : undefined;
             resourceInputs["sysPerfLogInterval"] = args ? args.sysPerfLogInterval : undefined;
+            resourceInputs["syslogAffinity"] = args ? args.syslogAffinity : undefined;
             resourceInputs["tcpHalfcloseTimer"] = args ? args.tcpHalfcloseTimer : undefined;
             resourceInputs["tcpHalfopenTimer"] = args ? args.tcpHalfopenTimer : undefined;
             resourceInputs["tcpOption"] = args ? args.tcpOption : undefined;
@@ -784,10 +842,14 @@ export class SystemGlobal extends pulumi.CustomResource {
             resourceInputs["virtualServerCount"] = args ? args.virtualServerCount : undefined;
             resourceInputs["virtualServerHardwareAcceleration"] = args ? args.virtualServerHardwareAcceleration : undefined;
             resourceInputs["virtualSwitchVlan"] = args ? args.virtualSwitchVlan : undefined;
+            resourceInputs["vpnEmsSnCheck"] = args ? args.vpnEmsSnCheck : undefined;
             resourceInputs["wadAffinity"] = args ? args.wadAffinity : undefined;
             resourceInputs["wadCsvcCsCount"] = args ? args.wadCsvcCsCount : undefined;
             resourceInputs["wadCsvcDbCount"] = args ? args.wadCsvcDbCount : undefined;
             resourceInputs["wadMemoryChangeGranularity"] = args ? args.wadMemoryChangeGranularity : undefined;
+            resourceInputs["wadRestartEndTime"] = args ? args.wadRestartEndTime : undefined;
+            resourceInputs["wadRestartMode"] = args ? args.wadRestartMode : undefined;
+            resourceInputs["wadRestartStartTime"] = args ? args.wadRestartStartTime : undefined;
             resourceInputs["wadSourceAffinity"] = args ? args.wadSourceAffinity : undefined;
             resourceInputs["wadWorkerCount"] = args ? args.wadWorkerCount : undefined;
             resourceInputs["wifiCaCertificate"] = args ? args.wifiCaCertificate : undefined;
@@ -807,6 +869,7 @@ export class SystemGlobal extends pulumi.CustomResource {
 export interface SystemGlobalState {
     adminConcurrent?: pulumi.Input<string>;
     adminConsoleTimeout?: pulumi.Input<number>;
+    adminForticloudSsoDefaultProfile?: pulumi.Input<string>;
     adminForticloudSsoLogin?: pulumi.Input<string>;
     adminHost?: pulumi.Input<string>;
     adminHstsMaxAge?: pulumi.Input<number>;
@@ -870,6 +933,7 @@ export interface SystemGlobalState {
     dhParams?: pulumi.Input<string>;
     dnsproxyWorkerCount?: pulumi.Input<number>;
     dst?: pulumi.Input<string>;
+    dynamicSortSubtable?: pulumi.Input<string>;
     earlyTcpNpuSession?: pulumi.Input<string>;
     editVdomPrompt?: pulumi.Input<string>;
     endpointControlFdsAccess?: pulumi.Input<string>;
@@ -881,6 +945,8 @@ export interface SystemGlobalState {
     fdsStatisticsPeriod?: pulumi.Input<number>;
     fecPort?: pulumi.Input<number>;
     fgdAlertSubscription?: pulumi.Input<string>;
+    forticonverterConfigUpload?: pulumi.Input<string>;
+    forticonverterIntegration?: pulumi.Input<string>;
     fortiextender?: pulumi.Input<string>;
     fortiextenderDataPort?: pulumi.Input<number>;
     fortiextenderDiscoveryLockdown?: pulumi.Input<string>;
@@ -889,8 +955,11 @@ export interface SystemGlobalState {
     fortiipamIntegration?: pulumi.Input<string>;
     fortiservicePort?: pulumi.Input<number>;
     fortitokenCloud?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     guiAllowDefaultHostname?: pulumi.Input<string>;
+    guiAllowIncompatibleFabricFgt?: pulumi.Input<string>;
     guiAppDetectionSdwan?: pulumi.Input<string>;
+    guiCdnDomainOverride?: pulumi.Input<string>;
     guiCdnUsage?: pulumi.Input<string>;
     guiCertificates?: pulumi.Input<string>;
     guiCustomLanguage?: pulumi.Input<string>;
@@ -918,8 +987,11 @@ export interface SystemGlobalState {
     hostname?: pulumi.Input<string>;
     igmpStateLimit?: pulumi.Input<number>;
     ikeEmbryonicLimit?: pulumi.Input<number>;
+    interfaceSubnetUsage?: pulumi.Input<string>;
     internetServiceDatabase?: pulumi.Input<string>;
+    internetServiceDownloadLists?: pulumi.Input<pulumi.Input<inputs.SystemGlobalInternetServiceDownloadList>[]>;
     interval?: pulumi.Input<number>;
+    ipFragmentMemThresholds?: pulumi.Input<number>;
     ipSrcPortRange?: pulumi.Input<string>;
     ipsAffinity?: pulumi.Input<string>;
     ipsecAsicOffload?: pulumi.Input<string>;
@@ -937,6 +1009,7 @@ export interface SystemGlobalState {
     ldapconntimeout?: pulumi.Input<number>;
     lldpReception?: pulumi.Input<string>;
     lldpTransmission?: pulumi.Input<string>;
+    logSingleCpuHigh?: pulumi.Input<string>;
     logSslConnection?: pulumi.Input<string>;
     logUuidAddress?: pulumi.Input<string>;
     logUuidPolicy?: pulumi.Input<string>;
@@ -970,8 +1043,10 @@ export interface SystemGlobalState {
     proxyCertUseMgmtVdom?: pulumi.Input<string>;
     proxyCipherHardwareAcceleration?: pulumi.Input<string>;
     proxyHardwareAcceleration?: pulumi.Input<string>;
+    proxyKeepAliveMode?: pulumi.Input<string>;
     proxyKxpHardwareAcceleration?: pulumi.Input<string>;
     proxyReAuthenticationMode?: pulumi.Input<string>;
+    proxyReAuthenticationTime?: pulumi.Input<number>;
     proxyResourceMode?: pulumi.Input<string>;
     proxyWorkerCount?: pulumi.Input<number>;
     radiusPort?: pulumi.Input<number>;
@@ -986,6 +1061,7 @@ export interface SystemGlobalState {
     securityRatingResultSubmission?: pulumi.Input<string>;
     securityRatingRunOnSchedule?: pulumi.Input<string>;
     sendPmtuIcmp?: pulumi.Input<string>;
+    sflowdMaxChildrenNum?: pulumi.Input<number>;
     snatRouteChange?: pulumi.Input<string>;
     specialFile23Support?: pulumi.Input<string>;
     speedtestServer?: pulumi.Input<string>;
@@ -998,6 +1074,7 @@ export interface SystemGlobalState {
     sshCbcCipher?: pulumi.Input<string>;
     sshEncAlgo?: pulumi.Input<string>;
     sshHmacMd5?: pulumi.Input<string>;
+    sshHostkeyAlgo?: pulumi.Input<string>;
     sshKexAlgo?: pulumi.Input<string>;
     sshKexSha1?: pulumi.Input<string>;
     sshMacAlgo?: pulumi.Input<string>;
@@ -1014,6 +1091,7 @@ export interface SystemGlobalState {
     switchController?: pulumi.Input<string>;
     switchControllerReservedNetwork?: pulumi.Input<string>;
     sysPerfLogInterval?: pulumi.Input<number>;
+    syslogAffinity?: pulumi.Input<string>;
     tcpHalfcloseTimer?: pulumi.Input<number>;
     tcpHalfopenTimer?: pulumi.Input<number>;
     tcpOption?: pulumi.Input<string>;
@@ -1043,10 +1121,14 @@ export interface SystemGlobalState {
     virtualServerCount?: pulumi.Input<number>;
     virtualServerHardwareAcceleration?: pulumi.Input<string>;
     virtualSwitchVlan?: pulumi.Input<string>;
+    vpnEmsSnCheck?: pulumi.Input<string>;
     wadAffinity?: pulumi.Input<string>;
     wadCsvcCsCount?: pulumi.Input<number>;
     wadCsvcDbCount?: pulumi.Input<number>;
     wadMemoryChangeGranularity?: pulumi.Input<number>;
+    wadRestartEndTime?: pulumi.Input<string>;
+    wadRestartMode?: pulumi.Input<string>;
+    wadRestartStartTime?: pulumi.Input<string>;
     wadSourceAffinity?: pulumi.Input<string>;
     wadWorkerCount?: pulumi.Input<number>;
     wifiCaCertificate?: pulumi.Input<string>;
@@ -1062,6 +1144,7 @@ export interface SystemGlobalState {
 export interface SystemGlobalArgs {
     adminConcurrent?: pulumi.Input<string>;
     adminConsoleTimeout?: pulumi.Input<number>;
+    adminForticloudSsoDefaultProfile?: pulumi.Input<string>;
     adminForticloudSsoLogin?: pulumi.Input<string>;
     adminHost?: pulumi.Input<string>;
     adminHstsMaxAge?: pulumi.Input<number>;
@@ -1125,6 +1208,7 @@ export interface SystemGlobalArgs {
     dhParams?: pulumi.Input<string>;
     dnsproxyWorkerCount?: pulumi.Input<number>;
     dst?: pulumi.Input<string>;
+    dynamicSortSubtable?: pulumi.Input<string>;
     earlyTcpNpuSession?: pulumi.Input<string>;
     editVdomPrompt?: pulumi.Input<string>;
     endpointControlFdsAccess?: pulumi.Input<string>;
@@ -1136,6 +1220,8 @@ export interface SystemGlobalArgs {
     fdsStatisticsPeriod?: pulumi.Input<number>;
     fecPort?: pulumi.Input<number>;
     fgdAlertSubscription?: pulumi.Input<string>;
+    forticonverterConfigUpload?: pulumi.Input<string>;
+    forticonverterIntegration?: pulumi.Input<string>;
     fortiextender?: pulumi.Input<string>;
     fortiextenderDataPort?: pulumi.Input<number>;
     fortiextenderDiscoveryLockdown?: pulumi.Input<string>;
@@ -1144,8 +1230,11 @@ export interface SystemGlobalArgs {
     fortiipamIntegration?: pulumi.Input<string>;
     fortiservicePort?: pulumi.Input<number>;
     fortitokenCloud?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     guiAllowDefaultHostname?: pulumi.Input<string>;
+    guiAllowIncompatibleFabricFgt?: pulumi.Input<string>;
     guiAppDetectionSdwan?: pulumi.Input<string>;
+    guiCdnDomainOverride?: pulumi.Input<string>;
     guiCdnUsage?: pulumi.Input<string>;
     guiCertificates?: pulumi.Input<string>;
     guiCustomLanguage?: pulumi.Input<string>;
@@ -1173,8 +1262,11 @@ export interface SystemGlobalArgs {
     hostname?: pulumi.Input<string>;
     igmpStateLimit?: pulumi.Input<number>;
     ikeEmbryonicLimit?: pulumi.Input<number>;
+    interfaceSubnetUsage?: pulumi.Input<string>;
     internetServiceDatabase?: pulumi.Input<string>;
+    internetServiceDownloadLists?: pulumi.Input<pulumi.Input<inputs.SystemGlobalInternetServiceDownloadList>[]>;
     interval?: pulumi.Input<number>;
+    ipFragmentMemThresholds?: pulumi.Input<number>;
     ipSrcPortRange?: pulumi.Input<string>;
     ipsAffinity?: pulumi.Input<string>;
     ipsecAsicOffload?: pulumi.Input<string>;
@@ -1192,6 +1284,7 @@ export interface SystemGlobalArgs {
     ldapconntimeout?: pulumi.Input<number>;
     lldpReception?: pulumi.Input<string>;
     lldpTransmission?: pulumi.Input<string>;
+    logSingleCpuHigh?: pulumi.Input<string>;
     logSslConnection?: pulumi.Input<string>;
     logUuidAddress?: pulumi.Input<string>;
     logUuidPolicy?: pulumi.Input<string>;
@@ -1225,8 +1318,10 @@ export interface SystemGlobalArgs {
     proxyCertUseMgmtVdom?: pulumi.Input<string>;
     proxyCipherHardwareAcceleration?: pulumi.Input<string>;
     proxyHardwareAcceleration?: pulumi.Input<string>;
+    proxyKeepAliveMode?: pulumi.Input<string>;
     proxyKxpHardwareAcceleration?: pulumi.Input<string>;
     proxyReAuthenticationMode?: pulumi.Input<string>;
+    proxyReAuthenticationTime?: pulumi.Input<number>;
     proxyResourceMode?: pulumi.Input<string>;
     proxyWorkerCount?: pulumi.Input<number>;
     radiusPort?: pulumi.Input<number>;
@@ -1241,6 +1336,7 @@ export interface SystemGlobalArgs {
     securityRatingResultSubmission?: pulumi.Input<string>;
     securityRatingRunOnSchedule?: pulumi.Input<string>;
     sendPmtuIcmp?: pulumi.Input<string>;
+    sflowdMaxChildrenNum?: pulumi.Input<number>;
     snatRouteChange?: pulumi.Input<string>;
     specialFile23Support?: pulumi.Input<string>;
     speedtestServer?: pulumi.Input<string>;
@@ -1253,6 +1349,7 @@ export interface SystemGlobalArgs {
     sshCbcCipher?: pulumi.Input<string>;
     sshEncAlgo?: pulumi.Input<string>;
     sshHmacMd5?: pulumi.Input<string>;
+    sshHostkeyAlgo?: pulumi.Input<string>;
     sshKexAlgo?: pulumi.Input<string>;
     sshKexSha1?: pulumi.Input<string>;
     sshMacAlgo?: pulumi.Input<string>;
@@ -1269,6 +1366,7 @@ export interface SystemGlobalArgs {
     switchController?: pulumi.Input<string>;
     switchControllerReservedNetwork?: pulumi.Input<string>;
     sysPerfLogInterval?: pulumi.Input<number>;
+    syslogAffinity?: pulumi.Input<string>;
     tcpHalfcloseTimer?: pulumi.Input<number>;
     tcpHalfopenTimer?: pulumi.Input<number>;
     tcpOption?: pulumi.Input<string>;
@@ -1298,10 +1396,14 @@ export interface SystemGlobalArgs {
     virtualServerCount?: pulumi.Input<number>;
     virtualServerHardwareAcceleration?: pulumi.Input<string>;
     virtualSwitchVlan?: pulumi.Input<string>;
+    vpnEmsSnCheck?: pulumi.Input<string>;
     wadAffinity?: pulumi.Input<string>;
     wadCsvcCsCount?: pulumi.Input<number>;
     wadCsvcDbCount?: pulumi.Input<number>;
     wadMemoryChangeGranularity?: pulumi.Input<number>;
+    wadRestartEndTime?: pulumi.Input<string>;
+    wadRestartMode?: pulumi.Input<string>;
+    wadRestartStartTime?: pulumi.Input<string>;
     wadSourceAffinity?: pulumi.Input<string>;
     wadWorkerCount?: pulumi.Input<number>;
     wifiCaCertificate?: pulumi.Input<string>;

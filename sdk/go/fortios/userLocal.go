@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -68,7 +69,7 @@ func NewUserLocal(ctx *pulumi.Context,
 		"ppkSecret",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource UserLocal
 	err := ctx.RegisterResource("fortios:index/userLocal:UserLocal", name, args, &resource, opts...)
 	if err != nil {

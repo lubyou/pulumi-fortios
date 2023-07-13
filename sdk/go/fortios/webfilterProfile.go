@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -20,6 +21,7 @@ type WebfilterProfile struct {
 	FeatureSet                pulumi.StringOutput                             `pulumi:"featureSet"`
 	FileFilter                WebfilterProfileFileFilterOutput                `pulumi:"fileFilter"`
 	FtgdWf                    WebfilterProfileFtgdWfOutput                    `pulumi:"ftgdWf"`
+	GetAllTables              pulumi.StringPtrOutput                          `pulumi:"getAllTables"`
 	HttpsReplacemsg           pulumi.StringOutput                             `pulumi:"httpsReplacemsg"`
 	InspectionMode            pulumi.StringOutput                             `pulumi:"inspectionMode"`
 	LogAllUrl                 pulumi.StringOutput                             `pulumi:"logAllUrl"`
@@ -62,7 +64,7 @@ func NewWebfilterProfile(ctx *pulumi.Context,
 		args = &WebfilterProfileArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WebfilterProfile
 	err := ctx.RegisterResource("fortios:index/webfilterProfile:WebfilterProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -92,6 +94,7 @@ type webfilterProfileState struct {
 	FeatureSet                *string                                `pulumi:"featureSet"`
 	FileFilter                *WebfilterProfileFileFilter            `pulumi:"fileFilter"`
 	FtgdWf                    *WebfilterProfileFtgdWf                `pulumi:"ftgdWf"`
+	GetAllTables              *string                                `pulumi:"getAllTables"`
 	HttpsReplacemsg           *string                                `pulumi:"httpsReplacemsg"`
 	InspectionMode            *string                                `pulumi:"inspectionMode"`
 	LogAllUrl                 *string                                `pulumi:"logAllUrl"`
@@ -135,6 +138,7 @@ type WebfilterProfileState struct {
 	FeatureSet                pulumi.StringPtrInput
 	FileFilter                WebfilterProfileFileFilterPtrInput
 	FtgdWf                    WebfilterProfileFtgdWfPtrInput
+	GetAllTables              pulumi.StringPtrInput
 	HttpsReplacemsg           pulumi.StringPtrInput
 	InspectionMode            pulumi.StringPtrInput
 	LogAllUrl                 pulumi.StringPtrInput
@@ -182,6 +186,7 @@ type webfilterProfileArgs struct {
 	FeatureSet                *string                                `pulumi:"featureSet"`
 	FileFilter                *WebfilterProfileFileFilter            `pulumi:"fileFilter"`
 	FtgdWf                    *WebfilterProfileFtgdWf                `pulumi:"ftgdWf"`
+	GetAllTables              *string                                `pulumi:"getAllTables"`
 	HttpsReplacemsg           *string                                `pulumi:"httpsReplacemsg"`
 	InspectionMode            *string                                `pulumi:"inspectionMode"`
 	LogAllUrl                 *string                                `pulumi:"logAllUrl"`
@@ -226,6 +231,7 @@ type WebfilterProfileArgs struct {
 	FeatureSet                pulumi.StringPtrInput
 	FileFilter                WebfilterProfileFileFilterPtrInput
 	FtgdWf                    WebfilterProfileFtgdWfPtrInput
+	GetAllTables              pulumi.StringPtrInput
 	HttpsReplacemsg           pulumi.StringPtrInput
 	InspectionMode            pulumi.StringPtrInput
 	LogAllUrl                 pulumi.StringPtrInput
@@ -374,6 +380,10 @@ func (o WebfilterProfileOutput) FileFilter() WebfilterProfileFileFilterOutput {
 
 func (o WebfilterProfileOutput) FtgdWf() WebfilterProfileFtgdWfOutput {
 	return o.ApplyT(func(v *WebfilterProfile) WebfilterProfileFtgdWfOutput { return v.FtgdWf }).(WebfilterProfileFtgdWfOutput)
+}
+
+func (o WebfilterProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebfilterProfile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o WebfilterProfileOutput) HttpsReplacemsg() pulumi.StringOutput {

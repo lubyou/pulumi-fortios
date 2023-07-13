@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemSessionTtl(ctx *pulumi.Context, args *LookupSystemSessionTtlArgs, opts ...pulumi.InvokeOption) (*LookupSystemSessionTtlResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemSessionTtlResult
 	err := ctx.Invoke("fortios:index/getSystemSessionTtl:GetSystemSessionTtl", args, &rv, opts...)
 	if err != nil {

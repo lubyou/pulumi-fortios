@@ -102,12 +102,12 @@ def get_system_arp_table(fosid: Optional[int] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemArpTable:GetSystemArpTable', __args__, opts=opts, typ=GetSystemArpTableResult).value
 
     return AwaitableGetSystemArpTableResult(
-        fosid=__ret__.fosid,
-        id=__ret__.id,
-        interface=__ret__.interface,
-        ip=__ret__.ip,
-        mac=__ret__.mac,
-        vdomparam=__ret__.vdomparam)
+        fosid=pulumi.get(__ret__, 'fosid'),
+        id=pulumi.get(__ret__, 'id'),
+        interface=pulumi.get(__ret__, 'interface'),
+        ip=pulumi.get(__ret__, 'ip'),
+        mac=pulumi.get(__ret__, 'mac'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_arp_table)

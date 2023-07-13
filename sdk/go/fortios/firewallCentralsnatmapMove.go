@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -38,7 +39,7 @@ func NewFirewallCentralsnatmapMove(ctx *pulumi.Context,
 	if args.PolicyidSrc == nil {
 		return nil, errors.New("invalid value for required argument 'PolicyidSrc'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallCentralsnatmapMove
 	err := ctx.RegisterResource("fortios:index/firewallCentralsnatmapMove:FirewallCentralsnatmapMove", name, args, &resource, opts...)
 	if err != nil {

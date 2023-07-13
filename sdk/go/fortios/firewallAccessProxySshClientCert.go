@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -16,6 +17,7 @@ type FirewallAccessProxySshClientCert struct {
 	AuthCa                pulumi.StringOutput                                      `pulumi:"authCa"`
 	CertExtensions        FirewallAccessProxySshClientCertCertExtensionArrayOutput `pulumi:"certExtensions"`
 	DynamicSortSubtable   pulumi.StringPtrOutput                                   `pulumi:"dynamicSortSubtable"`
+	GetAllTables          pulumi.StringPtrOutput                                   `pulumi:"getAllTables"`
 	Name                  pulumi.StringOutput                                      `pulumi:"name"`
 	PermitAgentForwarding pulumi.StringOutput                                      `pulumi:"permitAgentForwarding"`
 	PermitPortForwarding  pulumi.StringOutput                                      `pulumi:"permitPortForwarding"`
@@ -33,7 +35,7 @@ func NewFirewallAccessProxySshClientCert(ctx *pulumi.Context,
 		args = &FirewallAccessProxySshClientCertArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallAccessProxySshClientCert
 	err := ctx.RegisterResource("fortios:index/firewallAccessProxySshClientCert:FirewallAccessProxySshClientCert", name, args, &resource, opts...)
 	if err != nil {
@@ -59,6 +61,7 @@ type firewallAccessProxySshClientCertState struct {
 	AuthCa                *string                                         `pulumi:"authCa"`
 	CertExtensions        []FirewallAccessProxySshClientCertCertExtension `pulumi:"certExtensions"`
 	DynamicSortSubtable   *string                                         `pulumi:"dynamicSortSubtable"`
+	GetAllTables          *string                                         `pulumi:"getAllTables"`
 	Name                  *string                                         `pulumi:"name"`
 	PermitAgentForwarding *string                                         `pulumi:"permitAgentForwarding"`
 	PermitPortForwarding  *string                                         `pulumi:"permitPortForwarding"`
@@ -73,6 +76,7 @@ type FirewallAccessProxySshClientCertState struct {
 	AuthCa                pulumi.StringPtrInput
 	CertExtensions        FirewallAccessProxySshClientCertCertExtensionArrayInput
 	DynamicSortSubtable   pulumi.StringPtrInput
+	GetAllTables          pulumi.StringPtrInput
 	Name                  pulumi.StringPtrInput
 	PermitAgentForwarding pulumi.StringPtrInput
 	PermitPortForwarding  pulumi.StringPtrInput
@@ -91,6 +95,7 @@ type firewallAccessProxySshClientCertArgs struct {
 	AuthCa                *string                                         `pulumi:"authCa"`
 	CertExtensions        []FirewallAccessProxySshClientCertCertExtension `pulumi:"certExtensions"`
 	DynamicSortSubtable   *string                                         `pulumi:"dynamicSortSubtable"`
+	GetAllTables          *string                                         `pulumi:"getAllTables"`
 	Name                  *string                                         `pulumi:"name"`
 	PermitAgentForwarding *string                                         `pulumi:"permitAgentForwarding"`
 	PermitPortForwarding  *string                                         `pulumi:"permitPortForwarding"`
@@ -106,6 +111,7 @@ type FirewallAccessProxySshClientCertArgs struct {
 	AuthCa                pulumi.StringPtrInput
 	CertExtensions        FirewallAccessProxySshClientCertCertExtensionArrayInput
 	DynamicSortSubtable   pulumi.StringPtrInput
+	GetAllTables          pulumi.StringPtrInput
 	Name                  pulumi.StringPtrInput
 	PermitAgentForwarding pulumi.StringPtrInput
 	PermitPortForwarding  pulumi.StringPtrInput
@@ -215,6 +221,10 @@ func (o FirewallAccessProxySshClientCertOutput) CertExtensions() FirewallAccessP
 
 func (o FirewallAccessProxySshClientCertOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FirewallAccessProxySshClientCert) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAccessProxySshClientCertOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAccessProxySshClientCert) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallAccessProxySshClientCertOutput) Name() pulumi.StringOutput {

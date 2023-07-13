@@ -120,14 +120,14 @@ def get_firewall_wildcard_fqdn_custom(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getFirewallWildcardFqdnCustom:GetFirewallWildcardFqdnCustom', __args__, opts=opts, typ=GetFirewallWildcardFqdnCustomResult).value
 
     return AwaitableGetFirewallWildcardFqdnCustomResult(
-        color=__ret__.color,
-        comment=__ret__.comment,
-        id=__ret__.id,
-        name=__ret__.name,
-        uuid=__ret__.uuid,
-        vdomparam=__ret__.vdomparam,
-        visibility=__ret__.visibility,
-        wildcard_fqdn=__ret__.wildcard_fqdn)
+        color=pulumi.get(__ret__, 'color'),
+        comment=pulumi.get(__ret__, 'comment'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        uuid=pulumi.get(__ret__, 'uuid'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'),
+        visibility=pulumi.get(__ret__, 'visibility'),
+        wildcard_fqdn=pulumi.get(__ret__, 'wildcard_fqdn'))
 
 
 @_utilities.lift_output_func(get_firewall_wildcard_fqdn_custom)

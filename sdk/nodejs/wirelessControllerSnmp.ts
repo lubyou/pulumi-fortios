@@ -38,6 +38,7 @@ export class WirelessControllerSnmp extends pulumi.CustomResource {
     public readonly contactInfo!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly engineId!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly trapHighCpuThreshold!: pulumi.Output<number>;
     public readonly trapHighMemThreshold!: pulumi.Output<number>;
     public readonly users!: pulumi.Output<outputs.WirelessControllerSnmpUser[] | undefined>;
@@ -60,6 +61,7 @@ export class WirelessControllerSnmp extends pulumi.CustomResource {
             resourceInputs["contactInfo"] = state ? state.contactInfo : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["engineId"] = state ? state.engineId : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["trapHighCpuThreshold"] = state ? state.trapHighCpuThreshold : undefined;
             resourceInputs["trapHighMemThreshold"] = state ? state.trapHighMemThreshold : undefined;
             resourceInputs["users"] = state ? state.users : undefined;
@@ -70,6 +72,7 @@ export class WirelessControllerSnmp extends pulumi.CustomResource {
             resourceInputs["contactInfo"] = args ? args.contactInfo : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["engineId"] = args ? args.engineId : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["trapHighCpuThreshold"] = args ? args.trapHighCpuThreshold : undefined;
             resourceInputs["trapHighMemThreshold"] = args ? args.trapHighMemThreshold : undefined;
             resourceInputs["users"] = args ? args.users : undefined;
@@ -88,6 +91,7 @@ export interface WirelessControllerSnmpState {
     contactInfo?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     engineId?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     trapHighCpuThreshold?: pulumi.Input<number>;
     trapHighMemThreshold?: pulumi.Input<number>;
     users?: pulumi.Input<pulumi.Input<inputs.WirelessControllerSnmpUser>[]>;
@@ -102,6 +106,7 @@ export interface WirelessControllerSnmpArgs {
     contactInfo?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     engineId?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     trapHighCpuThreshold?: pulumi.Input<number>;
     trapHighMemThreshold?: pulumi.Input<number>;
     users?: pulumi.Input<pulumi.Input<inputs.WirelessControllerSnmpUser>[]>;

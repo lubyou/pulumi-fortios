@@ -84,10 +84,10 @@ def get_system_alias(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemAlias:GetSystemAlias', __args__, opts=opts, typ=GetSystemAliasResult).value
 
     return AwaitableGetSystemAliasResult(
-        command=__ret__.command,
-        id=__ret__.id,
-        name=__ret__.name,
-        vdomparam=__ret__.vdomparam)
+        command=pulumi.get(__ret__, 'command'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_alias)

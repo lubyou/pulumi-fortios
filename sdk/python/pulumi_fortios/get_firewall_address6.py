@@ -22,7 +22,7 @@ class GetFirewallAddress6Result:
     """
     A collection of values returned by GetFirewallAddress6.
     """
-    def __init__(__self__, cache_ttl=None, color=None, comment=None, country=None, end_ip=None, end_mac=None, epg_name=None, fabric_object=None, fqdn=None, host=None, host_type=None, id=None, ip6=None, lists=None, macaddrs=None, name=None, obj_id=None, sdn=None, sdn_tag=None, start_ip=None, start_mac=None, subnet_segments=None, taggings=None, template=None, tenant=None, type=None, uuid=None, vdomparam=None, visibility=None):
+    def __init__(__self__, cache_ttl=None, color=None, comment=None, country=None, end_ip=None, end_mac=None, epg_name=None, fabric_object=None, fqdn=None, host=None, host_type=None, id=None, ip6=None, lists=None, macaddrs=None, name=None, obj_id=None, route_tag=None, sdn=None, sdn_tag=None, start_ip=None, start_mac=None, subnet_segments=None, taggings=None, template=None, tenant=None, type=None, uuid=None, vdomparam=None, visibility=None):
         if cache_ttl and not isinstance(cache_ttl, int):
             raise TypeError("Expected argument 'cache_ttl' to be a int")
         pulumi.set(__self__, "cache_ttl", cache_ttl)
@@ -74,6 +74,9 @@ class GetFirewallAddress6Result:
         if obj_id and not isinstance(obj_id, str):
             raise TypeError("Expected argument 'obj_id' to be a str")
         pulumi.set(__self__, "obj_id", obj_id)
+        if route_tag and not isinstance(route_tag, int):
+            raise TypeError("Expected argument 'route_tag' to be a int")
+        pulumi.set(__self__, "route_tag", route_tag)
         if sdn and not isinstance(sdn, str):
             raise TypeError("Expected argument 'sdn' to be a str")
         pulumi.set(__self__, "sdn", sdn)
@@ -200,6 +203,11 @@ class GetFirewallAddress6Result:
         return pulumi.get(self, "obj_id")
 
     @property
+    @pulumi.getter(name="routeTag")
+    def route_tag(self) -> int:
+        return pulumi.get(self, "route_tag")
+
+    @property
     @pulumi.getter
     def sdn(self) -> str:
         return pulumi.get(self, "sdn")
@@ -283,6 +291,7 @@ class AwaitableGetFirewallAddress6Result(GetFirewallAddress6Result):
             macaddrs=self.macaddrs,
             name=self.name,
             obj_id=self.obj_id,
+            route_tag=self.route_tag,
             sdn=self.sdn,
             sdn_tag=self.sdn_tag,
             start_ip=self.start_ip,
@@ -310,35 +319,36 @@ def get_firewall_address6(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getFirewallAddress6:GetFirewallAddress6', __args__, opts=opts, typ=GetFirewallAddress6Result).value
 
     return AwaitableGetFirewallAddress6Result(
-        cache_ttl=__ret__.cache_ttl,
-        color=__ret__.color,
-        comment=__ret__.comment,
-        country=__ret__.country,
-        end_ip=__ret__.end_ip,
-        end_mac=__ret__.end_mac,
-        epg_name=__ret__.epg_name,
-        fabric_object=__ret__.fabric_object,
-        fqdn=__ret__.fqdn,
-        host=__ret__.host,
-        host_type=__ret__.host_type,
-        id=__ret__.id,
-        ip6=__ret__.ip6,
-        lists=__ret__.lists,
-        macaddrs=__ret__.macaddrs,
-        name=__ret__.name,
-        obj_id=__ret__.obj_id,
-        sdn=__ret__.sdn,
-        sdn_tag=__ret__.sdn_tag,
-        start_ip=__ret__.start_ip,
-        start_mac=__ret__.start_mac,
-        subnet_segments=__ret__.subnet_segments,
-        taggings=__ret__.taggings,
-        template=__ret__.template,
-        tenant=__ret__.tenant,
-        type=__ret__.type,
-        uuid=__ret__.uuid,
-        vdomparam=__ret__.vdomparam,
-        visibility=__ret__.visibility)
+        cache_ttl=pulumi.get(__ret__, 'cache_ttl'),
+        color=pulumi.get(__ret__, 'color'),
+        comment=pulumi.get(__ret__, 'comment'),
+        country=pulumi.get(__ret__, 'country'),
+        end_ip=pulumi.get(__ret__, 'end_ip'),
+        end_mac=pulumi.get(__ret__, 'end_mac'),
+        epg_name=pulumi.get(__ret__, 'epg_name'),
+        fabric_object=pulumi.get(__ret__, 'fabric_object'),
+        fqdn=pulumi.get(__ret__, 'fqdn'),
+        host=pulumi.get(__ret__, 'host'),
+        host_type=pulumi.get(__ret__, 'host_type'),
+        id=pulumi.get(__ret__, 'id'),
+        ip6=pulumi.get(__ret__, 'ip6'),
+        lists=pulumi.get(__ret__, 'lists'),
+        macaddrs=pulumi.get(__ret__, 'macaddrs'),
+        name=pulumi.get(__ret__, 'name'),
+        obj_id=pulumi.get(__ret__, 'obj_id'),
+        route_tag=pulumi.get(__ret__, 'route_tag'),
+        sdn=pulumi.get(__ret__, 'sdn'),
+        sdn_tag=pulumi.get(__ret__, 'sdn_tag'),
+        start_ip=pulumi.get(__ret__, 'start_ip'),
+        start_mac=pulumi.get(__ret__, 'start_mac'),
+        subnet_segments=pulumi.get(__ret__, 'subnet_segments'),
+        taggings=pulumi.get(__ret__, 'taggings'),
+        template=pulumi.get(__ret__, 'template'),
+        tenant=pulumi.get(__ret__, 'tenant'),
+        type=pulumi.get(__ret__, 'type'),
+        uuid=pulumi.get(__ret__, 'uuid'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'),
+        visibility=pulumi.get(__ret__, 'visibility'))
 
 
 @_utilities.lift_output_func(get_firewall_address6)

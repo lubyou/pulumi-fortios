@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,6 +16,7 @@ type SystemClusterSync struct {
 
 	DownIntfsBeforeSessSyncs SystemClusterSyncDownIntfsBeforeSessSyncArrayOutput `pulumi:"downIntfsBeforeSessSyncs"`
 	DynamicSortSubtable      pulumi.StringPtrOutput                              `pulumi:"dynamicSortSubtable"`
+	GetAllTables             pulumi.StringPtrOutput                              `pulumi:"getAllTables"`
 	HbInterval               pulumi.IntOutput                                    `pulumi:"hbInterval"`
 	HbLostThreshold          pulumi.IntOutput                                    `pulumi:"hbLostThreshold"`
 	IkeHeartbeatInterval     pulumi.IntOutput                                    `pulumi:"ikeHeartbeatInterval"`
@@ -38,7 +40,7 @@ func NewSystemClusterSync(ctx *pulumi.Context,
 		args = &SystemClusterSyncArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemClusterSync
 	err := ctx.RegisterResource("fortios:index/systemClusterSync:SystemClusterSync", name, args, &resource, opts...)
 	if err != nil {
@@ -63,6 +65,7 @@ func GetSystemClusterSync(ctx *pulumi.Context,
 type systemClusterSyncState struct {
 	DownIntfsBeforeSessSyncs []SystemClusterSyncDownIntfsBeforeSessSync `pulumi:"downIntfsBeforeSessSyncs"`
 	DynamicSortSubtable      *string                                    `pulumi:"dynamicSortSubtable"`
+	GetAllTables             *string                                    `pulumi:"getAllTables"`
 	HbInterval               *int                                       `pulumi:"hbInterval"`
 	HbLostThreshold          *int                                       `pulumi:"hbLostThreshold"`
 	IkeHeartbeatInterval     *int                                       `pulumi:"ikeHeartbeatInterval"`
@@ -82,6 +85,7 @@ type systemClusterSyncState struct {
 type SystemClusterSyncState struct {
 	DownIntfsBeforeSessSyncs SystemClusterSyncDownIntfsBeforeSessSyncArrayInput
 	DynamicSortSubtable      pulumi.StringPtrInput
+	GetAllTables             pulumi.StringPtrInput
 	HbInterval               pulumi.IntPtrInput
 	HbLostThreshold          pulumi.IntPtrInput
 	IkeHeartbeatInterval     pulumi.IntPtrInput
@@ -105,6 +109,7 @@ func (SystemClusterSyncState) ElementType() reflect.Type {
 type systemClusterSyncArgs struct {
 	DownIntfsBeforeSessSyncs []SystemClusterSyncDownIntfsBeforeSessSync `pulumi:"downIntfsBeforeSessSyncs"`
 	DynamicSortSubtable      *string                                    `pulumi:"dynamicSortSubtable"`
+	GetAllTables             *string                                    `pulumi:"getAllTables"`
 	HbInterval               *int                                       `pulumi:"hbInterval"`
 	HbLostThreshold          *int                                       `pulumi:"hbLostThreshold"`
 	IkeHeartbeatInterval     *int                                       `pulumi:"ikeHeartbeatInterval"`
@@ -125,6 +130,7 @@ type systemClusterSyncArgs struct {
 type SystemClusterSyncArgs struct {
 	DownIntfsBeforeSessSyncs SystemClusterSyncDownIntfsBeforeSessSyncArrayInput
 	DynamicSortSubtable      pulumi.StringPtrInput
+	GetAllTables             pulumi.StringPtrInput
 	HbInterval               pulumi.IntPtrInput
 	HbLostThreshold          pulumi.IntPtrInput
 	IkeHeartbeatInterval     pulumi.IntPtrInput
@@ -236,6 +242,10 @@ func (o SystemClusterSyncOutput) DownIntfsBeforeSessSyncs() SystemClusterSyncDow
 
 func (o SystemClusterSyncOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SystemClusterSync) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemClusterSyncOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemClusterSync) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemClusterSyncOutput) HbInterval() pulumi.IntOutput {

@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -33,7 +34,7 @@ func NewVpnPptp(ctx *pulumi.Context,
 	if args.Status == nil {
 		return nil, errors.New("invalid value for required argument 'Status'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource VpnPptp
 	err := ctx.RegisterResource("fortios:index/vpnPptp:VpnPptp", name, args, &resource, opts...)
 	if err != nil {

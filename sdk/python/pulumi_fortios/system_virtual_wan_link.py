@@ -19,6 +19,7 @@ class SystemVirtualWanLinkArgs:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fail_alert_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['SystemVirtualWanLinkFailAlertInterfaceArgs']]]] = None,
                  fail_detect: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  health_checks: Optional[pulumi.Input[Sequence[pulumi.Input['SystemVirtualWanLinkHealthCheckArgs']]]] = None,
                  load_balance_mode: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input['SystemVirtualWanLinkMemberArgs']]]] = None,
@@ -39,6 +40,8 @@ class SystemVirtualWanLinkArgs:
             pulumi.set(__self__, "fail_alert_interfaces", fail_alert_interfaces)
         if fail_detect is not None:
             pulumi.set(__self__, "fail_detect", fail_detect)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if health_checks is not None:
             pulumi.set(__self__, "health_checks", health_checks)
         if load_balance_mode is not None:
@@ -88,6 +91,15 @@ class SystemVirtualWanLinkArgs:
     @fail_detect.setter
     def fail_detect(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fail_detect", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="healthChecks")
@@ -195,6 +207,7 @@ class _SystemVirtualWanLinkState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fail_alert_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['SystemVirtualWanLinkFailAlertInterfaceArgs']]]] = None,
                  fail_detect: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  health_checks: Optional[pulumi.Input[Sequence[pulumi.Input['SystemVirtualWanLinkHealthCheckArgs']]]] = None,
                  load_balance_mode: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input['SystemVirtualWanLinkMemberArgs']]]] = None,
@@ -215,6 +228,8 @@ class _SystemVirtualWanLinkState:
             pulumi.set(__self__, "fail_alert_interfaces", fail_alert_interfaces)
         if fail_detect is not None:
             pulumi.set(__self__, "fail_detect", fail_detect)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if health_checks is not None:
             pulumi.set(__self__, "health_checks", health_checks)
         if load_balance_mode is not None:
@@ -264,6 +279,15 @@ class _SystemVirtualWanLinkState:
     @fail_detect.setter
     def fail_detect(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fail_detect", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="healthChecks")
@@ -373,6 +397,7 @@ class SystemVirtualWanLink(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fail_alert_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemVirtualWanLinkFailAlertInterfaceArgs']]]]] = None,
                  fail_detect: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  health_checks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemVirtualWanLinkHealthCheckArgs']]]]] = None,
                  load_balance_mode: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemVirtualWanLinkMemberArgs']]]]] = None,
@@ -416,6 +441,7 @@ class SystemVirtualWanLink(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fail_alert_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemVirtualWanLinkFailAlertInterfaceArgs']]]]] = None,
                  fail_detect: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  health_checks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemVirtualWanLinkHealthCheckArgs']]]]] = None,
                  load_balance_mode: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemVirtualWanLinkMemberArgs']]]]] = None,
@@ -439,6 +465,7 @@ class SystemVirtualWanLink(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["fail_alert_interfaces"] = fail_alert_interfaces
             __props__.__dict__["fail_detect"] = fail_detect
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["health_checks"] = health_checks
             __props__.__dict__["load_balance_mode"] = load_balance_mode
             __props__.__dict__["members"] = members
@@ -463,6 +490,7 @@ class SystemVirtualWanLink(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             fail_alert_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemVirtualWanLinkFailAlertInterfaceArgs']]]]] = None,
             fail_detect: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             health_checks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemVirtualWanLinkHealthCheckArgs']]]]] = None,
             load_balance_mode: Optional[pulumi.Input[str]] = None,
             members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemVirtualWanLinkMemberArgs']]]]] = None,
@@ -489,6 +517,7 @@ class SystemVirtualWanLink(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["fail_alert_interfaces"] = fail_alert_interfaces
         __props__.__dict__["fail_detect"] = fail_detect
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["health_checks"] = health_checks
         __props__.__dict__["load_balance_mode"] = load_balance_mode
         __props__.__dict__["members"] = members
@@ -516,6 +545,11 @@ class SystemVirtualWanLink(pulumi.CustomResource):
     @pulumi.getter(name="failDetect")
     def fail_detect(self) -> pulumi.Output[str]:
         return pulumi.get(self, "fail_detect")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="healthChecks")

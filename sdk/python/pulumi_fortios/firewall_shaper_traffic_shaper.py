@@ -15,14 +15,19 @@ __all__ = ['FirewallShaperTrafficShaperArgs', 'FirewallShaperTrafficShaper']
 class FirewallShaperTrafficShaperArgs:
     def __init__(__self__, *,
                  bandwidth_unit: Optional[pulumi.Input[str]] = None,
+                 cos: Optional[pulumi.Input[str]] = None,
+                 cos_marking: Optional[pulumi.Input[str]] = None,
+                 cos_marking_method: Optional[pulumi.Input[str]] = None,
                  diffserv: Optional[pulumi.Input[str]] = None,
                  diffservcode: Optional[pulumi.Input[str]] = None,
                  dscp_marking_method: Optional[pulumi.Input[str]] = None,
                  exceed_bandwidth: Optional[pulumi.Input[int]] = None,
                  exceed_class_id: Optional[pulumi.Input[int]] = None,
+                 exceed_cos: Optional[pulumi.Input[str]] = None,
                  exceed_dscp: Optional[pulumi.Input[str]] = None,
                  guaranteed_bandwidth: Optional[pulumi.Input[int]] = None,
                  maximum_bandwidth: Optional[pulumi.Input[int]] = None,
+                 maximum_cos: Optional[pulumi.Input[str]] = None,
                  maximum_dscp: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  overhead: Optional[pulumi.Input[int]] = None,
@@ -34,6 +39,12 @@ class FirewallShaperTrafficShaperArgs:
         """
         if bandwidth_unit is not None:
             pulumi.set(__self__, "bandwidth_unit", bandwidth_unit)
+        if cos is not None:
+            pulumi.set(__self__, "cos", cos)
+        if cos_marking is not None:
+            pulumi.set(__self__, "cos_marking", cos_marking)
+        if cos_marking_method is not None:
+            pulumi.set(__self__, "cos_marking_method", cos_marking_method)
         if diffserv is not None:
             pulumi.set(__self__, "diffserv", diffserv)
         if diffservcode is not None:
@@ -44,12 +55,16 @@ class FirewallShaperTrafficShaperArgs:
             pulumi.set(__self__, "exceed_bandwidth", exceed_bandwidth)
         if exceed_class_id is not None:
             pulumi.set(__self__, "exceed_class_id", exceed_class_id)
+        if exceed_cos is not None:
+            pulumi.set(__self__, "exceed_cos", exceed_cos)
         if exceed_dscp is not None:
             pulumi.set(__self__, "exceed_dscp", exceed_dscp)
         if guaranteed_bandwidth is not None:
             pulumi.set(__self__, "guaranteed_bandwidth", guaranteed_bandwidth)
         if maximum_bandwidth is not None:
             pulumi.set(__self__, "maximum_bandwidth", maximum_bandwidth)
+        if maximum_cos is not None:
+            pulumi.set(__self__, "maximum_cos", maximum_cos)
         if maximum_dscp is not None:
             pulumi.set(__self__, "maximum_dscp", maximum_dscp)
         if name is not None:
@@ -71,6 +86,33 @@ class FirewallShaperTrafficShaperArgs:
     @bandwidth_unit.setter
     def bandwidth_unit(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "bandwidth_unit", value)
+
+    @property
+    @pulumi.getter
+    def cos(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "cos")
+
+    @cos.setter
+    def cos(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cos", value)
+
+    @property
+    @pulumi.getter(name="cosMarking")
+    def cos_marking(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "cos_marking")
+
+    @cos_marking.setter
+    def cos_marking(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cos_marking", value)
+
+    @property
+    @pulumi.getter(name="cosMarkingMethod")
+    def cos_marking_method(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "cos_marking_method")
+
+    @cos_marking_method.setter
+    def cos_marking_method(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cos_marking_method", value)
 
     @property
     @pulumi.getter
@@ -118,6 +160,15 @@ class FirewallShaperTrafficShaperArgs:
         pulumi.set(self, "exceed_class_id", value)
 
     @property
+    @pulumi.getter(name="exceedCos")
+    def exceed_cos(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "exceed_cos")
+
+    @exceed_cos.setter
+    def exceed_cos(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "exceed_cos", value)
+
+    @property
     @pulumi.getter(name="exceedDscp")
     def exceed_dscp(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "exceed_dscp")
@@ -143,6 +194,15 @@ class FirewallShaperTrafficShaperArgs:
     @maximum_bandwidth.setter
     def maximum_bandwidth(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "maximum_bandwidth", value)
+
+    @property
+    @pulumi.getter(name="maximumCos")
+    def maximum_cos(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "maximum_cos")
+
+    @maximum_cos.setter
+    def maximum_cos(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "maximum_cos", value)
 
     @property
     @pulumi.getter(name="maximumDscp")
@@ -203,14 +263,19 @@ class FirewallShaperTrafficShaperArgs:
 class _FirewallShaperTrafficShaperState:
     def __init__(__self__, *,
                  bandwidth_unit: Optional[pulumi.Input[str]] = None,
+                 cos: Optional[pulumi.Input[str]] = None,
+                 cos_marking: Optional[pulumi.Input[str]] = None,
+                 cos_marking_method: Optional[pulumi.Input[str]] = None,
                  diffserv: Optional[pulumi.Input[str]] = None,
                  diffservcode: Optional[pulumi.Input[str]] = None,
                  dscp_marking_method: Optional[pulumi.Input[str]] = None,
                  exceed_bandwidth: Optional[pulumi.Input[int]] = None,
                  exceed_class_id: Optional[pulumi.Input[int]] = None,
+                 exceed_cos: Optional[pulumi.Input[str]] = None,
                  exceed_dscp: Optional[pulumi.Input[str]] = None,
                  guaranteed_bandwidth: Optional[pulumi.Input[int]] = None,
                  maximum_bandwidth: Optional[pulumi.Input[int]] = None,
+                 maximum_cos: Optional[pulumi.Input[str]] = None,
                  maximum_dscp: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  overhead: Optional[pulumi.Input[int]] = None,
@@ -222,6 +287,12 @@ class _FirewallShaperTrafficShaperState:
         """
         if bandwidth_unit is not None:
             pulumi.set(__self__, "bandwidth_unit", bandwidth_unit)
+        if cos is not None:
+            pulumi.set(__self__, "cos", cos)
+        if cos_marking is not None:
+            pulumi.set(__self__, "cos_marking", cos_marking)
+        if cos_marking_method is not None:
+            pulumi.set(__self__, "cos_marking_method", cos_marking_method)
         if diffserv is not None:
             pulumi.set(__self__, "diffserv", diffserv)
         if diffservcode is not None:
@@ -232,12 +303,16 @@ class _FirewallShaperTrafficShaperState:
             pulumi.set(__self__, "exceed_bandwidth", exceed_bandwidth)
         if exceed_class_id is not None:
             pulumi.set(__self__, "exceed_class_id", exceed_class_id)
+        if exceed_cos is not None:
+            pulumi.set(__self__, "exceed_cos", exceed_cos)
         if exceed_dscp is not None:
             pulumi.set(__self__, "exceed_dscp", exceed_dscp)
         if guaranteed_bandwidth is not None:
             pulumi.set(__self__, "guaranteed_bandwidth", guaranteed_bandwidth)
         if maximum_bandwidth is not None:
             pulumi.set(__self__, "maximum_bandwidth", maximum_bandwidth)
+        if maximum_cos is not None:
+            pulumi.set(__self__, "maximum_cos", maximum_cos)
         if maximum_dscp is not None:
             pulumi.set(__self__, "maximum_dscp", maximum_dscp)
         if name is not None:
@@ -259,6 +334,33 @@ class _FirewallShaperTrafficShaperState:
     @bandwidth_unit.setter
     def bandwidth_unit(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "bandwidth_unit", value)
+
+    @property
+    @pulumi.getter
+    def cos(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "cos")
+
+    @cos.setter
+    def cos(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cos", value)
+
+    @property
+    @pulumi.getter(name="cosMarking")
+    def cos_marking(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "cos_marking")
+
+    @cos_marking.setter
+    def cos_marking(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cos_marking", value)
+
+    @property
+    @pulumi.getter(name="cosMarkingMethod")
+    def cos_marking_method(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "cos_marking_method")
+
+    @cos_marking_method.setter
+    def cos_marking_method(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cos_marking_method", value)
 
     @property
     @pulumi.getter
@@ -306,6 +408,15 @@ class _FirewallShaperTrafficShaperState:
         pulumi.set(self, "exceed_class_id", value)
 
     @property
+    @pulumi.getter(name="exceedCos")
+    def exceed_cos(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "exceed_cos")
+
+    @exceed_cos.setter
+    def exceed_cos(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "exceed_cos", value)
+
+    @property
     @pulumi.getter(name="exceedDscp")
     def exceed_dscp(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "exceed_dscp")
@@ -331,6 +442,15 @@ class _FirewallShaperTrafficShaperState:
     @maximum_bandwidth.setter
     def maximum_bandwidth(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "maximum_bandwidth", value)
+
+    @property
+    @pulumi.getter(name="maximumCos")
+    def maximum_cos(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "maximum_cos")
+
+    @maximum_cos.setter
+    def maximum_cos(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "maximum_cos", value)
 
     @property
     @pulumi.getter(name="maximumDscp")
@@ -393,14 +513,19 @@ class FirewallShaperTrafficShaper(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bandwidth_unit: Optional[pulumi.Input[str]] = None,
+                 cos: Optional[pulumi.Input[str]] = None,
+                 cos_marking: Optional[pulumi.Input[str]] = None,
+                 cos_marking_method: Optional[pulumi.Input[str]] = None,
                  diffserv: Optional[pulumi.Input[str]] = None,
                  diffservcode: Optional[pulumi.Input[str]] = None,
                  dscp_marking_method: Optional[pulumi.Input[str]] = None,
                  exceed_bandwidth: Optional[pulumi.Input[int]] = None,
                  exceed_class_id: Optional[pulumi.Input[int]] = None,
+                 exceed_cos: Optional[pulumi.Input[str]] = None,
                  exceed_dscp: Optional[pulumi.Input[str]] = None,
                  guaranteed_bandwidth: Optional[pulumi.Input[int]] = None,
                  maximum_bandwidth: Optional[pulumi.Input[int]] = None,
+                 maximum_cos: Optional[pulumi.Input[str]] = None,
                  maximum_dscp: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  overhead: Optional[pulumi.Input[int]] = None,
@@ -437,14 +562,19 @@ class FirewallShaperTrafficShaper(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  bandwidth_unit: Optional[pulumi.Input[str]] = None,
+                 cos: Optional[pulumi.Input[str]] = None,
+                 cos_marking: Optional[pulumi.Input[str]] = None,
+                 cos_marking_method: Optional[pulumi.Input[str]] = None,
                  diffserv: Optional[pulumi.Input[str]] = None,
                  diffservcode: Optional[pulumi.Input[str]] = None,
                  dscp_marking_method: Optional[pulumi.Input[str]] = None,
                  exceed_bandwidth: Optional[pulumi.Input[int]] = None,
                  exceed_class_id: Optional[pulumi.Input[int]] = None,
+                 exceed_cos: Optional[pulumi.Input[str]] = None,
                  exceed_dscp: Optional[pulumi.Input[str]] = None,
                  guaranteed_bandwidth: Optional[pulumi.Input[int]] = None,
                  maximum_bandwidth: Optional[pulumi.Input[int]] = None,
+                 maximum_cos: Optional[pulumi.Input[str]] = None,
                  maximum_dscp: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  overhead: Optional[pulumi.Input[int]] = None,
@@ -461,14 +591,19 @@ class FirewallShaperTrafficShaper(pulumi.CustomResource):
             __props__ = FirewallShaperTrafficShaperArgs.__new__(FirewallShaperTrafficShaperArgs)
 
             __props__.__dict__["bandwidth_unit"] = bandwidth_unit
+            __props__.__dict__["cos"] = cos
+            __props__.__dict__["cos_marking"] = cos_marking
+            __props__.__dict__["cos_marking_method"] = cos_marking_method
             __props__.__dict__["diffserv"] = diffserv
             __props__.__dict__["diffservcode"] = diffservcode
             __props__.__dict__["dscp_marking_method"] = dscp_marking_method
             __props__.__dict__["exceed_bandwidth"] = exceed_bandwidth
             __props__.__dict__["exceed_class_id"] = exceed_class_id
+            __props__.__dict__["exceed_cos"] = exceed_cos
             __props__.__dict__["exceed_dscp"] = exceed_dscp
             __props__.__dict__["guaranteed_bandwidth"] = guaranteed_bandwidth
             __props__.__dict__["maximum_bandwidth"] = maximum_bandwidth
+            __props__.__dict__["maximum_cos"] = maximum_cos
             __props__.__dict__["maximum_dscp"] = maximum_dscp
             __props__.__dict__["name"] = name
             __props__.__dict__["overhead"] = overhead
@@ -486,14 +621,19 @@ class FirewallShaperTrafficShaper(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             bandwidth_unit: Optional[pulumi.Input[str]] = None,
+            cos: Optional[pulumi.Input[str]] = None,
+            cos_marking: Optional[pulumi.Input[str]] = None,
+            cos_marking_method: Optional[pulumi.Input[str]] = None,
             diffserv: Optional[pulumi.Input[str]] = None,
             diffservcode: Optional[pulumi.Input[str]] = None,
             dscp_marking_method: Optional[pulumi.Input[str]] = None,
             exceed_bandwidth: Optional[pulumi.Input[int]] = None,
             exceed_class_id: Optional[pulumi.Input[int]] = None,
+            exceed_cos: Optional[pulumi.Input[str]] = None,
             exceed_dscp: Optional[pulumi.Input[str]] = None,
             guaranteed_bandwidth: Optional[pulumi.Input[int]] = None,
             maximum_bandwidth: Optional[pulumi.Input[int]] = None,
+            maximum_cos: Optional[pulumi.Input[str]] = None,
             maximum_dscp: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             overhead: Optional[pulumi.Input[int]] = None,
@@ -513,14 +653,19 @@ class FirewallShaperTrafficShaper(pulumi.CustomResource):
         __props__ = _FirewallShaperTrafficShaperState.__new__(_FirewallShaperTrafficShaperState)
 
         __props__.__dict__["bandwidth_unit"] = bandwidth_unit
+        __props__.__dict__["cos"] = cos
+        __props__.__dict__["cos_marking"] = cos_marking
+        __props__.__dict__["cos_marking_method"] = cos_marking_method
         __props__.__dict__["diffserv"] = diffserv
         __props__.__dict__["diffservcode"] = diffservcode
         __props__.__dict__["dscp_marking_method"] = dscp_marking_method
         __props__.__dict__["exceed_bandwidth"] = exceed_bandwidth
         __props__.__dict__["exceed_class_id"] = exceed_class_id
+        __props__.__dict__["exceed_cos"] = exceed_cos
         __props__.__dict__["exceed_dscp"] = exceed_dscp
         __props__.__dict__["guaranteed_bandwidth"] = guaranteed_bandwidth
         __props__.__dict__["maximum_bandwidth"] = maximum_bandwidth
+        __props__.__dict__["maximum_cos"] = maximum_cos
         __props__.__dict__["maximum_dscp"] = maximum_dscp
         __props__.__dict__["name"] = name
         __props__.__dict__["overhead"] = overhead
@@ -533,6 +678,21 @@ class FirewallShaperTrafficShaper(pulumi.CustomResource):
     @pulumi.getter(name="bandwidthUnit")
     def bandwidth_unit(self) -> pulumi.Output[str]:
         return pulumi.get(self, "bandwidth_unit")
+
+    @property
+    @pulumi.getter
+    def cos(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "cos")
+
+    @property
+    @pulumi.getter(name="cosMarking")
+    def cos_marking(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "cos_marking")
+
+    @property
+    @pulumi.getter(name="cosMarkingMethod")
+    def cos_marking_method(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "cos_marking_method")
 
     @property
     @pulumi.getter
@@ -560,6 +720,11 @@ class FirewallShaperTrafficShaper(pulumi.CustomResource):
         return pulumi.get(self, "exceed_class_id")
 
     @property
+    @pulumi.getter(name="exceedCos")
+    def exceed_cos(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "exceed_cos")
+
+    @property
     @pulumi.getter(name="exceedDscp")
     def exceed_dscp(self) -> pulumi.Output[str]:
         return pulumi.get(self, "exceed_dscp")
@@ -573,6 +738,11 @@ class FirewallShaperTrafficShaper(pulumi.CustomResource):
     @pulumi.getter(name="maximumBandwidth")
     def maximum_bandwidth(self) -> pulumi.Output[int]:
         return pulumi.get(self, "maximum_bandwidth")
+
+    @property
+    @pulumi.getter(name="maximumCos")
+    def maximum_cos(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "maximum_cos")
 
     @property
     @pulumi.getter(name="maximumDscp")

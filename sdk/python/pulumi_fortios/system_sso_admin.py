@@ -18,6 +18,7 @@ class SystemSsoAdminArgs:
     def __init__(__self__, *,
                  accprofile: pulumi.Input[str],
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gui_ignore_release_overview_version: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -28,6 +29,8 @@ class SystemSsoAdminArgs:
         pulumi.set(__self__, "accprofile", accprofile)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gui_ignore_release_overview_version is not None:
             pulumi.set(__self__, "gui_ignore_release_overview_version", gui_ignore_release_overview_version)
         if name is not None:
@@ -54,6 +57,15 @@ class SystemSsoAdminArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="guiIgnoreReleaseOverviewVersion")
@@ -97,6 +109,7 @@ class _SystemSsoAdminState:
     def __init__(__self__, *,
                  accprofile: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gui_ignore_release_overview_version: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -108,6 +121,8 @@ class _SystemSsoAdminState:
             pulumi.set(__self__, "accprofile", accprofile)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gui_ignore_release_overview_version is not None:
             pulumi.set(__self__, "gui_ignore_release_overview_version", gui_ignore_release_overview_version)
         if name is not None:
@@ -134,6 +149,15 @@ class _SystemSsoAdminState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="guiIgnoreReleaseOverviewVersion")
@@ -179,6 +203,7 @@ class SystemSsoAdmin(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  accprofile: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gui_ignore_release_overview_version: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -214,6 +239,7 @@ class SystemSsoAdmin(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  accprofile: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gui_ignore_release_overview_version: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -231,6 +257,7 @@ class SystemSsoAdmin(pulumi.CustomResource):
                 raise TypeError("Missing required property 'accprofile'")
             __props__.__dict__["accprofile"] = accprofile
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["gui_ignore_release_overview_version"] = gui_ignore_release_overview_version
             __props__.__dict__["name"] = name
             __props__.__dict__["vdomparam"] = vdomparam
@@ -247,6 +274,7 @@ class SystemSsoAdmin(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             accprofile: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             gui_ignore_release_overview_version: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
@@ -265,6 +293,7 @@ class SystemSsoAdmin(pulumi.CustomResource):
 
         __props__.__dict__["accprofile"] = accprofile
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["gui_ignore_release_overview_version"] = gui_ignore_release_overview_version
         __props__.__dict__["name"] = name
         __props__.__dict__["vdomparam"] = vdomparam
@@ -280,6 +309,11 @@ class SystemSsoAdmin(pulumi.CustomResource):
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="guiIgnoreReleaseOverviewVersion")

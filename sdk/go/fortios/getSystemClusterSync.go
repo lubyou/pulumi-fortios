@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemClusterSync(ctx *pulumi.Context, args *LookupSystemClusterSyncArgs, opts ...pulumi.InvokeOption) (*LookupSystemClusterSyncResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemClusterSyncResult
 	err := ctx.Invoke("fortios:index/getSystemClusterSync:GetSystemClusterSync", args, &rv, opts...)
 	if err != nil {

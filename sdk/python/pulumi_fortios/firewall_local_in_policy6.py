@@ -25,12 +25,14 @@ class FirewallLocalInPolicy6Args:
                  comments: Optional[pulumi.Input[str]] = None,
                  dstaddr_negate: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  policyid: Optional[pulumi.Input[int]] = None,
                  service_negate: Optional[pulumi.Input[str]] = None,
                  srcaddr_negate: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
-                 vdomparam: Optional[pulumi.Input[str]] = None):
+                 vdomparam: Optional[pulumi.Input[str]] = None,
+                 virtual_patch: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a FirewallLocalInPolicy6 resource.
         """
@@ -47,6 +49,8 @@ class FirewallLocalInPolicy6Args:
             pulumi.set(__self__, "dstaddr_negate", dstaddr_negate)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if policyid is not None:
             pulumi.set(__self__, "policyid", policyid)
         if service_negate is not None:
@@ -59,6 +63,8 @@ class FirewallLocalInPolicy6Args:
             pulumi.set(__self__, "uuid", uuid)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+        if virtual_patch is not None:
+            pulumi.set(__self__, "virtual_patch", virtual_patch)
 
     @property
     @pulumi.getter
@@ -142,6 +148,15 @@ class FirewallLocalInPolicy6Args:
         pulumi.set(self, "dynamic_sort_subtable", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter
     def policyid(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "policyid")
@@ -195,6 +210,15 @@ class FirewallLocalInPolicy6Args:
     def vdomparam(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vdomparam", value)
 
+    @property
+    @pulumi.getter(name="virtualPatch")
+    def virtual_patch(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "virtual_patch")
+
+    @virtual_patch.setter
+    def virtual_patch(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "virtual_patch", value)
+
 
 @pulumi.input_type
 class _FirewallLocalInPolicy6State:
@@ -204,6 +228,7 @@ class _FirewallLocalInPolicy6State:
                  dstaddr_negate: Optional[pulumi.Input[str]] = None,
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallLocalInPolicy6DstaddrArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  intf: Optional[pulumi.Input[str]] = None,
                  policyid: Optional[pulumi.Input[int]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
@@ -213,7 +238,8 @@ class _FirewallLocalInPolicy6State:
                  srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallLocalInPolicy6SrcaddrArgs']]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
-                 vdomparam: Optional[pulumi.Input[str]] = None):
+                 vdomparam: Optional[pulumi.Input[str]] = None,
+                 virtual_patch: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering FirewallLocalInPolicy6 resources.
         """
@@ -227,6 +253,8 @@ class _FirewallLocalInPolicy6State:
             pulumi.set(__self__, "dstaddrs", dstaddrs)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if intf is not None:
             pulumi.set(__self__, "intf", intf)
         if policyid is not None:
@@ -247,6 +275,8 @@ class _FirewallLocalInPolicy6State:
             pulumi.set(__self__, "uuid", uuid)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+        if virtual_patch is not None:
+            pulumi.set(__self__, "virtual_patch", virtual_patch)
 
     @property
     @pulumi.getter
@@ -292,6 +322,15 @@ class _FirewallLocalInPolicy6State:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -383,6 +422,15 @@ class _FirewallLocalInPolicy6State:
     def vdomparam(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vdomparam", value)
 
+    @property
+    @pulumi.getter(name="virtualPatch")
+    def virtual_patch(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "virtual_patch")
+
+    @virtual_patch.setter
+    def virtual_patch(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "virtual_patch", value)
+
 
 class FirewallLocalInPolicy6(pulumi.CustomResource):
     @overload
@@ -394,6 +442,7 @@ class FirewallLocalInPolicy6(pulumi.CustomResource):
                  dstaddr_negate: Optional[pulumi.Input[str]] = None,
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallLocalInPolicy6DstaddrArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  intf: Optional[pulumi.Input[str]] = None,
                  policyid: Optional[pulumi.Input[int]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
@@ -404,6 +453,7 @@ class FirewallLocalInPolicy6(pulumi.CustomResource):
                  status: Optional[pulumi.Input[str]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 virtual_patch: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Create a FirewallLocalInPolicy6 resource with the given unique name, props, and options.
@@ -438,6 +488,7 @@ class FirewallLocalInPolicy6(pulumi.CustomResource):
                  dstaddr_negate: Optional[pulumi.Input[str]] = None,
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallLocalInPolicy6DstaddrArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  intf: Optional[pulumi.Input[str]] = None,
                  policyid: Optional[pulumi.Input[int]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
@@ -448,6 +499,7 @@ class FirewallLocalInPolicy6(pulumi.CustomResource):
                  status: Optional[pulumi.Input[str]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 virtual_patch: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -464,6 +516,7 @@ class FirewallLocalInPolicy6(pulumi.CustomResource):
                 raise TypeError("Missing required property 'dstaddrs'")
             __props__.__dict__["dstaddrs"] = dstaddrs
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             if intf is None and not opts.urn:
                 raise TypeError("Missing required property 'intf'")
             __props__.__dict__["intf"] = intf
@@ -482,6 +535,7 @@ class FirewallLocalInPolicy6(pulumi.CustomResource):
             __props__.__dict__["status"] = status
             __props__.__dict__["uuid"] = uuid
             __props__.__dict__["vdomparam"] = vdomparam
+            __props__.__dict__["virtual_patch"] = virtual_patch
         super(FirewallLocalInPolicy6, __self__).__init__(
             'fortios:index/firewallLocalInPolicy6:FirewallLocalInPolicy6',
             resource_name,
@@ -497,6 +551,7 @@ class FirewallLocalInPolicy6(pulumi.CustomResource):
             dstaddr_negate: Optional[pulumi.Input[str]] = None,
             dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallLocalInPolicy6DstaddrArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             intf: Optional[pulumi.Input[str]] = None,
             policyid: Optional[pulumi.Input[int]] = None,
             schedule: Optional[pulumi.Input[str]] = None,
@@ -506,7 +561,8 @@ class FirewallLocalInPolicy6(pulumi.CustomResource):
             srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallLocalInPolicy6SrcaddrArgs']]]]] = None,
             status: Optional[pulumi.Input[str]] = None,
             uuid: Optional[pulumi.Input[str]] = None,
-            vdomparam: Optional[pulumi.Input[str]] = None) -> 'FirewallLocalInPolicy6':
+            vdomparam: Optional[pulumi.Input[str]] = None,
+            virtual_patch: Optional[pulumi.Input[str]] = None) -> 'FirewallLocalInPolicy6':
         """
         Get an existing FirewallLocalInPolicy6 resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -524,6 +580,7 @@ class FirewallLocalInPolicy6(pulumi.CustomResource):
         __props__.__dict__["dstaddr_negate"] = dstaddr_negate
         __props__.__dict__["dstaddrs"] = dstaddrs
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["intf"] = intf
         __props__.__dict__["policyid"] = policyid
         __props__.__dict__["schedule"] = schedule
@@ -534,6 +591,7 @@ class FirewallLocalInPolicy6(pulumi.CustomResource):
         __props__.__dict__["status"] = status
         __props__.__dict__["uuid"] = uuid
         __props__.__dict__["vdomparam"] = vdomparam
+        __props__.__dict__["virtual_patch"] = virtual_patch
         return FirewallLocalInPolicy6(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -560,6 +618,11 @@ class FirewallLocalInPolicy6(pulumi.CustomResource):
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter
@@ -610,4 +673,9 @@ class FirewallLocalInPolicy6(pulumi.CustomResource):
     @pulumi.getter
     def vdomparam(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "vdomparam")
+
+    @property
+    @pulumi.getter(name="virtualPatch")
+    def virtual_patch(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "virtual_patch")
 

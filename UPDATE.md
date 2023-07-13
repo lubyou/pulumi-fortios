@@ -6,7 +6,7 @@ Update the `terraform-provider-fortios` sub module
     git submodule update --remote
 
     # Checkout new version
-    (cd terraform-provider-fortios && git checkout v1.xx.x)
+    (cd upstream && git checkout v1.xx.x)
 
 
 Next, update and build the provider:

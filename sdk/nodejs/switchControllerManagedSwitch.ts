@@ -39,6 +39,7 @@ export class SwitchControllerManagedSwitch extends pulumi.CustomResource {
     public readonly delayedRestartTrigger!: pulumi.Output<number>;
     public readonly description!: pulumi.Output<string>;
     public readonly dhcpServerAccessList!: pulumi.Output<string>;
+    public readonly dhcpSnoopingStaticClients!: pulumi.Output<outputs.SwitchControllerManagedSwitchDhcpSnoopingStaticClient[] | undefined>;
     public readonly directlyConnected!: pulumi.Output<number>;
     public readonly dynamicCapability!: pulumi.Output<number>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
@@ -51,6 +52,7 @@ export class SwitchControllerManagedSwitch extends pulumi.CustomResource {
     public readonly fswWan1Peer!: pulumi.Output<string>;
     public readonly fswWan2Admin!: pulumi.Output<string>;
     public readonly fswWan2Peer!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly igmpSnooping!: pulumi.Output<outputs.SwitchControllerManagedSwitchIgmpSnooping>;
     public readonly ipSourceGuards!: pulumi.Output<outputs.SwitchControllerManagedSwitchIpSourceGuard[] | undefined>;
     public readonly l3Discovered!: pulumi.Output<number>;
@@ -72,6 +74,7 @@ export class SwitchControllerManagedSwitch extends pulumi.CustomResource {
     public readonly qosDropPolicy!: pulumi.Output<string>;
     public readonly qosRedProbability!: pulumi.Output<number>;
     public readonly remoteLogs!: pulumi.Output<outputs.SwitchControllerManagedSwitchRemoteLog[] | undefined>;
+    public readonly sn!: pulumi.Output<string>;
     public readonly snmpCommunities!: pulumi.Output<outputs.SwitchControllerManagedSwitchSnmpCommunity[] | undefined>;
     public readonly snmpSysinfo!: pulumi.Output<outputs.SwitchControllerManagedSwitchSnmpSysinfo>;
     public readonly snmpTrapThreshold!: pulumi.Output<outputs.SwitchControllerManagedSwitchSnmpTrapThreshold>;
@@ -110,6 +113,7 @@ export class SwitchControllerManagedSwitch extends pulumi.CustomResource {
             resourceInputs["delayedRestartTrigger"] = state ? state.delayedRestartTrigger : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["dhcpServerAccessList"] = state ? state.dhcpServerAccessList : undefined;
+            resourceInputs["dhcpSnoopingStaticClients"] = state ? state.dhcpSnoopingStaticClients : undefined;
             resourceInputs["directlyConnected"] = state ? state.directlyConnected : undefined;
             resourceInputs["dynamicCapability"] = state ? state.dynamicCapability : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
@@ -122,6 +126,7 @@ export class SwitchControllerManagedSwitch extends pulumi.CustomResource {
             resourceInputs["fswWan1Peer"] = state ? state.fswWan1Peer : undefined;
             resourceInputs["fswWan2Admin"] = state ? state.fswWan2Admin : undefined;
             resourceInputs["fswWan2Peer"] = state ? state.fswWan2Peer : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["igmpSnooping"] = state ? state.igmpSnooping : undefined;
             resourceInputs["ipSourceGuards"] = state ? state.ipSourceGuards : undefined;
             resourceInputs["l3Discovered"] = state ? state.l3Discovered : undefined;
@@ -143,6 +148,7 @@ export class SwitchControllerManagedSwitch extends pulumi.CustomResource {
             resourceInputs["qosDropPolicy"] = state ? state.qosDropPolicy : undefined;
             resourceInputs["qosRedProbability"] = state ? state.qosRedProbability : undefined;
             resourceInputs["remoteLogs"] = state ? state.remoteLogs : undefined;
+            resourceInputs["sn"] = state ? state.sn : undefined;
             resourceInputs["snmpCommunities"] = state ? state.snmpCommunities : undefined;
             resourceInputs["snmpSysinfo"] = state ? state.snmpSysinfo : undefined;
             resourceInputs["snmpTrapThreshold"] = state ? state.snmpTrapThreshold : undefined;
@@ -175,6 +181,7 @@ export class SwitchControllerManagedSwitch extends pulumi.CustomResource {
             resourceInputs["delayedRestartTrigger"] = args ? args.delayedRestartTrigger : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["dhcpServerAccessList"] = args ? args.dhcpServerAccessList : undefined;
+            resourceInputs["dhcpSnoopingStaticClients"] = args ? args.dhcpSnoopingStaticClients : undefined;
             resourceInputs["directlyConnected"] = args ? args.directlyConnected : undefined;
             resourceInputs["dynamicCapability"] = args ? args.dynamicCapability : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
@@ -187,6 +194,7 @@ export class SwitchControllerManagedSwitch extends pulumi.CustomResource {
             resourceInputs["fswWan1Peer"] = args ? args.fswWan1Peer : undefined;
             resourceInputs["fswWan2Admin"] = args ? args.fswWan2Admin : undefined;
             resourceInputs["fswWan2Peer"] = args ? args.fswWan2Peer : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["igmpSnooping"] = args ? args.igmpSnooping : undefined;
             resourceInputs["ipSourceGuards"] = args ? args.ipSourceGuards : undefined;
             resourceInputs["l3Discovered"] = args ? args.l3Discovered : undefined;
@@ -208,6 +216,7 @@ export class SwitchControllerManagedSwitch extends pulumi.CustomResource {
             resourceInputs["qosDropPolicy"] = args ? args.qosDropPolicy : undefined;
             resourceInputs["qosRedProbability"] = args ? args.qosRedProbability : undefined;
             resourceInputs["remoteLogs"] = args ? args.remoteLogs : undefined;
+            resourceInputs["sn"] = args ? args.sn : undefined;
             resourceInputs["snmpCommunities"] = args ? args.snmpCommunities : undefined;
             resourceInputs["snmpSysinfo"] = args ? args.snmpSysinfo : undefined;
             resourceInputs["snmpTrapThreshold"] = args ? args.snmpTrapThreshold : undefined;
@@ -242,6 +251,7 @@ export interface SwitchControllerManagedSwitchState {
     delayedRestartTrigger?: pulumi.Input<number>;
     description?: pulumi.Input<string>;
     dhcpServerAccessList?: pulumi.Input<string>;
+    dhcpSnoopingStaticClients?: pulumi.Input<pulumi.Input<inputs.SwitchControllerManagedSwitchDhcpSnoopingStaticClient>[]>;
     directlyConnected?: pulumi.Input<number>;
     dynamicCapability?: pulumi.Input<number>;
     dynamicSortSubtable?: pulumi.Input<string>;
@@ -254,6 +264,7 @@ export interface SwitchControllerManagedSwitchState {
     fswWan1Peer?: pulumi.Input<string>;
     fswWan2Admin?: pulumi.Input<string>;
     fswWan2Peer?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     igmpSnooping?: pulumi.Input<inputs.SwitchControllerManagedSwitchIgmpSnooping>;
     ipSourceGuards?: pulumi.Input<pulumi.Input<inputs.SwitchControllerManagedSwitchIpSourceGuard>[]>;
     l3Discovered?: pulumi.Input<number>;
@@ -275,6 +286,7 @@ export interface SwitchControllerManagedSwitchState {
     qosDropPolicy?: pulumi.Input<string>;
     qosRedProbability?: pulumi.Input<number>;
     remoteLogs?: pulumi.Input<pulumi.Input<inputs.SwitchControllerManagedSwitchRemoteLog>[]>;
+    sn?: pulumi.Input<string>;
     snmpCommunities?: pulumi.Input<pulumi.Input<inputs.SwitchControllerManagedSwitchSnmpCommunity>[]>;
     snmpSysinfo?: pulumi.Input<inputs.SwitchControllerManagedSwitchSnmpSysinfo>;
     snmpTrapThreshold?: pulumi.Input<inputs.SwitchControllerManagedSwitchSnmpTrapThreshold>;
@@ -305,6 +317,7 @@ export interface SwitchControllerManagedSwitchArgs {
     delayedRestartTrigger?: pulumi.Input<number>;
     description?: pulumi.Input<string>;
     dhcpServerAccessList?: pulumi.Input<string>;
+    dhcpSnoopingStaticClients?: pulumi.Input<pulumi.Input<inputs.SwitchControllerManagedSwitchDhcpSnoopingStaticClient>[]>;
     directlyConnected?: pulumi.Input<number>;
     dynamicCapability?: pulumi.Input<number>;
     dynamicSortSubtable?: pulumi.Input<string>;
@@ -317,6 +330,7 @@ export interface SwitchControllerManagedSwitchArgs {
     fswWan1Peer: pulumi.Input<string>;
     fswWan2Admin?: pulumi.Input<string>;
     fswWan2Peer?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     igmpSnooping?: pulumi.Input<inputs.SwitchControllerManagedSwitchIgmpSnooping>;
     ipSourceGuards?: pulumi.Input<pulumi.Input<inputs.SwitchControllerManagedSwitchIpSourceGuard>[]>;
     l3Discovered?: pulumi.Input<number>;
@@ -338,6 +352,7 @@ export interface SwitchControllerManagedSwitchArgs {
     qosDropPolicy?: pulumi.Input<string>;
     qosRedProbability?: pulumi.Input<number>;
     remoteLogs?: pulumi.Input<pulumi.Input<inputs.SwitchControllerManagedSwitchRemoteLog>[]>;
+    sn?: pulumi.Input<string>;
     snmpCommunities?: pulumi.Input<pulumi.Input<inputs.SwitchControllerManagedSwitchSnmpCommunity>[]>;
     snmpSysinfo?: pulumi.Input<inputs.SwitchControllerManagedSwitchSnmpSysinfo>;
     snmpTrapThreshold?: pulumi.Input<inputs.SwitchControllerManagedSwitchSnmpTrapThreshold>;

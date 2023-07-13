@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -33,7 +34,7 @@ func NewWebProxyUrlMatch(ctx *pulumi.Context,
 	if args.UrlPattern == nil {
 		return nil, errors.New("invalid value for required argument 'UrlPattern'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WebProxyUrlMatch
 	err := ctx.RegisterResource("fortios:index/webProxyUrlMatch:WebProxyUrlMatch", name, args, &resource, opts...)
 	if err != nil {

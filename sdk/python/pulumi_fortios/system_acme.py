@@ -18,9 +18,11 @@ class SystemAcmeArgs:
     def __init__(__self__, *,
                  accounts: Optional[pulumi.Input[Sequence[pulumi.Input['SystemAcmeAccountArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['SystemAcmeInterfaceArgs']]]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  source_ip6: Optional[pulumi.Input[str]] = None,
+                 use_ha_direct: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SystemAcme resource.
@@ -29,12 +31,16 @@ class SystemAcmeArgs:
             pulumi.set(__self__, "accounts", accounts)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interfaces is not None:
             pulumi.set(__self__, "interfaces", interfaces)
         if source_ip is not None:
             pulumi.set(__self__, "source_ip", source_ip)
         if source_ip6 is not None:
             pulumi.set(__self__, "source_ip6", source_ip6)
+        if use_ha_direct is not None:
+            pulumi.set(__self__, "use_ha_direct", use_ha_direct)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -55,6 +61,15 @@ class SystemAcmeArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -82,6 +97,15 @@ class SystemAcmeArgs:
     @source_ip6.setter
     def source_ip6(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "source_ip6", value)
+
+    @property
+    @pulumi.getter(name="useHaDirect")
+    def use_ha_direct(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "use_ha_direct")
+
+    @use_ha_direct.setter
+    def use_ha_direct(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "use_ha_direct", value)
 
     @property
     @pulumi.getter
@@ -98,9 +122,11 @@ class _SystemAcmeState:
     def __init__(__self__, *,
                  accounts: Optional[pulumi.Input[Sequence[pulumi.Input['SystemAcmeAccountArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['SystemAcmeInterfaceArgs']]]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  source_ip6: Optional[pulumi.Input[str]] = None,
+                 use_ha_direct: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SystemAcme resources.
@@ -109,12 +135,16 @@ class _SystemAcmeState:
             pulumi.set(__self__, "accounts", accounts)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interfaces is not None:
             pulumi.set(__self__, "interfaces", interfaces)
         if source_ip is not None:
             pulumi.set(__self__, "source_ip", source_ip)
         if source_ip6 is not None:
             pulumi.set(__self__, "source_ip6", source_ip6)
+        if use_ha_direct is not None:
+            pulumi.set(__self__, "use_ha_direct", use_ha_direct)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -135,6 +165,15 @@ class _SystemAcmeState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -162,6 +201,15 @@ class _SystemAcmeState:
     @source_ip6.setter
     def source_ip6(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "source_ip6", value)
+
+    @property
+    @pulumi.getter(name="useHaDirect")
+    def use_ha_direct(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "use_ha_direct")
+
+    @use_ha_direct.setter
+    def use_ha_direct(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "use_ha_direct", value)
 
     @property
     @pulumi.getter
@@ -180,9 +228,11 @@ class SystemAcme(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  accounts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAcmeAccountArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAcmeInterfaceArgs']]]]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  source_ip6: Optional[pulumi.Input[str]] = None,
+                 use_ha_direct: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -215,9 +265,11 @@ class SystemAcme(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  accounts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAcmeAccountArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAcmeInterfaceArgs']]]]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  source_ip6: Optional[pulumi.Input[str]] = None,
+                 use_ha_direct: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -230,9 +282,11 @@ class SystemAcme(pulumi.CustomResource):
 
             __props__.__dict__["accounts"] = accounts
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["interfaces"] = interfaces
             __props__.__dict__["source_ip"] = source_ip
             __props__.__dict__["source_ip6"] = source_ip6
+            __props__.__dict__["use_ha_direct"] = use_ha_direct
             __props__.__dict__["vdomparam"] = vdomparam
         super(SystemAcme, __self__).__init__(
             'fortios:index/systemAcme:SystemAcme',
@@ -246,9 +300,11 @@ class SystemAcme(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             accounts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAcmeAccountArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAcmeInterfaceArgs']]]]] = None,
             source_ip: Optional[pulumi.Input[str]] = None,
             source_ip6: Optional[pulumi.Input[str]] = None,
+            use_ha_direct: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'SystemAcme':
         """
         Get an existing SystemAcme resource's state with the given name, id, and optional extra
@@ -264,9 +320,11 @@ class SystemAcme(pulumi.CustomResource):
 
         __props__.__dict__["accounts"] = accounts
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["interfaces"] = interfaces
         __props__.__dict__["source_ip"] = source_ip
         __props__.__dict__["source_ip6"] = source_ip6
+        __props__.__dict__["use_ha_direct"] = use_ha_direct
         __props__.__dict__["vdomparam"] = vdomparam
         return SystemAcme(resource_name, opts=opts, __props__=__props__)
 
@@ -279,6 +337,11 @@ class SystemAcme(pulumi.CustomResource):
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter
@@ -294,6 +357,11 @@ class SystemAcme(pulumi.CustomResource):
     @pulumi.getter(name="sourceIp6")
     def source_ip6(self) -> pulumi.Output[str]:
         return pulumi.get(self, "source_ip6")
+
+    @property
+    @pulumi.getter(name="useHaDirect")
+    def use_ha_direct(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "use_ha_direct")
 
     @property
     @pulumi.getter

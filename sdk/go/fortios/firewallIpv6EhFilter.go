@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -31,7 +32,7 @@ func NewFirewallIpv6EhFilter(ctx *pulumi.Context,
 		args = &FirewallIpv6EhFilterArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallIpv6EhFilter
 	err := ctx.RegisterResource("fortios:index/firewallIpv6EhFilter:FirewallIpv6EhFilter", name, args, &resource, opts...)
 	if err != nil {

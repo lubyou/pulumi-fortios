@@ -35,6 +35,7 @@ export class SystemLldpNetworkPolicy extends pulumi.CustomResource {
     }
 
     public readonly comment!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly guest!: pulumi.Output<outputs.SystemLldpNetworkPolicyGuest>;
     public readonly guestVoiceSignaling!: pulumi.Output<outputs.SystemLldpNetworkPolicyGuestVoiceSignaling>;
     public readonly name!: pulumi.Output<string>;
@@ -60,6 +61,7 @@ export class SystemLldpNetworkPolicy extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as SystemLldpNetworkPolicyState | undefined;
             resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["guest"] = state ? state.guest : undefined;
             resourceInputs["guestVoiceSignaling"] = state ? state.guestVoiceSignaling : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -73,6 +75,7 @@ export class SystemLldpNetworkPolicy extends pulumi.CustomResource {
         } else {
             const args = argsOrState as SystemLldpNetworkPolicyArgs | undefined;
             resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["guest"] = args ? args.guest : undefined;
             resourceInputs["guestVoiceSignaling"] = args ? args.guestVoiceSignaling : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -94,6 +97,7 @@ export class SystemLldpNetworkPolicy extends pulumi.CustomResource {
  */
 export interface SystemLldpNetworkPolicyState {
     comment?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     guest?: pulumi.Input<inputs.SystemLldpNetworkPolicyGuest>;
     guestVoiceSignaling?: pulumi.Input<inputs.SystemLldpNetworkPolicyGuestVoiceSignaling>;
     name?: pulumi.Input<string>;
@@ -111,6 +115,7 @@ export interface SystemLldpNetworkPolicyState {
  */
 export interface SystemLldpNetworkPolicyArgs {
     comment?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     guest?: pulumi.Input<inputs.SystemLldpNetworkPolicyGuest>;
     guestVoiceSignaling?: pulumi.Input<inputs.SystemLldpNetworkPolicyGuestVoiceSignaling>;
     name?: pulumi.Input<string>;

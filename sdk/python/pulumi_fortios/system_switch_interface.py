@@ -17,6 +17,7 @@ __all__ = ['SystemSwitchInterfaceArgs', 'SystemSwitchInterface']
 class SystemSwitchInterfaceArgs:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  intra_switch_policy: Optional[pulumi.Input[str]] = None,
                  mac_ttl: Optional[pulumi.Input[int]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSwitchInterfaceMemberArgs']]]] = None,
@@ -33,6 +34,8 @@ class SystemSwitchInterfaceArgs:
         """
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if intra_switch_policy is not None:
             pulumi.set(__self__, "intra_switch_policy", intra_switch_policy)
         if mac_ttl is not None:
@@ -64,6 +67,15 @@ class SystemSwitchInterfaceArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="intraSwitchPolicy")
@@ -169,6 +181,7 @@ class SystemSwitchInterfaceArgs:
 class _SystemSwitchInterfaceState:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  intra_switch_policy: Optional[pulumi.Input[str]] = None,
                  mac_ttl: Optional[pulumi.Input[int]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSwitchInterfaceMemberArgs']]]] = None,
@@ -185,6 +198,8 @@ class _SystemSwitchInterfaceState:
         """
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if intra_switch_policy is not None:
             pulumi.set(__self__, "intra_switch_policy", intra_switch_policy)
         if mac_ttl is not None:
@@ -216,6 +231,15 @@ class _SystemSwitchInterfaceState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="intraSwitchPolicy")
@@ -323,6 +347,7 @@ class SystemSwitchInterface(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  intra_switch_policy: Optional[pulumi.Input[str]] = None,
                  mac_ttl: Optional[pulumi.Input[int]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSwitchInterfaceMemberArgs']]]]] = None,
@@ -364,6 +389,7 @@ class SystemSwitchInterface(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  intra_switch_policy: Optional[pulumi.Input[str]] = None,
                  mac_ttl: Optional[pulumi.Input[int]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSwitchInterfaceMemberArgs']]]]] = None,
@@ -385,6 +411,7 @@ class SystemSwitchInterface(pulumi.CustomResource):
             __props__ = SystemSwitchInterfaceArgs.__new__(SystemSwitchInterfaceArgs)
 
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["intra_switch_policy"] = intra_switch_policy
             __props__.__dict__["mac_ttl"] = mac_ttl
             __props__.__dict__["members"] = members
@@ -407,6 +434,7 @@ class SystemSwitchInterface(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             intra_switch_policy: Optional[pulumi.Input[str]] = None,
             mac_ttl: Optional[pulumi.Input[int]] = None,
             members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSwitchInterfaceMemberArgs']]]]] = None,
@@ -431,6 +459,7 @@ class SystemSwitchInterface(pulumi.CustomResource):
         __props__ = _SystemSwitchInterfaceState.__new__(_SystemSwitchInterfaceState)
 
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["intra_switch_policy"] = intra_switch_policy
         __props__.__dict__["mac_ttl"] = mac_ttl
         __props__.__dict__["members"] = members
@@ -448,6 +477,11 @@ class SystemSwitchInterface(pulumi.CustomResource):
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="intraSwitchPolicy")

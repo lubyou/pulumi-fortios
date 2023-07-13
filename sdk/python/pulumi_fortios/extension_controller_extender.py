@@ -26,6 +26,7 @@ class ExtensionControllerExtenderArgs:
                  extension_type: Optional[pulumi.Input[str]] = None,
                  firmware_provision_latest: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  login_password: Optional[pulumi.Input[str]] = None,
                  login_password_change: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -59,6 +60,8 @@ class ExtensionControllerExtenderArgs:
             pulumi.set(__self__, "firmware_provision_latest", firmware_provision_latest)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if login_password is not None:
             pulumi.set(__self__, "login_password", login_password)
         if login_password_change is not None:
@@ -169,6 +172,15 @@ class ExtensionControllerExtenderArgs:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="loginPassword")
@@ -274,6 +286,7 @@ class _ExtensionControllerExtenderState:
                  extension_type: Optional[pulumi.Input[str]] = None,
                  firmware_provision_latest: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  login_password: Optional[pulumi.Input[str]] = None,
                  login_password_change: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -307,6 +320,8 @@ class _ExtensionControllerExtenderState:
             pulumi.set(__self__, "firmware_provision_latest", firmware_provision_latest)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if login_password is not None:
             pulumi.set(__self__, "login_password", login_password)
         if login_password_change is not None:
@@ -417,6 +432,15 @@ class _ExtensionControllerExtenderState:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="loginPassword")
@@ -524,6 +548,7 @@ class ExtensionControllerExtender(pulumi.CustomResource):
                  extension_type: Optional[pulumi.Input[str]] = None,
                  firmware_provision_latest: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  login_password: Optional[pulumi.Input[str]] = None,
                  login_password_change: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -573,6 +598,7 @@ class ExtensionControllerExtender(pulumi.CustomResource):
                  extension_type: Optional[pulumi.Input[str]] = None,
                  firmware_provision_latest: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  login_password: Optional[pulumi.Input[str]] = None,
                  login_password_change: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -602,6 +628,7 @@ class ExtensionControllerExtender(pulumi.CustomResource):
             __props__.__dict__["extension_type"] = extension_type
             __props__.__dict__["firmware_provision_latest"] = firmware_provision_latest
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["login_password"] = login_password
             __props__.__dict__["login_password_change"] = login_password_change
             __props__.__dict__["name"] = name
@@ -632,6 +659,7 @@ class ExtensionControllerExtender(pulumi.CustomResource):
             extension_type: Optional[pulumi.Input[str]] = None,
             firmware_provision_latest: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             login_password: Optional[pulumi.Input[str]] = None,
             login_password_change: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -664,6 +692,7 @@ class ExtensionControllerExtender(pulumi.CustomResource):
         __props__.__dict__["extension_type"] = extension_type
         __props__.__dict__["firmware_provision_latest"] = firmware_provision_latest
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["login_password"] = login_password
         __props__.__dict__["login_password_change"] = login_password_change
         __props__.__dict__["name"] = name
@@ -725,6 +754,11 @@ class ExtensionControllerExtender(pulumi.CustomResource):
     @pulumi.getter
     def fosid(self) -> pulumi.Output[str]:
         return pulumi.get(self, "fosid")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="loginPassword")

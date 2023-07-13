@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -34,7 +35,7 @@ func NewVpnIpsecForticlient(ctx *pulumi.Context,
 	if args.Usergroupname == nil {
 		return nil, errors.New("invalid value for required argument 'Usergroupname'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource VpnIpsecForticlient
 	err := ctx.RegisterResource("fortios:index/vpnIpsecForticlient:VpnIpsecForticlient", name, args, &resource, opts...)
 	if err != nil {

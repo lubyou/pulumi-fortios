@@ -56,6 +56,7 @@ export interface GetSystemAutomationActionResult {
     readonly emailSubject: string;
     readonly emailTos: outputs.GetSystemAutomationActionEmailTo[];
     readonly executeSecurityFabric: string;
+    readonly forticareEmail: string;
     readonly gcpFunction: string;
     readonly gcpFunctionDomain: string;
     readonly gcpFunctionRegion: string;

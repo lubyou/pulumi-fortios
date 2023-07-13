@@ -109,13 +109,13 @@ def get_system_ftm_push(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemFtmPush:GetSystemFtmPush', __args__, opts=opts, typ=GetSystemFtmPushResult).value
 
     return AwaitableGetSystemFtmPushResult(
-        id=__ret__.id,
-        server=__ret__.server,
-        server_cert=__ret__.server_cert,
-        server_ip=__ret__.server_ip,
-        server_port=__ret__.server_port,
-        status=__ret__.status,
-        vdomparam=__ret__.vdomparam)
+        id=pulumi.get(__ret__, 'id'),
+        server=pulumi.get(__ret__, 'server'),
+        server_cert=pulumi.get(__ret__, 'server_cert'),
+        server_ip=pulumi.get(__ret__, 'server_ip'),
+        server_port=pulumi.get(__ret__, 'server_port'),
+        status=pulumi.get(__ret__, 'status'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_ftm_push)

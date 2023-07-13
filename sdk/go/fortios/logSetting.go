@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,9 +20,11 @@ type LogSetting struct {
 	DaemonLog            pulumi.StringOutput                 `pulumi:"daemonLog"`
 	DynamicSortSubtable  pulumi.StringPtrOutput              `pulumi:"dynamicSortSubtable"`
 	ExpolicyImplicitLog  pulumi.StringOutput                 `pulumi:"expolicyImplicitLog"`
+	ExtendedLog          pulumi.StringOutput                 `pulumi:"extendedLog"`
 	FazOverride          pulumi.StringOutput                 `pulumi:"fazOverride"`
 	Fwpolicy6ImplicitLog pulumi.StringOutput                 `pulumi:"fwpolicy6ImplicitLog"`
 	FwpolicyImplicitLog  pulumi.StringOutput                 `pulumi:"fwpolicyImplicitLog"`
+	GetAllTables         pulumi.StringPtrOutput              `pulumi:"getAllTables"`
 	LocalInAllow         pulumi.StringOutput                 `pulumi:"localInAllow"`
 	LocalInDenyBroadcast pulumi.StringOutput                 `pulumi:"localInDenyBroadcast"`
 	LocalInDenyUnicast   pulumi.StringOutput                 `pulumi:"localInDenyUnicast"`
@@ -48,7 +51,7 @@ func NewLogSetting(ctx *pulumi.Context,
 		args = &LogSettingArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource LogSetting
 	err := ctx.RegisterResource("fortios:index/logSetting:LogSetting", name, args, &resource, opts...)
 	if err != nil {
@@ -77,9 +80,11 @@ type logSettingState struct {
 	DaemonLog            *string                    `pulumi:"daemonLog"`
 	DynamicSortSubtable  *string                    `pulumi:"dynamicSortSubtable"`
 	ExpolicyImplicitLog  *string                    `pulumi:"expolicyImplicitLog"`
+	ExtendedLog          *string                    `pulumi:"extendedLog"`
 	FazOverride          *string                    `pulumi:"fazOverride"`
 	Fwpolicy6ImplicitLog *string                    `pulumi:"fwpolicy6ImplicitLog"`
 	FwpolicyImplicitLog  *string                    `pulumi:"fwpolicyImplicitLog"`
+	GetAllTables         *string                    `pulumi:"getAllTables"`
 	LocalInAllow         *string                    `pulumi:"localInAllow"`
 	LocalInDenyBroadcast *string                    `pulumi:"localInDenyBroadcast"`
 	LocalInDenyUnicast   *string                    `pulumi:"localInDenyUnicast"`
@@ -106,9 +111,11 @@ type LogSettingState struct {
 	DaemonLog            pulumi.StringPtrInput
 	DynamicSortSubtable  pulumi.StringPtrInput
 	ExpolicyImplicitLog  pulumi.StringPtrInput
+	ExtendedLog          pulumi.StringPtrInput
 	FazOverride          pulumi.StringPtrInput
 	Fwpolicy6ImplicitLog pulumi.StringPtrInput
 	FwpolicyImplicitLog  pulumi.StringPtrInput
+	GetAllTables         pulumi.StringPtrInput
 	LocalInAllow         pulumi.StringPtrInput
 	LocalInDenyBroadcast pulumi.StringPtrInput
 	LocalInDenyUnicast   pulumi.StringPtrInput
@@ -139,9 +146,11 @@ type logSettingArgs struct {
 	DaemonLog            *string                    `pulumi:"daemonLog"`
 	DynamicSortSubtable  *string                    `pulumi:"dynamicSortSubtable"`
 	ExpolicyImplicitLog  *string                    `pulumi:"expolicyImplicitLog"`
+	ExtendedLog          *string                    `pulumi:"extendedLog"`
 	FazOverride          *string                    `pulumi:"fazOverride"`
 	Fwpolicy6ImplicitLog *string                    `pulumi:"fwpolicy6ImplicitLog"`
 	FwpolicyImplicitLog  *string                    `pulumi:"fwpolicyImplicitLog"`
+	GetAllTables         *string                    `pulumi:"getAllTables"`
 	LocalInAllow         *string                    `pulumi:"localInAllow"`
 	LocalInDenyBroadcast *string                    `pulumi:"localInDenyBroadcast"`
 	LocalInDenyUnicast   *string                    `pulumi:"localInDenyUnicast"`
@@ -169,9 +178,11 @@ type LogSettingArgs struct {
 	DaemonLog            pulumi.StringPtrInput
 	DynamicSortSubtable  pulumi.StringPtrInput
 	ExpolicyImplicitLog  pulumi.StringPtrInput
+	ExtendedLog          pulumi.StringPtrInput
 	FazOverride          pulumi.StringPtrInput
 	Fwpolicy6ImplicitLog pulumi.StringPtrInput
 	FwpolicyImplicitLog  pulumi.StringPtrInput
+	GetAllTables         pulumi.StringPtrInput
 	LocalInAllow         pulumi.StringPtrInput
 	LocalInDenyBroadcast pulumi.StringPtrInput
 	LocalInDenyUnicast   pulumi.StringPtrInput
@@ -302,6 +313,10 @@ func (o LogSettingOutput) ExpolicyImplicitLog() pulumi.StringOutput {
 	return o.ApplyT(func(v *LogSetting) pulumi.StringOutput { return v.ExpolicyImplicitLog }).(pulumi.StringOutput)
 }
 
+func (o LogSettingOutput) ExtendedLog() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogSetting) pulumi.StringOutput { return v.ExtendedLog }).(pulumi.StringOutput)
+}
+
 func (o LogSettingOutput) FazOverride() pulumi.StringOutput {
 	return o.ApplyT(func(v *LogSetting) pulumi.StringOutput { return v.FazOverride }).(pulumi.StringOutput)
 }
@@ -312,6 +327,10 @@ func (o LogSettingOutput) Fwpolicy6ImplicitLog() pulumi.StringOutput {
 
 func (o LogSettingOutput) FwpolicyImplicitLog() pulumi.StringOutput {
 	return o.ApplyT(func(v *LogSetting) pulumi.StringOutput { return v.FwpolicyImplicitLog }).(pulumi.StringOutput)
+}
+
+func (o LogSettingOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogSetting) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o LogSettingOutput) LocalInAllow() pulumi.StringOutput {

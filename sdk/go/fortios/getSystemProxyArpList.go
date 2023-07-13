@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func GetSystemProxyArpList(ctx *pulumi.Context, args *GetSystemProxyArpListArgs, opts ...pulumi.InvokeOption) (*GetSystemProxyArpListResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetSystemProxyArpListResult
 	err := ctx.Invoke("fortios:index/getSystemProxyArpList:GetSystemProxyArpList", args, &rv, opts...)
 	if err != nil {

@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemApiUser(ctx *pulumi.Context, args *LookupSystemApiUserArgs, opts ...pulumi.InvokeOption) (*LookupSystemApiUserResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemApiUserResult
 	err := ctx.Invoke("fortios:index/getSystemApiUser:GetSystemApiUser", args, &rv, opts...)
 	if err != nil {

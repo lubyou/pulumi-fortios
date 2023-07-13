@@ -91,11 +91,11 @@ def get_system_ha_monitor(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemHaMonitor:GetSystemHaMonitor', __args__, opts=opts, typ=GetSystemHaMonitorResult).value
 
     return AwaitableGetSystemHaMonitorResult(
-        id=__ret__.id,
-        monitor_vlan=__ret__.monitor_vlan,
-        vdomparam=__ret__.vdomparam,
-        vlan_hb_interval=__ret__.vlan_hb_interval,
-        vlan_hb_lost_threshold=__ret__.vlan_hb_lost_threshold)
+        id=pulumi.get(__ret__, 'id'),
+        monitor_vlan=pulumi.get(__ret__, 'monitor_vlan'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'),
+        vlan_hb_interval=pulumi.get(__ret__, 'vlan_hb_interval'),
+        vlan_hb_lost_threshold=pulumi.get(__ret__, 'vlan_hb_lost_threshold'))
 
 
 @_utilities.lift_output_func(get_system_ha_monitor)

@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func GetSystemExternalResourceList(ctx *pulumi.Context, args *GetSystemExternalResourceListArgs, opts ...pulumi.InvokeOption) (*GetSystemExternalResourceListResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetSystemExternalResourceListResult
 	err := ctx.Invoke("fortios:index/getSystemExternalResourceList:GetSystemExternalResourceList", args, &rv, opts...)
 	if err != nil {

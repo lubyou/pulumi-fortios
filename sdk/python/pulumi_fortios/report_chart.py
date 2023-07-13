@@ -27,6 +27,7 @@ class ReportChartArgs:
                  drill_down_charts: Optional[pulumi.Input[Sequence[pulumi.Input['ReportChartDrillDownChartArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  favorite: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  graph_type: Optional[pulumi.Input[str]] = None,
                  legend: Optional[pulumi.Input[str]] = None,
                  legend_font_size: Optional[pulumi.Input[int]] = None,
@@ -64,6 +65,8 @@ class ReportChartArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if favorite is not None:
             pulumi.set(__self__, "favorite", favorite)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if graph_type is not None:
             pulumi.set(__self__, "graph_type", graph_type)
         if legend is not None:
@@ -191,6 +194,15 @@ class ReportChartArgs:
     @favorite.setter
     def favorite(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "favorite", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="graphType")
@@ -333,6 +345,7 @@ class _ReportChartState:
                  drill_down_charts: Optional[pulumi.Input[Sequence[pulumi.Input['ReportChartDrillDownChartArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  favorite: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  graph_type: Optional[pulumi.Input[str]] = None,
                  legend: Optional[pulumi.Input[str]] = None,
                  legend_font_size: Optional[pulumi.Input[int]] = None,
@@ -372,6 +385,8 @@ class _ReportChartState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if favorite is not None:
             pulumi.set(__self__, "favorite", favorite)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if graph_type is not None:
             pulumi.set(__self__, "graph_type", graph_type)
         if legend is not None:
@@ -499,6 +514,15 @@ class _ReportChartState:
     @favorite.setter
     def favorite(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "favorite", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="graphType")
@@ -643,6 +667,7 @@ class ReportChart(pulumi.CustomResource):
                  drill_down_charts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReportChartDrillDownChartArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  favorite: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  graph_type: Optional[pulumi.Input[str]] = None,
                  legend: Optional[pulumi.Input[str]] = None,
                  legend_font_size: Optional[pulumi.Input[int]] = None,
@@ -697,6 +722,7 @@ class ReportChart(pulumi.CustomResource):
                  drill_down_charts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReportChartDrillDownChartArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  favorite: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  graph_type: Optional[pulumi.Input[str]] = None,
                  legend: Optional[pulumi.Input[str]] = None,
                  legend_font_size: Optional[pulumi.Input[int]] = None,
@@ -735,6 +761,7 @@ class ReportChart(pulumi.CustomResource):
             __props__.__dict__["drill_down_charts"] = drill_down_charts
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["favorite"] = favorite
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["graph_type"] = graph_type
             __props__.__dict__["legend"] = legend
             __props__.__dict__["legend_font_size"] = legend_font_size
@@ -770,6 +797,7 @@ class ReportChart(pulumi.CustomResource):
             drill_down_charts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ReportChartDrillDownChartArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             favorite: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             graph_type: Optional[pulumi.Input[str]] = None,
             legend: Optional[pulumi.Input[str]] = None,
             legend_font_size: Optional[pulumi.Input[int]] = None,
@@ -807,6 +835,7 @@ class ReportChart(pulumi.CustomResource):
         __props__.__dict__["drill_down_charts"] = drill_down_charts
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["favorite"] = favorite
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["graph_type"] = graph_type
         __props__.__dict__["legend"] = legend
         __props__.__dict__["legend_font_size"] = legend_font_size
@@ -877,6 +906,11 @@ class ReportChart(pulumi.CustomResource):
     @pulumi.getter
     def favorite(self) -> pulumi.Output[str]:
         return pulumi.get(self, "favorite")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="graphType")

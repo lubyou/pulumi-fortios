@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -22,6 +23,7 @@ type FirewallAddrgrp struct {
 	Exclude             pulumi.StringOutput                     `pulumi:"exclude"`
 	ExcludeMembers      FirewallAddrgrpExcludeMemberArrayOutput `pulumi:"excludeMembers"`
 	FabricObject        pulumi.StringOutput                     `pulumi:"fabricObject"`
+	GetAllTables        pulumi.StringPtrOutput                  `pulumi:"getAllTables"`
 	Members             FirewallAddrgrpMemberArrayOutput        `pulumi:"members"`
 	Name                pulumi.StringOutput                     `pulumi:"name"`
 	Taggings            FirewallAddrgrpTaggingArrayOutput       `pulumi:"taggings"`
@@ -41,7 +43,7 @@ func NewFirewallAddrgrp(ctx *pulumi.Context,
 	if args.Members == nil {
 		return nil, errors.New("invalid value for required argument 'Members'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallAddrgrp
 	err := ctx.RegisterResource("fortios:index/firewallAddrgrp:FirewallAddrgrp", name, args, &resource, opts...)
 	if err != nil {
@@ -72,6 +74,7 @@ type firewallAddrgrpState struct {
 	Exclude             *string                        `pulumi:"exclude"`
 	ExcludeMembers      []FirewallAddrgrpExcludeMember `pulumi:"excludeMembers"`
 	FabricObject        *string                        `pulumi:"fabricObject"`
+	GetAllTables        *string                        `pulumi:"getAllTables"`
 	Members             []FirewallAddrgrpMember        `pulumi:"members"`
 	Name                *string                        `pulumi:"name"`
 	Taggings            []FirewallAddrgrpTagging       `pulumi:"taggings"`
@@ -90,6 +93,7 @@ type FirewallAddrgrpState struct {
 	Exclude             pulumi.StringPtrInput
 	ExcludeMembers      FirewallAddrgrpExcludeMemberArrayInput
 	FabricObject        pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Members             FirewallAddrgrpMemberArrayInput
 	Name                pulumi.StringPtrInput
 	Taggings            FirewallAddrgrpTaggingArrayInput
@@ -112,6 +116,7 @@ type firewallAddrgrpArgs struct {
 	Exclude             *string                        `pulumi:"exclude"`
 	ExcludeMembers      []FirewallAddrgrpExcludeMember `pulumi:"excludeMembers"`
 	FabricObject        *string                        `pulumi:"fabricObject"`
+	GetAllTables        *string                        `pulumi:"getAllTables"`
 	Members             []FirewallAddrgrpMember        `pulumi:"members"`
 	Name                *string                        `pulumi:"name"`
 	Taggings            []FirewallAddrgrpTagging       `pulumi:"taggings"`
@@ -131,6 +136,7 @@ type FirewallAddrgrpArgs struct {
 	Exclude             pulumi.StringPtrInput
 	ExcludeMembers      FirewallAddrgrpExcludeMemberArrayInput
 	FabricObject        pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Members             FirewallAddrgrpMemberArrayInput
 	Name                pulumi.StringPtrInput
 	Taggings            FirewallAddrgrpTaggingArrayInput
@@ -257,6 +263,10 @@ func (o FirewallAddrgrpOutput) ExcludeMembers() FirewallAddrgrpExcludeMemberArra
 
 func (o FirewallAddrgrpOutput) FabricObject() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallAddrgrp) pulumi.StringOutput { return v.FabricObject }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddrgrpOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddrgrp) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallAddrgrpOutput) Members() FirewallAddrgrpMemberArrayOutput {

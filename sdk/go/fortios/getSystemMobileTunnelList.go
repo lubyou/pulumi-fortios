@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func GetSystemMobileTunnelList(ctx *pulumi.Context, args *GetSystemMobileTunnelListArgs, opts ...pulumi.InvokeOption) (*GetSystemMobileTunnelListResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetSystemMobileTunnelListResult
 	err := ctx.Invoke("fortios:index/getSystemMobileTunnelList:GetSystemMobileTunnelList", args, &rv, opts...)
 	if err != nil {

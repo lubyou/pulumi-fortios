@@ -36,6 +36,7 @@ export class SwitchControllerTrafficSniffer extends pulumi.CustomResource {
 
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly erspanIp!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly mode!: pulumi.Output<string>;
     public readonly targetIps!: pulumi.Output<outputs.SwitchControllerTrafficSnifferTargetIp[] | undefined>;
     public readonly targetMacs!: pulumi.Output<outputs.SwitchControllerTrafficSnifferTargetMac[] | undefined>;
@@ -57,6 +58,7 @@ export class SwitchControllerTrafficSniffer extends pulumi.CustomResource {
             const state = argsOrState as SwitchControllerTrafficSnifferState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["erspanIp"] = state ? state.erspanIp : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["mode"] = state ? state.mode : undefined;
             resourceInputs["targetIps"] = state ? state.targetIps : undefined;
             resourceInputs["targetMacs"] = state ? state.targetMacs : undefined;
@@ -66,6 +68,7 @@ export class SwitchControllerTrafficSniffer extends pulumi.CustomResource {
             const args = argsOrState as SwitchControllerTrafficSnifferArgs | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["erspanIp"] = args ? args.erspanIp : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["mode"] = args ? args.mode : undefined;
             resourceInputs["targetIps"] = args ? args.targetIps : undefined;
             resourceInputs["targetMacs"] = args ? args.targetMacs : undefined;
@@ -83,6 +86,7 @@ export class SwitchControllerTrafficSniffer extends pulumi.CustomResource {
 export interface SwitchControllerTrafficSnifferState {
     dynamicSortSubtable?: pulumi.Input<string>;
     erspanIp?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     mode?: pulumi.Input<string>;
     targetIps?: pulumi.Input<pulumi.Input<inputs.SwitchControllerTrafficSnifferTargetIp>[]>;
     targetMacs?: pulumi.Input<pulumi.Input<inputs.SwitchControllerTrafficSnifferTargetMac>[]>;
@@ -96,6 +100,7 @@ export interface SwitchControllerTrafficSnifferState {
 export interface SwitchControllerTrafficSnifferArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
     erspanIp?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     mode?: pulumi.Input<string>;
     targetIps?: pulumi.Input<pulumi.Input<inputs.SwitchControllerTrafficSnifferTargetIp>[]>;
     targetMacs?: pulumi.Input<pulumi.Input<inputs.SwitchControllerTrafficSnifferTargetMac>[]>;

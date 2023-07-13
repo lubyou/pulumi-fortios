@@ -100,12 +100,12 @@ def get_system_autoupdate_push_update(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemAutoupdatePushUpdate:GetSystemAutoupdatePushUpdate', __args__, opts=opts, typ=GetSystemAutoupdatePushUpdateResult).value
 
     return AwaitableGetSystemAutoupdatePushUpdateResult(
-        address=__ret__.address,
-        id=__ret__.id,
-        override=__ret__.override,
-        port=__ret__.port,
-        status=__ret__.status,
-        vdomparam=__ret__.vdomparam)
+        address=pulumi.get(__ret__, 'address'),
+        id=pulumi.get(__ret__, 'id'),
+        override=pulumi.get(__ret__, 'override'),
+        port=pulumi.get(__ret__, 'port'),
+        status=pulumi.get(__ret__, 'status'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_autoupdate_push_update)

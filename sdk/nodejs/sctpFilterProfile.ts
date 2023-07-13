@@ -36,6 +36,7 @@ export class SctpFilterProfile extends pulumi.CustomResource {
 
     public readonly comment!: pulumi.Output<string | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly ppidFilters!: pulumi.Output<outputs.SctpFilterProfilePpidFilter[] | undefined>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -55,6 +56,7 @@ export class SctpFilterProfile extends pulumi.CustomResource {
             const state = argsOrState as SctpFilterProfileState | undefined;
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["ppidFilters"] = state ? state.ppidFilters : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
@@ -62,6 +64,7 @@ export class SctpFilterProfile extends pulumi.CustomResource {
             const args = argsOrState as SctpFilterProfileArgs | undefined;
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["ppidFilters"] = args ? args.ppidFilters : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -77,6 +80,7 @@ export class SctpFilterProfile extends pulumi.CustomResource {
 export interface SctpFilterProfileState {
     comment?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     ppidFilters?: pulumi.Input<pulumi.Input<inputs.SctpFilterProfilePpidFilter>[]>;
     vdomparam?: pulumi.Input<string>;
@@ -88,6 +92,7 @@ export interface SctpFilterProfileState {
 export interface SctpFilterProfileArgs {
     comment?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     ppidFilters?: pulumi.Input<pulumi.Input<inputs.SctpFilterProfilePpidFilter>[]>;
     vdomparam?: pulumi.Input<string>;

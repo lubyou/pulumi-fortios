@@ -8,22 +8,26 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type FirewallAddrgrp6 struct {
 	pulumi.CustomResourceState
 
-	Color               pulumi.IntOutput                   `pulumi:"color"`
-	Comment             pulumi.StringPtrOutput             `pulumi:"comment"`
-	DynamicSortSubtable pulumi.StringPtrOutput             `pulumi:"dynamicSortSubtable"`
-	FabricObject        pulumi.StringOutput                `pulumi:"fabricObject"`
-	Members             FirewallAddrgrp6MemberArrayOutput  `pulumi:"members"`
-	Name                pulumi.StringOutput                `pulumi:"name"`
-	Taggings            FirewallAddrgrp6TaggingArrayOutput `pulumi:"taggings"`
-	Uuid                pulumi.StringOutput                `pulumi:"uuid"`
-	Vdomparam           pulumi.StringPtrOutput             `pulumi:"vdomparam"`
-	Visibility          pulumi.StringOutput                `pulumi:"visibility"`
+	Color               pulumi.IntOutput                         `pulumi:"color"`
+	Comment             pulumi.StringPtrOutput                   `pulumi:"comment"`
+	DynamicSortSubtable pulumi.StringPtrOutput                   `pulumi:"dynamicSortSubtable"`
+	Exclude             pulumi.StringOutput                      `pulumi:"exclude"`
+	ExcludeMembers      FirewallAddrgrp6ExcludeMemberArrayOutput `pulumi:"excludeMembers"`
+	FabricObject        pulumi.StringOutput                      `pulumi:"fabricObject"`
+	GetAllTables        pulumi.StringPtrOutput                   `pulumi:"getAllTables"`
+	Members             FirewallAddrgrp6MemberArrayOutput        `pulumi:"members"`
+	Name                pulumi.StringOutput                      `pulumi:"name"`
+	Taggings            FirewallAddrgrp6TaggingArrayOutput       `pulumi:"taggings"`
+	Uuid                pulumi.StringOutput                      `pulumi:"uuid"`
+	Vdomparam           pulumi.StringPtrOutput                   `pulumi:"vdomparam"`
+	Visibility          pulumi.StringOutput                      `pulumi:"visibility"`
 }
 
 // NewFirewallAddrgrp6 registers a new resource with the given unique name, arguments, and options.
@@ -36,7 +40,7 @@ func NewFirewallAddrgrp6(ctx *pulumi.Context,
 	if args.Members == nil {
 		return nil, errors.New("invalid value for required argument 'Members'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallAddrgrp6
 	err := ctx.RegisterResource("fortios:index/firewallAddrgrp6:FirewallAddrgrp6", name, args, &resource, opts...)
 	if err != nil {
@@ -59,23 +63,29 @@ func GetFirewallAddrgrp6(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallAddrgrp6 resources.
 type firewallAddrgrp6State struct {
-	Color               *int                      `pulumi:"color"`
-	Comment             *string                   `pulumi:"comment"`
-	DynamicSortSubtable *string                   `pulumi:"dynamicSortSubtable"`
-	FabricObject        *string                   `pulumi:"fabricObject"`
-	Members             []FirewallAddrgrp6Member  `pulumi:"members"`
-	Name                *string                   `pulumi:"name"`
-	Taggings            []FirewallAddrgrp6Tagging `pulumi:"taggings"`
-	Uuid                *string                   `pulumi:"uuid"`
-	Vdomparam           *string                   `pulumi:"vdomparam"`
-	Visibility          *string                   `pulumi:"visibility"`
+	Color               *int                            `pulumi:"color"`
+	Comment             *string                         `pulumi:"comment"`
+	DynamicSortSubtable *string                         `pulumi:"dynamicSortSubtable"`
+	Exclude             *string                         `pulumi:"exclude"`
+	ExcludeMembers      []FirewallAddrgrp6ExcludeMember `pulumi:"excludeMembers"`
+	FabricObject        *string                         `pulumi:"fabricObject"`
+	GetAllTables        *string                         `pulumi:"getAllTables"`
+	Members             []FirewallAddrgrp6Member        `pulumi:"members"`
+	Name                *string                         `pulumi:"name"`
+	Taggings            []FirewallAddrgrp6Tagging       `pulumi:"taggings"`
+	Uuid                *string                         `pulumi:"uuid"`
+	Vdomparam           *string                         `pulumi:"vdomparam"`
+	Visibility          *string                         `pulumi:"visibility"`
 }
 
 type FirewallAddrgrp6State struct {
 	Color               pulumi.IntPtrInput
 	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	Exclude             pulumi.StringPtrInput
+	ExcludeMembers      FirewallAddrgrp6ExcludeMemberArrayInput
 	FabricObject        pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Members             FirewallAddrgrp6MemberArrayInput
 	Name                pulumi.StringPtrInput
 	Taggings            FirewallAddrgrp6TaggingArrayInput
@@ -89,16 +99,19 @@ func (FirewallAddrgrp6State) ElementType() reflect.Type {
 }
 
 type firewallAddrgrp6Args struct {
-	Color               *int                      `pulumi:"color"`
-	Comment             *string                   `pulumi:"comment"`
-	DynamicSortSubtable *string                   `pulumi:"dynamicSortSubtable"`
-	FabricObject        *string                   `pulumi:"fabricObject"`
-	Members             []FirewallAddrgrp6Member  `pulumi:"members"`
-	Name                *string                   `pulumi:"name"`
-	Taggings            []FirewallAddrgrp6Tagging `pulumi:"taggings"`
-	Uuid                *string                   `pulumi:"uuid"`
-	Vdomparam           *string                   `pulumi:"vdomparam"`
-	Visibility          *string                   `pulumi:"visibility"`
+	Color               *int                            `pulumi:"color"`
+	Comment             *string                         `pulumi:"comment"`
+	DynamicSortSubtable *string                         `pulumi:"dynamicSortSubtable"`
+	Exclude             *string                         `pulumi:"exclude"`
+	ExcludeMembers      []FirewallAddrgrp6ExcludeMember `pulumi:"excludeMembers"`
+	FabricObject        *string                         `pulumi:"fabricObject"`
+	GetAllTables        *string                         `pulumi:"getAllTables"`
+	Members             []FirewallAddrgrp6Member        `pulumi:"members"`
+	Name                *string                         `pulumi:"name"`
+	Taggings            []FirewallAddrgrp6Tagging       `pulumi:"taggings"`
+	Uuid                *string                         `pulumi:"uuid"`
+	Vdomparam           *string                         `pulumi:"vdomparam"`
+	Visibility          *string                         `pulumi:"visibility"`
 }
 
 // The set of arguments for constructing a FirewallAddrgrp6 resource.
@@ -106,7 +119,10 @@ type FirewallAddrgrp6Args struct {
 	Color               pulumi.IntPtrInput
 	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	Exclude             pulumi.StringPtrInput
+	ExcludeMembers      FirewallAddrgrp6ExcludeMemberArrayInput
 	FabricObject        pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Members             FirewallAddrgrp6MemberArrayInput
 	Name                pulumi.StringPtrInput
 	Taggings            FirewallAddrgrp6TaggingArrayInput
@@ -214,8 +230,20 @@ func (o FirewallAddrgrp6Output) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FirewallAddrgrp6) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
 }
 
+func (o FirewallAddrgrp6Output) Exclude() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAddrgrp6) pulumi.StringOutput { return v.Exclude }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddrgrp6Output) ExcludeMembers() FirewallAddrgrp6ExcludeMemberArrayOutput {
+	return o.ApplyT(func(v *FirewallAddrgrp6) FirewallAddrgrp6ExcludeMemberArrayOutput { return v.ExcludeMembers }).(FirewallAddrgrp6ExcludeMemberArrayOutput)
+}
+
 func (o FirewallAddrgrp6Output) FabricObject() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallAddrgrp6) pulumi.StringOutput { return v.FabricObject }).(pulumi.StringOutput)
+}
+
+func (o FirewallAddrgrp6Output) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddrgrp6) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallAddrgrp6Output) Members() FirewallAddrgrp6MemberArrayOutput {

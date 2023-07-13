@@ -14,11 +14,13 @@ __all__ = ['WirelessControllerGlobalArgs', 'WirelessControllerGlobal']
 @pulumi.input_type
 class WirelessControllerGlobalArgs:
     def __init__(__self__, *,
+                 acd_process_count: Optional[pulumi.Input[int]] = None,
                  ap_log_server: Optional[pulumi.Input[str]] = None,
                  ap_log_server_ip: Optional[pulumi.Input[str]] = None,
                  ap_log_server_port: Optional[pulumi.Input[int]] = None,
                  control_message_offload: Optional[pulumi.Input[str]] = None,
                  data_ethernet_ii: Optional[pulumi.Input[str]] = None,
+                 dfs_lab_test: Optional[pulumi.Input[str]] = None,
                  discovery_mc_addr: Optional[pulumi.Input[str]] = None,
                  fiapp_eth_type: Optional[pulumi.Input[int]] = None,
                  image_download: Optional[pulumi.Input[str]] = None,
@@ -33,10 +35,13 @@ class WirelessControllerGlobalArgs:
                  rogue_scan_mac_adjacency: Optional[pulumi.Input[int]] = None,
                  tunnel_mode: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 wpad_process_count: Optional[pulumi.Input[int]] = None,
                  wtp_share: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a WirelessControllerGlobal resource.
         """
+        if acd_process_count is not None:
+            pulumi.set(__self__, "acd_process_count", acd_process_count)
         if ap_log_server is not None:
             pulumi.set(__self__, "ap_log_server", ap_log_server)
         if ap_log_server_ip is not None:
@@ -47,6 +52,8 @@ class WirelessControllerGlobalArgs:
             pulumi.set(__self__, "control_message_offload", control_message_offload)
         if data_ethernet_ii is not None:
             pulumi.set(__self__, "data_ethernet_ii", data_ethernet_ii)
+        if dfs_lab_test is not None:
+            pulumi.set(__self__, "dfs_lab_test", dfs_lab_test)
         if discovery_mc_addr is not None:
             pulumi.set(__self__, "discovery_mc_addr", discovery_mc_addr)
         if fiapp_eth_type is not None:
@@ -75,8 +82,19 @@ class WirelessControllerGlobalArgs:
             pulumi.set(__self__, "tunnel_mode", tunnel_mode)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+        if wpad_process_count is not None:
+            pulumi.set(__self__, "wpad_process_count", wpad_process_count)
         if wtp_share is not None:
             pulumi.set(__self__, "wtp_share", wtp_share)
+
+    @property
+    @pulumi.getter(name="acdProcessCount")
+    def acd_process_count(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "acd_process_count")
+
+    @acd_process_count.setter
+    def acd_process_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "acd_process_count", value)
 
     @property
     @pulumi.getter(name="apLogServer")
@@ -122,6 +140,15 @@ class WirelessControllerGlobalArgs:
     @data_ethernet_ii.setter
     def data_ethernet_ii(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "data_ethernet_ii", value)
+
+    @property
+    @pulumi.getter(name="dfsLabTest")
+    def dfs_lab_test(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "dfs_lab_test")
+
+    @dfs_lab_test.setter
+    def dfs_lab_test(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dfs_lab_test", value)
 
     @property
     @pulumi.getter(name="discoveryMcAddr")
@@ -248,6 +275,15 @@ class WirelessControllerGlobalArgs:
     @vdomparam.setter
     def vdomparam(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vdomparam", value)
+
+    @property
+    @pulumi.getter(name="wpadProcessCount")
+    def wpad_process_count(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "wpad_process_count")
+
+    @wpad_process_count.setter
+    def wpad_process_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "wpad_process_count", value)
 
     @property
     @pulumi.getter(name="wtpShare")
@@ -262,11 +298,13 @@ class WirelessControllerGlobalArgs:
 @pulumi.input_type
 class _WirelessControllerGlobalState:
     def __init__(__self__, *,
+                 acd_process_count: Optional[pulumi.Input[int]] = None,
                  ap_log_server: Optional[pulumi.Input[str]] = None,
                  ap_log_server_ip: Optional[pulumi.Input[str]] = None,
                  ap_log_server_port: Optional[pulumi.Input[int]] = None,
                  control_message_offload: Optional[pulumi.Input[str]] = None,
                  data_ethernet_ii: Optional[pulumi.Input[str]] = None,
+                 dfs_lab_test: Optional[pulumi.Input[str]] = None,
                  discovery_mc_addr: Optional[pulumi.Input[str]] = None,
                  fiapp_eth_type: Optional[pulumi.Input[int]] = None,
                  image_download: Optional[pulumi.Input[str]] = None,
@@ -281,10 +319,13 @@ class _WirelessControllerGlobalState:
                  rogue_scan_mac_adjacency: Optional[pulumi.Input[int]] = None,
                  tunnel_mode: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 wpad_process_count: Optional[pulumi.Input[int]] = None,
                  wtp_share: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering WirelessControllerGlobal resources.
         """
+        if acd_process_count is not None:
+            pulumi.set(__self__, "acd_process_count", acd_process_count)
         if ap_log_server is not None:
             pulumi.set(__self__, "ap_log_server", ap_log_server)
         if ap_log_server_ip is not None:
@@ -295,6 +336,8 @@ class _WirelessControllerGlobalState:
             pulumi.set(__self__, "control_message_offload", control_message_offload)
         if data_ethernet_ii is not None:
             pulumi.set(__self__, "data_ethernet_ii", data_ethernet_ii)
+        if dfs_lab_test is not None:
+            pulumi.set(__self__, "dfs_lab_test", dfs_lab_test)
         if discovery_mc_addr is not None:
             pulumi.set(__self__, "discovery_mc_addr", discovery_mc_addr)
         if fiapp_eth_type is not None:
@@ -323,8 +366,19 @@ class _WirelessControllerGlobalState:
             pulumi.set(__self__, "tunnel_mode", tunnel_mode)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+        if wpad_process_count is not None:
+            pulumi.set(__self__, "wpad_process_count", wpad_process_count)
         if wtp_share is not None:
             pulumi.set(__self__, "wtp_share", wtp_share)
+
+    @property
+    @pulumi.getter(name="acdProcessCount")
+    def acd_process_count(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "acd_process_count")
+
+    @acd_process_count.setter
+    def acd_process_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "acd_process_count", value)
 
     @property
     @pulumi.getter(name="apLogServer")
@@ -370,6 +424,15 @@ class _WirelessControllerGlobalState:
     @data_ethernet_ii.setter
     def data_ethernet_ii(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "data_ethernet_ii", value)
+
+    @property
+    @pulumi.getter(name="dfsLabTest")
+    def dfs_lab_test(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "dfs_lab_test")
+
+    @dfs_lab_test.setter
+    def dfs_lab_test(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dfs_lab_test", value)
 
     @property
     @pulumi.getter(name="discoveryMcAddr")
@@ -496,6 +559,15 @@ class _WirelessControllerGlobalState:
     @vdomparam.setter
     def vdomparam(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vdomparam", value)
+
+    @property
+    @pulumi.getter(name="wpadProcessCount")
+    def wpad_process_count(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "wpad_process_count")
+
+    @wpad_process_count.setter
+    def wpad_process_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "wpad_process_count", value)
 
     @property
     @pulumi.getter(name="wtpShare")
@@ -512,11 +584,13 @@ class WirelessControllerGlobal(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 acd_process_count: Optional[pulumi.Input[int]] = None,
                  ap_log_server: Optional[pulumi.Input[str]] = None,
                  ap_log_server_ip: Optional[pulumi.Input[str]] = None,
                  ap_log_server_port: Optional[pulumi.Input[int]] = None,
                  control_message_offload: Optional[pulumi.Input[str]] = None,
                  data_ethernet_ii: Optional[pulumi.Input[str]] = None,
+                 dfs_lab_test: Optional[pulumi.Input[str]] = None,
                  discovery_mc_addr: Optional[pulumi.Input[str]] = None,
                  fiapp_eth_type: Optional[pulumi.Input[int]] = None,
                  image_download: Optional[pulumi.Input[str]] = None,
@@ -531,6 +605,7 @@ class WirelessControllerGlobal(pulumi.CustomResource):
                  rogue_scan_mac_adjacency: Optional[pulumi.Input[int]] = None,
                  tunnel_mode: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 wpad_process_count: Optional[pulumi.Input[int]] = None,
                  wtp_share: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -561,11 +636,13 @@ class WirelessControllerGlobal(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 acd_process_count: Optional[pulumi.Input[int]] = None,
                  ap_log_server: Optional[pulumi.Input[str]] = None,
                  ap_log_server_ip: Optional[pulumi.Input[str]] = None,
                  ap_log_server_port: Optional[pulumi.Input[int]] = None,
                  control_message_offload: Optional[pulumi.Input[str]] = None,
                  data_ethernet_ii: Optional[pulumi.Input[str]] = None,
+                 dfs_lab_test: Optional[pulumi.Input[str]] = None,
                  discovery_mc_addr: Optional[pulumi.Input[str]] = None,
                  fiapp_eth_type: Optional[pulumi.Input[int]] = None,
                  image_download: Optional[pulumi.Input[str]] = None,
@@ -580,6 +657,7 @@ class WirelessControllerGlobal(pulumi.CustomResource):
                  rogue_scan_mac_adjacency: Optional[pulumi.Input[int]] = None,
                  tunnel_mode: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 wpad_process_count: Optional[pulumi.Input[int]] = None,
                  wtp_share: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -590,11 +668,13 @@ class WirelessControllerGlobal(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = WirelessControllerGlobalArgs.__new__(WirelessControllerGlobalArgs)
 
+            __props__.__dict__["acd_process_count"] = acd_process_count
             __props__.__dict__["ap_log_server"] = ap_log_server
             __props__.__dict__["ap_log_server_ip"] = ap_log_server_ip
             __props__.__dict__["ap_log_server_port"] = ap_log_server_port
             __props__.__dict__["control_message_offload"] = control_message_offload
             __props__.__dict__["data_ethernet_ii"] = data_ethernet_ii
+            __props__.__dict__["dfs_lab_test"] = dfs_lab_test
             __props__.__dict__["discovery_mc_addr"] = discovery_mc_addr
             __props__.__dict__["fiapp_eth_type"] = fiapp_eth_type
             __props__.__dict__["image_download"] = image_download
@@ -609,6 +689,7 @@ class WirelessControllerGlobal(pulumi.CustomResource):
             __props__.__dict__["rogue_scan_mac_adjacency"] = rogue_scan_mac_adjacency
             __props__.__dict__["tunnel_mode"] = tunnel_mode
             __props__.__dict__["vdomparam"] = vdomparam
+            __props__.__dict__["wpad_process_count"] = wpad_process_count
             __props__.__dict__["wtp_share"] = wtp_share
         super(WirelessControllerGlobal, __self__).__init__(
             'fortios:index/wirelessControllerGlobal:WirelessControllerGlobal',
@@ -620,11 +701,13 @@ class WirelessControllerGlobal(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            acd_process_count: Optional[pulumi.Input[int]] = None,
             ap_log_server: Optional[pulumi.Input[str]] = None,
             ap_log_server_ip: Optional[pulumi.Input[str]] = None,
             ap_log_server_port: Optional[pulumi.Input[int]] = None,
             control_message_offload: Optional[pulumi.Input[str]] = None,
             data_ethernet_ii: Optional[pulumi.Input[str]] = None,
+            dfs_lab_test: Optional[pulumi.Input[str]] = None,
             discovery_mc_addr: Optional[pulumi.Input[str]] = None,
             fiapp_eth_type: Optional[pulumi.Input[int]] = None,
             image_download: Optional[pulumi.Input[str]] = None,
@@ -639,6 +722,7 @@ class WirelessControllerGlobal(pulumi.CustomResource):
             rogue_scan_mac_adjacency: Optional[pulumi.Input[int]] = None,
             tunnel_mode: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
+            wpad_process_count: Optional[pulumi.Input[int]] = None,
             wtp_share: Optional[pulumi.Input[str]] = None) -> 'WirelessControllerGlobal':
         """
         Get an existing WirelessControllerGlobal resource's state with the given name, id, and optional extra
@@ -652,11 +736,13 @@ class WirelessControllerGlobal(pulumi.CustomResource):
 
         __props__ = _WirelessControllerGlobalState.__new__(_WirelessControllerGlobalState)
 
+        __props__.__dict__["acd_process_count"] = acd_process_count
         __props__.__dict__["ap_log_server"] = ap_log_server
         __props__.__dict__["ap_log_server_ip"] = ap_log_server_ip
         __props__.__dict__["ap_log_server_port"] = ap_log_server_port
         __props__.__dict__["control_message_offload"] = control_message_offload
         __props__.__dict__["data_ethernet_ii"] = data_ethernet_ii
+        __props__.__dict__["dfs_lab_test"] = dfs_lab_test
         __props__.__dict__["discovery_mc_addr"] = discovery_mc_addr
         __props__.__dict__["fiapp_eth_type"] = fiapp_eth_type
         __props__.__dict__["image_download"] = image_download
@@ -671,8 +757,14 @@ class WirelessControllerGlobal(pulumi.CustomResource):
         __props__.__dict__["rogue_scan_mac_adjacency"] = rogue_scan_mac_adjacency
         __props__.__dict__["tunnel_mode"] = tunnel_mode
         __props__.__dict__["vdomparam"] = vdomparam
+        __props__.__dict__["wpad_process_count"] = wpad_process_count
         __props__.__dict__["wtp_share"] = wtp_share
         return WirelessControllerGlobal(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="acdProcessCount")
+    def acd_process_count(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "acd_process_count")
 
     @property
     @pulumi.getter(name="apLogServer")
@@ -698,6 +790,11 @@ class WirelessControllerGlobal(pulumi.CustomResource):
     @pulumi.getter(name="dataEthernetIi")
     def data_ethernet_ii(self) -> pulumi.Output[str]:
         return pulumi.get(self, "data_ethernet_ii")
+
+    @property
+    @pulumi.getter(name="dfsLabTest")
+    def dfs_lab_test(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "dfs_lab_test")
 
     @property
     @pulumi.getter(name="discoveryMcAddr")
@@ -768,6 +865,11 @@ class WirelessControllerGlobal(pulumi.CustomResource):
     @pulumi.getter
     def vdomparam(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "vdomparam")
+
+    @property
+    @pulumi.getter(name="wpadProcessCount")
+    def wpad_process_count(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "wpad_process_count")
 
     @property
     @pulumi.getter(name="wtpShare")

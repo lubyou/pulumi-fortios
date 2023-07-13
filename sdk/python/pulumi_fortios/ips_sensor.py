@@ -22,6 +22,7 @@ class IpsSensorArgs:
                  entries: Optional[pulumi.Input[Sequence[pulumi.Input['IpsSensorEntryArgs']]]] = None,
                  extended_log: Optional[pulumi.Input[str]] = None,
                  filters: Optional[pulumi.Input[Sequence[pulumi.Input['IpsSensorFilterArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  overrides: Optional[pulumi.Input[Sequence[pulumi.Input['IpsSensorOverrideArgs']]]] = None,
                  replacemsg_group: Optional[pulumi.Input[str]] = None,
@@ -42,6 +43,8 @@ class IpsSensorArgs:
             pulumi.set(__self__, "extended_log", extended_log)
         if filters is not None:
             pulumi.set(__self__, "filters", filters)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if overrides is not None:
@@ -106,6 +109,15 @@ class IpsSensorArgs:
     @filters.setter
     def filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['IpsSensorFilterArgs']]]]):
         pulumi.set(self, "filters", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -162,6 +174,7 @@ class _IpsSensorState:
                  entries: Optional[pulumi.Input[Sequence[pulumi.Input['IpsSensorEntryArgs']]]] = None,
                  extended_log: Optional[pulumi.Input[str]] = None,
                  filters: Optional[pulumi.Input[Sequence[pulumi.Input['IpsSensorFilterArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  overrides: Optional[pulumi.Input[Sequence[pulumi.Input['IpsSensorOverrideArgs']]]] = None,
                  replacemsg_group: Optional[pulumi.Input[str]] = None,
@@ -182,6 +195,8 @@ class _IpsSensorState:
             pulumi.set(__self__, "extended_log", extended_log)
         if filters is not None:
             pulumi.set(__self__, "filters", filters)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if overrides is not None:
@@ -246,6 +261,15 @@ class _IpsSensorState:
     @filters.setter
     def filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['IpsSensorFilterArgs']]]]):
         pulumi.set(self, "filters", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -304,6 +328,7 @@ class IpsSensor(pulumi.CustomResource):
                  entries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpsSensorEntryArgs']]]]] = None,
                  extended_log: Optional[pulumi.Input[str]] = None,
                  filters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpsSensorFilterArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  overrides: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpsSensorOverrideArgs']]]]] = None,
                  replacemsg_group: Optional[pulumi.Input[str]] = None,
@@ -344,6 +369,7 @@ class IpsSensor(pulumi.CustomResource):
                  entries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpsSensorEntryArgs']]]]] = None,
                  extended_log: Optional[pulumi.Input[str]] = None,
                  filters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpsSensorFilterArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  overrides: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpsSensorOverrideArgs']]]]] = None,
                  replacemsg_group: Optional[pulumi.Input[str]] = None,
@@ -364,6 +390,7 @@ class IpsSensor(pulumi.CustomResource):
             __props__.__dict__["entries"] = entries
             __props__.__dict__["extended_log"] = extended_log
             __props__.__dict__["filters"] = filters
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["name"] = name
             __props__.__dict__["overrides"] = overrides
             __props__.__dict__["replacemsg_group"] = replacemsg_group
@@ -385,6 +412,7 @@ class IpsSensor(pulumi.CustomResource):
             entries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpsSensorEntryArgs']]]]] = None,
             extended_log: Optional[pulumi.Input[str]] = None,
             filters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpsSensorFilterArgs']]]]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             overrides: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpsSensorOverrideArgs']]]]] = None,
             replacemsg_group: Optional[pulumi.Input[str]] = None,
@@ -408,6 +436,7 @@ class IpsSensor(pulumi.CustomResource):
         __props__.__dict__["entries"] = entries
         __props__.__dict__["extended_log"] = extended_log
         __props__.__dict__["filters"] = filters
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["name"] = name
         __props__.__dict__["overrides"] = overrides
         __props__.__dict__["replacemsg_group"] = replacemsg_group
@@ -444,6 +473,11 @@ class IpsSensor(pulumi.CustomResource):
     @pulumi.getter
     def filters(self) -> pulumi.Output[Optional[Sequence['outputs.IpsSensorFilter']]]:
         return pulumi.get(self, "filters")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

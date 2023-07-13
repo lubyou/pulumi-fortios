@@ -36,6 +36,7 @@ export class SystemAutomationDestination extends pulumi.CustomResource {
 
     public readonly destinations!: pulumi.Output<outputs.SystemAutomationDestinationDestination[] | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly haGroupId!: pulumi.Output<number>;
     public readonly name!: pulumi.Output<string>;
     public readonly type!: pulumi.Output<string>;
@@ -56,6 +57,7 @@ export class SystemAutomationDestination extends pulumi.CustomResource {
             const state = argsOrState as SystemAutomationDestinationState | undefined;
             resourceInputs["destinations"] = state ? state.destinations : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["haGroupId"] = state ? state.haGroupId : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
@@ -64,6 +66,7 @@ export class SystemAutomationDestination extends pulumi.CustomResource {
             const args = argsOrState as SystemAutomationDestinationArgs | undefined;
             resourceInputs["destinations"] = args ? args.destinations : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["haGroupId"] = args ? args.haGroupId : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
@@ -80,6 +83,7 @@ export class SystemAutomationDestination extends pulumi.CustomResource {
 export interface SystemAutomationDestinationState {
     destinations?: pulumi.Input<pulumi.Input<inputs.SystemAutomationDestinationDestination>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     haGroupId?: pulumi.Input<number>;
     name?: pulumi.Input<string>;
     type?: pulumi.Input<string>;
@@ -92,6 +96,7 @@ export interface SystemAutomationDestinationState {
 export interface SystemAutomationDestinationArgs {
     destinations?: pulumi.Input<pulumi.Input<inputs.SystemAutomationDestinationDestination>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     haGroupId?: pulumi.Input<number>;
     name?: pulumi.Input<string>;
     type?: pulumi.Input<string>;

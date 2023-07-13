@@ -35,6 +35,7 @@ export class IcapServerGroup extends pulumi.CustomResource {
     }
 
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly ldbMethod!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
     public readonly serverLists!: pulumi.Output<outputs.IcapServerGroupServerList[] | undefined>;
@@ -54,6 +55,7 @@ export class IcapServerGroup extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as IcapServerGroupState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["ldbMethod"] = state ? state.ldbMethod : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["serverLists"] = state ? state.serverLists : undefined;
@@ -61,6 +63,7 @@ export class IcapServerGroup extends pulumi.CustomResource {
         } else {
             const args = argsOrState as IcapServerGroupArgs | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["ldbMethod"] = args ? args.ldbMethod : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["serverLists"] = args ? args.serverLists : undefined;
@@ -76,6 +79,7 @@ export class IcapServerGroup extends pulumi.CustomResource {
  */
 export interface IcapServerGroupState {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     ldbMethod?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     serverLists?: pulumi.Input<pulumi.Input<inputs.IcapServerGroupServerList>[]>;
@@ -87,6 +91,7 @@ export interface IcapServerGroupState {
  */
 export interface IcapServerGroupArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     ldbMethod?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     serverLists?: pulumi.Input<pulumi.Input<inputs.IcapServerGroupServerList>[]>;

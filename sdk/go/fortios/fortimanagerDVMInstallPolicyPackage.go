@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -30,7 +31,7 @@ func NewFortimanagerDVMInstallPolicyPackage(ctx *pulumi.Context,
 	if args.PackageName == nil {
 		return nil, errors.New("invalid value for required argument 'PackageName'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FortimanagerDVMInstallPolicyPackage
 	err := ctx.RegisterResource("fortios:index/fortimanagerDVMInstallPolicyPackage:FortimanagerDVMInstallPolicyPackage", name, args, &resource, opts...)
 	if err != nil {

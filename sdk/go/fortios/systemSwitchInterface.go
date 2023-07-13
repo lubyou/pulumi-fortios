@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -14,6 +15,7 @@ type SystemSwitchInterface struct {
 	pulumi.CustomResourceState
 
 	DynamicSortSubtable pulumi.StringPtrOutput                         `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                         `pulumi:"getAllTables"`
 	IntraSwitchPolicy   pulumi.StringOutput                            `pulumi:"intraSwitchPolicy"`
 	MacTtl              pulumi.IntOutput                               `pulumi:"macTtl"`
 	Members             SystemSwitchInterfaceMemberArrayOutput         `pulumi:"members"`
@@ -34,7 +36,7 @@ func NewSystemSwitchInterface(ctx *pulumi.Context,
 		args = &SystemSwitchInterfaceArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemSwitchInterface
 	err := ctx.RegisterResource("fortios:index/systemSwitchInterface:SystemSwitchInterface", name, args, &resource, opts...)
 	if err != nil {
@@ -58,6 +60,7 @@ func GetSystemSwitchInterface(ctx *pulumi.Context,
 // Input properties used for looking up and filtering SystemSwitchInterface resources.
 type systemSwitchInterfaceState struct {
 	DynamicSortSubtable *string                               `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                               `pulumi:"getAllTables"`
 	IntraSwitchPolicy   *string                               `pulumi:"intraSwitchPolicy"`
 	MacTtl              *int                                  `pulumi:"macTtl"`
 	Members             []SystemSwitchInterfaceMember         `pulumi:"members"`
@@ -73,6 +76,7 @@ type systemSwitchInterfaceState struct {
 
 type SystemSwitchInterfaceState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	IntraSwitchPolicy   pulumi.StringPtrInput
 	MacTtl              pulumi.IntPtrInput
 	Members             SystemSwitchInterfaceMemberArrayInput
@@ -92,6 +96,7 @@ func (SystemSwitchInterfaceState) ElementType() reflect.Type {
 
 type systemSwitchInterfaceArgs struct {
 	DynamicSortSubtable *string                               `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                               `pulumi:"getAllTables"`
 	IntraSwitchPolicy   *string                               `pulumi:"intraSwitchPolicy"`
 	MacTtl              *int                                  `pulumi:"macTtl"`
 	Members             []SystemSwitchInterfaceMember         `pulumi:"members"`
@@ -108,6 +113,7 @@ type systemSwitchInterfaceArgs struct {
 // The set of arguments for constructing a SystemSwitchInterface resource.
 type SystemSwitchInterfaceArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	IntraSwitchPolicy   pulumi.StringPtrInput
 	MacTtl              pulumi.IntPtrInput
 	Members             SystemSwitchInterfaceMemberArrayInput
@@ -210,6 +216,10 @@ func (o SystemSwitchInterfaceOutput) ToSystemSwitchInterfaceOutputWithContext(ct
 
 func (o SystemSwitchInterfaceOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SystemSwitchInterface) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemSwitchInterfaceOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemSwitchInterface) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemSwitchInterfaceOutput) IntraSwitchPolicy() pulumi.StringOutput {

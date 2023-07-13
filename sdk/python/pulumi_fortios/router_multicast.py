@@ -17,6 +17,7 @@ __all__ = ['RouterMulticastArgs', 'RouterMulticast']
 class RouterMulticastArgs:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['RouterMulticastInterfaceArgs']]]] = None,
                  multicast_routing: Optional[pulumi.Input[str]] = None,
                  pim_sm_global: Optional[pulumi.Input['RouterMulticastPimSmGlobalArgs']] = None,
@@ -28,6 +29,8 @@ class RouterMulticastArgs:
         """
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interfaces is not None:
             pulumi.set(__self__, "interfaces", interfaces)
         if multicast_routing is not None:
@@ -49,6 +52,15 @@ class RouterMulticastArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -109,6 +121,7 @@ class RouterMulticastArgs:
 class _RouterMulticastState:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['RouterMulticastInterfaceArgs']]]] = None,
                  multicast_routing: Optional[pulumi.Input[str]] = None,
                  pim_sm_global: Optional[pulumi.Input['RouterMulticastPimSmGlobalArgs']] = None,
@@ -120,6 +133,8 @@ class _RouterMulticastState:
         """
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interfaces is not None:
             pulumi.set(__self__, "interfaces", interfaces)
         if multicast_routing is not None:
@@ -141,6 +156,15 @@ class _RouterMulticastState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -203,6 +227,7 @@ class RouterMulticast(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterMulticastInterfaceArgs']]]]] = None,
                  multicast_routing: Optional[pulumi.Input[str]] = None,
                  pim_sm_global: Optional[pulumi.Input[pulumi.InputType['RouterMulticastPimSmGlobalArgs']]] = None,
@@ -239,6 +264,7 @@ class RouterMulticast(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterMulticastInterfaceArgs']]]]] = None,
                  multicast_routing: Optional[pulumi.Input[str]] = None,
                  pim_sm_global: Optional[pulumi.Input[pulumi.InputType['RouterMulticastPimSmGlobalArgs']]] = None,
@@ -255,6 +281,7 @@ class RouterMulticast(pulumi.CustomResource):
             __props__ = RouterMulticastArgs.__new__(RouterMulticastArgs)
 
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["interfaces"] = interfaces
             __props__.__dict__["multicast_routing"] = multicast_routing
             __props__.__dict__["pim_sm_global"] = pim_sm_global
@@ -272,6 +299,7 @@ class RouterMulticast(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterMulticastInterfaceArgs']]]]] = None,
             multicast_routing: Optional[pulumi.Input[str]] = None,
             pim_sm_global: Optional[pulumi.Input[pulumi.InputType['RouterMulticastPimSmGlobalArgs']]] = None,
@@ -291,6 +319,7 @@ class RouterMulticast(pulumi.CustomResource):
         __props__ = _RouterMulticastState.__new__(_RouterMulticastState)
 
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["interfaces"] = interfaces
         __props__.__dict__["multicast_routing"] = multicast_routing
         __props__.__dict__["pim_sm_global"] = pim_sm_global
@@ -303,6 +332,11 @@ class RouterMulticast(pulumi.CustomResource):
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

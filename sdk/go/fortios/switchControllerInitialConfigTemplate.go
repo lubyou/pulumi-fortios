@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -29,7 +30,7 @@ func NewSwitchControllerInitialConfigTemplate(ctx *pulumi.Context,
 		args = &SwitchControllerInitialConfigTemplateArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SwitchControllerInitialConfigTemplate
 	err := ctx.RegisterResource("fortios:index/switchControllerInitialConfigTemplate:SwitchControllerInitialConfigTemplate", name, args, &resource, opts...)
 	if err != nil {

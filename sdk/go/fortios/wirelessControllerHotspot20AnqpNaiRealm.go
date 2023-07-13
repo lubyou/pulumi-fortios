@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -14,6 +15,7 @@ type WirelessControllerHotspot20AnqpNaiRealm struct {
 	pulumi.CustomResourceState
 
 	DynamicSortSubtable pulumi.StringPtrOutput                                    `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                                    `pulumi:"getAllTables"`
 	NaiLists            WirelessControllerHotspot20AnqpNaiRealmNaiListArrayOutput `pulumi:"naiLists"`
 	Name                pulumi.StringOutput                                       `pulumi:"name"`
 	Vdomparam           pulumi.StringPtrOutput                                    `pulumi:"vdomparam"`
@@ -26,7 +28,7 @@ func NewWirelessControllerHotspot20AnqpNaiRealm(ctx *pulumi.Context,
 		args = &WirelessControllerHotspot20AnqpNaiRealmArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WirelessControllerHotspot20AnqpNaiRealm
 	err := ctx.RegisterResource("fortios:index/wirelessControllerHotspot20AnqpNaiRealm:WirelessControllerHotspot20AnqpNaiRealm", name, args, &resource, opts...)
 	if err != nil {
@@ -50,6 +52,7 @@ func GetWirelessControllerHotspot20AnqpNaiRealm(ctx *pulumi.Context,
 // Input properties used for looking up and filtering WirelessControllerHotspot20AnqpNaiRealm resources.
 type wirelessControllerHotspot20AnqpNaiRealmState struct {
 	DynamicSortSubtable *string                                          `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                                          `pulumi:"getAllTables"`
 	NaiLists            []WirelessControllerHotspot20AnqpNaiRealmNaiList `pulumi:"naiLists"`
 	Name                *string                                          `pulumi:"name"`
 	Vdomparam           *string                                          `pulumi:"vdomparam"`
@@ -57,6 +60,7 @@ type wirelessControllerHotspot20AnqpNaiRealmState struct {
 
 type WirelessControllerHotspot20AnqpNaiRealmState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	NaiLists            WirelessControllerHotspot20AnqpNaiRealmNaiListArrayInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
@@ -68,6 +72,7 @@ func (WirelessControllerHotspot20AnqpNaiRealmState) ElementType() reflect.Type {
 
 type wirelessControllerHotspot20AnqpNaiRealmArgs struct {
 	DynamicSortSubtable *string                                          `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                                          `pulumi:"getAllTables"`
 	NaiLists            []WirelessControllerHotspot20AnqpNaiRealmNaiList `pulumi:"naiLists"`
 	Name                *string                                          `pulumi:"name"`
 	Vdomparam           *string                                          `pulumi:"vdomparam"`
@@ -76,6 +81,7 @@ type wirelessControllerHotspot20AnqpNaiRealmArgs struct {
 // The set of arguments for constructing a WirelessControllerHotspot20AnqpNaiRealm resource.
 type WirelessControllerHotspot20AnqpNaiRealmArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	NaiLists            WirelessControllerHotspot20AnqpNaiRealmNaiListArrayInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
@@ -170,6 +176,10 @@ func (o WirelessControllerHotspot20AnqpNaiRealmOutput) ToWirelessControllerHotsp
 
 func (o WirelessControllerHotspot20AnqpNaiRealmOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WirelessControllerHotspot20AnqpNaiRealm) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerHotspot20AnqpNaiRealmOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20AnqpNaiRealm) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o WirelessControllerHotspot20AnqpNaiRealmOutput) NaiLists() WirelessControllerHotspot20AnqpNaiRealmNaiListArrayOutput {

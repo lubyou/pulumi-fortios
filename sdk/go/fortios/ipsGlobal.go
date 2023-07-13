@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -21,6 +22,7 @@ type IpsGlobal struct {
 	EngineCount             pulumi.IntOutput              `pulumi:"engineCount"`
 	ExcludeSignatures       pulumi.StringOutput           `pulumi:"excludeSignatures"`
 	FailOpen                pulumi.StringOutput           `pulumi:"failOpen"`
+	GetAllTables            pulumi.StringPtrOutput        `pulumi:"getAllTables"`
 	IntelligentMode         pulumi.StringOutput           `pulumi:"intelligentMode"`
 	IpsReserveCpu           pulumi.StringOutput           `pulumi:"ipsReserveCpu"`
 	NgfwMaxScanRange        pulumi.IntOutput              `pulumi:"ngfwMaxScanRange"`
@@ -42,7 +44,7 @@ func NewIpsGlobal(ctx *pulumi.Context,
 		args = &IpsGlobalArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource IpsGlobal
 	err := ctx.RegisterResource("fortios:index/ipsGlobal:IpsGlobal", name, args, &resource, opts...)
 	if err != nil {
@@ -73,6 +75,7 @@ type ipsGlobalState struct {
 	EngineCount             *int                     `pulumi:"engineCount"`
 	ExcludeSignatures       *string                  `pulumi:"excludeSignatures"`
 	FailOpen                *string                  `pulumi:"failOpen"`
+	GetAllTables            *string                  `pulumi:"getAllTables"`
 	IntelligentMode         *string                  `pulumi:"intelligentMode"`
 	IpsReserveCpu           *string                  `pulumi:"ipsReserveCpu"`
 	NgfwMaxScanRange        *int                     `pulumi:"ngfwMaxScanRange"`
@@ -96,6 +99,7 @@ type IpsGlobalState struct {
 	EngineCount             pulumi.IntPtrInput
 	ExcludeSignatures       pulumi.StringPtrInput
 	FailOpen                pulumi.StringPtrInput
+	GetAllTables            pulumi.StringPtrInput
 	IntelligentMode         pulumi.StringPtrInput
 	IpsReserveCpu           pulumi.StringPtrInput
 	NgfwMaxScanRange        pulumi.IntPtrInput
@@ -123,6 +127,7 @@ type ipsGlobalArgs struct {
 	EngineCount             *int                     `pulumi:"engineCount"`
 	ExcludeSignatures       *string                  `pulumi:"excludeSignatures"`
 	FailOpen                *string                  `pulumi:"failOpen"`
+	GetAllTables            *string                  `pulumi:"getAllTables"`
 	IntelligentMode         *string                  `pulumi:"intelligentMode"`
 	IpsReserveCpu           *string                  `pulumi:"ipsReserveCpu"`
 	NgfwMaxScanRange        *int                     `pulumi:"ngfwMaxScanRange"`
@@ -147,6 +152,7 @@ type IpsGlobalArgs struct {
 	EngineCount             pulumi.IntPtrInput
 	ExcludeSignatures       pulumi.StringPtrInput
 	FailOpen                pulumi.StringPtrInput
+	GetAllTables            pulumi.StringPtrInput
 	IntelligentMode         pulumi.StringPtrInput
 	IpsReserveCpu           pulumi.StringPtrInput
 	NgfwMaxScanRange        pulumi.IntPtrInput
@@ -278,6 +284,10 @@ func (o IpsGlobalOutput) ExcludeSignatures() pulumi.StringOutput {
 
 func (o IpsGlobalOutput) FailOpen() pulumi.StringOutput {
 	return o.ApplyT(func(v *IpsGlobal) pulumi.StringOutput { return v.FailOpen }).(pulumi.StringOutput)
+}
+
+func (o IpsGlobalOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IpsGlobal) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o IpsGlobalOutput) IntelligentMode() pulumi.StringOutput {

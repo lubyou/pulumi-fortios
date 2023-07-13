@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -30,7 +31,7 @@ func NewSwitchControllerCustomCommand(ctx *pulumi.Context,
 	if args.Command == nil {
 		return nil, errors.New("invalid value for required argument 'Command'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SwitchControllerCustomCommand
 	err := ctx.RegisterResource("fortios:index/switchControllerCustomCommand:SwitchControllerCustomCommand", name, args, &resource, opts...)
 	if err != nil {

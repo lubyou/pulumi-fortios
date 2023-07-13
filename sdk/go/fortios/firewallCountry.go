@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,6 +16,7 @@ type FirewallCountry struct {
 
 	DynamicSortSubtable pulumi.StringPtrOutput           `pulumi:"dynamicSortSubtable"`
 	Fosid               pulumi.IntOutput                 `pulumi:"fosid"`
+	GetAllTables        pulumi.StringPtrOutput           `pulumi:"getAllTables"`
 	Name                pulumi.StringOutput              `pulumi:"name"`
 	Regions             FirewallCountryRegionArrayOutput `pulumi:"regions"`
 	Vdomparam           pulumi.StringPtrOutput           `pulumi:"vdomparam"`
@@ -27,7 +29,7 @@ func NewFirewallCountry(ctx *pulumi.Context,
 		args = &FirewallCountryArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallCountry
 	err := ctx.RegisterResource("fortios:index/firewallCountry:FirewallCountry", name, args, &resource, opts...)
 	if err != nil {
@@ -52,6 +54,7 @@ func GetFirewallCountry(ctx *pulumi.Context,
 type firewallCountryState struct {
 	DynamicSortSubtable *string                 `pulumi:"dynamicSortSubtable"`
 	Fosid               *int                    `pulumi:"fosid"`
+	GetAllTables        *string                 `pulumi:"getAllTables"`
 	Name                *string                 `pulumi:"name"`
 	Regions             []FirewallCountryRegion `pulumi:"regions"`
 	Vdomparam           *string                 `pulumi:"vdomparam"`
@@ -60,6 +63,7 @@ type firewallCountryState struct {
 type FirewallCountryState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	Fosid               pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Regions             FirewallCountryRegionArrayInput
 	Vdomparam           pulumi.StringPtrInput
@@ -72,6 +76,7 @@ func (FirewallCountryState) ElementType() reflect.Type {
 type firewallCountryArgs struct {
 	DynamicSortSubtable *string                 `pulumi:"dynamicSortSubtable"`
 	Fosid               *int                    `pulumi:"fosid"`
+	GetAllTables        *string                 `pulumi:"getAllTables"`
 	Name                *string                 `pulumi:"name"`
 	Regions             []FirewallCountryRegion `pulumi:"regions"`
 	Vdomparam           *string                 `pulumi:"vdomparam"`
@@ -81,6 +86,7 @@ type firewallCountryArgs struct {
 type FirewallCountryArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	Fosid               pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Regions             FirewallCountryRegionArrayInput
 	Vdomparam           pulumi.StringPtrInput
@@ -179,6 +185,10 @@ func (o FirewallCountryOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 
 func (o FirewallCountryOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *FirewallCountry) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o FirewallCountryOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallCountry) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallCountryOutput) Name() pulumi.StringOutput {

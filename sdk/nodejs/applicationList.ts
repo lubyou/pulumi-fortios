@@ -44,6 +44,7 @@ export class ApplicationList extends pulumi.CustomResource {
     public readonly entries!: pulumi.Output<outputs.ApplicationListEntry[] | undefined>;
     public readonly extendedLog!: pulumi.Output<string>;
     public readonly forceInclusionSslDiSigs!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly options!: pulumi.Output<string>;
     public readonly otherApplicationAction!: pulumi.Output<string>;
@@ -78,6 +79,7 @@ export class ApplicationList extends pulumi.CustomResource {
             resourceInputs["entries"] = state ? state.entries : undefined;
             resourceInputs["extendedLog"] = state ? state.extendedLog : undefined;
             resourceInputs["forceInclusionSslDiSigs"] = state ? state.forceInclusionSslDiSigs : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["options"] = state ? state.options : undefined;
             resourceInputs["otherApplicationAction"] = state ? state.otherApplicationAction : undefined;
@@ -100,6 +102,7 @@ export class ApplicationList extends pulumi.CustomResource {
             resourceInputs["entries"] = args ? args.entries : undefined;
             resourceInputs["extendedLog"] = args ? args.extendedLog : undefined;
             resourceInputs["forceInclusionSslDiSigs"] = args ? args.forceInclusionSslDiSigs : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["options"] = args ? args.options : undefined;
             resourceInputs["otherApplicationAction"] = args ? args.otherApplicationAction : undefined;
@@ -130,6 +133,7 @@ export interface ApplicationListState {
     entries?: pulumi.Input<pulumi.Input<inputs.ApplicationListEntry>[]>;
     extendedLog?: pulumi.Input<string>;
     forceInclusionSslDiSigs?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     options?: pulumi.Input<string>;
     otherApplicationAction?: pulumi.Input<string>;
@@ -156,6 +160,7 @@ export interface ApplicationListArgs {
     entries?: pulumi.Input<pulumi.Input<inputs.ApplicationListEntry>[]>;
     extendedLog?: pulumi.Input<string>;
     forceInclusionSslDiSigs?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     options?: pulumi.Input<string>;
     otherApplicationAction?: pulumi.Input<string>;

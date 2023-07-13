@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -29,6 +30,9 @@ type VpnSslSettings struct {
 	DnsServer1                 pulumi.StringOutput                         `pulumi:"dnsServer1"`
 	DnsServer2                 pulumi.StringOutput                         `pulumi:"dnsServer2"`
 	DnsSuffix                  pulumi.StringPtrOutput                      `pulumi:"dnsSuffix"`
+	DtlsHeartbeatFailCount     pulumi.IntOutput                            `pulumi:"dtlsHeartbeatFailCount"`
+	DtlsHeartbeatIdleTimeout   pulumi.IntOutput                            `pulumi:"dtlsHeartbeatIdleTimeout"`
+	DtlsHeartbeatInterval      pulumi.IntOutput                            `pulumi:"dtlsHeartbeatInterval"`
 	DtlsHelloTimeout           pulumi.IntOutput                            `pulumi:"dtlsHelloTimeout"`
 	DtlsMaxProtoVer            pulumi.StringOutput                         `pulumi:"dtlsMaxProtoVer"`
 	DtlsMinProtoVer            pulumi.StringOutput                         `pulumi:"dtlsMinProtoVer"`
@@ -38,6 +42,7 @@ type VpnSslSettings struct {
 	Encode2fSequence           pulumi.StringOutput                         `pulumi:"encode2fSequence"`
 	EncryptAndStorePassword    pulumi.StringOutput                         `pulumi:"encryptAndStorePassword"`
 	ForceTwoFactorAuth         pulumi.StringOutput                         `pulumi:"forceTwoFactorAuth"`
+	GetAllTables               pulumi.StringPtrOutput                      `pulumi:"getAllTables"`
 	HeaderXForwardedFor        pulumi.StringOutput                         `pulumi:"headerXForwardedFor"`
 	HstsIncludeSubdomains      pulumi.StringOutput                         `pulumi:"hstsIncludeSubdomains"`
 	HttpCompression            pulumi.StringOutput                         `pulumi:"httpCompression"`
@@ -58,6 +63,7 @@ type VpnSslSettings struct {
 	Reqclientcert              pulumi.StringOutput                         `pulumi:"reqclientcert"`
 	RouteSourceInterface       pulumi.StringOutput                         `pulumi:"routeSourceInterface"`
 	SamlRedirectPort           pulumi.IntOutput                            `pulumi:"samlRedirectPort"`
+	ServerHostname             pulumi.StringOutput                         `pulumi:"serverHostname"`
 	Servercert                 pulumi.StringOutput                         `pulumi:"servercert"`
 	SourceAddress6Negate       pulumi.StringOutput                         `pulumi:"sourceAddress6Negate"`
 	SourceAddress6s            VpnSslSettingsSourceAddress6ArrayOutput     `pulumi:"sourceAddress6s"`
@@ -97,7 +103,7 @@ func NewVpnSslSettings(ctx *pulumi.Context,
 		args = &VpnSslSettingsArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource VpnSslSettings
 	err := ctx.RegisterResource("fortios:index/vpnSslSettings:VpnSslSettings", name, args, &resource, opts...)
 	if err != nil {
@@ -136,6 +142,9 @@ type vpnSslSettingsState struct {
 	DnsServer1                 *string                            `pulumi:"dnsServer1"`
 	DnsServer2                 *string                            `pulumi:"dnsServer2"`
 	DnsSuffix                  *string                            `pulumi:"dnsSuffix"`
+	DtlsHeartbeatFailCount     *int                               `pulumi:"dtlsHeartbeatFailCount"`
+	DtlsHeartbeatIdleTimeout   *int                               `pulumi:"dtlsHeartbeatIdleTimeout"`
+	DtlsHeartbeatInterval      *int                               `pulumi:"dtlsHeartbeatInterval"`
 	DtlsHelloTimeout           *int                               `pulumi:"dtlsHelloTimeout"`
 	DtlsMaxProtoVer            *string                            `pulumi:"dtlsMaxProtoVer"`
 	DtlsMinProtoVer            *string                            `pulumi:"dtlsMinProtoVer"`
@@ -145,6 +154,7 @@ type vpnSslSettingsState struct {
 	Encode2fSequence           *string                            `pulumi:"encode2fSequence"`
 	EncryptAndStorePassword    *string                            `pulumi:"encryptAndStorePassword"`
 	ForceTwoFactorAuth         *string                            `pulumi:"forceTwoFactorAuth"`
+	GetAllTables               *string                            `pulumi:"getAllTables"`
 	HeaderXForwardedFor        *string                            `pulumi:"headerXForwardedFor"`
 	HstsIncludeSubdomains      *string                            `pulumi:"hstsIncludeSubdomains"`
 	HttpCompression            *string                            `pulumi:"httpCompression"`
@@ -165,6 +175,7 @@ type vpnSslSettingsState struct {
 	Reqclientcert              *string                            `pulumi:"reqclientcert"`
 	RouteSourceInterface       *string                            `pulumi:"routeSourceInterface"`
 	SamlRedirectPort           *int                               `pulumi:"samlRedirectPort"`
+	ServerHostname             *string                            `pulumi:"serverHostname"`
 	Servercert                 *string                            `pulumi:"servercert"`
 	SourceAddress6Negate       *string                            `pulumi:"sourceAddress6Negate"`
 	SourceAddress6s            []VpnSslSettingsSourceAddress6     `pulumi:"sourceAddress6s"`
@@ -214,6 +225,9 @@ type VpnSslSettingsState struct {
 	DnsServer1                 pulumi.StringPtrInput
 	DnsServer2                 pulumi.StringPtrInput
 	DnsSuffix                  pulumi.StringPtrInput
+	DtlsHeartbeatFailCount     pulumi.IntPtrInput
+	DtlsHeartbeatIdleTimeout   pulumi.IntPtrInput
+	DtlsHeartbeatInterval      pulumi.IntPtrInput
 	DtlsHelloTimeout           pulumi.IntPtrInput
 	DtlsMaxProtoVer            pulumi.StringPtrInput
 	DtlsMinProtoVer            pulumi.StringPtrInput
@@ -223,6 +237,7 @@ type VpnSslSettingsState struct {
 	Encode2fSequence           pulumi.StringPtrInput
 	EncryptAndStorePassword    pulumi.StringPtrInput
 	ForceTwoFactorAuth         pulumi.StringPtrInput
+	GetAllTables               pulumi.StringPtrInput
 	HeaderXForwardedFor        pulumi.StringPtrInput
 	HstsIncludeSubdomains      pulumi.StringPtrInput
 	HttpCompression            pulumi.StringPtrInput
@@ -243,6 +258,7 @@ type VpnSslSettingsState struct {
 	Reqclientcert              pulumi.StringPtrInput
 	RouteSourceInterface       pulumi.StringPtrInput
 	SamlRedirectPort           pulumi.IntPtrInput
+	ServerHostname             pulumi.StringPtrInput
 	Servercert                 pulumi.StringPtrInput
 	SourceAddress6Negate       pulumi.StringPtrInput
 	SourceAddress6s            VpnSslSettingsSourceAddress6ArrayInput
@@ -296,6 +312,9 @@ type vpnSslSettingsArgs struct {
 	DnsServer1                 *string                            `pulumi:"dnsServer1"`
 	DnsServer2                 *string                            `pulumi:"dnsServer2"`
 	DnsSuffix                  *string                            `pulumi:"dnsSuffix"`
+	DtlsHeartbeatFailCount     *int                               `pulumi:"dtlsHeartbeatFailCount"`
+	DtlsHeartbeatIdleTimeout   *int                               `pulumi:"dtlsHeartbeatIdleTimeout"`
+	DtlsHeartbeatInterval      *int                               `pulumi:"dtlsHeartbeatInterval"`
 	DtlsHelloTimeout           *int                               `pulumi:"dtlsHelloTimeout"`
 	DtlsMaxProtoVer            *string                            `pulumi:"dtlsMaxProtoVer"`
 	DtlsMinProtoVer            *string                            `pulumi:"dtlsMinProtoVer"`
@@ -305,6 +324,7 @@ type vpnSslSettingsArgs struct {
 	Encode2fSequence           *string                            `pulumi:"encode2fSequence"`
 	EncryptAndStorePassword    *string                            `pulumi:"encryptAndStorePassword"`
 	ForceTwoFactorAuth         *string                            `pulumi:"forceTwoFactorAuth"`
+	GetAllTables               *string                            `pulumi:"getAllTables"`
 	HeaderXForwardedFor        *string                            `pulumi:"headerXForwardedFor"`
 	HstsIncludeSubdomains      *string                            `pulumi:"hstsIncludeSubdomains"`
 	HttpCompression            *string                            `pulumi:"httpCompression"`
@@ -325,6 +345,7 @@ type vpnSslSettingsArgs struct {
 	Reqclientcert              *string                            `pulumi:"reqclientcert"`
 	RouteSourceInterface       *string                            `pulumi:"routeSourceInterface"`
 	SamlRedirectPort           *int                               `pulumi:"samlRedirectPort"`
+	ServerHostname             *string                            `pulumi:"serverHostname"`
 	Servercert                 *string                            `pulumi:"servercert"`
 	SourceAddress6Negate       *string                            `pulumi:"sourceAddress6Negate"`
 	SourceAddress6s            []VpnSslSettingsSourceAddress6     `pulumi:"sourceAddress6s"`
@@ -375,6 +396,9 @@ type VpnSslSettingsArgs struct {
 	DnsServer1                 pulumi.StringPtrInput
 	DnsServer2                 pulumi.StringPtrInput
 	DnsSuffix                  pulumi.StringPtrInput
+	DtlsHeartbeatFailCount     pulumi.IntPtrInput
+	DtlsHeartbeatIdleTimeout   pulumi.IntPtrInput
+	DtlsHeartbeatInterval      pulumi.IntPtrInput
 	DtlsHelloTimeout           pulumi.IntPtrInput
 	DtlsMaxProtoVer            pulumi.StringPtrInput
 	DtlsMinProtoVer            pulumi.StringPtrInput
@@ -384,6 +408,7 @@ type VpnSslSettingsArgs struct {
 	Encode2fSequence           pulumi.StringPtrInput
 	EncryptAndStorePassword    pulumi.StringPtrInput
 	ForceTwoFactorAuth         pulumi.StringPtrInput
+	GetAllTables               pulumi.StringPtrInput
 	HeaderXForwardedFor        pulumi.StringPtrInput
 	HstsIncludeSubdomains      pulumi.StringPtrInput
 	HttpCompression            pulumi.StringPtrInput
@@ -404,6 +429,7 @@ type VpnSslSettingsArgs struct {
 	Reqclientcert              pulumi.StringPtrInput
 	RouteSourceInterface       pulumi.StringPtrInput
 	SamlRedirectPort           pulumi.IntPtrInput
+	ServerHostname             pulumi.StringPtrInput
 	Servercert                 pulumi.StringPtrInput
 	SourceAddress6Negate       pulumi.StringPtrInput
 	SourceAddress6s            VpnSslSettingsSourceAddress6ArrayInput
@@ -587,6 +613,18 @@ func (o VpnSslSettingsOutput) DnsSuffix() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringPtrOutput { return v.DnsSuffix }).(pulumi.StringPtrOutput)
 }
 
+func (o VpnSslSettingsOutput) DtlsHeartbeatFailCount() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.IntOutput { return v.DtlsHeartbeatFailCount }).(pulumi.IntOutput)
+}
+
+func (o VpnSslSettingsOutput) DtlsHeartbeatIdleTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.IntOutput { return v.DtlsHeartbeatIdleTimeout }).(pulumi.IntOutput)
+}
+
+func (o VpnSslSettingsOutput) DtlsHeartbeatInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.IntOutput { return v.DtlsHeartbeatInterval }).(pulumi.IntOutput)
+}
+
 func (o VpnSslSettingsOutput) DtlsHelloTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *VpnSslSettings) pulumi.IntOutput { return v.DtlsHelloTimeout }).(pulumi.IntOutput)
 }
@@ -621,6 +659,10 @@ func (o VpnSslSettingsOutput) EncryptAndStorePassword() pulumi.StringOutput {
 
 func (o VpnSslSettingsOutput) ForceTwoFactorAuth() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.ForceTwoFactorAuth }).(pulumi.StringOutput)
+}
+
+func (o VpnSslSettingsOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o VpnSslSettingsOutput) HeaderXForwardedFor() pulumi.StringOutput {
@@ -701,6 +743,10 @@ func (o VpnSslSettingsOutput) RouteSourceInterface() pulumi.StringOutput {
 
 func (o VpnSslSettingsOutput) SamlRedirectPort() pulumi.IntOutput {
 	return o.ApplyT(func(v *VpnSslSettings) pulumi.IntOutput { return v.SamlRedirectPort }).(pulumi.IntOutput)
+}
+
+func (o VpnSslSettingsOutput) ServerHostname() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslSettings) pulumi.StringOutput { return v.ServerHostname }).(pulumi.StringOutput)
 }
 
 func (o VpnSslSettingsOutput) Servercert() pulumi.StringOutput {

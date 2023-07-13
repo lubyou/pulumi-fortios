@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -30,6 +31,7 @@ type FirewallSniffer struct {
 	FileFilterProfile        pulumi.StringOutput                    `pulumi:"fileFilterProfile"`
 	FileFilterProfileStatus  pulumi.StringOutput                    `pulumi:"fileFilterProfileStatus"`
 	Fosid                    pulumi.IntOutput                       `pulumi:"fosid"`
+	GetAllTables             pulumi.StringPtrOutput                 `pulumi:"getAllTables"`
 	Host                     pulumi.StringOutput                    `pulumi:"host"`
 	Interface                pulumi.StringOutput                    `pulumi:"interface"`
 	IpThreatfeedStatus       pulumi.StringOutput                    `pulumi:"ipThreatfeedStatus"`
@@ -63,7 +65,7 @@ func NewFirewallSniffer(ctx *pulumi.Context,
 	if args.Interface == nil {
 		return nil, errors.New("invalid value for required argument 'Interface'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallSniffer
 	err := ctx.RegisterResource("fortios:index/firewallSniffer:FirewallSniffer", name, args, &resource, opts...)
 	if err != nil {
@@ -102,6 +104,7 @@ type firewallSnifferState struct {
 	FileFilterProfile        *string                       `pulumi:"fileFilterProfile"`
 	FileFilterProfileStatus  *string                       `pulumi:"fileFilterProfileStatus"`
 	Fosid                    *int                          `pulumi:"fosid"`
+	GetAllTables             *string                       `pulumi:"getAllTables"`
 	Host                     *string                       `pulumi:"host"`
 	Interface                *string                       `pulumi:"interface"`
 	IpThreatfeedStatus       *string                       `pulumi:"ipThreatfeedStatus"`
@@ -142,6 +145,7 @@ type FirewallSnifferState struct {
 	FileFilterProfile        pulumi.StringPtrInput
 	FileFilterProfileStatus  pulumi.StringPtrInput
 	Fosid                    pulumi.IntPtrInput
+	GetAllTables             pulumi.StringPtrInput
 	Host                     pulumi.StringPtrInput
 	Interface                pulumi.StringPtrInput
 	IpThreatfeedStatus       pulumi.StringPtrInput
@@ -186,6 +190,7 @@ type firewallSnifferArgs struct {
 	FileFilterProfile        *string                       `pulumi:"fileFilterProfile"`
 	FileFilterProfileStatus  *string                       `pulumi:"fileFilterProfileStatus"`
 	Fosid                    *int                          `pulumi:"fosid"`
+	GetAllTables             *string                       `pulumi:"getAllTables"`
 	Host                     *string                       `pulumi:"host"`
 	Interface                string                        `pulumi:"interface"`
 	IpThreatfeedStatus       *string                       `pulumi:"ipThreatfeedStatus"`
@@ -227,6 +232,7 @@ type FirewallSnifferArgs struct {
 	FileFilterProfile        pulumi.StringPtrInput
 	FileFilterProfileStatus  pulumi.StringPtrInput
 	Fosid                    pulumi.IntPtrInput
+	GetAllTables             pulumi.StringPtrInput
 	Host                     pulumi.StringPtrInput
 	Interface                pulumi.StringInput
 	IpThreatfeedStatus       pulumi.StringPtrInput
@@ -399,6 +405,10 @@ func (o FirewallSnifferOutput) FileFilterProfileStatus() pulumi.StringOutput {
 
 func (o FirewallSnifferOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *FirewallSniffer) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o FirewallSnifferOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallSniffer) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallSnifferOutput) Host() pulumi.StringOutput {

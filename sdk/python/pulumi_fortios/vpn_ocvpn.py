@@ -22,6 +22,7 @@ class VpnOcvpnArgs:
                  eap: Optional[pulumi.Input[str]] = None,
                  eap_users: Optional[pulumi.Input[str]] = None,
                  forticlient_access: Optional[pulumi.Input['VpnOcvpnForticlientAccessArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip_allocation_block: Optional[pulumi.Input[str]] = None,
                  multipath: Optional[pulumi.Input[str]] = None,
                  nat: Optional[pulumi.Input[str]] = None,
@@ -48,6 +49,8 @@ class VpnOcvpnArgs:
             pulumi.set(__self__, "eap_users", eap_users)
         if forticlient_access is not None:
             pulumi.set(__self__, "forticlient_access", forticlient_access)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ip_allocation_block is not None:
             pulumi.set(__self__, "ip_allocation_block", ip_allocation_block)
         if multipath is not None:
@@ -124,6 +127,15 @@ class VpnOcvpnArgs:
     @forticlient_access.setter
     def forticlient_access(self, value: Optional[pulumi.Input['VpnOcvpnForticlientAccessArgs']]):
         pulumi.set(self, "forticlient_access", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="ipAllocationBlock")
@@ -234,6 +246,7 @@ class _VpnOcvpnState:
                  eap: Optional[pulumi.Input[str]] = None,
                  eap_users: Optional[pulumi.Input[str]] = None,
                  forticlient_access: Optional[pulumi.Input['VpnOcvpnForticlientAccessArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip_allocation_block: Optional[pulumi.Input[str]] = None,
                  multipath: Optional[pulumi.Input[str]] = None,
                  nat: Optional[pulumi.Input[str]] = None,
@@ -260,6 +273,8 @@ class _VpnOcvpnState:
             pulumi.set(__self__, "eap_users", eap_users)
         if forticlient_access is not None:
             pulumi.set(__self__, "forticlient_access", forticlient_access)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ip_allocation_block is not None:
             pulumi.set(__self__, "ip_allocation_block", ip_allocation_block)
         if multipath is not None:
@@ -336,6 +351,15 @@ class _VpnOcvpnState:
     @forticlient_access.setter
     def forticlient_access(self, value: Optional[pulumi.Input['VpnOcvpnForticlientAccessArgs']]):
         pulumi.set(self, "forticlient_access", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="ipAllocationBlock")
@@ -448,6 +472,7 @@ class VpnOcvpn(pulumi.CustomResource):
                  eap: Optional[pulumi.Input[str]] = None,
                  eap_users: Optional[pulumi.Input[str]] = None,
                  forticlient_access: Optional[pulumi.Input[pulumi.InputType['VpnOcvpnForticlientAccessArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip_allocation_block: Optional[pulumi.Input[str]] = None,
                  multipath: Optional[pulumi.Input[str]] = None,
                  nat: Optional[pulumi.Input[str]] = None,
@@ -494,6 +519,7 @@ class VpnOcvpn(pulumi.CustomResource):
                  eap: Optional[pulumi.Input[str]] = None,
                  eap_users: Optional[pulumi.Input[str]] = None,
                  forticlient_access: Optional[pulumi.Input[pulumi.InputType['VpnOcvpnForticlientAccessArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip_allocation_block: Optional[pulumi.Input[str]] = None,
                  multipath: Optional[pulumi.Input[str]] = None,
                  nat: Optional[pulumi.Input[str]] = None,
@@ -520,6 +546,7 @@ class VpnOcvpn(pulumi.CustomResource):
             __props__.__dict__["eap"] = eap
             __props__.__dict__["eap_users"] = eap_users
             __props__.__dict__["forticlient_access"] = forticlient_access
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["ip_allocation_block"] = ip_allocation_block
             __props__.__dict__["multipath"] = multipath
             __props__.__dict__["nat"] = nat
@@ -547,6 +574,7 @@ class VpnOcvpn(pulumi.CustomResource):
             eap: Optional[pulumi.Input[str]] = None,
             eap_users: Optional[pulumi.Input[str]] = None,
             forticlient_access: Optional[pulumi.Input[pulumi.InputType['VpnOcvpnForticlientAccessArgs']]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             ip_allocation_block: Optional[pulumi.Input[str]] = None,
             multipath: Optional[pulumi.Input[str]] = None,
             nat: Optional[pulumi.Input[str]] = None,
@@ -576,6 +604,7 @@ class VpnOcvpn(pulumi.CustomResource):
         __props__.__dict__["eap"] = eap
         __props__.__dict__["eap_users"] = eap_users
         __props__.__dict__["forticlient_access"] = forticlient_access
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["ip_allocation_block"] = ip_allocation_block
         __props__.__dict__["multipath"] = multipath
         __props__.__dict__["nat"] = nat
@@ -618,6 +647,11 @@ class VpnOcvpn(pulumi.CustomResource):
     @pulumi.getter(name="forticlientAccess")
     def forticlient_access(self) -> pulumi.Output['outputs.VpnOcvpnForticlientAccess']:
         return pulumi.get(self, "forticlient_access")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="ipAllocationBlock")

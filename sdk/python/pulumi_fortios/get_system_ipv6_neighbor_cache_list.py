@@ -84,10 +84,10 @@ def get_system_ipv6_neighbor_cache_list(filter: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemIpv6NeighborCacheList:GetSystemIpv6NeighborCacheList', __args__, opts=opts, typ=GetSystemIpv6NeighborCacheListResult).value
 
     return AwaitableGetSystemIpv6NeighborCacheListResult(
-        filter=__ret__.filter,
-        fosidlists=__ret__.fosidlists,
-        id=__ret__.id,
-        vdomparam=__ret__.vdomparam)
+        filter=pulumi.get(__ret__, 'filter'),
+        fosidlists=pulumi.get(__ret__, 'fosidlists'),
+        id=pulumi.get(__ret__, 'id'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_ipv6_neighbor_cache_list)

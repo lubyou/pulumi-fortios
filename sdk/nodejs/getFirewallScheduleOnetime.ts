@@ -27,6 +27,7 @@ export interface GetFirewallScheduleOnetimeArgs {
 export interface GetFirewallScheduleOnetimeResult {
     readonly color: number;
     readonly end: string;
+    readonly endUtc: string;
     readonly expirationDays: number;
     readonly fabricObject: string;
     /**
@@ -35,6 +36,7 @@ export interface GetFirewallScheduleOnetimeResult {
     readonly id: string;
     readonly name: string;
     readonly start: string;
+    readonly startUtc: string;
     readonly vdomparam?: string;
 }
 export function getFirewallScheduleOnetimeOutput(args: GetFirewallScheduleOnetimeOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallScheduleOnetimeResult> {

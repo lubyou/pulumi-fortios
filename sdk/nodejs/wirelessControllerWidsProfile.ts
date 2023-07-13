@@ -77,6 +77,7 @@ export class WirelessControllerWidsProfile extends pulumi.CustomResource {
     public readonly eapolSuccFlood!: pulumi.Output<string>;
     public readonly eapolSuccIntv!: pulumi.Output<number>;
     public readonly eapolSuccThresh!: pulumi.Output<number>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly invalidMacOui!: pulumi.Output<string>;
     public readonly longDurationAttack!: pulumi.Output<string>;
     public readonly longDurationThresh!: pulumi.Output<number>;
@@ -144,6 +145,7 @@ export class WirelessControllerWidsProfile extends pulumi.CustomResource {
             resourceInputs["eapolSuccFlood"] = state ? state.eapolSuccFlood : undefined;
             resourceInputs["eapolSuccIntv"] = state ? state.eapolSuccIntv : undefined;
             resourceInputs["eapolSuccThresh"] = state ? state.eapolSuccThresh : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["invalidMacOui"] = state ? state.invalidMacOui : undefined;
             resourceInputs["longDurationAttack"] = state ? state.longDurationAttack : undefined;
             resourceInputs["longDurationThresh"] = state ? state.longDurationThresh : undefined;
@@ -199,6 +201,7 @@ export class WirelessControllerWidsProfile extends pulumi.CustomResource {
             resourceInputs["eapolSuccFlood"] = args ? args.eapolSuccFlood : undefined;
             resourceInputs["eapolSuccIntv"] = args ? args.eapolSuccIntv : undefined;
             resourceInputs["eapolSuccThresh"] = args ? args.eapolSuccThresh : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["invalidMacOui"] = args ? args.invalidMacOui : undefined;
             resourceInputs["longDurationAttack"] = args ? args.longDurationAttack : undefined;
             resourceInputs["longDurationThresh"] = args ? args.longDurationThresh : undefined;
@@ -262,6 +265,7 @@ export interface WirelessControllerWidsProfileState {
     eapolSuccFlood?: pulumi.Input<string>;
     eapolSuccIntv?: pulumi.Input<number>;
     eapolSuccThresh?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     invalidMacOui?: pulumi.Input<string>;
     longDurationAttack?: pulumi.Input<string>;
     longDurationThresh?: pulumi.Input<number>;
@@ -321,6 +325,7 @@ export interface WirelessControllerWidsProfileArgs {
     eapolSuccFlood?: pulumi.Input<string>;
     eapolSuccIntv?: pulumi.Input<number>;
     eapolSuccThresh?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     invalidMacOui?: pulumi.Input<string>;
     longDurationAttack?: pulumi.Input<string>;
     longDurationThresh?: pulumi.Input<number>;

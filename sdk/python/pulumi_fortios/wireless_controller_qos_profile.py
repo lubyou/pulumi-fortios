@@ -30,6 +30,7 @@ class WirelessControllerQosProfileArgs:
                  dscp_wmm_vis: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerQosProfileDscpWmmViArgs']]]] = None,
                  dscp_wmm_vos: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerQosProfileDscpWmmVoArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  uplink: Optional[pulumi.Input[int]] = None,
                  uplink_sta: Optional[pulumi.Input[int]] = None,
@@ -72,6 +73,8 @@ class WirelessControllerQosProfileArgs:
             pulumi.set(__self__, "dscp_wmm_vos", dscp_wmm_vos)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if uplink is not None:
@@ -220,6 +223,15 @@ class WirelessControllerQosProfileArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -338,6 +350,7 @@ class _WirelessControllerQosProfileState:
                  dscp_wmm_vis: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerQosProfileDscpWmmViArgs']]]] = None,
                  dscp_wmm_vos: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerQosProfileDscpWmmVoArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  uplink: Optional[pulumi.Input[int]] = None,
                  uplink_sta: Optional[pulumi.Input[int]] = None,
@@ -380,6 +393,8 @@ class _WirelessControllerQosProfileState:
             pulumi.set(__self__, "dscp_wmm_vos", dscp_wmm_vos)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if uplink is not None:
@@ -528,6 +543,15 @@ class _WirelessControllerQosProfileState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -648,6 +672,7 @@ class WirelessControllerQosProfile(pulumi.CustomResource):
                  dscp_wmm_vis: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerQosProfileDscpWmmViArgs']]]]] = None,
                  dscp_wmm_vos: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerQosProfileDscpWmmVoArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  uplink: Optional[pulumi.Input[int]] = None,
                  uplink_sta: Optional[pulumi.Input[int]] = None,
@@ -702,6 +727,7 @@ class WirelessControllerQosProfile(pulumi.CustomResource):
                  dscp_wmm_vis: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerQosProfileDscpWmmViArgs']]]]] = None,
                  dscp_wmm_vos: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerQosProfileDscpWmmVoArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  uplink: Optional[pulumi.Input[int]] = None,
                  uplink_sta: Optional[pulumi.Input[int]] = None,
@@ -736,6 +762,7 @@ class WirelessControllerQosProfile(pulumi.CustomResource):
             __props__.__dict__["dscp_wmm_vis"] = dscp_wmm_vis
             __props__.__dict__["dscp_wmm_vos"] = dscp_wmm_vos
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["name"] = name
             __props__.__dict__["uplink"] = uplink
             __props__.__dict__["uplink_sta"] = uplink_sta
@@ -771,6 +798,7 @@ class WirelessControllerQosProfile(pulumi.CustomResource):
             dscp_wmm_vis: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerQosProfileDscpWmmViArgs']]]]] = None,
             dscp_wmm_vos: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerQosProfileDscpWmmVoArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             uplink: Optional[pulumi.Input[int]] = None,
             uplink_sta: Optional[pulumi.Input[int]] = None,
@@ -808,6 +836,7 @@ class WirelessControllerQosProfile(pulumi.CustomResource):
         __props__.__dict__["dscp_wmm_vis"] = dscp_wmm_vis
         __props__.__dict__["dscp_wmm_vos"] = dscp_wmm_vos
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["name"] = name
         __props__.__dict__["uplink"] = uplink
         __props__.__dict__["uplink_sta"] = uplink_sta
@@ -890,6 +919,11 @@ class WirelessControllerQosProfile(pulumi.CustomResource):
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

@@ -40,6 +40,7 @@ class SystemIkeArgs:
                  dh_multiprocess: Optional[pulumi.Input[str]] = None,
                  dh_worker_count: Optional[pulumi.Input[int]] = None,
                  embryonic_limit: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SystemIke resource.
@@ -92,6 +93,8 @@ class SystemIkeArgs:
             pulumi.set(__self__, "dh_worker_count", dh_worker_count)
         if embryonic_limit is not None:
             pulumi.set(__self__, "embryonic_limit", embryonic_limit)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -312,6 +315,15 @@ class SystemIkeArgs:
         pulumi.set(self, "embryonic_limit", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter
     def vdomparam(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "vdomparam")
@@ -348,6 +360,7 @@ class _SystemIkeState:
                  dh_multiprocess: Optional[pulumi.Input[str]] = None,
                  dh_worker_count: Optional[pulumi.Input[int]] = None,
                  embryonic_limit: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SystemIke resources.
@@ -400,6 +413,8 @@ class _SystemIkeState:
             pulumi.set(__self__, "dh_worker_count", dh_worker_count)
         if embryonic_limit is not None:
             pulumi.set(__self__, "embryonic_limit", embryonic_limit)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -620,6 +635,15 @@ class _SystemIkeState:
         pulumi.set(self, "embryonic_limit", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter
     def vdomparam(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "vdomparam")
@@ -658,6 +682,7 @@ class SystemIke(pulumi.CustomResource):
                  dh_multiprocess: Optional[pulumi.Input[str]] = None,
                  dh_worker_count: Optional[pulumi.Input[int]] = None,
                  embryonic_limit: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -712,6 +737,7 @@ class SystemIke(pulumi.CustomResource):
                  dh_multiprocess: Optional[pulumi.Input[str]] = None,
                  dh_worker_count: Optional[pulumi.Input[int]] = None,
                  embryonic_limit: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -746,6 +772,7 @@ class SystemIke(pulumi.CustomResource):
             __props__.__dict__["dh_multiprocess"] = dh_multiprocess
             __props__.__dict__["dh_worker_count"] = dh_worker_count
             __props__.__dict__["embryonic_limit"] = embryonic_limit
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["vdomparam"] = vdomparam
         super(SystemIke, __self__).__init__(
             'fortios:index/systemIke:SystemIke',
@@ -781,6 +808,7 @@ class SystemIke(pulumi.CustomResource):
             dh_multiprocess: Optional[pulumi.Input[str]] = None,
             dh_worker_count: Optional[pulumi.Input[int]] = None,
             embryonic_limit: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'SystemIke':
         """
         Get an existing SystemIke resource's state with the given name, id, and optional extra
@@ -818,6 +846,7 @@ class SystemIke(pulumi.CustomResource):
         __props__.__dict__["dh_multiprocess"] = dh_multiprocess
         __props__.__dict__["dh_worker_count"] = dh_worker_count
         __props__.__dict__["embryonic_limit"] = embryonic_limit
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["vdomparam"] = vdomparam
         return SystemIke(resource_name, opts=opts, __props__=__props__)
 
@@ -940,6 +969,11 @@ class SystemIke(pulumi.CustomResource):
     @pulumi.getter(name="embryonicLimit")
     def embryonic_limit(self) -> pulumi.Output[int]:
         return pulumi.get(self, "embryonic_limit")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

@@ -27,6 +27,7 @@ class SystemMobileTunnelArgs:
                  roaming_interface: pulumi.Input[str],
                  tunnel_mode: pulumi.Input[str],
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  home_address: Optional[pulumi.Input[str]] = None,
                  n_mhae_key: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -48,6 +49,8 @@ class SystemMobileTunnelArgs:
         pulumi.set(__self__, "tunnel_mode", tunnel_mode)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if home_address is not None:
             pulumi.set(__self__, "home_address", home_address)
         if n_mhae_key is not None:
@@ -161,6 +164,15 @@ class SystemMobileTunnelArgs:
         pulumi.set(self, "dynamic_sort_subtable", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="homeAddress")
     def home_address(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "home_address")
@@ -219,6 +231,7 @@ class SystemMobileTunnelArgs:
 class _SystemMobileTunnelState:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hash_algorithm: Optional[pulumi.Input[str]] = None,
                  home_address: Optional[pulumi.Input[str]] = None,
                  home_agent: Optional[pulumi.Input[str]] = None,
@@ -240,6 +253,8 @@ class _SystemMobileTunnelState:
         """
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if hash_algorithm is not None:
             pulumi.set(__self__, "hash_algorithm", hash_algorithm)
         if home_address is not None:
@@ -281,6 +296,15 @@ class _SystemMobileTunnelState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="hashAlgorithm")
@@ -433,6 +457,7 @@ class SystemMobileTunnel(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hash_algorithm: Optional[pulumi.Input[str]] = None,
                  home_address: Optional[pulumi.Input[str]] = None,
                  home_agent: Optional[pulumi.Input[str]] = None,
@@ -479,6 +504,7 @@ class SystemMobileTunnel(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hash_algorithm: Optional[pulumi.Input[str]] = None,
                  home_address: Optional[pulumi.Input[str]] = None,
                  home_agent: Optional[pulumi.Input[str]] = None,
@@ -505,6 +531,7 @@ class SystemMobileTunnel(pulumi.CustomResource):
             __props__ = SystemMobileTunnelArgs.__new__(SystemMobileTunnelArgs)
 
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             if hash_algorithm is None and not opts.urn:
                 raise TypeError("Missing required property 'hash_algorithm'")
             __props__.__dict__["hash_algorithm"] = hash_algorithm
@@ -554,6 +581,7 @@ class SystemMobileTunnel(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             hash_algorithm: Optional[pulumi.Input[str]] = None,
             home_address: Optional[pulumi.Input[str]] = None,
             home_agent: Optional[pulumi.Input[str]] = None,
@@ -583,6 +611,7 @@ class SystemMobileTunnel(pulumi.CustomResource):
         __props__ = _SystemMobileTunnelState.__new__(_SystemMobileTunnelState)
 
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["hash_algorithm"] = hash_algorithm
         __props__.__dict__["home_address"] = home_address
         __props__.__dict__["home_agent"] = home_agent
@@ -605,6 +634,11 @@ class SystemMobileTunnel(pulumi.CustomResource):
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="hashAlgorithm")

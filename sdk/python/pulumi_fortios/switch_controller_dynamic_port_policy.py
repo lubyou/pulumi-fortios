@@ -19,6 +19,7 @@ class SwitchControllerDynamicPortPolicyArgs:
                  description: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fortilink: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerDynamicPortPolicyPolicyArgs']]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -31,6 +32,8 @@ class SwitchControllerDynamicPortPolicyArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fortilink is not None:
             pulumi.set(__self__, "fortilink", fortilink)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if policies is not None:
@@ -64,6 +67,15 @@ class SwitchControllerDynamicPortPolicyArgs:
     @fortilink.setter
     def fortilink(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fortilink", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -99,6 +111,7 @@ class _SwitchControllerDynamicPortPolicyState:
                  description: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fortilink: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerDynamicPortPolicyPolicyArgs']]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -111,6 +124,8 @@ class _SwitchControllerDynamicPortPolicyState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fortilink is not None:
             pulumi.set(__self__, "fortilink", fortilink)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if policies is not None:
@@ -144,6 +159,15 @@ class _SwitchControllerDynamicPortPolicyState:
     @fortilink.setter
     def fortilink(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fortilink", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -181,6 +205,7 @@ class SwitchControllerDynamicPortPolicy(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fortilink: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerDynamicPortPolicyPolicyArgs']]]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -216,6 +241,7 @@ class SwitchControllerDynamicPortPolicy(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fortilink: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerDynamicPortPolicyPolicyArgs']]]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -231,6 +257,7 @@ class SwitchControllerDynamicPortPolicy(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["fortilink"] = fortilink
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["name"] = name
             __props__.__dict__["policies"] = policies
             __props__.__dict__["vdomparam"] = vdomparam
@@ -247,6 +274,7 @@ class SwitchControllerDynamicPortPolicy(pulumi.CustomResource):
             description: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             fortilink: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             policies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerDynamicPortPolicyPolicyArgs']]]]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'SwitchControllerDynamicPortPolicy':
@@ -265,6 +293,7 @@ class SwitchControllerDynamicPortPolicy(pulumi.CustomResource):
         __props__.__dict__["description"] = description
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["fortilink"] = fortilink
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["name"] = name
         __props__.__dict__["policies"] = policies
         __props__.__dict__["vdomparam"] = vdomparam
@@ -284,6 +313,11 @@ class SwitchControllerDynamicPortPolicy(pulumi.CustomResource):
     @pulumi.getter
     def fortilink(self) -> pulumi.Output[str]:
         return pulumi.get(self, "fortilink")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

@@ -25,6 +25,7 @@ class UserGroupArgs:
                  expire: Optional[pulumi.Input[int]] = None,
                  expire_type: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_type: Optional[pulumi.Input[str]] = None,
                  guests: Optional[pulumi.Input[Sequence[pulumi.Input['UserGroupGuestArgs']]]] = None,
                  http_digest_realm: Optional[pulumi.Input[str]] = None,
@@ -63,6 +64,8 @@ class UserGroupArgs:
             pulumi.set(__self__, "expire_type", expire_type)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if group_type is not None:
             pulumi.set(__self__, "group_type", group_type)
         if guests is not None:
@@ -178,6 +181,15 @@ class UserGroupArgs:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="groupType")
@@ -345,6 +357,7 @@ class _UserGroupState:
                  expire: Optional[pulumi.Input[int]] = None,
                  expire_type: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_type: Optional[pulumi.Input[str]] = None,
                  guests: Optional[pulumi.Input[Sequence[pulumi.Input['UserGroupGuestArgs']]]] = None,
                  http_digest_realm: Optional[pulumi.Input[str]] = None,
@@ -383,6 +396,8 @@ class _UserGroupState:
             pulumi.set(__self__, "expire_type", expire_type)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if group_type is not None:
             pulumi.set(__self__, "group_type", group_type)
         if guests is not None:
@@ -498,6 +513,15 @@ class _UserGroupState:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="groupType")
@@ -667,6 +691,7 @@ class UserGroup(pulumi.CustomResource):
                  expire: Optional[pulumi.Input[int]] = None,
                  expire_type: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_type: Optional[pulumi.Input[str]] = None,
                  guests: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserGroupGuestArgs']]]]] = None,
                  http_digest_realm: Optional[pulumi.Input[str]] = None,
@@ -722,6 +747,7 @@ class UserGroup(pulumi.CustomResource):
                  expire: Optional[pulumi.Input[int]] = None,
                  expire_type: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_type: Optional[pulumi.Input[str]] = None,
                  guests: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserGroupGuestArgs']]]]] = None,
                  http_digest_realm: Optional[pulumi.Input[str]] = None,
@@ -757,6 +783,7 @@ class UserGroup(pulumi.CustomResource):
             __props__.__dict__["expire"] = expire
             __props__.__dict__["expire_type"] = expire_type
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["group_type"] = group_type
             __props__.__dict__["guests"] = guests
             __props__.__dict__["http_digest_realm"] = http_digest_realm
@@ -793,6 +820,7 @@ class UserGroup(pulumi.CustomResource):
             expire: Optional[pulumi.Input[int]] = None,
             expire_type: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             group_type: Optional[pulumi.Input[str]] = None,
             guests: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserGroupGuestArgs']]]]] = None,
             http_digest_realm: Optional[pulumi.Input[str]] = None,
@@ -831,6 +859,7 @@ class UserGroup(pulumi.CustomResource):
         __props__.__dict__["expire"] = expire
         __props__.__dict__["expire_type"] = expire_type
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["group_type"] = group_type
         __props__.__dict__["guests"] = guests
         __props__.__dict__["http_digest_realm"] = http_digest_realm
@@ -894,6 +923,11 @@ class UserGroup(pulumi.CustomResource):
     @pulumi.getter
     def fosid(self) -> pulumi.Output[int]:
         return pulumi.get(self, "fosid")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="groupType")

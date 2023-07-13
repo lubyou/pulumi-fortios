@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -14,6 +15,7 @@ type WirelessControllerHotspot20AnqpVenueName struct {
 	pulumi.CustomResourceState
 
 	DynamicSortSubtable pulumi.StringPtrOutput                                       `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                                       `pulumi:"getAllTables"`
 	Name                pulumi.StringOutput                                          `pulumi:"name"`
 	ValueLists          WirelessControllerHotspot20AnqpVenueNameValueListArrayOutput `pulumi:"valueLists"`
 	Vdomparam           pulumi.StringPtrOutput                                       `pulumi:"vdomparam"`
@@ -26,7 +28,7 @@ func NewWirelessControllerHotspot20AnqpVenueName(ctx *pulumi.Context,
 		args = &WirelessControllerHotspot20AnqpVenueNameArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WirelessControllerHotspot20AnqpVenueName
 	err := ctx.RegisterResource("fortios:index/wirelessControllerHotspot20AnqpVenueName:WirelessControllerHotspot20AnqpVenueName", name, args, &resource, opts...)
 	if err != nil {
@@ -50,6 +52,7 @@ func GetWirelessControllerHotspot20AnqpVenueName(ctx *pulumi.Context,
 // Input properties used for looking up and filtering WirelessControllerHotspot20AnqpVenueName resources.
 type wirelessControllerHotspot20AnqpVenueNameState struct {
 	DynamicSortSubtable *string                                             `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                                             `pulumi:"getAllTables"`
 	Name                *string                                             `pulumi:"name"`
 	ValueLists          []WirelessControllerHotspot20AnqpVenueNameValueList `pulumi:"valueLists"`
 	Vdomparam           *string                                             `pulumi:"vdomparam"`
@@ -57,6 +60,7 @@ type wirelessControllerHotspot20AnqpVenueNameState struct {
 
 type WirelessControllerHotspot20AnqpVenueNameState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	ValueLists          WirelessControllerHotspot20AnqpVenueNameValueListArrayInput
 	Vdomparam           pulumi.StringPtrInput
@@ -68,6 +72,7 @@ func (WirelessControllerHotspot20AnqpVenueNameState) ElementType() reflect.Type 
 
 type wirelessControllerHotspot20AnqpVenueNameArgs struct {
 	DynamicSortSubtable *string                                             `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                                             `pulumi:"getAllTables"`
 	Name                *string                                             `pulumi:"name"`
 	ValueLists          []WirelessControllerHotspot20AnqpVenueNameValueList `pulumi:"valueLists"`
 	Vdomparam           *string                                             `pulumi:"vdomparam"`
@@ -76,6 +81,7 @@ type wirelessControllerHotspot20AnqpVenueNameArgs struct {
 // The set of arguments for constructing a WirelessControllerHotspot20AnqpVenueName resource.
 type WirelessControllerHotspot20AnqpVenueNameArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	ValueLists          WirelessControllerHotspot20AnqpVenueNameValueListArrayInput
 	Vdomparam           pulumi.StringPtrInput
@@ -170,6 +176,10 @@ func (o WirelessControllerHotspot20AnqpVenueNameOutput) ToWirelessControllerHots
 
 func (o WirelessControllerHotspot20AnqpVenueNameOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WirelessControllerHotspot20AnqpVenueName) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerHotspot20AnqpVenueNameOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20AnqpVenueName) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o WirelessControllerHotspot20AnqpVenueNameOutput) Name() pulumi.StringOutput {

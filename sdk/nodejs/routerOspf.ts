@@ -54,6 +54,7 @@ export class RouterOspf extends pulumi.CustomResource {
     public readonly distributeLists!: pulumi.Output<outputs.RouterOspfDistributeList[] | undefined>;
     public readonly distributeRouteMapIn!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly logNeighbourChanges!: pulumi.Output<string>;
     public readonly neighbors!: pulumi.Output<outputs.RouterOspfNeighbor[] | undefined>;
     public readonly networks!: pulumi.Output<outputs.RouterOspfNetwork[] | undefined>;
@@ -102,6 +103,7 @@ export class RouterOspf extends pulumi.CustomResource {
             resourceInputs["distributeLists"] = state ? state.distributeLists : undefined;
             resourceInputs["distributeRouteMapIn"] = state ? state.distributeRouteMapIn : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["logNeighbourChanges"] = state ? state.logNeighbourChanges : undefined;
             resourceInputs["neighbors"] = state ? state.neighbors : undefined;
             resourceInputs["networks"] = state ? state.networks : undefined;
@@ -141,6 +143,7 @@ export class RouterOspf extends pulumi.CustomResource {
             resourceInputs["distributeLists"] = args ? args.distributeLists : undefined;
             resourceInputs["distributeRouteMapIn"] = args ? args.distributeRouteMapIn : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["logNeighbourChanges"] = args ? args.logNeighbourChanges : undefined;
             resourceInputs["neighbors"] = args ? args.neighbors : undefined;
             resourceInputs["networks"] = args ? args.networks : undefined;
@@ -185,6 +188,7 @@ export interface RouterOspfState {
     distributeLists?: pulumi.Input<pulumi.Input<inputs.RouterOspfDistributeList>[]>;
     distributeRouteMapIn?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     logNeighbourChanges?: pulumi.Input<string>;
     neighbors?: pulumi.Input<pulumi.Input<inputs.RouterOspfNeighbor>[]>;
     networks?: pulumi.Input<pulumi.Input<inputs.RouterOspfNetwork>[]>;
@@ -225,6 +229,7 @@ export interface RouterOspfArgs {
     distributeLists?: pulumi.Input<pulumi.Input<inputs.RouterOspfDistributeList>[]>;
     distributeRouteMapIn?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     logNeighbourChanges?: pulumi.Input<string>;
     neighbors?: pulumi.Input<pulumi.Input<inputs.RouterOspfNeighbor>[]>;
     networks?: pulumi.Input<pulumi.Input<inputs.RouterOspfNetwork>[]>;

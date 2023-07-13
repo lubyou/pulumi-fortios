@@ -47,6 +47,7 @@ export interface GetFirewallAddress6Result {
     readonly macaddrs: outputs.GetFirewallAddress6Macaddr[];
     readonly name: string;
     readonly objId: string;
+    readonly routeTag: number;
     readonly sdn: string;
     readonly sdnTag: string;
     readonly startIp: string;

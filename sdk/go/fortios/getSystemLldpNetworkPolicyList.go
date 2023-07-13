@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func GetSystemLldpNetworkPolicyList(ctx *pulumi.Context, args *GetSystemLldpNetworkPolicyListArgs, opts ...pulumi.InvokeOption) (*GetSystemLldpNetworkPolicyListResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetSystemLldpNetworkPolicyListResult
 	err := ctx.Invoke("fortios:index/getSystemLldpNetworkPolicyList:GetSystemLldpNetworkPolicyList", args, &rv, opts...)
 	if err != nil {

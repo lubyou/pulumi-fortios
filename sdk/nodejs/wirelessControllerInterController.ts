@@ -37,6 +37,7 @@ export class WirelessControllerInterController extends pulumi.CustomResource {
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly fastFailoverMax!: pulumi.Output<number>;
     public readonly fastFailoverWait!: pulumi.Output<number>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly interControllerKey!: pulumi.Output<string | undefined>;
     public readonly interControllerMode!: pulumi.Output<string>;
     public readonly interControllerPeers!: pulumi.Output<outputs.WirelessControllerInterControllerInterControllerPeer[] | undefined>;
@@ -60,6 +61,7 @@ export class WirelessControllerInterController extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fastFailoverMax"] = state ? state.fastFailoverMax : undefined;
             resourceInputs["fastFailoverWait"] = state ? state.fastFailoverWait : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["interControllerKey"] = state ? state.interControllerKey : undefined;
             resourceInputs["interControllerMode"] = state ? state.interControllerMode : undefined;
             resourceInputs["interControllerPeers"] = state ? state.interControllerPeers : undefined;
@@ -71,6 +73,7 @@ export class WirelessControllerInterController extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fastFailoverMax"] = args ? args.fastFailoverMax : undefined;
             resourceInputs["fastFailoverWait"] = args ? args.fastFailoverWait : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["interControllerKey"] = args?.interControllerKey ? pulumi.secret(args.interControllerKey) : undefined;
             resourceInputs["interControllerMode"] = args ? args.interControllerMode : undefined;
             resourceInputs["interControllerPeers"] = args ? args.interControllerPeers : undefined;
@@ -92,6 +95,7 @@ export interface WirelessControllerInterControllerState {
     dynamicSortSubtable?: pulumi.Input<string>;
     fastFailoverMax?: pulumi.Input<number>;
     fastFailoverWait?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     interControllerKey?: pulumi.Input<string>;
     interControllerMode?: pulumi.Input<string>;
     interControllerPeers?: pulumi.Input<pulumi.Input<inputs.WirelessControllerInterControllerInterControllerPeer>[]>;
@@ -107,6 +111,7 @@ export interface WirelessControllerInterControllerArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
     fastFailoverMax?: pulumi.Input<number>;
     fastFailoverWait?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     interControllerKey?: pulumi.Input<string>;
     interControllerMode?: pulumi.Input<string>;
     interControllerPeers?: pulumi.Input<pulumi.Input<inputs.WirelessControllerInterControllerInterControllerPeer>[]>;

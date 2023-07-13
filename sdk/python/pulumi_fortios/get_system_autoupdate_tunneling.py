@@ -109,13 +109,13 @@ def get_system_autoupdate_tunneling(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemAutoupdateTunneling:GetSystemAutoupdateTunneling', __args__, opts=opts, typ=GetSystemAutoupdateTunnelingResult).value
 
     return AwaitableGetSystemAutoupdateTunnelingResult(
-        address=__ret__.address,
-        id=__ret__.id,
-        password=__ret__.password,
-        port=__ret__.port,
-        status=__ret__.status,
-        username=__ret__.username,
-        vdomparam=__ret__.vdomparam)
+        address=pulumi.get(__ret__, 'address'),
+        id=pulumi.get(__ret__, 'id'),
+        password=pulumi.get(__ret__, 'password'),
+        port=pulumi.get(__ret__, 'port'),
+        status=pulumi.get(__ret__, 'status'),
+        username=pulumi.get(__ret__, 'username'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_autoupdate_tunneling)

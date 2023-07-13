@@ -22,6 +22,7 @@ class LogSyslogd4SettingArgs:
                  enc_algorithm: Optional[pulumi.Input[str]] = None,
                  facility: Optional[pulumi.Input[str]] = None,
                  format: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  max_log_rate: Optional[pulumi.Input[int]] = None,
@@ -49,6 +50,8 @@ class LogSyslogd4SettingArgs:
             pulumi.set(__self__, "facility", facility)
         if format is not None:
             pulumi.set(__self__, "format", format)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
         if interface_select_method is not None:
@@ -127,6 +130,15 @@ class LogSyslogd4SettingArgs:
     @format.setter
     def format(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "format", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -246,6 +258,7 @@ class _LogSyslogd4SettingState:
                  enc_algorithm: Optional[pulumi.Input[str]] = None,
                  facility: Optional[pulumi.Input[str]] = None,
                  format: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  max_log_rate: Optional[pulumi.Input[int]] = None,
@@ -273,6 +286,8 @@ class _LogSyslogd4SettingState:
             pulumi.set(__self__, "facility", facility)
         if format is not None:
             pulumi.set(__self__, "format", format)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
         if interface_select_method is not None:
@@ -351,6 +366,15 @@ class _LogSyslogd4SettingState:
     @format.setter
     def format(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "format", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -472,6 +496,7 @@ class LogSyslogd4Setting(pulumi.CustomResource):
                  enc_algorithm: Optional[pulumi.Input[str]] = None,
                  facility: Optional[pulumi.Input[str]] = None,
                  format: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  max_log_rate: Optional[pulumi.Input[int]] = None,
@@ -519,6 +544,7 @@ class LogSyslogd4Setting(pulumi.CustomResource):
                  enc_algorithm: Optional[pulumi.Input[str]] = None,
                  facility: Optional[pulumi.Input[str]] = None,
                  format: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  max_log_rate: Optional[pulumi.Input[int]] = None,
@@ -546,6 +572,7 @@ class LogSyslogd4Setting(pulumi.CustomResource):
             __props__.__dict__["enc_algorithm"] = enc_algorithm
             __props__.__dict__["facility"] = facility
             __props__.__dict__["format"] = format
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["interface"] = interface
             __props__.__dict__["interface_select_method"] = interface_select_method
             __props__.__dict__["max_log_rate"] = max_log_rate
@@ -574,6 +601,7 @@ class LogSyslogd4Setting(pulumi.CustomResource):
             enc_algorithm: Optional[pulumi.Input[str]] = None,
             facility: Optional[pulumi.Input[str]] = None,
             format: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             interface_select_method: Optional[pulumi.Input[str]] = None,
             max_log_rate: Optional[pulumi.Input[int]] = None,
@@ -604,6 +632,7 @@ class LogSyslogd4Setting(pulumi.CustomResource):
         __props__.__dict__["enc_algorithm"] = enc_algorithm
         __props__.__dict__["facility"] = facility
         __props__.__dict__["format"] = format
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["interface"] = interface
         __props__.__dict__["interface_select_method"] = interface_select_method
         __props__.__dict__["max_log_rate"] = max_log_rate
@@ -647,6 +676,11 @@ class LogSyslogd4Setting(pulumi.CustomResource):
     @pulumi.getter
     def format(self) -> pulumi.Output[str]:
         return pulumi.get(self, "format")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

@@ -84,10 +84,10 @@ def get_system_proxy_arp_list(filter: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemProxyArpList:GetSystemProxyArpList', __args__, opts=opts, typ=GetSystemProxyArpListResult).value
 
     return AwaitableGetSystemProxyArpListResult(
-        filter=__ret__.filter,
-        fosidlists=__ret__.fosidlists,
-        id=__ret__.id,
-        vdomparam=__ret__.vdomparam)
+        filter=pulumi.get(__ret__, 'filter'),
+        fosidlists=pulumi.get(__ret__, 'fosidlists'),
+        id=pulumi.get(__ret__, 'id'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_proxy_arp_list)

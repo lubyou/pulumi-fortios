@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -20,6 +21,7 @@ type LogSyslogd3OverrideFilter struct {
 	FilterType           pulumi.StringOutput                           `pulumi:"filterType"`
 	ForwardTraffic       pulumi.StringOutput                           `pulumi:"forwardTraffic"`
 	FreeStyles           LogSyslogd3OverrideFilterFreeStyleArrayOutput `pulumi:"freeStyles"`
+	GetAllTables         pulumi.StringPtrOutput                        `pulumi:"getAllTables"`
 	Gtp                  pulumi.StringOutput                           `pulumi:"gtp"`
 	LocalTraffic         pulumi.StringOutput                           `pulumi:"localTraffic"`
 	MulticastTraffic     pulumi.StringOutput                           `pulumi:"multicastTraffic"`
@@ -40,7 +42,7 @@ func NewLogSyslogd3OverrideFilter(ctx *pulumi.Context,
 		args = &LogSyslogd3OverrideFilterArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource LogSyslogd3OverrideFilter
 	err := ctx.RegisterResource("fortios:index/logSyslogd3OverrideFilter:LogSyslogd3OverrideFilter", name, args, &resource, opts...)
 	if err != nil {
@@ -70,6 +72,7 @@ type logSyslogd3OverrideFilterState struct {
 	FilterType           *string                              `pulumi:"filterType"`
 	ForwardTraffic       *string                              `pulumi:"forwardTraffic"`
 	FreeStyles           []LogSyslogd3OverrideFilterFreeStyle `pulumi:"freeStyles"`
+	GetAllTables         *string                              `pulumi:"getAllTables"`
 	Gtp                  *string                              `pulumi:"gtp"`
 	LocalTraffic         *string                              `pulumi:"localTraffic"`
 	MulticastTraffic     *string                              `pulumi:"multicastTraffic"`
@@ -91,6 +94,7 @@ type LogSyslogd3OverrideFilterState struct {
 	FilterType           pulumi.StringPtrInput
 	ForwardTraffic       pulumi.StringPtrInput
 	FreeStyles           LogSyslogd3OverrideFilterFreeStyleArrayInput
+	GetAllTables         pulumi.StringPtrInput
 	Gtp                  pulumi.StringPtrInput
 	LocalTraffic         pulumi.StringPtrInput
 	MulticastTraffic     pulumi.StringPtrInput
@@ -116,6 +120,7 @@ type logSyslogd3OverrideFilterArgs struct {
 	FilterType           *string                              `pulumi:"filterType"`
 	ForwardTraffic       *string                              `pulumi:"forwardTraffic"`
 	FreeStyles           []LogSyslogd3OverrideFilterFreeStyle `pulumi:"freeStyles"`
+	GetAllTables         *string                              `pulumi:"getAllTables"`
 	Gtp                  *string                              `pulumi:"gtp"`
 	LocalTraffic         *string                              `pulumi:"localTraffic"`
 	MulticastTraffic     *string                              `pulumi:"multicastTraffic"`
@@ -138,6 +143,7 @@ type LogSyslogd3OverrideFilterArgs struct {
 	FilterType           pulumi.StringPtrInput
 	ForwardTraffic       pulumi.StringPtrInput
 	FreeStyles           LogSyslogd3OverrideFilterFreeStyleArrayInput
+	GetAllTables         pulumi.StringPtrInput
 	Gtp                  pulumi.StringPtrInput
 	LocalTraffic         pulumi.StringPtrInput
 	MulticastTraffic     pulumi.StringPtrInput
@@ -264,6 +270,10 @@ func (o LogSyslogd3OverrideFilterOutput) ForwardTraffic() pulumi.StringOutput {
 
 func (o LogSyslogd3OverrideFilterOutput) FreeStyles() LogSyslogd3OverrideFilterFreeStyleArrayOutput {
 	return o.ApplyT(func(v *LogSyslogd3OverrideFilter) LogSyslogd3OverrideFilterFreeStyleArrayOutput { return v.FreeStyles }).(LogSyslogd3OverrideFilterFreeStyleArrayOutput)
+}
+
+func (o LogSyslogd3OverrideFilterOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogSyslogd3OverrideFilter) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o LogSyslogd3OverrideFilterOutput) Gtp() pulumi.StringOutput {

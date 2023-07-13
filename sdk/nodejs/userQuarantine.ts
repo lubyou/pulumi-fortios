@@ -36,6 +36,7 @@ export class UserQuarantine extends pulumi.CustomResource {
 
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly firewallGroups!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly quarantine!: pulumi.Output<string>;
     public readonly targets!: pulumi.Output<outputs.UserQuarantineTarget[] | undefined>;
     public readonly trafficPolicy!: pulumi.Output<string>;
@@ -56,6 +57,7 @@ export class UserQuarantine extends pulumi.CustomResource {
             const state = argsOrState as UserQuarantineState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["firewallGroups"] = state ? state.firewallGroups : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["quarantine"] = state ? state.quarantine : undefined;
             resourceInputs["targets"] = state ? state.targets : undefined;
             resourceInputs["trafficPolicy"] = state ? state.trafficPolicy : undefined;
@@ -64,6 +66,7 @@ export class UserQuarantine extends pulumi.CustomResource {
             const args = argsOrState as UserQuarantineArgs | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["firewallGroups"] = args ? args.firewallGroups : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["quarantine"] = args ? args.quarantine : undefined;
             resourceInputs["targets"] = args ? args.targets : undefined;
             resourceInputs["trafficPolicy"] = args ? args.trafficPolicy : undefined;
@@ -80,6 +83,7 @@ export class UserQuarantine extends pulumi.CustomResource {
 export interface UserQuarantineState {
     dynamicSortSubtable?: pulumi.Input<string>;
     firewallGroups?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     quarantine?: pulumi.Input<string>;
     targets?: pulumi.Input<pulumi.Input<inputs.UserQuarantineTarget>[]>;
     trafficPolicy?: pulumi.Input<string>;
@@ -92,6 +96,7 @@ export interface UserQuarantineState {
 export interface UserQuarantineArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
     firewallGroups?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     quarantine?: pulumi.Input<string>;
     targets?: pulumi.Input<pulumi.Input<inputs.UserQuarantineTarget>[]>;
     trafficPolicy?: pulumi.Input<string>;

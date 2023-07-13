@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -37,7 +38,7 @@ func NewLogFortiguardSetting(ctx *pulumi.Context,
 		args = &LogFortiguardSettingArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource LogFortiguardSetting
 	err := ctx.RegisterResource("fortios:index/logFortiguardSetting:LogFortiguardSetting", name, args, &resource, opts...)
 	if err != nil {

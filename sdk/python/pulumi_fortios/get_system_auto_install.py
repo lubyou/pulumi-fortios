@@ -100,12 +100,12 @@ def get_system_auto_install(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemAutoInstall:GetSystemAutoInstall', __args__, opts=opts, typ=GetSystemAutoInstallResult).value
 
     return AwaitableGetSystemAutoInstallResult(
-        auto_install_config=__ret__.auto_install_config,
-        auto_install_image=__ret__.auto_install_image,
-        default_config_file=__ret__.default_config_file,
-        default_image_file=__ret__.default_image_file,
-        id=__ret__.id,
-        vdomparam=__ret__.vdomparam)
+        auto_install_config=pulumi.get(__ret__, 'auto_install_config'),
+        auto_install_image=pulumi.get(__ret__, 'auto_install_image'),
+        default_config_file=pulumi.get(__ret__, 'default_config_file'),
+        default_image_file=pulumi.get(__ret__, 'default_image_file'),
+        id=pulumi.get(__ret__, 'id'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_auto_install)

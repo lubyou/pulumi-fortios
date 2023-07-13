@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemAccprofile(ctx *pulumi.Context, args *LookupSystemAccprofileArgs, opts ...pulumi.InvokeOption) (*LookupSystemAccprofileResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemAccprofileResult
 	err := ctx.Invoke("fortios:index/getSystemAccprofile:GetSystemAccprofile", args, &rv, opts...)
 	if err != nil {

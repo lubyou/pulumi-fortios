@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -20,6 +21,7 @@ type LogWebtrendsFilter struct {
 	FilterType           pulumi.StringOutput                    `pulumi:"filterType"`
 	ForwardTraffic       pulumi.StringOutput                    `pulumi:"forwardTraffic"`
 	FreeStyles           LogWebtrendsFilterFreeStyleArrayOutput `pulumi:"freeStyles"`
+	GetAllTables         pulumi.StringPtrOutput                 `pulumi:"getAllTables"`
 	Gtp                  pulumi.StringOutput                    `pulumi:"gtp"`
 	LocalTraffic         pulumi.StringOutput                    `pulumi:"localTraffic"`
 	MulticastTraffic     pulumi.StringOutput                    `pulumi:"multicastTraffic"`
@@ -40,7 +42,7 @@ func NewLogWebtrendsFilter(ctx *pulumi.Context,
 		args = &LogWebtrendsFilterArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource LogWebtrendsFilter
 	err := ctx.RegisterResource("fortios:index/logWebtrendsFilter:LogWebtrendsFilter", name, args, &resource, opts...)
 	if err != nil {
@@ -70,6 +72,7 @@ type logWebtrendsFilterState struct {
 	FilterType           *string                       `pulumi:"filterType"`
 	ForwardTraffic       *string                       `pulumi:"forwardTraffic"`
 	FreeStyles           []LogWebtrendsFilterFreeStyle `pulumi:"freeStyles"`
+	GetAllTables         *string                       `pulumi:"getAllTables"`
 	Gtp                  *string                       `pulumi:"gtp"`
 	LocalTraffic         *string                       `pulumi:"localTraffic"`
 	MulticastTraffic     *string                       `pulumi:"multicastTraffic"`
@@ -91,6 +94,7 @@ type LogWebtrendsFilterState struct {
 	FilterType           pulumi.StringPtrInput
 	ForwardTraffic       pulumi.StringPtrInput
 	FreeStyles           LogWebtrendsFilterFreeStyleArrayInput
+	GetAllTables         pulumi.StringPtrInput
 	Gtp                  pulumi.StringPtrInput
 	LocalTraffic         pulumi.StringPtrInput
 	MulticastTraffic     pulumi.StringPtrInput
@@ -116,6 +120,7 @@ type logWebtrendsFilterArgs struct {
 	FilterType           *string                       `pulumi:"filterType"`
 	ForwardTraffic       *string                       `pulumi:"forwardTraffic"`
 	FreeStyles           []LogWebtrendsFilterFreeStyle `pulumi:"freeStyles"`
+	GetAllTables         *string                       `pulumi:"getAllTables"`
 	Gtp                  *string                       `pulumi:"gtp"`
 	LocalTraffic         *string                       `pulumi:"localTraffic"`
 	MulticastTraffic     *string                       `pulumi:"multicastTraffic"`
@@ -138,6 +143,7 @@ type LogWebtrendsFilterArgs struct {
 	FilterType           pulumi.StringPtrInput
 	ForwardTraffic       pulumi.StringPtrInput
 	FreeStyles           LogWebtrendsFilterFreeStyleArrayInput
+	GetAllTables         pulumi.StringPtrInput
 	Gtp                  pulumi.StringPtrInput
 	LocalTraffic         pulumi.StringPtrInput
 	MulticastTraffic     pulumi.StringPtrInput
@@ -264,6 +270,10 @@ func (o LogWebtrendsFilterOutput) ForwardTraffic() pulumi.StringOutput {
 
 func (o LogWebtrendsFilterOutput) FreeStyles() LogWebtrendsFilterFreeStyleArrayOutput {
 	return o.ApplyT(func(v *LogWebtrendsFilter) LogWebtrendsFilterFreeStyleArrayOutput { return v.FreeStyles }).(LogWebtrendsFilterFreeStyleArrayOutput)
+}
+
+func (o LogWebtrendsFilterOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogWebtrendsFilter) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o LogWebtrendsFilterOutput) Gtp() pulumi.StringOutput {

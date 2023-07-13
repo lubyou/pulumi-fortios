@@ -15,9 +15,11 @@ __all__ = ['WebfilterFortiguardArgs', 'WebfilterFortiguard']
 class WebfilterFortiguardArgs:
     def __init__(__self__, *,
                  cache_mem_percent: Optional[pulumi.Input[int]] = None,
+                 cache_mem_permille: Optional[pulumi.Input[int]] = None,
                  cache_mode: Optional[pulumi.Input[str]] = None,
                  cache_prefix_match: Optional[pulumi.Input[str]] = None,
                  close_ports: Optional[pulumi.Input[str]] = None,
+                 embed_image: Optional[pulumi.Input[str]] = None,
                  ovrd_auth_https: Optional[pulumi.Input[str]] = None,
                  ovrd_auth_port: Optional[pulumi.Input[int]] = None,
                  ovrd_auth_port_http: Optional[pulumi.Input[int]] = None,
@@ -32,12 +34,16 @@ class WebfilterFortiguardArgs:
         """
         if cache_mem_percent is not None:
             pulumi.set(__self__, "cache_mem_percent", cache_mem_percent)
+        if cache_mem_permille is not None:
+            pulumi.set(__self__, "cache_mem_permille", cache_mem_permille)
         if cache_mode is not None:
             pulumi.set(__self__, "cache_mode", cache_mode)
         if cache_prefix_match is not None:
             pulumi.set(__self__, "cache_prefix_match", cache_prefix_match)
         if close_ports is not None:
             pulumi.set(__self__, "close_ports", close_ports)
+        if embed_image is not None:
+            pulumi.set(__self__, "embed_image", embed_image)
         if ovrd_auth_https is not None:
             pulumi.set(__self__, "ovrd_auth_https", ovrd_auth_https)
         if ovrd_auth_port is not None:
@@ -67,6 +73,15 @@ class WebfilterFortiguardArgs:
         pulumi.set(self, "cache_mem_percent", value)
 
     @property
+    @pulumi.getter(name="cacheMemPermille")
+    def cache_mem_permille(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "cache_mem_permille")
+
+    @cache_mem_permille.setter
+    def cache_mem_permille(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "cache_mem_permille", value)
+
+    @property
     @pulumi.getter(name="cacheMode")
     def cache_mode(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "cache_mode")
@@ -92,6 +107,15 @@ class WebfilterFortiguardArgs:
     @close_ports.setter
     def close_ports(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "close_ports", value)
+
+    @property
+    @pulumi.getter(name="embedImage")
+    def embed_image(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "embed_image")
+
+    @embed_image.setter
+    def embed_image(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "embed_image", value)
 
     @property
     @pulumi.getter(name="ovrdAuthHttps")
@@ -179,9 +203,11 @@ class WebfilterFortiguardArgs:
 class _WebfilterFortiguardState:
     def __init__(__self__, *,
                  cache_mem_percent: Optional[pulumi.Input[int]] = None,
+                 cache_mem_permille: Optional[pulumi.Input[int]] = None,
                  cache_mode: Optional[pulumi.Input[str]] = None,
                  cache_prefix_match: Optional[pulumi.Input[str]] = None,
                  close_ports: Optional[pulumi.Input[str]] = None,
+                 embed_image: Optional[pulumi.Input[str]] = None,
                  ovrd_auth_https: Optional[pulumi.Input[str]] = None,
                  ovrd_auth_port: Optional[pulumi.Input[int]] = None,
                  ovrd_auth_port_http: Optional[pulumi.Input[int]] = None,
@@ -196,12 +222,16 @@ class _WebfilterFortiguardState:
         """
         if cache_mem_percent is not None:
             pulumi.set(__self__, "cache_mem_percent", cache_mem_percent)
+        if cache_mem_permille is not None:
+            pulumi.set(__self__, "cache_mem_permille", cache_mem_permille)
         if cache_mode is not None:
             pulumi.set(__self__, "cache_mode", cache_mode)
         if cache_prefix_match is not None:
             pulumi.set(__self__, "cache_prefix_match", cache_prefix_match)
         if close_ports is not None:
             pulumi.set(__self__, "close_ports", close_ports)
+        if embed_image is not None:
+            pulumi.set(__self__, "embed_image", embed_image)
         if ovrd_auth_https is not None:
             pulumi.set(__self__, "ovrd_auth_https", ovrd_auth_https)
         if ovrd_auth_port is not None:
@@ -231,6 +261,15 @@ class _WebfilterFortiguardState:
         pulumi.set(self, "cache_mem_percent", value)
 
     @property
+    @pulumi.getter(name="cacheMemPermille")
+    def cache_mem_permille(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "cache_mem_permille")
+
+    @cache_mem_permille.setter
+    def cache_mem_permille(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "cache_mem_permille", value)
+
+    @property
     @pulumi.getter(name="cacheMode")
     def cache_mode(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "cache_mode")
@@ -256,6 +295,15 @@ class _WebfilterFortiguardState:
     @close_ports.setter
     def close_ports(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "close_ports", value)
+
+    @property
+    @pulumi.getter(name="embedImage")
+    def embed_image(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "embed_image")
+
+    @embed_image.setter
+    def embed_image(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "embed_image", value)
 
     @property
     @pulumi.getter(name="ovrdAuthHttps")
@@ -345,9 +393,11 @@ class WebfilterFortiguard(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cache_mem_percent: Optional[pulumi.Input[int]] = None,
+                 cache_mem_permille: Optional[pulumi.Input[int]] = None,
                  cache_mode: Optional[pulumi.Input[str]] = None,
                  cache_prefix_match: Optional[pulumi.Input[str]] = None,
                  close_ports: Optional[pulumi.Input[str]] = None,
+                 embed_image: Optional[pulumi.Input[str]] = None,
                  ovrd_auth_https: Optional[pulumi.Input[str]] = None,
                  ovrd_auth_port: Optional[pulumi.Input[int]] = None,
                  ovrd_auth_port_http: Optional[pulumi.Input[int]] = None,
@@ -387,9 +437,11 @@ class WebfilterFortiguard(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cache_mem_percent: Optional[pulumi.Input[int]] = None,
+                 cache_mem_permille: Optional[pulumi.Input[int]] = None,
                  cache_mode: Optional[pulumi.Input[str]] = None,
                  cache_prefix_match: Optional[pulumi.Input[str]] = None,
                  close_ports: Optional[pulumi.Input[str]] = None,
+                 embed_image: Optional[pulumi.Input[str]] = None,
                  ovrd_auth_https: Optional[pulumi.Input[str]] = None,
                  ovrd_auth_port: Optional[pulumi.Input[int]] = None,
                  ovrd_auth_port_http: Optional[pulumi.Input[int]] = None,
@@ -409,9 +461,11 @@ class WebfilterFortiguard(pulumi.CustomResource):
             __props__ = WebfilterFortiguardArgs.__new__(WebfilterFortiguardArgs)
 
             __props__.__dict__["cache_mem_percent"] = cache_mem_percent
+            __props__.__dict__["cache_mem_permille"] = cache_mem_permille
             __props__.__dict__["cache_mode"] = cache_mode
             __props__.__dict__["cache_prefix_match"] = cache_prefix_match
             __props__.__dict__["close_ports"] = close_ports
+            __props__.__dict__["embed_image"] = embed_image
             __props__.__dict__["ovrd_auth_https"] = ovrd_auth_https
             __props__.__dict__["ovrd_auth_port"] = ovrd_auth_port
             __props__.__dict__["ovrd_auth_port_http"] = ovrd_auth_port_http
@@ -432,9 +486,11 @@ class WebfilterFortiguard(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             cache_mem_percent: Optional[pulumi.Input[int]] = None,
+            cache_mem_permille: Optional[pulumi.Input[int]] = None,
             cache_mode: Optional[pulumi.Input[str]] = None,
             cache_prefix_match: Optional[pulumi.Input[str]] = None,
             close_ports: Optional[pulumi.Input[str]] = None,
+            embed_image: Optional[pulumi.Input[str]] = None,
             ovrd_auth_https: Optional[pulumi.Input[str]] = None,
             ovrd_auth_port: Optional[pulumi.Input[int]] = None,
             ovrd_auth_port_http: Optional[pulumi.Input[int]] = None,
@@ -457,9 +513,11 @@ class WebfilterFortiguard(pulumi.CustomResource):
         __props__ = _WebfilterFortiguardState.__new__(_WebfilterFortiguardState)
 
         __props__.__dict__["cache_mem_percent"] = cache_mem_percent
+        __props__.__dict__["cache_mem_permille"] = cache_mem_permille
         __props__.__dict__["cache_mode"] = cache_mode
         __props__.__dict__["cache_prefix_match"] = cache_prefix_match
         __props__.__dict__["close_ports"] = close_ports
+        __props__.__dict__["embed_image"] = embed_image
         __props__.__dict__["ovrd_auth_https"] = ovrd_auth_https
         __props__.__dict__["ovrd_auth_port"] = ovrd_auth_port
         __props__.__dict__["ovrd_auth_port_http"] = ovrd_auth_port_http
@@ -477,6 +535,11 @@ class WebfilterFortiguard(pulumi.CustomResource):
         return pulumi.get(self, "cache_mem_percent")
 
     @property
+    @pulumi.getter(name="cacheMemPermille")
+    def cache_mem_permille(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "cache_mem_permille")
+
+    @property
     @pulumi.getter(name="cacheMode")
     def cache_mode(self) -> pulumi.Output[str]:
         return pulumi.get(self, "cache_mode")
@@ -490,6 +553,11 @@ class WebfilterFortiguard(pulumi.CustomResource):
     @pulumi.getter(name="closePorts")
     def close_ports(self) -> pulumi.Output[str]:
         return pulumi.get(self, "close_ports")
+
+    @property
+    @pulumi.getter(name="embedImage")
+    def embed_image(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "embed_image")
 
     @property
     @pulumi.getter(name="ovrdAuthHttps")

@@ -112,13 +112,13 @@ def get_system_zone(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemZone:GetSystemZone', __args__, opts=opts, typ=GetSystemZoneResult).value
 
     return AwaitableGetSystemZoneResult(
-        description=__ret__.description,
-        id=__ret__.id,
-        interfaces=__ret__.interfaces,
-        intrazone=__ret__.intrazone,
-        name=__ret__.name,
-        taggings=__ret__.taggings,
-        vdomparam=__ret__.vdomparam)
+        description=pulumi.get(__ret__, 'description'),
+        id=pulumi.get(__ret__, 'id'),
+        interfaces=pulumi.get(__ret__, 'interfaces'),
+        intrazone=pulumi.get(__ret__, 'intrazone'),
+        name=pulumi.get(__ret__, 'name'),
+        taggings=pulumi.get(__ret__, 'taggings'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_zone)

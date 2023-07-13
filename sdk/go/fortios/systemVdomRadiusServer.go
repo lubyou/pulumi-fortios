@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -30,7 +31,7 @@ func NewSystemVdomRadiusServer(ctx *pulumi.Context,
 	if args.RadiusServerVdom == nil {
 		return nil, errors.New("invalid value for required argument 'RadiusServerVdom'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemVdomRadiusServer
 	err := ctx.RegisterResource("fortios:index/systemVdomRadiusServer:SystemVdomRadiusServer", name, args, &resource, opts...)
 	if err != nil {

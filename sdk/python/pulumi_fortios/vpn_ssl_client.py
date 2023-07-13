@@ -19,6 +19,8 @@ class VpnSslClientArgs:
                  comment: Optional[pulumi.Input[str]] = None,
                  distance: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
+                 ipv4_subnets: Optional[pulumi.Input[str]] = None,
+                 ipv6_subnets: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  peer: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
@@ -43,6 +45,10 @@ class VpnSslClientArgs:
             pulumi.set(__self__, "distance", distance)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
+        if ipv4_subnets is not None:
+            pulumi.set(__self__, "ipv4_subnets", ipv4_subnets)
+        if ipv6_subnets is not None:
+            pulumi.set(__self__, "ipv6_subnets", ipv6_subnets)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if peer is not None:
@@ -110,6 +116,24 @@ class VpnSslClientArgs:
     @interface.setter
     def interface(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "interface", value)
+
+    @property
+    @pulumi.getter(name="ipv4Subnets")
+    def ipv4_subnets(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ipv4_subnets")
+
+    @ipv4_subnets.setter
+    def ipv4_subnets(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipv4_subnets", value)
+
+    @property
+    @pulumi.getter(name="ipv6Subnets")
+    def ipv6_subnets(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ipv6_subnets")
+
+    @ipv6_subnets.setter
+    def ipv6_subnets(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipv6_subnets", value)
 
     @property
     @pulumi.getter
@@ -219,6 +243,8 @@ class _VpnSslClientState:
                  comment: Optional[pulumi.Input[str]] = None,
                  distance: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
+                 ipv4_subnets: Optional[pulumi.Input[str]] = None,
+                 ipv6_subnets: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  peer: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
@@ -243,6 +269,10 @@ class _VpnSslClientState:
             pulumi.set(__self__, "distance", distance)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
+        if ipv4_subnets is not None:
+            pulumi.set(__self__, "ipv4_subnets", ipv4_subnets)
+        if ipv6_subnets is not None:
+            pulumi.set(__self__, "ipv6_subnets", ipv6_subnets)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if peer is not None:
@@ -310,6 +340,24 @@ class _VpnSslClientState:
     @interface.setter
     def interface(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "interface", value)
+
+    @property
+    @pulumi.getter(name="ipv4Subnets")
+    def ipv4_subnets(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ipv4_subnets")
+
+    @ipv4_subnets.setter
+    def ipv4_subnets(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipv4_subnets", value)
+
+    @property
+    @pulumi.getter(name="ipv6Subnets")
+    def ipv6_subnets(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ipv6_subnets")
+
+    @ipv6_subnets.setter
+    def ipv6_subnets(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipv6_subnets", value)
 
     @property
     @pulumi.getter
@@ -421,6 +469,8 @@ class VpnSslClient(pulumi.CustomResource):
                  comment: Optional[pulumi.Input[str]] = None,
                  distance: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
+                 ipv4_subnets: Optional[pulumi.Input[str]] = None,
+                 ipv6_subnets: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  peer: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
@@ -466,6 +516,8 @@ class VpnSslClient(pulumi.CustomResource):
                  comment: Optional[pulumi.Input[str]] = None,
                  distance: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
+                 ipv4_subnets: Optional[pulumi.Input[str]] = None,
+                 ipv6_subnets: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  peer: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
@@ -491,6 +543,8 @@ class VpnSslClient(pulumi.CustomResource):
             __props__.__dict__["comment"] = comment
             __props__.__dict__["distance"] = distance
             __props__.__dict__["interface"] = interface
+            __props__.__dict__["ipv4_subnets"] = ipv4_subnets
+            __props__.__dict__["ipv6_subnets"] = ipv6_subnets
             __props__.__dict__["name"] = name
             __props__.__dict__["peer"] = peer
             __props__.__dict__["port"] = port
@@ -517,6 +571,8 @@ class VpnSslClient(pulumi.CustomResource):
             comment: Optional[pulumi.Input[str]] = None,
             distance: Optional[pulumi.Input[int]] = None,
             interface: Optional[pulumi.Input[str]] = None,
+            ipv4_subnets: Optional[pulumi.Input[str]] = None,
+            ipv6_subnets: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             peer: Optional[pulumi.Input[str]] = None,
             port: Optional[pulumi.Input[int]] = None,
@@ -545,6 +601,8 @@ class VpnSslClient(pulumi.CustomResource):
         __props__.__dict__["comment"] = comment
         __props__.__dict__["distance"] = distance
         __props__.__dict__["interface"] = interface
+        __props__.__dict__["ipv4_subnets"] = ipv4_subnets
+        __props__.__dict__["ipv6_subnets"] = ipv6_subnets
         __props__.__dict__["name"] = name
         __props__.__dict__["peer"] = peer
         __props__.__dict__["port"] = port
@@ -582,6 +640,16 @@ class VpnSslClient(pulumi.CustomResource):
     @pulumi.getter
     def interface(self) -> pulumi.Output[str]:
         return pulumi.get(self, "interface")
+
+    @property
+    @pulumi.getter(name="ipv4Subnets")
+    def ipv4_subnets(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "ipv4_subnets")
+
+    @property
+    @pulumi.getter(name="ipv6Subnets")
+    def ipv6_subnets(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "ipv6_subnets")
 
     @property
     @pulumi.getter

@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupFirewallProxyPolicy(ctx *pulumi.Context, args *LookupFirewallProxyPolicyArgs, opts ...pulumi.InvokeOption) (*LookupFirewallProxyPolicyResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallProxyPolicyResult
 	err := ctx.Invoke("fortios:index/getFirewallProxyPolicy:GetFirewallProxyPolicy", args, &rv, opts...)
 	if err != nil {
@@ -52,57 +53,64 @@ type LookupFirewallProxyPolicyResult struct {
 	HttpTunnelAuth         string                               `pulumi:"httpTunnelAuth"`
 	IcapProfile            string                               `pulumi:"icapProfile"`
 	// The provider-assigned unique ID for this managed resource.
-	Id                          string                                             `pulumi:"id"`
-	InternetService             string                                             `pulumi:"internetService"`
-	InternetServiceCustomGroups []GetFirewallProxyPolicyInternetServiceCustomGroup `pulumi:"internetServiceCustomGroups"`
-	InternetServiceCustoms      []GetFirewallProxyPolicyInternetServiceCustom      `pulumi:"internetServiceCustoms"`
-	InternetServiceGroups       []GetFirewallProxyPolicyInternetServiceGroup       `pulumi:"internetServiceGroups"`
-	InternetServiceIds          []GetFirewallProxyPolicyInternetServiceId          `pulumi:"internetServiceIds"`
-	InternetServiceNames        []GetFirewallProxyPolicyInternetServiceName        `pulumi:"internetServiceNames"`
-	InternetServiceNegate       string                                             `pulumi:"internetServiceNegate"`
-	IpsSensor                   string                                             `pulumi:"ipsSensor"`
-	Label                       string                                             `pulumi:"label"`
-	Logtraffic                  string                                             `pulumi:"logtraffic"`
-	LogtrafficStart             string                                             `pulumi:"logtrafficStart"`
-	Name                        string                                             `pulumi:"name"`
-	Policyid                    int                                                `pulumi:"policyid"`
-	Poolnames                   []GetFirewallProxyPolicyPoolname                   `pulumi:"poolnames"`
-	ProfileGroup                string                                             `pulumi:"profileGroup"`
-	ProfileProtocolOptions      string                                             `pulumi:"profileProtocolOptions"`
-	ProfileType                 string                                             `pulumi:"profileType"`
-	Proxy                       string                                             `pulumi:"proxy"`
-	RedirectUrl                 string                                             `pulumi:"redirectUrl"`
-	ReplacemsgOverrideGroup     string                                             `pulumi:"replacemsgOverrideGroup"`
-	ScanBotnetConnections       string                                             `pulumi:"scanBotnetConnections"`
-	Schedule                    string                                             `pulumi:"schedule"`
-	SctpFilterProfile           string                                             `pulumi:"sctpFilterProfile"`
-	ServiceNegate               string                                             `pulumi:"serviceNegate"`
-	Services                    []GetFirewallProxyPolicyService                    `pulumi:"services"`
-	SessionTtl                  int                                                `pulumi:"sessionTtl"`
-	SpamfilterProfile           string                                             `pulumi:"spamfilterProfile"`
-	Srcaddr6s                   []GetFirewallProxyPolicySrcaddr6                   `pulumi:"srcaddr6s"`
-	SrcaddrNegate               string                                             `pulumi:"srcaddrNegate"`
-	Srcaddrs                    []GetFirewallProxyPolicySrcaddr                    `pulumi:"srcaddrs"`
-	Srcintfs                    []GetFirewallProxyPolicySrcintf                    `pulumi:"srcintfs"`
-	SshFilterProfile            string                                             `pulumi:"sshFilterProfile"`
-	SshPolicyRedirect           string                                             `pulumi:"sshPolicyRedirect"`
-	SslSshProfile               string                                             `pulumi:"sslSshProfile"`
-	Status                      string                                             `pulumi:"status"`
-	Transparent                 string                                             `pulumi:"transparent"`
-	Users                       []GetFirewallProxyPolicyUser                       `pulumi:"users"`
-	UtmStatus                   string                                             `pulumi:"utmStatus"`
-	Uuid                        string                                             `pulumi:"uuid"`
-	Vdomparam                   *string                                            `pulumi:"vdomparam"`
-	VideofilterProfile          string                                             `pulumi:"videofilterProfile"`
-	VoipProfile                 string                                             `pulumi:"voipProfile"`
-	WafProfile                  string                                             `pulumi:"wafProfile"`
-	Webcache                    string                                             `pulumi:"webcache"`
-	WebcacheHttps               string                                             `pulumi:"webcacheHttps"`
-	WebfilterProfile            string                                             `pulumi:"webfilterProfile"`
-	WebproxyForwardServer       string                                             `pulumi:"webproxyForwardServer"`
-	WebproxyProfile             string                                             `pulumi:"webproxyProfile"`
-	ZtnaEmsTags                 []GetFirewallProxyPolicyZtnaEmsTag                 `pulumi:"ztnaEmsTags"`
-	ZtnaTagsMatchLogic          string                                             `pulumi:"ztnaTagsMatchLogic"`
+	Id                           string                                              `pulumi:"id"`
+	InternetService              string                                              `pulumi:"internetService"`
+	InternetService6             string                                              `pulumi:"internetService6"`
+	InternetService6CustomGroups []GetFirewallProxyPolicyInternetService6CustomGroup `pulumi:"internetService6CustomGroups"`
+	InternetService6Customs      []GetFirewallProxyPolicyInternetService6Custom      `pulumi:"internetService6Customs"`
+	InternetService6Groups       []GetFirewallProxyPolicyInternetService6Group       `pulumi:"internetService6Groups"`
+	InternetService6Names        []GetFirewallProxyPolicyInternetService6Name        `pulumi:"internetService6Names"`
+	InternetService6Negate       string                                              `pulumi:"internetService6Negate"`
+	InternetServiceCustomGroups  []GetFirewallProxyPolicyInternetServiceCustomGroup  `pulumi:"internetServiceCustomGroups"`
+	InternetServiceCustoms       []GetFirewallProxyPolicyInternetServiceCustom       `pulumi:"internetServiceCustoms"`
+	InternetServiceGroups        []GetFirewallProxyPolicyInternetServiceGroup        `pulumi:"internetServiceGroups"`
+	InternetServiceIds           []GetFirewallProxyPolicyInternetServiceId           `pulumi:"internetServiceIds"`
+	InternetServiceNames         []GetFirewallProxyPolicyInternetServiceName         `pulumi:"internetServiceNames"`
+	InternetServiceNegate        string                                              `pulumi:"internetServiceNegate"`
+	IpsSensor                    string                                              `pulumi:"ipsSensor"`
+	IpsVoipFilter                string                                              `pulumi:"ipsVoipFilter"`
+	Label                        string                                              `pulumi:"label"`
+	Logtraffic                   string                                              `pulumi:"logtraffic"`
+	LogtrafficStart              string                                              `pulumi:"logtrafficStart"`
+	Name                         string                                              `pulumi:"name"`
+	Policyid                     int                                                 `pulumi:"policyid"`
+	Poolnames                    []GetFirewallProxyPolicyPoolname                    `pulumi:"poolnames"`
+	ProfileGroup                 string                                              `pulumi:"profileGroup"`
+	ProfileProtocolOptions       string                                              `pulumi:"profileProtocolOptions"`
+	ProfileType                  string                                              `pulumi:"profileType"`
+	Proxy                        string                                              `pulumi:"proxy"`
+	RedirectUrl                  string                                              `pulumi:"redirectUrl"`
+	ReplacemsgOverrideGroup      string                                              `pulumi:"replacemsgOverrideGroup"`
+	ScanBotnetConnections        string                                              `pulumi:"scanBotnetConnections"`
+	Schedule                     string                                              `pulumi:"schedule"`
+	SctpFilterProfile            string                                              `pulumi:"sctpFilterProfile"`
+	ServiceNegate                string                                              `pulumi:"serviceNegate"`
+	Services                     []GetFirewallProxyPolicyService                     `pulumi:"services"`
+	SessionTtl                   int                                                 `pulumi:"sessionTtl"`
+	SpamfilterProfile            string                                              `pulumi:"spamfilterProfile"`
+	Srcaddr6s                    []GetFirewallProxyPolicySrcaddr6                    `pulumi:"srcaddr6s"`
+	SrcaddrNegate                string                                              `pulumi:"srcaddrNegate"`
+	Srcaddrs                     []GetFirewallProxyPolicySrcaddr                     `pulumi:"srcaddrs"`
+	Srcintfs                     []GetFirewallProxyPolicySrcintf                     `pulumi:"srcintfs"`
+	SshFilterProfile             string                                              `pulumi:"sshFilterProfile"`
+	SshPolicyRedirect            string                                              `pulumi:"sshPolicyRedirect"`
+	SslSshProfile                string                                              `pulumi:"sslSshProfile"`
+	Status                       string                                              `pulumi:"status"`
+	Transparent                  string                                              `pulumi:"transparent"`
+	Users                        []GetFirewallProxyPolicyUser                        `pulumi:"users"`
+	UtmStatus                    string                                              `pulumi:"utmStatus"`
+	Uuid                         string                                              `pulumi:"uuid"`
+	Vdomparam                    *string                                             `pulumi:"vdomparam"`
+	VideofilterProfile           string                                              `pulumi:"videofilterProfile"`
+	VoipProfile                  string                                              `pulumi:"voipProfile"`
+	WafProfile                   string                                              `pulumi:"wafProfile"`
+	Webcache                     string                                              `pulumi:"webcache"`
+	WebcacheHttps                string                                              `pulumi:"webcacheHttps"`
+	WebfilterProfile             string                                              `pulumi:"webfilterProfile"`
+	WebproxyForwardServer        string                                              `pulumi:"webproxyForwardServer"`
+	WebproxyProfile              string                                              `pulumi:"webproxyProfile"`
+	ZtnaEmsTags                  []GetFirewallProxyPolicyZtnaEmsTag                  `pulumi:"ztnaEmsTags"`
+	ZtnaTagsMatchLogic           string                                              `pulumi:"ztnaTagsMatchLogic"`
 }
 
 func LookupFirewallProxyPolicyOutput(ctx *pulumi.Context, args LookupFirewallProxyPolicyOutputArgs, opts ...pulumi.InvokeOption) LookupFirewallProxyPolicyResultOutput {
@@ -244,6 +252,38 @@ func (o LookupFirewallProxyPolicyResultOutput) InternetService() pulumi.StringOu
 	return o.ApplyT(func(v LookupFirewallProxyPolicyResult) string { return v.InternetService }).(pulumi.StringOutput)
 }
 
+func (o LookupFirewallProxyPolicyResultOutput) InternetService6() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallProxyPolicyResult) string { return v.InternetService6 }).(pulumi.StringOutput)
+}
+
+func (o LookupFirewallProxyPolicyResultOutput) InternetService6CustomGroups() GetFirewallProxyPolicyInternetService6CustomGroupArrayOutput {
+	return o.ApplyT(func(v LookupFirewallProxyPolicyResult) []GetFirewallProxyPolicyInternetService6CustomGroup {
+		return v.InternetService6CustomGroups
+	}).(GetFirewallProxyPolicyInternetService6CustomGroupArrayOutput)
+}
+
+func (o LookupFirewallProxyPolicyResultOutput) InternetService6Customs() GetFirewallProxyPolicyInternetService6CustomArrayOutput {
+	return o.ApplyT(func(v LookupFirewallProxyPolicyResult) []GetFirewallProxyPolicyInternetService6Custom {
+		return v.InternetService6Customs
+	}).(GetFirewallProxyPolicyInternetService6CustomArrayOutput)
+}
+
+func (o LookupFirewallProxyPolicyResultOutput) InternetService6Groups() GetFirewallProxyPolicyInternetService6GroupArrayOutput {
+	return o.ApplyT(func(v LookupFirewallProxyPolicyResult) []GetFirewallProxyPolicyInternetService6Group {
+		return v.InternetService6Groups
+	}).(GetFirewallProxyPolicyInternetService6GroupArrayOutput)
+}
+
+func (o LookupFirewallProxyPolicyResultOutput) InternetService6Names() GetFirewallProxyPolicyInternetService6NameArrayOutput {
+	return o.ApplyT(func(v LookupFirewallProxyPolicyResult) []GetFirewallProxyPolicyInternetService6Name {
+		return v.InternetService6Names
+	}).(GetFirewallProxyPolicyInternetService6NameArrayOutput)
+}
+
+func (o LookupFirewallProxyPolicyResultOutput) InternetService6Negate() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallProxyPolicyResult) string { return v.InternetService6Negate }).(pulumi.StringOutput)
+}
+
 func (o LookupFirewallProxyPolicyResultOutput) InternetServiceCustomGroups() GetFirewallProxyPolicyInternetServiceCustomGroupArrayOutput {
 	return o.ApplyT(func(v LookupFirewallProxyPolicyResult) []GetFirewallProxyPolicyInternetServiceCustomGroup {
 		return v.InternetServiceCustomGroups
@@ -280,6 +320,10 @@ func (o LookupFirewallProxyPolicyResultOutput) InternetServiceNegate() pulumi.St
 
 func (o LookupFirewallProxyPolicyResultOutput) IpsSensor() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallProxyPolicyResult) string { return v.IpsSensor }).(pulumi.StringOutput)
+}
+
+func (o LookupFirewallProxyPolicyResultOutput) IpsVoipFilter() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallProxyPolicyResult) string { return v.IpsVoipFilter }).(pulumi.StringOutput)
 }
 
 func (o LookupFirewallProxyPolicyResultOutput) Label() pulumi.StringOutput {

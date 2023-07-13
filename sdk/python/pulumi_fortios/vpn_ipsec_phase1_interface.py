@@ -30,6 +30,7 @@ class VpnIpsecPhase1InterfaceArgs:
                  authpasswd: Optional[pulumi.Input[str]] = None,
                  authusr: Optional[pulumi.Input[str]] = None,
                  authusrgrp: Optional[pulumi.Input[str]] = None,
+                 auto_discovery_crossover: Optional[pulumi.Input[str]] = None,
                  auto_discovery_forwarder: Optional[pulumi.Input[str]] = None,
                  auto_discovery_offer_interval: Optional[pulumi.Input[int]] = None,
                  auto_discovery_psk: Optional[pulumi.Input[str]] = None,
@@ -47,6 +48,8 @@ class VpnIpsecPhase1InterfaceArgs:
                  comments: Optional[pulumi.Input[str]] = None,
                  default_gw: Optional[pulumi.Input[str]] = None,
                  default_gw_priority: Optional[pulumi.Input[int]] = None,
+                 dev_id: Optional[pulumi.Input[str]] = None,
+                 dev_id_notification: Optional[pulumi.Input[str]] = None,
                  dhcp6_ra_linkaddr: Optional[pulumi.Input[str]] = None,
                  dhcp_ra_giaddr: Optional[pulumi.Input[str]] = None,
                  dhgrp: Optional[pulumi.Input[str]] = None,
@@ -69,11 +72,13 @@ class VpnIpsecPhase1InterfaceArgs:
                  encapsulation_address: Optional[pulumi.Input[str]] = None,
                  enforce_unique_id: Optional[pulumi.Input[str]] = None,
                  esn: Optional[pulumi.Input[str]] = None,
+                 exchange_fgt_device_id: Optional[pulumi.Input[str]] = None,
                  exchange_interface_ip: Optional[pulumi.Input[str]] = None,
                  exchange_ip_addr4: Optional[pulumi.Input[str]] = None,
                  exchange_ip_addr6: Optional[pulumi.Input[str]] = None,
                  fec_base: Optional[pulumi.Input[int]] = None,
                  fec_codec: Optional[pulumi.Input[int]] = None,
+                 fec_codec_string: Optional[pulumi.Input[str]] = None,
                  fec_egress: Optional[pulumi.Input[str]] = None,
                  fec_health_check: Optional[pulumi.Input[str]] = None,
                  fec_ingress: Optional[pulumi.Input[str]] = None,
@@ -85,6 +90,7 @@ class VpnIpsecPhase1InterfaceArgs:
                  forticlient_enforcement: Optional[pulumi.Input[str]] = None,
                  fragmentation: Optional[pulumi.Input[str]] = None,
                  fragmentation_mtu: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_authentication: Optional[pulumi.Input[str]] = None,
                  group_authentication_secret: Optional[pulumi.Input[str]] = None,
                  ha_sync_esp_seqno: Optional[pulumi.Input[str]] = None,
@@ -120,6 +126,7 @@ class VpnIpsecPhase1InterfaceArgs:
                  ipv6_start_ip: Optional[pulumi.Input[str]] = None,
                  keepalive: Optional[pulumi.Input[int]] = None,
                  keylife: Optional[pulumi.Input[int]] = None,
+                 kms: Optional[pulumi.Input[str]] = None,
                  link_cost: Optional[pulumi.Input[int]] = None,
                  local_gw: Optional[pulumi.Input[str]] = None,
                  local_gw6: Optional[pulumi.Input[str]] = None,
@@ -203,6 +210,8 @@ class VpnIpsecPhase1InterfaceArgs:
             pulumi.set(__self__, "authusr", authusr)
         if authusrgrp is not None:
             pulumi.set(__self__, "authusrgrp", authusrgrp)
+        if auto_discovery_crossover is not None:
+            pulumi.set(__self__, "auto_discovery_crossover", auto_discovery_crossover)
         if auto_discovery_forwarder is not None:
             pulumi.set(__self__, "auto_discovery_forwarder", auto_discovery_forwarder)
         if auto_discovery_offer_interval is not None:
@@ -237,6 +246,10 @@ class VpnIpsecPhase1InterfaceArgs:
             pulumi.set(__self__, "default_gw", default_gw)
         if default_gw_priority is not None:
             pulumi.set(__self__, "default_gw_priority", default_gw_priority)
+        if dev_id is not None:
+            pulumi.set(__self__, "dev_id", dev_id)
+        if dev_id_notification is not None:
+            pulumi.set(__self__, "dev_id_notification", dev_id_notification)
         if dhcp6_ra_linkaddr is not None:
             pulumi.set(__self__, "dhcp6_ra_linkaddr", dhcp6_ra_linkaddr)
         if dhcp_ra_giaddr is not None:
@@ -281,6 +294,8 @@ class VpnIpsecPhase1InterfaceArgs:
             pulumi.set(__self__, "enforce_unique_id", enforce_unique_id)
         if esn is not None:
             pulumi.set(__self__, "esn", esn)
+        if exchange_fgt_device_id is not None:
+            pulumi.set(__self__, "exchange_fgt_device_id", exchange_fgt_device_id)
         if exchange_interface_ip is not None:
             pulumi.set(__self__, "exchange_interface_ip", exchange_interface_ip)
         if exchange_ip_addr4 is not None:
@@ -291,6 +306,8 @@ class VpnIpsecPhase1InterfaceArgs:
             pulumi.set(__self__, "fec_base", fec_base)
         if fec_codec is not None:
             pulumi.set(__self__, "fec_codec", fec_codec)
+        if fec_codec_string is not None:
+            pulumi.set(__self__, "fec_codec_string", fec_codec_string)
         if fec_egress is not None:
             pulumi.set(__self__, "fec_egress", fec_egress)
         if fec_health_check is not None:
@@ -313,6 +330,8 @@ class VpnIpsecPhase1InterfaceArgs:
             pulumi.set(__self__, "fragmentation", fragmentation)
         if fragmentation_mtu is not None:
             pulumi.set(__self__, "fragmentation_mtu", fragmentation_mtu)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if group_authentication is not None:
             pulumi.set(__self__, "group_authentication", group_authentication)
         if group_authentication_secret is not None:
@@ -383,6 +402,8 @@ class VpnIpsecPhase1InterfaceArgs:
             pulumi.set(__self__, "keepalive", keepalive)
         if keylife is not None:
             pulumi.set(__self__, "keylife", keylife)
+        if kms is not None:
+            pulumi.set(__self__, "kms", kms)
         if link_cost is not None:
             pulumi.set(__self__, "link_cost", link_cost)
         if local_gw is not None:
@@ -619,6 +640,15 @@ class VpnIpsecPhase1InterfaceArgs:
         pulumi.set(self, "authusrgrp", value)
 
     @property
+    @pulumi.getter(name="autoDiscoveryCrossover")
+    def auto_discovery_crossover(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "auto_discovery_crossover")
+
+    @auto_discovery_crossover.setter
+    def auto_discovery_crossover(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auto_discovery_crossover", value)
+
+    @property
     @pulumi.getter(name="autoDiscoveryForwarder")
     def auto_discovery_forwarder(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "auto_discovery_forwarder")
@@ -770,6 +800,24 @@ class VpnIpsecPhase1InterfaceArgs:
     @default_gw_priority.setter
     def default_gw_priority(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "default_gw_priority", value)
+
+    @property
+    @pulumi.getter(name="devId")
+    def dev_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "dev_id")
+
+    @dev_id.setter
+    def dev_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dev_id", value)
+
+    @property
+    @pulumi.getter(name="devIdNotification")
+    def dev_id_notification(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "dev_id_notification")
+
+    @dev_id_notification.setter
+    def dev_id_notification(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dev_id_notification", value)
 
     @property
     @pulumi.getter(name="dhcp6RaLinkaddr")
@@ -970,6 +1018,15 @@ class VpnIpsecPhase1InterfaceArgs:
         pulumi.set(self, "esn", value)
 
     @property
+    @pulumi.getter(name="exchangeFgtDeviceId")
+    def exchange_fgt_device_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "exchange_fgt_device_id")
+
+    @exchange_fgt_device_id.setter
+    def exchange_fgt_device_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "exchange_fgt_device_id", value)
+
+    @property
     @pulumi.getter(name="exchangeInterfaceIp")
     def exchange_interface_ip(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "exchange_interface_ip")
@@ -1013,6 +1070,15 @@ class VpnIpsecPhase1InterfaceArgs:
     @fec_codec.setter
     def fec_codec(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fec_codec", value)
+
+    @property
+    @pulumi.getter(name="fecCodecString")
+    def fec_codec_string(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "fec_codec_string")
+
+    @fec_codec_string.setter
+    def fec_codec_string(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fec_codec_string", value)
 
     @property
     @pulumi.getter(name="fecEgress")
@@ -1112,6 +1178,15 @@ class VpnIpsecPhase1InterfaceArgs:
     @fragmentation_mtu.setter
     def fragmentation_mtu(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fragmentation_mtu", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="groupAuthentication")
@@ -1427,6 +1502,15 @@ class VpnIpsecPhase1InterfaceArgs:
     @keylife.setter
     def keylife(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "keylife", value)
+
+    @property
+    @pulumi.getter
+    def kms(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "kms")
+
+    @kms.setter
+    def kms(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "kms", value)
 
     @property
     @pulumi.getter(name="linkCost")
@@ -1930,6 +2014,7 @@ class _VpnIpsecPhase1InterfaceState:
                  authpasswd: Optional[pulumi.Input[str]] = None,
                  authusr: Optional[pulumi.Input[str]] = None,
                  authusrgrp: Optional[pulumi.Input[str]] = None,
+                 auto_discovery_crossover: Optional[pulumi.Input[str]] = None,
                  auto_discovery_forwarder: Optional[pulumi.Input[str]] = None,
                  auto_discovery_offer_interval: Optional[pulumi.Input[int]] = None,
                  auto_discovery_psk: Optional[pulumi.Input[str]] = None,
@@ -1947,6 +2032,8 @@ class _VpnIpsecPhase1InterfaceState:
                  comments: Optional[pulumi.Input[str]] = None,
                  default_gw: Optional[pulumi.Input[str]] = None,
                  default_gw_priority: Optional[pulumi.Input[int]] = None,
+                 dev_id: Optional[pulumi.Input[str]] = None,
+                 dev_id_notification: Optional[pulumi.Input[str]] = None,
                  dhcp6_ra_linkaddr: Optional[pulumi.Input[str]] = None,
                  dhcp_ra_giaddr: Optional[pulumi.Input[str]] = None,
                  dhgrp: Optional[pulumi.Input[str]] = None,
@@ -1969,11 +2056,13 @@ class _VpnIpsecPhase1InterfaceState:
                  encapsulation_address: Optional[pulumi.Input[str]] = None,
                  enforce_unique_id: Optional[pulumi.Input[str]] = None,
                  esn: Optional[pulumi.Input[str]] = None,
+                 exchange_fgt_device_id: Optional[pulumi.Input[str]] = None,
                  exchange_interface_ip: Optional[pulumi.Input[str]] = None,
                  exchange_ip_addr4: Optional[pulumi.Input[str]] = None,
                  exchange_ip_addr6: Optional[pulumi.Input[str]] = None,
                  fec_base: Optional[pulumi.Input[int]] = None,
                  fec_codec: Optional[pulumi.Input[int]] = None,
+                 fec_codec_string: Optional[pulumi.Input[str]] = None,
                  fec_egress: Optional[pulumi.Input[str]] = None,
                  fec_health_check: Optional[pulumi.Input[str]] = None,
                  fec_ingress: Optional[pulumi.Input[str]] = None,
@@ -1985,6 +2074,7 @@ class _VpnIpsecPhase1InterfaceState:
                  forticlient_enforcement: Optional[pulumi.Input[str]] = None,
                  fragmentation: Optional[pulumi.Input[str]] = None,
                  fragmentation_mtu: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_authentication: Optional[pulumi.Input[str]] = None,
                  group_authentication_secret: Optional[pulumi.Input[str]] = None,
                  ha_sync_esp_seqno: Optional[pulumi.Input[str]] = None,
@@ -2021,6 +2111,7 @@ class _VpnIpsecPhase1InterfaceState:
                  ipv6_start_ip: Optional[pulumi.Input[str]] = None,
                  keepalive: Optional[pulumi.Input[int]] = None,
                  keylife: Optional[pulumi.Input[int]] = None,
+                 kms: Optional[pulumi.Input[str]] = None,
                  link_cost: Optional[pulumi.Input[int]] = None,
                  local_gw: Optional[pulumi.Input[str]] = None,
                  local_gw6: Optional[pulumi.Input[str]] = None,
@@ -2103,6 +2194,8 @@ class _VpnIpsecPhase1InterfaceState:
             pulumi.set(__self__, "authusr", authusr)
         if authusrgrp is not None:
             pulumi.set(__self__, "authusrgrp", authusrgrp)
+        if auto_discovery_crossover is not None:
+            pulumi.set(__self__, "auto_discovery_crossover", auto_discovery_crossover)
         if auto_discovery_forwarder is not None:
             pulumi.set(__self__, "auto_discovery_forwarder", auto_discovery_forwarder)
         if auto_discovery_offer_interval is not None:
@@ -2137,6 +2230,10 @@ class _VpnIpsecPhase1InterfaceState:
             pulumi.set(__self__, "default_gw", default_gw)
         if default_gw_priority is not None:
             pulumi.set(__self__, "default_gw_priority", default_gw_priority)
+        if dev_id is not None:
+            pulumi.set(__self__, "dev_id", dev_id)
+        if dev_id_notification is not None:
+            pulumi.set(__self__, "dev_id_notification", dev_id_notification)
         if dhcp6_ra_linkaddr is not None:
             pulumi.set(__self__, "dhcp6_ra_linkaddr", dhcp6_ra_linkaddr)
         if dhcp_ra_giaddr is not None:
@@ -2181,6 +2278,8 @@ class _VpnIpsecPhase1InterfaceState:
             pulumi.set(__self__, "enforce_unique_id", enforce_unique_id)
         if esn is not None:
             pulumi.set(__self__, "esn", esn)
+        if exchange_fgt_device_id is not None:
+            pulumi.set(__self__, "exchange_fgt_device_id", exchange_fgt_device_id)
         if exchange_interface_ip is not None:
             pulumi.set(__self__, "exchange_interface_ip", exchange_interface_ip)
         if exchange_ip_addr4 is not None:
@@ -2191,6 +2290,8 @@ class _VpnIpsecPhase1InterfaceState:
             pulumi.set(__self__, "fec_base", fec_base)
         if fec_codec is not None:
             pulumi.set(__self__, "fec_codec", fec_codec)
+        if fec_codec_string is not None:
+            pulumi.set(__self__, "fec_codec_string", fec_codec_string)
         if fec_egress is not None:
             pulumi.set(__self__, "fec_egress", fec_egress)
         if fec_health_check is not None:
@@ -2213,6 +2314,8 @@ class _VpnIpsecPhase1InterfaceState:
             pulumi.set(__self__, "fragmentation", fragmentation)
         if fragmentation_mtu is not None:
             pulumi.set(__self__, "fragmentation_mtu", fragmentation_mtu)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if group_authentication is not None:
             pulumi.set(__self__, "group_authentication", group_authentication)
         if group_authentication_secret is not None:
@@ -2285,6 +2388,8 @@ class _VpnIpsecPhase1InterfaceState:
             pulumi.set(__self__, "keepalive", keepalive)
         if keylife is not None:
             pulumi.set(__self__, "keylife", keylife)
+        if kms is not None:
+            pulumi.set(__self__, "kms", kms)
         if link_cost is not None:
             pulumi.set(__self__, "link_cost", link_cost)
         if local_gw is not None:
@@ -2505,6 +2610,15 @@ class _VpnIpsecPhase1InterfaceState:
         pulumi.set(self, "authusrgrp", value)
 
     @property
+    @pulumi.getter(name="autoDiscoveryCrossover")
+    def auto_discovery_crossover(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "auto_discovery_crossover")
+
+    @auto_discovery_crossover.setter
+    def auto_discovery_crossover(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auto_discovery_crossover", value)
+
+    @property
     @pulumi.getter(name="autoDiscoveryForwarder")
     def auto_discovery_forwarder(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "auto_discovery_forwarder")
@@ -2656,6 +2770,24 @@ class _VpnIpsecPhase1InterfaceState:
     @default_gw_priority.setter
     def default_gw_priority(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "default_gw_priority", value)
+
+    @property
+    @pulumi.getter(name="devId")
+    def dev_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "dev_id")
+
+    @dev_id.setter
+    def dev_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dev_id", value)
+
+    @property
+    @pulumi.getter(name="devIdNotification")
+    def dev_id_notification(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "dev_id_notification")
+
+    @dev_id_notification.setter
+    def dev_id_notification(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dev_id_notification", value)
 
     @property
     @pulumi.getter(name="dhcp6RaLinkaddr")
@@ -2856,6 +2988,15 @@ class _VpnIpsecPhase1InterfaceState:
         pulumi.set(self, "esn", value)
 
     @property
+    @pulumi.getter(name="exchangeFgtDeviceId")
+    def exchange_fgt_device_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "exchange_fgt_device_id")
+
+    @exchange_fgt_device_id.setter
+    def exchange_fgt_device_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "exchange_fgt_device_id", value)
+
+    @property
     @pulumi.getter(name="exchangeInterfaceIp")
     def exchange_interface_ip(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "exchange_interface_ip")
@@ -2899,6 +3040,15 @@ class _VpnIpsecPhase1InterfaceState:
     @fec_codec.setter
     def fec_codec(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fec_codec", value)
+
+    @property
+    @pulumi.getter(name="fecCodecString")
+    def fec_codec_string(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "fec_codec_string")
+
+    @fec_codec_string.setter
+    def fec_codec_string(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fec_codec_string", value)
 
     @property
     @pulumi.getter(name="fecEgress")
@@ -2998,6 +3148,15 @@ class _VpnIpsecPhase1InterfaceState:
     @fragmentation_mtu.setter
     def fragmentation_mtu(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fragmentation_mtu", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="groupAuthentication")
@@ -3322,6 +3481,15 @@ class _VpnIpsecPhase1InterfaceState:
     @keylife.setter
     def keylife(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "keylife", value)
+
+    @property
+    @pulumi.getter
+    def kms(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "kms")
+
+    @kms.setter
+    def kms(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "kms", value)
 
     @property
     @pulumi.getter(name="linkCost")
@@ -3836,6 +4004,7 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
                  authpasswd: Optional[pulumi.Input[str]] = None,
                  authusr: Optional[pulumi.Input[str]] = None,
                  authusrgrp: Optional[pulumi.Input[str]] = None,
+                 auto_discovery_crossover: Optional[pulumi.Input[str]] = None,
                  auto_discovery_forwarder: Optional[pulumi.Input[str]] = None,
                  auto_discovery_offer_interval: Optional[pulumi.Input[int]] = None,
                  auto_discovery_psk: Optional[pulumi.Input[str]] = None,
@@ -3853,6 +4022,8 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
                  comments: Optional[pulumi.Input[str]] = None,
                  default_gw: Optional[pulumi.Input[str]] = None,
                  default_gw_priority: Optional[pulumi.Input[int]] = None,
+                 dev_id: Optional[pulumi.Input[str]] = None,
+                 dev_id_notification: Optional[pulumi.Input[str]] = None,
                  dhcp6_ra_linkaddr: Optional[pulumi.Input[str]] = None,
                  dhcp_ra_giaddr: Optional[pulumi.Input[str]] = None,
                  dhgrp: Optional[pulumi.Input[str]] = None,
@@ -3875,11 +4046,13 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
                  encapsulation_address: Optional[pulumi.Input[str]] = None,
                  enforce_unique_id: Optional[pulumi.Input[str]] = None,
                  esn: Optional[pulumi.Input[str]] = None,
+                 exchange_fgt_device_id: Optional[pulumi.Input[str]] = None,
                  exchange_interface_ip: Optional[pulumi.Input[str]] = None,
                  exchange_ip_addr4: Optional[pulumi.Input[str]] = None,
                  exchange_ip_addr6: Optional[pulumi.Input[str]] = None,
                  fec_base: Optional[pulumi.Input[int]] = None,
                  fec_codec: Optional[pulumi.Input[int]] = None,
+                 fec_codec_string: Optional[pulumi.Input[str]] = None,
                  fec_egress: Optional[pulumi.Input[str]] = None,
                  fec_health_check: Optional[pulumi.Input[str]] = None,
                  fec_ingress: Optional[pulumi.Input[str]] = None,
@@ -3891,6 +4064,7 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
                  forticlient_enforcement: Optional[pulumi.Input[str]] = None,
                  fragmentation: Optional[pulumi.Input[str]] = None,
                  fragmentation_mtu: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_authentication: Optional[pulumi.Input[str]] = None,
                  group_authentication_secret: Optional[pulumi.Input[str]] = None,
                  ha_sync_esp_seqno: Optional[pulumi.Input[str]] = None,
@@ -3927,6 +4101,7 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
                  ipv6_start_ip: Optional[pulumi.Input[str]] = None,
                  keepalive: Optional[pulumi.Input[int]] = None,
                  keylife: Optional[pulumi.Input[int]] = None,
+                 kms: Optional[pulumi.Input[str]] = None,
                  link_cost: Optional[pulumi.Input[int]] = None,
                  local_gw: Optional[pulumi.Input[str]] = None,
                  local_gw6: Optional[pulumi.Input[str]] = None,
@@ -4023,6 +4198,7 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
                  authpasswd: Optional[pulumi.Input[str]] = None,
                  authusr: Optional[pulumi.Input[str]] = None,
                  authusrgrp: Optional[pulumi.Input[str]] = None,
+                 auto_discovery_crossover: Optional[pulumi.Input[str]] = None,
                  auto_discovery_forwarder: Optional[pulumi.Input[str]] = None,
                  auto_discovery_offer_interval: Optional[pulumi.Input[int]] = None,
                  auto_discovery_psk: Optional[pulumi.Input[str]] = None,
@@ -4040,6 +4216,8 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
                  comments: Optional[pulumi.Input[str]] = None,
                  default_gw: Optional[pulumi.Input[str]] = None,
                  default_gw_priority: Optional[pulumi.Input[int]] = None,
+                 dev_id: Optional[pulumi.Input[str]] = None,
+                 dev_id_notification: Optional[pulumi.Input[str]] = None,
                  dhcp6_ra_linkaddr: Optional[pulumi.Input[str]] = None,
                  dhcp_ra_giaddr: Optional[pulumi.Input[str]] = None,
                  dhgrp: Optional[pulumi.Input[str]] = None,
@@ -4062,11 +4240,13 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
                  encapsulation_address: Optional[pulumi.Input[str]] = None,
                  enforce_unique_id: Optional[pulumi.Input[str]] = None,
                  esn: Optional[pulumi.Input[str]] = None,
+                 exchange_fgt_device_id: Optional[pulumi.Input[str]] = None,
                  exchange_interface_ip: Optional[pulumi.Input[str]] = None,
                  exchange_ip_addr4: Optional[pulumi.Input[str]] = None,
                  exchange_ip_addr6: Optional[pulumi.Input[str]] = None,
                  fec_base: Optional[pulumi.Input[int]] = None,
                  fec_codec: Optional[pulumi.Input[int]] = None,
+                 fec_codec_string: Optional[pulumi.Input[str]] = None,
                  fec_egress: Optional[pulumi.Input[str]] = None,
                  fec_health_check: Optional[pulumi.Input[str]] = None,
                  fec_ingress: Optional[pulumi.Input[str]] = None,
@@ -4078,6 +4258,7 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
                  forticlient_enforcement: Optional[pulumi.Input[str]] = None,
                  fragmentation: Optional[pulumi.Input[str]] = None,
                  fragmentation_mtu: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_authentication: Optional[pulumi.Input[str]] = None,
                  group_authentication_secret: Optional[pulumi.Input[str]] = None,
                  ha_sync_esp_seqno: Optional[pulumi.Input[str]] = None,
@@ -4114,6 +4295,7 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
                  ipv6_start_ip: Optional[pulumi.Input[str]] = None,
                  keepalive: Optional[pulumi.Input[int]] = None,
                  keylife: Optional[pulumi.Input[int]] = None,
+                 kms: Optional[pulumi.Input[str]] = None,
                  link_cost: Optional[pulumi.Input[int]] = None,
                  local_gw: Optional[pulumi.Input[str]] = None,
                  local_gw6: Optional[pulumi.Input[str]] = None,
@@ -4190,6 +4372,7 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
             __props__.__dict__["authpasswd"] = None if authpasswd is None else pulumi.Output.secret(authpasswd)
             __props__.__dict__["authusr"] = authusr
             __props__.__dict__["authusrgrp"] = authusrgrp
+            __props__.__dict__["auto_discovery_crossover"] = auto_discovery_crossover
             __props__.__dict__["auto_discovery_forwarder"] = auto_discovery_forwarder
             __props__.__dict__["auto_discovery_offer_interval"] = auto_discovery_offer_interval
             __props__.__dict__["auto_discovery_psk"] = auto_discovery_psk
@@ -4207,6 +4390,8 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
             __props__.__dict__["comments"] = comments
             __props__.__dict__["default_gw"] = default_gw
             __props__.__dict__["default_gw_priority"] = default_gw_priority
+            __props__.__dict__["dev_id"] = dev_id
+            __props__.__dict__["dev_id_notification"] = dev_id_notification
             __props__.__dict__["dhcp6_ra_linkaddr"] = dhcp6_ra_linkaddr
             __props__.__dict__["dhcp_ra_giaddr"] = dhcp_ra_giaddr
             __props__.__dict__["dhgrp"] = dhgrp
@@ -4229,11 +4414,13 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
             __props__.__dict__["encapsulation_address"] = encapsulation_address
             __props__.__dict__["enforce_unique_id"] = enforce_unique_id
             __props__.__dict__["esn"] = esn
+            __props__.__dict__["exchange_fgt_device_id"] = exchange_fgt_device_id
             __props__.__dict__["exchange_interface_ip"] = exchange_interface_ip
             __props__.__dict__["exchange_ip_addr4"] = exchange_ip_addr4
             __props__.__dict__["exchange_ip_addr6"] = exchange_ip_addr6
             __props__.__dict__["fec_base"] = fec_base
             __props__.__dict__["fec_codec"] = fec_codec
+            __props__.__dict__["fec_codec_string"] = fec_codec_string
             __props__.__dict__["fec_egress"] = fec_egress
             __props__.__dict__["fec_health_check"] = fec_health_check
             __props__.__dict__["fec_ingress"] = fec_ingress
@@ -4245,6 +4432,7 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
             __props__.__dict__["forticlient_enforcement"] = forticlient_enforcement
             __props__.__dict__["fragmentation"] = fragmentation
             __props__.__dict__["fragmentation_mtu"] = fragmentation_mtu
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["group_authentication"] = group_authentication
             __props__.__dict__["group_authentication_secret"] = None if group_authentication_secret is None else pulumi.Output.secret(group_authentication_secret)
             __props__.__dict__["ha_sync_esp_seqno"] = ha_sync_esp_seqno
@@ -4283,6 +4471,7 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
             __props__.__dict__["ipv6_start_ip"] = ipv6_start_ip
             __props__.__dict__["keepalive"] = keepalive
             __props__.__dict__["keylife"] = keylife
+            __props__.__dict__["kms"] = kms
             __props__.__dict__["link_cost"] = link_cost
             __props__.__dict__["local_gw"] = local_gw
             __props__.__dict__["local_gw6"] = local_gw6
@@ -4364,6 +4553,7 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
             authpasswd: Optional[pulumi.Input[str]] = None,
             authusr: Optional[pulumi.Input[str]] = None,
             authusrgrp: Optional[pulumi.Input[str]] = None,
+            auto_discovery_crossover: Optional[pulumi.Input[str]] = None,
             auto_discovery_forwarder: Optional[pulumi.Input[str]] = None,
             auto_discovery_offer_interval: Optional[pulumi.Input[int]] = None,
             auto_discovery_psk: Optional[pulumi.Input[str]] = None,
@@ -4381,6 +4571,8 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
             comments: Optional[pulumi.Input[str]] = None,
             default_gw: Optional[pulumi.Input[str]] = None,
             default_gw_priority: Optional[pulumi.Input[int]] = None,
+            dev_id: Optional[pulumi.Input[str]] = None,
+            dev_id_notification: Optional[pulumi.Input[str]] = None,
             dhcp6_ra_linkaddr: Optional[pulumi.Input[str]] = None,
             dhcp_ra_giaddr: Optional[pulumi.Input[str]] = None,
             dhgrp: Optional[pulumi.Input[str]] = None,
@@ -4403,11 +4595,13 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
             encapsulation_address: Optional[pulumi.Input[str]] = None,
             enforce_unique_id: Optional[pulumi.Input[str]] = None,
             esn: Optional[pulumi.Input[str]] = None,
+            exchange_fgt_device_id: Optional[pulumi.Input[str]] = None,
             exchange_interface_ip: Optional[pulumi.Input[str]] = None,
             exchange_ip_addr4: Optional[pulumi.Input[str]] = None,
             exchange_ip_addr6: Optional[pulumi.Input[str]] = None,
             fec_base: Optional[pulumi.Input[int]] = None,
             fec_codec: Optional[pulumi.Input[int]] = None,
+            fec_codec_string: Optional[pulumi.Input[str]] = None,
             fec_egress: Optional[pulumi.Input[str]] = None,
             fec_health_check: Optional[pulumi.Input[str]] = None,
             fec_ingress: Optional[pulumi.Input[str]] = None,
@@ -4419,6 +4613,7 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
             forticlient_enforcement: Optional[pulumi.Input[str]] = None,
             fragmentation: Optional[pulumi.Input[str]] = None,
             fragmentation_mtu: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             group_authentication: Optional[pulumi.Input[str]] = None,
             group_authentication_secret: Optional[pulumi.Input[str]] = None,
             ha_sync_esp_seqno: Optional[pulumi.Input[str]] = None,
@@ -4455,6 +4650,7 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
             ipv6_start_ip: Optional[pulumi.Input[str]] = None,
             keepalive: Optional[pulumi.Input[int]] = None,
             keylife: Optional[pulumi.Input[int]] = None,
+            kms: Optional[pulumi.Input[str]] = None,
             link_cost: Optional[pulumi.Input[int]] = None,
             local_gw: Optional[pulumi.Input[str]] = None,
             local_gw6: Optional[pulumi.Input[str]] = None,
@@ -4534,6 +4730,7 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
         __props__.__dict__["authpasswd"] = authpasswd
         __props__.__dict__["authusr"] = authusr
         __props__.__dict__["authusrgrp"] = authusrgrp
+        __props__.__dict__["auto_discovery_crossover"] = auto_discovery_crossover
         __props__.__dict__["auto_discovery_forwarder"] = auto_discovery_forwarder
         __props__.__dict__["auto_discovery_offer_interval"] = auto_discovery_offer_interval
         __props__.__dict__["auto_discovery_psk"] = auto_discovery_psk
@@ -4551,6 +4748,8 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
         __props__.__dict__["comments"] = comments
         __props__.__dict__["default_gw"] = default_gw
         __props__.__dict__["default_gw_priority"] = default_gw_priority
+        __props__.__dict__["dev_id"] = dev_id
+        __props__.__dict__["dev_id_notification"] = dev_id_notification
         __props__.__dict__["dhcp6_ra_linkaddr"] = dhcp6_ra_linkaddr
         __props__.__dict__["dhcp_ra_giaddr"] = dhcp_ra_giaddr
         __props__.__dict__["dhgrp"] = dhgrp
@@ -4573,11 +4772,13 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
         __props__.__dict__["encapsulation_address"] = encapsulation_address
         __props__.__dict__["enforce_unique_id"] = enforce_unique_id
         __props__.__dict__["esn"] = esn
+        __props__.__dict__["exchange_fgt_device_id"] = exchange_fgt_device_id
         __props__.__dict__["exchange_interface_ip"] = exchange_interface_ip
         __props__.__dict__["exchange_ip_addr4"] = exchange_ip_addr4
         __props__.__dict__["exchange_ip_addr6"] = exchange_ip_addr6
         __props__.__dict__["fec_base"] = fec_base
         __props__.__dict__["fec_codec"] = fec_codec
+        __props__.__dict__["fec_codec_string"] = fec_codec_string
         __props__.__dict__["fec_egress"] = fec_egress
         __props__.__dict__["fec_health_check"] = fec_health_check
         __props__.__dict__["fec_ingress"] = fec_ingress
@@ -4589,6 +4790,7 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
         __props__.__dict__["forticlient_enforcement"] = forticlient_enforcement
         __props__.__dict__["fragmentation"] = fragmentation
         __props__.__dict__["fragmentation_mtu"] = fragmentation_mtu
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["group_authentication"] = group_authentication
         __props__.__dict__["group_authentication_secret"] = group_authentication_secret
         __props__.__dict__["ha_sync_esp_seqno"] = ha_sync_esp_seqno
@@ -4625,6 +4827,7 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
         __props__.__dict__["ipv6_start_ip"] = ipv6_start_ip
         __props__.__dict__["keepalive"] = keepalive
         __props__.__dict__["keylife"] = keylife
+        __props__.__dict__["kms"] = kms
         __props__.__dict__["link_cost"] = link_cost
         __props__.__dict__["local_gw"] = local_gw
         __props__.__dict__["local_gw6"] = local_gw6
@@ -4743,6 +4946,11 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
         return pulumi.get(self, "authusrgrp")
 
     @property
+    @pulumi.getter(name="autoDiscoveryCrossover")
+    def auto_discovery_crossover(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "auto_discovery_crossover")
+
+    @property
     @pulumi.getter(name="autoDiscoveryForwarder")
     def auto_discovery_forwarder(self) -> pulumi.Output[str]:
         return pulumi.get(self, "auto_discovery_forwarder")
@@ -4826,6 +5034,16 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
     @pulumi.getter(name="defaultGwPriority")
     def default_gw_priority(self) -> pulumi.Output[int]:
         return pulumi.get(self, "default_gw_priority")
+
+    @property
+    @pulumi.getter(name="devId")
+    def dev_id(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "dev_id")
+
+    @property
+    @pulumi.getter(name="devIdNotification")
+    def dev_id_notification(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "dev_id_notification")
 
     @property
     @pulumi.getter(name="dhcp6RaLinkaddr")
@@ -4938,6 +5156,11 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
         return pulumi.get(self, "esn")
 
     @property
+    @pulumi.getter(name="exchangeFgtDeviceId")
+    def exchange_fgt_device_id(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "exchange_fgt_device_id")
+
+    @property
     @pulumi.getter(name="exchangeInterfaceIp")
     def exchange_interface_ip(self) -> pulumi.Output[str]:
         return pulumi.get(self, "exchange_interface_ip")
@@ -4961,6 +5184,11 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
     @pulumi.getter(name="fecCodec")
     def fec_codec(self) -> pulumi.Output[int]:
         return pulumi.get(self, "fec_codec")
+
+    @property
+    @pulumi.getter(name="fecCodecString")
+    def fec_codec_string(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "fec_codec_string")
 
     @property
     @pulumi.getter(name="fecEgress")
@@ -5016,6 +5244,11 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
     @pulumi.getter(name="fragmentationMtu")
     def fragmentation_mtu(self) -> pulumi.Output[int]:
         return pulumi.get(self, "fragmentation_mtu")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="groupAuthentication")
@@ -5196,6 +5429,11 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
     @pulumi.getter
     def keylife(self) -> pulumi.Output[int]:
         return pulumi.get(self, "keylife")
+
+    @property
+    @pulumi.getter
+    def kms(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "kms")
 
     @property
     @pulumi.getter(name="linkCost")

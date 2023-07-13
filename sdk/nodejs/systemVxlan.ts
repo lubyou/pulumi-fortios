@@ -36,8 +36,11 @@ export class SystemVxlan extends pulumi.CustomResource {
 
     public readonly dstport!: pulumi.Output<number>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly evpnId!: pulumi.Output<number>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly interface!: pulumi.Output<string>;
     public readonly ipVersion!: pulumi.Output<string>;
+    public readonly learnFromTraffic!: pulumi.Output<string>;
     public readonly multicastTtl!: pulumi.Output<number>;
     public readonly name!: pulumi.Output<string>;
     public readonly remoteIp6s!: pulumi.Output<outputs.SystemVxlanRemoteIp6[] | undefined>;
@@ -60,8 +63,11 @@ export class SystemVxlan extends pulumi.CustomResource {
             const state = argsOrState as SystemVxlanState | undefined;
             resourceInputs["dstport"] = state ? state.dstport : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["evpnId"] = state ? state.evpnId : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
             resourceInputs["ipVersion"] = state ? state.ipVersion : undefined;
+            resourceInputs["learnFromTraffic"] = state ? state.learnFromTraffic : undefined;
             resourceInputs["multicastTtl"] = state ? state.multicastTtl : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["remoteIp6s"] = state ? state.remoteIp6s : undefined;
@@ -81,8 +87,11 @@ export class SystemVxlan extends pulumi.CustomResource {
             }
             resourceInputs["dstport"] = args ? args.dstport : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["evpnId"] = args ? args.evpnId : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["ipVersion"] = args ? args.ipVersion : undefined;
+            resourceInputs["learnFromTraffic"] = args ? args.learnFromTraffic : undefined;
             resourceInputs["multicastTtl"] = args ? args.multicastTtl : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["remoteIp6s"] = args ? args.remoteIp6s : undefined;
@@ -101,8 +110,11 @@ export class SystemVxlan extends pulumi.CustomResource {
 export interface SystemVxlanState {
     dstport?: pulumi.Input<number>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    evpnId?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     interface?: pulumi.Input<string>;
     ipVersion?: pulumi.Input<string>;
+    learnFromTraffic?: pulumi.Input<string>;
     multicastTtl?: pulumi.Input<number>;
     name?: pulumi.Input<string>;
     remoteIp6s?: pulumi.Input<pulumi.Input<inputs.SystemVxlanRemoteIp6>[]>;
@@ -117,8 +129,11 @@ export interface SystemVxlanState {
 export interface SystemVxlanArgs {
     dstport?: pulumi.Input<number>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    evpnId?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     interface: pulumi.Input<string>;
     ipVersion: pulumi.Input<string>;
+    learnFromTraffic?: pulumi.Input<string>;
     multicastTtl?: pulumi.Input<number>;
     name?: pulumi.Input<string>;
     remoteIp6s?: pulumi.Input<pulumi.Input<inputs.SystemVxlanRemoteIp6>[]>;

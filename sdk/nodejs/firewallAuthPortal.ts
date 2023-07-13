@@ -35,10 +35,12 @@ export class FirewallAuthPortal extends pulumi.CustomResource {
     }
 
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly groups!: pulumi.Output<outputs.FirewallAuthPortalGroup[] | undefined>;
     public readonly identityBasedRoute!: pulumi.Output<string>;
     public readonly portalAddr!: pulumi.Output<string>;
     public readonly portalAddr6!: pulumi.Output<string>;
+    public readonly proxyAuth!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -55,18 +57,22 @@ export class FirewallAuthPortal extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as FirewallAuthPortalState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["groups"] = state ? state.groups : undefined;
             resourceInputs["identityBasedRoute"] = state ? state.identityBasedRoute : undefined;
             resourceInputs["portalAddr"] = state ? state.portalAddr : undefined;
             resourceInputs["portalAddr6"] = state ? state.portalAddr6 : undefined;
+            resourceInputs["proxyAuth"] = state ? state.proxyAuth : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallAuthPortalArgs | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["groups"] = args ? args.groups : undefined;
             resourceInputs["identityBasedRoute"] = args ? args.identityBasedRoute : undefined;
             resourceInputs["portalAddr"] = args ? args.portalAddr : undefined;
             resourceInputs["portalAddr6"] = args ? args.portalAddr6 : undefined;
+            resourceInputs["proxyAuth"] = args ? args.proxyAuth : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -79,10 +85,12 @@ export class FirewallAuthPortal extends pulumi.CustomResource {
  */
 export interface FirewallAuthPortalState {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     groups?: pulumi.Input<pulumi.Input<inputs.FirewallAuthPortalGroup>[]>;
     identityBasedRoute?: pulumi.Input<string>;
     portalAddr?: pulumi.Input<string>;
     portalAddr6?: pulumi.Input<string>;
+    proxyAuth?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -91,9 +99,11 @@ export interface FirewallAuthPortalState {
  */
 export interface FirewallAuthPortalArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     groups?: pulumi.Input<pulumi.Input<inputs.FirewallAuthPortalGroup>[]>;
     identityBasedRoute?: pulumi.Input<string>;
     portalAddr?: pulumi.Input<string>;
     portalAddr6?: pulumi.Input<string>;
+    proxyAuth?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }

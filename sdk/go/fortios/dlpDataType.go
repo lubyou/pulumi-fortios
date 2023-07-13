@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -16,6 +17,7 @@ type DlpDataType struct {
 	Comment                  pulumi.StringPtrOutput `pulumi:"comment"`
 	LookAhead                pulumi.IntOutput       `pulumi:"lookAhead"`
 	LookBack                 pulumi.IntOutput       `pulumi:"lookBack"`
+	MatchAround              pulumi.StringOutput    `pulumi:"matchAround"`
 	Name                     pulumi.StringOutput    `pulumi:"name"`
 	Pattern                  pulumi.StringOutput    `pulumi:"pattern"`
 	Transform                pulumi.StringOutput    `pulumi:"transform"`
@@ -31,7 +33,7 @@ func NewDlpDataType(ctx *pulumi.Context,
 		args = &DlpDataTypeArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DlpDataType
 	err := ctx.RegisterResource("fortios:index/dlpDataType:DlpDataType", name, args, &resource, opts...)
 	if err != nil {
@@ -57,6 +59,7 @@ type dlpDataTypeState struct {
 	Comment                  *string `pulumi:"comment"`
 	LookAhead                *int    `pulumi:"lookAhead"`
 	LookBack                 *int    `pulumi:"lookBack"`
+	MatchAround              *string `pulumi:"matchAround"`
 	Name                     *string `pulumi:"name"`
 	Pattern                  *string `pulumi:"pattern"`
 	Transform                *string `pulumi:"transform"`
@@ -69,6 +72,7 @@ type DlpDataTypeState struct {
 	Comment                  pulumi.StringPtrInput
 	LookAhead                pulumi.IntPtrInput
 	LookBack                 pulumi.IntPtrInput
+	MatchAround              pulumi.StringPtrInput
 	Name                     pulumi.StringPtrInput
 	Pattern                  pulumi.StringPtrInput
 	Transform                pulumi.StringPtrInput
@@ -85,6 +89,7 @@ type dlpDataTypeArgs struct {
 	Comment                  *string `pulumi:"comment"`
 	LookAhead                *int    `pulumi:"lookAhead"`
 	LookBack                 *int    `pulumi:"lookBack"`
+	MatchAround              *string `pulumi:"matchAround"`
 	Name                     *string `pulumi:"name"`
 	Pattern                  *string `pulumi:"pattern"`
 	Transform                *string `pulumi:"transform"`
@@ -98,6 +103,7 @@ type DlpDataTypeArgs struct {
 	Comment                  pulumi.StringPtrInput
 	LookAhead                pulumi.IntPtrInput
 	LookBack                 pulumi.IntPtrInput
+	MatchAround              pulumi.StringPtrInput
 	Name                     pulumi.StringPtrInput
 	Pattern                  pulumi.StringPtrInput
 	Transform                pulumi.StringPtrInput
@@ -203,6 +209,10 @@ func (o DlpDataTypeOutput) LookAhead() pulumi.IntOutput {
 
 func (o DlpDataTypeOutput) LookBack() pulumi.IntOutput {
 	return o.ApplyT(func(v *DlpDataType) pulumi.IntOutput { return v.LookBack }).(pulumi.IntOutput)
+}
+
+func (o DlpDataTypeOutput) MatchAround() pulumi.StringOutput {
+	return o.ApplyT(func(v *DlpDataType) pulumi.StringOutput { return v.MatchAround }).(pulumi.StringOutput)
 }
 
 func (o DlpDataTypeOutput) Name() pulumi.StringOutput {

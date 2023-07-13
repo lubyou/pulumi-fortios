@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -25,6 +26,7 @@ type RouterBgp struct {
 	AggregateAddresses              RouterBgpAggregateAddressArrayOutput  `pulumi:"aggregateAddresses"`
 	AlwaysCompareMed                pulumi.StringOutput                   `pulumi:"alwaysCompareMed"`
 	As                              pulumi.IntOutput                      `pulumi:"as"`
+	AsString                        pulumi.StringOutput                   `pulumi:"asString"`
 	BestpathAsPathIgnore            pulumi.StringOutput                   `pulumi:"bestpathAsPathIgnore"`
 	BestpathCmpConfedAspath         pulumi.StringOutput                   `pulumi:"bestpathCmpConfedAspath"`
 	BestpathCmpRouterid             pulumi.StringOutput                   `pulumi:"bestpathCmpRouterid"`
@@ -34,6 +36,7 @@ type RouterBgp struct {
 	ClusterId                       pulumi.StringOutput                   `pulumi:"clusterId"`
 	ConfederationIdentifier         pulumi.IntOutput                      `pulumi:"confederationIdentifier"`
 	ConfederationPeers              RouterBgpConfederationPeerArrayOutput `pulumi:"confederationPeers"`
+	CrossFamilyConditionalAdv       pulumi.StringOutput                   `pulumi:"crossFamilyConditionalAdv"`
 	Dampening                       pulumi.StringOutput                   `pulumi:"dampening"`
 	DampeningMaxSuppressTime        pulumi.IntOutput                      `pulumi:"dampeningMaxSuppressTime"`
 	DampeningReachabilityHalfLife   pulumi.IntOutput                      `pulumi:"dampeningReachabilityHalfLife"`
@@ -50,6 +53,7 @@ type RouterBgp struct {
 	EbgpMultipath                   pulumi.StringOutput                   `pulumi:"ebgpMultipath"`
 	EnforceFirstAs                  pulumi.StringOutput                   `pulumi:"enforceFirstAs"`
 	FastExternalFailover            pulumi.StringOutput                   `pulumi:"fastExternalFailover"`
+	GetAllTables                    pulumi.StringPtrOutput                `pulumi:"getAllTables"`
 	GracefulEndOnTimer              pulumi.StringOutput                   `pulumi:"gracefulEndOnTimer"`
 	GracefulRestart                 pulumi.StringOutput                   `pulumi:"gracefulRestart"`
 	GracefulRestartTime             pulumi.IntOutput                      `pulumi:"gracefulRestartTime"`
@@ -93,7 +97,7 @@ func NewRouterBgp(ctx *pulumi.Context,
 	if args.As == nil {
 		return nil, errors.New("invalid value for required argument 'As'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RouterBgp
 	err := ctx.RegisterResource("fortios:index/routerBgp:RouterBgp", name, args, &resource, opts...)
 	if err != nil {
@@ -127,6 +131,7 @@ type routerBgpState struct {
 	AggregateAddresses              []RouterBgpAggregateAddress  `pulumi:"aggregateAddresses"`
 	AlwaysCompareMed                *string                      `pulumi:"alwaysCompareMed"`
 	As                              *int                         `pulumi:"as"`
+	AsString                        *string                      `pulumi:"asString"`
 	BestpathAsPathIgnore            *string                      `pulumi:"bestpathAsPathIgnore"`
 	BestpathCmpConfedAspath         *string                      `pulumi:"bestpathCmpConfedAspath"`
 	BestpathCmpRouterid             *string                      `pulumi:"bestpathCmpRouterid"`
@@ -136,6 +141,7 @@ type routerBgpState struct {
 	ClusterId                       *string                      `pulumi:"clusterId"`
 	ConfederationIdentifier         *int                         `pulumi:"confederationIdentifier"`
 	ConfederationPeers              []RouterBgpConfederationPeer `pulumi:"confederationPeers"`
+	CrossFamilyConditionalAdv       *string                      `pulumi:"crossFamilyConditionalAdv"`
 	Dampening                       *string                      `pulumi:"dampening"`
 	DampeningMaxSuppressTime        *int                         `pulumi:"dampeningMaxSuppressTime"`
 	DampeningReachabilityHalfLife   *int                         `pulumi:"dampeningReachabilityHalfLife"`
@@ -152,6 +158,7 @@ type routerBgpState struct {
 	EbgpMultipath                   *string                      `pulumi:"ebgpMultipath"`
 	EnforceFirstAs                  *string                      `pulumi:"enforceFirstAs"`
 	FastExternalFailover            *string                      `pulumi:"fastExternalFailover"`
+	GetAllTables                    *string                      `pulumi:"getAllTables"`
 	GracefulEndOnTimer              *string                      `pulumi:"gracefulEndOnTimer"`
 	GracefulRestart                 *string                      `pulumi:"gracefulRestart"`
 	GracefulRestartTime             *int                         `pulumi:"gracefulRestartTime"`
@@ -197,6 +204,7 @@ type RouterBgpState struct {
 	AggregateAddresses              RouterBgpAggregateAddressArrayInput
 	AlwaysCompareMed                pulumi.StringPtrInput
 	As                              pulumi.IntPtrInput
+	AsString                        pulumi.StringPtrInput
 	BestpathAsPathIgnore            pulumi.StringPtrInput
 	BestpathCmpConfedAspath         pulumi.StringPtrInput
 	BestpathCmpRouterid             pulumi.StringPtrInput
@@ -206,6 +214,7 @@ type RouterBgpState struct {
 	ClusterId                       pulumi.StringPtrInput
 	ConfederationIdentifier         pulumi.IntPtrInput
 	ConfederationPeers              RouterBgpConfederationPeerArrayInput
+	CrossFamilyConditionalAdv       pulumi.StringPtrInput
 	Dampening                       pulumi.StringPtrInput
 	DampeningMaxSuppressTime        pulumi.IntPtrInput
 	DampeningReachabilityHalfLife   pulumi.IntPtrInput
@@ -222,6 +231,7 @@ type RouterBgpState struct {
 	EbgpMultipath                   pulumi.StringPtrInput
 	EnforceFirstAs                  pulumi.StringPtrInput
 	FastExternalFailover            pulumi.StringPtrInput
+	GetAllTables                    pulumi.StringPtrInput
 	GracefulEndOnTimer              pulumi.StringPtrInput
 	GracefulRestart                 pulumi.StringPtrInput
 	GracefulRestartTime             pulumi.IntPtrInput
@@ -271,6 +281,7 @@ type routerBgpArgs struct {
 	AggregateAddresses              []RouterBgpAggregateAddress  `pulumi:"aggregateAddresses"`
 	AlwaysCompareMed                *string                      `pulumi:"alwaysCompareMed"`
 	As                              int                          `pulumi:"as"`
+	AsString                        *string                      `pulumi:"asString"`
 	BestpathAsPathIgnore            *string                      `pulumi:"bestpathAsPathIgnore"`
 	BestpathCmpConfedAspath         *string                      `pulumi:"bestpathCmpConfedAspath"`
 	BestpathCmpRouterid             *string                      `pulumi:"bestpathCmpRouterid"`
@@ -280,6 +291,7 @@ type routerBgpArgs struct {
 	ClusterId                       *string                      `pulumi:"clusterId"`
 	ConfederationIdentifier         *int                         `pulumi:"confederationIdentifier"`
 	ConfederationPeers              []RouterBgpConfederationPeer `pulumi:"confederationPeers"`
+	CrossFamilyConditionalAdv       *string                      `pulumi:"crossFamilyConditionalAdv"`
 	Dampening                       *string                      `pulumi:"dampening"`
 	DampeningMaxSuppressTime        *int                         `pulumi:"dampeningMaxSuppressTime"`
 	DampeningReachabilityHalfLife   *int                         `pulumi:"dampeningReachabilityHalfLife"`
@@ -296,6 +308,7 @@ type routerBgpArgs struct {
 	EbgpMultipath                   *string                      `pulumi:"ebgpMultipath"`
 	EnforceFirstAs                  *string                      `pulumi:"enforceFirstAs"`
 	FastExternalFailover            *string                      `pulumi:"fastExternalFailover"`
+	GetAllTables                    *string                      `pulumi:"getAllTables"`
 	GracefulEndOnTimer              *string                      `pulumi:"gracefulEndOnTimer"`
 	GracefulRestart                 *string                      `pulumi:"gracefulRestart"`
 	GracefulRestartTime             *int                         `pulumi:"gracefulRestartTime"`
@@ -342,6 +355,7 @@ type RouterBgpArgs struct {
 	AggregateAddresses              RouterBgpAggregateAddressArrayInput
 	AlwaysCompareMed                pulumi.StringPtrInput
 	As                              pulumi.IntInput
+	AsString                        pulumi.StringPtrInput
 	BestpathAsPathIgnore            pulumi.StringPtrInput
 	BestpathCmpConfedAspath         pulumi.StringPtrInput
 	BestpathCmpRouterid             pulumi.StringPtrInput
@@ -351,6 +365,7 @@ type RouterBgpArgs struct {
 	ClusterId                       pulumi.StringPtrInput
 	ConfederationIdentifier         pulumi.IntPtrInput
 	ConfederationPeers              RouterBgpConfederationPeerArrayInput
+	CrossFamilyConditionalAdv       pulumi.StringPtrInput
 	Dampening                       pulumi.StringPtrInput
 	DampeningMaxSuppressTime        pulumi.IntPtrInput
 	DampeningReachabilityHalfLife   pulumi.IntPtrInput
@@ -367,6 +382,7 @@ type RouterBgpArgs struct {
 	EbgpMultipath                   pulumi.StringPtrInput
 	EnforceFirstAs                  pulumi.StringPtrInput
 	FastExternalFailover            pulumi.StringPtrInput
+	GetAllTables                    pulumi.StringPtrInput
 	GracefulEndOnTimer              pulumi.StringPtrInput
 	GracefulRestart                 pulumi.StringPtrInput
 	GracefulRestartTime             pulumi.IntPtrInput
@@ -531,6 +547,10 @@ func (o RouterBgpOutput) As() pulumi.IntOutput {
 	return o.ApplyT(func(v *RouterBgp) pulumi.IntOutput { return v.As }).(pulumi.IntOutput)
 }
 
+func (o RouterBgpOutput) AsString() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterBgp) pulumi.StringOutput { return v.AsString }).(pulumi.StringOutput)
+}
+
 func (o RouterBgpOutput) BestpathAsPathIgnore() pulumi.StringOutput {
 	return o.ApplyT(func(v *RouterBgp) pulumi.StringOutput { return v.BestpathAsPathIgnore }).(pulumi.StringOutput)
 }
@@ -565,6 +585,10 @@ func (o RouterBgpOutput) ConfederationIdentifier() pulumi.IntOutput {
 
 func (o RouterBgpOutput) ConfederationPeers() RouterBgpConfederationPeerArrayOutput {
 	return o.ApplyT(func(v *RouterBgp) RouterBgpConfederationPeerArrayOutput { return v.ConfederationPeers }).(RouterBgpConfederationPeerArrayOutput)
+}
+
+func (o RouterBgpOutput) CrossFamilyConditionalAdv() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterBgp) pulumi.StringOutput { return v.CrossFamilyConditionalAdv }).(pulumi.StringOutput)
 }
 
 func (o RouterBgpOutput) Dampening() pulumi.StringOutput {
@@ -629,6 +653,10 @@ func (o RouterBgpOutput) EnforceFirstAs() pulumi.StringOutput {
 
 func (o RouterBgpOutput) FastExternalFailover() pulumi.StringOutput {
 	return o.ApplyT(func(v *RouterBgp) pulumi.StringOutput { return v.FastExternalFailover }).(pulumi.StringOutput)
+}
+
+func (o RouterBgpOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterBgp) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o RouterBgpOutput) GracefulEndOnTimer() pulumi.StringOutput {

@@ -36,6 +36,7 @@ export class SystemSsoAdmin extends pulumi.CustomResource {
 
     public readonly accprofile!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly guiIgnoreReleaseOverviewVersion!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -56,6 +57,7 @@ export class SystemSsoAdmin extends pulumi.CustomResource {
             const state = argsOrState as SystemSsoAdminState | undefined;
             resourceInputs["accprofile"] = state ? state.accprofile : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["guiIgnoreReleaseOverviewVersion"] = state ? state.guiIgnoreReleaseOverviewVersion : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
@@ -67,6 +69,7 @@ export class SystemSsoAdmin extends pulumi.CustomResource {
             }
             resourceInputs["accprofile"] = args ? args.accprofile : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["guiIgnoreReleaseOverviewVersion"] = args ? args.guiIgnoreReleaseOverviewVersion : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -83,6 +86,7 @@ export class SystemSsoAdmin extends pulumi.CustomResource {
 export interface SystemSsoAdminState {
     accprofile?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     guiIgnoreReleaseOverviewVersion?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
@@ -95,6 +99,7 @@ export interface SystemSsoAdminState {
 export interface SystemSsoAdminArgs {
     accprofile: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     guiIgnoreReleaseOverviewVersion?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;

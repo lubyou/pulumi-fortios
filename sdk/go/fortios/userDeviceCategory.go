@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -26,7 +27,7 @@ func NewUserDeviceCategory(ctx *pulumi.Context,
 		args = &UserDeviceCategoryArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource UserDeviceCategory
 	err := ctx.RegisterResource("fortios:index/userDeviceCategory:UserDeviceCategory", name, args, &resource, opts...)
 	if err != nil {

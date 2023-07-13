@@ -49,6 +49,8 @@ export interface GetFirewallProxyAddressResult {
     readonly taggings: outputs.GetFirewallProxyAddressTagging[];
     readonly type: string;
     readonly ua: string;
+    readonly uaMaxVer: string;
+    readonly uaMinVer: string;
     readonly uuid: string;
     readonly vdomparam?: string;
     readonly visibility: string;

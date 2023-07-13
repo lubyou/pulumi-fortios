@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func GetSystemArpTableList(ctx *pulumi.Context, args *GetSystemArpTableListArgs, opts ...pulumi.InvokeOption) (*GetSystemArpTableListResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetSystemArpTableListResult
 	err := ctx.Invoke("fortios:index/getSystemArpTableList:GetSystemArpTableList", args, &rv, opts...)
 	if err != nil {

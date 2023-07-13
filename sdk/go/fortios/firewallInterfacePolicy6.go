@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -29,6 +30,7 @@ type FirewallInterfacePolicy6 struct {
 	DynamicSortSubtable      pulumi.StringPtrOutput                      `pulumi:"dynamicSortSubtable"`
 	EmailfilterProfile       pulumi.StringOutput                         `pulumi:"emailfilterProfile"`
 	EmailfilterProfileStatus pulumi.StringOutput                         `pulumi:"emailfilterProfileStatus"`
+	GetAllTables             pulumi.StringPtrOutput                      `pulumi:"getAllTables"`
 	Interface                pulumi.StringOutput                         `pulumi:"interface"`
 	IpsSensor                pulumi.StringOutput                         `pulumi:"ipsSensor"`
 	IpsSensorStatus          pulumi.StringOutput                         `pulumi:"ipsSensorStatus"`
@@ -62,7 +64,7 @@ func NewFirewallInterfacePolicy6(ctx *pulumi.Context,
 	if args.Srcaddr6s == nil {
 		return nil, errors.New("invalid value for required argument 'Srcaddr6s'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallInterfacePolicy6
 	err := ctx.RegisterResource("fortios:index/firewallInterfacePolicy6:FirewallInterfacePolicy6", name, args, &resource, opts...)
 	if err != nil {
@@ -100,6 +102,7 @@ type firewallInterfacePolicy6State struct {
 	DynamicSortSubtable      *string                            `pulumi:"dynamicSortSubtable"`
 	EmailfilterProfile       *string                            `pulumi:"emailfilterProfile"`
 	EmailfilterProfileStatus *string                            `pulumi:"emailfilterProfileStatus"`
+	GetAllTables             *string                            `pulumi:"getAllTables"`
 	Interface                *string                            `pulumi:"interface"`
 	IpsSensor                *string                            `pulumi:"ipsSensor"`
 	IpsSensorStatus          *string                            `pulumi:"ipsSensorStatus"`
@@ -133,6 +136,7 @@ type FirewallInterfacePolicy6State struct {
 	DynamicSortSubtable      pulumi.StringPtrInput
 	EmailfilterProfile       pulumi.StringPtrInput
 	EmailfilterProfileStatus pulumi.StringPtrInput
+	GetAllTables             pulumi.StringPtrInput
 	Interface                pulumi.StringPtrInput
 	IpsSensor                pulumi.StringPtrInput
 	IpsSensorStatus          pulumi.StringPtrInput
@@ -170,6 +174,7 @@ type firewallInterfacePolicy6Args struct {
 	DynamicSortSubtable      *string                            `pulumi:"dynamicSortSubtable"`
 	EmailfilterProfile       *string                            `pulumi:"emailfilterProfile"`
 	EmailfilterProfileStatus *string                            `pulumi:"emailfilterProfileStatus"`
+	GetAllTables             *string                            `pulumi:"getAllTables"`
 	Interface                string                             `pulumi:"interface"`
 	IpsSensor                *string                            `pulumi:"ipsSensor"`
 	IpsSensorStatus          *string                            `pulumi:"ipsSensorStatus"`
@@ -204,6 +209,7 @@ type FirewallInterfacePolicy6Args struct {
 	DynamicSortSubtable      pulumi.StringPtrInput
 	EmailfilterProfile       pulumi.StringPtrInput
 	EmailfilterProfileStatus pulumi.StringPtrInput
+	GetAllTables             pulumi.StringPtrInput
 	Interface                pulumi.StringInput
 	IpsSensor                pulumi.StringPtrInput
 	IpsSensorStatus          pulumi.StringPtrInput
@@ -366,6 +372,10 @@ func (o FirewallInterfacePolicy6Output) EmailfilterProfile() pulumi.StringOutput
 
 func (o FirewallInterfacePolicy6Output) EmailfilterProfileStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallInterfacePolicy6) pulumi.StringOutput { return v.EmailfilterProfileStatus }).(pulumi.StringOutput)
+}
+
+func (o FirewallInterfacePolicy6Output) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallInterfacePolicy6) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallInterfacePolicy6Output) Interface() pulumi.StringOutput {

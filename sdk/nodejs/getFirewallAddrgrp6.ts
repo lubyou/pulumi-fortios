@@ -29,6 +29,8 @@ export interface GetFirewallAddrgrp6Args {
 export interface GetFirewallAddrgrp6Result {
     readonly color: number;
     readonly comment: string;
+    readonly exclude: string;
+    readonly excludeMembers: outputs.GetFirewallAddrgrp6ExcludeMember[];
     readonly fabricObject: string;
     /**
      * The provider-assigned unique ID for this managed resource.

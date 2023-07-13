@@ -49,6 +49,7 @@ export class FirewallInterfacePolicy extends pulumi.CustomResource {
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly emailfilterProfile!: pulumi.Output<string>;
     public readonly emailfilterProfileStatus!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly interface!: pulumi.Output<string>;
     public readonly ipsSensor!: pulumi.Output<string>;
     public readonly ipsSensorStatus!: pulumi.Output<string>;
@@ -93,6 +94,7 @@ export class FirewallInterfacePolicy extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["emailfilterProfile"] = state ? state.emailfilterProfile : undefined;
             resourceInputs["emailfilterProfileStatus"] = state ? state.emailfilterProfileStatus : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
             resourceInputs["ipsSensor"] = state ? state.ipsSensor : undefined;
             resourceInputs["ipsSensorStatus"] = state ? state.ipsSensorStatus : undefined;
@@ -137,6 +139,7 @@ export class FirewallInterfacePolicy extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["emailfilterProfile"] = args ? args.emailfilterProfile : undefined;
             resourceInputs["emailfilterProfileStatus"] = args ? args.emailfilterProfileStatus : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["ipsSensor"] = args ? args.ipsSensor : undefined;
             resourceInputs["ipsSensorStatus"] = args ? args.ipsSensorStatus : undefined;
@@ -177,6 +180,7 @@ export interface FirewallInterfacePolicyState {
     dynamicSortSubtable?: pulumi.Input<string>;
     emailfilterProfile?: pulumi.Input<string>;
     emailfilterProfileStatus?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     interface?: pulumi.Input<string>;
     ipsSensor?: pulumi.Input<string>;
     ipsSensorStatus?: pulumi.Input<string>;
@@ -213,6 +217,7 @@ export interface FirewallInterfacePolicyArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
     emailfilterProfile?: pulumi.Input<string>;
     emailfilterProfileStatus?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     interface: pulumi.Input<string>;
     ipsSensor?: pulumi.Input<string>;
     ipsSensorStatus?: pulumi.Input<string>;

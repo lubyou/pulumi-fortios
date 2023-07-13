@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -29,6 +30,7 @@ type WirelessControllerWtpProfile struct {
 	EslSesDongle                   WirelessControllerWtpProfileEslSesDongleOutput           `pulumi:"eslSesDongle"`
 	ExtInfoEnable                  pulumi.StringOutput                                      `pulumi:"extInfoEnable"`
 	FrequencyHandoff               pulumi.StringOutput                                      `pulumi:"frequencyHandoff"`
+	GetAllTables                   pulumi.StringPtrOutput                                   `pulumi:"getAllTables"`
 	HandoffRoaming                 pulumi.StringOutput                                      `pulumi:"handoffRoaming"`
 	HandoffRssi                    pulumi.IntOutput                                         `pulumi:"handoffRssi"`
 	HandoffStaThresh               pulumi.IntOutput                                         `pulumi:"handoffStaThresh"`
@@ -55,6 +57,7 @@ type WirelessControllerWtpProfile struct {
 	SyslogProfile                  pulumi.StringOutput                                      `pulumi:"syslogProfile"`
 	TunMtuDownlink                 pulumi.IntOutput                                         `pulumi:"tunMtuDownlink"`
 	TunMtuUplink                   pulumi.IntOutput                                         `pulumi:"tunMtuUplink"`
+	Unii45ghzBand                  pulumi.StringOutput                                      `pulumi:"unii45ghzBand"`
 	Vdomparam                      pulumi.StringPtrOutput                                   `pulumi:"vdomparam"`
 	WanPortAuth                    pulumi.StringOutput                                      `pulumi:"wanPortAuth"`
 	WanPortAuthMethods             pulumi.StringOutput                                      `pulumi:"wanPortAuthMethods"`
@@ -77,7 +80,7 @@ func NewWirelessControllerWtpProfile(ctx *pulumi.Context,
 		"loginPasswd",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WirelessControllerWtpProfile
 	err := ctx.RegisterResource("fortios:index/wirelessControllerWtpProfile:WirelessControllerWtpProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -116,6 +119,7 @@ type wirelessControllerWtpProfileState struct {
 	EslSesDongle                   *WirelessControllerWtpProfileEslSesDongle       `pulumi:"eslSesDongle"`
 	ExtInfoEnable                  *string                                         `pulumi:"extInfoEnable"`
 	FrequencyHandoff               *string                                         `pulumi:"frequencyHandoff"`
+	GetAllTables                   *string                                         `pulumi:"getAllTables"`
 	HandoffRoaming                 *string                                         `pulumi:"handoffRoaming"`
 	HandoffRssi                    *int                                            `pulumi:"handoffRssi"`
 	HandoffStaThresh               *int                                            `pulumi:"handoffStaThresh"`
@@ -142,6 +146,7 @@ type wirelessControllerWtpProfileState struct {
 	SyslogProfile                  *string                                         `pulumi:"syslogProfile"`
 	TunMtuDownlink                 *int                                            `pulumi:"tunMtuDownlink"`
 	TunMtuUplink                   *int                                            `pulumi:"tunMtuUplink"`
+	Unii45ghzBand                  *string                                         `pulumi:"unii45ghzBand"`
 	Vdomparam                      *string                                         `pulumi:"vdomparam"`
 	WanPortAuth                    *string                                         `pulumi:"wanPortAuth"`
 	WanPortAuthMethods             *string                                         `pulumi:"wanPortAuthMethods"`
@@ -167,6 +172,7 @@ type WirelessControllerWtpProfileState struct {
 	EslSesDongle                   WirelessControllerWtpProfileEslSesDonglePtrInput
 	ExtInfoEnable                  pulumi.StringPtrInput
 	FrequencyHandoff               pulumi.StringPtrInput
+	GetAllTables                   pulumi.StringPtrInput
 	HandoffRoaming                 pulumi.StringPtrInput
 	HandoffRssi                    pulumi.IntPtrInput
 	HandoffStaThresh               pulumi.IntPtrInput
@@ -193,6 +199,7 @@ type WirelessControllerWtpProfileState struct {
 	SyslogProfile                  pulumi.StringPtrInput
 	TunMtuDownlink                 pulumi.IntPtrInput
 	TunMtuUplink                   pulumi.IntPtrInput
+	Unii45ghzBand                  pulumi.StringPtrInput
 	Vdomparam                      pulumi.StringPtrInput
 	WanPortAuth                    pulumi.StringPtrInput
 	WanPortAuthMethods             pulumi.StringPtrInput
@@ -222,6 +229,7 @@ type wirelessControllerWtpProfileArgs struct {
 	EslSesDongle                   *WirelessControllerWtpProfileEslSesDongle       `pulumi:"eslSesDongle"`
 	ExtInfoEnable                  *string                                         `pulumi:"extInfoEnable"`
 	FrequencyHandoff               *string                                         `pulumi:"frequencyHandoff"`
+	GetAllTables                   *string                                         `pulumi:"getAllTables"`
 	HandoffRoaming                 *string                                         `pulumi:"handoffRoaming"`
 	HandoffRssi                    *int                                            `pulumi:"handoffRssi"`
 	HandoffStaThresh               *int                                            `pulumi:"handoffStaThresh"`
@@ -248,6 +256,7 @@ type wirelessControllerWtpProfileArgs struct {
 	SyslogProfile                  *string                                         `pulumi:"syslogProfile"`
 	TunMtuDownlink                 *int                                            `pulumi:"tunMtuDownlink"`
 	TunMtuUplink                   *int                                            `pulumi:"tunMtuUplink"`
+	Unii45ghzBand                  *string                                         `pulumi:"unii45ghzBand"`
 	Vdomparam                      *string                                         `pulumi:"vdomparam"`
 	WanPortAuth                    *string                                         `pulumi:"wanPortAuth"`
 	WanPortAuthMethods             *string                                         `pulumi:"wanPortAuthMethods"`
@@ -274,6 +283,7 @@ type WirelessControllerWtpProfileArgs struct {
 	EslSesDongle                   WirelessControllerWtpProfileEslSesDonglePtrInput
 	ExtInfoEnable                  pulumi.StringPtrInput
 	FrequencyHandoff               pulumi.StringPtrInput
+	GetAllTables                   pulumi.StringPtrInput
 	HandoffRoaming                 pulumi.StringPtrInput
 	HandoffRssi                    pulumi.IntPtrInput
 	HandoffStaThresh               pulumi.IntPtrInput
@@ -300,6 +310,7 @@ type WirelessControllerWtpProfileArgs struct {
 	SyslogProfile                  pulumi.StringPtrInput
 	TunMtuDownlink                 pulumi.IntPtrInput
 	TunMtuUplink                   pulumi.IntPtrInput
+	Unii45ghzBand                  pulumi.StringPtrInput
 	Vdomparam                      pulumi.StringPtrInput
 	WanPortAuth                    pulumi.StringPtrInput
 	WanPortAuthMethods             pulumi.StringPtrInput
@@ -463,6 +474,10 @@ func (o WirelessControllerWtpProfileOutput) FrequencyHandoff() pulumi.StringOutp
 	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.StringOutput { return v.FrequencyHandoff }).(pulumi.StringOutput)
 }
 
+func (o WirelessControllerWtpProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 func (o WirelessControllerWtpProfileOutput) HandoffRoaming() pulumi.StringOutput {
 	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.StringOutput { return v.HandoffRoaming }).(pulumi.StringOutput)
 }
@@ -569,6 +584,10 @@ func (o WirelessControllerWtpProfileOutput) TunMtuDownlink() pulumi.IntOutput {
 
 func (o WirelessControllerWtpProfileOutput) TunMtuUplink() pulumi.IntOutput {
 	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.IntOutput { return v.TunMtuUplink }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerWtpProfileOutput) Unii45ghzBand() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfile) pulumi.StringOutput { return v.Unii45ghzBand }).(pulumi.StringOutput)
 }
 
 func (o WirelessControllerWtpProfileOutput) Vdomparam() pulumi.StringPtrOutput {

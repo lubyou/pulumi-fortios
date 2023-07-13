@@ -26,6 +26,7 @@ export interface GetSystemFortiguardArgs {
 export interface GetSystemFortiguardResult {
     readonly antispamCache: string;
     readonly antispamCacheMpercent: number;
+    readonly antispamCacheMpermille: number;
     readonly antispamCacheTtl: number;
     readonly antispamExpiration: number;
     readonly antispamForceOff: string;
@@ -35,12 +36,14 @@ export interface GetSystemFortiguardResult {
     readonly anycastSdnsServerPort: number;
     readonly autoFirmwareUpgrade: string;
     readonly autoFirmwareUpgradeDay: string;
+    readonly autoFirmwareUpgradeDelay: number;
     readonly autoFirmwareUpgradeEndHour: number;
     readonly autoFirmwareUpgradeStartHour: number;
     readonly autoJoinForticloud: string;
     readonly ddnsServerIp: string;
     readonly ddnsServerIp6: string;
     readonly ddnsServerPort: number;
+    readonly fdsLicenseExpiringDays: number;
     readonly fortiguardAnycast: string;
     readonly fortiguardAnycastSource: string;
     /**
@@ -52,6 +55,7 @@ export interface GetSystemFortiguardResult {
     readonly loadBalanceServers: number;
     readonly outbreakPreventionCache: string;
     readonly outbreakPreventionCacheMpercent: number;
+    readonly outbreakPreventionCacheMpermille: number;
     readonly outbreakPreventionCacheTtl: number;
     readonly outbreakPreventionExpiration: number;
     readonly outbreakPreventionForceOff: string;
@@ -73,6 +77,7 @@ export interface GetSystemFortiguardResult {
     readonly sourceIp: string;
     readonly sourceIp6: string;
     readonly updateBuildProxy: string;
+    readonly updateDldb: string;
     readonly updateExtdb: string;
     readonly updateFfdb: string;
     readonly updateServerLocation: string;

@@ -38,6 +38,7 @@ export class IpsRule extends pulumi.CustomResource {
     public readonly application!: pulumi.Output<string>;
     public readonly date!: pulumi.Output<number>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly group!: pulumi.Output<string>;
     public readonly location!: pulumi.Output<string>;
     public readonly log!: pulumi.Output<string>;
@@ -69,6 +70,7 @@ export class IpsRule extends pulumi.CustomResource {
             resourceInputs["application"] = state ? state.application : undefined;
             resourceInputs["date"] = state ? state.date : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["group"] = state ? state.group : undefined;
             resourceInputs["location"] = state ? state.location : undefined;
             resourceInputs["log"] = state ? state.log : undefined;
@@ -88,6 +90,7 @@ export class IpsRule extends pulumi.CustomResource {
             resourceInputs["application"] = args ? args.application : undefined;
             resourceInputs["date"] = args ? args.date : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["group"] = args ? args.group : undefined;
             resourceInputs["location"] = args ? args.location : undefined;
             resourceInputs["log"] = args ? args.log : undefined;
@@ -115,6 +118,7 @@ export interface IpsRuleState {
     application?: pulumi.Input<string>;
     date?: pulumi.Input<number>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     group?: pulumi.Input<string>;
     location?: pulumi.Input<string>;
     log?: pulumi.Input<string>;
@@ -138,6 +142,7 @@ export interface IpsRuleArgs {
     application?: pulumi.Input<string>;
     date?: pulumi.Input<number>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     group?: pulumi.Input<string>;
     location?: pulumi.Input<string>;
     log?: pulumi.Input<string>;

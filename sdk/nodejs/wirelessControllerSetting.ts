@@ -46,6 +46,7 @@ export class WirelessControllerSetting extends pulumi.CustomResource {
     public readonly fakeSsidAction!: pulumi.Output<string>;
     public readonly fapcCompatibility!: pulumi.Output<string>;
     public readonly firmwareProvisionOnAuthorization!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly offendingSsids!: pulumi.Output<outputs.WirelessControllerSettingOffendingSsid[] | undefined>;
     public readonly phishingSsidDetect!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -76,6 +77,7 @@ export class WirelessControllerSetting extends pulumi.CustomResource {
             resourceInputs["fakeSsidAction"] = state ? state.fakeSsidAction : undefined;
             resourceInputs["fapcCompatibility"] = state ? state.fapcCompatibility : undefined;
             resourceInputs["firmwareProvisionOnAuthorization"] = state ? state.firmwareProvisionOnAuthorization : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["offendingSsids"] = state ? state.offendingSsids : undefined;
             resourceInputs["phishingSsidDetect"] = state ? state.phishingSsidDetect : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
@@ -94,6 +96,7 @@ export class WirelessControllerSetting extends pulumi.CustomResource {
             resourceInputs["fakeSsidAction"] = args ? args.fakeSsidAction : undefined;
             resourceInputs["fapcCompatibility"] = args ? args.fapcCompatibility : undefined;
             resourceInputs["firmwareProvisionOnAuthorization"] = args ? args.firmwareProvisionOnAuthorization : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["offendingSsids"] = args ? args.offendingSsids : undefined;
             resourceInputs["phishingSsidDetect"] = args ? args.phishingSsidDetect : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -120,6 +123,7 @@ export interface WirelessControllerSettingState {
     fakeSsidAction?: pulumi.Input<string>;
     fapcCompatibility?: pulumi.Input<string>;
     firmwareProvisionOnAuthorization?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     offendingSsids?: pulumi.Input<pulumi.Input<inputs.WirelessControllerSettingOffendingSsid>[]>;
     phishingSsidDetect?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
@@ -142,6 +146,7 @@ export interface WirelessControllerSettingArgs {
     fakeSsidAction?: pulumi.Input<string>;
     fapcCompatibility?: pulumi.Input<string>;
     firmwareProvisionOnAuthorization?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     offendingSsids?: pulumi.Input<pulumi.Input<inputs.WirelessControllerSettingOffendingSsid>[]>;
     phishingSsidDetect?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;

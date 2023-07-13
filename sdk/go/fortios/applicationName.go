@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -18,6 +19,7 @@ type ApplicationName struct {
 	Category            pulumi.IntOutput                    `pulumi:"category"`
 	DynamicSortSubtable pulumi.StringPtrOutput              `pulumi:"dynamicSortSubtable"`
 	Fosid               pulumi.IntOutput                    `pulumi:"fosid"`
+	GetAllTables        pulumi.StringPtrOutput              `pulumi:"getAllTables"`
 	Metadatas           ApplicationNameMetadataArrayOutput  `pulumi:"metadatas"`
 	Name                pulumi.StringOutput                 `pulumi:"name"`
 	Parameter           pulumi.StringOutput                 `pulumi:"parameter"`
@@ -42,7 +44,7 @@ func NewApplicationName(ctx *pulumi.Context,
 	if args.Category == nil {
 		return nil, errors.New("invalid value for required argument 'Category'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ApplicationName
 	err := ctx.RegisterResource("fortios:index/applicationName:ApplicationName", name, args, &resource, opts...)
 	if err != nil {
@@ -69,6 +71,7 @@ type applicationNameState struct {
 	Category            *int                       `pulumi:"category"`
 	DynamicSortSubtable *string                    `pulumi:"dynamicSortSubtable"`
 	Fosid               *int                       `pulumi:"fosid"`
+	GetAllTables        *string                    `pulumi:"getAllTables"`
 	Metadatas           []ApplicationNameMetadata  `pulumi:"metadatas"`
 	Name                *string                    `pulumi:"name"`
 	Parameter           *string                    `pulumi:"parameter"`
@@ -88,6 +91,7 @@ type ApplicationNameState struct {
 	Category            pulumi.IntPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	Fosid               pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Metadatas           ApplicationNameMetadataArrayInput
 	Name                pulumi.StringPtrInput
 	Parameter           pulumi.StringPtrInput
@@ -111,6 +115,7 @@ type applicationNameArgs struct {
 	Category            int                        `pulumi:"category"`
 	DynamicSortSubtable *string                    `pulumi:"dynamicSortSubtable"`
 	Fosid               *int                       `pulumi:"fosid"`
+	GetAllTables        *string                    `pulumi:"getAllTables"`
 	Metadatas           []ApplicationNameMetadata  `pulumi:"metadatas"`
 	Name                *string                    `pulumi:"name"`
 	Parameter           *string                    `pulumi:"parameter"`
@@ -131,6 +136,7 @@ type ApplicationNameArgs struct {
 	Category            pulumi.IntInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	Fosid               pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Metadatas           ApplicationNameMetadataArrayInput
 	Name                pulumi.StringPtrInput
 	Parameter           pulumi.StringPtrInput
@@ -246,6 +252,10 @@ func (o ApplicationNameOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 
 func (o ApplicationNameOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *ApplicationName) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o ApplicationNameOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ApplicationName) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o ApplicationNameOutput) Metadatas() ApplicationNameMetadataArrayOutput {

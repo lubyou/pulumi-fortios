@@ -23,6 +23,7 @@ class SwitchControllerManagedSwitchArgs:
                  delayed_restart_trigger: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  dhcp_server_access_list: Optional[pulumi.Input[str]] = None,
+                 dhcp_snooping_static_clients: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerManagedSwitchDhcpSnoopingStaticClientArgs']]]] = None,
                  directly_connected: Optional[pulumi.Input[int]] = None,
                  dynamic_capability: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
@@ -34,6 +35,7 @@ class SwitchControllerManagedSwitchArgs:
                  fsw_wan1_admin: Optional[pulumi.Input[str]] = None,
                  fsw_wan2_admin: Optional[pulumi.Input[str]] = None,
                  fsw_wan2_peer: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  igmp_snooping: Optional[pulumi.Input['SwitchControllerManagedSwitchIgmpSnoopingArgs']] = None,
                  ip_source_guards: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerManagedSwitchIpSourceGuardArgs']]]] = None,
                  l3_discovered: Optional[pulumi.Input[int]] = None,
@@ -55,6 +57,7 @@ class SwitchControllerManagedSwitchArgs:
                  qos_drop_policy: Optional[pulumi.Input[str]] = None,
                  qos_red_probability: Optional[pulumi.Input[int]] = None,
                  remote_logs: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerManagedSwitchRemoteLogArgs']]]] = None,
+                 sn: Optional[pulumi.Input[str]] = None,
                  snmp_communities: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerManagedSwitchSnmpCommunityArgs']]]] = None,
                  snmp_sysinfo: Optional[pulumi.Input['SwitchControllerManagedSwitchSnmpSysinfoArgs']] = None,
                  snmp_trap_threshold: Optional[pulumi.Input['SwitchControllerManagedSwitchSnmpTrapThresholdArgs']] = None,
@@ -88,6 +91,8 @@ class SwitchControllerManagedSwitchArgs:
             pulumi.set(__self__, "description", description)
         if dhcp_server_access_list is not None:
             pulumi.set(__self__, "dhcp_server_access_list", dhcp_server_access_list)
+        if dhcp_snooping_static_clients is not None:
+            pulumi.set(__self__, "dhcp_snooping_static_clients", dhcp_snooping_static_clients)
         if directly_connected is not None:
             pulumi.set(__self__, "directly_connected", directly_connected)
         if dynamic_capability is not None:
@@ -110,6 +115,8 @@ class SwitchControllerManagedSwitchArgs:
             pulumi.set(__self__, "fsw_wan2_admin", fsw_wan2_admin)
         if fsw_wan2_peer is not None:
             pulumi.set(__self__, "fsw_wan2_peer", fsw_wan2_peer)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if igmp_snooping is not None:
             pulumi.set(__self__, "igmp_snooping", igmp_snooping)
         if ip_source_guards is not None:
@@ -152,6 +159,8 @@ class SwitchControllerManagedSwitchArgs:
             pulumi.set(__self__, "qos_red_probability", qos_red_probability)
         if remote_logs is not None:
             pulumi.set(__self__, "remote_logs", remote_logs)
+        if sn is not None:
+            pulumi.set(__self__, "sn", sn)
         if snmp_communities is not None:
             pulumi.set(__self__, "snmp_communities", snmp_communities)
         if snmp_sysinfo is not None:
@@ -253,6 +262,15 @@ class SwitchControllerManagedSwitchArgs:
         pulumi.set(self, "dhcp_server_access_list", value)
 
     @property
+    @pulumi.getter(name="dhcpSnoopingStaticClients")
+    def dhcp_snooping_static_clients(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerManagedSwitchDhcpSnoopingStaticClientArgs']]]]:
+        return pulumi.get(self, "dhcp_snooping_static_clients")
+
+    @dhcp_snooping_static_clients.setter
+    def dhcp_snooping_static_clients(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerManagedSwitchDhcpSnoopingStaticClientArgs']]]]):
+        pulumi.set(self, "dhcp_snooping_static_clients", value)
+
+    @property
     @pulumi.getter(name="directlyConnected")
     def directly_connected(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "directly_connected")
@@ -350,6 +368,15 @@ class SwitchControllerManagedSwitchArgs:
     @fsw_wan2_peer.setter
     def fsw_wan2_peer(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fsw_wan2_peer", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="igmpSnooping")
@@ -539,6 +566,15 @@ class SwitchControllerManagedSwitchArgs:
     @remote_logs.setter
     def remote_logs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerManagedSwitchRemoteLogArgs']]]]):
         pulumi.set(self, "remote_logs", value)
+
+    @property
+    @pulumi.getter
+    def sn(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "sn")
+
+    @sn.setter
+    def sn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sn", value)
 
     @property
     @pulumi.getter(name="snmpCommunities")
@@ -711,6 +747,7 @@ class _SwitchControllerManagedSwitchState:
                  delayed_restart_trigger: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  dhcp_server_access_list: Optional[pulumi.Input[str]] = None,
+                 dhcp_snooping_static_clients: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerManagedSwitchDhcpSnoopingStaticClientArgs']]]] = None,
                  directly_connected: Optional[pulumi.Input[int]] = None,
                  dynamic_capability: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
@@ -723,6 +760,7 @@ class _SwitchControllerManagedSwitchState:
                  fsw_wan1_peer: Optional[pulumi.Input[str]] = None,
                  fsw_wan2_admin: Optional[pulumi.Input[str]] = None,
                  fsw_wan2_peer: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  igmp_snooping: Optional[pulumi.Input['SwitchControllerManagedSwitchIgmpSnoopingArgs']] = None,
                  ip_source_guards: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerManagedSwitchIpSourceGuardArgs']]]] = None,
                  l3_discovered: Optional[pulumi.Input[int]] = None,
@@ -744,6 +782,7 @@ class _SwitchControllerManagedSwitchState:
                  qos_drop_policy: Optional[pulumi.Input[str]] = None,
                  qos_red_probability: Optional[pulumi.Input[int]] = None,
                  remote_logs: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerManagedSwitchRemoteLogArgs']]]] = None,
+                 sn: Optional[pulumi.Input[str]] = None,
                  snmp_communities: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerManagedSwitchSnmpCommunityArgs']]]] = None,
                  snmp_sysinfo: Optional[pulumi.Input['SwitchControllerManagedSwitchSnmpSysinfoArgs']] = None,
                  snmp_trap_threshold: Optional[pulumi.Input['SwitchControllerManagedSwitchSnmpTrapThresholdArgs']] = None,
@@ -776,6 +815,8 @@ class _SwitchControllerManagedSwitchState:
             pulumi.set(__self__, "description", description)
         if dhcp_server_access_list is not None:
             pulumi.set(__self__, "dhcp_server_access_list", dhcp_server_access_list)
+        if dhcp_snooping_static_clients is not None:
+            pulumi.set(__self__, "dhcp_snooping_static_clients", dhcp_snooping_static_clients)
         if directly_connected is not None:
             pulumi.set(__self__, "directly_connected", directly_connected)
         if dynamic_capability is not None:
@@ -800,6 +841,8 @@ class _SwitchControllerManagedSwitchState:
             pulumi.set(__self__, "fsw_wan2_admin", fsw_wan2_admin)
         if fsw_wan2_peer is not None:
             pulumi.set(__self__, "fsw_wan2_peer", fsw_wan2_peer)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if igmp_snooping is not None:
             pulumi.set(__self__, "igmp_snooping", igmp_snooping)
         if ip_source_guards is not None:
@@ -842,6 +885,8 @@ class _SwitchControllerManagedSwitchState:
             pulumi.set(__self__, "qos_red_probability", qos_red_probability)
         if remote_logs is not None:
             pulumi.set(__self__, "remote_logs", remote_logs)
+        if sn is not None:
+            pulumi.set(__self__, "sn", sn)
         if snmp_communities is not None:
             pulumi.set(__self__, "snmp_communities", snmp_communities)
         if snmp_sysinfo is not None:
@@ -925,6 +970,15 @@ class _SwitchControllerManagedSwitchState:
     @dhcp_server_access_list.setter
     def dhcp_server_access_list(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dhcp_server_access_list", value)
+
+    @property
+    @pulumi.getter(name="dhcpSnoopingStaticClients")
+    def dhcp_snooping_static_clients(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerManagedSwitchDhcpSnoopingStaticClientArgs']]]]:
+        return pulumi.get(self, "dhcp_snooping_static_clients")
+
+    @dhcp_snooping_static_clients.setter
+    def dhcp_snooping_static_clients(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerManagedSwitchDhcpSnoopingStaticClientArgs']]]]):
+        pulumi.set(self, "dhcp_snooping_static_clients", value)
 
     @property
     @pulumi.getter(name="directlyConnected")
@@ -1033,6 +1087,15 @@ class _SwitchControllerManagedSwitchState:
     @fsw_wan2_peer.setter
     def fsw_wan2_peer(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fsw_wan2_peer", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="igmpSnooping")
@@ -1222,6 +1285,15 @@ class _SwitchControllerManagedSwitchState:
     @remote_logs.setter
     def remote_logs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerManagedSwitchRemoteLogArgs']]]]):
         pulumi.set(self, "remote_logs", value)
+
+    @property
+    @pulumi.getter
+    def sn(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "sn")
+
+    @sn.setter
+    def sn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sn", value)
 
     @property
     @pulumi.getter(name="snmpCommunities")
@@ -1405,6 +1477,7 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
                  delayed_restart_trigger: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  dhcp_server_access_list: Optional[pulumi.Input[str]] = None,
+                 dhcp_snooping_static_clients: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchDhcpSnoopingStaticClientArgs']]]]] = None,
                  directly_connected: Optional[pulumi.Input[int]] = None,
                  dynamic_capability: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
@@ -1417,6 +1490,7 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
                  fsw_wan1_peer: Optional[pulumi.Input[str]] = None,
                  fsw_wan2_admin: Optional[pulumi.Input[str]] = None,
                  fsw_wan2_peer: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  igmp_snooping: Optional[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchIgmpSnoopingArgs']]] = None,
                  ip_source_guards: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchIpSourceGuardArgs']]]]] = None,
                  l3_discovered: Optional[pulumi.Input[int]] = None,
@@ -1438,6 +1512,7 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
                  qos_drop_policy: Optional[pulumi.Input[str]] = None,
                  qos_red_probability: Optional[pulumi.Input[int]] = None,
                  remote_logs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchRemoteLogArgs']]]]] = None,
+                 sn: Optional[pulumi.Input[str]] = None,
                  snmp_communities: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchSnmpCommunityArgs']]]]] = None,
                  snmp_sysinfo: Optional[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchSnmpSysinfoArgs']]] = None,
                  snmp_trap_threshold: Optional[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchSnmpTrapThresholdArgs']]] = None,
@@ -1491,6 +1566,7 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
                  delayed_restart_trigger: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  dhcp_server_access_list: Optional[pulumi.Input[str]] = None,
+                 dhcp_snooping_static_clients: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchDhcpSnoopingStaticClientArgs']]]]] = None,
                  directly_connected: Optional[pulumi.Input[int]] = None,
                  dynamic_capability: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
@@ -1503,6 +1579,7 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
                  fsw_wan1_peer: Optional[pulumi.Input[str]] = None,
                  fsw_wan2_admin: Optional[pulumi.Input[str]] = None,
                  fsw_wan2_peer: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  igmp_snooping: Optional[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchIgmpSnoopingArgs']]] = None,
                  ip_source_guards: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchIpSourceGuardArgs']]]]] = None,
                  l3_discovered: Optional[pulumi.Input[int]] = None,
@@ -1524,6 +1601,7 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
                  qos_drop_policy: Optional[pulumi.Input[str]] = None,
                  qos_red_probability: Optional[pulumi.Input[int]] = None,
                  remote_logs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchRemoteLogArgs']]]]] = None,
+                 sn: Optional[pulumi.Input[str]] = None,
                  snmp_communities: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchSnmpCommunityArgs']]]]] = None,
                  snmp_sysinfo: Optional[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchSnmpSysinfoArgs']]] = None,
                  snmp_trap_threshold: Optional[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchSnmpTrapThresholdArgs']]] = None,
@@ -1557,6 +1635,7 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
             __props__.__dict__["delayed_restart_trigger"] = delayed_restart_trigger
             __props__.__dict__["description"] = description
             __props__.__dict__["dhcp_server_access_list"] = dhcp_server_access_list
+            __props__.__dict__["dhcp_snooping_static_clients"] = dhcp_snooping_static_clients
             __props__.__dict__["directly_connected"] = directly_connected
             __props__.__dict__["dynamic_capability"] = dynamic_capability
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
@@ -1571,6 +1650,7 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
             __props__.__dict__["fsw_wan1_peer"] = fsw_wan1_peer
             __props__.__dict__["fsw_wan2_admin"] = fsw_wan2_admin
             __props__.__dict__["fsw_wan2_peer"] = fsw_wan2_peer
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["igmp_snooping"] = igmp_snooping
             __props__.__dict__["ip_source_guards"] = ip_source_guards
             __props__.__dict__["l3_discovered"] = l3_discovered
@@ -1592,6 +1672,7 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
             __props__.__dict__["qos_drop_policy"] = qos_drop_policy
             __props__.__dict__["qos_red_probability"] = qos_red_probability
             __props__.__dict__["remote_logs"] = remote_logs
+            __props__.__dict__["sn"] = sn
             __props__.__dict__["snmp_communities"] = snmp_communities
             __props__.__dict__["snmp_sysinfo"] = snmp_sysinfo
             __props__.__dict__["snmp_trap_threshold"] = snmp_trap_threshold
@@ -1628,6 +1709,7 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
             delayed_restart_trigger: Optional[pulumi.Input[int]] = None,
             description: Optional[pulumi.Input[str]] = None,
             dhcp_server_access_list: Optional[pulumi.Input[str]] = None,
+            dhcp_snooping_static_clients: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchDhcpSnoopingStaticClientArgs']]]]] = None,
             directly_connected: Optional[pulumi.Input[int]] = None,
             dynamic_capability: Optional[pulumi.Input[int]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
@@ -1640,6 +1722,7 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
             fsw_wan1_peer: Optional[pulumi.Input[str]] = None,
             fsw_wan2_admin: Optional[pulumi.Input[str]] = None,
             fsw_wan2_peer: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             igmp_snooping: Optional[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchIgmpSnoopingArgs']]] = None,
             ip_source_guards: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchIpSourceGuardArgs']]]]] = None,
             l3_discovered: Optional[pulumi.Input[int]] = None,
@@ -1661,6 +1744,7 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
             qos_drop_policy: Optional[pulumi.Input[str]] = None,
             qos_red_probability: Optional[pulumi.Input[int]] = None,
             remote_logs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchRemoteLogArgs']]]]] = None,
+            sn: Optional[pulumi.Input[str]] = None,
             snmp_communities: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchSnmpCommunityArgs']]]]] = None,
             snmp_sysinfo: Optional[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchSnmpSysinfoArgs']]] = None,
             snmp_trap_threshold: Optional[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchSnmpTrapThresholdArgs']]] = None,
@@ -1697,6 +1781,7 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
         __props__.__dict__["delayed_restart_trigger"] = delayed_restart_trigger
         __props__.__dict__["description"] = description
         __props__.__dict__["dhcp_server_access_list"] = dhcp_server_access_list
+        __props__.__dict__["dhcp_snooping_static_clients"] = dhcp_snooping_static_clients
         __props__.__dict__["directly_connected"] = directly_connected
         __props__.__dict__["dynamic_capability"] = dynamic_capability
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
@@ -1709,6 +1794,7 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
         __props__.__dict__["fsw_wan1_peer"] = fsw_wan1_peer
         __props__.__dict__["fsw_wan2_admin"] = fsw_wan2_admin
         __props__.__dict__["fsw_wan2_peer"] = fsw_wan2_peer
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["igmp_snooping"] = igmp_snooping
         __props__.__dict__["ip_source_guards"] = ip_source_guards
         __props__.__dict__["l3_discovered"] = l3_discovered
@@ -1730,6 +1816,7 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
         __props__.__dict__["qos_drop_policy"] = qos_drop_policy
         __props__.__dict__["qos_red_probability"] = qos_red_probability
         __props__.__dict__["remote_logs"] = remote_logs
+        __props__.__dict__["sn"] = sn
         __props__.__dict__["snmp_communities"] = snmp_communities
         __props__.__dict__["snmp_sysinfo"] = snmp_sysinfo
         __props__.__dict__["snmp_trap_threshold"] = snmp_trap_threshold
@@ -1775,6 +1862,11 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
     @pulumi.getter(name="dhcpServerAccessList")
     def dhcp_server_access_list(self) -> pulumi.Output[str]:
         return pulumi.get(self, "dhcp_server_access_list")
+
+    @property
+    @pulumi.getter(name="dhcpSnoopingStaticClients")
+    def dhcp_snooping_static_clients(self) -> pulumi.Output[Optional[Sequence['outputs.SwitchControllerManagedSwitchDhcpSnoopingStaticClient']]]:
+        return pulumi.get(self, "dhcp_snooping_static_clients")
 
     @property
     @pulumi.getter(name="directlyConnected")
@@ -1835,6 +1927,11 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
     @pulumi.getter(name="fswWan2Peer")
     def fsw_wan2_peer(self) -> pulumi.Output[str]:
         return pulumi.get(self, "fsw_wan2_peer")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="igmpSnooping")
@@ -1940,6 +2037,11 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
     @pulumi.getter(name="remoteLogs")
     def remote_logs(self) -> pulumi.Output[Optional[Sequence['outputs.SwitchControllerManagedSwitchRemoteLog']]]:
         return pulumi.get(self, "remote_logs")
+
+    @property
+    @pulumi.getter
+    def sn(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "sn")
 
     @property
     @pulumi.getter(name="snmpCommunities")

@@ -112,13 +112,13 @@ def get_system_vdom_exception(fosid: Optional[int] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemVdomException:GetSystemVdomException', __args__, opts=opts, typ=GetSystemVdomExceptionResult).value
 
     return AwaitableGetSystemVdomExceptionResult(
-        fosid=__ret__.fosid,
-        id=__ret__.id,
-        object=__ret__.object,
-        oid=__ret__.oid,
-        scope=__ret__.scope,
-        vdomparam=__ret__.vdomparam,
-        vdoms=__ret__.vdoms)
+        fosid=pulumi.get(__ret__, 'fosid'),
+        id=pulumi.get(__ret__, 'id'),
+        object=pulumi.get(__ret__, 'object'),
+        oid=pulumi.get(__ret__, 'oid'),
+        scope=pulumi.get(__ret__, 'scope'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'),
+        vdoms=pulumi.get(__ret__, 'vdoms'))
 
 
 @_utilities.lift_output_func(get_system_vdom_exception)

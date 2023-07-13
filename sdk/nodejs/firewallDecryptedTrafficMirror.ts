@@ -36,6 +36,7 @@ export class FirewallDecryptedTrafficMirror extends pulumi.CustomResource {
 
     public readonly dstmac!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly interfaces!: pulumi.Output<outputs.FirewallDecryptedTrafficMirrorInterface[] | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly trafficSource!: pulumi.Output<string>;
@@ -57,6 +58,7 @@ export class FirewallDecryptedTrafficMirror extends pulumi.CustomResource {
             const state = argsOrState as FirewallDecryptedTrafficMirrorState | undefined;
             resourceInputs["dstmac"] = state ? state.dstmac : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["interfaces"] = state ? state.interfaces : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["trafficSource"] = state ? state.trafficSource : undefined;
@@ -66,6 +68,7 @@ export class FirewallDecryptedTrafficMirror extends pulumi.CustomResource {
             const args = argsOrState as FirewallDecryptedTrafficMirrorArgs | undefined;
             resourceInputs["dstmac"] = args ? args.dstmac : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["interfaces"] = args ? args.interfaces : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["trafficSource"] = args ? args.trafficSource : undefined;
@@ -83,6 +86,7 @@ export class FirewallDecryptedTrafficMirror extends pulumi.CustomResource {
 export interface FirewallDecryptedTrafficMirrorState {
     dstmac?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     interfaces?: pulumi.Input<pulumi.Input<inputs.FirewallDecryptedTrafficMirrorInterface>[]>;
     name?: pulumi.Input<string>;
     trafficSource?: pulumi.Input<string>;
@@ -96,6 +100,7 @@ export interface FirewallDecryptedTrafficMirrorState {
 export interface FirewallDecryptedTrafficMirrorArgs {
     dstmac?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     interfaces?: pulumi.Input<pulumi.Input<inputs.FirewallDecryptedTrafficMirrorInterface>[]>;
     name?: pulumi.Input<string>;
     trafficSource?: pulumi.Input<string>;

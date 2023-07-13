@@ -23,6 +23,7 @@ class SwitchControllerLldpProfileArgs:
                  auto_mclag_icl: Optional[pulumi.Input[str]] = None,
                  custom_tlvs: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerLldpProfileCustomTlvArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  med_location_services: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerLldpProfileMedLocationServiceArgs']]]] = None,
                  med_network_policies: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerLldpProfileMedNetworkPolicyArgs']]]] = None,
                  med_tlvs: Optional[pulumi.Input[str]] = None,
@@ -47,6 +48,8 @@ class SwitchControllerLldpProfileArgs:
             pulumi.set(__self__, "custom_tlvs", custom_tlvs)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if med_location_services is not None:
             pulumi.set(__self__, "med_location_services", med_location_services)
         if med_network_policies is not None:
@@ -124,6 +127,15 @@ class SwitchControllerLldpProfileArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="medLocationServices")
@@ -199,6 +211,7 @@ class _SwitchControllerLldpProfileState:
                  auto_mclag_icl: Optional[pulumi.Input[str]] = None,
                  custom_tlvs: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerLldpProfileCustomTlvArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  med_location_services: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerLldpProfileMedLocationServiceArgs']]]] = None,
                  med_network_policies: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerLldpProfileMedNetworkPolicyArgs']]]] = None,
                  med_tlvs: Optional[pulumi.Input[str]] = None,
@@ -223,6 +236,8 @@ class _SwitchControllerLldpProfileState:
             pulumi.set(__self__, "custom_tlvs", custom_tlvs)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if med_location_services is not None:
             pulumi.set(__self__, "med_location_services", med_location_services)
         if med_network_policies is not None:
@@ -300,6 +315,15 @@ class _SwitchControllerLldpProfileState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="medLocationServices")
@@ -377,6 +401,7 @@ class SwitchControllerLldpProfile(pulumi.CustomResource):
                  auto_mclag_icl: Optional[pulumi.Input[str]] = None,
                  custom_tlvs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerLldpProfileCustomTlvArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  med_location_services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerLldpProfileMedLocationServiceArgs']]]]] = None,
                  med_network_policies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerLldpProfileMedNetworkPolicyArgs']]]]] = None,
                  med_tlvs: Optional[pulumi.Input[str]] = None,
@@ -420,6 +445,7 @@ class SwitchControllerLldpProfile(pulumi.CustomResource):
                  auto_mclag_icl: Optional[pulumi.Input[str]] = None,
                  custom_tlvs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerLldpProfileCustomTlvArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  med_location_services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerLldpProfileMedLocationServiceArgs']]]]] = None,
                  med_network_policies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerLldpProfileMedNetworkPolicyArgs']]]]] = None,
                  med_tlvs: Optional[pulumi.Input[str]] = None,
@@ -443,6 +469,7 @@ class SwitchControllerLldpProfile(pulumi.CustomResource):
             __props__.__dict__["auto_mclag_icl"] = auto_mclag_icl
             __props__.__dict__["custom_tlvs"] = custom_tlvs
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["med_location_services"] = med_location_services
             __props__.__dict__["med_network_policies"] = med_network_policies
             __props__.__dict__["med_tlvs"] = med_tlvs
@@ -467,6 +494,7 @@ class SwitchControllerLldpProfile(pulumi.CustomResource):
             auto_mclag_icl: Optional[pulumi.Input[str]] = None,
             custom_tlvs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerLldpProfileCustomTlvArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             med_location_services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerLldpProfileMedLocationServiceArgs']]]]] = None,
             med_network_policies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerLldpProfileMedNetworkPolicyArgs']]]]] = None,
             med_tlvs: Optional[pulumi.Input[str]] = None,
@@ -493,6 +521,7 @@ class SwitchControllerLldpProfile(pulumi.CustomResource):
         __props__.__dict__["auto_mclag_icl"] = auto_mclag_icl
         __props__.__dict__["custom_tlvs"] = custom_tlvs
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["med_location_services"] = med_location_services
         __props__.__dict__["med_network_policies"] = med_network_policies
         __props__.__dict__["med_tlvs"] = med_tlvs
@@ -536,6 +565,11 @@ class SwitchControllerLldpProfile(pulumi.CustomResource):
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="medLocationServices")

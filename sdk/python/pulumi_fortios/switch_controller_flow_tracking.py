@@ -22,6 +22,7 @@ class SwitchControllerFlowTrackingArgs:
                  collectors: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerFlowTrackingCollectorArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  format: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  level: Optional[pulumi.Input[str]] = None,
                  max_export_pkt_size: Optional[pulumi.Input[int]] = None,
                  sample_mode: Optional[pulumi.Input[str]] = None,
@@ -51,6 +52,8 @@ class SwitchControllerFlowTrackingArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if format is not None:
             pulumi.set(__self__, "format", format)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if level is not None:
             pulumi.set(__self__, "level", level)
         if max_export_pkt_size is not None:
@@ -133,6 +136,15 @@ class SwitchControllerFlowTrackingArgs:
     @format.setter
     def format(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "format", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -270,6 +282,7 @@ class _SwitchControllerFlowTrackingState:
                  collectors: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerFlowTrackingCollectorArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  format: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  level: Optional[pulumi.Input[str]] = None,
                  max_export_pkt_size: Optional[pulumi.Input[int]] = None,
                  sample_mode: Optional[pulumi.Input[str]] = None,
@@ -299,6 +312,8 @@ class _SwitchControllerFlowTrackingState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if format is not None:
             pulumi.set(__self__, "format", format)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if level is not None:
             pulumi.set(__self__, "level", level)
         if max_export_pkt_size is not None:
@@ -381,6 +396,15 @@ class _SwitchControllerFlowTrackingState:
     @format.setter
     def format(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "format", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -520,6 +544,7 @@ class SwitchControllerFlowTracking(pulumi.CustomResource):
                  collectors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerFlowTrackingCollectorArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  format: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  level: Optional[pulumi.Input[str]] = None,
                  max_export_pkt_size: Optional[pulumi.Input[int]] = None,
                  sample_mode: Optional[pulumi.Input[str]] = None,
@@ -569,6 +594,7 @@ class SwitchControllerFlowTracking(pulumi.CustomResource):
                  collectors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerFlowTrackingCollectorArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  format: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  level: Optional[pulumi.Input[str]] = None,
                  max_export_pkt_size: Optional[pulumi.Input[int]] = None,
                  sample_mode: Optional[pulumi.Input[str]] = None,
@@ -598,6 +624,7 @@ class SwitchControllerFlowTracking(pulumi.CustomResource):
             __props__.__dict__["collectors"] = collectors
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["format"] = format
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["level"] = level
             __props__.__dict__["max_export_pkt_size"] = max_export_pkt_size
             __props__.__dict__["sample_mode"] = sample_mode
@@ -628,6 +655,7 @@ class SwitchControllerFlowTracking(pulumi.CustomResource):
             collectors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerFlowTrackingCollectorArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             format: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             level: Optional[pulumi.Input[str]] = None,
             max_export_pkt_size: Optional[pulumi.Input[int]] = None,
             sample_mode: Optional[pulumi.Input[str]] = None,
@@ -660,6 +688,7 @@ class SwitchControllerFlowTracking(pulumi.CustomResource):
         __props__.__dict__["collectors"] = collectors
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["format"] = format
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["level"] = level
         __props__.__dict__["max_export_pkt_size"] = max_export_pkt_size
         __props__.__dict__["sample_mode"] = sample_mode
@@ -705,6 +734,11 @@ class SwitchControllerFlowTracking(pulumi.CustomResource):
     @pulumi.getter
     def format(self) -> pulumi.Output[str]:
         return pulumi.get(self, "format")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

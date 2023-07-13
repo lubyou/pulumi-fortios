@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -16,6 +17,7 @@ type SystemVdomException struct {
 
 	DynamicSortSubtable pulumi.StringPtrOutput             `pulumi:"dynamicSortSubtable"`
 	Fosid               pulumi.IntOutput                   `pulumi:"fosid"`
+	GetAllTables        pulumi.StringPtrOutput             `pulumi:"getAllTables"`
 	Object              pulumi.StringOutput                `pulumi:"object"`
 	Oid                 pulumi.IntOutput                   `pulumi:"oid"`
 	Scope               pulumi.StringOutput                `pulumi:"scope"`
@@ -33,7 +35,7 @@ func NewSystemVdomException(ctx *pulumi.Context,
 	if args.Object == nil {
 		return nil, errors.New("invalid value for required argument 'Object'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemVdomException
 	err := ctx.RegisterResource("fortios:index/systemVdomException:SystemVdomException", name, args, &resource, opts...)
 	if err != nil {
@@ -58,6 +60,7 @@ func GetSystemVdomException(ctx *pulumi.Context,
 type systemVdomExceptionState struct {
 	DynamicSortSubtable *string                   `pulumi:"dynamicSortSubtable"`
 	Fosid               *int                      `pulumi:"fosid"`
+	GetAllTables        *string                   `pulumi:"getAllTables"`
 	Object              *string                   `pulumi:"object"`
 	Oid                 *int                      `pulumi:"oid"`
 	Scope               *string                   `pulumi:"scope"`
@@ -68,6 +71,7 @@ type systemVdomExceptionState struct {
 type SystemVdomExceptionState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	Fosid               pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Object              pulumi.StringPtrInput
 	Oid                 pulumi.IntPtrInput
 	Scope               pulumi.StringPtrInput
@@ -82,6 +86,7 @@ func (SystemVdomExceptionState) ElementType() reflect.Type {
 type systemVdomExceptionArgs struct {
 	DynamicSortSubtable *string                   `pulumi:"dynamicSortSubtable"`
 	Fosid               *int                      `pulumi:"fosid"`
+	GetAllTables        *string                   `pulumi:"getAllTables"`
 	Object              string                    `pulumi:"object"`
 	Oid                 *int                      `pulumi:"oid"`
 	Scope               *string                   `pulumi:"scope"`
@@ -93,6 +98,7 @@ type systemVdomExceptionArgs struct {
 type SystemVdomExceptionArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	Fosid               pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Object              pulumi.StringInput
 	Oid                 pulumi.IntPtrInput
 	Scope               pulumi.StringPtrInput
@@ -193,6 +199,10 @@ func (o SystemVdomExceptionOutput) DynamicSortSubtable() pulumi.StringPtrOutput 
 
 func (o SystemVdomExceptionOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *SystemVdomException) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o SystemVdomExceptionOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemVdomException) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemVdomExceptionOutput) Object() pulumi.StringOutput {

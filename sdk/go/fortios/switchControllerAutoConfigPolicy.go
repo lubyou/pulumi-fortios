@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -29,7 +30,7 @@ func NewSwitchControllerAutoConfigPolicy(ctx *pulumi.Context,
 		args = &SwitchControllerAutoConfigPolicyArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SwitchControllerAutoConfigPolicy
 	err := ctx.RegisterResource("fortios:index/switchControllerAutoConfigPolicy:SwitchControllerAutoConfigPolicy", name, args, &resource, opts...)
 	if err != nil {

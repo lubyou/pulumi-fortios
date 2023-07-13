@@ -37,6 +37,8 @@ export class VpnSslClient extends pulumi.CustomResource {
     public readonly comment!: pulumi.Output<string | undefined>;
     public readonly distance!: pulumi.Output<number>;
     public readonly interface!: pulumi.Output<string>;
+    public readonly ipv4Subnets!: pulumi.Output<string>;
+    public readonly ipv6Subnets!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
     public readonly peer!: pulumi.Output<string>;
     public readonly port!: pulumi.Output<number>;
@@ -67,6 +69,8 @@ export class VpnSslClient extends pulumi.CustomResource {
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["distance"] = state ? state.distance : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["ipv4Subnets"] = state ? state.ipv4Subnets : undefined;
+            resourceInputs["ipv6Subnets"] = state ? state.ipv6Subnets : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["peer"] = state ? state.peer : undefined;
             resourceInputs["port"] = state ? state.port : undefined;
@@ -85,6 +89,8 @@ export class VpnSslClient extends pulumi.CustomResource {
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["distance"] = args ? args.distance : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["ipv4Subnets"] = args ? args.ipv4Subnets : undefined;
+            resourceInputs["ipv6Subnets"] = args ? args.ipv6Subnets : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["peer"] = args ? args.peer : undefined;
             resourceInputs["port"] = args ? args.port : undefined;
@@ -111,6 +117,8 @@ export interface VpnSslClientState {
     comment?: pulumi.Input<string>;
     distance?: pulumi.Input<number>;
     interface?: pulumi.Input<string>;
+    ipv4Subnets?: pulumi.Input<string>;
+    ipv6Subnets?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     peer?: pulumi.Input<string>;
     port?: pulumi.Input<number>;
@@ -133,6 +141,8 @@ export interface VpnSslClientArgs {
     comment?: pulumi.Input<string>;
     distance?: pulumi.Input<number>;
     interface?: pulumi.Input<string>;
+    ipv4Subnets?: pulumi.Input<string>;
+    ipv6Subnets?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     peer?: pulumi.Input<string>;
     port?: pulumi.Input<number>;

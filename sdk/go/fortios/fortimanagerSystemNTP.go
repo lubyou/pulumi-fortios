@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -29,7 +30,7 @@ func NewFortimanagerSystemNTP(ctx *pulumi.Context,
 	if args.Server == nil {
 		return nil, errors.New("invalid value for required argument 'Server'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FortimanagerSystemNTP
 	err := ctx.RegisterResource("fortios:index/fortimanagerSystemNTP:FortimanagerSystemNTP", name, args, &resource, opts...)
 	if err != nil {

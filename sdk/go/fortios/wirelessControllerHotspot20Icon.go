@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -14,6 +15,7 @@ type WirelessControllerHotspot20Icon struct {
 	pulumi.CustomResourceState
 
 	DynamicSortSubtable pulumi.StringPtrOutput                             `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                             `pulumi:"getAllTables"`
 	IconLists           WirelessControllerHotspot20IconIconListArrayOutput `pulumi:"iconLists"`
 	Name                pulumi.StringOutput                                `pulumi:"name"`
 	Vdomparam           pulumi.StringPtrOutput                             `pulumi:"vdomparam"`
@@ -26,7 +28,7 @@ func NewWirelessControllerHotspot20Icon(ctx *pulumi.Context,
 		args = &WirelessControllerHotspot20IconArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WirelessControllerHotspot20Icon
 	err := ctx.RegisterResource("fortios:index/wirelessControllerHotspot20Icon:WirelessControllerHotspot20Icon", name, args, &resource, opts...)
 	if err != nil {
@@ -50,6 +52,7 @@ func GetWirelessControllerHotspot20Icon(ctx *pulumi.Context,
 // Input properties used for looking up and filtering WirelessControllerHotspot20Icon resources.
 type wirelessControllerHotspot20IconState struct {
 	DynamicSortSubtable *string                                   `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                                   `pulumi:"getAllTables"`
 	IconLists           []WirelessControllerHotspot20IconIconList `pulumi:"iconLists"`
 	Name                *string                                   `pulumi:"name"`
 	Vdomparam           *string                                   `pulumi:"vdomparam"`
@@ -57,6 +60,7 @@ type wirelessControllerHotspot20IconState struct {
 
 type WirelessControllerHotspot20IconState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	IconLists           WirelessControllerHotspot20IconIconListArrayInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
@@ -68,6 +72,7 @@ func (WirelessControllerHotspot20IconState) ElementType() reflect.Type {
 
 type wirelessControllerHotspot20IconArgs struct {
 	DynamicSortSubtable *string                                   `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                                   `pulumi:"getAllTables"`
 	IconLists           []WirelessControllerHotspot20IconIconList `pulumi:"iconLists"`
 	Name                *string                                   `pulumi:"name"`
 	Vdomparam           *string                                   `pulumi:"vdomparam"`
@@ -76,6 +81,7 @@ type wirelessControllerHotspot20IconArgs struct {
 // The set of arguments for constructing a WirelessControllerHotspot20Icon resource.
 type WirelessControllerHotspot20IconArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	IconLists           WirelessControllerHotspot20IconIconListArrayInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
@@ -170,6 +176,10 @@ func (o WirelessControllerHotspot20IconOutput) ToWirelessControllerHotspot20Icon
 
 func (o WirelessControllerHotspot20IconOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WirelessControllerHotspot20Icon) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerHotspot20IconOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20Icon) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o WirelessControllerHotspot20IconOutput) IconLists() WirelessControllerHotspot20IconIconListArrayOutput {

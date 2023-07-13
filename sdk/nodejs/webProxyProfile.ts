@@ -35,6 +35,7 @@ export class WebProxyProfile extends pulumi.CustomResource {
     }
 
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly headerClientIp!: pulumi.Output<string>;
     public readonly headerFrontEndHttps!: pulumi.Output<string>;
     public readonly headerViaRequest!: pulumi.Output<string>;
@@ -63,6 +64,7 @@ export class WebProxyProfile extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as WebProxyProfileState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["headerClientIp"] = state ? state.headerClientIp : undefined;
             resourceInputs["headerFrontEndHttps"] = state ? state.headerFrontEndHttps : undefined;
             resourceInputs["headerViaRequest"] = state ? state.headerViaRequest : undefined;
@@ -79,6 +81,7 @@ export class WebProxyProfile extends pulumi.CustomResource {
         } else {
             const args = argsOrState as WebProxyProfileArgs | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["headerClientIp"] = args ? args.headerClientIp : undefined;
             resourceInputs["headerFrontEndHttps"] = args ? args.headerFrontEndHttps : undefined;
             resourceInputs["headerViaRequest"] = args ? args.headerViaRequest : undefined;
@@ -103,6 +106,7 @@ export class WebProxyProfile extends pulumi.CustomResource {
  */
 export interface WebProxyProfileState {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     headerClientIp?: pulumi.Input<string>;
     headerFrontEndHttps?: pulumi.Input<string>;
     headerViaRequest?: pulumi.Input<string>;
@@ -123,6 +127,7 @@ export interface WebProxyProfileState {
  */
 export interface WebProxyProfileArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     headerClientIp?: pulumi.Input<string>;
     headerFrontEndHttps?: pulumi.Input<string>;
     headerViaRequest?: pulumi.Input<string>;

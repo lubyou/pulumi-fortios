@@ -37,6 +37,7 @@ export class WirelessControllerHotspot20QosMap extends pulumi.CustomResource {
     public readonly dscpExcepts!: pulumi.Output<outputs.WirelessControllerHotspot20QosMapDscpExcept[] | undefined>;
     public readonly dscpRanges!: pulumi.Output<outputs.WirelessControllerHotspot20QosMapDscpRange[] | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
@@ -56,6 +57,7 @@ export class WirelessControllerHotspot20QosMap extends pulumi.CustomResource {
             resourceInputs["dscpExcepts"] = state ? state.dscpExcepts : undefined;
             resourceInputs["dscpRanges"] = state ? state.dscpRanges : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
@@ -63,6 +65,7 @@ export class WirelessControllerHotspot20QosMap extends pulumi.CustomResource {
             resourceInputs["dscpExcepts"] = args ? args.dscpExcepts : undefined;
             resourceInputs["dscpRanges"] = args ? args.dscpRanges : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
@@ -78,6 +81,7 @@ export interface WirelessControllerHotspot20QosMapState {
     dscpExcepts?: pulumi.Input<pulumi.Input<inputs.WirelessControllerHotspot20QosMapDscpExcept>[]>;
     dscpRanges?: pulumi.Input<pulumi.Input<inputs.WirelessControllerHotspot20QosMapDscpRange>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }
@@ -89,6 +93,7 @@ export interface WirelessControllerHotspot20QosMapArgs {
     dscpExcepts?: pulumi.Input<pulumi.Input<inputs.WirelessControllerHotspot20QosMapDscpExcept>[]>;
     dscpRanges?: pulumi.Input<pulumi.Input<inputs.WirelessControllerHotspot20QosMapDscpRange>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }

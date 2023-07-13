@@ -36,6 +36,7 @@ export class WirelessControllerHotspot20H2QpAdviceOfCharge extends pulumi.Custom
 
     public readonly aocLists!: pulumi.Output<outputs.WirelessControllerHotspot20H2QpAdviceOfChargeAocList[] | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
@@ -54,12 +55,14 @@ export class WirelessControllerHotspot20H2QpAdviceOfCharge extends pulumi.Custom
             const state = argsOrState as WirelessControllerHotspot20H2QpAdviceOfChargeState | undefined;
             resourceInputs["aocLists"] = state ? state.aocLists : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WirelessControllerHotspot20H2QpAdviceOfChargeArgs | undefined;
             resourceInputs["aocLists"] = args ? args.aocLists : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
@@ -74,6 +77,7 @@ export class WirelessControllerHotspot20H2QpAdviceOfCharge extends pulumi.Custom
 export interface WirelessControllerHotspot20H2QpAdviceOfChargeState {
     aocLists?: pulumi.Input<pulumi.Input<inputs.WirelessControllerHotspot20H2QpAdviceOfChargeAocList>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }
@@ -84,6 +88,7 @@ export interface WirelessControllerHotspot20H2QpAdviceOfChargeState {
 export interface WirelessControllerHotspot20H2QpAdviceOfChargeArgs {
     aocLists?: pulumi.Input<pulumi.Input<inputs.WirelessControllerHotspot20H2QpAdviceOfChargeAocList>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }

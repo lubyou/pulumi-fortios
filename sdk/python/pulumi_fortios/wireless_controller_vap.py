@@ -40,6 +40,7 @@ class WirelessControllerVapArgs:
                  bstm_rssi_disassoc_timer: Optional[pulumi.Input[int]] = None,
                  captive_portal_ac_name: Optional[pulumi.Input[str]] = None,
                  captive_portal_auth_timeout: Optional[pulumi.Input[int]] = None,
+                 captive_portal_fw_accounting: Optional[pulumi.Input[str]] = None,
                  captive_portal_macauth_radius_secret: Optional[pulumi.Input[str]] = None,
                  captive_portal_macauth_radius_server: Optional[pulumi.Input[str]] = None,
                  captive_portal_radius_secret: Optional[pulumi.Input[str]] = None,
@@ -68,6 +69,7 @@ class WirelessControllerVapArgs:
                  ft_r0_key_lifetime: Optional[pulumi.Input[int]] = None,
                  gas_comeback_delay: Optional[pulumi.Input[int]] = None,
                  gas_fragmentation_limit: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gtk_rekey: Optional[pulumi.Input[str]] = None,
                  gtk_rekey_intv: Optional[pulumi.Input[int]] = None,
                  high_efficiency: Optional[pulumi.Input[str]] = None,
@@ -141,6 +143,7 @@ class WirelessControllerVapArgs:
                  radio5g_threshold: Optional[pulumi.Input[str]] = None,
                  radio_sensitivity: Optional[pulumi.Input[str]] = None,
                  radius_mac_auth: Optional[pulumi.Input[str]] = None,
+                 radius_mac_auth_block_interval: Optional[pulumi.Input[int]] = None,
                  radius_mac_auth_server: Optional[pulumi.Input[str]] = None,
                  radius_mac_auth_usergroups: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerVapRadiusMacAuthUsergroupArgs']]]] = None,
                  radius_mac_mpsk_auth: Optional[pulumi.Input[str]] = None,
@@ -242,6 +245,8 @@ class WirelessControllerVapArgs:
             pulumi.set(__self__, "captive_portal_ac_name", captive_portal_ac_name)
         if captive_portal_auth_timeout is not None:
             pulumi.set(__self__, "captive_portal_auth_timeout", captive_portal_auth_timeout)
+        if captive_portal_fw_accounting is not None:
+            pulumi.set(__self__, "captive_portal_fw_accounting", captive_portal_fw_accounting)
         if captive_portal_macauth_radius_secret is not None:
             pulumi.set(__self__, "captive_portal_macauth_radius_secret", captive_portal_macauth_radius_secret)
         if captive_portal_macauth_radius_server is not None:
@@ -298,6 +303,8 @@ class WirelessControllerVapArgs:
             pulumi.set(__self__, "gas_comeback_delay", gas_comeback_delay)
         if gas_fragmentation_limit is not None:
             pulumi.set(__self__, "gas_fragmentation_limit", gas_fragmentation_limit)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gtk_rekey is not None:
             pulumi.set(__self__, "gtk_rekey", gtk_rekey)
         if gtk_rekey_intv is not None:
@@ -444,6 +451,8 @@ class WirelessControllerVapArgs:
             pulumi.set(__self__, "radio_sensitivity", radio_sensitivity)
         if radius_mac_auth is not None:
             pulumi.set(__self__, "radius_mac_auth", radius_mac_auth)
+        if radius_mac_auth_block_interval is not None:
+            pulumi.set(__self__, "radius_mac_auth_block_interval", radius_mac_auth_block_interval)
         if radius_mac_auth_server is not None:
             pulumi.set(__self__, "radius_mac_auth_server", radius_mac_auth_server)
         if radius_mac_auth_usergroups is not None:
@@ -762,6 +771,15 @@ class WirelessControllerVapArgs:
         pulumi.set(self, "captive_portal_auth_timeout", value)
 
     @property
+    @pulumi.getter(name="captivePortalFwAccounting")
+    def captive_portal_fw_accounting(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "captive_portal_fw_accounting")
+
+    @captive_portal_fw_accounting.setter
+    def captive_portal_fw_accounting(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "captive_portal_fw_accounting", value)
+
+    @property
     @pulumi.getter(name="captivePortalMacauthRadiusSecret")
     def captive_portal_macauth_radius_secret(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "captive_portal_macauth_radius_secret")
@@ -1012,6 +1030,15 @@ class WirelessControllerVapArgs:
     @gas_fragmentation_limit.setter
     def gas_fragmentation_limit(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "gas_fragmentation_limit", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="gtkRekey")
@@ -1669,6 +1696,15 @@ class WirelessControllerVapArgs:
     @radius_mac_auth.setter
     def radius_mac_auth(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "radius_mac_auth", value)
+
+    @property
+    @pulumi.getter(name="radiusMacAuthBlockInterval")
+    def radius_mac_auth_block_interval(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "radius_mac_auth_block_interval")
+
+    @radius_mac_auth_block_interval.setter
+    def radius_mac_auth_block_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "radius_mac_auth_block_interval", value)
 
     @property
     @pulumi.getter(name="radiusMacAuthServer")
@@ -2148,6 +2184,7 @@ class _WirelessControllerVapState:
                  bstm_rssi_disassoc_timer: Optional[pulumi.Input[int]] = None,
                  captive_portal_ac_name: Optional[pulumi.Input[str]] = None,
                  captive_portal_auth_timeout: Optional[pulumi.Input[int]] = None,
+                 captive_portal_fw_accounting: Optional[pulumi.Input[str]] = None,
                  captive_portal_macauth_radius_secret: Optional[pulumi.Input[str]] = None,
                  captive_portal_macauth_radius_server: Optional[pulumi.Input[str]] = None,
                  captive_portal_radius_secret: Optional[pulumi.Input[str]] = None,
@@ -2176,6 +2213,7 @@ class _WirelessControllerVapState:
                  ft_r0_key_lifetime: Optional[pulumi.Input[int]] = None,
                  gas_comeback_delay: Optional[pulumi.Input[int]] = None,
                  gas_fragmentation_limit: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gtk_rekey: Optional[pulumi.Input[str]] = None,
                  gtk_rekey_intv: Optional[pulumi.Input[int]] = None,
                  high_efficiency: Optional[pulumi.Input[str]] = None,
@@ -2249,6 +2287,7 @@ class _WirelessControllerVapState:
                  radio5g_threshold: Optional[pulumi.Input[str]] = None,
                  radio_sensitivity: Optional[pulumi.Input[str]] = None,
                  radius_mac_auth: Optional[pulumi.Input[str]] = None,
+                 radius_mac_auth_block_interval: Optional[pulumi.Input[int]] = None,
                  radius_mac_auth_server: Optional[pulumi.Input[str]] = None,
                  radius_mac_auth_usergroups: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerVapRadiusMacAuthUsergroupArgs']]]] = None,
                  radius_mac_mpsk_auth: Optional[pulumi.Input[str]] = None,
@@ -2350,6 +2389,8 @@ class _WirelessControllerVapState:
             pulumi.set(__self__, "captive_portal_ac_name", captive_portal_ac_name)
         if captive_portal_auth_timeout is not None:
             pulumi.set(__self__, "captive_portal_auth_timeout", captive_portal_auth_timeout)
+        if captive_portal_fw_accounting is not None:
+            pulumi.set(__self__, "captive_portal_fw_accounting", captive_portal_fw_accounting)
         if captive_portal_macauth_radius_secret is not None:
             pulumi.set(__self__, "captive_portal_macauth_radius_secret", captive_portal_macauth_radius_secret)
         if captive_portal_macauth_radius_server is not None:
@@ -2406,6 +2447,8 @@ class _WirelessControllerVapState:
             pulumi.set(__self__, "gas_comeback_delay", gas_comeback_delay)
         if gas_fragmentation_limit is not None:
             pulumi.set(__self__, "gas_fragmentation_limit", gas_fragmentation_limit)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gtk_rekey is not None:
             pulumi.set(__self__, "gtk_rekey", gtk_rekey)
         if gtk_rekey_intv is not None:
@@ -2552,6 +2595,8 @@ class _WirelessControllerVapState:
             pulumi.set(__self__, "radio_sensitivity", radio_sensitivity)
         if radius_mac_auth is not None:
             pulumi.set(__self__, "radius_mac_auth", radius_mac_auth)
+        if radius_mac_auth_block_interval is not None:
+            pulumi.set(__self__, "radius_mac_auth_block_interval", radius_mac_auth_block_interval)
         if radius_mac_auth_server is not None:
             pulumi.set(__self__, "radius_mac_auth_server", radius_mac_auth_server)
         if radius_mac_auth_usergroups is not None:
@@ -2870,6 +2915,15 @@ class _WirelessControllerVapState:
         pulumi.set(self, "captive_portal_auth_timeout", value)
 
     @property
+    @pulumi.getter(name="captivePortalFwAccounting")
+    def captive_portal_fw_accounting(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "captive_portal_fw_accounting")
+
+    @captive_portal_fw_accounting.setter
+    def captive_portal_fw_accounting(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "captive_portal_fw_accounting", value)
+
+    @property
     @pulumi.getter(name="captivePortalMacauthRadiusSecret")
     def captive_portal_macauth_radius_secret(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "captive_portal_macauth_radius_secret")
@@ -3120,6 +3174,15 @@ class _WirelessControllerVapState:
     @gas_fragmentation_limit.setter
     def gas_fragmentation_limit(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "gas_fragmentation_limit", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="gtkRekey")
@@ -3777,6 +3840,15 @@ class _WirelessControllerVapState:
     @radius_mac_auth.setter
     def radius_mac_auth(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "radius_mac_auth", value)
+
+    @property
+    @pulumi.getter(name="radiusMacAuthBlockInterval")
+    def radius_mac_auth_block_interval(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "radius_mac_auth_block_interval")
+
+    @radius_mac_auth_block_interval.setter
+    def radius_mac_auth_block_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "radius_mac_auth_block_interval", value)
 
     @property
     @pulumi.getter(name="radiusMacAuthServer")
@@ -4258,6 +4330,7 @@ class WirelessControllerVap(pulumi.CustomResource):
                  bstm_rssi_disassoc_timer: Optional[pulumi.Input[int]] = None,
                  captive_portal_ac_name: Optional[pulumi.Input[str]] = None,
                  captive_portal_auth_timeout: Optional[pulumi.Input[int]] = None,
+                 captive_portal_fw_accounting: Optional[pulumi.Input[str]] = None,
                  captive_portal_macauth_radius_secret: Optional[pulumi.Input[str]] = None,
                  captive_portal_macauth_radius_server: Optional[pulumi.Input[str]] = None,
                  captive_portal_radius_secret: Optional[pulumi.Input[str]] = None,
@@ -4286,6 +4359,7 @@ class WirelessControllerVap(pulumi.CustomResource):
                  ft_r0_key_lifetime: Optional[pulumi.Input[int]] = None,
                  gas_comeback_delay: Optional[pulumi.Input[int]] = None,
                  gas_fragmentation_limit: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gtk_rekey: Optional[pulumi.Input[str]] = None,
                  gtk_rekey_intv: Optional[pulumi.Input[int]] = None,
                  high_efficiency: Optional[pulumi.Input[str]] = None,
@@ -4359,6 +4433,7 @@ class WirelessControllerVap(pulumi.CustomResource):
                  radio5g_threshold: Optional[pulumi.Input[str]] = None,
                  radio_sensitivity: Optional[pulumi.Input[str]] = None,
                  radius_mac_auth: Optional[pulumi.Input[str]] = None,
+                 radius_mac_auth_block_interval: Optional[pulumi.Input[int]] = None,
                  radius_mac_auth_server: Optional[pulumi.Input[str]] = None,
                  radius_mac_auth_usergroups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerVapRadiusMacAuthUsergroupArgs']]]]] = None,
                  radius_mac_mpsk_auth: Optional[pulumi.Input[str]] = None,
@@ -4462,6 +4537,7 @@ class WirelessControllerVap(pulumi.CustomResource):
                  bstm_rssi_disassoc_timer: Optional[pulumi.Input[int]] = None,
                  captive_portal_ac_name: Optional[pulumi.Input[str]] = None,
                  captive_portal_auth_timeout: Optional[pulumi.Input[int]] = None,
+                 captive_portal_fw_accounting: Optional[pulumi.Input[str]] = None,
                  captive_portal_macauth_radius_secret: Optional[pulumi.Input[str]] = None,
                  captive_portal_macauth_radius_server: Optional[pulumi.Input[str]] = None,
                  captive_portal_radius_secret: Optional[pulumi.Input[str]] = None,
@@ -4490,6 +4566,7 @@ class WirelessControllerVap(pulumi.CustomResource):
                  ft_r0_key_lifetime: Optional[pulumi.Input[int]] = None,
                  gas_comeback_delay: Optional[pulumi.Input[int]] = None,
                  gas_fragmentation_limit: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gtk_rekey: Optional[pulumi.Input[str]] = None,
                  gtk_rekey_intv: Optional[pulumi.Input[int]] = None,
                  high_efficiency: Optional[pulumi.Input[str]] = None,
@@ -4563,6 +4640,7 @@ class WirelessControllerVap(pulumi.CustomResource):
                  radio5g_threshold: Optional[pulumi.Input[str]] = None,
                  radio_sensitivity: Optional[pulumi.Input[str]] = None,
                  radius_mac_auth: Optional[pulumi.Input[str]] = None,
+                 radius_mac_auth_block_interval: Optional[pulumi.Input[int]] = None,
                  radius_mac_auth_server: Optional[pulumi.Input[str]] = None,
                  radius_mac_auth_usergroups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerVapRadiusMacAuthUsergroupArgs']]]]] = None,
                  radius_mac_mpsk_auth: Optional[pulumi.Input[str]] = None,
@@ -4646,6 +4724,7 @@ class WirelessControllerVap(pulumi.CustomResource):
             __props__.__dict__["bstm_rssi_disassoc_timer"] = bstm_rssi_disassoc_timer
             __props__.__dict__["captive_portal_ac_name"] = captive_portal_ac_name
             __props__.__dict__["captive_portal_auth_timeout"] = captive_portal_auth_timeout
+            __props__.__dict__["captive_portal_fw_accounting"] = captive_portal_fw_accounting
             __props__.__dict__["captive_portal_macauth_radius_secret"] = None if captive_portal_macauth_radius_secret is None else pulumi.Output.secret(captive_portal_macauth_radius_secret)
             __props__.__dict__["captive_portal_macauth_radius_server"] = captive_portal_macauth_radius_server
             __props__.__dict__["captive_portal_radius_secret"] = None if captive_portal_radius_secret is None else pulumi.Output.secret(captive_portal_radius_secret)
@@ -4674,6 +4753,7 @@ class WirelessControllerVap(pulumi.CustomResource):
             __props__.__dict__["ft_r0_key_lifetime"] = ft_r0_key_lifetime
             __props__.__dict__["gas_comeback_delay"] = gas_comeback_delay
             __props__.__dict__["gas_fragmentation_limit"] = gas_fragmentation_limit
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["gtk_rekey"] = gtk_rekey
             __props__.__dict__["gtk_rekey_intv"] = gtk_rekey_intv
             __props__.__dict__["high_efficiency"] = high_efficiency
@@ -4747,6 +4827,7 @@ class WirelessControllerVap(pulumi.CustomResource):
             __props__.__dict__["radio5g_threshold"] = radio5g_threshold
             __props__.__dict__["radio_sensitivity"] = radio_sensitivity
             __props__.__dict__["radius_mac_auth"] = radius_mac_auth
+            __props__.__dict__["radius_mac_auth_block_interval"] = radius_mac_auth_block_interval
             __props__.__dict__["radius_mac_auth_server"] = radius_mac_auth_server
             __props__.__dict__["radius_mac_auth_usergroups"] = radius_mac_auth_usergroups
             __props__.__dict__["radius_mac_mpsk_auth"] = radius_mac_mpsk_auth
@@ -4833,6 +4914,7 @@ class WirelessControllerVap(pulumi.CustomResource):
             bstm_rssi_disassoc_timer: Optional[pulumi.Input[int]] = None,
             captive_portal_ac_name: Optional[pulumi.Input[str]] = None,
             captive_portal_auth_timeout: Optional[pulumi.Input[int]] = None,
+            captive_portal_fw_accounting: Optional[pulumi.Input[str]] = None,
             captive_portal_macauth_radius_secret: Optional[pulumi.Input[str]] = None,
             captive_portal_macauth_radius_server: Optional[pulumi.Input[str]] = None,
             captive_portal_radius_secret: Optional[pulumi.Input[str]] = None,
@@ -4861,6 +4943,7 @@ class WirelessControllerVap(pulumi.CustomResource):
             ft_r0_key_lifetime: Optional[pulumi.Input[int]] = None,
             gas_comeback_delay: Optional[pulumi.Input[int]] = None,
             gas_fragmentation_limit: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             gtk_rekey: Optional[pulumi.Input[str]] = None,
             gtk_rekey_intv: Optional[pulumi.Input[int]] = None,
             high_efficiency: Optional[pulumi.Input[str]] = None,
@@ -4934,6 +5017,7 @@ class WirelessControllerVap(pulumi.CustomResource):
             radio5g_threshold: Optional[pulumi.Input[str]] = None,
             radio_sensitivity: Optional[pulumi.Input[str]] = None,
             radius_mac_auth: Optional[pulumi.Input[str]] = None,
+            radius_mac_auth_block_interval: Optional[pulumi.Input[int]] = None,
             radius_mac_auth_server: Optional[pulumi.Input[str]] = None,
             radius_mac_auth_usergroups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerVapRadiusMacAuthUsergroupArgs']]]]] = None,
             radius_mac_mpsk_auth: Optional[pulumi.Input[str]] = None,
@@ -5020,6 +5104,7 @@ class WirelessControllerVap(pulumi.CustomResource):
         __props__.__dict__["bstm_rssi_disassoc_timer"] = bstm_rssi_disassoc_timer
         __props__.__dict__["captive_portal_ac_name"] = captive_portal_ac_name
         __props__.__dict__["captive_portal_auth_timeout"] = captive_portal_auth_timeout
+        __props__.__dict__["captive_portal_fw_accounting"] = captive_portal_fw_accounting
         __props__.__dict__["captive_portal_macauth_radius_secret"] = captive_portal_macauth_radius_secret
         __props__.__dict__["captive_portal_macauth_radius_server"] = captive_portal_macauth_radius_server
         __props__.__dict__["captive_portal_radius_secret"] = captive_portal_radius_secret
@@ -5048,6 +5133,7 @@ class WirelessControllerVap(pulumi.CustomResource):
         __props__.__dict__["ft_r0_key_lifetime"] = ft_r0_key_lifetime
         __props__.__dict__["gas_comeback_delay"] = gas_comeback_delay
         __props__.__dict__["gas_fragmentation_limit"] = gas_fragmentation_limit
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["gtk_rekey"] = gtk_rekey
         __props__.__dict__["gtk_rekey_intv"] = gtk_rekey_intv
         __props__.__dict__["high_efficiency"] = high_efficiency
@@ -5121,6 +5207,7 @@ class WirelessControllerVap(pulumi.CustomResource):
         __props__.__dict__["radio5g_threshold"] = radio5g_threshold
         __props__.__dict__["radio_sensitivity"] = radio_sensitivity
         __props__.__dict__["radius_mac_auth"] = radius_mac_auth
+        __props__.__dict__["radius_mac_auth_block_interval"] = radius_mac_auth_block_interval
         __props__.__dict__["radius_mac_auth_server"] = radius_mac_auth_server
         __props__.__dict__["radius_mac_auth_usergroups"] = radius_mac_auth_usergroups
         __props__.__dict__["radius_mac_mpsk_auth"] = radius_mac_mpsk_auth
@@ -5294,6 +5381,11 @@ class WirelessControllerVap(pulumi.CustomResource):
         return pulumi.get(self, "captive_portal_auth_timeout")
 
     @property
+    @pulumi.getter(name="captivePortalFwAccounting")
+    def captive_portal_fw_accounting(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "captive_portal_fw_accounting")
+
+    @property
     @pulumi.getter(name="captivePortalMacauthRadiusSecret")
     def captive_portal_macauth_radius_secret(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "captive_portal_macauth_radius_secret")
@@ -5432,6 +5524,11 @@ class WirelessControllerVap(pulumi.CustomResource):
     @pulumi.getter(name="gasFragmentationLimit")
     def gas_fragmentation_limit(self) -> pulumi.Output[int]:
         return pulumi.get(self, "gas_fragmentation_limit")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="gtkRekey")
@@ -5797,6 +5894,11 @@ class WirelessControllerVap(pulumi.CustomResource):
     @pulumi.getter(name="radiusMacAuth")
     def radius_mac_auth(self) -> pulumi.Output[str]:
         return pulumi.get(self, "radius_mac_auth")
+
+    @property
+    @pulumi.getter(name="radiusMacAuthBlockInterval")
+    def radius_mac_auth_block_interval(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "radius_mac_auth_block_interval")
 
     @property
     @pulumi.getter(name="radiusMacAuthServer")

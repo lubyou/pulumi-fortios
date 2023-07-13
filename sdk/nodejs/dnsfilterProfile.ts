@@ -42,6 +42,7 @@ export class DnsfilterProfile extends pulumi.CustomResource {
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly externalIpBlocklists!: pulumi.Output<outputs.DnsfilterProfileExternalIpBlocklist[] | undefined>;
     public readonly ftgdDns!: pulumi.Output<outputs.DnsfilterProfileFtgdDns>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly logAllDomain!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
     public readonly redirectPortal!: pulumi.Output<string>;
@@ -73,6 +74,7 @@ export class DnsfilterProfile extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["externalIpBlocklists"] = state ? state.externalIpBlocklists : undefined;
             resourceInputs["ftgdDns"] = state ? state.ftgdDns : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["logAllDomain"] = state ? state.logAllDomain : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["redirectPortal"] = state ? state.redirectPortal : undefined;
@@ -92,6 +94,7 @@ export class DnsfilterProfile extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["externalIpBlocklists"] = args ? args.externalIpBlocklists : undefined;
             resourceInputs["ftgdDns"] = args ? args.ftgdDns : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["logAllDomain"] = args ? args.logAllDomain : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["redirectPortal"] = args ? args.redirectPortal : undefined;
@@ -119,6 +122,7 @@ export interface DnsfilterProfileState {
     dynamicSortSubtable?: pulumi.Input<string>;
     externalIpBlocklists?: pulumi.Input<pulumi.Input<inputs.DnsfilterProfileExternalIpBlocklist>[]>;
     ftgdDns?: pulumi.Input<inputs.DnsfilterProfileFtgdDns>;
+    getAllTables?: pulumi.Input<string>;
     logAllDomain?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     redirectPortal?: pulumi.Input<string>;
@@ -142,6 +146,7 @@ export interface DnsfilterProfileArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
     externalIpBlocklists?: pulumi.Input<pulumi.Input<inputs.DnsfilterProfileExternalIpBlocklist>[]>;
     ftgdDns?: pulumi.Input<inputs.DnsfilterProfileFtgdDns>;
+    getAllTables?: pulumi.Input<string>;
     logAllDomain?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     redirectPortal?: pulumi.Input<string>;

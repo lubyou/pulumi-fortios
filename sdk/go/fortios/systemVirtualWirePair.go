@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,6 +16,7 @@ type SystemVirtualWirePair struct {
 	pulumi.CustomResourceState
 
 	DynamicSortSubtable pulumi.StringPtrOutput                 `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                 `pulumi:"getAllTables"`
 	Members             SystemVirtualWirePairMemberArrayOutput `pulumi:"members"`
 	Name                pulumi.StringOutput                    `pulumi:"name"`
 	Vdomparam           pulumi.StringPtrOutput                 `pulumi:"vdomparam"`
@@ -32,7 +34,7 @@ func NewSystemVirtualWirePair(ctx *pulumi.Context,
 	if args.Members == nil {
 		return nil, errors.New("invalid value for required argument 'Members'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemVirtualWirePair
 	err := ctx.RegisterResource("fortios:index/systemVirtualWirePair:SystemVirtualWirePair", name, args, &resource, opts...)
 	if err != nil {
@@ -56,6 +58,7 @@ func GetSystemVirtualWirePair(ctx *pulumi.Context,
 // Input properties used for looking up and filtering SystemVirtualWirePair resources.
 type systemVirtualWirePairState struct {
 	DynamicSortSubtable *string                       `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                       `pulumi:"getAllTables"`
 	Members             []SystemVirtualWirePairMember `pulumi:"members"`
 	Name                *string                       `pulumi:"name"`
 	Vdomparam           *string                       `pulumi:"vdomparam"`
@@ -65,6 +68,7 @@ type systemVirtualWirePairState struct {
 
 type SystemVirtualWirePairState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Members             SystemVirtualWirePairMemberArrayInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
@@ -78,6 +82,7 @@ func (SystemVirtualWirePairState) ElementType() reflect.Type {
 
 type systemVirtualWirePairArgs struct {
 	DynamicSortSubtable *string                       `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                       `pulumi:"getAllTables"`
 	Members             []SystemVirtualWirePairMember `pulumi:"members"`
 	Name                *string                       `pulumi:"name"`
 	Vdomparam           *string                       `pulumi:"vdomparam"`
@@ -88,6 +93,7 @@ type systemVirtualWirePairArgs struct {
 // The set of arguments for constructing a SystemVirtualWirePair resource.
 type SystemVirtualWirePairArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Members             SystemVirtualWirePairMemberArrayInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
@@ -184,6 +190,10 @@ func (o SystemVirtualWirePairOutput) ToSystemVirtualWirePairOutputWithContext(ct
 
 func (o SystemVirtualWirePairOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SystemVirtualWirePair) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemVirtualWirePairOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemVirtualWirePair) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemVirtualWirePairOutput) Members() SystemVirtualWirePairMemberArrayOutput {

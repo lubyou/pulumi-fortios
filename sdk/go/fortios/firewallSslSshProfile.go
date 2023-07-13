@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -21,6 +22,7 @@ type FirewallSslSshProfile struct {
 	Dot                          FirewallSslSshProfileDotOutput            `pulumi:"dot"`
 	DynamicSortSubtable          pulumi.StringPtrOutput                    `pulumi:"dynamicSortSubtable"`
 	Ftps                         FirewallSslSshProfileFtpsOutput           `pulumi:"ftps"`
+	GetAllTables                 pulumi.StringPtrOutput                    `pulumi:"getAllTables"`
 	Https                        FirewallSslSshProfileHttpsOutput          `pulumi:"https"`
 	Imaps                        FirewallSslSshProfileImapsOutput          `pulumi:"imaps"`
 	MapiOverHttps                pulumi.StringOutput                       `pulumi:"mapiOverHttps"`
@@ -56,7 +58,7 @@ func NewFirewallSslSshProfile(ctx *pulumi.Context,
 		args = &FirewallSslSshProfileArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallSslSshProfile
 	err := ctx.RegisterResource("fortios:index/firewallSslSshProfile:FirewallSslSshProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -87,6 +89,7 @@ type firewallSslSshProfileState struct {
 	Dot                          *FirewallSslSshProfileDot        `pulumi:"dot"`
 	DynamicSortSubtable          *string                          `pulumi:"dynamicSortSubtable"`
 	Ftps                         *FirewallSslSshProfileFtps       `pulumi:"ftps"`
+	GetAllTables                 *string                          `pulumi:"getAllTables"`
 	Https                        *FirewallSslSshProfileHttps      `pulumi:"https"`
 	Imaps                        *FirewallSslSshProfileImaps      `pulumi:"imaps"`
 	MapiOverHttps                *string                          `pulumi:"mapiOverHttps"`
@@ -124,6 +127,7 @@ type FirewallSslSshProfileState struct {
 	Dot                          FirewallSslSshProfileDotPtrInput
 	DynamicSortSubtable          pulumi.StringPtrInput
 	Ftps                         FirewallSslSshProfileFtpsPtrInput
+	GetAllTables                 pulumi.StringPtrInput
 	Https                        FirewallSslSshProfileHttpsPtrInput
 	Imaps                        FirewallSslSshProfileImapsPtrInput
 	MapiOverHttps                pulumi.StringPtrInput
@@ -165,6 +169,7 @@ type firewallSslSshProfileArgs struct {
 	Dot                          *FirewallSslSshProfileDot        `pulumi:"dot"`
 	DynamicSortSubtable          *string                          `pulumi:"dynamicSortSubtable"`
 	Ftps                         *FirewallSslSshProfileFtps       `pulumi:"ftps"`
+	GetAllTables                 *string                          `pulumi:"getAllTables"`
 	Https                        *FirewallSslSshProfileHttps      `pulumi:"https"`
 	Imaps                        *FirewallSslSshProfileImaps      `pulumi:"imaps"`
 	MapiOverHttps                *string                          `pulumi:"mapiOverHttps"`
@@ -203,6 +208,7 @@ type FirewallSslSshProfileArgs struct {
 	Dot                          FirewallSslSshProfileDotPtrInput
 	DynamicSortSubtable          pulumi.StringPtrInput
 	Ftps                         FirewallSslSshProfileFtpsPtrInput
+	GetAllTables                 pulumi.StringPtrInput
 	Https                        FirewallSslSshProfileHttpsPtrInput
 	Imaps                        FirewallSslSshProfileImapsPtrInput
 	MapiOverHttps                pulumi.StringPtrInput
@@ -348,6 +354,10 @@ func (o FirewallSslSshProfileOutput) DynamicSortSubtable() pulumi.StringPtrOutpu
 
 func (o FirewallSslSshProfileOutput) Ftps() FirewallSslSshProfileFtpsOutput {
 	return o.ApplyT(func(v *FirewallSslSshProfile) FirewallSslSshProfileFtpsOutput { return v.Ftps }).(FirewallSslSshProfileFtpsOutput)
+}
+
+func (o FirewallSslSshProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallSslSshProfile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallSslSshProfileOutput) Https() FirewallSslSshProfileHttpsOutput {

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,6 +16,7 @@ type WirelessControllerVapGroup struct {
 
 	Comment             pulumi.StringPtrOutput                   `pulumi:"comment"`
 	DynamicSortSubtable pulumi.StringPtrOutput                   `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                   `pulumi:"getAllTables"`
 	Name                pulumi.StringOutput                      `pulumi:"name"`
 	Vaps                WirelessControllerVapGroupVapArrayOutput `pulumi:"vaps"`
 	Vdomparam           pulumi.StringPtrOutput                   `pulumi:"vdomparam"`
@@ -27,7 +29,7 @@ func NewWirelessControllerVapGroup(ctx *pulumi.Context,
 		args = &WirelessControllerVapGroupArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WirelessControllerVapGroup
 	err := ctx.RegisterResource("fortios:index/wirelessControllerVapGroup:WirelessControllerVapGroup", name, args, &resource, opts...)
 	if err != nil {
@@ -52,6 +54,7 @@ func GetWirelessControllerVapGroup(ctx *pulumi.Context,
 type wirelessControllerVapGroupState struct {
 	Comment             *string                         `pulumi:"comment"`
 	DynamicSortSubtable *string                         `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                         `pulumi:"getAllTables"`
 	Name                *string                         `pulumi:"name"`
 	Vaps                []WirelessControllerVapGroupVap `pulumi:"vaps"`
 	Vdomparam           *string                         `pulumi:"vdomparam"`
@@ -60,6 +63,7 @@ type wirelessControllerVapGroupState struct {
 type WirelessControllerVapGroupState struct {
 	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Vaps                WirelessControllerVapGroupVapArrayInput
 	Vdomparam           pulumi.StringPtrInput
@@ -72,6 +76,7 @@ func (WirelessControllerVapGroupState) ElementType() reflect.Type {
 type wirelessControllerVapGroupArgs struct {
 	Comment             *string                         `pulumi:"comment"`
 	DynamicSortSubtable *string                         `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                         `pulumi:"getAllTables"`
 	Name                *string                         `pulumi:"name"`
 	Vaps                []WirelessControllerVapGroupVap `pulumi:"vaps"`
 	Vdomparam           *string                         `pulumi:"vdomparam"`
@@ -81,6 +86,7 @@ type wirelessControllerVapGroupArgs struct {
 type WirelessControllerVapGroupArgs struct {
 	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Vaps                WirelessControllerVapGroupVapArrayInput
 	Vdomparam           pulumi.StringPtrInput
@@ -179,6 +185,10 @@ func (o WirelessControllerVapGroupOutput) Comment() pulumi.StringPtrOutput {
 
 func (o WirelessControllerVapGroupOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WirelessControllerVapGroup) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerVapGroupOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerVapGroup) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o WirelessControllerVapGroupOutput) Name() pulumi.StringOutput {

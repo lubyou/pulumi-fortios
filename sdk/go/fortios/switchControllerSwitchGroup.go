@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -16,6 +17,7 @@ type SwitchControllerSwitchGroup struct {
 	Description         pulumi.StringOutput                          `pulumi:"description"`
 	DynamicSortSubtable pulumi.StringPtrOutput                       `pulumi:"dynamicSortSubtable"`
 	Fortilink           pulumi.StringOutput                          `pulumi:"fortilink"`
+	GetAllTables        pulumi.StringPtrOutput                       `pulumi:"getAllTables"`
 	Members             SwitchControllerSwitchGroupMemberArrayOutput `pulumi:"members"`
 	Name                pulumi.StringOutput                          `pulumi:"name"`
 	Vdomparam           pulumi.StringPtrOutput                       `pulumi:"vdomparam"`
@@ -28,7 +30,7 @@ func NewSwitchControllerSwitchGroup(ctx *pulumi.Context,
 		args = &SwitchControllerSwitchGroupArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SwitchControllerSwitchGroup
 	err := ctx.RegisterResource("fortios:index/switchControllerSwitchGroup:SwitchControllerSwitchGroup", name, args, &resource, opts...)
 	if err != nil {
@@ -54,6 +56,7 @@ type switchControllerSwitchGroupState struct {
 	Description         *string                             `pulumi:"description"`
 	DynamicSortSubtable *string                             `pulumi:"dynamicSortSubtable"`
 	Fortilink           *string                             `pulumi:"fortilink"`
+	GetAllTables        *string                             `pulumi:"getAllTables"`
 	Members             []SwitchControllerSwitchGroupMember `pulumi:"members"`
 	Name                *string                             `pulumi:"name"`
 	Vdomparam           *string                             `pulumi:"vdomparam"`
@@ -63,6 +66,7 @@ type SwitchControllerSwitchGroupState struct {
 	Description         pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	Fortilink           pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Members             SwitchControllerSwitchGroupMemberArrayInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
@@ -76,6 +80,7 @@ type switchControllerSwitchGroupArgs struct {
 	Description         *string                             `pulumi:"description"`
 	DynamicSortSubtable *string                             `pulumi:"dynamicSortSubtable"`
 	Fortilink           *string                             `pulumi:"fortilink"`
+	GetAllTables        *string                             `pulumi:"getAllTables"`
 	Members             []SwitchControllerSwitchGroupMember `pulumi:"members"`
 	Name                *string                             `pulumi:"name"`
 	Vdomparam           *string                             `pulumi:"vdomparam"`
@@ -86,6 +91,7 @@ type SwitchControllerSwitchGroupArgs struct {
 	Description         pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	Fortilink           pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Members             SwitchControllerSwitchGroupMemberArrayInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
@@ -188,6 +194,10 @@ func (o SwitchControllerSwitchGroupOutput) DynamicSortSubtable() pulumi.StringPt
 
 func (o SwitchControllerSwitchGroupOutput) Fortilink() pulumi.StringOutput {
 	return o.ApplyT(func(v *SwitchControllerSwitchGroup) pulumi.StringOutput { return v.Fortilink }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSwitchGroupOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerSwitchGroup) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SwitchControllerSwitchGroupOutput) Members() SwitchControllerSwitchGroupMemberArrayOutput {

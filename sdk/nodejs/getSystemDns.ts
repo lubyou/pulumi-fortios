@@ -34,6 +34,7 @@ export interface GetSystemDnsResult {
     readonly dnsOverTls: string;
     readonly domains: outputs.GetSystemDnsDomain[];
     readonly fqdnCacheTtl: number;
+    readonly fqdnMaxRefresh: number;
     readonly fqdnMinRefresh: number;
     /**
      * The provider-assigned unique ID for this managed resource.

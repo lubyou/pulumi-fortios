@@ -93,11 +93,11 @@ def get_firewall_service_category(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getFirewallServiceCategory:GetFirewallServiceCategory', __args__, opts=opts, typ=GetFirewallServiceCategoryResult).value
 
     return AwaitableGetFirewallServiceCategoryResult(
-        comment=__ret__.comment,
-        fabric_object=__ret__.fabric_object,
-        id=__ret__.id,
-        name=__ret__.name,
-        vdomparam=__ret__.vdomparam)
+        comment=pulumi.get(__ret__, 'comment'),
+        fabric_object=pulumi.get(__ret__, 'fabric_object'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_firewall_service_category)

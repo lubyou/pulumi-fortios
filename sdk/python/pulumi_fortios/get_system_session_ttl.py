@@ -83,10 +83,10 @@ def get_system_session_ttl(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemSessionTtl:GetSystemSessionTtl', __args__, opts=opts, typ=GetSystemSessionTtlResult).value
 
     return AwaitableGetSystemSessionTtlResult(
-        default=__ret__.default,
-        id=__ret__.id,
-        ports=__ret__.ports,
-        vdomparam=__ret__.vdomparam)
+        default=pulumi.get(__ret__, 'default'),
+        id=pulumi.get(__ret__, 'id'),
+        ports=pulumi.get(__ret__, 'ports'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_session_ttl)

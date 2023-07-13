@@ -18,6 +18,7 @@ class SystemAlarmArgs:
     def __init__(__self__, *,
                  audible: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input['SystemAlarmGroupArgs']]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -28,6 +29,8 @@ class SystemAlarmArgs:
             pulumi.set(__self__, "audible", audible)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if groups is not None:
             pulumi.set(__self__, "groups", groups)
         if status is not None:
@@ -52,6 +55,15 @@ class SystemAlarmArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -86,6 +98,7 @@ class _SystemAlarmState:
     def __init__(__self__, *,
                  audible: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input['SystemAlarmGroupArgs']]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -96,6 +109,8 @@ class _SystemAlarmState:
             pulumi.set(__self__, "audible", audible)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if groups is not None:
             pulumi.set(__self__, "groups", groups)
         if status is not None:
@@ -120,6 +135,15 @@ class _SystemAlarmState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -156,6 +180,7 @@ class SystemAlarm(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  audible: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAlarmGroupArgs']]]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -190,6 +215,7 @@ class SystemAlarm(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  audible: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAlarmGroupArgs']]]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -204,6 +230,7 @@ class SystemAlarm(pulumi.CustomResource):
 
             __props__.__dict__["audible"] = audible
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["groups"] = groups
             __props__.__dict__["status"] = status
             __props__.__dict__["vdomparam"] = vdomparam
@@ -219,6 +246,7 @@ class SystemAlarm(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             audible: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAlarmGroupArgs']]]]] = None,
             status: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'SystemAlarm':
@@ -236,6 +264,7 @@ class SystemAlarm(pulumi.CustomResource):
 
         __props__.__dict__["audible"] = audible
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["groups"] = groups
         __props__.__dict__["status"] = status
         __props__.__dict__["vdomparam"] = vdomparam
@@ -250,6 +279,11 @@ class SystemAlarm(pulumi.CustomResource):
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

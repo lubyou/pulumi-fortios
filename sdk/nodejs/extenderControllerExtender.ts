@@ -55,6 +55,7 @@ export class ExtenderControllerExtender extends pulumi.CustomResource {
     public readonly extName!: pulumi.Output<string>;
     public readonly extensionType!: pulumi.Output<string>;
     public readonly fosid!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly haSharedSecret!: pulumi.Output<string | undefined>;
     public readonly ifname!: pulumi.Output<string>;
     public readonly initiatedUpdate!: pulumi.Output<string>;
@@ -124,6 +125,7 @@ export class ExtenderControllerExtender extends pulumi.CustomResource {
             resourceInputs["extName"] = state ? state.extName : undefined;
             resourceInputs["extensionType"] = state ? state.extensionType : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["haSharedSecret"] = state ? state.haSharedSecret : undefined;
             resourceInputs["ifname"] = state ? state.ifname : undefined;
             resourceInputs["initiatedUpdate"] = state ? state.initiatedUpdate : undefined;
@@ -190,6 +192,7 @@ export class ExtenderControllerExtender extends pulumi.CustomResource {
             resourceInputs["extName"] = args ? args.extName : undefined;
             resourceInputs["extensionType"] = args ? args.extensionType : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["haSharedSecret"] = args?.haSharedSecret ? pulumi.secret(args.haSharedSecret) : undefined;
             resourceInputs["ifname"] = args ? args.ifname : undefined;
             resourceInputs["initiatedUpdate"] = args ? args.initiatedUpdate : undefined;
@@ -257,6 +260,7 @@ export interface ExtenderControllerExtenderState {
     extName?: pulumi.Input<string>;
     extensionType?: pulumi.Input<string>;
     fosid?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     haSharedSecret?: pulumi.Input<string>;
     ifname?: pulumi.Input<string>;
     initiatedUpdate?: pulumi.Input<string>;
@@ -318,6 +322,7 @@ export interface ExtenderControllerExtenderArgs {
     extName?: pulumi.Input<string>;
     extensionType?: pulumi.Input<string>;
     fosid: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     haSharedSecret?: pulumi.Input<string>;
     ifname?: pulumi.Input<string>;
     initiatedUpdate?: pulumi.Input<string>;

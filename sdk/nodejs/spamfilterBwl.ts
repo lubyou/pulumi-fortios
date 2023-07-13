@@ -38,6 +38,7 @@ export class SpamfilterBwl extends pulumi.CustomResource {
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly entries!: pulumi.Output<outputs.SpamfilterBwlEntry[] | undefined>;
     public readonly fosid!: pulumi.Output<number>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
@@ -58,6 +59,7 @@ export class SpamfilterBwl extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["entries"] = state ? state.entries : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
@@ -69,6 +71,7 @@ export class SpamfilterBwl extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["entries"] = args ? args.entries : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
@@ -85,6 +88,7 @@ export interface SpamfilterBwlState {
     dynamicSortSubtable?: pulumi.Input<string>;
     entries?: pulumi.Input<pulumi.Input<inputs.SpamfilterBwlEntry>[]>;
     fosid?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }
@@ -97,6 +101,7 @@ export interface SpamfilterBwlArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
     entries?: pulumi.Input<pulumi.Input<inputs.SpamfilterBwlEntry>[]>;
     fosid: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }

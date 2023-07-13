@@ -43,6 +43,7 @@ export class UserGroup extends pulumi.CustomResource {
     public readonly expire!: pulumi.Output<number>;
     public readonly expireType!: pulumi.Output<string>;
     public readonly fosid!: pulumi.Output<number>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly groupType!: pulumi.Output<string>;
     public readonly guests!: pulumi.Output<outputs.UserGroupGuest[] | undefined>;
     public readonly httpDigestRealm!: pulumi.Output<string>;
@@ -83,6 +84,7 @@ export class UserGroup extends pulumi.CustomResource {
             resourceInputs["expire"] = state ? state.expire : undefined;
             resourceInputs["expireType"] = state ? state.expireType : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["groupType"] = state ? state.groupType : undefined;
             resourceInputs["guests"] = state ? state.guests : undefined;
             resourceInputs["httpDigestRealm"] = state ? state.httpDigestRealm : undefined;
@@ -111,6 +113,7 @@ export class UserGroup extends pulumi.CustomResource {
             resourceInputs["expire"] = args ? args.expire : undefined;
             resourceInputs["expireType"] = args ? args.expireType : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["groupType"] = args ? args.groupType : undefined;
             resourceInputs["guests"] = args ? args.guests : undefined;
             resourceInputs["httpDigestRealm"] = args ? args.httpDigestRealm : undefined;
@@ -147,6 +150,7 @@ export interface UserGroupState {
     expire?: pulumi.Input<number>;
     expireType?: pulumi.Input<string>;
     fosid?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     groupType?: pulumi.Input<string>;
     guests?: pulumi.Input<pulumi.Input<inputs.UserGroupGuest>[]>;
     httpDigestRealm?: pulumi.Input<string>;
@@ -179,6 +183,7 @@ export interface UserGroupArgs {
     expire?: pulumi.Input<number>;
     expireType?: pulumi.Input<string>;
     fosid?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     groupType?: pulumi.Input<string>;
     guests?: pulumi.Input<pulumi.Input<inputs.UserGroupGuest>[]>;
     httpDigestRealm?: pulumi.Input<string>;

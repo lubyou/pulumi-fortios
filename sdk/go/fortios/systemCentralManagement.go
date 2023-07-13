@@ -7,35 +7,38 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type SystemCentralManagement struct {
 	pulumi.CustomResourceState
 
-	AllowMonitor               pulumi.StringOutput                          `pulumi:"allowMonitor"`
-	AllowPushConfiguration     pulumi.StringOutput                          `pulumi:"allowPushConfiguration"`
-	AllowPushFirmware          pulumi.StringOutput                          `pulumi:"allowPushFirmware"`
-	AllowRemoteFirmwareUpgrade pulumi.StringOutput                          `pulumi:"allowRemoteFirmwareUpgrade"`
-	CaCert                     pulumi.StringOutput                          `pulumi:"caCert"`
-	DynamicSortSubtable        pulumi.StringPtrOutput                       `pulumi:"dynamicSortSubtable"`
-	EncAlgorithm               pulumi.StringOutput                          `pulumi:"encAlgorithm"`
-	Fmg                        pulumi.StringOutput                          `pulumi:"fmg"`
-	FmgSourceIp                pulumi.StringOutput                          `pulumi:"fmgSourceIp"`
-	FmgSourceIp6               pulumi.StringOutput                          `pulumi:"fmgSourceIp6"`
-	FmgUpdatePort              pulumi.StringOutput                          `pulumi:"fmgUpdatePort"`
-	IncludeDefaultServers      pulumi.StringOutput                          `pulumi:"includeDefaultServers"`
-	Interface                  pulumi.StringOutput                          `pulumi:"interface"`
-	InterfaceSelectMethod      pulumi.StringOutput                          `pulumi:"interfaceSelectMethod"`
-	LocalCert                  pulumi.StringOutput                          `pulumi:"localCert"`
-	Mode                       pulumi.StringOutput                          `pulumi:"mode"`
-	ScheduleConfigRestore      pulumi.StringOutput                          `pulumi:"scheduleConfigRestore"`
-	ScheduleScriptRestore      pulumi.StringOutput                          `pulumi:"scheduleScriptRestore"`
-	SerialNumber               pulumi.StringOutput                          `pulumi:"serialNumber"`
-	ServerLists                SystemCentralManagementServerListArrayOutput `pulumi:"serverLists"`
-	Type                       pulumi.StringOutput                          `pulumi:"type"`
-	Vdom                       pulumi.StringOutput                          `pulumi:"vdom"`
-	Vdomparam                  pulumi.StringPtrOutput                       `pulumi:"vdomparam"`
+	AllowMonitor                    pulumi.StringOutput                          `pulumi:"allowMonitor"`
+	AllowPushConfiguration          pulumi.StringOutput                          `pulumi:"allowPushConfiguration"`
+	AllowPushFirmware               pulumi.StringOutput                          `pulumi:"allowPushFirmware"`
+	AllowRemoteFirmwareUpgrade      pulumi.StringOutput                          `pulumi:"allowRemoteFirmwareUpgrade"`
+	CaCert                          pulumi.StringOutput                          `pulumi:"caCert"`
+	DynamicSortSubtable             pulumi.StringPtrOutput                       `pulumi:"dynamicSortSubtable"`
+	EncAlgorithm                    pulumi.StringOutput                          `pulumi:"encAlgorithm"`
+	Fmg                             pulumi.StringOutput                          `pulumi:"fmg"`
+	FmgSourceIp                     pulumi.StringOutput                          `pulumi:"fmgSourceIp"`
+	FmgSourceIp6                    pulumi.StringOutput                          `pulumi:"fmgSourceIp6"`
+	FmgUpdatePort                   pulumi.StringOutput                          `pulumi:"fmgUpdatePort"`
+	FortigateCloudSsoDefaultProfile pulumi.StringOutput                          `pulumi:"fortigateCloudSsoDefaultProfile"`
+	GetAllTables                    pulumi.StringPtrOutput                       `pulumi:"getAllTables"`
+	IncludeDefaultServers           pulumi.StringOutput                          `pulumi:"includeDefaultServers"`
+	Interface                       pulumi.StringOutput                          `pulumi:"interface"`
+	InterfaceSelectMethod           pulumi.StringOutput                          `pulumi:"interfaceSelectMethod"`
+	LocalCert                       pulumi.StringOutput                          `pulumi:"localCert"`
+	Mode                            pulumi.StringOutput                          `pulumi:"mode"`
+	ScheduleConfigRestore           pulumi.StringOutput                          `pulumi:"scheduleConfigRestore"`
+	ScheduleScriptRestore           pulumi.StringOutput                          `pulumi:"scheduleScriptRestore"`
+	SerialNumber                    pulumi.StringOutput                          `pulumi:"serialNumber"`
+	ServerLists                     SystemCentralManagementServerListArrayOutput `pulumi:"serverLists"`
+	Type                            pulumi.StringOutput                          `pulumi:"type"`
+	Vdom                            pulumi.StringOutput                          `pulumi:"vdom"`
+	Vdomparam                       pulumi.StringPtrOutput                       `pulumi:"vdomparam"`
 }
 
 // NewSystemCentralManagement registers a new resource with the given unique name, arguments, and options.
@@ -45,7 +48,7 @@ func NewSystemCentralManagement(ctx *pulumi.Context,
 		args = &SystemCentralManagementArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemCentralManagement
 	err := ctx.RegisterResource("fortios:index/systemCentralManagement:SystemCentralManagement", name, args, &resource, opts...)
 	if err != nil {
@@ -68,55 +71,59 @@ func GetSystemCentralManagement(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemCentralManagement resources.
 type systemCentralManagementState struct {
-	AllowMonitor               *string                             `pulumi:"allowMonitor"`
-	AllowPushConfiguration     *string                             `pulumi:"allowPushConfiguration"`
-	AllowPushFirmware          *string                             `pulumi:"allowPushFirmware"`
-	AllowRemoteFirmwareUpgrade *string                             `pulumi:"allowRemoteFirmwareUpgrade"`
-	CaCert                     *string                             `pulumi:"caCert"`
-	DynamicSortSubtable        *string                             `pulumi:"dynamicSortSubtable"`
-	EncAlgorithm               *string                             `pulumi:"encAlgorithm"`
-	Fmg                        *string                             `pulumi:"fmg"`
-	FmgSourceIp                *string                             `pulumi:"fmgSourceIp"`
-	FmgSourceIp6               *string                             `pulumi:"fmgSourceIp6"`
-	FmgUpdatePort              *string                             `pulumi:"fmgUpdatePort"`
-	IncludeDefaultServers      *string                             `pulumi:"includeDefaultServers"`
-	Interface                  *string                             `pulumi:"interface"`
-	InterfaceSelectMethod      *string                             `pulumi:"interfaceSelectMethod"`
-	LocalCert                  *string                             `pulumi:"localCert"`
-	Mode                       *string                             `pulumi:"mode"`
-	ScheduleConfigRestore      *string                             `pulumi:"scheduleConfigRestore"`
-	ScheduleScriptRestore      *string                             `pulumi:"scheduleScriptRestore"`
-	SerialNumber               *string                             `pulumi:"serialNumber"`
-	ServerLists                []SystemCentralManagementServerList `pulumi:"serverLists"`
-	Type                       *string                             `pulumi:"type"`
-	Vdom                       *string                             `pulumi:"vdom"`
-	Vdomparam                  *string                             `pulumi:"vdomparam"`
+	AllowMonitor                    *string                             `pulumi:"allowMonitor"`
+	AllowPushConfiguration          *string                             `pulumi:"allowPushConfiguration"`
+	AllowPushFirmware               *string                             `pulumi:"allowPushFirmware"`
+	AllowRemoteFirmwareUpgrade      *string                             `pulumi:"allowRemoteFirmwareUpgrade"`
+	CaCert                          *string                             `pulumi:"caCert"`
+	DynamicSortSubtable             *string                             `pulumi:"dynamicSortSubtable"`
+	EncAlgorithm                    *string                             `pulumi:"encAlgorithm"`
+	Fmg                             *string                             `pulumi:"fmg"`
+	FmgSourceIp                     *string                             `pulumi:"fmgSourceIp"`
+	FmgSourceIp6                    *string                             `pulumi:"fmgSourceIp6"`
+	FmgUpdatePort                   *string                             `pulumi:"fmgUpdatePort"`
+	FortigateCloudSsoDefaultProfile *string                             `pulumi:"fortigateCloudSsoDefaultProfile"`
+	GetAllTables                    *string                             `pulumi:"getAllTables"`
+	IncludeDefaultServers           *string                             `pulumi:"includeDefaultServers"`
+	Interface                       *string                             `pulumi:"interface"`
+	InterfaceSelectMethod           *string                             `pulumi:"interfaceSelectMethod"`
+	LocalCert                       *string                             `pulumi:"localCert"`
+	Mode                            *string                             `pulumi:"mode"`
+	ScheduleConfigRestore           *string                             `pulumi:"scheduleConfigRestore"`
+	ScheduleScriptRestore           *string                             `pulumi:"scheduleScriptRestore"`
+	SerialNumber                    *string                             `pulumi:"serialNumber"`
+	ServerLists                     []SystemCentralManagementServerList `pulumi:"serverLists"`
+	Type                            *string                             `pulumi:"type"`
+	Vdom                            *string                             `pulumi:"vdom"`
+	Vdomparam                       *string                             `pulumi:"vdomparam"`
 }
 
 type SystemCentralManagementState struct {
-	AllowMonitor               pulumi.StringPtrInput
-	AllowPushConfiguration     pulumi.StringPtrInput
-	AllowPushFirmware          pulumi.StringPtrInput
-	AllowRemoteFirmwareUpgrade pulumi.StringPtrInput
-	CaCert                     pulumi.StringPtrInput
-	DynamicSortSubtable        pulumi.StringPtrInput
-	EncAlgorithm               pulumi.StringPtrInput
-	Fmg                        pulumi.StringPtrInput
-	FmgSourceIp                pulumi.StringPtrInput
-	FmgSourceIp6               pulumi.StringPtrInput
-	FmgUpdatePort              pulumi.StringPtrInput
-	IncludeDefaultServers      pulumi.StringPtrInput
-	Interface                  pulumi.StringPtrInput
-	InterfaceSelectMethod      pulumi.StringPtrInput
-	LocalCert                  pulumi.StringPtrInput
-	Mode                       pulumi.StringPtrInput
-	ScheduleConfigRestore      pulumi.StringPtrInput
-	ScheduleScriptRestore      pulumi.StringPtrInput
-	SerialNumber               pulumi.StringPtrInput
-	ServerLists                SystemCentralManagementServerListArrayInput
-	Type                       pulumi.StringPtrInput
-	Vdom                       pulumi.StringPtrInput
-	Vdomparam                  pulumi.StringPtrInput
+	AllowMonitor                    pulumi.StringPtrInput
+	AllowPushConfiguration          pulumi.StringPtrInput
+	AllowPushFirmware               pulumi.StringPtrInput
+	AllowRemoteFirmwareUpgrade      pulumi.StringPtrInput
+	CaCert                          pulumi.StringPtrInput
+	DynamicSortSubtable             pulumi.StringPtrInput
+	EncAlgorithm                    pulumi.StringPtrInput
+	Fmg                             pulumi.StringPtrInput
+	FmgSourceIp                     pulumi.StringPtrInput
+	FmgSourceIp6                    pulumi.StringPtrInput
+	FmgUpdatePort                   pulumi.StringPtrInput
+	FortigateCloudSsoDefaultProfile pulumi.StringPtrInput
+	GetAllTables                    pulumi.StringPtrInput
+	IncludeDefaultServers           pulumi.StringPtrInput
+	Interface                       pulumi.StringPtrInput
+	InterfaceSelectMethod           pulumi.StringPtrInput
+	LocalCert                       pulumi.StringPtrInput
+	Mode                            pulumi.StringPtrInput
+	ScheduleConfigRestore           pulumi.StringPtrInput
+	ScheduleScriptRestore           pulumi.StringPtrInput
+	SerialNumber                    pulumi.StringPtrInput
+	ServerLists                     SystemCentralManagementServerListArrayInput
+	Type                            pulumi.StringPtrInput
+	Vdom                            pulumi.StringPtrInput
+	Vdomparam                       pulumi.StringPtrInput
 }
 
 func (SystemCentralManagementState) ElementType() reflect.Type {
@@ -124,56 +131,60 @@ func (SystemCentralManagementState) ElementType() reflect.Type {
 }
 
 type systemCentralManagementArgs struct {
-	AllowMonitor               *string                             `pulumi:"allowMonitor"`
-	AllowPushConfiguration     *string                             `pulumi:"allowPushConfiguration"`
-	AllowPushFirmware          *string                             `pulumi:"allowPushFirmware"`
-	AllowRemoteFirmwareUpgrade *string                             `pulumi:"allowRemoteFirmwareUpgrade"`
-	CaCert                     *string                             `pulumi:"caCert"`
-	DynamicSortSubtable        *string                             `pulumi:"dynamicSortSubtable"`
-	EncAlgorithm               *string                             `pulumi:"encAlgorithm"`
-	Fmg                        *string                             `pulumi:"fmg"`
-	FmgSourceIp                *string                             `pulumi:"fmgSourceIp"`
-	FmgSourceIp6               *string                             `pulumi:"fmgSourceIp6"`
-	FmgUpdatePort              *string                             `pulumi:"fmgUpdatePort"`
-	IncludeDefaultServers      *string                             `pulumi:"includeDefaultServers"`
-	Interface                  *string                             `pulumi:"interface"`
-	InterfaceSelectMethod      *string                             `pulumi:"interfaceSelectMethod"`
-	LocalCert                  *string                             `pulumi:"localCert"`
-	Mode                       *string                             `pulumi:"mode"`
-	ScheduleConfigRestore      *string                             `pulumi:"scheduleConfigRestore"`
-	ScheduleScriptRestore      *string                             `pulumi:"scheduleScriptRestore"`
-	SerialNumber               *string                             `pulumi:"serialNumber"`
-	ServerLists                []SystemCentralManagementServerList `pulumi:"serverLists"`
-	Type                       *string                             `pulumi:"type"`
-	Vdom                       *string                             `pulumi:"vdom"`
-	Vdomparam                  *string                             `pulumi:"vdomparam"`
+	AllowMonitor                    *string                             `pulumi:"allowMonitor"`
+	AllowPushConfiguration          *string                             `pulumi:"allowPushConfiguration"`
+	AllowPushFirmware               *string                             `pulumi:"allowPushFirmware"`
+	AllowRemoteFirmwareUpgrade      *string                             `pulumi:"allowRemoteFirmwareUpgrade"`
+	CaCert                          *string                             `pulumi:"caCert"`
+	DynamicSortSubtable             *string                             `pulumi:"dynamicSortSubtable"`
+	EncAlgorithm                    *string                             `pulumi:"encAlgorithm"`
+	Fmg                             *string                             `pulumi:"fmg"`
+	FmgSourceIp                     *string                             `pulumi:"fmgSourceIp"`
+	FmgSourceIp6                    *string                             `pulumi:"fmgSourceIp6"`
+	FmgUpdatePort                   *string                             `pulumi:"fmgUpdatePort"`
+	FortigateCloudSsoDefaultProfile *string                             `pulumi:"fortigateCloudSsoDefaultProfile"`
+	GetAllTables                    *string                             `pulumi:"getAllTables"`
+	IncludeDefaultServers           *string                             `pulumi:"includeDefaultServers"`
+	Interface                       *string                             `pulumi:"interface"`
+	InterfaceSelectMethod           *string                             `pulumi:"interfaceSelectMethod"`
+	LocalCert                       *string                             `pulumi:"localCert"`
+	Mode                            *string                             `pulumi:"mode"`
+	ScheduleConfigRestore           *string                             `pulumi:"scheduleConfigRestore"`
+	ScheduleScriptRestore           *string                             `pulumi:"scheduleScriptRestore"`
+	SerialNumber                    *string                             `pulumi:"serialNumber"`
+	ServerLists                     []SystemCentralManagementServerList `pulumi:"serverLists"`
+	Type                            *string                             `pulumi:"type"`
+	Vdom                            *string                             `pulumi:"vdom"`
+	Vdomparam                       *string                             `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemCentralManagement resource.
 type SystemCentralManagementArgs struct {
-	AllowMonitor               pulumi.StringPtrInput
-	AllowPushConfiguration     pulumi.StringPtrInput
-	AllowPushFirmware          pulumi.StringPtrInput
-	AllowRemoteFirmwareUpgrade pulumi.StringPtrInput
-	CaCert                     pulumi.StringPtrInput
-	DynamicSortSubtable        pulumi.StringPtrInput
-	EncAlgorithm               pulumi.StringPtrInput
-	Fmg                        pulumi.StringPtrInput
-	FmgSourceIp                pulumi.StringPtrInput
-	FmgSourceIp6               pulumi.StringPtrInput
-	FmgUpdatePort              pulumi.StringPtrInput
-	IncludeDefaultServers      pulumi.StringPtrInput
-	Interface                  pulumi.StringPtrInput
-	InterfaceSelectMethod      pulumi.StringPtrInput
-	LocalCert                  pulumi.StringPtrInput
-	Mode                       pulumi.StringPtrInput
-	ScheduleConfigRestore      pulumi.StringPtrInput
-	ScheduleScriptRestore      pulumi.StringPtrInput
-	SerialNumber               pulumi.StringPtrInput
-	ServerLists                SystemCentralManagementServerListArrayInput
-	Type                       pulumi.StringPtrInput
-	Vdom                       pulumi.StringPtrInput
-	Vdomparam                  pulumi.StringPtrInput
+	AllowMonitor                    pulumi.StringPtrInput
+	AllowPushConfiguration          pulumi.StringPtrInput
+	AllowPushFirmware               pulumi.StringPtrInput
+	AllowRemoteFirmwareUpgrade      pulumi.StringPtrInput
+	CaCert                          pulumi.StringPtrInput
+	DynamicSortSubtable             pulumi.StringPtrInput
+	EncAlgorithm                    pulumi.StringPtrInput
+	Fmg                             pulumi.StringPtrInput
+	FmgSourceIp                     pulumi.StringPtrInput
+	FmgSourceIp6                    pulumi.StringPtrInput
+	FmgUpdatePort                   pulumi.StringPtrInput
+	FortigateCloudSsoDefaultProfile pulumi.StringPtrInput
+	GetAllTables                    pulumi.StringPtrInput
+	IncludeDefaultServers           pulumi.StringPtrInput
+	Interface                       pulumi.StringPtrInput
+	InterfaceSelectMethod           pulumi.StringPtrInput
+	LocalCert                       pulumi.StringPtrInput
+	Mode                            pulumi.StringPtrInput
+	ScheduleConfigRestore           pulumi.StringPtrInput
+	ScheduleScriptRestore           pulumi.StringPtrInput
+	SerialNumber                    pulumi.StringPtrInput
+	ServerLists                     SystemCentralManagementServerListArrayInput
+	Type                            pulumi.StringPtrInput
+	Vdom                            pulumi.StringPtrInput
+	Vdomparam                       pulumi.StringPtrInput
 }
 
 func (SystemCentralManagementArgs) ElementType() reflect.Type {
@@ -305,6 +316,14 @@ func (o SystemCentralManagementOutput) FmgSourceIp6() pulumi.StringOutput {
 
 func (o SystemCentralManagementOutput) FmgUpdatePort() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemCentralManagement) pulumi.StringOutput { return v.FmgUpdatePort }).(pulumi.StringOutput)
+}
+
+func (o SystemCentralManagementOutput) FortigateCloudSsoDefaultProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCentralManagement) pulumi.StringOutput { return v.FortigateCloudSsoDefaultProfile }).(pulumi.StringOutput)
+}
+
+func (o SystemCentralManagementOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemCentralManagement) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemCentralManagementOutput) IncludeDefaultServers() pulumi.StringOutput {

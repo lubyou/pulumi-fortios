@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,6 +16,7 @@ type WebProxyForwardServerGroup struct {
 
 	Affinity            pulumi.StringOutput                             `pulumi:"affinity"`
 	DynamicSortSubtable pulumi.StringPtrOutput                          `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                          `pulumi:"getAllTables"`
 	GroupDownOption     pulumi.StringOutput                             `pulumi:"groupDownOption"`
 	LdbMethod           pulumi.StringOutput                             `pulumi:"ldbMethod"`
 	Name                pulumi.StringOutput                             `pulumi:"name"`
@@ -29,7 +31,7 @@ func NewWebProxyForwardServerGroup(ctx *pulumi.Context,
 		args = &WebProxyForwardServerGroupArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WebProxyForwardServerGroup
 	err := ctx.RegisterResource("fortios:index/webProxyForwardServerGroup:WebProxyForwardServerGroup", name, args, &resource, opts...)
 	if err != nil {
@@ -54,6 +56,7 @@ func GetWebProxyForwardServerGroup(ctx *pulumi.Context,
 type webProxyForwardServerGroupState struct {
 	Affinity            *string                                `pulumi:"affinity"`
 	DynamicSortSubtable *string                                `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                                `pulumi:"getAllTables"`
 	GroupDownOption     *string                                `pulumi:"groupDownOption"`
 	LdbMethod           *string                                `pulumi:"ldbMethod"`
 	Name                *string                                `pulumi:"name"`
@@ -64,6 +67,7 @@ type webProxyForwardServerGroupState struct {
 type WebProxyForwardServerGroupState struct {
 	Affinity            pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	GroupDownOption     pulumi.StringPtrInput
 	LdbMethod           pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
@@ -78,6 +82,7 @@ func (WebProxyForwardServerGroupState) ElementType() reflect.Type {
 type webProxyForwardServerGroupArgs struct {
 	Affinity            *string                                `pulumi:"affinity"`
 	DynamicSortSubtable *string                                `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                                `pulumi:"getAllTables"`
 	GroupDownOption     *string                                `pulumi:"groupDownOption"`
 	LdbMethod           *string                                `pulumi:"ldbMethod"`
 	Name                *string                                `pulumi:"name"`
@@ -89,6 +94,7 @@ type webProxyForwardServerGroupArgs struct {
 type WebProxyForwardServerGroupArgs struct {
 	Affinity            pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	GroupDownOption     pulumi.StringPtrInput
 	LdbMethod           pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
@@ -189,6 +195,10 @@ func (o WebProxyForwardServerGroupOutput) Affinity() pulumi.StringOutput {
 
 func (o WebProxyForwardServerGroupOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WebProxyForwardServerGroup) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WebProxyForwardServerGroupOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebProxyForwardServerGroup) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o WebProxyForwardServerGroupOutput) GroupDownOption() pulumi.StringOutput {

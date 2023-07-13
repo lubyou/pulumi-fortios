@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -28,6 +29,9 @@ type FirewallAddress struct {
 	Filter              pulumi.StringPtrOutput              `pulumi:"filter"`
 	Fqdn                pulumi.StringPtrOutput              `pulumi:"fqdn"`
 	FssoGroups          FirewallAddressFssoGroupArrayOutput `pulumi:"fssoGroups"`
+	GetAllTables        pulumi.StringPtrOutput              `pulumi:"getAllTables"`
+	HwModel             pulumi.StringPtrOutput              `pulumi:"hwModel"`
+	HwVendor            pulumi.StringPtrOutput              `pulumi:"hwVendor"`
 	Interface           pulumi.StringPtrOutput              `pulumi:"interface"`
 	Lists               FirewallAddressListArrayOutput      `pulumi:"lists"`
 	Macaddrs            FirewallAddressMacaddrArrayOutput   `pulumi:"macaddrs"`
@@ -37,7 +41,9 @@ type FirewallAddress struct {
 	ObjTag              pulumi.StringPtrOutput              `pulumi:"objTag"`
 	ObjType             pulumi.StringOutput                 `pulumi:"objType"`
 	Organization        pulumi.StringPtrOutput              `pulumi:"organization"`
+	Os                  pulumi.StringPtrOutput              `pulumi:"os"`
 	PolicyGroup         pulumi.StringPtrOutput              `pulumi:"policyGroup"`
+	RouteTag            pulumi.IntPtrOutput                 `pulumi:"routeTag"`
 	Sdn                 pulumi.StringPtrOutput              `pulumi:"sdn"`
 	SdnAddrType         pulumi.StringOutput                 `pulumi:"sdnAddrType"`
 	SdnTag              pulumi.StringPtrOutput              `pulumi:"sdnTag"`
@@ -46,6 +52,7 @@ type FirewallAddress struct {
 	SubType             pulumi.StringOutput                 `pulumi:"subType"`
 	Subnet              pulumi.StringOutput                 `pulumi:"subnet"`
 	SubnetName          pulumi.StringPtrOutput              `pulumi:"subnetName"`
+	SwVersion           pulumi.StringPtrOutput              `pulumi:"swVersion"`
 	TagDetectionLevel   pulumi.StringPtrOutput              `pulumi:"tagDetectionLevel"`
 	TagType             pulumi.StringPtrOutput              `pulumi:"tagType"`
 	Taggings            FirewallAddressTaggingArrayOutput   `pulumi:"taggings"`
@@ -65,7 +72,7 @@ func NewFirewallAddress(ctx *pulumi.Context,
 		args = &FirewallAddressArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallAddress
 	err := ctx.RegisterResource("fortios:index/firewallAddress:FirewallAddress", name, args, &resource, opts...)
 	if err != nil {
@@ -103,6 +110,9 @@ type firewallAddressState struct {
 	Filter              *string                    `pulumi:"filter"`
 	Fqdn                *string                    `pulumi:"fqdn"`
 	FssoGroups          []FirewallAddressFssoGroup `pulumi:"fssoGroups"`
+	GetAllTables        *string                    `pulumi:"getAllTables"`
+	HwModel             *string                    `pulumi:"hwModel"`
+	HwVendor            *string                    `pulumi:"hwVendor"`
 	Interface           *string                    `pulumi:"interface"`
 	Lists               []FirewallAddressList      `pulumi:"lists"`
 	Macaddrs            []FirewallAddressMacaddr   `pulumi:"macaddrs"`
@@ -112,7 +122,9 @@ type firewallAddressState struct {
 	ObjTag              *string                    `pulumi:"objTag"`
 	ObjType             *string                    `pulumi:"objType"`
 	Organization        *string                    `pulumi:"organization"`
+	Os                  *string                    `pulumi:"os"`
 	PolicyGroup         *string                    `pulumi:"policyGroup"`
+	RouteTag            *int                       `pulumi:"routeTag"`
 	Sdn                 *string                    `pulumi:"sdn"`
 	SdnAddrType         *string                    `pulumi:"sdnAddrType"`
 	SdnTag              *string                    `pulumi:"sdnTag"`
@@ -121,6 +133,7 @@ type firewallAddressState struct {
 	SubType             *string                    `pulumi:"subType"`
 	Subnet              *string                    `pulumi:"subnet"`
 	SubnetName          *string                    `pulumi:"subnetName"`
+	SwVersion           *string                    `pulumi:"swVersion"`
 	TagDetectionLevel   *string                    `pulumi:"tagDetectionLevel"`
 	TagType             *string                    `pulumi:"tagType"`
 	Taggings            []FirewallAddressTagging   `pulumi:"taggings"`
@@ -149,6 +162,9 @@ type FirewallAddressState struct {
 	Filter              pulumi.StringPtrInput
 	Fqdn                pulumi.StringPtrInput
 	FssoGroups          FirewallAddressFssoGroupArrayInput
+	GetAllTables        pulumi.StringPtrInput
+	HwModel             pulumi.StringPtrInput
+	HwVendor            pulumi.StringPtrInput
 	Interface           pulumi.StringPtrInput
 	Lists               FirewallAddressListArrayInput
 	Macaddrs            FirewallAddressMacaddrArrayInput
@@ -158,7 +174,9 @@ type FirewallAddressState struct {
 	ObjTag              pulumi.StringPtrInput
 	ObjType             pulumi.StringPtrInput
 	Organization        pulumi.StringPtrInput
+	Os                  pulumi.StringPtrInput
 	PolicyGroup         pulumi.StringPtrInput
+	RouteTag            pulumi.IntPtrInput
 	Sdn                 pulumi.StringPtrInput
 	SdnAddrType         pulumi.StringPtrInput
 	SdnTag              pulumi.StringPtrInput
@@ -167,6 +185,7 @@ type FirewallAddressState struct {
 	SubType             pulumi.StringPtrInput
 	Subnet              pulumi.StringPtrInput
 	SubnetName          pulumi.StringPtrInput
+	SwVersion           pulumi.StringPtrInput
 	TagDetectionLevel   pulumi.StringPtrInput
 	TagType             pulumi.StringPtrInput
 	Taggings            FirewallAddressTaggingArrayInput
@@ -199,6 +218,9 @@ type firewallAddressArgs struct {
 	Filter              *string                    `pulumi:"filter"`
 	Fqdn                *string                    `pulumi:"fqdn"`
 	FssoGroups          []FirewallAddressFssoGroup `pulumi:"fssoGroups"`
+	GetAllTables        *string                    `pulumi:"getAllTables"`
+	HwModel             *string                    `pulumi:"hwModel"`
+	HwVendor            *string                    `pulumi:"hwVendor"`
 	Interface           *string                    `pulumi:"interface"`
 	Lists               []FirewallAddressList      `pulumi:"lists"`
 	Macaddrs            []FirewallAddressMacaddr   `pulumi:"macaddrs"`
@@ -208,7 +230,9 @@ type firewallAddressArgs struct {
 	ObjTag              *string                    `pulumi:"objTag"`
 	ObjType             *string                    `pulumi:"objType"`
 	Organization        *string                    `pulumi:"organization"`
+	Os                  *string                    `pulumi:"os"`
 	PolicyGroup         *string                    `pulumi:"policyGroup"`
+	RouteTag            *int                       `pulumi:"routeTag"`
 	Sdn                 *string                    `pulumi:"sdn"`
 	SdnAddrType         *string                    `pulumi:"sdnAddrType"`
 	SdnTag              *string                    `pulumi:"sdnTag"`
@@ -217,6 +241,7 @@ type firewallAddressArgs struct {
 	SubType             *string                    `pulumi:"subType"`
 	Subnet              *string                    `pulumi:"subnet"`
 	SubnetName          *string                    `pulumi:"subnetName"`
+	SwVersion           *string                    `pulumi:"swVersion"`
 	TagDetectionLevel   *string                    `pulumi:"tagDetectionLevel"`
 	TagType             *string                    `pulumi:"tagType"`
 	Taggings            []FirewallAddressTagging   `pulumi:"taggings"`
@@ -246,6 +271,9 @@ type FirewallAddressArgs struct {
 	Filter              pulumi.StringPtrInput
 	Fqdn                pulumi.StringPtrInput
 	FssoGroups          FirewallAddressFssoGroupArrayInput
+	GetAllTables        pulumi.StringPtrInput
+	HwModel             pulumi.StringPtrInput
+	HwVendor            pulumi.StringPtrInput
 	Interface           pulumi.StringPtrInput
 	Lists               FirewallAddressListArrayInput
 	Macaddrs            FirewallAddressMacaddrArrayInput
@@ -255,7 +283,9 @@ type FirewallAddressArgs struct {
 	ObjTag              pulumi.StringPtrInput
 	ObjType             pulumi.StringPtrInput
 	Organization        pulumi.StringPtrInput
+	Os                  pulumi.StringPtrInput
 	PolicyGroup         pulumi.StringPtrInput
+	RouteTag            pulumi.IntPtrInput
 	Sdn                 pulumi.StringPtrInput
 	SdnAddrType         pulumi.StringPtrInput
 	SdnTag              pulumi.StringPtrInput
@@ -264,6 +294,7 @@ type FirewallAddressArgs struct {
 	SubType             pulumi.StringPtrInput
 	Subnet              pulumi.StringPtrInput
 	SubnetName          pulumi.StringPtrInput
+	SwVersion           pulumi.StringPtrInput
 	TagDetectionLevel   pulumi.StringPtrInput
 	TagType             pulumi.StringPtrInput
 	Taggings            FirewallAddressTaggingArrayInput
@@ -423,6 +454,18 @@ func (o FirewallAddressOutput) FssoGroups() FirewallAddressFssoGroupArrayOutput 
 	return o.ApplyT(func(v *FirewallAddress) FirewallAddressFssoGroupArrayOutput { return v.FssoGroups }).(FirewallAddressFssoGroupArrayOutput)
 }
 
+func (o FirewallAddressOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAddressOutput) HwModel() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringPtrOutput { return v.HwModel }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAddressOutput) HwVendor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringPtrOutput { return v.HwVendor }).(pulumi.StringPtrOutput)
+}
+
 func (o FirewallAddressOutput) Interface() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FirewallAddress) pulumi.StringPtrOutput { return v.Interface }).(pulumi.StringPtrOutput)
 }
@@ -459,8 +502,16 @@ func (o FirewallAddressOutput) Organization() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FirewallAddress) pulumi.StringPtrOutput { return v.Organization }).(pulumi.StringPtrOutput)
 }
 
+func (o FirewallAddressOutput) Os() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringPtrOutput { return v.Os }).(pulumi.StringPtrOutput)
+}
+
 func (o FirewallAddressOutput) PolicyGroup() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FirewallAddress) pulumi.StringPtrOutput { return v.PolicyGroup }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAddressOutput) RouteTag() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.IntPtrOutput { return v.RouteTag }).(pulumi.IntPtrOutput)
 }
 
 func (o FirewallAddressOutput) Sdn() pulumi.StringPtrOutput {
@@ -493,6 +544,10 @@ func (o FirewallAddressOutput) Subnet() pulumi.StringOutput {
 
 func (o FirewallAddressOutput) SubnetName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FirewallAddress) pulumi.StringPtrOutput { return v.SubnetName }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallAddressOutput) SwVersion() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAddress) pulumi.StringPtrOutput { return v.SwVersion }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallAddressOutput) TagDetectionLevel() pulumi.StringPtrOutput {

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -14,6 +15,7 @@ type SystemLldpNetworkPolicy struct {
 	pulumi.CustomResourceState
 
 	Comment             pulumi.StringPtrOutput                           `pulumi:"comment"`
+	GetAllTables        pulumi.StringPtrOutput                           `pulumi:"getAllTables"`
 	Guest               SystemLldpNetworkPolicyGuestOutput               `pulumi:"guest"`
 	GuestVoiceSignaling SystemLldpNetworkPolicyGuestVoiceSignalingOutput `pulumi:"guestVoiceSignaling"`
 	Name                pulumi.StringOutput                              `pulumi:"name"`
@@ -33,7 +35,7 @@ func NewSystemLldpNetworkPolicy(ctx *pulumi.Context,
 		args = &SystemLldpNetworkPolicyArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemLldpNetworkPolicy
 	err := ctx.RegisterResource("fortios:index/systemLldpNetworkPolicy:SystemLldpNetworkPolicy", name, args, &resource, opts...)
 	if err != nil {
@@ -57,6 +59,7 @@ func GetSystemLldpNetworkPolicy(ctx *pulumi.Context,
 // Input properties used for looking up and filtering SystemLldpNetworkPolicy resources.
 type systemLldpNetworkPolicyState struct {
 	Comment             *string                                     `pulumi:"comment"`
+	GetAllTables        *string                                     `pulumi:"getAllTables"`
 	Guest               *SystemLldpNetworkPolicyGuest               `pulumi:"guest"`
 	GuestVoiceSignaling *SystemLldpNetworkPolicyGuestVoiceSignaling `pulumi:"guestVoiceSignaling"`
 	Name                *string                                     `pulumi:"name"`
@@ -71,6 +74,7 @@ type systemLldpNetworkPolicyState struct {
 
 type SystemLldpNetworkPolicyState struct {
 	Comment             pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Guest               SystemLldpNetworkPolicyGuestPtrInput
 	GuestVoiceSignaling SystemLldpNetworkPolicyGuestVoiceSignalingPtrInput
 	Name                pulumi.StringPtrInput
@@ -89,6 +93,7 @@ func (SystemLldpNetworkPolicyState) ElementType() reflect.Type {
 
 type systemLldpNetworkPolicyArgs struct {
 	Comment             *string                                     `pulumi:"comment"`
+	GetAllTables        *string                                     `pulumi:"getAllTables"`
 	Guest               *SystemLldpNetworkPolicyGuest               `pulumi:"guest"`
 	GuestVoiceSignaling *SystemLldpNetworkPolicyGuestVoiceSignaling `pulumi:"guestVoiceSignaling"`
 	Name                *string                                     `pulumi:"name"`
@@ -104,6 +109,7 @@ type systemLldpNetworkPolicyArgs struct {
 // The set of arguments for constructing a SystemLldpNetworkPolicy resource.
 type SystemLldpNetworkPolicyArgs struct {
 	Comment             pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Guest               SystemLldpNetworkPolicyGuestPtrInput
 	GuestVoiceSignaling SystemLldpNetworkPolicyGuestVoiceSignalingPtrInput
 	Name                pulumi.StringPtrInput
@@ -205,6 +211,10 @@ func (o SystemLldpNetworkPolicyOutput) ToSystemLldpNetworkPolicyOutputWithContex
 
 func (o SystemLldpNetworkPolicyOutput) Comment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SystemLldpNetworkPolicy) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemLldpNetworkPolicyOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemLldpNetworkPolicy) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemLldpNetworkPolicyOutput) Guest() SystemLldpNetworkPolicyGuestOutput {

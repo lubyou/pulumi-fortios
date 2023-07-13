@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,6 +20,7 @@ type LogSyslogd4Setting struct {
 	EncAlgorithm          pulumi.StringOutput                          `pulumi:"encAlgorithm"`
 	Facility              pulumi.StringOutput                          `pulumi:"facility"`
 	Format                pulumi.StringOutput                          `pulumi:"format"`
+	GetAllTables          pulumi.StringPtrOutput                       `pulumi:"getAllTables"`
 	Interface             pulumi.StringOutput                          `pulumi:"interface"`
 	InterfaceSelectMethod pulumi.StringOutput                          `pulumi:"interfaceSelectMethod"`
 	MaxLogRate            pulumi.IntOutput                             `pulumi:"maxLogRate"`
@@ -40,7 +42,7 @@ func NewLogSyslogd4Setting(ctx *pulumi.Context,
 		args = &LogSyslogd4SettingArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource LogSyslogd4Setting
 	err := ctx.RegisterResource("fortios:index/logSyslogd4Setting:LogSyslogd4Setting", name, args, &resource, opts...)
 	if err != nil {
@@ -69,6 +71,7 @@ type logSyslogd4SettingState struct {
 	EncAlgorithm          *string                             `pulumi:"encAlgorithm"`
 	Facility              *string                             `pulumi:"facility"`
 	Format                *string                             `pulumi:"format"`
+	GetAllTables          *string                             `pulumi:"getAllTables"`
 	Interface             *string                             `pulumi:"interface"`
 	InterfaceSelectMethod *string                             `pulumi:"interfaceSelectMethod"`
 	MaxLogRate            *int                                `pulumi:"maxLogRate"`
@@ -90,6 +93,7 @@ type LogSyslogd4SettingState struct {
 	EncAlgorithm          pulumi.StringPtrInput
 	Facility              pulumi.StringPtrInput
 	Format                pulumi.StringPtrInput
+	GetAllTables          pulumi.StringPtrInput
 	Interface             pulumi.StringPtrInput
 	InterfaceSelectMethod pulumi.StringPtrInput
 	MaxLogRate            pulumi.IntPtrInput
@@ -115,6 +119,7 @@ type logSyslogd4SettingArgs struct {
 	EncAlgorithm          *string                             `pulumi:"encAlgorithm"`
 	Facility              *string                             `pulumi:"facility"`
 	Format                *string                             `pulumi:"format"`
+	GetAllTables          *string                             `pulumi:"getAllTables"`
 	Interface             *string                             `pulumi:"interface"`
 	InterfaceSelectMethod *string                             `pulumi:"interfaceSelectMethod"`
 	MaxLogRate            *int                                `pulumi:"maxLogRate"`
@@ -137,6 +142,7 @@ type LogSyslogd4SettingArgs struct {
 	EncAlgorithm          pulumi.StringPtrInput
 	Facility              pulumi.StringPtrInput
 	Format                pulumi.StringPtrInput
+	GetAllTables          pulumi.StringPtrInput
 	Interface             pulumi.StringPtrInput
 	InterfaceSelectMethod pulumi.StringPtrInput
 	MaxLogRate            pulumi.IntPtrInput
@@ -260,6 +266,10 @@ func (o LogSyslogd4SettingOutput) Facility() pulumi.StringOutput {
 
 func (o LogSyslogd4SettingOutput) Format() pulumi.StringOutput {
 	return o.ApplyT(func(v *LogSyslogd4Setting) pulumi.StringOutput { return v.Format }).(pulumi.StringOutput)
+}
+
+func (o LogSyslogd4SettingOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogSyslogd4Setting) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o LogSyslogd4SettingOutput) Interface() pulumi.StringOutput {

@@ -28,6 +28,7 @@ class SystemReplacemsgGroupArgs:
                  ecs: Optional[pulumi.Input[Sequence[pulumi.Input['SystemReplacemsgGroupEcArgs']]]] = None,
                  fortiguard_wfs: Optional[pulumi.Input[Sequence[pulumi.Input['SystemReplacemsgGroupFortiguardWfArgs']]]] = None,
                  ftps: Optional[pulumi.Input[Sequence[pulumi.Input['SystemReplacemsgGroupFtpArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  https: Optional[pulumi.Input[Sequence[pulumi.Input['SystemReplacemsgGroupHttpArgs']]]] = None,
                  icaps: Optional[pulumi.Input[Sequence[pulumi.Input['SystemReplacemsgGroupIcapArgs']]]] = None,
                  mails: Optional[pulumi.Input[Sequence[pulumi.Input['SystemReplacemsgGroupMailArgs']]]] = None,
@@ -66,6 +67,8 @@ class SystemReplacemsgGroupArgs:
             pulumi.set(__self__, "fortiguard_wfs", fortiguard_wfs)
         if ftps is not None:
             pulumi.set(__self__, "ftps", ftps)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if https is not None:
             pulumi.set(__self__, "https", https)
         if icaps is not None:
@@ -200,6 +203,15 @@ class SystemReplacemsgGroupArgs:
         pulumi.set(self, "ftps", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter
     def https(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SystemReplacemsgGroupHttpArgs']]]]:
         return pulumi.get(self, "https")
@@ -322,6 +334,7 @@ class _SystemReplacemsgGroupState:
                  ecs: Optional[pulumi.Input[Sequence[pulumi.Input['SystemReplacemsgGroupEcArgs']]]] = None,
                  fortiguard_wfs: Optional[pulumi.Input[Sequence[pulumi.Input['SystemReplacemsgGroupFortiguardWfArgs']]]] = None,
                  ftps: Optional[pulumi.Input[Sequence[pulumi.Input['SystemReplacemsgGroupFtpArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_type: Optional[pulumi.Input[str]] = None,
                  https: Optional[pulumi.Input[Sequence[pulumi.Input['SystemReplacemsgGroupHttpArgs']]]] = None,
                  icaps: Optional[pulumi.Input[Sequence[pulumi.Input['SystemReplacemsgGroupIcapArgs']]]] = None,
@@ -360,6 +373,8 @@ class _SystemReplacemsgGroupState:
             pulumi.set(__self__, "fortiguard_wfs", fortiguard_wfs)
         if ftps is not None:
             pulumi.set(__self__, "ftps", ftps)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if group_type is not None:
             pulumi.set(__self__, "group_type", group_type)
         if https is not None:
@@ -485,6 +500,15 @@ class _SystemReplacemsgGroupState:
     @ftps.setter
     def ftps(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemReplacemsgGroupFtpArgs']]]]):
         pulumi.set(self, "ftps", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="groupType")
@@ -620,6 +644,7 @@ class SystemReplacemsgGroup(pulumi.CustomResource):
                  ecs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemReplacemsgGroupEcArgs']]]]] = None,
                  fortiguard_wfs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemReplacemsgGroupFortiguardWfArgs']]]]] = None,
                  ftps: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemReplacemsgGroupFtpArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_type: Optional[pulumi.Input[str]] = None,
                  https: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemReplacemsgGroupHttpArgs']]]]] = None,
                  icaps: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemReplacemsgGroupIcapArgs']]]]] = None,
@@ -673,6 +698,7 @@ class SystemReplacemsgGroup(pulumi.CustomResource):
                  ecs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemReplacemsgGroupEcArgs']]]]] = None,
                  fortiguard_wfs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemReplacemsgGroupFortiguardWfArgs']]]]] = None,
                  ftps: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemReplacemsgGroupFtpArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_type: Optional[pulumi.Input[str]] = None,
                  https: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemReplacemsgGroupHttpArgs']]]]] = None,
                  icaps: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemReplacemsgGroupIcapArgs']]]]] = None,
@@ -706,6 +732,7 @@ class SystemReplacemsgGroup(pulumi.CustomResource):
             __props__.__dict__["ecs"] = ecs
             __props__.__dict__["fortiguard_wfs"] = fortiguard_wfs
             __props__.__dict__["ftps"] = ftps
+            __props__.__dict__["get_all_tables"] = get_all_tables
             if group_type is None and not opts.urn:
                 raise TypeError("Missing required property 'group_type'")
             __props__.__dict__["group_type"] = group_type
@@ -742,6 +769,7 @@ class SystemReplacemsgGroup(pulumi.CustomResource):
             ecs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemReplacemsgGroupEcArgs']]]]] = None,
             fortiguard_wfs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemReplacemsgGroupFortiguardWfArgs']]]]] = None,
             ftps: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemReplacemsgGroupFtpArgs']]]]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             group_type: Optional[pulumi.Input[str]] = None,
             https: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemReplacemsgGroupHttpArgs']]]]] = None,
             icaps: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemReplacemsgGroupIcapArgs']]]]] = None,
@@ -778,6 +806,7 @@ class SystemReplacemsgGroup(pulumi.CustomResource):
         __props__.__dict__["ecs"] = ecs
         __props__.__dict__["fortiguard_wfs"] = fortiguard_wfs
         __props__.__dict__["ftps"] = ftps
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["group_type"] = group_type
         __props__.__dict__["https"] = https
         __props__.__dict__["icaps"] = icaps
@@ -847,6 +876,11 @@ class SystemReplacemsgGroup(pulumi.CustomResource):
     @pulumi.getter
     def ftps(self) -> pulumi.Output[Optional[Sequence['outputs.SystemReplacemsgGroupFtp']]]:
         return pulumi.get(self, "ftps")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="groupType")

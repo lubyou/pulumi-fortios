@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func GetSystemDhcpServerList(ctx *pulumi.Context, args *GetSystemDhcpServerListArgs, opts ...pulumi.InvokeOption) (*GetSystemDhcpServerListResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetSystemDhcpServerListResult
 	err := ctx.Invoke("fortios:index/getSystemDhcpServerList:GetSystemDhcpServerList", args, &rv, opts...)
 	if err != nil {

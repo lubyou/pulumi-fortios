@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -40,6 +41,7 @@ type AntivirusProfile struct {
 	FortisandboxTimeoutAction     pulumi.StringOutput                          `pulumi:"fortisandboxTimeoutAction"`
 	FtgdAnalytics                 pulumi.StringOutput                          `pulumi:"ftgdAnalytics"`
 	Ftp                           AntivirusProfileFtpOutput                    `pulumi:"ftp"`
+	GetAllTables                  pulumi.StringPtrOutput                       `pulumi:"getAllTables"`
 	Http                          AntivirusProfileHttpOutput                   `pulumi:"http"`
 	Imap                          AntivirusProfileImapOutput                   `pulumi:"imap"`
 	InspectionMode                pulumi.StringOutput                          `pulumi:"inspectionMode"`
@@ -66,7 +68,7 @@ func NewAntivirusProfile(ctx *pulumi.Context,
 		args = &AntivirusProfileArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AntivirusProfile
 	err := ctx.RegisterResource("fortios:index/antivirusProfile:AntivirusProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -116,6 +118,7 @@ type antivirusProfileState struct {
 	FortisandboxTimeoutAction     *string                             `pulumi:"fortisandboxTimeoutAction"`
 	FtgdAnalytics                 *string                             `pulumi:"ftgdAnalytics"`
 	Ftp                           *AntivirusProfileFtp                `pulumi:"ftp"`
+	GetAllTables                  *string                             `pulumi:"getAllTables"`
 	Http                          *AntivirusProfileHttp               `pulumi:"http"`
 	Imap                          *AntivirusProfileImap               `pulumi:"imap"`
 	InspectionMode                *string                             `pulumi:"inspectionMode"`
@@ -163,6 +166,7 @@ type AntivirusProfileState struct {
 	FortisandboxTimeoutAction     pulumi.StringPtrInput
 	FtgdAnalytics                 pulumi.StringPtrInput
 	Ftp                           AntivirusProfileFtpPtrInput
+	GetAllTables                  pulumi.StringPtrInput
 	Http                          AntivirusProfileHttpPtrInput
 	Imap                          AntivirusProfileImapPtrInput
 	InspectionMode                pulumi.StringPtrInput
@@ -214,6 +218,7 @@ type antivirusProfileArgs struct {
 	FortisandboxTimeoutAction     *string                             `pulumi:"fortisandboxTimeoutAction"`
 	FtgdAnalytics                 *string                             `pulumi:"ftgdAnalytics"`
 	Ftp                           *AntivirusProfileFtp                `pulumi:"ftp"`
+	GetAllTables                  *string                             `pulumi:"getAllTables"`
 	Http                          *AntivirusProfileHttp               `pulumi:"http"`
 	Imap                          *AntivirusProfileImap               `pulumi:"imap"`
 	InspectionMode                *string                             `pulumi:"inspectionMode"`
@@ -262,6 +267,7 @@ type AntivirusProfileArgs struct {
 	FortisandboxTimeoutAction     pulumi.StringPtrInput
 	FtgdAnalytics                 pulumi.StringPtrInput
 	Ftp                           AntivirusProfileFtpPtrInput
+	GetAllTables                  pulumi.StringPtrInput
 	Http                          AntivirusProfileHttpPtrInput
 	Imap                          AntivirusProfileImapPtrInput
 	InspectionMode                pulumi.StringPtrInput
@@ -474,6 +480,10 @@ func (o AntivirusProfileOutput) FtgdAnalytics() pulumi.StringOutput {
 
 func (o AntivirusProfileOutput) Ftp() AntivirusProfileFtpOutput {
 	return o.ApplyT(func(v *AntivirusProfile) AntivirusProfileFtpOutput { return v.Ftp }).(AntivirusProfileFtpOutput)
+}
+
+func (o AntivirusProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AntivirusProfile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o AntivirusProfileOutput) Http() AntivirusProfileHttpOutput {

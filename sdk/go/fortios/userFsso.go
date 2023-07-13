@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -82,7 +83,7 @@ func NewUserFsso(ctx *pulumi.Context,
 		"password5",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource UserFsso
 	err := ctx.RegisterResource("fortios:index/userFsso:UserFsso", name, args, &resource, opts...)
 	if err != nil {

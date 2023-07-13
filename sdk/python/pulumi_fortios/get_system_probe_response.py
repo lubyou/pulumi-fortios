@@ -127,15 +127,15 @@ def get_system_probe_response(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemProbeResponse:GetSystemProbeResponse', __args__, opts=opts, typ=GetSystemProbeResponseResult).value
 
     return AwaitableGetSystemProbeResponseResult(
-        http_probe_value=__ret__.http_probe_value,
-        id=__ret__.id,
-        mode=__ret__.mode,
-        password=__ret__.password,
-        port=__ret__.port,
-        security_mode=__ret__.security_mode,
-        timeout=__ret__.timeout,
-        ttl_mode=__ret__.ttl_mode,
-        vdomparam=__ret__.vdomparam)
+        http_probe_value=pulumi.get(__ret__, 'http_probe_value'),
+        id=pulumi.get(__ret__, 'id'),
+        mode=pulumi.get(__ret__, 'mode'),
+        password=pulumi.get(__ret__, 'password'),
+        port=pulumi.get(__ret__, 'port'),
+        security_mode=pulumi.get(__ret__, 'security_mode'),
+        timeout=pulumi.get(__ret__, 'timeout'),
+        ttl_mode=pulumi.get(__ret__, 'ttl_mode'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_probe_response)

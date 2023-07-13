@@ -49,6 +49,7 @@ export class WirelessControllerHotspot20HsProfile extends pulumi.CustomResource 
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly gasComebackDelay!: pulumi.Output<number>;
     public readonly gasFragmentationLimit!: pulumi.Output<number>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly hessid!: pulumi.Output<string>;
     public readonly ipAddrType!: pulumi.Output<string>;
     public readonly l2tif!: pulumi.Output<string>;
@@ -103,6 +104,7 @@ export class WirelessControllerHotspot20HsProfile extends pulumi.CustomResource 
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["gasComebackDelay"] = state ? state.gasComebackDelay : undefined;
             resourceInputs["gasFragmentationLimit"] = state ? state.gasFragmentationLimit : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["hessid"] = state ? state.hessid : undefined;
             resourceInputs["ipAddrType"] = state ? state.ipAddrType : undefined;
             resourceInputs["l2tif"] = state ? state.l2tif : undefined;
@@ -145,6 +147,7 @@ export class WirelessControllerHotspot20HsProfile extends pulumi.CustomResource 
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["gasComebackDelay"] = args ? args.gasComebackDelay : undefined;
             resourceInputs["gasFragmentationLimit"] = args ? args.gasFragmentationLimit : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["hessid"] = args ? args.hessid : undefined;
             resourceInputs["ipAddrType"] = args ? args.ipAddrType : undefined;
             resourceInputs["l2tif"] = args ? args.l2tif : undefined;
@@ -195,6 +198,7 @@ export interface WirelessControllerHotspot20HsProfileState {
     dynamicSortSubtable?: pulumi.Input<string>;
     gasComebackDelay?: pulumi.Input<number>;
     gasFragmentationLimit?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     hessid?: pulumi.Input<string>;
     ipAddrType?: pulumi.Input<string>;
     l2tif?: pulumi.Input<string>;
@@ -241,6 +245,7 @@ export interface WirelessControllerHotspot20HsProfileArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
     gasComebackDelay?: pulumi.Input<number>;
     gasFragmentationLimit?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     hessid?: pulumi.Input<string>;
     ipAddrType?: pulumi.Input<string>;
     l2tif?: pulumi.Input<string>;

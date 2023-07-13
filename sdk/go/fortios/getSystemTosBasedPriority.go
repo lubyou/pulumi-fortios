@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemTosBasedPriority(ctx *pulumi.Context, args *LookupSystemTosBasedPriorityArgs, opts ...pulumi.InvokeOption) (*LookupSystemTosBasedPriorityResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemTosBasedPriorityResult
 	err := ctx.Invoke("fortios:index/getSystemTosBasedPriority:GetSystemTosBasedPriority", args, &rv, opts...)
 	if err != nil {

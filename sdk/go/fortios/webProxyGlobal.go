@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -18,11 +19,13 @@ type WebProxyGlobal struct {
 	FastPolicyMatch              pulumi.StringOutput                            `pulumi:"fastPolicyMatch"`
 	ForwardProxyAuth             pulumi.StringOutput                            `pulumi:"forwardProxyAuth"`
 	ForwardServerAffinityTimeout pulumi.IntOutput                               `pulumi:"forwardServerAffinityTimeout"`
+	GetAllTables                 pulumi.StringPtrOutput                         `pulumi:"getAllTables"`
 	LdapUserCache                pulumi.StringOutput                            `pulumi:"ldapUserCache"`
 	LearnClientIp                pulumi.StringOutput                            `pulumi:"learnClientIp"`
 	LearnClientIpFromHeader      pulumi.StringOutput                            `pulumi:"learnClientIpFromHeader"`
 	LearnClientIpSrcaddr6s       WebProxyGlobalLearnClientIpSrcaddr6ArrayOutput `pulumi:"learnClientIpSrcaddr6s"`
 	LearnClientIpSrcaddrs        WebProxyGlobalLearnClientIpSrcaddrArrayOutput  `pulumi:"learnClientIpSrcaddrs"`
+	LogForwardServer             pulumi.StringOutput                            `pulumi:"logForwardServer"`
 	MaxMessageLength             pulumi.IntOutput                               `pulumi:"maxMessageLength"`
 	MaxRequestLength             pulumi.IntOutput                               `pulumi:"maxRequestLength"`
 	MaxWafBodyCacheLength        pulumi.IntOutput                               `pulumi:"maxWafBodyCacheLength"`
@@ -48,7 +51,7 @@ func NewWebProxyGlobal(ctx *pulumi.Context,
 	if args.ProxyFqdn == nil {
 		return nil, errors.New("invalid value for required argument 'ProxyFqdn'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WebProxyGlobal
 	err := ctx.RegisterResource("fortios:index/webProxyGlobal:WebProxyGlobal", name, args, &resource, opts...)
 	if err != nil {
@@ -75,11 +78,13 @@ type webProxyGlobalState struct {
 	FastPolicyMatch              *string                               `pulumi:"fastPolicyMatch"`
 	ForwardProxyAuth             *string                               `pulumi:"forwardProxyAuth"`
 	ForwardServerAffinityTimeout *int                                  `pulumi:"forwardServerAffinityTimeout"`
+	GetAllTables                 *string                               `pulumi:"getAllTables"`
 	LdapUserCache                *string                               `pulumi:"ldapUserCache"`
 	LearnClientIp                *string                               `pulumi:"learnClientIp"`
 	LearnClientIpFromHeader      *string                               `pulumi:"learnClientIpFromHeader"`
 	LearnClientIpSrcaddr6s       []WebProxyGlobalLearnClientIpSrcaddr6 `pulumi:"learnClientIpSrcaddr6s"`
 	LearnClientIpSrcaddrs        []WebProxyGlobalLearnClientIpSrcaddr  `pulumi:"learnClientIpSrcaddrs"`
+	LogForwardServer             *string                               `pulumi:"logForwardServer"`
 	MaxMessageLength             *int                                  `pulumi:"maxMessageLength"`
 	MaxRequestLength             *int                                  `pulumi:"maxRequestLength"`
 	MaxWafBodyCacheLength        *int                                  `pulumi:"maxWafBodyCacheLength"`
@@ -100,11 +105,13 @@ type WebProxyGlobalState struct {
 	FastPolicyMatch              pulumi.StringPtrInput
 	ForwardProxyAuth             pulumi.StringPtrInput
 	ForwardServerAffinityTimeout pulumi.IntPtrInput
+	GetAllTables                 pulumi.StringPtrInput
 	LdapUserCache                pulumi.StringPtrInput
 	LearnClientIp                pulumi.StringPtrInput
 	LearnClientIpFromHeader      pulumi.StringPtrInput
 	LearnClientIpSrcaddr6s       WebProxyGlobalLearnClientIpSrcaddr6ArrayInput
 	LearnClientIpSrcaddrs        WebProxyGlobalLearnClientIpSrcaddrArrayInput
+	LogForwardServer             pulumi.StringPtrInput
 	MaxMessageLength             pulumi.IntPtrInput
 	MaxRequestLength             pulumi.IntPtrInput
 	MaxWafBodyCacheLength        pulumi.IntPtrInput
@@ -129,11 +136,13 @@ type webProxyGlobalArgs struct {
 	FastPolicyMatch              *string                               `pulumi:"fastPolicyMatch"`
 	ForwardProxyAuth             *string                               `pulumi:"forwardProxyAuth"`
 	ForwardServerAffinityTimeout *int                                  `pulumi:"forwardServerAffinityTimeout"`
+	GetAllTables                 *string                               `pulumi:"getAllTables"`
 	LdapUserCache                *string                               `pulumi:"ldapUserCache"`
 	LearnClientIp                *string                               `pulumi:"learnClientIp"`
 	LearnClientIpFromHeader      *string                               `pulumi:"learnClientIpFromHeader"`
 	LearnClientIpSrcaddr6s       []WebProxyGlobalLearnClientIpSrcaddr6 `pulumi:"learnClientIpSrcaddr6s"`
 	LearnClientIpSrcaddrs        []WebProxyGlobalLearnClientIpSrcaddr  `pulumi:"learnClientIpSrcaddrs"`
+	LogForwardServer             *string                               `pulumi:"logForwardServer"`
 	MaxMessageLength             *int                                  `pulumi:"maxMessageLength"`
 	MaxRequestLength             *int                                  `pulumi:"maxRequestLength"`
 	MaxWafBodyCacheLength        *int                                  `pulumi:"maxWafBodyCacheLength"`
@@ -155,11 +164,13 @@ type WebProxyGlobalArgs struct {
 	FastPolicyMatch              pulumi.StringPtrInput
 	ForwardProxyAuth             pulumi.StringPtrInput
 	ForwardServerAffinityTimeout pulumi.IntPtrInput
+	GetAllTables                 pulumi.StringPtrInput
 	LdapUserCache                pulumi.StringPtrInput
 	LearnClientIp                pulumi.StringPtrInput
 	LearnClientIpFromHeader      pulumi.StringPtrInput
 	LearnClientIpSrcaddr6s       WebProxyGlobalLearnClientIpSrcaddr6ArrayInput
 	LearnClientIpSrcaddrs        WebProxyGlobalLearnClientIpSrcaddrArrayInput
+	LogForwardServer             pulumi.StringPtrInput
 	MaxMessageLength             pulumi.IntPtrInput
 	MaxRequestLength             pulumi.IntPtrInput
 	MaxWafBodyCacheLength        pulumi.IntPtrInput
@@ -278,6 +289,10 @@ func (o WebProxyGlobalOutput) ForwardServerAffinityTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *WebProxyGlobal) pulumi.IntOutput { return v.ForwardServerAffinityTimeout }).(pulumi.IntOutput)
 }
 
+func (o WebProxyGlobalOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebProxyGlobal) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 func (o WebProxyGlobalOutput) LdapUserCache() pulumi.StringOutput {
 	return o.ApplyT(func(v *WebProxyGlobal) pulumi.StringOutput { return v.LdapUserCache }).(pulumi.StringOutput)
 }
@@ -298,6 +313,10 @@ func (o WebProxyGlobalOutput) LearnClientIpSrcaddr6s() WebProxyGlobalLearnClient
 
 func (o WebProxyGlobalOutput) LearnClientIpSrcaddrs() WebProxyGlobalLearnClientIpSrcaddrArrayOutput {
 	return o.ApplyT(func(v *WebProxyGlobal) WebProxyGlobalLearnClientIpSrcaddrArrayOutput { return v.LearnClientIpSrcaddrs }).(WebProxyGlobalLearnClientIpSrcaddrArrayOutput)
+}
+
+func (o WebProxyGlobalOutput) LogForwardServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *WebProxyGlobal) pulumi.StringOutput { return v.LogForwardServer }).(pulumi.StringOutput)
 }
 
 func (o WebProxyGlobalOutput) MaxMessageLength() pulumi.IntOutput {

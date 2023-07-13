@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -16,6 +17,7 @@ type SystemIpsecAggregate struct {
 
 	Algorithm           pulumi.StringOutput                   `pulumi:"algorithm"`
 	DynamicSortSubtable pulumi.StringPtrOutput                `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                `pulumi:"getAllTables"`
 	Members             SystemIpsecAggregateMemberArrayOutput `pulumi:"members"`
 	Name                pulumi.StringOutput                   `pulumi:"name"`
 	Vdomparam           pulumi.StringPtrOutput                `pulumi:"vdomparam"`
@@ -31,7 +33,7 @@ func NewSystemIpsecAggregate(ctx *pulumi.Context,
 	if args.Members == nil {
 		return nil, errors.New("invalid value for required argument 'Members'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemIpsecAggregate
 	err := ctx.RegisterResource("fortios:index/systemIpsecAggregate:SystemIpsecAggregate", name, args, &resource, opts...)
 	if err != nil {
@@ -56,6 +58,7 @@ func GetSystemIpsecAggregate(ctx *pulumi.Context,
 type systemIpsecAggregateState struct {
 	Algorithm           *string                      `pulumi:"algorithm"`
 	DynamicSortSubtable *string                      `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                      `pulumi:"getAllTables"`
 	Members             []SystemIpsecAggregateMember `pulumi:"members"`
 	Name                *string                      `pulumi:"name"`
 	Vdomparam           *string                      `pulumi:"vdomparam"`
@@ -64,6 +67,7 @@ type systemIpsecAggregateState struct {
 type SystemIpsecAggregateState struct {
 	Algorithm           pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Members             SystemIpsecAggregateMemberArrayInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
@@ -76,6 +80,7 @@ func (SystemIpsecAggregateState) ElementType() reflect.Type {
 type systemIpsecAggregateArgs struct {
 	Algorithm           *string                      `pulumi:"algorithm"`
 	DynamicSortSubtable *string                      `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                      `pulumi:"getAllTables"`
 	Members             []SystemIpsecAggregateMember `pulumi:"members"`
 	Name                *string                      `pulumi:"name"`
 	Vdomparam           *string                      `pulumi:"vdomparam"`
@@ -85,6 +90,7 @@ type systemIpsecAggregateArgs struct {
 type SystemIpsecAggregateArgs struct {
 	Algorithm           pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Members             SystemIpsecAggregateMemberArrayInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
@@ -183,6 +189,10 @@ func (o SystemIpsecAggregateOutput) Algorithm() pulumi.StringOutput {
 
 func (o SystemIpsecAggregateOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SystemIpsecAggregate) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemIpsecAggregateOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemIpsecAggregate) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemIpsecAggregateOutput) Members() SystemIpsecAggregateMemberArrayOutput {

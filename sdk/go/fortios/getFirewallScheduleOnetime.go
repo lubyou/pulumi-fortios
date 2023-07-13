@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupFirewallScheduleOnetime(ctx *pulumi.Context, args *LookupFirewallScheduleOnetimeArgs, opts ...pulumi.InvokeOption) (*LookupFirewallScheduleOnetimeResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallScheduleOnetimeResult
 	err := ctx.Invoke("fortios:index/getFirewallScheduleOnetime:GetFirewallScheduleOnetime", args, &rv, opts...)
 	if err != nil {
@@ -30,12 +31,14 @@ type LookupFirewallScheduleOnetimeArgs struct {
 type LookupFirewallScheduleOnetimeResult struct {
 	Color          int    `pulumi:"color"`
 	End            string `pulumi:"end"`
+	EndUtc         string `pulumi:"endUtc"`
 	ExpirationDays int    `pulumi:"expirationDays"`
 	FabricObject   string `pulumi:"fabricObject"`
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
 	Name      string  `pulumi:"name"`
 	Start     string  `pulumi:"start"`
+	StartUtc  string  `pulumi:"startUtc"`
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
@@ -85,6 +88,10 @@ func (o LookupFirewallScheduleOnetimeResultOutput) End() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallScheduleOnetimeResult) string { return v.End }).(pulumi.StringOutput)
 }
 
+func (o LookupFirewallScheduleOnetimeResultOutput) EndUtc() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallScheduleOnetimeResult) string { return v.EndUtc }).(pulumi.StringOutput)
+}
+
 func (o LookupFirewallScheduleOnetimeResultOutput) ExpirationDays() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupFirewallScheduleOnetimeResult) int { return v.ExpirationDays }).(pulumi.IntOutput)
 }
@@ -104,6 +111,10 @@ func (o LookupFirewallScheduleOnetimeResultOutput) Name() pulumi.StringOutput {
 
 func (o LookupFirewallScheduleOnetimeResultOutput) Start() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallScheduleOnetimeResult) string { return v.Start }).(pulumi.StringOutput)
+}
+
+func (o LookupFirewallScheduleOnetimeResultOutput) StartUtc() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallScheduleOnetimeResult) string { return v.StartUtc }).(pulumi.StringOutput)
 }
 
 func (o LookupFirewallScheduleOnetimeResultOutput) Vdomparam() pulumi.StringPtrOutput {

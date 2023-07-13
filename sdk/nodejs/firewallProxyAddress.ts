@@ -40,6 +40,7 @@ export class FirewallProxyAddress extends pulumi.CustomResource {
     public readonly color!: pulumi.Output<number>;
     public readonly comment!: pulumi.Output<string | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly header!: pulumi.Output<string>;
     public readonly headerGroups!: pulumi.Output<outputs.FirewallProxyAddressHeaderGroup[] | undefined>;
     public readonly headerName!: pulumi.Output<string>;
@@ -53,6 +54,8 @@ export class FirewallProxyAddress extends pulumi.CustomResource {
     public readonly taggings!: pulumi.Output<outputs.FirewallProxyAddressTagging[] | undefined>;
     public readonly type!: pulumi.Output<string>;
     public readonly ua!: pulumi.Output<string>;
+    public readonly uaMaxVer!: pulumi.Output<string>;
+    public readonly uaMinVer!: pulumi.Output<string>;
     public readonly uuid!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
     public readonly visibility!: pulumi.Output<string>;
@@ -76,6 +79,7 @@ export class FirewallProxyAddress extends pulumi.CustomResource {
             resourceInputs["color"] = state ? state.color : undefined;
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["header"] = state ? state.header : undefined;
             resourceInputs["headerGroups"] = state ? state.headerGroups : undefined;
             resourceInputs["headerName"] = state ? state.headerName : undefined;
@@ -89,6 +93,8 @@ export class FirewallProxyAddress extends pulumi.CustomResource {
             resourceInputs["taggings"] = state ? state.taggings : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
             resourceInputs["ua"] = state ? state.ua : undefined;
+            resourceInputs["uaMaxVer"] = state ? state.uaMaxVer : undefined;
+            resourceInputs["uaMinVer"] = state ? state.uaMinVer : undefined;
             resourceInputs["uuid"] = state ? state.uuid : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["visibility"] = state ? state.visibility : undefined;
@@ -100,6 +106,7 @@ export class FirewallProxyAddress extends pulumi.CustomResource {
             resourceInputs["color"] = args ? args.color : undefined;
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["header"] = args ? args.header : undefined;
             resourceInputs["headerGroups"] = args ? args.headerGroups : undefined;
             resourceInputs["headerName"] = args ? args.headerName : undefined;
@@ -113,6 +120,8 @@ export class FirewallProxyAddress extends pulumi.CustomResource {
             resourceInputs["taggings"] = args ? args.taggings : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
             resourceInputs["ua"] = args ? args.ua : undefined;
+            resourceInputs["uaMaxVer"] = args ? args.uaMaxVer : undefined;
+            resourceInputs["uaMinVer"] = args ? args.uaMinVer : undefined;
             resourceInputs["uuid"] = args ? args.uuid : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["visibility"] = args ? args.visibility : undefined;
@@ -132,6 +141,7 @@ export interface FirewallProxyAddressState {
     color?: pulumi.Input<number>;
     comment?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     header?: pulumi.Input<string>;
     headerGroups?: pulumi.Input<pulumi.Input<inputs.FirewallProxyAddressHeaderGroup>[]>;
     headerName?: pulumi.Input<string>;
@@ -145,6 +155,8 @@ export interface FirewallProxyAddressState {
     taggings?: pulumi.Input<pulumi.Input<inputs.FirewallProxyAddressTagging>[]>;
     type?: pulumi.Input<string>;
     ua?: pulumi.Input<string>;
+    uaMaxVer?: pulumi.Input<string>;
+    uaMinVer?: pulumi.Input<string>;
     uuid?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
     visibility?: pulumi.Input<string>;
@@ -160,6 +172,7 @@ export interface FirewallProxyAddressArgs {
     color?: pulumi.Input<number>;
     comment?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     header?: pulumi.Input<string>;
     headerGroups?: pulumi.Input<pulumi.Input<inputs.FirewallProxyAddressHeaderGroup>[]>;
     headerName?: pulumi.Input<string>;
@@ -173,6 +186,8 @@ export interface FirewallProxyAddressArgs {
     taggings?: pulumi.Input<pulumi.Input<inputs.FirewallProxyAddressTagging>[]>;
     type?: pulumi.Input<string>;
     ua?: pulumi.Input<string>;
+    uaMaxVer?: pulumi.Input<string>;
+    uaMinVer?: pulumi.Input<string>;
     uuid?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
     visibility?: pulumi.Input<string>;

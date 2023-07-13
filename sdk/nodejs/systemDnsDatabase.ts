@@ -41,6 +41,7 @@ export class SystemDnsDatabase extends pulumi.CustomResource {
     public readonly domain!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly forwarder!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly ipMaster!: pulumi.Output<string>;
     public readonly ipPrimary!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
@@ -73,6 +74,7 @@ export class SystemDnsDatabase extends pulumi.CustomResource {
             resourceInputs["domain"] = state ? state.domain : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["forwarder"] = state ? state.forwarder : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["ipMaster"] = state ? state.ipMaster : undefined;
             resourceInputs["ipPrimary"] = state ? state.ipPrimary : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -108,6 +110,7 @@ export class SystemDnsDatabase extends pulumi.CustomResource {
             resourceInputs["domain"] = args ? args.domain : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["forwarder"] = args ? args.forwarder : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["ipMaster"] = args ? args.ipMaster : undefined;
             resourceInputs["ipPrimary"] = args ? args.ipPrimary : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -136,6 +139,7 @@ export interface SystemDnsDatabaseState {
     domain?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     forwarder?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     ipMaster?: pulumi.Input<string>;
     ipPrimary?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
@@ -160,6 +164,7 @@ export interface SystemDnsDatabaseArgs {
     domain: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     forwarder?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     ipMaster?: pulumi.Input<string>;
     ipPrimary?: pulumi.Input<string>;
     name?: pulumi.Input<string>;

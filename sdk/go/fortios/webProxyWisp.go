@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -37,7 +38,7 @@ func NewWebProxyWisp(ctx *pulumi.Context,
 	if args.ServerPort == nil {
 		return nil, errors.New("invalid value for required argument 'ServerPort'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WebProxyWisp
 	err := ctx.RegisterResource("fortios:index/webProxyWisp:WebProxyWisp", name, args, &resource, opts...)
 	if err != nil {

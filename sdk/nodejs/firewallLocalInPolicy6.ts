@@ -39,6 +39,7 @@ export class FirewallLocalInPolicy6 extends pulumi.CustomResource {
     public readonly dstaddrNegate!: pulumi.Output<string>;
     public readonly dstaddrs!: pulumi.Output<outputs.FirewallLocalInPolicy6Dstaddr[]>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly intf!: pulumi.Output<string>;
     public readonly policyid!: pulumi.Output<number>;
     public readonly schedule!: pulumi.Output<string>;
@@ -49,6 +50,7 @@ export class FirewallLocalInPolicy6 extends pulumi.CustomResource {
     public readonly status!: pulumi.Output<string>;
     public readonly uuid!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly virtualPatch!: pulumi.Output<string>;
 
     /**
      * Create a FirewallLocalInPolicy6 resource with the given unique name, arguments, and options.
@@ -68,6 +70,7 @@ export class FirewallLocalInPolicy6 extends pulumi.CustomResource {
             resourceInputs["dstaddrNegate"] = state ? state.dstaddrNegate : undefined;
             resourceInputs["dstaddrs"] = state ? state.dstaddrs : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["intf"] = state ? state.intf : undefined;
             resourceInputs["policyid"] = state ? state.policyid : undefined;
             resourceInputs["schedule"] = state ? state.schedule : undefined;
@@ -78,6 +81,7 @@ export class FirewallLocalInPolicy6 extends pulumi.CustomResource {
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["uuid"] = state ? state.uuid : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["virtualPatch"] = state ? state.virtualPatch : undefined;
         } else {
             const args = argsOrState as FirewallLocalInPolicy6Args | undefined;
             if ((!args || args.dstaddrs === undefined) && !opts.urn) {
@@ -100,6 +104,7 @@ export class FirewallLocalInPolicy6 extends pulumi.CustomResource {
             resourceInputs["dstaddrNegate"] = args ? args.dstaddrNegate : undefined;
             resourceInputs["dstaddrs"] = args ? args.dstaddrs : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["intf"] = args ? args.intf : undefined;
             resourceInputs["policyid"] = args ? args.policyid : undefined;
             resourceInputs["schedule"] = args ? args.schedule : undefined;
@@ -110,6 +115,7 @@ export class FirewallLocalInPolicy6 extends pulumi.CustomResource {
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["uuid"] = args ? args.uuid : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["virtualPatch"] = args ? args.virtualPatch : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(FirewallLocalInPolicy6.__pulumiType, name, resourceInputs, opts);
@@ -125,6 +131,7 @@ export interface FirewallLocalInPolicy6State {
     dstaddrNegate?: pulumi.Input<string>;
     dstaddrs?: pulumi.Input<pulumi.Input<inputs.FirewallLocalInPolicy6Dstaddr>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     intf?: pulumi.Input<string>;
     policyid?: pulumi.Input<number>;
     schedule?: pulumi.Input<string>;
@@ -135,6 +142,7 @@ export interface FirewallLocalInPolicy6State {
     status?: pulumi.Input<string>;
     uuid?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
+    virtualPatch?: pulumi.Input<string>;
 }
 
 /**
@@ -146,6 +154,7 @@ export interface FirewallLocalInPolicy6Args {
     dstaddrNegate?: pulumi.Input<string>;
     dstaddrs: pulumi.Input<pulumi.Input<inputs.FirewallLocalInPolicy6Dstaddr>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     intf: pulumi.Input<string>;
     policyid?: pulumi.Input<number>;
     schedule: pulumi.Input<string>;
@@ -156,4 +165,5 @@ export interface FirewallLocalInPolicy6Args {
     status?: pulumi.Input<string>;
     uuid?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
+    virtualPatch?: pulumi.Input<string>;
 }

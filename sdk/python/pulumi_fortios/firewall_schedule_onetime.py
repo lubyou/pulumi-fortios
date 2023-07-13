@@ -17,9 +17,11 @@ class FirewallScheduleOnetimeArgs:
                  end: pulumi.Input[str],
                  start: pulumi.Input[str],
                  color: Optional[pulumi.Input[int]] = None,
+                 end_utc: Optional[pulumi.Input[str]] = None,
                  expiration_days: Optional[pulumi.Input[int]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 start_utc: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a FirewallScheduleOnetime resource.
@@ -28,12 +30,16 @@ class FirewallScheduleOnetimeArgs:
         pulumi.set(__self__, "start", start)
         if color is not None:
             pulumi.set(__self__, "color", color)
+        if end_utc is not None:
+            pulumi.set(__self__, "end_utc", end_utc)
         if expiration_days is not None:
             pulumi.set(__self__, "expiration_days", expiration_days)
         if fabric_object is not None:
             pulumi.set(__self__, "fabric_object", fabric_object)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if start_utc is not None:
+            pulumi.set(__self__, "start_utc", start_utc)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -65,6 +71,15 @@ class FirewallScheduleOnetimeArgs:
         pulumi.set(self, "color", value)
 
     @property
+    @pulumi.getter(name="endUtc")
+    def end_utc(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "end_utc")
+
+    @end_utc.setter
+    def end_utc(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "end_utc", value)
+
+    @property
     @pulumi.getter(name="expirationDays")
     def expiration_days(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "expiration_days")
@@ -92,6 +107,15 @@ class FirewallScheduleOnetimeArgs:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter(name="startUtc")
+    def start_utc(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "start_utc")
+
+    @start_utc.setter
+    def start_utc(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "start_utc", value)
+
+    @property
     @pulumi.getter
     def vdomparam(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "vdomparam")
@@ -106,10 +130,12 @@ class _FirewallScheduleOnetimeState:
     def __init__(__self__, *,
                  color: Optional[pulumi.Input[int]] = None,
                  end: Optional[pulumi.Input[str]] = None,
+                 end_utc: Optional[pulumi.Input[str]] = None,
                  expiration_days: Optional[pulumi.Input[int]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  start: Optional[pulumi.Input[str]] = None,
+                 start_utc: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering FirewallScheduleOnetime resources.
@@ -118,6 +144,8 @@ class _FirewallScheduleOnetimeState:
             pulumi.set(__self__, "color", color)
         if end is not None:
             pulumi.set(__self__, "end", end)
+        if end_utc is not None:
+            pulumi.set(__self__, "end_utc", end_utc)
         if expiration_days is not None:
             pulumi.set(__self__, "expiration_days", expiration_days)
         if fabric_object is not None:
@@ -126,6 +154,8 @@ class _FirewallScheduleOnetimeState:
             pulumi.set(__self__, "name", name)
         if start is not None:
             pulumi.set(__self__, "start", start)
+        if start_utc is not None:
+            pulumi.set(__self__, "start_utc", start_utc)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -146,6 +176,15 @@ class _FirewallScheduleOnetimeState:
     @end.setter
     def end(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "end", value)
+
+    @property
+    @pulumi.getter(name="endUtc")
+    def end_utc(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "end_utc")
+
+    @end_utc.setter
+    def end_utc(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "end_utc", value)
 
     @property
     @pulumi.getter(name="expirationDays")
@@ -184,6 +223,15 @@ class _FirewallScheduleOnetimeState:
         pulumi.set(self, "start", value)
 
     @property
+    @pulumi.getter(name="startUtc")
+    def start_utc(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "start_utc")
+
+    @start_utc.setter
+    def start_utc(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "start_utc", value)
+
+    @property
     @pulumi.getter
     def vdomparam(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "vdomparam")
@@ -200,10 +248,12 @@ class FirewallScheduleOnetime(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  color: Optional[pulumi.Input[int]] = None,
                  end: Optional[pulumi.Input[str]] = None,
+                 end_utc: Optional[pulumi.Input[str]] = None,
                  expiration_days: Optional[pulumi.Input[int]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  start: Optional[pulumi.Input[str]] = None,
+                 start_utc: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -236,10 +286,12 @@ class FirewallScheduleOnetime(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  color: Optional[pulumi.Input[int]] = None,
                  end: Optional[pulumi.Input[str]] = None,
+                 end_utc: Optional[pulumi.Input[str]] = None,
                  expiration_days: Optional[pulumi.Input[int]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  start: Optional[pulumi.Input[str]] = None,
+                 start_utc: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -254,12 +306,14 @@ class FirewallScheduleOnetime(pulumi.CustomResource):
             if end is None and not opts.urn:
                 raise TypeError("Missing required property 'end'")
             __props__.__dict__["end"] = end
+            __props__.__dict__["end_utc"] = end_utc
             __props__.__dict__["expiration_days"] = expiration_days
             __props__.__dict__["fabric_object"] = fabric_object
             __props__.__dict__["name"] = name
             if start is None and not opts.urn:
                 raise TypeError("Missing required property 'start'")
             __props__.__dict__["start"] = start
+            __props__.__dict__["start_utc"] = start_utc
             __props__.__dict__["vdomparam"] = vdomparam
         super(FirewallScheduleOnetime, __self__).__init__(
             'fortios:index/firewallScheduleOnetime:FirewallScheduleOnetime',
@@ -273,10 +327,12 @@ class FirewallScheduleOnetime(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             color: Optional[pulumi.Input[int]] = None,
             end: Optional[pulumi.Input[str]] = None,
+            end_utc: Optional[pulumi.Input[str]] = None,
             expiration_days: Optional[pulumi.Input[int]] = None,
             fabric_object: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             start: Optional[pulumi.Input[str]] = None,
+            start_utc: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'FirewallScheduleOnetime':
         """
         Get an existing FirewallScheduleOnetime resource's state with the given name, id, and optional extra
@@ -292,10 +348,12 @@ class FirewallScheduleOnetime(pulumi.CustomResource):
 
         __props__.__dict__["color"] = color
         __props__.__dict__["end"] = end
+        __props__.__dict__["end_utc"] = end_utc
         __props__.__dict__["expiration_days"] = expiration_days
         __props__.__dict__["fabric_object"] = fabric_object
         __props__.__dict__["name"] = name
         __props__.__dict__["start"] = start
+        __props__.__dict__["start_utc"] = start_utc
         __props__.__dict__["vdomparam"] = vdomparam
         return FirewallScheduleOnetime(resource_name, opts=opts, __props__=__props__)
 
@@ -308,6 +366,11 @@ class FirewallScheduleOnetime(pulumi.CustomResource):
     @pulumi.getter
     def end(self) -> pulumi.Output[str]:
         return pulumi.get(self, "end")
+
+    @property
+    @pulumi.getter(name="endUtc")
+    def end_utc(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "end_utc")
 
     @property
     @pulumi.getter(name="expirationDays")
@@ -328,6 +391,11 @@ class FirewallScheduleOnetime(pulumi.CustomResource):
     @pulumi.getter
     def start(self) -> pulumi.Output[str]:
         return pulumi.get(self, "start")
+
+    @property
+    @pulumi.getter(name="startUtc")
+    def start_utc(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "start_utc")
 
     @property
     @pulumi.getter

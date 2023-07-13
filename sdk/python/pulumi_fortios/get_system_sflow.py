@@ -109,13 +109,13 @@ def get_system_sflow(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemSflow:GetSystemSflow', __args__, opts=opts, typ=GetSystemSflowResult).value
 
     return AwaitableGetSystemSflowResult(
-        collector_ip=__ret__.collector_ip,
-        collector_port=__ret__.collector_port,
-        id=__ret__.id,
-        interface=__ret__.interface,
-        interface_select_method=__ret__.interface_select_method,
-        source_ip=__ret__.source_ip,
-        vdomparam=__ret__.vdomparam)
+        collector_ip=pulumi.get(__ret__, 'collector_ip'),
+        collector_port=pulumi.get(__ret__, 'collector_port'),
+        id=pulumi.get(__ret__, 'id'),
+        interface=pulumi.get(__ret__, 'interface'),
+        interface_select_method=pulumi.get(__ret__, 'interface_select_method'),
+        source_ip=pulumi.get(__ret__, 'source_ip'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_sflow)

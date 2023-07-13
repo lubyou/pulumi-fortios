@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -14,6 +15,7 @@ type WebProxyProfile struct {
 	pulumi.CustomResourceState
 
 	DynamicSortSubtable        pulumi.StringPtrOutput           `pulumi:"dynamicSortSubtable"`
+	GetAllTables               pulumi.StringPtrOutput           `pulumi:"getAllTables"`
 	HeaderClientIp             pulumi.StringOutput              `pulumi:"headerClientIp"`
 	HeaderFrontEndHttps        pulumi.StringOutput              `pulumi:"headerFrontEndHttps"`
 	HeaderViaRequest           pulumi.StringOutput              `pulumi:"headerViaRequest"`
@@ -36,7 +38,7 @@ func NewWebProxyProfile(ctx *pulumi.Context,
 		args = &WebProxyProfileArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WebProxyProfile
 	err := ctx.RegisterResource("fortios:index/webProxyProfile:WebProxyProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -60,6 +62,7 @@ func GetWebProxyProfile(ctx *pulumi.Context,
 // Input properties used for looking up and filtering WebProxyProfile resources.
 type webProxyProfileState struct {
 	DynamicSortSubtable        *string                 `pulumi:"dynamicSortSubtable"`
+	GetAllTables               *string                 `pulumi:"getAllTables"`
 	HeaderClientIp             *string                 `pulumi:"headerClientIp"`
 	HeaderFrontEndHttps        *string                 `pulumi:"headerFrontEndHttps"`
 	HeaderViaRequest           *string                 `pulumi:"headerViaRequest"`
@@ -77,6 +80,7 @@ type webProxyProfileState struct {
 
 type WebProxyProfileState struct {
 	DynamicSortSubtable        pulumi.StringPtrInput
+	GetAllTables               pulumi.StringPtrInput
 	HeaderClientIp             pulumi.StringPtrInput
 	HeaderFrontEndHttps        pulumi.StringPtrInput
 	HeaderViaRequest           pulumi.StringPtrInput
@@ -98,6 +102,7 @@ func (WebProxyProfileState) ElementType() reflect.Type {
 
 type webProxyProfileArgs struct {
 	DynamicSortSubtable        *string                 `pulumi:"dynamicSortSubtable"`
+	GetAllTables               *string                 `pulumi:"getAllTables"`
 	HeaderClientIp             *string                 `pulumi:"headerClientIp"`
 	HeaderFrontEndHttps        *string                 `pulumi:"headerFrontEndHttps"`
 	HeaderViaRequest           *string                 `pulumi:"headerViaRequest"`
@@ -116,6 +121,7 @@ type webProxyProfileArgs struct {
 // The set of arguments for constructing a WebProxyProfile resource.
 type WebProxyProfileArgs struct {
 	DynamicSortSubtable        pulumi.StringPtrInput
+	GetAllTables               pulumi.StringPtrInput
 	HeaderClientIp             pulumi.StringPtrInput
 	HeaderFrontEndHttps        pulumi.StringPtrInput
 	HeaderViaRequest           pulumi.StringPtrInput
@@ -220,6 +226,10 @@ func (o WebProxyProfileOutput) ToWebProxyProfileOutputWithContext(ctx context.Co
 
 func (o WebProxyProfileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WebProxyProfile) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WebProxyProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebProxyProfile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o WebProxyProfileOutput) HeaderClientIp() pulumi.StringOutput {

@@ -50,6 +50,7 @@ export class FirewallSniffer extends pulumi.CustomResource {
     public readonly fileFilterProfile!: pulumi.Output<string>;
     public readonly fileFilterProfileStatus!: pulumi.Output<string>;
     public readonly fosid!: pulumi.Output<number>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly host!: pulumi.Output<string>;
     public readonly interface!: pulumi.Output<string>;
     public readonly ipThreatfeedStatus!: pulumi.Output<string>;
@@ -101,6 +102,7 @@ export class FirewallSniffer extends pulumi.CustomResource {
             resourceInputs["fileFilterProfile"] = state ? state.fileFilterProfile : undefined;
             resourceInputs["fileFilterProfileStatus"] = state ? state.fileFilterProfileStatus : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["host"] = state ? state.host : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
             resourceInputs["ipThreatfeedStatus"] = state ? state.ipThreatfeedStatus : undefined;
@@ -143,6 +145,7 @@ export class FirewallSniffer extends pulumi.CustomResource {
             resourceInputs["fileFilterProfile"] = args ? args.fileFilterProfile : undefined;
             resourceInputs["fileFilterProfileStatus"] = args ? args.fileFilterProfileStatus : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["host"] = args ? args.host : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["ipThreatfeedStatus"] = args ? args.ipThreatfeedStatus : undefined;
@@ -190,6 +193,7 @@ export interface FirewallSnifferState {
     fileFilterProfile?: pulumi.Input<string>;
     fileFilterProfileStatus?: pulumi.Input<string>;
     fosid?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     host?: pulumi.Input<string>;
     interface?: pulumi.Input<string>;
     ipThreatfeedStatus?: pulumi.Input<string>;
@@ -233,6 +237,7 @@ export interface FirewallSnifferArgs {
     fileFilterProfile?: pulumi.Input<string>;
     fileFilterProfileStatus?: pulumi.Input<string>;
     fosid?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     host?: pulumi.Input<string>;
     interface: pulumi.Input<string>;
     ipThreatfeedStatus?: pulumi.Input<string>;

@@ -19,6 +19,8 @@ class DlpDictionaryArgs:
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  entries: Optional[pulumi.Input[Sequence[pulumi.Input['DlpDictionaryEntryArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 match_around: Optional[pulumi.Input[str]] = None,
                  match_type: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
@@ -32,6 +34,10 @@ class DlpDictionaryArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if entries is not None:
             pulumi.set(__self__, "entries", entries)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
+        if match_around is not None:
+            pulumi.set(__self__, "match_around", match_around)
         if match_type is not None:
             pulumi.set(__self__, "match_type", match_type)
         if name is not None:
@@ -67,6 +73,24 @@ class DlpDictionaryArgs:
     @entries.setter
     def entries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DlpDictionaryEntryArgs']]]]):
         pulumi.set(self, "entries", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
+    @pulumi.getter(name="matchAround")
+    def match_around(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match_around")
+
+    @match_around.setter
+    def match_around(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match_around", value)
 
     @property
     @pulumi.getter(name="matchType")
@@ -111,6 +135,8 @@ class _DlpDictionaryState:
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  entries: Optional[pulumi.Input[Sequence[pulumi.Input['DlpDictionaryEntryArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 match_around: Optional[pulumi.Input[str]] = None,
                  match_type: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
@@ -124,6 +150,10 @@ class _DlpDictionaryState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if entries is not None:
             pulumi.set(__self__, "entries", entries)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
+        if match_around is not None:
+            pulumi.set(__self__, "match_around", match_around)
         if match_type is not None:
             pulumi.set(__self__, "match_type", match_type)
         if name is not None:
@@ -159,6 +189,24 @@ class _DlpDictionaryState:
     @entries.setter
     def entries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DlpDictionaryEntryArgs']]]]):
         pulumi.set(self, "entries", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
+    @pulumi.getter(name="matchAround")
+    def match_around(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match_around")
+
+    @match_around.setter
+    def match_around(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match_around", value)
 
     @property
     @pulumi.getter(name="matchType")
@@ -205,6 +253,8 @@ class DlpDictionary(pulumi.CustomResource):
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  entries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DlpDictionaryEntryArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 match_around: Optional[pulumi.Input[str]] = None,
                  match_type: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
@@ -241,6 +291,8 @@ class DlpDictionary(pulumi.CustomResource):
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  entries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DlpDictionaryEntryArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 match_around: Optional[pulumi.Input[str]] = None,
                  match_type: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
@@ -257,6 +309,8 @@ class DlpDictionary(pulumi.CustomResource):
             __props__.__dict__["comment"] = comment
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["entries"] = entries
+            __props__.__dict__["get_all_tables"] = get_all_tables
+            __props__.__dict__["match_around"] = match_around
             __props__.__dict__["match_type"] = match_type
             __props__.__dict__["name"] = name
             __props__.__dict__["uuid"] = uuid
@@ -274,6 +328,8 @@ class DlpDictionary(pulumi.CustomResource):
             comment: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             entries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DlpDictionaryEntryArgs']]]]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
+            match_around: Optional[pulumi.Input[str]] = None,
             match_type: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             uuid: Optional[pulumi.Input[str]] = None,
@@ -293,6 +349,8 @@ class DlpDictionary(pulumi.CustomResource):
         __props__.__dict__["comment"] = comment
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["entries"] = entries
+        __props__.__dict__["get_all_tables"] = get_all_tables
+        __props__.__dict__["match_around"] = match_around
         __props__.__dict__["match_type"] = match_type
         __props__.__dict__["name"] = name
         __props__.__dict__["uuid"] = uuid
@@ -313,6 +371,16 @@ class DlpDictionary(pulumi.CustomResource):
     @pulumi.getter
     def entries(self) -> pulumi.Output[Optional[Sequence['outputs.DlpDictionaryEntry']]]:
         return pulumi.get(self, "entries")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @property
+    @pulumi.getter(name="matchAround")
+    def match_around(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "match_around")
 
     @property
     @pulumi.getter(name="matchType")

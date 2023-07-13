@@ -22,6 +22,7 @@ class EndpointControlProfileArgs:
                  forticlient_android_settings: Optional[pulumi.Input['EndpointControlProfileForticlientAndroidSettingsArgs']] = None,
                  forticlient_ios_settings: Optional[pulumi.Input['EndpointControlProfileForticlientIosSettingsArgs']] = None,
                  forticlient_winmac_settings: Optional[pulumi.Input['EndpointControlProfileForticlientWinmacSettingsArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  on_net_addrs: Optional[pulumi.Input[Sequence[pulumi.Input['EndpointControlProfileOnNetAddrArgs']]]] = None,
                  profile_name: Optional[pulumi.Input[str]] = None,
                  replacemsg_override_group: Optional[pulumi.Input[str]] = None,
@@ -44,6 +45,8 @@ class EndpointControlProfileArgs:
             pulumi.set(__self__, "forticlient_ios_settings", forticlient_ios_settings)
         if forticlient_winmac_settings is not None:
             pulumi.set(__self__, "forticlient_winmac_settings", forticlient_winmac_settings)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if on_net_addrs is not None:
             pulumi.set(__self__, "on_net_addrs", on_net_addrs)
         if profile_name is not None:
@@ -112,6 +115,15 @@ class EndpointControlProfileArgs:
     @forticlient_winmac_settings.setter
     def forticlient_winmac_settings(self, value: Optional[pulumi.Input['EndpointControlProfileForticlientWinmacSettingsArgs']]):
         pulumi.set(self, "forticlient_winmac_settings", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="onNetAddrs")
@@ -186,6 +198,7 @@ class _EndpointControlProfileState:
                  forticlient_android_settings: Optional[pulumi.Input['EndpointControlProfileForticlientAndroidSettingsArgs']] = None,
                  forticlient_ios_settings: Optional[pulumi.Input['EndpointControlProfileForticlientIosSettingsArgs']] = None,
                  forticlient_winmac_settings: Optional[pulumi.Input['EndpointControlProfileForticlientWinmacSettingsArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  on_net_addrs: Optional[pulumi.Input[Sequence[pulumi.Input['EndpointControlProfileOnNetAddrArgs']]]] = None,
                  profile_name: Optional[pulumi.Input[str]] = None,
                  replacemsg_override_group: Optional[pulumi.Input[str]] = None,
@@ -208,6 +221,8 @@ class _EndpointControlProfileState:
             pulumi.set(__self__, "forticlient_ios_settings", forticlient_ios_settings)
         if forticlient_winmac_settings is not None:
             pulumi.set(__self__, "forticlient_winmac_settings", forticlient_winmac_settings)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if on_net_addrs is not None:
             pulumi.set(__self__, "on_net_addrs", on_net_addrs)
         if profile_name is not None:
@@ -276,6 +291,15 @@ class _EndpointControlProfileState:
     @forticlient_winmac_settings.setter
     def forticlient_winmac_settings(self, value: Optional[pulumi.Input['EndpointControlProfileForticlientWinmacSettingsArgs']]):
         pulumi.set(self, "forticlient_winmac_settings", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="onNetAddrs")
@@ -352,6 +376,7 @@ class EndpointControlProfile(pulumi.CustomResource):
                  forticlient_android_settings: Optional[pulumi.Input[pulumi.InputType['EndpointControlProfileForticlientAndroidSettingsArgs']]] = None,
                  forticlient_ios_settings: Optional[pulumi.Input[pulumi.InputType['EndpointControlProfileForticlientIosSettingsArgs']]] = None,
                  forticlient_winmac_settings: Optional[pulumi.Input[pulumi.InputType['EndpointControlProfileForticlientWinmacSettingsArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  on_net_addrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['EndpointControlProfileOnNetAddrArgs']]]]] = None,
                  profile_name: Optional[pulumi.Input[str]] = None,
                  replacemsg_override_group: Optional[pulumi.Input[str]] = None,
@@ -394,6 +419,7 @@ class EndpointControlProfile(pulumi.CustomResource):
                  forticlient_android_settings: Optional[pulumi.Input[pulumi.InputType['EndpointControlProfileForticlientAndroidSettingsArgs']]] = None,
                  forticlient_ios_settings: Optional[pulumi.Input[pulumi.InputType['EndpointControlProfileForticlientIosSettingsArgs']]] = None,
                  forticlient_winmac_settings: Optional[pulumi.Input[pulumi.InputType['EndpointControlProfileForticlientWinmacSettingsArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  on_net_addrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['EndpointControlProfileOnNetAddrArgs']]]]] = None,
                  profile_name: Optional[pulumi.Input[str]] = None,
                  replacemsg_override_group: Optional[pulumi.Input[str]] = None,
@@ -416,6 +442,7 @@ class EndpointControlProfile(pulumi.CustomResource):
             __props__.__dict__["forticlient_android_settings"] = forticlient_android_settings
             __props__.__dict__["forticlient_ios_settings"] = forticlient_ios_settings
             __props__.__dict__["forticlient_winmac_settings"] = forticlient_winmac_settings
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["on_net_addrs"] = on_net_addrs
             __props__.__dict__["profile_name"] = profile_name
             __props__.__dict__["replacemsg_override_group"] = replacemsg_override_group
@@ -439,6 +466,7 @@ class EndpointControlProfile(pulumi.CustomResource):
             forticlient_android_settings: Optional[pulumi.Input[pulumi.InputType['EndpointControlProfileForticlientAndroidSettingsArgs']]] = None,
             forticlient_ios_settings: Optional[pulumi.Input[pulumi.InputType['EndpointControlProfileForticlientIosSettingsArgs']]] = None,
             forticlient_winmac_settings: Optional[pulumi.Input[pulumi.InputType['EndpointControlProfileForticlientWinmacSettingsArgs']]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             on_net_addrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['EndpointControlProfileOnNetAddrArgs']]]]] = None,
             profile_name: Optional[pulumi.Input[str]] = None,
             replacemsg_override_group: Optional[pulumi.Input[str]] = None,
@@ -464,6 +492,7 @@ class EndpointControlProfile(pulumi.CustomResource):
         __props__.__dict__["forticlient_android_settings"] = forticlient_android_settings
         __props__.__dict__["forticlient_ios_settings"] = forticlient_ios_settings
         __props__.__dict__["forticlient_winmac_settings"] = forticlient_winmac_settings
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["on_net_addrs"] = on_net_addrs
         __props__.__dict__["profile_name"] = profile_name
         __props__.__dict__["replacemsg_override_group"] = replacemsg_override_group
@@ -502,6 +531,11 @@ class EndpointControlProfile(pulumi.CustomResource):
     @pulumi.getter(name="forticlientWinmacSettings")
     def forticlient_winmac_settings(self) -> pulumi.Output['outputs.EndpointControlProfileForticlientWinmacSettings']:
         return pulumi.get(self, "forticlient_winmac_settings")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="onNetAddrs")

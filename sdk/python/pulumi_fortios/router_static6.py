@@ -27,6 +27,7 @@ class RouterStatic6Args:
                  dynamic_gateway: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  link_monitor_exempt: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[int]] = None,
                  sdwan: Optional[pulumi.Input[str]] = None,
@@ -61,6 +62,8 @@ class RouterStatic6Args:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if gateway is not None:
             pulumi.set(__self__, "gateway", gateway)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if link_monitor_exempt is not None:
             pulumi.set(__self__, "link_monitor_exempt", link_monitor_exempt)
         if priority is not None:
@@ -182,6 +185,15 @@ class RouterStatic6Args:
         pulumi.set(self, "gateway", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="linkMonitorExempt")
     def link_monitor_exempt(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "link_monitor_exempt")
@@ -286,6 +298,7 @@ class _RouterStatic6State:
                  dynamic_gateway: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  link_monitor_exempt: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[int]] = None,
                  sdwan: Optional[pulumi.Input[str]] = None,
@@ -321,6 +334,8 @@ class _RouterStatic6State:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if gateway is not None:
             pulumi.set(__self__, "gateway", gateway)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if link_monitor_exempt is not None:
             pulumi.set(__self__, "link_monitor_exempt", link_monitor_exempt)
         if priority is not None:
@@ -442,6 +457,15 @@ class _RouterStatic6State:
         pulumi.set(self, "gateway", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="linkMonitorExempt")
     def link_monitor_exempt(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "link_monitor_exempt")
@@ -548,6 +572,7 @@ class RouterStatic6(pulumi.CustomResource):
                  dynamic_gateway: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  link_monitor_exempt: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[int]] = None,
                  sdwan: Optional[pulumi.Input[str]] = None,
@@ -598,6 +623,7 @@ class RouterStatic6(pulumi.CustomResource):
                  dynamic_gateway: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  link_monitor_exempt: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[int]] = None,
                  sdwan: Optional[pulumi.Input[str]] = None,
@@ -630,6 +656,7 @@ class RouterStatic6(pulumi.CustomResource):
             __props__.__dict__["dynamic_gateway"] = dynamic_gateway
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["gateway"] = gateway
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["link_monitor_exempt"] = link_monitor_exempt
             __props__.__dict__["priority"] = priority
             __props__.__dict__["sdwan"] = sdwan
@@ -661,6 +688,7 @@ class RouterStatic6(pulumi.CustomResource):
             dynamic_gateway: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             gateway: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             link_monitor_exempt: Optional[pulumi.Input[str]] = None,
             priority: Optional[pulumi.Input[int]] = None,
             sdwan: Optional[pulumi.Input[str]] = None,
@@ -694,6 +722,7 @@ class RouterStatic6(pulumi.CustomResource):
         __props__.__dict__["dynamic_gateway"] = dynamic_gateway
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["gateway"] = gateway
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["link_monitor_exempt"] = link_monitor_exempt
         __props__.__dict__["priority"] = priority
         __props__.__dict__["sdwan"] = sdwan
@@ -760,6 +789,11 @@ class RouterStatic6(pulumi.CustomResource):
     @pulumi.getter
     def gateway(self) -> pulumi.Output[str]:
         return pulumi.get(self, "gateway")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="linkMonitorExempt")

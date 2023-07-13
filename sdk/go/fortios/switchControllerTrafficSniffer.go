@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,6 +16,7 @@ type SwitchControllerTrafficSniffer struct {
 
 	DynamicSortSubtable pulumi.StringPtrOutput                              `pulumi:"dynamicSortSubtable"`
 	ErspanIp            pulumi.StringOutput                                 `pulumi:"erspanIp"`
+	GetAllTables        pulumi.StringPtrOutput                              `pulumi:"getAllTables"`
 	Mode                pulumi.StringOutput                                 `pulumi:"mode"`
 	TargetIps           SwitchControllerTrafficSnifferTargetIpArrayOutput   `pulumi:"targetIps"`
 	TargetMacs          SwitchControllerTrafficSnifferTargetMacArrayOutput  `pulumi:"targetMacs"`
@@ -29,7 +31,7 @@ func NewSwitchControllerTrafficSniffer(ctx *pulumi.Context,
 		args = &SwitchControllerTrafficSnifferArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SwitchControllerTrafficSniffer
 	err := ctx.RegisterResource("fortios:index/switchControllerTrafficSniffer:SwitchControllerTrafficSniffer", name, args, &resource, opts...)
 	if err != nil {
@@ -54,6 +56,7 @@ func GetSwitchControllerTrafficSniffer(ctx *pulumi.Context,
 type switchControllerTrafficSnifferState struct {
 	DynamicSortSubtable *string                                    `pulumi:"dynamicSortSubtable"`
 	ErspanIp            *string                                    `pulumi:"erspanIp"`
+	GetAllTables        *string                                    `pulumi:"getAllTables"`
 	Mode                *string                                    `pulumi:"mode"`
 	TargetIps           []SwitchControllerTrafficSnifferTargetIp   `pulumi:"targetIps"`
 	TargetMacs          []SwitchControllerTrafficSnifferTargetMac  `pulumi:"targetMacs"`
@@ -64,6 +67,7 @@ type switchControllerTrafficSnifferState struct {
 type SwitchControllerTrafficSnifferState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	ErspanIp            pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Mode                pulumi.StringPtrInput
 	TargetIps           SwitchControllerTrafficSnifferTargetIpArrayInput
 	TargetMacs          SwitchControllerTrafficSnifferTargetMacArrayInput
@@ -78,6 +82,7 @@ func (SwitchControllerTrafficSnifferState) ElementType() reflect.Type {
 type switchControllerTrafficSnifferArgs struct {
 	DynamicSortSubtable *string                                    `pulumi:"dynamicSortSubtable"`
 	ErspanIp            *string                                    `pulumi:"erspanIp"`
+	GetAllTables        *string                                    `pulumi:"getAllTables"`
 	Mode                *string                                    `pulumi:"mode"`
 	TargetIps           []SwitchControllerTrafficSnifferTargetIp   `pulumi:"targetIps"`
 	TargetMacs          []SwitchControllerTrafficSnifferTargetMac  `pulumi:"targetMacs"`
@@ -89,6 +94,7 @@ type switchControllerTrafficSnifferArgs struct {
 type SwitchControllerTrafficSnifferArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	ErspanIp            pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Mode                pulumi.StringPtrInput
 	TargetIps           SwitchControllerTrafficSnifferTargetIpArrayInput
 	TargetMacs          SwitchControllerTrafficSnifferTargetMacArrayInput
@@ -189,6 +195,10 @@ func (o SwitchControllerTrafficSnifferOutput) DynamicSortSubtable() pulumi.Strin
 
 func (o SwitchControllerTrafficSnifferOutput) ErspanIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *SwitchControllerTrafficSniffer) pulumi.StringOutput { return v.ErspanIp }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerTrafficSnifferOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerTrafficSniffer) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SwitchControllerTrafficSnifferOutput) Mode() pulumi.StringOutput {

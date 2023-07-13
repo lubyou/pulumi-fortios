@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -28,7 +29,7 @@ func NewRouterbgpNetwork6(ctx *pulumi.Context,
 		args = &RouterbgpNetwork6Args{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RouterbgpNetwork6
 	err := ctx.RegisterResource("fortios:index/routerbgpNetwork6:RouterbgpNetwork6", name, args, &resource, opts...)
 	if err != nil {

@@ -18,6 +18,7 @@ class SystemAffinityPacketRedistributionArgs:
                  fosid: pulumi.Input[int],
                  interface: pulumi.Input[str],
                  rxqid: pulumi.Input[int],
+                 round_robin: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SystemAffinityPacketRedistribution resource.
@@ -26,6 +27,8 @@ class SystemAffinityPacketRedistributionArgs:
         pulumi.set(__self__, "fosid", fosid)
         pulumi.set(__self__, "interface", interface)
         pulumi.set(__self__, "rxqid", rxqid)
+        if round_robin is not None:
+            pulumi.set(__self__, "round_robin", round_robin)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -66,6 +69,15 @@ class SystemAffinityPacketRedistributionArgs:
         pulumi.set(self, "rxqid", value)
 
     @property
+    @pulumi.getter(name="roundRobin")
+    def round_robin(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "round_robin")
+
+    @round_robin.setter
+    def round_robin(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "round_robin", value)
+
+    @property
     @pulumi.getter
     def vdomparam(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "vdomparam")
@@ -81,6 +93,7 @@ class _SystemAffinityPacketRedistributionState:
                  affinity_cpumask: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
+                 round_robin: Optional[pulumi.Input[str]] = None,
                  rxqid: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
@@ -92,6 +105,8 @@ class _SystemAffinityPacketRedistributionState:
             pulumi.set(__self__, "fosid", fosid)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
+        if round_robin is not None:
+            pulumi.set(__self__, "round_robin", round_robin)
         if rxqid is not None:
             pulumi.set(__self__, "rxqid", rxqid)
         if vdomparam is not None:
@@ -125,6 +140,15 @@ class _SystemAffinityPacketRedistributionState:
         pulumi.set(self, "interface", value)
 
     @property
+    @pulumi.getter(name="roundRobin")
+    def round_robin(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "round_robin")
+
+    @round_robin.setter
+    def round_robin(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "round_robin", value)
+
+    @property
     @pulumi.getter
     def rxqid(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "rxqid")
@@ -151,6 +175,7 @@ class SystemAffinityPacketRedistribution(pulumi.CustomResource):
                  affinity_cpumask: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
+                 round_robin: Optional[pulumi.Input[str]] = None,
                  rxqid: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -185,6 +210,7 @@ class SystemAffinityPacketRedistribution(pulumi.CustomResource):
                  affinity_cpumask: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
+                 round_robin: Optional[pulumi.Input[str]] = None,
                  rxqid: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -205,6 +231,7 @@ class SystemAffinityPacketRedistribution(pulumi.CustomResource):
             if interface is None and not opts.urn:
                 raise TypeError("Missing required property 'interface'")
             __props__.__dict__["interface"] = interface
+            __props__.__dict__["round_robin"] = round_robin
             if rxqid is None and not opts.urn:
                 raise TypeError("Missing required property 'rxqid'")
             __props__.__dict__["rxqid"] = rxqid
@@ -222,6 +249,7 @@ class SystemAffinityPacketRedistribution(pulumi.CustomResource):
             affinity_cpumask: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
             interface: Optional[pulumi.Input[str]] = None,
+            round_robin: Optional[pulumi.Input[str]] = None,
             rxqid: Optional[pulumi.Input[int]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'SystemAffinityPacketRedistribution':
         """
@@ -239,6 +267,7 @@ class SystemAffinityPacketRedistribution(pulumi.CustomResource):
         __props__.__dict__["affinity_cpumask"] = affinity_cpumask
         __props__.__dict__["fosid"] = fosid
         __props__.__dict__["interface"] = interface
+        __props__.__dict__["round_robin"] = round_robin
         __props__.__dict__["rxqid"] = rxqid
         __props__.__dict__["vdomparam"] = vdomparam
         return SystemAffinityPacketRedistribution(resource_name, opts=opts, __props__=__props__)
@@ -257,6 +286,11 @@ class SystemAffinityPacketRedistribution(pulumi.CustomResource):
     @pulumi.getter
     def interface(self) -> pulumi.Output[str]:
         return pulumi.get(self, "interface")
+
+    @property
+    @pulumi.getter(name="roundRobin")
+    def round_robin(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "round_robin")
 
     @property
     @pulumi.getter

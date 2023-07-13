@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -27,7 +28,7 @@ func NewSystemLicenseVM(ctx *pulumi.Context,
 	if args.FileContent == nil {
 		return nil, errors.New("invalid value for required argument 'FileContent'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemLicenseVM
 	err := ctx.RegisterResource("fortios:index/systemLicenseVM:SystemLicenseVM", name, args, &resource, opts...)
 	if err != nil {

@@ -35,6 +35,7 @@ export class SystemSpeedTestServer extends pulumi.CustomResource {
     }
 
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly hosts!: pulumi.Output<outputs.SystemSpeedTestServerHost[] | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly timestamp!: pulumi.Output<number>;
@@ -54,6 +55,7 @@ export class SystemSpeedTestServer extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as SystemSpeedTestServerState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["hosts"] = state ? state.hosts : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["timestamp"] = state ? state.timestamp : undefined;
@@ -61,6 +63,7 @@ export class SystemSpeedTestServer extends pulumi.CustomResource {
         } else {
             const args = argsOrState as SystemSpeedTestServerArgs | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["hosts"] = args ? args.hosts : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["timestamp"] = args ? args.timestamp : undefined;
@@ -76,6 +79,7 @@ export class SystemSpeedTestServer extends pulumi.CustomResource {
  */
 export interface SystemSpeedTestServerState {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     hosts?: pulumi.Input<pulumi.Input<inputs.SystemSpeedTestServerHost>[]>;
     name?: pulumi.Input<string>;
     timestamp?: pulumi.Input<number>;
@@ -87,6 +91,7 @@ export interface SystemSpeedTestServerState {
  */
 export interface SystemSpeedTestServerArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     hosts?: pulumi.Input<pulumi.Input<inputs.SystemSpeedTestServerHost>[]>;
     name?: pulumi.Input<string>;
     timestamp?: pulumi.Input<number>;

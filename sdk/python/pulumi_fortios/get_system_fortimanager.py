@@ -127,15 +127,15 @@ def get_system_fortimanager(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemFortimanager:GetSystemFortimanager', __args__, opts=opts, typ=GetSystemFortimanagerResult).value
 
     return AwaitableGetSystemFortimanagerResult(
-        central_management=__ret__.central_management,
-        central_mgmt_auto_backup=__ret__.central_mgmt_auto_backup,
-        central_mgmt_schedule_config_restore=__ret__.central_mgmt_schedule_config_restore,
-        central_mgmt_schedule_script_restore=__ret__.central_mgmt_schedule_script_restore,
-        id=__ret__.id,
-        ip=__ret__.ip,
-        ipsec=__ret__.ipsec,
-        vdom=__ret__.vdom,
-        vdomparam=__ret__.vdomparam)
+        central_management=pulumi.get(__ret__, 'central_management'),
+        central_mgmt_auto_backup=pulumi.get(__ret__, 'central_mgmt_auto_backup'),
+        central_mgmt_schedule_config_restore=pulumi.get(__ret__, 'central_mgmt_schedule_config_restore'),
+        central_mgmt_schedule_script_restore=pulumi.get(__ret__, 'central_mgmt_schedule_script_restore'),
+        id=pulumi.get(__ret__, 'id'),
+        ip=pulumi.get(__ret__, 'ip'),
+        ipsec=pulumi.get(__ret__, 'ipsec'),
+        vdom=pulumi.get(__ret__, 'vdom'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_fortimanager)

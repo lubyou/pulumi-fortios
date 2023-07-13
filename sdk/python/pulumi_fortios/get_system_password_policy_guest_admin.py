@@ -172,20 +172,20 @@ def get_system_password_policy_guest_admin(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemPasswordPolicyGuestAdmin:GetSystemPasswordPolicyGuestAdmin', __args__, opts=opts, typ=GetSystemPasswordPolicyGuestAdminResult).value
 
     return AwaitableGetSystemPasswordPolicyGuestAdminResult(
-        apply_to=__ret__.apply_to,
-        change4_characters=__ret__.change4_characters,
-        expire_day=__ret__.expire_day,
-        expire_status=__ret__.expire_status,
-        id=__ret__.id,
-        min_change_characters=__ret__.min_change_characters,
-        min_lower_case_letter=__ret__.min_lower_case_letter,
-        min_non_alphanumeric=__ret__.min_non_alphanumeric,
-        min_number=__ret__.min_number,
-        min_upper_case_letter=__ret__.min_upper_case_letter,
-        minimum_length=__ret__.minimum_length,
-        reuse_password=__ret__.reuse_password,
-        status=__ret__.status,
-        vdomparam=__ret__.vdomparam)
+        apply_to=pulumi.get(__ret__, 'apply_to'),
+        change4_characters=pulumi.get(__ret__, 'change4_characters'),
+        expire_day=pulumi.get(__ret__, 'expire_day'),
+        expire_status=pulumi.get(__ret__, 'expire_status'),
+        id=pulumi.get(__ret__, 'id'),
+        min_change_characters=pulumi.get(__ret__, 'min_change_characters'),
+        min_lower_case_letter=pulumi.get(__ret__, 'min_lower_case_letter'),
+        min_non_alphanumeric=pulumi.get(__ret__, 'min_non_alphanumeric'),
+        min_number=pulumi.get(__ret__, 'min_number'),
+        min_upper_case_letter=pulumi.get(__ret__, 'min_upper_case_letter'),
+        minimum_length=pulumi.get(__ret__, 'minimum_length'),
+        reuse_password=pulumi.get(__ret__, 'reuse_password'),
+        status=pulumi.get(__ret__, 'status'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_password_policy_guest_admin)

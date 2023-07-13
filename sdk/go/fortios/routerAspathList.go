@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -14,6 +15,7 @@ type RouterAspathList struct {
 	pulumi.CustomResourceState
 
 	DynamicSortSubtable pulumi.StringPtrOutput          `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput          `pulumi:"getAllTables"`
 	Name                pulumi.StringOutput             `pulumi:"name"`
 	Rules               RouterAspathListRuleArrayOutput `pulumi:"rules"`
 	Vdomparam           pulumi.StringPtrOutput          `pulumi:"vdomparam"`
@@ -26,7 +28,7 @@ func NewRouterAspathList(ctx *pulumi.Context,
 		args = &RouterAspathListArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RouterAspathList
 	err := ctx.RegisterResource("fortios:index/routerAspathList:RouterAspathList", name, args, &resource, opts...)
 	if err != nil {
@@ -50,6 +52,7 @@ func GetRouterAspathList(ctx *pulumi.Context,
 // Input properties used for looking up and filtering RouterAspathList resources.
 type routerAspathListState struct {
 	DynamicSortSubtable *string                `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                `pulumi:"getAllTables"`
 	Name                *string                `pulumi:"name"`
 	Rules               []RouterAspathListRule `pulumi:"rules"`
 	Vdomparam           *string                `pulumi:"vdomparam"`
@@ -57,6 +60,7 @@ type routerAspathListState struct {
 
 type RouterAspathListState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Rules               RouterAspathListRuleArrayInput
 	Vdomparam           pulumi.StringPtrInput
@@ -68,6 +72,7 @@ func (RouterAspathListState) ElementType() reflect.Type {
 
 type routerAspathListArgs struct {
 	DynamicSortSubtable *string                `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                `pulumi:"getAllTables"`
 	Name                *string                `pulumi:"name"`
 	Rules               []RouterAspathListRule `pulumi:"rules"`
 	Vdomparam           *string                `pulumi:"vdomparam"`
@@ -76,6 +81,7 @@ type routerAspathListArgs struct {
 // The set of arguments for constructing a RouterAspathList resource.
 type RouterAspathListArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Rules               RouterAspathListRuleArrayInput
 	Vdomparam           pulumi.StringPtrInput
@@ -170,6 +176,10 @@ func (o RouterAspathListOutput) ToRouterAspathListOutputWithContext(ctx context.
 
 func (o RouterAspathListOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RouterAspathList) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o RouterAspathListOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterAspathList) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o RouterAspathListOutput) Name() pulumi.StringOutput {

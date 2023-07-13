@@ -22,6 +22,7 @@ class LogThreatWeightArgs:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  failed_connection: Optional[pulumi.Input[str]] = None,
                  geolocations: Optional[pulumi.Input[Sequence[pulumi.Input['LogThreatWeightGeolocationArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ips: Optional[pulumi.Input['LogThreatWeightIpsArgs']] = None,
                  level: Optional[pulumi.Input['LogThreatWeightLevelArgs']] = None,
                  malware: Optional[pulumi.Input['LogThreatWeightMalwareArgs']] = None,
@@ -44,6 +45,8 @@ class LogThreatWeightArgs:
             pulumi.set(__self__, "failed_connection", failed_connection)
         if geolocations is not None:
             pulumi.set(__self__, "geolocations", geolocations)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ips is not None:
             pulumi.set(__self__, "ips", ips)
         if level is not None:
@@ -112,6 +115,15 @@ class LogThreatWeightArgs:
     @geolocations.setter
     def geolocations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LogThreatWeightGeolocationArgs']]]]):
         pulumi.set(self, "geolocations", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -186,6 +198,7 @@ class _LogThreatWeightState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  failed_connection: Optional[pulumi.Input[str]] = None,
                  geolocations: Optional[pulumi.Input[Sequence[pulumi.Input['LogThreatWeightGeolocationArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ips: Optional[pulumi.Input['LogThreatWeightIpsArgs']] = None,
                  level: Optional[pulumi.Input['LogThreatWeightLevelArgs']] = None,
                  malware: Optional[pulumi.Input['LogThreatWeightMalwareArgs']] = None,
@@ -208,6 +221,8 @@ class _LogThreatWeightState:
             pulumi.set(__self__, "failed_connection", failed_connection)
         if geolocations is not None:
             pulumi.set(__self__, "geolocations", geolocations)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ips is not None:
             pulumi.set(__self__, "ips", ips)
         if level is not None:
@@ -276,6 +291,15 @@ class _LogThreatWeightState:
     @geolocations.setter
     def geolocations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LogThreatWeightGeolocationArgs']]]]):
         pulumi.set(self, "geolocations", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -352,6 +376,7 @@ class LogThreatWeight(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  failed_connection: Optional[pulumi.Input[str]] = None,
                  geolocations: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogThreatWeightGeolocationArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ips: Optional[pulumi.Input[pulumi.InputType['LogThreatWeightIpsArgs']]] = None,
                  level: Optional[pulumi.Input[pulumi.InputType['LogThreatWeightLevelArgs']]] = None,
                  malware: Optional[pulumi.Input[pulumi.InputType['LogThreatWeightMalwareArgs']]] = None,
@@ -394,6 +419,7 @@ class LogThreatWeight(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  failed_connection: Optional[pulumi.Input[str]] = None,
                  geolocations: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogThreatWeightGeolocationArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ips: Optional[pulumi.Input[pulumi.InputType['LogThreatWeightIpsArgs']]] = None,
                  level: Optional[pulumi.Input[pulumi.InputType['LogThreatWeightLevelArgs']]] = None,
                  malware: Optional[pulumi.Input[pulumi.InputType['LogThreatWeightMalwareArgs']]] = None,
@@ -416,6 +442,7 @@ class LogThreatWeight(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["failed_connection"] = failed_connection
             __props__.__dict__["geolocations"] = geolocations
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["ips"] = ips
             __props__.__dict__["level"] = level
             __props__.__dict__["malware"] = malware
@@ -439,6 +466,7 @@ class LogThreatWeight(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             failed_connection: Optional[pulumi.Input[str]] = None,
             geolocations: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogThreatWeightGeolocationArgs']]]]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             ips: Optional[pulumi.Input[pulumi.InputType['LogThreatWeightIpsArgs']]] = None,
             level: Optional[pulumi.Input[pulumi.InputType['LogThreatWeightLevelArgs']]] = None,
             malware: Optional[pulumi.Input[pulumi.InputType['LogThreatWeightMalwareArgs']]] = None,
@@ -464,6 +492,7 @@ class LogThreatWeight(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["failed_connection"] = failed_connection
         __props__.__dict__["geolocations"] = geolocations
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["ips"] = ips
         __props__.__dict__["level"] = level
         __props__.__dict__["malware"] = malware
@@ -502,6 +531,11 @@ class LogThreatWeight(pulumi.CustomResource):
     @pulumi.getter
     def geolocations(self) -> pulumi.Output[Optional[Sequence['outputs.LogThreatWeightGeolocation']]]:
         return pulumi.get(self, "geolocations")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

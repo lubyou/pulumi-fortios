@@ -42,6 +42,7 @@ export class SystemAdmin extends pulumi.CustomResource {
     public readonly emailTo!: pulumi.Output<string>;
     public readonly forcePasswordChange!: pulumi.Output<string>;
     public readonly fortitoken!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly guestAuth!: pulumi.Output<string>;
     public readonly guestLang!: pulumi.Output<string>;
     public readonly guestUsergroups!: pulumi.Output<outputs.SystemAdminGuestUsergroup[] | undefined>;
@@ -118,6 +119,7 @@ export class SystemAdmin extends pulumi.CustomResource {
             resourceInputs["emailTo"] = state ? state.emailTo : undefined;
             resourceInputs["forcePasswordChange"] = state ? state.forcePasswordChange : undefined;
             resourceInputs["fortitoken"] = state ? state.fortitoken : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["guestAuth"] = state ? state.guestAuth : undefined;
             resourceInputs["guestLang"] = state ? state.guestLang : undefined;
             resourceInputs["guestUsergroups"] = state ? state.guestUsergroups : undefined;
@@ -182,6 +184,7 @@ export class SystemAdmin extends pulumi.CustomResource {
             resourceInputs["emailTo"] = args ? args.emailTo : undefined;
             resourceInputs["forcePasswordChange"] = args ? args.forcePasswordChange : undefined;
             resourceInputs["fortitoken"] = args ? args.fortitoken : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["guestAuth"] = args ? args.guestAuth : undefined;
             resourceInputs["guestLang"] = args ? args.guestLang : undefined;
             resourceInputs["guestUsergroups"] = args ? args.guestUsergroups : undefined;
@@ -256,6 +259,7 @@ export interface SystemAdminState {
     emailTo?: pulumi.Input<string>;
     forcePasswordChange?: pulumi.Input<string>;
     fortitoken?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     guestAuth?: pulumi.Input<string>;
     guestLang?: pulumi.Input<string>;
     guestUsergroups?: pulumi.Input<pulumi.Input<inputs.SystemAdminGuestUsergroup>[]>;
@@ -324,6 +328,7 @@ export interface SystemAdminArgs {
     emailTo?: pulumi.Input<string>;
     forcePasswordChange?: pulumi.Input<string>;
     fortitoken?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     guestAuth?: pulumi.Input<string>;
     guestLang?: pulumi.Input<string>;
     guestUsergroups?: pulumi.Input<pulumi.Input<inputs.SystemAdminGuestUsergroup>[]>;

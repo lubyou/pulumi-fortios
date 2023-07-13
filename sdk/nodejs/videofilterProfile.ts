@@ -36,7 +36,10 @@ export class VideofilterProfile extends pulumi.CustomResource {
 
     public readonly comment!: pulumi.Output<string | undefined>;
     public readonly dailymotion!: pulumi.Output<string>;
+    public readonly defaultAction!: pulumi.Output<string>;
     public readonly fortiguardCategory!: pulumi.Output<outputs.VideofilterProfileFortiguardCategory>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    public readonly log!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
     public readonly replacemsgGroup!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -59,7 +62,10 @@ export class VideofilterProfile extends pulumi.CustomResource {
             const state = argsOrState as VideofilterProfileState | undefined;
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["dailymotion"] = state ? state.dailymotion : undefined;
+            resourceInputs["defaultAction"] = state ? state.defaultAction : undefined;
             resourceInputs["fortiguardCategory"] = state ? state.fortiguardCategory : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
+            resourceInputs["log"] = state ? state.log : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["replacemsgGroup"] = state ? state.replacemsgGroup : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
@@ -70,7 +76,10 @@ export class VideofilterProfile extends pulumi.CustomResource {
             const args = argsOrState as VideofilterProfileArgs | undefined;
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["dailymotion"] = args ? args.dailymotion : undefined;
+            resourceInputs["defaultAction"] = args ? args.defaultAction : undefined;
             resourceInputs["fortiguardCategory"] = args ? args.fortiguardCategory : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
+            resourceInputs["log"] = args ? args.log : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["replacemsgGroup"] = args ? args.replacemsgGroup : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -89,7 +98,10 @@ export class VideofilterProfile extends pulumi.CustomResource {
 export interface VideofilterProfileState {
     comment?: pulumi.Input<string>;
     dailymotion?: pulumi.Input<string>;
+    defaultAction?: pulumi.Input<string>;
     fortiguardCategory?: pulumi.Input<inputs.VideofilterProfileFortiguardCategory>;
+    getAllTables?: pulumi.Input<string>;
+    log?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     replacemsgGroup?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
@@ -104,7 +116,10 @@ export interface VideofilterProfileState {
 export interface VideofilterProfileArgs {
     comment?: pulumi.Input<string>;
     dailymotion?: pulumi.Input<string>;
+    defaultAction?: pulumi.Input<string>;
     fortiguardCategory?: pulumi.Input<inputs.VideofilterProfileFortiguardCategory>;
+    getAllTables?: pulumi.Input<string>;
+    log?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     replacemsgGroup?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;

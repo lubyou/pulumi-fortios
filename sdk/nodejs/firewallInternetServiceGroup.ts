@@ -37,6 +37,7 @@ export class FirewallInternetServiceGroup extends pulumi.CustomResource {
     public readonly comment!: pulumi.Output<string | undefined>;
     public readonly direction!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly members!: pulumi.Output<outputs.FirewallInternetServiceGroupMember[] | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -57,6 +58,7 @@ export class FirewallInternetServiceGroup extends pulumi.CustomResource {
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["direction"] = state ? state.direction : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["members"] = state ? state.members : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
@@ -65,6 +67,7 @@ export class FirewallInternetServiceGroup extends pulumi.CustomResource {
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["direction"] = args ? args.direction : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["members"] = args ? args.members : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -81,6 +84,7 @@ export interface FirewallInternetServiceGroupState {
     comment?: pulumi.Input<string>;
     direction?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     members?: pulumi.Input<pulumi.Input<inputs.FirewallInternetServiceGroupMember>[]>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
@@ -93,6 +97,7 @@ export interface FirewallInternetServiceGroupArgs {
     comment?: pulumi.Input<string>;
     direction?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     members?: pulumi.Input<pulumi.Input<inputs.FirewallInternetServiceGroupMember>[]>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;

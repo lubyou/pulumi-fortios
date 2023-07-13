@@ -20,6 +20,7 @@ class WirelessControllerSnmpArgs:
                  contact_info: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  engine_id: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  trap_high_cpu_threshold: Optional[pulumi.Input[int]] = None,
                  trap_high_mem_threshold: Optional[pulumi.Input[int]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerSnmpUserArgs']]]] = None,
@@ -35,6 +36,8 @@ class WirelessControllerSnmpArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if engine_id is not None:
             pulumi.set(__self__, "engine_id", engine_id)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if trap_high_cpu_threshold is not None:
             pulumi.set(__self__, "trap_high_cpu_threshold", trap_high_cpu_threshold)
         if trap_high_mem_threshold is not None:
@@ -79,6 +82,15 @@ class WirelessControllerSnmpArgs:
     @engine_id.setter
     def engine_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "engine_id", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="trapHighCpuThreshold")
@@ -124,6 +136,7 @@ class _WirelessControllerSnmpState:
                  contact_info: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  engine_id: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  trap_high_cpu_threshold: Optional[pulumi.Input[int]] = None,
                  trap_high_mem_threshold: Optional[pulumi.Input[int]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerSnmpUserArgs']]]] = None,
@@ -139,6 +152,8 @@ class _WirelessControllerSnmpState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if engine_id is not None:
             pulumi.set(__self__, "engine_id", engine_id)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if trap_high_cpu_threshold is not None:
             pulumi.set(__self__, "trap_high_cpu_threshold", trap_high_cpu_threshold)
         if trap_high_mem_threshold is not None:
@@ -183,6 +198,15 @@ class _WirelessControllerSnmpState:
     @engine_id.setter
     def engine_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "engine_id", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="trapHighCpuThreshold")
@@ -230,6 +254,7 @@ class WirelessControllerSnmp(pulumi.CustomResource):
                  contact_info: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  engine_id: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  trap_high_cpu_threshold: Optional[pulumi.Input[int]] = None,
                  trap_high_mem_threshold: Optional[pulumi.Input[int]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerSnmpUserArgs']]]]] = None,
@@ -267,6 +292,7 @@ class WirelessControllerSnmp(pulumi.CustomResource):
                  contact_info: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  engine_id: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  trap_high_cpu_threshold: Optional[pulumi.Input[int]] = None,
                  trap_high_mem_threshold: Optional[pulumi.Input[int]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerSnmpUserArgs']]]]] = None,
@@ -284,6 +310,7 @@ class WirelessControllerSnmp(pulumi.CustomResource):
             __props__.__dict__["contact_info"] = contact_info
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["engine_id"] = engine_id
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["trap_high_cpu_threshold"] = trap_high_cpu_threshold
             __props__.__dict__["trap_high_mem_threshold"] = trap_high_mem_threshold
             __props__.__dict__["users"] = users
@@ -302,6 +329,7 @@ class WirelessControllerSnmp(pulumi.CustomResource):
             contact_info: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             engine_id: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             trap_high_cpu_threshold: Optional[pulumi.Input[int]] = None,
             trap_high_mem_threshold: Optional[pulumi.Input[int]] = None,
             users: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerSnmpUserArgs']]]]] = None,
@@ -322,6 +350,7 @@ class WirelessControllerSnmp(pulumi.CustomResource):
         __props__.__dict__["contact_info"] = contact_info
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["engine_id"] = engine_id
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["trap_high_cpu_threshold"] = trap_high_cpu_threshold
         __props__.__dict__["trap_high_mem_threshold"] = trap_high_mem_threshold
         __props__.__dict__["users"] = users
@@ -347,6 +376,11 @@ class WirelessControllerSnmp(pulumi.CustomResource):
     @pulumi.getter(name="engineId")
     def engine_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "engine_id")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="trapHighCpuThreshold")

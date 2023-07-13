@@ -7,12 +7,14 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type AutomationSetting struct {
 	pulumi.CustomResourceState
 
+	FabricSync            pulumi.StringOutput    `pulumi:"fabricSync"`
 	MaxConcurrentStitches pulumi.IntOutput       `pulumi:"maxConcurrentStitches"`
 	Vdomparam             pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
@@ -24,7 +26,7 @@ func NewAutomationSetting(ctx *pulumi.Context,
 		args = &AutomationSettingArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AutomationSetting
 	err := ctx.RegisterResource("fortios:index/automationSetting:AutomationSetting", name, args, &resource, opts...)
 	if err != nil {
@@ -47,11 +49,13 @@ func GetAutomationSetting(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AutomationSetting resources.
 type automationSettingState struct {
+	FabricSync            *string `pulumi:"fabricSync"`
 	MaxConcurrentStitches *int    `pulumi:"maxConcurrentStitches"`
 	Vdomparam             *string `pulumi:"vdomparam"`
 }
 
 type AutomationSettingState struct {
+	FabricSync            pulumi.StringPtrInput
 	MaxConcurrentStitches pulumi.IntPtrInput
 	Vdomparam             pulumi.StringPtrInput
 }
@@ -61,12 +65,14 @@ func (AutomationSettingState) ElementType() reflect.Type {
 }
 
 type automationSettingArgs struct {
+	FabricSync            *string `pulumi:"fabricSync"`
 	MaxConcurrentStitches *int    `pulumi:"maxConcurrentStitches"`
 	Vdomparam             *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a AutomationSetting resource.
 type AutomationSettingArgs struct {
+	FabricSync            pulumi.StringPtrInput
 	MaxConcurrentStitches pulumi.IntPtrInput
 	Vdomparam             pulumi.StringPtrInput
 }
@@ -156,6 +162,10 @@ func (o AutomationSettingOutput) ToAutomationSettingOutput() AutomationSettingOu
 
 func (o AutomationSettingOutput) ToAutomationSettingOutputWithContext(ctx context.Context) AutomationSettingOutput {
 	return o
+}
+
+func (o AutomationSettingOutput) FabricSync() pulumi.StringOutput {
+	return o.ApplyT(func(v *AutomationSetting) pulumi.StringOutput { return v.FabricSync }).(pulumi.StringOutput)
 }
 
 func (o AutomationSettingOutput) MaxConcurrentStitches() pulumi.IntOutput {

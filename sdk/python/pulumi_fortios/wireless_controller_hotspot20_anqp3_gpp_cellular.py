@@ -17,6 +17,7 @@ __all__ = ['WirelessControllerHotspot20Anqp3GppCellularArgs', 'WirelessControlle
 class WirelessControllerHotspot20Anqp3GppCellularArgs:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  mcc_mnc_lists: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerHotspot20Anqp3GppCellularMccMncListArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -25,6 +26,8 @@ class WirelessControllerHotspot20Anqp3GppCellularArgs:
         """
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if mcc_mnc_lists is not None:
             pulumi.set(__self__, "mcc_mnc_lists", mcc_mnc_lists)
         if name is not None:
@@ -40,6 +43,15 @@ class WirelessControllerHotspot20Anqp3GppCellularArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="mccMncLists")
@@ -73,6 +85,7 @@ class WirelessControllerHotspot20Anqp3GppCellularArgs:
 class _WirelessControllerHotspot20Anqp3GppCellularState:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  mcc_mnc_lists: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerHotspot20Anqp3GppCellularMccMncListArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -81,6 +94,8 @@ class _WirelessControllerHotspot20Anqp3GppCellularState:
         """
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if mcc_mnc_lists is not None:
             pulumi.set(__self__, "mcc_mnc_lists", mcc_mnc_lists)
         if name is not None:
@@ -96,6 +111,15 @@ class _WirelessControllerHotspot20Anqp3GppCellularState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="mccMncLists")
@@ -131,6 +155,7 @@ class WirelessControllerHotspot20Anqp3GppCellular(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  mcc_mnc_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerHotspot20Anqp3GppCellularMccMncListArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -164,6 +189,7 @@ class WirelessControllerHotspot20Anqp3GppCellular(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  mcc_mnc_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerHotspot20Anqp3GppCellularMccMncListArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -177,6 +203,7 @@ class WirelessControllerHotspot20Anqp3GppCellular(pulumi.CustomResource):
             __props__ = WirelessControllerHotspot20Anqp3GppCellularArgs.__new__(WirelessControllerHotspot20Anqp3GppCellularArgs)
 
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["mcc_mnc_lists"] = mcc_mnc_lists
             __props__.__dict__["name"] = name
             __props__.__dict__["vdomparam"] = vdomparam
@@ -191,6 +218,7 @@ class WirelessControllerHotspot20Anqp3GppCellular(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             mcc_mnc_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerHotspot20Anqp3GppCellularMccMncListArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'WirelessControllerHotspot20Anqp3GppCellular':
@@ -207,6 +235,7 @@ class WirelessControllerHotspot20Anqp3GppCellular(pulumi.CustomResource):
         __props__ = _WirelessControllerHotspot20Anqp3GppCellularState.__new__(_WirelessControllerHotspot20Anqp3GppCellularState)
 
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["mcc_mnc_lists"] = mcc_mnc_lists
         __props__.__dict__["name"] = name
         __props__.__dict__["vdomparam"] = vdomparam
@@ -216,6 +245,11 @@ class WirelessControllerHotspot20Anqp3GppCellular(pulumi.CustomResource):
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="mccMncLists")

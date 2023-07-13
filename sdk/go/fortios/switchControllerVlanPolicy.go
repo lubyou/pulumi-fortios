@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,6 +20,7 @@ type SwitchControllerVlanPolicy struct {
 	DiscardMode         pulumi.StringOutput                               `pulumi:"discardMode"`
 	DynamicSortSubtable pulumi.StringPtrOutput                            `pulumi:"dynamicSortSubtable"`
 	Fortilink           pulumi.StringOutput                               `pulumi:"fortilink"`
+	GetAllTables        pulumi.StringPtrOutput                            `pulumi:"getAllTables"`
 	Name                pulumi.StringOutput                               `pulumi:"name"`
 	UntaggedVlans       SwitchControllerVlanPolicyUntaggedVlanArrayOutput `pulumi:"untaggedVlans"`
 	Vdomparam           pulumi.StringPtrOutput                            `pulumi:"vdomparam"`
@@ -32,7 +34,7 @@ func NewSwitchControllerVlanPolicy(ctx *pulumi.Context,
 		args = &SwitchControllerVlanPolicyArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SwitchControllerVlanPolicy
 	err := ctx.RegisterResource("fortios:index/switchControllerVlanPolicy:SwitchControllerVlanPolicy", name, args, &resource, opts...)
 	if err != nil {
@@ -61,6 +63,7 @@ type switchControllerVlanPolicyState struct {
 	DiscardMode         *string                                  `pulumi:"discardMode"`
 	DynamicSortSubtable *string                                  `pulumi:"dynamicSortSubtable"`
 	Fortilink           *string                                  `pulumi:"fortilink"`
+	GetAllTables        *string                                  `pulumi:"getAllTables"`
 	Name                *string                                  `pulumi:"name"`
 	UntaggedVlans       []SwitchControllerVlanPolicyUntaggedVlan `pulumi:"untaggedVlans"`
 	Vdomparam           *string                                  `pulumi:"vdomparam"`
@@ -74,6 +77,7 @@ type SwitchControllerVlanPolicyState struct {
 	DiscardMode         pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	Fortilink           pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	UntaggedVlans       SwitchControllerVlanPolicyUntaggedVlanArrayInput
 	Vdomparam           pulumi.StringPtrInput
@@ -91,6 +95,7 @@ type switchControllerVlanPolicyArgs struct {
 	DiscardMode         *string                                  `pulumi:"discardMode"`
 	DynamicSortSubtable *string                                  `pulumi:"dynamicSortSubtable"`
 	Fortilink           *string                                  `pulumi:"fortilink"`
+	GetAllTables        *string                                  `pulumi:"getAllTables"`
 	Name                *string                                  `pulumi:"name"`
 	UntaggedVlans       []SwitchControllerVlanPolicyUntaggedVlan `pulumi:"untaggedVlans"`
 	Vdomparam           *string                                  `pulumi:"vdomparam"`
@@ -105,6 +110,7 @@ type SwitchControllerVlanPolicyArgs struct {
 	DiscardMode         pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	Fortilink           pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	UntaggedVlans       SwitchControllerVlanPolicyUntaggedVlanArrayInput
 	Vdomparam           pulumi.StringPtrInput
@@ -222,6 +228,10 @@ func (o SwitchControllerVlanPolicyOutput) DynamicSortSubtable() pulumi.StringPtr
 
 func (o SwitchControllerVlanPolicyOutput) Fortilink() pulumi.StringOutput {
 	return o.ApplyT(func(v *SwitchControllerVlanPolicy) pulumi.StringOutput { return v.Fortilink }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerVlanPolicyOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerVlanPolicy) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SwitchControllerVlanPolicyOutput) Name() pulumi.StringOutput {

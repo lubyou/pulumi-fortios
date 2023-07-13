@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -18,6 +19,7 @@ type AuthenticationScheme struct {
 	DynamicSortSubtable pulumi.StringPtrOutput                      `pulumi:"dynamicSortSubtable"`
 	FssoAgentForNtlm    pulumi.StringOutput                         `pulumi:"fssoAgentForNtlm"`
 	FssoGuest           pulumi.StringOutput                         `pulumi:"fssoGuest"`
+	GetAllTables        pulumi.StringPtrOutput                      `pulumi:"getAllTables"`
 	KerberosKeytab      pulumi.StringOutput                         `pulumi:"kerberosKeytab"`
 	Method              pulumi.StringOutput                         `pulumi:"method"`
 	Name                pulumi.StringOutput                         `pulumi:"name"`
@@ -41,7 +43,7 @@ func NewAuthenticationScheme(ctx *pulumi.Context,
 	if args.Method == nil {
 		return nil, errors.New("invalid value for required argument 'Method'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AuthenticationScheme
 	err := ctx.RegisterResource("fortios:index/authenticationScheme:AuthenticationScheme", name, args, &resource, opts...)
 	if err != nil {
@@ -68,6 +70,7 @@ type authenticationSchemeState struct {
 	DynamicSortSubtable *string                            `pulumi:"dynamicSortSubtable"`
 	FssoAgentForNtlm    *string                            `pulumi:"fssoAgentForNtlm"`
 	FssoGuest           *string                            `pulumi:"fssoGuest"`
+	GetAllTables        *string                            `pulumi:"getAllTables"`
 	KerberosKeytab      *string                            `pulumi:"kerberosKeytab"`
 	Method              *string                            `pulumi:"method"`
 	Name                *string                            `pulumi:"name"`
@@ -86,6 +89,7 @@ type AuthenticationSchemeState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	FssoAgentForNtlm    pulumi.StringPtrInput
 	FssoGuest           pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	KerberosKeytab      pulumi.StringPtrInput
 	Method              pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
@@ -108,6 +112,7 @@ type authenticationSchemeArgs struct {
 	DynamicSortSubtable *string                            `pulumi:"dynamicSortSubtable"`
 	FssoAgentForNtlm    *string                            `pulumi:"fssoAgentForNtlm"`
 	FssoGuest           *string                            `pulumi:"fssoGuest"`
+	GetAllTables        *string                            `pulumi:"getAllTables"`
 	KerberosKeytab      *string                            `pulumi:"kerberosKeytab"`
 	Method              string                             `pulumi:"method"`
 	Name                *string                            `pulumi:"name"`
@@ -127,6 +132,7 @@ type AuthenticationSchemeArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	FssoAgentForNtlm    pulumi.StringPtrInput
 	FssoGuest           pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	KerberosKeytab      pulumi.StringPtrInput
 	Method              pulumi.StringInput
 	Name                pulumi.StringPtrInput
@@ -241,6 +247,10 @@ func (o AuthenticationSchemeOutput) FssoAgentForNtlm() pulumi.StringOutput {
 
 func (o AuthenticationSchemeOutput) FssoGuest() pulumi.StringOutput {
 	return o.ApplyT(func(v *AuthenticationScheme) pulumi.StringOutput { return v.FssoGuest }).(pulumi.StringOutput)
+}
+
+func (o AuthenticationSchemeOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthenticationScheme) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o AuthenticationSchemeOutput) KerberosKeytab() pulumi.StringOutput {

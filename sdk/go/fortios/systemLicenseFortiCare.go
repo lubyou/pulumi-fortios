@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -27,7 +28,7 @@ func NewSystemLicenseFortiCare(ctx *pulumi.Context,
 	if args.RegistrationCode == nil {
 		return nil, errors.New("invalid value for required argument 'RegistrationCode'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemLicenseFortiCare
 	err := ctx.RegisterResource("fortios:index/systemLicenseFortiCare:SystemLicenseFortiCare", name, args, &resource, opts...)
 	if err != nil {

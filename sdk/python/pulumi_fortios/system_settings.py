@@ -38,6 +38,7 @@ class SystemSettingsArgs:
                  default_policy_expiry_days: Optional[pulumi.Input[int]] = None,
                  default_voip_alg_mode: Optional[pulumi.Input[str]] = None,
                  deny_tcp_with_icmp: Optional[pulumi.Input[str]] = None,
+                 detect_unknown_esp: Optional[pulumi.Input[str]] = None,
                  device: Optional[pulumi.Input[str]] = None,
                  dhcp6_server_ip: Optional[pulumi.Input[str]] = None,
                  dhcp_proxy: Optional[pulumi.Input[str]] = None,
@@ -55,6 +56,7 @@ class SystemSettingsArgs:
                  fw_session_hairpin: Optional[pulumi.Input[str]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
                  gateway6: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gui_advanced_policy: Optional[pulumi.Input[str]] = None,
                  gui_advanced_wireless_features: Optional[pulumi.Input[str]] = None,
                  gui_allow_unnamed_policy: Optional[pulumi.Input[str]] = None,
@@ -64,10 +66,12 @@ class SystemSettingsArgs:
                  gui_default_policy_columns: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSettingsGuiDefaultPolicyColumnArgs']]]] = None,
                  gui_dhcp_advanced: Optional[pulumi.Input[str]] = None,
                  gui_dlp: Optional[pulumi.Input[str]] = None,
+                 gui_dlp_profile: Optional[pulumi.Input[str]] = None,
                  gui_dns_database: Optional[pulumi.Input[str]] = None,
                  gui_dnsfilter: Optional[pulumi.Input[str]] = None,
                  gui_domain_ip_reputation: Optional[pulumi.Input[str]] = None,
                  gui_dos_policy: Optional[pulumi.Input[str]] = None,
+                 gui_dynamic_device_os_id: Optional[pulumi.Input[str]] = None,
                  gui_dynamic_profile_display: Optional[pulumi.Input[str]] = None,
                  gui_dynamic_routing: Optional[pulumi.Input[str]] = None,
                  gui_email_collection: Optional[pulumi.Input[str]] = None,
@@ -94,7 +98,9 @@ class SystemSettingsArgs:
                  gui_policy_based_ipsec: Optional[pulumi.Input[str]] = None,
                  gui_policy_disclaimer: Optional[pulumi.Input[str]] = None,
                  gui_policy_learning: Optional[pulumi.Input[str]] = None,
+                 gui_proxy_inspection: Optional[pulumi.Input[str]] = None,
                  gui_replacement_message_groups: Optional[pulumi.Input[str]] = None,
+                 gui_route_tag_address_creation: Optional[pulumi.Input[str]] = None,
                  gui_security_profile_group: Optional[pulumi.Input[str]] = None,
                  gui_spamfilter: Optional[pulumi.Input[str]] = None,
                  gui_sslvpn_personal_bookmarks: Optional[pulumi.Input[str]] = None,
@@ -122,6 +128,7 @@ class SystemSettingsArgs:
                  ike_session_resume: Optional[pulumi.Input[str]] = None,
                  implicit_allow_dns: Optional[pulumi.Input[str]] = None,
                  inspection_mode: Optional[pulumi.Input[str]] = None,
+                 internet_service_database_cache: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
                  ip6: Optional[pulumi.Input[str]] = None,
                  lan_extension_controller_addr: Optional[pulumi.Input[str]] = None,
@@ -209,6 +216,8 @@ class SystemSettingsArgs:
             pulumi.set(__self__, "default_voip_alg_mode", default_voip_alg_mode)
         if deny_tcp_with_icmp is not None:
             pulumi.set(__self__, "deny_tcp_with_icmp", deny_tcp_with_icmp)
+        if detect_unknown_esp is not None:
+            pulumi.set(__self__, "detect_unknown_esp", detect_unknown_esp)
         if device is not None:
             pulumi.set(__self__, "device", device)
         if dhcp6_server_ip is not None:
@@ -243,6 +252,8 @@ class SystemSettingsArgs:
             pulumi.set(__self__, "gateway", gateway)
         if gateway6 is not None:
             pulumi.set(__self__, "gateway6", gateway6)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gui_advanced_policy is not None:
             pulumi.set(__self__, "gui_advanced_policy", gui_advanced_policy)
         if gui_advanced_wireless_features is not None:
@@ -261,6 +272,8 @@ class SystemSettingsArgs:
             pulumi.set(__self__, "gui_dhcp_advanced", gui_dhcp_advanced)
         if gui_dlp is not None:
             pulumi.set(__self__, "gui_dlp", gui_dlp)
+        if gui_dlp_profile is not None:
+            pulumi.set(__self__, "gui_dlp_profile", gui_dlp_profile)
         if gui_dns_database is not None:
             pulumi.set(__self__, "gui_dns_database", gui_dns_database)
         if gui_dnsfilter is not None:
@@ -269,6 +282,8 @@ class SystemSettingsArgs:
             pulumi.set(__self__, "gui_domain_ip_reputation", gui_domain_ip_reputation)
         if gui_dos_policy is not None:
             pulumi.set(__self__, "gui_dos_policy", gui_dos_policy)
+        if gui_dynamic_device_os_id is not None:
+            pulumi.set(__self__, "gui_dynamic_device_os_id", gui_dynamic_device_os_id)
         if gui_dynamic_profile_display is not None:
             pulumi.set(__self__, "gui_dynamic_profile_display", gui_dynamic_profile_display)
         if gui_dynamic_routing is not None:
@@ -321,8 +336,12 @@ class SystemSettingsArgs:
             pulumi.set(__self__, "gui_policy_disclaimer", gui_policy_disclaimer)
         if gui_policy_learning is not None:
             pulumi.set(__self__, "gui_policy_learning", gui_policy_learning)
+        if gui_proxy_inspection is not None:
+            pulumi.set(__self__, "gui_proxy_inspection", gui_proxy_inspection)
         if gui_replacement_message_groups is not None:
             pulumi.set(__self__, "gui_replacement_message_groups", gui_replacement_message_groups)
+        if gui_route_tag_address_creation is not None:
+            pulumi.set(__self__, "gui_route_tag_address_creation", gui_route_tag_address_creation)
         if gui_security_profile_group is not None:
             pulumi.set(__self__, "gui_security_profile_group", gui_security_profile_group)
         if gui_spamfilter is not None:
@@ -377,6 +396,8 @@ class SystemSettingsArgs:
             pulumi.set(__self__, "implicit_allow_dns", implicit_allow_dns)
         if inspection_mode is not None:
             pulumi.set(__self__, "inspection_mode", inspection_mode)
+        if internet_service_database_cache is not None:
+            pulumi.set(__self__, "internet_service_database_cache", internet_service_database_cache)
         if ip is not None:
             pulumi.set(__self__, "ip", ip)
         if ip6 is not None:
@@ -657,6 +678,15 @@ class SystemSettingsArgs:
         pulumi.set(self, "deny_tcp_with_icmp", value)
 
     @property
+    @pulumi.getter(name="detectUnknownEsp")
+    def detect_unknown_esp(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "detect_unknown_esp")
+
+    @detect_unknown_esp.setter
+    def detect_unknown_esp(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "detect_unknown_esp", value)
+
+    @property
     @pulumi.getter
     def device(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "device")
@@ -810,6 +840,15 @@ class SystemSettingsArgs:
         pulumi.set(self, "gateway6", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="guiAdvancedPolicy")
     def gui_advanced_policy(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "gui_advanced_policy")
@@ -891,6 +930,15 @@ class SystemSettingsArgs:
         pulumi.set(self, "gui_dlp", value)
 
     @property
+    @pulumi.getter(name="guiDlpProfile")
+    def gui_dlp_profile(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "gui_dlp_profile")
+
+    @gui_dlp_profile.setter
+    def gui_dlp_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_dlp_profile", value)
+
+    @property
     @pulumi.getter(name="guiDnsDatabase")
     def gui_dns_database(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "gui_dns_database")
@@ -925,6 +973,15 @@ class SystemSettingsArgs:
     @gui_dos_policy.setter
     def gui_dos_policy(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gui_dos_policy", value)
+
+    @property
+    @pulumi.getter(name="guiDynamicDeviceOsId")
+    def gui_dynamic_device_os_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "gui_dynamic_device_os_id")
+
+    @gui_dynamic_device_os_id.setter
+    def gui_dynamic_device_os_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_dynamic_device_os_id", value)
 
     @property
     @pulumi.getter(name="guiDynamicProfileDisplay")
@@ -1161,6 +1218,15 @@ class SystemSettingsArgs:
         pulumi.set(self, "gui_policy_learning", value)
 
     @property
+    @pulumi.getter(name="guiProxyInspection")
+    def gui_proxy_inspection(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "gui_proxy_inspection")
+
+    @gui_proxy_inspection.setter
+    def gui_proxy_inspection(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_proxy_inspection", value)
+
+    @property
     @pulumi.getter(name="guiReplacementMessageGroups")
     def gui_replacement_message_groups(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "gui_replacement_message_groups")
@@ -1168,6 +1234,15 @@ class SystemSettingsArgs:
     @gui_replacement_message_groups.setter
     def gui_replacement_message_groups(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gui_replacement_message_groups", value)
+
+    @property
+    @pulumi.getter(name="guiRouteTagAddressCreation")
+    def gui_route_tag_address_creation(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "gui_route_tag_address_creation")
+
+    @gui_route_tag_address_creation.setter
+    def gui_route_tag_address_creation(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_route_tag_address_creation", value)
 
     @property
     @pulumi.getter(name="guiSecurityProfileGroup")
@@ -1411,6 +1486,15 @@ class SystemSettingsArgs:
     @inspection_mode.setter
     def inspection_mode(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "inspection_mode", value)
+
+    @property
+    @pulumi.getter(name="internetServiceDatabaseCache")
+    def internet_service_database_cache(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "internet_service_database_cache")
+
+    @internet_service_database_cache.setter
+    def internet_service_database_cache(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "internet_service_database_cache", value)
 
     @property
     @pulumi.getter
@@ -1798,6 +1882,7 @@ class _SystemSettingsState:
                  default_policy_expiry_days: Optional[pulumi.Input[int]] = None,
                  default_voip_alg_mode: Optional[pulumi.Input[str]] = None,
                  deny_tcp_with_icmp: Optional[pulumi.Input[str]] = None,
+                 detect_unknown_esp: Optional[pulumi.Input[str]] = None,
                  device: Optional[pulumi.Input[str]] = None,
                  dhcp6_server_ip: Optional[pulumi.Input[str]] = None,
                  dhcp_proxy: Optional[pulumi.Input[str]] = None,
@@ -1815,6 +1900,7 @@ class _SystemSettingsState:
                  fw_session_hairpin: Optional[pulumi.Input[str]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
                  gateway6: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gui_advanced_policy: Optional[pulumi.Input[str]] = None,
                  gui_advanced_wireless_features: Optional[pulumi.Input[str]] = None,
                  gui_allow_unnamed_policy: Optional[pulumi.Input[str]] = None,
@@ -1824,10 +1910,12 @@ class _SystemSettingsState:
                  gui_default_policy_columns: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSettingsGuiDefaultPolicyColumnArgs']]]] = None,
                  gui_dhcp_advanced: Optional[pulumi.Input[str]] = None,
                  gui_dlp: Optional[pulumi.Input[str]] = None,
+                 gui_dlp_profile: Optional[pulumi.Input[str]] = None,
                  gui_dns_database: Optional[pulumi.Input[str]] = None,
                  gui_dnsfilter: Optional[pulumi.Input[str]] = None,
                  gui_domain_ip_reputation: Optional[pulumi.Input[str]] = None,
                  gui_dos_policy: Optional[pulumi.Input[str]] = None,
+                 gui_dynamic_device_os_id: Optional[pulumi.Input[str]] = None,
                  gui_dynamic_profile_display: Optional[pulumi.Input[str]] = None,
                  gui_dynamic_routing: Optional[pulumi.Input[str]] = None,
                  gui_email_collection: Optional[pulumi.Input[str]] = None,
@@ -1854,7 +1942,9 @@ class _SystemSettingsState:
                  gui_policy_based_ipsec: Optional[pulumi.Input[str]] = None,
                  gui_policy_disclaimer: Optional[pulumi.Input[str]] = None,
                  gui_policy_learning: Optional[pulumi.Input[str]] = None,
+                 gui_proxy_inspection: Optional[pulumi.Input[str]] = None,
                  gui_replacement_message_groups: Optional[pulumi.Input[str]] = None,
+                 gui_route_tag_address_creation: Optional[pulumi.Input[str]] = None,
                  gui_security_profile_group: Optional[pulumi.Input[str]] = None,
                  gui_spamfilter: Optional[pulumi.Input[str]] = None,
                  gui_sslvpn_personal_bookmarks: Optional[pulumi.Input[str]] = None,
@@ -1882,6 +1972,7 @@ class _SystemSettingsState:
                  ike_session_resume: Optional[pulumi.Input[str]] = None,
                  implicit_allow_dns: Optional[pulumi.Input[str]] = None,
                  inspection_mode: Optional[pulumi.Input[str]] = None,
+                 internet_service_database_cache: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
                  ip6: Optional[pulumi.Input[str]] = None,
                  lan_extension_controller_addr: Optional[pulumi.Input[str]] = None,
@@ -1969,6 +2060,8 @@ class _SystemSettingsState:
             pulumi.set(__self__, "default_voip_alg_mode", default_voip_alg_mode)
         if deny_tcp_with_icmp is not None:
             pulumi.set(__self__, "deny_tcp_with_icmp", deny_tcp_with_icmp)
+        if detect_unknown_esp is not None:
+            pulumi.set(__self__, "detect_unknown_esp", detect_unknown_esp)
         if device is not None:
             pulumi.set(__self__, "device", device)
         if dhcp6_server_ip is not None:
@@ -2003,6 +2096,8 @@ class _SystemSettingsState:
             pulumi.set(__self__, "gateway", gateway)
         if gateway6 is not None:
             pulumi.set(__self__, "gateway6", gateway6)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gui_advanced_policy is not None:
             pulumi.set(__self__, "gui_advanced_policy", gui_advanced_policy)
         if gui_advanced_wireless_features is not None:
@@ -2021,6 +2116,8 @@ class _SystemSettingsState:
             pulumi.set(__self__, "gui_dhcp_advanced", gui_dhcp_advanced)
         if gui_dlp is not None:
             pulumi.set(__self__, "gui_dlp", gui_dlp)
+        if gui_dlp_profile is not None:
+            pulumi.set(__self__, "gui_dlp_profile", gui_dlp_profile)
         if gui_dns_database is not None:
             pulumi.set(__self__, "gui_dns_database", gui_dns_database)
         if gui_dnsfilter is not None:
@@ -2029,6 +2126,8 @@ class _SystemSettingsState:
             pulumi.set(__self__, "gui_domain_ip_reputation", gui_domain_ip_reputation)
         if gui_dos_policy is not None:
             pulumi.set(__self__, "gui_dos_policy", gui_dos_policy)
+        if gui_dynamic_device_os_id is not None:
+            pulumi.set(__self__, "gui_dynamic_device_os_id", gui_dynamic_device_os_id)
         if gui_dynamic_profile_display is not None:
             pulumi.set(__self__, "gui_dynamic_profile_display", gui_dynamic_profile_display)
         if gui_dynamic_routing is not None:
@@ -2081,8 +2180,12 @@ class _SystemSettingsState:
             pulumi.set(__self__, "gui_policy_disclaimer", gui_policy_disclaimer)
         if gui_policy_learning is not None:
             pulumi.set(__self__, "gui_policy_learning", gui_policy_learning)
+        if gui_proxy_inspection is not None:
+            pulumi.set(__self__, "gui_proxy_inspection", gui_proxy_inspection)
         if gui_replacement_message_groups is not None:
             pulumi.set(__self__, "gui_replacement_message_groups", gui_replacement_message_groups)
+        if gui_route_tag_address_creation is not None:
+            pulumi.set(__self__, "gui_route_tag_address_creation", gui_route_tag_address_creation)
         if gui_security_profile_group is not None:
             pulumi.set(__self__, "gui_security_profile_group", gui_security_profile_group)
         if gui_spamfilter is not None:
@@ -2137,6 +2240,8 @@ class _SystemSettingsState:
             pulumi.set(__self__, "implicit_allow_dns", implicit_allow_dns)
         if inspection_mode is not None:
             pulumi.set(__self__, "inspection_mode", inspection_mode)
+        if internet_service_database_cache is not None:
+            pulumi.set(__self__, "internet_service_database_cache", internet_service_database_cache)
         if ip is not None:
             pulumi.set(__self__, "ip", ip)
         if ip6 is not None:
@@ -2417,6 +2522,15 @@ class _SystemSettingsState:
         pulumi.set(self, "deny_tcp_with_icmp", value)
 
     @property
+    @pulumi.getter(name="detectUnknownEsp")
+    def detect_unknown_esp(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "detect_unknown_esp")
+
+    @detect_unknown_esp.setter
+    def detect_unknown_esp(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "detect_unknown_esp", value)
+
+    @property
     @pulumi.getter
     def device(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "device")
@@ -2570,6 +2684,15 @@ class _SystemSettingsState:
         pulumi.set(self, "gateway6", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="guiAdvancedPolicy")
     def gui_advanced_policy(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "gui_advanced_policy")
@@ -2651,6 +2774,15 @@ class _SystemSettingsState:
         pulumi.set(self, "gui_dlp", value)
 
     @property
+    @pulumi.getter(name="guiDlpProfile")
+    def gui_dlp_profile(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "gui_dlp_profile")
+
+    @gui_dlp_profile.setter
+    def gui_dlp_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_dlp_profile", value)
+
+    @property
     @pulumi.getter(name="guiDnsDatabase")
     def gui_dns_database(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "gui_dns_database")
@@ -2685,6 +2817,15 @@ class _SystemSettingsState:
     @gui_dos_policy.setter
     def gui_dos_policy(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gui_dos_policy", value)
+
+    @property
+    @pulumi.getter(name="guiDynamicDeviceOsId")
+    def gui_dynamic_device_os_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "gui_dynamic_device_os_id")
+
+    @gui_dynamic_device_os_id.setter
+    def gui_dynamic_device_os_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_dynamic_device_os_id", value)
 
     @property
     @pulumi.getter(name="guiDynamicProfileDisplay")
@@ -2921,6 +3062,15 @@ class _SystemSettingsState:
         pulumi.set(self, "gui_policy_learning", value)
 
     @property
+    @pulumi.getter(name="guiProxyInspection")
+    def gui_proxy_inspection(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "gui_proxy_inspection")
+
+    @gui_proxy_inspection.setter
+    def gui_proxy_inspection(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_proxy_inspection", value)
+
+    @property
     @pulumi.getter(name="guiReplacementMessageGroups")
     def gui_replacement_message_groups(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "gui_replacement_message_groups")
@@ -2928,6 +3078,15 @@ class _SystemSettingsState:
     @gui_replacement_message_groups.setter
     def gui_replacement_message_groups(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gui_replacement_message_groups", value)
+
+    @property
+    @pulumi.getter(name="guiRouteTagAddressCreation")
+    def gui_route_tag_address_creation(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "gui_route_tag_address_creation")
+
+    @gui_route_tag_address_creation.setter
+    def gui_route_tag_address_creation(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_route_tag_address_creation", value)
 
     @property
     @pulumi.getter(name="guiSecurityProfileGroup")
@@ -3171,6 +3330,15 @@ class _SystemSettingsState:
     @inspection_mode.setter
     def inspection_mode(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "inspection_mode", value)
+
+    @property
+    @pulumi.getter(name="internetServiceDatabaseCache")
+    def internet_service_database_cache(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "internet_service_database_cache")
+
+    @internet_service_database_cache.setter
+    def internet_service_database_cache(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "internet_service_database_cache", value)
 
     @property
     @pulumi.getter
@@ -3560,6 +3728,7 @@ class SystemSettings(pulumi.CustomResource):
                  default_policy_expiry_days: Optional[pulumi.Input[int]] = None,
                  default_voip_alg_mode: Optional[pulumi.Input[str]] = None,
                  deny_tcp_with_icmp: Optional[pulumi.Input[str]] = None,
+                 detect_unknown_esp: Optional[pulumi.Input[str]] = None,
                  device: Optional[pulumi.Input[str]] = None,
                  dhcp6_server_ip: Optional[pulumi.Input[str]] = None,
                  dhcp_proxy: Optional[pulumi.Input[str]] = None,
@@ -3577,6 +3746,7 @@ class SystemSettings(pulumi.CustomResource):
                  fw_session_hairpin: Optional[pulumi.Input[str]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
                  gateway6: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gui_advanced_policy: Optional[pulumi.Input[str]] = None,
                  gui_advanced_wireless_features: Optional[pulumi.Input[str]] = None,
                  gui_allow_unnamed_policy: Optional[pulumi.Input[str]] = None,
@@ -3586,10 +3756,12 @@ class SystemSettings(pulumi.CustomResource):
                  gui_default_policy_columns: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSettingsGuiDefaultPolicyColumnArgs']]]]] = None,
                  gui_dhcp_advanced: Optional[pulumi.Input[str]] = None,
                  gui_dlp: Optional[pulumi.Input[str]] = None,
+                 gui_dlp_profile: Optional[pulumi.Input[str]] = None,
                  gui_dns_database: Optional[pulumi.Input[str]] = None,
                  gui_dnsfilter: Optional[pulumi.Input[str]] = None,
                  gui_domain_ip_reputation: Optional[pulumi.Input[str]] = None,
                  gui_dos_policy: Optional[pulumi.Input[str]] = None,
+                 gui_dynamic_device_os_id: Optional[pulumi.Input[str]] = None,
                  gui_dynamic_profile_display: Optional[pulumi.Input[str]] = None,
                  gui_dynamic_routing: Optional[pulumi.Input[str]] = None,
                  gui_email_collection: Optional[pulumi.Input[str]] = None,
@@ -3616,7 +3788,9 @@ class SystemSettings(pulumi.CustomResource):
                  gui_policy_based_ipsec: Optional[pulumi.Input[str]] = None,
                  gui_policy_disclaimer: Optional[pulumi.Input[str]] = None,
                  gui_policy_learning: Optional[pulumi.Input[str]] = None,
+                 gui_proxy_inspection: Optional[pulumi.Input[str]] = None,
                  gui_replacement_message_groups: Optional[pulumi.Input[str]] = None,
+                 gui_route_tag_address_creation: Optional[pulumi.Input[str]] = None,
                  gui_security_profile_group: Optional[pulumi.Input[str]] = None,
                  gui_spamfilter: Optional[pulumi.Input[str]] = None,
                  gui_sslvpn_personal_bookmarks: Optional[pulumi.Input[str]] = None,
@@ -3644,6 +3818,7 @@ class SystemSettings(pulumi.CustomResource):
                  ike_session_resume: Optional[pulumi.Input[str]] = None,
                  implicit_allow_dns: Optional[pulumi.Input[str]] = None,
                  inspection_mode: Optional[pulumi.Input[str]] = None,
+                 internet_service_database_cache: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
                  ip6: Optional[pulumi.Input[str]] = None,
                  lan_extension_controller_addr: Optional[pulumi.Input[str]] = None,
@@ -3735,6 +3910,7 @@ class SystemSettings(pulumi.CustomResource):
                  default_policy_expiry_days: Optional[pulumi.Input[int]] = None,
                  default_voip_alg_mode: Optional[pulumi.Input[str]] = None,
                  deny_tcp_with_icmp: Optional[pulumi.Input[str]] = None,
+                 detect_unknown_esp: Optional[pulumi.Input[str]] = None,
                  device: Optional[pulumi.Input[str]] = None,
                  dhcp6_server_ip: Optional[pulumi.Input[str]] = None,
                  dhcp_proxy: Optional[pulumi.Input[str]] = None,
@@ -3752,6 +3928,7 @@ class SystemSettings(pulumi.CustomResource):
                  fw_session_hairpin: Optional[pulumi.Input[str]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
                  gateway6: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gui_advanced_policy: Optional[pulumi.Input[str]] = None,
                  gui_advanced_wireless_features: Optional[pulumi.Input[str]] = None,
                  gui_allow_unnamed_policy: Optional[pulumi.Input[str]] = None,
@@ -3761,10 +3938,12 @@ class SystemSettings(pulumi.CustomResource):
                  gui_default_policy_columns: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSettingsGuiDefaultPolicyColumnArgs']]]]] = None,
                  gui_dhcp_advanced: Optional[pulumi.Input[str]] = None,
                  gui_dlp: Optional[pulumi.Input[str]] = None,
+                 gui_dlp_profile: Optional[pulumi.Input[str]] = None,
                  gui_dns_database: Optional[pulumi.Input[str]] = None,
                  gui_dnsfilter: Optional[pulumi.Input[str]] = None,
                  gui_domain_ip_reputation: Optional[pulumi.Input[str]] = None,
                  gui_dos_policy: Optional[pulumi.Input[str]] = None,
+                 gui_dynamic_device_os_id: Optional[pulumi.Input[str]] = None,
                  gui_dynamic_profile_display: Optional[pulumi.Input[str]] = None,
                  gui_dynamic_routing: Optional[pulumi.Input[str]] = None,
                  gui_email_collection: Optional[pulumi.Input[str]] = None,
@@ -3791,7 +3970,9 @@ class SystemSettings(pulumi.CustomResource):
                  gui_policy_based_ipsec: Optional[pulumi.Input[str]] = None,
                  gui_policy_disclaimer: Optional[pulumi.Input[str]] = None,
                  gui_policy_learning: Optional[pulumi.Input[str]] = None,
+                 gui_proxy_inspection: Optional[pulumi.Input[str]] = None,
                  gui_replacement_message_groups: Optional[pulumi.Input[str]] = None,
+                 gui_route_tag_address_creation: Optional[pulumi.Input[str]] = None,
                  gui_security_profile_group: Optional[pulumi.Input[str]] = None,
                  gui_spamfilter: Optional[pulumi.Input[str]] = None,
                  gui_sslvpn_personal_bookmarks: Optional[pulumi.Input[str]] = None,
@@ -3819,6 +4000,7 @@ class SystemSettings(pulumi.CustomResource):
                  ike_session_resume: Optional[pulumi.Input[str]] = None,
                  implicit_allow_dns: Optional[pulumi.Input[str]] = None,
                  inspection_mode: Optional[pulumi.Input[str]] = None,
+                 internet_service_database_cache: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
                  ip6: Optional[pulumi.Input[str]] = None,
                  lan_extension_controller_addr: Optional[pulumi.Input[str]] = None,
@@ -3890,6 +4072,7 @@ class SystemSettings(pulumi.CustomResource):
             __props__.__dict__["default_policy_expiry_days"] = default_policy_expiry_days
             __props__.__dict__["default_voip_alg_mode"] = default_voip_alg_mode
             __props__.__dict__["deny_tcp_with_icmp"] = deny_tcp_with_icmp
+            __props__.__dict__["detect_unknown_esp"] = detect_unknown_esp
             __props__.__dict__["device"] = device
             __props__.__dict__["dhcp6_server_ip"] = dhcp6_server_ip
             __props__.__dict__["dhcp_proxy"] = dhcp_proxy
@@ -3907,6 +4090,7 @@ class SystemSettings(pulumi.CustomResource):
             __props__.__dict__["fw_session_hairpin"] = fw_session_hairpin
             __props__.__dict__["gateway"] = gateway
             __props__.__dict__["gateway6"] = gateway6
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["gui_advanced_policy"] = gui_advanced_policy
             __props__.__dict__["gui_advanced_wireless_features"] = gui_advanced_wireless_features
             __props__.__dict__["gui_allow_unnamed_policy"] = gui_allow_unnamed_policy
@@ -3916,10 +4100,12 @@ class SystemSettings(pulumi.CustomResource):
             __props__.__dict__["gui_default_policy_columns"] = gui_default_policy_columns
             __props__.__dict__["gui_dhcp_advanced"] = gui_dhcp_advanced
             __props__.__dict__["gui_dlp"] = gui_dlp
+            __props__.__dict__["gui_dlp_profile"] = gui_dlp_profile
             __props__.__dict__["gui_dns_database"] = gui_dns_database
             __props__.__dict__["gui_dnsfilter"] = gui_dnsfilter
             __props__.__dict__["gui_domain_ip_reputation"] = gui_domain_ip_reputation
             __props__.__dict__["gui_dos_policy"] = gui_dos_policy
+            __props__.__dict__["gui_dynamic_device_os_id"] = gui_dynamic_device_os_id
             __props__.__dict__["gui_dynamic_profile_display"] = gui_dynamic_profile_display
             __props__.__dict__["gui_dynamic_routing"] = gui_dynamic_routing
             __props__.__dict__["gui_email_collection"] = gui_email_collection
@@ -3946,7 +4132,9 @@ class SystemSettings(pulumi.CustomResource):
             __props__.__dict__["gui_policy_based_ipsec"] = gui_policy_based_ipsec
             __props__.__dict__["gui_policy_disclaimer"] = gui_policy_disclaimer
             __props__.__dict__["gui_policy_learning"] = gui_policy_learning
+            __props__.__dict__["gui_proxy_inspection"] = gui_proxy_inspection
             __props__.__dict__["gui_replacement_message_groups"] = gui_replacement_message_groups
+            __props__.__dict__["gui_route_tag_address_creation"] = gui_route_tag_address_creation
             __props__.__dict__["gui_security_profile_group"] = gui_security_profile_group
             __props__.__dict__["gui_spamfilter"] = gui_spamfilter
             __props__.__dict__["gui_sslvpn_personal_bookmarks"] = gui_sslvpn_personal_bookmarks
@@ -3974,6 +4162,7 @@ class SystemSettings(pulumi.CustomResource):
             __props__.__dict__["ike_session_resume"] = ike_session_resume
             __props__.__dict__["implicit_allow_dns"] = implicit_allow_dns
             __props__.__dict__["inspection_mode"] = inspection_mode
+            __props__.__dict__["internet_service_database_cache"] = internet_service_database_cache
             __props__.__dict__["ip"] = ip
             __props__.__dict__["ip6"] = ip6
             __props__.__dict__["lan_extension_controller_addr"] = lan_extension_controller_addr
@@ -4046,6 +4235,7 @@ class SystemSettings(pulumi.CustomResource):
             default_policy_expiry_days: Optional[pulumi.Input[int]] = None,
             default_voip_alg_mode: Optional[pulumi.Input[str]] = None,
             deny_tcp_with_icmp: Optional[pulumi.Input[str]] = None,
+            detect_unknown_esp: Optional[pulumi.Input[str]] = None,
             device: Optional[pulumi.Input[str]] = None,
             dhcp6_server_ip: Optional[pulumi.Input[str]] = None,
             dhcp_proxy: Optional[pulumi.Input[str]] = None,
@@ -4063,6 +4253,7 @@ class SystemSettings(pulumi.CustomResource):
             fw_session_hairpin: Optional[pulumi.Input[str]] = None,
             gateway: Optional[pulumi.Input[str]] = None,
             gateway6: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             gui_advanced_policy: Optional[pulumi.Input[str]] = None,
             gui_advanced_wireless_features: Optional[pulumi.Input[str]] = None,
             gui_allow_unnamed_policy: Optional[pulumi.Input[str]] = None,
@@ -4072,10 +4263,12 @@ class SystemSettings(pulumi.CustomResource):
             gui_default_policy_columns: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSettingsGuiDefaultPolicyColumnArgs']]]]] = None,
             gui_dhcp_advanced: Optional[pulumi.Input[str]] = None,
             gui_dlp: Optional[pulumi.Input[str]] = None,
+            gui_dlp_profile: Optional[pulumi.Input[str]] = None,
             gui_dns_database: Optional[pulumi.Input[str]] = None,
             gui_dnsfilter: Optional[pulumi.Input[str]] = None,
             gui_domain_ip_reputation: Optional[pulumi.Input[str]] = None,
             gui_dos_policy: Optional[pulumi.Input[str]] = None,
+            gui_dynamic_device_os_id: Optional[pulumi.Input[str]] = None,
             gui_dynamic_profile_display: Optional[pulumi.Input[str]] = None,
             gui_dynamic_routing: Optional[pulumi.Input[str]] = None,
             gui_email_collection: Optional[pulumi.Input[str]] = None,
@@ -4102,7 +4295,9 @@ class SystemSettings(pulumi.CustomResource):
             gui_policy_based_ipsec: Optional[pulumi.Input[str]] = None,
             gui_policy_disclaimer: Optional[pulumi.Input[str]] = None,
             gui_policy_learning: Optional[pulumi.Input[str]] = None,
+            gui_proxy_inspection: Optional[pulumi.Input[str]] = None,
             gui_replacement_message_groups: Optional[pulumi.Input[str]] = None,
+            gui_route_tag_address_creation: Optional[pulumi.Input[str]] = None,
             gui_security_profile_group: Optional[pulumi.Input[str]] = None,
             gui_spamfilter: Optional[pulumi.Input[str]] = None,
             gui_sslvpn_personal_bookmarks: Optional[pulumi.Input[str]] = None,
@@ -4130,6 +4325,7 @@ class SystemSettings(pulumi.CustomResource):
             ike_session_resume: Optional[pulumi.Input[str]] = None,
             implicit_allow_dns: Optional[pulumi.Input[str]] = None,
             inspection_mode: Optional[pulumi.Input[str]] = None,
+            internet_service_database_cache: Optional[pulumi.Input[str]] = None,
             ip: Optional[pulumi.Input[str]] = None,
             ip6: Optional[pulumi.Input[str]] = None,
             lan_extension_controller_addr: Optional[pulumi.Input[str]] = None,
@@ -4204,6 +4400,7 @@ class SystemSettings(pulumi.CustomResource):
         __props__.__dict__["default_policy_expiry_days"] = default_policy_expiry_days
         __props__.__dict__["default_voip_alg_mode"] = default_voip_alg_mode
         __props__.__dict__["deny_tcp_with_icmp"] = deny_tcp_with_icmp
+        __props__.__dict__["detect_unknown_esp"] = detect_unknown_esp
         __props__.__dict__["device"] = device
         __props__.__dict__["dhcp6_server_ip"] = dhcp6_server_ip
         __props__.__dict__["dhcp_proxy"] = dhcp_proxy
@@ -4221,6 +4418,7 @@ class SystemSettings(pulumi.CustomResource):
         __props__.__dict__["fw_session_hairpin"] = fw_session_hairpin
         __props__.__dict__["gateway"] = gateway
         __props__.__dict__["gateway6"] = gateway6
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["gui_advanced_policy"] = gui_advanced_policy
         __props__.__dict__["gui_advanced_wireless_features"] = gui_advanced_wireless_features
         __props__.__dict__["gui_allow_unnamed_policy"] = gui_allow_unnamed_policy
@@ -4230,10 +4428,12 @@ class SystemSettings(pulumi.CustomResource):
         __props__.__dict__["gui_default_policy_columns"] = gui_default_policy_columns
         __props__.__dict__["gui_dhcp_advanced"] = gui_dhcp_advanced
         __props__.__dict__["gui_dlp"] = gui_dlp
+        __props__.__dict__["gui_dlp_profile"] = gui_dlp_profile
         __props__.__dict__["gui_dns_database"] = gui_dns_database
         __props__.__dict__["gui_dnsfilter"] = gui_dnsfilter
         __props__.__dict__["gui_domain_ip_reputation"] = gui_domain_ip_reputation
         __props__.__dict__["gui_dos_policy"] = gui_dos_policy
+        __props__.__dict__["gui_dynamic_device_os_id"] = gui_dynamic_device_os_id
         __props__.__dict__["gui_dynamic_profile_display"] = gui_dynamic_profile_display
         __props__.__dict__["gui_dynamic_routing"] = gui_dynamic_routing
         __props__.__dict__["gui_email_collection"] = gui_email_collection
@@ -4260,7 +4460,9 @@ class SystemSettings(pulumi.CustomResource):
         __props__.__dict__["gui_policy_based_ipsec"] = gui_policy_based_ipsec
         __props__.__dict__["gui_policy_disclaimer"] = gui_policy_disclaimer
         __props__.__dict__["gui_policy_learning"] = gui_policy_learning
+        __props__.__dict__["gui_proxy_inspection"] = gui_proxy_inspection
         __props__.__dict__["gui_replacement_message_groups"] = gui_replacement_message_groups
+        __props__.__dict__["gui_route_tag_address_creation"] = gui_route_tag_address_creation
         __props__.__dict__["gui_security_profile_group"] = gui_security_profile_group
         __props__.__dict__["gui_spamfilter"] = gui_spamfilter
         __props__.__dict__["gui_sslvpn_personal_bookmarks"] = gui_sslvpn_personal_bookmarks
@@ -4288,6 +4490,7 @@ class SystemSettings(pulumi.CustomResource):
         __props__.__dict__["ike_session_resume"] = ike_session_resume
         __props__.__dict__["implicit_allow_dns"] = implicit_allow_dns
         __props__.__dict__["inspection_mode"] = inspection_mode
+        __props__.__dict__["internet_service_database_cache"] = internet_service_database_cache
         __props__.__dict__["ip"] = ip
         __props__.__dict__["ip6"] = ip6
         __props__.__dict__["lan_extension_controller_addr"] = lan_extension_controller_addr
@@ -4441,6 +4644,11 @@ class SystemSettings(pulumi.CustomResource):
         return pulumi.get(self, "deny_tcp_with_icmp")
 
     @property
+    @pulumi.getter(name="detectUnknownEsp")
+    def detect_unknown_esp(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "detect_unknown_esp")
+
+    @property
     @pulumi.getter
     def device(self) -> pulumi.Output[str]:
         return pulumi.get(self, "device")
@@ -4526,6 +4734,11 @@ class SystemSettings(pulumi.CustomResource):
         return pulumi.get(self, "gateway6")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter(name="guiAdvancedPolicy")
     def gui_advanced_policy(self) -> pulumi.Output[str]:
         return pulumi.get(self, "gui_advanced_policy")
@@ -4571,6 +4784,11 @@ class SystemSettings(pulumi.CustomResource):
         return pulumi.get(self, "gui_dlp")
 
     @property
+    @pulumi.getter(name="guiDlpProfile")
+    def gui_dlp_profile(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "gui_dlp_profile")
+
+    @property
     @pulumi.getter(name="guiDnsDatabase")
     def gui_dns_database(self) -> pulumi.Output[str]:
         return pulumi.get(self, "gui_dns_database")
@@ -4589,6 +4807,11 @@ class SystemSettings(pulumi.CustomResource):
     @pulumi.getter(name="guiDosPolicy")
     def gui_dos_policy(self) -> pulumi.Output[str]:
         return pulumi.get(self, "gui_dos_policy")
+
+    @property
+    @pulumi.getter(name="guiDynamicDeviceOsId")
+    def gui_dynamic_device_os_id(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "gui_dynamic_device_os_id")
 
     @property
     @pulumi.getter(name="guiDynamicProfileDisplay")
@@ -4721,9 +4944,19 @@ class SystemSettings(pulumi.CustomResource):
         return pulumi.get(self, "gui_policy_learning")
 
     @property
+    @pulumi.getter(name="guiProxyInspection")
+    def gui_proxy_inspection(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "gui_proxy_inspection")
+
+    @property
     @pulumi.getter(name="guiReplacementMessageGroups")
     def gui_replacement_message_groups(self) -> pulumi.Output[str]:
         return pulumi.get(self, "gui_replacement_message_groups")
+
+    @property
+    @pulumi.getter(name="guiRouteTagAddressCreation")
+    def gui_route_tag_address_creation(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "gui_route_tag_address_creation")
 
     @property
     @pulumi.getter(name="guiSecurityProfileGroup")
@@ -4859,6 +5092,11 @@ class SystemSettings(pulumi.CustomResource):
     @pulumi.getter(name="inspectionMode")
     def inspection_mode(self) -> pulumi.Output[str]:
         return pulumi.get(self, "inspection_mode")
+
+    @property
+    @pulumi.getter(name="internetServiceDatabaseCache")
+    def internet_service_database_cache(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "internet_service_database_cache")
 
     @property
     @pulumi.getter

@@ -39,6 +39,7 @@ export class ExtenderControllerExtender1 extends pulumi.CustomResource {
     public readonly description!: pulumi.Output<string>;
     public readonly extName!: pulumi.Output<string>;
     public readonly fosid!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly loginPassword!: pulumi.Output<string | undefined>;
     public readonly modem1!: pulumi.Output<outputs.ExtenderControllerExtender1Modem1>;
     public readonly modem2!: pulumi.Output<outputs.ExtenderControllerExtender1Modem2>;
@@ -64,6 +65,7 @@ export class ExtenderControllerExtender1 extends pulumi.CustomResource {
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["extName"] = state ? state.extName : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["loginPassword"] = state ? state.loginPassword : undefined;
             resourceInputs["modem1"] = state ? state.modem1 : undefined;
             resourceInputs["modem2"] = state ? state.modem2 : undefined;
@@ -80,6 +82,7 @@ export class ExtenderControllerExtender1 extends pulumi.CustomResource {
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["extName"] = args ? args.extName : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["loginPassword"] = args?.loginPassword ? pulumi.secret(args.loginPassword) : undefined;
             resourceInputs["modem1"] = args ? args.modem1 : undefined;
             resourceInputs["modem2"] = args ? args.modem2 : undefined;
@@ -103,6 +106,7 @@ export interface ExtenderControllerExtender1State {
     description?: pulumi.Input<string>;
     extName?: pulumi.Input<string>;
     fosid?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     loginPassword?: pulumi.Input<string>;
     modem1?: pulumi.Input<inputs.ExtenderControllerExtender1Modem1>;
     modem2?: pulumi.Input<inputs.ExtenderControllerExtender1Modem2>;
@@ -120,6 +124,7 @@ export interface ExtenderControllerExtender1Args {
     description?: pulumi.Input<string>;
     extName?: pulumi.Input<string>;
     fosid?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     loginPassword?: pulumi.Input<string>;
     modem1?: pulumi.Input<inputs.ExtenderControllerExtender1Modem1>;
     modem2?: pulumi.Input<inputs.ExtenderControllerExtender1Modem2>;

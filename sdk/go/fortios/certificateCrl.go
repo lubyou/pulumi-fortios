@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -44,7 +45,7 @@ func NewCertificateCrl(ctx *pulumi.Context,
 		"ldapPassword",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource CertificateCrl
 	err := ctx.RegisterResource("fortios:index/certificateCrl:CertificateCrl", name, args, &resource, opts...)
 	if err != nil {

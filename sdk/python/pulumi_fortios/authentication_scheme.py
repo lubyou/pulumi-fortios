@@ -21,6 +21,7 @@ class AuthenticationSchemeArgs:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fsso_agent_for_ntlm: Optional[pulumi.Input[str]] = None,
                  fsso_guest: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  kerberos_keytab: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  negotiate_ntlm: Optional[pulumi.Input[str]] = None,
@@ -43,6 +44,8 @@ class AuthenticationSchemeArgs:
             pulumi.set(__self__, "fsso_agent_for_ntlm", fsso_agent_for_ntlm)
         if fsso_guest is not None:
             pulumi.set(__self__, "fsso_guest", fsso_guest)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if kerberos_keytab is not None:
             pulumi.set(__self__, "kerberos_keytab", kerberos_keytab)
         if name is not None:
@@ -108,6 +111,15 @@ class AuthenticationSchemeArgs:
     @fsso_guest.setter
     def fsso_guest(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fsso_guest", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="kerberosKeytab")
@@ -207,6 +219,7 @@ class _AuthenticationSchemeState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fsso_agent_for_ntlm: Optional[pulumi.Input[str]] = None,
                  fsso_guest: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  kerberos_keytab: Optional[pulumi.Input[str]] = None,
                  method: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -229,6 +242,8 @@ class _AuthenticationSchemeState:
             pulumi.set(__self__, "fsso_agent_for_ntlm", fsso_agent_for_ntlm)
         if fsso_guest is not None:
             pulumi.set(__self__, "fsso_guest", fsso_guest)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if kerberos_keytab is not None:
             pulumi.set(__self__, "kerberos_keytab", kerberos_keytab)
         if method is not None:
@@ -287,6 +302,15 @@ class _AuthenticationSchemeState:
     @fsso_guest.setter
     def fsso_guest(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fsso_guest", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="kerberosKeytab")
@@ -397,6 +421,7 @@ class AuthenticationScheme(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fsso_agent_for_ntlm: Optional[pulumi.Input[str]] = None,
                  fsso_guest: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  kerberos_keytab: Optional[pulumi.Input[str]] = None,
                  method: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -441,6 +466,7 @@ class AuthenticationScheme(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fsso_agent_for_ntlm: Optional[pulumi.Input[str]] = None,
                  fsso_guest: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  kerberos_keytab: Optional[pulumi.Input[str]] = None,
                  method: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -465,6 +491,7 @@ class AuthenticationScheme(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["fsso_agent_for_ntlm"] = fsso_agent_for_ntlm
             __props__.__dict__["fsso_guest"] = fsso_guest
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["kerberos_keytab"] = kerberos_keytab
             if method is None and not opts.urn:
                 raise TypeError("Missing required property 'method'")
@@ -492,6 +519,7 @@ class AuthenticationScheme(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             fsso_agent_for_ntlm: Optional[pulumi.Input[str]] = None,
             fsso_guest: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             kerberos_keytab: Optional[pulumi.Input[str]] = None,
             method: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -519,6 +547,7 @@ class AuthenticationScheme(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["fsso_agent_for_ntlm"] = fsso_agent_for_ntlm
         __props__.__dict__["fsso_guest"] = fsso_guest
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["kerberos_keytab"] = kerberos_keytab
         __props__.__dict__["method"] = method
         __props__.__dict__["name"] = name
@@ -551,6 +580,11 @@ class AuthenticationScheme(pulumi.CustomResource):
     @pulumi.getter(name="fssoGuest")
     def fsso_guest(self) -> pulumi.Output[str]:
         return pulumi.get(self, "fsso_guest")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="kerberosKeytab")

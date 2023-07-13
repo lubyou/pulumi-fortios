@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -27,7 +28,7 @@ func NewWebfilterIpsUrlfilterSetting6(ctx *pulumi.Context,
 		args = &WebfilterIpsUrlfilterSetting6Args{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WebfilterIpsUrlfilterSetting6
 	err := ctx.RegisterResource("fortios:index/webfilterIpsUrlfilterSetting6:WebfilterIpsUrlfilterSetting6", name, args, &resource, opts...)
 	if err != nil {

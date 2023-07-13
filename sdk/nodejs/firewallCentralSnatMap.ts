@@ -37,8 +37,10 @@ export class FirewallCentralSnatMap extends pulumi.CustomResource {
     public readonly comments!: pulumi.Output<string | undefined>;
     public readonly dstAddr6s!: pulumi.Output<outputs.FirewallCentralSnatMapDstAddr6[] | undefined>;
     public readonly dstAddrs!: pulumi.Output<outputs.FirewallCentralSnatMapDstAddr[]>;
+    public readonly dstPort!: pulumi.Output<string>;
     public readonly dstintfs!: pulumi.Output<outputs.FirewallCentralSnatMapDstintf[]>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly nat!: pulumi.Output<string>;
     public readonly nat46!: pulumi.Output<string>;
     public readonly nat64!: pulumi.Output<string>;
@@ -72,8 +74,10 @@ export class FirewallCentralSnatMap extends pulumi.CustomResource {
             resourceInputs["comments"] = state ? state.comments : undefined;
             resourceInputs["dstAddr6s"] = state ? state.dstAddr6s : undefined;
             resourceInputs["dstAddrs"] = state ? state.dstAddrs : undefined;
+            resourceInputs["dstPort"] = state ? state.dstPort : undefined;
             resourceInputs["dstintfs"] = state ? state.dstintfs : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["nat"] = state ? state.nat : undefined;
             resourceInputs["nat46"] = state ? state.nat46 : undefined;
             resourceInputs["nat64"] = state ? state.nat64 : undefined;
@@ -116,8 +120,10 @@ export class FirewallCentralSnatMap extends pulumi.CustomResource {
             resourceInputs["comments"] = args ? args.comments : undefined;
             resourceInputs["dstAddr6s"] = args ? args.dstAddr6s : undefined;
             resourceInputs["dstAddrs"] = args ? args.dstAddrs : undefined;
+            resourceInputs["dstPort"] = args ? args.dstPort : undefined;
             resourceInputs["dstintfs"] = args ? args.dstintfs : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["nat"] = args ? args.nat : undefined;
             resourceInputs["nat46"] = args ? args.nat46 : undefined;
             resourceInputs["nat64"] = args ? args.nat64 : undefined;
@@ -147,8 +153,10 @@ export interface FirewallCentralSnatMapState {
     comments?: pulumi.Input<string>;
     dstAddr6s?: pulumi.Input<pulumi.Input<inputs.FirewallCentralSnatMapDstAddr6>[]>;
     dstAddrs?: pulumi.Input<pulumi.Input<inputs.FirewallCentralSnatMapDstAddr>[]>;
+    dstPort?: pulumi.Input<string>;
     dstintfs?: pulumi.Input<pulumi.Input<inputs.FirewallCentralSnatMapDstintf>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     nat?: pulumi.Input<string>;
     nat46?: pulumi.Input<string>;
     nat64?: pulumi.Input<string>;
@@ -174,8 +182,10 @@ export interface FirewallCentralSnatMapArgs {
     comments?: pulumi.Input<string>;
     dstAddr6s?: pulumi.Input<pulumi.Input<inputs.FirewallCentralSnatMapDstAddr6>[]>;
     dstAddrs: pulumi.Input<pulumi.Input<inputs.FirewallCentralSnatMapDstAddr>[]>;
+    dstPort?: pulumi.Input<string>;
     dstintfs: pulumi.Input<pulumi.Input<inputs.FirewallCentralSnatMapDstintf>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     nat: pulumi.Input<string>;
     nat46?: pulumi.Input<string>;
     nat64?: pulumi.Input<string>;

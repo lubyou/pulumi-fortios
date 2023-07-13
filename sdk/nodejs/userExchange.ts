@@ -40,6 +40,7 @@ export class UserExchange extends pulumi.CustomResource {
     public readonly connectProtocol!: pulumi.Output<string>;
     public readonly domainName!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly httpAuthType!: pulumi.Output<string>;
     public readonly ip!: pulumi.Output<string>;
     public readonly kdcIps!: pulumi.Output<outputs.UserExchangeKdcIp[] | undefined>;
@@ -69,6 +70,7 @@ export class UserExchange extends pulumi.CustomResource {
             resourceInputs["connectProtocol"] = state ? state.connectProtocol : undefined;
             resourceInputs["domainName"] = state ? state.domainName : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["httpAuthType"] = state ? state.httpAuthType : undefined;
             resourceInputs["ip"] = state ? state.ip : undefined;
             resourceInputs["kdcIps"] = state ? state.kdcIps : undefined;
@@ -86,6 +88,7 @@ export class UserExchange extends pulumi.CustomResource {
             resourceInputs["connectProtocol"] = args ? args.connectProtocol : undefined;
             resourceInputs["domainName"] = args ? args.domainName : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["httpAuthType"] = args ? args.httpAuthType : undefined;
             resourceInputs["ip"] = args ? args.ip : undefined;
             resourceInputs["kdcIps"] = args ? args.kdcIps : undefined;
@@ -113,6 +116,7 @@ export interface UserExchangeState {
     connectProtocol?: pulumi.Input<string>;
     domainName?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     httpAuthType?: pulumi.Input<string>;
     ip?: pulumi.Input<string>;
     kdcIps?: pulumi.Input<pulumi.Input<inputs.UserExchangeKdcIp>[]>;
@@ -134,6 +138,7 @@ export interface UserExchangeArgs {
     connectProtocol?: pulumi.Input<string>;
     domainName?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     httpAuthType?: pulumi.Input<string>;
     ip?: pulumi.Input<string>;
     kdcIps?: pulumi.Input<pulumi.Input<inputs.UserExchangeKdcIp>[]>;

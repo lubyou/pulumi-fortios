@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,6 +16,7 @@ type RouterPrefixList6 struct {
 
 	Comments            pulumi.StringOutput              `pulumi:"comments"`
 	DynamicSortSubtable pulumi.StringPtrOutput           `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput           `pulumi:"getAllTables"`
 	Name                pulumi.StringOutput              `pulumi:"name"`
 	Rules               RouterPrefixList6RuleArrayOutput `pulumi:"rules"`
 	Vdomparam           pulumi.StringPtrOutput           `pulumi:"vdomparam"`
@@ -27,7 +29,7 @@ func NewRouterPrefixList6(ctx *pulumi.Context,
 		args = &RouterPrefixList6Args{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RouterPrefixList6
 	err := ctx.RegisterResource("fortios:index/routerPrefixList6:RouterPrefixList6", name, args, &resource, opts...)
 	if err != nil {
@@ -52,6 +54,7 @@ func GetRouterPrefixList6(ctx *pulumi.Context,
 type routerPrefixList6State struct {
 	Comments            *string                 `pulumi:"comments"`
 	DynamicSortSubtable *string                 `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                 `pulumi:"getAllTables"`
 	Name                *string                 `pulumi:"name"`
 	Rules               []RouterPrefixList6Rule `pulumi:"rules"`
 	Vdomparam           *string                 `pulumi:"vdomparam"`
@@ -60,6 +63,7 @@ type routerPrefixList6State struct {
 type RouterPrefixList6State struct {
 	Comments            pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Rules               RouterPrefixList6RuleArrayInput
 	Vdomparam           pulumi.StringPtrInput
@@ -72,6 +76,7 @@ func (RouterPrefixList6State) ElementType() reflect.Type {
 type routerPrefixList6Args struct {
 	Comments            *string                 `pulumi:"comments"`
 	DynamicSortSubtable *string                 `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                 `pulumi:"getAllTables"`
 	Name                *string                 `pulumi:"name"`
 	Rules               []RouterPrefixList6Rule `pulumi:"rules"`
 	Vdomparam           *string                 `pulumi:"vdomparam"`
@@ -81,6 +86,7 @@ type routerPrefixList6Args struct {
 type RouterPrefixList6Args struct {
 	Comments            pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Rules               RouterPrefixList6RuleArrayInput
 	Vdomparam           pulumi.StringPtrInput
@@ -179,6 +185,10 @@ func (o RouterPrefixList6Output) Comments() pulumi.StringOutput {
 
 func (o RouterPrefixList6Output) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RouterPrefixList6) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o RouterPrefixList6Output) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterPrefixList6) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o RouterPrefixList6Output) Name() pulumi.StringOutput {

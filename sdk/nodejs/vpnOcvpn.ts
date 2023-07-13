@@ -40,6 +40,7 @@ export class VpnOcvpn extends pulumi.CustomResource {
     public readonly eap!: pulumi.Output<string>;
     public readonly eapUsers!: pulumi.Output<string>;
     public readonly forticlientAccess!: pulumi.Output<outputs.VpnOcvpnForticlientAccess>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly ipAllocationBlock!: pulumi.Output<string>;
     public readonly multipath!: pulumi.Output<string>;
     public readonly nat!: pulumi.Output<string>;
@@ -71,6 +72,7 @@ export class VpnOcvpn extends pulumi.CustomResource {
             resourceInputs["eap"] = state ? state.eap : undefined;
             resourceInputs["eapUsers"] = state ? state.eapUsers : undefined;
             resourceInputs["forticlientAccess"] = state ? state.forticlientAccess : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["ipAllocationBlock"] = state ? state.ipAllocationBlock : undefined;
             resourceInputs["multipath"] = state ? state.multipath : undefined;
             resourceInputs["nat"] = state ? state.nat : undefined;
@@ -90,6 +92,7 @@ export class VpnOcvpn extends pulumi.CustomResource {
             resourceInputs["eap"] = args ? args.eap : undefined;
             resourceInputs["eapUsers"] = args ? args.eapUsers : undefined;
             resourceInputs["forticlientAccess"] = args ? args.forticlientAccess : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["ipAllocationBlock"] = args ? args.ipAllocationBlock : undefined;
             resourceInputs["multipath"] = args ? args.multipath : undefined;
             resourceInputs["nat"] = args ? args.nat : undefined;
@@ -117,6 +120,7 @@ export interface VpnOcvpnState {
     eap?: pulumi.Input<string>;
     eapUsers?: pulumi.Input<string>;
     forticlientAccess?: pulumi.Input<inputs.VpnOcvpnForticlientAccess>;
+    getAllTables?: pulumi.Input<string>;
     ipAllocationBlock?: pulumi.Input<string>;
     multipath?: pulumi.Input<string>;
     nat?: pulumi.Input<string>;
@@ -140,6 +144,7 @@ export interface VpnOcvpnArgs {
     eap?: pulumi.Input<string>;
     eapUsers?: pulumi.Input<string>;
     forticlientAccess?: pulumi.Input<inputs.VpnOcvpnForticlientAccess>;
+    getAllTables?: pulumi.Input<string>;
     ipAllocationBlock?: pulumi.Input<string>;
     multipath?: pulumi.Input<string>;
     nat?: pulumi.Input<string>;

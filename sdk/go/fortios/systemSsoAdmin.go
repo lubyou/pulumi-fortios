@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -16,6 +17,7 @@ type SystemSsoAdmin struct {
 
 	Accprofile                      pulumi.StringOutput           `pulumi:"accprofile"`
 	DynamicSortSubtable             pulumi.StringPtrOutput        `pulumi:"dynamicSortSubtable"`
+	GetAllTables                    pulumi.StringPtrOutput        `pulumi:"getAllTables"`
 	GuiIgnoreReleaseOverviewVersion pulumi.StringOutput           `pulumi:"guiIgnoreReleaseOverviewVersion"`
 	Name                            pulumi.StringOutput           `pulumi:"name"`
 	Vdomparam                       pulumi.StringPtrOutput        `pulumi:"vdomparam"`
@@ -32,7 +34,7 @@ func NewSystemSsoAdmin(ctx *pulumi.Context,
 	if args.Accprofile == nil {
 		return nil, errors.New("invalid value for required argument 'Accprofile'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemSsoAdmin
 	err := ctx.RegisterResource("fortios:index/systemSsoAdmin:SystemSsoAdmin", name, args, &resource, opts...)
 	if err != nil {
@@ -57,6 +59,7 @@ func GetSystemSsoAdmin(ctx *pulumi.Context,
 type systemSsoAdminState struct {
 	Accprofile                      *string              `pulumi:"accprofile"`
 	DynamicSortSubtable             *string              `pulumi:"dynamicSortSubtable"`
+	GetAllTables                    *string              `pulumi:"getAllTables"`
 	GuiIgnoreReleaseOverviewVersion *string              `pulumi:"guiIgnoreReleaseOverviewVersion"`
 	Name                            *string              `pulumi:"name"`
 	Vdomparam                       *string              `pulumi:"vdomparam"`
@@ -66,6 +69,7 @@ type systemSsoAdminState struct {
 type SystemSsoAdminState struct {
 	Accprofile                      pulumi.StringPtrInput
 	DynamicSortSubtable             pulumi.StringPtrInput
+	GetAllTables                    pulumi.StringPtrInput
 	GuiIgnoreReleaseOverviewVersion pulumi.StringPtrInput
 	Name                            pulumi.StringPtrInput
 	Vdomparam                       pulumi.StringPtrInput
@@ -79,6 +83,7 @@ func (SystemSsoAdminState) ElementType() reflect.Type {
 type systemSsoAdminArgs struct {
 	Accprofile                      string               `pulumi:"accprofile"`
 	DynamicSortSubtable             *string              `pulumi:"dynamicSortSubtable"`
+	GetAllTables                    *string              `pulumi:"getAllTables"`
 	GuiIgnoreReleaseOverviewVersion *string              `pulumi:"guiIgnoreReleaseOverviewVersion"`
 	Name                            *string              `pulumi:"name"`
 	Vdomparam                       *string              `pulumi:"vdomparam"`
@@ -89,6 +94,7 @@ type systemSsoAdminArgs struct {
 type SystemSsoAdminArgs struct {
 	Accprofile                      pulumi.StringInput
 	DynamicSortSubtable             pulumi.StringPtrInput
+	GetAllTables                    pulumi.StringPtrInput
 	GuiIgnoreReleaseOverviewVersion pulumi.StringPtrInput
 	Name                            pulumi.StringPtrInput
 	Vdomparam                       pulumi.StringPtrInput
@@ -188,6 +194,10 @@ func (o SystemSsoAdminOutput) Accprofile() pulumi.StringOutput {
 
 func (o SystemSsoAdminOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SystemSsoAdmin) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemSsoAdminOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemSsoAdmin) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemSsoAdminOutput) GuiIgnoreReleaseOverviewVersion() pulumi.StringOutput {

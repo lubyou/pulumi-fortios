@@ -22,7 +22,7 @@ class GetFirewallPolicyResult:
     """
     A collection of values returned by GetFirewallPolicy.
     """
-    def __init__(__self__, action=None, anti_replay=None, app_categories=None, app_groups=None, application_list=None, applications=None, auth_cert=None, auth_path=None, auth_redirect_addr=None, auto_asic_offload=None, av_profile=None, block_notification=None, captive_portal_exempt=None, capture_packet=None, cifs_profile=None, comments=None, custom_log_fields=None, decrypted_traffic_mirror=None, delay_tcp_npu_session=None, devices=None, diffserv_copy=None, diffserv_forward=None, diffserv_reverse=None, diffservcode_forward=None, diffservcode_rev=None, disclaimer=None, dlp_profile=None, dlp_sensor=None, dnsfilter_profile=None, dsri=None, dstaddr6_negate=None, dstaddr6s=None, dstaddr_negate=None, dstaddrs=None, dstintfs=None, dynamic_shaping=None, email_collect=None, emailfilter_profile=None, fec=None, file_filter_profile=None, firewall_session_dirty=None, fixedport=None, fsso=None, fsso_agent_for_ntlm=None, fsso_groups=None, geoip_anycast=None, geoip_match=None, global_label=None, groups=None, http_policy_redirect=None, icap_profile=None, id=None, identity_based_route=None, inbound=None, inspection_mode=None, internet_service=None, internet_service6=None, internet_service6_custom_groups=None, internet_service6_customs=None, internet_service6_groups=None, internet_service6_names=None, internet_service6_negate=None, internet_service6_src=None, internet_service6_src_custom_groups=None, internet_service6_src_customs=None, internet_service6_src_groups=None, internet_service6_src_names=None, internet_service6_src_negate=None, internet_service_custom_groups=None, internet_service_customs=None, internet_service_groups=None, internet_service_ids=None, internet_service_names=None, internet_service_negate=None, internet_service_src=None, internet_service_src_custom_groups=None, internet_service_src_customs=None, internet_service_src_groups=None, internet_service_src_ids=None, internet_service_src_names=None, internet_service_src_negate=None, ippool=None, ips_sensor=None, label=None, learning_mode=None, logtraffic=None, logtraffic_start=None, match_vip=None, match_vip_only=None, name=None, nat=None, nat46=None, nat64=None, natinbound=None, natip=None, natoutbound=None, network_service_dynamics=None, network_service_src_dynamics=None, np_acceleration=None, ntlm=None, ntlm_enabled_browsers=None, ntlm_guest=None, outbound=None, passive_wan_health_measurement=None, per_ip_shaper=None, permit_any_host=None, permit_stun_host=None, policy_expiry=None, policy_expiry_date=None, policyid=None, poolname6s=None, poolnames=None, profile_group=None, profile_protocol_options=None, profile_type=None, radius_mac_auth_bypass=None, redirect_url=None, replacemsg_override_group=None, reputation_direction=None, reputation_direction6=None, reputation_minimum=None, reputation_minimum6=None, rsso=None, rtp_addrs=None, rtp_nat=None, scan_botnet_connections=None, schedule=None, schedule_timeout=None, sctp_filter_profile=None, send_deny_packet=None, service_negate=None, services=None, session_ttl=None, sgt_check=None, sgts=None, spamfilter_profile=None, src_vendor_macs=None, srcaddr6_negate=None, srcaddr6s=None, srcaddr_negate=None, srcaddrs=None, srcintfs=None, ssh_filter_profile=None, ssh_policy_redirect=None, ssl_mirror=None, ssl_mirror_intfs=None, ssl_ssh_profile=None, status=None, tcp_mss_receiver=None, tcp_mss_sender=None, tcp_session_without_syn=None, timeout_send_rst=None, tos=None, tos_mask=None, tos_negate=None, traffic_shaper=None, traffic_shaper_reverse=None, url_categories=None, users=None, utm_status=None, uuid=None, vdomparam=None, videofilter_profile=None, vlan_cos_fwd=None, vlan_cos_rev=None, vlan_filter=None, voip_profile=None, vpntunnel=None, waf_profile=None, wanopt=None, wanopt_detection=None, wanopt_passive_opt=None, wanopt_peer=None, wanopt_profile=None, wccp=None, webcache=None, webcache_https=None, webfilter_profile=None, webproxy_forward_server=None, webproxy_profile=None, wsso=None, ztna_ems_tags=None, ztna_geo_tags=None, ztna_status=None):
+    def __init__(__self__, action=None, anti_replay=None, app_categories=None, app_groups=None, application_list=None, applications=None, auth_cert=None, auth_path=None, auth_redirect_addr=None, auto_asic_offload=None, av_profile=None, block_notification=None, captive_portal_exempt=None, capture_packet=None, cifs_profile=None, comments=None, custom_log_fields=None, decrypted_traffic_mirror=None, delay_tcp_npu_session=None, devices=None, diffserv_copy=None, diffserv_forward=None, diffserv_reverse=None, diffservcode_forward=None, diffservcode_rev=None, disclaimer=None, dlp_profile=None, dlp_sensor=None, dnsfilter_profile=None, dsri=None, dstaddr6_negate=None, dstaddr6s=None, dstaddr_negate=None, dstaddrs=None, dstintfs=None, dynamic_shaping=None, email_collect=None, emailfilter_profile=None, fec=None, file_filter_profile=None, firewall_session_dirty=None, fixedport=None, fsso=None, fsso_agent_for_ntlm=None, fsso_groups=None, geoip_anycast=None, geoip_match=None, global_label=None, groups=None, http_policy_redirect=None, icap_profile=None, id=None, identity_based_route=None, inbound=None, inspection_mode=None, internet_service=None, internet_service6=None, internet_service6_custom_groups=None, internet_service6_customs=None, internet_service6_groups=None, internet_service6_names=None, internet_service6_negate=None, internet_service6_src=None, internet_service6_src_custom_groups=None, internet_service6_src_customs=None, internet_service6_src_groups=None, internet_service6_src_names=None, internet_service6_src_negate=None, internet_service_custom_groups=None, internet_service_customs=None, internet_service_groups=None, internet_service_ids=None, internet_service_names=None, internet_service_negate=None, internet_service_src=None, internet_service_src_custom_groups=None, internet_service_src_customs=None, internet_service_src_groups=None, internet_service_src_ids=None, internet_service_src_names=None, internet_service_src_negate=None, ippool=None, ips_sensor=None, ips_voip_filter=None, label=None, learning_mode=None, logtraffic=None, logtraffic_start=None, match_vip=None, match_vip_only=None, name=None, nat=None, nat46=None, nat64=None, natinbound=None, natip=None, natoutbound=None, network_service_dynamics=None, network_service_src_dynamics=None, np_acceleration=None, ntlm=None, ntlm_enabled_browsers=None, ntlm_guest=None, outbound=None, passive_wan_health_measurement=None, pcp_inbound=None, pcp_outbound=None, pcp_poolnames=None, per_ip_shaper=None, permit_any_host=None, permit_stun_host=None, policy_expiry=None, policy_expiry_date=None, policy_expiry_date_utc=None, policyid=None, poolname6s=None, poolnames=None, profile_group=None, profile_protocol_options=None, profile_type=None, radius_mac_auth_bypass=None, redirect_url=None, replacemsg_override_group=None, reputation_direction=None, reputation_direction6=None, reputation_minimum=None, reputation_minimum6=None, rsso=None, rtp_addrs=None, rtp_nat=None, scan_botnet_connections=None, schedule=None, schedule_timeout=None, sctp_filter_profile=None, send_deny_packet=None, service_negate=None, services=None, session_ttl=None, sgt_check=None, sgts=None, spamfilter_profile=None, src_vendor_macs=None, srcaddr6_negate=None, srcaddr6s=None, srcaddr_negate=None, srcaddrs=None, srcintfs=None, ssh_filter_profile=None, ssh_policy_redirect=None, ssl_mirror=None, ssl_mirror_intfs=None, ssl_ssh_profile=None, status=None, tcp_mss_receiver=None, tcp_mss_sender=None, tcp_session_without_syn=None, timeout_send_rst=None, tos=None, tos_mask=None, tos_negate=None, traffic_shaper=None, traffic_shaper_reverse=None, url_categories=None, users=None, utm_status=None, uuid=None, vdomparam=None, videofilter_profile=None, vlan_cos_fwd=None, vlan_cos_rev=None, vlan_filter=None, voip_profile=None, vpntunnel=None, waf_profile=None, wanopt=None, wanopt_detection=None, wanopt_passive_opt=None, wanopt_peer=None, wanopt_profile=None, wccp=None, webcache=None, webcache_https=None, webfilter_profile=None, webproxy_forward_server=None, webproxy_profile=None, wsso=None, ztna_device_ownership=None, ztna_ems_tag_secondaries=None, ztna_ems_tags=None, ztna_geo_tags=None, ztna_policy_redirect=None, ztna_status=None, ztna_tags_match_logic=None):
         if action and not isinstance(action, str):
             raise TypeError("Expected argument 'action' to be a str")
         pulumi.set(__self__, "action", action)
@@ -272,6 +272,9 @@ class GetFirewallPolicyResult:
         if ips_sensor and not isinstance(ips_sensor, str):
             raise TypeError("Expected argument 'ips_sensor' to be a str")
         pulumi.set(__self__, "ips_sensor", ips_sensor)
+        if ips_voip_filter and not isinstance(ips_voip_filter, str):
+            raise TypeError("Expected argument 'ips_voip_filter' to be a str")
+        pulumi.set(__self__, "ips_voip_filter", ips_voip_filter)
         if label and not isinstance(label, str):
             raise TypeError("Expected argument 'label' to be a str")
         pulumi.set(__self__, "label", label)
@@ -335,6 +338,15 @@ class GetFirewallPolicyResult:
         if passive_wan_health_measurement and not isinstance(passive_wan_health_measurement, str):
             raise TypeError("Expected argument 'passive_wan_health_measurement' to be a str")
         pulumi.set(__self__, "passive_wan_health_measurement", passive_wan_health_measurement)
+        if pcp_inbound and not isinstance(pcp_inbound, str):
+            raise TypeError("Expected argument 'pcp_inbound' to be a str")
+        pulumi.set(__self__, "pcp_inbound", pcp_inbound)
+        if pcp_outbound and not isinstance(pcp_outbound, str):
+            raise TypeError("Expected argument 'pcp_outbound' to be a str")
+        pulumi.set(__self__, "pcp_outbound", pcp_outbound)
+        if pcp_poolnames and not isinstance(pcp_poolnames, list):
+            raise TypeError("Expected argument 'pcp_poolnames' to be a list")
+        pulumi.set(__self__, "pcp_poolnames", pcp_poolnames)
         if per_ip_shaper and not isinstance(per_ip_shaper, str):
             raise TypeError("Expected argument 'per_ip_shaper' to be a str")
         pulumi.set(__self__, "per_ip_shaper", per_ip_shaper)
@@ -350,6 +362,9 @@ class GetFirewallPolicyResult:
         if policy_expiry_date and not isinstance(policy_expiry_date, str):
             raise TypeError("Expected argument 'policy_expiry_date' to be a str")
         pulumi.set(__self__, "policy_expiry_date", policy_expiry_date)
+        if policy_expiry_date_utc and not isinstance(policy_expiry_date_utc, str):
+            raise TypeError("Expected argument 'policy_expiry_date_utc' to be a str")
+        pulumi.set(__self__, "policy_expiry_date_utc", policy_expiry_date_utc)
         if policyid and not isinstance(policyid, int):
             raise TypeError("Expected argument 'policyid' to be a int")
         pulumi.set(__self__, "policyid", policyid)
@@ -566,15 +581,27 @@ class GetFirewallPolicyResult:
         if wsso and not isinstance(wsso, str):
             raise TypeError("Expected argument 'wsso' to be a str")
         pulumi.set(__self__, "wsso", wsso)
+        if ztna_device_ownership and not isinstance(ztna_device_ownership, str):
+            raise TypeError("Expected argument 'ztna_device_ownership' to be a str")
+        pulumi.set(__self__, "ztna_device_ownership", ztna_device_ownership)
+        if ztna_ems_tag_secondaries and not isinstance(ztna_ems_tag_secondaries, list):
+            raise TypeError("Expected argument 'ztna_ems_tag_secondaries' to be a list")
+        pulumi.set(__self__, "ztna_ems_tag_secondaries", ztna_ems_tag_secondaries)
         if ztna_ems_tags and not isinstance(ztna_ems_tags, list):
             raise TypeError("Expected argument 'ztna_ems_tags' to be a list")
         pulumi.set(__self__, "ztna_ems_tags", ztna_ems_tags)
         if ztna_geo_tags and not isinstance(ztna_geo_tags, list):
             raise TypeError("Expected argument 'ztna_geo_tags' to be a list")
         pulumi.set(__self__, "ztna_geo_tags", ztna_geo_tags)
+        if ztna_policy_redirect and not isinstance(ztna_policy_redirect, str):
+            raise TypeError("Expected argument 'ztna_policy_redirect' to be a str")
+        pulumi.set(__self__, "ztna_policy_redirect", ztna_policy_redirect)
         if ztna_status and not isinstance(ztna_status, str):
             raise TypeError("Expected argument 'ztna_status' to be a str")
         pulumi.set(__self__, "ztna_status", ztna_status)
+        if ztna_tags_match_logic and not isinstance(ztna_tags_match_logic, str):
+            raise TypeError("Expected argument 'ztna_tags_match_logic' to be a str")
+        pulumi.set(__self__, "ztna_tags_match_logic", ztna_tags_match_logic)
 
     @property
     @pulumi.getter
@@ -995,6 +1022,11 @@ class GetFirewallPolicyResult:
         return pulumi.get(self, "ips_sensor")
 
     @property
+    @pulumi.getter(name="ipsVoipFilter")
+    def ips_voip_filter(self) -> str:
+        return pulumi.get(self, "ips_voip_filter")
+
+    @property
     @pulumi.getter
     def label(self) -> str:
         return pulumi.get(self, "label")
@@ -1100,6 +1132,21 @@ class GetFirewallPolicyResult:
         return pulumi.get(self, "passive_wan_health_measurement")
 
     @property
+    @pulumi.getter(name="pcpInbound")
+    def pcp_inbound(self) -> str:
+        return pulumi.get(self, "pcp_inbound")
+
+    @property
+    @pulumi.getter(name="pcpOutbound")
+    def pcp_outbound(self) -> str:
+        return pulumi.get(self, "pcp_outbound")
+
+    @property
+    @pulumi.getter(name="pcpPoolnames")
+    def pcp_poolnames(self) -> Sequence['outputs.GetFirewallPolicyPcpPoolnameResult']:
+        return pulumi.get(self, "pcp_poolnames")
+
+    @property
     @pulumi.getter(name="perIpShaper")
     def per_ip_shaper(self) -> str:
         return pulumi.get(self, "per_ip_shaper")
@@ -1123,6 +1170,11 @@ class GetFirewallPolicyResult:
     @pulumi.getter(name="policyExpiryDate")
     def policy_expiry_date(self) -> str:
         return pulumi.get(self, "policy_expiry_date")
+
+    @property
+    @pulumi.getter(name="policyExpiryDateUtc")
+    def policy_expiry_date_utc(self) -> str:
+        return pulumi.get(self, "policy_expiry_date_utc")
 
     @property
     @pulumi.getter
@@ -1485,6 +1537,16 @@ class GetFirewallPolicyResult:
         return pulumi.get(self, "wsso")
 
     @property
+    @pulumi.getter(name="ztnaDeviceOwnership")
+    def ztna_device_ownership(self) -> str:
+        return pulumi.get(self, "ztna_device_ownership")
+
+    @property
+    @pulumi.getter(name="ztnaEmsTagSecondaries")
+    def ztna_ems_tag_secondaries(self) -> Sequence['outputs.GetFirewallPolicyZtnaEmsTagSecondaryResult']:
+        return pulumi.get(self, "ztna_ems_tag_secondaries")
+
+    @property
     @pulumi.getter(name="ztnaEmsTags")
     def ztna_ems_tags(self) -> Sequence['outputs.GetFirewallPolicyZtnaEmsTagResult']:
         return pulumi.get(self, "ztna_ems_tags")
@@ -1495,9 +1557,19 @@ class GetFirewallPolicyResult:
         return pulumi.get(self, "ztna_geo_tags")
 
     @property
+    @pulumi.getter(name="ztnaPolicyRedirect")
+    def ztna_policy_redirect(self) -> str:
+        return pulumi.get(self, "ztna_policy_redirect")
+
+    @property
     @pulumi.getter(name="ztnaStatus")
     def ztna_status(self) -> str:
         return pulumi.get(self, "ztna_status")
+
+    @property
+    @pulumi.getter(name="ztnaTagsMatchLogic")
+    def ztna_tags_match_logic(self) -> str:
+        return pulumi.get(self, "ztna_tags_match_logic")
 
 
 class AwaitableGetFirewallPolicyResult(GetFirewallPolicyResult):
@@ -1589,6 +1661,7 @@ class AwaitableGetFirewallPolicyResult(GetFirewallPolicyResult):
             internet_service_src_negate=self.internet_service_src_negate,
             ippool=self.ippool,
             ips_sensor=self.ips_sensor,
+            ips_voip_filter=self.ips_voip_filter,
             label=self.label,
             learning_mode=self.learning_mode,
             logtraffic=self.logtraffic,
@@ -1610,11 +1683,15 @@ class AwaitableGetFirewallPolicyResult(GetFirewallPolicyResult):
             ntlm_guest=self.ntlm_guest,
             outbound=self.outbound,
             passive_wan_health_measurement=self.passive_wan_health_measurement,
+            pcp_inbound=self.pcp_inbound,
+            pcp_outbound=self.pcp_outbound,
+            pcp_poolnames=self.pcp_poolnames,
             per_ip_shaper=self.per_ip_shaper,
             permit_any_host=self.permit_any_host,
             permit_stun_host=self.permit_stun_host,
             policy_expiry=self.policy_expiry,
             policy_expiry_date=self.policy_expiry_date,
+            policy_expiry_date_utc=self.policy_expiry_date_utc,
             policyid=self.policyid,
             poolname6s=self.poolname6s,
             poolnames=self.poolnames,
@@ -1687,9 +1764,13 @@ class AwaitableGetFirewallPolicyResult(GetFirewallPolicyResult):
             webproxy_forward_server=self.webproxy_forward_server,
             webproxy_profile=self.webproxy_profile,
             wsso=self.wsso,
+            ztna_device_ownership=self.ztna_device_ownership,
+            ztna_ems_tag_secondaries=self.ztna_ems_tag_secondaries,
             ztna_ems_tags=self.ztna_ems_tags,
             ztna_geo_tags=self.ztna_geo_tags,
-            ztna_status=self.ztna_status)
+            ztna_policy_redirect=self.ztna_policy_redirect,
+            ztna_status=self.ztna_status,
+            ztna_tags_match_logic=self.ztna_tags_match_logic)
 
 
 def get_firewall_policy(policyid: Optional[int] = None,
@@ -1705,190 +1786,199 @@ def get_firewall_policy(policyid: Optional[int] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getFirewallPolicy:GetFirewallPolicy', __args__, opts=opts, typ=GetFirewallPolicyResult).value
 
     return AwaitableGetFirewallPolicyResult(
-        action=__ret__.action,
-        anti_replay=__ret__.anti_replay,
-        app_categories=__ret__.app_categories,
-        app_groups=__ret__.app_groups,
-        application_list=__ret__.application_list,
-        applications=__ret__.applications,
-        auth_cert=__ret__.auth_cert,
-        auth_path=__ret__.auth_path,
-        auth_redirect_addr=__ret__.auth_redirect_addr,
-        auto_asic_offload=__ret__.auto_asic_offload,
-        av_profile=__ret__.av_profile,
-        block_notification=__ret__.block_notification,
-        captive_portal_exempt=__ret__.captive_portal_exempt,
-        capture_packet=__ret__.capture_packet,
-        cifs_profile=__ret__.cifs_profile,
-        comments=__ret__.comments,
-        custom_log_fields=__ret__.custom_log_fields,
-        decrypted_traffic_mirror=__ret__.decrypted_traffic_mirror,
-        delay_tcp_npu_session=__ret__.delay_tcp_npu_session,
-        devices=__ret__.devices,
-        diffserv_copy=__ret__.diffserv_copy,
-        diffserv_forward=__ret__.diffserv_forward,
-        diffserv_reverse=__ret__.diffserv_reverse,
-        diffservcode_forward=__ret__.diffservcode_forward,
-        diffservcode_rev=__ret__.diffservcode_rev,
-        disclaimer=__ret__.disclaimer,
-        dlp_profile=__ret__.dlp_profile,
-        dlp_sensor=__ret__.dlp_sensor,
-        dnsfilter_profile=__ret__.dnsfilter_profile,
-        dsri=__ret__.dsri,
-        dstaddr6_negate=__ret__.dstaddr6_negate,
-        dstaddr6s=__ret__.dstaddr6s,
-        dstaddr_negate=__ret__.dstaddr_negate,
-        dstaddrs=__ret__.dstaddrs,
-        dstintfs=__ret__.dstintfs,
-        dynamic_shaping=__ret__.dynamic_shaping,
-        email_collect=__ret__.email_collect,
-        emailfilter_profile=__ret__.emailfilter_profile,
-        fec=__ret__.fec,
-        file_filter_profile=__ret__.file_filter_profile,
-        firewall_session_dirty=__ret__.firewall_session_dirty,
-        fixedport=__ret__.fixedport,
-        fsso=__ret__.fsso,
-        fsso_agent_for_ntlm=__ret__.fsso_agent_for_ntlm,
-        fsso_groups=__ret__.fsso_groups,
-        geoip_anycast=__ret__.geoip_anycast,
-        geoip_match=__ret__.geoip_match,
-        global_label=__ret__.global_label,
-        groups=__ret__.groups,
-        http_policy_redirect=__ret__.http_policy_redirect,
-        icap_profile=__ret__.icap_profile,
-        id=__ret__.id,
-        identity_based_route=__ret__.identity_based_route,
-        inbound=__ret__.inbound,
-        inspection_mode=__ret__.inspection_mode,
-        internet_service=__ret__.internet_service,
-        internet_service6=__ret__.internet_service6,
-        internet_service6_custom_groups=__ret__.internet_service6_custom_groups,
-        internet_service6_customs=__ret__.internet_service6_customs,
-        internet_service6_groups=__ret__.internet_service6_groups,
-        internet_service6_names=__ret__.internet_service6_names,
-        internet_service6_negate=__ret__.internet_service6_negate,
-        internet_service6_src=__ret__.internet_service6_src,
-        internet_service6_src_custom_groups=__ret__.internet_service6_src_custom_groups,
-        internet_service6_src_customs=__ret__.internet_service6_src_customs,
-        internet_service6_src_groups=__ret__.internet_service6_src_groups,
-        internet_service6_src_names=__ret__.internet_service6_src_names,
-        internet_service6_src_negate=__ret__.internet_service6_src_negate,
-        internet_service_custom_groups=__ret__.internet_service_custom_groups,
-        internet_service_customs=__ret__.internet_service_customs,
-        internet_service_groups=__ret__.internet_service_groups,
-        internet_service_ids=__ret__.internet_service_ids,
-        internet_service_names=__ret__.internet_service_names,
-        internet_service_negate=__ret__.internet_service_negate,
-        internet_service_src=__ret__.internet_service_src,
-        internet_service_src_custom_groups=__ret__.internet_service_src_custom_groups,
-        internet_service_src_customs=__ret__.internet_service_src_customs,
-        internet_service_src_groups=__ret__.internet_service_src_groups,
-        internet_service_src_ids=__ret__.internet_service_src_ids,
-        internet_service_src_names=__ret__.internet_service_src_names,
-        internet_service_src_negate=__ret__.internet_service_src_negate,
-        ippool=__ret__.ippool,
-        ips_sensor=__ret__.ips_sensor,
-        label=__ret__.label,
-        learning_mode=__ret__.learning_mode,
-        logtraffic=__ret__.logtraffic,
-        logtraffic_start=__ret__.logtraffic_start,
-        match_vip=__ret__.match_vip,
-        match_vip_only=__ret__.match_vip_only,
-        name=__ret__.name,
-        nat=__ret__.nat,
-        nat46=__ret__.nat46,
-        nat64=__ret__.nat64,
-        natinbound=__ret__.natinbound,
-        natip=__ret__.natip,
-        natoutbound=__ret__.natoutbound,
-        network_service_dynamics=__ret__.network_service_dynamics,
-        network_service_src_dynamics=__ret__.network_service_src_dynamics,
-        np_acceleration=__ret__.np_acceleration,
-        ntlm=__ret__.ntlm,
-        ntlm_enabled_browsers=__ret__.ntlm_enabled_browsers,
-        ntlm_guest=__ret__.ntlm_guest,
-        outbound=__ret__.outbound,
-        passive_wan_health_measurement=__ret__.passive_wan_health_measurement,
-        per_ip_shaper=__ret__.per_ip_shaper,
-        permit_any_host=__ret__.permit_any_host,
-        permit_stun_host=__ret__.permit_stun_host,
-        policy_expiry=__ret__.policy_expiry,
-        policy_expiry_date=__ret__.policy_expiry_date,
-        policyid=__ret__.policyid,
-        poolname6s=__ret__.poolname6s,
-        poolnames=__ret__.poolnames,
-        profile_group=__ret__.profile_group,
-        profile_protocol_options=__ret__.profile_protocol_options,
-        profile_type=__ret__.profile_type,
-        radius_mac_auth_bypass=__ret__.radius_mac_auth_bypass,
-        redirect_url=__ret__.redirect_url,
-        replacemsg_override_group=__ret__.replacemsg_override_group,
-        reputation_direction=__ret__.reputation_direction,
-        reputation_direction6=__ret__.reputation_direction6,
-        reputation_minimum=__ret__.reputation_minimum,
-        reputation_minimum6=__ret__.reputation_minimum6,
-        rsso=__ret__.rsso,
-        rtp_addrs=__ret__.rtp_addrs,
-        rtp_nat=__ret__.rtp_nat,
-        scan_botnet_connections=__ret__.scan_botnet_connections,
-        schedule=__ret__.schedule,
-        schedule_timeout=__ret__.schedule_timeout,
-        sctp_filter_profile=__ret__.sctp_filter_profile,
-        send_deny_packet=__ret__.send_deny_packet,
-        service_negate=__ret__.service_negate,
-        services=__ret__.services,
-        session_ttl=__ret__.session_ttl,
-        sgt_check=__ret__.sgt_check,
-        sgts=__ret__.sgts,
-        spamfilter_profile=__ret__.spamfilter_profile,
-        src_vendor_macs=__ret__.src_vendor_macs,
-        srcaddr6_negate=__ret__.srcaddr6_negate,
-        srcaddr6s=__ret__.srcaddr6s,
-        srcaddr_negate=__ret__.srcaddr_negate,
-        srcaddrs=__ret__.srcaddrs,
-        srcintfs=__ret__.srcintfs,
-        ssh_filter_profile=__ret__.ssh_filter_profile,
-        ssh_policy_redirect=__ret__.ssh_policy_redirect,
-        ssl_mirror=__ret__.ssl_mirror,
-        ssl_mirror_intfs=__ret__.ssl_mirror_intfs,
-        ssl_ssh_profile=__ret__.ssl_ssh_profile,
-        status=__ret__.status,
-        tcp_mss_receiver=__ret__.tcp_mss_receiver,
-        tcp_mss_sender=__ret__.tcp_mss_sender,
-        tcp_session_without_syn=__ret__.tcp_session_without_syn,
-        timeout_send_rst=__ret__.timeout_send_rst,
-        tos=__ret__.tos,
-        tos_mask=__ret__.tos_mask,
-        tos_negate=__ret__.tos_negate,
-        traffic_shaper=__ret__.traffic_shaper,
-        traffic_shaper_reverse=__ret__.traffic_shaper_reverse,
-        url_categories=__ret__.url_categories,
-        users=__ret__.users,
-        utm_status=__ret__.utm_status,
-        uuid=__ret__.uuid,
-        vdomparam=__ret__.vdomparam,
-        videofilter_profile=__ret__.videofilter_profile,
-        vlan_cos_fwd=__ret__.vlan_cos_fwd,
-        vlan_cos_rev=__ret__.vlan_cos_rev,
-        vlan_filter=__ret__.vlan_filter,
-        voip_profile=__ret__.voip_profile,
-        vpntunnel=__ret__.vpntunnel,
-        waf_profile=__ret__.waf_profile,
-        wanopt=__ret__.wanopt,
-        wanopt_detection=__ret__.wanopt_detection,
-        wanopt_passive_opt=__ret__.wanopt_passive_opt,
-        wanopt_peer=__ret__.wanopt_peer,
-        wanopt_profile=__ret__.wanopt_profile,
-        wccp=__ret__.wccp,
-        webcache=__ret__.webcache,
-        webcache_https=__ret__.webcache_https,
-        webfilter_profile=__ret__.webfilter_profile,
-        webproxy_forward_server=__ret__.webproxy_forward_server,
-        webproxy_profile=__ret__.webproxy_profile,
-        wsso=__ret__.wsso,
-        ztna_ems_tags=__ret__.ztna_ems_tags,
-        ztna_geo_tags=__ret__.ztna_geo_tags,
-        ztna_status=__ret__.ztna_status)
+        action=pulumi.get(__ret__, 'action'),
+        anti_replay=pulumi.get(__ret__, 'anti_replay'),
+        app_categories=pulumi.get(__ret__, 'app_categories'),
+        app_groups=pulumi.get(__ret__, 'app_groups'),
+        application_list=pulumi.get(__ret__, 'application_list'),
+        applications=pulumi.get(__ret__, 'applications'),
+        auth_cert=pulumi.get(__ret__, 'auth_cert'),
+        auth_path=pulumi.get(__ret__, 'auth_path'),
+        auth_redirect_addr=pulumi.get(__ret__, 'auth_redirect_addr'),
+        auto_asic_offload=pulumi.get(__ret__, 'auto_asic_offload'),
+        av_profile=pulumi.get(__ret__, 'av_profile'),
+        block_notification=pulumi.get(__ret__, 'block_notification'),
+        captive_portal_exempt=pulumi.get(__ret__, 'captive_portal_exempt'),
+        capture_packet=pulumi.get(__ret__, 'capture_packet'),
+        cifs_profile=pulumi.get(__ret__, 'cifs_profile'),
+        comments=pulumi.get(__ret__, 'comments'),
+        custom_log_fields=pulumi.get(__ret__, 'custom_log_fields'),
+        decrypted_traffic_mirror=pulumi.get(__ret__, 'decrypted_traffic_mirror'),
+        delay_tcp_npu_session=pulumi.get(__ret__, 'delay_tcp_npu_session'),
+        devices=pulumi.get(__ret__, 'devices'),
+        diffserv_copy=pulumi.get(__ret__, 'diffserv_copy'),
+        diffserv_forward=pulumi.get(__ret__, 'diffserv_forward'),
+        diffserv_reverse=pulumi.get(__ret__, 'diffserv_reverse'),
+        diffservcode_forward=pulumi.get(__ret__, 'diffservcode_forward'),
+        diffservcode_rev=pulumi.get(__ret__, 'diffservcode_rev'),
+        disclaimer=pulumi.get(__ret__, 'disclaimer'),
+        dlp_profile=pulumi.get(__ret__, 'dlp_profile'),
+        dlp_sensor=pulumi.get(__ret__, 'dlp_sensor'),
+        dnsfilter_profile=pulumi.get(__ret__, 'dnsfilter_profile'),
+        dsri=pulumi.get(__ret__, 'dsri'),
+        dstaddr6_negate=pulumi.get(__ret__, 'dstaddr6_negate'),
+        dstaddr6s=pulumi.get(__ret__, 'dstaddr6s'),
+        dstaddr_negate=pulumi.get(__ret__, 'dstaddr_negate'),
+        dstaddrs=pulumi.get(__ret__, 'dstaddrs'),
+        dstintfs=pulumi.get(__ret__, 'dstintfs'),
+        dynamic_shaping=pulumi.get(__ret__, 'dynamic_shaping'),
+        email_collect=pulumi.get(__ret__, 'email_collect'),
+        emailfilter_profile=pulumi.get(__ret__, 'emailfilter_profile'),
+        fec=pulumi.get(__ret__, 'fec'),
+        file_filter_profile=pulumi.get(__ret__, 'file_filter_profile'),
+        firewall_session_dirty=pulumi.get(__ret__, 'firewall_session_dirty'),
+        fixedport=pulumi.get(__ret__, 'fixedport'),
+        fsso=pulumi.get(__ret__, 'fsso'),
+        fsso_agent_for_ntlm=pulumi.get(__ret__, 'fsso_agent_for_ntlm'),
+        fsso_groups=pulumi.get(__ret__, 'fsso_groups'),
+        geoip_anycast=pulumi.get(__ret__, 'geoip_anycast'),
+        geoip_match=pulumi.get(__ret__, 'geoip_match'),
+        global_label=pulumi.get(__ret__, 'global_label'),
+        groups=pulumi.get(__ret__, 'groups'),
+        http_policy_redirect=pulumi.get(__ret__, 'http_policy_redirect'),
+        icap_profile=pulumi.get(__ret__, 'icap_profile'),
+        id=pulumi.get(__ret__, 'id'),
+        identity_based_route=pulumi.get(__ret__, 'identity_based_route'),
+        inbound=pulumi.get(__ret__, 'inbound'),
+        inspection_mode=pulumi.get(__ret__, 'inspection_mode'),
+        internet_service=pulumi.get(__ret__, 'internet_service'),
+        internet_service6=pulumi.get(__ret__, 'internet_service6'),
+        internet_service6_custom_groups=pulumi.get(__ret__, 'internet_service6_custom_groups'),
+        internet_service6_customs=pulumi.get(__ret__, 'internet_service6_customs'),
+        internet_service6_groups=pulumi.get(__ret__, 'internet_service6_groups'),
+        internet_service6_names=pulumi.get(__ret__, 'internet_service6_names'),
+        internet_service6_negate=pulumi.get(__ret__, 'internet_service6_negate'),
+        internet_service6_src=pulumi.get(__ret__, 'internet_service6_src'),
+        internet_service6_src_custom_groups=pulumi.get(__ret__, 'internet_service6_src_custom_groups'),
+        internet_service6_src_customs=pulumi.get(__ret__, 'internet_service6_src_customs'),
+        internet_service6_src_groups=pulumi.get(__ret__, 'internet_service6_src_groups'),
+        internet_service6_src_names=pulumi.get(__ret__, 'internet_service6_src_names'),
+        internet_service6_src_negate=pulumi.get(__ret__, 'internet_service6_src_negate'),
+        internet_service_custom_groups=pulumi.get(__ret__, 'internet_service_custom_groups'),
+        internet_service_customs=pulumi.get(__ret__, 'internet_service_customs'),
+        internet_service_groups=pulumi.get(__ret__, 'internet_service_groups'),
+        internet_service_ids=pulumi.get(__ret__, 'internet_service_ids'),
+        internet_service_names=pulumi.get(__ret__, 'internet_service_names'),
+        internet_service_negate=pulumi.get(__ret__, 'internet_service_negate'),
+        internet_service_src=pulumi.get(__ret__, 'internet_service_src'),
+        internet_service_src_custom_groups=pulumi.get(__ret__, 'internet_service_src_custom_groups'),
+        internet_service_src_customs=pulumi.get(__ret__, 'internet_service_src_customs'),
+        internet_service_src_groups=pulumi.get(__ret__, 'internet_service_src_groups'),
+        internet_service_src_ids=pulumi.get(__ret__, 'internet_service_src_ids'),
+        internet_service_src_names=pulumi.get(__ret__, 'internet_service_src_names'),
+        internet_service_src_negate=pulumi.get(__ret__, 'internet_service_src_negate'),
+        ippool=pulumi.get(__ret__, 'ippool'),
+        ips_sensor=pulumi.get(__ret__, 'ips_sensor'),
+        ips_voip_filter=pulumi.get(__ret__, 'ips_voip_filter'),
+        label=pulumi.get(__ret__, 'label'),
+        learning_mode=pulumi.get(__ret__, 'learning_mode'),
+        logtraffic=pulumi.get(__ret__, 'logtraffic'),
+        logtraffic_start=pulumi.get(__ret__, 'logtraffic_start'),
+        match_vip=pulumi.get(__ret__, 'match_vip'),
+        match_vip_only=pulumi.get(__ret__, 'match_vip_only'),
+        name=pulumi.get(__ret__, 'name'),
+        nat=pulumi.get(__ret__, 'nat'),
+        nat46=pulumi.get(__ret__, 'nat46'),
+        nat64=pulumi.get(__ret__, 'nat64'),
+        natinbound=pulumi.get(__ret__, 'natinbound'),
+        natip=pulumi.get(__ret__, 'natip'),
+        natoutbound=pulumi.get(__ret__, 'natoutbound'),
+        network_service_dynamics=pulumi.get(__ret__, 'network_service_dynamics'),
+        network_service_src_dynamics=pulumi.get(__ret__, 'network_service_src_dynamics'),
+        np_acceleration=pulumi.get(__ret__, 'np_acceleration'),
+        ntlm=pulumi.get(__ret__, 'ntlm'),
+        ntlm_enabled_browsers=pulumi.get(__ret__, 'ntlm_enabled_browsers'),
+        ntlm_guest=pulumi.get(__ret__, 'ntlm_guest'),
+        outbound=pulumi.get(__ret__, 'outbound'),
+        passive_wan_health_measurement=pulumi.get(__ret__, 'passive_wan_health_measurement'),
+        pcp_inbound=pulumi.get(__ret__, 'pcp_inbound'),
+        pcp_outbound=pulumi.get(__ret__, 'pcp_outbound'),
+        pcp_poolnames=pulumi.get(__ret__, 'pcp_poolnames'),
+        per_ip_shaper=pulumi.get(__ret__, 'per_ip_shaper'),
+        permit_any_host=pulumi.get(__ret__, 'permit_any_host'),
+        permit_stun_host=pulumi.get(__ret__, 'permit_stun_host'),
+        policy_expiry=pulumi.get(__ret__, 'policy_expiry'),
+        policy_expiry_date=pulumi.get(__ret__, 'policy_expiry_date'),
+        policy_expiry_date_utc=pulumi.get(__ret__, 'policy_expiry_date_utc'),
+        policyid=pulumi.get(__ret__, 'policyid'),
+        poolname6s=pulumi.get(__ret__, 'poolname6s'),
+        poolnames=pulumi.get(__ret__, 'poolnames'),
+        profile_group=pulumi.get(__ret__, 'profile_group'),
+        profile_protocol_options=pulumi.get(__ret__, 'profile_protocol_options'),
+        profile_type=pulumi.get(__ret__, 'profile_type'),
+        radius_mac_auth_bypass=pulumi.get(__ret__, 'radius_mac_auth_bypass'),
+        redirect_url=pulumi.get(__ret__, 'redirect_url'),
+        replacemsg_override_group=pulumi.get(__ret__, 'replacemsg_override_group'),
+        reputation_direction=pulumi.get(__ret__, 'reputation_direction'),
+        reputation_direction6=pulumi.get(__ret__, 'reputation_direction6'),
+        reputation_minimum=pulumi.get(__ret__, 'reputation_minimum'),
+        reputation_minimum6=pulumi.get(__ret__, 'reputation_minimum6'),
+        rsso=pulumi.get(__ret__, 'rsso'),
+        rtp_addrs=pulumi.get(__ret__, 'rtp_addrs'),
+        rtp_nat=pulumi.get(__ret__, 'rtp_nat'),
+        scan_botnet_connections=pulumi.get(__ret__, 'scan_botnet_connections'),
+        schedule=pulumi.get(__ret__, 'schedule'),
+        schedule_timeout=pulumi.get(__ret__, 'schedule_timeout'),
+        sctp_filter_profile=pulumi.get(__ret__, 'sctp_filter_profile'),
+        send_deny_packet=pulumi.get(__ret__, 'send_deny_packet'),
+        service_negate=pulumi.get(__ret__, 'service_negate'),
+        services=pulumi.get(__ret__, 'services'),
+        session_ttl=pulumi.get(__ret__, 'session_ttl'),
+        sgt_check=pulumi.get(__ret__, 'sgt_check'),
+        sgts=pulumi.get(__ret__, 'sgts'),
+        spamfilter_profile=pulumi.get(__ret__, 'spamfilter_profile'),
+        src_vendor_macs=pulumi.get(__ret__, 'src_vendor_macs'),
+        srcaddr6_negate=pulumi.get(__ret__, 'srcaddr6_negate'),
+        srcaddr6s=pulumi.get(__ret__, 'srcaddr6s'),
+        srcaddr_negate=pulumi.get(__ret__, 'srcaddr_negate'),
+        srcaddrs=pulumi.get(__ret__, 'srcaddrs'),
+        srcintfs=pulumi.get(__ret__, 'srcintfs'),
+        ssh_filter_profile=pulumi.get(__ret__, 'ssh_filter_profile'),
+        ssh_policy_redirect=pulumi.get(__ret__, 'ssh_policy_redirect'),
+        ssl_mirror=pulumi.get(__ret__, 'ssl_mirror'),
+        ssl_mirror_intfs=pulumi.get(__ret__, 'ssl_mirror_intfs'),
+        ssl_ssh_profile=pulumi.get(__ret__, 'ssl_ssh_profile'),
+        status=pulumi.get(__ret__, 'status'),
+        tcp_mss_receiver=pulumi.get(__ret__, 'tcp_mss_receiver'),
+        tcp_mss_sender=pulumi.get(__ret__, 'tcp_mss_sender'),
+        tcp_session_without_syn=pulumi.get(__ret__, 'tcp_session_without_syn'),
+        timeout_send_rst=pulumi.get(__ret__, 'timeout_send_rst'),
+        tos=pulumi.get(__ret__, 'tos'),
+        tos_mask=pulumi.get(__ret__, 'tos_mask'),
+        tos_negate=pulumi.get(__ret__, 'tos_negate'),
+        traffic_shaper=pulumi.get(__ret__, 'traffic_shaper'),
+        traffic_shaper_reverse=pulumi.get(__ret__, 'traffic_shaper_reverse'),
+        url_categories=pulumi.get(__ret__, 'url_categories'),
+        users=pulumi.get(__ret__, 'users'),
+        utm_status=pulumi.get(__ret__, 'utm_status'),
+        uuid=pulumi.get(__ret__, 'uuid'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'),
+        videofilter_profile=pulumi.get(__ret__, 'videofilter_profile'),
+        vlan_cos_fwd=pulumi.get(__ret__, 'vlan_cos_fwd'),
+        vlan_cos_rev=pulumi.get(__ret__, 'vlan_cos_rev'),
+        vlan_filter=pulumi.get(__ret__, 'vlan_filter'),
+        voip_profile=pulumi.get(__ret__, 'voip_profile'),
+        vpntunnel=pulumi.get(__ret__, 'vpntunnel'),
+        waf_profile=pulumi.get(__ret__, 'waf_profile'),
+        wanopt=pulumi.get(__ret__, 'wanopt'),
+        wanopt_detection=pulumi.get(__ret__, 'wanopt_detection'),
+        wanopt_passive_opt=pulumi.get(__ret__, 'wanopt_passive_opt'),
+        wanopt_peer=pulumi.get(__ret__, 'wanopt_peer'),
+        wanopt_profile=pulumi.get(__ret__, 'wanopt_profile'),
+        wccp=pulumi.get(__ret__, 'wccp'),
+        webcache=pulumi.get(__ret__, 'webcache'),
+        webcache_https=pulumi.get(__ret__, 'webcache_https'),
+        webfilter_profile=pulumi.get(__ret__, 'webfilter_profile'),
+        webproxy_forward_server=pulumi.get(__ret__, 'webproxy_forward_server'),
+        webproxy_profile=pulumi.get(__ret__, 'webproxy_profile'),
+        wsso=pulumi.get(__ret__, 'wsso'),
+        ztna_device_ownership=pulumi.get(__ret__, 'ztna_device_ownership'),
+        ztna_ems_tag_secondaries=pulumi.get(__ret__, 'ztna_ems_tag_secondaries'),
+        ztna_ems_tags=pulumi.get(__ret__, 'ztna_ems_tags'),
+        ztna_geo_tags=pulumi.get(__ret__, 'ztna_geo_tags'),
+        ztna_policy_redirect=pulumi.get(__ret__, 'ztna_policy_redirect'),
+        ztna_status=pulumi.get(__ret__, 'ztna_status'),
+        ztna_tags_match_logic=pulumi.get(__ret__, 'ztna_tags_match_logic'))
 
 
 @_utilities.lift_output_func(get_firewall_policy)

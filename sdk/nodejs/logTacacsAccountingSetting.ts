@@ -32,8 +32,11 @@ export class LogTacacsAccountingSetting extends pulumi.CustomResource {
         return obj['__pulumiType'] === LogTacacsAccountingSetting.__pulumiType;
     }
 
+    public readonly interface!: pulumi.Output<string>;
+    public readonly interfaceSelectMethod!: pulumi.Output<string>;
     public readonly server!: pulumi.Output<string>;
     public readonly serverKey!: pulumi.Output<string | undefined>;
+    public readonly sourceIp!: pulumi.Output<string>;
     public readonly status!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
@@ -50,14 +53,20 @@ export class LogTacacsAccountingSetting extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LogTacacsAccountingSettingState | undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
             resourceInputs["server"] = state ? state.server : undefined;
             resourceInputs["serverKey"] = state ? state.serverKey : undefined;
+            resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as LogTacacsAccountingSettingArgs | undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
             resourceInputs["server"] = args ? args.server : undefined;
             resourceInputs["serverKey"] = args ? args.serverKey : undefined;
+            resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
@@ -70,8 +79,11 @@ export class LogTacacsAccountingSetting extends pulumi.CustomResource {
  * Input properties used for looking up and filtering LogTacacsAccountingSetting resources.
  */
 export interface LogTacacsAccountingSettingState {
+    interface?: pulumi.Input<string>;
+    interfaceSelectMethod?: pulumi.Input<string>;
     server?: pulumi.Input<string>;
     serverKey?: pulumi.Input<string>;
+    sourceIp?: pulumi.Input<string>;
     status?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }
@@ -80,8 +92,11 @@ export interface LogTacacsAccountingSettingState {
  * The set of arguments for constructing a LogTacacsAccountingSetting resource.
  */
 export interface LogTacacsAccountingSettingArgs {
+    interface?: pulumi.Input<string>;
+    interfaceSelectMethod?: pulumi.Input<string>;
     server?: pulumi.Input<string>;
     serverKey?: pulumi.Input<string>;
+    sourceIp?: pulumi.Input<string>;
     status?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }

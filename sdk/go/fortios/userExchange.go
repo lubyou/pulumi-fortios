@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,6 +20,7 @@ type UserExchange struct {
 	ConnectProtocol     pulumi.StringOutput          `pulumi:"connectProtocol"`
 	DomainName          pulumi.StringOutput          `pulumi:"domainName"`
 	DynamicSortSubtable pulumi.StringPtrOutput       `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput       `pulumi:"getAllTables"`
 	HttpAuthType        pulumi.StringOutput          `pulumi:"httpAuthType"`
 	Ip                  pulumi.StringOutput          `pulumi:"ip"`
 	KdcIps              UserExchangeKdcIpArrayOutput `pulumi:"kdcIps"`
@@ -44,7 +46,7 @@ func NewUserExchange(ctx *pulumi.Context,
 		"password",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource UserExchange
 	err := ctx.RegisterResource("fortios:index/userExchange:UserExchange", name, args, &resource, opts...)
 	if err != nil {
@@ -73,6 +75,7 @@ type userExchangeState struct {
 	ConnectProtocol     *string             `pulumi:"connectProtocol"`
 	DomainName          *string             `pulumi:"domainName"`
 	DynamicSortSubtable *string             `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string             `pulumi:"getAllTables"`
 	HttpAuthType        *string             `pulumi:"httpAuthType"`
 	Ip                  *string             `pulumi:"ip"`
 	KdcIps              []UserExchangeKdcIp `pulumi:"kdcIps"`
@@ -91,6 +94,7 @@ type UserExchangeState struct {
 	ConnectProtocol     pulumi.StringPtrInput
 	DomainName          pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	HttpAuthType        pulumi.StringPtrInput
 	Ip                  pulumi.StringPtrInput
 	KdcIps              UserExchangeKdcIpArrayInput
@@ -113,6 +117,7 @@ type userExchangeArgs struct {
 	ConnectProtocol     *string             `pulumi:"connectProtocol"`
 	DomainName          *string             `pulumi:"domainName"`
 	DynamicSortSubtable *string             `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string             `pulumi:"getAllTables"`
 	HttpAuthType        *string             `pulumi:"httpAuthType"`
 	Ip                  *string             `pulumi:"ip"`
 	KdcIps              []UserExchangeKdcIp `pulumi:"kdcIps"`
@@ -132,6 +137,7 @@ type UserExchangeArgs struct {
 	ConnectProtocol     pulumi.StringPtrInput
 	DomainName          pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	HttpAuthType        pulumi.StringPtrInput
 	Ip                  pulumi.StringPtrInput
 	KdcIps              UserExchangeKdcIpArrayInput
@@ -252,6 +258,10 @@ func (o UserExchangeOutput) DomainName() pulumi.StringOutput {
 
 func (o UserExchangeOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *UserExchange) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o UserExchangeOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserExchange) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o UserExchangeOutput) HttpAuthType() pulumi.StringOutput {

@@ -4,9 +4,12 @@
 package config
 
 import (
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 )
+
+var _ = internal.GetEnvOrDefault
 
 // CA Bundle file content
 func GetCabundlecontent(ctx *pulumi.Context) string {
@@ -19,7 +22,11 @@ func GetCabundlefile(ctx *pulumi.Context) string {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "FORTIOS_CA_CABUNDLE").(string)
+	var value string
+	if d := internal.GetEnvOrDefault(nil, nil, "FORTIOS_CA_CABUNDLE"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 
 // CA certtificate(Optional)
@@ -43,7 +50,11 @@ func GetFmgCabundlefile(ctx *pulumi.Context) string {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "FORTIOS_FMG_CABUNDLE").(string)
+	var value string
+	if d := internal.GetEnvOrDefault(nil, nil, "FORTIOS_FMG_CABUNDLE"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 
 // Hostname/IP address of the FortiManager to connect to
@@ -52,28 +63,44 @@ func GetFmgHostname(ctx *pulumi.Context) string {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "FORTIOS_FMG_HOSTNAME").(string)
+	var value string
+	if d := internal.GetEnvOrDefault(nil, nil, "FORTIOS_FMG_HOSTNAME"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 func GetFmgInsecure(ctx *pulumi.Context) bool {
 	v, err := config.TryBool(ctx, "fortios:fmgInsecure")
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault(false, parseEnvBool, "FORTIOS_FMG_INSECURE").(bool)
+	var value bool
+	if d := internal.GetEnvOrDefault(nil, internal.ParseEnvBool, "FORTIOS_FMG_INSECURE"); d != nil {
+		value = d.(bool)
+	}
+	return value
 }
 func GetFmgPasswd(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "fortios:fmgPasswd")
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "FORTIOS_FMG_PASSWORD").(string)
+	var value string
+	if d := internal.GetEnvOrDefault(nil, nil, "FORTIOS_FMG_PASSWORD"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 func GetFmgUsername(ctx *pulumi.Context) string {
 	v, err := config.Try(ctx, "fortios:fmgUsername")
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "FORTIOS_FMG_USERNAME").(string)
+	var value string
+	if d := internal.GetEnvOrDefault(nil, nil, "FORTIOS_FMG_USERNAME"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 
 // The hostname/IP address of the FortiOS to be connected
@@ -82,7 +109,11 @@ func GetHostname(ctx *pulumi.Context) string {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "FORTIOS_ACCESS_HOSTNAME").(string)
+	var value string
+	if d := internal.GetEnvOrDefault(nil, nil, "FORTIOS_ACCESS_HOSTNAME"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 
 // HTTP proxy address
@@ -94,7 +125,16 @@ func GetInsecure(ctx *pulumi.Context) bool {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault(false, parseEnvBool, "FORTIOS_INSECURE").(bool)
+	var value bool
+	if d := internal.GetEnvOrDefault(nil, internal.ParseEnvBool, "FORTIOS_INSECURE"); d != nil {
+		value = d.(bool)
+	}
+	return value
+}
+
+// The password of the user.
+func GetPassword(ctx *pulumi.Context) string {
+	return config.Get(ctx, "fortios:password")
 }
 
 // Enable/disable peer authentication, can be 'enable' or 'disable'
@@ -106,7 +146,16 @@ func GetToken(ctx *pulumi.Context) string {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "FORTIOS_ACCESS_TOKEN").(string)
+	var value string
+	if d := internal.GetEnvOrDefault(nil, nil, "FORTIOS_ACCESS_TOKEN"); d != nil {
+		value = d.(string)
+	}
+	return value
+}
+
+// The username of the user.
+func GetUsername(ctx *pulumi.Context) string {
+	return config.Get(ctx, "fortios:username")
 }
 func GetVdom(ctx *pulumi.Context) string {
 	return config.Get(ctx, "fortios:vdom")

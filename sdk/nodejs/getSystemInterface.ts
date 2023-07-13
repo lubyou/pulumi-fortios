@@ -51,6 +51,7 @@ export interface GetSystemInterfaceResult {
     readonly clientOptions: outputs.GetSystemInterfaceClientOption[];
     readonly color: number;
     readonly dedicatedTo: string;
+    readonly defaultPurdueLevel: string;
     readonly defaultgw: string;
     readonly description: string;
     readonly detectedPeerMtu: number;
@@ -62,6 +63,7 @@ export interface GetSystemInterfaceResult {
     readonly deviceNetscan: string;
     readonly deviceUserIdentification: string;
     readonly devindex: number;
+    readonly dhcpBroadcastFlag: string;
     readonly dhcpClasslessRouteAddition: string;
     readonly dhcpClientIdentifier: string;
     readonly dhcpRelayAgentOption: string;
@@ -73,6 +75,7 @@ export interface GetSystemInterfaceResult {
     readonly dhcpRelayService: string;
     readonly dhcpRelayType: string;
     readonly dhcpRenewTime: number;
+    readonly dhcpSmartRelay: string;
     readonly dhcpSnoopingServerLists: outputs.GetSystemInterfaceDhcpSnoopingServerList[];
     readonly discRetryTimeout: number;
     readonly disconnectThreshold: number;

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -21,6 +22,7 @@ type SystemAdmin struct {
 	EmailTo                   pulumi.StringOutput                            `pulumi:"emailTo"`
 	ForcePasswordChange       pulumi.StringOutput                            `pulumi:"forcePasswordChange"`
 	Fortitoken                pulumi.StringOutput                            `pulumi:"fortitoken"`
+	GetAllTables              pulumi.StringPtrOutput                         `pulumi:"getAllTables"`
 	GuestAuth                 pulumi.StringOutput                            `pulumi:"guestAuth"`
 	GuestLang                 pulumi.StringOutput                            `pulumi:"guestLang"`
 	GuestUsergroups           SystemAdminGuestUsergroupArrayOutput           `pulumi:"guestUsergroups"`
@@ -111,7 +113,7 @@ func NewSystemAdmin(ctx *pulumi.Context,
 		"sshPublicKey3",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemAdmin
 	err := ctx.RegisterResource("fortios:index/systemAdmin:SystemAdmin", name, args, &resource, opts...)
 	if err != nil {
@@ -142,6 +144,7 @@ type systemAdminState struct {
 	EmailTo                   *string                               `pulumi:"emailTo"`
 	ForcePasswordChange       *string                               `pulumi:"forcePasswordChange"`
 	Fortitoken                *string                               `pulumi:"fortitoken"`
+	GetAllTables              *string                               `pulumi:"getAllTables"`
 	GuestAuth                 *string                               `pulumi:"guestAuth"`
 	GuestLang                 *string                               `pulumi:"guestLang"`
 	GuestUsergroups           []SystemAdminGuestUsergroup           `pulumi:"guestUsergroups"`
@@ -207,6 +210,7 @@ type SystemAdminState struct {
 	EmailTo                   pulumi.StringPtrInput
 	ForcePasswordChange       pulumi.StringPtrInput
 	Fortitoken                pulumi.StringPtrInput
+	GetAllTables              pulumi.StringPtrInput
 	GuestAuth                 pulumi.StringPtrInput
 	GuestLang                 pulumi.StringPtrInput
 	GuestUsergroups           SystemAdminGuestUsergroupArrayInput
@@ -276,6 +280,7 @@ type systemAdminArgs struct {
 	EmailTo                   *string                               `pulumi:"emailTo"`
 	ForcePasswordChange       *string                               `pulumi:"forcePasswordChange"`
 	Fortitoken                *string                               `pulumi:"fortitoken"`
+	GetAllTables              *string                               `pulumi:"getAllTables"`
 	GuestAuth                 *string                               `pulumi:"guestAuth"`
 	GuestLang                 *string                               `pulumi:"guestLang"`
 	GuestUsergroups           []SystemAdminGuestUsergroup           `pulumi:"guestUsergroups"`
@@ -342,6 +347,7 @@ type SystemAdminArgs struct {
 	EmailTo                   pulumi.StringPtrInput
 	ForcePasswordChange       pulumi.StringPtrInput
 	Fortitoken                pulumi.StringPtrInput
+	GetAllTables              pulumi.StringPtrInput
 	GuestAuth                 pulumi.StringPtrInput
 	GuestLang                 pulumi.StringPtrInput
 	GuestUsergroups           SystemAdminGuestUsergroupArrayInput
@@ -515,6 +521,10 @@ func (o SystemAdminOutput) ForcePasswordChange() pulumi.StringOutput {
 
 func (o SystemAdminOutput) Fortitoken() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemAdmin) pulumi.StringOutput { return v.Fortitoken }).(pulumi.StringOutput)
+}
+
+func (o SystemAdminOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAdmin) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemAdminOutput) GuestAuth() pulumi.StringOutput {

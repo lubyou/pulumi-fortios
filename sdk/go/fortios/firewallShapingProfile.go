@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -17,6 +18,7 @@ type FirewallShapingProfile struct {
 	Comment             pulumi.StringPtrOutput                        `pulumi:"comment"`
 	DefaultClassId      pulumi.IntOutput                              `pulumi:"defaultClassId"`
 	DynamicSortSubtable pulumi.StringPtrOutput                        `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                        `pulumi:"getAllTables"`
 	ProfileName         pulumi.StringOutput                           `pulumi:"profileName"`
 	ShapingEntries      FirewallShapingProfileShapingEntryArrayOutput `pulumi:"shapingEntries"`
 	Type                pulumi.StringOutput                           `pulumi:"type"`
@@ -36,7 +38,7 @@ func NewFirewallShapingProfile(ctx *pulumi.Context,
 	if args.ProfileName == nil {
 		return nil, errors.New("invalid value for required argument 'ProfileName'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallShapingProfile
 	err := ctx.RegisterResource("fortios:index/firewallShapingProfile:FirewallShapingProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -62,6 +64,7 @@ type firewallShapingProfileState struct {
 	Comment             *string                              `pulumi:"comment"`
 	DefaultClassId      *int                                 `pulumi:"defaultClassId"`
 	DynamicSortSubtable *string                              `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                              `pulumi:"getAllTables"`
 	ProfileName         *string                              `pulumi:"profileName"`
 	ShapingEntries      []FirewallShapingProfileShapingEntry `pulumi:"shapingEntries"`
 	Type                *string                              `pulumi:"type"`
@@ -72,6 +75,7 @@ type FirewallShapingProfileState struct {
 	Comment             pulumi.StringPtrInput
 	DefaultClassId      pulumi.IntPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	ProfileName         pulumi.StringPtrInput
 	ShapingEntries      FirewallShapingProfileShapingEntryArrayInput
 	Type                pulumi.StringPtrInput
@@ -86,6 +90,7 @@ type firewallShapingProfileArgs struct {
 	Comment             *string                              `pulumi:"comment"`
 	DefaultClassId      int                                  `pulumi:"defaultClassId"`
 	DynamicSortSubtable *string                              `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                              `pulumi:"getAllTables"`
 	ProfileName         string                               `pulumi:"profileName"`
 	ShapingEntries      []FirewallShapingProfileShapingEntry `pulumi:"shapingEntries"`
 	Type                *string                              `pulumi:"type"`
@@ -97,6 +102,7 @@ type FirewallShapingProfileArgs struct {
 	Comment             pulumi.StringPtrInput
 	DefaultClassId      pulumi.IntInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	ProfileName         pulumi.StringInput
 	ShapingEntries      FirewallShapingProfileShapingEntryArrayInput
 	Type                pulumi.StringPtrInput
@@ -200,6 +206,10 @@ func (o FirewallShapingProfileOutput) DefaultClassId() pulumi.IntOutput {
 
 func (o FirewallShapingProfileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FirewallShapingProfile) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallShapingProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallShapingProfile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallShapingProfileOutput) ProfileName() pulumi.StringOutput {

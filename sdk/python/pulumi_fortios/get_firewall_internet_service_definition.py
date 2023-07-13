@@ -85,10 +85,10 @@ def get_firewall_internet_service_definition(fosid: Optional[int] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getFirewallInternetServiceDefinition:GetFirewallInternetServiceDefinition', __args__, opts=opts, typ=GetFirewallInternetServiceDefinitionResult).value
 
     return AwaitableGetFirewallInternetServiceDefinitionResult(
-        entries=__ret__.entries,
-        fosid=__ret__.fosid,
-        id=__ret__.id,
-        vdomparam=__ret__.vdomparam)
+        entries=pulumi.get(__ret__, 'entries'),
+        fosid=pulumi.get(__ret__, 'fosid'),
+        id=pulumi.get(__ret__, 'id'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_firewall_internet_service_definition)

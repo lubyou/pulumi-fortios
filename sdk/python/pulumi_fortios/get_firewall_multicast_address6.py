@@ -121,14 +121,14 @@ def get_firewall_multicast_address6(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getFirewallMulticastAddress6:GetFirewallMulticastAddress6', __args__, opts=opts, typ=GetFirewallMulticastAddress6Result).value
 
     return AwaitableGetFirewallMulticastAddress6Result(
-        color=__ret__.color,
-        comment=__ret__.comment,
-        id=__ret__.id,
-        ip6=__ret__.ip6,
-        name=__ret__.name,
-        taggings=__ret__.taggings,
-        vdomparam=__ret__.vdomparam,
-        visibility=__ret__.visibility)
+        color=pulumi.get(__ret__, 'color'),
+        comment=pulumi.get(__ret__, 'comment'),
+        id=pulumi.get(__ret__, 'id'),
+        ip6=pulumi.get(__ret__, 'ip6'),
+        name=pulumi.get(__ret__, 'name'),
+        taggings=pulumi.get(__ret__, 'taggings'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'),
+        visibility=pulumi.get(__ret__, 'visibility'))
 
 
 @_utilities.lift_output_func(get_firewall_multicast_address6)

@@ -35,6 +35,7 @@ export class WirelessControllerHotspot20AnqpVenueName extends pulumi.CustomResou
     }
 
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly valueLists!: pulumi.Output<outputs.WirelessControllerHotspot20AnqpVenueNameValueList[] | undefined>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -53,12 +54,14 @@ export class WirelessControllerHotspot20AnqpVenueName extends pulumi.CustomResou
         if (opts.id) {
             const state = argsOrState as WirelessControllerHotspot20AnqpVenueNameState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["valueLists"] = state ? state.valueLists : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WirelessControllerHotspot20AnqpVenueNameArgs | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["valueLists"] = args ? args.valueLists : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -73,6 +76,7 @@ export class WirelessControllerHotspot20AnqpVenueName extends pulumi.CustomResou
  */
 export interface WirelessControllerHotspot20AnqpVenueNameState {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     valueLists?: pulumi.Input<pulumi.Input<inputs.WirelessControllerHotspot20AnqpVenueNameValueList>[]>;
     vdomparam?: pulumi.Input<string>;
@@ -83,6 +87,7 @@ export interface WirelessControllerHotspot20AnqpVenueNameState {
  */
 export interface WirelessControllerHotspot20AnqpVenueNameArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     valueLists?: pulumi.Input<pulumi.Input<inputs.WirelessControllerHotspot20AnqpVenueNameValueList>[]>;
     vdomparam?: pulumi.Input<string>;

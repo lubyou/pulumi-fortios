@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemAutomationAction(ctx *pulumi.Context, args *LookupSystemAutomationActionArgs, opts ...pulumi.InvokeOption) (*LookupSystemAutomationActionResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemAutomationActionResult
 	err := ctx.Invoke("fortios:index/getSystemAutomationAction:GetSystemAutomationAction", args, &rv, opts...)
 	if err != nil {
@@ -57,6 +58,7 @@ type LookupSystemAutomationActionResult struct {
 	EmailSubject                  string                                `pulumi:"emailSubject"`
 	EmailTos                      []GetSystemAutomationActionEmailTo    `pulumi:"emailTos"`
 	ExecuteSecurityFabric         string                                `pulumi:"executeSecurityFabric"`
+	ForticareEmail                string                                `pulumi:"forticareEmail"`
 	GcpFunction                   string                                `pulumi:"gcpFunction"`
 	GcpFunctionDomain             string                                `pulumi:"gcpFunctionDomain"`
 	GcpFunctionRegion             string                                `pulumi:"gcpFunctionRegion"`
@@ -240,6 +242,10 @@ func (o LookupSystemAutomationActionResultOutput) EmailTos() GetSystemAutomation
 
 func (o LookupSystemAutomationActionResultOutput) ExecuteSecurityFabric() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemAutomationActionResult) string { return v.ExecuteSecurityFabric }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemAutomationActionResultOutput) ForticareEmail() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemAutomationActionResult) string { return v.ForticareEmail }).(pulumi.StringOutput)
 }
 
 func (o LookupSystemAutomationActionResultOutput) GcpFunction() pulumi.StringOutput {

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,6 +16,7 @@ type SystemAutomationDestination struct {
 
 	Destinations        SystemAutomationDestinationDestinationArrayOutput `pulumi:"destinations"`
 	DynamicSortSubtable pulumi.StringPtrOutput                            `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                            `pulumi:"getAllTables"`
 	HaGroupId           pulumi.IntOutput                                  `pulumi:"haGroupId"`
 	Name                pulumi.StringOutput                               `pulumi:"name"`
 	Type                pulumi.StringOutput                               `pulumi:"type"`
@@ -28,7 +30,7 @@ func NewSystemAutomationDestination(ctx *pulumi.Context,
 		args = &SystemAutomationDestinationArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemAutomationDestination
 	err := ctx.RegisterResource("fortios:index/systemAutomationDestination:SystemAutomationDestination", name, args, &resource, opts...)
 	if err != nil {
@@ -53,6 +55,7 @@ func GetSystemAutomationDestination(ctx *pulumi.Context,
 type systemAutomationDestinationState struct {
 	Destinations        []SystemAutomationDestinationDestination `pulumi:"destinations"`
 	DynamicSortSubtable *string                                  `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                                  `pulumi:"getAllTables"`
 	HaGroupId           *int                                     `pulumi:"haGroupId"`
 	Name                *string                                  `pulumi:"name"`
 	Type                *string                                  `pulumi:"type"`
@@ -62,6 +65,7 @@ type systemAutomationDestinationState struct {
 type SystemAutomationDestinationState struct {
 	Destinations        SystemAutomationDestinationDestinationArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	HaGroupId           pulumi.IntPtrInput
 	Name                pulumi.StringPtrInput
 	Type                pulumi.StringPtrInput
@@ -75,6 +79,7 @@ func (SystemAutomationDestinationState) ElementType() reflect.Type {
 type systemAutomationDestinationArgs struct {
 	Destinations        []SystemAutomationDestinationDestination `pulumi:"destinations"`
 	DynamicSortSubtable *string                                  `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                                  `pulumi:"getAllTables"`
 	HaGroupId           *int                                     `pulumi:"haGroupId"`
 	Name                *string                                  `pulumi:"name"`
 	Type                *string                                  `pulumi:"type"`
@@ -85,6 +90,7 @@ type systemAutomationDestinationArgs struct {
 type SystemAutomationDestinationArgs struct {
 	Destinations        SystemAutomationDestinationDestinationArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	HaGroupId           pulumi.IntPtrInput
 	Name                pulumi.StringPtrInput
 	Type                pulumi.StringPtrInput
@@ -186,6 +192,10 @@ func (o SystemAutomationDestinationOutput) Destinations() SystemAutomationDestin
 
 func (o SystemAutomationDestinationOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SystemAutomationDestination) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemAutomationDestinationOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAutomationDestination) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemAutomationDestinationOutput) HaGroupId() pulumi.IntOutput {

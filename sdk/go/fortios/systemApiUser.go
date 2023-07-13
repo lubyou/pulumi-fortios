@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,6 +20,7 @@ type SystemApiUser struct {
 	Comments            pulumi.StringPtrOutput            `pulumi:"comments"`
 	CorsAllowOrigin     pulumi.StringOutput               `pulumi:"corsAllowOrigin"`
 	DynamicSortSubtable pulumi.StringPtrOutput            `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput            `pulumi:"getAllTables"`
 	Name                pulumi.StringOutput               `pulumi:"name"`
 	PeerAuth            pulumi.StringOutput               `pulumi:"peerAuth"`
 	PeerGroup           pulumi.StringOutput               `pulumi:"peerGroup"`
@@ -45,7 +47,7 @@ func NewSystemApiUser(ctx *pulumi.Context,
 		"apiKey",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemApiUser
 	err := ctx.RegisterResource("fortios:index/systemApiUser:SystemApiUser", name, args, &resource, opts...)
 	if err != nil {
@@ -73,6 +75,7 @@ type systemApiUserState struct {
 	Comments            *string                  `pulumi:"comments"`
 	CorsAllowOrigin     *string                  `pulumi:"corsAllowOrigin"`
 	DynamicSortSubtable *string                  `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                  `pulumi:"getAllTables"`
 	Name                *string                  `pulumi:"name"`
 	PeerAuth            *string                  `pulumi:"peerAuth"`
 	PeerGroup           *string                  `pulumi:"peerGroup"`
@@ -88,6 +91,7 @@ type SystemApiUserState struct {
 	Comments            pulumi.StringPtrInput
 	CorsAllowOrigin     pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	PeerAuth            pulumi.StringPtrInput
 	PeerGroup           pulumi.StringPtrInput
@@ -107,6 +111,7 @@ type systemApiUserArgs struct {
 	Comments            *string                  `pulumi:"comments"`
 	CorsAllowOrigin     *string                  `pulumi:"corsAllowOrigin"`
 	DynamicSortSubtable *string                  `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                  `pulumi:"getAllTables"`
 	Name                *string                  `pulumi:"name"`
 	PeerAuth            *string                  `pulumi:"peerAuth"`
 	PeerGroup           *string                  `pulumi:"peerGroup"`
@@ -123,6 +128,7 @@ type SystemApiUserArgs struct {
 	Comments            pulumi.StringPtrInput
 	CorsAllowOrigin     pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	PeerAuth            pulumi.StringPtrInput
 	PeerGroup           pulumi.StringPtrInput
@@ -237,6 +243,10 @@ func (o SystemApiUserOutput) CorsAllowOrigin() pulumi.StringOutput {
 
 func (o SystemApiUserOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SystemApiUser) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemApiUserOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemApiUser) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemApiUserOutput) Name() pulumi.StringOutput {

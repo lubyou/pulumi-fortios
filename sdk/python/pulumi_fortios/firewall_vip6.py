@@ -26,6 +26,7 @@ class FirewallVip6Args:
                  embedded_ipv4_address: Optional[pulumi.Input[str]] = None,
                  extport: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  http_cookie_age: Optional[pulumi.Input[int]] = None,
                  http_cookie_domain: Optional[pulumi.Input[str]] = None,
                  http_cookie_domain_from_host: Optional[pulumi.Input[str]] = None,
@@ -47,6 +48,7 @@ class FirewallVip6Args:
                  nat64: Optional[pulumi.Input[str]] = None,
                  nat66: Optional[pulumi.Input[str]] = None,
                  nat_source_vip: Optional[pulumi.Input[str]] = None,
+                 ndp_reply: Optional[pulumi.Input[str]] = None,
                  outlook_web_access: Optional[pulumi.Input[str]] = None,
                  persistence: Optional[pulumi.Input[str]] = None,
                  portforward: Optional[pulumi.Input[str]] = None,
@@ -85,6 +87,7 @@ class FirewallVip6Args:
                  ssl_server_cipher_suites: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallVip6SslServerCipherSuiteArgs']]]] = None,
                  ssl_server_max_version: Optional[pulumi.Input[str]] = None,
                  ssl_server_min_version: Optional[pulumi.Input[str]] = None,
+                 ssl_server_renegotiation: Optional[pulumi.Input[str]] = None,
                  ssl_server_session_state_max: Optional[pulumi.Input[int]] = None,
                  ssl_server_session_state_timeout: Optional[pulumi.Input[int]] = None,
                  ssl_server_session_state_type: Optional[pulumi.Input[str]] = None,
@@ -114,6 +117,8 @@ class FirewallVip6Args:
             pulumi.set(__self__, "extport", extport)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if http_cookie_age is not None:
             pulumi.set(__self__, "http_cookie_age", http_cookie_age)
         if http_cookie_domain is not None:
@@ -156,6 +161,8 @@ class FirewallVip6Args:
             pulumi.set(__self__, "nat66", nat66)
         if nat_source_vip is not None:
             pulumi.set(__self__, "nat_source_vip", nat_source_vip)
+        if ndp_reply is not None:
+            pulumi.set(__self__, "ndp_reply", ndp_reply)
         if outlook_web_access is not None:
             pulumi.set(__self__, "outlook_web_access", outlook_web_access)
         if persistence is not None:
@@ -232,6 +239,8 @@ class FirewallVip6Args:
             pulumi.set(__self__, "ssl_server_max_version", ssl_server_max_version)
         if ssl_server_min_version is not None:
             pulumi.set(__self__, "ssl_server_min_version", ssl_server_min_version)
+        if ssl_server_renegotiation is not None:
+            pulumi.set(__self__, "ssl_server_renegotiation", ssl_server_renegotiation)
         if ssl_server_session_state_max is not None:
             pulumi.set(__self__, "ssl_server_session_state_max", ssl_server_session_state_max)
         if ssl_server_session_state_timeout is not None:
@@ -338,6 +347,15 @@ class FirewallVip6Args:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="httpCookieAge")
@@ -527,6 +545,15 @@ class FirewallVip6Args:
     @nat_source_vip.setter
     def nat_source_vip(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "nat_source_vip", value)
+
+    @property
+    @pulumi.getter(name="ndpReply")
+    def ndp_reply(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ndp_reply")
+
+    @ndp_reply.setter
+    def ndp_reply(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ndp_reply", value)
 
     @property
     @pulumi.getter(name="outlookWebAccess")
@@ -871,6 +898,15 @@ class FirewallVip6Args:
         pulumi.set(self, "ssl_server_min_version", value)
 
     @property
+    @pulumi.getter(name="sslServerRenegotiation")
+    def ssl_server_renegotiation(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ssl_server_renegotiation")
+
+    @ssl_server_renegotiation.setter
+    def ssl_server_renegotiation(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssl_server_renegotiation", value)
+
+    @property
     @pulumi.getter(name="sslServerSessionStateMax")
     def ssl_server_session_state_max(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "ssl_server_session_state_max")
@@ -955,6 +991,7 @@ class _FirewallVip6State:
                  extip: Optional[pulumi.Input[str]] = None,
                  extport: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  http_cookie_age: Optional[pulumi.Input[int]] = None,
                  http_cookie_domain: Optional[pulumi.Input[str]] = None,
                  http_cookie_domain_from_host: Optional[pulumi.Input[str]] = None,
@@ -977,6 +1014,7 @@ class _FirewallVip6State:
                  nat64: Optional[pulumi.Input[str]] = None,
                  nat66: Optional[pulumi.Input[str]] = None,
                  nat_source_vip: Optional[pulumi.Input[str]] = None,
+                 ndp_reply: Optional[pulumi.Input[str]] = None,
                  outlook_web_access: Optional[pulumi.Input[str]] = None,
                  persistence: Optional[pulumi.Input[str]] = None,
                  portforward: Optional[pulumi.Input[str]] = None,
@@ -1015,6 +1053,7 @@ class _FirewallVip6State:
                  ssl_server_cipher_suites: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallVip6SslServerCipherSuiteArgs']]]] = None,
                  ssl_server_max_version: Optional[pulumi.Input[str]] = None,
                  ssl_server_min_version: Optional[pulumi.Input[str]] = None,
+                 ssl_server_renegotiation: Optional[pulumi.Input[str]] = None,
                  ssl_server_session_state_max: Optional[pulumi.Input[int]] = None,
                  ssl_server_session_state_timeout: Optional[pulumi.Input[int]] = None,
                  ssl_server_session_state_type: Optional[pulumi.Input[str]] = None,
@@ -1044,6 +1083,8 @@ class _FirewallVip6State:
             pulumi.set(__self__, "extport", extport)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if http_cookie_age is not None:
             pulumi.set(__self__, "http_cookie_age", http_cookie_age)
         if http_cookie_domain is not None:
@@ -1088,6 +1129,8 @@ class _FirewallVip6State:
             pulumi.set(__self__, "nat66", nat66)
         if nat_source_vip is not None:
             pulumi.set(__self__, "nat_source_vip", nat_source_vip)
+        if ndp_reply is not None:
+            pulumi.set(__self__, "ndp_reply", ndp_reply)
         if outlook_web_access is not None:
             pulumi.set(__self__, "outlook_web_access", outlook_web_access)
         if persistence is not None:
@@ -1164,6 +1207,8 @@ class _FirewallVip6State:
             pulumi.set(__self__, "ssl_server_max_version", ssl_server_max_version)
         if ssl_server_min_version is not None:
             pulumi.set(__self__, "ssl_server_min_version", ssl_server_min_version)
+        if ssl_server_renegotiation is not None:
+            pulumi.set(__self__, "ssl_server_renegotiation", ssl_server_renegotiation)
         if ssl_server_session_state_max is not None:
             pulumi.set(__self__, "ssl_server_session_state_max", ssl_server_session_state_max)
         if ssl_server_session_state_timeout is not None:
@@ -1261,6 +1306,15 @@ class _FirewallVip6State:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="httpCookieAge")
@@ -1461,6 +1515,15 @@ class _FirewallVip6State:
         pulumi.set(self, "nat_source_vip", value)
 
     @property
+    @pulumi.getter(name="ndpReply")
+    def ndp_reply(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ndp_reply")
+
+    @ndp_reply.setter
+    def ndp_reply(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ndp_reply", value)
+
+    @property
     @pulumi.getter(name="outlookWebAccess")
     def outlook_web_access(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "outlook_web_access")
@@ -1803,6 +1866,15 @@ class _FirewallVip6State:
         pulumi.set(self, "ssl_server_min_version", value)
 
     @property
+    @pulumi.getter(name="sslServerRenegotiation")
+    def ssl_server_renegotiation(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ssl_server_renegotiation")
+
+    @ssl_server_renegotiation.setter
+    def ssl_server_renegotiation(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssl_server_renegotiation", value)
+
+    @property
     @pulumi.getter(name="sslServerSessionStateMax")
     def ssl_server_session_state_max(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "ssl_server_session_state_max")
@@ -1889,6 +1961,7 @@ class FirewallVip6(pulumi.CustomResource):
                  extip: Optional[pulumi.Input[str]] = None,
                  extport: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  http_cookie_age: Optional[pulumi.Input[int]] = None,
                  http_cookie_domain: Optional[pulumi.Input[str]] = None,
                  http_cookie_domain_from_host: Optional[pulumi.Input[str]] = None,
@@ -1911,6 +1984,7 @@ class FirewallVip6(pulumi.CustomResource):
                  nat64: Optional[pulumi.Input[str]] = None,
                  nat66: Optional[pulumi.Input[str]] = None,
                  nat_source_vip: Optional[pulumi.Input[str]] = None,
+                 ndp_reply: Optional[pulumi.Input[str]] = None,
                  outlook_web_access: Optional[pulumi.Input[str]] = None,
                  persistence: Optional[pulumi.Input[str]] = None,
                  portforward: Optional[pulumi.Input[str]] = None,
@@ -1949,6 +2023,7 @@ class FirewallVip6(pulumi.CustomResource):
                  ssl_server_cipher_suites: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallVip6SslServerCipherSuiteArgs']]]]] = None,
                  ssl_server_max_version: Optional[pulumi.Input[str]] = None,
                  ssl_server_min_version: Optional[pulumi.Input[str]] = None,
+                 ssl_server_renegotiation: Optional[pulumi.Input[str]] = None,
                  ssl_server_session_state_max: Optional[pulumi.Input[int]] = None,
                  ssl_server_session_state_timeout: Optional[pulumi.Input[int]] = None,
                  ssl_server_session_state_type: Optional[pulumi.Input[str]] = None,
@@ -1995,6 +2070,7 @@ class FirewallVip6(pulumi.CustomResource):
                  extip: Optional[pulumi.Input[str]] = None,
                  extport: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  http_cookie_age: Optional[pulumi.Input[int]] = None,
                  http_cookie_domain: Optional[pulumi.Input[str]] = None,
                  http_cookie_domain_from_host: Optional[pulumi.Input[str]] = None,
@@ -2017,6 +2093,7 @@ class FirewallVip6(pulumi.CustomResource):
                  nat64: Optional[pulumi.Input[str]] = None,
                  nat66: Optional[pulumi.Input[str]] = None,
                  nat_source_vip: Optional[pulumi.Input[str]] = None,
+                 ndp_reply: Optional[pulumi.Input[str]] = None,
                  outlook_web_access: Optional[pulumi.Input[str]] = None,
                  persistence: Optional[pulumi.Input[str]] = None,
                  portforward: Optional[pulumi.Input[str]] = None,
@@ -2055,6 +2132,7 @@ class FirewallVip6(pulumi.CustomResource):
                  ssl_server_cipher_suites: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallVip6SslServerCipherSuiteArgs']]]]] = None,
                  ssl_server_max_version: Optional[pulumi.Input[str]] = None,
                  ssl_server_min_version: Optional[pulumi.Input[str]] = None,
+                 ssl_server_renegotiation: Optional[pulumi.Input[str]] = None,
                  ssl_server_session_state_max: Optional[pulumi.Input[int]] = None,
                  ssl_server_session_state_timeout: Optional[pulumi.Input[int]] = None,
                  ssl_server_session_state_type: Optional[pulumi.Input[str]] = None,
@@ -2083,6 +2161,7 @@ class FirewallVip6(pulumi.CustomResource):
             __props__.__dict__["extip"] = extip
             __props__.__dict__["extport"] = extport
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["http_cookie_age"] = http_cookie_age
             __props__.__dict__["http_cookie_domain"] = http_cookie_domain
             __props__.__dict__["http_cookie_domain_from_host"] = http_cookie_domain_from_host
@@ -2107,6 +2186,7 @@ class FirewallVip6(pulumi.CustomResource):
             __props__.__dict__["nat64"] = nat64
             __props__.__dict__["nat66"] = nat66
             __props__.__dict__["nat_source_vip"] = nat_source_vip
+            __props__.__dict__["ndp_reply"] = ndp_reply
             __props__.__dict__["outlook_web_access"] = outlook_web_access
             __props__.__dict__["persistence"] = persistence
             __props__.__dict__["portforward"] = portforward
@@ -2145,6 +2225,7 @@ class FirewallVip6(pulumi.CustomResource):
             __props__.__dict__["ssl_server_cipher_suites"] = ssl_server_cipher_suites
             __props__.__dict__["ssl_server_max_version"] = ssl_server_max_version
             __props__.__dict__["ssl_server_min_version"] = ssl_server_min_version
+            __props__.__dict__["ssl_server_renegotiation"] = ssl_server_renegotiation
             __props__.__dict__["ssl_server_session_state_max"] = ssl_server_session_state_max
             __props__.__dict__["ssl_server_session_state_timeout"] = ssl_server_session_state_timeout
             __props__.__dict__["ssl_server_session_state_type"] = ssl_server_session_state_type
@@ -2172,6 +2253,7 @@ class FirewallVip6(pulumi.CustomResource):
             extip: Optional[pulumi.Input[str]] = None,
             extport: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             http_cookie_age: Optional[pulumi.Input[int]] = None,
             http_cookie_domain: Optional[pulumi.Input[str]] = None,
             http_cookie_domain_from_host: Optional[pulumi.Input[str]] = None,
@@ -2194,6 +2276,7 @@ class FirewallVip6(pulumi.CustomResource):
             nat64: Optional[pulumi.Input[str]] = None,
             nat66: Optional[pulumi.Input[str]] = None,
             nat_source_vip: Optional[pulumi.Input[str]] = None,
+            ndp_reply: Optional[pulumi.Input[str]] = None,
             outlook_web_access: Optional[pulumi.Input[str]] = None,
             persistence: Optional[pulumi.Input[str]] = None,
             portforward: Optional[pulumi.Input[str]] = None,
@@ -2232,6 +2315,7 @@ class FirewallVip6(pulumi.CustomResource):
             ssl_server_cipher_suites: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallVip6SslServerCipherSuiteArgs']]]]] = None,
             ssl_server_max_version: Optional[pulumi.Input[str]] = None,
             ssl_server_min_version: Optional[pulumi.Input[str]] = None,
+            ssl_server_renegotiation: Optional[pulumi.Input[str]] = None,
             ssl_server_session_state_max: Optional[pulumi.Input[int]] = None,
             ssl_server_session_state_timeout: Optional[pulumi.Input[int]] = None,
             ssl_server_session_state_type: Optional[pulumi.Input[str]] = None,
@@ -2261,6 +2345,7 @@ class FirewallVip6(pulumi.CustomResource):
         __props__.__dict__["extip"] = extip
         __props__.__dict__["extport"] = extport
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["http_cookie_age"] = http_cookie_age
         __props__.__dict__["http_cookie_domain"] = http_cookie_domain
         __props__.__dict__["http_cookie_domain_from_host"] = http_cookie_domain_from_host
@@ -2283,6 +2368,7 @@ class FirewallVip6(pulumi.CustomResource):
         __props__.__dict__["nat64"] = nat64
         __props__.__dict__["nat66"] = nat66
         __props__.__dict__["nat_source_vip"] = nat_source_vip
+        __props__.__dict__["ndp_reply"] = ndp_reply
         __props__.__dict__["outlook_web_access"] = outlook_web_access
         __props__.__dict__["persistence"] = persistence
         __props__.__dict__["portforward"] = portforward
@@ -2321,6 +2407,7 @@ class FirewallVip6(pulumi.CustomResource):
         __props__.__dict__["ssl_server_cipher_suites"] = ssl_server_cipher_suites
         __props__.__dict__["ssl_server_max_version"] = ssl_server_max_version
         __props__.__dict__["ssl_server_min_version"] = ssl_server_min_version
+        __props__.__dict__["ssl_server_renegotiation"] = ssl_server_renegotiation
         __props__.__dict__["ssl_server_session_state_max"] = ssl_server_session_state_max
         __props__.__dict__["ssl_server_session_state_timeout"] = ssl_server_session_state_timeout
         __props__.__dict__["ssl_server_session_state_type"] = ssl_server_session_state_type
@@ -2375,6 +2462,11 @@ class FirewallVip6(pulumi.CustomResource):
     @pulumi.getter
     def fosid(self) -> pulumi.Output[int]:
         return pulumi.get(self, "fosid")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="httpCookieAge")
@@ -2485,6 +2577,11 @@ class FirewallVip6(pulumi.CustomResource):
     @pulumi.getter(name="natSourceVip")
     def nat_source_vip(self) -> pulumi.Output[str]:
         return pulumi.get(self, "nat_source_vip")
+
+    @property
+    @pulumi.getter(name="ndpReply")
+    def ndp_reply(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "ndp_reply")
 
     @property
     @pulumi.getter(name="outlookWebAccess")
@@ -2675,6 +2772,11 @@ class FirewallVip6(pulumi.CustomResource):
     @pulumi.getter(name="sslServerMinVersion")
     def ssl_server_min_version(self) -> pulumi.Output[str]:
         return pulumi.get(self, "ssl_server_min_version")
+
+    @property
+    @pulumi.getter(name="sslServerRenegotiation")
+    def ssl_server_renegotiation(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "ssl_server_renegotiation")
 
     @property
     @pulumi.getter(name="sslServerSessionStateMax")

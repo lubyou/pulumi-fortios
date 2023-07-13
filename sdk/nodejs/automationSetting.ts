@@ -32,6 +32,7 @@ export class AutomationSetting extends pulumi.CustomResource {
         return obj['__pulumiType'] === AutomationSetting.__pulumiType;
     }
 
+    public readonly fabricSync!: pulumi.Output<string>;
     public readonly maxConcurrentStitches!: pulumi.Output<number>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
@@ -48,10 +49,12 @@ export class AutomationSetting extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AutomationSettingState | undefined;
+            resourceInputs["fabricSync"] = state ? state.fabricSync : undefined;
             resourceInputs["maxConcurrentStitches"] = state ? state.maxConcurrentStitches : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as AutomationSettingArgs | undefined;
+            resourceInputs["fabricSync"] = args ? args.fabricSync : undefined;
             resourceInputs["maxConcurrentStitches"] = args ? args.maxConcurrentStitches : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
@@ -64,6 +67,7 @@ export class AutomationSetting extends pulumi.CustomResource {
  * Input properties used for looking up and filtering AutomationSetting resources.
  */
 export interface AutomationSettingState {
+    fabricSync?: pulumi.Input<string>;
     maxConcurrentStitches?: pulumi.Input<number>;
     vdomparam?: pulumi.Input<string>;
 }
@@ -72,6 +76,7 @@ export interface AutomationSettingState {
  * The set of arguments for constructing a AutomationSetting resource.
  */
 export interface AutomationSettingArgs {
+    fabricSync?: pulumi.Input<string>;
     maxConcurrentStitches?: pulumi.Input<number>;
     vdomparam?: pulumi.Input<string>;
 }

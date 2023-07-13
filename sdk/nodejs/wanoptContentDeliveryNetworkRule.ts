@@ -37,6 +37,7 @@ export class WanoptContentDeliveryNetworkRule extends pulumi.CustomResource {
     public readonly category!: pulumi.Output<string>;
     public readonly comment!: pulumi.Output<string | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly hostDomainNameSuffixes!: pulumi.Output<outputs.WanoptContentDeliveryNetworkRuleHostDomainNameSuffix[] | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly requestCacheControl!: pulumi.Output<string>;
@@ -64,6 +65,7 @@ export class WanoptContentDeliveryNetworkRule extends pulumi.CustomResource {
             resourceInputs["category"] = state ? state.category : undefined;
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["hostDomainNameSuffixes"] = state ? state.hostDomainNameSuffixes : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["requestCacheControl"] = state ? state.requestCacheControl : undefined;
@@ -79,6 +81,7 @@ export class WanoptContentDeliveryNetworkRule extends pulumi.CustomResource {
             resourceInputs["category"] = args ? args.category : undefined;
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["hostDomainNameSuffixes"] = args ? args.hostDomainNameSuffixes : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["requestCacheControl"] = args ? args.requestCacheControl : undefined;
@@ -102,6 +105,7 @@ export interface WanoptContentDeliveryNetworkRuleState {
     category?: pulumi.Input<string>;
     comment?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     hostDomainNameSuffixes?: pulumi.Input<pulumi.Input<inputs.WanoptContentDeliveryNetworkRuleHostDomainNameSuffix>[]>;
     name?: pulumi.Input<string>;
     requestCacheControl?: pulumi.Input<string>;
@@ -121,6 +125,7 @@ export interface WanoptContentDeliveryNetworkRuleArgs {
     category?: pulumi.Input<string>;
     comment?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     hostDomainNameSuffixes?: pulumi.Input<pulumi.Input<inputs.WanoptContentDeliveryNetworkRuleHostDomainNameSuffix>[]>;
     name?: pulumi.Input<string>;
     requestCacheControl?: pulumi.Input<string>;

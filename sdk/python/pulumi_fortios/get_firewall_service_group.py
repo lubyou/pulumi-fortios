@@ -121,14 +121,14 @@ def get_firewall_service_group(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getFirewallServiceGroup:GetFirewallServiceGroup', __args__, opts=opts, typ=GetFirewallServiceGroupResult).value
 
     return AwaitableGetFirewallServiceGroupResult(
-        color=__ret__.color,
-        comment=__ret__.comment,
-        fabric_object=__ret__.fabric_object,
-        id=__ret__.id,
-        members=__ret__.members,
-        name=__ret__.name,
-        proxy=__ret__.proxy,
-        vdomparam=__ret__.vdomparam)
+        color=pulumi.get(__ret__, 'color'),
+        comment=pulumi.get(__ret__, 'comment'),
+        fabric_object=pulumi.get(__ret__, 'fabric_object'),
+        id=pulumi.get(__ret__, 'id'),
+        members=pulumi.get(__ret__, 'members'),
+        name=pulumi.get(__ret__, 'name'),
+        proxy=pulumi.get(__ret__, 'proxy'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_firewall_service_group)

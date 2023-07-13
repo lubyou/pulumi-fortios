@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func GetSystemDscpBasedPriorityList(ctx *pulumi.Context, args *GetSystemDscpBasedPriorityListArgs, opts ...pulumi.InvokeOption) (*GetSystemDscpBasedPriorityListResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetSystemDscpBasedPriorityListResult
 	err := ctx.Invoke("fortios:index/getSystemDscpBasedPriorityList:GetSystemDscpBasedPriorityList", args, &rv, opts...)
 	if err != nil {

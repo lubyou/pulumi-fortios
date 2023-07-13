@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -17,6 +18,7 @@ type EmailfilterProfile struct {
 	External                  pulumi.StringOutput                   `pulumi:"external"`
 	FeatureSet                pulumi.StringOutput                   `pulumi:"featureSet"`
 	FileFilter                EmailfilterProfileFileFilterOutput    `pulumi:"fileFilter"`
+	GetAllTables              pulumi.StringPtrOutput                `pulumi:"getAllTables"`
 	Gmail                     EmailfilterProfileGmailOutput         `pulumi:"gmail"`
 	Imap                      EmailfilterProfileImapOutput          `pulumi:"imap"`
 	Mapi                      EmailfilterProfileMapiOutput          `pulumi:"mapi"`
@@ -48,7 +50,7 @@ func NewEmailfilterProfile(ctx *pulumi.Context,
 		args = &EmailfilterProfileArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource EmailfilterProfile
 	err := ctx.RegisterResource("fortios:index/emailfilterProfile:EmailfilterProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -75,6 +77,7 @@ type emailfilterProfileState struct {
 	External                  *string                          `pulumi:"external"`
 	FeatureSet                *string                          `pulumi:"featureSet"`
 	FileFilter                *EmailfilterProfileFileFilter    `pulumi:"fileFilter"`
+	GetAllTables              *string                          `pulumi:"getAllTables"`
 	Gmail                     *EmailfilterProfileGmail         `pulumi:"gmail"`
 	Imap                      *EmailfilterProfileImap          `pulumi:"imap"`
 	Mapi                      *EmailfilterProfileMapi          `pulumi:"mapi"`
@@ -104,6 +107,7 @@ type EmailfilterProfileState struct {
 	External                  pulumi.StringPtrInput
 	FeatureSet                pulumi.StringPtrInput
 	FileFilter                EmailfilterProfileFileFilterPtrInput
+	GetAllTables              pulumi.StringPtrInput
 	Gmail                     EmailfilterProfileGmailPtrInput
 	Imap                      EmailfilterProfileImapPtrInput
 	Mapi                      EmailfilterProfileMapiPtrInput
@@ -137,6 +141,7 @@ type emailfilterProfileArgs struct {
 	External                  *string                          `pulumi:"external"`
 	FeatureSet                *string                          `pulumi:"featureSet"`
 	FileFilter                *EmailfilterProfileFileFilter    `pulumi:"fileFilter"`
+	GetAllTables              *string                          `pulumi:"getAllTables"`
 	Gmail                     *EmailfilterProfileGmail         `pulumi:"gmail"`
 	Imap                      *EmailfilterProfileImap          `pulumi:"imap"`
 	Mapi                      *EmailfilterProfileMapi          `pulumi:"mapi"`
@@ -167,6 +172,7 @@ type EmailfilterProfileArgs struct {
 	External                  pulumi.StringPtrInput
 	FeatureSet                pulumi.StringPtrInput
 	FileFilter                EmailfilterProfileFileFilterPtrInput
+	GetAllTables              pulumi.StringPtrInput
 	Gmail                     EmailfilterProfileGmailPtrInput
 	Imap                      EmailfilterProfileImapPtrInput
 	Mapi                      EmailfilterProfileMapiPtrInput
@@ -292,6 +298,10 @@ func (o EmailfilterProfileOutput) FeatureSet() pulumi.StringOutput {
 
 func (o EmailfilterProfileOutput) FileFilter() EmailfilterProfileFileFilterOutput {
 	return o.ApplyT(func(v *EmailfilterProfile) EmailfilterProfileFileFilterOutput { return v.FileFilter }).(EmailfilterProfileFileFilterOutput)
+}
+
+func (o EmailfilterProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EmailfilterProfile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o EmailfilterProfileOutput) Gmail() EmailfilterProfileGmailOutput {

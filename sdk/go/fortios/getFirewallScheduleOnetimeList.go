@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func GetFirewallScheduleOnetimeList(ctx *pulumi.Context, args *GetFirewallScheduleOnetimeListArgs, opts ...pulumi.InvokeOption) (*GetFirewallScheduleOnetimeListResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetFirewallScheduleOnetimeListResult
 	err := ctx.Invoke("fortios:index/getFirewallScheduleOnetimeList:GetFirewallScheduleOnetimeList", args, &rv, opts...)
 	if err != nil {

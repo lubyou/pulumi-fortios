@@ -26,11 +26,15 @@ export interface GetFirewallShaperTrafficShaperArgs {
  */
 export interface GetFirewallShaperTrafficShaperResult {
     readonly bandwidthUnit: string;
+    readonly cos: string;
+    readonly cosMarking: string;
+    readonly cosMarkingMethod: string;
     readonly diffserv: string;
     readonly diffservcode: string;
     readonly dscpMarkingMethod: string;
     readonly exceedBandwidth: number;
     readonly exceedClassId: number;
+    readonly exceedCos: string;
     readonly exceedDscp: string;
     readonly guaranteedBandwidth: number;
     /**
@@ -38,6 +42,7 @@ export interface GetFirewallShaperTrafficShaperResult {
      */
     readonly id: string;
     readonly maximumBandwidth: number;
+    readonly maximumCos: string;
     readonly maximumDscp: string;
     readonly name: string;
     readonly overhead: number;

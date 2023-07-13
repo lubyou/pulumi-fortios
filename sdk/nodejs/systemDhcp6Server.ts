@@ -44,6 +44,7 @@ export class SystemDhcp6Server extends pulumi.CustomResource {
     public readonly domain!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly fosid!: pulumi.Output<number>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly interface!: pulumi.Output<string>;
     public readonly ipMode!: pulumi.Output<string>;
     public readonly ipRanges!: pulumi.Output<outputs.SystemDhcp6ServerIpRange[] | undefined>;
@@ -82,6 +83,7 @@ export class SystemDhcp6Server extends pulumi.CustomResource {
             resourceInputs["domain"] = state ? state.domain : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
             resourceInputs["ipMode"] = state ? state.ipMode : undefined;
             resourceInputs["ipRanges"] = state ? state.ipRanges : undefined;
@@ -117,6 +119,7 @@ export class SystemDhcp6Server extends pulumi.CustomResource {
             resourceInputs["domain"] = args ? args.domain : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["ipMode"] = args ? args.ipMode : undefined;
             resourceInputs["ipRanges"] = args ? args.ipRanges : undefined;
@@ -151,6 +154,7 @@ export interface SystemDhcp6ServerState {
     domain?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     fosid?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     interface?: pulumi.Input<string>;
     ipMode?: pulumi.Input<string>;
     ipRanges?: pulumi.Input<pulumi.Input<inputs.SystemDhcp6ServerIpRange>[]>;
@@ -181,6 +185,7 @@ export interface SystemDhcp6ServerArgs {
     domain?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     fosid: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     interface: pulumi.Input<string>;
     ipMode?: pulumi.Input<string>;
     ipRanges?: pulumi.Input<pulumi.Input<inputs.SystemDhcp6ServerIpRange>[]>;

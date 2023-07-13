@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -25,6 +26,7 @@ type FirewallSecurityPolicy struct {
 	DlpSensor                       pulumi.StringOutput                                             `pulumi:"dlpSensor"`
 	DnsfilterProfile                pulumi.StringOutput                                             `pulumi:"dnsfilterProfile"`
 	Dstaddr4s                       FirewallSecurityPolicyDstaddr4ArrayOutput                       `pulumi:"dstaddr4s"`
+	Dstaddr6Negate                  pulumi.StringOutput                                             `pulumi:"dstaddr6Negate"`
 	Dstaddr6s                       FirewallSecurityPolicyDstaddr6ArrayOutput                       `pulumi:"dstaddr6s"`
 	DstaddrNegate                   pulumi.StringOutput                                             `pulumi:"dstaddrNegate"`
 	Dstaddrs                        FirewallSecurityPolicyDstaddrArrayOutput                        `pulumi:"dstaddrs"`
@@ -34,6 +36,7 @@ type FirewallSecurityPolicy struct {
 	EnforceDefaultAppPort           pulumi.StringOutput                                             `pulumi:"enforceDefaultAppPort"`
 	FileFilterProfile               pulumi.StringOutput                                             `pulumi:"fileFilterProfile"`
 	FssoGroups                      FirewallSecurityPolicyFssoGroupArrayOutput                      `pulumi:"fssoGroups"`
+	GetAllTables                    pulumi.StringPtrOutput                                          `pulumi:"getAllTables"`
 	Groups                          FirewallSecurityPolicyGroupArrayOutput                          `pulumi:"groups"`
 	IcapProfile                     pulumi.StringOutput                                             `pulumi:"icapProfile"`
 	InternetService                 pulumi.StringOutput                                             `pulumi:"internetService"`
@@ -63,6 +66,7 @@ type FirewallSecurityPolicy struct {
 	InternetServiceSrcNames         FirewallSecurityPolicyInternetServiceSrcNameArrayOutput         `pulumi:"internetServiceSrcNames"`
 	InternetServiceSrcNegate        pulumi.StringOutput                                             `pulumi:"internetServiceSrcNegate"`
 	IpsSensor                       pulumi.StringOutput                                             `pulumi:"ipsSensor"`
+	IpsVoipFilter                   pulumi.StringOutput                                             `pulumi:"ipsVoipFilter"`
 	LearningMode                    pulumi.StringOutput                                             `pulumi:"learningMode"`
 	Logtraffic                      pulumi.StringOutput                                             `pulumi:"logtraffic"`
 	LogtrafficStart                 pulumi.StringOutput                                             `pulumi:"logtrafficStart"`
@@ -79,6 +83,7 @@ type FirewallSecurityPolicy struct {
 	ServiceNegate                   pulumi.StringOutput                                             `pulumi:"serviceNegate"`
 	Services                        FirewallSecurityPolicyServiceArrayOutput                        `pulumi:"services"`
 	Srcaddr4s                       FirewallSecurityPolicySrcaddr4ArrayOutput                       `pulumi:"srcaddr4s"`
+	Srcaddr6Negate                  pulumi.StringOutput                                             `pulumi:"srcaddr6Negate"`
 	Srcaddr6s                       FirewallSecurityPolicySrcaddr6ArrayOutput                       `pulumi:"srcaddr6s"`
 	SrcaddrNegate                   pulumi.StringOutput                                             `pulumi:"srcaddrNegate"`
 	Srcaddrs                        FirewallSecurityPolicySrcaddrArrayOutput                        `pulumi:"srcaddrs"`
@@ -87,6 +92,7 @@ type FirewallSecurityPolicy struct {
 	SslSshProfile                   pulumi.StringOutput                                             `pulumi:"sslSshProfile"`
 	Status                          pulumi.StringOutput                                             `pulumi:"status"`
 	UrlCategories                   FirewallSecurityPolicyUrlCategoryArrayOutput                    `pulumi:"urlCategories"`
+	UrlCategoryUnitary              pulumi.StringOutput                                             `pulumi:"urlCategoryUnitary"`
 	Users                           FirewallSecurityPolicyUserArrayOutput                           `pulumi:"users"`
 	Uuid                            pulumi.StringOutput                                             `pulumi:"uuid"`
 	Vdomparam                       pulumi.StringPtrOutput                                          `pulumi:"vdomparam"`
@@ -102,7 +108,7 @@ func NewFirewallSecurityPolicy(ctx *pulumi.Context,
 		args = &FirewallSecurityPolicyArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallSecurityPolicy
 	err := ctx.RegisterResource("fortios:index/firewallSecurityPolicy:FirewallSecurityPolicy", name, args, &resource, opts...)
 	if err != nil {
@@ -137,6 +143,7 @@ type firewallSecurityPolicyState struct {
 	DlpSensor                       *string                                                `pulumi:"dlpSensor"`
 	DnsfilterProfile                *string                                                `pulumi:"dnsfilterProfile"`
 	Dstaddr4s                       []FirewallSecurityPolicyDstaddr4                       `pulumi:"dstaddr4s"`
+	Dstaddr6Negate                  *string                                                `pulumi:"dstaddr6Negate"`
 	Dstaddr6s                       []FirewallSecurityPolicyDstaddr6                       `pulumi:"dstaddr6s"`
 	DstaddrNegate                   *string                                                `pulumi:"dstaddrNegate"`
 	Dstaddrs                        []FirewallSecurityPolicyDstaddr                        `pulumi:"dstaddrs"`
@@ -146,6 +153,7 @@ type firewallSecurityPolicyState struct {
 	EnforceDefaultAppPort           *string                                                `pulumi:"enforceDefaultAppPort"`
 	FileFilterProfile               *string                                                `pulumi:"fileFilterProfile"`
 	FssoGroups                      []FirewallSecurityPolicyFssoGroup                      `pulumi:"fssoGroups"`
+	GetAllTables                    *string                                                `pulumi:"getAllTables"`
 	Groups                          []FirewallSecurityPolicyGroup                          `pulumi:"groups"`
 	IcapProfile                     *string                                                `pulumi:"icapProfile"`
 	InternetService                 *string                                                `pulumi:"internetService"`
@@ -175,6 +183,7 @@ type firewallSecurityPolicyState struct {
 	InternetServiceSrcNames         []FirewallSecurityPolicyInternetServiceSrcName         `pulumi:"internetServiceSrcNames"`
 	InternetServiceSrcNegate        *string                                                `pulumi:"internetServiceSrcNegate"`
 	IpsSensor                       *string                                                `pulumi:"ipsSensor"`
+	IpsVoipFilter                   *string                                                `pulumi:"ipsVoipFilter"`
 	LearningMode                    *string                                                `pulumi:"learningMode"`
 	Logtraffic                      *string                                                `pulumi:"logtraffic"`
 	LogtrafficStart                 *string                                                `pulumi:"logtrafficStart"`
@@ -191,6 +200,7 @@ type firewallSecurityPolicyState struct {
 	ServiceNegate                   *string                                                `pulumi:"serviceNegate"`
 	Services                        []FirewallSecurityPolicyService                        `pulumi:"services"`
 	Srcaddr4s                       []FirewallSecurityPolicySrcaddr4                       `pulumi:"srcaddr4s"`
+	Srcaddr6Negate                  *string                                                `pulumi:"srcaddr6Negate"`
 	Srcaddr6s                       []FirewallSecurityPolicySrcaddr6                       `pulumi:"srcaddr6s"`
 	SrcaddrNegate                   *string                                                `pulumi:"srcaddrNegate"`
 	Srcaddrs                        []FirewallSecurityPolicySrcaddr                        `pulumi:"srcaddrs"`
@@ -199,6 +209,7 @@ type firewallSecurityPolicyState struct {
 	SslSshProfile                   *string                                                `pulumi:"sslSshProfile"`
 	Status                          *string                                                `pulumi:"status"`
 	UrlCategories                   []FirewallSecurityPolicyUrlCategory                    `pulumi:"urlCategories"`
+	UrlCategoryUnitary              *string                                                `pulumi:"urlCategoryUnitary"`
 	Users                           []FirewallSecurityPolicyUser                           `pulumi:"users"`
 	Uuid                            *string                                                `pulumi:"uuid"`
 	Vdomparam                       *string                                                `pulumi:"vdomparam"`
@@ -220,6 +231,7 @@ type FirewallSecurityPolicyState struct {
 	DlpSensor                       pulumi.StringPtrInput
 	DnsfilterProfile                pulumi.StringPtrInput
 	Dstaddr4s                       FirewallSecurityPolicyDstaddr4ArrayInput
+	Dstaddr6Negate                  pulumi.StringPtrInput
 	Dstaddr6s                       FirewallSecurityPolicyDstaddr6ArrayInput
 	DstaddrNegate                   pulumi.StringPtrInput
 	Dstaddrs                        FirewallSecurityPolicyDstaddrArrayInput
@@ -229,6 +241,7 @@ type FirewallSecurityPolicyState struct {
 	EnforceDefaultAppPort           pulumi.StringPtrInput
 	FileFilterProfile               pulumi.StringPtrInput
 	FssoGroups                      FirewallSecurityPolicyFssoGroupArrayInput
+	GetAllTables                    pulumi.StringPtrInput
 	Groups                          FirewallSecurityPolicyGroupArrayInput
 	IcapProfile                     pulumi.StringPtrInput
 	InternetService                 pulumi.StringPtrInput
@@ -258,6 +271,7 @@ type FirewallSecurityPolicyState struct {
 	InternetServiceSrcNames         FirewallSecurityPolicyInternetServiceSrcNameArrayInput
 	InternetServiceSrcNegate        pulumi.StringPtrInput
 	IpsSensor                       pulumi.StringPtrInput
+	IpsVoipFilter                   pulumi.StringPtrInput
 	LearningMode                    pulumi.StringPtrInput
 	Logtraffic                      pulumi.StringPtrInput
 	LogtrafficStart                 pulumi.StringPtrInput
@@ -274,6 +288,7 @@ type FirewallSecurityPolicyState struct {
 	ServiceNegate                   pulumi.StringPtrInput
 	Services                        FirewallSecurityPolicyServiceArrayInput
 	Srcaddr4s                       FirewallSecurityPolicySrcaddr4ArrayInput
+	Srcaddr6Negate                  pulumi.StringPtrInput
 	Srcaddr6s                       FirewallSecurityPolicySrcaddr6ArrayInput
 	SrcaddrNegate                   pulumi.StringPtrInput
 	Srcaddrs                        FirewallSecurityPolicySrcaddrArrayInput
@@ -282,6 +297,7 @@ type FirewallSecurityPolicyState struct {
 	SslSshProfile                   pulumi.StringPtrInput
 	Status                          pulumi.StringPtrInput
 	UrlCategories                   FirewallSecurityPolicyUrlCategoryArrayInput
+	UrlCategoryUnitary              pulumi.StringPtrInput
 	Users                           FirewallSecurityPolicyUserArrayInput
 	Uuid                            pulumi.StringPtrInput
 	Vdomparam                       pulumi.StringPtrInput
@@ -307,6 +323,7 @@ type firewallSecurityPolicyArgs struct {
 	DlpSensor                       *string                                                `pulumi:"dlpSensor"`
 	DnsfilterProfile                *string                                                `pulumi:"dnsfilterProfile"`
 	Dstaddr4s                       []FirewallSecurityPolicyDstaddr4                       `pulumi:"dstaddr4s"`
+	Dstaddr6Negate                  *string                                                `pulumi:"dstaddr6Negate"`
 	Dstaddr6s                       []FirewallSecurityPolicyDstaddr6                       `pulumi:"dstaddr6s"`
 	DstaddrNegate                   *string                                                `pulumi:"dstaddrNegate"`
 	Dstaddrs                        []FirewallSecurityPolicyDstaddr                        `pulumi:"dstaddrs"`
@@ -316,6 +333,7 @@ type firewallSecurityPolicyArgs struct {
 	EnforceDefaultAppPort           *string                                                `pulumi:"enforceDefaultAppPort"`
 	FileFilterProfile               *string                                                `pulumi:"fileFilterProfile"`
 	FssoGroups                      []FirewallSecurityPolicyFssoGroup                      `pulumi:"fssoGroups"`
+	GetAllTables                    *string                                                `pulumi:"getAllTables"`
 	Groups                          []FirewallSecurityPolicyGroup                          `pulumi:"groups"`
 	IcapProfile                     *string                                                `pulumi:"icapProfile"`
 	InternetService                 *string                                                `pulumi:"internetService"`
@@ -345,6 +363,7 @@ type firewallSecurityPolicyArgs struct {
 	InternetServiceSrcNames         []FirewallSecurityPolicyInternetServiceSrcName         `pulumi:"internetServiceSrcNames"`
 	InternetServiceSrcNegate        *string                                                `pulumi:"internetServiceSrcNegate"`
 	IpsSensor                       *string                                                `pulumi:"ipsSensor"`
+	IpsVoipFilter                   *string                                                `pulumi:"ipsVoipFilter"`
 	LearningMode                    *string                                                `pulumi:"learningMode"`
 	Logtraffic                      *string                                                `pulumi:"logtraffic"`
 	LogtrafficStart                 *string                                                `pulumi:"logtrafficStart"`
@@ -361,6 +380,7 @@ type firewallSecurityPolicyArgs struct {
 	ServiceNegate                   *string                                                `pulumi:"serviceNegate"`
 	Services                        []FirewallSecurityPolicyService                        `pulumi:"services"`
 	Srcaddr4s                       []FirewallSecurityPolicySrcaddr4                       `pulumi:"srcaddr4s"`
+	Srcaddr6Negate                  *string                                                `pulumi:"srcaddr6Negate"`
 	Srcaddr6s                       []FirewallSecurityPolicySrcaddr6                       `pulumi:"srcaddr6s"`
 	SrcaddrNegate                   *string                                                `pulumi:"srcaddrNegate"`
 	Srcaddrs                        []FirewallSecurityPolicySrcaddr                        `pulumi:"srcaddrs"`
@@ -369,6 +389,7 @@ type firewallSecurityPolicyArgs struct {
 	SslSshProfile                   *string                                                `pulumi:"sslSshProfile"`
 	Status                          *string                                                `pulumi:"status"`
 	UrlCategories                   []FirewallSecurityPolicyUrlCategory                    `pulumi:"urlCategories"`
+	UrlCategoryUnitary              *string                                                `pulumi:"urlCategoryUnitary"`
 	Users                           []FirewallSecurityPolicyUser                           `pulumi:"users"`
 	Uuid                            *string                                                `pulumi:"uuid"`
 	Vdomparam                       *string                                                `pulumi:"vdomparam"`
@@ -391,6 +412,7 @@ type FirewallSecurityPolicyArgs struct {
 	DlpSensor                       pulumi.StringPtrInput
 	DnsfilterProfile                pulumi.StringPtrInput
 	Dstaddr4s                       FirewallSecurityPolicyDstaddr4ArrayInput
+	Dstaddr6Negate                  pulumi.StringPtrInput
 	Dstaddr6s                       FirewallSecurityPolicyDstaddr6ArrayInput
 	DstaddrNegate                   pulumi.StringPtrInput
 	Dstaddrs                        FirewallSecurityPolicyDstaddrArrayInput
@@ -400,6 +422,7 @@ type FirewallSecurityPolicyArgs struct {
 	EnforceDefaultAppPort           pulumi.StringPtrInput
 	FileFilterProfile               pulumi.StringPtrInput
 	FssoGroups                      FirewallSecurityPolicyFssoGroupArrayInput
+	GetAllTables                    pulumi.StringPtrInput
 	Groups                          FirewallSecurityPolicyGroupArrayInput
 	IcapProfile                     pulumi.StringPtrInput
 	InternetService                 pulumi.StringPtrInput
@@ -429,6 +452,7 @@ type FirewallSecurityPolicyArgs struct {
 	InternetServiceSrcNames         FirewallSecurityPolicyInternetServiceSrcNameArrayInput
 	InternetServiceSrcNegate        pulumi.StringPtrInput
 	IpsSensor                       pulumi.StringPtrInput
+	IpsVoipFilter                   pulumi.StringPtrInput
 	LearningMode                    pulumi.StringPtrInput
 	Logtraffic                      pulumi.StringPtrInput
 	LogtrafficStart                 pulumi.StringPtrInput
@@ -445,6 +469,7 @@ type FirewallSecurityPolicyArgs struct {
 	ServiceNegate                   pulumi.StringPtrInput
 	Services                        FirewallSecurityPolicyServiceArrayInput
 	Srcaddr4s                       FirewallSecurityPolicySrcaddr4ArrayInput
+	Srcaddr6Negate                  pulumi.StringPtrInput
 	Srcaddr6s                       FirewallSecurityPolicySrcaddr6ArrayInput
 	SrcaddrNegate                   pulumi.StringPtrInput
 	Srcaddrs                        FirewallSecurityPolicySrcaddrArrayInput
@@ -453,6 +478,7 @@ type FirewallSecurityPolicyArgs struct {
 	SslSshProfile                   pulumi.StringPtrInput
 	Status                          pulumi.StringPtrInput
 	UrlCategories                   FirewallSecurityPolicyUrlCategoryArrayInput
+	UrlCategoryUnitary              pulumi.StringPtrInput
 	Users                           FirewallSecurityPolicyUserArrayInput
 	Uuid                            pulumi.StringPtrInput
 	Vdomparam                       pulumi.StringPtrInput
@@ -596,6 +622,10 @@ func (o FirewallSecurityPolicyOutput) Dstaddr4s() FirewallSecurityPolicyDstaddr4
 	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicyDstaddr4ArrayOutput { return v.Dstaddr4s }).(FirewallSecurityPolicyDstaddr4ArrayOutput)
 }
 
+func (o FirewallSecurityPolicyOutput) Dstaddr6Negate() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.Dstaddr6Negate }).(pulumi.StringOutput)
+}
+
 func (o FirewallSecurityPolicyOutput) Dstaddr6s() FirewallSecurityPolicyDstaddr6ArrayOutput {
 	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicyDstaddr6ArrayOutput { return v.Dstaddr6s }).(FirewallSecurityPolicyDstaddr6ArrayOutput)
 }
@@ -630,6 +660,10 @@ func (o FirewallSecurityPolicyOutput) FileFilterProfile() pulumi.StringOutput {
 
 func (o FirewallSecurityPolicyOutput) FssoGroups() FirewallSecurityPolicyFssoGroupArrayOutput {
 	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicyFssoGroupArrayOutput { return v.FssoGroups }).(FirewallSecurityPolicyFssoGroupArrayOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallSecurityPolicyOutput) Groups() FirewallSecurityPolicyGroupArrayOutput {
@@ -784,6 +818,10 @@ func (o FirewallSecurityPolicyOutput) IpsSensor() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.IpsSensor }).(pulumi.StringOutput)
 }
 
+func (o FirewallSecurityPolicyOutput) IpsVoipFilter() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.IpsVoipFilter }).(pulumi.StringOutput)
+}
+
 func (o FirewallSecurityPolicyOutput) LearningMode() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.LearningMode }).(pulumi.StringOutput)
 }
@@ -848,6 +886,10 @@ func (o FirewallSecurityPolicyOutput) Srcaddr4s() FirewallSecurityPolicySrcaddr4
 	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicySrcaddr4ArrayOutput { return v.Srcaddr4s }).(FirewallSecurityPolicySrcaddr4ArrayOutput)
 }
 
+func (o FirewallSecurityPolicyOutput) Srcaddr6Negate() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.Srcaddr6Negate }).(pulumi.StringOutput)
+}
+
 func (o FirewallSecurityPolicyOutput) Srcaddr6s() FirewallSecurityPolicySrcaddr6ArrayOutput {
 	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicySrcaddr6ArrayOutput { return v.Srcaddr6s }).(FirewallSecurityPolicySrcaddr6ArrayOutput)
 }
@@ -878,6 +920,10 @@ func (o FirewallSecurityPolicyOutput) Status() pulumi.StringOutput {
 
 func (o FirewallSecurityPolicyOutput) UrlCategories() FirewallSecurityPolicyUrlCategoryArrayOutput {
 	return o.ApplyT(func(v *FirewallSecurityPolicy) FirewallSecurityPolicyUrlCategoryArrayOutput { return v.UrlCategories }).(FirewallSecurityPolicyUrlCategoryArrayOutput)
+}
+
+func (o FirewallSecurityPolicyOutput) UrlCategoryUnitary() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecurityPolicy) pulumi.StringOutput { return v.UrlCategoryUnitary }).(pulumi.StringOutput)
 }
 
 func (o FirewallSecurityPolicyOutput) Users() FirewallSecurityPolicyUserArrayOutput {

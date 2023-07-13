@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -17,6 +18,7 @@ type FirewallMulticastAddress6 struct {
 	Color               pulumi.IntOutput                            `pulumi:"color"`
 	Comment             pulumi.StringPtrOutput                      `pulumi:"comment"`
 	DynamicSortSubtable pulumi.StringPtrOutput                      `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                      `pulumi:"getAllTables"`
 	Ip6                 pulumi.StringOutput                         `pulumi:"ip6"`
 	Name                pulumi.StringOutput                         `pulumi:"name"`
 	Taggings            FirewallMulticastAddress6TaggingArrayOutput `pulumi:"taggings"`
@@ -34,7 +36,7 @@ func NewFirewallMulticastAddress6(ctx *pulumi.Context,
 	if args.Ip6 == nil {
 		return nil, errors.New("invalid value for required argument 'Ip6'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallMulticastAddress6
 	err := ctx.RegisterResource("fortios:index/firewallMulticastAddress6:FirewallMulticastAddress6", name, args, &resource, opts...)
 	if err != nil {
@@ -60,6 +62,7 @@ type firewallMulticastAddress6State struct {
 	Color               *int                               `pulumi:"color"`
 	Comment             *string                            `pulumi:"comment"`
 	DynamicSortSubtable *string                            `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                            `pulumi:"getAllTables"`
 	Ip6                 *string                            `pulumi:"ip6"`
 	Name                *string                            `pulumi:"name"`
 	Taggings            []FirewallMulticastAddress6Tagging `pulumi:"taggings"`
@@ -71,6 +74,7 @@ type FirewallMulticastAddress6State struct {
 	Color               pulumi.IntPtrInput
 	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Ip6                 pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Taggings            FirewallMulticastAddress6TaggingArrayInput
@@ -86,6 +90,7 @@ type firewallMulticastAddress6Args struct {
 	Color               *int                               `pulumi:"color"`
 	Comment             *string                            `pulumi:"comment"`
 	DynamicSortSubtable *string                            `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                            `pulumi:"getAllTables"`
 	Ip6                 string                             `pulumi:"ip6"`
 	Name                *string                            `pulumi:"name"`
 	Taggings            []FirewallMulticastAddress6Tagging `pulumi:"taggings"`
@@ -98,6 +103,7 @@ type FirewallMulticastAddress6Args struct {
 	Color               pulumi.IntPtrInput
 	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Ip6                 pulumi.StringInput
 	Name                pulumi.StringPtrInput
 	Taggings            FirewallMulticastAddress6TaggingArrayInput
@@ -202,6 +208,10 @@ func (o FirewallMulticastAddress6Output) Comment() pulumi.StringPtrOutput {
 
 func (o FirewallMulticastAddress6Output) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FirewallMulticastAddress6) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallMulticastAddress6Output) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallMulticastAddress6) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallMulticastAddress6Output) Ip6() pulumi.StringOutput {

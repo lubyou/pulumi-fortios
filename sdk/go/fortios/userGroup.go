@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -22,6 +23,7 @@ type UserGroup struct {
 	Expire                 pulumi.IntOutput           `pulumi:"expire"`
 	ExpireType             pulumi.StringOutput        `pulumi:"expireType"`
 	Fosid                  pulumi.IntOutput           `pulumi:"fosid"`
+	GetAllTables           pulumi.StringPtrOutput     `pulumi:"getAllTables"`
 	GroupType              pulumi.StringOutput        `pulumi:"groupType"`
 	Guests                 UserGroupGuestArrayOutput  `pulumi:"guests"`
 	HttpDigestRealm        pulumi.StringOutput        `pulumi:"httpDigestRealm"`
@@ -48,7 +50,7 @@ func NewUserGroup(ctx *pulumi.Context,
 		args = &UserGroupArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource UserGroup
 	err := ctx.RegisterResource("fortios:index/userGroup:UserGroup", name, args, &resource, opts...)
 	if err != nil {
@@ -80,6 +82,7 @@ type userGroupState struct {
 	Expire                 *int              `pulumi:"expire"`
 	ExpireType             *string           `pulumi:"expireType"`
 	Fosid                  *int              `pulumi:"fosid"`
+	GetAllTables           *string           `pulumi:"getAllTables"`
 	GroupType              *string           `pulumi:"groupType"`
 	Guests                 []UserGroupGuest  `pulumi:"guests"`
 	HttpDigestRealm        *string           `pulumi:"httpDigestRealm"`
@@ -109,6 +112,7 @@ type UserGroupState struct {
 	Expire                 pulumi.IntPtrInput
 	ExpireType             pulumi.StringPtrInput
 	Fosid                  pulumi.IntPtrInput
+	GetAllTables           pulumi.StringPtrInput
 	GroupType              pulumi.StringPtrInput
 	Guests                 UserGroupGuestArrayInput
 	HttpDigestRealm        pulumi.StringPtrInput
@@ -142,6 +146,7 @@ type userGroupArgs struct {
 	Expire                 *int              `pulumi:"expire"`
 	ExpireType             *string           `pulumi:"expireType"`
 	Fosid                  *int              `pulumi:"fosid"`
+	GetAllTables           *string           `pulumi:"getAllTables"`
 	GroupType              *string           `pulumi:"groupType"`
 	Guests                 []UserGroupGuest  `pulumi:"guests"`
 	HttpDigestRealm        *string           `pulumi:"httpDigestRealm"`
@@ -172,6 +177,7 @@ type UserGroupArgs struct {
 	Expire                 pulumi.IntPtrInput
 	ExpireType             pulumi.StringPtrInput
 	Fosid                  pulumi.IntPtrInput
+	GetAllTables           pulumi.StringPtrInput
 	GroupType              pulumi.StringPtrInput
 	Guests                 UserGroupGuestArrayInput
 	HttpDigestRealm        pulumi.StringPtrInput
@@ -312,6 +318,10 @@ func (o UserGroupOutput) ExpireType() pulumi.StringOutput {
 
 func (o UserGroupOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *UserGroup) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o UserGroupOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserGroup) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o UserGroupOutput) GroupType() pulumi.StringOutput {

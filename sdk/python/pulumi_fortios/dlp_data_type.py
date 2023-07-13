@@ -17,6 +17,7 @@ class DlpDataTypeArgs:
                  comment: Optional[pulumi.Input[str]] = None,
                  look_ahead: Optional[pulumi.Input[int]] = None,
                  look_back: Optional[pulumi.Input[int]] = None,
+                 match_around: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  pattern: Optional[pulumi.Input[str]] = None,
                  transform: Optional[pulumi.Input[str]] = None,
@@ -32,6 +33,8 @@ class DlpDataTypeArgs:
             pulumi.set(__self__, "look_ahead", look_ahead)
         if look_back is not None:
             pulumi.set(__self__, "look_back", look_back)
+        if match_around is not None:
+            pulumi.set(__self__, "match_around", match_around)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if pattern is not None:
@@ -71,6 +74,15 @@ class DlpDataTypeArgs:
     @look_back.setter
     def look_back(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "look_back", value)
+
+    @property
+    @pulumi.getter(name="matchAround")
+    def match_around(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match_around")
+
+    @match_around.setter
+    def match_around(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match_around", value)
 
     @property
     @pulumi.getter
@@ -133,6 +145,7 @@ class _DlpDataTypeState:
                  comment: Optional[pulumi.Input[str]] = None,
                  look_ahead: Optional[pulumi.Input[int]] = None,
                  look_back: Optional[pulumi.Input[int]] = None,
+                 match_around: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  pattern: Optional[pulumi.Input[str]] = None,
                  transform: Optional[pulumi.Input[str]] = None,
@@ -148,6 +161,8 @@ class _DlpDataTypeState:
             pulumi.set(__self__, "look_ahead", look_ahead)
         if look_back is not None:
             pulumi.set(__self__, "look_back", look_back)
+        if match_around is not None:
+            pulumi.set(__self__, "match_around", match_around)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if pattern is not None:
@@ -187,6 +202,15 @@ class _DlpDataTypeState:
     @look_back.setter
     def look_back(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "look_back", value)
+
+    @property
+    @pulumi.getter(name="matchAround")
+    def match_around(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "match_around")
+
+    @match_around.setter
+    def match_around(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "match_around", value)
 
     @property
     @pulumi.getter
@@ -251,6 +275,7 @@ class DlpDataType(pulumi.CustomResource):
                  comment: Optional[pulumi.Input[str]] = None,
                  look_ahead: Optional[pulumi.Input[int]] = None,
                  look_back: Optional[pulumi.Input[int]] = None,
+                 match_around: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  pattern: Optional[pulumi.Input[str]] = None,
                  transform: Optional[pulumi.Input[str]] = None,
@@ -289,6 +314,7 @@ class DlpDataType(pulumi.CustomResource):
                  comment: Optional[pulumi.Input[str]] = None,
                  look_ahead: Optional[pulumi.Input[int]] = None,
                  look_back: Optional[pulumi.Input[int]] = None,
+                 match_around: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  pattern: Optional[pulumi.Input[str]] = None,
                  transform: Optional[pulumi.Input[str]] = None,
@@ -307,6 +333,7 @@ class DlpDataType(pulumi.CustomResource):
             __props__.__dict__["comment"] = comment
             __props__.__dict__["look_ahead"] = look_ahead
             __props__.__dict__["look_back"] = look_back
+            __props__.__dict__["match_around"] = match_around
             __props__.__dict__["name"] = name
             __props__.__dict__["pattern"] = pattern
             __props__.__dict__["transform"] = transform
@@ -326,6 +353,7 @@ class DlpDataType(pulumi.CustomResource):
             comment: Optional[pulumi.Input[str]] = None,
             look_ahead: Optional[pulumi.Input[int]] = None,
             look_back: Optional[pulumi.Input[int]] = None,
+            match_around: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             pattern: Optional[pulumi.Input[str]] = None,
             transform: Optional[pulumi.Input[str]] = None,
@@ -347,6 +375,7 @@ class DlpDataType(pulumi.CustomResource):
         __props__.__dict__["comment"] = comment
         __props__.__dict__["look_ahead"] = look_ahead
         __props__.__dict__["look_back"] = look_back
+        __props__.__dict__["match_around"] = match_around
         __props__.__dict__["name"] = name
         __props__.__dict__["pattern"] = pattern
         __props__.__dict__["transform"] = transform
@@ -369,6 +398,11 @@ class DlpDataType(pulumi.CustomResource):
     @pulumi.getter(name="lookBack")
     def look_back(self) -> pulumi.Output[int]:
         return pulumi.get(self, "look_back")
+
+    @property
+    @pulumi.getter(name="matchAround")
+    def match_around(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "match_around")
 
     @property
     @pulumi.getter

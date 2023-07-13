@@ -38,6 +38,7 @@ export class SystemSnmpUser extends pulumi.CustomResource {
     public readonly authPwd!: pulumi.Output<string | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly events!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly haDirect!: pulumi.Output<string>;
     public readonly mibView!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
@@ -74,6 +75,7 @@ export class SystemSnmpUser extends pulumi.CustomResource {
             resourceInputs["authPwd"] = state ? state.authPwd : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["events"] = state ? state.events : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["haDirect"] = state ? state.haDirect : undefined;
             resourceInputs["mibView"] = state ? state.mibView : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -98,6 +100,7 @@ export class SystemSnmpUser extends pulumi.CustomResource {
             resourceInputs["authPwd"] = args?.authPwd ? pulumi.secret(args.authPwd) : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["events"] = args ? args.events : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["haDirect"] = args ? args.haDirect : undefined;
             resourceInputs["mibView"] = args ? args.mibView : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -132,6 +135,7 @@ export interface SystemSnmpUserState {
     authPwd?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     events?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     haDirect?: pulumi.Input<string>;
     mibView?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
@@ -160,6 +164,7 @@ export interface SystemSnmpUserArgs {
     authPwd?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     events?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     haDirect?: pulumi.Input<string>;
     mibView?: pulumi.Input<string>;
     name?: pulumi.Input<string>;

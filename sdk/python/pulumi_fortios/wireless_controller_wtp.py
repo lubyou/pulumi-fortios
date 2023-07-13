@@ -26,6 +26,7 @@ class WirelessControllerWtpArgs:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  firmware_provision: Optional[pulumi.Input[str]] = None,
                  firmware_provision_latest: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  image_download: Optional[pulumi.Input[str]] = None,
                  index: Optional[pulumi.Input[int]] = None,
                  ip_fragment_preventing: Optional[pulumi.Input[str]] = None,
@@ -82,6 +83,8 @@ class WirelessControllerWtpArgs:
             pulumi.set(__self__, "firmware_provision", firmware_provision)
         if firmware_provision_latest is not None:
             pulumi.set(__self__, "firmware_provision_latest", firmware_provision_latest)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if image_download is not None:
             pulumi.set(__self__, "image_download", image_download)
         if index is not None:
@@ -240,6 +243,15 @@ class WirelessControllerWtpArgs:
     @firmware_provision_latest.setter
     def firmware_provision_latest(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "firmware_provision_latest", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="imageDownload")
@@ -560,6 +572,7 @@ class _WirelessControllerWtpState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  firmware_provision: Optional[pulumi.Input[str]] = None,
                  firmware_provision_latest: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  image_download: Optional[pulumi.Input[str]] = None,
                  index: Optional[pulumi.Input[int]] = None,
                  ip_fragment_preventing: Optional[pulumi.Input[str]] = None,
@@ -616,6 +629,8 @@ class _WirelessControllerWtpState:
             pulumi.set(__self__, "firmware_provision", firmware_provision)
         if firmware_provision_latest is not None:
             pulumi.set(__self__, "firmware_provision_latest", firmware_provision_latest)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if image_download is not None:
             pulumi.set(__self__, "image_download", image_download)
         if index is not None:
@@ -767,6 +782,15 @@ class _WirelessControllerWtpState:
     @firmware_provision_latest.setter
     def firmware_provision_latest(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "firmware_provision_latest", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="imageDownload")
@@ -1098,6 +1122,7 @@ class WirelessControllerWtp(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  firmware_provision: Optional[pulumi.Input[str]] = None,
                  firmware_provision_latest: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  image_download: Optional[pulumi.Input[str]] = None,
                  index: Optional[pulumi.Input[int]] = None,
                  ip_fragment_preventing: Optional[pulumi.Input[str]] = None,
@@ -1171,6 +1196,7 @@ class WirelessControllerWtp(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  firmware_provision: Optional[pulumi.Input[str]] = None,
                  firmware_provision_latest: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  image_download: Optional[pulumi.Input[str]] = None,
                  index: Optional[pulumi.Input[int]] = None,
                  ip_fragment_preventing: Optional[pulumi.Input[str]] = None,
@@ -1224,6 +1250,7 @@ class WirelessControllerWtp(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["firmware_provision"] = firmware_provision
             __props__.__dict__["firmware_provision_latest"] = firmware_provision_latest
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["image_download"] = image_download
             __props__.__dict__["index"] = index
             __props__.__dict__["ip_fragment_preventing"] = ip_fragment_preventing
@@ -1282,6 +1309,7 @@ class WirelessControllerWtp(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             firmware_provision: Optional[pulumi.Input[str]] = None,
             firmware_provision_latest: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             image_download: Optional[pulumi.Input[str]] = None,
             index: Optional[pulumi.Input[int]] = None,
             ip_fragment_preventing: Optional[pulumi.Input[str]] = None,
@@ -1338,6 +1366,7 @@ class WirelessControllerWtp(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["firmware_provision"] = firmware_provision
         __props__.__dict__["firmware_provision_latest"] = firmware_provision_latest
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["image_download"] = image_download
         __props__.__dict__["index"] = index
         __props__.__dict__["ip_fragment_preventing"] = ip_fragment_preventing
@@ -1419,6 +1448,11 @@ class WirelessControllerWtp(pulumi.CustomResource):
     @pulumi.getter(name="firmwareProvisionLatest")
     def firmware_provision_latest(self) -> pulumi.Output[str]:
         return pulumi.get(self, "firmware_provision_latest")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="imageDownload")

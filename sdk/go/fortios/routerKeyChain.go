@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -14,6 +15,7 @@ type RouterKeyChain struct {
 	pulumi.CustomResourceState
 
 	DynamicSortSubtable pulumi.StringPtrOutput       `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput       `pulumi:"getAllTables"`
 	Keys                RouterKeyChainKeyArrayOutput `pulumi:"keys"`
 	Name                pulumi.StringOutput          `pulumi:"name"`
 	Vdomparam           pulumi.StringPtrOutput       `pulumi:"vdomparam"`
@@ -26,7 +28,7 @@ func NewRouterKeyChain(ctx *pulumi.Context,
 		args = &RouterKeyChainArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RouterKeyChain
 	err := ctx.RegisterResource("fortios:index/routerKeyChain:RouterKeyChain", name, args, &resource, opts...)
 	if err != nil {
@@ -50,6 +52,7 @@ func GetRouterKeyChain(ctx *pulumi.Context,
 // Input properties used for looking up and filtering RouterKeyChain resources.
 type routerKeyChainState struct {
 	DynamicSortSubtable *string             `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string             `pulumi:"getAllTables"`
 	Keys                []RouterKeyChainKey `pulumi:"keys"`
 	Name                *string             `pulumi:"name"`
 	Vdomparam           *string             `pulumi:"vdomparam"`
@@ -57,6 +60,7 @@ type routerKeyChainState struct {
 
 type RouterKeyChainState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Keys                RouterKeyChainKeyArrayInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
@@ -68,6 +72,7 @@ func (RouterKeyChainState) ElementType() reflect.Type {
 
 type routerKeyChainArgs struct {
 	DynamicSortSubtable *string             `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string             `pulumi:"getAllTables"`
 	Keys                []RouterKeyChainKey `pulumi:"keys"`
 	Name                *string             `pulumi:"name"`
 	Vdomparam           *string             `pulumi:"vdomparam"`
@@ -76,6 +81,7 @@ type routerKeyChainArgs struct {
 // The set of arguments for constructing a RouterKeyChain resource.
 type RouterKeyChainArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Keys                RouterKeyChainKeyArrayInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
@@ -170,6 +176,10 @@ func (o RouterKeyChainOutput) ToRouterKeyChainOutputWithContext(ctx context.Cont
 
 func (o RouterKeyChainOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RouterKeyChain) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o RouterKeyChainOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterKeyChain) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o RouterKeyChainOutput) Keys() RouterKeyChainKeyArrayOutput {

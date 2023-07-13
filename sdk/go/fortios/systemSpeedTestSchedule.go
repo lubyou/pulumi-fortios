@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -16,6 +17,7 @@ type SystemSpeedTestSchedule struct {
 	Diffserv                  pulumi.StringOutput                        `pulumi:"diffserv"`
 	DynamicServer             pulumi.StringOutput                        `pulumi:"dynamicServer"`
 	DynamicSortSubtable       pulumi.StringPtrOutput                     `pulumi:"dynamicSortSubtable"`
+	GetAllTables              pulumi.StringPtrOutput                     `pulumi:"getAllTables"`
 	Interface                 pulumi.StringOutput                        `pulumi:"interface"`
 	Schedules                 SystemSpeedTestScheduleScheduleArrayOutput `pulumi:"schedules"`
 	ServerName                pulumi.StringOutput                        `pulumi:"serverName"`
@@ -36,7 +38,7 @@ func NewSystemSpeedTestSchedule(ctx *pulumi.Context,
 		args = &SystemSpeedTestScheduleArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemSpeedTestSchedule
 	err := ctx.RegisterResource("fortios:index/systemSpeedTestSchedule:SystemSpeedTestSchedule", name, args, &resource, opts...)
 	if err != nil {
@@ -62,6 +64,7 @@ type systemSpeedTestScheduleState struct {
 	Diffserv                  *string                           `pulumi:"diffserv"`
 	DynamicServer             *string                           `pulumi:"dynamicServer"`
 	DynamicSortSubtable       *string                           `pulumi:"dynamicSortSubtable"`
+	GetAllTables              *string                           `pulumi:"getAllTables"`
 	Interface                 *string                           `pulumi:"interface"`
 	Schedules                 []SystemSpeedTestScheduleSchedule `pulumi:"schedules"`
 	ServerName                *string                           `pulumi:"serverName"`
@@ -79,6 +82,7 @@ type SystemSpeedTestScheduleState struct {
 	Diffserv                  pulumi.StringPtrInput
 	DynamicServer             pulumi.StringPtrInput
 	DynamicSortSubtable       pulumi.StringPtrInput
+	GetAllTables              pulumi.StringPtrInput
 	Interface                 pulumi.StringPtrInput
 	Schedules                 SystemSpeedTestScheduleScheduleArrayInput
 	ServerName                pulumi.StringPtrInput
@@ -100,6 +104,7 @@ type systemSpeedTestScheduleArgs struct {
 	Diffserv                  *string                           `pulumi:"diffserv"`
 	DynamicServer             *string                           `pulumi:"dynamicServer"`
 	DynamicSortSubtable       *string                           `pulumi:"dynamicSortSubtable"`
+	GetAllTables              *string                           `pulumi:"getAllTables"`
 	Interface                 *string                           `pulumi:"interface"`
 	Schedules                 []SystemSpeedTestScheduleSchedule `pulumi:"schedules"`
 	ServerName                *string                           `pulumi:"serverName"`
@@ -118,6 +123,7 @@ type SystemSpeedTestScheduleArgs struct {
 	Diffserv                  pulumi.StringPtrInput
 	DynamicServer             pulumi.StringPtrInput
 	DynamicSortSubtable       pulumi.StringPtrInput
+	GetAllTables              pulumi.StringPtrInput
 	Interface                 pulumi.StringPtrInput
 	Schedules                 SystemSpeedTestScheduleScheduleArrayInput
 	ServerName                pulumi.StringPtrInput
@@ -228,6 +234,10 @@ func (o SystemSpeedTestScheduleOutput) DynamicServer() pulumi.StringOutput {
 
 func (o SystemSpeedTestScheduleOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SystemSpeedTestSchedule) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemSpeedTestScheduleOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemSpeedTestSchedule) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemSpeedTestScheduleOutput) Interface() pulumi.StringOutput {

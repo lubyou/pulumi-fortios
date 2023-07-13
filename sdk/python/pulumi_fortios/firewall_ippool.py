@@ -32,6 +32,7 @@ class FirewallIppoolArgs:
                  source_endip: Optional[pulumi.Input[str]] = None,
                  source_startip: Optional[pulumi.Input[str]] = None,
                  startport: Optional[pulumi.Input[int]] = None,
+                 subnet_broadcast_in_ippool: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
@@ -71,6 +72,8 @@ class FirewallIppoolArgs:
             pulumi.set(__self__, "source_startip", source_startip)
         if startport is not None:
             pulumi.set(__self__, "startport", startport)
+        if subnet_broadcast_in_ippool is not None:
+            pulumi.set(__self__, "subnet_broadcast_in_ippool", subnet_broadcast_in_ippool)
         if type is not None:
             pulumi.set(__self__, "type", type)
         if vdomparam is not None:
@@ -239,6 +242,15 @@ class FirewallIppoolArgs:
         pulumi.set(self, "startport", value)
 
     @property
+    @pulumi.getter(name="subnetBroadcastInIppool")
+    def subnet_broadcast_in_ippool(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "subnet_broadcast_in_ippool")
+
+    @subnet_broadcast_in_ippool.setter
+    def subnet_broadcast_in_ippool(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "subnet_broadcast_in_ippool", value)
+
+    @property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "type")
@@ -278,6 +290,7 @@ class _FirewallIppoolState:
                  source_startip: Optional[pulumi.Input[str]] = None,
                  startip: Optional[pulumi.Input[str]] = None,
                  startport: Optional[pulumi.Input[int]] = None,
+                 subnet_broadcast_in_ippool: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
@@ -319,6 +332,8 @@ class _FirewallIppoolState:
             pulumi.set(__self__, "startip", startip)
         if startport is not None:
             pulumi.set(__self__, "startport", startport)
+        if subnet_broadcast_in_ippool is not None:
+            pulumi.set(__self__, "subnet_broadcast_in_ippool", subnet_broadcast_in_ippool)
         if type is not None:
             pulumi.set(__self__, "type", type)
         if vdomparam is not None:
@@ -487,6 +502,15 @@ class _FirewallIppoolState:
         pulumi.set(self, "startport", value)
 
     @property
+    @pulumi.getter(name="subnetBroadcastInIppool")
+    def subnet_broadcast_in_ippool(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "subnet_broadcast_in_ippool")
+
+    @subnet_broadcast_in_ippool.setter
+    def subnet_broadcast_in_ippool(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "subnet_broadcast_in_ippool", value)
+
+    @property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "type")
@@ -528,6 +552,7 @@ class FirewallIppool(pulumi.CustomResource):
                  source_startip: Optional[pulumi.Input[str]] = None,
                  startip: Optional[pulumi.Input[str]] = None,
                  startport: Optional[pulumi.Input[int]] = None,
+                 subnet_broadcast_in_ippool: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -577,6 +602,7 @@ class FirewallIppool(pulumi.CustomResource):
                  source_startip: Optional[pulumi.Input[str]] = None,
                  startip: Optional[pulumi.Input[str]] = None,
                  startport: Optional[pulumi.Input[int]] = None,
+                 subnet_broadcast_in_ippool: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -610,6 +636,7 @@ class FirewallIppool(pulumi.CustomResource):
                 raise TypeError("Missing required property 'startip'")
             __props__.__dict__["startip"] = startip
             __props__.__dict__["startport"] = startport
+            __props__.__dict__["subnet_broadcast_in_ippool"] = subnet_broadcast_in_ippool
             __props__.__dict__["type"] = type
             __props__.__dict__["vdomparam"] = vdomparam
         super(FirewallIppool, __self__).__init__(
@@ -640,6 +667,7 @@ class FirewallIppool(pulumi.CustomResource):
             source_startip: Optional[pulumi.Input[str]] = None,
             startip: Optional[pulumi.Input[str]] = None,
             startport: Optional[pulumi.Input[int]] = None,
+            subnet_broadcast_in_ippool: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'FirewallIppool':
         """
@@ -672,6 +700,7 @@ class FirewallIppool(pulumi.CustomResource):
         __props__.__dict__["source_startip"] = source_startip
         __props__.__dict__["startip"] = startip
         __props__.__dict__["startport"] = startport
+        __props__.__dict__["subnet_broadcast_in_ippool"] = subnet_broadcast_in_ippool
         __props__.__dict__["type"] = type
         __props__.__dict__["vdomparam"] = vdomparam
         return FirewallIppool(resource_name, opts=opts, __props__=__props__)
@@ -765,6 +794,11 @@ class FirewallIppool(pulumi.CustomResource):
     @pulumi.getter
     def startport(self) -> pulumi.Output[int]:
         return pulumi.get(self, "startport")
+
+    @property
+    @pulumi.getter(name="subnetBroadcastInIppool")
+    def subnet_broadcast_in_ippool(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "subnet_broadcast_in_ippool")
 
     @property
     @pulumi.getter

@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func GetRouterKeyChainList(ctx *pulumi.Context, args *GetRouterKeyChainListArgs, opts ...pulumi.InvokeOption) (*GetRouterKeyChainListResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetRouterKeyChainListResult
 	err := ctx.Invoke("fortios:index/getRouterKeyChainList:GetRouterKeyChainList", args, &rv, opts...)
 	if err != nil {

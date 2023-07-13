@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -18,6 +19,7 @@ type FirewallMulticastAddress struct {
 	Comment             pulumi.StringPtrOutput                     `pulumi:"comment"`
 	DynamicSortSubtable pulumi.StringPtrOutput                     `pulumi:"dynamicSortSubtable"`
 	EndIp               pulumi.StringOutput                        `pulumi:"endIp"`
+	GetAllTables        pulumi.StringPtrOutput                     `pulumi:"getAllTables"`
 	Name                pulumi.StringOutput                        `pulumi:"name"`
 	StartIp             pulumi.StringOutput                        `pulumi:"startIp"`
 	Subnet              pulumi.StringOutput                        `pulumi:"subnet"`
@@ -34,7 +36,7 @@ func NewFirewallMulticastAddress(ctx *pulumi.Context,
 		args = &FirewallMulticastAddressArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallMulticastAddress
 	err := ctx.RegisterResource("fortios:index/firewallMulticastAddress:FirewallMulticastAddress", name, args, &resource, opts...)
 	if err != nil {
@@ -62,6 +64,7 @@ type firewallMulticastAddressState struct {
 	Comment             *string                           `pulumi:"comment"`
 	DynamicSortSubtable *string                           `pulumi:"dynamicSortSubtable"`
 	EndIp               *string                           `pulumi:"endIp"`
+	GetAllTables        *string                           `pulumi:"getAllTables"`
 	Name                *string                           `pulumi:"name"`
 	StartIp             *string                           `pulumi:"startIp"`
 	Subnet              *string                           `pulumi:"subnet"`
@@ -77,6 +80,7 @@ type FirewallMulticastAddressState struct {
 	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	EndIp               pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	StartIp             pulumi.StringPtrInput
 	Subnet              pulumi.StringPtrInput
@@ -96,6 +100,7 @@ type firewallMulticastAddressArgs struct {
 	Comment             *string                           `pulumi:"comment"`
 	DynamicSortSubtable *string                           `pulumi:"dynamicSortSubtable"`
 	EndIp               *string                           `pulumi:"endIp"`
+	GetAllTables        *string                           `pulumi:"getAllTables"`
 	Name                *string                           `pulumi:"name"`
 	StartIp             *string                           `pulumi:"startIp"`
 	Subnet              *string                           `pulumi:"subnet"`
@@ -112,6 +117,7 @@ type FirewallMulticastAddressArgs struct {
 	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	EndIp               pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	StartIp             pulumi.StringPtrInput
 	Subnet              pulumi.StringPtrInput
@@ -226,6 +232,10 @@ func (o FirewallMulticastAddressOutput) DynamicSortSubtable() pulumi.StringPtrOu
 
 func (o FirewallMulticastAddressOutput) EndIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallMulticastAddress) pulumi.StringOutput { return v.EndIp }).(pulumi.StringOutput)
+}
+
+func (o FirewallMulticastAddressOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallMulticastAddress) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallMulticastAddressOutput) Name() pulumi.StringOutput {

@@ -17,16 +17,20 @@ __all__ = ['FirewallAuthPortalArgs', 'FirewallAuthPortal']
 class FirewallAuthPortalArgs:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAuthPortalGroupArgs']]]] = None,
                  identity_based_route: Optional[pulumi.Input[str]] = None,
                  portal_addr: Optional[pulumi.Input[str]] = None,
                  portal_addr6: Optional[pulumi.Input[str]] = None,
+                 proxy_auth: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a FirewallAuthPortal resource.
         """
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if groups is not None:
             pulumi.set(__self__, "groups", groups)
         if identity_based_route is not None:
@@ -35,6 +39,8 @@ class FirewallAuthPortalArgs:
             pulumi.set(__self__, "portal_addr", portal_addr)
         if portal_addr6 is not None:
             pulumi.set(__self__, "portal_addr6", portal_addr6)
+        if proxy_auth is not None:
+            pulumi.set(__self__, "proxy_auth", proxy_auth)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -46,6 +52,15 @@ class FirewallAuthPortalArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -82,6 +97,15 @@ class FirewallAuthPortalArgs:
     @portal_addr6.setter
     def portal_addr6(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "portal_addr6", value)
+
+    @property
+    @pulumi.getter(name="proxyAuth")
+    def proxy_auth(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "proxy_auth")
+
+    @proxy_auth.setter
+    def proxy_auth(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy_auth", value)
 
     @property
     @pulumi.getter
@@ -97,16 +121,20 @@ class FirewallAuthPortalArgs:
 class _FirewallAuthPortalState:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAuthPortalGroupArgs']]]] = None,
                  identity_based_route: Optional[pulumi.Input[str]] = None,
                  portal_addr: Optional[pulumi.Input[str]] = None,
                  portal_addr6: Optional[pulumi.Input[str]] = None,
+                 proxy_auth: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering FirewallAuthPortal resources.
         """
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if groups is not None:
             pulumi.set(__self__, "groups", groups)
         if identity_based_route is not None:
@@ -115,6 +143,8 @@ class _FirewallAuthPortalState:
             pulumi.set(__self__, "portal_addr", portal_addr)
         if portal_addr6 is not None:
             pulumi.set(__self__, "portal_addr6", portal_addr6)
+        if proxy_auth is not None:
+            pulumi.set(__self__, "proxy_auth", proxy_auth)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -126,6 +156,15 @@ class _FirewallAuthPortalState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -162,6 +201,15 @@ class _FirewallAuthPortalState:
     @portal_addr6.setter
     def portal_addr6(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "portal_addr6", value)
+
+    @property
+    @pulumi.getter(name="proxyAuth")
+    def proxy_auth(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "proxy_auth")
+
+    @proxy_auth.setter
+    def proxy_auth(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy_auth", value)
 
     @property
     @pulumi.getter
@@ -179,10 +227,12 @@ class FirewallAuthPortal(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAuthPortalGroupArgs']]]]] = None,
                  identity_based_route: Optional[pulumi.Input[str]] = None,
                  portal_addr: Optional[pulumi.Input[str]] = None,
                  portal_addr6: Optional[pulumi.Input[str]] = None,
+                 proxy_auth: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -214,10 +264,12 @@ class FirewallAuthPortal(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAuthPortalGroupArgs']]]]] = None,
                  identity_based_route: Optional[pulumi.Input[str]] = None,
                  portal_addr: Optional[pulumi.Input[str]] = None,
                  portal_addr6: Optional[pulumi.Input[str]] = None,
+                 proxy_auth: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -229,10 +281,12 @@ class FirewallAuthPortal(pulumi.CustomResource):
             __props__ = FirewallAuthPortalArgs.__new__(FirewallAuthPortalArgs)
 
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["groups"] = groups
             __props__.__dict__["identity_based_route"] = identity_based_route
             __props__.__dict__["portal_addr"] = portal_addr
             __props__.__dict__["portal_addr6"] = portal_addr6
+            __props__.__dict__["proxy_auth"] = proxy_auth
             __props__.__dict__["vdomparam"] = vdomparam
         super(FirewallAuthPortal, __self__).__init__(
             'fortios:index/firewallAuthPortal:FirewallAuthPortal',
@@ -245,10 +299,12 @@ class FirewallAuthPortal(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAuthPortalGroupArgs']]]]] = None,
             identity_based_route: Optional[pulumi.Input[str]] = None,
             portal_addr: Optional[pulumi.Input[str]] = None,
             portal_addr6: Optional[pulumi.Input[str]] = None,
+            proxy_auth: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'FirewallAuthPortal':
         """
         Get an existing FirewallAuthPortal resource's state with the given name, id, and optional extra
@@ -263,10 +319,12 @@ class FirewallAuthPortal(pulumi.CustomResource):
         __props__ = _FirewallAuthPortalState.__new__(_FirewallAuthPortalState)
 
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["groups"] = groups
         __props__.__dict__["identity_based_route"] = identity_based_route
         __props__.__dict__["portal_addr"] = portal_addr
         __props__.__dict__["portal_addr6"] = portal_addr6
+        __props__.__dict__["proxy_auth"] = proxy_auth
         __props__.__dict__["vdomparam"] = vdomparam
         return FirewallAuthPortal(resource_name, opts=opts, __props__=__props__)
 
@@ -274,6 +332,11 @@ class FirewallAuthPortal(pulumi.CustomResource):
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter
@@ -294,6 +357,11 @@ class FirewallAuthPortal(pulumi.CustomResource):
     @pulumi.getter(name="portalAddr6")
     def portal_addr6(self) -> pulumi.Output[str]:
         return pulumi.get(self, "portal_addr6")
+
+    @property
+    @pulumi.getter(name="proxyAuth")
+    def proxy_auth(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "proxy_auth")
 
     @property
     @pulumi.getter

@@ -19,6 +19,7 @@ class WirelessControllerInterControllerArgs:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fast_failover_max: Optional[pulumi.Input[int]] = None,
                  fast_failover_wait: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  inter_controller_key: Optional[pulumi.Input[str]] = None,
                  inter_controller_mode: Optional[pulumi.Input[str]] = None,
                  inter_controller_peers: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerInterControllerInterControllerPeerArgs']]]] = None,
@@ -34,6 +35,8 @@ class WirelessControllerInterControllerArgs:
             pulumi.set(__self__, "fast_failover_max", fast_failover_max)
         if fast_failover_wait is not None:
             pulumi.set(__self__, "fast_failover_wait", fast_failover_wait)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if inter_controller_key is not None:
             pulumi.set(__self__, "inter_controller_key", inter_controller_key)
         if inter_controller_mode is not None:
@@ -73,6 +76,15 @@ class WirelessControllerInterControllerArgs:
     @fast_failover_wait.setter
     def fast_failover_wait(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fast_failover_wait", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="interControllerKey")
@@ -135,6 +147,7 @@ class _WirelessControllerInterControllerState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fast_failover_max: Optional[pulumi.Input[int]] = None,
                  fast_failover_wait: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  inter_controller_key: Optional[pulumi.Input[str]] = None,
                  inter_controller_mode: Optional[pulumi.Input[str]] = None,
                  inter_controller_peers: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerInterControllerInterControllerPeerArgs']]]] = None,
@@ -150,6 +163,8 @@ class _WirelessControllerInterControllerState:
             pulumi.set(__self__, "fast_failover_max", fast_failover_max)
         if fast_failover_wait is not None:
             pulumi.set(__self__, "fast_failover_wait", fast_failover_wait)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if inter_controller_key is not None:
             pulumi.set(__self__, "inter_controller_key", inter_controller_key)
         if inter_controller_mode is not None:
@@ -189,6 +204,15 @@ class _WirelessControllerInterControllerState:
     @fast_failover_wait.setter
     def fast_failover_wait(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fast_failover_wait", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="interControllerKey")
@@ -253,6 +277,7 @@ class WirelessControllerInterController(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fast_failover_max: Optional[pulumi.Input[int]] = None,
                  fast_failover_wait: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  inter_controller_key: Optional[pulumi.Input[str]] = None,
                  inter_controller_mode: Optional[pulumi.Input[str]] = None,
                  inter_controller_peers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerInterControllerInterControllerPeerArgs']]]]] = None,
@@ -291,6 +316,7 @@ class WirelessControllerInterController(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fast_failover_max: Optional[pulumi.Input[int]] = None,
                  fast_failover_wait: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  inter_controller_key: Optional[pulumi.Input[str]] = None,
                  inter_controller_mode: Optional[pulumi.Input[str]] = None,
                  inter_controller_peers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerInterControllerInterControllerPeerArgs']]]]] = None,
@@ -309,6 +335,7 @@ class WirelessControllerInterController(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["fast_failover_max"] = fast_failover_max
             __props__.__dict__["fast_failover_wait"] = fast_failover_wait
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["inter_controller_key"] = None if inter_controller_key is None else pulumi.Output.secret(inter_controller_key)
             __props__.__dict__["inter_controller_mode"] = inter_controller_mode
             __props__.__dict__["inter_controller_peers"] = inter_controller_peers
@@ -330,6 +357,7 @@ class WirelessControllerInterController(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             fast_failover_max: Optional[pulumi.Input[int]] = None,
             fast_failover_wait: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             inter_controller_key: Optional[pulumi.Input[str]] = None,
             inter_controller_mode: Optional[pulumi.Input[str]] = None,
             inter_controller_peers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerInterControllerInterControllerPeerArgs']]]]] = None,
@@ -351,6 +379,7 @@ class WirelessControllerInterController(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["fast_failover_max"] = fast_failover_max
         __props__.__dict__["fast_failover_wait"] = fast_failover_wait
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["inter_controller_key"] = inter_controller_key
         __props__.__dict__["inter_controller_mode"] = inter_controller_mode
         __props__.__dict__["inter_controller_peers"] = inter_controller_peers
@@ -373,6 +402,11 @@ class WirelessControllerInterController(pulumi.CustomResource):
     @pulumi.getter(name="fastFailoverWait")
     def fast_failover_wait(self) -> pulumi.Output[int]:
         return pulumi.get(self, "fast_failover_wait")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="interControllerKey")

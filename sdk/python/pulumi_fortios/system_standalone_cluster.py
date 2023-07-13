@@ -19,6 +19,7 @@ class SystemStandaloneClusterArgs:
                  cluster_peers: Optional[pulumi.Input[Sequence[pulumi.Input['SystemStandaloneClusterClusterPeerArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  encryption: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_member_id: Optional[pulumi.Input[int]] = None,
                  layer2_connection: Optional[pulumi.Input[str]] = None,
                  psksecret: Optional[pulumi.Input[str]] = None,
@@ -34,6 +35,8 @@ class SystemStandaloneClusterArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if encryption is not None:
             pulumi.set(__self__, "encryption", encryption)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if group_member_id is not None:
             pulumi.set(__self__, "group_member_id", group_member_id)
         if layer2_connection is not None:
@@ -73,6 +76,15 @@ class SystemStandaloneClusterArgs:
     @encryption.setter
     def encryption(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "encryption", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="groupMemberId")
@@ -135,6 +147,7 @@ class _SystemStandaloneClusterState:
                  cluster_peers: Optional[pulumi.Input[Sequence[pulumi.Input['SystemStandaloneClusterClusterPeerArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  encryption: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_member_id: Optional[pulumi.Input[int]] = None,
                  layer2_connection: Optional[pulumi.Input[str]] = None,
                  psksecret: Optional[pulumi.Input[str]] = None,
@@ -150,6 +163,8 @@ class _SystemStandaloneClusterState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if encryption is not None:
             pulumi.set(__self__, "encryption", encryption)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if group_member_id is not None:
             pulumi.set(__self__, "group_member_id", group_member_id)
         if layer2_connection is not None:
@@ -189,6 +204,15 @@ class _SystemStandaloneClusterState:
     @encryption.setter
     def encryption(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "encryption", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="groupMemberId")
@@ -253,6 +277,7 @@ class SystemStandaloneCluster(pulumi.CustomResource):
                  cluster_peers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemStandaloneClusterClusterPeerArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  encryption: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_member_id: Optional[pulumi.Input[int]] = None,
                  layer2_connection: Optional[pulumi.Input[str]] = None,
                  psksecret: Optional[pulumi.Input[str]] = None,
@@ -291,6 +316,7 @@ class SystemStandaloneCluster(pulumi.CustomResource):
                  cluster_peers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemStandaloneClusterClusterPeerArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  encryption: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_member_id: Optional[pulumi.Input[int]] = None,
                  layer2_connection: Optional[pulumi.Input[str]] = None,
                  psksecret: Optional[pulumi.Input[str]] = None,
@@ -309,6 +335,7 @@ class SystemStandaloneCluster(pulumi.CustomResource):
             __props__.__dict__["cluster_peers"] = cluster_peers
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["encryption"] = encryption
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["group_member_id"] = group_member_id
             __props__.__dict__["layer2_connection"] = layer2_connection
             __props__.__dict__["psksecret"] = None if psksecret is None else pulumi.Output.secret(psksecret)
@@ -330,6 +357,7 @@ class SystemStandaloneCluster(pulumi.CustomResource):
             cluster_peers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemStandaloneClusterClusterPeerArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             encryption: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             group_member_id: Optional[pulumi.Input[int]] = None,
             layer2_connection: Optional[pulumi.Input[str]] = None,
             psksecret: Optional[pulumi.Input[str]] = None,
@@ -351,6 +379,7 @@ class SystemStandaloneCluster(pulumi.CustomResource):
         __props__.__dict__["cluster_peers"] = cluster_peers
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["encryption"] = encryption
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["group_member_id"] = group_member_id
         __props__.__dict__["layer2_connection"] = layer2_connection
         __props__.__dict__["psksecret"] = psksecret
@@ -373,6 +402,11 @@ class SystemStandaloneCluster(pulumi.CustomResource):
     @pulumi.getter
     def encryption(self) -> pulumi.Output[str]:
         return pulumi.get(self, "encryption")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="groupMemberId")

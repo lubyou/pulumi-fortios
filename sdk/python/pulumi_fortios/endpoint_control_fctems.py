@@ -40,6 +40,7 @@ class EndpointControlFctemsArgs:
                  status: Optional[pulumi.Input[str]] = None,
                  status_check_interval: Optional[pulumi.Input[int]] = None,
                  tenant_id: Optional[pulumi.Input[str]] = None,
+                 trust_ca_cn: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  websocket_override: Optional[pulumi.Input[str]] = None):
         """
@@ -97,6 +98,8 @@ class EndpointControlFctemsArgs:
             pulumi.set(__self__, "status_check_interval", status_check_interval)
         if tenant_id is not None:
             pulumi.set(__self__, "tenant_id", tenant_id)
+        if trust_ca_cn is not None:
+            pulumi.set(__self__, "trust_ca_cn", trust_ca_cn)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if websocket_override is not None:
@@ -337,6 +340,15 @@ class EndpointControlFctemsArgs:
         pulumi.set(self, "tenant_id", value)
 
     @property
+    @pulumi.getter(name="trustCaCn")
+    def trust_ca_cn(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "trust_ca_cn")
+
+    @trust_ca_cn.setter
+    def trust_ca_cn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "trust_ca_cn", value)
+
+    @property
     @pulumi.getter
     def vdomparam(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "vdomparam")
@@ -384,6 +396,7 @@ class _EndpointControlFctemsState:
                  status: Optional[pulumi.Input[str]] = None,
                  status_check_interval: Optional[pulumi.Input[int]] = None,
                  tenant_id: Optional[pulumi.Input[str]] = None,
+                 trust_ca_cn: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  websocket_override: Optional[pulumi.Input[str]] = None):
         """
@@ -441,6 +454,8 @@ class _EndpointControlFctemsState:
             pulumi.set(__self__, "status_check_interval", status_check_interval)
         if tenant_id is not None:
             pulumi.set(__self__, "tenant_id", tenant_id)
+        if trust_ca_cn is not None:
+            pulumi.set(__self__, "trust_ca_cn", trust_ca_cn)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if websocket_override is not None:
@@ -681,6 +696,15 @@ class _EndpointControlFctemsState:
         pulumi.set(self, "tenant_id", value)
 
     @property
+    @pulumi.getter(name="trustCaCn")
+    def trust_ca_cn(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "trust_ca_cn")
+
+    @trust_ca_cn.setter
+    def trust_ca_cn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "trust_ca_cn", value)
+
+    @property
     @pulumi.getter
     def vdomparam(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "vdomparam")
@@ -730,6 +754,7 @@ class EndpointControlFctems(pulumi.CustomResource):
                  status: Optional[pulumi.Input[str]] = None,
                  status_check_interval: Optional[pulumi.Input[int]] = None,
                  tenant_id: Optional[pulumi.Input[str]] = None,
+                 trust_ca_cn: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  websocket_override: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -787,6 +812,7 @@ class EndpointControlFctems(pulumi.CustomResource):
                  status: Optional[pulumi.Input[str]] = None,
                  status_check_interval: Optional[pulumi.Input[int]] = None,
                  tenant_id: Optional[pulumi.Input[str]] = None,
+                 trust_ca_cn: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  websocket_override: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -824,6 +850,7 @@ class EndpointControlFctems(pulumi.CustomResource):
             __props__.__dict__["status"] = status
             __props__.__dict__["status_check_interval"] = status_check_interval
             __props__.__dict__["tenant_id"] = tenant_id
+            __props__.__dict__["trust_ca_cn"] = trust_ca_cn
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["websocket_override"] = websocket_override
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["adminPassword"])
@@ -864,6 +891,7 @@ class EndpointControlFctems(pulumi.CustomResource):
             status: Optional[pulumi.Input[str]] = None,
             status_check_interval: Optional[pulumi.Input[int]] = None,
             tenant_id: Optional[pulumi.Input[str]] = None,
+            trust_ca_cn: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             websocket_override: Optional[pulumi.Input[str]] = None) -> 'EndpointControlFctems':
         """
@@ -904,6 +932,7 @@ class EndpointControlFctems(pulumi.CustomResource):
         __props__.__dict__["status"] = status
         __props__.__dict__["status_check_interval"] = status_check_interval
         __props__.__dict__["tenant_id"] = tenant_id
+        __props__.__dict__["trust_ca_cn"] = trust_ca_cn
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["websocket_override"] = websocket_override
         return EndpointControlFctems(resource_name, opts=opts, __props__=__props__)
@@ -1037,6 +1066,11 @@ class EndpointControlFctems(pulumi.CustomResource):
     @pulumi.getter(name="tenantId")
     def tenant_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "tenant_id")
+
+    @property
+    @pulumi.getter(name="trustCaCn")
+    def trust_ca_cn(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "trust_ca_cn")
 
     @property
     @pulumi.getter

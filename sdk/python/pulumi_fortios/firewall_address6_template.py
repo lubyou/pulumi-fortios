@@ -20,6 +20,7 @@ class FirewallAddress6TemplateArgs:
                  subnet_segment_count: pulumi.Input[int],
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  subnet_segments: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddress6TemplateSubnetSegmentArgs']]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -32,6 +33,8 @@ class FirewallAddress6TemplateArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fabric_object is not None:
             pulumi.set(__self__, "fabric_object", fabric_object)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if subnet_segments is not None:
@@ -76,6 +79,15 @@ class FirewallAddress6TemplateArgs:
         pulumi.set(self, "fabric_object", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "name")
@@ -108,6 +120,7 @@ class _FirewallAddress6TemplateState:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip6: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  subnet_segment_count: Optional[pulumi.Input[int]] = None,
@@ -120,6 +133,8 @@ class _FirewallAddress6TemplateState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fabric_object is not None:
             pulumi.set(__self__, "fabric_object", fabric_object)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ip6 is not None:
             pulumi.set(__self__, "ip6", ip6)
         if name is not None:
@@ -148,6 +163,15 @@ class _FirewallAddress6TemplateState:
     @fabric_object.setter
     def fabric_object(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fabric_object", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -202,6 +226,7 @@ class FirewallAddress6Template(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip6: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  subnet_segment_count: Optional[pulumi.Input[int]] = None,
@@ -238,6 +263,7 @@ class FirewallAddress6Template(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fabric_object: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip6: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  subnet_segment_count: Optional[pulumi.Input[int]] = None,
@@ -254,6 +280,7 @@ class FirewallAddress6Template(pulumi.CustomResource):
 
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["fabric_object"] = fabric_object
+            __props__.__dict__["get_all_tables"] = get_all_tables
             if ip6 is None and not opts.urn:
                 raise TypeError("Missing required property 'ip6'")
             __props__.__dict__["ip6"] = ip6
@@ -275,6 +302,7 @@ class FirewallAddress6Template(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             fabric_object: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             ip6: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             subnet_segment_count: Optional[pulumi.Input[int]] = None,
@@ -294,6 +322,7 @@ class FirewallAddress6Template(pulumi.CustomResource):
 
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["fabric_object"] = fabric_object
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["ip6"] = ip6
         __props__.__dict__["name"] = name
         __props__.__dict__["subnet_segment_count"] = subnet_segment_count
@@ -310,6 +339,11 @@ class FirewallAddress6Template(pulumi.CustomResource):
     @pulumi.getter(name="fabricObject")
     def fabric_object(self) -> pulumi.Output[str]:
         return pulumi.get(self, "fabric_object")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

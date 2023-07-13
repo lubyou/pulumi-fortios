@@ -26,6 +26,7 @@ class FirewallMulticastPolicy6Args:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  end_port: Optional[pulumi.Input[int]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[int]] = None,
@@ -52,6 +53,8 @@ class FirewallMulticastPolicy6Args:
             pulumi.set(__self__, "end_port", end_port)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if logtraffic is not None:
             pulumi.set(__self__, "logtraffic", logtraffic)
         if name is not None:
@@ -158,6 +161,15 @@ class FirewallMulticastPolicy6Args:
         pulumi.set(self, "fosid", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter
     def logtraffic(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "logtraffic")
@@ -232,6 +244,7 @@ class _FirewallMulticastPolicy6State:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  end_port: Optional[pulumi.Input[int]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[int]] = None,
@@ -260,6 +273,8 @@ class _FirewallMulticastPolicy6State:
             pulumi.set(__self__, "end_port", end_port)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if logtraffic is not None:
             pulumi.set(__self__, "logtraffic", logtraffic)
         if name is not None:
@@ -350,6 +365,15 @@ class _FirewallMulticastPolicy6State:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -446,6 +470,7 @@ class FirewallMulticastPolicy6(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  end_port: Optional[pulumi.Input[int]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[int]] = None,
@@ -492,6 +517,7 @@ class FirewallMulticastPolicy6(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  end_port: Optional[pulumi.Input[int]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[int]] = None,
@@ -522,6 +548,7 @@ class FirewallMulticastPolicy6(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["end_port"] = end_port
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["logtraffic"] = logtraffic
             __props__.__dict__["name"] = name
             __props__.__dict__["protocol"] = protocol
@@ -553,6 +580,7 @@ class FirewallMulticastPolicy6(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             end_port: Optional[pulumi.Input[int]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             logtraffic: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             protocol: Optional[pulumi.Input[int]] = None,
@@ -582,6 +610,7 @@ class FirewallMulticastPolicy6(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["end_port"] = end_port
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["logtraffic"] = logtraffic
         __props__.__dict__["name"] = name
         __props__.__dict__["protocol"] = protocol
@@ -632,6 +661,11 @@ class FirewallMulticastPolicy6(pulumi.CustomResource):
     @pulumi.getter
     def fosid(self) -> pulumi.Output[int]:
         return pulumi.get(self, "fosid")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

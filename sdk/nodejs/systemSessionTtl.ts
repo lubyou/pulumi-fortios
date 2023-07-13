@@ -36,6 +36,7 @@ export class SystemSessionTtl extends pulumi.CustomResource {
 
     public readonly default!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly ports!: pulumi.Output<outputs.SystemSessionTtlPort[] | undefined>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
@@ -54,12 +55,14 @@ export class SystemSessionTtl extends pulumi.CustomResource {
             const state = argsOrState as SystemSessionTtlState | undefined;
             resourceInputs["default"] = state ? state.default : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["ports"] = state ? state.ports : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemSessionTtlArgs | undefined;
             resourceInputs["default"] = args ? args.default : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["ports"] = args ? args.ports : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
@@ -74,6 +77,7 @@ export class SystemSessionTtl extends pulumi.CustomResource {
 export interface SystemSessionTtlState {
     default?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     ports?: pulumi.Input<pulumi.Input<inputs.SystemSessionTtlPort>[]>;
     vdomparam?: pulumi.Input<string>;
 }
@@ -84,6 +88,7 @@ export interface SystemSessionTtlState {
 export interface SystemSessionTtlArgs {
     default?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     ports?: pulumi.Input<pulumi.Input<inputs.SystemSessionTtlPort>[]>;
     vdomparam?: pulumi.Input<string>;
 }

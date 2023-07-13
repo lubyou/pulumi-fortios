@@ -19,6 +19,7 @@ class SwitchControllerSnmpCommunityArgs:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  events: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hosts: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerSnmpCommunityHostArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  query_v1_port: Optional[pulumi.Input[int]] = None,
@@ -42,6 +43,8 @@ class SwitchControllerSnmpCommunityArgs:
             pulumi.set(__self__, "events", events)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if hosts is not None:
             pulumi.set(__self__, "hosts", hosts)
         if name is not None:
@@ -97,6 +100,15 @@ class SwitchControllerSnmpCommunityArgs:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -231,6 +243,7 @@ class _SwitchControllerSnmpCommunityState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  events: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hosts: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerSnmpCommunityHostArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  query_v1_port: Optional[pulumi.Input[int]] = None,
@@ -254,6 +267,8 @@ class _SwitchControllerSnmpCommunityState:
             pulumi.set(__self__, "events", events)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if hosts is not None:
             pulumi.set(__self__, "hosts", hosts)
         if name is not None:
@@ -309,6 +324,15 @@ class _SwitchControllerSnmpCommunityState:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -445,6 +469,7 @@ class SwitchControllerSnmpCommunity(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  events: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hosts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerSnmpCommunityHostArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  query_v1_port: Optional[pulumi.Input[int]] = None,
@@ -491,6 +516,7 @@ class SwitchControllerSnmpCommunity(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  events: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  hosts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerSnmpCommunityHostArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  query_v1_port: Optional[pulumi.Input[int]] = None,
@@ -517,6 +543,7 @@ class SwitchControllerSnmpCommunity(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["events"] = events
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["hosts"] = hosts
             __props__.__dict__["name"] = name
             __props__.__dict__["query_v1_port"] = query_v1_port
@@ -544,6 +571,7 @@ class SwitchControllerSnmpCommunity(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             events: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             hosts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerSnmpCommunityHostArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             query_v1_port: Optional[pulumi.Input[int]] = None,
@@ -573,6 +601,7 @@ class SwitchControllerSnmpCommunity(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["events"] = events
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["hosts"] = hosts
         __props__.__dict__["name"] = name
         __props__.__dict__["query_v1_port"] = query_v1_port
@@ -603,6 +632,11 @@ class SwitchControllerSnmpCommunity(pulumi.CustomResource):
     @pulumi.getter
     def fosid(self) -> pulumi.Output[int]:
         return pulumi.get(self, "fosid")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

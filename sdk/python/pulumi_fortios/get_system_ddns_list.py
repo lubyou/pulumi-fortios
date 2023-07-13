@@ -84,10 +84,10 @@ def get_system_ddns_list(filter: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemDdnsList:GetSystemDdnsList', __args__, opts=opts, typ=GetSystemDdnsListResult).value
 
     return AwaitableGetSystemDdnsListResult(
-        ddnsidlists=__ret__.ddnsidlists,
-        filter=__ret__.filter,
-        id=__ret__.id,
-        vdomparam=__ret__.vdomparam)
+        ddnsidlists=pulumi.get(__ret__, 'ddnsidlists'),
+        filter=pulumi.get(__ret__, 'filter'),
+        id=pulumi.get(__ret__, 'id'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_ddns_list)

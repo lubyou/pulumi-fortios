@@ -24,6 +24,7 @@ class LogFortiguardOverrideFilterArgs:
                  filter_type: Optional[pulumi.Input[str]] = None,
                  forward_traffic: Optional[pulumi.Input[str]] = None,
                  free_styles: Optional[pulumi.Input[Sequence[pulumi.Input['LogFortiguardOverrideFilterFreeStyleArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gtp: Optional[pulumi.Input[str]] = None,
                  local_traffic: Optional[pulumi.Input[str]] = None,
                  multicast_traffic: Optional[pulumi.Input[str]] = None,
@@ -54,6 +55,8 @@ class LogFortiguardOverrideFilterArgs:
             pulumi.set(__self__, "forward_traffic", forward_traffic)
         if free_styles is not None:
             pulumi.set(__self__, "free_styles", free_styles)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gtp is not None:
             pulumi.set(__self__, "gtp", gtp)
         if local_traffic is not None:
@@ -148,6 +151,15 @@ class LogFortiguardOverrideFilterArgs:
     @free_styles.setter
     def free_styles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LogFortiguardOverrideFilterFreeStyleArgs']]]]):
         pulumi.set(self, "free_styles", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -260,6 +272,7 @@ class _LogFortiguardOverrideFilterState:
                  filter_type: Optional[pulumi.Input[str]] = None,
                  forward_traffic: Optional[pulumi.Input[str]] = None,
                  free_styles: Optional[pulumi.Input[Sequence[pulumi.Input['LogFortiguardOverrideFilterFreeStyleArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gtp: Optional[pulumi.Input[str]] = None,
                  local_traffic: Optional[pulumi.Input[str]] = None,
                  multicast_traffic: Optional[pulumi.Input[str]] = None,
@@ -290,6 +303,8 @@ class _LogFortiguardOverrideFilterState:
             pulumi.set(__self__, "forward_traffic", forward_traffic)
         if free_styles is not None:
             pulumi.set(__self__, "free_styles", free_styles)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gtp is not None:
             pulumi.set(__self__, "gtp", gtp)
         if local_traffic is not None:
@@ -384,6 +399,15 @@ class _LogFortiguardOverrideFilterState:
     @free_styles.setter
     def free_styles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LogFortiguardOverrideFilterFreeStyleArgs']]]]):
         pulumi.set(self, "free_styles", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -498,6 +522,7 @@ class LogFortiguardOverrideFilter(pulumi.CustomResource):
                  filter_type: Optional[pulumi.Input[str]] = None,
                  forward_traffic: Optional[pulumi.Input[str]] = None,
                  free_styles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogFortiguardOverrideFilterFreeStyleArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gtp: Optional[pulumi.Input[str]] = None,
                  local_traffic: Optional[pulumi.Input[str]] = None,
                  multicast_traffic: Optional[pulumi.Input[str]] = None,
@@ -546,6 +571,7 @@ class LogFortiguardOverrideFilter(pulumi.CustomResource):
                  filter_type: Optional[pulumi.Input[str]] = None,
                  forward_traffic: Optional[pulumi.Input[str]] = None,
                  free_styles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogFortiguardOverrideFilterFreeStyleArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gtp: Optional[pulumi.Input[str]] = None,
                  local_traffic: Optional[pulumi.Input[str]] = None,
                  multicast_traffic: Optional[pulumi.Input[str]] = None,
@@ -574,6 +600,7 @@ class LogFortiguardOverrideFilter(pulumi.CustomResource):
             __props__.__dict__["filter_type"] = filter_type
             __props__.__dict__["forward_traffic"] = forward_traffic
             __props__.__dict__["free_styles"] = free_styles
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["gtp"] = gtp
             __props__.__dict__["local_traffic"] = local_traffic
             __props__.__dict__["multicast_traffic"] = multicast_traffic
@@ -603,6 +630,7 @@ class LogFortiguardOverrideFilter(pulumi.CustomResource):
             filter_type: Optional[pulumi.Input[str]] = None,
             forward_traffic: Optional[pulumi.Input[str]] = None,
             free_styles: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogFortiguardOverrideFilterFreeStyleArgs']]]]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             gtp: Optional[pulumi.Input[str]] = None,
             local_traffic: Optional[pulumi.Input[str]] = None,
             multicast_traffic: Optional[pulumi.Input[str]] = None,
@@ -634,6 +662,7 @@ class LogFortiguardOverrideFilter(pulumi.CustomResource):
         __props__.__dict__["filter_type"] = filter_type
         __props__.__dict__["forward_traffic"] = forward_traffic
         __props__.__dict__["free_styles"] = free_styles
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["gtp"] = gtp
         __props__.__dict__["local_traffic"] = local_traffic
         __props__.__dict__["multicast_traffic"] = multicast_traffic
@@ -686,6 +715,11 @@ class LogFortiguardOverrideFilter(pulumi.CustomResource):
     @pulumi.getter(name="freeStyles")
     def free_styles(self) -> pulumi.Output[Optional[Sequence['outputs.LogFortiguardOverrideFilterFreeStyle']]]:
         return pulumi.get(self, "free_styles")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

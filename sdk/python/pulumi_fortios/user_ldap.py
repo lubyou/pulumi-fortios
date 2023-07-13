@@ -18,6 +18,7 @@ class UserLdapArgs:
                  server: pulumi.Input[str],
                  account_key_filter: Optional[pulumi.Input[str]] = None,
                  account_key_processing: Optional[pulumi.Input[str]] = None,
+                 account_key_upn_san: Optional[pulumi.Input[str]] = None,
                  antiphish: Optional[pulumi.Input[str]] = None,
                  ca_cert: Optional[pulumi.Input[str]] = None,
                  client_cert: Optional[pulumi.Input[str]] = None,
@@ -62,6 +63,8 @@ class UserLdapArgs:
             pulumi.set(__self__, "account_key_filter", account_key_filter)
         if account_key_processing is not None:
             pulumi.set(__self__, "account_key_processing", account_key_processing)
+        if account_key_upn_san is not None:
+            pulumi.set(__self__, "account_key_upn_san", account_key_upn_san)
         if antiphish is not None:
             pulumi.set(__self__, "antiphish", antiphish)
         if ca_cert is not None:
@@ -168,6 +171,15 @@ class UserLdapArgs:
     @account_key_processing.setter
     def account_key_processing(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "account_key_processing", value)
+
+    @property
+    @pulumi.getter(name="accountKeyUpnSan")
+    def account_key_upn_san(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "account_key_upn_san")
+
+    @account_key_upn_san.setter
+    def account_key_upn_san(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "account_key_upn_san", value)
 
     @property
     @pulumi.getter
@@ -490,6 +502,7 @@ class _UserLdapState:
     def __init__(__self__, *,
                  account_key_filter: Optional[pulumi.Input[str]] = None,
                  account_key_processing: Optional[pulumi.Input[str]] = None,
+                 account_key_upn_san: Optional[pulumi.Input[str]] = None,
                  antiphish: Optional[pulumi.Input[str]] = None,
                  ca_cert: Optional[pulumi.Input[str]] = None,
                  client_cert: Optional[pulumi.Input[str]] = None,
@@ -534,6 +547,8 @@ class _UserLdapState:
             pulumi.set(__self__, "account_key_filter", account_key_filter)
         if account_key_processing is not None:
             pulumi.set(__self__, "account_key_processing", account_key_processing)
+        if account_key_upn_san is not None:
+            pulumi.set(__self__, "account_key_upn_san", account_key_upn_san)
         if antiphish is not None:
             pulumi.set(__self__, "antiphish", antiphish)
         if ca_cert is not None:
@@ -626,6 +641,15 @@ class _UserLdapState:
     @account_key_processing.setter
     def account_key_processing(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "account_key_processing", value)
+
+    @property
+    @pulumi.getter(name="accountKeyUpnSan")
+    def account_key_upn_san(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "account_key_upn_san")
+
+    @account_key_upn_san.setter
+    def account_key_upn_san(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "account_key_upn_san", value)
 
     @property
     @pulumi.getter
@@ -968,6 +992,7 @@ class UserLdap(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  account_key_filter: Optional[pulumi.Input[str]] = None,
                  account_key_processing: Optional[pulumi.Input[str]] = None,
+                 account_key_upn_san: Optional[pulumi.Input[str]] = None,
                  antiphish: Optional[pulumi.Input[str]] = None,
                  ca_cert: Optional[pulumi.Input[str]] = None,
                  client_cert: Optional[pulumi.Input[str]] = None,
@@ -1036,6 +1061,7 @@ class UserLdap(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  account_key_filter: Optional[pulumi.Input[str]] = None,
                  account_key_processing: Optional[pulumi.Input[str]] = None,
+                 account_key_upn_san: Optional[pulumi.Input[str]] = None,
                  antiphish: Optional[pulumi.Input[str]] = None,
                  ca_cert: Optional[pulumi.Input[str]] = None,
                  client_cert: Optional[pulumi.Input[str]] = None,
@@ -1084,6 +1110,7 @@ class UserLdap(pulumi.CustomResource):
 
             __props__.__dict__["account_key_filter"] = account_key_filter
             __props__.__dict__["account_key_processing"] = account_key_processing
+            __props__.__dict__["account_key_upn_san"] = account_key_upn_san
             __props__.__dict__["antiphish"] = antiphish
             __props__.__dict__["ca_cert"] = ca_cert
             __props__.__dict__["client_cert"] = client_cert
@@ -1139,6 +1166,7 @@ class UserLdap(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             account_key_filter: Optional[pulumi.Input[str]] = None,
             account_key_processing: Optional[pulumi.Input[str]] = None,
+            account_key_upn_san: Optional[pulumi.Input[str]] = None,
             antiphish: Optional[pulumi.Input[str]] = None,
             ca_cert: Optional[pulumi.Input[str]] = None,
             client_cert: Optional[pulumi.Input[str]] = None,
@@ -1190,6 +1218,7 @@ class UserLdap(pulumi.CustomResource):
 
         __props__.__dict__["account_key_filter"] = account_key_filter
         __props__.__dict__["account_key_processing"] = account_key_processing
+        __props__.__dict__["account_key_upn_san"] = account_key_upn_san
         __props__.__dict__["antiphish"] = antiphish
         __props__.__dict__["ca_cert"] = ca_cert
         __props__.__dict__["client_cert"] = client_cert
@@ -1238,6 +1267,11 @@ class UserLdap(pulumi.CustomResource):
     @pulumi.getter(name="accountKeyProcessing")
     def account_key_processing(self) -> pulumi.Output[str]:
         return pulumi.get(self, "account_key_processing")
+
+    @property
+    @pulumi.getter(name="accountKeyUpnSan")
+    def account_key_upn_san(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "account_key_upn_san")
 
     @property
     @pulumi.getter

@@ -35,6 +35,7 @@ export class SwitchControllerAutoConfigCustom extends pulumi.CustomResource {
     }
 
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly switchBindings!: pulumi.Output<outputs.SwitchControllerAutoConfigCustomSwitchBinding[] | undefined>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -53,12 +54,14 @@ export class SwitchControllerAutoConfigCustom extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as SwitchControllerAutoConfigCustomState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["switchBindings"] = state ? state.switchBindings : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerAutoConfigCustomArgs | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["switchBindings"] = args ? args.switchBindings : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -73,6 +76,7 @@ export class SwitchControllerAutoConfigCustom extends pulumi.CustomResource {
  */
 export interface SwitchControllerAutoConfigCustomState {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     switchBindings?: pulumi.Input<pulumi.Input<inputs.SwitchControllerAutoConfigCustomSwitchBinding>[]>;
     vdomparam?: pulumi.Input<string>;
@@ -83,6 +87,7 @@ export interface SwitchControllerAutoConfigCustomState {
  */
 export interface SwitchControllerAutoConfigCustomArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     switchBindings?: pulumi.Input<pulumi.Input<inputs.SwitchControllerAutoConfigCustomSwitchBinding>[]>;
     vdomparam?: pulumi.Input<string>;

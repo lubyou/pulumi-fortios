@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,10 +20,13 @@ type UserDomainController struct {
 	AdldsIp6              pulumi.StringOutput                        `pulumi:"adldsIp6"`
 	AdldsIpAddress        pulumi.StringOutput                        `pulumi:"adldsIpAddress"`
 	AdldsPort             pulumi.IntOutput                           `pulumi:"adldsPort"`
+	ChangeDetection       pulumi.StringOutput                        `pulumi:"changeDetection"`
+	ChangeDetectionPeriod pulumi.IntOutput                           `pulumi:"changeDetectionPeriod"`
 	DnsSrvLookup          pulumi.StringOutput                        `pulumi:"dnsSrvLookup"`
 	DomainName            pulumi.StringOutput                        `pulumi:"domainName"`
 	DynamicSortSubtable   pulumi.StringPtrOutput                     `pulumi:"dynamicSortSubtable"`
 	ExtraServers          UserDomainControllerExtraServerArrayOutput `pulumi:"extraServers"`
+	GetAllTables          pulumi.StringPtrOutput                     `pulumi:"getAllTables"`
 	Hostname              pulumi.StringOutput                        `pulumi:"hostname"`
 	Interface             pulumi.StringOutput                        `pulumi:"interface"`
 	InterfaceSelectMethod pulumi.StringOutput                        `pulumi:"interfaceSelectMethod"`
@@ -53,7 +57,7 @@ func NewUserDomainController(ctx *pulumi.Context,
 	if args.LdapServer == nil {
 		return nil, errors.New("invalid value for required argument 'LdapServer'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource UserDomainController
 	err := ctx.RegisterResource("fortios:index/userDomainController:UserDomainController", name, args, &resource, opts...)
 	if err != nil {
@@ -81,10 +85,13 @@ type userDomainControllerState struct {
 	AdldsIp6              *string                           `pulumi:"adldsIp6"`
 	AdldsIpAddress        *string                           `pulumi:"adldsIpAddress"`
 	AdldsPort             *int                              `pulumi:"adldsPort"`
+	ChangeDetection       *string                           `pulumi:"changeDetection"`
+	ChangeDetectionPeriod *int                              `pulumi:"changeDetectionPeriod"`
 	DnsSrvLookup          *string                           `pulumi:"dnsSrvLookup"`
 	DomainName            *string                           `pulumi:"domainName"`
 	DynamicSortSubtable   *string                           `pulumi:"dynamicSortSubtable"`
 	ExtraServers          []UserDomainControllerExtraServer `pulumi:"extraServers"`
+	GetAllTables          *string                           `pulumi:"getAllTables"`
 	Hostname              *string                           `pulumi:"hostname"`
 	Interface             *string                           `pulumi:"interface"`
 	InterfaceSelectMethod *string                           `pulumi:"interfaceSelectMethod"`
@@ -108,10 +115,13 @@ type UserDomainControllerState struct {
 	AdldsIp6              pulumi.StringPtrInput
 	AdldsIpAddress        pulumi.StringPtrInput
 	AdldsPort             pulumi.IntPtrInput
+	ChangeDetection       pulumi.StringPtrInput
+	ChangeDetectionPeriod pulumi.IntPtrInput
 	DnsSrvLookup          pulumi.StringPtrInput
 	DomainName            pulumi.StringPtrInput
 	DynamicSortSubtable   pulumi.StringPtrInput
 	ExtraServers          UserDomainControllerExtraServerArrayInput
+	GetAllTables          pulumi.StringPtrInput
 	Hostname              pulumi.StringPtrInput
 	Interface             pulumi.StringPtrInput
 	InterfaceSelectMethod pulumi.StringPtrInput
@@ -139,10 +149,13 @@ type userDomainControllerArgs struct {
 	AdldsIp6              *string                           `pulumi:"adldsIp6"`
 	AdldsIpAddress        *string                           `pulumi:"adldsIpAddress"`
 	AdldsPort             *int                              `pulumi:"adldsPort"`
+	ChangeDetection       *string                           `pulumi:"changeDetection"`
+	ChangeDetectionPeriod *int                              `pulumi:"changeDetectionPeriod"`
 	DnsSrvLookup          *string                           `pulumi:"dnsSrvLookup"`
 	DomainName            *string                           `pulumi:"domainName"`
 	DynamicSortSubtable   *string                           `pulumi:"dynamicSortSubtable"`
 	ExtraServers          []UserDomainControllerExtraServer `pulumi:"extraServers"`
+	GetAllTables          *string                           `pulumi:"getAllTables"`
 	Hostname              *string                           `pulumi:"hostname"`
 	Interface             *string                           `pulumi:"interface"`
 	InterfaceSelectMethod *string                           `pulumi:"interfaceSelectMethod"`
@@ -167,10 +180,13 @@ type UserDomainControllerArgs struct {
 	AdldsIp6              pulumi.StringPtrInput
 	AdldsIpAddress        pulumi.StringPtrInput
 	AdldsPort             pulumi.IntPtrInput
+	ChangeDetection       pulumi.StringPtrInput
+	ChangeDetectionPeriod pulumi.IntPtrInput
 	DnsSrvLookup          pulumi.StringPtrInput
 	DomainName            pulumi.StringPtrInput
 	DynamicSortSubtable   pulumi.StringPtrInput
 	ExtraServers          UserDomainControllerExtraServerArrayInput
+	GetAllTables          pulumi.StringPtrInput
 	Hostname              pulumi.StringPtrInput
 	Interface             pulumi.StringPtrInput
 	InterfaceSelectMethod pulumi.StringPtrInput
@@ -295,6 +311,14 @@ func (o UserDomainControllerOutput) AdldsPort() pulumi.IntOutput {
 	return o.ApplyT(func(v *UserDomainController) pulumi.IntOutput { return v.AdldsPort }).(pulumi.IntOutput)
 }
 
+func (o UserDomainControllerOutput) ChangeDetection() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserDomainController) pulumi.StringOutput { return v.ChangeDetection }).(pulumi.StringOutput)
+}
+
+func (o UserDomainControllerOutput) ChangeDetectionPeriod() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserDomainController) pulumi.IntOutput { return v.ChangeDetectionPeriod }).(pulumi.IntOutput)
+}
+
 func (o UserDomainControllerOutput) DnsSrvLookup() pulumi.StringOutput {
 	return o.ApplyT(func(v *UserDomainController) pulumi.StringOutput { return v.DnsSrvLookup }).(pulumi.StringOutput)
 }
@@ -309,6 +333,10 @@ func (o UserDomainControllerOutput) DynamicSortSubtable() pulumi.StringPtrOutput
 
 func (o UserDomainControllerOutput) ExtraServers() UserDomainControllerExtraServerArrayOutput {
 	return o.ApplyT(func(v *UserDomainController) UserDomainControllerExtraServerArrayOutput { return v.ExtraServers }).(UserDomainControllerExtraServerArrayOutput)
+}
+
+func (o UserDomainControllerOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserDomainController) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o UserDomainControllerOutput) Hostname() pulumi.StringOutput {

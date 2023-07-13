@@ -103,12 +103,12 @@ def get_system_automation_destination(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemAutomationDestination:GetSystemAutomationDestination', __args__, opts=opts, typ=GetSystemAutomationDestinationResult).value
 
     return AwaitableGetSystemAutomationDestinationResult(
-        destinations=__ret__.destinations,
-        ha_group_id=__ret__.ha_group_id,
-        id=__ret__.id,
-        name=__ret__.name,
-        type=__ret__.type,
-        vdomparam=__ret__.vdomparam)
+        destinations=pulumi.get(__ret__, 'destinations'),
+        ha_group_id=pulumi.get(__ret__, 'ha_group_id'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        type=pulumi.get(__ret__, 'type'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_automation_destination)

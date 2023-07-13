@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -16,6 +17,7 @@ type RouterMulticastFlow struct {
 	Comments            pulumi.StringOutput                `pulumi:"comments"`
 	DynamicSortSubtable pulumi.StringPtrOutput             `pulumi:"dynamicSortSubtable"`
 	Flows               RouterMulticastFlowFlowArrayOutput `pulumi:"flows"`
+	GetAllTables        pulumi.StringPtrOutput             `pulumi:"getAllTables"`
 	Name                pulumi.StringOutput                `pulumi:"name"`
 	Vdomparam           pulumi.StringPtrOutput             `pulumi:"vdomparam"`
 }
@@ -27,7 +29,7 @@ func NewRouterMulticastFlow(ctx *pulumi.Context,
 		args = &RouterMulticastFlowArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RouterMulticastFlow
 	err := ctx.RegisterResource("fortios:index/routerMulticastFlow:RouterMulticastFlow", name, args, &resource, opts...)
 	if err != nil {
@@ -53,6 +55,7 @@ type routerMulticastFlowState struct {
 	Comments            *string                   `pulumi:"comments"`
 	DynamicSortSubtable *string                   `pulumi:"dynamicSortSubtable"`
 	Flows               []RouterMulticastFlowFlow `pulumi:"flows"`
+	GetAllTables        *string                   `pulumi:"getAllTables"`
 	Name                *string                   `pulumi:"name"`
 	Vdomparam           *string                   `pulumi:"vdomparam"`
 }
@@ -61,6 +64,7 @@ type RouterMulticastFlowState struct {
 	Comments            pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	Flows               RouterMulticastFlowFlowArrayInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
 }
@@ -73,6 +77,7 @@ type routerMulticastFlowArgs struct {
 	Comments            *string                   `pulumi:"comments"`
 	DynamicSortSubtable *string                   `pulumi:"dynamicSortSubtable"`
 	Flows               []RouterMulticastFlowFlow `pulumi:"flows"`
+	GetAllTables        *string                   `pulumi:"getAllTables"`
 	Name                *string                   `pulumi:"name"`
 	Vdomparam           *string                   `pulumi:"vdomparam"`
 }
@@ -82,6 +87,7 @@ type RouterMulticastFlowArgs struct {
 	Comments            pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	Flows               RouterMulticastFlowFlowArrayInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
 }
@@ -183,6 +189,10 @@ func (o RouterMulticastFlowOutput) DynamicSortSubtable() pulumi.StringPtrOutput 
 
 func (o RouterMulticastFlowOutput) Flows() RouterMulticastFlowFlowArrayOutput {
 	return o.ApplyT(func(v *RouterMulticastFlow) RouterMulticastFlowFlowArrayOutput { return v.Flows }).(RouterMulticastFlowFlowArrayOutput)
+}
+
+func (o RouterMulticastFlowOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterMulticastFlow) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o RouterMulticastFlowOutput) Name() pulumi.StringOutput {

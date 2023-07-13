@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupRouterAspathList(ctx *pulumi.Context, args *LookupRouterAspathListArgs, opts ...pulumi.InvokeOption) (*LookupRouterAspathListResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupRouterAspathListResult
 	err := ctx.Invoke("fortios:index/getRouterAspathList:GetRouterAspathList", args, &rv, opts...)
 	if err != nil {

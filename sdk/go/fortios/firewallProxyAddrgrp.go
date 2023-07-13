@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -17,6 +18,7 @@ type FirewallProxyAddrgrp struct {
 	Color               pulumi.IntOutput                       `pulumi:"color"`
 	Comment             pulumi.StringPtrOutput                 `pulumi:"comment"`
 	DynamicSortSubtable pulumi.StringPtrOutput                 `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                 `pulumi:"getAllTables"`
 	Members             FirewallProxyAddrgrpMemberArrayOutput  `pulumi:"members"`
 	Name                pulumi.StringOutput                    `pulumi:"name"`
 	Taggings            FirewallProxyAddrgrpTaggingArrayOutput `pulumi:"taggings"`
@@ -36,7 +38,7 @@ func NewFirewallProxyAddrgrp(ctx *pulumi.Context,
 	if args.Members == nil {
 		return nil, errors.New("invalid value for required argument 'Members'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallProxyAddrgrp
 	err := ctx.RegisterResource("fortios:index/firewallProxyAddrgrp:FirewallProxyAddrgrp", name, args, &resource, opts...)
 	if err != nil {
@@ -62,6 +64,7 @@ type firewallProxyAddrgrpState struct {
 	Color               *int                          `pulumi:"color"`
 	Comment             *string                       `pulumi:"comment"`
 	DynamicSortSubtable *string                       `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                       `pulumi:"getAllTables"`
 	Members             []FirewallProxyAddrgrpMember  `pulumi:"members"`
 	Name                *string                       `pulumi:"name"`
 	Taggings            []FirewallProxyAddrgrpTagging `pulumi:"taggings"`
@@ -75,6 +78,7 @@ type FirewallProxyAddrgrpState struct {
 	Color               pulumi.IntPtrInput
 	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Members             FirewallProxyAddrgrpMemberArrayInput
 	Name                pulumi.StringPtrInput
 	Taggings            FirewallProxyAddrgrpTaggingArrayInput
@@ -92,6 +96,7 @@ type firewallProxyAddrgrpArgs struct {
 	Color               *int                          `pulumi:"color"`
 	Comment             *string                       `pulumi:"comment"`
 	DynamicSortSubtable *string                       `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                       `pulumi:"getAllTables"`
 	Members             []FirewallProxyAddrgrpMember  `pulumi:"members"`
 	Name                *string                       `pulumi:"name"`
 	Taggings            []FirewallProxyAddrgrpTagging `pulumi:"taggings"`
@@ -106,6 +111,7 @@ type FirewallProxyAddrgrpArgs struct {
 	Color               pulumi.IntPtrInput
 	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Members             FirewallProxyAddrgrpMemberArrayInput
 	Name                pulumi.StringPtrInput
 	Taggings            FirewallProxyAddrgrpTaggingArrayInput
@@ -212,6 +218,10 @@ func (o FirewallProxyAddrgrpOutput) Comment() pulumi.StringPtrOutput {
 
 func (o FirewallProxyAddrgrpOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FirewallProxyAddrgrp) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallProxyAddrgrpOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallProxyAddrgrp) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallProxyAddrgrpOutput) Members() FirewallProxyAddrgrpMemberArrayOutput {

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -17,6 +18,7 @@ type EmailfilterIptrust struct {
 	DynamicSortSubtable pulumi.StringPtrOutput             `pulumi:"dynamicSortSubtable"`
 	Entries             EmailfilterIptrustEntryArrayOutput `pulumi:"entries"`
 	Fosid               pulumi.IntOutput                   `pulumi:"fosid"`
+	GetAllTables        pulumi.StringPtrOutput             `pulumi:"getAllTables"`
 	Name                pulumi.StringOutput                `pulumi:"name"`
 	Vdomparam           pulumi.StringPtrOutput             `pulumi:"vdomparam"`
 }
@@ -28,7 +30,7 @@ func NewEmailfilterIptrust(ctx *pulumi.Context,
 		args = &EmailfilterIptrustArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource EmailfilterIptrust
 	err := ctx.RegisterResource("fortios:index/emailfilterIptrust:EmailfilterIptrust", name, args, &resource, opts...)
 	if err != nil {
@@ -55,6 +57,7 @@ type emailfilterIptrustState struct {
 	DynamicSortSubtable *string                   `pulumi:"dynamicSortSubtable"`
 	Entries             []EmailfilterIptrustEntry `pulumi:"entries"`
 	Fosid               *int                      `pulumi:"fosid"`
+	GetAllTables        *string                   `pulumi:"getAllTables"`
 	Name                *string                   `pulumi:"name"`
 	Vdomparam           *string                   `pulumi:"vdomparam"`
 }
@@ -64,6 +67,7 @@ type EmailfilterIptrustState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	Entries             EmailfilterIptrustEntryArrayInput
 	Fosid               pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
 }
@@ -77,6 +81,7 @@ type emailfilterIptrustArgs struct {
 	DynamicSortSubtable *string                   `pulumi:"dynamicSortSubtable"`
 	Entries             []EmailfilterIptrustEntry `pulumi:"entries"`
 	Fosid               *int                      `pulumi:"fosid"`
+	GetAllTables        *string                   `pulumi:"getAllTables"`
 	Name                *string                   `pulumi:"name"`
 	Vdomparam           *string                   `pulumi:"vdomparam"`
 }
@@ -87,6 +92,7 @@ type EmailfilterIptrustArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	Entries             EmailfilterIptrustEntryArrayInput
 	Fosid               pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
 }
@@ -192,6 +198,10 @@ func (o EmailfilterIptrustOutput) Entries() EmailfilterIptrustEntryArrayOutput {
 
 func (o EmailfilterIptrustOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *EmailfilterIptrust) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o EmailfilterIptrustOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EmailfilterIptrust) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o EmailfilterIptrustOutput) Name() pulumi.StringOutput {

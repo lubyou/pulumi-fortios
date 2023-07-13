@@ -50,6 +50,7 @@ export class RouterIsis extends pulumi.CustomResource {
     public readonly defaultOriginate6!: pulumi.Output<string>;
     public readonly dynamicHostname!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly ignoreLspErrors!: pulumi.Output<string>;
     public readonly isType!: pulumi.Output<string>;
     public readonly isisInterfaces!: pulumi.Output<outputs.RouterIsisIsisInterface[] | undefined>;
@@ -107,6 +108,7 @@ export class RouterIsis extends pulumi.CustomResource {
             resourceInputs["defaultOriginate6"] = state ? state.defaultOriginate6 : undefined;
             resourceInputs["dynamicHostname"] = state ? state.dynamicHostname : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["ignoreLspErrors"] = state ? state.ignoreLspErrors : undefined;
             resourceInputs["isType"] = state ? state.isType : undefined;
             resourceInputs["isisInterfaces"] = state ? state.isisInterfaces : undefined;
@@ -152,6 +154,7 @@ export class RouterIsis extends pulumi.CustomResource {
             resourceInputs["defaultOriginate6"] = args ? args.defaultOriginate6 : undefined;
             resourceInputs["dynamicHostname"] = args ? args.dynamicHostname : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["ignoreLspErrors"] = args ? args.ignoreLspErrors : undefined;
             resourceInputs["isType"] = args ? args.isType : undefined;
             resourceInputs["isisInterfaces"] = args ? args.isisInterfaces : undefined;
@@ -207,6 +210,7 @@ export interface RouterIsisState {
     defaultOriginate6?: pulumi.Input<string>;
     dynamicHostname?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     ignoreLspErrors?: pulumi.Input<string>;
     isType?: pulumi.Input<string>;
     isisInterfaces?: pulumi.Input<pulumi.Input<inputs.RouterIsisIsisInterface>[]>;
@@ -256,6 +260,7 @@ export interface RouterIsisArgs {
     defaultOriginate6?: pulumi.Input<string>;
     dynamicHostname?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     ignoreLspErrors?: pulumi.Input<string>;
     isType?: pulumi.Input<string>;
     isisInterfaces?: pulumi.Input<pulumi.Input<inputs.RouterIsisIsisInterface>[]>;

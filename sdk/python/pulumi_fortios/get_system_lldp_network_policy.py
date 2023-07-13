@@ -157,18 +157,18 @@ def get_system_lldp_network_policy(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemLldpNetworkPolicy:GetSystemLldpNetworkPolicy', __args__, opts=opts, typ=GetSystemLldpNetworkPolicyResult).value
 
     return AwaitableGetSystemLldpNetworkPolicyResult(
-        comment=__ret__.comment,
-        guest_voice_signalings=__ret__.guest_voice_signalings,
-        guests=__ret__.guests,
-        id=__ret__.id,
-        name=__ret__.name,
-        softphones=__ret__.softphones,
-        streaming_videos=__ret__.streaming_videos,
-        vdomparam=__ret__.vdomparam,
-        video_conferencings=__ret__.video_conferencings,
-        video_signalings=__ret__.video_signalings,
-        voice_signalings=__ret__.voice_signalings,
-        voices=__ret__.voices)
+        comment=pulumi.get(__ret__, 'comment'),
+        guest_voice_signalings=pulumi.get(__ret__, 'guest_voice_signalings'),
+        guests=pulumi.get(__ret__, 'guests'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        softphones=pulumi.get(__ret__, 'softphones'),
+        streaming_videos=pulumi.get(__ret__, 'streaming_videos'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'),
+        video_conferencings=pulumi.get(__ret__, 'video_conferencings'),
+        video_signalings=pulumi.get(__ret__, 'video_signalings'),
+        voice_signalings=pulumi.get(__ret__, 'voice_signalings'),
+        voices=pulumi.get(__ret__, 'voices'))
 
 
 @_utilities.lift_output_func(get_system_lldp_network_policy)

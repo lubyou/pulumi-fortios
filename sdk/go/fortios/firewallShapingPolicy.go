@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,6 +20,8 @@ type FirewallShapingPolicy struct {
 	Applications                   FirewallShapingPolicyApplicationArrayOutput                   `pulumi:"applications"`
 	ClassId                        pulumi.IntOutput                                              `pulumi:"classId"`
 	Comment                        pulumi.StringPtrOutput                                        `pulumi:"comment"`
+	Cos                            pulumi.StringOutput                                           `pulumi:"cos"`
+	CosMask                        pulumi.StringOutput                                           `pulumi:"cosMask"`
 	DiffservForward                pulumi.StringOutput                                           `pulumi:"diffservForward"`
 	DiffservReverse                pulumi.StringOutput                                           `pulumi:"diffservReverse"`
 	DiffservcodeForward            pulumi.StringOutput                                           `pulumi:"diffservcodeForward"`
@@ -28,6 +31,7 @@ type FirewallShapingPolicy struct {
 	Dstintfs                       FirewallShapingPolicyDstintfArrayOutput                       `pulumi:"dstintfs"`
 	DynamicSortSubtable            pulumi.StringPtrOutput                                        `pulumi:"dynamicSortSubtable"`
 	Fosid                          pulumi.IntOutput                                              `pulumi:"fosid"`
+	GetAllTables                   pulumi.StringPtrOutput                                        `pulumi:"getAllTables"`
 	Groups                         FirewallShapingPolicyGroupArrayOutput                         `pulumi:"groups"`
 	InternetService                pulumi.StringOutput                                           `pulumi:"internetService"`
 	InternetServiceCustomGroups    FirewallShapingPolicyInternetServiceCustomGroupArrayOutput    `pulumi:"internetServiceCustomGroups"`
@@ -55,6 +59,7 @@ type FirewallShapingPolicy struct {
 	TosNegate                      pulumi.StringOutput                                           `pulumi:"tosNegate"`
 	TrafficShaper                  pulumi.StringOutput                                           `pulumi:"trafficShaper"`
 	TrafficShaperReverse           pulumi.StringOutput                                           `pulumi:"trafficShaperReverse"`
+	TrafficType                    pulumi.StringOutput                                           `pulumi:"trafficType"`
 	UrlCategories                  FirewallShapingPolicyUrlCategoryArrayOutput                   `pulumi:"urlCategories"`
 	Users                          FirewallShapingPolicyUserArrayOutput                          `pulumi:"users"`
 	Uuid                           pulumi.StringOutput                                           `pulumi:"uuid"`
@@ -80,7 +85,7 @@ func NewFirewallShapingPolicy(ctx *pulumi.Context,
 	if args.Srcaddrs == nil {
 		return nil, errors.New("invalid value for required argument 'Srcaddrs'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallShapingPolicy
 	err := ctx.RegisterResource("fortios:index/firewallShapingPolicy:FirewallShapingPolicy", name, args, &resource, opts...)
 	if err != nil {
@@ -108,6 +113,8 @@ type firewallShapingPolicyState struct {
 	Applications                   []FirewallShapingPolicyApplication                   `pulumi:"applications"`
 	ClassId                        *int                                                 `pulumi:"classId"`
 	Comment                        *string                                              `pulumi:"comment"`
+	Cos                            *string                                              `pulumi:"cos"`
+	CosMask                        *string                                              `pulumi:"cosMask"`
 	DiffservForward                *string                                              `pulumi:"diffservForward"`
 	DiffservReverse                *string                                              `pulumi:"diffservReverse"`
 	DiffservcodeForward            *string                                              `pulumi:"diffservcodeForward"`
@@ -117,6 +124,7 @@ type firewallShapingPolicyState struct {
 	Dstintfs                       []FirewallShapingPolicyDstintf                       `pulumi:"dstintfs"`
 	DynamicSortSubtable            *string                                              `pulumi:"dynamicSortSubtable"`
 	Fosid                          *int                                                 `pulumi:"fosid"`
+	GetAllTables                   *string                                              `pulumi:"getAllTables"`
 	Groups                         []FirewallShapingPolicyGroup                         `pulumi:"groups"`
 	InternetService                *string                                              `pulumi:"internetService"`
 	InternetServiceCustomGroups    []FirewallShapingPolicyInternetServiceCustomGroup    `pulumi:"internetServiceCustomGroups"`
@@ -144,6 +152,7 @@ type firewallShapingPolicyState struct {
 	TosNegate                      *string                                              `pulumi:"tosNegate"`
 	TrafficShaper                  *string                                              `pulumi:"trafficShaper"`
 	TrafficShaperReverse           *string                                              `pulumi:"trafficShaperReverse"`
+	TrafficType                    *string                                              `pulumi:"trafficType"`
 	UrlCategories                  []FirewallShapingPolicyUrlCategory                   `pulumi:"urlCategories"`
 	Users                          []FirewallShapingPolicyUser                          `pulumi:"users"`
 	Uuid                           *string                                              `pulumi:"uuid"`
@@ -156,6 +165,8 @@ type FirewallShapingPolicyState struct {
 	Applications                   FirewallShapingPolicyApplicationArrayInput
 	ClassId                        pulumi.IntPtrInput
 	Comment                        pulumi.StringPtrInput
+	Cos                            pulumi.StringPtrInput
+	CosMask                        pulumi.StringPtrInput
 	DiffservForward                pulumi.StringPtrInput
 	DiffservReverse                pulumi.StringPtrInput
 	DiffservcodeForward            pulumi.StringPtrInput
@@ -165,6 +176,7 @@ type FirewallShapingPolicyState struct {
 	Dstintfs                       FirewallShapingPolicyDstintfArrayInput
 	DynamicSortSubtable            pulumi.StringPtrInput
 	Fosid                          pulumi.IntPtrInput
+	GetAllTables                   pulumi.StringPtrInput
 	Groups                         FirewallShapingPolicyGroupArrayInput
 	InternetService                pulumi.StringPtrInput
 	InternetServiceCustomGroups    FirewallShapingPolicyInternetServiceCustomGroupArrayInput
@@ -192,6 +204,7 @@ type FirewallShapingPolicyState struct {
 	TosNegate                      pulumi.StringPtrInput
 	TrafficShaper                  pulumi.StringPtrInput
 	TrafficShaperReverse           pulumi.StringPtrInput
+	TrafficType                    pulumi.StringPtrInput
 	UrlCategories                  FirewallShapingPolicyUrlCategoryArrayInput
 	Users                          FirewallShapingPolicyUserArrayInput
 	Uuid                           pulumi.StringPtrInput
@@ -208,6 +221,8 @@ type firewallShapingPolicyArgs struct {
 	Applications                   []FirewallShapingPolicyApplication                   `pulumi:"applications"`
 	ClassId                        *int                                                 `pulumi:"classId"`
 	Comment                        *string                                              `pulumi:"comment"`
+	Cos                            *string                                              `pulumi:"cos"`
+	CosMask                        *string                                              `pulumi:"cosMask"`
 	DiffservForward                *string                                              `pulumi:"diffservForward"`
 	DiffservReverse                *string                                              `pulumi:"diffservReverse"`
 	DiffservcodeForward            *string                                              `pulumi:"diffservcodeForward"`
@@ -217,6 +232,7 @@ type firewallShapingPolicyArgs struct {
 	Dstintfs                       []FirewallShapingPolicyDstintf                       `pulumi:"dstintfs"`
 	DynamicSortSubtable            *string                                              `pulumi:"dynamicSortSubtable"`
 	Fosid                          *int                                                 `pulumi:"fosid"`
+	GetAllTables                   *string                                              `pulumi:"getAllTables"`
 	Groups                         []FirewallShapingPolicyGroup                         `pulumi:"groups"`
 	InternetService                *string                                              `pulumi:"internetService"`
 	InternetServiceCustomGroups    []FirewallShapingPolicyInternetServiceCustomGroup    `pulumi:"internetServiceCustomGroups"`
@@ -244,6 +260,7 @@ type firewallShapingPolicyArgs struct {
 	TosNegate                      *string                                              `pulumi:"tosNegate"`
 	TrafficShaper                  *string                                              `pulumi:"trafficShaper"`
 	TrafficShaperReverse           *string                                              `pulumi:"trafficShaperReverse"`
+	TrafficType                    *string                                              `pulumi:"trafficType"`
 	UrlCategories                  []FirewallShapingPolicyUrlCategory                   `pulumi:"urlCategories"`
 	Users                          []FirewallShapingPolicyUser                          `pulumi:"users"`
 	Uuid                           *string                                              `pulumi:"uuid"`
@@ -257,6 +274,8 @@ type FirewallShapingPolicyArgs struct {
 	Applications                   FirewallShapingPolicyApplicationArrayInput
 	ClassId                        pulumi.IntPtrInput
 	Comment                        pulumi.StringPtrInput
+	Cos                            pulumi.StringPtrInput
+	CosMask                        pulumi.StringPtrInput
 	DiffservForward                pulumi.StringPtrInput
 	DiffservReverse                pulumi.StringPtrInput
 	DiffservcodeForward            pulumi.StringPtrInput
@@ -266,6 +285,7 @@ type FirewallShapingPolicyArgs struct {
 	Dstintfs                       FirewallShapingPolicyDstintfArrayInput
 	DynamicSortSubtable            pulumi.StringPtrInput
 	Fosid                          pulumi.IntPtrInput
+	GetAllTables                   pulumi.StringPtrInput
 	Groups                         FirewallShapingPolicyGroupArrayInput
 	InternetService                pulumi.StringPtrInput
 	InternetServiceCustomGroups    FirewallShapingPolicyInternetServiceCustomGroupArrayInput
@@ -293,6 +313,7 @@ type FirewallShapingPolicyArgs struct {
 	TosNegate                      pulumi.StringPtrInput
 	TrafficShaper                  pulumi.StringPtrInput
 	TrafficShaperReverse           pulumi.StringPtrInput
+	TrafficType                    pulumi.StringPtrInput
 	UrlCategories                  FirewallShapingPolicyUrlCategoryArrayInput
 	Users                          FirewallShapingPolicyUserArrayInput
 	Uuid                           pulumi.StringPtrInput
@@ -406,6 +427,14 @@ func (o FirewallShapingPolicyOutput) Comment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FirewallShapingPolicy) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
 }
 
+func (o FirewallShapingPolicyOutput) Cos() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) pulumi.StringOutput { return v.Cos }).(pulumi.StringOutput)
+}
+
+func (o FirewallShapingPolicyOutput) CosMask() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) pulumi.StringOutput { return v.CosMask }).(pulumi.StringOutput)
+}
+
 func (o FirewallShapingPolicyOutput) DiffservForward() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallShapingPolicy) pulumi.StringOutput { return v.DiffservForward }).(pulumi.StringOutput)
 }
@@ -440,6 +469,10 @@ func (o FirewallShapingPolicyOutput) DynamicSortSubtable() pulumi.StringPtrOutpu
 
 func (o FirewallShapingPolicyOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *FirewallShapingPolicy) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o FirewallShapingPolicyOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallShapingPolicyOutput) Groups() FirewallShapingPolicyGroupArrayOutput {
@@ -568,6 +601,10 @@ func (o FirewallShapingPolicyOutput) TrafficShaper() pulumi.StringOutput {
 
 func (o FirewallShapingPolicyOutput) TrafficShaperReverse() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallShapingPolicy) pulumi.StringOutput { return v.TrafficShaperReverse }).(pulumi.StringOutput)
+}
+
+func (o FirewallShapingPolicyOutput) TrafficType() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallShapingPolicy) pulumi.StringOutput { return v.TrafficType }).(pulumi.StringOutput)
 }
 
 func (o FirewallShapingPolicyOutput) UrlCategories() FirewallShapingPolicyUrlCategoryArrayOutput {

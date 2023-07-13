@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -18,6 +19,7 @@ type ApplicationGroup struct {
 	Categories          ApplicationGroupCategoryArrayOutput    `pulumi:"categories"`
 	Comment             pulumi.StringPtrOutput                 `pulumi:"comment"`
 	DynamicSortSubtable pulumi.StringPtrOutput                 `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                 `pulumi:"getAllTables"`
 	Name                pulumi.StringOutput                    `pulumi:"name"`
 	Popularity          pulumi.StringOutput                    `pulumi:"popularity"`
 	Protocols           pulumi.StringOutput                    `pulumi:"protocols"`
@@ -35,7 +37,7 @@ func NewApplicationGroup(ctx *pulumi.Context,
 		args = &ApplicationGroupArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ApplicationGroup
 	err := ctx.RegisterResource("fortios:index/applicationGroup:ApplicationGroup", name, args, &resource, opts...)
 	if err != nil {
@@ -63,6 +65,7 @@ type applicationGroupState struct {
 	Categories          []ApplicationGroupCategory    `pulumi:"categories"`
 	Comment             *string                       `pulumi:"comment"`
 	DynamicSortSubtable *string                       `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                       `pulumi:"getAllTables"`
 	Name                *string                       `pulumi:"name"`
 	Popularity          *string                       `pulumi:"popularity"`
 	Protocols           *string                       `pulumi:"protocols"`
@@ -79,6 +82,7 @@ type ApplicationGroupState struct {
 	Categories          ApplicationGroupCategoryArrayInput
 	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Popularity          pulumi.StringPtrInput
 	Protocols           pulumi.StringPtrInput
@@ -99,6 +103,7 @@ type applicationGroupArgs struct {
 	Categories          []ApplicationGroupCategory    `pulumi:"categories"`
 	Comment             *string                       `pulumi:"comment"`
 	DynamicSortSubtable *string                       `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                       `pulumi:"getAllTables"`
 	Name                *string                       `pulumi:"name"`
 	Popularity          *string                       `pulumi:"popularity"`
 	Protocols           *string                       `pulumi:"protocols"`
@@ -116,6 +121,7 @@ type ApplicationGroupArgs struct {
 	Categories          ApplicationGroupCategoryArrayInput
 	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Popularity          pulumi.StringPtrInput
 	Protocols           pulumi.StringPtrInput
@@ -231,6 +237,10 @@ func (o ApplicationGroupOutput) Comment() pulumi.StringPtrOutput {
 
 func (o ApplicationGroupOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ApplicationGroup) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o ApplicationGroupOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ApplicationGroup) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o ApplicationGroupOutput) Name() pulumi.StringOutput {

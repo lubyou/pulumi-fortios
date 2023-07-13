@@ -40,6 +40,7 @@ export class RouterRip extends pulumi.CustomResource {
     public readonly distributeLists!: pulumi.Output<outputs.RouterRipDistributeList[] | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly garbageTimer!: pulumi.Output<number>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly interfaces!: pulumi.Output<outputs.RouterRipInterface[] | undefined>;
     public readonly maxOutMetric!: pulumi.Output<number>;
     public readonly neighbors!: pulumi.Output<outputs.RouterRipNeighbor[] | undefined>;
@@ -72,6 +73,7 @@ export class RouterRip extends pulumi.CustomResource {
             resourceInputs["distributeLists"] = state ? state.distributeLists : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["garbageTimer"] = state ? state.garbageTimer : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["interfaces"] = state ? state.interfaces : undefined;
             resourceInputs["maxOutMetric"] = state ? state.maxOutMetric : undefined;
             resourceInputs["neighbors"] = state ? state.neighbors : undefined;
@@ -92,6 +94,7 @@ export class RouterRip extends pulumi.CustomResource {
             resourceInputs["distributeLists"] = args ? args.distributeLists : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["garbageTimer"] = args ? args.garbageTimer : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["interfaces"] = args ? args.interfaces : undefined;
             resourceInputs["maxOutMetric"] = args ? args.maxOutMetric : undefined;
             resourceInputs["neighbors"] = args ? args.neighbors : undefined;
@@ -120,6 +123,7 @@ export interface RouterRipState {
     distributeLists?: pulumi.Input<pulumi.Input<inputs.RouterRipDistributeList>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
     garbageTimer?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     interfaces?: pulumi.Input<pulumi.Input<inputs.RouterRipInterface>[]>;
     maxOutMetric?: pulumi.Input<number>;
     neighbors?: pulumi.Input<pulumi.Input<inputs.RouterRipNeighbor>[]>;
@@ -144,6 +148,7 @@ export interface RouterRipArgs {
     distributeLists?: pulumi.Input<pulumi.Input<inputs.RouterRipDistributeList>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
     garbageTimer?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     interfaces?: pulumi.Input<pulumi.Input<inputs.RouterRipInterface>[]>;
     maxOutMetric?: pulumi.Input<number>;
     neighbors?: pulumi.Input<pulumi.Input<inputs.RouterRipNeighbor>[]>;

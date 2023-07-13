@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -16,6 +17,7 @@ type SwitchControllerQosQueuePolicy struct {
 
 	CosQueues           SwitchControllerQosQueuePolicyCosQueueArrayOutput `pulumi:"cosQueues"`
 	DynamicSortSubtable pulumi.StringPtrOutput                            `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                            `pulumi:"getAllTables"`
 	Name                pulumi.StringOutput                               `pulumi:"name"`
 	RateBy              pulumi.StringOutput                               `pulumi:"rateBy"`
 	Schedule            pulumi.StringOutput                               `pulumi:"schedule"`
@@ -35,7 +37,7 @@ func NewSwitchControllerQosQueuePolicy(ctx *pulumi.Context,
 	if args.Schedule == nil {
 		return nil, errors.New("invalid value for required argument 'Schedule'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SwitchControllerQosQueuePolicy
 	err := ctx.RegisterResource("fortios:index/switchControllerQosQueuePolicy:SwitchControllerQosQueuePolicy", name, args, &resource, opts...)
 	if err != nil {
@@ -60,6 +62,7 @@ func GetSwitchControllerQosQueuePolicy(ctx *pulumi.Context,
 type switchControllerQosQueuePolicyState struct {
 	CosQueues           []SwitchControllerQosQueuePolicyCosQueue `pulumi:"cosQueues"`
 	DynamicSortSubtable *string                                  `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                                  `pulumi:"getAllTables"`
 	Name                *string                                  `pulumi:"name"`
 	RateBy              *string                                  `pulumi:"rateBy"`
 	Schedule            *string                                  `pulumi:"schedule"`
@@ -69,6 +72,7 @@ type switchControllerQosQueuePolicyState struct {
 type SwitchControllerQosQueuePolicyState struct {
 	CosQueues           SwitchControllerQosQueuePolicyCosQueueArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	RateBy              pulumi.StringPtrInput
 	Schedule            pulumi.StringPtrInput
@@ -82,6 +86,7 @@ func (SwitchControllerQosQueuePolicyState) ElementType() reflect.Type {
 type switchControllerQosQueuePolicyArgs struct {
 	CosQueues           []SwitchControllerQosQueuePolicyCosQueue `pulumi:"cosQueues"`
 	DynamicSortSubtable *string                                  `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                                  `pulumi:"getAllTables"`
 	Name                *string                                  `pulumi:"name"`
 	RateBy              string                                   `pulumi:"rateBy"`
 	Schedule            string                                   `pulumi:"schedule"`
@@ -92,6 +97,7 @@ type switchControllerQosQueuePolicyArgs struct {
 type SwitchControllerQosQueuePolicyArgs struct {
 	CosQueues           SwitchControllerQosQueuePolicyCosQueueArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	RateBy              pulumi.StringInput
 	Schedule            pulumi.StringInput
@@ -193,6 +199,10 @@ func (o SwitchControllerQosQueuePolicyOutput) CosQueues() SwitchControllerQosQue
 
 func (o SwitchControllerQosQueuePolicyOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SwitchControllerQosQueuePolicy) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SwitchControllerQosQueuePolicyOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerQosQueuePolicy) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SwitchControllerQosQueuePolicyOutput) Name() pulumi.StringOutput {

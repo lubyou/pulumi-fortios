@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemLinkMonitor(ctx *pulumi.Context, args *LookupSystemLinkMonitorArgs, opts ...pulumi.InvokeOption) (*LookupSystemLinkMonitorResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemLinkMonitorResult
 	err := ctx.Invoke("fortios:index/getSystemLinkMonitor:GetSystemLinkMonitor", args, &rv, opts...)
 	if err != nil {

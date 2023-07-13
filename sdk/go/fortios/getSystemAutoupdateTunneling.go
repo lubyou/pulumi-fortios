@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemAutoupdateTunneling(ctx *pulumi.Context, args *LookupSystemAutoupdateTunnelingArgs, opts ...pulumi.InvokeOption) (*LookupSystemAutoupdateTunnelingResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemAutoupdateTunnelingResult
 	err := ctx.Invoke("fortios:index/getSystemAutoupdateTunneling:GetSystemAutoupdateTunneling", args, &rv, opts...)
 	if err != nil {

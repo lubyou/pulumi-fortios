@@ -17,12 +17,14 @@ __all__ = ['IcapProfileArgs', 'IcapProfile']
 class IcapProfileArgs:
     def __init__(__self__, *,
                  chunk_encap: Optional[pulumi.Input[str]] = None,
+                 comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  extension_feature: Optional[pulumi.Input[str]] = None,
                  file_transfer: Optional[pulumi.Input[str]] = None,
                  file_transfer_failure: Optional[pulumi.Input[str]] = None,
                  file_transfer_path: Optional[pulumi.Input[str]] = None,
                  file_transfer_server: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  icap_block_log: Optional[pulumi.Input[str]] = None,
                  icap_headers: Optional[pulumi.Input[Sequence[pulumi.Input['IcapProfileIcapHeaderArgs']]]] = None,
                  methods: Optional[pulumi.Input[str]] = None,
@@ -52,6 +54,8 @@ class IcapProfileArgs:
         """
         if chunk_encap is not None:
             pulumi.set(__self__, "chunk_encap", chunk_encap)
+        if comment is not None:
+            pulumi.set(__self__, "comment", comment)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if extension_feature is not None:
@@ -64,6 +68,8 @@ class IcapProfileArgs:
             pulumi.set(__self__, "file_transfer_path", file_transfer_path)
         if file_transfer_server is not None:
             pulumi.set(__self__, "file_transfer_server", file_transfer_server)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if icap_block_log is not None:
             pulumi.set(__self__, "icap_block_log", icap_block_log)
         if icap_headers is not None:
@@ -123,6 +129,15 @@ class IcapProfileArgs:
         pulumi.set(self, "chunk_encap", value)
 
     @property
+    @pulumi.getter
+    def comment(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "comment")
+
+    @comment.setter
+    def comment(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "comment", value)
+
+    @property
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
@@ -175,6 +190,15 @@ class IcapProfileArgs:
     @file_transfer_server.setter
     def file_transfer_server(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "file_transfer_server", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="icapBlockLog")
@@ -397,12 +421,14 @@ class IcapProfileArgs:
 class _IcapProfileState:
     def __init__(__self__, *,
                  chunk_encap: Optional[pulumi.Input[str]] = None,
+                 comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  extension_feature: Optional[pulumi.Input[str]] = None,
                  file_transfer: Optional[pulumi.Input[str]] = None,
                  file_transfer_failure: Optional[pulumi.Input[str]] = None,
                  file_transfer_path: Optional[pulumi.Input[str]] = None,
                  file_transfer_server: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  icap_block_log: Optional[pulumi.Input[str]] = None,
                  icap_headers: Optional[pulumi.Input[Sequence[pulumi.Input['IcapProfileIcapHeaderArgs']]]] = None,
                  methods: Optional[pulumi.Input[str]] = None,
@@ -432,6 +458,8 @@ class _IcapProfileState:
         """
         if chunk_encap is not None:
             pulumi.set(__self__, "chunk_encap", chunk_encap)
+        if comment is not None:
+            pulumi.set(__self__, "comment", comment)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if extension_feature is not None:
@@ -444,6 +472,8 @@ class _IcapProfileState:
             pulumi.set(__self__, "file_transfer_path", file_transfer_path)
         if file_transfer_server is not None:
             pulumi.set(__self__, "file_transfer_server", file_transfer_server)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if icap_block_log is not None:
             pulumi.set(__self__, "icap_block_log", icap_block_log)
         if icap_headers is not None:
@@ -503,6 +533,15 @@ class _IcapProfileState:
         pulumi.set(self, "chunk_encap", value)
 
     @property
+    @pulumi.getter
+    def comment(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "comment")
+
+    @comment.setter
+    def comment(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "comment", value)
+
+    @property
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
@@ -555,6 +594,15 @@ class _IcapProfileState:
     @file_transfer_server.setter
     def file_transfer_server(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "file_transfer_server", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="icapBlockLog")
@@ -779,12 +827,14 @@ class IcapProfile(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  chunk_encap: Optional[pulumi.Input[str]] = None,
+                 comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  extension_feature: Optional[pulumi.Input[str]] = None,
                  file_transfer: Optional[pulumi.Input[str]] = None,
                  file_transfer_failure: Optional[pulumi.Input[str]] = None,
                  file_transfer_path: Optional[pulumi.Input[str]] = None,
                  file_transfer_server: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  icap_block_log: Optional[pulumi.Input[str]] = None,
                  icap_headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IcapProfileIcapHeaderArgs']]]]] = None,
                  methods: Optional[pulumi.Input[str]] = None,
@@ -839,12 +889,14 @@ class IcapProfile(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  chunk_encap: Optional[pulumi.Input[str]] = None,
+                 comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  extension_feature: Optional[pulumi.Input[str]] = None,
                  file_transfer: Optional[pulumi.Input[str]] = None,
                  file_transfer_failure: Optional[pulumi.Input[str]] = None,
                  file_transfer_path: Optional[pulumi.Input[str]] = None,
                  file_transfer_server: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  icap_block_log: Optional[pulumi.Input[str]] = None,
                  icap_headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IcapProfileIcapHeaderArgs']]]]] = None,
                  methods: Optional[pulumi.Input[str]] = None,
@@ -879,12 +931,14 @@ class IcapProfile(pulumi.CustomResource):
             __props__ = IcapProfileArgs.__new__(IcapProfileArgs)
 
             __props__.__dict__["chunk_encap"] = chunk_encap
+            __props__.__dict__["comment"] = comment
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["extension_feature"] = extension_feature
             __props__.__dict__["file_transfer"] = file_transfer
             __props__.__dict__["file_transfer_failure"] = file_transfer_failure
             __props__.__dict__["file_transfer_path"] = file_transfer_path
             __props__.__dict__["file_transfer_server"] = file_transfer_server
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["icap_block_log"] = icap_block_log
             __props__.__dict__["icap_headers"] = icap_headers
             __props__.__dict__["methods"] = methods
@@ -920,12 +974,14 @@ class IcapProfile(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             chunk_encap: Optional[pulumi.Input[str]] = None,
+            comment: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             extension_feature: Optional[pulumi.Input[str]] = None,
             file_transfer: Optional[pulumi.Input[str]] = None,
             file_transfer_failure: Optional[pulumi.Input[str]] = None,
             file_transfer_path: Optional[pulumi.Input[str]] = None,
             file_transfer_server: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             icap_block_log: Optional[pulumi.Input[str]] = None,
             icap_headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IcapProfileIcapHeaderArgs']]]]] = None,
             methods: Optional[pulumi.Input[str]] = None,
@@ -963,12 +1019,14 @@ class IcapProfile(pulumi.CustomResource):
         __props__ = _IcapProfileState.__new__(_IcapProfileState)
 
         __props__.__dict__["chunk_encap"] = chunk_encap
+        __props__.__dict__["comment"] = comment
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["extension_feature"] = extension_feature
         __props__.__dict__["file_transfer"] = file_transfer
         __props__.__dict__["file_transfer_failure"] = file_transfer_failure
         __props__.__dict__["file_transfer_path"] = file_transfer_path
         __props__.__dict__["file_transfer_server"] = file_transfer_server
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["icap_block_log"] = icap_block_log
         __props__.__dict__["icap_headers"] = icap_headers
         __props__.__dict__["methods"] = methods
@@ -1001,6 +1059,11 @@ class IcapProfile(pulumi.CustomResource):
         return pulumi.get(self, "chunk_encap")
 
     @property
+    @pulumi.getter
+    def comment(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "comment")
+
+    @property
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
@@ -1029,6 +1092,11 @@ class IcapProfile(pulumi.CustomResource):
     @pulumi.getter(name="fileTransferServer")
     def file_transfer_server(self) -> pulumi.Output[str]:
         return pulumi.get(self, "file_transfer_server")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="icapBlockLog")

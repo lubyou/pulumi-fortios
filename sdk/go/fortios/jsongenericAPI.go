@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -36,7 +37,7 @@ func NewJSONGenericAPI(ctx *pulumi.Context,
 	if args.Path == nil {
 		return nil, errors.New("invalid value for required argument 'Path'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource JSONGenericAPI
 	err := ctx.RegisterResource("fortios:index/jSONGenericAPI:JSONGenericAPI", name, args, &resource, opts...)
 	if err != nil {

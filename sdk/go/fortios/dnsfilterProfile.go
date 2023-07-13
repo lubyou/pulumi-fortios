@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -21,6 +22,7 @@ type DnsfilterProfile struct {
 	DynamicSortSubtable  pulumi.StringPtrOutput                         `pulumi:"dynamicSortSubtable"`
 	ExternalIpBlocklists DnsfilterProfileExternalIpBlocklistArrayOutput `pulumi:"externalIpBlocklists"`
 	FtgdDns              DnsfilterProfileFtgdDnsOutput                  `pulumi:"ftgdDns"`
+	GetAllTables         pulumi.StringPtrOutput                         `pulumi:"getAllTables"`
 	LogAllDomain         pulumi.StringOutput                            `pulumi:"logAllDomain"`
 	Name                 pulumi.StringOutput                            `pulumi:"name"`
 	RedirectPortal       pulumi.StringOutput                            `pulumi:"redirectPortal"`
@@ -39,7 +41,7 @@ func NewDnsfilterProfile(ctx *pulumi.Context,
 		args = &DnsfilterProfileArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DnsfilterProfile
 	err := ctx.RegisterResource("fortios:index/dnsfilterProfile:DnsfilterProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -70,6 +72,7 @@ type dnsfilterProfileState struct {
 	DynamicSortSubtable  *string                               `pulumi:"dynamicSortSubtable"`
 	ExternalIpBlocklists []DnsfilterProfileExternalIpBlocklist `pulumi:"externalIpBlocklists"`
 	FtgdDns              *DnsfilterProfileFtgdDns              `pulumi:"ftgdDns"`
+	GetAllTables         *string                               `pulumi:"getAllTables"`
 	LogAllDomain         *string                               `pulumi:"logAllDomain"`
 	Name                 *string                               `pulumi:"name"`
 	RedirectPortal       *string                               `pulumi:"redirectPortal"`
@@ -90,6 +93,7 @@ type DnsfilterProfileState struct {
 	DynamicSortSubtable  pulumi.StringPtrInput
 	ExternalIpBlocklists DnsfilterProfileExternalIpBlocklistArrayInput
 	FtgdDns              DnsfilterProfileFtgdDnsPtrInput
+	GetAllTables         pulumi.StringPtrInput
 	LogAllDomain         pulumi.StringPtrInput
 	Name                 pulumi.StringPtrInput
 	RedirectPortal       pulumi.StringPtrInput
@@ -114,6 +118,7 @@ type dnsfilterProfileArgs struct {
 	DynamicSortSubtable  *string                               `pulumi:"dynamicSortSubtable"`
 	ExternalIpBlocklists []DnsfilterProfileExternalIpBlocklist `pulumi:"externalIpBlocklists"`
 	FtgdDns              *DnsfilterProfileFtgdDns              `pulumi:"ftgdDns"`
+	GetAllTables         *string                               `pulumi:"getAllTables"`
 	LogAllDomain         *string                               `pulumi:"logAllDomain"`
 	Name                 *string                               `pulumi:"name"`
 	RedirectPortal       *string                               `pulumi:"redirectPortal"`
@@ -135,6 +140,7 @@ type DnsfilterProfileArgs struct {
 	DynamicSortSubtable  pulumi.StringPtrInput
 	ExternalIpBlocklists DnsfilterProfileExternalIpBlocklistArrayInput
 	FtgdDns              DnsfilterProfileFtgdDnsPtrInput
+	GetAllTables         pulumi.StringPtrInput
 	LogAllDomain         pulumi.StringPtrInput
 	Name                 pulumi.StringPtrInput
 	RedirectPortal       pulumi.StringPtrInput
@@ -265,6 +271,10 @@ func (o DnsfilterProfileOutput) ExternalIpBlocklists() DnsfilterProfileExternalI
 
 func (o DnsfilterProfileOutput) FtgdDns() DnsfilterProfileFtgdDnsOutput {
 	return o.ApplyT(func(v *DnsfilterProfile) DnsfilterProfileFtgdDnsOutput { return v.FtgdDns }).(DnsfilterProfileFtgdDnsOutput)
+}
+
+func (o DnsfilterProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DnsfilterProfile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o DnsfilterProfileOutput) LogAllDomain() pulumi.StringOutput {

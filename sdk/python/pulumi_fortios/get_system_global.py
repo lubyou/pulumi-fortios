@@ -8,6 +8,7 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
 
 __all__ = [
     'GetSystemGlobalResult',
@@ -21,13 +22,16 @@ class GetSystemGlobalResult:
     """
     A collection of values returned by GetSystemGlobal.
     """
-    def __init__(__self__, admin_concurrent=None, admin_console_timeout=None, admin_forticloud_sso_login=None, admin_host=None, admin_hsts_max_age=None, admin_https_pki_required=None, admin_https_redirect=None, admin_https_ssl_banned_ciphers=None, admin_https_ssl_ciphersuites=None, admin_https_ssl_versions=None, admin_lockout_duration=None, admin_lockout_threshold=None, admin_login_max=None, admin_maintainer=None, admin_port=None, admin_restrict_local=None, admin_scp=None, admin_server_cert=None, admin_sport=None, admin_ssh_grace_time=None, admin_ssh_password=None, admin_ssh_port=None, admin_ssh_v1=None, admin_telnet=None, admin_telnet_port=None, admintimeout=None, alias=None, allow_traffic_redirect=None, anti_replay=None, arp_max_entry=None, asymroute=None, auth_cert=None, auth_http_port=None, auth_https_port=None, auth_ike_saml_port=None, auth_keepalive=None, auth_session_limit=None, auto_auth_extension_device=None, autorun_log_fsck=None, av_affinity=None, av_failopen=None, av_failopen_session=None, batch_cmdb=None, block_session_timer=None, br_fdb_max_entry=None, cert_chain_max=None, cfg_revert_timeout=None, cfg_save=None, check_protocol_header=None, check_reset_range=None, cli_audit_log=None, cloud_communication=None, clt_cert_req=None, cmdbsvr_affinity=None, compliance_check=None, compliance_check_time=None, cpu_use_threshold=None, csr_ca_attribute=None, daily_restart=None, default_service_source_port=None, device_identification_active_scan_delay=None, device_idle_timeout=None, dh_params=None, dnsproxy_worker_count=None, dst=None, early_tcp_npu_session=None, edit_vdom_prompt=None, endpoint_control_fds_access=None, endpoint_control_portal_port=None, extender_controller_reserved_network=None, failtime=None, faz_disk_buffer_size=None, fds_statistics=None, fds_statistics_period=None, fec_port=None, fgd_alert_subscription=None, fortiextender=None, fortiextender_data_port=None, fortiextender_discovery_lockdown=None, fortiextender_provision_on_authorization=None, fortiextender_vlan_mode=None, fortiipam_integration=None, fortiservice_port=None, fortitoken_cloud=None, gui_allow_default_hostname=None, gui_app_detection_sdwan=None, gui_cdn_usage=None, gui_certificates=None, gui_custom_language=None, gui_date_format=None, gui_date_time_source=None, gui_device_latitude=None, gui_device_longitude=None, gui_display_hostname=None, gui_firmware_upgrade_setup_warning=None, gui_firmware_upgrade_warning=None, gui_forticare_registration_setup_warning=None, gui_fortigate_cloud_sandbox=None, gui_fortiguard_resource_fetch=None, gui_fortisandbox_cloud=None, gui_ipv6=None, gui_lines_per_page=None, gui_local_out=None, gui_replacement_message_groups=None, gui_rest_api_cache=None, gui_theme=None, gui_wireless_opensecurity=None, gui_workflow_management=None, ha_affinity=None, honor_df=None, hostname=None, id=None, igmp_state_limit=None, ike_embryonic_limit=None, internet_service_database=None, interval=None, ip_src_port_range=None, ips_affinity=None, ipsec_asic_offload=None, ipsec_ha_seqjump_rate=None, ipsec_hmac_offload=None, ipsec_round_robin=None, ipsec_soft_dec_async=None, ipv6_accept_dad=None, ipv6_allow_anycast_probe=None, ipv6_allow_local_in_slient_drop=None, ipv6_allow_multicast_probe=None, ipv6_allow_traffic_redirect=None, irq_time_accounting=None, language=None, ldapconntimeout=None, lldp_reception=None, lldp_transmission=None, log_ssl_connection=None, log_uuid_address=None, log_uuid_policy=None, login_timestamp=None, long_vdom_name=None, management_ip=None, management_port=None, management_port_use_admin_sport=None, management_vdom=None, max_dlpstat_memory=None, max_route_cache_size=None, mc_ttl_notchange=None, memory_use_threshold_extreme=None, memory_use_threshold_green=None, memory_use_threshold_red=None, miglog_affinity=None, miglogd_children=None, multi_factor_authentication=None, multicast_forward=None, ndp_max_entry=None, per_user_bal=None, per_user_bwl=None, pmtu_discovery=None, policy_auth_concurrent=None, post_login_banner=None, pre_login_banner=None, private_data_encryption=None, proxy_auth_lifetime=None, proxy_auth_lifetime_timeout=None, proxy_auth_timeout=None, proxy_cert_use_mgmt_vdom=None, proxy_cipher_hardware_acceleration=None, proxy_hardware_acceleration=None, proxy_kxp_hardware_acceleration=None, proxy_re_authentication_mode=None, proxy_resource_mode=None, proxy_worker_count=None, radius_port=None, reboot_upon_config_restore=None, refresh=None, remoteauthtimeout=None, reset_sessionless_tcp=None, restart_time=None, revision_backup_on_logout=None, revision_image_auto_backup=None, scanunit_count=None, security_rating_result_submission=None, security_rating_run_on_schedule=None, send_pmtu_icmp=None, snat_route_change=None, special_file23_support=None, speedtest_server=None, split_port=None, ssd_trim_date=None, ssd_trim_freq=None, ssd_trim_hour=None, ssd_trim_min=None, ssd_trim_weekday=None, ssh_cbc_cipher=None, ssh_enc_algo=None, ssh_hmac_md5=None, ssh_kex_algo=None, ssh_kex_sha1=None, ssh_mac_algo=None, ssh_mac_weak=None, ssl_min_proto_version=None, ssl_static_key_ciphers=None, sslvpn_cipher_hardware_acceleration=None, sslvpn_ems_sn_check=None, sslvpn_kxp_hardware_acceleration=None, sslvpn_max_worker_count=None, sslvpn_plugin_version_check=None, strict_dirty_session_check=None, strong_crypto=None, switch_controller=None, switch_controller_reserved_network=None, sys_perf_log_interval=None, tcp_halfclose_timer=None, tcp_halfopen_timer=None, tcp_option=None, tcp_rst_timer=None, tcp_timewait_timer=None, tftp=None, timezone=None, tp_mc_skip_policy=None, traffic_priority=None, traffic_priority_level=None, two_factor_email_expiry=None, two_factor_fac_expiry=None, two_factor_ftk_expiry=None, two_factor_ftm_expiry=None, two_factor_sms_expiry=None, udp_idle_timer=None, url_filter_affinity=None, url_filter_count=None, user_device_store_max_devices=None, user_device_store_max_unified_mem=None, user_device_store_max_users=None, user_server_cert=None, vdom_admin=None, vdom_mode=None, vdomparam=None, vip_arp_range=None, virtual_server_count=None, virtual_server_hardware_acceleration=None, virtual_switch_vlan=None, wad_affinity=None, wad_csvc_cs_count=None, wad_csvc_db_count=None, wad_memory_change_granularity=None, wad_source_affinity=None, wad_worker_count=None, wifi_ca_certificate=None, wifi_certificate=None, wimax4g_usb=None, wireless_controller=None, wireless_controller_port=None):
+    def __init__(__self__, admin_concurrent=None, admin_console_timeout=None, admin_forticloud_sso_default_profile=None, admin_forticloud_sso_login=None, admin_host=None, admin_hsts_max_age=None, admin_https_pki_required=None, admin_https_redirect=None, admin_https_ssl_banned_ciphers=None, admin_https_ssl_ciphersuites=None, admin_https_ssl_versions=None, admin_lockout_duration=None, admin_lockout_threshold=None, admin_login_max=None, admin_maintainer=None, admin_port=None, admin_restrict_local=None, admin_scp=None, admin_server_cert=None, admin_sport=None, admin_ssh_grace_time=None, admin_ssh_password=None, admin_ssh_port=None, admin_ssh_v1=None, admin_telnet=None, admin_telnet_port=None, admintimeout=None, alias=None, allow_traffic_redirect=None, anti_replay=None, arp_max_entry=None, asymroute=None, auth_cert=None, auth_http_port=None, auth_https_port=None, auth_ike_saml_port=None, auth_keepalive=None, auth_session_limit=None, auto_auth_extension_device=None, autorun_log_fsck=None, av_affinity=None, av_failopen=None, av_failopen_session=None, batch_cmdb=None, block_session_timer=None, br_fdb_max_entry=None, cert_chain_max=None, cfg_revert_timeout=None, cfg_save=None, check_protocol_header=None, check_reset_range=None, cli_audit_log=None, cloud_communication=None, clt_cert_req=None, cmdbsvr_affinity=None, compliance_check=None, compliance_check_time=None, cpu_use_threshold=None, csr_ca_attribute=None, daily_restart=None, default_service_source_port=None, device_identification_active_scan_delay=None, device_idle_timeout=None, dh_params=None, dnsproxy_worker_count=None, dst=None, early_tcp_npu_session=None, edit_vdom_prompt=None, endpoint_control_fds_access=None, endpoint_control_portal_port=None, extender_controller_reserved_network=None, failtime=None, faz_disk_buffer_size=None, fds_statistics=None, fds_statistics_period=None, fec_port=None, fgd_alert_subscription=None, forticonverter_config_upload=None, forticonverter_integration=None, fortiextender=None, fortiextender_data_port=None, fortiextender_discovery_lockdown=None, fortiextender_provision_on_authorization=None, fortiextender_vlan_mode=None, fortiipam_integration=None, fortiservice_port=None, fortitoken_cloud=None, gui_allow_default_hostname=None, gui_allow_incompatible_fabric_fgt=None, gui_app_detection_sdwan=None, gui_cdn_domain_override=None, gui_cdn_usage=None, gui_certificates=None, gui_custom_language=None, gui_date_format=None, gui_date_time_source=None, gui_device_latitude=None, gui_device_longitude=None, gui_display_hostname=None, gui_firmware_upgrade_setup_warning=None, gui_firmware_upgrade_warning=None, gui_forticare_registration_setup_warning=None, gui_fortigate_cloud_sandbox=None, gui_fortiguard_resource_fetch=None, gui_fortisandbox_cloud=None, gui_ipv6=None, gui_lines_per_page=None, gui_local_out=None, gui_replacement_message_groups=None, gui_rest_api_cache=None, gui_theme=None, gui_wireless_opensecurity=None, gui_workflow_management=None, ha_affinity=None, honor_df=None, hostname=None, id=None, igmp_state_limit=None, ike_embryonic_limit=None, interface_subnet_usage=None, internet_service_database=None, internet_service_download_lists=None, interval=None, ip_fragment_mem_thresholds=None, ip_src_port_range=None, ips_affinity=None, ipsec_asic_offload=None, ipsec_ha_seqjump_rate=None, ipsec_hmac_offload=None, ipsec_round_robin=None, ipsec_soft_dec_async=None, ipv6_accept_dad=None, ipv6_allow_anycast_probe=None, ipv6_allow_local_in_slient_drop=None, ipv6_allow_multicast_probe=None, ipv6_allow_traffic_redirect=None, irq_time_accounting=None, language=None, ldapconntimeout=None, lldp_reception=None, lldp_transmission=None, log_single_cpu_high=None, log_ssl_connection=None, log_uuid_address=None, log_uuid_policy=None, login_timestamp=None, long_vdom_name=None, management_ip=None, management_port=None, management_port_use_admin_sport=None, management_vdom=None, max_dlpstat_memory=None, max_route_cache_size=None, mc_ttl_notchange=None, memory_use_threshold_extreme=None, memory_use_threshold_green=None, memory_use_threshold_red=None, miglog_affinity=None, miglogd_children=None, multi_factor_authentication=None, multicast_forward=None, ndp_max_entry=None, per_user_bal=None, per_user_bwl=None, pmtu_discovery=None, policy_auth_concurrent=None, post_login_banner=None, pre_login_banner=None, private_data_encryption=None, proxy_auth_lifetime=None, proxy_auth_lifetime_timeout=None, proxy_auth_timeout=None, proxy_cert_use_mgmt_vdom=None, proxy_cipher_hardware_acceleration=None, proxy_hardware_acceleration=None, proxy_keep_alive_mode=None, proxy_kxp_hardware_acceleration=None, proxy_re_authentication_mode=None, proxy_re_authentication_time=None, proxy_resource_mode=None, proxy_worker_count=None, radius_port=None, reboot_upon_config_restore=None, refresh=None, remoteauthtimeout=None, reset_sessionless_tcp=None, restart_time=None, revision_backup_on_logout=None, revision_image_auto_backup=None, scanunit_count=None, security_rating_result_submission=None, security_rating_run_on_schedule=None, send_pmtu_icmp=None, sflowd_max_children_num=None, snat_route_change=None, special_file23_support=None, speedtest_server=None, split_port=None, ssd_trim_date=None, ssd_trim_freq=None, ssd_trim_hour=None, ssd_trim_min=None, ssd_trim_weekday=None, ssh_cbc_cipher=None, ssh_enc_algo=None, ssh_hmac_md5=None, ssh_hostkey_algo=None, ssh_kex_algo=None, ssh_kex_sha1=None, ssh_mac_algo=None, ssh_mac_weak=None, ssl_min_proto_version=None, ssl_static_key_ciphers=None, sslvpn_cipher_hardware_acceleration=None, sslvpn_ems_sn_check=None, sslvpn_kxp_hardware_acceleration=None, sslvpn_max_worker_count=None, sslvpn_plugin_version_check=None, strict_dirty_session_check=None, strong_crypto=None, switch_controller=None, switch_controller_reserved_network=None, sys_perf_log_interval=None, syslog_affinity=None, tcp_halfclose_timer=None, tcp_halfopen_timer=None, tcp_option=None, tcp_rst_timer=None, tcp_timewait_timer=None, tftp=None, timezone=None, tp_mc_skip_policy=None, traffic_priority=None, traffic_priority_level=None, two_factor_email_expiry=None, two_factor_fac_expiry=None, two_factor_ftk_expiry=None, two_factor_ftm_expiry=None, two_factor_sms_expiry=None, udp_idle_timer=None, url_filter_affinity=None, url_filter_count=None, user_device_store_max_devices=None, user_device_store_max_unified_mem=None, user_device_store_max_users=None, user_server_cert=None, vdom_admin=None, vdom_mode=None, vdomparam=None, vip_arp_range=None, virtual_server_count=None, virtual_server_hardware_acceleration=None, virtual_switch_vlan=None, vpn_ems_sn_check=None, wad_affinity=None, wad_csvc_cs_count=None, wad_csvc_db_count=None, wad_memory_change_granularity=None, wad_restart_end_time=None, wad_restart_mode=None, wad_restart_start_time=None, wad_source_affinity=None, wad_worker_count=None, wifi_ca_certificate=None, wifi_certificate=None, wimax4g_usb=None, wireless_controller=None, wireless_controller_port=None):
         if admin_concurrent and not isinstance(admin_concurrent, str):
             raise TypeError("Expected argument 'admin_concurrent' to be a str")
         pulumi.set(__self__, "admin_concurrent", admin_concurrent)
         if admin_console_timeout and not isinstance(admin_console_timeout, int):
             raise TypeError("Expected argument 'admin_console_timeout' to be a int")
         pulumi.set(__self__, "admin_console_timeout", admin_console_timeout)
+        if admin_forticloud_sso_default_profile and not isinstance(admin_forticloud_sso_default_profile, str):
+            raise TypeError("Expected argument 'admin_forticloud_sso_default_profile' to be a str")
+        pulumi.set(__self__, "admin_forticloud_sso_default_profile", admin_forticloud_sso_default_profile)
         if admin_forticloud_sso_login and not isinstance(admin_forticloud_sso_login, str):
             raise TypeError("Expected argument 'admin_forticloud_sso_login' to be a str")
         pulumi.set(__self__, "admin_forticloud_sso_login", admin_forticloud_sso_login)
@@ -250,6 +254,12 @@ class GetSystemGlobalResult:
         if fgd_alert_subscription and not isinstance(fgd_alert_subscription, str):
             raise TypeError("Expected argument 'fgd_alert_subscription' to be a str")
         pulumi.set(__self__, "fgd_alert_subscription", fgd_alert_subscription)
+        if forticonverter_config_upload and not isinstance(forticonverter_config_upload, str):
+            raise TypeError("Expected argument 'forticonverter_config_upload' to be a str")
+        pulumi.set(__self__, "forticonverter_config_upload", forticonverter_config_upload)
+        if forticonverter_integration and not isinstance(forticonverter_integration, str):
+            raise TypeError("Expected argument 'forticonverter_integration' to be a str")
+        pulumi.set(__self__, "forticonverter_integration", forticonverter_integration)
         if fortiextender and not isinstance(fortiextender, str):
             raise TypeError("Expected argument 'fortiextender' to be a str")
         pulumi.set(__self__, "fortiextender", fortiextender)
@@ -277,9 +287,15 @@ class GetSystemGlobalResult:
         if gui_allow_default_hostname and not isinstance(gui_allow_default_hostname, str):
             raise TypeError("Expected argument 'gui_allow_default_hostname' to be a str")
         pulumi.set(__self__, "gui_allow_default_hostname", gui_allow_default_hostname)
+        if gui_allow_incompatible_fabric_fgt and not isinstance(gui_allow_incompatible_fabric_fgt, str):
+            raise TypeError("Expected argument 'gui_allow_incompatible_fabric_fgt' to be a str")
+        pulumi.set(__self__, "gui_allow_incompatible_fabric_fgt", gui_allow_incompatible_fabric_fgt)
         if gui_app_detection_sdwan and not isinstance(gui_app_detection_sdwan, str):
             raise TypeError("Expected argument 'gui_app_detection_sdwan' to be a str")
         pulumi.set(__self__, "gui_app_detection_sdwan", gui_app_detection_sdwan)
+        if gui_cdn_domain_override and not isinstance(gui_cdn_domain_override, str):
+            raise TypeError("Expected argument 'gui_cdn_domain_override' to be a str")
+        pulumi.set(__self__, "gui_cdn_domain_override", gui_cdn_domain_override)
         if gui_cdn_usage and not isinstance(gui_cdn_usage, str):
             raise TypeError("Expected argument 'gui_cdn_usage' to be a str")
         pulumi.set(__self__, "gui_cdn_usage", gui_cdn_usage)
@@ -364,12 +380,21 @@ class GetSystemGlobalResult:
         if ike_embryonic_limit and not isinstance(ike_embryonic_limit, int):
             raise TypeError("Expected argument 'ike_embryonic_limit' to be a int")
         pulumi.set(__self__, "ike_embryonic_limit", ike_embryonic_limit)
+        if interface_subnet_usage and not isinstance(interface_subnet_usage, str):
+            raise TypeError("Expected argument 'interface_subnet_usage' to be a str")
+        pulumi.set(__self__, "interface_subnet_usage", interface_subnet_usage)
         if internet_service_database and not isinstance(internet_service_database, str):
             raise TypeError("Expected argument 'internet_service_database' to be a str")
         pulumi.set(__self__, "internet_service_database", internet_service_database)
+        if internet_service_download_lists and not isinstance(internet_service_download_lists, list):
+            raise TypeError("Expected argument 'internet_service_download_lists' to be a list")
+        pulumi.set(__self__, "internet_service_download_lists", internet_service_download_lists)
         if interval and not isinstance(interval, int):
             raise TypeError("Expected argument 'interval' to be a int")
         pulumi.set(__self__, "interval", interval)
+        if ip_fragment_mem_thresholds and not isinstance(ip_fragment_mem_thresholds, int):
+            raise TypeError("Expected argument 'ip_fragment_mem_thresholds' to be a int")
+        pulumi.set(__self__, "ip_fragment_mem_thresholds", ip_fragment_mem_thresholds)
         if ip_src_port_range and not isinstance(ip_src_port_range, str):
             raise TypeError("Expected argument 'ip_src_port_range' to be a str")
         pulumi.set(__self__, "ip_src_port_range", ip_src_port_range)
@@ -421,6 +446,9 @@ class GetSystemGlobalResult:
         if lldp_transmission and not isinstance(lldp_transmission, str):
             raise TypeError("Expected argument 'lldp_transmission' to be a str")
         pulumi.set(__self__, "lldp_transmission", lldp_transmission)
+        if log_single_cpu_high and not isinstance(log_single_cpu_high, str):
+            raise TypeError("Expected argument 'log_single_cpu_high' to be a str")
+        pulumi.set(__self__, "log_single_cpu_high", log_single_cpu_high)
         if log_ssl_connection and not isinstance(log_ssl_connection, str):
             raise TypeError("Expected argument 'log_ssl_connection' to be a str")
         pulumi.set(__self__, "log_ssl_connection", log_ssl_connection)
@@ -520,12 +548,18 @@ class GetSystemGlobalResult:
         if proxy_hardware_acceleration and not isinstance(proxy_hardware_acceleration, str):
             raise TypeError("Expected argument 'proxy_hardware_acceleration' to be a str")
         pulumi.set(__self__, "proxy_hardware_acceleration", proxy_hardware_acceleration)
+        if proxy_keep_alive_mode and not isinstance(proxy_keep_alive_mode, str):
+            raise TypeError("Expected argument 'proxy_keep_alive_mode' to be a str")
+        pulumi.set(__self__, "proxy_keep_alive_mode", proxy_keep_alive_mode)
         if proxy_kxp_hardware_acceleration and not isinstance(proxy_kxp_hardware_acceleration, str):
             raise TypeError("Expected argument 'proxy_kxp_hardware_acceleration' to be a str")
         pulumi.set(__self__, "proxy_kxp_hardware_acceleration", proxy_kxp_hardware_acceleration)
         if proxy_re_authentication_mode and not isinstance(proxy_re_authentication_mode, str):
             raise TypeError("Expected argument 'proxy_re_authentication_mode' to be a str")
         pulumi.set(__self__, "proxy_re_authentication_mode", proxy_re_authentication_mode)
+        if proxy_re_authentication_time and not isinstance(proxy_re_authentication_time, int):
+            raise TypeError("Expected argument 'proxy_re_authentication_time' to be a int")
+        pulumi.set(__self__, "proxy_re_authentication_time", proxy_re_authentication_time)
         if proxy_resource_mode and not isinstance(proxy_resource_mode, str):
             raise TypeError("Expected argument 'proxy_resource_mode' to be a str")
         pulumi.set(__self__, "proxy_resource_mode", proxy_resource_mode)
@@ -568,6 +602,9 @@ class GetSystemGlobalResult:
         if send_pmtu_icmp and not isinstance(send_pmtu_icmp, str):
             raise TypeError("Expected argument 'send_pmtu_icmp' to be a str")
         pulumi.set(__self__, "send_pmtu_icmp", send_pmtu_icmp)
+        if sflowd_max_children_num and not isinstance(sflowd_max_children_num, int):
+            raise TypeError("Expected argument 'sflowd_max_children_num' to be a int")
+        pulumi.set(__self__, "sflowd_max_children_num", sflowd_max_children_num)
         if snat_route_change and not isinstance(snat_route_change, str):
             raise TypeError("Expected argument 'snat_route_change' to be a str")
         pulumi.set(__self__, "snat_route_change", snat_route_change)
@@ -604,6 +641,9 @@ class GetSystemGlobalResult:
         if ssh_hmac_md5 and not isinstance(ssh_hmac_md5, str):
             raise TypeError("Expected argument 'ssh_hmac_md5' to be a str")
         pulumi.set(__self__, "ssh_hmac_md5", ssh_hmac_md5)
+        if ssh_hostkey_algo and not isinstance(ssh_hostkey_algo, str):
+            raise TypeError("Expected argument 'ssh_hostkey_algo' to be a str")
+        pulumi.set(__self__, "ssh_hostkey_algo", ssh_hostkey_algo)
         if ssh_kex_algo and not isinstance(ssh_kex_algo, str):
             raise TypeError("Expected argument 'ssh_kex_algo' to be a str")
         pulumi.set(__self__, "ssh_kex_algo", ssh_kex_algo)
@@ -652,6 +692,9 @@ class GetSystemGlobalResult:
         if sys_perf_log_interval and not isinstance(sys_perf_log_interval, int):
             raise TypeError("Expected argument 'sys_perf_log_interval' to be a int")
         pulumi.set(__self__, "sys_perf_log_interval", sys_perf_log_interval)
+        if syslog_affinity and not isinstance(syslog_affinity, str):
+            raise TypeError("Expected argument 'syslog_affinity' to be a str")
+        pulumi.set(__self__, "syslog_affinity", syslog_affinity)
         if tcp_halfclose_timer and not isinstance(tcp_halfclose_timer, int):
             raise TypeError("Expected argument 'tcp_halfclose_timer' to be a int")
         pulumi.set(__self__, "tcp_halfclose_timer", tcp_halfclose_timer)
@@ -739,6 +782,9 @@ class GetSystemGlobalResult:
         if virtual_switch_vlan and not isinstance(virtual_switch_vlan, str):
             raise TypeError("Expected argument 'virtual_switch_vlan' to be a str")
         pulumi.set(__self__, "virtual_switch_vlan", virtual_switch_vlan)
+        if vpn_ems_sn_check and not isinstance(vpn_ems_sn_check, str):
+            raise TypeError("Expected argument 'vpn_ems_sn_check' to be a str")
+        pulumi.set(__self__, "vpn_ems_sn_check", vpn_ems_sn_check)
         if wad_affinity and not isinstance(wad_affinity, str):
             raise TypeError("Expected argument 'wad_affinity' to be a str")
         pulumi.set(__self__, "wad_affinity", wad_affinity)
@@ -751,6 +797,15 @@ class GetSystemGlobalResult:
         if wad_memory_change_granularity and not isinstance(wad_memory_change_granularity, int):
             raise TypeError("Expected argument 'wad_memory_change_granularity' to be a int")
         pulumi.set(__self__, "wad_memory_change_granularity", wad_memory_change_granularity)
+        if wad_restart_end_time and not isinstance(wad_restart_end_time, str):
+            raise TypeError("Expected argument 'wad_restart_end_time' to be a str")
+        pulumi.set(__self__, "wad_restart_end_time", wad_restart_end_time)
+        if wad_restart_mode and not isinstance(wad_restart_mode, str):
+            raise TypeError("Expected argument 'wad_restart_mode' to be a str")
+        pulumi.set(__self__, "wad_restart_mode", wad_restart_mode)
+        if wad_restart_start_time and not isinstance(wad_restart_start_time, str):
+            raise TypeError("Expected argument 'wad_restart_start_time' to be a str")
+        pulumi.set(__self__, "wad_restart_start_time", wad_restart_start_time)
         if wad_source_affinity and not isinstance(wad_source_affinity, str):
             raise TypeError("Expected argument 'wad_source_affinity' to be a str")
         pulumi.set(__self__, "wad_source_affinity", wad_source_affinity)
@@ -782,6 +837,11 @@ class GetSystemGlobalResult:
     @pulumi.getter(name="adminConsoleTimeout")
     def admin_console_timeout(self) -> int:
         return pulumi.get(self, "admin_console_timeout")
+
+    @property
+    @pulumi.getter(name="adminForticloudSsoDefaultProfile")
+    def admin_forticloud_sso_default_profile(self) -> str:
+        return pulumi.get(self, "admin_forticloud_sso_default_profile")
 
     @property
     @pulumi.getter(name="adminForticloudSsoLogin")
@@ -1154,6 +1214,16 @@ class GetSystemGlobalResult:
         return pulumi.get(self, "fgd_alert_subscription")
 
     @property
+    @pulumi.getter(name="forticonverterConfigUpload")
+    def forticonverter_config_upload(self) -> str:
+        return pulumi.get(self, "forticonverter_config_upload")
+
+    @property
+    @pulumi.getter(name="forticonverterIntegration")
+    def forticonverter_integration(self) -> str:
+        return pulumi.get(self, "forticonverter_integration")
+
+    @property
     @pulumi.getter
     def fortiextender(self) -> str:
         return pulumi.get(self, "fortiextender")
@@ -1199,9 +1269,19 @@ class GetSystemGlobalResult:
         return pulumi.get(self, "gui_allow_default_hostname")
 
     @property
+    @pulumi.getter(name="guiAllowIncompatibleFabricFgt")
+    def gui_allow_incompatible_fabric_fgt(self) -> str:
+        return pulumi.get(self, "gui_allow_incompatible_fabric_fgt")
+
+    @property
     @pulumi.getter(name="guiAppDetectionSdwan")
     def gui_app_detection_sdwan(self) -> str:
         return pulumi.get(self, "gui_app_detection_sdwan")
+
+    @property
+    @pulumi.getter(name="guiCdnDomainOverride")
+    def gui_cdn_domain_override(self) -> str:
+        return pulumi.get(self, "gui_cdn_domain_override")
 
     @property
     @pulumi.getter(name="guiCdnUsage")
@@ -1347,14 +1427,29 @@ class GetSystemGlobalResult:
         return pulumi.get(self, "ike_embryonic_limit")
 
     @property
+    @pulumi.getter(name="interfaceSubnetUsage")
+    def interface_subnet_usage(self) -> str:
+        return pulumi.get(self, "interface_subnet_usage")
+
+    @property
     @pulumi.getter(name="internetServiceDatabase")
     def internet_service_database(self) -> str:
         return pulumi.get(self, "internet_service_database")
 
     @property
+    @pulumi.getter(name="internetServiceDownloadLists")
+    def internet_service_download_lists(self) -> Sequence['outputs.GetSystemGlobalInternetServiceDownloadListResult']:
+        return pulumi.get(self, "internet_service_download_lists")
+
+    @property
     @pulumi.getter
     def interval(self) -> int:
         return pulumi.get(self, "interval")
+
+    @property
+    @pulumi.getter(name="ipFragmentMemThresholds")
+    def ip_fragment_mem_thresholds(self) -> int:
+        return pulumi.get(self, "ip_fragment_mem_thresholds")
 
     @property
     @pulumi.getter(name="ipSrcPortRange")
@@ -1440,6 +1535,11 @@ class GetSystemGlobalResult:
     @pulumi.getter(name="lldpTransmission")
     def lldp_transmission(self) -> str:
         return pulumi.get(self, "lldp_transmission")
+
+    @property
+    @pulumi.getter(name="logSingleCpuHigh")
+    def log_single_cpu_high(self) -> str:
+        return pulumi.get(self, "log_single_cpu_high")
 
     @property
     @pulumi.getter(name="logSslConnection")
@@ -1607,6 +1707,11 @@ class GetSystemGlobalResult:
         return pulumi.get(self, "proxy_hardware_acceleration")
 
     @property
+    @pulumi.getter(name="proxyKeepAliveMode")
+    def proxy_keep_alive_mode(self) -> str:
+        return pulumi.get(self, "proxy_keep_alive_mode")
+
+    @property
     @pulumi.getter(name="proxyKxpHardwareAcceleration")
     def proxy_kxp_hardware_acceleration(self) -> str:
         return pulumi.get(self, "proxy_kxp_hardware_acceleration")
@@ -1615,6 +1720,11 @@ class GetSystemGlobalResult:
     @pulumi.getter(name="proxyReAuthenticationMode")
     def proxy_re_authentication_mode(self) -> str:
         return pulumi.get(self, "proxy_re_authentication_mode")
+
+    @property
+    @pulumi.getter(name="proxyReAuthenticationTime")
+    def proxy_re_authentication_time(self) -> int:
+        return pulumi.get(self, "proxy_re_authentication_time")
 
     @property
     @pulumi.getter(name="proxyResourceMode")
@@ -1687,6 +1797,11 @@ class GetSystemGlobalResult:
         return pulumi.get(self, "send_pmtu_icmp")
 
     @property
+    @pulumi.getter(name="sflowdMaxChildrenNum")
+    def sflowd_max_children_num(self) -> int:
+        return pulumi.get(self, "sflowd_max_children_num")
+
+    @property
     @pulumi.getter(name="snatRouteChange")
     def snat_route_change(self) -> str:
         return pulumi.get(self, "snat_route_change")
@@ -1745,6 +1860,11 @@ class GetSystemGlobalResult:
     @pulumi.getter(name="sshHmacMd5")
     def ssh_hmac_md5(self) -> str:
         return pulumi.get(self, "ssh_hmac_md5")
+
+    @property
+    @pulumi.getter(name="sshHostkeyAlgo")
+    def ssh_hostkey_algo(self) -> str:
+        return pulumi.get(self, "ssh_hostkey_algo")
 
     @property
     @pulumi.getter(name="sshKexAlgo")
@@ -1825,6 +1945,11 @@ class GetSystemGlobalResult:
     @pulumi.getter(name="sysPerfLogInterval")
     def sys_perf_log_interval(self) -> int:
         return pulumi.get(self, "sys_perf_log_interval")
+
+    @property
+    @pulumi.getter(name="syslogAffinity")
+    def syslog_affinity(self) -> str:
+        return pulumi.get(self, "syslog_affinity")
 
     @property
     @pulumi.getter(name="tcpHalfcloseTimer")
@@ -1972,6 +2097,11 @@ class GetSystemGlobalResult:
         return pulumi.get(self, "virtual_switch_vlan")
 
     @property
+    @pulumi.getter(name="vpnEmsSnCheck")
+    def vpn_ems_sn_check(self) -> str:
+        return pulumi.get(self, "vpn_ems_sn_check")
+
+    @property
     @pulumi.getter(name="wadAffinity")
     def wad_affinity(self) -> str:
         return pulumi.get(self, "wad_affinity")
@@ -1990,6 +2120,21 @@ class GetSystemGlobalResult:
     @pulumi.getter(name="wadMemoryChangeGranularity")
     def wad_memory_change_granularity(self) -> int:
         return pulumi.get(self, "wad_memory_change_granularity")
+
+    @property
+    @pulumi.getter(name="wadRestartEndTime")
+    def wad_restart_end_time(self) -> str:
+        return pulumi.get(self, "wad_restart_end_time")
+
+    @property
+    @pulumi.getter(name="wadRestartMode")
+    def wad_restart_mode(self) -> str:
+        return pulumi.get(self, "wad_restart_mode")
+
+    @property
+    @pulumi.getter(name="wadRestartStartTime")
+    def wad_restart_start_time(self) -> str:
+        return pulumi.get(self, "wad_restart_start_time")
 
     @property
     @pulumi.getter(name="wadSourceAffinity")
@@ -2035,6 +2180,7 @@ class AwaitableGetSystemGlobalResult(GetSystemGlobalResult):
         return GetSystemGlobalResult(
             admin_concurrent=self.admin_concurrent,
             admin_console_timeout=self.admin_console_timeout,
+            admin_forticloud_sso_default_profile=self.admin_forticloud_sso_default_profile,
             admin_forticloud_sso_login=self.admin_forticloud_sso_login,
             admin_host=self.admin_host,
             admin_hsts_max_age=self.admin_hsts_max_age,
@@ -2109,6 +2255,8 @@ class AwaitableGetSystemGlobalResult(GetSystemGlobalResult):
             fds_statistics_period=self.fds_statistics_period,
             fec_port=self.fec_port,
             fgd_alert_subscription=self.fgd_alert_subscription,
+            forticonverter_config_upload=self.forticonverter_config_upload,
+            forticonverter_integration=self.forticonverter_integration,
             fortiextender=self.fortiextender,
             fortiextender_data_port=self.fortiextender_data_port,
             fortiextender_discovery_lockdown=self.fortiextender_discovery_lockdown,
@@ -2118,7 +2266,9 @@ class AwaitableGetSystemGlobalResult(GetSystemGlobalResult):
             fortiservice_port=self.fortiservice_port,
             fortitoken_cloud=self.fortitoken_cloud,
             gui_allow_default_hostname=self.gui_allow_default_hostname,
+            gui_allow_incompatible_fabric_fgt=self.gui_allow_incompatible_fabric_fgt,
             gui_app_detection_sdwan=self.gui_app_detection_sdwan,
+            gui_cdn_domain_override=self.gui_cdn_domain_override,
             gui_cdn_usage=self.gui_cdn_usage,
             gui_certificates=self.gui_certificates,
             gui_custom_language=self.gui_custom_language,
@@ -2147,8 +2297,11 @@ class AwaitableGetSystemGlobalResult(GetSystemGlobalResult):
             id=self.id,
             igmp_state_limit=self.igmp_state_limit,
             ike_embryonic_limit=self.ike_embryonic_limit,
+            interface_subnet_usage=self.interface_subnet_usage,
             internet_service_database=self.internet_service_database,
+            internet_service_download_lists=self.internet_service_download_lists,
             interval=self.interval,
+            ip_fragment_mem_thresholds=self.ip_fragment_mem_thresholds,
             ip_src_port_range=self.ip_src_port_range,
             ips_affinity=self.ips_affinity,
             ipsec_asic_offload=self.ipsec_asic_offload,
@@ -2166,6 +2319,7 @@ class AwaitableGetSystemGlobalResult(GetSystemGlobalResult):
             ldapconntimeout=self.ldapconntimeout,
             lldp_reception=self.lldp_reception,
             lldp_transmission=self.lldp_transmission,
+            log_single_cpu_high=self.log_single_cpu_high,
             log_ssl_connection=self.log_ssl_connection,
             log_uuid_address=self.log_uuid_address,
             log_uuid_policy=self.log_uuid_policy,
@@ -2199,8 +2353,10 @@ class AwaitableGetSystemGlobalResult(GetSystemGlobalResult):
             proxy_cert_use_mgmt_vdom=self.proxy_cert_use_mgmt_vdom,
             proxy_cipher_hardware_acceleration=self.proxy_cipher_hardware_acceleration,
             proxy_hardware_acceleration=self.proxy_hardware_acceleration,
+            proxy_keep_alive_mode=self.proxy_keep_alive_mode,
             proxy_kxp_hardware_acceleration=self.proxy_kxp_hardware_acceleration,
             proxy_re_authentication_mode=self.proxy_re_authentication_mode,
+            proxy_re_authentication_time=self.proxy_re_authentication_time,
             proxy_resource_mode=self.proxy_resource_mode,
             proxy_worker_count=self.proxy_worker_count,
             radius_port=self.radius_port,
@@ -2215,6 +2371,7 @@ class AwaitableGetSystemGlobalResult(GetSystemGlobalResult):
             security_rating_result_submission=self.security_rating_result_submission,
             security_rating_run_on_schedule=self.security_rating_run_on_schedule,
             send_pmtu_icmp=self.send_pmtu_icmp,
+            sflowd_max_children_num=self.sflowd_max_children_num,
             snat_route_change=self.snat_route_change,
             special_file23_support=self.special_file23_support,
             speedtest_server=self.speedtest_server,
@@ -2227,6 +2384,7 @@ class AwaitableGetSystemGlobalResult(GetSystemGlobalResult):
             ssh_cbc_cipher=self.ssh_cbc_cipher,
             ssh_enc_algo=self.ssh_enc_algo,
             ssh_hmac_md5=self.ssh_hmac_md5,
+            ssh_hostkey_algo=self.ssh_hostkey_algo,
             ssh_kex_algo=self.ssh_kex_algo,
             ssh_kex_sha1=self.ssh_kex_sha1,
             ssh_mac_algo=self.ssh_mac_algo,
@@ -2243,6 +2401,7 @@ class AwaitableGetSystemGlobalResult(GetSystemGlobalResult):
             switch_controller=self.switch_controller,
             switch_controller_reserved_network=self.switch_controller_reserved_network,
             sys_perf_log_interval=self.sys_perf_log_interval,
+            syslog_affinity=self.syslog_affinity,
             tcp_halfclose_timer=self.tcp_halfclose_timer,
             tcp_halfopen_timer=self.tcp_halfopen_timer,
             tcp_option=self.tcp_option,
@@ -2272,10 +2431,14 @@ class AwaitableGetSystemGlobalResult(GetSystemGlobalResult):
             virtual_server_count=self.virtual_server_count,
             virtual_server_hardware_acceleration=self.virtual_server_hardware_acceleration,
             virtual_switch_vlan=self.virtual_switch_vlan,
+            vpn_ems_sn_check=self.vpn_ems_sn_check,
             wad_affinity=self.wad_affinity,
             wad_csvc_cs_count=self.wad_csvc_cs_count,
             wad_csvc_db_count=self.wad_csvc_db_count,
             wad_memory_change_granularity=self.wad_memory_change_granularity,
+            wad_restart_end_time=self.wad_restart_end_time,
+            wad_restart_mode=self.wad_restart_mode,
+            wad_restart_start_time=self.wad_restart_start_time,
             wad_source_affinity=self.wad_source_affinity,
             wad_worker_count=self.wad_worker_count,
             wifi_ca_certificate=self.wifi_ca_certificate,
@@ -2296,256 +2459,274 @@ def get_system_global(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemGlobal:GetSystemGlobal', __args__, opts=opts, typ=GetSystemGlobalResult).value
 
     return AwaitableGetSystemGlobalResult(
-        admin_concurrent=__ret__.admin_concurrent,
-        admin_console_timeout=__ret__.admin_console_timeout,
-        admin_forticloud_sso_login=__ret__.admin_forticloud_sso_login,
-        admin_host=__ret__.admin_host,
-        admin_hsts_max_age=__ret__.admin_hsts_max_age,
-        admin_https_pki_required=__ret__.admin_https_pki_required,
-        admin_https_redirect=__ret__.admin_https_redirect,
-        admin_https_ssl_banned_ciphers=__ret__.admin_https_ssl_banned_ciphers,
-        admin_https_ssl_ciphersuites=__ret__.admin_https_ssl_ciphersuites,
-        admin_https_ssl_versions=__ret__.admin_https_ssl_versions,
-        admin_lockout_duration=__ret__.admin_lockout_duration,
-        admin_lockout_threshold=__ret__.admin_lockout_threshold,
-        admin_login_max=__ret__.admin_login_max,
-        admin_maintainer=__ret__.admin_maintainer,
-        admin_port=__ret__.admin_port,
-        admin_restrict_local=__ret__.admin_restrict_local,
-        admin_scp=__ret__.admin_scp,
-        admin_server_cert=__ret__.admin_server_cert,
-        admin_sport=__ret__.admin_sport,
-        admin_ssh_grace_time=__ret__.admin_ssh_grace_time,
-        admin_ssh_password=__ret__.admin_ssh_password,
-        admin_ssh_port=__ret__.admin_ssh_port,
-        admin_ssh_v1=__ret__.admin_ssh_v1,
-        admin_telnet=__ret__.admin_telnet,
-        admin_telnet_port=__ret__.admin_telnet_port,
-        admintimeout=__ret__.admintimeout,
-        alias=__ret__.alias,
-        allow_traffic_redirect=__ret__.allow_traffic_redirect,
-        anti_replay=__ret__.anti_replay,
-        arp_max_entry=__ret__.arp_max_entry,
-        asymroute=__ret__.asymroute,
-        auth_cert=__ret__.auth_cert,
-        auth_http_port=__ret__.auth_http_port,
-        auth_https_port=__ret__.auth_https_port,
-        auth_ike_saml_port=__ret__.auth_ike_saml_port,
-        auth_keepalive=__ret__.auth_keepalive,
-        auth_session_limit=__ret__.auth_session_limit,
-        auto_auth_extension_device=__ret__.auto_auth_extension_device,
-        autorun_log_fsck=__ret__.autorun_log_fsck,
-        av_affinity=__ret__.av_affinity,
-        av_failopen=__ret__.av_failopen,
-        av_failopen_session=__ret__.av_failopen_session,
-        batch_cmdb=__ret__.batch_cmdb,
-        block_session_timer=__ret__.block_session_timer,
-        br_fdb_max_entry=__ret__.br_fdb_max_entry,
-        cert_chain_max=__ret__.cert_chain_max,
-        cfg_revert_timeout=__ret__.cfg_revert_timeout,
-        cfg_save=__ret__.cfg_save,
-        check_protocol_header=__ret__.check_protocol_header,
-        check_reset_range=__ret__.check_reset_range,
-        cli_audit_log=__ret__.cli_audit_log,
-        cloud_communication=__ret__.cloud_communication,
-        clt_cert_req=__ret__.clt_cert_req,
-        cmdbsvr_affinity=__ret__.cmdbsvr_affinity,
-        compliance_check=__ret__.compliance_check,
-        compliance_check_time=__ret__.compliance_check_time,
-        cpu_use_threshold=__ret__.cpu_use_threshold,
-        csr_ca_attribute=__ret__.csr_ca_attribute,
-        daily_restart=__ret__.daily_restart,
-        default_service_source_port=__ret__.default_service_source_port,
-        device_identification_active_scan_delay=__ret__.device_identification_active_scan_delay,
-        device_idle_timeout=__ret__.device_idle_timeout,
-        dh_params=__ret__.dh_params,
-        dnsproxy_worker_count=__ret__.dnsproxy_worker_count,
-        dst=__ret__.dst,
-        early_tcp_npu_session=__ret__.early_tcp_npu_session,
-        edit_vdom_prompt=__ret__.edit_vdom_prompt,
-        endpoint_control_fds_access=__ret__.endpoint_control_fds_access,
-        endpoint_control_portal_port=__ret__.endpoint_control_portal_port,
-        extender_controller_reserved_network=__ret__.extender_controller_reserved_network,
-        failtime=__ret__.failtime,
-        faz_disk_buffer_size=__ret__.faz_disk_buffer_size,
-        fds_statistics=__ret__.fds_statistics,
-        fds_statistics_period=__ret__.fds_statistics_period,
-        fec_port=__ret__.fec_port,
-        fgd_alert_subscription=__ret__.fgd_alert_subscription,
-        fortiextender=__ret__.fortiextender,
-        fortiextender_data_port=__ret__.fortiextender_data_port,
-        fortiextender_discovery_lockdown=__ret__.fortiextender_discovery_lockdown,
-        fortiextender_provision_on_authorization=__ret__.fortiextender_provision_on_authorization,
-        fortiextender_vlan_mode=__ret__.fortiextender_vlan_mode,
-        fortiipam_integration=__ret__.fortiipam_integration,
-        fortiservice_port=__ret__.fortiservice_port,
-        fortitoken_cloud=__ret__.fortitoken_cloud,
-        gui_allow_default_hostname=__ret__.gui_allow_default_hostname,
-        gui_app_detection_sdwan=__ret__.gui_app_detection_sdwan,
-        gui_cdn_usage=__ret__.gui_cdn_usage,
-        gui_certificates=__ret__.gui_certificates,
-        gui_custom_language=__ret__.gui_custom_language,
-        gui_date_format=__ret__.gui_date_format,
-        gui_date_time_source=__ret__.gui_date_time_source,
-        gui_device_latitude=__ret__.gui_device_latitude,
-        gui_device_longitude=__ret__.gui_device_longitude,
-        gui_display_hostname=__ret__.gui_display_hostname,
-        gui_firmware_upgrade_setup_warning=__ret__.gui_firmware_upgrade_setup_warning,
-        gui_firmware_upgrade_warning=__ret__.gui_firmware_upgrade_warning,
-        gui_forticare_registration_setup_warning=__ret__.gui_forticare_registration_setup_warning,
-        gui_fortigate_cloud_sandbox=__ret__.gui_fortigate_cloud_sandbox,
-        gui_fortiguard_resource_fetch=__ret__.gui_fortiguard_resource_fetch,
-        gui_fortisandbox_cloud=__ret__.gui_fortisandbox_cloud,
-        gui_ipv6=__ret__.gui_ipv6,
-        gui_lines_per_page=__ret__.gui_lines_per_page,
-        gui_local_out=__ret__.gui_local_out,
-        gui_replacement_message_groups=__ret__.gui_replacement_message_groups,
-        gui_rest_api_cache=__ret__.gui_rest_api_cache,
-        gui_theme=__ret__.gui_theme,
-        gui_wireless_opensecurity=__ret__.gui_wireless_opensecurity,
-        gui_workflow_management=__ret__.gui_workflow_management,
-        ha_affinity=__ret__.ha_affinity,
-        honor_df=__ret__.honor_df,
-        hostname=__ret__.hostname,
-        id=__ret__.id,
-        igmp_state_limit=__ret__.igmp_state_limit,
-        ike_embryonic_limit=__ret__.ike_embryonic_limit,
-        internet_service_database=__ret__.internet_service_database,
-        interval=__ret__.interval,
-        ip_src_port_range=__ret__.ip_src_port_range,
-        ips_affinity=__ret__.ips_affinity,
-        ipsec_asic_offload=__ret__.ipsec_asic_offload,
-        ipsec_ha_seqjump_rate=__ret__.ipsec_ha_seqjump_rate,
-        ipsec_hmac_offload=__ret__.ipsec_hmac_offload,
-        ipsec_round_robin=__ret__.ipsec_round_robin,
-        ipsec_soft_dec_async=__ret__.ipsec_soft_dec_async,
-        ipv6_accept_dad=__ret__.ipv6_accept_dad,
-        ipv6_allow_anycast_probe=__ret__.ipv6_allow_anycast_probe,
-        ipv6_allow_local_in_slient_drop=__ret__.ipv6_allow_local_in_slient_drop,
-        ipv6_allow_multicast_probe=__ret__.ipv6_allow_multicast_probe,
-        ipv6_allow_traffic_redirect=__ret__.ipv6_allow_traffic_redirect,
-        irq_time_accounting=__ret__.irq_time_accounting,
-        language=__ret__.language,
-        ldapconntimeout=__ret__.ldapconntimeout,
-        lldp_reception=__ret__.lldp_reception,
-        lldp_transmission=__ret__.lldp_transmission,
-        log_ssl_connection=__ret__.log_ssl_connection,
-        log_uuid_address=__ret__.log_uuid_address,
-        log_uuid_policy=__ret__.log_uuid_policy,
-        login_timestamp=__ret__.login_timestamp,
-        long_vdom_name=__ret__.long_vdom_name,
-        management_ip=__ret__.management_ip,
-        management_port=__ret__.management_port,
-        management_port_use_admin_sport=__ret__.management_port_use_admin_sport,
-        management_vdom=__ret__.management_vdom,
-        max_dlpstat_memory=__ret__.max_dlpstat_memory,
-        max_route_cache_size=__ret__.max_route_cache_size,
-        mc_ttl_notchange=__ret__.mc_ttl_notchange,
-        memory_use_threshold_extreme=__ret__.memory_use_threshold_extreme,
-        memory_use_threshold_green=__ret__.memory_use_threshold_green,
-        memory_use_threshold_red=__ret__.memory_use_threshold_red,
-        miglog_affinity=__ret__.miglog_affinity,
-        miglogd_children=__ret__.miglogd_children,
-        multi_factor_authentication=__ret__.multi_factor_authentication,
-        multicast_forward=__ret__.multicast_forward,
-        ndp_max_entry=__ret__.ndp_max_entry,
-        per_user_bal=__ret__.per_user_bal,
-        per_user_bwl=__ret__.per_user_bwl,
-        pmtu_discovery=__ret__.pmtu_discovery,
-        policy_auth_concurrent=__ret__.policy_auth_concurrent,
-        post_login_banner=__ret__.post_login_banner,
-        pre_login_banner=__ret__.pre_login_banner,
-        private_data_encryption=__ret__.private_data_encryption,
-        proxy_auth_lifetime=__ret__.proxy_auth_lifetime,
-        proxy_auth_lifetime_timeout=__ret__.proxy_auth_lifetime_timeout,
-        proxy_auth_timeout=__ret__.proxy_auth_timeout,
-        proxy_cert_use_mgmt_vdom=__ret__.proxy_cert_use_mgmt_vdom,
-        proxy_cipher_hardware_acceleration=__ret__.proxy_cipher_hardware_acceleration,
-        proxy_hardware_acceleration=__ret__.proxy_hardware_acceleration,
-        proxy_kxp_hardware_acceleration=__ret__.proxy_kxp_hardware_acceleration,
-        proxy_re_authentication_mode=__ret__.proxy_re_authentication_mode,
-        proxy_resource_mode=__ret__.proxy_resource_mode,
-        proxy_worker_count=__ret__.proxy_worker_count,
-        radius_port=__ret__.radius_port,
-        reboot_upon_config_restore=__ret__.reboot_upon_config_restore,
-        refresh=__ret__.refresh,
-        remoteauthtimeout=__ret__.remoteauthtimeout,
-        reset_sessionless_tcp=__ret__.reset_sessionless_tcp,
-        restart_time=__ret__.restart_time,
-        revision_backup_on_logout=__ret__.revision_backup_on_logout,
-        revision_image_auto_backup=__ret__.revision_image_auto_backup,
-        scanunit_count=__ret__.scanunit_count,
-        security_rating_result_submission=__ret__.security_rating_result_submission,
-        security_rating_run_on_schedule=__ret__.security_rating_run_on_schedule,
-        send_pmtu_icmp=__ret__.send_pmtu_icmp,
-        snat_route_change=__ret__.snat_route_change,
-        special_file23_support=__ret__.special_file23_support,
-        speedtest_server=__ret__.speedtest_server,
-        split_port=__ret__.split_port,
-        ssd_trim_date=__ret__.ssd_trim_date,
-        ssd_trim_freq=__ret__.ssd_trim_freq,
-        ssd_trim_hour=__ret__.ssd_trim_hour,
-        ssd_trim_min=__ret__.ssd_trim_min,
-        ssd_trim_weekday=__ret__.ssd_trim_weekday,
-        ssh_cbc_cipher=__ret__.ssh_cbc_cipher,
-        ssh_enc_algo=__ret__.ssh_enc_algo,
-        ssh_hmac_md5=__ret__.ssh_hmac_md5,
-        ssh_kex_algo=__ret__.ssh_kex_algo,
-        ssh_kex_sha1=__ret__.ssh_kex_sha1,
-        ssh_mac_algo=__ret__.ssh_mac_algo,
-        ssh_mac_weak=__ret__.ssh_mac_weak,
-        ssl_min_proto_version=__ret__.ssl_min_proto_version,
-        ssl_static_key_ciphers=__ret__.ssl_static_key_ciphers,
-        sslvpn_cipher_hardware_acceleration=__ret__.sslvpn_cipher_hardware_acceleration,
-        sslvpn_ems_sn_check=__ret__.sslvpn_ems_sn_check,
-        sslvpn_kxp_hardware_acceleration=__ret__.sslvpn_kxp_hardware_acceleration,
-        sslvpn_max_worker_count=__ret__.sslvpn_max_worker_count,
-        sslvpn_plugin_version_check=__ret__.sslvpn_plugin_version_check,
-        strict_dirty_session_check=__ret__.strict_dirty_session_check,
-        strong_crypto=__ret__.strong_crypto,
-        switch_controller=__ret__.switch_controller,
-        switch_controller_reserved_network=__ret__.switch_controller_reserved_network,
-        sys_perf_log_interval=__ret__.sys_perf_log_interval,
-        tcp_halfclose_timer=__ret__.tcp_halfclose_timer,
-        tcp_halfopen_timer=__ret__.tcp_halfopen_timer,
-        tcp_option=__ret__.tcp_option,
-        tcp_rst_timer=__ret__.tcp_rst_timer,
-        tcp_timewait_timer=__ret__.tcp_timewait_timer,
-        tftp=__ret__.tftp,
-        timezone=__ret__.timezone,
-        tp_mc_skip_policy=__ret__.tp_mc_skip_policy,
-        traffic_priority=__ret__.traffic_priority,
-        traffic_priority_level=__ret__.traffic_priority_level,
-        two_factor_email_expiry=__ret__.two_factor_email_expiry,
-        two_factor_fac_expiry=__ret__.two_factor_fac_expiry,
-        two_factor_ftk_expiry=__ret__.two_factor_ftk_expiry,
-        two_factor_ftm_expiry=__ret__.two_factor_ftm_expiry,
-        two_factor_sms_expiry=__ret__.two_factor_sms_expiry,
-        udp_idle_timer=__ret__.udp_idle_timer,
-        url_filter_affinity=__ret__.url_filter_affinity,
-        url_filter_count=__ret__.url_filter_count,
-        user_device_store_max_devices=__ret__.user_device_store_max_devices,
-        user_device_store_max_unified_mem=__ret__.user_device_store_max_unified_mem,
-        user_device_store_max_users=__ret__.user_device_store_max_users,
-        user_server_cert=__ret__.user_server_cert,
-        vdom_admin=__ret__.vdom_admin,
-        vdom_mode=__ret__.vdom_mode,
-        vdomparam=__ret__.vdomparam,
-        vip_arp_range=__ret__.vip_arp_range,
-        virtual_server_count=__ret__.virtual_server_count,
-        virtual_server_hardware_acceleration=__ret__.virtual_server_hardware_acceleration,
-        virtual_switch_vlan=__ret__.virtual_switch_vlan,
-        wad_affinity=__ret__.wad_affinity,
-        wad_csvc_cs_count=__ret__.wad_csvc_cs_count,
-        wad_csvc_db_count=__ret__.wad_csvc_db_count,
-        wad_memory_change_granularity=__ret__.wad_memory_change_granularity,
-        wad_source_affinity=__ret__.wad_source_affinity,
-        wad_worker_count=__ret__.wad_worker_count,
-        wifi_ca_certificate=__ret__.wifi_ca_certificate,
-        wifi_certificate=__ret__.wifi_certificate,
-        wimax4g_usb=__ret__.wimax4g_usb,
-        wireless_controller=__ret__.wireless_controller,
-        wireless_controller_port=__ret__.wireless_controller_port)
+        admin_concurrent=pulumi.get(__ret__, 'admin_concurrent'),
+        admin_console_timeout=pulumi.get(__ret__, 'admin_console_timeout'),
+        admin_forticloud_sso_default_profile=pulumi.get(__ret__, 'admin_forticloud_sso_default_profile'),
+        admin_forticloud_sso_login=pulumi.get(__ret__, 'admin_forticloud_sso_login'),
+        admin_host=pulumi.get(__ret__, 'admin_host'),
+        admin_hsts_max_age=pulumi.get(__ret__, 'admin_hsts_max_age'),
+        admin_https_pki_required=pulumi.get(__ret__, 'admin_https_pki_required'),
+        admin_https_redirect=pulumi.get(__ret__, 'admin_https_redirect'),
+        admin_https_ssl_banned_ciphers=pulumi.get(__ret__, 'admin_https_ssl_banned_ciphers'),
+        admin_https_ssl_ciphersuites=pulumi.get(__ret__, 'admin_https_ssl_ciphersuites'),
+        admin_https_ssl_versions=pulumi.get(__ret__, 'admin_https_ssl_versions'),
+        admin_lockout_duration=pulumi.get(__ret__, 'admin_lockout_duration'),
+        admin_lockout_threshold=pulumi.get(__ret__, 'admin_lockout_threshold'),
+        admin_login_max=pulumi.get(__ret__, 'admin_login_max'),
+        admin_maintainer=pulumi.get(__ret__, 'admin_maintainer'),
+        admin_port=pulumi.get(__ret__, 'admin_port'),
+        admin_restrict_local=pulumi.get(__ret__, 'admin_restrict_local'),
+        admin_scp=pulumi.get(__ret__, 'admin_scp'),
+        admin_server_cert=pulumi.get(__ret__, 'admin_server_cert'),
+        admin_sport=pulumi.get(__ret__, 'admin_sport'),
+        admin_ssh_grace_time=pulumi.get(__ret__, 'admin_ssh_grace_time'),
+        admin_ssh_password=pulumi.get(__ret__, 'admin_ssh_password'),
+        admin_ssh_port=pulumi.get(__ret__, 'admin_ssh_port'),
+        admin_ssh_v1=pulumi.get(__ret__, 'admin_ssh_v1'),
+        admin_telnet=pulumi.get(__ret__, 'admin_telnet'),
+        admin_telnet_port=pulumi.get(__ret__, 'admin_telnet_port'),
+        admintimeout=pulumi.get(__ret__, 'admintimeout'),
+        alias=pulumi.get(__ret__, 'alias'),
+        allow_traffic_redirect=pulumi.get(__ret__, 'allow_traffic_redirect'),
+        anti_replay=pulumi.get(__ret__, 'anti_replay'),
+        arp_max_entry=pulumi.get(__ret__, 'arp_max_entry'),
+        asymroute=pulumi.get(__ret__, 'asymroute'),
+        auth_cert=pulumi.get(__ret__, 'auth_cert'),
+        auth_http_port=pulumi.get(__ret__, 'auth_http_port'),
+        auth_https_port=pulumi.get(__ret__, 'auth_https_port'),
+        auth_ike_saml_port=pulumi.get(__ret__, 'auth_ike_saml_port'),
+        auth_keepalive=pulumi.get(__ret__, 'auth_keepalive'),
+        auth_session_limit=pulumi.get(__ret__, 'auth_session_limit'),
+        auto_auth_extension_device=pulumi.get(__ret__, 'auto_auth_extension_device'),
+        autorun_log_fsck=pulumi.get(__ret__, 'autorun_log_fsck'),
+        av_affinity=pulumi.get(__ret__, 'av_affinity'),
+        av_failopen=pulumi.get(__ret__, 'av_failopen'),
+        av_failopen_session=pulumi.get(__ret__, 'av_failopen_session'),
+        batch_cmdb=pulumi.get(__ret__, 'batch_cmdb'),
+        block_session_timer=pulumi.get(__ret__, 'block_session_timer'),
+        br_fdb_max_entry=pulumi.get(__ret__, 'br_fdb_max_entry'),
+        cert_chain_max=pulumi.get(__ret__, 'cert_chain_max'),
+        cfg_revert_timeout=pulumi.get(__ret__, 'cfg_revert_timeout'),
+        cfg_save=pulumi.get(__ret__, 'cfg_save'),
+        check_protocol_header=pulumi.get(__ret__, 'check_protocol_header'),
+        check_reset_range=pulumi.get(__ret__, 'check_reset_range'),
+        cli_audit_log=pulumi.get(__ret__, 'cli_audit_log'),
+        cloud_communication=pulumi.get(__ret__, 'cloud_communication'),
+        clt_cert_req=pulumi.get(__ret__, 'clt_cert_req'),
+        cmdbsvr_affinity=pulumi.get(__ret__, 'cmdbsvr_affinity'),
+        compliance_check=pulumi.get(__ret__, 'compliance_check'),
+        compliance_check_time=pulumi.get(__ret__, 'compliance_check_time'),
+        cpu_use_threshold=pulumi.get(__ret__, 'cpu_use_threshold'),
+        csr_ca_attribute=pulumi.get(__ret__, 'csr_ca_attribute'),
+        daily_restart=pulumi.get(__ret__, 'daily_restart'),
+        default_service_source_port=pulumi.get(__ret__, 'default_service_source_port'),
+        device_identification_active_scan_delay=pulumi.get(__ret__, 'device_identification_active_scan_delay'),
+        device_idle_timeout=pulumi.get(__ret__, 'device_idle_timeout'),
+        dh_params=pulumi.get(__ret__, 'dh_params'),
+        dnsproxy_worker_count=pulumi.get(__ret__, 'dnsproxy_worker_count'),
+        dst=pulumi.get(__ret__, 'dst'),
+        early_tcp_npu_session=pulumi.get(__ret__, 'early_tcp_npu_session'),
+        edit_vdom_prompt=pulumi.get(__ret__, 'edit_vdom_prompt'),
+        endpoint_control_fds_access=pulumi.get(__ret__, 'endpoint_control_fds_access'),
+        endpoint_control_portal_port=pulumi.get(__ret__, 'endpoint_control_portal_port'),
+        extender_controller_reserved_network=pulumi.get(__ret__, 'extender_controller_reserved_network'),
+        failtime=pulumi.get(__ret__, 'failtime'),
+        faz_disk_buffer_size=pulumi.get(__ret__, 'faz_disk_buffer_size'),
+        fds_statistics=pulumi.get(__ret__, 'fds_statistics'),
+        fds_statistics_period=pulumi.get(__ret__, 'fds_statistics_period'),
+        fec_port=pulumi.get(__ret__, 'fec_port'),
+        fgd_alert_subscription=pulumi.get(__ret__, 'fgd_alert_subscription'),
+        forticonverter_config_upload=pulumi.get(__ret__, 'forticonverter_config_upload'),
+        forticonverter_integration=pulumi.get(__ret__, 'forticonverter_integration'),
+        fortiextender=pulumi.get(__ret__, 'fortiextender'),
+        fortiextender_data_port=pulumi.get(__ret__, 'fortiextender_data_port'),
+        fortiextender_discovery_lockdown=pulumi.get(__ret__, 'fortiextender_discovery_lockdown'),
+        fortiextender_provision_on_authorization=pulumi.get(__ret__, 'fortiextender_provision_on_authorization'),
+        fortiextender_vlan_mode=pulumi.get(__ret__, 'fortiextender_vlan_mode'),
+        fortiipam_integration=pulumi.get(__ret__, 'fortiipam_integration'),
+        fortiservice_port=pulumi.get(__ret__, 'fortiservice_port'),
+        fortitoken_cloud=pulumi.get(__ret__, 'fortitoken_cloud'),
+        gui_allow_default_hostname=pulumi.get(__ret__, 'gui_allow_default_hostname'),
+        gui_allow_incompatible_fabric_fgt=pulumi.get(__ret__, 'gui_allow_incompatible_fabric_fgt'),
+        gui_app_detection_sdwan=pulumi.get(__ret__, 'gui_app_detection_sdwan'),
+        gui_cdn_domain_override=pulumi.get(__ret__, 'gui_cdn_domain_override'),
+        gui_cdn_usage=pulumi.get(__ret__, 'gui_cdn_usage'),
+        gui_certificates=pulumi.get(__ret__, 'gui_certificates'),
+        gui_custom_language=pulumi.get(__ret__, 'gui_custom_language'),
+        gui_date_format=pulumi.get(__ret__, 'gui_date_format'),
+        gui_date_time_source=pulumi.get(__ret__, 'gui_date_time_source'),
+        gui_device_latitude=pulumi.get(__ret__, 'gui_device_latitude'),
+        gui_device_longitude=pulumi.get(__ret__, 'gui_device_longitude'),
+        gui_display_hostname=pulumi.get(__ret__, 'gui_display_hostname'),
+        gui_firmware_upgrade_setup_warning=pulumi.get(__ret__, 'gui_firmware_upgrade_setup_warning'),
+        gui_firmware_upgrade_warning=pulumi.get(__ret__, 'gui_firmware_upgrade_warning'),
+        gui_forticare_registration_setup_warning=pulumi.get(__ret__, 'gui_forticare_registration_setup_warning'),
+        gui_fortigate_cloud_sandbox=pulumi.get(__ret__, 'gui_fortigate_cloud_sandbox'),
+        gui_fortiguard_resource_fetch=pulumi.get(__ret__, 'gui_fortiguard_resource_fetch'),
+        gui_fortisandbox_cloud=pulumi.get(__ret__, 'gui_fortisandbox_cloud'),
+        gui_ipv6=pulumi.get(__ret__, 'gui_ipv6'),
+        gui_lines_per_page=pulumi.get(__ret__, 'gui_lines_per_page'),
+        gui_local_out=pulumi.get(__ret__, 'gui_local_out'),
+        gui_replacement_message_groups=pulumi.get(__ret__, 'gui_replacement_message_groups'),
+        gui_rest_api_cache=pulumi.get(__ret__, 'gui_rest_api_cache'),
+        gui_theme=pulumi.get(__ret__, 'gui_theme'),
+        gui_wireless_opensecurity=pulumi.get(__ret__, 'gui_wireless_opensecurity'),
+        gui_workflow_management=pulumi.get(__ret__, 'gui_workflow_management'),
+        ha_affinity=pulumi.get(__ret__, 'ha_affinity'),
+        honor_df=pulumi.get(__ret__, 'honor_df'),
+        hostname=pulumi.get(__ret__, 'hostname'),
+        id=pulumi.get(__ret__, 'id'),
+        igmp_state_limit=pulumi.get(__ret__, 'igmp_state_limit'),
+        ike_embryonic_limit=pulumi.get(__ret__, 'ike_embryonic_limit'),
+        interface_subnet_usage=pulumi.get(__ret__, 'interface_subnet_usage'),
+        internet_service_database=pulumi.get(__ret__, 'internet_service_database'),
+        internet_service_download_lists=pulumi.get(__ret__, 'internet_service_download_lists'),
+        interval=pulumi.get(__ret__, 'interval'),
+        ip_fragment_mem_thresholds=pulumi.get(__ret__, 'ip_fragment_mem_thresholds'),
+        ip_src_port_range=pulumi.get(__ret__, 'ip_src_port_range'),
+        ips_affinity=pulumi.get(__ret__, 'ips_affinity'),
+        ipsec_asic_offload=pulumi.get(__ret__, 'ipsec_asic_offload'),
+        ipsec_ha_seqjump_rate=pulumi.get(__ret__, 'ipsec_ha_seqjump_rate'),
+        ipsec_hmac_offload=pulumi.get(__ret__, 'ipsec_hmac_offload'),
+        ipsec_round_robin=pulumi.get(__ret__, 'ipsec_round_robin'),
+        ipsec_soft_dec_async=pulumi.get(__ret__, 'ipsec_soft_dec_async'),
+        ipv6_accept_dad=pulumi.get(__ret__, 'ipv6_accept_dad'),
+        ipv6_allow_anycast_probe=pulumi.get(__ret__, 'ipv6_allow_anycast_probe'),
+        ipv6_allow_local_in_slient_drop=pulumi.get(__ret__, 'ipv6_allow_local_in_slient_drop'),
+        ipv6_allow_multicast_probe=pulumi.get(__ret__, 'ipv6_allow_multicast_probe'),
+        ipv6_allow_traffic_redirect=pulumi.get(__ret__, 'ipv6_allow_traffic_redirect'),
+        irq_time_accounting=pulumi.get(__ret__, 'irq_time_accounting'),
+        language=pulumi.get(__ret__, 'language'),
+        ldapconntimeout=pulumi.get(__ret__, 'ldapconntimeout'),
+        lldp_reception=pulumi.get(__ret__, 'lldp_reception'),
+        lldp_transmission=pulumi.get(__ret__, 'lldp_transmission'),
+        log_single_cpu_high=pulumi.get(__ret__, 'log_single_cpu_high'),
+        log_ssl_connection=pulumi.get(__ret__, 'log_ssl_connection'),
+        log_uuid_address=pulumi.get(__ret__, 'log_uuid_address'),
+        log_uuid_policy=pulumi.get(__ret__, 'log_uuid_policy'),
+        login_timestamp=pulumi.get(__ret__, 'login_timestamp'),
+        long_vdom_name=pulumi.get(__ret__, 'long_vdom_name'),
+        management_ip=pulumi.get(__ret__, 'management_ip'),
+        management_port=pulumi.get(__ret__, 'management_port'),
+        management_port_use_admin_sport=pulumi.get(__ret__, 'management_port_use_admin_sport'),
+        management_vdom=pulumi.get(__ret__, 'management_vdom'),
+        max_dlpstat_memory=pulumi.get(__ret__, 'max_dlpstat_memory'),
+        max_route_cache_size=pulumi.get(__ret__, 'max_route_cache_size'),
+        mc_ttl_notchange=pulumi.get(__ret__, 'mc_ttl_notchange'),
+        memory_use_threshold_extreme=pulumi.get(__ret__, 'memory_use_threshold_extreme'),
+        memory_use_threshold_green=pulumi.get(__ret__, 'memory_use_threshold_green'),
+        memory_use_threshold_red=pulumi.get(__ret__, 'memory_use_threshold_red'),
+        miglog_affinity=pulumi.get(__ret__, 'miglog_affinity'),
+        miglogd_children=pulumi.get(__ret__, 'miglogd_children'),
+        multi_factor_authentication=pulumi.get(__ret__, 'multi_factor_authentication'),
+        multicast_forward=pulumi.get(__ret__, 'multicast_forward'),
+        ndp_max_entry=pulumi.get(__ret__, 'ndp_max_entry'),
+        per_user_bal=pulumi.get(__ret__, 'per_user_bal'),
+        per_user_bwl=pulumi.get(__ret__, 'per_user_bwl'),
+        pmtu_discovery=pulumi.get(__ret__, 'pmtu_discovery'),
+        policy_auth_concurrent=pulumi.get(__ret__, 'policy_auth_concurrent'),
+        post_login_banner=pulumi.get(__ret__, 'post_login_banner'),
+        pre_login_banner=pulumi.get(__ret__, 'pre_login_banner'),
+        private_data_encryption=pulumi.get(__ret__, 'private_data_encryption'),
+        proxy_auth_lifetime=pulumi.get(__ret__, 'proxy_auth_lifetime'),
+        proxy_auth_lifetime_timeout=pulumi.get(__ret__, 'proxy_auth_lifetime_timeout'),
+        proxy_auth_timeout=pulumi.get(__ret__, 'proxy_auth_timeout'),
+        proxy_cert_use_mgmt_vdom=pulumi.get(__ret__, 'proxy_cert_use_mgmt_vdom'),
+        proxy_cipher_hardware_acceleration=pulumi.get(__ret__, 'proxy_cipher_hardware_acceleration'),
+        proxy_hardware_acceleration=pulumi.get(__ret__, 'proxy_hardware_acceleration'),
+        proxy_keep_alive_mode=pulumi.get(__ret__, 'proxy_keep_alive_mode'),
+        proxy_kxp_hardware_acceleration=pulumi.get(__ret__, 'proxy_kxp_hardware_acceleration'),
+        proxy_re_authentication_mode=pulumi.get(__ret__, 'proxy_re_authentication_mode'),
+        proxy_re_authentication_time=pulumi.get(__ret__, 'proxy_re_authentication_time'),
+        proxy_resource_mode=pulumi.get(__ret__, 'proxy_resource_mode'),
+        proxy_worker_count=pulumi.get(__ret__, 'proxy_worker_count'),
+        radius_port=pulumi.get(__ret__, 'radius_port'),
+        reboot_upon_config_restore=pulumi.get(__ret__, 'reboot_upon_config_restore'),
+        refresh=pulumi.get(__ret__, 'refresh'),
+        remoteauthtimeout=pulumi.get(__ret__, 'remoteauthtimeout'),
+        reset_sessionless_tcp=pulumi.get(__ret__, 'reset_sessionless_tcp'),
+        restart_time=pulumi.get(__ret__, 'restart_time'),
+        revision_backup_on_logout=pulumi.get(__ret__, 'revision_backup_on_logout'),
+        revision_image_auto_backup=pulumi.get(__ret__, 'revision_image_auto_backup'),
+        scanunit_count=pulumi.get(__ret__, 'scanunit_count'),
+        security_rating_result_submission=pulumi.get(__ret__, 'security_rating_result_submission'),
+        security_rating_run_on_schedule=pulumi.get(__ret__, 'security_rating_run_on_schedule'),
+        send_pmtu_icmp=pulumi.get(__ret__, 'send_pmtu_icmp'),
+        sflowd_max_children_num=pulumi.get(__ret__, 'sflowd_max_children_num'),
+        snat_route_change=pulumi.get(__ret__, 'snat_route_change'),
+        special_file23_support=pulumi.get(__ret__, 'special_file23_support'),
+        speedtest_server=pulumi.get(__ret__, 'speedtest_server'),
+        split_port=pulumi.get(__ret__, 'split_port'),
+        ssd_trim_date=pulumi.get(__ret__, 'ssd_trim_date'),
+        ssd_trim_freq=pulumi.get(__ret__, 'ssd_trim_freq'),
+        ssd_trim_hour=pulumi.get(__ret__, 'ssd_trim_hour'),
+        ssd_trim_min=pulumi.get(__ret__, 'ssd_trim_min'),
+        ssd_trim_weekday=pulumi.get(__ret__, 'ssd_trim_weekday'),
+        ssh_cbc_cipher=pulumi.get(__ret__, 'ssh_cbc_cipher'),
+        ssh_enc_algo=pulumi.get(__ret__, 'ssh_enc_algo'),
+        ssh_hmac_md5=pulumi.get(__ret__, 'ssh_hmac_md5'),
+        ssh_hostkey_algo=pulumi.get(__ret__, 'ssh_hostkey_algo'),
+        ssh_kex_algo=pulumi.get(__ret__, 'ssh_kex_algo'),
+        ssh_kex_sha1=pulumi.get(__ret__, 'ssh_kex_sha1'),
+        ssh_mac_algo=pulumi.get(__ret__, 'ssh_mac_algo'),
+        ssh_mac_weak=pulumi.get(__ret__, 'ssh_mac_weak'),
+        ssl_min_proto_version=pulumi.get(__ret__, 'ssl_min_proto_version'),
+        ssl_static_key_ciphers=pulumi.get(__ret__, 'ssl_static_key_ciphers'),
+        sslvpn_cipher_hardware_acceleration=pulumi.get(__ret__, 'sslvpn_cipher_hardware_acceleration'),
+        sslvpn_ems_sn_check=pulumi.get(__ret__, 'sslvpn_ems_sn_check'),
+        sslvpn_kxp_hardware_acceleration=pulumi.get(__ret__, 'sslvpn_kxp_hardware_acceleration'),
+        sslvpn_max_worker_count=pulumi.get(__ret__, 'sslvpn_max_worker_count'),
+        sslvpn_plugin_version_check=pulumi.get(__ret__, 'sslvpn_plugin_version_check'),
+        strict_dirty_session_check=pulumi.get(__ret__, 'strict_dirty_session_check'),
+        strong_crypto=pulumi.get(__ret__, 'strong_crypto'),
+        switch_controller=pulumi.get(__ret__, 'switch_controller'),
+        switch_controller_reserved_network=pulumi.get(__ret__, 'switch_controller_reserved_network'),
+        sys_perf_log_interval=pulumi.get(__ret__, 'sys_perf_log_interval'),
+        syslog_affinity=pulumi.get(__ret__, 'syslog_affinity'),
+        tcp_halfclose_timer=pulumi.get(__ret__, 'tcp_halfclose_timer'),
+        tcp_halfopen_timer=pulumi.get(__ret__, 'tcp_halfopen_timer'),
+        tcp_option=pulumi.get(__ret__, 'tcp_option'),
+        tcp_rst_timer=pulumi.get(__ret__, 'tcp_rst_timer'),
+        tcp_timewait_timer=pulumi.get(__ret__, 'tcp_timewait_timer'),
+        tftp=pulumi.get(__ret__, 'tftp'),
+        timezone=pulumi.get(__ret__, 'timezone'),
+        tp_mc_skip_policy=pulumi.get(__ret__, 'tp_mc_skip_policy'),
+        traffic_priority=pulumi.get(__ret__, 'traffic_priority'),
+        traffic_priority_level=pulumi.get(__ret__, 'traffic_priority_level'),
+        two_factor_email_expiry=pulumi.get(__ret__, 'two_factor_email_expiry'),
+        two_factor_fac_expiry=pulumi.get(__ret__, 'two_factor_fac_expiry'),
+        two_factor_ftk_expiry=pulumi.get(__ret__, 'two_factor_ftk_expiry'),
+        two_factor_ftm_expiry=pulumi.get(__ret__, 'two_factor_ftm_expiry'),
+        two_factor_sms_expiry=pulumi.get(__ret__, 'two_factor_sms_expiry'),
+        udp_idle_timer=pulumi.get(__ret__, 'udp_idle_timer'),
+        url_filter_affinity=pulumi.get(__ret__, 'url_filter_affinity'),
+        url_filter_count=pulumi.get(__ret__, 'url_filter_count'),
+        user_device_store_max_devices=pulumi.get(__ret__, 'user_device_store_max_devices'),
+        user_device_store_max_unified_mem=pulumi.get(__ret__, 'user_device_store_max_unified_mem'),
+        user_device_store_max_users=pulumi.get(__ret__, 'user_device_store_max_users'),
+        user_server_cert=pulumi.get(__ret__, 'user_server_cert'),
+        vdom_admin=pulumi.get(__ret__, 'vdom_admin'),
+        vdom_mode=pulumi.get(__ret__, 'vdom_mode'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'),
+        vip_arp_range=pulumi.get(__ret__, 'vip_arp_range'),
+        virtual_server_count=pulumi.get(__ret__, 'virtual_server_count'),
+        virtual_server_hardware_acceleration=pulumi.get(__ret__, 'virtual_server_hardware_acceleration'),
+        virtual_switch_vlan=pulumi.get(__ret__, 'virtual_switch_vlan'),
+        vpn_ems_sn_check=pulumi.get(__ret__, 'vpn_ems_sn_check'),
+        wad_affinity=pulumi.get(__ret__, 'wad_affinity'),
+        wad_csvc_cs_count=pulumi.get(__ret__, 'wad_csvc_cs_count'),
+        wad_csvc_db_count=pulumi.get(__ret__, 'wad_csvc_db_count'),
+        wad_memory_change_granularity=pulumi.get(__ret__, 'wad_memory_change_granularity'),
+        wad_restart_end_time=pulumi.get(__ret__, 'wad_restart_end_time'),
+        wad_restart_mode=pulumi.get(__ret__, 'wad_restart_mode'),
+        wad_restart_start_time=pulumi.get(__ret__, 'wad_restart_start_time'),
+        wad_source_affinity=pulumi.get(__ret__, 'wad_source_affinity'),
+        wad_worker_count=pulumi.get(__ret__, 'wad_worker_count'),
+        wifi_ca_certificate=pulumi.get(__ret__, 'wifi_ca_certificate'),
+        wifi_certificate=pulumi.get(__ret__, 'wifi_certificate'),
+        wimax4g_usb=pulumi.get(__ret__, 'wimax4g_usb'),
+        wireless_controller=pulumi.get(__ret__, 'wireless_controller'),
+        wireless_controller_port=pulumi.get(__ret__, 'wireless_controller_port'))
 
 
 @_utilities.lift_output_func(get_system_global)

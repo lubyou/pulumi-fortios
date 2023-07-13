@@ -37,6 +37,7 @@ export class FirewallProxyAddrgrp extends pulumi.CustomResource {
     public readonly color!: pulumi.Output<number>;
     public readonly comment!: pulumi.Output<string | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly members!: pulumi.Output<outputs.FirewallProxyAddrgrpMember[]>;
     public readonly name!: pulumi.Output<string>;
     public readonly taggings!: pulumi.Output<outputs.FirewallProxyAddrgrpTagging[] | undefined>;
@@ -61,6 +62,7 @@ export class FirewallProxyAddrgrp extends pulumi.CustomResource {
             resourceInputs["color"] = state ? state.color : undefined;
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["members"] = state ? state.members : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["taggings"] = state ? state.taggings : undefined;
@@ -76,6 +78,7 @@ export class FirewallProxyAddrgrp extends pulumi.CustomResource {
             resourceInputs["color"] = args ? args.color : undefined;
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["members"] = args ? args.members : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["taggings"] = args ? args.taggings : undefined;
@@ -96,6 +99,7 @@ export interface FirewallProxyAddrgrpState {
     color?: pulumi.Input<number>;
     comment?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     members?: pulumi.Input<pulumi.Input<inputs.FirewallProxyAddrgrpMember>[]>;
     name?: pulumi.Input<string>;
     taggings?: pulumi.Input<pulumi.Input<inputs.FirewallProxyAddrgrpTagging>[]>;
@@ -112,6 +116,7 @@ export interface FirewallProxyAddrgrpArgs {
     color?: pulumi.Input<number>;
     comment?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     members: pulumi.Input<pulumi.Input<inputs.FirewallProxyAddrgrpMember>[]>;
     name?: pulumi.Input<string>;
     taggings?: pulumi.Input<pulumi.Input<inputs.FirewallProxyAddrgrpTagging>[]>;

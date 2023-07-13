@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -18,6 +19,7 @@ type VideofilterYoutubeChannelFilter struct {
 	DynamicSortSubtable pulumi.StringPtrOutput                          `pulumi:"dynamicSortSubtable"`
 	Entries             VideofilterYoutubeChannelFilterEntryArrayOutput `pulumi:"entries"`
 	Fosid               pulumi.IntOutput                                `pulumi:"fosid"`
+	GetAllTables        pulumi.StringPtrOutput                          `pulumi:"getAllTables"`
 	Log                 pulumi.StringOutput                             `pulumi:"log"`
 	Name                pulumi.StringOutput                             `pulumi:"name"`
 	OverrideCategory    pulumi.StringOutput                             `pulumi:"overrideCategory"`
@@ -31,7 +33,7 @@ func NewVideofilterYoutubeChannelFilter(ctx *pulumi.Context,
 		args = &VideofilterYoutubeChannelFilterArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource VideofilterYoutubeChannelFilter
 	err := ctx.RegisterResource("fortios:index/videofilterYoutubeChannelFilter:VideofilterYoutubeChannelFilter", name, args, &resource, opts...)
 	if err != nil {
@@ -59,6 +61,7 @@ type videofilterYoutubeChannelFilterState struct {
 	DynamicSortSubtable *string                                `pulumi:"dynamicSortSubtable"`
 	Entries             []VideofilterYoutubeChannelFilterEntry `pulumi:"entries"`
 	Fosid               *int                                   `pulumi:"fosid"`
+	GetAllTables        *string                                `pulumi:"getAllTables"`
 	Log                 *string                                `pulumi:"log"`
 	Name                *string                                `pulumi:"name"`
 	OverrideCategory    *string                                `pulumi:"overrideCategory"`
@@ -71,6 +74,7 @@ type VideofilterYoutubeChannelFilterState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	Entries             VideofilterYoutubeChannelFilterEntryArrayInput
 	Fosid               pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Log                 pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	OverrideCategory    pulumi.StringPtrInput
@@ -87,6 +91,7 @@ type videofilterYoutubeChannelFilterArgs struct {
 	DynamicSortSubtable *string                                `pulumi:"dynamicSortSubtable"`
 	Entries             []VideofilterYoutubeChannelFilterEntry `pulumi:"entries"`
 	Fosid               *int                                   `pulumi:"fosid"`
+	GetAllTables        *string                                `pulumi:"getAllTables"`
 	Log                 *string                                `pulumi:"log"`
 	Name                *string                                `pulumi:"name"`
 	OverrideCategory    *string                                `pulumi:"overrideCategory"`
@@ -100,6 +105,7 @@ type VideofilterYoutubeChannelFilterArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	Entries             VideofilterYoutubeChannelFilterEntryArrayInput
 	Fosid               pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Log                 pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	OverrideCategory    pulumi.StringPtrInput
@@ -213,6 +219,10 @@ func (o VideofilterYoutubeChannelFilterOutput) Entries() VideofilterYoutubeChann
 
 func (o VideofilterYoutubeChannelFilterOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *VideofilterYoutubeChannelFilter) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o VideofilterYoutubeChannelFilterOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VideofilterYoutubeChannelFilter) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o VideofilterYoutubeChannelFilterOutput) Log() pulumi.StringOutput {

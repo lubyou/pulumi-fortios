@@ -39,6 +39,8 @@ export class FirewallShapingPolicy extends pulumi.CustomResource {
     public readonly applications!: pulumi.Output<outputs.FirewallShapingPolicyApplication[] | undefined>;
     public readonly classId!: pulumi.Output<number>;
     public readonly comment!: pulumi.Output<string | undefined>;
+    public readonly cos!: pulumi.Output<string>;
+    public readonly cosMask!: pulumi.Output<string>;
     public readonly diffservForward!: pulumi.Output<string>;
     public readonly diffservReverse!: pulumi.Output<string>;
     public readonly diffservcodeForward!: pulumi.Output<string>;
@@ -48,6 +50,7 @@ export class FirewallShapingPolicy extends pulumi.CustomResource {
     public readonly dstintfs!: pulumi.Output<outputs.FirewallShapingPolicyDstintf[]>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly fosid!: pulumi.Output<number>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly groups!: pulumi.Output<outputs.FirewallShapingPolicyGroup[] | undefined>;
     public readonly internetService!: pulumi.Output<string>;
     public readonly internetServiceCustomGroups!: pulumi.Output<outputs.FirewallShapingPolicyInternetServiceCustomGroup[] | undefined>;
@@ -75,6 +78,7 @@ export class FirewallShapingPolicy extends pulumi.CustomResource {
     public readonly tosNegate!: pulumi.Output<string>;
     public readonly trafficShaper!: pulumi.Output<string>;
     public readonly trafficShaperReverse!: pulumi.Output<string>;
+    public readonly trafficType!: pulumi.Output<string>;
     public readonly urlCategories!: pulumi.Output<outputs.FirewallShapingPolicyUrlCategory[] | undefined>;
     public readonly users!: pulumi.Output<outputs.FirewallShapingPolicyUser[] | undefined>;
     public readonly uuid!: pulumi.Output<string>;
@@ -98,6 +102,8 @@ export class FirewallShapingPolicy extends pulumi.CustomResource {
             resourceInputs["applications"] = state ? state.applications : undefined;
             resourceInputs["classId"] = state ? state.classId : undefined;
             resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["cos"] = state ? state.cos : undefined;
+            resourceInputs["cosMask"] = state ? state.cosMask : undefined;
             resourceInputs["diffservForward"] = state ? state.diffservForward : undefined;
             resourceInputs["diffservReverse"] = state ? state.diffservReverse : undefined;
             resourceInputs["diffservcodeForward"] = state ? state.diffservcodeForward : undefined;
@@ -107,6 +113,7 @@ export class FirewallShapingPolicy extends pulumi.CustomResource {
             resourceInputs["dstintfs"] = state ? state.dstintfs : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["groups"] = state ? state.groups : undefined;
             resourceInputs["internetService"] = state ? state.internetService : undefined;
             resourceInputs["internetServiceCustomGroups"] = state ? state.internetServiceCustomGroups : undefined;
@@ -134,6 +141,7 @@ export class FirewallShapingPolicy extends pulumi.CustomResource {
             resourceInputs["tosNegate"] = state ? state.tosNegate : undefined;
             resourceInputs["trafficShaper"] = state ? state.trafficShaper : undefined;
             resourceInputs["trafficShaperReverse"] = state ? state.trafficShaperReverse : undefined;
+            resourceInputs["trafficType"] = state ? state.trafficType : undefined;
             resourceInputs["urlCategories"] = state ? state.urlCategories : undefined;
             resourceInputs["users"] = state ? state.users : undefined;
             resourceInputs["uuid"] = state ? state.uuid : undefined;
@@ -157,6 +165,8 @@ export class FirewallShapingPolicy extends pulumi.CustomResource {
             resourceInputs["applications"] = args ? args.applications : undefined;
             resourceInputs["classId"] = args ? args.classId : undefined;
             resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["cos"] = args ? args.cos : undefined;
+            resourceInputs["cosMask"] = args ? args.cosMask : undefined;
             resourceInputs["diffservForward"] = args ? args.diffservForward : undefined;
             resourceInputs["diffservReverse"] = args ? args.diffservReverse : undefined;
             resourceInputs["diffservcodeForward"] = args ? args.diffservcodeForward : undefined;
@@ -166,6 +176,7 @@ export class FirewallShapingPolicy extends pulumi.CustomResource {
             resourceInputs["dstintfs"] = args ? args.dstintfs : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["groups"] = args ? args.groups : undefined;
             resourceInputs["internetService"] = args ? args.internetService : undefined;
             resourceInputs["internetServiceCustomGroups"] = args ? args.internetServiceCustomGroups : undefined;
@@ -193,6 +204,7 @@ export class FirewallShapingPolicy extends pulumi.CustomResource {
             resourceInputs["tosNegate"] = args ? args.tosNegate : undefined;
             resourceInputs["trafficShaper"] = args ? args.trafficShaper : undefined;
             resourceInputs["trafficShaperReverse"] = args ? args.trafficShaperReverse : undefined;
+            resourceInputs["trafficType"] = args ? args.trafficType : undefined;
             resourceInputs["urlCategories"] = args ? args.urlCategories : undefined;
             resourceInputs["users"] = args ? args.users : undefined;
             resourceInputs["uuid"] = args ? args.uuid : undefined;
@@ -212,6 +224,8 @@ export interface FirewallShapingPolicyState {
     applications?: pulumi.Input<pulumi.Input<inputs.FirewallShapingPolicyApplication>[]>;
     classId?: pulumi.Input<number>;
     comment?: pulumi.Input<string>;
+    cos?: pulumi.Input<string>;
+    cosMask?: pulumi.Input<string>;
     diffservForward?: pulumi.Input<string>;
     diffservReverse?: pulumi.Input<string>;
     diffservcodeForward?: pulumi.Input<string>;
@@ -221,6 +235,7 @@ export interface FirewallShapingPolicyState {
     dstintfs?: pulumi.Input<pulumi.Input<inputs.FirewallShapingPolicyDstintf>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
     fosid?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     groups?: pulumi.Input<pulumi.Input<inputs.FirewallShapingPolicyGroup>[]>;
     internetService?: pulumi.Input<string>;
     internetServiceCustomGroups?: pulumi.Input<pulumi.Input<inputs.FirewallShapingPolicyInternetServiceCustomGroup>[]>;
@@ -248,6 +263,7 @@ export interface FirewallShapingPolicyState {
     tosNegate?: pulumi.Input<string>;
     trafficShaper?: pulumi.Input<string>;
     trafficShaperReverse?: pulumi.Input<string>;
+    trafficType?: pulumi.Input<string>;
     urlCategories?: pulumi.Input<pulumi.Input<inputs.FirewallShapingPolicyUrlCategory>[]>;
     users?: pulumi.Input<pulumi.Input<inputs.FirewallShapingPolicyUser>[]>;
     uuid?: pulumi.Input<string>;
@@ -263,6 +279,8 @@ export interface FirewallShapingPolicyArgs {
     applications?: pulumi.Input<pulumi.Input<inputs.FirewallShapingPolicyApplication>[]>;
     classId?: pulumi.Input<number>;
     comment?: pulumi.Input<string>;
+    cos?: pulumi.Input<string>;
+    cosMask?: pulumi.Input<string>;
     diffservForward?: pulumi.Input<string>;
     diffservReverse?: pulumi.Input<string>;
     diffservcodeForward?: pulumi.Input<string>;
@@ -272,6 +290,7 @@ export interface FirewallShapingPolicyArgs {
     dstintfs: pulumi.Input<pulumi.Input<inputs.FirewallShapingPolicyDstintf>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
     fosid?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     groups?: pulumi.Input<pulumi.Input<inputs.FirewallShapingPolicyGroup>[]>;
     internetService?: pulumi.Input<string>;
     internetServiceCustomGroups?: pulumi.Input<pulumi.Input<inputs.FirewallShapingPolicyInternetServiceCustomGroup>[]>;
@@ -299,6 +318,7 @@ export interface FirewallShapingPolicyArgs {
     tosNegate?: pulumi.Input<string>;
     trafficShaper?: pulumi.Input<string>;
     trafficShaperReverse?: pulumi.Input<string>;
+    trafficType?: pulumi.Input<string>;
     urlCategories?: pulumi.Input<pulumi.Input<inputs.FirewallShapingPolicyUrlCategory>[]>;
     users?: pulumi.Input<pulumi.Input<inputs.FirewallShapingPolicyUser>[]>;
     uuid?: pulumi.Input<string>;

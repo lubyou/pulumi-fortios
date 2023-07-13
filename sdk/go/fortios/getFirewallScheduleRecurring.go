@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupFirewallScheduleRecurring(ctx *pulumi.Context, args *LookupFirewallScheduleRecurringArgs, opts ...pulumi.InvokeOption) (*LookupFirewallScheduleRecurringResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallScheduleRecurringResult
 	err := ctx.Invoke("fortios:index/getFirewallScheduleRecurring:GetFirewallScheduleRecurring", args, &rv, opts...)
 	if err != nil {

@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -31,7 +32,7 @@ func NewWebfilterFtgdLocalRating(ctx *pulumi.Context,
 	if args.Rating == nil {
 		return nil, errors.New("invalid value for required argument 'Rating'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WebfilterFtgdLocalRating
 	err := ctx.RegisterResource("fortios:index/webfilterFtgdLocalRating:WebfilterFtgdLocalRating", name, args, &resource, opts...)
 	if err != nil {

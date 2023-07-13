@@ -44,6 +44,7 @@ export class FirewallServiceCustom extends pulumi.CustomResource {
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly fabricObject!: pulumi.Output<string>;
     public readonly fqdn!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly helper!: pulumi.Output<string>;
     public readonly icmpcode!: pulumi.Output<number>;
     public readonly icmptype!: pulumi.Output<number>;
@@ -87,6 +88,7 @@ export class FirewallServiceCustom extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fabricObject"] = state ? state.fabricObject : undefined;
             resourceInputs["fqdn"] = state ? state.fqdn : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["helper"] = state ? state.helper : undefined;
             resourceInputs["icmpcode"] = state ? state.icmpcode : undefined;
             resourceInputs["icmptype"] = state ? state.icmptype : undefined;
@@ -118,6 +120,7 @@ export class FirewallServiceCustom extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fabricObject"] = args ? args.fabricObject : undefined;
             resourceInputs["fqdn"] = args ? args.fqdn : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["helper"] = args ? args.helper : undefined;
             resourceInputs["icmpcode"] = args ? args.icmpcode : undefined;
             resourceInputs["icmptype"] = args ? args.icmptype : undefined;
@@ -157,6 +160,7 @@ export interface FirewallServiceCustomState {
     dynamicSortSubtable?: pulumi.Input<string>;
     fabricObject?: pulumi.Input<string>;
     fqdn?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     helper?: pulumi.Input<string>;
     icmpcode?: pulumi.Input<number>;
     icmptype?: pulumi.Input<number>;
@@ -192,6 +196,7 @@ export interface FirewallServiceCustomArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
     fabricObject?: pulumi.Input<string>;
     fqdn?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     helper?: pulumi.Input<string>;
     icmpcode?: pulumi.Input<number>;
     icmptype?: pulumi.Input<number>;

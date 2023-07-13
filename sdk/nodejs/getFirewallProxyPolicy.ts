@@ -55,6 +55,12 @@ export interface GetFirewallProxyPolicyResult {
      */
     readonly id: string;
     readonly internetService: string;
+    readonly internetService6: string;
+    readonly internetService6CustomGroups: outputs.GetFirewallProxyPolicyInternetService6CustomGroup[];
+    readonly internetService6Customs: outputs.GetFirewallProxyPolicyInternetService6Custom[];
+    readonly internetService6Groups: outputs.GetFirewallProxyPolicyInternetService6Group[];
+    readonly internetService6Names: outputs.GetFirewallProxyPolicyInternetService6Name[];
+    readonly internetService6Negate: string;
     readonly internetServiceCustomGroups: outputs.GetFirewallProxyPolicyInternetServiceCustomGroup[];
     readonly internetServiceCustoms: outputs.GetFirewallProxyPolicyInternetServiceCustom[];
     readonly internetServiceGroups: outputs.GetFirewallProxyPolicyInternetServiceGroup[];
@@ -62,6 +68,7 @@ export interface GetFirewallProxyPolicyResult {
     readonly internetServiceNames: outputs.GetFirewallProxyPolicyInternetServiceName[];
     readonly internetServiceNegate: string;
     readonly ipsSensor: string;
+    readonly ipsVoipFilter: string;
     readonly label: string;
     readonly logtraffic: string;
     readonly logtrafficStart: string;

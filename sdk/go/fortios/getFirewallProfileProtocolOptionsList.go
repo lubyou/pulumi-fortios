@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func GetFirewallProfileProtocolOptionsList(ctx *pulumi.Context, args *GetFirewallProfileProtocolOptionsListArgs, opts ...pulumi.InvokeOption) (*GetFirewallProfileProtocolOptionsListResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetFirewallProfileProtocolOptionsListResult
 	err := ctx.Invoke("fortios:index/getFirewallProfileProtocolOptionsList:GetFirewallProfileProtocolOptionsList", args, &rv, opts...)
 	if err != nil {

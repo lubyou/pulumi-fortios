@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -22,6 +23,7 @@ type SystemExternalResource struct {
 	Password              pulumi.StringPtrOutput `pulumi:"password"`
 	RefreshRate           pulumi.IntOutput       `pulumi:"refreshRate"`
 	Resource              pulumi.StringOutput    `pulumi:"resource"`
+	ServerIdentityCheck   pulumi.StringOutput    `pulumi:"serverIdentityCheck"`
 	SourceIp              pulumi.StringOutput    `pulumi:"sourceIp"`
 	Status                pulumi.StringOutput    `pulumi:"status"`
 	Type                  pulumi.StringOutput    `pulumi:"type"`
@@ -52,7 +54,7 @@ func NewSystemExternalResource(ctx *pulumi.Context,
 		"password",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemExternalResource
 	err := ctx.RegisterResource("fortios:index/systemExternalResource:SystemExternalResource", name, args, &resource, opts...)
 	if err != nil {
@@ -83,6 +85,7 @@ type systemExternalResourceState struct {
 	Password              *string `pulumi:"password"`
 	RefreshRate           *int    `pulumi:"refreshRate"`
 	Resource              *string `pulumi:"resource"`
+	ServerIdentityCheck   *string `pulumi:"serverIdentityCheck"`
 	SourceIp              *string `pulumi:"sourceIp"`
 	Status                *string `pulumi:"status"`
 	Type                  *string `pulumi:"type"`
@@ -102,6 +105,7 @@ type SystemExternalResourceState struct {
 	Password              pulumi.StringPtrInput
 	RefreshRate           pulumi.IntPtrInput
 	Resource              pulumi.StringPtrInput
+	ServerIdentityCheck   pulumi.StringPtrInput
 	SourceIp              pulumi.StringPtrInput
 	Status                pulumi.StringPtrInput
 	Type                  pulumi.StringPtrInput
@@ -125,6 +129,7 @@ type systemExternalResourceArgs struct {
 	Password              *string `pulumi:"password"`
 	RefreshRate           int     `pulumi:"refreshRate"`
 	Resource              string  `pulumi:"resource"`
+	ServerIdentityCheck   *string `pulumi:"serverIdentityCheck"`
 	SourceIp              *string `pulumi:"sourceIp"`
 	Status                *string `pulumi:"status"`
 	Type                  *string `pulumi:"type"`
@@ -145,6 +150,7 @@ type SystemExternalResourceArgs struct {
 	Password              pulumi.StringPtrInput
 	RefreshRate           pulumi.IntInput
 	Resource              pulumi.StringInput
+	ServerIdentityCheck   pulumi.StringPtrInput
 	SourceIp              pulumi.StringPtrInput
 	Status                pulumi.StringPtrInput
 	Type                  pulumi.StringPtrInput
@@ -272,6 +278,10 @@ func (o SystemExternalResourceOutput) RefreshRate() pulumi.IntOutput {
 
 func (o SystemExternalResourceOutput) Resource() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemExternalResource) pulumi.StringOutput { return v.Resource }).(pulumi.StringOutput)
+}
+
+func (o SystemExternalResourceOutput) ServerIdentityCheck() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemExternalResource) pulumi.StringOutput { return v.ServerIdentityCheck }).(pulumi.StringOutput)
 }
 
 func (o SystemExternalResourceOutput) SourceIp() pulumi.StringOutput {

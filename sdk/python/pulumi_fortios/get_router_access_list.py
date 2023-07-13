@@ -94,11 +94,11 @@ def get_router_access_list(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getRouterAccessList:GetRouterAccessList', __args__, opts=opts, typ=GetRouterAccessListResult).value
 
     return AwaitableGetRouterAccessListResult(
-        comments=__ret__.comments,
-        id=__ret__.id,
-        name=__ret__.name,
-        rules=__ret__.rules,
-        vdomparam=__ret__.vdomparam)
+        comments=pulumi.get(__ret__, 'comments'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        rules=pulumi.get(__ret__, 'rules'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_router_access_list)

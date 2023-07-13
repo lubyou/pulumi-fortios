@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -57,7 +58,7 @@ func NewFortimanagerSystemAdminProfiles(ctx *pulumi.Context,
 	if args.Profileid == nil {
 		return nil, errors.New("invalid value for required argument 'Profileid'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FortimanagerSystemAdminProfiles
 	err := ctx.RegisterResource("fortios:index/fortimanagerSystemAdminProfiles:FortimanagerSystemAdminProfiles", name, args, &resource, opts...)
 	if err != nil {

@@ -38,6 +38,7 @@ export class WirelessControllerAddrgrp extends pulumi.CustomResource {
     public readonly defaultPolicy!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly fosid!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -57,6 +58,7 @@ export class WirelessControllerAddrgrp extends pulumi.CustomResource {
             resourceInputs["defaultPolicy"] = state ? state.defaultPolicy : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WirelessControllerAddrgrpArgs | undefined;
@@ -64,6 +66,7 @@ export class WirelessControllerAddrgrp extends pulumi.CustomResource {
             resourceInputs["defaultPolicy"] = args ? args.defaultPolicy : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -79,6 +82,7 @@ export interface WirelessControllerAddrgrpState {
     defaultPolicy?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     fosid?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -90,5 +94,6 @@ export interface WirelessControllerAddrgrpArgs {
     defaultPolicy?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     fosid?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }

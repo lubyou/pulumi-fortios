@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemAlias(ctx *pulumi.Context, args *LookupSystemAliasArgs, opts ...pulumi.InvokeOption) (*LookupSystemAliasResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemAliasResult
 	err := ctx.Invoke("fortios:index/getSystemAlias:GetSystemAlias", args, &rv, opts...)
 	if err != nil {

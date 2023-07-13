@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -27,6 +28,7 @@ type WirelessControllerQosProfile struct {
 	DscpWmmVis                WirelessControllerQosProfileDscpWmmViArrayOutput `pulumi:"dscpWmmVis"`
 	DscpWmmVos                WirelessControllerQosProfileDscpWmmVoArrayOutput `pulumi:"dscpWmmVos"`
 	DynamicSortSubtable       pulumi.StringPtrOutput                           `pulumi:"dynamicSortSubtable"`
+	GetAllTables              pulumi.StringPtrOutput                           `pulumi:"getAllTables"`
 	Name                      pulumi.StringOutput                              `pulumi:"name"`
 	Uplink                    pulumi.IntOutput                                 `pulumi:"uplink"`
 	UplinkSta                 pulumi.IntOutput                                 `pulumi:"uplinkSta"`
@@ -47,7 +49,7 @@ func NewWirelessControllerQosProfile(ctx *pulumi.Context,
 		args = &WirelessControllerQosProfileArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WirelessControllerQosProfile
 	err := ctx.RegisterResource("fortios:index/wirelessControllerQosProfile:WirelessControllerQosProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -84,6 +86,7 @@ type wirelessControllerQosProfileState struct {
 	DscpWmmVis                []WirelessControllerQosProfileDscpWmmVi `pulumi:"dscpWmmVis"`
 	DscpWmmVos                []WirelessControllerQosProfileDscpWmmVo `pulumi:"dscpWmmVos"`
 	DynamicSortSubtable       *string                                 `pulumi:"dynamicSortSubtable"`
+	GetAllTables              *string                                 `pulumi:"getAllTables"`
 	Name                      *string                                 `pulumi:"name"`
 	Uplink                    *int                                    `pulumi:"uplink"`
 	UplinkSta                 *int                                    `pulumi:"uplinkSta"`
@@ -112,6 +115,7 @@ type WirelessControllerQosProfileState struct {
 	DscpWmmVis                WirelessControllerQosProfileDscpWmmViArrayInput
 	DscpWmmVos                WirelessControllerQosProfileDscpWmmVoArrayInput
 	DynamicSortSubtable       pulumi.StringPtrInput
+	GetAllTables              pulumi.StringPtrInput
 	Name                      pulumi.StringPtrInput
 	Uplink                    pulumi.IntPtrInput
 	UplinkSta                 pulumi.IntPtrInput
@@ -144,6 +148,7 @@ type wirelessControllerQosProfileArgs struct {
 	DscpWmmVis                []WirelessControllerQosProfileDscpWmmVi `pulumi:"dscpWmmVis"`
 	DscpWmmVos                []WirelessControllerQosProfileDscpWmmVo `pulumi:"dscpWmmVos"`
 	DynamicSortSubtable       *string                                 `pulumi:"dynamicSortSubtable"`
+	GetAllTables              *string                                 `pulumi:"getAllTables"`
 	Name                      *string                                 `pulumi:"name"`
 	Uplink                    *int                                    `pulumi:"uplink"`
 	UplinkSta                 *int                                    `pulumi:"uplinkSta"`
@@ -173,6 +178,7 @@ type WirelessControllerQosProfileArgs struct {
 	DscpWmmVis                WirelessControllerQosProfileDscpWmmViArrayInput
 	DscpWmmVos                WirelessControllerQosProfileDscpWmmVoArrayInput
 	DynamicSortSubtable       pulumi.StringPtrInput
+	GetAllTables              pulumi.StringPtrInput
 	Name                      pulumi.StringPtrInput
 	Uplink                    pulumi.IntPtrInput
 	UplinkSta                 pulumi.IntPtrInput
@@ -335,6 +341,10 @@ func (o WirelessControllerQosProfileOutput) DscpWmmVos() WirelessControllerQosPr
 
 func (o WirelessControllerQosProfileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WirelessControllerQosProfile) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerQosProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerQosProfile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o WirelessControllerQosProfileOutput) Name() pulumi.StringOutput {

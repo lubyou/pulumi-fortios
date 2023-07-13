@@ -35,6 +35,7 @@ export class SwitchControllerFortilinkSettings extends pulumi.CustomResource {
     }
 
     public readonly fortilink!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly inactiveTimer!: pulumi.Output<number>;
     public readonly linkDownFlush!: pulumi.Output<string>;
     public readonly nacPorts!: pulumi.Output<outputs.SwitchControllerFortilinkSettingsNacPorts>;
@@ -55,6 +56,7 @@ export class SwitchControllerFortilinkSettings extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as SwitchControllerFortilinkSettingsState | undefined;
             resourceInputs["fortilink"] = state ? state.fortilink : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["inactiveTimer"] = state ? state.inactiveTimer : undefined;
             resourceInputs["linkDownFlush"] = state ? state.linkDownFlush : undefined;
             resourceInputs["nacPorts"] = state ? state.nacPorts : undefined;
@@ -63,6 +65,7 @@ export class SwitchControllerFortilinkSettings extends pulumi.CustomResource {
         } else {
             const args = argsOrState as SwitchControllerFortilinkSettingsArgs | undefined;
             resourceInputs["fortilink"] = args ? args.fortilink : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["inactiveTimer"] = args ? args.inactiveTimer : undefined;
             resourceInputs["linkDownFlush"] = args ? args.linkDownFlush : undefined;
             resourceInputs["nacPorts"] = args ? args.nacPorts : undefined;
@@ -79,6 +82,7 @@ export class SwitchControllerFortilinkSettings extends pulumi.CustomResource {
  */
 export interface SwitchControllerFortilinkSettingsState {
     fortilink?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     inactiveTimer?: pulumi.Input<number>;
     linkDownFlush?: pulumi.Input<string>;
     nacPorts?: pulumi.Input<inputs.SwitchControllerFortilinkSettingsNacPorts>;
@@ -91,6 +95,7 @@ export interface SwitchControllerFortilinkSettingsState {
  */
 export interface SwitchControllerFortilinkSettingsArgs {
     fortilink?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     inactiveTimer?: pulumi.Input<number>;
     linkDownFlush?: pulumi.Input<string>;
     nacPorts?: pulumi.Input<inputs.SwitchControllerFortilinkSettingsNacPorts>;

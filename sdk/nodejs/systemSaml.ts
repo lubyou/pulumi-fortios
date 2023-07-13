@@ -40,6 +40,7 @@ export class SystemSaml extends pulumi.CustomResource {
     public readonly defaultProfile!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly entityId!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly idpCert!: pulumi.Output<string>;
     public readonly idpEntityId!: pulumi.Output<string>;
     public readonly idpSingleLogoutUrl!: pulumi.Output<string>;
@@ -74,6 +75,7 @@ export class SystemSaml extends pulumi.CustomResource {
             resourceInputs["defaultProfile"] = state ? state.defaultProfile : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["entityId"] = state ? state.entityId : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["idpCert"] = state ? state.idpCert : undefined;
             resourceInputs["idpEntityId"] = state ? state.idpEntityId : undefined;
             resourceInputs["idpSingleLogoutUrl"] = state ? state.idpSingleLogoutUrl : undefined;
@@ -96,6 +98,7 @@ export class SystemSaml extends pulumi.CustomResource {
             resourceInputs["defaultProfile"] = args ? args.defaultProfile : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["entityId"] = args ? args.entityId : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["idpCert"] = args ? args.idpCert : undefined;
             resourceInputs["idpEntityId"] = args ? args.idpEntityId : undefined;
             resourceInputs["idpSingleLogoutUrl"] = args ? args.idpSingleLogoutUrl : undefined;
@@ -126,6 +129,7 @@ export interface SystemSamlState {
     defaultProfile?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     entityId?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     idpCert?: pulumi.Input<string>;
     idpEntityId?: pulumi.Input<string>;
     idpSingleLogoutUrl?: pulumi.Input<string>;
@@ -152,6 +156,7 @@ export interface SystemSamlArgs {
     defaultProfile?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     entityId?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     idpCert?: pulumi.Input<string>;
     idpEntityId?: pulumi.Input<string>;
     idpSingleLogoutUrl?: pulumi.Input<string>;

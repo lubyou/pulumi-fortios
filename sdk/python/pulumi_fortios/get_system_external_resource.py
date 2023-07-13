@@ -21,7 +21,7 @@ class GetSystemExternalResourceResult:
     """
     A collection of values returned by GetSystemExternalResource.
     """
-    def __init__(__self__, category=None, comments=None, id=None, interface=None, interface_select_method=None, name=None, password=None, refresh_rate=None, resource=None, source_ip=None, status=None, type=None, update_method=None, user_agent=None, username=None, uuid=None, vdomparam=None):
+    def __init__(__self__, category=None, comments=None, id=None, interface=None, interface_select_method=None, name=None, password=None, refresh_rate=None, resource=None, server_identity_check=None, source_ip=None, status=None, type=None, update_method=None, user_agent=None, username=None, uuid=None, vdomparam=None):
         if category and not isinstance(category, int):
             raise TypeError("Expected argument 'category' to be a int")
         pulumi.set(__self__, "category", category)
@@ -49,6 +49,9 @@ class GetSystemExternalResourceResult:
         if resource and not isinstance(resource, str):
             raise TypeError("Expected argument 'resource' to be a str")
         pulumi.set(__self__, "resource", resource)
+        if server_identity_check and not isinstance(server_identity_check, str):
+            raise TypeError("Expected argument 'server_identity_check' to be a str")
+        pulumi.set(__self__, "server_identity_check", server_identity_check)
         if source_ip and not isinstance(source_ip, str):
             raise TypeError("Expected argument 'source_ip' to be a str")
         pulumi.set(__self__, "source_ip", source_ip)
@@ -123,6 +126,11 @@ class GetSystemExternalResourceResult:
         return pulumi.get(self, "resource")
 
     @property
+    @pulumi.getter(name="serverIdentityCheck")
+    def server_identity_check(self) -> str:
+        return pulumi.get(self, "server_identity_check")
+
+    @property
     @pulumi.getter(name="sourceIp")
     def source_ip(self) -> str:
         return pulumi.get(self, "source_ip")
@@ -178,6 +186,7 @@ class AwaitableGetSystemExternalResourceResult(GetSystemExternalResourceResult):
             password=self.password,
             refresh_rate=self.refresh_rate,
             resource=self.resource,
+            server_identity_check=self.server_identity_check,
             source_ip=self.source_ip,
             status=self.status,
             type=self.type,
@@ -201,23 +210,24 @@ def get_system_external_resource(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemExternalResource:GetSystemExternalResource', __args__, opts=opts, typ=GetSystemExternalResourceResult).value
 
     return AwaitableGetSystemExternalResourceResult(
-        category=__ret__.category,
-        comments=__ret__.comments,
-        id=__ret__.id,
-        interface=__ret__.interface,
-        interface_select_method=__ret__.interface_select_method,
-        name=__ret__.name,
-        password=__ret__.password,
-        refresh_rate=__ret__.refresh_rate,
-        resource=__ret__.resource,
-        source_ip=__ret__.source_ip,
-        status=__ret__.status,
-        type=__ret__.type,
-        update_method=__ret__.update_method,
-        user_agent=__ret__.user_agent,
-        username=__ret__.username,
-        uuid=__ret__.uuid,
-        vdomparam=__ret__.vdomparam)
+        category=pulumi.get(__ret__, 'category'),
+        comments=pulumi.get(__ret__, 'comments'),
+        id=pulumi.get(__ret__, 'id'),
+        interface=pulumi.get(__ret__, 'interface'),
+        interface_select_method=pulumi.get(__ret__, 'interface_select_method'),
+        name=pulumi.get(__ret__, 'name'),
+        password=pulumi.get(__ret__, 'password'),
+        refresh_rate=pulumi.get(__ret__, 'refresh_rate'),
+        resource=pulumi.get(__ret__, 'resource'),
+        server_identity_check=pulumi.get(__ret__, 'server_identity_check'),
+        source_ip=pulumi.get(__ret__, 'source_ip'),
+        status=pulumi.get(__ret__, 'status'),
+        type=pulumi.get(__ret__, 'type'),
+        update_method=pulumi.get(__ret__, 'update_method'),
+        user_agent=pulumi.get(__ret__, 'user_agent'),
+        username=pulumi.get(__ret__, 'username'),
+        uuid=pulumi.get(__ret__, 'uuid'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_external_resource)

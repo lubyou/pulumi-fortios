@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -17,6 +18,7 @@ type SystemNpu struct {
 	DedicatedManagementAffinity pulumi.StringOutput             `pulumi:"dedicatedManagementAffinity"`
 	DedicatedManagementCpu      pulumi.StringOutput             `pulumi:"dedicatedManagementCpu"`
 	Fastpath                    pulumi.StringOutput             `pulumi:"fastpath"`
+	GetAllTables                pulumi.StringPtrOutput          `pulumi:"getAllTables"`
 	IpsecDecSubengineMask       pulumi.StringOutput             `pulumi:"ipsecDecSubengineMask"`
 	IpsecEncSubengineMask       pulumi.StringOutput             `pulumi:"ipsecEncSubengineMask"`
 	IpsecInboundCache           pulumi.StringOutput             `pulumi:"ipsecInboundCache"`
@@ -42,7 +44,7 @@ func NewSystemNpu(ctx *pulumi.Context,
 		args = &SystemNpuArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemNpu
 	err := ctx.RegisterResource("fortios:index/systemNpu:SystemNpu", name, args, &resource, opts...)
 	if err != nil {
@@ -69,6 +71,7 @@ type systemNpuState struct {
 	DedicatedManagementAffinity *string                    `pulumi:"dedicatedManagementAffinity"`
 	DedicatedManagementCpu      *string                    `pulumi:"dedicatedManagementCpu"`
 	Fastpath                    *string                    `pulumi:"fastpath"`
+	GetAllTables                *string                    `pulumi:"getAllTables"`
 	IpsecDecSubengineMask       *string                    `pulumi:"ipsecDecSubengineMask"`
 	IpsecEncSubengineMask       *string                    `pulumi:"ipsecEncSubengineMask"`
 	IpsecInboundCache           *string                    `pulumi:"ipsecInboundCache"`
@@ -92,6 +95,7 @@ type SystemNpuState struct {
 	DedicatedManagementAffinity pulumi.StringPtrInput
 	DedicatedManagementCpu      pulumi.StringPtrInput
 	Fastpath                    pulumi.StringPtrInput
+	GetAllTables                pulumi.StringPtrInput
 	IpsecDecSubengineMask       pulumi.StringPtrInput
 	IpsecEncSubengineMask       pulumi.StringPtrInput
 	IpsecInboundCache           pulumi.StringPtrInput
@@ -119,6 +123,7 @@ type systemNpuArgs struct {
 	DedicatedManagementAffinity *string                    `pulumi:"dedicatedManagementAffinity"`
 	DedicatedManagementCpu      *string                    `pulumi:"dedicatedManagementCpu"`
 	Fastpath                    *string                    `pulumi:"fastpath"`
+	GetAllTables                *string                    `pulumi:"getAllTables"`
 	IpsecDecSubengineMask       *string                    `pulumi:"ipsecDecSubengineMask"`
 	IpsecEncSubengineMask       *string                    `pulumi:"ipsecEncSubengineMask"`
 	IpsecInboundCache           *string                    `pulumi:"ipsecInboundCache"`
@@ -143,6 +148,7 @@ type SystemNpuArgs struct {
 	DedicatedManagementAffinity pulumi.StringPtrInput
 	DedicatedManagementCpu      pulumi.StringPtrInput
 	Fastpath                    pulumi.StringPtrInput
+	GetAllTables                pulumi.StringPtrInput
 	IpsecDecSubengineMask       pulumi.StringPtrInput
 	IpsecEncSubengineMask       pulumi.StringPtrInput
 	IpsecInboundCache           pulumi.StringPtrInput
@@ -262,6 +268,10 @@ func (o SystemNpuOutput) DedicatedManagementCpu() pulumi.StringOutput {
 
 func (o SystemNpuOutput) Fastpath() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemNpu) pulumi.StringOutput { return v.Fastpath }).(pulumi.StringOutput)
+}
+
+func (o SystemNpuOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemNpu) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemNpuOutput) IpsecDecSubengineMask() pulumi.StringOutput {

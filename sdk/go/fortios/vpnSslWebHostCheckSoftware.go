@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,6 +16,7 @@ type VpnSslWebHostCheckSoftware struct {
 
 	CheckItemLists      VpnSslWebHostCheckSoftwareCheckItemListArrayOutput `pulumi:"checkItemLists"`
 	DynamicSortSubtable pulumi.StringPtrOutput                             `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                             `pulumi:"getAllTables"`
 	Guid                pulumi.StringOutput                                `pulumi:"guid"`
 	Name                pulumi.StringOutput                                `pulumi:"name"`
 	OsType              pulumi.StringOutput                                `pulumi:"osType"`
@@ -30,7 +32,7 @@ func NewVpnSslWebHostCheckSoftware(ctx *pulumi.Context,
 		args = &VpnSslWebHostCheckSoftwareArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource VpnSslWebHostCheckSoftware
 	err := ctx.RegisterResource("fortios:index/vpnSslWebHostCheckSoftware:VpnSslWebHostCheckSoftware", name, args, &resource, opts...)
 	if err != nil {
@@ -55,6 +57,7 @@ func GetVpnSslWebHostCheckSoftware(ctx *pulumi.Context,
 type vpnSslWebHostCheckSoftwareState struct {
 	CheckItemLists      []VpnSslWebHostCheckSoftwareCheckItemList `pulumi:"checkItemLists"`
 	DynamicSortSubtable *string                                   `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                                   `pulumi:"getAllTables"`
 	Guid                *string                                   `pulumi:"guid"`
 	Name                *string                                   `pulumi:"name"`
 	OsType              *string                                   `pulumi:"osType"`
@@ -66,6 +69,7 @@ type vpnSslWebHostCheckSoftwareState struct {
 type VpnSslWebHostCheckSoftwareState struct {
 	CheckItemLists      VpnSslWebHostCheckSoftwareCheckItemListArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Guid                pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	OsType              pulumi.StringPtrInput
@@ -81,6 +85,7 @@ func (VpnSslWebHostCheckSoftwareState) ElementType() reflect.Type {
 type vpnSslWebHostCheckSoftwareArgs struct {
 	CheckItemLists      []VpnSslWebHostCheckSoftwareCheckItemList `pulumi:"checkItemLists"`
 	DynamicSortSubtable *string                                   `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                                   `pulumi:"getAllTables"`
 	Guid                *string                                   `pulumi:"guid"`
 	Name                *string                                   `pulumi:"name"`
 	OsType              *string                                   `pulumi:"osType"`
@@ -93,6 +98,7 @@ type vpnSslWebHostCheckSoftwareArgs struct {
 type VpnSslWebHostCheckSoftwareArgs struct {
 	CheckItemLists      VpnSslWebHostCheckSoftwareCheckItemListArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Guid                pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	OsType              pulumi.StringPtrInput
@@ -196,6 +202,10 @@ func (o VpnSslWebHostCheckSoftwareOutput) CheckItemLists() VpnSslWebHostCheckSof
 
 func (o VpnSslWebHostCheckSoftwareOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VpnSslWebHostCheckSoftware) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnSslWebHostCheckSoftwareOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnSslWebHostCheckSoftware) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o VpnSslWebHostCheckSoftwareOutput) Guid() pulumi.StringOutput {

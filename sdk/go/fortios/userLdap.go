@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -16,6 +17,7 @@ type UserLdap struct {
 
 	AccountKeyFilter        pulumi.StringOutput    `pulumi:"accountKeyFilter"`
 	AccountKeyProcessing    pulumi.StringOutput    `pulumi:"accountKeyProcessing"`
+	AccountKeyUpnSan        pulumi.StringOutput    `pulumi:"accountKeyUpnSan"`
 	Antiphish               pulumi.StringOutput    `pulumi:"antiphish"`
 	CaCert                  pulumi.StringOutput    `pulumi:"caCert"`
 	ClientCert              pulumi.StringOutput    `pulumi:"clientCert"`
@@ -75,7 +77,7 @@ func NewUserLdap(ctx *pulumi.Context,
 		"password",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource UserLdap
 	err := ctx.RegisterResource("fortios:index/userLdap:UserLdap", name, args, &resource, opts...)
 	if err != nil {
@@ -100,6 +102,7 @@ func GetUserLdap(ctx *pulumi.Context,
 type userLdapState struct {
 	AccountKeyFilter        *string `pulumi:"accountKeyFilter"`
 	AccountKeyProcessing    *string `pulumi:"accountKeyProcessing"`
+	AccountKeyUpnSan        *string `pulumi:"accountKeyUpnSan"`
 	Antiphish               *string `pulumi:"antiphish"`
 	CaCert                  *string `pulumi:"caCert"`
 	ClientCert              *string `pulumi:"clientCert"`
@@ -142,6 +145,7 @@ type userLdapState struct {
 type UserLdapState struct {
 	AccountKeyFilter        pulumi.StringPtrInput
 	AccountKeyProcessing    pulumi.StringPtrInput
+	AccountKeyUpnSan        pulumi.StringPtrInput
 	Antiphish               pulumi.StringPtrInput
 	CaCert                  pulumi.StringPtrInput
 	ClientCert              pulumi.StringPtrInput
@@ -188,6 +192,7 @@ func (UserLdapState) ElementType() reflect.Type {
 type userLdapArgs struct {
 	AccountKeyFilter        *string `pulumi:"accountKeyFilter"`
 	AccountKeyProcessing    *string `pulumi:"accountKeyProcessing"`
+	AccountKeyUpnSan        *string `pulumi:"accountKeyUpnSan"`
 	Antiphish               *string `pulumi:"antiphish"`
 	CaCert                  *string `pulumi:"caCert"`
 	ClientCert              *string `pulumi:"clientCert"`
@@ -231,6 +236,7 @@ type userLdapArgs struct {
 type UserLdapArgs struct {
 	AccountKeyFilter        pulumi.StringPtrInput
 	AccountKeyProcessing    pulumi.StringPtrInput
+	AccountKeyUpnSan        pulumi.StringPtrInput
 	Antiphish               pulumi.StringPtrInput
 	CaCert                  pulumi.StringPtrInput
 	ClientCert              pulumi.StringPtrInput
@@ -363,6 +369,10 @@ func (o UserLdapOutput) AccountKeyFilter() pulumi.StringOutput {
 
 func (o UserLdapOutput) AccountKeyProcessing() pulumi.StringOutput {
 	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.AccountKeyProcessing }).(pulumi.StringOutput)
+}
+
+func (o UserLdapOutput) AccountKeyUpnSan() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserLdap) pulumi.StringOutput { return v.AccountKeyUpnSan }).(pulumi.StringOutput)
 }
 
 func (o UserLdapOutput) Antiphish() pulumi.StringOutput {

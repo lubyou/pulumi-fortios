@@ -42,6 +42,7 @@ export class SystemLinkMonitor extends pulumi.CustomResource {
     public readonly failtime!: pulumi.Output<number>;
     public readonly gatewayIp!: pulumi.Output<string>;
     public readonly gatewayIp6!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly haPriority!: pulumi.Output<number>;
     public readonly httpAgent!: pulumi.Output<string>;
     public readonly httpGet!: pulumi.Output<string>;
@@ -92,6 +93,7 @@ export class SystemLinkMonitor extends pulumi.CustomResource {
             resourceInputs["failtime"] = state ? state.failtime : undefined;
             resourceInputs["gatewayIp"] = state ? state.gatewayIp : undefined;
             resourceInputs["gatewayIp6"] = state ? state.gatewayIp6 : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["haPriority"] = state ? state.haPriority : undefined;
             resourceInputs["httpAgent"] = state ? state.httpAgent : undefined;
             resourceInputs["httpGet"] = state ? state.httpGet : undefined;
@@ -133,6 +135,7 @@ export class SystemLinkMonitor extends pulumi.CustomResource {
             resourceInputs["failtime"] = args ? args.failtime : undefined;
             resourceInputs["gatewayIp"] = args ? args.gatewayIp : undefined;
             resourceInputs["gatewayIp6"] = args ? args.gatewayIp6 : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["haPriority"] = args ? args.haPriority : undefined;
             resourceInputs["httpAgent"] = args ? args.httpAgent : undefined;
             resourceInputs["httpGet"] = args ? args.httpGet : undefined;
@@ -181,6 +184,7 @@ export interface SystemLinkMonitorState {
     failtime?: pulumi.Input<number>;
     gatewayIp?: pulumi.Input<string>;
     gatewayIp6?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     haPriority?: pulumi.Input<number>;
     httpAgent?: pulumi.Input<string>;
     httpGet?: pulumi.Input<string>;
@@ -223,6 +227,7 @@ export interface SystemLinkMonitorArgs {
     failtime?: pulumi.Input<number>;
     gatewayIp?: pulumi.Input<string>;
     gatewayIp6?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     haPriority?: pulumi.Input<number>;
     httpAgent?: pulumi.Input<string>;
     httpGet?: pulumi.Input<string>;

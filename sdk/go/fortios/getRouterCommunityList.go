@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupRouterCommunityList(ctx *pulumi.Context, args *LookupRouterCommunityListArgs, opts ...pulumi.InvokeOption) (*LookupRouterCommunityListResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupRouterCommunityListResult
 	err := ctx.Invoke("fortios:index/getRouterCommunityList:GetRouterCommunityList", args, &rv, opts...)
 	if err != nil {

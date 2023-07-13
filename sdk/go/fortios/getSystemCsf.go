@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemCsf(ctx *pulumi.Context, args *LookupSystemCsfArgs, opts ...pulumi.InvokeOption) (*LookupSystemCsfResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemCsfResult
 	err := ctx.Invoke("fortios:index/getSystemCsf:GetSystemCsf", args, &rv, opts...)
 	if err != nil {
@@ -37,6 +38,9 @@ type LookupSystemCsfResult struct {
 	FabricDevices                []GetSystemCsfFabricDevice    `pulumi:"fabricDevices"`
 	FabricObjectUnification      string                        `pulumi:"fabricObjectUnification"`
 	FabricWorkers                int                           `pulumi:"fabricWorkers"`
+	FileMgmt                     string                        `pulumi:"fileMgmt"`
+	FileQuota                    int                           `pulumi:"fileQuota"`
+	FileQuotaWarning             int                           `pulumi:"fileQuotaWarning"`
 	FixedKey                     string                        `pulumi:"fixedKey"`
 	ForticloudAccountEnforcement string                        `pulumi:"forticloudAccountEnforcement"`
 	GroupName                    string                        `pulumi:"groupName"`
@@ -130,6 +134,18 @@ func (o LookupSystemCsfResultOutput) FabricObjectUnification() pulumi.StringOutp
 
 func (o LookupSystemCsfResultOutput) FabricWorkers() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemCsfResult) int { return v.FabricWorkers }).(pulumi.IntOutput)
+}
+
+func (o LookupSystemCsfResultOutput) FileMgmt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemCsfResult) string { return v.FileMgmt }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemCsfResultOutput) FileQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemCsfResult) int { return v.FileQuota }).(pulumi.IntOutput)
+}
+
+func (o LookupSystemCsfResultOutput) FileQuotaWarning() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemCsfResult) int { return v.FileQuotaWarning }).(pulumi.IntOutput)
 }
 
 func (o LookupSystemCsfResultOutput) FixedKey() pulumi.StringOutput {

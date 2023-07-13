@@ -22,10 +22,13 @@ class GetSystemVxlanResult:
     """
     A collection of values returned by GetSystemVxlan.
     """
-    def __init__(__self__, dstport=None, id=None, interface=None, ip_version=None, multicast_ttl=None, name=None, remote_ip6s=None, remote_ips=None, vdomparam=None, vni=None):
+    def __init__(__self__, dstport=None, evpn_id=None, id=None, interface=None, ip_version=None, learn_from_traffic=None, multicast_ttl=None, name=None, remote_ip6s=None, remote_ips=None, vdomparam=None, vni=None):
         if dstport and not isinstance(dstport, int):
             raise TypeError("Expected argument 'dstport' to be a int")
         pulumi.set(__self__, "dstport", dstport)
+        if evpn_id and not isinstance(evpn_id, int):
+            raise TypeError("Expected argument 'evpn_id' to be a int")
+        pulumi.set(__self__, "evpn_id", evpn_id)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -35,6 +38,9 @@ class GetSystemVxlanResult:
         if ip_version and not isinstance(ip_version, str):
             raise TypeError("Expected argument 'ip_version' to be a str")
         pulumi.set(__self__, "ip_version", ip_version)
+        if learn_from_traffic and not isinstance(learn_from_traffic, str):
+            raise TypeError("Expected argument 'learn_from_traffic' to be a str")
+        pulumi.set(__self__, "learn_from_traffic", learn_from_traffic)
         if multicast_ttl and not isinstance(multicast_ttl, int):
             raise TypeError("Expected argument 'multicast_ttl' to be a int")
         pulumi.set(__self__, "multicast_ttl", multicast_ttl)
@@ -60,6 +66,11 @@ class GetSystemVxlanResult:
         return pulumi.get(self, "dstport")
 
     @property
+    @pulumi.getter(name="evpnId")
+    def evpn_id(self) -> int:
+        return pulumi.get(self, "evpn_id")
+
+    @property
     @pulumi.getter
     def id(self) -> str:
         """
@@ -76,6 +87,11 @@ class GetSystemVxlanResult:
     @pulumi.getter(name="ipVersion")
     def ip_version(self) -> str:
         return pulumi.get(self, "ip_version")
+
+    @property
+    @pulumi.getter(name="learnFromTraffic")
+    def learn_from_traffic(self) -> str:
+        return pulumi.get(self, "learn_from_traffic")
 
     @property
     @pulumi.getter(name="multicastTtl")
@@ -115,9 +131,11 @@ class AwaitableGetSystemVxlanResult(GetSystemVxlanResult):
             yield self
         return GetSystemVxlanResult(
             dstport=self.dstport,
+            evpn_id=self.evpn_id,
             id=self.id,
             interface=self.interface,
             ip_version=self.ip_version,
+            learn_from_traffic=self.learn_from_traffic,
             multicast_ttl=self.multicast_ttl,
             name=self.name,
             remote_ip6s=self.remote_ip6s,
@@ -139,16 +157,18 @@ def get_system_vxlan(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemVxlan:GetSystemVxlan', __args__, opts=opts, typ=GetSystemVxlanResult).value
 
     return AwaitableGetSystemVxlanResult(
-        dstport=__ret__.dstport,
-        id=__ret__.id,
-        interface=__ret__.interface,
-        ip_version=__ret__.ip_version,
-        multicast_ttl=__ret__.multicast_ttl,
-        name=__ret__.name,
-        remote_ip6s=__ret__.remote_ip6s,
-        remote_ips=__ret__.remote_ips,
-        vdomparam=__ret__.vdomparam,
-        vni=__ret__.vni)
+        dstport=pulumi.get(__ret__, 'dstport'),
+        evpn_id=pulumi.get(__ret__, 'evpn_id'),
+        id=pulumi.get(__ret__, 'id'),
+        interface=pulumi.get(__ret__, 'interface'),
+        ip_version=pulumi.get(__ret__, 'ip_version'),
+        learn_from_traffic=pulumi.get(__ret__, 'learn_from_traffic'),
+        multicast_ttl=pulumi.get(__ret__, 'multicast_ttl'),
+        name=pulumi.get(__ret__, 'name'),
+        remote_ip6s=pulumi.get(__ret__, 'remote_ip6s'),
+        remote_ips=pulumi.get(__ret__, 'remote_ips'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'),
+        vni=pulumi.get(__ret__, 'vni'))
 
 
 @_utilities.lift_output_func(get_system_vxlan)

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -17,6 +18,7 @@ type EmailfilterBlockAllowList struct {
 	DynamicSortSubtable pulumi.StringPtrOutput                    `pulumi:"dynamicSortSubtable"`
 	Entries             EmailfilterBlockAllowListEntryArrayOutput `pulumi:"entries"`
 	Fosid               pulumi.IntOutput                          `pulumi:"fosid"`
+	GetAllTables        pulumi.StringPtrOutput                    `pulumi:"getAllTables"`
 	Name                pulumi.StringOutput                       `pulumi:"name"`
 	Vdomparam           pulumi.StringPtrOutput                    `pulumi:"vdomparam"`
 }
@@ -28,7 +30,7 @@ func NewEmailfilterBlockAllowList(ctx *pulumi.Context,
 		args = &EmailfilterBlockAllowListArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource EmailfilterBlockAllowList
 	err := ctx.RegisterResource("fortios:index/emailfilterBlockAllowList:EmailfilterBlockAllowList", name, args, &resource, opts...)
 	if err != nil {
@@ -55,6 +57,7 @@ type emailfilterBlockAllowListState struct {
 	DynamicSortSubtable *string                          `pulumi:"dynamicSortSubtable"`
 	Entries             []EmailfilterBlockAllowListEntry `pulumi:"entries"`
 	Fosid               *int                             `pulumi:"fosid"`
+	GetAllTables        *string                          `pulumi:"getAllTables"`
 	Name                *string                          `pulumi:"name"`
 	Vdomparam           *string                          `pulumi:"vdomparam"`
 }
@@ -64,6 +67,7 @@ type EmailfilterBlockAllowListState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	Entries             EmailfilterBlockAllowListEntryArrayInput
 	Fosid               pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
 }
@@ -77,6 +81,7 @@ type emailfilterBlockAllowListArgs struct {
 	DynamicSortSubtable *string                          `pulumi:"dynamicSortSubtable"`
 	Entries             []EmailfilterBlockAllowListEntry `pulumi:"entries"`
 	Fosid               *int                             `pulumi:"fosid"`
+	GetAllTables        *string                          `pulumi:"getAllTables"`
 	Name                *string                          `pulumi:"name"`
 	Vdomparam           *string                          `pulumi:"vdomparam"`
 }
@@ -87,6 +92,7 @@ type EmailfilterBlockAllowListArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	Entries             EmailfilterBlockAllowListEntryArrayInput
 	Fosid               pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
 }
@@ -192,6 +198,10 @@ func (o EmailfilterBlockAllowListOutput) Entries() EmailfilterBlockAllowListEntr
 
 func (o EmailfilterBlockAllowListOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *EmailfilterBlockAllowList) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o EmailfilterBlockAllowListOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *EmailfilterBlockAllowList) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o EmailfilterBlockAllowListOutput) Name() pulumi.StringOutput {

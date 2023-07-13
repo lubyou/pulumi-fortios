@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -33,7 +34,7 @@ func NewSystemLteModem(ctx *pulumi.Context,
 		args = &SystemLteModemArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemLteModem
 	err := ctx.RegisterResource("fortios:index/systemLteModem:SystemLteModem", name, args, &resource, opts...)
 	if err != nil {

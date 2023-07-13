@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -21,6 +22,7 @@ type SystemDnsDatabase struct {
 	Domain              pulumi.StringOutput                  `pulumi:"domain"`
 	DynamicSortSubtable pulumi.StringPtrOutput               `pulumi:"dynamicSortSubtable"`
 	Forwarder           pulumi.StringOutput                  `pulumi:"forwarder"`
+	GetAllTables        pulumi.StringPtrOutput               `pulumi:"getAllTables"`
 	IpMaster            pulumi.StringOutput                  `pulumi:"ipMaster"`
 	IpPrimary           pulumi.StringOutput                  `pulumi:"ipPrimary"`
 	Name                pulumi.StringOutput                  `pulumi:"name"`
@@ -56,7 +58,7 @@ func NewSystemDnsDatabase(ctx *pulumi.Context,
 	if args.View == nil {
 		return nil, errors.New("invalid value for required argument 'View'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemDnsDatabase
 	err := ctx.RegisterResource("fortios:index/systemDnsDatabase:SystemDnsDatabase", name, args, &resource, opts...)
 	if err != nil {
@@ -86,6 +88,7 @@ type systemDnsDatabaseState struct {
 	Domain              *string                     `pulumi:"domain"`
 	DynamicSortSubtable *string                     `pulumi:"dynamicSortSubtable"`
 	Forwarder           *string                     `pulumi:"forwarder"`
+	GetAllTables        *string                     `pulumi:"getAllTables"`
 	IpMaster            *string                     `pulumi:"ipMaster"`
 	IpPrimary           *string                     `pulumi:"ipPrimary"`
 	Name                *string                     `pulumi:"name"`
@@ -107,6 +110,7 @@ type SystemDnsDatabaseState struct {
 	Domain              pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	Forwarder           pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	IpMaster            pulumi.StringPtrInput
 	IpPrimary           pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
@@ -132,6 +136,7 @@ type systemDnsDatabaseArgs struct {
 	Domain              string                      `pulumi:"domain"`
 	DynamicSortSubtable *string                     `pulumi:"dynamicSortSubtable"`
 	Forwarder           *string                     `pulumi:"forwarder"`
+	GetAllTables        *string                     `pulumi:"getAllTables"`
 	IpMaster            *string                     `pulumi:"ipMaster"`
 	IpPrimary           *string                     `pulumi:"ipPrimary"`
 	Name                *string                     `pulumi:"name"`
@@ -154,6 +159,7 @@ type SystemDnsDatabaseArgs struct {
 	Domain              pulumi.StringInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	Forwarder           pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	IpMaster            pulumi.StringPtrInput
 	IpPrimary           pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
@@ -280,6 +286,10 @@ func (o SystemDnsDatabaseOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 
 func (o SystemDnsDatabaseOutput) Forwarder() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemDnsDatabase) pulumi.StringOutput { return v.Forwarder }).(pulumi.StringOutput)
+}
+
+func (o SystemDnsDatabaseOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemDnsDatabase) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemDnsDatabaseOutput) IpMaster() pulumi.StringOutput {

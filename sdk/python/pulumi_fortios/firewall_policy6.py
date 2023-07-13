@@ -47,6 +47,7 @@ class FirewallPolicy6Args:
                  firewall_session_dirty: Optional[pulumi.Input[str]] = None,
                  fixedport: Optional[pulumi.Input[str]] = None,
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicy6FssoGroupArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  global_label: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicy6GroupArgs']]]] = None,
                  http_policy_redirect: Optional[pulumi.Input[str]] = None,
@@ -168,6 +169,8 @@ class FirewallPolicy6Args:
             pulumi.set(__self__, "fixedport", fixedport)
         if fsso_groups is not None:
             pulumi.set(__self__, "fsso_groups", fsso_groups)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if global_label is not None:
             pulumi.set(__self__, "global_label", global_label)
         if groups is not None:
@@ -569,6 +572,15 @@ class FirewallPolicy6Args:
     @fsso_groups.setter
     def fsso_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicy6FssoGroupArgs']]]]):
         pulumi.set(self, "fsso_groups", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="globalLabel")
@@ -1151,6 +1163,7 @@ class _FirewallPolicy6State:
                  firewall_session_dirty: Optional[pulumi.Input[str]] = None,
                  fixedport: Optional[pulumi.Input[str]] = None,
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicy6FssoGroupArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  global_label: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicy6GroupArgs']]]] = None,
                  http_policy_redirect: Optional[pulumi.Input[str]] = None,
@@ -1274,6 +1287,8 @@ class _FirewallPolicy6State:
             pulumi.set(__self__, "fixedport", fixedport)
         if fsso_groups is not None:
             pulumi.set(__self__, "fsso_groups", fsso_groups)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if global_label is not None:
             pulumi.set(__self__, "global_label", global_label)
         if groups is not None:
@@ -1654,6 +1669,15 @@ class _FirewallPolicy6State:
     @fsso_groups.setter
     def fsso_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicy6FssoGroupArgs']]]]):
         pulumi.set(self, "fsso_groups", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="globalLabel")
@@ -2265,6 +2289,7 @@ class FirewallPolicy6(pulumi.CustomResource):
                  firewall_session_dirty: Optional[pulumi.Input[str]] = None,
                  fixedport: Optional[pulumi.Input[str]] = None,
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicy6FssoGroupArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  global_label: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicy6GroupArgs']]]]] = None,
                  http_policy_redirect: Optional[pulumi.Input[str]] = None,
@@ -2386,6 +2411,7 @@ class FirewallPolicy6(pulumi.CustomResource):
                  firewall_session_dirty: Optional[pulumi.Input[str]] = None,
                  fixedport: Optional[pulumi.Input[str]] = None,
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicy6FssoGroupArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  global_label: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicy6GroupArgs']]]]] = None,
                  http_policy_redirect: Optional[pulumi.Input[str]] = None,
@@ -2491,6 +2517,7 @@ class FirewallPolicy6(pulumi.CustomResource):
             __props__.__dict__["firewall_session_dirty"] = firewall_session_dirty
             __props__.__dict__["fixedport"] = fixedport
             __props__.__dict__["fsso_groups"] = fsso_groups
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["global_label"] = global_label
             __props__.__dict__["groups"] = groups
             __props__.__dict__["http_policy_redirect"] = http_policy_redirect
@@ -2599,6 +2626,7 @@ class FirewallPolicy6(pulumi.CustomResource):
             firewall_session_dirty: Optional[pulumi.Input[str]] = None,
             fixedport: Optional[pulumi.Input[str]] = None,
             fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicy6FssoGroupArgs']]]]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             global_label: Optional[pulumi.Input[str]] = None,
             groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicy6GroupArgs']]]]] = None,
             http_policy_redirect: Optional[pulumi.Input[str]] = None,
@@ -2703,6 +2731,7 @@ class FirewallPolicy6(pulumi.CustomResource):
         __props__.__dict__["firewall_session_dirty"] = firewall_session_dirty
         __props__.__dict__["fixedport"] = fixedport
         __props__.__dict__["fsso_groups"] = fsso_groups
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["global_label"] = global_label
         __props__.__dict__["groups"] = groups
         __props__.__dict__["http_policy_redirect"] = http_policy_redirect
@@ -2908,6 +2937,11 @@ class FirewallPolicy6(pulumi.CustomResource):
     @pulumi.getter(name="fssoGroups")
     def fsso_groups(self) -> pulumi.Output[Optional[Sequence['outputs.FirewallPolicy6FssoGroup']]]:
         return pulumi.get(self, "fsso_groups")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="globalLabel")

@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -72,7 +73,7 @@ func NewCertificateLocal(ctx *pulumi.Context,
 		"scepPassword",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource CertificateLocal
 	err := ctx.RegisterResource("fortios:index/certificateLocal:CertificateLocal", name, args, &resource, opts...)
 	if err != nil {

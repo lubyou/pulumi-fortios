@@ -40,6 +40,7 @@ export class IpsSensor extends pulumi.CustomResource {
     public readonly entries!: pulumi.Output<outputs.IpsSensorEntry[] | undefined>;
     public readonly extendedLog!: pulumi.Output<string>;
     public readonly filters!: pulumi.Output<outputs.IpsSensorFilter[] | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly overrides!: pulumi.Output<outputs.IpsSensorOverride[] | undefined>;
     public readonly replacemsgGroup!: pulumi.Output<string>;
@@ -65,6 +66,7 @@ export class IpsSensor extends pulumi.CustomResource {
             resourceInputs["entries"] = state ? state.entries : undefined;
             resourceInputs["extendedLog"] = state ? state.extendedLog : undefined;
             resourceInputs["filters"] = state ? state.filters : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["overrides"] = state ? state.overrides : undefined;
             resourceInputs["replacemsgGroup"] = state ? state.replacemsgGroup : undefined;
@@ -78,6 +80,7 @@ export class IpsSensor extends pulumi.CustomResource {
             resourceInputs["entries"] = args ? args.entries : undefined;
             resourceInputs["extendedLog"] = args ? args.extendedLog : undefined;
             resourceInputs["filters"] = args ? args.filters : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["overrides"] = args ? args.overrides : undefined;
             resourceInputs["replacemsgGroup"] = args ? args.replacemsgGroup : undefined;
@@ -99,6 +102,7 @@ export interface IpsSensorState {
     entries?: pulumi.Input<pulumi.Input<inputs.IpsSensorEntry>[]>;
     extendedLog?: pulumi.Input<string>;
     filters?: pulumi.Input<pulumi.Input<inputs.IpsSensorFilter>[]>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     overrides?: pulumi.Input<pulumi.Input<inputs.IpsSensorOverride>[]>;
     replacemsgGroup?: pulumi.Input<string>;
@@ -116,6 +120,7 @@ export interface IpsSensorArgs {
     entries?: pulumi.Input<pulumi.Input<inputs.IpsSensorEntry>[]>;
     extendedLog?: pulumi.Input<string>;
     filters?: pulumi.Input<pulumi.Input<inputs.IpsSensorFilter>[]>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     overrides?: pulumi.Input<pulumi.Input<inputs.IpsSensorOverride>[]>;
     replacemsgGroup?: pulumi.Input<string>;

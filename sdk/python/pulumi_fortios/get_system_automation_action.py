@@ -22,7 +22,7 @@ class GetSystemAutomationActionResult:
     """
     A collection of values returned by GetSystemAutomationAction.
     """
-    def __init__(__self__, accprofile=None, action_type=None, alicloud_access_key_id=None, alicloud_access_key_secret=None, alicloud_account_id=None, alicloud_function=None, alicloud_function_authorization=None, alicloud_function_domain=None, alicloud_region=None, alicloud_service=None, alicloud_version=None, aws_api_id=None, aws_api_key=None, aws_api_path=None, aws_api_stage=None, aws_domain=None, aws_region=None, azure_api_key=None, azure_app=None, azure_domain=None, azure_function=None, azure_function_authorization=None, delay=None, description=None, email_body=None, email_from=None, email_subject=None, email_tos=None, execute_security_fabric=None, gcp_function=None, gcp_function_domain=None, gcp_function_region=None, gcp_project=None, headers=None, http_body=None, http_headers=None, id=None, message=None, message_type=None, method=None, minimum_interval=None, name=None, output_size=None, port=None, protocol=None, replacement_message=None, replacemsg_group=None, required=None, script=None, sdn_connectors=None, security_tag=None, system_action=None, timeout=None, tls_certificate=None, uri=None, vdomparam=None, verify_host_cert=None):
+    def __init__(__self__, accprofile=None, action_type=None, alicloud_access_key_id=None, alicloud_access_key_secret=None, alicloud_account_id=None, alicloud_function=None, alicloud_function_authorization=None, alicloud_function_domain=None, alicloud_region=None, alicloud_service=None, alicloud_version=None, aws_api_id=None, aws_api_key=None, aws_api_path=None, aws_api_stage=None, aws_domain=None, aws_region=None, azure_api_key=None, azure_app=None, azure_domain=None, azure_function=None, azure_function_authorization=None, delay=None, description=None, email_body=None, email_from=None, email_subject=None, email_tos=None, execute_security_fabric=None, forticare_email=None, gcp_function=None, gcp_function_domain=None, gcp_function_region=None, gcp_project=None, headers=None, http_body=None, http_headers=None, id=None, message=None, message_type=None, method=None, minimum_interval=None, name=None, output_size=None, port=None, protocol=None, replacement_message=None, replacemsg_group=None, required=None, script=None, sdn_connectors=None, security_tag=None, system_action=None, timeout=None, tls_certificate=None, uri=None, vdomparam=None, verify_host_cert=None):
         if accprofile and not isinstance(accprofile, str):
             raise TypeError("Expected argument 'accprofile' to be a str")
         pulumi.set(__self__, "accprofile", accprofile)
@@ -110,6 +110,9 @@ class GetSystemAutomationActionResult:
         if execute_security_fabric and not isinstance(execute_security_fabric, str):
             raise TypeError("Expected argument 'execute_security_fabric' to be a str")
         pulumi.set(__self__, "execute_security_fabric", execute_security_fabric)
+        if forticare_email and not isinstance(forticare_email, str):
+            raise TypeError("Expected argument 'forticare_email' to be a str")
+        pulumi.set(__self__, "forticare_email", forticare_email)
         if gcp_function and not isinstance(gcp_function, str):
             raise TypeError("Expected argument 'gcp_function' to be a str")
         pulumi.set(__self__, "gcp_function", gcp_function)
@@ -341,6 +344,11 @@ class GetSystemAutomationActionResult:
         return pulumi.get(self, "execute_security_fabric")
 
     @property
+    @pulumi.getter(name="forticareEmail")
+    def forticare_email(self) -> str:
+        return pulumi.get(self, "forticare_email")
+
+    @property
     @pulumi.getter(name="gcpFunction")
     def gcp_function(self) -> str:
         return pulumi.get(self, "gcp_function")
@@ -519,6 +527,7 @@ class AwaitableGetSystemAutomationActionResult(GetSystemAutomationActionResult):
             email_subject=self.email_subject,
             email_tos=self.email_tos,
             execute_security_fabric=self.execute_security_fabric,
+            forticare_email=self.forticare_email,
             gcp_function=self.gcp_function,
             gcp_function_domain=self.gcp_function_domain,
             gcp_function_region=self.gcp_function_region,
@@ -562,63 +571,64 @@ def get_system_automation_action(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemAutomationAction:GetSystemAutomationAction', __args__, opts=opts, typ=GetSystemAutomationActionResult).value
 
     return AwaitableGetSystemAutomationActionResult(
-        accprofile=__ret__.accprofile,
-        action_type=__ret__.action_type,
-        alicloud_access_key_id=__ret__.alicloud_access_key_id,
-        alicloud_access_key_secret=__ret__.alicloud_access_key_secret,
-        alicloud_account_id=__ret__.alicloud_account_id,
-        alicloud_function=__ret__.alicloud_function,
-        alicloud_function_authorization=__ret__.alicloud_function_authorization,
-        alicloud_function_domain=__ret__.alicloud_function_domain,
-        alicloud_region=__ret__.alicloud_region,
-        alicloud_service=__ret__.alicloud_service,
-        alicloud_version=__ret__.alicloud_version,
-        aws_api_id=__ret__.aws_api_id,
-        aws_api_key=__ret__.aws_api_key,
-        aws_api_path=__ret__.aws_api_path,
-        aws_api_stage=__ret__.aws_api_stage,
-        aws_domain=__ret__.aws_domain,
-        aws_region=__ret__.aws_region,
-        azure_api_key=__ret__.azure_api_key,
-        azure_app=__ret__.azure_app,
-        azure_domain=__ret__.azure_domain,
-        azure_function=__ret__.azure_function,
-        azure_function_authorization=__ret__.azure_function_authorization,
-        delay=__ret__.delay,
-        description=__ret__.description,
-        email_body=__ret__.email_body,
-        email_from=__ret__.email_from,
-        email_subject=__ret__.email_subject,
-        email_tos=__ret__.email_tos,
-        execute_security_fabric=__ret__.execute_security_fabric,
-        gcp_function=__ret__.gcp_function,
-        gcp_function_domain=__ret__.gcp_function_domain,
-        gcp_function_region=__ret__.gcp_function_region,
-        gcp_project=__ret__.gcp_project,
-        headers=__ret__.headers,
-        http_body=__ret__.http_body,
-        http_headers=__ret__.http_headers,
-        id=__ret__.id,
-        message=__ret__.message,
-        message_type=__ret__.message_type,
-        method=__ret__.method,
-        minimum_interval=__ret__.minimum_interval,
-        name=__ret__.name,
-        output_size=__ret__.output_size,
-        port=__ret__.port,
-        protocol=__ret__.protocol,
-        replacement_message=__ret__.replacement_message,
-        replacemsg_group=__ret__.replacemsg_group,
-        required=__ret__.required,
-        script=__ret__.script,
-        sdn_connectors=__ret__.sdn_connectors,
-        security_tag=__ret__.security_tag,
-        system_action=__ret__.system_action,
-        timeout=__ret__.timeout,
-        tls_certificate=__ret__.tls_certificate,
-        uri=__ret__.uri,
-        vdomparam=__ret__.vdomparam,
-        verify_host_cert=__ret__.verify_host_cert)
+        accprofile=pulumi.get(__ret__, 'accprofile'),
+        action_type=pulumi.get(__ret__, 'action_type'),
+        alicloud_access_key_id=pulumi.get(__ret__, 'alicloud_access_key_id'),
+        alicloud_access_key_secret=pulumi.get(__ret__, 'alicloud_access_key_secret'),
+        alicloud_account_id=pulumi.get(__ret__, 'alicloud_account_id'),
+        alicloud_function=pulumi.get(__ret__, 'alicloud_function'),
+        alicloud_function_authorization=pulumi.get(__ret__, 'alicloud_function_authorization'),
+        alicloud_function_domain=pulumi.get(__ret__, 'alicloud_function_domain'),
+        alicloud_region=pulumi.get(__ret__, 'alicloud_region'),
+        alicloud_service=pulumi.get(__ret__, 'alicloud_service'),
+        alicloud_version=pulumi.get(__ret__, 'alicloud_version'),
+        aws_api_id=pulumi.get(__ret__, 'aws_api_id'),
+        aws_api_key=pulumi.get(__ret__, 'aws_api_key'),
+        aws_api_path=pulumi.get(__ret__, 'aws_api_path'),
+        aws_api_stage=pulumi.get(__ret__, 'aws_api_stage'),
+        aws_domain=pulumi.get(__ret__, 'aws_domain'),
+        aws_region=pulumi.get(__ret__, 'aws_region'),
+        azure_api_key=pulumi.get(__ret__, 'azure_api_key'),
+        azure_app=pulumi.get(__ret__, 'azure_app'),
+        azure_domain=pulumi.get(__ret__, 'azure_domain'),
+        azure_function=pulumi.get(__ret__, 'azure_function'),
+        azure_function_authorization=pulumi.get(__ret__, 'azure_function_authorization'),
+        delay=pulumi.get(__ret__, 'delay'),
+        description=pulumi.get(__ret__, 'description'),
+        email_body=pulumi.get(__ret__, 'email_body'),
+        email_from=pulumi.get(__ret__, 'email_from'),
+        email_subject=pulumi.get(__ret__, 'email_subject'),
+        email_tos=pulumi.get(__ret__, 'email_tos'),
+        execute_security_fabric=pulumi.get(__ret__, 'execute_security_fabric'),
+        forticare_email=pulumi.get(__ret__, 'forticare_email'),
+        gcp_function=pulumi.get(__ret__, 'gcp_function'),
+        gcp_function_domain=pulumi.get(__ret__, 'gcp_function_domain'),
+        gcp_function_region=pulumi.get(__ret__, 'gcp_function_region'),
+        gcp_project=pulumi.get(__ret__, 'gcp_project'),
+        headers=pulumi.get(__ret__, 'headers'),
+        http_body=pulumi.get(__ret__, 'http_body'),
+        http_headers=pulumi.get(__ret__, 'http_headers'),
+        id=pulumi.get(__ret__, 'id'),
+        message=pulumi.get(__ret__, 'message'),
+        message_type=pulumi.get(__ret__, 'message_type'),
+        method=pulumi.get(__ret__, 'method'),
+        minimum_interval=pulumi.get(__ret__, 'minimum_interval'),
+        name=pulumi.get(__ret__, 'name'),
+        output_size=pulumi.get(__ret__, 'output_size'),
+        port=pulumi.get(__ret__, 'port'),
+        protocol=pulumi.get(__ret__, 'protocol'),
+        replacement_message=pulumi.get(__ret__, 'replacement_message'),
+        replacemsg_group=pulumi.get(__ret__, 'replacemsg_group'),
+        required=pulumi.get(__ret__, 'required'),
+        script=pulumi.get(__ret__, 'script'),
+        sdn_connectors=pulumi.get(__ret__, 'sdn_connectors'),
+        security_tag=pulumi.get(__ret__, 'security_tag'),
+        system_action=pulumi.get(__ret__, 'system_action'),
+        timeout=pulumi.get(__ret__, 'timeout'),
+        tls_certificate=pulumi.get(__ret__, 'tls_certificate'),
+        uri=pulumi.get(__ret__, 'uri'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'),
+        verify_host_cert=pulumi.get(__ret__, 'verify_host_cert'))
 
 
 @_utilities.lift_output_func(get_system_automation_action)

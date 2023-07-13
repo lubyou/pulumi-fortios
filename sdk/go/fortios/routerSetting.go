@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -49,7 +50,7 @@ func NewRouterSetting(ctx *pulumi.Context,
 		args = &RouterSettingArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RouterSetting
 	err := ctx.RegisterResource("fortios:index/routerSetting:RouterSetting", name, args, &resource, opts...)
 	if err != nil {

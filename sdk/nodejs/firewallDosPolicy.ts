@@ -38,6 +38,7 @@ export class FirewallDosPolicy extends pulumi.CustomResource {
     public readonly comments!: pulumi.Output<string | undefined>;
     public readonly dstaddrs!: pulumi.Output<outputs.FirewallDosPolicyDstaddr[]>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly interface!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
     public readonly policyid!: pulumi.Output<number>;
@@ -63,6 +64,7 @@ export class FirewallDosPolicy extends pulumi.CustomResource {
             resourceInputs["comments"] = state ? state.comments : undefined;
             resourceInputs["dstaddrs"] = state ? state.dstaddrs : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["policyid"] = state ? state.policyid : undefined;
@@ -85,6 +87,7 @@ export class FirewallDosPolicy extends pulumi.CustomResource {
             resourceInputs["comments"] = args ? args.comments : undefined;
             resourceInputs["dstaddrs"] = args ? args.dstaddrs : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["policyid"] = args ? args.policyid : undefined;
@@ -106,6 +109,7 @@ export interface FirewallDosPolicyState {
     comments?: pulumi.Input<string>;
     dstaddrs?: pulumi.Input<pulumi.Input<inputs.FirewallDosPolicyDstaddr>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     interface?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     policyid?: pulumi.Input<number>;
@@ -123,6 +127,7 @@ export interface FirewallDosPolicyArgs {
     comments?: pulumi.Input<string>;
     dstaddrs: pulumi.Input<pulumi.Input<inputs.FirewallDosPolicyDstaddr>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     interface: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     policyid?: pulumi.Input<number>;

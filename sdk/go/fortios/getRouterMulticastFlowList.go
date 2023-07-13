@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func GetRouterMulticastFlowList(ctx *pulumi.Context, args *GetRouterMulticastFlowListArgs, opts ...pulumi.InvokeOption) (*GetRouterMulticastFlowListResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetRouterMulticastFlowListResult
 	err := ctx.Invoke("fortios:index/getRouterMulticastFlowList:GetRouterMulticastFlowList", args, &rv, opts...)
 	if err != nil {

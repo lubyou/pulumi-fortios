@@ -43,6 +43,7 @@ export class FirewallMulticastPolicy extends pulumi.CustomResource {
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly endPort!: pulumi.Output<number>;
     public readonly fosid!: pulumi.Output<number>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly logtraffic!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
     public readonly protocol!: pulumi.Output<number>;
@@ -78,6 +79,7 @@ export class FirewallMulticastPolicy extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["endPort"] = state ? state.endPort : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["logtraffic"] = state ? state.logtraffic : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["protocol"] = state ? state.protocol : undefined;
@@ -113,6 +115,7 @@ export class FirewallMulticastPolicy extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["endPort"] = args ? args.endPort : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["logtraffic"] = args ? args.logtraffic : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["protocol"] = args ? args.protocol : undefined;
@@ -144,6 +147,7 @@ export interface FirewallMulticastPolicyState {
     dynamicSortSubtable?: pulumi.Input<string>;
     endPort?: pulumi.Input<number>;
     fosid?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     logtraffic?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     protocol?: pulumi.Input<number>;
@@ -171,6 +175,7 @@ export interface FirewallMulticastPolicyArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
     endPort?: pulumi.Input<number>;
     fosid?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     logtraffic?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     protocol?: pulumi.Input<number>;

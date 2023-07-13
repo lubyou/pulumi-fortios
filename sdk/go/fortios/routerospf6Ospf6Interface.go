@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,6 +20,7 @@ type Routerospf6Ospf6Interface struct {
 	Cost                pulumi.IntOutput                             `pulumi:"cost"`
 	DeadInterval        pulumi.IntOutput                             `pulumi:"deadInterval"`
 	DynamicSortSubtable pulumi.StringPtrOutput                       `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                       `pulumi:"getAllTables"`
 	HelloInterval       pulumi.IntOutput                             `pulumi:"helloInterval"`
 	Interface           pulumi.StringOutput                          `pulumi:"interface"`
 	IpsecAuthAlg        pulumi.StringOutput                          `pulumi:"ipsecAuthAlg"`
@@ -44,7 +46,7 @@ func NewRouterospf6Ospf6Interface(ctx *pulumi.Context,
 		args = &Routerospf6Ospf6InterfaceArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Routerospf6Ospf6Interface
 	err := ctx.RegisterResource("fortios:index/routerospf6Ospf6Interface:Routerospf6Ospf6Interface", name, args, &resource, opts...)
 	if err != nil {
@@ -73,6 +75,7 @@ type routerospf6Ospf6InterfaceState struct {
 	Cost                *int                                `pulumi:"cost"`
 	DeadInterval        *int                                `pulumi:"deadInterval"`
 	DynamicSortSubtable *string                             `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                             `pulumi:"getAllTables"`
 	HelloInterval       *int                                `pulumi:"helloInterval"`
 	Interface           *string                             `pulumi:"interface"`
 	IpsecAuthAlg        *string                             `pulumi:"ipsecAuthAlg"`
@@ -98,6 +101,7 @@ type Routerospf6Ospf6InterfaceState struct {
 	Cost                pulumi.IntPtrInput
 	DeadInterval        pulumi.IntPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	HelloInterval       pulumi.IntPtrInput
 	Interface           pulumi.StringPtrInput
 	IpsecAuthAlg        pulumi.StringPtrInput
@@ -127,6 +131,7 @@ type routerospf6Ospf6InterfaceArgs struct {
 	Cost                *int                                `pulumi:"cost"`
 	DeadInterval        *int                                `pulumi:"deadInterval"`
 	DynamicSortSubtable *string                             `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                             `pulumi:"getAllTables"`
 	HelloInterval       *int                                `pulumi:"helloInterval"`
 	Interface           *string                             `pulumi:"interface"`
 	IpsecAuthAlg        *string                             `pulumi:"ipsecAuthAlg"`
@@ -153,6 +158,7 @@ type Routerospf6Ospf6InterfaceArgs struct {
 	Cost                pulumi.IntPtrInput
 	DeadInterval        pulumi.IntPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	HelloInterval       pulumi.IntPtrInput
 	Interface           pulumi.StringPtrInput
 	IpsecAuthAlg        pulumi.StringPtrInput
@@ -280,6 +286,10 @@ func (o Routerospf6Ospf6InterfaceOutput) DeadInterval() pulumi.IntOutput {
 
 func (o Routerospf6Ospf6InterfaceOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Routerospf6Ospf6Interface) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o Routerospf6Ospf6InterfaceOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Routerospf6Ospf6Interface) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o Routerospf6Ospf6InterfaceOutput) HelloInterval() pulumi.IntOutput {

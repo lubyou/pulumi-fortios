@@ -26,6 +26,7 @@ class ReportLayoutArgs:
                  email_recipients: Optional[pulumi.Input[str]] = None,
                  email_send: Optional[pulumi.Input[str]] = None,
                  format: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  max_pdf_report: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[str]] = None,
@@ -57,6 +58,8 @@ class ReportLayoutArgs:
             pulumi.set(__self__, "email_send", email_send)
         if format is not None:
             pulumi.set(__self__, "format", format)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if max_pdf_report is not None:
             pulumi.set(__self__, "max_pdf_report", max_pdf_report)
         if name is not None:
@@ -167,6 +170,15 @@ class ReportLayoutArgs:
         pulumi.set(self, "format", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="maxPdfReport")
     def max_pdf_report(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "max_pdf_report")
@@ -260,6 +272,7 @@ class _ReportLayoutState:
                  email_recipients: Optional[pulumi.Input[str]] = None,
                  email_send: Optional[pulumi.Input[str]] = None,
                  format: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  max_pdf_report: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[str]] = None,
@@ -291,6 +304,8 @@ class _ReportLayoutState:
             pulumi.set(__self__, "email_send", email_send)
         if format is not None:
             pulumi.set(__self__, "format", format)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if max_pdf_report is not None:
             pulumi.set(__self__, "max_pdf_report", max_pdf_report)
         if name is not None:
@@ -392,6 +407,15 @@ class _ReportLayoutState:
     @format.setter
     def format(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "format", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="maxPdfReport")
@@ -498,6 +522,7 @@ class ReportLayout(pulumi.CustomResource):
                  email_recipients: Optional[pulumi.Input[str]] = None,
                  email_send: Optional[pulumi.Input[str]] = None,
                  format: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  max_pdf_report: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[str]] = None,
@@ -546,6 +571,7 @@ class ReportLayout(pulumi.CustomResource):
                  email_recipients: Optional[pulumi.Input[str]] = None,
                  email_send: Optional[pulumi.Input[str]] = None,
                  format: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  max_pdf_report: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  options: Optional[pulumi.Input[str]] = None,
@@ -574,6 +600,7 @@ class ReportLayout(pulumi.CustomResource):
             __props__.__dict__["email_recipients"] = email_recipients
             __props__.__dict__["email_send"] = email_send
             __props__.__dict__["format"] = format
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["max_pdf_report"] = max_pdf_report
             __props__.__dict__["name"] = name
             __props__.__dict__["options"] = options
@@ -605,6 +632,7 @@ class ReportLayout(pulumi.CustomResource):
             email_recipients: Optional[pulumi.Input[str]] = None,
             email_send: Optional[pulumi.Input[str]] = None,
             format: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             max_pdf_report: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             options: Optional[pulumi.Input[str]] = None,
@@ -636,6 +664,7 @@ class ReportLayout(pulumi.CustomResource):
         __props__.__dict__["email_recipients"] = email_recipients
         __props__.__dict__["email_send"] = email_send
         __props__.__dict__["format"] = format
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["max_pdf_report"] = max_pdf_report
         __props__.__dict__["name"] = name
         __props__.__dict__["options"] = options
@@ -692,6 +721,11 @@ class ReportLayout(pulumi.CustomResource):
     @pulumi.getter
     def format(self) -> pulumi.Output[str]:
         return pulumi.get(self, "format")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="maxPdfReport")

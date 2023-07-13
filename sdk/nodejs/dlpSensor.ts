@@ -44,6 +44,7 @@ export class DlpSensor extends pulumi.CustomResource {
     public readonly filters!: pulumi.Output<outputs.DlpSensorFilter[] | undefined>;
     public readonly flowBased!: pulumi.Output<string>;
     public readonly fullArchiveProto!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly matchType!: pulumi.Output<string>;
     public readonly nacQuarLog!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
@@ -75,6 +76,7 @@ export class DlpSensor extends pulumi.CustomResource {
             resourceInputs["filters"] = state ? state.filters : undefined;
             resourceInputs["flowBased"] = state ? state.flowBased : undefined;
             resourceInputs["fullArchiveProto"] = state ? state.fullArchiveProto : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["matchType"] = state ? state.matchType : undefined;
             resourceInputs["nacQuarLog"] = state ? state.nacQuarLog : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -94,6 +96,7 @@ export class DlpSensor extends pulumi.CustomResource {
             resourceInputs["filters"] = args ? args.filters : undefined;
             resourceInputs["flowBased"] = args ? args.flowBased : undefined;
             resourceInputs["fullArchiveProto"] = args ? args.fullArchiveProto : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["matchType"] = args ? args.matchType : undefined;
             resourceInputs["nacQuarLog"] = args ? args.nacQuarLog : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -121,6 +124,7 @@ export interface DlpSensorState {
     filters?: pulumi.Input<pulumi.Input<inputs.DlpSensorFilter>[]>;
     flowBased?: pulumi.Input<string>;
     fullArchiveProto?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     matchType?: pulumi.Input<string>;
     nacQuarLog?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
@@ -144,6 +148,7 @@ export interface DlpSensorArgs {
     filters?: pulumi.Input<pulumi.Input<inputs.DlpSensorFilter>[]>;
     flowBased?: pulumi.Input<string>;
     fullArchiveProto?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     matchType?: pulumi.Input<string>;
     nacQuarLog?: pulumi.Input<string>;
     name?: pulumi.Input<string>;

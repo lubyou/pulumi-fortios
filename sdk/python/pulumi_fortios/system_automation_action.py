@@ -46,10 +46,12 @@ class SystemAutomationActionArgs:
                  email_subject: Optional[pulumi.Input[str]] = None,
                  email_tos: Optional[pulumi.Input[Sequence[pulumi.Input['SystemAutomationActionEmailToArgs']]]] = None,
                  execute_security_fabric: Optional[pulumi.Input[str]] = None,
+                 forticare_email: Optional[pulumi.Input[str]] = None,
                  gcp_function: Optional[pulumi.Input[str]] = None,
                  gcp_function_domain: Optional[pulumi.Input[str]] = None,
                  gcp_function_region: Optional[pulumi.Input[str]] = None,
                  gcp_project: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input['SystemAutomationActionHeaderArgs']]]] = None,
                  http_body: Optional[pulumi.Input[str]] = None,
                  http_headers: Optional[pulumi.Input[Sequence[pulumi.Input['SystemAutomationActionHttpHeaderArgs']]]] = None,
@@ -136,6 +138,8 @@ class SystemAutomationActionArgs:
             pulumi.set(__self__, "email_tos", email_tos)
         if execute_security_fabric is not None:
             pulumi.set(__self__, "execute_security_fabric", execute_security_fabric)
+        if forticare_email is not None:
+            pulumi.set(__self__, "forticare_email", forticare_email)
         if gcp_function is not None:
             pulumi.set(__self__, "gcp_function", gcp_function)
         if gcp_function_domain is not None:
@@ -144,6 +148,8 @@ class SystemAutomationActionArgs:
             pulumi.set(__self__, "gcp_function_region", gcp_function_region)
         if gcp_project is not None:
             pulumi.set(__self__, "gcp_project", gcp_project)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if headers is not None:
             pulumi.set(__self__, "headers", headers)
         if http_body is not None:
@@ -462,6 +468,15 @@ class SystemAutomationActionArgs:
         pulumi.set(self, "execute_security_fabric", value)
 
     @property
+    @pulumi.getter(name="forticareEmail")
+    def forticare_email(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "forticare_email")
+
+    @forticare_email.setter
+    def forticare_email(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "forticare_email", value)
+
+    @property
     @pulumi.getter(name="gcpFunction")
     def gcp_function(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "gcp_function")
@@ -496,6 +511,15 @@ class SystemAutomationActionArgs:
     @gcp_project.setter
     def gcp_project(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gcp_project", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -738,10 +762,12 @@ class _SystemAutomationActionState:
                  email_subject: Optional[pulumi.Input[str]] = None,
                  email_tos: Optional[pulumi.Input[Sequence[pulumi.Input['SystemAutomationActionEmailToArgs']]]] = None,
                  execute_security_fabric: Optional[pulumi.Input[str]] = None,
+                 forticare_email: Optional[pulumi.Input[str]] = None,
                  gcp_function: Optional[pulumi.Input[str]] = None,
                  gcp_function_domain: Optional[pulumi.Input[str]] = None,
                  gcp_function_region: Optional[pulumi.Input[str]] = None,
                  gcp_project: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input['SystemAutomationActionHeaderArgs']]]] = None,
                  http_body: Optional[pulumi.Input[str]] = None,
                  http_headers: Optional[pulumi.Input[Sequence[pulumi.Input['SystemAutomationActionHttpHeaderArgs']]]] = None,
@@ -828,6 +854,8 @@ class _SystemAutomationActionState:
             pulumi.set(__self__, "email_tos", email_tos)
         if execute_security_fabric is not None:
             pulumi.set(__self__, "execute_security_fabric", execute_security_fabric)
+        if forticare_email is not None:
+            pulumi.set(__self__, "forticare_email", forticare_email)
         if gcp_function is not None:
             pulumi.set(__self__, "gcp_function", gcp_function)
         if gcp_function_domain is not None:
@@ -836,6 +864,8 @@ class _SystemAutomationActionState:
             pulumi.set(__self__, "gcp_function_region", gcp_function_region)
         if gcp_project is not None:
             pulumi.set(__self__, "gcp_project", gcp_project)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if headers is not None:
             pulumi.set(__self__, "headers", headers)
         if http_body is not None:
@@ -1154,6 +1184,15 @@ class _SystemAutomationActionState:
         pulumi.set(self, "execute_security_fabric", value)
 
     @property
+    @pulumi.getter(name="forticareEmail")
+    def forticare_email(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "forticare_email")
+
+    @forticare_email.setter
+    def forticare_email(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "forticare_email", value)
+
+    @property
     @pulumi.getter(name="gcpFunction")
     def gcp_function(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "gcp_function")
@@ -1188,6 +1227,15 @@ class _SystemAutomationActionState:
     @gcp_project.setter
     def gcp_project(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gcp_project", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -1432,10 +1480,12 @@ class SystemAutomationAction(pulumi.CustomResource):
                  email_subject: Optional[pulumi.Input[str]] = None,
                  email_tos: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationActionEmailToArgs']]]]] = None,
                  execute_security_fabric: Optional[pulumi.Input[str]] = None,
+                 forticare_email: Optional[pulumi.Input[str]] = None,
                  gcp_function: Optional[pulumi.Input[str]] = None,
                  gcp_function_domain: Optional[pulumi.Input[str]] = None,
                  gcp_function_region: Optional[pulumi.Input[str]] = None,
                  gcp_project: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationActionHeaderArgs']]]]] = None,
                  http_body: Optional[pulumi.Input[str]] = None,
                  http_headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationActionHttpHeaderArgs']]]]] = None,
@@ -1518,10 +1568,12 @@ class SystemAutomationAction(pulumi.CustomResource):
                  email_subject: Optional[pulumi.Input[str]] = None,
                  email_tos: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationActionEmailToArgs']]]]] = None,
                  execute_security_fabric: Optional[pulumi.Input[str]] = None,
+                 forticare_email: Optional[pulumi.Input[str]] = None,
                  gcp_function: Optional[pulumi.Input[str]] = None,
                  gcp_function_domain: Optional[pulumi.Input[str]] = None,
                  gcp_function_region: Optional[pulumi.Input[str]] = None,
                  gcp_project: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationActionHeaderArgs']]]]] = None,
                  http_body: Optional[pulumi.Input[str]] = None,
                  http_headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationActionHttpHeaderArgs']]]]] = None,
@@ -1584,10 +1636,12 @@ class SystemAutomationAction(pulumi.CustomResource):
             __props__.__dict__["email_subject"] = email_subject
             __props__.__dict__["email_tos"] = email_tos
             __props__.__dict__["execute_security_fabric"] = execute_security_fabric
+            __props__.__dict__["forticare_email"] = forticare_email
             __props__.__dict__["gcp_function"] = gcp_function
             __props__.__dict__["gcp_function_domain"] = gcp_function_domain
             __props__.__dict__["gcp_function_region"] = gcp_function_region
             __props__.__dict__["gcp_project"] = gcp_project
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["headers"] = headers
             __props__.__dict__["http_body"] = http_body
             __props__.__dict__["http_headers"] = http_headers
@@ -1653,10 +1707,12 @@ class SystemAutomationAction(pulumi.CustomResource):
             email_subject: Optional[pulumi.Input[str]] = None,
             email_tos: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationActionEmailToArgs']]]]] = None,
             execute_security_fabric: Optional[pulumi.Input[str]] = None,
+            forticare_email: Optional[pulumi.Input[str]] = None,
             gcp_function: Optional[pulumi.Input[str]] = None,
             gcp_function_domain: Optional[pulumi.Input[str]] = None,
             gcp_function_region: Optional[pulumi.Input[str]] = None,
             gcp_project: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationActionHeaderArgs']]]]] = None,
             http_body: Optional[pulumi.Input[str]] = None,
             http_headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationActionHttpHeaderArgs']]]]] = None,
@@ -1722,10 +1778,12 @@ class SystemAutomationAction(pulumi.CustomResource):
         __props__.__dict__["email_subject"] = email_subject
         __props__.__dict__["email_tos"] = email_tos
         __props__.__dict__["execute_security_fabric"] = execute_security_fabric
+        __props__.__dict__["forticare_email"] = forticare_email
         __props__.__dict__["gcp_function"] = gcp_function
         __props__.__dict__["gcp_function_domain"] = gcp_function_domain
         __props__.__dict__["gcp_function_region"] = gcp_function_region
         __props__.__dict__["gcp_project"] = gcp_project
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["headers"] = headers
         __props__.__dict__["http_body"] = http_body
         __props__.__dict__["http_headers"] = http_headers
@@ -1902,6 +1960,11 @@ class SystemAutomationAction(pulumi.CustomResource):
         return pulumi.get(self, "execute_security_fabric")
 
     @property
+    @pulumi.getter(name="forticareEmail")
+    def forticare_email(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "forticare_email")
+
+    @property
     @pulumi.getter(name="gcpFunction")
     def gcp_function(self) -> pulumi.Output[str]:
         return pulumi.get(self, "gcp_function")
@@ -1920,6 +1983,11 @@ class SystemAutomationAction(pulumi.CustomResource):
     @pulumi.getter(name="gcpProject")
     def gcp_project(self) -> pulumi.Output[str]:
         return pulumi.get(self, "gcp_project")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

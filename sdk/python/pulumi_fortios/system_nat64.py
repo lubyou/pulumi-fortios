@@ -20,6 +20,7 @@ class SystemNat64Args:
                  always_synthesize_aaaa_record: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  generate_ipv6_fragment_header: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  nat46_force_ipv4_packet_forwarding: Optional[pulumi.Input[str]] = None,
                  secondary_prefix_status: Optional[pulumi.Input[str]] = None,
                  secondary_prefixes: Optional[pulumi.Input[Sequence[pulumi.Input['SystemNat64SecondaryPrefixArgs']]]] = None,
@@ -35,6 +36,8 @@ class SystemNat64Args:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if generate_ipv6_fragment_header is not None:
             pulumi.set(__self__, "generate_ipv6_fragment_header", generate_ipv6_fragment_header)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if nat46_force_ipv4_packet_forwarding is not None:
             pulumi.set(__self__, "nat46_force_ipv4_packet_forwarding", nat46_force_ipv4_packet_forwarding)
         if secondary_prefix_status is not None:
@@ -81,6 +84,15 @@ class SystemNat64Args:
     @generate_ipv6_fragment_header.setter
     def generate_ipv6_fragment_header(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "generate_ipv6_fragment_header", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="nat46ForceIpv4PacketForwarding")
@@ -134,6 +146,7 @@ class _SystemNat64State:
                  always_synthesize_aaaa_record: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  generate_ipv6_fragment_header: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  nat46_force_ipv4_packet_forwarding: Optional[pulumi.Input[str]] = None,
                  nat64_prefix: Optional[pulumi.Input[str]] = None,
                  secondary_prefix_status: Optional[pulumi.Input[str]] = None,
@@ -149,6 +162,8 @@ class _SystemNat64State:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if generate_ipv6_fragment_header is not None:
             pulumi.set(__self__, "generate_ipv6_fragment_header", generate_ipv6_fragment_header)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if nat46_force_ipv4_packet_forwarding is not None:
             pulumi.set(__self__, "nat46_force_ipv4_packet_forwarding", nat46_force_ipv4_packet_forwarding)
         if nat64_prefix is not None:
@@ -188,6 +203,15 @@ class _SystemNat64State:
     @generate_ipv6_fragment_header.setter
     def generate_ipv6_fragment_header(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "generate_ipv6_fragment_header", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="nat46ForceIpv4PacketForwarding")
@@ -252,6 +276,7 @@ class SystemNat64(pulumi.CustomResource):
                  always_synthesize_aaaa_record: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  generate_ipv6_fragment_header: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  nat46_force_ipv4_packet_forwarding: Optional[pulumi.Input[str]] = None,
                  nat64_prefix: Optional[pulumi.Input[str]] = None,
                  secondary_prefix_status: Optional[pulumi.Input[str]] = None,
@@ -290,6 +315,7 @@ class SystemNat64(pulumi.CustomResource):
                  always_synthesize_aaaa_record: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  generate_ipv6_fragment_header: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  nat46_force_ipv4_packet_forwarding: Optional[pulumi.Input[str]] = None,
                  nat64_prefix: Optional[pulumi.Input[str]] = None,
                  secondary_prefix_status: Optional[pulumi.Input[str]] = None,
@@ -308,6 +334,7 @@ class SystemNat64(pulumi.CustomResource):
             __props__.__dict__["always_synthesize_aaaa_record"] = always_synthesize_aaaa_record
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["generate_ipv6_fragment_header"] = generate_ipv6_fragment_header
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["nat46_force_ipv4_packet_forwarding"] = nat46_force_ipv4_packet_forwarding
             if nat64_prefix is None and not opts.urn:
                 raise TypeError("Missing required property 'nat64_prefix'")
@@ -329,6 +356,7 @@ class SystemNat64(pulumi.CustomResource):
             always_synthesize_aaaa_record: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             generate_ipv6_fragment_header: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             nat46_force_ipv4_packet_forwarding: Optional[pulumi.Input[str]] = None,
             nat64_prefix: Optional[pulumi.Input[str]] = None,
             secondary_prefix_status: Optional[pulumi.Input[str]] = None,
@@ -350,6 +378,7 @@ class SystemNat64(pulumi.CustomResource):
         __props__.__dict__["always_synthesize_aaaa_record"] = always_synthesize_aaaa_record
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["generate_ipv6_fragment_header"] = generate_ipv6_fragment_header
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["nat46_force_ipv4_packet_forwarding"] = nat46_force_ipv4_packet_forwarding
         __props__.__dict__["nat64_prefix"] = nat64_prefix
         __props__.__dict__["secondary_prefix_status"] = secondary_prefix_status
@@ -372,6 +401,11 @@ class SystemNat64(pulumi.CustomResource):
     @pulumi.getter(name="generateIpv6FragmentHeader")
     def generate_ipv6_fragment_header(self) -> pulumi.Output[str]:
         return pulumi.get(self, "generate_ipv6_fragment_header")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="nat46ForceIpv4PacketForwarding")

@@ -36,6 +36,7 @@ export class SystemClusterSync extends pulumi.CustomResource {
 
     public readonly downIntfsBeforeSessSyncs!: pulumi.Output<outputs.SystemClusterSyncDownIntfsBeforeSessSync[] | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly hbInterval!: pulumi.Output<number>;
     public readonly hbLostThreshold!: pulumi.Output<number>;
     public readonly ikeHeartbeatInterval!: pulumi.Output<number>;
@@ -66,6 +67,7 @@ export class SystemClusterSync extends pulumi.CustomResource {
             const state = argsOrState as SystemClusterSyncState | undefined;
             resourceInputs["downIntfsBeforeSessSyncs"] = state ? state.downIntfsBeforeSessSyncs : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["hbInterval"] = state ? state.hbInterval : undefined;
             resourceInputs["hbLostThreshold"] = state ? state.hbLostThreshold : undefined;
             resourceInputs["ikeHeartbeatInterval"] = state ? state.ikeHeartbeatInterval : undefined;
@@ -84,6 +86,7 @@ export class SystemClusterSync extends pulumi.CustomResource {
             const args = argsOrState as SystemClusterSyncArgs | undefined;
             resourceInputs["downIntfsBeforeSessSyncs"] = args ? args.downIntfsBeforeSessSyncs : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["hbInterval"] = args ? args.hbInterval : undefined;
             resourceInputs["hbLostThreshold"] = args ? args.hbLostThreshold : undefined;
             resourceInputs["ikeHeartbeatInterval"] = args ? args.ikeHeartbeatInterval : undefined;
@@ -110,6 +113,7 @@ export class SystemClusterSync extends pulumi.CustomResource {
 export interface SystemClusterSyncState {
     downIntfsBeforeSessSyncs?: pulumi.Input<pulumi.Input<inputs.SystemClusterSyncDownIntfsBeforeSessSync>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     hbInterval?: pulumi.Input<number>;
     hbLostThreshold?: pulumi.Input<number>;
     ikeHeartbeatInterval?: pulumi.Input<number>;
@@ -132,6 +136,7 @@ export interface SystemClusterSyncState {
 export interface SystemClusterSyncArgs {
     downIntfsBeforeSessSyncs?: pulumi.Input<pulumi.Input<inputs.SystemClusterSyncDownIntfsBeforeSessSync>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     hbInterval?: pulumi.Input<number>;
     hbLostThreshold?: pulumi.Input<number>;
     ikeHeartbeatInterval?: pulumi.Input<number>;

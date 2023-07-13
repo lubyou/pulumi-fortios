@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,6 +16,7 @@ type FirewallDecryptedTrafficMirror struct {
 
 	Dstmac              pulumi.StringOutput                                `pulumi:"dstmac"`
 	DynamicSortSubtable pulumi.StringPtrOutput                             `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                             `pulumi:"getAllTables"`
 	Interfaces          FirewallDecryptedTrafficMirrorInterfaceArrayOutput `pulumi:"interfaces"`
 	Name                pulumi.StringOutput                                `pulumi:"name"`
 	TrafficSource       pulumi.StringOutput                                `pulumi:"trafficSource"`
@@ -29,7 +31,7 @@ func NewFirewallDecryptedTrafficMirror(ctx *pulumi.Context,
 		args = &FirewallDecryptedTrafficMirrorArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallDecryptedTrafficMirror
 	err := ctx.RegisterResource("fortios:index/firewallDecryptedTrafficMirror:FirewallDecryptedTrafficMirror", name, args, &resource, opts...)
 	if err != nil {
@@ -54,6 +56,7 @@ func GetFirewallDecryptedTrafficMirror(ctx *pulumi.Context,
 type firewallDecryptedTrafficMirrorState struct {
 	Dstmac              *string                                   `pulumi:"dstmac"`
 	DynamicSortSubtable *string                                   `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                                   `pulumi:"getAllTables"`
 	Interfaces          []FirewallDecryptedTrafficMirrorInterface `pulumi:"interfaces"`
 	Name                *string                                   `pulumi:"name"`
 	TrafficSource       *string                                   `pulumi:"trafficSource"`
@@ -64,6 +67,7 @@ type firewallDecryptedTrafficMirrorState struct {
 type FirewallDecryptedTrafficMirrorState struct {
 	Dstmac              pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Interfaces          FirewallDecryptedTrafficMirrorInterfaceArrayInput
 	Name                pulumi.StringPtrInput
 	TrafficSource       pulumi.StringPtrInput
@@ -78,6 +82,7 @@ func (FirewallDecryptedTrafficMirrorState) ElementType() reflect.Type {
 type firewallDecryptedTrafficMirrorArgs struct {
 	Dstmac              *string                                   `pulumi:"dstmac"`
 	DynamicSortSubtable *string                                   `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                                   `pulumi:"getAllTables"`
 	Interfaces          []FirewallDecryptedTrafficMirrorInterface `pulumi:"interfaces"`
 	Name                *string                                   `pulumi:"name"`
 	TrafficSource       *string                                   `pulumi:"trafficSource"`
@@ -89,6 +94,7 @@ type firewallDecryptedTrafficMirrorArgs struct {
 type FirewallDecryptedTrafficMirrorArgs struct {
 	Dstmac              pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Interfaces          FirewallDecryptedTrafficMirrorInterfaceArrayInput
 	Name                pulumi.StringPtrInput
 	TrafficSource       pulumi.StringPtrInput
@@ -189,6 +195,10 @@ func (o FirewallDecryptedTrafficMirrorOutput) Dstmac() pulumi.StringOutput {
 
 func (o FirewallDecryptedTrafficMirrorOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FirewallDecryptedTrafficMirror) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallDecryptedTrafficMirrorOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallDecryptedTrafficMirror) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallDecryptedTrafficMirrorOutput) Interfaces() FirewallDecryptedTrafficMirrorInterfaceArrayOutput {

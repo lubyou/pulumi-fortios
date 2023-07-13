@@ -20,6 +20,7 @@ class WirelessControllerArrpProfileArgs:
                  darrp_optimize: Optional[pulumi.Input[int]] = None,
                  darrp_optimize_schedules: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerArrpProfileDarrpOptimizeScheduleArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  include_dfs_channel: Optional[pulumi.Input[str]] = None,
                  include_weather_channel: Optional[pulumi.Input[str]] = None,
                  monitor_period: Optional[pulumi.Input[int]] = None,
@@ -51,6 +52,8 @@ class WirelessControllerArrpProfileArgs:
             pulumi.set(__self__, "darrp_optimize_schedules", darrp_optimize_schedules)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if include_dfs_channel is not None:
             pulumi.set(__self__, "include_dfs_channel", include_dfs_channel)
         if include_weather_channel is not None:
@@ -127,6 +130,15 @@ class WirelessControllerArrpProfileArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="includeDfsChannel")
@@ -316,6 +328,7 @@ class _WirelessControllerArrpProfileState:
                  darrp_optimize: Optional[pulumi.Input[int]] = None,
                  darrp_optimize_schedules: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerArrpProfileDarrpOptimizeScheduleArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  include_dfs_channel: Optional[pulumi.Input[str]] = None,
                  include_weather_channel: Optional[pulumi.Input[str]] = None,
                  monitor_period: Optional[pulumi.Input[int]] = None,
@@ -347,6 +360,8 @@ class _WirelessControllerArrpProfileState:
             pulumi.set(__self__, "darrp_optimize_schedules", darrp_optimize_schedules)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if include_dfs_channel is not None:
             pulumi.set(__self__, "include_dfs_channel", include_dfs_channel)
         if include_weather_channel is not None:
@@ -423,6 +438,15 @@ class _WirelessControllerArrpProfileState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="includeDfsChannel")
@@ -614,6 +638,7 @@ class WirelessControllerArrpProfile(pulumi.CustomResource):
                  darrp_optimize: Optional[pulumi.Input[int]] = None,
                  darrp_optimize_schedules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerArrpProfileDarrpOptimizeScheduleArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  include_dfs_channel: Optional[pulumi.Input[str]] = None,
                  include_weather_channel: Optional[pulumi.Input[str]] = None,
                  monitor_period: Optional[pulumi.Input[int]] = None,
@@ -667,6 +692,7 @@ class WirelessControllerArrpProfile(pulumi.CustomResource):
                  darrp_optimize: Optional[pulumi.Input[int]] = None,
                  darrp_optimize_schedules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerArrpProfileDarrpOptimizeScheduleArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  include_dfs_channel: Optional[pulumi.Input[str]] = None,
                  include_weather_channel: Optional[pulumi.Input[str]] = None,
                  monitor_period: Optional[pulumi.Input[int]] = None,
@@ -700,6 +726,7 @@ class WirelessControllerArrpProfile(pulumi.CustomResource):
             __props__.__dict__["darrp_optimize"] = darrp_optimize
             __props__.__dict__["darrp_optimize_schedules"] = darrp_optimize_schedules
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["include_dfs_channel"] = include_dfs_channel
             __props__.__dict__["include_weather_channel"] = include_weather_channel
             __props__.__dict__["monitor_period"] = monitor_period
@@ -734,6 +761,7 @@ class WirelessControllerArrpProfile(pulumi.CustomResource):
             darrp_optimize: Optional[pulumi.Input[int]] = None,
             darrp_optimize_schedules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerArrpProfileDarrpOptimizeScheduleArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             include_dfs_channel: Optional[pulumi.Input[str]] = None,
             include_weather_channel: Optional[pulumi.Input[str]] = None,
             monitor_period: Optional[pulumi.Input[int]] = None,
@@ -770,6 +798,7 @@ class WirelessControllerArrpProfile(pulumi.CustomResource):
         __props__.__dict__["darrp_optimize"] = darrp_optimize
         __props__.__dict__["darrp_optimize_schedules"] = darrp_optimize_schedules
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["include_dfs_channel"] = include_dfs_channel
         __props__.__dict__["include_weather_channel"] = include_weather_channel
         __props__.__dict__["monitor_period"] = monitor_period
@@ -811,6 +840,11 @@ class WirelessControllerArrpProfile(pulumi.CustomResource):
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="includeDfsChannel")

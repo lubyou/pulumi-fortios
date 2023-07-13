@@ -41,6 +41,8 @@ export interface GetFirewallAddressResult {
     readonly filter: string;
     readonly fqdn: string;
     readonly fssoGroups: outputs.GetFirewallAddressFssoGroup[];
+    readonly hwModel: string;
+    readonly hwVendor: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
@@ -54,7 +56,9 @@ export interface GetFirewallAddressResult {
     readonly objTag: string;
     readonly objType: string;
     readonly organization: string;
+    readonly os: string;
     readonly policyGroup: string;
+    readonly routeTag: number;
     readonly sdn: string;
     readonly sdnAddrType: string;
     readonly sdnTag: string;
@@ -63,6 +67,7 @@ export interface GetFirewallAddressResult {
     readonly subType: string;
     readonly subnet: string;
     readonly subnetName: string;
+    readonly swVersion: string;
     readonly tagDetectionLevel: string;
     readonly tagType: string;
     readonly taggings: outputs.GetFirewallAddressTagging[];

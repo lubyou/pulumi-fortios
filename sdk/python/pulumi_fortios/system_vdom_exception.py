@@ -19,6 +19,7 @@ class SystemVdomExceptionArgs:
                  object: pulumi.Input[str],
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  oid: Optional[pulumi.Input[int]] = None,
                  scope: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -31,6 +32,8 @@ class SystemVdomExceptionArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if oid is not None:
             pulumi.set(__self__, "oid", oid)
         if scope is not None:
@@ -66,6 +69,15 @@ class SystemVdomExceptionArgs:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -109,6 +121,7 @@ class _SystemVdomExceptionState:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  object: Optional[pulumi.Input[str]] = None,
                  oid: Optional[pulumi.Input[int]] = None,
                  scope: Optional[pulumi.Input[str]] = None,
@@ -121,6 +134,8 @@ class _SystemVdomExceptionState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if object is not None:
             pulumi.set(__self__, "object", object)
         if oid is not None:
@@ -149,6 +164,15 @@ class _SystemVdomExceptionState:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -203,6 +227,7 @@ class SystemVdomException(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  object: Optional[pulumi.Input[str]] = None,
                  oid: Optional[pulumi.Input[int]] = None,
                  scope: Optional[pulumi.Input[str]] = None,
@@ -239,6 +264,7 @@ class SystemVdomException(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  object: Optional[pulumi.Input[str]] = None,
                  oid: Optional[pulumi.Input[int]] = None,
                  scope: Optional[pulumi.Input[str]] = None,
@@ -255,6 +281,7 @@ class SystemVdomException(pulumi.CustomResource):
 
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["get_all_tables"] = get_all_tables
             if object is None and not opts.urn:
                 raise TypeError("Missing required property 'object'")
             __props__.__dict__["object"] = object
@@ -274,6 +301,7 @@ class SystemVdomException(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             object: Optional[pulumi.Input[str]] = None,
             oid: Optional[pulumi.Input[int]] = None,
             scope: Optional[pulumi.Input[str]] = None,
@@ -293,6 +321,7 @@ class SystemVdomException(pulumi.CustomResource):
 
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["object"] = object
         __props__.__dict__["oid"] = oid
         __props__.__dict__["scope"] = scope
@@ -309,6 +338,11 @@ class SystemVdomException(pulumi.CustomResource):
     @pulumi.getter
     def fosid(self) -> pulumi.Output[int]:
         return pulumi.get(self, "fosid")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

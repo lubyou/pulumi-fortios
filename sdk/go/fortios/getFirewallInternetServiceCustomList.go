@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func GetFirewallInternetServiceCustomList(ctx *pulumi.Context, args *GetFirewallInternetServiceCustomListArgs, opts ...pulumi.InvokeOption) (*GetFirewallInternetServiceCustomListResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetFirewallInternetServiceCustomListResult
 	err := ctx.Invoke("fortios:index/getFirewallInternetServiceCustomList:GetFirewallInternetServiceCustomList", args, &rv, opts...)
 	if err != nil {

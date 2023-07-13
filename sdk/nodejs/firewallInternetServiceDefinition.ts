@@ -37,6 +37,7 @@ export class FirewallInternetServiceDefinition extends pulumi.CustomResource {
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly entries!: pulumi.Output<outputs.FirewallInternetServiceDefinitionEntry[] | undefined>;
     public readonly fosid!: pulumi.Output<number>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -55,12 +56,14 @@ export class FirewallInternetServiceDefinition extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["entries"] = state ? state.entries : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallInternetServiceDefinitionArgs | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["entries"] = args ? args.entries : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -75,6 +78,7 @@ export interface FirewallInternetServiceDefinitionState {
     dynamicSortSubtable?: pulumi.Input<string>;
     entries?: pulumi.Input<pulumi.Input<inputs.FirewallInternetServiceDefinitionEntry>[]>;
     fosid?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -85,5 +89,6 @@ export interface FirewallInternetServiceDefinitionArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
     entries?: pulumi.Input<pulumi.Input<inputs.FirewallInternetServiceDefinitionEntry>[]>;
     fosid?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -17,6 +18,7 @@ type SwitchControllerVlan struct {
 	Color                      pulumi.IntOutput                                 `pulumi:"color"`
 	Comments                   pulumi.StringOutput                              `pulumi:"comments"`
 	DynamicSortSubtable        pulumi.StringPtrOutput                           `pulumi:"dynamicSortSubtable"`
+	GetAllTables               pulumi.StringPtrOutput                           `pulumi:"getAllTables"`
 	Name                       pulumi.StringOutput                              `pulumi:"name"`
 	PortalMessageOverrideGroup pulumi.StringOutput                              `pulumi:"portalMessageOverrideGroup"`
 	PortalMessageOverrides     SwitchControllerVlanPortalMessageOverridesOutput `pulumi:"portalMessageOverrides"`
@@ -36,7 +38,7 @@ func NewSwitchControllerVlan(ctx *pulumi.Context,
 		args = &SwitchControllerVlanArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SwitchControllerVlan
 	err := ctx.RegisterResource("fortios:index/switchControllerVlan:SwitchControllerVlan", name, args, &resource, opts...)
 	if err != nil {
@@ -63,6 +65,7 @@ type switchControllerVlanState struct {
 	Color                      *int                                        `pulumi:"color"`
 	Comments                   *string                                     `pulumi:"comments"`
 	DynamicSortSubtable        *string                                     `pulumi:"dynamicSortSubtable"`
+	GetAllTables               *string                                     `pulumi:"getAllTables"`
 	Name                       *string                                     `pulumi:"name"`
 	PortalMessageOverrideGroup *string                                     `pulumi:"portalMessageOverrideGroup"`
 	PortalMessageOverrides     *SwitchControllerVlanPortalMessageOverrides `pulumi:"portalMessageOverrides"`
@@ -80,6 +83,7 @@ type SwitchControllerVlanState struct {
 	Color                      pulumi.IntPtrInput
 	Comments                   pulumi.StringPtrInput
 	DynamicSortSubtable        pulumi.StringPtrInput
+	GetAllTables               pulumi.StringPtrInput
 	Name                       pulumi.StringPtrInput
 	PortalMessageOverrideGroup pulumi.StringPtrInput
 	PortalMessageOverrides     SwitchControllerVlanPortalMessageOverridesPtrInput
@@ -101,6 +105,7 @@ type switchControllerVlanArgs struct {
 	Color                      *int                                        `pulumi:"color"`
 	Comments                   *string                                     `pulumi:"comments"`
 	DynamicSortSubtable        *string                                     `pulumi:"dynamicSortSubtable"`
+	GetAllTables               *string                                     `pulumi:"getAllTables"`
 	Name                       *string                                     `pulumi:"name"`
 	PortalMessageOverrideGroup *string                                     `pulumi:"portalMessageOverrideGroup"`
 	PortalMessageOverrides     *SwitchControllerVlanPortalMessageOverrides `pulumi:"portalMessageOverrides"`
@@ -119,6 +124,7 @@ type SwitchControllerVlanArgs struct {
 	Color                      pulumi.IntPtrInput
 	Comments                   pulumi.StringPtrInput
 	DynamicSortSubtable        pulumi.StringPtrInput
+	GetAllTables               pulumi.StringPtrInput
 	Name                       pulumi.StringPtrInput
 	PortalMessageOverrideGroup pulumi.StringPtrInput
 	PortalMessageOverrides     SwitchControllerVlanPortalMessageOverridesPtrInput
@@ -232,6 +238,10 @@ func (o SwitchControllerVlanOutput) Comments() pulumi.StringOutput {
 
 func (o SwitchControllerVlanOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SwitchControllerVlan) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SwitchControllerVlanOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerVlan) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SwitchControllerVlanOutput) Name() pulumi.StringOutput {

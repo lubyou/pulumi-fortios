@@ -100,12 +100,12 @@ def get_system_fsso_polling(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemFssoPolling:GetSystemFssoPolling', __args__, opts=opts, typ=GetSystemFssoPollingResult).value
 
     return AwaitableGetSystemFssoPollingResult(
-        auth_password=__ret__.auth_password,
-        authentication=__ret__.authentication,
-        id=__ret__.id,
-        listening_port=__ret__.listening_port,
-        status=__ret__.status,
-        vdomparam=__ret__.vdomparam)
+        auth_password=pulumi.get(__ret__, 'auth_password'),
+        authentication=pulumi.get(__ret__, 'authentication'),
+        id=pulumi.get(__ret__, 'id'),
+        listening_port=pulumi.get(__ret__, 'listening_port'),
+        status=pulumi.get(__ret__, 'status'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_fsso_polling)

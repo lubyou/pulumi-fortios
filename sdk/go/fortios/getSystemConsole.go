@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemConsole(ctx *pulumi.Context, args *LookupSystemConsoleArgs, opts ...pulumi.InvokeOption) (*LookupSystemConsoleResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemConsoleResult
 	err := ctx.Invoke("fortios:index/getSystemConsole:GetSystemConsole", args, &rv, opts...)
 	if err != nil {

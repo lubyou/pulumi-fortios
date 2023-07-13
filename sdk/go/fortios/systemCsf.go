@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -25,8 +26,12 @@ type SystemCsf struct {
 	FabricDevices                SystemCsfFabricDeviceArrayOutput    `pulumi:"fabricDevices"`
 	FabricObjectUnification      pulumi.StringOutput                 `pulumi:"fabricObjectUnification"`
 	FabricWorkers                pulumi.IntOutput                    `pulumi:"fabricWorkers"`
+	FileMgmt                     pulumi.StringOutput                 `pulumi:"fileMgmt"`
+	FileQuota                    pulumi.IntOutput                    `pulumi:"fileQuota"`
+	FileQuotaWarning             pulumi.IntOutput                    `pulumi:"fileQuotaWarning"`
 	FixedKey                     pulumi.StringPtrOutput              `pulumi:"fixedKey"`
 	ForticloudAccountEnforcement pulumi.StringOutput                 `pulumi:"forticloudAccountEnforcement"`
+	GetAllTables                 pulumi.StringPtrOutput              `pulumi:"getAllTables"`
 	GroupName                    pulumi.StringOutput                 `pulumi:"groupName"`
 	GroupPassword                pulumi.StringPtrOutput              `pulumi:"groupPassword"`
 	LogUnification               pulumi.StringOutput                 `pulumi:"logUnification"`
@@ -62,7 +67,7 @@ func NewSystemCsf(ctx *pulumi.Context,
 		"groupPassword",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemCsf
 	err := ctx.RegisterResource("fortios:index/systemCsf:SystemCsf", name, args, &resource, opts...)
 	if err != nil {
@@ -96,8 +101,12 @@ type systemCsfState struct {
 	FabricDevices                []SystemCsfFabricDevice    `pulumi:"fabricDevices"`
 	FabricObjectUnification      *string                    `pulumi:"fabricObjectUnification"`
 	FabricWorkers                *int                       `pulumi:"fabricWorkers"`
+	FileMgmt                     *string                    `pulumi:"fileMgmt"`
+	FileQuota                    *int                       `pulumi:"fileQuota"`
+	FileQuotaWarning             *int                       `pulumi:"fileQuotaWarning"`
 	FixedKey                     *string                    `pulumi:"fixedKey"`
 	ForticloudAccountEnforcement *string                    `pulumi:"forticloudAccountEnforcement"`
+	GetAllTables                 *string                    `pulumi:"getAllTables"`
 	GroupName                    *string                    `pulumi:"groupName"`
 	GroupPassword                *string                    `pulumi:"groupPassword"`
 	LogUnification               *string                    `pulumi:"logUnification"`
@@ -124,8 +133,12 @@ type SystemCsfState struct {
 	FabricDevices                SystemCsfFabricDeviceArrayInput
 	FabricObjectUnification      pulumi.StringPtrInput
 	FabricWorkers                pulumi.IntPtrInput
+	FileMgmt                     pulumi.StringPtrInput
+	FileQuota                    pulumi.IntPtrInput
+	FileQuotaWarning             pulumi.IntPtrInput
 	FixedKey                     pulumi.StringPtrInput
 	ForticloudAccountEnforcement pulumi.StringPtrInput
+	GetAllTables                 pulumi.StringPtrInput
 	GroupName                    pulumi.StringPtrInput
 	GroupPassword                pulumi.StringPtrInput
 	LogUnification               pulumi.StringPtrInput
@@ -156,8 +169,12 @@ type systemCsfArgs struct {
 	FabricDevices                []SystemCsfFabricDevice    `pulumi:"fabricDevices"`
 	FabricObjectUnification      *string                    `pulumi:"fabricObjectUnification"`
 	FabricWorkers                *int                       `pulumi:"fabricWorkers"`
+	FileMgmt                     *string                    `pulumi:"fileMgmt"`
+	FileQuota                    *int                       `pulumi:"fileQuota"`
+	FileQuotaWarning             *int                       `pulumi:"fileQuotaWarning"`
 	FixedKey                     *string                    `pulumi:"fixedKey"`
 	ForticloudAccountEnforcement *string                    `pulumi:"forticloudAccountEnforcement"`
+	GetAllTables                 *string                    `pulumi:"getAllTables"`
 	GroupName                    *string                    `pulumi:"groupName"`
 	GroupPassword                *string                    `pulumi:"groupPassword"`
 	LogUnification               *string                    `pulumi:"logUnification"`
@@ -185,8 +202,12 @@ type SystemCsfArgs struct {
 	FabricDevices                SystemCsfFabricDeviceArrayInput
 	FabricObjectUnification      pulumi.StringPtrInput
 	FabricWorkers                pulumi.IntPtrInput
+	FileMgmt                     pulumi.StringPtrInput
+	FileQuota                    pulumi.IntPtrInput
+	FileQuotaWarning             pulumi.IntPtrInput
 	FixedKey                     pulumi.StringPtrInput
 	ForticloudAccountEnforcement pulumi.StringPtrInput
+	GetAllTables                 pulumi.StringPtrInput
 	GroupName                    pulumi.StringPtrInput
 	GroupPassword                pulumi.StringPtrInput
 	LogUnification               pulumi.StringPtrInput
@@ -332,12 +353,28 @@ func (o SystemCsfOutput) FabricWorkers() pulumi.IntOutput {
 	return o.ApplyT(func(v *SystemCsf) pulumi.IntOutput { return v.FabricWorkers }).(pulumi.IntOutput)
 }
 
+func (o SystemCsfOutput) FileMgmt() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemCsf) pulumi.StringOutput { return v.FileMgmt }).(pulumi.StringOutput)
+}
+
+func (o SystemCsfOutput) FileQuota() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemCsf) pulumi.IntOutput { return v.FileQuota }).(pulumi.IntOutput)
+}
+
+func (o SystemCsfOutput) FileQuotaWarning() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemCsf) pulumi.IntOutput { return v.FileQuotaWarning }).(pulumi.IntOutput)
+}
+
 func (o SystemCsfOutput) FixedKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SystemCsf) pulumi.StringPtrOutput { return v.FixedKey }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemCsfOutput) ForticloudAccountEnforcement() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemCsf) pulumi.StringOutput { return v.ForticloudAccountEnforcement }).(pulumi.StringOutput)
+}
+
+func (o SystemCsfOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemCsf) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemCsfOutput) GroupName() pulumi.StringOutput {

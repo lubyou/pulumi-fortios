@@ -38,6 +38,7 @@ export class WanoptProfile extends pulumi.CustomResource {
     public readonly cifs!: pulumi.Output<outputs.WanoptProfileCifs>;
     public readonly comments!: pulumi.Output<string | undefined>;
     public readonly ftp!: pulumi.Output<outputs.WanoptProfileFtp>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly http!: pulumi.Output<outputs.WanoptProfileHttp>;
     public readonly mapi!: pulumi.Output<outputs.WanoptProfileMapi>;
     public readonly name!: pulumi.Output<string>;
@@ -62,6 +63,7 @@ export class WanoptProfile extends pulumi.CustomResource {
             resourceInputs["cifs"] = state ? state.cifs : undefined;
             resourceInputs["comments"] = state ? state.comments : undefined;
             resourceInputs["ftp"] = state ? state.ftp : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["http"] = state ? state.http : undefined;
             resourceInputs["mapi"] = state ? state.mapi : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -74,6 +76,7 @@ export class WanoptProfile extends pulumi.CustomResource {
             resourceInputs["cifs"] = args ? args.cifs : undefined;
             resourceInputs["comments"] = args ? args.comments : undefined;
             resourceInputs["ftp"] = args ? args.ftp : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["http"] = args ? args.http : undefined;
             resourceInputs["mapi"] = args ? args.mapi : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -94,6 +97,7 @@ export interface WanoptProfileState {
     cifs?: pulumi.Input<inputs.WanoptProfileCifs>;
     comments?: pulumi.Input<string>;
     ftp?: pulumi.Input<inputs.WanoptProfileFtp>;
+    getAllTables?: pulumi.Input<string>;
     http?: pulumi.Input<inputs.WanoptProfileHttp>;
     mapi?: pulumi.Input<inputs.WanoptProfileMapi>;
     name?: pulumi.Input<string>;
@@ -110,6 +114,7 @@ export interface WanoptProfileArgs {
     cifs?: pulumi.Input<inputs.WanoptProfileCifs>;
     comments?: pulumi.Input<string>;
     ftp?: pulumi.Input<inputs.WanoptProfileFtp>;
+    getAllTables?: pulumi.Input<string>;
     http?: pulumi.Input<inputs.WanoptProfileHttp>;
     mapi?: pulumi.Input<inputs.WanoptProfileMapi>;
     name?: pulumi.Input<string>;

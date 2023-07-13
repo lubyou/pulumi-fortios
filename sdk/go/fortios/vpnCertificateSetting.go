@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -32,11 +33,17 @@ type VpnCertificateSetting struct {
 	CnAllowMulti          pulumi.StringOutput                        `pulumi:"cnAllowMulti"`
 	CnMatch               pulumi.StringOutput                        `pulumi:"cnMatch"`
 	CrlVerification       VpnCertificateSettingCrlVerificationOutput `pulumi:"crlVerification"`
+	GetAllTables          pulumi.StringPtrOutput                     `pulumi:"getAllTables"`
 	Interface             pulumi.StringOutput                        `pulumi:"interface"`
 	InterfaceSelectMethod pulumi.StringOutput                        `pulumi:"interfaceSelectMethod"`
 	OcspDefaultServer     pulumi.StringOutput                        `pulumi:"ocspDefaultServer"`
 	OcspOption            pulumi.StringOutput                        `pulumi:"ocspOption"`
 	OcspStatus            pulumi.StringOutput                        `pulumi:"ocspStatus"`
+	Proxy                 pulumi.StringOutput                        `pulumi:"proxy"`
+	ProxyPassword         pulumi.StringPtrOutput                     `pulumi:"proxyPassword"`
+	ProxyPort             pulumi.IntOutput                           `pulumi:"proxyPort"`
+	ProxyUsername         pulumi.StringOutput                        `pulumi:"proxyUsername"`
+	SourceIp              pulumi.StringOutput                        `pulumi:"sourceIp"`
 	SslMinProtoVersion    pulumi.StringOutput                        `pulumi:"sslMinProtoVersion"`
 	SslOcspSourceIp       pulumi.StringOutput                        `pulumi:"sslOcspSourceIp"`
 	StrictCrlCheck        pulumi.StringOutput                        `pulumi:"strictCrlCheck"`
@@ -71,7 +78,7 @@ func NewVpnCertificateSetting(ctx *pulumi.Context,
 	if args.CertnameRsa2048 == nil {
 		return nil, errors.New("invalid value for required argument 'CertnameRsa2048'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource VpnCertificateSetting
 	err := ctx.RegisterResource("fortios:index/vpnCertificateSetting:VpnCertificateSetting", name, args, &resource, opts...)
 	if err != nil {
@@ -112,11 +119,17 @@ type vpnCertificateSettingState struct {
 	CnAllowMulti          *string                               `pulumi:"cnAllowMulti"`
 	CnMatch               *string                               `pulumi:"cnMatch"`
 	CrlVerification       *VpnCertificateSettingCrlVerification `pulumi:"crlVerification"`
+	GetAllTables          *string                               `pulumi:"getAllTables"`
 	Interface             *string                               `pulumi:"interface"`
 	InterfaceSelectMethod *string                               `pulumi:"interfaceSelectMethod"`
 	OcspDefaultServer     *string                               `pulumi:"ocspDefaultServer"`
 	OcspOption            *string                               `pulumi:"ocspOption"`
 	OcspStatus            *string                               `pulumi:"ocspStatus"`
+	Proxy                 *string                               `pulumi:"proxy"`
+	ProxyPassword         *string                               `pulumi:"proxyPassword"`
+	ProxyPort             *int                                  `pulumi:"proxyPort"`
+	ProxyUsername         *string                               `pulumi:"proxyUsername"`
+	SourceIp              *string                               `pulumi:"sourceIp"`
 	SslMinProtoVersion    *string                               `pulumi:"sslMinProtoVersion"`
 	SslOcspSourceIp       *string                               `pulumi:"sslOcspSourceIp"`
 	StrictCrlCheck        *string                               `pulumi:"strictCrlCheck"`
@@ -145,11 +158,17 @@ type VpnCertificateSettingState struct {
 	CnAllowMulti          pulumi.StringPtrInput
 	CnMatch               pulumi.StringPtrInput
 	CrlVerification       VpnCertificateSettingCrlVerificationPtrInput
+	GetAllTables          pulumi.StringPtrInput
 	Interface             pulumi.StringPtrInput
 	InterfaceSelectMethod pulumi.StringPtrInput
 	OcspDefaultServer     pulumi.StringPtrInput
 	OcspOption            pulumi.StringPtrInput
 	OcspStatus            pulumi.StringPtrInput
+	Proxy                 pulumi.StringPtrInput
+	ProxyPassword         pulumi.StringPtrInput
+	ProxyPort             pulumi.IntPtrInput
+	ProxyUsername         pulumi.StringPtrInput
+	SourceIp              pulumi.StringPtrInput
 	SslMinProtoVersion    pulumi.StringPtrInput
 	SslOcspSourceIp       pulumi.StringPtrInput
 	StrictCrlCheck        pulumi.StringPtrInput
@@ -182,11 +201,17 @@ type vpnCertificateSettingArgs struct {
 	CnAllowMulti          *string                               `pulumi:"cnAllowMulti"`
 	CnMatch               *string                               `pulumi:"cnMatch"`
 	CrlVerification       *VpnCertificateSettingCrlVerification `pulumi:"crlVerification"`
+	GetAllTables          *string                               `pulumi:"getAllTables"`
 	Interface             *string                               `pulumi:"interface"`
 	InterfaceSelectMethod *string                               `pulumi:"interfaceSelectMethod"`
 	OcspDefaultServer     *string                               `pulumi:"ocspDefaultServer"`
 	OcspOption            *string                               `pulumi:"ocspOption"`
 	OcspStatus            *string                               `pulumi:"ocspStatus"`
+	Proxy                 *string                               `pulumi:"proxy"`
+	ProxyPassword         *string                               `pulumi:"proxyPassword"`
+	ProxyPort             *int                                  `pulumi:"proxyPort"`
+	ProxyUsername         *string                               `pulumi:"proxyUsername"`
+	SourceIp              *string                               `pulumi:"sourceIp"`
 	SslMinProtoVersion    *string                               `pulumi:"sslMinProtoVersion"`
 	SslOcspSourceIp       *string                               `pulumi:"sslOcspSourceIp"`
 	StrictCrlCheck        *string                               `pulumi:"strictCrlCheck"`
@@ -216,11 +241,17 @@ type VpnCertificateSettingArgs struct {
 	CnAllowMulti          pulumi.StringPtrInput
 	CnMatch               pulumi.StringPtrInput
 	CrlVerification       VpnCertificateSettingCrlVerificationPtrInput
+	GetAllTables          pulumi.StringPtrInput
 	Interface             pulumi.StringPtrInput
 	InterfaceSelectMethod pulumi.StringPtrInput
 	OcspDefaultServer     pulumi.StringPtrInput
 	OcspOption            pulumi.StringPtrInput
 	OcspStatus            pulumi.StringPtrInput
+	Proxy                 pulumi.StringPtrInput
+	ProxyPassword         pulumi.StringPtrInput
+	ProxyPort             pulumi.IntPtrInput
+	ProxyUsername         pulumi.StringPtrInput
+	SourceIp              pulumi.StringPtrInput
 	SslMinProtoVersion    pulumi.StringPtrInput
 	SslOcspSourceIp       pulumi.StringPtrInput
 	StrictCrlCheck        pulumi.StringPtrInput
@@ -389,6 +420,10 @@ func (o VpnCertificateSettingOutput) CrlVerification() VpnCertificateSettingCrlV
 	return o.ApplyT(func(v *VpnCertificateSetting) VpnCertificateSettingCrlVerificationOutput { return v.CrlVerification }).(VpnCertificateSettingCrlVerificationOutput)
 }
 
+func (o VpnCertificateSettingOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnCertificateSetting) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 func (o VpnCertificateSettingOutput) Interface() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpnCertificateSetting) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
 }
@@ -407,6 +442,26 @@ func (o VpnCertificateSettingOutput) OcspOption() pulumi.StringOutput {
 
 func (o VpnCertificateSettingOutput) OcspStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpnCertificateSetting) pulumi.StringOutput { return v.OcspStatus }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateSettingOutput) Proxy() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateSetting) pulumi.StringOutput { return v.Proxy }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateSettingOutput) ProxyPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnCertificateSetting) pulumi.StringPtrOutput { return v.ProxyPassword }).(pulumi.StringPtrOutput)
+}
+
+func (o VpnCertificateSettingOutput) ProxyPort() pulumi.IntOutput {
+	return o.ApplyT(func(v *VpnCertificateSetting) pulumi.IntOutput { return v.ProxyPort }).(pulumi.IntOutput)
+}
+
+func (o VpnCertificateSettingOutput) ProxyUsername() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateSetting) pulumi.StringOutput { return v.ProxyUsername }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateSettingOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateSetting) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
 }
 
 func (o VpnCertificateSettingOutput) SslMinProtoVersion() pulumi.StringOutput {

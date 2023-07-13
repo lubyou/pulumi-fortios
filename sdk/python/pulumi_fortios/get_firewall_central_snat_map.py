@@ -22,7 +22,7 @@ class GetFirewallCentralSnatMapResult:
     """
     A collection of values returned by GetFirewallCentralSnatMap.
     """
-    def __init__(__self__, comments=None, dst_addr6s=None, dst_addrs=None, dstintfs=None, id=None, nat=None, nat46=None, nat64=None, nat_ippool6s=None, nat_ippools=None, nat_port=None, orig_addr6s=None, orig_addrs=None, orig_port=None, policyid=None, protocol=None, srcintfs=None, status=None, type=None, uuid=None, vdomparam=None):
+    def __init__(__self__, comments=None, dst_addr6s=None, dst_addrs=None, dst_port=None, dstintfs=None, id=None, nat=None, nat46=None, nat64=None, nat_ippool6s=None, nat_ippools=None, nat_port=None, orig_addr6s=None, orig_addrs=None, orig_port=None, policyid=None, protocol=None, srcintfs=None, status=None, type=None, uuid=None, vdomparam=None):
         if comments and not isinstance(comments, str):
             raise TypeError("Expected argument 'comments' to be a str")
         pulumi.set(__self__, "comments", comments)
@@ -32,6 +32,9 @@ class GetFirewallCentralSnatMapResult:
         if dst_addrs and not isinstance(dst_addrs, list):
             raise TypeError("Expected argument 'dst_addrs' to be a list")
         pulumi.set(__self__, "dst_addrs", dst_addrs)
+        if dst_port and not isinstance(dst_port, str):
+            raise TypeError("Expected argument 'dst_port' to be a str")
+        pulumi.set(__self__, "dst_port", dst_port)
         if dstintfs and not isinstance(dstintfs, list):
             raise TypeError("Expected argument 'dstintfs' to be a list")
         pulumi.set(__self__, "dstintfs", dstintfs)
@@ -101,6 +104,11 @@ class GetFirewallCentralSnatMapResult:
     @pulumi.getter(name="dstAddrs")
     def dst_addrs(self) -> Sequence['outputs.GetFirewallCentralSnatMapDstAddrResult']:
         return pulumi.get(self, "dst_addrs")
+
+    @property
+    @pulumi.getter(name="dstPort")
+    def dst_port(self) -> str:
+        return pulumi.get(self, "dst_port")
 
     @property
     @pulumi.getter
@@ -205,6 +213,7 @@ class AwaitableGetFirewallCentralSnatMapResult(GetFirewallCentralSnatMapResult):
             comments=self.comments,
             dst_addr6s=self.dst_addr6s,
             dst_addrs=self.dst_addrs,
+            dst_port=self.dst_port,
             dstintfs=self.dstintfs,
             id=self.id,
             nat=self.nat,
@@ -238,27 +247,28 @@ def get_firewall_central_snat_map(policyid: Optional[int] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getFirewallCentralSnatMap:GetFirewallCentralSnatMap', __args__, opts=opts, typ=GetFirewallCentralSnatMapResult).value
 
     return AwaitableGetFirewallCentralSnatMapResult(
-        comments=__ret__.comments,
-        dst_addr6s=__ret__.dst_addr6s,
-        dst_addrs=__ret__.dst_addrs,
-        dstintfs=__ret__.dstintfs,
-        id=__ret__.id,
-        nat=__ret__.nat,
-        nat46=__ret__.nat46,
-        nat64=__ret__.nat64,
-        nat_ippool6s=__ret__.nat_ippool6s,
-        nat_ippools=__ret__.nat_ippools,
-        nat_port=__ret__.nat_port,
-        orig_addr6s=__ret__.orig_addr6s,
-        orig_addrs=__ret__.orig_addrs,
-        orig_port=__ret__.orig_port,
-        policyid=__ret__.policyid,
-        protocol=__ret__.protocol,
-        srcintfs=__ret__.srcintfs,
-        status=__ret__.status,
-        type=__ret__.type,
-        uuid=__ret__.uuid,
-        vdomparam=__ret__.vdomparam)
+        comments=pulumi.get(__ret__, 'comments'),
+        dst_addr6s=pulumi.get(__ret__, 'dst_addr6s'),
+        dst_addrs=pulumi.get(__ret__, 'dst_addrs'),
+        dst_port=pulumi.get(__ret__, 'dst_port'),
+        dstintfs=pulumi.get(__ret__, 'dstintfs'),
+        id=pulumi.get(__ret__, 'id'),
+        nat=pulumi.get(__ret__, 'nat'),
+        nat46=pulumi.get(__ret__, 'nat46'),
+        nat64=pulumi.get(__ret__, 'nat64'),
+        nat_ippool6s=pulumi.get(__ret__, 'nat_ippool6s'),
+        nat_ippools=pulumi.get(__ret__, 'nat_ippools'),
+        nat_port=pulumi.get(__ret__, 'nat_port'),
+        orig_addr6s=pulumi.get(__ret__, 'orig_addr6s'),
+        orig_addrs=pulumi.get(__ret__, 'orig_addrs'),
+        orig_port=pulumi.get(__ret__, 'orig_port'),
+        policyid=pulumi.get(__ret__, 'policyid'),
+        protocol=pulumi.get(__ret__, 'protocol'),
+        srcintfs=pulumi.get(__ret__, 'srcintfs'),
+        status=pulumi.get(__ret__, 'status'),
+        type=pulumi.get(__ret__, 'type'),
+        uuid=pulumi.get(__ret__, 'uuid'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_firewall_central_snat_map)

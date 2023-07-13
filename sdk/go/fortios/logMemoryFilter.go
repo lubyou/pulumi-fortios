@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -25,6 +26,7 @@ type LogMemoryFilter struct {
 	FilterType           pulumi.StringOutput                 `pulumi:"filterType"`
 	ForwardTraffic       pulumi.StringOutput                 `pulumi:"forwardTraffic"`
 	FreeStyles           LogMemoryFilterFreeStyleArrayOutput `pulumi:"freeStyles"`
+	GetAllTables         pulumi.StringPtrOutput              `pulumi:"getAllTables"`
 	Gtp                  pulumi.StringOutput                 `pulumi:"gtp"`
 	Ha                   pulumi.StringOutput                 `pulumi:"ha"`
 	Ipsec                pulumi.StringOutput                 `pulumi:"ipsec"`
@@ -58,7 +60,7 @@ func NewLogMemoryFilter(ctx *pulumi.Context,
 		args = &LogMemoryFilterArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource LogMemoryFilter
 	err := ctx.RegisterResource("fortios:index/logMemoryFilter:LogMemoryFilter", name, args, &resource, opts...)
 	if err != nil {
@@ -93,6 +95,7 @@ type logMemoryFilterState struct {
 	FilterType           *string                    `pulumi:"filterType"`
 	ForwardTraffic       *string                    `pulumi:"forwardTraffic"`
 	FreeStyles           []LogMemoryFilterFreeStyle `pulumi:"freeStyles"`
+	GetAllTables         *string                    `pulumi:"getAllTables"`
 	Gtp                  *string                    `pulumi:"gtp"`
 	Ha                   *string                    `pulumi:"ha"`
 	Ipsec                *string                    `pulumi:"ipsec"`
@@ -132,6 +135,7 @@ type LogMemoryFilterState struct {
 	FilterType           pulumi.StringPtrInput
 	ForwardTraffic       pulumi.StringPtrInput
 	FreeStyles           LogMemoryFilterFreeStyleArrayInput
+	GetAllTables         pulumi.StringPtrInput
 	Gtp                  pulumi.StringPtrInput
 	Ha                   pulumi.StringPtrInput
 	Ipsec                pulumi.StringPtrInput
@@ -175,6 +179,7 @@ type logMemoryFilterArgs struct {
 	FilterType           *string                    `pulumi:"filterType"`
 	ForwardTraffic       *string                    `pulumi:"forwardTraffic"`
 	FreeStyles           []LogMemoryFilterFreeStyle `pulumi:"freeStyles"`
+	GetAllTables         *string                    `pulumi:"getAllTables"`
 	Gtp                  *string                    `pulumi:"gtp"`
 	Ha                   *string                    `pulumi:"ha"`
 	Ipsec                *string                    `pulumi:"ipsec"`
@@ -215,6 +220,7 @@ type LogMemoryFilterArgs struct {
 	FilterType           pulumi.StringPtrInput
 	ForwardTraffic       pulumi.StringPtrInput
 	FreeStyles           LogMemoryFilterFreeStyleArrayInput
+	GetAllTables         pulumi.StringPtrInput
 	Gtp                  pulumi.StringPtrInput
 	Ha                   pulumi.StringPtrInput
 	Ipsec                pulumi.StringPtrInput
@@ -374,6 +380,10 @@ func (o LogMemoryFilterOutput) ForwardTraffic() pulumi.StringOutput {
 
 func (o LogMemoryFilterOutput) FreeStyles() LogMemoryFilterFreeStyleArrayOutput {
 	return o.ApplyT(func(v *LogMemoryFilter) LogMemoryFilterFreeStyleArrayOutput { return v.FreeStyles }).(LogMemoryFilterFreeStyleArrayOutput)
+}
+
+func (o LogMemoryFilterOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogMemoryFilter) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o LogMemoryFilterOutput) Gtp() pulumi.StringOutput {

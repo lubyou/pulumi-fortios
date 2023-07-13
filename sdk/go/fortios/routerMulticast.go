@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -14,6 +15,7 @@ type RouterMulticast struct {
 	pulumi.CustomResourceState
 
 	DynamicSortSubtable pulumi.StringPtrOutput              `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput              `pulumi:"getAllTables"`
 	Interfaces          RouterMulticastInterfaceArrayOutput `pulumi:"interfaces"`
 	MulticastRouting    pulumi.StringOutput                 `pulumi:"multicastRouting"`
 	PimSmGlobal         RouterMulticastPimSmGlobalOutput    `pulumi:"pimSmGlobal"`
@@ -29,7 +31,7 @@ func NewRouterMulticast(ctx *pulumi.Context,
 		args = &RouterMulticastArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RouterMulticast
 	err := ctx.RegisterResource("fortios:index/routerMulticast:RouterMulticast", name, args, &resource, opts...)
 	if err != nil {
@@ -53,6 +55,7 @@ func GetRouterMulticast(ctx *pulumi.Context,
 // Input properties used for looking up and filtering RouterMulticast resources.
 type routerMulticastState struct {
 	DynamicSortSubtable *string                     `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                     `pulumi:"getAllTables"`
 	Interfaces          []RouterMulticastInterface  `pulumi:"interfaces"`
 	MulticastRouting    *string                     `pulumi:"multicastRouting"`
 	PimSmGlobal         *RouterMulticastPimSmGlobal `pulumi:"pimSmGlobal"`
@@ -63,6 +66,7 @@ type routerMulticastState struct {
 
 type RouterMulticastState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Interfaces          RouterMulticastInterfaceArrayInput
 	MulticastRouting    pulumi.StringPtrInput
 	PimSmGlobal         RouterMulticastPimSmGlobalPtrInput
@@ -77,6 +81,7 @@ func (RouterMulticastState) ElementType() reflect.Type {
 
 type routerMulticastArgs struct {
 	DynamicSortSubtable *string                     `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                     `pulumi:"getAllTables"`
 	Interfaces          []RouterMulticastInterface  `pulumi:"interfaces"`
 	MulticastRouting    *string                     `pulumi:"multicastRouting"`
 	PimSmGlobal         *RouterMulticastPimSmGlobal `pulumi:"pimSmGlobal"`
@@ -88,6 +93,7 @@ type routerMulticastArgs struct {
 // The set of arguments for constructing a RouterMulticast resource.
 type RouterMulticastArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Interfaces          RouterMulticastInterfaceArrayInput
 	MulticastRouting    pulumi.StringPtrInput
 	PimSmGlobal         RouterMulticastPimSmGlobalPtrInput
@@ -185,6 +191,10 @@ func (o RouterMulticastOutput) ToRouterMulticastOutputWithContext(ctx context.Co
 
 func (o RouterMulticastOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RouterMulticast) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o RouterMulticastOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterMulticast) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o RouterMulticastOutput) Interfaces() RouterMulticastInterfaceArrayOutput {

@@ -103,12 +103,12 @@ def get_firewall_schedule_group(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getFirewallScheduleGroup:GetFirewallScheduleGroup', __args__, opts=opts, typ=GetFirewallScheduleGroupResult).value
 
     return AwaitableGetFirewallScheduleGroupResult(
-        color=__ret__.color,
-        fabric_object=__ret__.fabric_object,
-        id=__ret__.id,
-        members=__ret__.members,
-        name=__ret__.name,
-        vdomparam=__ret__.vdomparam)
+        color=pulumi.get(__ret__, 'color'),
+        fabric_object=pulumi.get(__ret__, 'fabric_object'),
+        id=pulumi.get(__ret__, 'id'),
+        members=pulumi.get(__ret__, 'members'),
+        name=pulumi.get(__ret__, 'name'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_firewall_schedule_group)

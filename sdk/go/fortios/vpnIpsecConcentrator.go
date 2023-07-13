@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,6 +16,7 @@ type VpnIpsecConcentrator struct {
 
 	DynamicSortSubtable pulumi.StringPtrOutput                `pulumi:"dynamicSortSubtable"`
 	Fosid               pulumi.IntOutput                      `pulumi:"fosid"`
+	GetAllTables        pulumi.StringPtrOutput                `pulumi:"getAllTables"`
 	Members             VpnIpsecConcentratorMemberArrayOutput `pulumi:"members"`
 	Name                pulumi.StringOutput                   `pulumi:"name"`
 	SrcCheck            pulumi.StringOutput                   `pulumi:"srcCheck"`
@@ -28,7 +30,7 @@ func NewVpnIpsecConcentrator(ctx *pulumi.Context,
 		args = &VpnIpsecConcentratorArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource VpnIpsecConcentrator
 	err := ctx.RegisterResource("fortios:index/vpnIpsecConcentrator:VpnIpsecConcentrator", name, args, &resource, opts...)
 	if err != nil {
@@ -53,6 +55,7 @@ func GetVpnIpsecConcentrator(ctx *pulumi.Context,
 type vpnIpsecConcentratorState struct {
 	DynamicSortSubtable *string                      `pulumi:"dynamicSortSubtable"`
 	Fosid               *int                         `pulumi:"fosid"`
+	GetAllTables        *string                      `pulumi:"getAllTables"`
 	Members             []VpnIpsecConcentratorMember `pulumi:"members"`
 	Name                *string                      `pulumi:"name"`
 	SrcCheck            *string                      `pulumi:"srcCheck"`
@@ -62,6 +65,7 @@ type vpnIpsecConcentratorState struct {
 type VpnIpsecConcentratorState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	Fosid               pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Members             VpnIpsecConcentratorMemberArrayInput
 	Name                pulumi.StringPtrInput
 	SrcCheck            pulumi.StringPtrInput
@@ -75,6 +79,7 @@ func (VpnIpsecConcentratorState) ElementType() reflect.Type {
 type vpnIpsecConcentratorArgs struct {
 	DynamicSortSubtable *string                      `pulumi:"dynamicSortSubtable"`
 	Fosid               *int                         `pulumi:"fosid"`
+	GetAllTables        *string                      `pulumi:"getAllTables"`
 	Members             []VpnIpsecConcentratorMember `pulumi:"members"`
 	Name                *string                      `pulumi:"name"`
 	SrcCheck            *string                      `pulumi:"srcCheck"`
@@ -85,6 +90,7 @@ type vpnIpsecConcentratorArgs struct {
 type VpnIpsecConcentratorArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	Fosid               pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Members             VpnIpsecConcentratorMemberArrayInput
 	Name                pulumi.StringPtrInput
 	SrcCheck            pulumi.StringPtrInput
@@ -184,6 +190,10 @@ func (o VpnIpsecConcentratorOutput) DynamicSortSubtable() pulumi.StringPtrOutput
 
 func (o VpnIpsecConcentratorOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *VpnIpsecConcentrator) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o VpnIpsecConcentratorOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnIpsecConcentrator) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o VpnIpsecConcentratorOutput) Members() VpnIpsecConcentratorMemberArrayOutput {

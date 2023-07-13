@@ -20,6 +20,7 @@ class WanoptProfileArgs:
                  cifs: Optional[pulumi.Input['WanoptProfileCifsArgs']] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  ftp: Optional[pulumi.Input['WanoptProfileFtpArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  http: Optional[pulumi.Input['WanoptProfileHttpArgs']] = None,
                  mapi: Optional[pulumi.Input['WanoptProfileMapiArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -37,6 +38,8 @@ class WanoptProfileArgs:
             pulumi.set(__self__, "comments", comments)
         if ftp is not None:
             pulumi.set(__self__, "ftp", ftp)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if http is not None:
             pulumi.set(__self__, "http", http)
         if mapi is not None:
@@ -85,6 +88,15 @@ class WanoptProfileArgs:
     @ftp.setter
     def ftp(self, value: Optional[pulumi.Input['WanoptProfileFtpArgs']]):
         pulumi.set(self, "ftp", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -148,6 +160,7 @@ class _WanoptProfileState:
                  cifs: Optional[pulumi.Input['WanoptProfileCifsArgs']] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  ftp: Optional[pulumi.Input['WanoptProfileFtpArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  http: Optional[pulumi.Input['WanoptProfileHttpArgs']] = None,
                  mapi: Optional[pulumi.Input['WanoptProfileMapiArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -165,6 +178,8 @@ class _WanoptProfileState:
             pulumi.set(__self__, "comments", comments)
         if ftp is not None:
             pulumi.set(__self__, "ftp", ftp)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if http is not None:
             pulumi.set(__self__, "http", http)
         if mapi is not None:
@@ -213,6 +228,15 @@ class _WanoptProfileState:
     @ftp.setter
     def ftp(self, value: Optional[pulumi.Input['WanoptProfileFtpArgs']]):
         pulumi.set(self, "ftp", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -278,6 +302,7 @@ class WanoptProfile(pulumi.CustomResource):
                  cifs: Optional[pulumi.Input[pulumi.InputType['WanoptProfileCifsArgs']]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  ftp: Optional[pulumi.Input[pulumi.InputType['WanoptProfileFtpArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  http: Optional[pulumi.Input[pulumi.InputType['WanoptProfileHttpArgs']]] = None,
                  mapi: Optional[pulumi.Input[pulumi.InputType['WanoptProfileMapiArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -317,6 +342,7 @@ class WanoptProfile(pulumi.CustomResource):
                  cifs: Optional[pulumi.Input[pulumi.InputType['WanoptProfileCifsArgs']]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  ftp: Optional[pulumi.Input[pulumi.InputType['WanoptProfileFtpArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  http: Optional[pulumi.Input[pulumi.InputType['WanoptProfileHttpArgs']]] = None,
                  mapi: Optional[pulumi.Input[pulumi.InputType['WanoptProfileMapiArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -336,6 +362,7 @@ class WanoptProfile(pulumi.CustomResource):
             __props__.__dict__["cifs"] = cifs
             __props__.__dict__["comments"] = comments
             __props__.__dict__["ftp"] = ftp
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["http"] = http
             __props__.__dict__["mapi"] = mapi
             __props__.__dict__["name"] = name
@@ -356,6 +383,7 @@ class WanoptProfile(pulumi.CustomResource):
             cifs: Optional[pulumi.Input[pulumi.InputType['WanoptProfileCifsArgs']]] = None,
             comments: Optional[pulumi.Input[str]] = None,
             ftp: Optional[pulumi.Input[pulumi.InputType['WanoptProfileFtpArgs']]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             http: Optional[pulumi.Input[pulumi.InputType['WanoptProfileHttpArgs']]] = None,
             mapi: Optional[pulumi.Input[pulumi.InputType['WanoptProfileMapiArgs']]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -378,6 +406,7 @@ class WanoptProfile(pulumi.CustomResource):
         __props__.__dict__["cifs"] = cifs
         __props__.__dict__["comments"] = comments
         __props__.__dict__["ftp"] = ftp
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["http"] = http
         __props__.__dict__["mapi"] = mapi
         __props__.__dict__["name"] = name
@@ -405,6 +434,11 @@ class WanoptProfile(pulumi.CustomResource):
     @pulumi.getter
     def ftp(self) -> pulumi.Output['outputs.WanoptProfileFtp']:
         return pulumi.get(self, "ftp")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

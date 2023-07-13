@@ -35,6 +35,7 @@ export class DlpDataType extends pulumi.CustomResource {
     public readonly comment!: pulumi.Output<string | undefined>;
     public readonly lookAhead!: pulumi.Output<number>;
     public readonly lookBack!: pulumi.Output<number>;
+    public readonly matchAround!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
     public readonly pattern!: pulumi.Output<string>;
     public readonly transform!: pulumi.Output<string>;
@@ -58,6 +59,7 @@ export class DlpDataType extends pulumi.CustomResource {
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["lookAhead"] = state ? state.lookAhead : undefined;
             resourceInputs["lookBack"] = state ? state.lookBack : undefined;
+            resourceInputs["matchAround"] = state ? state.matchAround : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["pattern"] = state ? state.pattern : undefined;
             resourceInputs["transform"] = state ? state.transform : undefined;
@@ -69,6 +71,7 @@ export class DlpDataType extends pulumi.CustomResource {
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["lookAhead"] = args ? args.lookAhead : undefined;
             resourceInputs["lookBack"] = args ? args.lookBack : undefined;
+            resourceInputs["matchAround"] = args ? args.matchAround : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["pattern"] = args ? args.pattern : undefined;
             resourceInputs["transform"] = args ? args.transform : undefined;
@@ -88,6 +91,7 @@ export interface DlpDataTypeState {
     comment?: pulumi.Input<string>;
     lookAhead?: pulumi.Input<number>;
     lookBack?: pulumi.Input<number>;
+    matchAround?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     pattern?: pulumi.Input<string>;
     transform?: pulumi.Input<string>;
@@ -103,6 +107,7 @@ export interface DlpDataTypeArgs {
     comment?: pulumi.Input<string>;
     lookAhead?: pulumi.Input<number>;
     lookBack?: pulumi.Input<number>;
+    matchAround?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     pattern?: pulumi.Input<string>;
     transform?: pulumi.Input<string>;

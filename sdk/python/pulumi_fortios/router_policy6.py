@@ -25,6 +25,7 @@ class RouterPolicy6Args:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  end_port: Optional[pulumi.Input[int]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  input_device_negate: Optional[pulumi.Input[str]] = None,
                  internet_service_customs: Optional[pulumi.Input[Sequence[pulumi.Input['RouterPolicy6InternetServiceCustomArgs']]]] = None,
                  internet_service_ids: Optional[pulumi.Input[Sequence[pulumi.Input['RouterPolicy6InternetServiceIdArgs']]]] = None,
@@ -59,6 +60,8 @@ class RouterPolicy6Args:
             pulumi.set(__self__, "end_port", end_port)
         if gateway is not None:
             pulumi.set(__self__, "gateway", gateway)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if input_device_negate is not None:
             pulumi.set(__self__, "input_device_negate", input_device_negate)
         if internet_service_customs is not None:
@@ -168,6 +171,15 @@ class RouterPolicy6Args:
     @gateway.setter
     def gateway(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gateway", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="inputDeviceNegate")
@@ -307,6 +319,7 @@ class _RouterPolicy6State:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  end_port: Optional[pulumi.Input[int]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  input_device: Optional[pulumi.Input[str]] = None,
                  input_device_negate: Optional[pulumi.Input[str]] = None,
                  internet_service_customs: Optional[pulumi.Input[Sequence[pulumi.Input['RouterPolicy6InternetServiceCustomArgs']]]] = None,
@@ -341,6 +354,8 @@ class _RouterPolicy6State:
             pulumi.set(__self__, "end_port", end_port)
         if gateway is not None:
             pulumi.set(__self__, "gateway", gateway)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if input_device is not None:
             pulumi.set(__self__, "input_device", input_device)
         if input_device_negate is not None:
@@ -443,6 +458,15 @@ class _RouterPolicy6State:
     @gateway.setter
     def gateway(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gateway", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="inputDevice")
@@ -593,6 +617,7 @@ class RouterPolicy6(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  end_port: Optional[pulumi.Input[int]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  input_device: Optional[pulumi.Input[str]] = None,
                  input_device_negate: Optional[pulumi.Input[str]] = None,
                  internet_service_customs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterPolicy6InternetServiceCustomArgs']]]]] = None,
@@ -645,6 +670,7 @@ class RouterPolicy6(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  end_port: Optional[pulumi.Input[int]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  input_device: Optional[pulumi.Input[str]] = None,
                  input_device_negate: Optional[pulumi.Input[str]] = None,
                  internet_service_customs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterPolicy6InternetServiceCustomArgs']]]]] = None,
@@ -677,6 +703,7 @@ class RouterPolicy6(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["end_port"] = end_port
             __props__.__dict__["gateway"] = gateway
+            __props__.__dict__["get_all_tables"] = get_all_tables
             if input_device is None and not opts.urn:
                 raise TypeError("Missing required property 'input_device'")
             __props__.__dict__["input_device"] = input_device
@@ -712,6 +739,7 @@ class RouterPolicy6(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             end_port: Optional[pulumi.Input[int]] = None,
             gateway: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             input_device: Optional[pulumi.Input[str]] = None,
             input_device_negate: Optional[pulumi.Input[str]] = None,
             internet_service_customs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterPolicy6InternetServiceCustomArgs']]]]] = None,
@@ -747,6 +775,7 @@ class RouterPolicy6(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["end_port"] = end_port
         __props__.__dict__["gateway"] = gateway
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["input_device"] = input_device
         __props__.__dict__["input_device_negate"] = input_device_negate
         __props__.__dict__["internet_service_customs"] = internet_service_customs
@@ -803,6 +832,11 @@ class RouterPolicy6(pulumi.CustomResource):
     @pulumi.getter
     def gateway(self) -> pulumi.Output[str]:
         return pulumi.get(self, "gateway")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="inputDevice")

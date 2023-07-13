@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -17,6 +18,7 @@ type SystemSnmpUser struct {
 	AuthPwd             pulumi.StringPtrOutput        `pulumi:"authPwd"`
 	DynamicSortSubtable pulumi.StringPtrOutput        `pulumi:"dynamicSortSubtable"`
 	Events              pulumi.StringOutput           `pulumi:"events"`
+	GetAllTables        pulumi.StringPtrOutput        `pulumi:"getAllTables"`
 	HaDirect            pulumi.StringOutput           `pulumi:"haDirect"`
 	MibView             pulumi.StringOutput           `pulumi:"mibView"`
 	Name                pulumi.StringOutput           `pulumi:"name"`
@@ -55,7 +57,7 @@ func NewSystemSnmpUser(ctx *pulumi.Context,
 		"privPwd",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemSnmpUser
 	err := ctx.RegisterResource("fortios:index/systemSnmpUser:SystemSnmpUser", name, args, &resource, opts...)
 	if err != nil {
@@ -82,6 +84,7 @@ type systemSnmpUserState struct {
 	AuthPwd             *string              `pulumi:"authPwd"`
 	DynamicSortSubtable *string              `pulumi:"dynamicSortSubtable"`
 	Events              *string              `pulumi:"events"`
+	GetAllTables        *string              `pulumi:"getAllTables"`
 	HaDirect            *string              `pulumi:"haDirect"`
 	MibView             *string              `pulumi:"mibView"`
 	Name                *string              `pulumi:"name"`
@@ -107,6 +110,7 @@ type SystemSnmpUserState struct {
 	AuthPwd             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	Events              pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	HaDirect            pulumi.StringPtrInput
 	MibView             pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
@@ -136,6 +140,7 @@ type systemSnmpUserArgs struct {
 	AuthPwd             *string              `pulumi:"authPwd"`
 	DynamicSortSubtable *string              `pulumi:"dynamicSortSubtable"`
 	Events              *string              `pulumi:"events"`
+	GetAllTables        *string              `pulumi:"getAllTables"`
 	HaDirect            *string              `pulumi:"haDirect"`
 	MibView             *string              `pulumi:"mibView"`
 	Name                *string              `pulumi:"name"`
@@ -162,6 +167,7 @@ type SystemSnmpUserArgs struct {
 	AuthPwd             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	Events              pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	HaDirect            pulumi.StringPtrInput
 	MibView             pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
@@ -283,6 +289,10 @@ func (o SystemSnmpUserOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 
 func (o SystemSnmpUserOutput) Events() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemSnmpUser) pulumi.StringOutput { return v.Events }).(pulumi.StringOutput)
+}
+
+func (o SystemSnmpUserOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemSnmpUser) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemSnmpUserOutput) HaDirect() pulumi.StringOutput {

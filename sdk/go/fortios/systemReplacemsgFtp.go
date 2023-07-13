@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -31,7 +32,7 @@ func NewSystemReplacemsgFtp(ctx *pulumi.Context,
 	if args.MsgType == nil {
 		return nil, errors.New("invalid value for required argument 'MsgType'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemReplacemsgFtp
 	err := ctx.RegisterResource("fortios:index/systemReplacemsgFtp:SystemReplacemsgFtp", name, args, &resource, opts...)
 	if err != nil {

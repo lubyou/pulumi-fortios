@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -38,7 +39,7 @@ func NewFirewallObjectVip(ctx *pulumi.Context,
 	if args.Mappedips == nil {
 		return nil, errors.New("invalid value for required argument 'Mappedips'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallObjectVip
 	err := ctx.RegisterResource("fortios:index/firewallObjectVip:FirewallObjectVip", name, args, &resource, opts...)
 	if err != nil {

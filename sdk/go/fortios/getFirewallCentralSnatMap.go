@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupFirewallCentralSnatMap(ctx *pulumi.Context, args *LookupFirewallCentralSnatMapArgs, opts ...pulumi.InvokeOption) (*LookupFirewallCentralSnatMapResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallCentralSnatMapResult
 	err := ctx.Invoke("fortios:index/getFirewallCentralSnatMap:GetFirewallCentralSnatMap", args, &rv, opts...)
 	if err != nil {
@@ -31,6 +32,7 @@ type LookupFirewallCentralSnatMapResult struct {
 	Comments  string                              `pulumi:"comments"`
 	DstAddr6s []GetFirewallCentralSnatMapDstAddr6 `pulumi:"dstAddr6s"`
 	DstAddrs  []GetFirewallCentralSnatMapDstAddr  `pulumi:"dstAddrs"`
+	DstPort   string                              `pulumi:"dstPort"`
 	Dstintfs  []GetFirewallCentralSnatMapDstintf  `pulumi:"dstintfs"`
 	// The provider-assigned unique ID for this managed resource.
 	Id          string                                `pulumi:"id"`
@@ -100,6 +102,10 @@ func (o LookupFirewallCentralSnatMapResultOutput) DstAddr6s() GetFirewallCentral
 
 func (o LookupFirewallCentralSnatMapResultOutput) DstAddrs() GetFirewallCentralSnatMapDstAddrArrayOutput {
 	return o.ApplyT(func(v LookupFirewallCentralSnatMapResult) []GetFirewallCentralSnatMapDstAddr { return v.DstAddrs }).(GetFirewallCentralSnatMapDstAddrArrayOutput)
+}
+
+func (o LookupFirewallCentralSnatMapResultOutput) DstPort() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallCentralSnatMapResult) string { return v.DstPort }).(pulumi.StringOutput)
 }
 
 func (o LookupFirewallCentralSnatMapResultOutput) Dstintfs() GetFirewallCentralSnatMapDstintfArrayOutput {

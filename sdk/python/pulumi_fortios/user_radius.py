@@ -21,9 +21,12 @@ class UserRadiusArgs:
                  acct_interim_interval: Optional[pulumi.Input[int]] = None,
                  all_usergroup: Optional[pulumi.Input[str]] = None,
                  auth_type: Optional[pulumi.Input[str]] = None,
+                 ca_cert: Optional[pulumi.Input[str]] = None,
                  classes: Optional[pulumi.Input[Sequence[pulumi.Input['UserRadiusClassArgs']]]] = None,
+                 client_cert: Optional[pulumi.Input[str]] = None,
                  delimiter: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_override_attr_type: Optional[pulumi.Input[str]] = None,
                  h3c_compatibility: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
@@ -32,6 +35,8 @@ class UserRadiusArgs:
                  mac_password_delimiter: Optional[pulumi.Input[str]] = None,
                  mac_username_delimiter: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 nas_id: Optional[pulumi.Input[str]] = None,
+                 nas_id_type: Optional[pulumi.Input[str]] = None,
                  nas_ip: Optional[pulumi.Input[str]] = None,
                  password_encoding: Optional[pulumi.Input[str]] = None,
                  password_renewal: Optional[pulumi.Input[str]] = None,
@@ -53,15 +58,19 @@ class UserRadiusArgs:
                  secondary_server: Optional[pulumi.Input[str]] = None,
                  secret: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
+                 server_identity_check: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  sso_attribute: Optional[pulumi.Input[str]] = None,
                  sso_attribute_key: Optional[pulumi.Input[str]] = None,
                  sso_attribute_value_override: Optional[pulumi.Input[str]] = None,
+                 status_ttl: Optional[pulumi.Input[int]] = None,
                  switch_controller_acct_fast_framedip_detect: Optional[pulumi.Input[int]] = None,
                  switch_controller_service_type: Optional[pulumi.Input[str]] = None,
                  tertiary_secret: Optional[pulumi.Input[str]] = None,
                  tertiary_server: Optional[pulumi.Input[str]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
+                 tls_min_proto_version: Optional[pulumi.Input[str]] = None,
+                 transport_protocol: Optional[pulumi.Input[str]] = None,
                  use_management_vdom: Optional[pulumi.Input[str]] = None,
                  username_case_sensitive: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -78,12 +87,18 @@ class UserRadiusArgs:
             pulumi.set(__self__, "all_usergroup", all_usergroup)
         if auth_type is not None:
             pulumi.set(__self__, "auth_type", auth_type)
+        if ca_cert is not None:
+            pulumi.set(__self__, "ca_cert", ca_cert)
         if classes is not None:
             pulumi.set(__self__, "classes", classes)
+        if client_cert is not None:
+            pulumi.set(__self__, "client_cert", client_cert)
         if delimiter is not None:
             pulumi.set(__self__, "delimiter", delimiter)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if group_override_attr_type is not None:
             pulumi.set(__self__, "group_override_attr_type", group_override_attr_type)
         if h3c_compatibility is not None:
@@ -100,6 +115,10 @@ class UserRadiusArgs:
             pulumi.set(__self__, "mac_username_delimiter", mac_username_delimiter)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if nas_id is not None:
+            pulumi.set(__self__, "nas_id", nas_id)
+        if nas_id_type is not None:
+            pulumi.set(__self__, "nas_id_type", nas_id_type)
         if nas_ip is not None:
             pulumi.set(__self__, "nas_ip", nas_ip)
         if password_encoding is not None:
@@ -142,6 +161,8 @@ class UserRadiusArgs:
             pulumi.set(__self__, "secret", secret)
         if server is not None:
             pulumi.set(__self__, "server", server)
+        if server_identity_check is not None:
+            pulumi.set(__self__, "server_identity_check", server_identity_check)
         if source_ip is not None:
             pulumi.set(__self__, "source_ip", source_ip)
         if sso_attribute is not None:
@@ -150,6 +171,8 @@ class UserRadiusArgs:
             pulumi.set(__self__, "sso_attribute_key", sso_attribute_key)
         if sso_attribute_value_override is not None:
             pulumi.set(__self__, "sso_attribute_value_override", sso_attribute_value_override)
+        if status_ttl is not None:
+            pulumi.set(__self__, "status_ttl", status_ttl)
         if switch_controller_acct_fast_framedip_detect is not None:
             pulumi.set(__self__, "switch_controller_acct_fast_framedip_detect", switch_controller_acct_fast_framedip_detect)
         if switch_controller_service_type is not None:
@@ -160,6 +183,10 @@ class UserRadiusArgs:
             pulumi.set(__self__, "tertiary_server", tertiary_server)
         if timeout is not None:
             pulumi.set(__self__, "timeout", timeout)
+        if tls_min_proto_version is not None:
+            pulumi.set(__self__, "tls_min_proto_version", tls_min_proto_version)
+        if transport_protocol is not None:
+            pulumi.set(__self__, "transport_protocol", transport_protocol)
         if use_management_vdom is not None:
             pulumi.set(__self__, "use_management_vdom", use_management_vdom)
         if username_case_sensitive is not None:
@@ -213,6 +240,15 @@ class UserRadiusArgs:
         pulumi.set(self, "auth_type", value)
 
     @property
+    @pulumi.getter(name="caCert")
+    def ca_cert(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ca_cert")
+
+    @ca_cert.setter
+    def ca_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ca_cert", value)
+
+    @property
     @pulumi.getter
     def classes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['UserRadiusClassArgs']]]]:
         return pulumi.get(self, "classes")
@@ -220,6 +256,15 @@ class UserRadiusArgs:
     @classes.setter
     def classes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['UserRadiusClassArgs']]]]):
         pulumi.set(self, "classes", value)
+
+    @property
+    @pulumi.getter(name="clientCert")
+    def client_cert(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "client_cert")
+
+    @client_cert.setter
+    def client_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_cert", value)
 
     @property
     @pulumi.getter
@@ -238,6 +283,15 @@ class UserRadiusArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="groupOverrideAttrType")
@@ -310,6 +364,24 @@ class UserRadiusArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="nasId")
+    def nas_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "nas_id")
+
+    @nas_id.setter
+    def nas_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nas_id", value)
+
+    @property
+    @pulumi.getter(name="nasIdType")
+    def nas_id_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "nas_id_type")
+
+    @nas_id_type.setter
+    def nas_id_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nas_id_type", value)
 
     @property
     @pulumi.getter(name="nasIp")
@@ -501,6 +573,15 @@ class UserRadiusArgs:
         pulumi.set(self, "server", value)
 
     @property
+    @pulumi.getter(name="serverIdentityCheck")
+    def server_identity_check(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "server_identity_check")
+
+    @server_identity_check.setter
+    def server_identity_check(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "server_identity_check", value)
+
+    @property
     @pulumi.getter(name="sourceIp")
     def source_ip(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "source_ip")
@@ -535,6 +616,15 @@ class UserRadiusArgs:
     @sso_attribute_value_override.setter
     def sso_attribute_value_override(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sso_attribute_value_override", value)
+
+    @property
+    @pulumi.getter(name="statusTtl")
+    def status_ttl(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "status_ttl")
+
+    @status_ttl.setter
+    def status_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "status_ttl", value)
 
     @property
     @pulumi.getter(name="switchControllerAcctFastFramedipDetect")
@@ -580,6 +670,24 @@ class UserRadiusArgs:
     @timeout.setter
     def timeout(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "timeout", value)
+
+    @property
+    @pulumi.getter(name="tlsMinProtoVersion")
+    def tls_min_proto_version(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "tls_min_proto_version")
+
+    @tls_min_proto_version.setter
+    def tls_min_proto_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tls_min_proto_version", value)
+
+    @property
+    @pulumi.getter(name="transportProtocol")
+    def transport_protocol(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "transport_protocol")
+
+    @transport_protocol.setter
+    def transport_protocol(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "transport_protocol", value)
 
     @property
     @pulumi.getter(name="useManagementVdom")
@@ -617,9 +725,12 @@ class _UserRadiusState:
                  acct_interim_interval: Optional[pulumi.Input[int]] = None,
                  all_usergroup: Optional[pulumi.Input[str]] = None,
                  auth_type: Optional[pulumi.Input[str]] = None,
+                 ca_cert: Optional[pulumi.Input[str]] = None,
                  classes: Optional[pulumi.Input[Sequence[pulumi.Input['UserRadiusClassArgs']]]] = None,
+                 client_cert: Optional[pulumi.Input[str]] = None,
                  delimiter: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_override_attr_type: Optional[pulumi.Input[str]] = None,
                  h3c_compatibility: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
@@ -628,6 +739,8 @@ class _UserRadiusState:
                  mac_password_delimiter: Optional[pulumi.Input[str]] = None,
                  mac_username_delimiter: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 nas_id: Optional[pulumi.Input[str]] = None,
+                 nas_id_type: Optional[pulumi.Input[str]] = None,
                  nas_ip: Optional[pulumi.Input[str]] = None,
                  password_encoding: Optional[pulumi.Input[str]] = None,
                  password_renewal: Optional[pulumi.Input[str]] = None,
@@ -649,15 +762,19 @@ class _UserRadiusState:
                  secondary_server: Optional[pulumi.Input[str]] = None,
                  secret: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
+                 server_identity_check: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  sso_attribute: Optional[pulumi.Input[str]] = None,
                  sso_attribute_key: Optional[pulumi.Input[str]] = None,
                  sso_attribute_value_override: Optional[pulumi.Input[str]] = None,
+                 status_ttl: Optional[pulumi.Input[int]] = None,
                  switch_controller_acct_fast_framedip_detect: Optional[pulumi.Input[int]] = None,
                  switch_controller_service_type: Optional[pulumi.Input[str]] = None,
                  tertiary_secret: Optional[pulumi.Input[str]] = None,
                  tertiary_server: Optional[pulumi.Input[str]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
+                 tls_min_proto_version: Optional[pulumi.Input[str]] = None,
+                 transport_protocol: Optional[pulumi.Input[str]] = None,
                  use_management_vdom: Optional[pulumi.Input[str]] = None,
                  username_case_sensitive: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -674,12 +791,18 @@ class _UserRadiusState:
             pulumi.set(__self__, "all_usergroup", all_usergroup)
         if auth_type is not None:
             pulumi.set(__self__, "auth_type", auth_type)
+        if ca_cert is not None:
+            pulumi.set(__self__, "ca_cert", ca_cert)
         if classes is not None:
             pulumi.set(__self__, "classes", classes)
+        if client_cert is not None:
+            pulumi.set(__self__, "client_cert", client_cert)
         if delimiter is not None:
             pulumi.set(__self__, "delimiter", delimiter)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if group_override_attr_type is not None:
             pulumi.set(__self__, "group_override_attr_type", group_override_attr_type)
         if h3c_compatibility is not None:
@@ -696,6 +819,10 @@ class _UserRadiusState:
             pulumi.set(__self__, "mac_username_delimiter", mac_username_delimiter)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if nas_id is not None:
+            pulumi.set(__self__, "nas_id", nas_id)
+        if nas_id_type is not None:
+            pulumi.set(__self__, "nas_id_type", nas_id_type)
         if nas_ip is not None:
             pulumi.set(__self__, "nas_ip", nas_ip)
         if password_encoding is not None:
@@ -738,6 +865,8 @@ class _UserRadiusState:
             pulumi.set(__self__, "secret", secret)
         if server is not None:
             pulumi.set(__self__, "server", server)
+        if server_identity_check is not None:
+            pulumi.set(__self__, "server_identity_check", server_identity_check)
         if source_ip is not None:
             pulumi.set(__self__, "source_ip", source_ip)
         if sso_attribute is not None:
@@ -746,6 +875,8 @@ class _UserRadiusState:
             pulumi.set(__self__, "sso_attribute_key", sso_attribute_key)
         if sso_attribute_value_override is not None:
             pulumi.set(__self__, "sso_attribute_value_override", sso_attribute_value_override)
+        if status_ttl is not None:
+            pulumi.set(__self__, "status_ttl", status_ttl)
         if switch_controller_acct_fast_framedip_detect is not None:
             pulumi.set(__self__, "switch_controller_acct_fast_framedip_detect", switch_controller_acct_fast_framedip_detect)
         if switch_controller_service_type is not None:
@@ -756,6 +887,10 @@ class _UserRadiusState:
             pulumi.set(__self__, "tertiary_server", tertiary_server)
         if timeout is not None:
             pulumi.set(__self__, "timeout", timeout)
+        if tls_min_proto_version is not None:
+            pulumi.set(__self__, "tls_min_proto_version", tls_min_proto_version)
+        if transport_protocol is not None:
+            pulumi.set(__self__, "transport_protocol", transport_protocol)
         if use_management_vdom is not None:
             pulumi.set(__self__, "use_management_vdom", use_management_vdom)
         if username_case_sensitive is not None:
@@ -809,6 +944,15 @@ class _UserRadiusState:
         pulumi.set(self, "auth_type", value)
 
     @property
+    @pulumi.getter(name="caCert")
+    def ca_cert(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ca_cert")
+
+    @ca_cert.setter
+    def ca_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ca_cert", value)
+
+    @property
     @pulumi.getter
     def classes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['UserRadiusClassArgs']]]]:
         return pulumi.get(self, "classes")
@@ -816,6 +960,15 @@ class _UserRadiusState:
     @classes.setter
     def classes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['UserRadiusClassArgs']]]]):
         pulumi.set(self, "classes", value)
+
+    @property
+    @pulumi.getter(name="clientCert")
+    def client_cert(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "client_cert")
+
+    @client_cert.setter
+    def client_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_cert", value)
 
     @property
     @pulumi.getter
@@ -834,6 +987,15 @@ class _UserRadiusState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="groupOverrideAttrType")
@@ -906,6 +1068,24 @@ class _UserRadiusState:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="nasId")
+    def nas_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "nas_id")
+
+    @nas_id.setter
+    def nas_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nas_id", value)
+
+    @property
+    @pulumi.getter(name="nasIdType")
+    def nas_id_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "nas_id_type")
+
+    @nas_id_type.setter
+    def nas_id_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nas_id_type", value)
 
     @property
     @pulumi.getter(name="nasIp")
@@ -1097,6 +1277,15 @@ class _UserRadiusState:
         pulumi.set(self, "server", value)
 
     @property
+    @pulumi.getter(name="serverIdentityCheck")
+    def server_identity_check(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "server_identity_check")
+
+    @server_identity_check.setter
+    def server_identity_check(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "server_identity_check", value)
+
+    @property
     @pulumi.getter(name="sourceIp")
     def source_ip(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "source_ip")
@@ -1131,6 +1320,15 @@ class _UserRadiusState:
     @sso_attribute_value_override.setter
     def sso_attribute_value_override(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sso_attribute_value_override", value)
+
+    @property
+    @pulumi.getter(name="statusTtl")
+    def status_ttl(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "status_ttl")
+
+    @status_ttl.setter
+    def status_ttl(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "status_ttl", value)
 
     @property
     @pulumi.getter(name="switchControllerAcctFastFramedipDetect")
@@ -1176,6 +1374,24 @@ class _UserRadiusState:
     @timeout.setter
     def timeout(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "timeout", value)
+
+    @property
+    @pulumi.getter(name="tlsMinProtoVersion")
+    def tls_min_proto_version(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "tls_min_proto_version")
+
+    @tls_min_proto_version.setter
+    def tls_min_proto_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tls_min_proto_version", value)
+
+    @property
+    @pulumi.getter(name="transportProtocol")
+    def transport_protocol(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "transport_protocol")
+
+    @transport_protocol.setter
+    def transport_protocol(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "transport_protocol", value)
 
     @property
     @pulumi.getter(name="useManagementVdom")
@@ -1215,9 +1431,12 @@ class UserRadius(pulumi.CustomResource):
                  acct_interim_interval: Optional[pulumi.Input[int]] = None,
                  all_usergroup: Optional[pulumi.Input[str]] = None,
                  auth_type: Optional[pulumi.Input[str]] = None,
+                 ca_cert: Optional[pulumi.Input[str]] = None,
                  classes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserRadiusClassArgs']]]]] = None,
+                 client_cert: Optional[pulumi.Input[str]] = None,
                  delimiter: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_override_attr_type: Optional[pulumi.Input[str]] = None,
                  h3c_compatibility: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
@@ -1226,6 +1445,8 @@ class UserRadius(pulumi.CustomResource):
                  mac_password_delimiter: Optional[pulumi.Input[str]] = None,
                  mac_username_delimiter: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 nas_id: Optional[pulumi.Input[str]] = None,
+                 nas_id_type: Optional[pulumi.Input[str]] = None,
                  nas_ip: Optional[pulumi.Input[str]] = None,
                  password_encoding: Optional[pulumi.Input[str]] = None,
                  password_renewal: Optional[pulumi.Input[str]] = None,
@@ -1247,15 +1468,19 @@ class UserRadius(pulumi.CustomResource):
                  secondary_server: Optional[pulumi.Input[str]] = None,
                  secret: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
+                 server_identity_check: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  sso_attribute: Optional[pulumi.Input[str]] = None,
                  sso_attribute_key: Optional[pulumi.Input[str]] = None,
                  sso_attribute_value_override: Optional[pulumi.Input[str]] = None,
+                 status_ttl: Optional[pulumi.Input[int]] = None,
                  switch_controller_acct_fast_framedip_detect: Optional[pulumi.Input[int]] = None,
                  switch_controller_service_type: Optional[pulumi.Input[str]] = None,
                  tertiary_secret: Optional[pulumi.Input[str]] = None,
                  tertiary_server: Optional[pulumi.Input[str]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
+                 tls_min_proto_version: Optional[pulumi.Input[str]] = None,
+                 transport_protocol: Optional[pulumi.Input[str]] = None,
                  use_management_vdom: Optional[pulumi.Input[str]] = None,
                  username_case_sensitive: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -1293,9 +1518,12 @@ class UserRadius(pulumi.CustomResource):
                  acct_interim_interval: Optional[pulumi.Input[int]] = None,
                  all_usergroup: Optional[pulumi.Input[str]] = None,
                  auth_type: Optional[pulumi.Input[str]] = None,
+                 ca_cert: Optional[pulumi.Input[str]] = None,
                  classes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserRadiusClassArgs']]]]] = None,
+                 client_cert: Optional[pulumi.Input[str]] = None,
                  delimiter: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_override_attr_type: Optional[pulumi.Input[str]] = None,
                  h3c_compatibility: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
@@ -1304,6 +1532,8 @@ class UserRadius(pulumi.CustomResource):
                  mac_password_delimiter: Optional[pulumi.Input[str]] = None,
                  mac_username_delimiter: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 nas_id: Optional[pulumi.Input[str]] = None,
+                 nas_id_type: Optional[pulumi.Input[str]] = None,
                  nas_ip: Optional[pulumi.Input[str]] = None,
                  password_encoding: Optional[pulumi.Input[str]] = None,
                  password_renewal: Optional[pulumi.Input[str]] = None,
@@ -1325,15 +1555,19 @@ class UserRadius(pulumi.CustomResource):
                  secondary_server: Optional[pulumi.Input[str]] = None,
                  secret: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
+                 server_identity_check: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  sso_attribute: Optional[pulumi.Input[str]] = None,
                  sso_attribute_key: Optional[pulumi.Input[str]] = None,
                  sso_attribute_value_override: Optional[pulumi.Input[str]] = None,
+                 status_ttl: Optional[pulumi.Input[int]] = None,
                  switch_controller_acct_fast_framedip_detect: Optional[pulumi.Input[int]] = None,
                  switch_controller_service_type: Optional[pulumi.Input[str]] = None,
                  tertiary_secret: Optional[pulumi.Input[str]] = None,
                  tertiary_server: Optional[pulumi.Input[str]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
+                 tls_min_proto_version: Optional[pulumi.Input[str]] = None,
+                 transport_protocol: Optional[pulumi.Input[str]] = None,
                  use_management_vdom: Optional[pulumi.Input[str]] = None,
                  username_case_sensitive: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -1351,9 +1585,12 @@ class UserRadius(pulumi.CustomResource):
             __props__.__dict__["acct_interim_interval"] = acct_interim_interval
             __props__.__dict__["all_usergroup"] = all_usergroup
             __props__.__dict__["auth_type"] = auth_type
+            __props__.__dict__["ca_cert"] = ca_cert
             __props__.__dict__["classes"] = classes
+            __props__.__dict__["client_cert"] = client_cert
             __props__.__dict__["delimiter"] = delimiter
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["group_override_attr_type"] = group_override_attr_type
             __props__.__dict__["h3c_compatibility"] = h3c_compatibility
             __props__.__dict__["interface"] = interface
@@ -1362,6 +1599,8 @@ class UserRadius(pulumi.CustomResource):
             __props__.__dict__["mac_password_delimiter"] = mac_password_delimiter
             __props__.__dict__["mac_username_delimiter"] = mac_username_delimiter
             __props__.__dict__["name"] = name
+            __props__.__dict__["nas_id"] = nas_id
+            __props__.__dict__["nas_id_type"] = nas_id_type
             __props__.__dict__["nas_ip"] = nas_ip
             __props__.__dict__["password_encoding"] = password_encoding
             __props__.__dict__["password_renewal"] = password_renewal
@@ -1383,15 +1622,19 @@ class UserRadius(pulumi.CustomResource):
             __props__.__dict__["secondary_server"] = secondary_server
             __props__.__dict__["secret"] = None if secret is None else pulumi.Output.secret(secret)
             __props__.__dict__["server"] = server
+            __props__.__dict__["server_identity_check"] = server_identity_check
             __props__.__dict__["source_ip"] = source_ip
             __props__.__dict__["sso_attribute"] = sso_attribute
             __props__.__dict__["sso_attribute_key"] = None if sso_attribute_key is None else pulumi.Output.secret(sso_attribute_key)
             __props__.__dict__["sso_attribute_value_override"] = sso_attribute_value_override
+            __props__.__dict__["status_ttl"] = status_ttl
             __props__.__dict__["switch_controller_acct_fast_framedip_detect"] = switch_controller_acct_fast_framedip_detect
             __props__.__dict__["switch_controller_service_type"] = switch_controller_service_type
             __props__.__dict__["tertiary_secret"] = None if tertiary_secret is None else pulumi.Output.secret(tertiary_secret)
             __props__.__dict__["tertiary_server"] = tertiary_server
             __props__.__dict__["timeout"] = timeout
+            __props__.__dict__["tls_min_proto_version"] = tls_min_proto_version
+            __props__.__dict__["transport_protocol"] = transport_protocol
             __props__.__dict__["use_management_vdom"] = use_management_vdom
             __props__.__dict__["username_case_sensitive"] = username_case_sensitive
             __props__.__dict__["vdomparam"] = vdomparam
@@ -1412,9 +1655,12 @@ class UserRadius(pulumi.CustomResource):
             acct_interim_interval: Optional[pulumi.Input[int]] = None,
             all_usergroup: Optional[pulumi.Input[str]] = None,
             auth_type: Optional[pulumi.Input[str]] = None,
+            ca_cert: Optional[pulumi.Input[str]] = None,
             classes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserRadiusClassArgs']]]]] = None,
+            client_cert: Optional[pulumi.Input[str]] = None,
             delimiter: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             group_override_attr_type: Optional[pulumi.Input[str]] = None,
             h3c_compatibility: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
@@ -1423,6 +1669,8 @@ class UserRadius(pulumi.CustomResource):
             mac_password_delimiter: Optional[pulumi.Input[str]] = None,
             mac_username_delimiter: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            nas_id: Optional[pulumi.Input[str]] = None,
+            nas_id_type: Optional[pulumi.Input[str]] = None,
             nas_ip: Optional[pulumi.Input[str]] = None,
             password_encoding: Optional[pulumi.Input[str]] = None,
             password_renewal: Optional[pulumi.Input[str]] = None,
@@ -1444,15 +1692,19 @@ class UserRadius(pulumi.CustomResource):
             secondary_server: Optional[pulumi.Input[str]] = None,
             secret: Optional[pulumi.Input[str]] = None,
             server: Optional[pulumi.Input[str]] = None,
+            server_identity_check: Optional[pulumi.Input[str]] = None,
             source_ip: Optional[pulumi.Input[str]] = None,
             sso_attribute: Optional[pulumi.Input[str]] = None,
             sso_attribute_key: Optional[pulumi.Input[str]] = None,
             sso_attribute_value_override: Optional[pulumi.Input[str]] = None,
+            status_ttl: Optional[pulumi.Input[int]] = None,
             switch_controller_acct_fast_framedip_detect: Optional[pulumi.Input[int]] = None,
             switch_controller_service_type: Optional[pulumi.Input[str]] = None,
             tertiary_secret: Optional[pulumi.Input[str]] = None,
             tertiary_server: Optional[pulumi.Input[str]] = None,
             timeout: Optional[pulumi.Input[int]] = None,
+            tls_min_proto_version: Optional[pulumi.Input[str]] = None,
+            transport_protocol: Optional[pulumi.Input[str]] = None,
             use_management_vdom: Optional[pulumi.Input[str]] = None,
             username_case_sensitive: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'UserRadius':
@@ -1473,9 +1725,12 @@ class UserRadius(pulumi.CustomResource):
         __props__.__dict__["acct_interim_interval"] = acct_interim_interval
         __props__.__dict__["all_usergroup"] = all_usergroup
         __props__.__dict__["auth_type"] = auth_type
+        __props__.__dict__["ca_cert"] = ca_cert
         __props__.__dict__["classes"] = classes
+        __props__.__dict__["client_cert"] = client_cert
         __props__.__dict__["delimiter"] = delimiter
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["group_override_attr_type"] = group_override_attr_type
         __props__.__dict__["h3c_compatibility"] = h3c_compatibility
         __props__.__dict__["interface"] = interface
@@ -1484,6 +1739,8 @@ class UserRadius(pulumi.CustomResource):
         __props__.__dict__["mac_password_delimiter"] = mac_password_delimiter
         __props__.__dict__["mac_username_delimiter"] = mac_username_delimiter
         __props__.__dict__["name"] = name
+        __props__.__dict__["nas_id"] = nas_id
+        __props__.__dict__["nas_id_type"] = nas_id_type
         __props__.__dict__["nas_ip"] = nas_ip
         __props__.__dict__["password_encoding"] = password_encoding
         __props__.__dict__["password_renewal"] = password_renewal
@@ -1505,15 +1762,19 @@ class UserRadius(pulumi.CustomResource):
         __props__.__dict__["secondary_server"] = secondary_server
         __props__.__dict__["secret"] = secret
         __props__.__dict__["server"] = server
+        __props__.__dict__["server_identity_check"] = server_identity_check
         __props__.__dict__["source_ip"] = source_ip
         __props__.__dict__["sso_attribute"] = sso_attribute
         __props__.__dict__["sso_attribute_key"] = sso_attribute_key
         __props__.__dict__["sso_attribute_value_override"] = sso_attribute_value_override
+        __props__.__dict__["status_ttl"] = status_ttl
         __props__.__dict__["switch_controller_acct_fast_framedip_detect"] = switch_controller_acct_fast_framedip_detect
         __props__.__dict__["switch_controller_service_type"] = switch_controller_service_type
         __props__.__dict__["tertiary_secret"] = tertiary_secret
         __props__.__dict__["tertiary_server"] = tertiary_server
         __props__.__dict__["timeout"] = timeout
+        __props__.__dict__["tls_min_proto_version"] = tls_min_proto_version
+        __props__.__dict__["transport_protocol"] = transport_protocol
         __props__.__dict__["use_management_vdom"] = use_management_vdom
         __props__.__dict__["username_case_sensitive"] = username_case_sensitive
         __props__.__dict__["vdomparam"] = vdomparam
@@ -1545,9 +1806,19 @@ class UserRadius(pulumi.CustomResource):
         return pulumi.get(self, "auth_type")
 
     @property
+    @pulumi.getter(name="caCert")
+    def ca_cert(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "ca_cert")
+
+    @property
     @pulumi.getter
     def classes(self) -> pulumi.Output[Optional[Sequence['outputs.UserRadiusClass']]]:
         return pulumi.get(self, "classes")
+
+    @property
+    @pulumi.getter(name="clientCert")
+    def client_cert(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "client_cert")
 
     @property
     @pulumi.getter
@@ -1558,6 +1829,11 @@ class UserRadius(pulumi.CustomResource):
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="groupOverrideAttrType")
@@ -1598,6 +1874,16 @@ class UserRadius(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="nasId")
+    def nas_id(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "nas_id")
+
+    @property
+    @pulumi.getter(name="nasIdType")
+    def nas_id_type(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "nas_id_type")
 
     @property
     @pulumi.getter(name="nasIp")
@@ -1705,6 +1991,11 @@ class UserRadius(pulumi.CustomResource):
         return pulumi.get(self, "server")
 
     @property
+    @pulumi.getter(name="serverIdentityCheck")
+    def server_identity_check(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "server_identity_check")
+
+    @property
     @pulumi.getter(name="sourceIp")
     def source_ip(self) -> pulumi.Output[str]:
         return pulumi.get(self, "source_ip")
@@ -1723,6 +2014,11 @@ class UserRadius(pulumi.CustomResource):
     @pulumi.getter(name="ssoAttributeValueOverride")
     def sso_attribute_value_override(self) -> pulumi.Output[str]:
         return pulumi.get(self, "sso_attribute_value_override")
+
+    @property
+    @pulumi.getter(name="statusTtl")
+    def status_ttl(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "status_ttl")
 
     @property
     @pulumi.getter(name="switchControllerAcctFastFramedipDetect")
@@ -1748,6 +2044,16 @@ class UserRadius(pulumi.CustomResource):
     @pulumi.getter
     def timeout(self) -> pulumi.Output[int]:
         return pulumi.get(self, "timeout")
+
+    @property
+    @pulumi.getter(name="tlsMinProtoVersion")
+    def tls_min_proto_version(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "tls_min_proto_version")
+
+    @property
+    @pulumi.getter(name="transportProtocol")
+    def transport_protocol(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "transport_protocol")
 
     @property
     @pulumi.getter(name="useManagementVdom")

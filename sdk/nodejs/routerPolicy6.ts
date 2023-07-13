@@ -42,6 +42,7 @@ export class RouterPolicy6 extends pulumi.CustomResource {
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly endPort!: pulumi.Output<number>;
     public readonly gateway!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly inputDevice!: pulumi.Output<string>;
     public readonly inputDeviceNegate!: pulumi.Output<string>;
     public readonly internetServiceCustoms!: pulumi.Output<outputs.RouterPolicy6InternetServiceCustom[] | undefined>;
@@ -79,6 +80,7 @@ export class RouterPolicy6 extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["endPort"] = state ? state.endPort : undefined;
             resourceInputs["gateway"] = state ? state.gateway : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["inputDevice"] = state ? state.inputDevice : undefined;
             resourceInputs["inputDeviceNegate"] = state ? state.inputDeviceNegate : undefined;
             resourceInputs["internetServiceCustoms"] = state ? state.internetServiceCustoms : undefined;
@@ -107,6 +109,7 @@ export class RouterPolicy6 extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["endPort"] = args ? args.endPort : undefined;
             resourceInputs["gateway"] = args ? args.gateway : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["inputDevice"] = args ? args.inputDevice : undefined;
             resourceInputs["inputDeviceNegate"] = args ? args.inputDeviceNegate : undefined;
             resourceInputs["internetServiceCustoms"] = args ? args.internetServiceCustoms : undefined;
@@ -140,6 +143,7 @@ export interface RouterPolicy6State {
     dynamicSortSubtable?: pulumi.Input<string>;
     endPort?: pulumi.Input<number>;
     gateway?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     inputDevice?: pulumi.Input<string>;
     inputDeviceNegate?: pulumi.Input<string>;
     internetServiceCustoms?: pulumi.Input<pulumi.Input<inputs.RouterPolicy6InternetServiceCustom>[]>;
@@ -169,6 +173,7 @@ export interface RouterPolicy6Args {
     dynamicSortSubtable?: pulumi.Input<string>;
     endPort?: pulumi.Input<number>;
     gateway?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     inputDevice: pulumi.Input<string>;
     inputDeviceNegate?: pulumi.Input<string>;
     internetServiceCustoms?: pulumi.Input<pulumi.Input<inputs.RouterPolicy6InternetServiceCustom>[]>;

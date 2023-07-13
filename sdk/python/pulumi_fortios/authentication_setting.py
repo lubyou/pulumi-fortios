@@ -33,6 +33,7 @@ class AuthenticationSettingArgs:
                  cookie_refresh_div: Optional[pulumi.Input[int]] = None,
                  dev_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['AuthenticationSettingDevRangeArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip_auth_cookie: Optional[pulumi.Input[str]] = None,
                  persistent_cookie: Optional[pulumi.Input[str]] = None,
                  sso_auth_scheme: Optional[pulumi.Input[str]] = None,
@@ -76,6 +77,8 @@ class AuthenticationSettingArgs:
             pulumi.set(__self__, "dev_ranges", dev_ranges)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ip_auth_cookie is not None:
             pulumi.set(__self__, "ip_auth_cookie", ip_auth_cookie)
         if persistent_cookie is not None:
@@ -241,6 +244,15 @@ class AuthenticationSettingArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="ipAuthCookie")
@@ -317,6 +329,7 @@ class _AuthenticationSettingState:
                  cookie_refresh_div: Optional[pulumi.Input[int]] = None,
                  dev_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['AuthenticationSettingDevRangeArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip_auth_cookie: Optional[pulumi.Input[str]] = None,
                  persistent_cookie: Optional[pulumi.Input[str]] = None,
                  sso_auth_scheme: Optional[pulumi.Input[str]] = None,
@@ -360,6 +373,8 @@ class _AuthenticationSettingState:
             pulumi.set(__self__, "dev_ranges", dev_ranges)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ip_auth_cookie is not None:
             pulumi.set(__self__, "ip_auth_cookie", ip_auth_cookie)
         if persistent_cookie is not None:
@@ -525,6 +540,15 @@ class _AuthenticationSettingState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="ipAuthCookie")
@@ -603,6 +627,7 @@ class AuthenticationSetting(pulumi.CustomResource):
                  cookie_refresh_div: Optional[pulumi.Input[int]] = None,
                  dev_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationSettingDevRangeArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip_auth_cookie: Optional[pulumi.Input[str]] = None,
                  persistent_cookie: Optional[pulumi.Input[str]] = None,
                  sso_auth_scheme: Optional[pulumi.Input[str]] = None,
@@ -655,6 +680,7 @@ class AuthenticationSetting(pulumi.CustomResource):
                  cookie_refresh_div: Optional[pulumi.Input[int]] = None,
                  dev_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationSettingDevRangeArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip_auth_cookie: Optional[pulumi.Input[str]] = None,
                  persistent_cookie: Optional[pulumi.Input[str]] = None,
                  sso_auth_scheme: Optional[pulumi.Input[str]] = None,
@@ -687,6 +713,7 @@ class AuthenticationSetting(pulumi.CustomResource):
             __props__.__dict__["cookie_refresh_div"] = cookie_refresh_div
             __props__.__dict__["dev_ranges"] = dev_ranges
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["ip_auth_cookie"] = ip_auth_cookie
             __props__.__dict__["persistent_cookie"] = persistent_cookie
             __props__.__dict__["sso_auth_scheme"] = sso_auth_scheme
@@ -720,6 +747,7 @@ class AuthenticationSetting(pulumi.CustomResource):
             cookie_refresh_div: Optional[pulumi.Input[int]] = None,
             dev_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationSettingDevRangeArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             ip_auth_cookie: Optional[pulumi.Input[str]] = None,
             persistent_cookie: Optional[pulumi.Input[str]] = None,
             sso_auth_scheme: Optional[pulumi.Input[str]] = None,
@@ -755,6 +783,7 @@ class AuthenticationSetting(pulumi.CustomResource):
         __props__.__dict__["cookie_refresh_div"] = cookie_refresh_div
         __props__.__dict__["dev_ranges"] = dev_ranges
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["ip_auth_cookie"] = ip_auth_cookie
         __props__.__dict__["persistent_cookie"] = persistent_cookie
         __props__.__dict__["sso_auth_scheme"] = sso_auth_scheme
@@ -847,6 +876,11 @@ class AuthenticationSetting(pulumi.CustomResource):
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="ipAuthCookie")

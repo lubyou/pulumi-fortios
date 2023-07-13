@@ -35,6 +35,7 @@ export class WirelessControllerHotspot20AnqpRoamingConsortium extends pulumi.Cus
     }
 
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly oiLists!: pulumi.Output<outputs.WirelessControllerHotspot20AnqpRoamingConsortiumOiList[] | undefined>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -53,12 +54,14 @@ export class WirelessControllerHotspot20AnqpRoamingConsortium extends pulumi.Cus
         if (opts.id) {
             const state = argsOrState as WirelessControllerHotspot20AnqpRoamingConsortiumState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["oiLists"] = state ? state.oiLists : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WirelessControllerHotspot20AnqpRoamingConsortiumArgs | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["oiLists"] = args ? args.oiLists : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -73,6 +76,7 @@ export class WirelessControllerHotspot20AnqpRoamingConsortium extends pulumi.Cus
  */
 export interface WirelessControllerHotspot20AnqpRoamingConsortiumState {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     oiLists?: pulumi.Input<pulumi.Input<inputs.WirelessControllerHotspot20AnqpRoamingConsortiumOiList>[]>;
     vdomparam?: pulumi.Input<string>;
@@ -83,6 +87,7 @@ export interface WirelessControllerHotspot20AnqpRoamingConsortiumState {
  */
 export interface WirelessControllerHotspot20AnqpRoamingConsortiumArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     oiLists?: pulumi.Input<pulumi.Input<inputs.WirelessControllerHotspot20AnqpRoamingConsortiumOiList>[]>;
     vdomparam?: pulumi.Input<string>;

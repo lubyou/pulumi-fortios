@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,6 +20,7 @@ type SwitchControllerFlowTracking struct {
 	Collectors           SwitchControllerFlowTrackingCollectorArrayOutput `pulumi:"collectors"`
 	DynamicSortSubtable  pulumi.StringPtrOutput                           `pulumi:"dynamicSortSubtable"`
 	Format               pulumi.StringOutput                              `pulumi:"format"`
+	GetAllTables         pulumi.StringPtrOutput                           `pulumi:"getAllTables"`
 	Level                pulumi.StringOutput                              `pulumi:"level"`
 	MaxExportPktSize     pulumi.IntOutput                                 `pulumi:"maxExportPktSize"`
 	SampleMode           pulumi.StringOutput                              `pulumi:"sampleMode"`
@@ -42,7 +44,7 @@ func NewSwitchControllerFlowTracking(ctx *pulumi.Context,
 		args = &SwitchControllerFlowTrackingArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SwitchControllerFlowTracking
 	err := ctx.RegisterResource("fortios:index/switchControllerFlowTracking:SwitchControllerFlowTracking", name, args, &resource, opts...)
 	if err != nil {
@@ -71,6 +73,7 @@ type switchControllerFlowTrackingState struct {
 	Collectors           []SwitchControllerFlowTrackingCollector `pulumi:"collectors"`
 	DynamicSortSubtable  *string                                 `pulumi:"dynamicSortSubtable"`
 	Format               *string                                 `pulumi:"format"`
+	GetAllTables         *string                                 `pulumi:"getAllTables"`
 	Level                *string                                 `pulumi:"level"`
 	MaxExportPktSize     *int                                    `pulumi:"maxExportPktSize"`
 	SampleMode           *string                                 `pulumi:"sampleMode"`
@@ -94,6 +97,7 @@ type SwitchControllerFlowTrackingState struct {
 	Collectors           SwitchControllerFlowTrackingCollectorArrayInput
 	DynamicSortSubtable  pulumi.StringPtrInput
 	Format               pulumi.StringPtrInput
+	GetAllTables         pulumi.StringPtrInput
 	Level                pulumi.StringPtrInput
 	MaxExportPktSize     pulumi.IntPtrInput
 	SampleMode           pulumi.StringPtrInput
@@ -121,6 +125,7 @@ type switchControllerFlowTrackingArgs struct {
 	Collectors           []SwitchControllerFlowTrackingCollector `pulumi:"collectors"`
 	DynamicSortSubtable  *string                                 `pulumi:"dynamicSortSubtable"`
 	Format               *string                                 `pulumi:"format"`
+	GetAllTables         *string                                 `pulumi:"getAllTables"`
 	Level                *string                                 `pulumi:"level"`
 	MaxExportPktSize     *int                                    `pulumi:"maxExportPktSize"`
 	SampleMode           *string                                 `pulumi:"sampleMode"`
@@ -145,6 +150,7 @@ type SwitchControllerFlowTrackingArgs struct {
 	Collectors           SwitchControllerFlowTrackingCollectorArrayInput
 	DynamicSortSubtable  pulumi.StringPtrInput
 	Format               pulumi.StringPtrInput
+	GetAllTables         pulumi.StringPtrInput
 	Level                pulumi.StringPtrInput
 	MaxExportPktSize     pulumi.IntPtrInput
 	SampleMode           pulumi.StringPtrInput
@@ -274,6 +280,10 @@ func (o SwitchControllerFlowTrackingOutput) DynamicSortSubtable() pulumi.StringP
 
 func (o SwitchControllerFlowTrackingOutput) Format() pulumi.StringOutput {
 	return o.ApplyT(func(v *SwitchControllerFlowTracking) pulumi.StringOutput { return v.Format }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerFlowTrackingOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerFlowTracking) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SwitchControllerFlowTrackingOutput) Level() pulumi.StringOutput {

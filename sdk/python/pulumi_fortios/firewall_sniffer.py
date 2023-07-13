@@ -33,6 +33,7 @@ class FirewallSnifferArgs:
                  file_filter_profile: Optional[pulumi.Input[str]] = None,
                  file_filter_profile_status: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  ip_threatfeed_status: Optional[pulumi.Input[str]] = None,
                  ip_threatfeeds: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSnifferIpThreatfeedArgs']]]] = None,
@@ -89,6 +90,8 @@ class FirewallSnifferArgs:
             pulumi.set(__self__, "file_filter_profile_status", file_filter_profile_status)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if host is not None:
             pulumi.set(__self__, "host", host)
         if ip_threatfeed_status is not None:
@@ -282,6 +285,15 @@ class FirewallSnifferArgs:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -483,6 +495,7 @@ class _FirewallSnifferState:
                  file_filter_profile: Optional[pulumi.Input[str]] = None,
                  file_filter_profile_status: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ip_threatfeed_status: Optional[pulumi.Input[str]] = None,
@@ -539,6 +552,8 @@ class _FirewallSnifferState:
             pulumi.set(__self__, "file_filter_profile_status", file_filter_profile_status)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if host is not None:
             pulumi.set(__self__, "host", host)
         if interface is not None:
@@ -725,6 +740,15 @@ class _FirewallSnifferState:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -937,6 +961,7 @@ class FirewallSniffer(pulumi.CustomResource):
                  file_filter_profile: Optional[pulumi.Input[str]] = None,
                  file_filter_profile_status: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ip_threatfeed_status: Optional[pulumi.Input[str]] = None,
@@ -1003,6 +1028,7 @@ class FirewallSniffer(pulumi.CustomResource):
                  file_filter_profile: Optional[pulumi.Input[str]] = None,
                  file_filter_profile_status: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ip_threatfeed_status: Optional[pulumi.Input[str]] = None,
@@ -1049,6 +1075,7 @@ class FirewallSniffer(pulumi.CustomResource):
             __props__.__dict__["file_filter_profile"] = file_filter_profile
             __props__.__dict__["file_filter_profile_status"] = file_filter_profile_status
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["host"] = host
             if interface is None and not opts.urn:
                 raise TypeError("Missing required property 'interface'")
@@ -1098,6 +1125,7 @@ class FirewallSniffer(pulumi.CustomResource):
             file_filter_profile: Optional[pulumi.Input[str]] = None,
             file_filter_profile_status: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             host: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             ip_threatfeed_status: Optional[pulumi.Input[str]] = None,
@@ -1147,6 +1175,7 @@ class FirewallSniffer(pulumi.CustomResource):
         __props__.__dict__["file_filter_profile"] = file_filter_profile
         __props__.__dict__["file_filter_profile_status"] = file_filter_profile_status
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["host"] = host
         __props__.__dict__["interface"] = interface
         __props__.__dict__["ip_threatfeed_status"] = ip_threatfeed_status
@@ -1249,6 +1278,11 @@ class FirewallSniffer(pulumi.CustomResource):
     @pulumi.getter
     def fosid(self) -> pulumi.Output[int]:
         return pulumi.get(self, "fosid")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

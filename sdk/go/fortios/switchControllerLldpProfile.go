@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -20,6 +21,7 @@ type SwitchControllerLldpProfile struct {
 	AutoMclagIcl          pulumi.StringOutput                                      `pulumi:"autoMclagIcl"`
 	CustomTlvs            SwitchControllerLldpProfileCustomTlvArrayOutput          `pulumi:"customTlvs"`
 	DynamicSortSubtable   pulumi.StringPtrOutput                                   `pulumi:"dynamicSortSubtable"`
+	GetAllTables          pulumi.StringPtrOutput                                   `pulumi:"getAllTables"`
 	MedLocationServices   SwitchControllerLldpProfileMedLocationServiceArrayOutput `pulumi:"medLocationServices"`
 	MedNetworkPolicies    SwitchControllerLldpProfileMedNetworkPolicyArrayOutput   `pulumi:"medNetworkPolicies"`
 	MedTlvs               pulumi.StringOutput                                      `pulumi:"medTlvs"`
@@ -36,7 +38,7 @@ func NewSwitchControllerLldpProfile(ctx *pulumi.Context,
 		args = &SwitchControllerLldpProfileArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SwitchControllerLldpProfile
 	err := ctx.RegisterResource("fortios:index/switchControllerLldpProfile:SwitchControllerLldpProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -66,6 +68,7 @@ type switchControllerLldpProfileState struct {
 	AutoMclagIcl          *string                                         `pulumi:"autoMclagIcl"`
 	CustomTlvs            []SwitchControllerLldpProfileCustomTlv          `pulumi:"customTlvs"`
 	DynamicSortSubtable   *string                                         `pulumi:"dynamicSortSubtable"`
+	GetAllTables          *string                                         `pulumi:"getAllTables"`
 	MedLocationServices   []SwitchControllerLldpProfileMedLocationService `pulumi:"medLocationServices"`
 	MedNetworkPolicies    []SwitchControllerLldpProfileMedNetworkPolicy   `pulumi:"medNetworkPolicies"`
 	MedTlvs               *string                                         `pulumi:"medTlvs"`
@@ -83,6 +86,7 @@ type SwitchControllerLldpProfileState struct {
 	AutoMclagIcl          pulumi.StringPtrInput
 	CustomTlvs            SwitchControllerLldpProfileCustomTlvArrayInput
 	DynamicSortSubtable   pulumi.StringPtrInput
+	GetAllTables          pulumi.StringPtrInput
 	MedLocationServices   SwitchControllerLldpProfileMedLocationServiceArrayInput
 	MedNetworkPolicies    SwitchControllerLldpProfileMedNetworkPolicyArrayInput
 	MedTlvs               pulumi.StringPtrInput
@@ -104,6 +108,7 @@ type switchControllerLldpProfileArgs struct {
 	AutoMclagIcl          *string                                         `pulumi:"autoMclagIcl"`
 	CustomTlvs            []SwitchControllerLldpProfileCustomTlv          `pulumi:"customTlvs"`
 	DynamicSortSubtable   *string                                         `pulumi:"dynamicSortSubtable"`
+	GetAllTables          *string                                         `pulumi:"getAllTables"`
 	MedLocationServices   []SwitchControllerLldpProfileMedLocationService `pulumi:"medLocationServices"`
 	MedNetworkPolicies    []SwitchControllerLldpProfileMedNetworkPolicy   `pulumi:"medNetworkPolicies"`
 	MedTlvs               *string                                         `pulumi:"medTlvs"`
@@ -122,6 +127,7 @@ type SwitchControllerLldpProfileArgs struct {
 	AutoMclagIcl          pulumi.StringPtrInput
 	CustomTlvs            SwitchControllerLldpProfileCustomTlvArrayInput
 	DynamicSortSubtable   pulumi.StringPtrInput
+	GetAllTables          pulumi.StringPtrInput
 	MedLocationServices   SwitchControllerLldpProfileMedLocationServiceArrayInput
 	MedNetworkPolicies    SwitchControllerLldpProfileMedNetworkPolicyArrayInput
 	MedTlvs               pulumi.StringPtrInput
@@ -246,6 +252,10 @@ func (o SwitchControllerLldpProfileOutput) CustomTlvs() SwitchControllerLldpProf
 
 func (o SwitchControllerLldpProfileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SwitchControllerLldpProfile) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SwitchControllerLldpProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerLldpProfile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SwitchControllerLldpProfileOutput) MedLocationServices() SwitchControllerLldpProfileMedLocationServiceArrayOutput {

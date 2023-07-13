@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -40,7 +41,7 @@ func NewWanoptAuthGroup(ctx *pulumi.Context,
 		"psk",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WanoptAuthGroup
 	err := ctx.RegisterResource("fortios:index/wanoptAuthGroup:WanoptAuthGroup", name, args, &resource, opts...)
 	if err != nil {

@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemAutoupdateSchedule(ctx *pulumi.Context, args *LookupSystemAutoupdateScheduleArgs, opts ...pulumi.InvokeOption) (*LookupSystemAutoupdateScheduleResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemAutoupdateScheduleResult
 	err := ctx.Invoke("fortios:index/getSystemAutoupdateSchedule:GetSystemAutoupdateSchedule", args, &rv, opts...)
 	if err != nil {

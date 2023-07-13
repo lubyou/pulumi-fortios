@@ -7,17 +7,20 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type WirelessControllerGlobal struct {
 	pulumi.CustomResourceState
 
+	AcdProcessCount       pulumi.IntOutput       `pulumi:"acdProcessCount"`
 	ApLogServer           pulumi.StringOutput    `pulumi:"apLogServer"`
 	ApLogServerIp         pulumi.StringOutput    `pulumi:"apLogServerIp"`
 	ApLogServerPort       pulumi.IntOutput       `pulumi:"apLogServerPort"`
 	ControlMessageOffload pulumi.StringOutput    `pulumi:"controlMessageOffload"`
 	DataEthernetIi        pulumi.StringOutput    `pulumi:"dataEthernetIi"`
+	DfsLabTest            pulumi.StringOutput    `pulumi:"dfsLabTest"`
 	DiscoveryMcAddr       pulumi.StringOutput    `pulumi:"discoveryMcAddr"`
 	FiappEthType          pulumi.IntOutput       `pulumi:"fiappEthType"`
 	ImageDownload         pulumi.StringOutput    `pulumi:"imageDownload"`
@@ -32,6 +35,7 @@ type WirelessControllerGlobal struct {
 	RogueScanMacAdjacency pulumi.IntOutput       `pulumi:"rogueScanMacAdjacency"`
 	TunnelMode            pulumi.StringOutput    `pulumi:"tunnelMode"`
 	Vdomparam             pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	WpadProcessCount      pulumi.IntOutput       `pulumi:"wpadProcessCount"`
 	WtpShare              pulumi.StringOutput    `pulumi:"wtpShare"`
 }
 
@@ -42,7 +46,7 @@ func NewWirelessControllerGlobal(ctx *pulumi.Context,
 		args = &WirelessControllerGlobalArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WirelessControllerGlobal
 	err := ctx.RegisterResource("fortios:index/wirelessControllerGlobal:WirelessControllerGlobal", name, args, &resource, opts...)
 	if err != nil {
@@ -65,11 +69,13 @@ func GetWirelessControllerGlobal(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WirelessControllerGlobal resources.
 type wirelessControllerGlobalState struct {
+	AcdProcessCount       *int    `pulumi:"acdProcessCount"`
 	ApLogServer           *string `pulumi:"apLogServer"`
 	ApLogServerIp         *string `pulumi:"apLogServerIp"`
 	ApLogServerPort       *int    `pulumi:"apLogServerPort"`
 	ControlMessageOffload *string `pulumi:"controlMessageOffload"`
 	DataEthernetIi        *string `pulumi:"dataEthernetIi"`
+	DfsLabTest            *string `pulumi:"dfsLabTest"`
 	DiscoveryMcAddr       *string `pulumi:"discoveryMcAddr"`
 	FiappEthType          *int    `pulumi:"fiappEthType"`
 	ImageDownload         *string `pulumi:"imageDownload"`
@@ -84,15 +90,18 @@ type wirelessControllerGlobalState struct {
 	RogueScanMacAdjacency *int    `pulumi:"rogueScanMacAdjacency"`
 	TunnelMode            *string `pulumi:"tunnelMode"`
 	Vdomparam             *string `pulumi:"vdomparam"`
+	WpadProcessCount      *int    `pulumi:"wpadProcessCount"`
 	WtpShare              *string `pulumi:"wtpShare"`
 }
 
 type WirelessControllerGlobalState struct {
+	AcdProcessCount       pulumi.IntPtrInput
 	ApLogServer           pulumi.StringPtrInput
 	ApLogServerIp         pulumi.StringPtrInput
 	ApLogServerPort       pulumi.IntPtrInput
 	ControlMessageOffload pulumi.StringPtrInput
 	DataEthernetIi        pulumi.StringPtrInput
+	DfsLabTest            pulumi.StringPtrInput
 	DiscoveryMcAddr       pulumi.StringPtrInput
 	FiappEthType          pulumi.IntPtrInput
 	ImageDownload         pulumi.StringPtrInput
@@ -107,6 +116,7 @@ type WirelessControllerGlobalState struct {
 	RogueScanMacAdjacency pulumi.IntPtrInput
 	TunnelMode            pulumi.StringPtrInput
 	Vdomparam             pulumi.StringPtrInput
+	WpadProcessCount      pulumi.IntPtrInput
 	WtpShare              pulumi.StringPtrInput
 }
 
@@ -115,11 +125,13 @@ func (WirelessControllerGlobalState) ElementType() reflect.Type {
 }
 
 type wirelessControllerGlobalArgs struct {
+	AcdProcessCount       *int    `pulumi:"acdProcessCount"`
 	ApLogServer           *string `pulumi:"apLogServer"`
 	ApLogServerIp         *string `pulumi:"apLogServerIp"`
 	ApLogServerPort       *int    `pulumi:"apLogServerPort"`
 	ControlMessageOffload *string `pulumi:"controlMessageOffload"`
 	DataEthernetIi        *string `pulumi:"dataEthernetIi"`
+	DfsLabTest            *string `pulumi:"dfsLabTest"`
 	DiscoveryMcAddr       *string `pulumi:"discoveryMcAddr"`
 	FiappEthType          *int    `pulumi:"fiappEthType"`
 	ImageDownload         *string `pulumi:"imageDownload"`
@@ -134,16 +146,19 @@ type wirelessControllerGlobalArgs struct {
 	RogueScanMacAdjacency *int    `pulumi:"rogueScanMacAdjacency"`
 	TunnelMode            *string `pulumi:"tunnelMode"`
 	Vdomparam             *string `pulumi:"vdomparam"`
+	WpadProcessCount      *int    `pulumi:"wpadProcessCount"`
 	WtpShare              *string `pulumi:"wtpShare"`
 }
 
 // The set of arguments for constructing a WirelessControllerGlobal resource.
 type WirelessControllerGlobalArgs struct {
+	AcdProcessCount       pulumi.IntPtrInput
 	ApLogServer           pulumi.StringPtrInput
 	ApLogServerIp         pulumi.StringPtrInput
 	ApLogServerPort       pulumi.IntPtrInput
 	ControlMessageOffload pulumi.StringPtrInput
 	DataEthernetIi        pulumi.StringPtrInput
+	DfsLabTest            pulumi.StringPtrInput
 	DiscoveryMcAddr       pulumi.StringPtrInput
 	FiappEthType          pulumi.IntPtrInput
 	ImageDownload         pulumi.StringPtrInput
@@ -158,6 +173,7 @@ type WirelessControllerGlobalArgs struct {
 	RogueScanMacAdjacency pulumi.IntPtrInput
 	TunnelMode            pulumi.StringPtrInput
 	Vdomparam             pulumi.StringPtrInput
+	WpadProcessCount      pulumi.IntPtrInput
 	WtpShare              pulumi.StringPtrInput
 }
 
@@ -248,6 +264,10 @@ func (o WirelessControllerGlobalOutput) ToWirelessControllerGlobalOutputWithCont
 	return o
 }
 
+func (o WirelessControllerGlobalOutput) AcdProcessCount() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerGlobal) pulumi.IntOutput { return v.AcdProcessCount }).(pulumi.IntOutput)
+}
+
 func (o WirelessControllerGlobalOutput) ApLogServer() pulumi.StringOutput {
 	return o.ApplyT(func(v *WirelessControllerGlobal) pulumi.StringOutput { return v.ApLogServer }).(pulumi.StringOutput)
 }
@@ -266,6 +286,10 @@ func (o WirelessControllerGlobalOutput) ControlMessageOffload() pulumi.StringOut
 
 func (o WirelessControllerGlobalOutput) DataEthernetIi() pulumi.StringOutput {
 	return o.ApplyT(func(v *WirelessControllerGlobal) pulumi.StringOutput { return v.DataEthernetIi }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerGlobalOutput) DfsLabTest() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerGlobal) pulumi.StringOutput { return v.DfsLabTest }).(pulumi.StringOutput)
 }
 
 func (o WirelessControllerGlobalOutput) DiscoveryMcAddr() pulumi.StringOutput {
@@ -322,6 +346,10 @@ func (o WirelessControllerGlobalOutput) TunnelMode() pulumi.StringOutput {
 
 func (o WirelessControllerGlobalOutput) Vdomparam() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WirelessControllerGlobal) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerGlobalOutput) WpadProcessCount() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerGlobal) pulumi.IntOutput { return v.WpadProcessCount }).(pulumi.IntOutput)
 }
 
 func (o WirelessControllerGlobalOutput) WtpShare() pulumi.StringOutput {

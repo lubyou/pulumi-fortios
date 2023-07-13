@@ -41,6 +41,7 @@ export class SwitchControllerLldpProfile extends pulumi.CustomResource {
     public readonly autoMclagIcl!: pulumi.Output<string>;
     public readonly customTlvs!: pulumi.Output<outputs.SwitchControllerLldpProfileCustomTlv[] | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly medLocationServices!: pulumi.Output<outputs.SwitchControllerLldpProfileMedLocationService[] | undefined>;
     public readonly medNetworkPolicies!: pulumi.Output<outputs.SwitchControllerLldpProfileMedNetworkPolicy[] | undefined>;
     public readonly medTlvs!: pulumi.Output<string>;
@@ -69,6 +70,7 @@ export class SwitchControllerLldpProfile extends pulumi.CustomResource {
             resourceInputs["autoMclagIcl"] = state ? state.autoMclagIcl : undefined;
             resourceInputs["customTlvs"] = state ? state.customTlvs : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["medLocationServices"] = state ? state.medLocationServices : undefined;
             resourceInputs["medNetworkPolicies"] = state ? state.medNetworkPolicies : undefined;
             resourceInputs["medTlvs"] = state ? state.medTlvs : undefined;
@@ -85,6 +87,7 @@ export class SwitchControllerLldpProfile extends pulumi.CustomResource {
             resourceInputs["autoMclagIcl"] = args ? args.autoMclagIcl : undefined;
             resourceInputs["customTlvs"] = args ? args.customTlvs : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["medLocationServices"] = args ? args.medLocationServices : undefined;
             resourceInputs["medNetworkPolicies"] = args ? args.medNetworkPolicies : undefined;
             resourceInputs["medTlvs"] = args ? args.medTlvs : undefined;
@@ -109,6 +112,7 @@ export interface SwitchControllerLldpProfileState {
     autoMclagIcl?: pulumi.Input<string>;
     customTlvs?: pulumi.Input<pulumi.Input<inputs.SwitchControllerLldpProfileCustomTlv>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     medLocationServices?: pulumi.Input<pulumi.Input<inputs.SwitchControllerLldpProfileMedLocationService>[]>;
     medNetworkPolicies?: pulumi.Input<pulumi.Input<inputs.SwitchControllerLldpProfileMedNetworkPolicy>[]>;
     medTlvs?: pulumi.Input<string>;
@@ -129,6 +133,7 @@ export interface SwitchControllerLldpProfileArgs {
     autoMclagIcl?: pulumi.Input<string>;
     customTlvs?: pulumi.Input<pulumi.Input<inputs.SwitchControllerLldpProfileCustomTlv>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     medLocationServices?: pulumi.Input<pulumi.Input<inputs.SwitchControllerLldpProfileMedLocationService>[]>;
     medNetworkPolicies?: pulumi.Input<pulumi.Input<inputs.SwitchControllerLldpProfileMedNetworkPolicy>[]>;
     medTlvs?: pulumi.Input<string>;

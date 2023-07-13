@@ -38,6 +38,7 @@ export class UserFssoPolling extends pulumi.CustomResource {
     public readonly defaultDomain!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly fosid!: pulumi.Output<number>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly ldapServer!: pulumi.Output<string>;
     public readonly logonHistory!: pulumi.Output<number>;
     public readonly password!: pulumi.Output<string | undefined>;
@@ -67,6 +68,7 @@ export class UserFssoPolling extends pulumi.CustomResource {
             resourceInputs["defaultDomain"] = state ? state.defaultDomain : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["ldapServer"] = state ? state.ldapServer : undefined;
             resourceInputs["logonHistory"] = state ? state.logonHistory : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
@@ -93,6 +95,7 @@ export class UserFssoPolling extends pulumi.CustomResource {
             resourceInputs["defaultDomain"] = args ? args.defaultDomain : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["ldapServer"] = args ? args.ldapServer : undefined;
             resourceInputs["logonHistory"] = args ? args.logonHistory : undefined;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
@@ -120,6 +123,7 @@ export interface UserFssoPollingState {
     defaultDomain?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     fosid?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     ldapServer?: pulumi.Input<string>;
     logonHistory?: pulumi.Input<number>;
     password?: pulumi.Input<string>;
@@ -141,6 +145,7 @@ export interface UserFssoPollingArgs {
     defaultDomain?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     fosid?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     ldapServer: pulumi.Input<string>;
     logonHistory?: pulumi.Input<number>;
     password?: pulumi.Input<string>;

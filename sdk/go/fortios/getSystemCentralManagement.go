@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemCentralManagement(ctx *pulumi.Context, args *LookupSystemCentralManagementArgs, opts ...pulumi.InvokeOption) (*LookupSystemCentralManagementResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemCentralManagementResult
 	err := ctx.Invoke("fortios:index/getSystemCentralManagement:GetSystemCentralManagement", args, &rv, opts...)
 	if err != nil {
@@ -27,16 +28,17 @@ type LookupSystemCentralManagementArgs struct {
 
 // A collection of values returned by GetSystemCentralManagement.
 type LookupSystemCentralManagementResult struct {
-	AllowMonitor               string `pulumi:"allowMonitor"`
-	AllowPushConfiguration     string `pulumi:"allowPushConfiguration"`
-	AllowPushFirmware          string `pulumi:"allowPushFirmware"`
-	AllowRemoteFirmwareUpgrade string `pulumi:"allowRemoteFirmwareUpgrade"`
-	CaCert                     string `pulumi:"caCert"`
-	EncAlgorithm               string `pulumi:"encAlgorithm"`
-	Fmg                        string `pulumi:"fmg"`
-	FmgSourceIp                string `pulumi:"fmgSourceIp"`
-	FmgSourceIp6               string `pulumi:"fmgSourceIp6"`
-	FmgUpdatePort              string `pulumi:"fmgUpdatePort"`
+	AllowMonitor                    string `pulumi:"allowMonitor"`
+	AllowPushConfiguration          string `pulumi:"allowPushConfiguration"`
+	AllowPushFirmware               string `pulumi:"allowPushFirmware"`
+	AllowRemoteFirmwareUpgrade      string `pulumi:"allowRemoteFirmwareUpgrade"`
+	CaCert                          string `pulumi:"caCert"`
+	EncAlgorithm                    string `pulumi:"encAlgorithm"`
+	Fmg                             string `pulumi:"fmg"`
+	FmgSourceIp                     string `pulumi:"fmgSourceIp"`
+	FmgSourceIp6                    string `pulumi:"fmgSourceIp6"`
+	FmgUpdatePort                   string `pulumi:"fmgUpdatePort"`
+	FortigateCloudSsoDefaultProfile string `pulumi:"fortigateCloudSsoDefaultProfile"`
 	// The provider-assigned unique ID for this managed resource.
 	Id                    string                                 `pulumi:"id"`
 	IncludeDefaultServers string                                 `pulumi:"includeDefaultServers"`
@@ -128,6 +130,10 @@ func (o LookupSystemCentralManagementResultOutput) FmgSourceIp6() pulumi.StringO
 
 func (o LookupSystemCentralManagementResultOutput) FmgUpdatePort() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemCentralManagementResult) string { return v.FmgUpdatePort }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemCentralManagementResultOutput) FortigateCloudSsoDefaultProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemCentralManagementResult) string { return v.FortigateCloudSsoDefaultProfile }).(pulumi.StringOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

@@ -40,6 +40,7 @@ export class SwitchControllerVlanPolicy extends pulumi.CustomResource {
     public readonly discardMode!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly fortilink!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly untaggedVlans!: pulumi.Output<outputs.SwitchControllerVlanPolicyUntaggedVlan[] | undefined>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -64,6 +65,7 @@ export class SwitchControllerVlanPolicy extends pulumi.CustomResource {
             resourceInputs["discardMode"] = state ? state.discardMode : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fortilink"] = state ? state.fortilink : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["untaggedVlans"] = state ? state.untaggedVlans : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
@@ -76,6 +78,7 @@ export class SwitchControllerVlanPolicy extends pulumi.CustomResource {
             resourceInputs["discardMode"] = args ? args.discardMode : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fortilink"] = args ? args.fortilink : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["untaggedVlans"] = args ? args.untaggedVlans : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -96,6 +99,7 @@ export interface SwitchControllerVlanPolicyState {
     discardMode?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     fortilink?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     untaggedVlans?: pulumi.Input<pulumi.Input<inputs.SwitchControllerVlanPolicyUntaggedVlan>[]>;
     vdomparam?: pulumi.Input<string>;
@@ -112,6 +116,7 @@ export interface SwitchControllerVlanPolicyArgs {
     discardMode?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     fortilink?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     untaggedVlans?: pulumi.Input<pulumi.Input<inputs.SwitchControllerVlanPolicyUntaggedVlan>[]>;
     vdomparam?: pulumi.Input<string>;

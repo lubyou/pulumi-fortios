@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -32,7 +33,7 @@ func NewFortimanagerDVMScriptExecute(ctx *pulumi.Context,
 	if args.ScriptName == nil {
 		return nil, errors.New("invalid value for required argument 'ScriptName'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FortimanagerDVMScriptExecute
 	err := ctx.RegisterResource("fortios:index/fortimanagerDVMScriptExecute:FortimanagerDVMScriptExecute", name, args, &resource, opts...)
 	if err != nil {

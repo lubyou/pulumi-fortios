@@ -41,6 +41,7 @@ export class WebfilterProfile extends pulumi.CustomResource {
     public readonly featureSet!: pulumi.Output<string>;
     public readonly fileFilter!: pulumi.Output<outputs.WebfilterProfileFileFilter>;
     public readonly ftgdWf!: pulumi.Output<outputs.WebfilterProfileFtgdWf>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly httpsReplacemsg!: pulumi.Output<string>;
     public readonly inspectionMode!: pulumi.Output<string>;
     public readonly logAllUrl!: pulumi.Output<string>;
@@ -95,6 +96,7 @@ export class WebfilterProfile extends pulumi.CustomResource {
             resourceInputs["featureSet"] = state ? state.featureSet : undefined;
             resourceInputs["fileFilter"] = state ? state.fileFilter : undefined;
             resourceInputs["ftgdWf"] = state ? state.ftgdWf : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["httpsReplacemsg"] = state ? state.httpsReplacemsg : undefined;
             resourceInputs["inspectionMode"] = state ? state.inspectionMode : undefined;
             resourceInputs["logAllUrl"] = state ? state.logAllUrl : undefined;
@@ -137,6 +139,7 @@ export class WebfilterProfile extends pulumi.CustomResource {
             resourceInputs["featureSet"] = args ? args.featureSet : undefined;
             resourceInputs["fileFilter"] = args ? args.fileFilter : undefined;
             resourceInputs["ftgdWf"] = args ? args.ftgdWf : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["httpsReplacemsg"] = args ? args.httpsReplacemsg : undefined;
             resourceInputs["inspectionMode"] = args ? args.inspectionMode : undefined;
             resourceInputs["logAllUrl"] = args ? args.logAllUrl : undefined;
@@ -187,6 +190,7 @@ export interface WebfilterProfileState {
     featureSet?: pulumi.Input<string>;
     fileFilter?: pulumi.Input<inputs.WebfilterProfileFileFilter>;
     ftgdWf?: pulumi.Input<inputs.WebfilterProfileFtgdWf>;
+    getAllTables?: pulumi.Input<string>;
     httpsReplacemsg?: pulumi.Input<string>;
     inspectionMode?: pulumi.Input<string>;
     logAllUrl?: pulumi.Input<string>;
@@ -233,6 +237,7 @@ export interface WebfilterProfileArgs {
     featureSet?: pulumi.Input<string>;
     fileFilter?: pulumi.Input<inputs.WebfilterProfileFileFilter>;
     ftgdWf?: pulumi.Input<inputs.WebfilterProfileFtgdWf>;
+    getAllTables?: pulumi.Input<string>;
     httpsReplacemsg?: pulumi.Input<string>;
     inspectionMode?: pulumi.Input<string>;
     logAllUrl?: pulumi.Input<string>;

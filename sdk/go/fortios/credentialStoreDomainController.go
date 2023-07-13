@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -38,7 +39,7 @@ func NewCredentialStoreDomainController(ctx *pulumi.Context,
 		"password",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource CredentialStoreDomainController
 	err := ctx.RegisterResource("fortios:index/credentialStoreDomainController:CredentialStoreDomainController", name, args, &resource, opts...)
 	if err != nil {

@@ -39,6 +39,7 @@ export class FirewallMulticastAddress extends pulumi.CustomResource {
     public readonly comment!: pulumi.Output<string | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly endIp!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly startIp!: pulumi.Output<string>;
     public readonly subnet!: pulumi.Output<string>;
@@ -65,6 +66,7 @@ export class FirewallMulticastAddress extends pulumi.CustomResource {
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["endIp"] = state ? state.endIp : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["startIp"] = state ? state.startIp : undefined;
             resourceInputs["subnet"] = state ? state.subnet : undefined;
@@ -79,6 +81,7 @@ export class FirewallMulticastAddress extends pulumi.CustomResource {
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["endIp"] = args ? args.endIp : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["startIp"] = args ? args.startIp : undefined;
             resourceInputs["subnet"] = args ? args.subnet : undefined;
@@ -101,6 +104,7 @@ export interface FirewallMulticastAddressState {
     comment?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     endIp?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     startIp?: pulumi.Input<string>;
     subnet?: pulumi.Input<string>;
@@ -119,6 +123,7 @@ export interface FirewallMulticastAddressArgs {
     comment?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     endIp?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     startIp?: pulumi.Input<string>;
     subnet?: pulumi.Input<string>;

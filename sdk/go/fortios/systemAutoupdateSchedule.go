@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -37,7 +38,7 @@ func NewSystemAutoupdateSchedule(ctx *pulumi.Context,
 	if args.Time == nil {
 		return nil, errors.New("invalid value for required argument 'Time'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemAutoupdateSchedule
 	err := ctx.RegisterResource("fortios:index/systemAutoupdateSchedule:SystemAutoupdateSchedule", name, args, &resource, opts...)
 	if err != nil {

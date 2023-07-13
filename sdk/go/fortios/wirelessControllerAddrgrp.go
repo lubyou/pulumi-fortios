@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -17,6 +18,7 @@ type WirelessControllerAddrgrp struct {
 	DefaultPolicy       pulumi.StringOutput                         `pulumi:"defaultPolicy"`
 	DynamicSortSubtable pulumi.StringPtrOutput                      `pulumi:"dynamicSortSubtable"`
 	Fosid               pulumi.StringOutput                         `pulumi:"fosid"`
+	GetAllTables        pulumi.StringPtrOutput                      `pulumi:"getAllTables"`
 	Vdomparam           pulumi.StringPtrOutput                      `pulumi:"vdomparam"`
 }
 
@@ -27,7 +29,7 @@ func NewWirelessControllerAddrgrp(ctx *pulumi.Context,
 		args = &WirelessControllerAddrgrpArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WirelessControllerAddrgrp
 	err := ctx.RegisterResource("fortios:index/wirelessControllerAddrgrp:WirelessControllerAddrgrp", name, args, &resource, opts...)
 	if err != nil {
@@ -54,6 +56,7 @@ type wirelessControllerAddrgrpState struct {
 	DefaultPolicy       *string                            `pulumi:"defaultPolicy"`
 	DynamicSortSubtable *string                            `pulumi:"dynamicSortSubtable"`
 	Fosid               *string                            `pulumi:"fosid"`
+	GetAllTables        *string                            `pulumi:"getAllTables"`
 	Vdomparam           *string                            `pulumi:"vdomparam"`
 }
 
@@ -62,6 +65,7 @@ type WirelessControllerAddrgrpState struct {
 	DefaultPolicy       pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	Fosid               pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
 }
 
@@ -74,6 +78,7 @@ type wirelessControllerAddrgrpArgs struct {
 	DefaultPolicy       *string                            `pulumi:"defaultPolicy"`
 	DynamicSortSubtable *string                            `pulumi:"dynamicSortSubtable"`
 	Fosid               *string                            `pulumi:"fosid"`
+	GetAllTables        *string                            `pulumi:"getAllTables"`
 	Vdomparam           *string                            `pulumi:"vdomparam"`
 }
 
@@ -83,6 +88,7 @@ type WirelessControllerAddrgrpArgs struct {
 	DefaultPolicy       pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	Fosid               pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
 }
 
@@ -187,6 +193,10 @@ func (o WirelessControllerAddrgrpOutput) DynamicSortSubtable() pulumi.StringPtrO
 
 func (o WirelessControllerAddrgrpOutput) Fosid() pulumi.StringOutput {
 	return o.ApplyT(func(v *WirelessControllerAddrgrp) pulumi.StringOutput { return v.Fosid }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerAddrgrpOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerAddrgrp) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o WirelessControllerAddrgrpOutput) Vdomparam() pulumi.StringPtrOutput {

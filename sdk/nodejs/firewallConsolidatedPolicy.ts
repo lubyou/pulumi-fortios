@@ -58,6 +58,7 @@ export class FirewallConsolidatedPolicy extends pulumi.CustomResource {
     public readonly emailfilterProfile!: pulumi.Output<string>;
     public readonly fixedport!: pulumi.Output<string>;
     public readonly fssoGroups!: pulumi.Output<outputs.FirewallConsolidatedPolicyFssoGroup[] | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly groups!: pulumi.Output<outputs.FirewallConsolidatedPolicyGroup[] | undefined>;
     public readonly httpPolicyRedirect!: pulumi.Output<string>;
     public readonly icapProfile!: pulumi.Output<string>;
@@ -164,6 +165,7 @@ export class FirewallConsolidatedPolicy extends pulumi.CustomResource {
             resourceInputs["emailfilterProfile"] = state ? state.emailfilterProfile : undefined;
             resourceInputs["fixedport"] = state ? state.fixedport : undefined;
             resourceInputs["fssoGroups"] = state ? state.fssoGroups : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["groups"] = state ? state.groups : undefined;
             resourceInputs["httpPolicyRedirect"] = state ? state.httpPolicyRedirect : undefined;
             resourceInputs["icapProfile"] = state ? state.icapProfile : undefined;
@@ -258,6 +260,7 @@ export class FirewallConsolidatedPolicy extends pulumi.CustomResource {
             resourceInputs["emailfilterProfile"] = args ? args.emailfilterProfile : undefined;
             resourceInputs["fixedport"] = args ? args.fixedport : undefined;
             resourceInputs["fssoGroups"] = args ? args.fssoGroups : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["groups"] = args ? args.groups : undefined;
             resourceInputs["httpPolicyRedirect"] = args ? args.httpPolicyRedirect : undefined;
             resourceInputs["icapProfile"] = args ? args.icapProfile : undefined;
@@ -360,6 +363,7 @@ export interface FirewallConsolidatedPolicyState {
     emailfilterProfile?: pulumi.Input<string>;
     fixedport?: pulumi.Input<string>;
     fssoGroups?: pulumi.Input<pulumi.Input<inputs.FirewallConsolidatedPolicyFssoGroup>[]>;
+    getAllTables?: pulumi.Input<string>;
     groups?: pulumi.Input<pulumi.Input<inputs.FirewallConsolidatedPolicyGroup>[]>;
     httpPolicyRedirect?: pulumi.Input<string>;
     icapProfile?: pulumi.Input<string>;
@@ -458,6 +462,7 @@ export interface FirewallConsolidatedPolicyArgs {
     emailfilterProfile?: pulumi.Input<string>;
     fixedport?: pulumi.Input<string>;
     fssoGroups?: pulumi.Input<pulumi.Input<inputs.FirewallConsolidatedPolicyFssoGroup>[]>;
+    getAllTables?: pulumi.Input<string>;
     groups?: pulumi.Input<pulumi.Input<inputs.FirewallConsolidatedPolicyGroup>[]>;
     httpPolicyRedirect?: pulumi.Input<string>;
     icapProfile?: pulumi.Input<string>;

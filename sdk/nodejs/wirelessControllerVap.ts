@@ -58,6 +58,7 @@ export class WirelessControllerVap extends pulumi.CustomResource {
     public readonly bstmRssiDisassocTimer!: pulumi.Output<number>;
     public readonly captivePortalAcName!: pulumi.Output<string>;
     public readonly captivePortalAuthTimeout!: pulumi.Output<number>;
+    public readonly captivePortalFwAccounting!: pulumi.Output<string>;
     public readonly captivePortalMacauthRadiusSecret!: pulumi.Output<string | undefined>;
     public readonly captivePortalMacauthRadiusServer!: pulumi.Output<string>;
     public readonly captivePortalRadiusSecret!: pulumi.Output<string | undefined>;
@@ -86,6 +87,7 @@ export class WirelessControllerVap extends pulumi.CustomResource {
     public readonly ftR0KeyLifetime!: pulumi.Output<number>;
     public readonly gasComebackDelay!: pulumi.Output<number>;
     public readonly gasFragmentationLimit!: pulumi.Output<number>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly gtkRekey!: pulumi.Output<string>;
     public readonly gtkRekeyIntv!: pulumi.Output<number>;
     public readonly highEfficiency!: pulumi.Output<string>;
@@ -159,6 +161,7 @@ export class WirelessControllerVap extends pulumi.CustomResource {
     public readonly radio5gThreshold!: pulumi.Output<string>;
     public readonly radioSensitivity!: pulumi.Output<string>;
     public readonly radiusMacAuth!: pulumi.Output<string>;
+    public readonly radiusMacAuthBlockInterval!: pulumi.Output<number>;
     public readonly radiusMacAuthServer!: pulumi.Output<string>;
     public readonly radiusMacAuthUsergroups!: pulumi.Output<outputs.WirelessControllerVapRadiusMacAuthUsergroup[] | undefined>;
     public readonly radiusMacMpskAuth!: pulumi.Output<string>;
@@ -247,6 +250,7 @@ export class WirelessControllerVap extends pulumi.CustomResource {
             resourceInputs["bstmRssiDisassocTimer"] = state ? state.bstmRssiDisassocTimer : undefined;
             resourceInputs["captivePortalAcName"] = state ? state.captivePortalAcName : undefined;
             resourceInputs["captivePortalAuthTimeout"] = state ? state.captivePortalAuthTimeout : undefined;
+            resourceInputs["captivePortalFwAccounting"] = state ? state.captivePortalFwAccounting : undefined;
             resourceInputs["captivePortalMacauthRadiusSecret"] = state ? state.captivePortalMacauthRadiusSecret : undefined;
             resourceInputs["captivePortalMacauthRadiusServer"] = state ? state.captivePortalMacauthRadiusServer : undefined;
             resourceInputs["captivePortalRadiusSecret"] = state ? state.captivePortalRadiusSecret : undefined;
@@ -275,6 +279,7 @@ export class WirelessControllerVap extends pulumi.CustomResource {
             resourceInputs["ftR0KeyLifetime"] = state ? state.ftR0KeyLifetime : undefined;
             resourceInputs["gasComebackDelay"] = state ? state.gasComebackDelay : undefined;
             resourceInputs["gasFragmentationLimit"] = state ? state.gasFragmentationLimit : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["gtkRekey"] = state ? state.gtkRekey : undefined;
             resourceInputs["gtkRekeyIntv"] = state ? state.gtkRekeyIntv : undefined;
             resourceInputs["highEfficiency"] = state ? state.highEfficiency : undefined;
@@ -348,6 +353,7 @@ export class WirelessControllerVap extends pulumi.CustomResource {
             resourceInputs["radio5gThreshold"] = state ? state.radio5gThreshold : undefined;
             resourceInputs["radioSensitivity"] = state ? state.radioSensitivity : undefined;
             resourceInputs["radiusMacAuth"] = state ? state.radiusMacAuth : undefined;
+            resourceInputs["radiusMacAuthBlockInterval"] = state ? state.radiusMacAuthBlockInterval : undefined;
             resourceInputs["radiusMacAuthServer"] = state ? state.radiusMacAuthServer : undefined;
             resourceInputs["radiusMacAuthUsergroups"] = state ? state.radiusMacAuthUsergroups : undefined;
             resourceInputs["radiusMacMpskAuth"] = state ? state.radiusMacMpskAuth : undefined;
@@ -424,6 +430,7 @@ export class WirelessControllerVap extends pulumi.CustomResource {
             resourceInputs["bstmRssiDisassocTimer"] = args ? args.bstmRssiDisassocTimer : undefined;
             resourceInputs["captivePortalAcName"] = args ? args.captivePortalAcName : undefined;
             resourceInputs["captivePortalAuthTimeout"] = args ? args.captivePortalAuthTimeout : undefined;
+            resourceInputs["captivePortalFwAccounting"] = args ? args.captivePortalFwAccounting : undefined;
             resourceInputs["captivePortalMacauthRadiusSecret"] = args?.captivePortalMacauthRadiusSecret ? pulumi.secret(args.captivePortalMacauthRadiusSecret) : undefined;
             resourceInputs["captivePortalMacauthRadiusServer"] = args ? args.captivePortalMacauthRadiusServer : undefined;
             resourceInputs["captivePortalRadiusSecret"] = args?.captivePortalRadiusSecret ? pulumi.secret(args.captivePortalRadiusSecret) : undefined;
@@ -452,6 +459,7 @@ export class WirelessControllerVap extends pulumi.CustomResource {
             resourceInputs["ftR0KeyLifetime"] = args ? args.ftR0KeyLifetime : undefined;
             resourceInputs["gasComebackDelay"] = args ? args.gasComebackDelay : undefined;
             resourceInputs["gasFragmentationLimit"] = args ? args.gasFragmentationLimit : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["gtkRekey"] = args ? args.gtkRekey : undefined;
             resourceInputs["gtkRekeyIntv"] = args ? args.gtkRekeyIntv : undefined;
             resourceInputs["highEfficiency"] = args ? args.highEfficiency : undefined;
@@ -525,6 +533,7 @@ export class WirelessControllerVap extends pulumi.CustomResource {
             resourceInputs["radio5gThreshold"] = args ? args.radio5gThreshold : undefined;
             resourceInputs["radioSensitivity"] = args ? args.radioSensitivity : undefined;
             resourceInputs["radiusMacAuth"] = args ? args.radiusMacAuth : undefined;
+            resourceInputs["radiusMacAuthBlockInterval"] = args ? args.radiusMacAuthBlockInterval : undefined;
             resourceInputs["radiusMacAuthServer"] = args ? args.radiusMacAuthServer : undefined;
             resourceInputs["radiusMacAuthUsergroups"] = args ? args.radiusMacAuthUsergroups : undefined;
             resourceInputs["radiusMacMpskAuth"] = args ? args.radiusMacMpskAuth : undefined;
@@ -611,6 +620,7 @@ export interface WirelessControllerVapState {
     bstmRssiDisassocTimer?: pulumi.Input<number>;
     captivePortalAcName?: pulumi.Input<string>;
     captivePortalAuthTimeout?: pulumi.Input<number>;
+    captivePortalFwAccounting?: pulumi.Input<string>;
     captivePortalMacauthRadiusSecret?: pulumi.Input<string>;
     captivePortalMacauthRadiusServer?: pulumi.Input<string>;
     captivePortalRadiusSecret?: pulumi.Input<string>;
@@ -639,6 +649,7 @@ export interface WirelessControllerVapState {
     ftR0KeyLifetime?: pulumi.Input<number>;
     gasComebackDelay?: pulumi.Input<number>;
     gasFragmentationLimit?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     gtkRekey?: pulumi.Input<string>;
     gtkRekeyIntv?: pulumi.Input<number>;
     highEfficiency?: pulumi.Input<string>;
@@ -712,6 +723,7 @@ export interface WirelessControllerVapState {
     radio5gThreshold?: pulumi.Input<string>;
     radioSensitivity?: pulumi.Input<string>;
     radiusMacAuth?: pulumi.Input<string>;
+    radiusMacAuthBlockInterval?: pulumi.Input<number>;
     radiusMacAuthServer?: pulumi.Input<string>;
     radiusMacAuthUsergroups?: pulumi.Input<pulumi.Input<inputs.WirelessControllerVapRadiusMacAuthUsergroup>[]>;
     radiusMacMpskAuth?: pulumi.Input<string>;
@@ -792,6 +804,7 @@ export interface WirelessControllerVapArgs {
     bstmRssiDisassocTimer?: pulumi.Input<number>;
     captivePortalAcName?: pulumi.Input<string>;
     captivePortalAuthTimeout?: pulumi.Input<number>;
+    captivePortalFwAccounting?: pulumi.Input<string>;
     captivePortalMacauthRadiusSecret?: pulumi.Input<string>;
     captivePortalMacauthRadiusServer?: pulumi.Input<string>;
     captivePortalRadiusSecret?: pulumi.Input<string>;
@@ -820,6 +833,7 @@ export interface WirelessControllerVapArgs {
     ftR0KeyLifetime?: pulumi.Input<number>;
     gasComebackDelay?: pulumi.Input<number>;
     gasFragmentationLimit?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     gtkRekey?: pulumi.Input<string>;
     gtkRekeyIntv?: pulumi.Input<number>;
     highEfficiency?: pulumi.Input<string>;
@@ -893,6 +907,7 @@ export interface WirelessControllerVapArgs {
     radio5gThreshold?: pulumi.Input<string>;
     radioSensitivity?: pulumi.Input<string>;
     radiusMacAuth?: pulumi.Input<string>;
+    radiusMacAuthBlockInterval?: pulumi.Input<number>;
     radiusMacAuthServer?: pulumi.Input<string>;
     radiusMacAuthUsergroups?: pulumi.Input<pulumi.Input<inputs.WirelessControllerVapRadiusMacAuthUsergroup>[]>;
     radiusMacMpskAuth?: pulumi.Input<string>;

@@ -14,15 +14,27 @@ __all__ = ['AutomationSettingArgs', 'AutomationSetting']
 @pulumi.input_type
 class AutomationSettingArgs:
     def __init__(__self__, *,
+                 fabric_sync: Optional[pulumi.Input[str]] = None,
                  max_concurrent_stitches: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a AutomationSetting resource.
         """
+        if fabric_sync is not None:
+            pulumi.set(__self__, "fabric_sync", fabric_sync)
         if max_concurrent_stitches is not None:
             pulumi.set(__self__, "max_concurrent_stitches", max_concurrent_stitches)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="fabricSync")
+    def fabric_sync(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "fabric_sync")
+
+    @fabric_sync.setter
+    def fabric_sync(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fabric_sync", value)
 
     @property
     @pulumi.getter(name="maxConcurrentStitches")
@@ -46,15 +58,27 @@ class AutomationSettingArgs:
 @pulumi.input_type
 class _AutomationSettingState:
     def __init__(__self__, *,
+                 fabric_sync: Optional[pulumi.Input[str]] = None,
                  max_concurrent_stitches: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering AutomationSetting resources.
         """
+        if fabric_sync is not None:
+            pulumi.set(__self__, "fabric_sync", fabric_sync)
         if max_concurrent_stitches is not None:
             pulumi.set(__self__, "max_concurrent_stitches", max_concurrent_stitches)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="fabricSync")
+    def fabric_sync(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "fabric_sync")
+
+    @fabric_sync.setter
+    def fabric_sync(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fabric_sync", value)
 
     @property
     @pulumi.getter(name="maxConcurrentStitches")
@@ -80,6 +104,7 @@ class AutomationSetting(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 fabric_sync: Optional[pulumi.Input[str]] = None,
                  max_concurrent_stitches: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -111,6 +136,7 @@ class AutomationSetting(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 fabric_sync: Optional[pulumi.Input[str]] = None,
                  max_concurrent_stitches: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -122,6 +148,7 @@ class AutomationSetting(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = AutomationSettingArgs.__new__(AutomationSettingArgs)
 
+            __props__.__dict__["fabric_sync"] = fabric_sync
             __props__.__dict__["max_concurrent_stitches"] = max_concurrent_stitches
             __props__.__dict__["vdomparam"] = vdomparam
         super(AutomationSetting, __self__).__init__(
@@ -134,6 +161,7 @@ class AutomationSetting(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            fabric_sync: Optional[pulumi.Input[str]] = None,
             max_concurrent_stitches: Optional[pulumi.Input[int]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'AutomationSetting':
         """
@@ -148,9 +176,15 @@ class AutomationSetting(pulumi.CustomResource):
 
         __props__ = _AutomationSettingState.__new__(_AutomationSettingState)
 
+        __props__.__dict__["fabric_sync"] = fabric_sync
         __props__.__dict__["max_concurrent_stitches"] = max_concurrent_stitches
         __props__.__dict__["vdomparam"] = vdomparam
         return AutomationSetting(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="fabricSync")
+    def fabric_sync(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "fabric_sync")
 
     @property
     @pulumi.getter(name="maxConcurrentStitches")

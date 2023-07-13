@@ -36,6 +36,7 @@ export class DpdkGlobal extends pulumi.CustomResource {
 
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly elasticbuffer!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly hugepagePercentage!: pulumi.Output<number>;
     public readonly interfaces!: pulumi.Output<outputs.DpdkGlobalInterface[] | undefined>;
     public readonly ipsecOffload!: pulumi.Output<string>;
@@ -61,6 +62,7 @@ export class DpdkGlobal extends pulumi.CustomResource {
             const state = argsOrState as DpdkGlobalState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["elasticbuffer"] = state ? state.elasticbuffer : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["hugepagePercentage"] = state ? state.hugepagePercentage : undefined;
             resourceInputs["interfaces"] = state ? state.interfaces : undefined;
             resourceInputs["ipsecOffload"] = state ? state.ipsecOffload : undefined;
@@ -74,6 +76,7 @@ export class DpdkGlobal extends pulumi.CustomResource {
             const args = argsOrState as DpdkGlobalArgs | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["elasticbuffer"] = args ? args.elasticbuffer : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["hugepagePercentage"] = args ? args.hugepagePercentage : undefined;
             resourceInputs["interfaces"] = args ? args.interfaces : undefined;
             resourceInputs["ipsecOffload"] = args ? args.ipsecOffload : undefined;
@@ -95,6 +98,7 @@ export class DpdkGlobal extends pulumi.CustomResource {
 export interface DpdkGlobalState {
     dynamicSortSubtable?: pulumi.Input<string>;
     elasticbuffer?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     hugepagePercentage?: pulumi.Input<number>;
     interfaces?: pulumi.Input<pulumi.Input<inputs.DpdkGlobalInterface>[]>;
     ipsecOffload?: pulumi.Input<string>;
@@ -112,6 +116,7 @@ export interface DpdkGlobalState {
 export interface DpdkGlobalArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
     elasticbuffer?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     hugepagePercentage?: pulumi.Input<number>;
     interfaces?: pulumi.Input<pulumi.Input<inputs.DpdkGlobalInterface>[]>;
     ipsecOffload?: pulumi.Input<string>;

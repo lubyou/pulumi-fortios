@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,6 +20,7 @@ type VpnOcvpn struct {
 	Eap                       pulumi.StringOutput             `pulumi:"eap"`
 	EapUsers                  pulumi.StringOutput             `pulumi:"eapUsers"`
 	ForticlientAccess         VpnOcvpnForticlientAccessOutput `pulumi:"forticlientAccess"`
+	GetAllTables              pulumi.StringPtrOutput          `pulumi:"getAllTables"`
 	IpAllocationBlock         pulumi.StringOutput             `pulumi:"ipAllocationBlock"`
 	Multipath                 pulumi.StringOutput             `pulumi:"multipath"`
 	Nat                       pulumi.StringOutput             `pulumi:"nat"`
@@ -39,7 +41,7 @@ func NewVpnOcvpn(ctx *pulumi.Context,
 		args = &VpnOcvpnArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource VpnOcvpn
 	err := ctx.RegisterResource("fortios:index/vpnOcvpn:VpnOcvpn", name, args, &resource, opts...)
 	if err != nil {
@@ -68,6 +70,7 @@ type vpnOcvpnState struct {
 	Eap                       *string                    `pulumi:"eap"`
 	EapUsers                  *string                    `pulumi:"eapUsers"`
 	ForticlientAccess         *VpnOcvpnForticlientAccess `pulumi:"forticlientAccess"`
+	GetAllTables              *string                    `pulumi:"getAllTables"`
 	IpAllocationBlock         *string                    `pulumi:"ipAllocationBlock"`
 	Multipath                 *string                    `pulumi:"multipath"`
 	Nat                       *string                    `pulumi:"nat"`
@@ -88,6 +91,7 @@ type VpnOcvpnState struct {
 	Eap                       pulumi.StringPtrInput
 	EapUsers                  pulumi.StringPtrInput
 	ForticlientAccess         VpnOcvpnForticlientAccessPtrInput
+	GetAllTables              pulumi.StringPtrInput
 	IpAllocationBlock         pulumi.StringPtrInput
 	Multipath                 pulumi.StringPtrInput
 	Nat                       pulumi.StringPtrInput
@@ -112,6 +116,7 @@ type vpnOcvpnArgs struct {
 	Eap                       *string                    `pulumi:"eap"`
 	EapUsers                  *string                    `pulumi:"eapUsers"`
 	ForticlientAccess         *VpnOcvpnForticlientAccess `pulumi:"forticlientAccess"`
+	GetAllTables              *string                    `pulumi:"getAllTables"`
 	IpAllocationBlock         *string                    `pulumi:"ipAllocationBlock"`
 	Multipath                 *string                    `pulumi:"multipath"`
 	Nat                       *string                    `pulumi:"nat"`
@@ -133,6 +138,7 @@ type VpnOcvpnArgs struct {
 	Eap                       pulumi.StringPtrInput
 	EapUsers                  pulumi.StringPtrInput
 	ForticlientAccess         VpnOcvpnForticlientAccessPtrInput
+	GetAllTables              pulumi.StringPtrInput
 	IpAllocationBlock         pulumi.StringPtrInput
 	Multipath                 pulumi.StringPtrInput
 	Nat                       pulumi.StringPtrInput
@@ -255,6 +261,10 @@ func (o VpnOcvpnOutput) EapUsers() pulumi.StringOutput {
 
 func (o VpnOcvpnOutput) ForticlientAccess() VpnOcvpnForticlientAccessOutput {
 	return o.ApplyT(func(v *VpnOcvpn) VpnOcvpnForticlientAccessOutput { return v.ForticlientAccess }).(VpnOcvpnForticlientAccessOutput)
+}
+
+func (o VpnOcvpnOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnOcvpn) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o VpnOcvpnOutput) IpAllocationBlock() pulumi.StringOutput {

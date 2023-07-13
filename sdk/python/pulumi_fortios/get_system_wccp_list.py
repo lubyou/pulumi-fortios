@@ -84,10 +84,10 @@ def get_system_wccp_list(filter: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemWccpList:GetSystemWccpList', __args__, opts=opts, typ=GetSystemWccpListResult).value
 
     return AwaitableGetSystemWccpListResult(
-        filter=__ret__.filter,
-        id=__ret__.id,
-        service_idlists=__ret__.service_idlists,
-        vdomparam=__ret__.vdomparam)
+        filter=pulumi.get(__ret__, 'filter'),
+        id=pulumi.get(__ret__, 'id'),
+        service_idlists=pulumi.get(__ret__, 'service_idlists'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_wccp_list)

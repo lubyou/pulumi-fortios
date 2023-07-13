@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,6 +20,7 @@ type WafProfile struct {
 	DynamicSortSubtable pulumi.StringPtrOutput         `pulumi:"dynamicSortSubtable"`
 	ExtendedLog         pulumi.StringOutput            `pulumi:"extendedLog"`
 	External            pulumi.StringOutput            `pulumi:"external"`
+	GetAllTables        pulumi.StringPtrOutput         `pulumi:"getAllTables"`
 	Method              WafProfileMethodOutput         `pulumi:"method"`
 	Name                pulumi.StringOutput            `pulumi:"name"`
 	Signature           WafProfileSignatureOutput      `pulumi:"signature"`
@@ -33,7 +35,7 @@ func NewWafProfile(ctx *pulumi.Context,
 		args = &WafProfileArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WafProfile
 	err := ctx.RegisterResource("fortios:index/wafProfile:WafProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -62,6 +64,7 @@ type wafProfileState struct {
 	DynamicSortSubtable *string                `pulumi:"dynamicSortSubtable"`
 	ExtendedLog         *string                `pulumi:"extendedLog"`
 	External            *string                `pulumi:"external"`
+	GetAllTables        *string                `pulumi:"getAllTables"`
 	Method              *WafProfileMethod      `pulumi:"method"`
 	Name                *string                `pulumi:"name"`
 	Signature           *WafProfileSignature   `pulumi:"signature"`
@@ -76,6 +79,7 @@ type WafProfileState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	ExtendedLog         pulumi.StringPtrInput
 	External            pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Method              WafProfileMethodPtrInput
 	Name                pulumi.StringPtrInput
 	Signature           WafProfileSignaturePtrInput
@@ -94,6 +98,7 @@ type wafProfileArgs struct {
 	DynamicSortSubtable *string                `pulumi:"dynamicSortSubtable"`
 	ExtendedLog         *string                `pulumi:"extendedLog"`
 	External            *string                `pulumi:"external"`
+	GetAllTables        *string                `pulumi:"getAllTables"`
 	Method              *WafProfileMethod      `pulumi:"method"`
 	Name                *string                `pulumi:"name"`
 	Signature           *WafProfileSignature   `pulumi:"signature"`
@@ -109,6 +114,7 @@ type WafProfileArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	ExtendedLog         pulumi.StringPtrInput
 	External            pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Method              WafProfileMethodPtrInput
 	Name                pulumi.StringPtrInput
 	Signature           WafProfileSignaturePtrInput
@@ -225,6 +231,10 @@ func (o WafProfileOutput) ExtendedLog() pulumi.StringOutput {
 
 func (o WafProfileOutput) External() pulumi.StringOutput {
 	return o.ApplyT(func(v *WafProfile) pulumi.StringOutput { return v.External }).(pulumi.StringOutput)
+}
+
+func (o WafProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WafProfile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o WafProfileOutput) Method() WafProfileMethodOutput {

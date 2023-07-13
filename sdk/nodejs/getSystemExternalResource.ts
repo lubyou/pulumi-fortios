@@ -37,6 +37,7 @@ export interface GetSystemExternalResourceResult {
     readonly password: string;
     readonly refreshRate: number;
     readonly resource: string;
+    readonly serverIdentityCheck: string;
     readonly sourceIp: string;
     readonly status: string;
     readonly type: string;

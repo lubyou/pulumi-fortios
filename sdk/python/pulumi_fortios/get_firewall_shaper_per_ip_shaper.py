@@ -156,18 +156,18 @@ def get_firewall_shaper_per_ip_shaper(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getFirewallShaperPerIpShaper:GetFirewallShaperPerIpShaper', __args__, opts=opts, typ=GetFirewallShaperPerIpShaperResult).value
 
     return AwaitableGetFirewallShaperPerIpShaperResult(
-        bandwidth_unit=__ret__.bandwidth_unit,
-        diffserv_forward=__ret__.diffserv_forward,
-        diffserv_reverse=__ret__.diffserv_reverse,
-        diffservcode_forward=__ret__.diffservcode_forward,
-        diffservcode_rev=__ret__.diffservcode_rev,
-        id=__ret__.id,
-        max_bandwidth=__ret__.max_bandwidth,
-        max_concurrent_session=__ret__.max_concurrent_session,
-        max_concurrent_tcp_session=__ret__.max_concurrent_tcp_session,
-        max_concurrent_udp_session=__ret__.max_concurrent_udp_session,
-        name=__ret__.name,
-        vdomparam=__ret__.vdomparam)
+        bandwidth_unit=pulumi.get(__ret__, 'bandwidth_unit'),
+        diffserv_forward=pulumi.get(__ret__, 'diffserv_forward'),
+        diffserv_reverse=pulumi.get(__ret__, 'diffserv_reverse'),
+        diffservcode_forward=pulumi.get(__ret__, 'diffservcode_forward'),
+        diffservcode_rev=pulumi.get(__ret__, 'diffservcode_rev'),
+        id=pulumi.get(__ret__, 'id'),
+        max_bandwidth=pulumi.get(__ret__, 'max_bandwidth'),
+        max_concurrent_session=pulumi.get(__ret__, 'max_concurrent_session'),
+        max_concurrent_tcp_session=pulumi.get(__ret__, 'max_concurrent_tcp_session'),
+        max_concurrent_udp_session=pulumi.get(__ret__, 'max_concurrent_udp_session'),
+        name=pulumi.get(__ret__, 'name'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_firewall_shaper_per_ip_shaper)

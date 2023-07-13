@@ -35,6 +35,7 @@ export class SystemVirtualSwitch extends pulumi.CustomResource {
     }
 
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly physicalSwitch!: pulumi.Output<string>;
     public readonly ports!: pulumi.Output<outputs.SystemVirtualSwitchPort[] | undefined>;
@@ -59,6 +60,7 @@ export class SystemVirtualSwitch extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as SystemVirtualSwitchState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["physicalSwitch"] = state ? state.physicalSwitch : undefined;
             resourceInputs["ports"] = state ? state.ports : undefined;
@@ -71,6 +73,7 @@ export class SystemVirtualSwitch extends pulumi.CustomResource {
         } else {
             const args = argsOrState as SystemVirtualSwitchArgs | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["physicalSwitch"] = args ? args.physicalSwitch : undefined;
             resourceInputs["ports"] = args ? args.ports : undefined;
@@ -91,6 +94,7 @@ export class SystemVirtualSwitch extends pulumi.CustomResource {
  */
 export interface SystemVirtualSwitchState {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     physicalSwitch?: pulumi.Input<string>;
     ports?: pulumi.Input<pulumi.Input<inputs.SystemVirtualSwitchPort>[]>;
@@ -107,6 +111,7 @@ export interface SystemVirtualSwitchState {
  */
 export interface SystemVirtualSwitchArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     physicalSwitch?: pulumi.Input<string>;
     ports?: pulumi.Input<pulumi.Input<inputs.SystemVirtualSwitchPort>[]>;

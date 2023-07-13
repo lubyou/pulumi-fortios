@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -14,6 +15,7 @@ type SwitchControllerFortilinkSettings struct {
 	pulumi.CustomResourceState
 
 	Fortilink     pulumi.StringOutput                             `pulumi:"fortilink"`
+	GetAllTables  pulumi.StringPtrOutput                          `pulumi:"getAllTables"`
 	InactiveTimer pulumi.IntOutput                                `pulumi:"inactiveTimer"`
 	LinkDownFlush pulumi.StringOutput                             `pulumi:"linkDownFlush"`
 	NacPorts      SwitchControllerFortilinkSettingsNacPortsOutput `pulumi:"nacPorts"`
@@ -28,7 +30,7 @@ func NewSwitchControllerFortilinkSettings(ctx *pulumi.Context,
 		args = &SwitchControllerFortilinkSettingsArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SwitchControllerFortilinkSettings
 	err := ctx.RegisterResource("fortios:index/switchControllerFortilinkSettings:SwitchControllerFortilinkSettings", name, args, &resource, opts...)
 	if err != nil {
@@ -52,6 +54,7 @@ func GetSwitchControllerFortilinkSettings(ctx *pulumi.Context,
 // Input properties used for looking up and filtering SwitchControllerFortilinkSettings resources.
 type switchControllerFortilinkSettingsState struct {
 	Fortilink     *string                                    `pulumi:"fortilink"`
+	GetAllTables  *string                                    `pulumi:"getAllTables"`
 	InactiveTimer *int                                       `pulumi:"inactiveTimer"`
 	LinkDownFlush *string                                    `pulumi:"linkDownFlush"`
 	NacPorts      *SwitchControllerFortilinkSettingsNacPorts `pulumi:"nacPorts"`
@@ -61,6 +64,7 @@ type switchControllerFortilinkSettingsState struct {
 
 type SwitchControllerFortilinkSettingsState struct {
 	Fortilink     pulumi.StringPtrInput
+	GetAllTables  pulumi.StringPtrInput
 	InactiveTimer pulumi.IntPtrInput
 	LinkDownFlush pulumi.StringPtrInput
 	NacPorts      SwitchControllerFortilinkSettingsNacPortsPtrInput
@@ -74,6 +78,7 @@ func (SwitchControllerFortilinkSettingsState) ElementType() reflect.Type {
 
 type switchControllerFortilinkSettingsArgs struct {
 	Fortilink     *string                                    `pulumi:"fortilink"`
+	GetAllTables  *string                                    `pulumi:"getAllTables"`
 	InactiveTimer *int                                       `pulumi:"inactiveTimer"`
 	LinkDownFlush *string                                    `pulumi:"linkDownFlush"`
 	NacPorts      *SwitchControllerFortilinkSettingsNacPorts `pulumi:"nacPorts"`
@@ -84,6 +89,7 @@ type switchControllerFortilinkSettingsArgs struct {
 // The set of arguments for constructing a SwitchControllerFortilinkSettings resource.
 type SwitchControllerFortilinkSettingsArgs struct {
 	Fortilink     pulumi.StringPtrInput
+	GetAllTables  pulumi.StringPtrInput
 	InactiveTimer pulumi.IntPtrInput
 	LinkDownFlush pulumi.StringPtrInput
 	NacPorts      SwitchControllerFortilinkSettingsNacPortsPtrInput
@@ -180,6 +186,10 @@ func (o SwitchControllerFortilinkSettingsOutput) ToSwitchControllerFortilinkSett
 
 func (o SwitchControllerFortilinkSettingsOutput) Fortilink() pulumi.StringOutput {
 	return o.ApplyT(func(v *SwitchControllerFortilinkSettings) pulumi.StringOutput { return v.Fortilink }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerFortilinkSettingsOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerFortilinkSettings) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SwitchControllerFortilinkSettingsOutput) InactiveTimer() pulumi.IntOutput {

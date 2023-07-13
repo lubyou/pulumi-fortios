@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -27,7 +28,7 @@ func NewWanoptRemoteStorage(ctx *pulumi.Context,
 		args = &WanoptRemoteStorageArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WanoptRemoteStorage
 	err := ctx.RegisterResource("fortios:index/wanoptRemoteStorage:WanoptRemoteStorage", name, args, &resource, opts...)
 	if err != nil {

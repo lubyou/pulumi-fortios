@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -28,7 +29,7 @@ func NewIpsViewMap(ctx *pulumi.Context,
 		args = &IpsViewMapArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource IpsViewMap
 	err := ctx.RegisterResource("fortios:index/ipsViewMap:IpsViewMap", name, args, &resource, opts...)
 	if err != nil {

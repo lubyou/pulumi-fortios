@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -32,7 +33,7 @@ func NewSystemSflow(ctx *pulumi.Context,
 	if args.CollectorIp == nil {
 		return nil, errors.New("invalid value for required argument 'CollectorIp'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemSflow
 	err := ctx.RegisterResource("fortios:index/systemSflow:SystemSflow", name, args, &resource, opts...)
 	if err != nil {

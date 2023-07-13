@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemNdProxy(ctx *pulumi.Context, args *LookupSystemNdProxyArgs, opts ...pulumi.InvokeOption) (*LookupSystemNdProxyResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemNdProxyResult
 	err := ctx.Invoke("fortios:index/getSystemNdProxy:GetSystemNdProxy", args, &rv, opts...)
 	if err != nil {

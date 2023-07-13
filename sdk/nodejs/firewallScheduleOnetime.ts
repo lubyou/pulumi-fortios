@@ -34,10 +34,12 @@ export class FirewallScheduleOnetime extends pulumi.CustomResource {
 
     public readonly color!: pulumi.Output<number>;
     public readonly end!: pulumi.Output<string>;
+    public readonly endUtc!: pulumi.Output<string>;
     public readonly expirationDays!: pulumi.Output<number>;
     public readonly fabricObject!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
     public readonly start!: pulumi.Output<string>;
+    public readonly startUtc!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
@@ -55,10 +57,12 @@ export class FirewallScheduleOnetime extends pulumi.CustomResource {
             const state = argsOrState as FirewallScheduleOnetimeState | undefined;
             resourceInputs["color"] = state ? state.color : undefined;
             resourceInputs["end"] = state ? state.end : undefined;
+            resourceInputs["endUtc"] = state ? state.endUtc : undefined;
             resourceInputs["expirationDays"] = state ? state.expirationDays : undefined;
             resourceInputs["fabricObject"] = state ? state.fabricObject : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["start"] = state ? state.start : undefined;
+            resourceInputs["startUtc"] = state ? state.startUtc : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallScheduleOnetimeArgs | undefined;
@@ -70,10 +74,12 @@ export class FirewallScheduleOnetime extends pulumi.CustomResource {
             }
             resourceInputs["color"] = args ? args.color : undefined;
             resourceInputs["end"] = args ? args.end : undefined;
+            resourceInputs["endUtc"] = args ? args.endUtc : undefined;
             resourceInputs["expirationDays"] = args ? args.expirationDays : undefined;
             resourceInputs["fabricObject"] = args ? args.fabricObject : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["start"] = args ? args.start : undefined;
+            resourceInputs["startUtc"] = args ? args.startUtc : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -87,10 +93,12 @@ export class FirewallScheduleOnetime extends pulumi.CustomResource {
 export interface FirewallScheduleOnetimeState {
     color?: pulumi.Input<number>;
     end?: pulumi.Input<string>;
+    endUtc?: pulumi.Input<string>;
     expirationDays?: pulumi.Input<number>;
     fabricObject?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     start?: pulumi.Input<string>;
+    startUtc?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }
 
@@ -100,9 +108,11 @@ export interface FirewallScheduleOnetimeState {
 export interface FirewallScheduleOnetimeArgs {
     color?: pulumi.Input<number>;
     end: pulumi.Input<string>;
+    endUtc?: pulumi.Input<string>;
     expirationDays?: pulumi.Input<number>;
     fabricObject?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     start: pulumi.Input<string>;
+    startUtc?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }

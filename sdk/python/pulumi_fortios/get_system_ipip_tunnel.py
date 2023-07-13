@@ -120,14 +120,14 @@ def get_system_ipip_tunnel(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemIpipTunnel:GetSystemIpipTunnel', __args__, opts=opts, typ=GetSystemIpipTunnelResult).value
 
     return AwaitableGetSystemIpipTunnelResult(
-        auto_asic_offload=__ret__.auto_asic_offload,
-        id=__ret__.id,
-        interface=__ret__.interface,
-        local_gw=__ret__.local_gw,
-        name=__ret__.name,
-        remote_gw=__ret__.remote_gw,
-        use_sdwan=__ret__.use_sdwan,
-        vdomparam=__ret__.vdomparam)
+        auto_asic_offload=pulumi.get(__ret__, 'auto_asic_offload'),
+        id=pulumi.get(__ret__, 'id'),
+        interface=pulumi.get(__ret__, 'interface'),
+        local_gw=pulumi.get(__ret__, 'local_gw'),
+        name=pulumi.get(__ret__, 'name'),
+        remote_gw=pulumi.get(__ret__, 'remote_gw'),
+        use_sdwan=pulumi.get(__ret__, 'use_sdwan'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_ipip_tunnel)

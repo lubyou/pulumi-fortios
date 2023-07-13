@@ -22,6 +22,7 @@ class SystemExternalResourceArgs:
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 server_identity_check: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -47,6 +48,8 @@ class SystemExternalResourceArgs:
             pulumi.set(__self__, "name", name)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if server_identity_check is not None:
+            pulumi.set(__self__, "server_identity_check", server_identity_check)
         if source_ip is not None:
             pulumi.set(__self__, "source_ip", source_ip)
         if status is not None:
@@ -137,6 +140,15 @@ class SystemExternalResourceArgs:
         pulumi.set(self, "password", value)
 
     @property
+    @pulumi.getter(name="serverIdentityCheck")
+    def server_identity_check(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "server_identity_check")
+
+    @server_identity_check.setter
+    def server_identity_check(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "server_identity_check", value)
+
+    @property
     @pulumi.getter(name="sourceIp")
     def source_ip(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "source_ip")
@@ -220,6 +232,7 @@ class _SystemExternalResourceState:
                  password: Optional[pulumi.Input[str]] = None,
                  refresh_rate: Optional[pulumi.Input[int]] = None,
                  resource: Optional[pulumi.Input[str]] = None,
+                 server_identity_check: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -247,6 +260,8 @@ class _SystemExternalResourceState:
             pulumi.set(__self__, "refresh_rate", refresh_rate)
         if resource is not None:
             pulumi.set(__self__, "resource", resource)
+        if server_identity_check is not None:
+            pulumi.set(__self__, "server_identity_check", server_identity_check)
         if source_ip is not None:
             pulumi.set(__self__, "source_ip", source_ip)
         if status is not None:
@@ -337,6 +352,15 @@ class _SystemExternalResourceState:
         pulumi.set(self, "resource", value)
 
     @property
+    @pulumi.getter(name="serverIdentityCheck")
+    def server_identity_check(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "server_identity_check")
+
+    @server_identity_check.setter
+    def server_identity_check(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "server_identity_check", value)
+
+    @property
     @pulumi.getter(name="sourceIp")
     def source_ip(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "source_ip")
@@ -422,6 +446,7 @@ class SystemExternalResource(pulumi.CustomResource):
                  password: Optional[pulumi.Input[str]] = None,
                  refresh_rate: Optional[pulumi.Input[int]] = None,
                  resource: Optional[pulumi.Input[str]] = None,
+                 server_identity_check: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -467,6 +492,7 @@ class SystemExternalResource(pulumi.CustomResource):
                  password: Optional[pulumi.Input[str]] = None,
                  refresh_rate: Optional[pulumi.Input[int]] = None,
                  resource: Optional[pulumi.Input[str]] = None,
+                 server_identity_check: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -496,6 +522,7 @@ class SystemExternalResource(pulumi.CustomResource):
             if resource is None and not opts.urn:
                 raise TypeError("Missing required property 'resource'")
             __props__.__dict__["resource"] = resource
+            __props__.__dict__["server_identity_check"] = server_identity_check
             __props__.__dict__["source_ip"] = source_ip
             __props__.__dict__["status"] = status
             __props__.__dict__["type"] = type
@@ -524,6 +551,7 @@ class SystemExternalResource(pulumi.CustomResource):
             password: Optional[pulumi.Input[str]] = None,
             refresh_rate: Optional[pulumi.Input[int]] = None,
             resource: Optional[pulumi.Input[str]] = None,
+            server_identity_check: Optional[pulumi.Input[str]] = None,
             source_ip: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None,
@@ -552,6 +580,7 @@ class SystemExternalResource(pulumi.CustomResource):
         __props__.__dict__["password"] = password
         __props__.__dict__["refresh_rate"] = refresh_rate
         __props__.__dict__["resource"] = resource
+        __props__.__dict__["server_identity_check"] = server_identity_check
         __props__.__dict__["source_ip"] = source_ip
         __props__.__dict__["status"] = status
         __props__.__dict__["type"] = type
@@ -601,6 +630,11 @@ class SystemExternalResource(pulumi.CustomResource):
     @pulumi.getter
     def resource(self) -> pulumi.Output[str]:
         return pulumi.get(self, "resource")
+
+    @property
+    @pulumi.getter(name="serverIdentityCheck")
+    def server_identity_check(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "server_identity_check")
 
     @property
     @pulumi.getter(name="sourceIp")

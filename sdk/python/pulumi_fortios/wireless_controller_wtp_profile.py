@@ -32,6 +32,7 @@ class WirelessControllerWtpProfileArgs:
                  esl_ses_dongle: Optional[pulumi.Input['WirelessControllerWtpProfileEslSesDongleArgs']] = None,
                  ext_info_enable: Optional[pulumi.Input[str]] = None,
                  frequency_handoff: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  handoff_roaming: Optional[pulumi.Input[str]] = None,
                  handoff_rssi: Optional[pulumi.Input[int]] = None,
                  handoff_sta_thresh: Optional[pulumi.Input[int]] = None,
@@ -58,6 +59,7 @@ class WirelessControllerWtpProfileArgs:
                  syslog_profile: Optional[pulumi.Input[str]] = None,
                  tun_mtu_downlink: Optional[pulumi.Input[int]] = None,
                  tun_mtu_uplink: Optional[pulumi.Input[int]] = None,
+                 unii45ghz_band: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  wan_port_auth: Optional[pulumi.Input[str]] = None,
                  wan_port_auth_methods: Optional[pulumi.Input[str]] = None,
@@ -99,6 +101,8 @@ class WirelessControllerWtpProfileArgs:
             pulumi.set(__self__, "ext_info_enable", ext_info_enable)
         if frequency_handoff is not None:
             pulumi.set(__self__, "frequency_handoff", frequency_handoff)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if handoff_roaming is not None:
             pulumi.set(__self__, "handoff_roaming", handoff_roaming)
         if handoff_rssi is not None:
@@ -151,6 +155,8 @@ class WirelessControllerWtpProfileArgs:
             pulumi.set(__self__, "tun_mtu_downlink", tun_mtu_downlink)
         if tun_mtu_uplink is not None:
             pulumi.set(__self__, "tun_mtu_uplink", tun_mtu_uplink)
+        if unii45ghz_band is not None:
+            pulumi.set(__self__, "unii45ghz_band", unii45ghz_band)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if wan_port_auth is not None:
@@ -307,6 +313,15 @@ class WirelessControllerWtpProfileArgs:
     @frequency_handoff.setter
     def frequency_handoff(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "frequency_handoff", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="handoffRoaming")
@@ -541,6 +556,15 @@ class WirelessControllerWtpProfileArgs:
     @tun_mtu_uplink.setter
     def tun_mtu_uplink(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "tun_mtu_uplink", value)
+
+    @property
+    @pulumi.getter(name="unii45ghzBand")
+    def unii45ghz_band(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "unii45ghz_band")
+
+    @unii45ghz_band.setter
+    def unii45ghz_band(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "unii45ghz_band", value)
 
     @property
     @pulumi.getter
@@ -616,6 +640,7 @@ class _WirelessControllerWtpProfileState:
                  esl_ses_dongle: Optional[pulumi.Input['WirelessControllerWtpProfileEslSesDongleArgs']] = None,
                  ext_info_enable: Optional[pulumi.Input[str]] = None,
                  frequency_handoff: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  handoff_roaming: Optional[pulumi.Input[str]] = None,
                  handoff_rssi: Optional[pulumi.Input[int]] = None,
                  handoff_sta_thresh: Optional[pulumi.Input[int]] = None,
@@ -642,6 +667,7 @@ class _WirelessControllerWtpProfileState:
                  syslog_profile: Optional[pulumi.Input[str]] = None,
                  tun_mtu_downlink: Optional[pulumi.Input[int]] = None,
                  tun_mtu_uplink: Optional[pulumi.Input[int]] = None,
+                 unii45ghz_band: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  wan_port_auth: Optional[pulumi.Input[str]] = None,
                  wan_port_auth_methods: Optional[pulumi.Input[str]] = None,
@@ -683,6 +709,8 @@ class _WirelessControllerWtpProfileState:
             pulumi.set(__self__, "ext_info_enable", ext_info_enable)
         if frequency_handoff is not None:
             pulumi.set(__self__, "frequency_handoff", frequency_handoff)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if handoff_roaming is not None:
             pulumi.set(__self__, "handoff_roaming", handoff_roaming)
         if handoff_rssi is not None:
@@ -735,6 +763,8 @@ class _WirelessControllerWtpProfileState:
             pulumi.set(__self__, "tun_mtu_downlink", tun_mtu_downlink)
         if tun_mtu_uplink is not None:
             pulumi.set(__self__, "tun_mtu_uplink", tun_mtu_uplink)
+        if unii45ghz_band is not None:
+            pulumi.set(__self__, "unii45ghz_band", unii45ghz_band)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if wan_port_auth is not None:
@@ -891,6 +921,15 @@ class _WirelessControllerWtpProfileState:
     @frequency_handoff.setter
     def frequency_handoff(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "frequency_handoff", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="handoffRoaming")
@@ -1125,6 +1164,15 @@ class _WirelessControllerWtpProfileState:
     @tun_mtu_uplink.setter
     def tun_mtu_uplink(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "tun_mtu_uplink", value)
+
+    @property
+    @pulumi.getter(name="unii45ghzBand")
+    def unii45ghz_band(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "unii45ghz_band")
+
+    @unii45ghz_band.setter
+    def unii45ghz_band(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "unii45ghz_band", value)
 
     @property
     @pulumi.getter
@@ -1202,6 +1250,7 @@ class WirelessControllerWtpProfile(pulumi.CustomResource):
                  esl_ses_dongle: Optional[pulumi.Input[pulumi.InputType['WirelessControllerWtpProfileEslSesDongleArgs']]] = None,
                  ext_info_enable: Optional[pulumi.Input[str]] = None,
                  frequency_handoff: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  handoff_roaming: Optional[pulumi.Input[str]] = None,
                  handoff_rssi: Optional[pulumi.Input[int]] = None,
                  handoff_sta_thresh: Optional[pulumi.Input[int]] = None,
@@ -1228,6 +1277,7 @@ class WirelessControllerWtpProfile(pulumi.CustomResource):
                  syslog_profile: Optional[pulumi.Input[str]] = None,
                  tun_mtu_downlink: Optional[pulumi.Input[int]] = None,
                  tun_mtu_uplink: Optional[pulumi.Input[int]] = None,
+                 unii45ghz_band: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  wan_port_auth: Optional[pulumi.Input[str]] = None,
                  wan_port_auth_methods: Optional[pulumi.Input[str]] = None,
@@ -1279,6 +1329,7 @@ class WirelessControllerWtpProfile(pulumi.CustomResource):
                  esl_ses_dongle: Optional[pulumi.Input[pulumi.InputType['WirelessControllerWtpProfileEslSesDongleArgs']]] = None,
                  ext_info_enable: Optional[pulumi.Input[str]] = None,
                  frequency_handoff: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  handoff_roaming: Optional[pulumi.Input[str]] = None,
                  handoff_rssi: Optional[pulumi.Input[int]] = None,
                  handoff_sta_thresh: Optional[pulumi.Input[int]] = None,
@@ -1305,6 +1356,7 @@ class WirelessControllerWtpProfile(pulumi.CustomResource):
                  syslog_profile: Optional[pulumi.Input[str]] = None,
                  tun_mtu_downlink: Optional[pulumi.Input[int]] = None,
                  tun_mtu_uplink: Optional[pulumi.Input[int]] = None,
+                 unii45ghz_band: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  wan_port_auth: Optional[pulumi.Input[str]] = None,
                  wan_port_auth_methods: Optional[pulumi.Input[str]] = None,
@@ -1336,6 +1388,7 @@ class WirelessControllerWtpProfile(pulumi.CustomResource):
             __props__.__dict__["esl_ses_dongle"] = esl_ses_dongle
             __props__.__dict__["ext_info_enable"] = ext_info_enable
             __props__.__dict__["frequency_handoff"] = frequency_handoff
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["handoff_roaming"] = handoff_roaming
             __props__.__dict__["handoff_rssi"] = handoff_rssi
             __props__.__dict__["handoff_sta_thresh"] = handoff_sta_thresh
@@ -1362,6 +1415,7 @@ class WirelessControllerWtpProfile(pulumi.CustomResource):
             __props__.__dict__["syslog_profile"] = syslog_profile
             __props__.__dict__["tun_mtu_downlink"] = tun_mtu_downlink
             __props__.__dict__["tun_mtu_uplink"] = tun_mtu_uplink
+            __props__.__dict__["unii45ghz_band"] = unii45ghz_band
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["wan_port_auth"] = wan_port_auth
             __props__.__dict__["wan_port_auth_methods"] = wan_port_auth_methods
@@ -1396,6 +1450,7 @@ class WirelessControllerWtpProfile(pulumi.CustomResource):
             esl_ses_dongle: Optional[pulumi.Input[pulumi.InputType['WirelessControllerWtpProfileEslSesDongleArgs']]] = None,
             ext_info_enable: Optional[pulumi.Input[str]] = None,
             frequency_handoff: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             handoff_roaming: Optional[pulumi.Input[str]] = None,
             handoff_rssi: Optional[pulumi.Input[int]] = None,
             handoff_sta_thresh: Optional[pulumi.Input[int]] = None,
@@ -1422,6 +1477,7 @@ class WirelessControllerWtpProfile(pulumi.CustomResource):
             syslog_profile: Optional[pulumi.Input[str]] = None,
             tun_mtu_downlink: Optional[pulumi.Input[int]] = None,
             tun_mtu_uplink: Optional[pulumi.Input[int]] = None,
+            unii45ghz_band: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             wan_port_auth: Optional[pulumi.Input[str]] = None,
             wan_port_auth_methods: Optional[pulumi.Input[str]] = None,
@@ -1456,6 +1512,7 @@ class WirelessControllerWtpProfile(pulumi.CustomResource):
         __props__.__dict__["esl_ses_dongle"] = esl_ses_dongle
         __props__.__dict__["ext_info_enable"] = ext_info_enable
         __props__.__dict__["frequency_handoff"] = frequency_handoff
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["handoff_roaming"] = handoff_roaming
         __props__.__dict__["handoff_rssi"] = handoff_rssi
         __props__.__dict__["handoff_sta_thresh"] = handoff_sta_thresh
@@ -1482,6 +1539,7 @@ class WirelessControllerWtpProfile(pulumi.CustomResource):
         __props__.__dict__["syslog_profile"] = syslog_profile
         __props__.__dict__["tun_mtu_downlink"] = tun_mtu_downlink
         __props__.__dict__["tun_mtu_uplink"] = tun_mtu_uplink
+        __props__.__dict__["unii45ghz_band"] = unii45ghz_band
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["wan_port_auth"] = wan_port_auth
         __props__.__dict__["wan_port_auth_methods"] = wan_port_auth_methods
@@ -1569,6 +1627,11 @@ class WirelessControllerWtpProfile(pulumi.CustomResource):
     @pulumi.getter(name="frequencyHandoff")
     def frequency_handoff(self) -> pulumi.Output[str]:
         return pulumi.get(self, "frequency_handoff")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="handoffRoaming")
@@ -1699,6 +1762,11 @@ class WirelessControllerWtpProfile(pulumi.CustomResource):
     @pulumi.getter(name="tunMtuUplink")
     def tun_mtu_uplink(self) -> pulumi.Output[int]:
         return pulumi.get(self, "tun_mtu_uplink")
+
+    @property
+    @pulumi.getter(name="unii45ghzBand")
+    def unii45ghz_band(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "unii45ghz_band")
 
     @property
     @pulumi.getter

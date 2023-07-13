@@ -100,12 +100,12 @@ def get_system_autoupdate_schedule(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemAutoupdateSchedule:GetSystemAutoupdateSchedule', __args__, opts=opts, typ=GetSystemAutoupdateScheduleResult).value
 
     return AwaitableGetSystemAutoupdateScheduleResult(
-        day=__ret__.day,
-        frequency=__ret__.frequency,
-        id=__ret__.id,
-        status=__ret__.status,
-        time=__ret__.time,
-        vdomparam=__ret__.vdomparam)
+        day=pulumi.get(__ret__, 'day'),
+        frequency=pulumi.get(__ret__, 'frequency'),
+        id=pulumi.get(__ret__, 'id'),
+        status=pulumi.get(__ret__, 'status'),
+        time=pulumi.get(__ret__, 'time'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_autoupdate_schedule)

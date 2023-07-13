@@ -202,23 +202,23 @@ def get_system_mobile_tunnel(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemMobileTunnel:GetSystemMobileTunnel', __args__, opts=opts, typ=GetSystemMobileTunnelResult).value
 
     return AwaitableGetSystemMobileTunnelResult(
-        hash_algorithm=__ret__.hash_algorithm,
-        home_address=__ret__.home_address,
-        home_agent=__ret__.home_agent,
-        id=__ret__.id,
-        lifetime=__ret__.lifetime,
-        n_mhae_key=__ret__.n_mhae_key,
-        n_mhae_key_type=__ret__.n_mhae_key_type,
-        n_mhae_spi=__ret__.n_mhae_spi,
-        name=__ret__.name,
-        networks=__ret__.networks,
-        reg_interval=__ret__.reg_interval,
-        reg_retry=__ret__.reg_retry,
-        renew_interval=__ret__.renew_interval,
-        roaming_interface=__ret__.roaming_interface,
-        status=__ret__.status,
-        tunnel_mode=__ret__.tunnel_mode,
-        vdomparam=__ret__.vdomparam)
+        hash_algorithm=pulumi.get(__ret__, 'hash_algorithm'),
+        home_address=pulumi.get(__ret__, 'home_address'),
+        home_agent=pulumi.get(__ret__, 'home_agent'),
+        id=pulumi.get(__ret__, 'id'),
+        lifetime=pulumi.get(__ret__, 'lifetime'),
+        n_mhae_key=pulumi.get(__ret__, 'n_mhae_key'),
+        n_mhae_key_type=pulumi.get(__ret__, 'n_mhae_key_type'),
+        n_mhae_spi=pulumi.get(__ret__, 'n_mhae_spi'),
+        name=pulumi.get(__ret__, 'name'),
+        networks=pulumi.get(__ret__, 'networks'),
+        reg_interval=pulumi.get(__ret__, 'reg_interval'),
+        reg_retry=pulumi.get(__ret__, 'reg_retry'),
+        renew_interval=pulumi.get(__ret__, 'renew_interval'),
+        roaming_interface=pulumi.get(__ret__, 'roaming_interface'),
+        status=pulumi.get(__ret__, 'status'),
+        tunnel_mode=pulumi.get(__ret__, 'tunnel_mode'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_mobile_tunnel)

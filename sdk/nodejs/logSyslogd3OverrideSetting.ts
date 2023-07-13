@@ -40,6 +40,7 @@ export class LogSyslogd3OverrideSetting extends pulumi.CustomResource {
     public readonly encAlgorithm!: pulumi.Output<string>;
     public readonly facility!: pulumi.Output<string>;
     public readonly format!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly interface!: pulumi.Output<string>;
     public readonly interfaceSelectMethod!: pulumi.Output<string>;
     public readonly maxLogRate!: pulumi.Output<number>;
@@ -73,6 +74,7 @@ export class LogSyslogd3OverrideSetting extends pulumi.CustomResource {
             resourceInputs["encAlgorithm"] = state ? state.encAlgorithm : undefined;
             resourceInputs["facility"] = state ? state.facility : undefined;
             resourceInputs["format"] = state ? state.format : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
             resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
             resourceInputs["maxLogRate"] = state ? state.maxLogRate : undefined;
@@ -94,6 +96,7 @@ export class LogSyslogd3OverrideSetting extends pulumi.CustomResource {
             resourceInputs["encAlgorithm"] = args ? args.encAlgorithm : undefined;
             resourceInputs["facility"] = args ? args.facility : undefined;
             resourceInputs["format"] = args ? args.format : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
             resourceInputs["maxLogRate"] = args ? args.maxLogRate : undefined;
@@ -123,6 +126,7 @@ export interface LogSyslogd3OverrideSettingState {
     encAlgorithm?: pulumi.Input<string>;
     facility?: pulumi.Input<string>;
     format?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     interface?: pulumi.Input<string>;
     interfaceSelectMethod?: pulumi.Input<string>;
     maxLogRate?: pulumi.Input<number>;
@@ -148,6 +152,7 @@ export interface LogSyslogd3OverrideSettingArgs {
     encAlgorithm?: pulumi.Input<string>;
     facility?: pulumi.Input<string>;
     format?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     interface?: pulumi.Input<string>;
     interfaceSelectMethod?: pulumi.Input<string>;
     maxLogRate?: pulumi.Input<number>;

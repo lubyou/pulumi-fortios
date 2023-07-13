@@ -38,11 +38,18 @@ class FirewallProxyPolicyArgs:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  emailfilter_profile: Optional[pulumi.Input[str]] = None,
                  file_filter_profile: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  global_label: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyGroupArgs']]]] = None,
                  http_tunnel_auth: Optional[pulumi.Input[str]] = None,
                  icap_profile: Optional[pulumi.Input[str]] = None,
                  internet_service: Optional[pulumi.Input[str]] = None,
+                 internet_service6: Optional[pulumi.Input[str]] = None,
+                 internet_service6_custom_groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyInternetService6CustomGroupArgs']]]] = None,
+                 internet_service6_customs: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyInternetService6CustomArgs']]]] = None,
+                 internet_service6_groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyInternetService6GroupArgs']]]] = None,
+                 internet_service6_names: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyInternetService6NameArgs']]]] = None,
+                 internet_service6_negate: Optional[pulumi.Input[str]] = None,
                  internet_service_custom_groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyInternetServiceCustomGroupArgs']]]] = None,
                  internet_service_customs: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyInternetServiceCustomArgs']]]] = None,
                  internet_service_groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyInternetServiceGroupArgs']]]] = None,
@@ -50,6 +57,7 @@ class FirewallProxyPolicyArgs:
                  internet_service_names: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyInternetServiceNameArgs']]]] = None,
                  internet_service_negate: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
+                 ips_voip_filter: Optional[pulumi.Input[str]] = None,
                  label: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
                  logtraffic_start: Optional[pulumi.Input[str]] = None,
@@ -134,6 +142,8 @@ class FirewallProxyPolicyArgs:
             pulumi.set(__self__, "emailfilter_profile", emailfilter_profile)
         if file_filter_profile is not None:
             pulumi.set(__self__, "file_filter_profile", file_filter_profile)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if global_label is not None:
             pulumi.set(__self__, "global_label", global_label)
         if groups is not None:
@@ -144,6 +154,18 @@ class FirewallProxyPolicyArgs:
             pulumi.set(__self__, "icap_profile", icap_profile)
         if internet_service is not None:
             pulumi.set(__self__, "internet_service", internet_service)
+        if internet_service6 is not None:
+            pulumi.set(__self__, "internet_service6", internet_service6)
+        if internet_service6_custom_groups is not None:
+            pulumi.set(__self__, "internet_service6_custom_groups", internet_service6_custom_groups)
+        if internet_service6_customs is not None:
+            pulumi.set(__self__, "internet_service6_customs", internet_service6_customs)
+        if internet_service6_groups is not None:
+            pulumi.set(__self__, "internet_service6_groups", internet_service6_groups)
+        if internet_service6_names is not None:
+            pulumi.set(__self__, "internet_service6_names", internet_service6_names)
+        if internet_service6_negate is not None:
+            pulumi.set(__self__, "internet_service6_negate", internet_service6_negate)
         if internet_service_custom_groups is not None:
             pulumi.set(__self__, "internet_service_custom_groups", internet_service_custom_groups)
         if internet_service_customs is not None:
@@ -158,6 +180,8 @@ class FirewallProxyPolicyArgs:
             pulumi.set(__self__, "internet_service_negate", internet_service_negate)
         if ips_sensor is not None:
             pulumi.set(__self__, "ips_sensor", ips_sensor)
+        if ips_voip_filter is not None:
+            pulumi.set(__self__, "ips_voip_filter", ips_voip_filter)
         if label is not None:
             pulumi.set(__self__, "label", label)
         if logtraffic is not None:
@@ -438,6 +462,15 @@ class FirewallProxyPolicyArgs:
         pulumi.set(self, "file_filter_profile", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="globalLabel")
     def global_label(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "global_label")
@@ -481,6 +514,60 @@ class FirewallProxyPolicyArgs:
     @internet_service.setter
     def internet_service(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "internet_service", value)
+
+    @property
+    @pulumi.getter(name="internetService6")
+    def internet_service6(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "internet_service6")
+
+    @internet_service6.setter
+    def internet_service6(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "internet_service6", value)
+
+    @property
+    @pulumi.getter(name="internetService6CustomGroups")
+    def internet_service6_custom_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyInternetService6CustomGroupArgs']]]]:
+        return pulumi.get(self, "internet_service6_custom_groups")
+
+    @internet_service6_custom_groups.setter
+    def internet_service6_custom_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyInternetService6CustomGroupArgs']]]]):
+        pulumi.set(self, "internet_service6_custom_groups", value)
+
+    @property
+    @pulumi.getter(name="internetService6Customs")
+    def internet_service6_customs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyInternetService6CustomArgs']]]]:
+        return pulumi.get(self, "internet_service6_customs")
+
+    @internet_service6_customs.setter
+    def internet_service6_customs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyInternetService6CustomArgs']]]]):
+        pulumi.set(self, "internet_service6_customs", value)
+
+    @property
+    @pulumi.getter(name="internetService6Groups")
+    def internet_service6_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyInternetService6GroupArgs']]]]:
+        return pulumi.get(self, "internet_service6_groups")
+
+    @internet_service6_groups.setter
+    def internet_service6_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyInternetService6GroupArgs']]]]):
+        pulumi.set(self, "internet_service6_groups", value)
+
+    @property
+    @pulumi.getter(name="internetService6Names")
+    def internet_service6_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyInternetService6NameArgs']]]]:
+        return pulumi.get(self, "internet_service6_names")
+
+    @internet_service6_names.setter
+    def internet_service6_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyInternetService6NameArgs']]]]):
+        pulumi.set(self, "internet_service6_names", value)
+
+    @property
+    @pulumi.getter(name="internetService6Negate")
+    def internet_service6_negate(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "internet_service6_negate")
+
+    @internet_service6_negate.setter
+    def internet_service6_negate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "internet_service6_negate", value)
 
     @property
     @pulumi.getter(name="internetServiceCustomGroups")
@@ -544,6 +631,15 @@ class FirewallProxyPolicyArgs:
     @ips_sensor.setter
     def ips_sensor(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ips_sensor", value)
+
+    @property
+    @pulumi.getter(name="ipsVoipFilter")
+    def ips_voip_filter(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ips_voip_filter")
+
+    @ips_voip_filter.setter
+    def ips_voip_filter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ips_voip_filter", value)
 
     @property
     @pulumi.getter
@@ -929,11 +1025,18 @@ class _FirewallProxyPolicyState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  emailfilter_profile: Optional[pulumi.Input[str]] = None,
                  file_filter_profile: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  global_label: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyGroupArgs']]]] = None,
                  http_tunnel_auth: Optional[pulumi.Input[str]] = None,
                  icap_profile: Optional[pulumi.Input[str]] = None,
                  internet_service: Optional[pulumi.Input[str]] = None,
+                 internet_service6: Optional[pulumi.Input[str]] = None,
+                 internet_service6_custom_groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyInternetService6CustomGroupArgs']]]] = None,
+                 internet_service6_customs: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyInternetService6CustomArgs']]]] = None,
+                 internet_service6_groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyInternetService6GroupArgs']]]] = None,
+                 internet_service6_names: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyInternetService6NameArgs']]]] = None,
+                 internet_service6_negate: Optional[pulumi.Input[str]] = None,
                  internet_service_custom_groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyInternetServiceCustomGroupArgs']]]] = None,
                  internet_service_customs: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyInternetServiceCustomArgs']]]] = None,
                  internet_service_groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyInternetServiceGroupArgs']]]] = None,
@@ -941,6 +1044,7 @@ class _FirewallProxyPolicyState:
                  internet_service_names: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyInternetServiceNameArgs']]]] = None,
                  internet_service_negate: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
+                 ips_voip_filter: Optional[pulumi.Input[str]] = None,
                  label: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
                  logtraffic_start: Optional[pulumi.Input[str]] = None,
@@ -1026,6 +1130,8 @@ class _FirewallProxyPolicyState:
             pulumi.set(__self__, "emailfilter_profile", emailfilter_profile)
         if file_filter_profile is not None:
             pulumi.set(__self__, "file_filter_profile", file_filter_profile)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if global_label is not None:
             pulumi.set(__self__, "global_label", global_label)
         if groups is not None:
@@ -1036,6 +1142,18 @@ class _FirewallProxyPolicyState:
             pulumi.set(__self__, "icap_profile", icap_profile)
         if internet_service is not None:
             pulumi.set(__self__, "internet_service", internet_service)
+        if internet_service6 is not None:
+            pulumi.set(__self__, "internet_service6", internet_service6)
+        if internet_service6_custom_groups is not None:
+            pulumi.set(__self__, "internet_service6_custom_groups", internet_service6_custom_groups)
+        if internet_service6_customs is not None:
+            pulumi.set(__self__, "internet_service6_customs", internet_service6_customs)
+        if internet_service6_groups is not None:
+            pulumi.set(__self__, "internet_service6_groups", internet_service6_groups)
+        if internet_service6_names is not None:
+            pulumi.set(__self__, "internet_service6_names", internet_service6_names)
+        if internet_service6_negate is not None:
+            pulumi.set(__self__, "internet_service6_negate", internet_service6_negate)
         if internet_service_custom_groups is not None:
             pulumi.set(__self__, "internet_service_custom_groups", internet_service_custom_groups)
         if internet_service_customs is not None:
@@ -1050,6 +1168,8 @@ class _FirewallProxyPolicyState:
             pulumi.set(__self__, "internet_service_negate", internet_service_negate)
         if ips_sensor is not None:
             pulumi.set(__self__, "ips_sensor", ips_sensor)
+        if ips_voip_filter is not None:
+            pulumi.set(__self__, "ips_voip_filter", ips_voip_filter)
         if label is not None:
             pulumi.set(__self__, "label", label)
         if logtraffic is not None:
@@ -1316,6 +1436,15 @@ class _FirewallProxyPolicyState:
         pulumi.set(self, "file_filter_profile", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="globalLabel")
     def global_label(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "global_label")
@@ -1359,6 +1488,60 @@ class _FirewallProxyPolicyState:
     @internet_service.setter
     def internet_service(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "internet_service", value)
+
+    @property
+    @pulumi.getter(name="internetService6")
+    def internet_service6(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "internet_service6")
+
+    @internet_service6.setter
+    def internet_service6(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "internet_service6", value)
+
+    @property
+    @pulumi.getter(name="internetService6CustomGroups")
+    def internet_service6_custom_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyInternetService6CustomGroupArgs']]]]:
+        return pulumi.get(self, "internet_service6_custom_groups")
+
+    @internet_service6_custom_groups.setter
+    def internet_service6_custom_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyInternetService6CustomGroupArgs']]]]):
+        pulumi.set(self, "internet_service6_custom_groups", value)
+
+    @property
+    @pulumi.getter(name="internetService6Customs")
+    def internet_service6_customs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyInternetService6CustomArgs']]]]:
+        return pulumi.get(self, "internet_service6_customs")
+
+    @internet_service6_customs.setter
+    def internet_service6_customs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyInternetService6CustomArgs']]]]):
+        pulumi.set(self, "internet_service6_customs", value)
+
+    @property
+    @pulumi.getter(name="internetService6Groups")
+    def internet_service6_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyInternetService6GroupArgs']]]]:
+        return pulumi.get(self, "internet_service6_groups")
+
+    @internet_service6_groups.setter
+    def internet_service6_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyInternetService6GroupArgs']]]]):
+        pulumi.set(self, "internet_service6_groups", value)
+
+    @property
+    @pulumi.getter(name="internetService6Names")
+    def internet_service6_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyInternetService6NameArgs']]]]:
+        return pulumi.get(self, "internet_service6_names")
+
+    @internet_service6_names.setter
+    def internet_service6_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyInternetService6NameArgs']]]]):
+        pulumi.set(self, "internet_service6_names", value)
+
+    @property
+    @pulumi.getter(name="internetService6Negate")
+    def internet_service6_negate(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "internet_service6_negate")
+
+    @internet_service6_negate.setter
+    def internet_service6_negate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "internet_service6_negate", value)
 
     @property
     @pulumi.getter(name="internetServiceCustomGroups")
@@ -1422,6 +1605,15 @@ class _FirewallProxyPolicyState:
     @ips_sensor.setter
     def ips_sensor(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ips_sensor", value)
+
+    @property
+    @pulumi.getter(name="ipsVoipFilter")
+    def ips_voip_filter(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ips_voip_filter")
+
+    @ips_voip_filter.setter
+    def ips_voip_filter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ips_voip_filter", value)
 
     @property
     @pulumi.getter
@@ -1827,11 +2019,18 @@ class FirewallProxyPolicy(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  emailfilter_profile: Optional[pulumi.Input[str]] = None,
                  file_filter_profile: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  global_label: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyGroupArgs']]]]] = None,
                  http_tunnel_auth: Optional[pulumi.Input[str]] = None,
                  icap_profile: Optional[pulumi.Input[str]] = None,
                  internet_service: Optional[pulumi.Input[str]] = None,
+                 internet_service6: Optional[pulumi.Input[str]] = None,
+                 internet_service6_custom_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyInternetService6CustomGroupArgs']]]]] = None,
+                 internet_service6_customs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyInternetService6CustomArgs']]]]] = None,
+                 internet_service6_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyInternetService6GroupArgs']]]]] = None,
+                 internet_service6_names: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyInternetService6NameArgs']]]]] = None,
+                 internet_service6_negate: Optional[pulumi.Input[str]] = None,
                  internet_service_custom_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyInternetServiceCustomGroupArgs']]]]] = None,
                  internet_service_customs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyInternetServiceCustomArgs']]]]] = None,
                  internet_service_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyInternetServiceGroupArgs']]]]] = None,
@@ -1839,6 +2038,7 @@ class FirewallProxyPolicy(pulumi.CustomResource):
                  internet_service_names: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyInternetServiceNameArgs']]]]] = None,
                  internet_service_negate: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
+                 ips_voip_filter: Optional[pulumi.Input[str]] = None,
                  label: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
                  logtraffic_start: Optional[pulumi.Input[str]] = None,
@@ -1930,11 +2130,18 @@ class FirewallProxyPolicy(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  emailfilter_profile: Optional[pulumi.Input[str]] = None,
                  file_filter_profile: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  global_label: Optional[pulumi.Input[str]] = None,
                  groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyGroupArgs']]]]] = None,
                  http_tunnel_auth: Optional[pulumi.Input[str]] = None,
                  icap_profile: Optional[pulumi.Input[str]] = None,
                  internet_service: Optional[pulumi.Input[str]] = None,
+                 internet_service6: Optional[pulumi.Input[str]] = None,
+                 internet_service6_custom_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyInternetService6CustomGroupArgs']]]]] = None,
+                 internet_service6_customs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyInternetService6CustomArgs']]]]] = None,
+                 internet_service6_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyInternetService6GroupArgs']]]]] = None,
+                 internet_service6_names: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyInternetService6NameArgs']]]]] = None,
+                 internet_service6_negate: Optional[pulumi.Input[str]] = None,
                  internet_service_custom_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyInternetServiceCustomGroupArgs']]]]] = None,
                  internet_service_customs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyInternetServiceCustomArgs']]]]] = None,
                  internet_service_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyInternetServiceGroupArgs']]]]] = None,
@@ -1942,6 +2149,7 @@ class FirewallProxyPolicy(pulumi.CustomResource):
                  internet_service_names: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyInternetServiceNameArgs']]]]] = None,
                  internet_service_negate: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
+                 ips_voip_filter: Optional[pulumi.Input[str]] = None,
                  label: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
                  logtraffic_start: Optional[pulumi.Input[str]] = None,
@@ -2015,11 +2223,18 @@ class FirewallProxyPolicy(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["emailfilter_profile"] = emailfilter_profile
             __props__.__dict__["file_filter_profile"] = file_filter_profile
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["global_label"] = global_label
             __props__.__dict__["groups"] = groups
             __props__.__dict__["http_tunnel_auth"] = http_tunnel_auth
             __props__.__dict__["icap_profile"] = icap_profile
             __props__.__dict__["internet_service"] = internet_service
+            __props__.__dict__["internet_service6"] = internet_service6
+            __props__.__dict__["internet_service6_custom_groups"] = internet_service6_custom_groups
+            __props__.__dict__["internet_service6_customs"] = internet_service6_customs
+            __props__.__dict__["internet_service6_groups"] = internet_service6_groups
+            __props__.__dict__["internet_service6_names"] = internet_service6_names
+            __props__.__dict__["internet_service6_negate"] = internet_service6_negate
             __props__.__dict__["internet_service_custom_groups"] = internet_service_custom_groups
             __props__.__dict__["internet_service_customs"] = internet_service_customs
             __props__.__dict__["internet_service_groups"] = internet_service_groups
@@ -2027,6 +2242,7 @@ class FirewallProxyPolicy(pulumi.CustomResource):
             __props__.__dict__["internet_service_names"] = internet_service_names
             __props__.__dict__["internet_service_negate"] = internet_service_negate
             __props__.__dict__["ips_sensor"] = ips_sensor
+            __props__.__dict__["ips_voip_filter"] = ips_voip_filter
             __props__.__dict__["label"] = label
             __props__.__dict__["logtraffic"] = logtraffic
             __props__.__dict__["logtraffic_start"] = logtraffic_start
@@ -2103,11 +2319,18 @@ class FirewallProxyPolicy(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             emailfilter_profile: Optional[pulumi.Input[str]] = None,
             file_filter_profile: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             global_label: Optional[pulumi.Input[str]] = None,
             groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyGroupArgs']]]]] = None,
             http_tunnel_auth: Optional[pulumi.Input[str]] = None,
             icap_profile: Optional[pulumi.Input[str]] = None,
             internet_service: Optional[pulumi.Input[str]] = None,
+            internet_service6: Optional[pulumi.Input[str]] = None,
+            internet_service6_custom_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyInternetService6CustomGroupArgs']]]]] = None,
+            internet_service6_customs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyInternetService6CustomArgs']]]]] = None,
+            internet_service6_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyInternetService6GroupArgs']]]]] = None,
+            internet_service6_names: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyInternetService6NameArgs']]]]] = None,
+            internet_service6_negate: Optional[pulumi.Input[str]] = None,
             internet_service_custom_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyInternetServiceCustomGroupArgs']]]]] = None,
             internet_service_customs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyInternetServiceCustomArgs']]]]] = None,
             internet_service_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyInternetServiceGroupArgs']]]]] = None,
@@ -2115,6 +2338,7 @@ class FirewallProxyPolicy(pulumi.CustomResource):
             internet_service_names: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyInternetServiceNameArgs']]]]] = None,
             internet_service_negate: Optional[pulumi.Input[str]] = None,
             ips_sensor: Optional[pulumi.Input[str]] = None,
+            ips_voip_filter: Optional[pulumi.Input[str]] = None,
             label: Optional[pulumi.Input[str]] = None,
             logtraffic: Optional[pulumi.Input[str]] = None,
             logtraffic_start: Optional[pulumi.Input[str]] = None,
@@ -2189,11 +2413,18 @@ class FirewallProxyPolicy(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["emailfilter_profile"] = emailfilter_profile
         __props__.__dict__["file_filter_profile"] = file_filter_profile
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["global_label"] = global_label
         __props__.__dict__["groups"] = groups
         __props__.__dict__["http_tunnel_auth"] = http_tunnel_auth
         __props__.__dict__["icap_profile"] = icap_profile
         __props__.__dict__["internet_service"] = internet_service
+        __props__.__dict__["internet_service6"] = internet_service6
+        __props__.__dict__["internet_service6_custom_groups"] = internet_service6_custom_groups
+        __props__.__dict__["internet_service6_customs"] = internet_service6_customs
+        __props__.__dict__["internet_service6_groups"] = internet_service6_groups
+        __props__.__dict__["internet_service6_names"] = internet_service6_names
+        __props__.__dict__["internet_service6_negate"] = internet_service6_negate
         __props__.__dict__["internet_service_custom_groups"] = internet_service_custom_groups
         __props__.__dict__["internet_service_customs"] = internet_service_customs
         __props__.__dict__["internet_service_groups"] = internet_service_groups
@@ -2201,6 +2432,7 @@ class FirewallProxyPolicy(pulumi.CustomResource):
         __props__.__dict__["internet_service_names"] = internet_service_names
         __props__.__dict__["internet_service_negate"] = internet_service_negate
         __props__.__dict__["ips_sensor"] = ips_sensor
+        __props__.__dict__["ips_voip_filter"] = ips_voip_filter
         __props__.__dict__["label"] = label
         __props__.__dict__["logtraffic"] = logtraffic
         __props__.__dict__["logtraffic_start"] = logtraffic_start
@@ -2346,6 +2578,11 @@ class FirewallProxyPolicy(pulumi.CustomResource):
         return pulumi.get(self, "file_filter_profile")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter(name="globalLabel")
     def global_label(self) -> pulumi.Output[str]:
         return pulumi.get(self, "global_label")
@@ -2369,6 +2606,36 @@ class FirewallProxyPolicy(pulumi.CustomResource):
     @pulumi.getter(name="internetService")
     def internet_service(self) -> pulumi.Output[str]:
         return pulumi.get(self, "internet_service")
+
+    @property
+    @pulumi.getter(name="internetService6")
+    def internet_service6(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "internet_service6")
+
+    @property
+    @pulumi.getter(name="internetService6CustomGroups")
+    def internet_service6_custom_groups(self) -> pulumi.Output[Optional[Sequence['outputs.FirewallProxyPolicyInternetService6CustomGroup']]]:
+        return pulumi.get(self, "internet_service6_custom_groups")
+
+    @property
+    @pulumi.getter(name="internetService6Customs")
+    def internet_service6_customs(self) -> pulumi.Output[Optional[Sequence['outputs.FirewallProxyPolicyInternetService6Custom']]]:
+        return pulumi.get(self, "internet_service6_customs")
+
+    @property
+    @pulumi.getter(name="internetService6Groups")
+    def internet_service6_groups(self) -> pulumi.Output[Optional[Sequence['outputs.FirewallProxyPolicyInternetService6Group']]]:
+        return pulumi.get(self, "internet_service6_groups")
+
+    @property
+    @pulumi.getter(name="internetService6Names")
+    def internet_service6_names(self) -> pulumi.Output[Optional[Sequence['outputs.FirewallProxyPolicyInternetService6Name']]]:
+        return pulumi.get(self, "internet_service6_names")
+
+    @property
+    @pulumi.getter(name="internetService6Negate")
+    def internet_service6_negate(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "internet_service6_negate")
 
     @property
     @pulumi.getter(name="internetServiceCustomGroups")
@@ -2404,6 +2671,11 @@ class FirewallProxyPolicy(pulumi.CustomResource):
     @pulumi.getter(name="ipsSensor")
     def ips_sensor(self) -> pulumi.Output[str]:
         return pulumi.get(self, "ips_sensor")
+
+    @property
+    @pulumi.getter(name="ipsVoipFilter")
+    def ips_voip_filter(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "ips_voip_filter")
 
     @property
     @pulumi.getter

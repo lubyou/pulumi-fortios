@@ -38,6 +38,7 @@ export class SshFilterProfile extends pulumi.CustomResource {
     public readonly defaultCommandLog!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly fileFilter!: pulumi.Output<outputs.SshFilterProfileFileFilter>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly log!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
     public readonly shellCommands!: pulumi.Output<outputs.SshFilterProfileShellCommand[] | undefined>;
@@ -60,6 +61,7 @@ export class SshFilterProfile extends pulumi.CustomResource {
             resourceInputs["defaultCommandLog"] = state ? state.defaultCommandLog : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fileFilter"] = state ? state.fileFilter : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["log"] = state ? state.log : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["shellCommands"] = state ? state.shellCommands : undefined;
@@ -70,6 +72,7 @@ export class SshFilterProfile extends pulumi.CustomResource {
             resourceInputs["defaultCommandLog"] = args ? args.defaultCommandLog : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fileFilter"] = args ? args.fileFilter : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["log"] = args ? args.log : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["shellCommands"] = args ? args.shellCommands : undefined;
@@ -88,6 +91,7 @@ export interface SshFilterProfileState {
     defaultCommandLog?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     fileFilter?: pulumi.Input<inputs.SshFilterProfileFileFilter>;
+    getAllTables?: pulumi.Input<string>;
     log?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     shellCommands?: pulumi.Input<pulumi.Input<inputs.SshFilterProfileShellCommand>[]>;
@@ -102,6 +106,7 @@ export interface SshFilterProfileArgs {
     defaultCommandLog?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     fileFilter?: pulumi.Input<inputs.SshFilterProfileFileFilter>;
+    getAllTables?: pulumi.Input<string>;
     log?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     shellCommands?: pulumi.Input<pulumi.Input<inputs.SshFilterProfileShellCommand>[]>;

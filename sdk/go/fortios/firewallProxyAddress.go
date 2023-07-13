@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,6 +20,7 @@ type FirewallProxyAddress struct {
 	Color               pulumi.IntOutput                           `pulumi:"color"`
 	Comment             pulumi.StringPtrOutput                     `pulumi:"comment"`
 	DynamicSortSubtable pulumi.StringPtrOutput                     `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                     `pulumi:"getAllTables"`
 	Header              pulumi.StringOutput                        `pulumi:"header"`
 	HeaderGroups        FirewallProxyAddressHeaderGroupArrayOutput `pulumi:"headerGroups"`
 	HeaderName          pulumi.StringOutput                        `pulumi:"headerName"`
@@ -32,6 +34,8 @@ type FirewallProxyAddress struct {
 	Taggings            FirewallProxyAddressTaggingArrayOutput     `pulumi:"taggings"`
 	Type                pulumi.StringOutput                        `pulumi:"type"`
 	Ua                  pulumi.StringOutput                        `pulumi:"ua"`
+	UaMaxVer            pulumi.StringOutput                        `pulumi:"uaMaxVer"`
+	UaMinVer            pulumi.StringOutput                        `pulumi:"uaMinVer"`
 	Uuid                pulumi.StringOutput                        `pulumi:"uuid"`
 	Vdomparam           pulumi.StringPtrOutput                     `pulumi:"vdomparam"`
 	Visibility          pulumi.StringOutput                        `pulumi:"visibility"`
@@ -44,7 +48,7 @@ func NewFirewallProxyAddress(ctx *pulumi.Context,
 		args = &FirewallProxyAddressArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallProxyAddress
 	err := ctx.RegisterResource("fortios:index/firewallProxyAddress:FirewallProxyAddress", name, args, &resource, opts...)
 	if err != nil {
@@ -73,6 +77,7 @@ type firewallProxyAddressState struct {
 	Color               *int                              `pulumi:"color"`
 	Comment             *string                           `pulumi:"comment"`
 	DynamicSortSubtable *string                           `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                           `pulumi:"getAllTables"`
 	Header              *string                           `pulumi:"header"`
 	HeaderGroups        []FirewallProxyAddressHeaderGroup `pulumi:"headerGroups"`
 	HeaderName          *string                           `pulumi:"headerName"`
@@ -86,6 +91,8 @@ type firewallProxyAddressState struct {
 	Taggings            []FirewallProxyAddressTagging     `pulumi:"taggings"`
 	Type                *string                           `pulumi:"type"`
 	Ua                  *string                           `pulumi:"ua"`
+	UaMaxVer            *string                           `pulumi:"uaMaxVer"`
+	UaMinVer            *string                           `pulumi:"uaMinVer"`
 	Uuid                *string                           `pulumi:"uuid"`
 	Vdomparam           *string                           `pulumi:"vdomparam"`
 	Visibility          *string                           `pulumi:"visibility"`
@@ -98,6 +105,7 @@ type FirewallProxyAddressState struct {
 	Color               pulumi.IntPtrInput
 	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Header              pulumi.StringPtrInput
 	HeaderGroups        FirewallProxyAddressHeaderGroupArrayInput
 	HeaderName          pulumi.StringPtrInput
@@ -111,6 +119,8 @@ type FirewallProxyAddressState struct {
 	Taggings            FirewallProxyAddressTaggingArrayInput
 	Type                pulumi.StringPtrInput
 	Ua                  pulumi.StringPtrInput
+	UaMaxVer            pulumi.StringPtrInput
+	UaMinVer            pulumi.StringPtrInput
 	Uuid                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
 	Visibility          pulumi.StringPtrInput
@@ -127,6 +137,7 @@ type firewallProxyAddressArgs struct {
 	Color               *int                              `pulumi:"color"`
 	Comment             *string                           `pulumi:"comment"`
 	DynamicSortSubtable *string                           `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                           `pulumi:"getAllTables"`
 	Header              *string                           `pulumi:"header"`
 	HeaderGroups        []FirewallProxyAddressHeaderGroup `pulumi:"headerGroups"`
 	HeaderName          *string                           `pulumi:"headerName"`
@@ -140,6 +151,8 @@ type firewallProxyAddressArgs struct {
 	Taggings            []FirewallProxyAddressTagging     `pulumi:"taggings"`
 	Type                *string                           `pulumi:"type"`
 	Ua                  *string                           `pulumi:"ua"`
+	UaMaxVer            *string                           `pulumi:"uaMaxVer"`
+	UaMinVer            *string                           `pulumi:"uaMinVer"`
 	Uuid                *string                           `pulumi:"uuid"`
 	Vdomparam           *string                           `pulumi:"vdomparam"`
 	Visibility          *string                           `pulumi:"visibility"`
@@ -153,6 +166,7 @@ type FirewallProxyAddressArgs struct {
 	Color               pulumi.IntPtrInput
 	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Header              pulumi.StringPtrInput
 	HeaderGroups        FirewallProxyAddressHeaderGroupArrayInput
 	HeaderName          pulumi.StringPtrInput
@@ -166,6 +180,8 @@ type FirewallProxyAddressArgs struct {
 	Taggings            FirewallProxyAddressTaggingArrayInput
 	Type                pulumi.StringPtrInput
 	Ua                  pulumi.StringPtrInput
+	UaMaxVer            pulumi.StringPtrInput
+	UaMinVer            pulumi.StringPtrInput
 	Uuid                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
 	Visibility          pulumi.StringPtrInput
@@ -282,6 +298,10 @@ func (o FirewallProxyAddressOutput) DynamicSortSubtable() pulumi.StringPtrOutput
 	return o.ApplyT(func(v *FirewallProxyAddress) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
 }
 
+func (o FirewallProxyAddressOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallProxyAddress) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 func (o FirewallProxyAddressOutput) Header() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallProxyAddress) pulumi.StringOutput { return v.Header }).(pulumi.StringOutput)
 }
@@ -332,6 +352,14 @@ func (o FirewallProxyAddressOutput) Type() pulumi.StringOutput {
 
 func (o FirewallProxyAddressOutput) Ua() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallProxyAddress) pulumi.StringOutput { return v.Ua }).(pulumi.StringOutput)
+}
+
+func (o FirewallProxyAddressOutput) UaMaxVer() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProxyAddress) pulumi.StringOutput { return v.UaMaxVer }).(pulumi.StringOutput)
+}
+
+func (o FirewallProxyAddressOutput) UaMinVer() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProxyAddress) pulumi.StringOutput { return v.UaMinVer }).(pulumi.StringOutput)
 }
 
 func (o FirewallProxyAddressOutput) Uuid() pulumi.StringOutput {

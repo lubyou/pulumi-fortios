@@ -37,6 +37,7 @@ export class UserDeviceAccessList extends pulumi.CustomResource {
     public readonly defaultAction!: pulumi.Output<string>;
     public readonly deviceLists!: pulumi.Output<outputs.UserDeviceAccessListDeviceList[] | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
@@ -56,6 +57,7 @@ export class UserDeviceAccessList extends pulumi.CustomResource {
             resourceInputs["defaultAction"] = state ? state.defaultAction : undefined;
             resourceInputs["deviceLists"] = state ? state.deviceLists : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
@@ -63,6 +65,7 @@ export class UserDeviceAccessList extends pulumi.CustomResource {
             resourceInputs["defaultAction"] = args ? args.defaultAction : undefined;
             resourceInputs["deviceLists"] = args ? args.deviceLists : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
@@ -78,6 +81,7 @@ export interface UserDeviceAccessListState {
     defaultAction?: pulumi.Input<string>;
     deviceLists?: pulumi.Input<pulumi.Input<inputs.UserDeviceAccessListDeviceList>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }
@@ -89,6 +93,7 @@ export interface UserDeviceAccessListArgs {
     defaultAction?: pulumi.Input<string>;
     deviceLists?: pulumi.Input<pulumi.Input<inputs.UserDeviceAccessListDeviceList>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }

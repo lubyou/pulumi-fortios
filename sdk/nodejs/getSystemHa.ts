@@ -31,6 +31,7 @@ export interface GetSystemHaResult {
     readonly authentication: string;
     readonly cpuThreshold: string;
     readonly encryption: string;
+    readonly evpnTtl: number;
     readonly failoverHoldTime: number;
     readonly ftpProxyThreshold: string;
     readonly gratuitousArps: string;

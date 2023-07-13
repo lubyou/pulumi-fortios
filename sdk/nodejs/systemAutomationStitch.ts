@@ -39,6 +39,7 @@ export class SystemAutomationStitch extends pulumi.CustomResource {
     public readonly description!: pulumi.Output<string | undefined>;
     public readonly destinations!: pulumi.Output<outputs.SystemAutomationStitchDestination[] | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly status!: pulumi.Output<string>;
     public readonly trigger!: pulumi.Output<string>;
@@ -62,6 +63,7 @@ export class SystemAutomationStitch extends pulumi.CustomResource {
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["destinations"] = state ? state.destinations : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["trigger"] = state ? state.trigger : undefined;
@@ -79,6 +81,7 @@ export class SystemAutomationStitch extends pulumi.CustomResource {
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["destinations"] = args ? args.destinations : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["trigger"] = args ? args.trigger : undefined;
@@ -98,6 +101,7 @@ export interface SystemAutomationStitchState {
     description?: pulumi.Input<string>;
     destinations?: pulumi.Input<pulumi.Input<inputs.SystemAutomationStitchDestination>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     status?: pulumi.Input<string>;
     trigger?: pulumi.Input<string>;
@@ -113,6 +117,7 @@ export interface SystemAutomationStitchArgs {
     description?: pulumi.Input<string>;
     destinations?: pulumi.Input<pulumi.Input<inputs.SystemAutomationStitchDestination>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     status: pulumi.Input<string>;
     trigger: pulumi.Input<string>;

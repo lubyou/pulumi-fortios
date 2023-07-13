@@ -1,3 +1,6 @@
 [submodule "terraform-provider-fortios"]
 	path = terraform-provider-fortios
 	url = https://github.com/fortinetdev/terraform-provider-fortios.git
+[submodule "upstream"]
+	path = upstream
+	url = https://github.com/fortinetdev/terraform-provider-fortios.git

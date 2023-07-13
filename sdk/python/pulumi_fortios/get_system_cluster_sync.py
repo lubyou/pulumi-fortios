@@ -193,22 +193,22 @@ def get_system_cluster_sync(sync_id: Optional[int] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemClusterSync:GetSystemClusterSync', __args__, opts=opts, typ=GetSystemClusterSyncResult).value
 
     return AwaitableGetSystemClusterSyncResult(
-        down_intfs_before_sess_syncs=__ret__.down_intfs_before_sess_syncs,
-        hb_interval=__ret__.hb_interval,
-        hb_lost_threshold=__ret__.hb_lost_threshold,
-        id=__ret__.id,
-        ike_heartbeat_interval=__ret__.ike_heartbeat_interval,
-        ike_monitor=__ret__.ike_monitor,
-        ike_monitor_interval=__ret__.ike_monitor_interval,
-        ipsec_tunnel_sync=__ret__.ipsec_tunnel_sync,
-        peerip=__ret__.peerip,
-        peervd=__ret__.peervd,
-        secondary_add_ipsec_routes=__ret__.secondary_add_ipsec_routes,
-        session_sync_filters=__ret__.session_sync_filters,
-        slave_add_ike_routes=__ret__.slave_add_ike_routes,
-        sync_id=__ret__.sync_id,
-        syncvds=__ret__.syncvds,
-        vdomparam=__ret__.vdomparam)
+        down_intfs_before_sess_syncs=pulumi.get(__ret__, 'down_intfs_before_sess_syncs'),
+        hb_interval=pulumi.get(__ret__, 'hb_interval'),
+        hb_lost_threshold=pulumi.get(__ret__, 'hb_lost_threshold'),
+        id=pulumi.get(__ret__, 'id'),
+        ike_heartbeat_interval=pulumi.get(__ret__, 'ike_heartbeat_interval'),
+        ike_monitor=pulumi.get(__ret__, 'ike_monitor'),
+        ike_monitor_interval=pulumi.get(__ret__, 'ike_monitor_interval'),
+        ipsec_tunnel_sync=pulumi.get(__ret__, 'ipsec_tunnel_sync'),
+        peerip=pulumi.get(__ret__, 'peerip'),
+        peervd=pulumi.get(__ret__, 'peervd'),
+        secondary_add_ipsec_routes=pulumi.get(__ret__, 'secondary_add_ipsec_routes'),
+        session_sync_filters=pulumi.get(__ret__, 'session_sync_filters'),
+        slave_add_ike_routes=pulumi.get(__ret__, 'slave_add_ike_routes'),
+        sync_id=pulumi.get(__ret__, 'sync_id'),
+        syncvds=pulumi.get(__ret__, 'syncvds'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_cluster_sync)

@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemHa(ctx *pulumi.Context, args *LookupSystemHaArgs, opts ...pulumi.InvokeOption) (*LookupSystemHaResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemHaResult
 	err := ctx.Invoke("fortios:index/getSystemHa:GetSystemHa", args, &rv, opts...)
 	if err != nil {
@@ -32,6 +33,7 @@ type LookupSystemHaResult struct {
 	Authentication           string                       `pulumi:"authentication"`
 	CpuThreshold             string                       `pulumi:"cpuThreshold"`
 	Encryption               string                       `pulumi:"encryption"`
+	EvpnTtl                  int                          `pulumi:"evpnTtl"`
 	FailoverHoldTime         int                          `pulumi:"failoverHoldTime"`
 	FtpProxyThreshold        string                       `pulumi:"ftpProxyThreshold"`
 	GratuitousArps           string                       `pulumi:"gratuitousArps"`
@@ -168,6 +170,10 @@ func (o LookupSystemHaResultOutput) CpuThreshold() pulumi.StringOutput {
 
 func (o LookupSystemHaResultOutput) Encryption() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemHaResult) string { return v.Encryption }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemHaResultOutput) EvpnTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemHaResult) int { return v.EvpnTtl }).(pulumi.IntOutput)
 }
 
 func (o LookupSystemHaResultOutput) FailoverHoldTime() pulumi.IntOutput {

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,6 +20,7 @@ type SystemSaml struct {
 	DefaultProfile      pulumi.StringOutput                  `pulumi:"defaultProfile"`
 	DynamicSortSubtable pulumi.StringPtrOutput               `pulumi:"dynamicSortSubtable"`
 	EntityId            pulumi.StringOutput                  `pulumi:"entityId"`
+	GetAllTables        pulumi.StringPtrOutput               `pulumi:"getAllTables"`
 	IdpCert             pulumi.StringOutput                  `pulumi:"idpCert"`
 	IdpEntityId         pulumi.StringOutput                  `pulumi:"idpEntityId"`
 	IdpSingleLogoutUrl  pulumi.StringOutput                  `pulumi:"idpSingleLogoutUrl"`
@@ -42,7 +44,7 @@ func NewSystemSaml(ctx *pulumi.Context,
 		args = &SystemSamlArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemSaml
 	err := ctx.RegisterResource("fortios:index/systemSaml:SystemSaml", name, args, &resource, opts...)
 	if err != nil {
@@ -71,6 +73,7 @@ type systemSamlState struct {
 	DefaultProfile      *string                     `pulumi:"defaultProfile"`
 	DynamicSortSubtable *string                     `pulumi:"dynamicSortSubtable"`
 	EntityId            *string                     `pulumi:"entityId"`
+	GetAllTables        *string                     `pulumi:"getAllTables"`
 	IdpCert             *string                     `pulumi:"idpCert"`
 	IdpEntityId         *string                     `pulumi:"idpEntityId"`
 	IdpSingleLogoutUrl  *string                     `pulumi:"idpSingleLogoutUrl"`
@@ -94,6 +97,7 @@ type SystemSamlState struct {
 	DefaultProfile      pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	EntityId            pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	IdpCert             pulumi.StringPtrInput
 	IdpEntityId         pulumi.StringPtrInput
 	IdpSingleLogoutUrl  pulumi.StringPtrInput
@@ -121,6 +125,7 @@ type systemSamlArgs struct {
 	DefaultProfile      *string                     `pulumi:"defaultProfile"`
 	DynamicSortSubtable *string                     `pulumi:"dynamicSortSubtable"`
 	EntityId            *string                     `pulumi:"entityId"`
+	GetAllTables        *string                     `pulumi:"getAllTables"`
 	IdpCert             *string                     `pulumi:"idpCert"`
 	IdpEntityId         *string                     `pulumi:"idpEntityId"`
 	IdpSingleLogoutUrl  *string                     `pulumi:"idpSingleLogoutUrl"`
@@ -145,6 +150,7 @@ type SystemSamlArgs struct {
 	DefaultProfile      pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	EntityId            pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	IdpCert             pulumi.StringPtrInput
 	IdpEntityId         pulumi.StringPtrInput
 	IdpSingleLogoutUrl  pulumi.StringPtrInput
@@ -270,6 +276,10 @@ func (o SystemSamlOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 
 func (o SystemSamlOutput) EntityId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemSaml) pulumi.StringOutput { return v.EntityId }).(pulumi.StringOutput)
+}
+
+func (o SystemSamlOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemSaml) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemSamlOutput) IdpCert() pulumi.StringOutput {

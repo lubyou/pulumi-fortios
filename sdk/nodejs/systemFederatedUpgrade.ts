@@ -37,6 +37,8 @@ export class SystemFederatedUpgrade extends pulumi.CustomResource {
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly failureDevice!: pulumi.Output<string>;
     public readonly failureReason!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    public readonly haRebootController!: pulumi.Output<string>;
     public readonly nextPathIndex!: pulumi.Output<number>;
     public readonly nodeLists!: pulumi.Output<outputs.SystemFederatedUpgradeNodeList[] | undefined>;
     public readonly status!: pulumi.Output<string>;
@@ -59,6 +61,8 @@ export class SystemFederatedUpgrade extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["failureDevice"] = state ? state.failureDevice : undefined;
             resourceInputs["failureReason"] = state ? state.failureReason : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
+            resourceInputs["haRebootController"] = state ? state.haRebootController : undefined;
             resourceInputs["nextPathIndex"] = state ? state.nextPathIndex : undefined;
             resourceInputs["nodeLists"] = state ? state.nodeLists : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
@@ -69,6 +73,8 @@ export class SystemFederatedUpgrade extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["failureDevice"] = args ? args.failureDevice : undefined;
             resourceInputs["failureReason"] = args ? args.failureReason : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
+            resourceInputs["haRebootController"] = args ? args.haRebootController : undefined;
             resourceInputs["nextPathIndex"] = args ? args.nextPathIndex : undefined;
             resourceInputs["nodeLists"] = args ? args.nodeLists : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
@@ -87,6 +93,8 @@ export interface SystemFederatedUpgradeState {
     dynamicSortSubtable?: pulumi.Input<string>;
     failureDevice?: pulumi.Input<string>;
     failureReason?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
+    haRebootController?: pulumi.Input<string>;
     nextPathIndex?: pulumi.Input<number>;
     nodeLists?: pulumi.Input<pulumi.Input<inputs.SystemFederatedUpgradeNodeList>[]>;
     status?: pulumi.Input<string>;
@@ -101,6 +109,8 @@ export interface SystemFederatedUpgradeArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
     failureDevice?: pulumi.Input<string>;
     failureReason?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
+    haRebootController?: pulumi.Input<string>;
     nextPathIndex?: pulumi.Input<number>;
     nodeLists?: pulumi.Input<pulumi.Input<inputs.SystemFederatedUpgradeNodeList>[]>;
     status?: pulumi.Input<string>;

@@ -19,6 +19,7 @@ class SwitchControllerLocationArgs:
                  address_civic: Optional[pulumi.Input['SwitchControllerLocationAddressCivicArgs']] = None,
                  coordinates: Optional[pulumi.Input['SwitchControllerLocationCoordinatesArgs']] = None,
                  elin_number: Optional[pulumi.Input['SwitchControllerLocationElinNumberArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
@@ -30,6 +31,8 @@ class SwitchControllerLocationArgs:
             pulumi.set(__self__, "coordinates", coordinates)
         if elin_number is not None:
             pulumi.set(__self__, "elin_number", elin_number)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if vdomparam is not None:
@@ -61,6 +64,15 @@ class SwitchControllerLocationArgs:
     @elin_number.setter
     def elin_number(self, value: Optional[pulumi.Input['SwitchControllerLocationElinNumberArgs']]):
         pulumi.set(self, "elin_number", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -87,6 +99,7 @@ class _SwitchControllerLocationState:
                  address_civic: Optional[pulumi.Input['SwitchControllerLocationAddressCivicArgs']] = None,
                  coordinates: Optional[pulumi.Input['SwitchControllerLocationCoordinatesArgs']] = None,
                  elin_number: Optional[pulumi.Input['SwitchControllerLocationElinNumberArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
@@ -98,6 +111,8 @@ class _SwitchControllerLocationState:
             pulumi.set(__self__, "coordinates", coordinates)
         if elin_number is not None:
             pulumi.set(__self__, "elin_number", elin_number)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if vdomparam is not None:
@@ -129,6 +144,15 @@ class _SwitchControllerLocationState:
     @elin_number.setter
     def elin_number(self, value: Optional[pulumi.Input['SwitchControllerLocationElinNumberArgs']]):
         pulumi.set(self, "elin_number", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -157,6 +181,7 @@ class SwitchControllerLocation(pulumi.CustomResource):
                  address_civic: Optional[pulumi.Input[pulumi.InputType['SwitchControllerLocationAddressCivicArgs']]] = None,
                  coordinates: Optional[pulumi.Input[pulumi.InputType['SwitchControllerLocationCoordinatesArgs']]] = None,
                  elin_number: Optional[pulumi.Input[pulumi.InputType['SwitchControllerLocationElinNumberArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -191,6 +216,7 @@ class SwitchControllerLocation(pulumi.CustomResource):
                  address_civic: Optional[pulumi.Input[pulumi.InputType['SwitchControllerLocationAddressCivicArgs']]] = None,
                  coordinates: Optional[pulumi.Input[pulumi.InputType['SwitchControllerLocationCoordinatesArgs']]] = None,
                  elin_number: Optional[pulumi.Input[pulumi.InputType['SwitchControllerLocationElinNumberArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -205,6 +231,7 @@ class SwitchControllerLocation(pulumi.CustomResource):
             __props__.__dict__["address_civic"] = address_civic
             __props__.__dict__["coordinates"] = coordinates
             __props__.__dict__["elin_number"] = elin_number
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["name"] = name
             __props__.__dict__["vdomparam"] = vdomparam
         super(SwitchControllerLocation, __self__).__init__(
@@ -220,6 +247,7 @@ class SwitchControllerLocation(pulumi.CustomResource):
             address_civic: Optional[pulumi.Input[pulumi.InputType['SwitchControllerLocationAddressCivicArgs']]] = None,
             coordinates: Optional[pulumi.Input[pulumi.InputType['SwitchControllerLocationCoordinatesArgs']]] = None,
             elin_number: Optional[pulumi.Input[pulumi.InputType['SwitchControllerLocationElinNumberArgs']]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'SwitchControllerLocation':
         """
@@ -237,6 +265,7 @@ class SwitchControllerLocation(pulumi.CustomResource):
         __props__.__dict__["address_civic"] = address_civic
         __props__.__dict__["coordinates"] = coordinates
         __props__.__dict__["elin_number"] = elin_number
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["name"] = name
         __props__.__dict__["vdomparam"] = vdomparam
         return SwitchControllerLocation(resource_name, opts=opts, __props__=__props__)
@@ -255,6 +284,11 @@ class SwitchControllerLocation(pulumi.CustomResource):
     @pulumi.getter(name="elinNumber")
     def elin_number(self) -> pulumi.Output['outputs.SwitchControllerLocationElinNumber']:
         return pulumi.get(self, "elin_number")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

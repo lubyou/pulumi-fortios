@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,11 +16,13 @@ type SystemSdnConnector struct {
 	pulumi.CustomResourceState
 
 	AccessKey            pulumi.StringOutput                              `pulumi:"accessKey"`
+	AltResourceIp        pulumi.StringOutput                              `pulumi:"altResourceIp"`
 	ApiKey               pulumi.StringPtrOutput                           `pulumi:"apiKey"`
 	AzureRegion          pulumi.StringOutput                              `pulumi:"azureRegion"`
 	ClientId             pulumi.StringOutput                              `pulumi:"clientId"`
 	ClientSecret         pulumi.StringPtrOutput                           `pulumi:"clientSecret"`
 	CompartmentId        pulumi.StringOutput                              `pulumi:"compartmentId"`
+	CompartmentLists     SystemSdnConnectorCompartmentListArrayOutput     `pulumi:"compartmentLists"`
 	ComputeGeneration    pulumi.IntOutput                                 `pulumi:"computeGeneration"`
 	Domain               pulumi.StringOutput                              `pulumi:"domain"`
 	DynamicSortSubtable  pulumi.StringPtrOutput                           `pulumi:"dynamicSortSubtable"`
@@ -28,6 +31,7 @@ type SystemSdnConnector struct {
 	ForwardingRules      SystemSdnConnectorForwardingRuleArrayOutput      `pulumi:"forwardingRules"`
 	GcpProject           pulumi.StringOutput                              `pulumi:"gcpProject"`
 	GcpProjectLists      SystemSdnConnectorGcpProjectListArrayOutput      `pulumi:"gcpProjectLists"`
+	GetAllTables         pulumi.StringPtrOutput                           `pulumi:"getAllTables"`
 	GroupName            pulumi.StringOutput                              `pulumi:"groupName"`
 	HaStatus             pulumi.StringOutput                              `pulumi:"haStatus"`
 	IbmRegion            pulumi.StringOutput                              `pulumi:"ibmRegion"`
@@ -40,9 +44,11 @@ type SystemSdnConnector struct {
 	OciCert              pulumi.StringOutput                              `pulumi:"ociCert"`
 	OciFingerprint       pulumi.StringOutput                              `pulumi:"ociFingerprint"`
 	OciRegion            pulumi.StringOutput                              `pulumi:"ociRegion"`
+	OciRegionLists       SystemSdnConnectorOciRegionListArrayOutput       `pulumi:"ociRegionLists"`
 	OciRegionType        pulumi.StringOutput                              `pulumi:"ociRegionType"`
 	Password             pulumi.StringOutput                              `pulumi:"password"`
 	PrivateKey           pulumi.StringOutput                              `pulumi:"privateKey"`
+	Proxy                pulumi.StringOutput                              `pulumi:"proxy"`
 	Region               pulumi.StringOutput                              `pulumi:"region"`
 	ResourceGroup        pulumi.StringOutput                              `pulumi:"resourceGroup"`
 	ResourceUrl          pulumi.StringOutput                              `pulumi:"resourceUrl"`
@@ -51,6 +57,8 @@ type SystemSdnConnector struct {
 	SecretKey            pulumi.StringPtrOutput                           `pulumi:"secretKey"`
 	SecretToken          pulumi.StringOutput                              `pulumi:"secretToken"`
 	Server               pulumi.StringOutput                              `pulumi:"server"`
+	ServerCaCert         pulumi.StringOutput                              `pulumi:"serverCaCert"`
+	ServerCert           pulumi.StringOutput                              `pulumi:"serverCert"`
 	ServerLists          SystemSdnConnectorServerListArrayOutput          `pulumi:"serverLists"`
 	ServerPort           pulumi.IntOutput                                 `pulumi:"serverPort"`
 	ServiceAccount       pulumi.StringOutput                              `pulumi:"serviceAccount"`
@@ -122,7 +130,7 @@ func NewSystemSdnConnector(ctx *pulumi.Context,
 		"vcenterPassword",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemSdnConnector
 	err := ctx.RegisterResource("fortios:index/systemSdnConnector:SystemSdnConnector", name, args, &resource, opts...)
 	if err != nil {
@@ -146,11 +154,13 @@ func GetSystemSdnConnector(ctx *pulumi.Context,
 // Input properties used for looking up and filtering SystemSdnConnector resources.
 type systemSdnConnectorState struct {
 	AccessKey            *string                                 `pulumi:"accessKey"`
+	AltResourceIp        *string                                 `pulumi:"altResourceIp"`
 	ApiKey               *string                                 `pulumi:"apiKey"`
 	AzureRegion          *string                                 `pulumi:"azureRegion"`
 	ClientId             *string                                 `pulumi:"clientId"`
 	ClientSecret         *string                                 `pulumi:"clientSecret"`
 	CompartmentId        *string                                 `pulumi:"compartmentId"`
+	CompartmentLists     []SystemSdnConnectorCompartmentList     `pulumi:"compartmentLists"`
 	ComputeGeneration    *int                                    `pulumi:"computeGeneration"`
 	Domain               *string                                 `pulumi:"domain"`
 	DynamicSortSubtable  *string                                 `pulumi:"dynamicSortSubtable"`
@@ -159,6 +169,7 @@ type systemSdnConnectorState struct {
 	ForwardingRules      []SystemSdnConnectorForwardingRule      `pulumi:"forwardingRules"`
 	GcpProject           *string                                 `pulumi:"gcpProject"`
 	GcpProjectLists      []SystemSdnConnectorGcpProjectList      `pulumi:"gcpProjectLists"`
+	GetAllTables         *string                                 `pulumi:"getAllTables"`
 	GroupName            *string                                 `pulumi:"groupName"`
 	HaStatus             *string                                 `pulumi:"haStatus"`
 	IbmRegion            *string                                 `pulumi:"ibmRegion"`
@@ -171,9 +182,11 @@ type systemSdnConnectorState struct {
 	OciCert              *string                                 `pulumi:"ociCert"`
 	OciFingerprint       *string                                 `pulumi:"ociFingerprint"`
 	OciRegion            *string                                 `pulumi:"ociRegion"`
+	OciRegionLists       []SystemSdnConnectorOciRegionList       `pulumi:"ociRegionLists"`
 	OciRegionType        *string                                 `pulumi:"ociRegionType"`
 	Password             *string                                 `pulumi:"password"`
 	PrivateKey           *string                                 `pulumi:"privateKey"`
+	Proxy                *string                                 `pulumi:"proxy"`
 	Region               *string                                 `pulumi:"region"`
 	ResourceGroup        *string                                 `pulumi:"resourceGroup"`
 	ResourceUrl          *string                                 `pulumi:"resourceUrl"`
@@ -182,6 +195,8 @@ type systemSdnConnectorState struct {
 	SecretKey            *string                                 `pulumi:"secretKey"`
 	SecretToken          *string                                 `pulumi:"secretToken"`
 	Server               *string                                 `pulumi:"server"`
+	ServerCaCert         *string                                 `pulumi:"serverCaCert"`
+	ServerCert           *string                                 `pulumi:"serverCert"`
 	ServerLists          []SystemSdnConnectorServerList          `pulumi:"serverLists"`
 	ServerPort           *int                                    `pulumi:"serverPort"`
 	ServiceAccount       *string                                 `pulumi:"serviceAccount"`
@@ -203,11 +218,13 @@ type systemSdnConnectorState struct {
 
 type SystemSdnConnectorState struct {
 	AccessKey            pulumi.StringPtrInput
+	AltResourceIp        pulumi.StringPtrInput
 	ApiKey               pulumi.StringPtrInput
 	AzureRegion          pulumi.StringPtrInput
 	ClientId             pulumi.StringPtrInput
 	ClientSecret         pulumi.StringPtrInput
 	CompartmentId        pulumi.StringPtrInput
+	CompartmentLists     SystemSdnConnectorCompartmentListArrayInput
 	ComputeGeneration    pulumi.IntPtrInput
 	Domain               pulumi.StringPtrInput
 	DynamicSortSubtable  pulumi.StringPtrInput
@@ -216,6 +233,7 @@ type SystemSdnConnectorState struct {
 	ForwardingRules      SystemSdnConnectorForwardingRuleArrayInput
 	GcpProject           pulumi.StringPtrInput
 	GcpProjectLists      SystemSdnConnectorGcpProjectListArrayInput
+	GetAllTables         pulumi.StringPtrInput
 	GroupName            pulumi.StringPtrInput
 	HaStatus             pulumi.StringPtrInput
 	IbmRegion            pulumi.StringPtrInput
@@ -228,9 +246,11 @@ type SystemSdnConnectorState struct {
 	OciCert              pulumi.StringPtrInput
 	OciFingerprint       pulumi.StringPtrInput
 	OciRegion            pulumi.StringPtrInput
+	OciRegionLists       SystemSdnConnectorOciRegionListArrayInput
 	OciRegionType        pulumi.StringPtrInput
 	Password             pulumi.StringPtrInput
 	PrivateKey           pulumi.StringPtrInput
+	Proxy                pulumi.StringPtrInput
 	Region               pulumi.StringPtrInput
 	ResourceGroup        pulumi.StringPtrInput
 	ResourceUrl          pulumi.StringPtrInput
@@ -239,6 +259,8 @@ type SystemSdnConnectorState struct {
 	SecretKey            pulumi.StringPtrInput
 	SecretToken          pulumi.StringPtrInput
 	Server               pulumi.StringPtrInput
+	ServerCaCert         pulumi.StringPtrInput
+	ServerCert           pulumi.StringPtrInput
 	ServerLists          SystemSdnConnectorServerListArrayInput
 	ServerPort           pulumi.IntPtrInput
 	ServiceAccount       pulumi.StringPtrInput
@@ -264,11 +286,13 @@ func (SystemSdnConnectorState) ElementType() reflect.Type {
 
 type systemSdnConnectorArgs struct {
 	AccessKey            *string                                 `pulumi:"accessKey"`
+	AltResourceIp        *string                                 `pulumi:"altResourceIp"`
 	ApiKey               *string                                 `pulumi:"apiKey"`
 	AzureRegion          *string                                 `pulumi:"azureRegion"`
 	ClientId             *string                                 `pulumi:"clientId"`
 	ClientSecret         *string                                 `pulumi:"clientSecret"`
 	CompartmentId        *string                                 `pulumi:"compartmentId"`
+	CompartmentLists     []SystemSdnConnectorCompartmentList     `pulumi:"compartmentLists"`
 	ComputeGeneration    *int                                    `pulumi:"computeGeneration"`
 	Domain               *string                                 `pulumi:"domain"`
 	DynamicSortSubtable  *string                                 `pulumi:"dynamicSortSubtable"`
@@ -277,6 +301,7 @@ type systemSdnConnectorArgs struct {
 	ForwardingRules      []SystemSdnConnectorForwardingRule      `pulumi:"forwardingRules"`
 	GcpProject           *string                                 `pulumi:"gcpProject"`
 	GcpProjectLists      []SystemSdnConnectorGcpProjectList      `pulumi:"gcpProjectLists"`
+	GetAllTables         *string                                 `pulumi:"getAllTables"`
 	GroupName            *string                                 `pulumi:"groupName"`
 	HaStatus             *string                                 `pulumi:"haStatus"`
 	IbmRegion            *string                                 `pulumi:"ibmRegion"`
@@ -289,9 +314,11 @@ type systemSdnConnectorArgs struct {
 	OciCert              *string                                 `pulumi:"ociCert"`
 	OciFingerprint       *string                                 `pulumi:"ociFingerprint"`
 	OciRegion            *string                                 `pulumi:"ociRegion"`
+	OciRegionLists       []SystemSdnConnectorOciRegionList       `pulumi:"ociRegionLists"`
 	OciRegionType        *string                                 `pulumi:"ociRegionType"`
 	Password             *string                                 `pulumi:"password"`
 	PrivateKey           *string                                 `pulumi:"privateKey"`
+	Proxy                *string                                 `pulumi:"proxy"`
 	Region               *string                                 `pulumi:"region"`
 	ResourceGroup        *string                                 `pulumi:"resourceGroup"`
 	ResourceUrl          *string                                 `pulumi:"resourceUrl"`
@@ -300,6 +327,8 @@ type systemSdnConnectorArgs struct {
 	SecretKey            *string                                 `pulumi:"secretKey"`
 	SecretToken          *string                                 `pulumi:"secretToken"`
 	Server               *string                                 `pulumi:"server"`
+	ServerCaCert         *string                                 `pulumi:"serverCaCert"`
+	ServerCert           *string                                 `pulumi:"serverCert"`
 	ServerLists          []SystemSdnConnectorServerList          `pulumi:"serverLists"`
 	ServerPort           *int                                    `pulumi:"serverPort"`
 	ServiceAccount       *string                                 `pulumi:"serviceAccount"`
@@ -322,11 +351,13 @@ type systemSdnConnectorArgs struct {
 // The set of arguments for constructing a SystemSdnConnector resource.
 type SystemSdnConnectorArgs struct {
 	AccessKey            pulumi.StringPtrInput
+	AltResourceIp        pulumi.StringPtrInput
 	ApiKey               pulumi.StringPtrInput
 	AzureRegion          pulumi.StringPtrInput
 	ClientId             pulumi.StringPtrInput
 	ClientSecret         pulumi.StringPtrInput
 	CompartmentId        pulumi.StringPtrInput
+	CompartmentLists     SystemSdnConnectorCompartmentListArrayInput
 	ComputeGeneration    pulumi.IntPtrInput
 	Domain               pulumi.StringPtrInput
 	DynamicSortSubtable  pulumi.StringPtrInput
@@ -335,6 +366,7 @@ type SystemSdnConnectorArgs struct {
 	ForwardingRules      SystemSdnConnectorForwardingRuleArrayInput
 	GcpProject           pulumi.StringPtrInput
 	GcpProjectLists      SystemSdnConnectorGcpProjectListArrayInput
+	GetAllTables         pulumi.StringPtrInput
 	GroupName            pulumi.StringPtrInput
 	HaStatus             pulumi.StringPtrInput
 	IbmRegion            pulumi.StringPtrInput
@@ -347,9 +379,11 @@ type SystemSdnConnectorArgs struct {
 	OciCert              pulumi.StringPtrInput
 	OciFingerprint       pulumi.StringPtrInput
 	OciRegion            pulumi.StringPtrInput
+	OciRegionLists       SystemSdnConnectorOciRegionListArrayInput
 	OciRegionType        pulumi.StringPtrInput
 	Password             pulumi.StringPtrInput
 	PrivateKey           pulumi.StringPtrInput
+	Proxy                pulumi.StringPtrInput
 	Region               pulumi.StringPtrInput
 	ResourceGroup        pulumi.StringPtrInput
 	ResourceUrl          pulumi.StringPtrInput
@@ -358,6 +392,8 @@ type SystemSdnConnectorArgs struct {
 	SecretKey            pulumi.StringPtrInput
 	SecretToken          pulumi.StringPtrInput
 	Server               pulumi.StringPtrInput
+	ServerCaCert         pulumi.StringPtrInput
+	ServerCert           pulumi.StringPtrInput
 	ServerLists          SystemSdnConnectorServerListArrayInput
 	ServerPort           pulumi.IntPtrInput
 	ServiceAccount       pulumi.StringPtrInput
@@ -468,6 +504,10 @@ func (o SystemSdnConnectorOutput) AccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemSdnConnector) pulumi.StringOutput { return v.AccessKey }).(pulumi.StringOutput)
 }
 
+func (o SystemSdnConnectorOutput) AltResourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSdnConnector) pulumi.StringOutput { return v.AltResourceIp }).(pulumi.StringOutput)
+}
+
 func (o SystemSdnConnectorOutput) ApiKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SystemSdnConnector) pulumi.StringPtrOutput { return v.ApiKey }).(pulumi.StringPtrOutput)
 }
@@ -486,6 +526,10 @@ func (o SystemSdnConnectorOutput) ClientSecret() pulumi.StringPtrOutput {
 
 func (o SystemSdnConnectorOutput) CompartmentId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemSdnConnector) pulumi.StringOutput { return v.CompartmentId }).(pulumi.StringOutput)
+}
+
+func (o SystemSdnConnectorOutput) CompartmentLists() SystemSdnConnectorCompartmentListArrayOutput {
+	return o.ApplyT(func(v *SystemSdnConnector) SystemSdnConnectorCompartmentListArrayOutput { return v.CompartmentLists }).(SystemSdnConnectorCompartmentListArrayOutput)
 }
 
 func (o SystemSdnConnectorOutput) ComputeGeneration() pulumi.IntOutput {
@@ -520,6 +564,10 @@ func (o SystemSdnConnectorOutput) GcpProject() pulumi.StringOutput {
 
 func (o SystemSdnConnectorOutput) GcpProjectLists() SystemSdnConnectorGcpProjectListArrayOutput {
 	return o.ApplyT(func(v *SystemSdnConnector) SystemSdnConnectorGcpProjectListArrayOutput { return v.GcpProjectLists }).(SystemSdnConnectorGcpProjectListArrayOutput)
+}
+
+func (o SystemSdnConnectorOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemSdnConnector) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemSdnConnectorOutput) GroupName() pulumi.StringOutput {
@@ -570,6 +618,10 @@ func (o SystemSdnConnectorOutput) OciRegion() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemSdnConnector) pulumi.StringOutput { return v.OciRegion }).(pulumi.StringOutput)
 }
 
+func (o SystemSdnConnectorOutput) OciRegionLists() SystemSdnConnectorOciRegionListArrayOutput {
+	return o.ApplyT(func(v *SystemSdnConnector) SystemSdnConnectorOciRegionListArrayOutput { return v.OciRegionLists }).(SystemSdnConnectorOciRegionListArrayOutput)
+}
+
 func (o SystemSdnConnectorOutput) OciRegionType() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemSdnConnector) pulumi.StringOutput { return v.OciRegionType }).(pulumi.StringOutput)
 }
@@ -580,6 +632,10 @@ func (o SystemSdnConnectorOutput) Password() pulumi.StringOutput {
 
 func (o SystemSdnConnectorOutput) PrivateKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemSdnConnector) pulumi.StringOutput { return v.PrivateKey }).(pulumi.StringOutput)
+}
+
+func (o SystemSdnConnectorOutput) Proxy() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSdnConnector) pulumi.StringOutput { return v.Proxy }).(pulumi.StringOutput)
 }
 
 func (o SystemSdnConnectorOutput) Region() pulumi.StringOutput {
@@ -612,6 +668,14 @@ func (o SystemSdnConnectorOutput) SecretToken() pulumi.StringOutput {
 
 func (o SystemSdnConnectorOutput) Server() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemSdnConnector) pulumi.StringOutput { return v.Server }).(pulumi.StringOutput)
+}
+
+func (o SystemSdnConnectorOutput) ServerCaCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSdnConnector) pulumi.StringOutput { return v.ServerCaCert }).(pulumi.StringOutput)
+}
+
+func (o SystemSdnConnectorOutput) ServerCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSdnConnector) pulumi.StringOutput { return v.ServerCert }).(pulumi.StringOutput)
 }
 
 func (o SystemSdnConnectorOutput) ServerLists() SystemSdnConnectorServerListArrayOutput {

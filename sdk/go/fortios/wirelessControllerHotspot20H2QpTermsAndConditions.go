@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -27,7 +28,7 @@ func NewWirelessControllerHotspot20H2QpTermsAndConditions(ctx *pulumi.Context,
 		args = &WirelessControllerHotspot20H2QpTermsAndConditionsArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WirelessControllerHotspot20H2QpTermsAndConditions
 	err := ctx.RegisterResource("fortios:index/wirelessControllerHotspot20H2QpTermsAndConditions:WirelessControllerHotspot20H2QpTermsAndConditions", name, args, &resource, opts...)
 	if err != nil {

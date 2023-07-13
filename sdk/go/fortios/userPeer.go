@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -47,7 +48,7 @@ func NewUserPeer(ctx *pulumi.Context,
 		"passwd",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource UserPeer
 	err := ctx.RegisterResource("fortios:index/userPeer:UserPeer", name, args, &resource, opts...)
 	if err != nil {

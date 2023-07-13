@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -17,6 +18,7 @@ type FtpProxyExplicit struct {
 	IncomingPort     pulumi.StringOutput    `pulumi:"incomingPort"`
 	OutgoingIp       pulumi.StringOutput    `pulumi:"outgoingIp"`
 	SecDefaultAction pulumi.StringOutput    `pulumi:"secDefaultAction"`
+	ServerDataMode   pulumi.StringOutput    `pulumi:"serverDataMode"`
 	Ssl              pulumi.StringOutput    `pulumi:"ssl"`
 	SslAlgorithm     pulumi.StringOutput    `pulumi:"sslAlgorithm"`
 	SslCert          pulumi.StringOutput    `pulumi:"sslCert"`
@@ -32,7 +34,7 @@ func NewFtpProxyExplicit(ctx *pulumi.Context,
 		args = &FtpProxyExplicitArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FtpProxyExplicit
 	err := ctx.RegisterResource("fortios:index/ftpProxyExplicit:FtpProxyExplicit", name, args, &resource, opts...)
 	if err != nil {
@@ -59,6 +61,7 @@ type ftpProxyExplicitState struct {
 	IncomingPort     *string `pulumi:"incomingPort"`
 	OutgoingIp       *string `pulumi:"outgoingIp"`
 	SecDefaultAction *string `pulumi:"secDefaultAction"`
+	ServerDataMode   *string `pulumi:"serverDataMode"`
 	Ssl              *string `pulumi:"ssl"`
 	SslAlgorithm     *string `pulumi:"sslAlgorithm"`
 	SslCert          *string `pulumi:"sslCert"`
@@ -72,6 +75,7 @@ type FtpProxyExplicitState struct {
 	IncomingPort     pulumi.StringPtrInput
 	OutgoingIp       pulumi.StringPtrInput
 	SecDefaultAction pulumi.StringPtrInput
+	ServerDataMode   pulumi.StringPtrInput
 	Ssl              pulumi.StringPtrInput
 	SslAlgorithm     pulumi.StringPtrInput
 	SslCert          pulumi.StringPtrInput
@@ -89,6 +93,7 @@ type ftpProxyExplicitArgs struct {
 	IncomingPort     *string `pulumi:"incomingPort"`
 	OutgoingIp       *string `pulumi:"outgoingIp"`
 	SecDefaultAction *string `pulumi:"secDefaultAction"`
+	ServerDataMode   *string `pulumi:"serverDataMode"`
 	Ssl              *string `pulumi:"ssl"`
 	SslAlgorithm     *string `pulumi:"sslAlgorithm"`
 	SslCert          *string `pulumi:"sslCert"`
@@ -103,6 +108,7 @@ type FtpProxyExplicitArgs struct {
 	IncomingPort     pulumi.StringPtrInput
 	OutgoingIp       pulumi.StringPtrInput
 	SecDefaultAction pulumi.StringPtrInput
+	ServerDataMode   pulumi.StringPtrInput
 	Ssl              pulumi.StringPtrInput
 	SslAlgorithm     pulumi.StringPtrInput
 	SslCert          pulumi.StringPtrInput
@@ -212,6 +218,10 @@ func (o FtpProxyExplicitOutput) OutgoingIp() pulumi.StringOutput {
 
 func (o FtpProxyExplicitOutput) SecDefaultAction() pulumi.StringOutput {
 	return o.ApplyT(func(v *FtpProxyExplicit) pulumi.StringOutput { return v.SecDefaultAction }).(pulumi.StringOutput)
+}
+
+func (o FtpProxyExplicitOutput) ServerDataMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *FtpProxyExplicit) pulumi.StringOutput { return v.ServerDataMode }).(pulumi.StringOutput)
 }
 
 func (o FtpProxyExplicitOutput) Ssl() pulumi.StringOutput {

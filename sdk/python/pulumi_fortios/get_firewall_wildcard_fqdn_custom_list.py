@@ -84,10 +84,10 @@ def get_firewall_wildcard_fqdn_custom_list(filter: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getFirewallWildcardFqdnCustomList:GetFirewallWildcardFqdnCustomList', __args__, opts=opts, typ=GetFirewallWildcardFqdnCustomListResult).value
 
     return AwaitableGetFirewallWildcardFqdnCustomListResult(
-        filter=__ret__.filter,
-        id=__ret__.id,
-        namelists=__ret__.namelists,
-        vdomparam=__ret__.vdomparam)
+        filter=pulumi.get(__ret__, 'filter'),
+        id=pulumi.get(__ret__, 'id'),
+        namelists=pulumi.get(__ret__, 'namelists'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_firewall_wildcard_fqdn_custom_list)

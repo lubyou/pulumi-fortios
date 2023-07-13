@@ -19,6 +19,7 @@ class FirewallAccessProxySshClientCertArgs:
                  auth_ca: Optional[pulumi.Input[str]] = None,
                  cert_extensions: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAccessProxySshClientCertCertExtensionArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  permit_agent_forwarding: Optional[pulumi.Input[str]] = None,
                  permit_port_forwarding: Optional[pulumi.Input[str]] = None,
@@ -36,6 +37,8 @@ class FirewallAccessProxySshClientCertArgs:
             pulumi.set(__self__, "cert_extensions", cert_extensions)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if permit_agent_forwarding is not None:
@@ -79,6 +82,15 @@ class FirewallAccessProxySshClientCertArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -159,6 +171,7 @@ class _FirewallAccessProxySshClientCertState:
                  auth_ca: Optional[pulumi.Input[str]] = None,
                  cert_extensions: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAccessProxySshClientCertCertExtensionArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  permit_agent_forwarding: Optional[pulumi.Input[str]] = None,
                  permit_port_forwarding: Optional[pulumi.Input[str]] = None,
@@ -176,6 +189,8 @@ class _FirewallAccessProxySshClientCertState:
             pulumi.set(__self__, "cert_extensions", cert_extensions)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if permit_agent_forwarding is not None:
@@ -219,6 +234,15 @@ class _FirewallAccessProxySshClientCertState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -301,6 +325,7 @@ class FirewallAccessProxySshClientCert(pulumi.CustomResource):
                  auth_ca: Optional[pulumi.Input[str]] = None,
                  cert_extensions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAccessProxySshClientCertCertExtensionArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  permit_agent_forwarding: Optional[pulumi.Input[str]] = None,
                  permit_port_forwarding: Optional[pulumi.Input[str]] = None,
@@ -341,6 +366,7 @@ class FirewallAccessProxySshClientCert(pulumi.CustomResource):
                  auth_ca: Optional[pulumi.Input[str]] = None,
                  cert_extensions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAccessProxySshClientCertCertExtensionArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  permit_agent_forwarding: Optional[pulumi.Input[str]] = None,
                  permit_port_forwarding: Optional[pulumi.Input[str]] = None,
@@ -361,6 +387,7 @@ class FirewallAccessProxySshClientCert(pulumi.CustomResource):
             __props__.__dict__["auth_ca"] = auth_ca
             __props__.__dict__["cert_extensions"] = cert_extensions
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["name"] = name
             __props__.__dict__["permit_agent_forwarding"] = permit_agent_forwarding
             __props__.__dict__["permit_port_forwarding"] = permit_port_forwarding
@@ -382,6 +409,7 @@ class FirewallAccessProxySshClientCert(pulumi.CustomResource):
             auth_ca: Optional[pulumi.Input[str]] = None,
             cert_extensions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAccessProxySshClientCertCertExtensionArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             permit_agent_forwarding: Optional[pulumi.Input[str]] = None,
             permit_port_forwarding: Optional[pulumi.Input[str]] = None,
@@ -405,6 +433,7 @@ class FirewallAccessProxySshClientCert(pulumi.CustomResource):
         __props__.__dict__["auth_ca"] = auth_ca
         __props__.__dict__["cert_extensions"] = cert_extensions
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["name"] = name
         __props__.__dict__["permit_agent_forwarding"] = permit_agent_forwarding
         __props__.__dict__["permit_port_forwarding"] = permit_port_forwarding
@@ -429,6 +458,11 @@ class FirewallAccessProxySshClientCert(pulumi.CustomResource):
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

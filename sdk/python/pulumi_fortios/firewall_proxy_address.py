@@ -22,6 +22,7 @@ class FirewallProxyAddressArgs:
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  header: Optional[pulumi.Input[str]] = None,
                  header_groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyAddressHeaderGroupArgs']]]] = None,
                  header_name: Optional[pulumi.Input[str]] = None,
@@ -35,6 +36,8 @@ class FirewallProxyAddressArgs:
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyAddressTaggingArgs']]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  ua: Optional[pulumi.Input[str]] = None,
+                 ua_max_ver: Optional[pulumi.Input[str]] = None,
+                 ua_min_ver: Optional[pulumi.Input[str]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  visibility: Optional[pulumi.Input[str]] = None):
@@ -53,6 +56,8 @@ class FirewallProxyAddressArgs:
             pulumi.set(__self__, "comment", comment)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if header is not None:
             pulumi.set(__self__, "header", header)
         if header_groups is not None:
@@ -79,6 +84,10 @@ class FirewallProxyAddressArgs:
             pulumi.set(__self__, "type", type)
         if ua is not None:
             pulumi.set(__self__, "ua", ua)
+        if ua_max_ver is not None:
+            pulumi.set(__self__, "ua_max_ver", ua_max_ver)
+        if ua_min_ver is not None:
+            pulumi.set(__self__, "ua_min_ver", ua_min_ver)
         if uuid is not None:
             pulumi.set(__self__, "uuid", uuid)
         if vdomparam is not None:
@@ -139,6 +148,15 @@ class FirewallProxyAddressArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -256,6 +274,24 @@ class FirewallProxyAddressArgs:
     @ua.setter
     def ua(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ua", value)
+
+    @property
+    @pulumi.getter(name="uaMaxVer")
+    def ua_max_ver(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ua_max_ver")
+
+    @ua_max_ver.setter
+    def ua_max_ver(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ua_max_ver", value)
+
+    @property
+    @pulumi.getter(name="uaMinVer")
+    def ua_min_ver(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ua_min_ver")
+
+    @ua_min_ver.setter
+    def ua_min_ver(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ua_min_ver", value)
 
     @property
     @pulumi.getter
@@ -294,6 +330,7 @@ class _FirewallProxyAddressState:
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  header: Optional[pulumi.Input[str]] = None,
                  header_groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyAddressHeaderGroupArgs']]]] = None,
                  header_name: Optional[pulumi.Input[str]] = None,
@@ -307,6 +344,8 @@ class _FirewallProxyAddressState:
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyAddressTaggingArgs']]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  ua: Optional[pulumi.Input[str]] = None,
+                 ua_max_ver: Optional[pulumi.Input[str]] = None,
+                 ua_min_ver: Optional[pulumi.Input[str]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  visibility: Optional[pulumi.Input[str]] = None):
@@ -325,6 +364,8 @@ class _FirewallProxyAddressState:
             pulumi.set(__self__, "comment", comment)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if header is not None:
             pulumi.set(__self__, "header", header)
         if header_groups is not None:
@@ -351,6 +392,10 @@ class _FirewallProxyAddressState:
             pulumi.set(__self__, "type", type)
         if ua is not None:
             pulumi.set(__self__, "ua", ua)
+        if ua_max_ver is not None:
+            pulumi.set(__self__, "ua_max_ver", ua_max_ver)
+        if ua_min_ver is not None:
+            pulumi.set(__self__, "ua_min_ver", ua_min_ver)
         if uuid is not None:
             pulumi.set(__self__, "uuid", uuid)
         if vdomparam is not None:
@@ -411,6 +456,15 @@ class _FirewallProxyAddressState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -528,6 +582,24 @@ class _FirewallProxyAddressState:
     @ua.setter
     def ua(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ua", value)
+
+    @property
+    @pulumi.getter(name="uaMaxVer")
+    def ua_max_ver(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ua_max_ver")
+
+    @ua_max_ver.setter
+    def ua_max_ver(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ua_max_ver", value)
+
+    @property
+    @pulumi.getter(name="uaMinVer")
+    def ua_min_ver(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ua_min_ver")
+
+    @ua_min_ver.setter
+    def ua_min_ver(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ua_min_ver", value)
 
     @property
     @pulumi.getter
@@ -568,6 +640,7 @@ class FirewallProxyAddress(pulumi.CustomResource):
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  header: Optional[pulumi.Input[str]] = None,
                  header_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyAddressHeaderGroupArgs']]]]] = None,
                  header_name: Optional[pulumi.Input[str]] = None,
@@ -581,6 +654,8 @@ class FirewallProxyAddress(pulumi.CustomResource):
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyAddressTaggingArgs']]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  ua: Optional[pulumi.Input[str]] = None,
+                 ua_max_ver: Optional[pulumi.Input[str]] = None,
+                 ua_min_ver: Optional[pulumi.Input[str]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  visibility: Optional[pulumi.Input[str]] = None,
@@ -619,6 +694,7 @@ class FirewallProxyAddress(pulumi.CustomResource):
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  header: Optional[pulumi.Input[str]] = None,
                  header_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyAddressHeaderGroupArgs']]]]] = None,
                  header_name: Optional[pulumi.Input[str]] = None,
@@ -632,6 +708,8 @@ class FirewallProxyAddress(pulumi.CustomResource):
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyAddressTaggingArgs']]]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  ua: Optional[pulumi.Input[str]] = None,
+                 ua_max_ver: Optional[pulumi.Input[str]] = None,
+                 ua_min_ver: Optional[pulumi.Input[str]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  visibility: Optional[pulumi.Input[str]] = None,
@@ -650,6 +728,7 @@ class FirewallProxyAddress(pulumi.CustomResource):
             __props__.__dict__["color"] = color
             __props__.__dict__["comment"] = comment
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["header"] = header
             __props__.__dict__["header_groups"] = header_groups
             __props__.__dict__["header_name"] = header_name
@@ -663,6 +742,8 @@ class FirewallProxyAddress(pulumi.CustomResource):
             __props__.__dict__["taggings"] = taggings
             __props__.__dict__["type"] = type
             __props__.__dict__["ua"] = ua
+            __props__.__dict__["ua_max_ver"] = ua_max_ver
+            __props__.__dict__["ua_min_ver"] = ua_min_ver
             __props__.__dict__["uuid"] = uuid
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["visibility"] = visibility
@@ -682,6 +763,7 @@ class FirewallProxyAddress(pulumi.CustomResource):
             color: Optional[pulumi.Input[int]] = None,
             comment: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             header: Optional[pulumi.Input[str]] = None,
             header_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyAddressHeaderGroupArgs']]]]] = None,
             header_name: Optional[pulumi.Input[str]] = None,
@@ -695,6 +777,8 @@ class FirewallProxyAddress(pulumi.CustomResource):
             taggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyAddressTaggingArgs']]]]] = None,
             type: Optional[pulumi.Input[str]] = None,
             ua: Optional[pulumi.Input[str]] = None,
+            ua_max_ver: Optional[pulumi.Input[str]] = None,
+            ua_min_ver: Optional[pulumi.Input[str]] = None,
             uuid: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             visibility: Optional[pulumi.Input[str]] = None) -> 'FirewallProxyAddress':
@@ -716,6 +800,7 @@ class FirewallProxyAddress(pulumi.CustomResource):
         __props__.__dict__["color"] = color
         __props__.__dict__["comment"] = comment
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["header"] = header
         __props__.__dict__["header_groups"] = header_groups
         __props__.__dict__["header_name"] = header_name
@@ -729,6 +814,8 @@ class FirewallProxyAddress(pulumi.CustomResource):
         __props__.__dict__["taggings"] = taggings
         __props__.__dict__["type"] = type
         __props__.__dict__["ua"] = ua
+        __props__.__dict__["ua_max_ver"] = ua_max_ver
+        __props__.__dict__["ua_min_ver"] = ua_min_ver
         __props__.__dict__["uuid"] = uuid
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["visibility"] = visibility
@@ -763,6 +850,11 @@ class FirewallProxyAddress(pulumi.CustomResource):
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter
@@ -828,6 +920,16 @@ class FirewallProxyAddress(pulumi.CustomResource):
     @pulumi.getter
     def ua(self) -> pulumi.Output[str]:
         return pulumi.get(self, "ua")
+
+    @property
+    @pulumi.getter(name="uaMaxVer")
+    def ua_max_ver(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "ua_max_ver")
+
+    @property
+    @pulumi.getter(name="uaMinVer")
+    def ua_min_ver(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "ua_min_ver")
 
     @property
     @pulumi.getter

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -21,6 +22,7 @@ type RouterospfOspfInterface struct {
 	DatabaseFilterOut   pulumi.StringOutput                      `pulumi:"databaseFilterOut"`
 	DeadInterval        pulumi.IntOutput                         `pulumi:"deadInterval"`
 	DynamicSortSubtable pulumi.StringPtrOutput                   `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                   `pulumi:"getAllTables"`
 	HelloInterval       pulumi.IntOutput                         `pulumi:"helloInterval"`
 	HelloMultiplier     pulumi.IntOutput                         `pulumi:"helloMultiplier"`
 	Interface           pulumi.StringOutput                      `pulumi:"interface"`
@@ -49,7 +51,7 @@ func NewRouterospfOspfInterface(ctx *pulumi.Context,
 		args = &RouterospfOspfInterfaceArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RouterospfOspfInterface
 	err := ctx.RegisterResource("fortios:index/routerospfOspfInterface:RouterospfOspfInterface", name, args, &resource, opts...)
 	if err != nil {
@@ -80,6 +82,7 @@ type routerospfOspfInterfaceState struct {
 	DatabaseFilterOut   *string                         `pulumi:"databaseFilterOut"`
 	DeadInterval        *int                            `pulumi:"deadInterval"`
 	DynamicSortSubtable *string                         `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                         `pulumi:"getAllTables"`
 	HelloInterval       *int                            `pulumi:"helloInterval"`
 	HelloMultiplier     *int                            `pulumi:"helloMultiplier"`
 	Interface           *string                         `pulumi:"interface"`
@@ -110,6 +113,7 @@ type RouterospfOspfInterfaceState struct {
 	DatabaseFilterOut   pulumi.StringPtrInput
 	DeadInterval        pulumi.IntPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	HelloInterval       pulumi.IntPtrInput
 	HelloMultiplier     pulumi.IntPtrInput
 	Interface           pulumi.StringPtrInput
@@ -144,6 +148,7 @@ type routerospfOspfInterfaceArgs struct {
 	DatabaseFilterOut   *string                         `pulumi:"databaseFilterOut"`
 	DeadInterval        *int                            `pulumi:"deadInterval"`
 	DynamicSortSubtable *string                         `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                         `pulumi:"getAllTables"`
 	HelloInterval       *int                            `pulumi:"helloInterval"`
 	HelloMultiplier     *int                            `pulumi:"helloMultiplier"`
 	Interface           *string                         `pulumi:"interface"`
@@ -175,6 +180,7 @@ type RouterospfOspfInterfaceArgs struct {
 	DatabaseFilterOut   pulumi.StringPtrInput
 	DeadInterval        pulumi.IntPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	HelloInterval       pulumi.IntPtrInput
 	HelloMultiplier     pulumi.IntPtrInput
 	Interface           pulumi.StringPtrInput
@@ -313,6 +319,10 @@ func (o RouterospfOspfInterfaceOutput) DeadInterval() pulumi.IntOutput {
 
 func (o RouterospfOspfInterfaceOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RouterospfOspfInterface) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o RouterospfOspfInterfaceOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterospfOspfInterface) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o RouterospfOspfInterfaceOutput) HelloInterval() pulumi.IntOutput {

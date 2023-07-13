@@ -37,6 +37,7 @@ export class FirewallInternetServiceCustom extends pulumi.CustomResource {
     public readonly comment!: pulumi.Output<string | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly entries!: pulumi.Output<outputs.FirewallInternetServiceCustomEntry[] | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly reputation!: pulumi.Output<number>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -57,6 +58,7 @@ export class FirewallInternetServiceCustom extends pulumi.CustomResource {
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["entries"] = state ? state.entries : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["reputation"] = state ? state.reputation : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
@@ -65,6 +67,7 @@ export class FirewallInternetServiceCustom extends pulumi.CustomResource {
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["entries"] = args ? args.entries : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["reputation"] = args ? args.reputation : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -81,6 +84,7 @@ export interface FirewallInternetServiceCustomState {
     comment?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     entries?: pulumi.Input<pulumi.Input<inputs.FirewallInternetServiceCustomEntry>[]>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     reputation?: pulumi.Input<number>;
     vdomparam?: pulumi.Input<string>;
@@ -93,6 +97,7 @@ export interface FirewallInternetServiceCustomArgs {
     comment?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     entries?: pulumi.Input<pulumi.Input<inputs.FirewallInternetServiceCustomEntry>[]>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     reputation?: pulumi.Input<number>;
     vdomparam?: pulumi.Input<string>;

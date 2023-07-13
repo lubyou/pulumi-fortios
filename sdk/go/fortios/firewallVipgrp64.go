@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -17,6 +18,7 @@ type FirewallVipgrp64 struct {
 	Color               pulumi.IntOutput                  `pulumi:"color"`
 	Comments            pulumi.StringPtrOutput            `pulumi:"comments"`
 	DynamicSortSubtable pulumi.StringPtrOutput            `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput            `pulumi:"getAllTables"`
 	Members             FirewallVipgrp64MemberArrayOutput `pulumi:"members"`
 	Name                pulumi.StringOutput               `pulumi:"name"`
 	Uuid                pulumi.StringOutput               `pulumi:"uuid"`
@@ -33,7 +35,7 @@ func NewFirewallVipgrp64(ctx *pulumi.Context,
 	if args.Members == nil {
 		return nil, errors.New("invalid value for required argument 'Members'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallVipgrp64
 	err := ctx.RegisterResource("fortios:index/firewallVipgrp64:FirewallVipgrp64", name, args, &resource, opts...)
 	if err != nil {
@@ -59,6 +61,7 @@ type firewallVipgrp64State struct {
 	Color               *int                     `pulumi:"color"`
 	Comments            *string                  `pulumi:"comments"`
 	DynamicSortSubtable *string                  `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                  `pulumi:"getAllTables"`
 	Members             []FirewallVipgrp64Member `pulumi:"members"`
 	Name                *string                  `pulumi:"name"`
 	Uuid                *string                  `pulumi:"uuid"`
@@ -69,6 +72,7 @@ type FirewallVipgrp64State struct {
 	Color               pulumi.IntPtrInput
 	Comments            pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Members             FirewallVipgrp64MemberArrayInput
 	Name                pulumi.StringPtrInput
 	Uuid                pulumi.StringPtrInput
@@ -83,6 +87,7 @@ type firewallVipgrp64Args struct {
 	Color               *int                     `pulumi:"color"`
 	Comments            *string                  `pulumi:"comments"`
 	DynamicSortSubtable *string                  `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                  `pulumi:"getAllTables"`
 	Members             []FirewallVipgrp64Member `pulumi:"members"`
 	Name                *string                  `pulumi:"name"`
 	Uuid                *string                  `pulumi:"uuid"`
@@ -94,6 +99,7 @@ type FirewallVipgrp64Args struct {
 	Color               pulumi.IntPtrInput
 	Comments            pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Members             FirewallVipgrp64MemberArrayInput
 	Name                pulumi.StringPtrInput
 	Uuid                pulumi.StringPtrInput
@@ -197,6 +203,10 @@ func (o FirewallVipgrp64Output) Comments() pulumi.StringPtrOutput {
 
 func (o FirewallVipgrp64Output) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FirewallVipgrp64) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallVipgrp64Output) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallVipgrp64) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallVipgrp64Output) Members() FirewallVipgrp64MemberArrayOutput {

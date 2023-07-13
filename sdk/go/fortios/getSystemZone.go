@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemZone(ctx *pulumi.Context, args *LookupSystemZoneArgs, opts ...pulumi.InvokeOption) (*LookupSystemZoneResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemZoneResult
 	err := ctx.Invoke("fortios:index/getSystemZone:GetSystemZone", args, &rv, opts...)
 	if err != nil {

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -23,6 +24,7 @@ type SwitchControllerSecurityPolicy8021X struct {
 	EapAutoUntaggedVlans    pulumi.StringOutput                                     `pulumi:"eapAutoUntaggedVlans"`
 	EapPassthru             pulumi.StringOutput                                     `pulumi:"eapPassthru"`
 	FramevidApply           pulumi.StringOutput                                     `pulumi:"framevidApply"`
+	GetAllTables            pulumi.StringPtrOutput                                  `pulumi:"getAllTables"`
 	GuestAuthDelay          pulumi.IntOutput                                        `pulumi:"guestAuthDelay"`
 	GuestVlan               pulumi.StringOutput                                     `pulumi:"guestVlan"`
 	GuestVlanId             pulumi.StringOutput                                     `pulumi:"guestVlanId"`
@@ -44,7 +46,7 @@ func NewSwitchControllerSecurityPolicy8021X(ctx *pulumi.Context,
 		args = &SwitchControllerSecurityPolicy8021XArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SwitchControllerSecurityPolicy8021X
 	err := ctx.RegisterResource("fortios:index/switchControllerSecurityPolicy8021X:SwitchControllerSecurityPolicy8021X", name, args, &resource, opts...)
 	if err != nil {
@@ -77,6 +79,7 @@ type switchControllerSecurityPolicy8021XState struct {
 	EapAutoUntaggedVlans    *string                                        `pulumi:"eapAutoUntaggedVlans"`
 	EapPassthru             *string                                        `pulumi:"eapPassthru"`
 	FramevidApply           *string                                        `pulumi:"framevidApply"`
+	GetAllTables            *string                                        `pulumi:"getAllTables"`
 	GuestAuthDelay          *int                                           `pulumi:"guestAuthDelay"`
 	GuestVlan               *string                                        `pulumi:"guestVlan"`
 	GuestVlanId             *string                                        `pulumi:"guestVlanId"`
@@ -102,6 +105,7 @@ type SwitchControllerSecurityPolicy8021XState struct {
 	EapAutoUntaggedVlans    pulumi.StringPtrInput
 	EapPassthru             pulumi.StringPtrInput
 	FramevidApply           pulumi.StringPtrInput
+	GetAllTables            pulumi.StringPtrInput
 	GuestAuthDelay          pulumi.IntPtrInput
 	GuestVlan               pulumi.StringPtrInput
 	GuestVlanId             pulumi.StringPtrInput
@@ -131,6 +135,7 @@ type switchControllerSecurityPolicy8021XArgs struct {
 	EapAutoUntaggedVlans    *string                                        `pulumi:"eapAutoUntaggedVlans"`
 	EapPassthru             *string                                        `pulumi:"eapPassthru"`
 	FramevidApply           *string                                        `pulumi:"framevidApply"`
+	GetAllTables            *string                                        `pulumi:"getAllTables"`
 	GuestAuthDelay          *int                                           `pulumi:"guestAuthDelay"`
 	GuestVlan               *string                                        `pulumi:"guestVlan"`
 	GuestVlanId             *string                                        `pulumi:"guestVlanId"`
@@ -157,6 +162,7 @@ type SwitchControllerSecurityPolicy8021XArgs struct {
 	EapAutoUntaggedVlans    pulumi.StringPtrInput
 	EapPassthru             pulumi.StringPtrInput
 	FramevidApply           pulumi.StringPtrInput
+	GetAllTables            pulumi.StringPtrInput
 	GuestAuthDelay          pulumi.IntPtrInput
 	GuestVlan               pulumi.StringPtrInput
 	GuestVlanId             pulumi.StringPtrInput
@@ -296,6 +302,10 @@ func (o SwitchControllerSecurityPolicy8021XOutput) EapPassthru() pulumi.StringOu
 
 func (o SwitchControllerSecurityPolicy8021XOutput) FramevidApply() pulumi.StringOutput {
 	return o.ApplyT(func(v *SwitchControllerSecurityPolicy8021X) pulumi.StringOutput { return v.FramevidApply }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerSecurityPolicy8021XOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerSecurityPolicy8021X) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SwitchControllerSecurityPolicy8021XOutput) GuestAuthDelay() pulumi.IntOutput {

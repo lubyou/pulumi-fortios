@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,6 +16,7 @@ type SystemNtp struct {
 
 	Authentication      pulumi.StringOutput           `pulumi:"authentication"`
 	DynamicSortSubtable pulumi.StringPtrOutput        `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput        `pulumi:"getAllTables"`
 	Interfaces          SystemNtpInterfaceArrayOutput `pulumi:"interfaces"`
 	Key                 pulumi.StringPtrOutput        `pulumi:"key"`
 	KeyId               pulumi.IntOutput              `pulumi:"keyId"`
@@ -43,7 +45,7 @@ func NewSystemNtp(ctx *pulumi.Context,
 		"key",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemNtp
 	err := ctx.RegisterResource("fortios:index/systemNtp:SystemNtp", name, args, &resource, opts...)
 	if err != nil {
@@ -68,6 +70,7 @@ func GetSystemNtp(ctx *pulumi.Context,
 type systemNtpState struct {
 	Authentication      *string              `pulumi:"authentication"`
 	DynamicSortSubtable *string              `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string              `pulumi:"getAllTables"`
 	Interfaces          []SystemNtpInterface `pulumi:"interfaces"`
 	Key                 *string              `pulumi:"key"`
 	KeyId               *int                 `pulumi:"keyId"`
@@ -85,6 +88,7 @@ type systemNtpState struct {
 type SystemNtpState struct {
 	Authentication      pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Interfaces          SystemNtpInterfaceArrayInput
 	Key                 pulumi.StringPtrInput
 	KeyId               pulumi.IntPtrInput
@@ -106,6 +110,7 @@ func (SystemNtpState) ElementType() reflect.Type {
 type systemNtpArgs struct {
 	Authentication      *string              `pulumi:"authentication"`
 	DynamicSortSubtable *string              `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string              `pulumi:"getAllTables"`
 	Interfaces          []SystemNtpInterface `pulumi:"interfaces"`
 	Key                 *string              `pulumi:"key"`
 	KeyId               *int                 `pulumi:"keyId"`
@@ -124,6 +129,7 @@ type systemNtpArgs struct {
 type SystemNtpArgs struct {
 	Authentication      pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Interfaces          SystemNtpInterfaceArrayInput
 	Key                 pulumi.StringPtrInput
 	KeyId               pulumi.IntPtrInput
@@ -231,6 +237,10 @@ func (o SystemNtpOutput) Authentication() pulumi.StringOutput {
 
 func (o SystemNtpOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SystemNtp) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemNtpOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemNtp) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemNtpOutput) Interfaces() SystemNtpInterfaceArrayOutput {

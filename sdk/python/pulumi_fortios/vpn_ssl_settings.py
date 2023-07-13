@@ -32,6 +32,9 @@ class VpnSslSettingsArgs:
                  dns_server1: Optional[pulumi.Input[str]] = None,
                  dns_server2: Optional[pulumi.Input[str]] = None,
                  dns_suffix: Optional[pulumi.Input[str]] = None,
+                 dtls_heartbeat_fail_count: Optional[pulumi.Input[int]] = None,
+                 dtls_heartbeat_idle_timeout: Optional[pulumi.Input[int]] = None,
+                 dtls_heartbeat_interval: Optional[pulumi.Input[int]] = None,
                  dtls_hello_timeout: Optional[pulumi.Input[int]] = None,
                  dtls_max_proto_ver: Optional[pulumi.Input[str]] = None,
                  dtls_min_proto_ver: Optional[pulumi.Input[str]] = None,
@@ -41,6 +44,7 @@ class VpnSslSettingsArgs:
                  encode2f_sequence: Optional[pulumi.Input[str]] = None,
                  encrypt_and_store_password: Optional[pulumi.Input[str]] = None,
                  force_two_factor_auth: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  header_x_forwarded_for: Optional[pulumi.Input[str]] = None,
                  hsts_include_subdomains: Optional[pulumi.Input[str]] = None,
                  http_compression: Optional[pulumi.Input[str]] = None,
@@ -61,6 +65,7 @@ class VpnSslSettingsArgs:
                  reqclientcert: Optional[pulumi.Input[str]] = None,
                  route_source_interface: Optional[pulumi.Input[str]] = None,
                  saml_redirect_port: Optional[pulumi.Input[int]] = None,
+                 server_hostname: Optional[pulumi.Input[str]] = None,
                  servercert: Optional[pulumi.Input[str]] = None,
                  source_address6_negate: Optional[pulumi.Input[str]] = None,
                  source_address6s: Optional[pulumi.Input[Sequence[pulumi.Input['VpnSslSettingsSourceAddress6Args']]]] = None,
@@ -126,6 +131,12 @@ class VpnSslSettingsArgs:
             pulumi.set(__self__, "dns_server2", dns_server2)
         if dns_suffix is not None:
             pulumi.set(__self__, "dns_suffix", dns_suffix)
+        if dtls_heartbeat_fail_count is not None:
+            pulumi.set(__self__, "dtls_heartbeat_fail_count", dtls_heartbeat_fail_count)
+        if dtls_heartbeat_idle_timeout is not None:
+            pulumi.set(__self__, "dtls_heartbeat_idle_timeout", dtls_heartbeat_idle_timeout)
+        if dtls_heartbeat_interval is not None:
+            pulumi.set(__self__, "dtls_heartbeat_interval", dtls_heartbeat_interval)
         if dtls_hello_timeout is not None:
             pulumi.set(__self__, "dtls_hello_timeout", dtls_hello_timeout)
         if dtls_max_proto_ver is not None:
@@ -144,6 +155,8 @@ class VpnSslSettingsArgs:
             pulumi.set(__self__, "encrypt_and_store_password", encrypt_and_store_password)
         if force_two_factor_auth is not None:
             pulumi.set(__self__, "force_two_factor_auth", force_two_factor_auth)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if header_x_forwarded_for is not None:
             pulumi.set(__self__, "header_x_forwarded_for", header_x_forwarded_for)
         if hsts_include_subdomains is not None:
@@ -184,6 +197,8 @@ class VpnSslSettingsArgs:
             pulumi.set(__self__, "route_source_interface", route_source_interface)
         if saml_redirect_port is not None:
             pulumi.set(__self__, "saml_redirect_port", saml_redirect_port)
+        if server_hostname is not None:
+            pulumi.set(__self__, "server_hostname", server_hostname)
         if servercert is not None:
             pulumi.set(__self__, "servercert", servercert)
         if source_address6_negate is not None:
@@ -390,6 +405,33 @@ class VpnSslSettingsArgs:
         pulumi.set(self, "dns_suffix", value)
 
     @property
+    @pulumi.getter(name="dtlsHeartbeatFailCount")
+    def dtls_heartbeat_fail_count(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "dtls_heartbeat_fail_count")
+
+    @dtls_heartbeat_fail_count.setter
+    def dtls_heartbeat_fail_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "dtls_heartbeat_fail_count", value)
+
+    @property
+    @pulumi.getter(name="dtlsHeartbeatIdleTimeout")
+    def dtls_heartbeat_idle_timeout(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "dtls_heartbeat_idle_timeout")
+
+    @dtls_heartbeat_idle_timeout.setter
+    def dtls_heartbeat_idle_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "dtls_heartbeat_idle_timeout", value)
+
+    @property
+    @pulumi.getter(name="dtlsHeartbeatInterval")
+    def dtls_heartbeat_interval(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "dtls_heartbeat_interval")
+
+    @dtls_heartbeat_interval.setter
+    def dtls_heartbeat_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "dtls_heartbeat_interval", value)
+
+    @property
     @pulumi.getter(name="dtlsHelloTimeout")
     def dtls_hello_timeout(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "dtls_hello_timeout")
@@ -469,6 +511,15 @@ class VpnSslSettingsArgs:
     @force_two_factor_auth.setter
     def force_two_factor_auth(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "force_two_factor_auth", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="headerXForwardedFor")
@@ -649,6 +700,15 @@ class VpnSslSettingsArgs:
     @saml_redirect_port.setter
     def saml_redirect_port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "saml_redirect_port", value)
+
+    @property
+    @pulumi.getter(name="serverHostname")
+    def server_hostname(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "server_hostname")
+
+    @server_hostname.setter
+    def server_hostname(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "server_hostname", value)
 
     @property
     @pulumi.getter
@@ -940,6 +1000,9 @@ class _VpnSslSettingsState:
                  dns_server1: Optional[pulumi.Input[str]] = None,
                  dns_server2: Optional[pulumi.Input[str]] = None,
                  dns_suffix: Optional[pulumi.Input[str]] = None,
+                 dtls_heartbeat_fail_count: Optional[pulumi.Input[int]] = None,
+                 dtls_heartbeat_idle_timeout: Optional[pulumi.Input[int]] = None,
+                 dtls_heartbeat_interval: Optional[pulumi.Input[int]] = None,
                  dtls_hello_timeout: Optional[pulumi.Input[int]] = None,
                  dtls_max_proto_ver: Optional[pulumi.Input[str]] = None,
                  dtls_min_proto_ver: Optional[pulumi.Input[str]] = None,
@@ -949,6 +1012,7 @@ class _VpnSslSettingsState:
                  encode2f_sequence: Optional[pulumi.Input[str]] = None,
                  encrypt_and_store_password: Optional[pulumi.Input[str]] = None,
                  force_two_factor_auth: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  header_x_forwarded_for: Optional[pulumi.Input[str]] = None,
                  hsts_include_subdomains: Optional[pulumi.Input[str]] = None,
                  http_compression: Optional[pulumi.Input[str]] = None,
@@ -969,6 +1033,7 @@ class _VpnSslSettingsState:
                  reqclientcert: Optional[pulumi.Input[str]] = None,
                  route_source_interface: Optional[pulumi.Input[str]] = None,
                  saml_redirect_port: Optional[pulumi.Input[int]] = None,
+                 server_hostname: Optional[pulumi.Input[str]] = None,
                  servercert: Optional[pulumi.Input[str]] = None,
                  source_address6_negate: Optional[pulumi.Input[str]] = None,
                  source_address6s: Optional[pulumi.Input[Sequence[pulumi.Input['VpnSslSettingsSourceAddress6Args']]]] = None,
@@ -1034,6 +1099,12 @@ class _VpnSslSettingsState:
             pulumi.set(__self__, "dns_server2", dns_server2)
         if dns_suffix is not None:
             pulumi.set(__self__, "dns_suffix", dns_suffix)
+        if dtls_heartbeat_fail_count is not None:
+            pulumi.set(__self__, "dtls_heartbeat_fail_count", dtls_heartbeat_fail_count)
+        if dtls_heartbeat_idle_timeout is not None:
+            pulumi.set(__self__, "dtls_heartbeat_idle_timeout", dtls_heartbeat_idle_timeout)
+        if dtls_heartbeat_interval is not None:
+            pulumi.set(__self__, "dtls_heartbeat_interval", dtls_heartbeat_interval)
         if dtls_hello_timeout is not None:
             pulumi.set(__self__, "dtls_hello_timeout", dtls_hello_timeout)
         if dtls_max_proto_ver is not None:
@@ -1052,6 +1123,8 @@ class _VpnSslSettingsState:
             pulumi.set(__self__, "encrypt_and_store_password", encrypt_and_store_password)
         if force_two_factor_auth is not None:
             pulumi.set(__self__, "force_two_factor_auth", force_two_factor_auth)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if header_x_forwarded_for is not None:
             pulumi.set(__self__, "header_x_forwarded_for", header_x_forwarded_for)
         if hsts_include_subdomains is not None:
@@ -1092,6 +1165,8 @@ class _VpnSslSettingsState:
             pulumi.set(__self__, "route_source_interface", route_source_interface)
         if saml_redirect_port is not None:
             pulumi.set(__self__, "saml_redirect_port", saml_redirect_port)
+        if server_hostname is not None:
+            pulumi.set(__self__, "server_hostname", server_hostname)
         if servercert is not None:
             pulumi.set(__self__, "servercert", servercert)
         if source_address6_negate is not None:
@@ -1298,6 +1373,33 @@ class _VpnSslSettingsState:
         pulumi.set(self, "dns_suffix", value)
 
     @property
+    @pulumi.getter(name="dtlsHeartbeatFailCount")
+    def dtls_heartbeat_fail_count(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "dtls_heartbeat_fail_count")
+
+    @dtls_heartbeat_fail_count.setter
+    def dtls_heartbeat_fail_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "dtls_heartbeat_fail_count", value)
+
+    @property
+    @pulumi.getter(name="dtlsHeartbeatIdleTimeout")
+    def dtls_heartbeat_idle_timeout(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "dtls_heartbeat_idle_timeout")
+
+    @dtls_heartbeat_idle_timeout.setter
+    def dtls_heartbeat_idle_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "dtls_heartbeat_idle_timeout", value)
+
+    @property
+    @pulumi.getter(name="dtlsHeartbeatInterval")
+    def dtls_heartbeat_interval(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "dtls_heartbeat_interval")
+
+    @dtls_heartbeat_interval.setter
+    def dtls_heartbeat_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "dtls_heartbeat_interval", value)
+
+    @property
     @pulumi.getter(name="dtlsHelloTimeout")
     def dtls_hello_timeout(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "dtls_hello_timeout")
@@ -1377,6 +1479,15 @@ class _VpnSslSettingsState:
     @force_two_factor_auth.setter
     def force_two_factor_auth(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "force_two_factor_auth", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="headerXForwardedFor")
@@ -1557,6 +1668,15 @@ class _VpnSslSettingsState:
     @saml_redirect_port.setter
     def saml_redirect_port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "saml_redirect_port", value)
+
+    @property
+    @pulumi.getter(name="serverHostname")
+    def server_hostname(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "server_hostname")
+
+    @server_hostname.setter
+    def server_hostname(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "server_hostname", value)
 
     @property
     @pulumi.getter
@@ -1850,6 +1970,9 @@ class VpnSslSettings(pulumi.CustomResource):
                  dns_server1: Optional[pulumi.Input[str]] = None,
                  dns_server2: Optional[pulumi.Input[str]] = None,
                  dns_suffix: Optional[pulumi.Input[str]] = None,
+                 dtls_heartbeat_fail_count: Optional[pulumi.Input[int]] = None,
+                 dtls_heartbeat_idle_timeout: Optional[pulumi.Input[int]] = None,
+                 dtls_heartbeat_interval: Optional[pulumi.Input[int]] = None,
                  dtls_hello_timeout: Optional[pulumi.Input[int]] = None,
                  dtls_max_proto_ver: Optional[pulumi.Input[str]] = None,
                  dtls_min_proto_ver: Optional[pulumi.Input[str]] = None,
@@ -1859,6 +1982,7 @@ class VpnSslSettings(pulumi.CustomResource):
                  encode2f_sequence: Optional[pulumi.Input[str]] = None,
                  encrypt_and_store_password: Optional[pulumi.Input[str]] = None,
                  force_two_factor_auth: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  header_x_forwarded_for: Optional[pulumi.Input[str]] = None,
                  hsts_include_subdomains: Optional[pulumi.Input[str]] = None,
                  http_compression: Optional[pulumi.Input[str]] = None,
@@ -1879,6 +2003,7 @@ class VpnSslSettings(pulumi.CustomResource):
                  reqclientcert: Optional[pulumi.Input[str]] = None,
                  route_source_interface: Optional[pulumi.Input[str]] = None,
                  saml_redirect_port: Optional[pulumi.Input[int]] = None,
+                 server_hostname: Optional[pulumi.Input[str]] = None,
                  servercert: Optional[pulumi.Input[str]] = None,
                  source_address6_negate: Optional[pulumi.Input[str]] = None,
                  source_address6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnSslSettingsSourceAddress6Args']]]]] = None,
@@ -1954,6 +2079,9 @@ class VpnSslSettings(pulumi.CustomResource):
                  dns_server1: Optional[pulumi.Input[str]] = None,
                  dns_server2: Optional[pulumi.Input[str]] = None,
                  dns_suffix: Optional[pulumi.Input[str]] = None,
+                 dtls_heartbeat_fail_count: Optional[pulumi.Input[int]] = None,
+                 dtls_heartbeat_idle_timeout: Optional[pulumi.Input[int]] = None,
+                 dtls_heartbeat_interval: Optional[pulumi.Input[int]] = None,
                  dtls_hello_timeout: Optional[pulumi.Input[int]] = None,
                  dtls_max_proto_ver: Optional[pulumi.Input[str]] = None,
                  dtls_min_proto_ver: Optional[pulumi.Input[str]] = None,
@@ -1963,6 +2091,7 @@ class VpnSslSettings(pulumi.CustomResource):
                  encode2f_sequence: Optional[pulumi.Input[str]] = None,
                  encrypt_and_store_password: Optional[pulumi.Input[str]] = None,
                  force_two_factor_auth: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  header_x_forwarded_for: Optional[pulumi.Input[str]] = None,
                  hsts_include_subdomains: Optional[pulumi.Input[str]] = None,
                  http_compression: Optional[pulumi.Input[str]] = None,
@@ -1983,6 +2112,7 @@ class VpnSslSettings(pulumi.CustomResource):
                  reqclientcert: Optional[pulumi.Input[str]] = None,
                  route_source_interface: Optional[pulumi.Input[str]] = None,
                  saml_redirect_port: Optional[pulumi.Input[int]] = None,
+                 server_hostname: Optional[pulumi.Input[str]] = None,
                  servercert: Optional[pulumi.Input[str]] = None,
                  source_address6_negate: Optional[pulumi.Input[str]] = None,
                  source_address6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnSslSettingsSourceAddress6Args']]]]] = None,
@@ -2038,6 +2168,9 @@ class VpnSslSettings(pulumi.CustomResource):
             __props__.__dict__["dns_server1"] = dns_server1
             __props__.__dict__["dns_server2"] = dns_server2
             __props__.__dict__["dns_suffix"] = dns_suffix
+            __props__.__dict__["dtls_heartbeat_fail_count"] = dtls_heartbeat_fail_count
+            __props__.__dict__["dtls_heartbeat_idle_timeout"] = dtls_heartbeat_idle_timeout
+            __props__.__dict__["dtls_heartbeat_interval"] = dtls_heartbeat_interval
             __props__.__dict__["dtls_hello_timeout"] = dtls_hello_timeout
             __props__.__dict__["dtls_max_proto_ver"] = dtls_max_proto_ver
             __props__.__dict__["dtls_min_proto_ver"] = dtls_min_proto_ver
@@ -2047,6 +2180,7 @@ class VpnSslSettings(pulumi.CustomResource):
             __props__.__dict__["encode2f_sequence"] = encode2f_sequence
             __props__.__dict__["encrypt_and_store_password"] = encrypt_and_store_password
             __props__.__dict__["force_two_factor_auth"] = force_two_factor_auth
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["header_x_forwarded_for"] = header_x_forwarded_for
             __props__.__dict__["hsts_include_subdomains"] = hsts_include_subdomains
             __props__.__dict__["http_compression"] = http_compression
@@ -2067,6 +2201,7 @@ class VpnSslSettings(pulumi.CustomResource):
             __props__.__dict__["reqclientcert"] = reqclientcert
             __props__.__dict__["route_source_interface"] = route_source_interface
             __props__.__dict__["saml_redirect_port"] = saml_redirect_port
+            __props__.__dict__["server_hostname"] = server_hostname
             __props__.__dict__["servercert"] = servercert
             __props__.__dict__["source_address6_negate"] = source_address6_negate
             __props__.__dict__["source_address6s"] = source_address6s
@@ -2123,6 +2258,9 @@ class VpnSslSettings(pulumi.CustomResource):
             dns_server1: Optional[pulumi.Input[str]] = None,
             dns_server2: Optional[pulumi.Input[str]] = None,
             dns_suffix: Optional[pulumi.Input[str]] = None,
+            dtls_heartbeat_fail_count: Optional[pulumi.Input[int]] = None,
+            dtls_heartbeat_idle_timeout: Optional[pulumi.Input[int]] = None,
+            dtls_heartbeat_interval: Optional[pulumi.Input[int]] = None,
             dtls_hello_timeout: Optional[pulumi.Input[int]] = None,
             dtls_max_proto_ver: Optional[pulumi.Input[str]] = None,
             dtls_min_proto_ver: Optional[pulumi.Input[str]] = None,
@@ -2132,6 +2270,7 @@ class VpnSslSettings(pulumi.CustomResource):
             encode2f_sequence: Optional[pulumi.Input[str]] = None,
             encrypt_and_store_password: Optional[pulumi.Input[str]] = None,
             force_two_factor_auth: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             header_x_forwarded_for: Optional[pulumi.Input[str]] = None,
             hsts_include_subdomains: Optional[pulumi.Input[str]] = None,
             http_compression: Optional[pulumi.Input[str]] = None,
@@ -2152,6 +2291,7 @@ class VpnSslSettings(pulumi.CustomResource):
             reqclientcert: Optional[pulumi.Input[str]] = None,
             route_source_interface: Optional[pulumi.Input[str]] = None,
             saml_redirect_port: Optional[pulumi.Input[int]] = None,
+            server_hostname: Optional[pulumi.Input[str]] = None,
             servercert: Optional[pulumi.Input[str]] = None,
             source_address6_negate: Optional[pulumi.Input[str]] = None,
             source_address6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnSslSettingsSourceAddress6Args']]]]] = None,
@@ -2210,6 +2350,9 @@ class VpnSslSettings(pulumi.CustomResource):
         __props__.__dict__["dns_server1"] = dns_server1
         __props__.__dict__["dns_server2"] = dns_server2
         __props__.__dict__["dns_suffix"] = dns_suffix
+        __props__.__dict__["dtls_heartbeat_fail_count"] = dtls_heartbeat_fail_count
+        __props__.__dict__["dtls_heartbeat_idle_timeout"] = dtls_heartbeat_idle_timeout
+        __props__.__dict__["dtls_heartbeat_interval"] = dtls_heartbeat_interval
         __props__.__dict__["dtls_hello_timeout"] = dtls_hello_timeout
         __props__.__dict__["dtls_max_proto_ver"] = dtls_max_proto_ver
         __props__.__dict__["dtls_min_proto_ver"] = dtls_min_proto_ver
@@ -2219,6 +2362,7 @@ class VpnSslSettings(pulumi.CustomResource):
         __props__.__dict__["encode2f_sequence"] = encode2f_sequence
         __props__.__dict__["encrypt_and_store_password"] = encrypt_and_store_password
         __props__.__dict__["force_two_factor_auth"] = force_two_factor_auth
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["header_x_forwarded_for"] = header_x_forwarded_for
         __props__.__dict__["hsts_include_subdomains"] = hsts_include_subdomains
         __props__.__dict__["http_compression"] = http_compression
@@ -2239,6 +2383,7 @@ class VpnSslSettings(pulumi.CustomResource):
         __props__.__dict__["reqclientcert"] = reqclientcert
         __props__.__dict__["route_source_interface"] = route_source_interface
         __props__.__dict__["saml_redirect_port"] = saml_redirect_port
+        __props__.__dict__["server_hostname"] = server_hostname
         __props__.__dict__["servercert"] = servercert
         __props__.__dict__["source_address6_negate"] = source_address6_negate
         __props__.__dict__["source_address6s"] = source_address6s
@@ -2352,6 +2497,21 @@ class VpnSslSettings(pulumi.CustomResource):
         return pulumi.get(self, "dns_suffix")
 
     @property
+    @pulumi.getter(name="dtlsHeartbeatFailCount")
+    def dtls_heartbeat_fail_count(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "dtls_heartbeat_fail_count")
+
+    @property
+    @pulumi.getter(name="dtlsHeartbeatIdleTimeout")
+    def dtls_heartbeat_idle_timeout(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "dtls_heartbeat_idle_timeout")
+
+    @property
+    @pulumi.getter(name="dtlsHeartbeatInterval")
+    def dtls_heartbeat_interval(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "dtls_heartbeat_interval")
+
+    @property
     @pulumi.getter(name="dtlsHelloTimeout")
     def dtls_hello_timeout(self) -> pulumi.Output[int]:
         return pulumi.get(self, "dtls_hello_timeout")
@@ -2395,6 +2555,11 @@ class VpnSslSettings(pulumi.CustomResource):
     @pulumi.getter(name="forceTwoFactorAuth")
     def force_two_factor_auth(self) -> pulumi.Output[str]:
         return pulumi.get(self, "force_two_factor_auth")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="headerXForwardedFor")
@@ -2495,6 +2660,11 @@ class VpnSslSettings(pulumi.CustomResource):
     @pulumi.getter(name="samlRedirectPort")
     def saml_redirect_port(self) -> pulumi.Output[int]:
         return pulumi.get(self, "saml_redirect_port")
+
+    @property
+    @pulumi.getter(name="serverHostname")
+    def server_hostname(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "server_hostname")
 
     @property
     @pulumi.getter

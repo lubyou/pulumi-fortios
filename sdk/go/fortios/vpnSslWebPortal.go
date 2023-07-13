@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -16,12 +17,15 @@ type VpnSslWebPortal struct {
 	AllowUserAccess                    pulumi.StringOutput                                        `pulumi:"allowUserAccess"`
 	AutoConnect                        pulumi.StringOutput                                        `pulumi:"autoConnect"`
 	BookmarkGroups                     VpnSslWebPortalBookmarkGroupArrayOutput                    `pulumi:"bookmarkGroups"`
+	ClientSrcRange                     pulumi.StringOutput                                        `pulumi:"clientSrcRange"`
 	Clipboard                          pulumi.StringOutput                                        `pulumi:"clipboard"`
 	CustomLang                         pulumi.StringOutput                                        `pulumi:"customLang"`
 	CustomizeForticlientDownloadUrl    pulumi.StringOutput                                        `pulumi:"customizeForticlientDownloadUrl"`
 	DefaultWindowHeight                pulumi.IntOutput                                           `pulumi:"defaultWindowHeight"`
 	DefaultWindowWidth                 pulumi.IntOutput                                           `pulumi:"defaultWindowWidth"`
+	Dhcp6RaLinkaddr                    pulumi.StringOutput                                        `pulumi:"dhcp6RaLinkaddr"`
 	DhcpIpOverlap                      pulumi.StringOutput                                        `pulumi:"dhcpIpOverlap"`
+	DhcpRaGiaddr                       pulumi.StringOutput                                        `pulumi:"dhcpRaGiaddr"`
 	DisplayBookmark                    pulumi.StringOutput                                        `pulumi:"displayBookmark"`
 	DisplayConnectionTools             pulumi.StringOutput                                        `pulumi:"displayConnectionTools"`
 	DisplayHistory                     pulumi.StringOutput                                        `pulumi:"displayHistory"`
@@ -33,6 +37,7 @@ type VpnSslWebPortal struct {
 	ExclusiveRouting                   pulumi.StringOutput                                        `pulumi:"exclusiveRouting"`
 	ForticlientDownload                pulumi.StringOutput                                        `pulumi:"forticlientDownload"`
 	ForticlientDownloadMethod          pulumi.StringOutput                                        `pulumi:"forticlientDownloadMethod"`
+	GetAllTables                       pulumi.StringPtrOutput                                     `pulumi:"getAllTables"`
 	Heading                            pulumi.StringOutput                                        `pulumi:"heading"`
 	HideSsoCredential                  pulumi.StringOutput                                        `pulumi:"hideSsoCredential"`
 	HostCheck                          pulumi.StringOutput                                        `pulumi:"hostCheck"`
@@ -52,6 +57,8 @@ type VpnSslWebPortal struct {
 	Ipv6WinsServer1                    pulumi.StringOutput                                        `pulumi:"ipv6WinsServer1"`
 	Ipv6WinsServer2                    pulumi.StringOutput                                        `pulumi:"ipv6WinsServer2"`
 	KeepAlive                          pulumi.StringOutput                                        `pulumi:"keepAlive"`
+	LandingPage                        VpnSslWebPortalLandingPageOutput                           `pulumi:"landingPage"`
+	LandingPageMode                    pulumi.StringOutput                                        `pulumi:"landingPageMode"`
 	LimitUserLogins                    pulumi.StringOutput                                        `pulumi:"limitUserLogins"`
 	MacAddrAction                      pulumi.StringOutput                                        `pulumi:"macAddrAction"`
 	MacAddrCheck                       pulumi.StringOutput                                        `pulumi:"macAddrCheck"`
@@ -95,7 +102,7 @@ func NewVpnSslWebPortal(ctx *pulumi.Context,
 		args = &VpnSslWebPortalArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource VpnSslWebPortal
 	err := ctx.RegisterResource("fortios:index/vpnSslWebPortal:VpnSslWebPortal", name, args, &resource, opts...)
 	if err != nil {
@@ -121,12 +128,15 @@ type vpnSslWebPortalState struct {
 	AllowUserAccess                    *string                                           `pulumi:"allowUserAccess"`
 	AutoConnect                        *string                                           `pulumi:"autoConnect"`
 	BookmarkGroups                     []VpnSslWebPortalBookmarkGroup                    `pulumi:"bookmarkGroups"`
+	ClientSrcRange                     *string                                           `pulumi:"clientSrcRange"`
 	Clipboard                          *string                                           `pulumi:"clipboard"`
 	CustomLang                         *string                                           `pulumi:"customLang"`
 	CustomizeForticlientDownloadUrl    *string                                           `pulumi:"customizeForticlientDownloadUrl"`
 	DefaultWindowHeight                *int                                              `pulumi:"defaultWindowHeight"`
 	DefaultWindowWidth                 *int                                              `pulumi:"defaultWindowWidth"`
+	Dhcp6RaLinkaddr                    *string                                           `pulumi:"dhcp6RaLinkaddr"`
 	DhcpIpOverlap                      *string                                           `pulumi:"dhcpIpOverlap"`
+	DhcpRaGiaddr                       *string                                           `pulumi:"dhcpRaGiaddr"`
 	DisplayBookmark                    *string                                           `pulumi:"displayBookmark"`
 	DisplayConnectionTools             *string                                           `pulumi:"displayConnectionTools"`
 	DisplayHistory                     *string                                           `pulumi:"displayHistory"`
@@ -138,6 +148,7 @@ type vpnSslWebPortalState struct {
 	ExclusiveRouting                   *string                                           `pulumi:"exclusiveRouting"`
 	ForticlientDownload                *string                                           `pulumi:"forticlientDownload"`
 	ForticlientDownloadMethod          *string                                           `pulumi:"forticlientDownloadMethod"`
+	GetAllTables                       *string                                           `pulumi:"getAllTables"`
 	Heading                            *string                                           `pulumi:"heading"`
 	HideSsoCredential                  *string                                           `pulumi:"hideSsoCredential"`
 	HostCheck                          *string                                           `pulumi:"hostCheck"`
@@ -157,6 +168,8 @@ type vpnSslWebPortalState struct {
 	Ipv6WinsServer1                    *string                                           `pulumi:"ipv6WinsServer1"`
 	Ipv6WinsServer2                    *string                                           `pulumi:"ipv6WinsServer2"`
 	KeepAlive                          *string                                           `pulumi:"keepAlive"`
+	LandingPage                        *VpnSslWebPortalLandingPage                       `pulumi:"landingPage"`
+	LandingPageMode                    *string                                           `pulumi:"landingPageMode"`
 	LimitUserLogins                    *string                                           `pulumi:"limitUserLogins"`
 	MacAddrAction                      *string                                           `pulumi:"macAddrAction"`
 	MacAddrCheck                       *string                                           `pulumi:"macAddrCheck"`
@@ -197,12 +210,15 @@ type VpnSslWebPortalState struct {
 	AllowUserAccess                    pulumi.StringPtrInput
 	AutoConnect                        pulumi.StringPtrInput
 	BookmarkGroups                     VpnSslWebPortalBookmarkGroupArrayInput
+	ClientSrcRange                     pulumi.StringPtrInput
 	Clipboard                          pulumi.StringPtrInput
 	CustomLang                         pulumi.StringPtrInput
 	CustomizeForticlientDownloadUrl    pulumi.StringPtrInput
 	DefaultWindowHeight                pulumi.IntPtrInput
 	DefaultWindowWidth                 pulumi.IntPtrInput
+	Dhcp6RaLinkaddr                    pulumi.StringPtrInput
 	DhcpIpOverlap                      pulumi.StringPtrInput
+	DhcpRaGiaddr                       pulumi.StringPtrInput
 	DisplayBookmark                    pulumi.StringPtrInput
 	DisplayConnectionTools             pulumi.StringPtrInput
 	DisplayHistory                     pulumi.StringPtrInput
@@ -214,6 +230,7 @@ type VpnSslWebPortalState struct {
 	ExclusiveRouting                   pulumi.StringPtrInput
 	ForticlientDownload                pulumi.StringPtrInput
 	ForticlientDownloadMethod          pulumi.StringPtrInput
+	GetAllTables                       pulumi.StringPtrInput
 	Heading                            pulumi.StringPtrInput
 	HideSsoCredential                  pulumi.StringPtrInput
 	HostCheck                          pulumi.StringPtrInput
@@ -233,6 +250,8 @@ type VpnSslWebPortalState struct {
 	Ipv6WinsServer1                    pulumi.StringPtrInput
 	Ipv6WinsServer2                    pulumi.StringPtrInput
 	KeepAlive                          pulumi.StringPtrInput
+	LandingPage                        VpnSslWebPortalLandingPagePtrInput
+	LandingPageMode                    pulumi.StringPtrInput
 	LimitUserLogins                    pulumi.StringPtrInput
 	MacAddrAction                      pulumi.StringPtrInput
 	MacAddrCheck                       pulumi.StringPtrInput
@@ -277,12 +296,15 @@ type vpnSslWebPortalArgs struct {
 	AllowUserAccess                    *string                                           `pulumi:"allowUserAccess"`
 	AutoConnect                        *string                                           `pulumi:"autoConnect"`
 	BookmarkGroups                     []VpnSslWebPortalBookmarkGroup                    `pulumi:"bookmarkGroups"`
+	ClientSrcRange                     *string                                           `pulumi:"clientSrcRange"`
 	Clipboard                          *string                                           `pulumi:"clipboard"`
 	CustomLang                         *string                                           `pulumi:"customLang"`
 	CustomizeForticlientDownloadUrl    *string                                           `pulumi:"customizeForticlientDownloadUrl"`
 	DefaultWindowHeight                *int                                              `pulumi:"defaultWindowHeight"`
 	DefaultWindowWidth                 *int                                              `pulumi:"defaultWindowWidth"`
+	Dhcp6RaLinkaddr                    *string                                           `pulumi:"dhcp6RaLinkaddr"`
 	DhcpIpOverlap                      *string                                           `pulumi:"dhcpIpOverlap"`
+	DhcpRaGiaddr                       *string                                           `pulumi:"dhcpRaGiaddr"`
 	DisplayBookmark                    *string                                           `pulumi:"displayBookmark"`
 	DisplayConnectionTools             *string                                           `pulumi:"displayConnectionTools"`
 	DisplayHistory                     *string                                           `pulumi:"displayHistory"`
@@ -294,6 +316,7 @@ type vpnSslWebPortalArgs struct {
 	ExclusiveRouting                   *string                                           `pulumi:"exclusiveRouting"`
 	ForticlientDownload                *string                                           `pulumi:"forticlientDownload"`
 	ForticlientDownloadMethod          *string                                           `pulumi:"forticlientDownloadMethod"`
+	GetAllTables                       *string                                           `pulumi:"getAllTables"`
 	Heading                            *string                                           `pulumi:"heading"`
 	HideSsoCredential                  *string                                           `pulumi:"hideSsoCredential"`
 	HostCheck                          *string                                           `pulumi:"hostCheck"`
@@ -313,6 +336,8 @@ type vpnSslWebPortalArgs struct {
 	Ipv6WinsServer1                    *string                                           `pulumi:"ipv6WinsServer1"`
 	Ipv6WinsServer2                    *string                                           `pulumi:"ipv6WinsServer2"`
 	KeepAlive                          *string                                           `pulumi:"keepAlive"`
+	LandingPage                        *VpnSslWebPortalLandingPage                       `pulumi:"landingPage"`
+	LandingPageMode                    *string                                           `pulumi:"landingPageMode"`
 	LimitUserLogins                    *string                                           `pulumi:"limitUserLogins"`
 	MacAddrAction                      *string                                           `pulumi:"macAddrAction"`
 	MacAddrCheck                       *string                                           `pulumi:"macAddrCheck"`
@@ -354,12 +379,15 @@ type VpnSslWebPortalArgs struct {
 	AllowUserAccess                    pulumi.StringPtrInput
 	AutoConnect                        pulumi.StringPtrInput
 	BookmarkGroups                     VpnSslWebPortalBookmarkGroupArrayInput
+	ClientSrcRange                     pulumi.StringPtrInput
 	Clipboard                          pulumi.StringPtrInput
 	CustomLang                         pulumi.StringPtrInput
 	CustomizeForticlientDownloadUrl    pulumi.StringPtrInput
 	DefaultWindowHeight                pulumi.IntPtrInput
 	DefaultWindowWidth                 pulumi.IntPtrInput
+	Dhcp6RaLinkaddr                    pulumi.StringPtrInput
 	DhcpIpOverlap                      pulumi.StringPtrInput
+	DhcpRaGiaddr                       pulumi.StringPtrInput
 	DisplayBookmark                    pulumi.StringPtrInput
 	DisplayConnectionTools             pulumi.StringPtrInput
 	DisplayHistory                     pulumi.StringPtrInput
@@ -371,6 +399,7 @@ type VpnSslWebPortalArgs struct {
 	ExclusiveRouting                   pulumi.StringPtrInput
 	ForticlientDownload                pulumi.StringPtrInput
 	ForticlientDownloadMethod          pulumi.StringPtrInput
+	GetAllTables                       pulumi.StringPtrInput
 	Heading                            pulumi.StringPtrInput
 	HideSsoCredential                  pulumi.StringPtrInput
 	HostCheck                          pulumi.StringPtrInput
@@ -390,6 +419,8 @@ type VpnSslWebPortalArgs struct {
 	Ipv6WinsServer1                    pulumi.StringPtrInput
 	Ipv6WinsServer2                    pulumi.StringPtrInput
 	KeepAlive                          pulumi.StringPtrInput
+	LandingPage                        VpnSslWebPortalLandingPagePtrInput
+	LandingPageMode                    pulumi.StringPtrInput
 	LimitUserLogins                    pulumi.StringPtrInput
 	MacAddrAction                      pulumi.StringPtrInput
 	MacAddrCheck                       pulumi.StringPtrInput
@@ -525,6 +556,10 @@ func (o VpnSslWebPortalOutput) BookmarkGroups() VpnSslWebPortalBookmarkGroupArra
 	return o.ApplyT(func(v *VpnSslWebPortal) VpnSslWebPortalBookmarkGroupArrayOutput { return v.BookmarkGroups }).(VpnSslWebPortalBookmarkGroupArrayOutput)
 }
 
+func (o VpnSslWebPortalOutput) ClientSrcRange() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.ClientSrcRange }).(pulumi.StringOutput)
+}
+
 func (o VpnSslWebPortalOutput) Clipboard() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.Clipboard }).(pulumi.StringOutput)
 }
@@ -545,8 +580,16 @@ func (o VpnSslWebPortalOutput) DefaultWindowWidth() pulumi.IntOutput {
 	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.IntOutput { return v.DefaultWindowWidth }).(pulumi.IntOutput)
 }
 
+func (o VpnSslWebPortalOutput) Dhcp6RaLinkaddr() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.Dhcp6RaLinkaddr }).(pulumi.StringOutput)
+}
+
 func (o VpnSslWebPortalOutput) DhcpIpOverlap() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.DhcpIpOverlap }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) DhcpRaGiaddr() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.DhcpRaGiaddr }).(pulumi.StringOutput)
 }
 
 func (o VpnSslWebPortalOutput) DisplayBookmark() pulumi.StringOutput {
@@ -591,6 +634,10 @@ func (o VpnSslWebPortalOutput) ForticlientDownload() pulumi.StringOutput {
 
 func (o VpnSslWebPortalOutput) ForticlientDownloadMethod() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.ForticlientDownloadMethod }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o VpnSslWebPortalOutput) Heading() pulumi.StringOutput {
@@ -669,6 +716,14 @@ func (o VpnSslWebPortalOutput) Ipv6WinsServer2() pulumi.StringOutput {
 
 func (o VpnSslWebPortalOutput) KeepAlive() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.KeepAlive }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) LandingPage() VpnSslWebPortalLandingPageOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) VpnSslWebPortalLandingPageOutput { return v.LandingPage }).(VpnSslWebPortalLandingPageOutput)
+}
+
+func (o VpnSslWebPortalOutput) LandingPageMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.LandingPageMode }).(pulumi.StringOutput)
 }
 
 func (o VpnSslWebPortalOutput) LimitUserLogins() pulumi.StringOutput {

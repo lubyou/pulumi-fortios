@@ -38,6 +38,7 @@ export class AuthenticationScheme extends pulumi.CustomResource {
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly fssoAgentForNtlm!: pulumi.Output<string>;
     public readonly fssoGuest!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly kerberosKeytab!: pulumi.Output<string>;
     public readonly method!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
@@ -67,6 +68,7 @@ export class AuthenticationScheme extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fssoAgentForNtlm"] = state ? state.fssoAgentForNtlm : undefined;
             resourceInputs["fssoGuest"] = state ? state.fssoGuest : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["kerberosKeytab"] = state ? state.kerberosKeytab : undefined;
             resourceInputs["method"] = state ? state.method : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -87,6 +89,7 @@ export class AuthenticationScheme extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fssoAgentForNtlm"] = args ? args.fssoAgentForNtlm : undefined;
             resourceInputs["fssoGuest"] = args ? args.fssoGuest : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["kerberosKeytab"] = args ? args.kerberosKeytab : undefined;
             resourceInputs["method"] = args ? args.method : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -112,6 +115,7 @@ export interface AuthenticationSchemeState {
     dynamicSortSubtable?: pulumi.Input<string>;
     fssoAgentForNtlm?: pulumi.Input<string>;
     fssoGuest?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     kerberosKeytab?: pulumi.Input<string>;
     method?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
@@ -133,6 +137,7 @@ export interface AuthenticationSchemeArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
     fssoAgentForNtlm?: pulumi.Input<string>;
     fssoGuest?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     kerberosKeytab?: pulumi.Input<string>;
     method: pulumi.Input<string>;
     name?: pulumi.Input<string>;

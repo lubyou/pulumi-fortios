@@ -22,13 +22,16 @@ class GetRouterbgpNeighborResult:
     """
     A collection of values returned by GetRouterbgpNeighbor.
     """
-    def __init__(__self__, activate=None, activate6=None, activate_vpnv4=None, additional_path=None, additional_path6=None, additional_path_vpnv4=None, adv_additional_path=None, adv_additional_path6=None, adv_additional_path_vpnv4=None, advertisement_interval=None, allowas_in=None, allowas_in6=None, allowas_in_enable=None, allowas_in_enable6=None, allowas_in_vpnv4=None, as_override=None, as_override6=None, attribute_unchanged=None, attribute_unchanged6=None, attribute_unchanged_vpnv4=None, bfd=None, capability_default_originate=None, capability_default_originate6=None, capability_dynamic=None, capability_graceful_restart=None, capability_graceful_restart6=None, capability_graceful_restart_vpnv4=None, capability_orf=None, capability_orf6=None, capability_route_refresh=None, conditional_advertise6s=None, conditional_advertises=None, connect_timer=None, default_originate_routemap=None, default_originate_routemap6=None, description=None, distribute_list_in=None, distribute_list_in6=None, distribute_list_in_vpnv4=None, distribute_list_out=None, distribute_list_out6=None, distribute_list_out_vpnv4=None, dont_capability_negotiate=None, ebgp_enforce_multihop=None, ebgp_multihop_ttl=None, filter_list_in=None, filter_list_in6=None, filter_list_out=None, filter_list_out6=None, holdtime_timer=None, id=None, interface=None, ip=None, keep_alive_timer=None, link_down_failover=None, local_as=None, local_as_no_prepend=None, local_as_replace_as=None, maximum_prefix=None, maximum_prefix6=None, maximum_prefix_threshold=None, maximum_prefix_threshold6=None, maximum_prefix_threshold_vpnv4=None, maximum_prefix_vpnv4=None, maximum_prefix_warning_only=None, maximum_prefix_warning_only6=None, maximum_prefix_warning_only_vpnv4=None, next_hop_self=None, next_hop_self6=None, next_hop_self_rr=None, next_hop_self_rr6=None, next_hop_self_vpnv4=None, override_capability=None, passive=None, password=None, prefix_list_in=None, prefix_list_in6=None, prefix_list_in_vpnv4=None, prefix_list_out=None, prefix_list_out6=None, prefix_list_out_vpnv4=None, remote_as=None, remove_private_as=None, remove_private_as6=None, remove_private_as_vpnv4=None, restart_time=None, retain_stale_time=None, route_map_in=None, route_map_in6=None, route_map_in_vpnv4=None, route_map_out=None, route_map_out6=None, route_map_out6_preferable=None, route_map_out_preferable=None, route_map_out_vpnv4=None, route_map_out_vpnv4_preferable=None, route_reflector_client=None, route_reflector_client6=None, route_reflector_client_vpnv4=None, route_server_client=None, route_server_client6=None, route_server_client_vpnv4=None, send_community=None, send_community6=None, send_community_vpnv4=None, shutdown=None, soft_reconfiguration=None, soft_reconfiguration6=None, soft_reconfiguration_vpnv4=None, stale_route=None, strict_capability_match=None, unsuppress_map=None, unsuppress_map6=None, update_source=None, vdomparam=None, weight=None):
+    def __init__(__self__, activate=None, activate6=None, activate_evpn=None, activate_vpnv4=None, additional_path=None, additional_path6=None, additional_path_vpnv4=None, adv_additional_path=None, adv_additional_path6=None, adv_additional_path_vpnv4=None, advertisement_interval=None, allowas_in=None, allowas_in6=None, allowas_in_enable=None, allowas_in_enable6=None, allowas_in_enable_evpn=None, allowas_in_enable_vpnv4=None, allowas_in_evpn=None, allowas_in_vpnv4=None, as_override=None, as_override6=None, attribute_unchanged=None, attribute_unchanged6=None, attribute_unchanged_vpnv4=None, bfd=None, capability_default_originate=None, capability_default_originate6=None, capability_dynamic=None, capability_graceful_restart=None, capability_graceful_restart6=None, capability_graceful_restart_evpn=None, capability_graceful_restart_vpnv4=None, capability_orf=None, capability_orf6=None, capability_route_refresh=None, conditional_advertise6s=None, conditional_advertises=None, connect_timer=None, default_originate_routemap=None, default_originate_routemap6=None, description=None, distribute_list_in=None, distribute_list_in6=None, distribute_list_in_vpnv4=None, distribute_list_out=None, distribute_list_out6=None, distribute_list_out_vpnv4=None, dont_capability_negotiate=None, ebgp_enforce_multihop=None, ebgp_multihop_ttl=None, filter_list_in=None, filter_list_in6=None, filter_list_out=None, filter_list_out6=None, holdtime_timer=None, id=None, interface=None, ip=None, keep_alive_timer=None, link_down_failover=None, local_as=None, local_as_no_prepend=None, local_as_replace_as=None, maximum_prefix=None, maximum_prefix6=None, maximum_prefix_evpn=None, maximum_prefix_threshold=None, maximum_prefix_threshold6=None, maximum_prefix_threshold_evpn=None, maximum_prefix_threshold_vpnv4=None, maximum_prefix_vpnv4=None, maximum_prefix_warning_only=None, maximum_prefix_warning_only6=None, maximum_prefix_warning_only_evpn=None, maximum_prefix_warning_only_vpnv4=None, next_hop_self=None, next_hop_self6=None, next_hop_self_rr=None, next_hop_self_rr6=None, next_hop_self_vpnv4=None, override_capability=None, passive=None, password=None, prefix_list_in=None, prefix_list_in6=None, prefix_list_in_vpnv4=None, prefix_list_out=None, prefix_list_out6=None, prefix_list_out_vpnv4=None, remote_as=None, remove_private_as=None, remove_private_as6=None, remove_private_as_evpn=None, remove_private_as_vpnv4=None, restart_time=None, retain_stale_time=None, route_map_in=None, route_map_in6=None, route_map_in_evpn=None, route_map_in_vpnv4=None, route_map_out=None, route_map_out6=None, route_map_out6_preferable=None, route_map_out_evpn=None, route_map_out_preferable=None, route_map_out_vpnv4=None, route_map_out_vpnv4_preferable=None, route_reflector_client=None, route_reflector_client6=None, route_reflector_client_evpn=None, route_reflector_client_vpnv4=None, route_server_client=None, route_server_client6=None, route_server_client_evpn=None, route_server_client_vpnv4=None, send_community=None, send_community6=None, send_community_evpn=None, send_community_vpnv4=None, shutdown=None, soft_reconfiguration=None, soft_reconfiguration6=None, soft_reconfiguration_evpn=None, soft_reconfiguration_vpnv4=None, stale_route=None, strict_capability_match=None, unsuppress_map=None, unsuppress_map6=None, update_source=None, vdomparam=None, weight=None):
         if activate and not isinstance(activate, str):
             raise TypeError("Expected argument 'activate' to be a str")
         pulumi.set(__self__, "activate", activate)
         if activate6 and not isinstance(activate6, str):
             raise TypeError("Expected argument 'activate6' to be a str")
         pulumi.set(__self__, "activate6", activate6)
+        if activate_evpn and not isinstance(activate_evpn, str):
+            raise TypeError("Expected argument 'activate_evpn' to be a str")
+        pulumi.set(__self__, "activate_evpn", activate_evpn)
         if activate_vpnv4 and not isinstance(activate_vpnv4, str):
             raise TypeError("Expected argument 'activate_vpnv4' to be a str")
         pulumi.set(__self__, "activate_vpnv4", activate_vpnv4)
@@ -65,6 +68,15 @@ class GetRouterbgpNeighborResult:
         if allowas_in_enable6 and not isinstance(allowas_in_enable6, str):
             raise TypeError("Expected argument 'allowas_in_enable6' to be a str")
         pulumi.set(__self__, "allowas_in_enable6", allowas_in_enable6)
+        if allowas_in_enable_evpn and not isinstance(allowas_in_enable_evpn, str):
+            raise TypeError("Expected argument 'allowas_in_enable_evpn' to be a str")
+        pulumi.set(__self__, "allowas_in_enable_evpn", allowas_in_enable_evpn)
+        if allowas_in_enable_vpnv4 and not isinstance(allowas_in_enable_vpnv4, str):
+            raise TypeError("Expected argument 'allowas_in_enable_vpnv4' to be a str")
+        pulumi.set(__self__, "allowas_in_enable_vpnv4", allowas_in_enable_vpnv4)
+        if allowas_in_evpn and not isinstance(allowas_in_evpn, int):
+            raise TypeError("Expected argument 'allowas_in_evpn' to be a int")
+        pulumi.set(__self__, "allowas_in_evpn", allowas_in_evpn)
         if allowas_in_vpnv4 and not isinstance(allowas_in_vpnv4, int):
             raise TypeError("Expected argument 'allowas_in_vpnv4' to be a int")
         pulumi.set(__self__, "allowas_in_vpnv4", allowas_in_vpnv4)
@@ -101,6 +113,9 @@ class GetRouterbgpNeighborResult:
         if capability_graceful_restart6 and not isinstance(capability_graceful_restart6, str):
             raise TypeError("Expected argument 'capability_graceful_restart6' to be a str")
         pulumi.set(__self__, "capability_graceful_restart6", capability_graceful_restart6)
+        if capability_graceful_restart_evpn and not isinstance(capability_graceful_restart_evpn, str):
+            raise TypeError("Expected argument 'capability_graceful_restart_evpn' to be a str")
+        pulumi.set(__self__, "capability_graceful_restart_evpn", capability_graceful_restart_evpn)
         if capability_graceful_restart_vpnv4 and not isinstance(capability_graceful_restart_vpnv4, str):
             raise TypeError("Expected argument 'capability_graceful_restart_vpnv4' to be a str")
         pulumi.set(__self__, "capability_graceful_restart_vpnv4", capability_graceful_restart_vpnv4)
@@ -203,12 +218,18 @@ class GetRouterbgpNeighborResult:
         if maximum_prefix6 and not isinstance(maximum_prefix6, int):
             raise TypeError("Expected argument 'maximum_prefix6' to be a int")
         pulumi.set(__self__, "maximum_prefix6", maximum_prefix6)
+        if maximum_prefix_evpn and not isinstance(maximum_prefix_evpn, int):
+            raise TypeError("Expected argument 'maximum_prefix_evpn' to be a int")
+        pulumi.set(__self__, "maximum_prefix_evpn", maximum_prefix_evpn)
         if maximum_prefix_threshold and not isinstance(maximum_prefix_threshold, int):
             raise TypeError("Expected argument 'maximum_prefix_threshold' to be a int")
         pulumi.set(__self__, "maximum_prefix_threshold", maximum_prefix_threshold)
         if maximum_prefix_threshold6 and not isinstance(maximum_prefix_threshold6, int):
             raise TypeError("Expected argument 'maximum_prefix_threshold6' to be a int")
         pulumi.set(__self__, "maximum_prefix_threshold6", maximum_prefix_threshold6)
+        if maximum_prefix_threshold_evpn and not isinstance(maximum_prefix_threshold_evpn, int):
+            raise TypeError("Expected argument 'maximum_prefix_threshold_evpn' to be a int")
+        pulumi.set(__self__, "maximum_prefix_threshold_evpn", maximum_prefix_threshold_evpn)
         if maximum_prefix_threshold_vpnv4 and not isinstance(maximum_prefix_threshold_vpnv4, int):
             raise TypeError("Expected argument 'maximum_prefix_threshold_vpnv4' to be a int")
         pulumi.set(__self__, "maximum_prefix_threshold_vpnv4", maximum_prefix_threshold_vpnv4)
@@ -221,6 +242,9 @@ class GetRouterbgpNeighborResult:
         if maximum_prefix_warning_only6 and not isinstance(maximum_prefix_warning_only6, str):
             raise TypeError("Expected argument 'maximum_prefix_warning_only6' to be a str")
         pulumi.set(__self__, "maximum_prefix_warning_only6", maximum_prefix_warning_only6)
+        if maximum_prefix_warning_only_evpn and not isinstance(maximum_prefix_warning_only_evpn, str):
+            raise TypeError("Expected argument 'maximum_prefix_warning_only_evpn' to be a str")
+        pulumi.set(__self__, "maximum_prefix_warning_only_evpn", maximum_prefix_warning_only_evpn)
         if maximum_prefix_warning_only_vpnv4 and not isinstance(maximum_prefix_warning_only_vpnv4, str):
             raise TypeError("Expected argument 'maximum_prefix_warning_only_vpnv4' to be a str")
         pulumi.set(__self__, "maximum_prefix_warning_only_vpnv4", maximum_prefix_warning_only_vpnv4)
@@ -275,6 +299,9 @@ class GetRouterbgpNeighborResult:
         if remove_private_as6 and not isinstance(remove_private_as6, str):
             raise TypeError("Expected argument 'remove_private_as6' to be a str")
         pulumi.set(__self__, "remove_private_as6", remove_private_as6)
+        if remove_private_as_evpn and not isinstance(remove_private_as_evpn, str):
+            raise TypeError("Expected argument 'remove_private_as_evpn' to be a str")
+        pulumi.set(__self__, "remove_private_as_evpn", remove_private_as_evpn)
         if remove_private_as_vpnv4 and not isinstance(remove_private_as_vpnv4, str):
             raise TypeError("Expected argument 'remove_private_as_vpnv4' to be a str")
         pulumi.set(__self__, "remove_private_as_vpnv4", remove_private_as_vpnv4)
@@ -290,6 +317,9 @@ class GetRouterbgpNeighborResult:
         if route_map_in6 and not isinstance(route_map_in6, str):
             raise TypeError("Expected argument 'route_map_in6' to be a str")
         pulumi.set(__self__, "route_map_in6", route_map_in6)
+        if route_map_in_evpn and not isinstance(route_map_in_evpn, str):
+            raise TypeError("Expected argument 'route_map_in_evpn' to be a str")
+        pulumi.set(__self__, "route_map_in_evpn", route_map_in_evpn)
         if route_map_in_vpnv4 and not isinstance(route_map_in_vpnv4, str):
             raise TypeError("Expected argument 'route_map_in_vpnv4' to be a str")
         pulumi.set(__self__, "route_map_in_vpnv4", route_map_in_vpnv4)
@@ -302,6 +332,9 @@ class GetRouterbgpNeighborResult:
         if route_map_out6_preferable and not isinstance(route_map_out6_preferable, str):
             raise TypeError("Expected argument 'route_map_out6_preferable' to be a str")
         pulumi.set(__self__, "route_map_out6_preferable", route_map_out6_preferable)
+        if route_map_out_evpn and not isinstance(route_map_out_evpn, str):
+            raise TypeError("Expected argument 'route_map_out_evpn' to be a str")
+        pulumi.set(__self__, "route_map_out_evpn", route_map_out_evpn)
         if route_map_out_preferable and not isinstance(route_map_out_preferable, str):
             raise TypeError("Expected argument 'route_map_out_preferable' to be a str")
         pulumi.set(__self__, "route_map_out_preferable", route_map_out_preferable)
@@ -317,6 +350,9 @@ class GetRouterbgpNeighborResult:
         if route_reflector_client6 and not isinstance(route_reflector_client6, str):
             raise TypeError("Expected argument 'route_reflector_client6' to be a str")
         pulumi.set(__self__, "route_reflector_client6", route_reflector_client6)
+        if route_reflector_client_evpn and not isinstance(route_reflector_client_evpn, str):
+            raise TypeError("Expected argument 'route_reflector_client_evpn' to be a str")
+        pulumi.set(__self__, "route_reflector_client_evpn", route_reflector_client_evpn)
         if route_reflector_client_vpnv4 and not isinstance(route_reflector_client_vpnv4, str):
             raise TypeError("Expected argument 'route_reflector_client_vpnv4' to be a str")
         pulumi.set(__self__, "route_reflector_client_vpnv4", route_reflector_client_vpnv4)
@@ -326,6 +362,9 @@ class GetRouterbgpNeighborResult:
         if route_server_client6 and not isinstance(route_server_client6, str):
             raise TypeError("Expected argument 'route_server_client6' to be a str")
         pulumi.set(__self__, "route_server_client6", route_server_client6)
+        if route_server_client_evpn and not isinstance(route_server_client_evpn, str):
+            raise TypeError("Expected argument 'route_server_client_evpn' to be a str")
+        pulumi.set(__self__, "route_server_client_evpn", route_server_client_evpn)
         if route_server_client_vpnv4 and not isinstance(route_server_client_vpnv4, str):
             raise TypeError("Expected argument 'route_server_client_vpnv4' to be a str")
         pulumi.set(__self__, "route_server_client_vpnv4", route_server_client_vpnv4)
@@ -335,6 +374,9 @@ class GetRouterbgpNeighborResult:
         if send_community6 and not isinstance(send_community6, str):
             raise TypeError("Expected argument 'send_community6' to be a str")
         pulumi.set(__self__, "send_community6", send_community6)
+        if send_community_evpn and not isinstance(send_community_evpn, str):
+            raise TypeError("Expected argument 'send_community_evpn' to be a str")
+        pulumi.set(__self__, "send_community_evpn", send_community_evpn)
         if send_community_vpnv4 and not isinstance(send_community_vpnv4, str):
             raise TypeError("Expected argument 'send_community_vpnv4' to be a str")
         pulumi.set(__self__, "send_community_vpnv4", send_community_vpnv4)
@@ -347,6 +389,9 @@ class GetRouterbgpNeighborResult:
         if soft_reconfiguration6 and not isinstance(soft_reconfiguration6, str):
             raise TypeError("Expected argument 'soft_reconfiguration6' to be a str")
         pulumi.set(__self__, "soft_reconfiguration6", soft_reconfiguration6)
+        if soft_reconfiguration_evpn and not isinstance(soft_reconfiguration_evpn, str):
+            raise TypeError("Expected argument 'soft_reconfiguration_evpn' to be a str")
+        pulumi.set(__self__, "soft_reconfiguration_evpn", soft_reconfiguration_evpn)
         if soft_reconfiguration_vpnv4 and not isinstance(soft_reconfiguration_vpnv4, str):
             raise TypeError("Expected argument 'soft_reconfiguration_vpnv4' to be a str")
         pulumi.set(__self__, "soft_reconfiguration_vpnv4", soft_reconfiguration_vpnv4)
@@ -381,6 +426,11 @@ class GetRouterbgpNeighborResult:
     @pulumi.getter
     def activate6(self) -> str:
         return pulumi.get(self, "activate6")
+
+    @property
+    @pulumi.getter(name="activateEvpn")
+    def activate_evpn(self) -> str:
+        return pulumi.get(self, "activate_evpn")
 
     @property
     @pulumi.getter(name="activateVpnv4")
@@ -443,6 +493,21 @@ class GetRouterbgpNeighborResult:
         return pulumi.get(self, "allowas_in_enable6")
 
     @property
+    @pulumi.getter(name="allowasInEnableEvpn")
+    def allowas_in_enable_evpn(self) -> str:
+        return pulumi.get(self, "allowas_in_enable_evpn")
+
+    @property
+    @pulumi.getter(name="allowasInEnableVpnv4")
+    def allowas_in_enable_vpnv4(self) -> str:
+        return pulumi.get(self, "allowas_in_enable_vpnv4")
+
+    @property
+    @pulumi.getter(name="allowasInEvpn")
+    def allowas_in_evpn(self) -> int:
+        return pulumi.get(self, "allowas_in_evpn")
+
+    @property
     @pulumi.getter(name="allowasInVpnv4")
     def allowas_in_vpnv4(self) -> int:
         return pulumi.get(self, "allowas_in_vpnv4")
@@ -501,6 +566,11 @@ class GetRouterbgpNeighborResult:
     @pulumi.getter(name="capabilityGracefulRestart6")
     def capability_graceful_restart6(self) -> str:
         return pulumi.get(self, "capability_graceful_restart6")
+
+    @property
+    @pulumi.getter(name="capabilityGracefulRestartEvpn")
+    def capability_graceful_restart_evpn(self) -> str:
+        return pulumi.get(self, "capability_graceful_restart_evpn")
 
     @property
     @pulumi.getter(name="capabilityGracefulRestartVpnv4")
@@ -676,6 +746,11 @@ class GetRouterbgpNeighborResult:
         return pulumi.get(self, "maximum_prefix6")
 
     @property
+    @pulumi.getter(name="maximumPrefixEvpn")
+    def maximum_prefix_evpn(self) -> int:
+        return pulumi.get(self, "maximum_prefix_evpn")
+
+    @property
     @pulumi.getter(name="maximumPrefixThreshold")
     def maximum_prefix_threshold(self) -> int:
         return pulumi.get(self, "maximum_prefix_threshold")
@@ -684,6 +759,11 @@ class GetRouterbgpNeighborResult:
     @pulumi.getter(name="maximumPrefixThreshold6")
     def maximum_prefix_threshold6(self) -> int:
         return pulumi.get(self, "maximum_prefix_threshold6")
+
+    @property
+    @pulumi.getter(name="maximumPrefixThresholdEvpn")
+    def maximum_prefix_threshold_evpn(self) -> int:
+        return pulumi.get(self, "maximum_prefix_threshold_evpn")
 
     @property
     @pulumi.getter(name="maximumPrefixThresholdVpnv4")
@@ -704,6 +784,11 @@ class GetRouterbgpNeighborResult:
     @pulumi.getter(name="maximumPrefixWarningOnly6")
     def maximum_prefix_warning_only6(self) -> str:
         return pulumi.get(self, "maximum_prefix_warning_only6")
+
+    @property
+    @pulumi.getter(name="maximumPrefixWarningOnlyEvpn")
+    def maximum_prefix_warning_only_evpn(self) -> str:
+        return pulumi.get(self, "maximum_prefix_warning_only_evpn")
 
     @property
     @pulumi.getter(name="maximumPrefixWarningOnlyVpnv4")
@@ -796,6 +881,11 @@ class GetRouterbgpNeighborResult:
         return pulumi.get(self, "remove_private_as6")
 
     @property
+    @pulumi.getter(name="removePrivateAsEvpn")
+    def remove_private_as_evpn(self) -> str:
+        return pulumi.get(self, "remove_private_as_evpn")
+
+    @property
     @pulumi.getter(name="removePrivateAsVpnv4")
     def remove_private_as_vpnv4(self) -> str:
         return pulumi.get(self, "remove_private_as_vpnv4")
@@ -821,6 +911,11 @@ class GetRouterbgpNeighborResult:
         return pulumi.get(self, "route_map_in6")
 
     @property
+    @pulumi.getter(name="routeMapInEvpn")
+    def route_map_in_evpn(self) -> str:
+        return pulumi.get(self, "route_map_in_evpn")
+
+    @property
     @pulumi.getter(name="routeMapInVpnv4")
     def route_map_in_vpnv4(self) -> str:
         return pulumi.get(self, "route_map_in_vpnv4")
@@ -839,6 +934,11 @@ class GetRouterbgpNeighborResult:
     @pulumi.getter(name="routeMapOut6Preferable")
     def route_map_out6_preferable(self) -> str:
         return pulumi.get(self, "route_map_out6_preferable")
+
+    @property
+    @pulumi.getter(name="routeMapOutEvpn")
+    def route_map_out_evpn(self) -> str:
+        return pulumi.get(self, "route_map_out_evpn")
 
     @property
     @pulumi.getter(name="routeMapOutPreferable")
@@ -866,6 +966,11 @@ class GetRouterbgpNeighborResult:
         return pulumi.get(self, "route_reflector_client6")
 
     @property
+    @pulumi.getter(name="routeReflectorClientEvpn")
+    def route_reflector_client_evpn(self) -> str:
+        return pulumi.get(self, "route_reflector_client_evpn")
+
+    @property
     @pulumi.getter(name="routeReflectorClientVpnv4")
     def route_reflector_client_vpnv4(self) -> str:
         return pulumi.get(self, "route_reflector_client_vpnv4")
@@ -881,6 +986,11 @@ class GetRouterbgpNeighborResult:
         return pulumi.get(self, "route_server_client6")
 
     @property
+    @pulumi.getter(name="routeServerClientEvpn")
+    def route_server_client_evpn(self) -> str:
+        return pulumi.get(self, "route_server_client_evpn")
+
+    @property
     @pulumi.getter(name="routeServerClientVpnv4")
     def route_server_client_vpnv4(self) -> str:
         return pulumi.get(self, "route_server_client_vpnv4")
@@ -894,6 +1004,11 @@ class GetRouterbgpNeighborResult:
     @pulumi.getter(name="sendCommunity6")
     def send_community6(self) -> str:
         return pulumi.get(self, "send_community6")
+
+    @property
+    @pulumi.getter(name="sendCommunityEvpn")
+    def send_community_evpn(self) -> str:
+        return pulumi.get(self, "send_community_evpn")
 
     @property
     @pulumi.getter(name="sendCommunityVpnv4")
@@ -914,6 +1029,11 @@ class GetRouterbgpNeighborResult:
     @pulumi.getter(name="softReconfiguration6")
     def soft_reconfiguration6(self) -> str:
         return pulumi.get(self, "soft_reconfiguration6")
+
+    @property
+    @pulumi.getter(name="softReconfigurationEvpn")
+    def soft_reconfiguration_evpn(self) -> str:
+        return pulumi.get(self, "soft_reconfiguration_evpn")
 
     @property
     @pulumi.getter(name="softReconfigurationVpnv4")
@@ -964,6 +1084,7 @@ class AwaitableGetRouterbgpNeighborResult(GetRouterbgpNeighborResult):
         return GetRouterbgpNeighborResult(
             activate=self.activate,
             activate6=self.activate6,
+            activate_evpn=self.activate_evpn,
             activate_vpnv4=self.activate_vpnv4,
             additional_path=self.additional_path,
             additional_path6=self.additional_path6,
@@ -976,6 +1097,9 @@ class AwaitableGetRouterbgpNeighborResult(GetRouterbgpNeighborResult):
             allowas_in6=self.allowas_in6,
             allowas_in_enable=self.allowas_in_enable,
             allowas_in_enable6=self.allowas_in_enable6,
+            allowas_in_enable_evpn=self.allowas_in_enable_evpn,
+            allowas_in_enable_vpnv4=self.allowas_in_enable_vpnv4,
+            allowas_in_evpn=self.allowas_in_evpn,
             allowas_in_vpnv4=self.allowas_in_vpnv4,
             as_override=self.as_override,
             as_override6=self.as_override6,
@@ -988,6 +1112,7 @@ class AwaitableGetRouterbgpNeighborResult(GetRouterbgpNeighborResult):
             capability_dynamic=self.capability_dynamic,
             capability_graceful_restart=self.capability_graceful_restart,
             capability_graceful_restart6=self.capability_graceful_restart6,
+            capability_graceful_restart_evpn=self.capability_graceful_restart_evpn,
             capability_graceful_restart_vpnv4=self.capability_graceful_restart_vpnv4,
             capability_orf=self.capability_orf,
             capability_orf6=self.capability_orf6,
@@ -1022,12 +1147,15 @@ class AwaitableGetRouterbgpNeighborResult(GetRouterbgpNeighborResult):
             local_as_replace_as=self.local_as_replace_as,
             maximum_prefix=self.maximum_prefix,
             maximum_prefix6=self.maximum_prefix6,
+            maximum_prefix_evpn=self.maximum_prefix_evpn,
             maximum_prefix_threshold=self.maximum_prefix_threshold,
             maximum_prefix_threshold6=self.maximum_prefix_threshold6,
+            maximum_prefix_threshold_evpn=self.maximum_prefix_threshold_evpn,
             maximum_prefix_threshold_vpnv4=self.maximum_prefix_threshold_vpnv4,
             maximum_prefix_vpnv4=self.maximum_prefix_vpnv4,
             maximum_prefix_warning_only=self.maximum_prefix_warning_only,
             maximum_prefix_warning_only6=self.maximum_prefix_warning_only6,
+            maximum_prefix_warning_only_evpn=self.maximum_prefix_warning_only_evpn,
             maximum_prefix_warning_only_vpnv4=self.maximum_prefix_warning_only_vpnv4,
             next_hop_self=self.next_hop_self,
             next_hop_self6=self.next_hop_self6,
@@ -1046,30 +1174,37 @@ class AwaitableGetRouterbgpNeighborResult(GetRouterbgpNeighborResult):
             remote_as=self.remote_as,
             remove_private_as=self.remove_private_as,
             remove_private_as6=self.remove_private_as6,
+            remove_private_as_evpn=self.remove_private_as_evpn,
             remove_private_as_vpnv4=self.remove_private_as_vpnv4,
             restart_time=self.restart_time,
             retain_stale_time=self.retain_stale_time,
             route_map_in=self.route_map_in,
             route_map_in6=self.route_map_in6,
+            route_map_in_evpn=self.route_map_in_evpn,
             route_map_in_vpnv4=self.route_map_in_vpnv4,
             route_map_out=self.route_map_out,
             route_map_out6=self.route_map_out6,
             route_map_out6_preferable=self.route_map_out6_preferable,
+            route_map_out_evpn=self.route_map_out_evpn,
             route_map_out_preferable=self.route_map_out_preferable,
             route_map_out_vpnv4=self.route_map_out_vpnv4,
             route_map_out_vpnv4_preferable=self.route_map_out_vpnv4_preferable,
             route_reflector_client=self.route_reflector_client,
             route_reflector_client6=self.route_reflector_client6,
+            route_reflector_client_evpn=self.route_reflector_client_evpn,
             route_reflector_client_vpnv4=self.route_reflector_client_vpnv4,
             route_server_client=self.route_server_client,
             route_server_client6=self.route_server_client6,
+            route_server_client_evpn=self.route_server_client_evpn,
             route_server_client_vpnv4=self.route_server_client_vpnv4,
             send_community=self.send_community,
             send_community6=self.send_community6,
+            send_community_evpn=self.send_community_evpn,
             send_community_vpnv4=self.send_community_vpnv4,
             shutdown=self.shutdown,
             soft_reconfiguration=self.soft_reconfiguration,
             soft_reconfiguration6=self.soft_reconfiguration6,
+            soft_reconfiguration_evpn=self.soft_reconfiguration_evpn,
             soft_reconfiguration_vpnv4=self.soft_reconfiguration_vpnv4,
             stale_route=self.stale_route,
             strict_capability_match=self.strict_capability_match,
@@ -1093,122 +1228,137 @@ def get_routerbgp_neighbor(ip: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getRouterbgpNeighbor:GetRouterbgpNeighbor', __args__, opts=opts, typ=GetRouterbgpNeighborResult).value
 
     return AwaitableGetRouterbgpNeighborResult(
-        activate=__ret__.activate,
-        activate6=__ret__.activate6,
-        activate_vpnv4=__ret__.activate_vpnv4,
-        additional_path=__ret__.additional_path,
-        additional_path6=__ret__.additional_path6,
-        additional_path_vpnv4=__ret__.additional_path_vpnv4,
-        adv_additional_path=__ret__.adv_additional_path,
-        adv_additional_path6=__ret__.adv_additional_path6,
-        adv_additional_path_vpnv4=__ret__.adv_additional_path_vpnv4,
-        advertisement_interval=__ret__.advertisement_interval,
-        allowas_in=__ret__.allowas_in,
-        allowas_in6=__ret__.allowas_in6,
-        allowas_in_enable=__ret__.allowas_in_enable,
-        allowas_in_enable6=__ret__.allowas_in_enable6,
-        allowas_in_vpnv4=__ret__.allowas_in_vpnv4,
-        as_override=__ret__.as_override,
-        as_override6=__ret__.as_override6,
-        attribute_unchanged=__ret__.attribute_unchanged,
-        attribute_unchanged6=__ret__.attribute_unchanged6,
-        attribute_unchanged_vpnv4=__ret__.attribute_unchanged_vpnv4,
-        bfd=__ret__.bfd,
-        capability_default_originate=__ret__.capability_default_originate,
-        capability_default_originate6=__ret__.capability_default_originate6,
-        capability_dynamic=__ret__.capability_dynamic,
-        capability_graceful_restart=__ret__.capability_graceful_restart,
-        capability_graceful_restart6=__ret__.capability_graceful_restart6,
-        capability_graceful_restart_vpnv4=__ret__.capability_graceful_restart_vpnv4,
-        capability_orf=__ret__.capability_orf,
-        capability_orf6=__ret__.capability_orf6,
-        capability_route_refresh=__ret__.capability_route_refresh,
-        conditional_advertise6s=__ret__.conditional_advertise6s,
-        conditional_advertises=__ret__.conditional_advertises,
-        connect_timer=__ret__.connect_timer,
-        default_originate_routemap=__ret__.default_originate_routemap,
-        default_originate_routemap6=__ret__.default_originate_routemap6,
-        description=__ret__.description,
-        distribute_list_in=__ret__.distribute_list_in,
-        distribute_list_in6=__ret__.distribute_list_in6,
-        distribute_list_in_vpnv4=__ret__.distribute_list_in_vpnv4,
-        distribute_list_out=__ret__.distribute_list_out,
-        distribute_list_out6=__ret__.distribute_list_out6,
-        distribute_list_out_vpnv4=__ret__.distribute_list_out_vpnv4,
-        dont_capability_negotiate=__ret__.dont_capability_negotiate,
-        ebgp_enforce_multihop=__ret__.ebgp_enforce_multihop,
-        ebgp_multihop_ttl=__ret__.ebgp_multihop_ttl,
-        filter_list_in=__ret__.filter_list_in,
-        filter_list_in6=__ret__.filter_list_in6,
-        filter_list_out=__ret__.filter_list_out,
-        filter_list_out6=__ret__.filter_list_out6,
-        holdtime_timer=__ret__.holdtime_timer,
-        id=__ret__.id,
-        interface=__ret__.interface,
-        ip=__ret__.ip,
-        keep_alive_timer=__ret__.keep_alive_timer,
-        link_down_failover=__ret__.link_down_failover,
-        local_as=__ret__.local_as,
-        local_as_no_prepend=__ret__.local_as_no_prepend,
-        local_as_replace_as=__ret__.local_as_replace_as,
-        maximum_prefix=__ret__.maximum_prefix,
-        maximum_prefix6=__ret__.maximum_prefix6,
-        maximum_prefix_threshold=__ret__.maximum_prefix_threshold,
-        maximum_prefix_threshold6=__ret__.maximum_prefix_threshold6,
-        maximum_prefix_threshold_vpnv4=__ret__.maximum_prefix_threshold_vpnv4,
-        maximum_prefix_vpnv4=__ret__.maximum_prefix_vpnv4,
-        maximum_prefix_warning_only=__ret__.maximum_prefix_warning_only,
-        maximum_prefix_warning_only6=__ret__.maximum_prefix_warning_only6,
-        maximum_prefix_warning_only_vpnv4=__ret__.maximum_prefix_warning_only_vpnv4,
-        next_hop_self=__ret__.next_hop_self,
-        next_hop_self6=__ret__.next_hop_self6,
-        next_hop_self_rr=__ret__.next_hop_self_rr,
-        next_hop_self_rr6=__ret__.next_hop_self_rr6,
-        next_hop_self_vpnv4=__ret__.next_hop_self_vpnv4,
-        override_capability=__ret__.override_capability,
-        passive=__ret__.passive,
-        password=__ret__.password,
-        prefix_list_in=__ret__.prefix_list_in,
-        prefix_list_in6=__ret__.prefix_list_in6,
-        prefix_list_in_vpnv4=__ret__.prefix_list_in_vpnv4,
-        prefix_list_out=__ret__.prefix_list_out,
-        prefix_list_out6=__ret__.prefix_list_out6,
-        prefix_list_out_vpnv4=__ret__.prefix_list_out_vpnv4,
-        remote_as=__ret__.remote_as,
-        remove_private_as=__ret__.remove_private_as,
-        remove_private_as6=__ret__.remove_private_as6,
-        remove_private_as_vpnv4=__ret__.remove_private_as_vpnv4,
-        restart_time=__ret__.restart_time,
-        retain_stale_time=__ret__.retain_stale_time,
-        route_map_in=__ret__.route_map_in,
-        route_map_in6=__ret__.route_map_in6,
-        route_map_in_vpnv4=__ret__.route_map_in_vpnv4,
-        route_map_out=__ret__.route_map_out,
-        route_map_out6=__ret__.route_map_out6,
-        route_map_out6_preferable=__ret__.route_map_out6_preferable,
-        route_map_out_preferable=__ret__.route_map_out_preferable,
-        route_map_out_vpnv4=__ret__.route_map_out_vpnv4,
-        route_map_out_vpnv4_preferable=__ret__.route_map_out_vpnv4_preferable,
-        route_reflector_client=__ret__.route_reflector_client,
-        route_reflector_client6=__ret__.route_reflector_client6,
-        route_reflector_client_vpnv4=__ret__.route_reflector_client_vpnv4,
-        route_server_client=__ret__.route_server_client,
-        route_server_client6=__ret__.route_server_client6,
-        route_server_client_vpnv4=__ret__.route_server_client_vpnv4,
-        send_community=__ret__.send_community,
-        send_community6=__ret__.send_community6,
-        send_community_vpnv4=__ret__.send_community_vpnv4,
-        shutdown=__ret__.shutdown,
-        soft_reconfiguration=__ret__.soft_reconfiguration,
-        soft_reconfiguration6=__ret__.soft_reconfiguration6,
-        soft_reconfiguration_vpnv4=__ret__.soft_reconfiguration_vpnv4,
-        stale_route=__ret__.stale_route,
-        strict_capability_match=__ret__.strict_capability_match,
-        unsuppress_map=__ret__.unsuppress_map,
-        unsuppress_map6=__ret__.unsuppress_map6,
-        update_source=__ret__.update_source,
-        vdomparam=__ret__.vdomparam,
-        weight=__ret__.weight)
+        activate=pulumi.get(__ret__, 'activate'),
+        activate6=pulumi.get(__ret__, 'activate6'),
+        activate_evpn=pulumi.get(__ret__, 'activate_evpn'),
+        activate_vpnv4=pulumi.get(__ret__, 'activate_vpnv4'),
+        additional_path=pulumi.get(__ret__, 'additional_path'),
+        additional_path6=pulumi.get(__ret__, 'additional_path6'),
+        additional_path_vpnv4=pulumi.get(__ret__, 'additional_path_vpnv4'),
+        adv_additional_path=pulumi.get(__ret__, 'adv_additional_path'),
+        adv_additional_path6=pulumi.get(__ret__, 'adv_additional_path6'),
+        adv_additional_path_vpnv4=pulumi.get(__ret__, 'adv_additional_path_vpnv4'),
+        advertisement_interval=pulumi.get(__ret__, 'advertisement_interval'),
+        allowas_in=pulumi.get(__ret__, 'allowas_in'),
+        allowas_in6=pulumi.get(__ret__, 'allowas_in6'),
+        allowas_in_enable=pulumi.get(__ret__, 'allowas_in_enable'),
+        allowas_in_enable6=pulumi.get(__ret__, 'allowas_in_enable6'),
+        allowas_in_enable_evpn=pulumi.get(__ret__, 'allowas_in_enable_evpn'),
+        allowas_in_enable_vpnv4=pulumi.get(__ret__, 'allowas_in_enable_vpnv4'),
+        allowas_in_evpn=pulumi.get(__ret__, 'allowas_in_evpn'),
+        allowas_in_vpnv4=pulumi.get(__ret__, 'allowas_in_vpnv4'),
+        as_override=pulumi.get(__ret__, 'as_override'),
+        as_override6=pulumi.get(__ret__, 'as_override6'),
+        attribute_unchanged=pulumi.get(__ret__, 'attribute_unchanged'),
+        attribute_unchanged6=pulumi.get(__ret__, 'attribute_unchanged6'),
+        attribute_unchanged_vpnv4=pulumi.get(__ret__, 'attribute_unchanged_vpnv4'),
+        bfd=pulumi.get(__ret__, 'bfd'),
+        capability_default_originate=pulumi.get(__ret__, 'capability_default_originate'),
+        capability_default_originate6=pulumi.get(__ret__, 'capability_default_originate6'),
+        capability_dynamic=pulumi.get(__ret__, 'capability_dynamic'),
+        capability_graceful_restart=pulumi.get(__ret__, 'capability_graceful_restart'),
+        capability_graceful_restart6=pulumi.get(__ret__, 'capability_graceful_restart6'),
+        capability_graceful_restart_evpn=pulumi.get(__ret__, 'capability_graceful_restart_evpn'),
+        capability_graceful_restart_vpnv4=pulumi.get(__ret__, 'capability_graceful_restart_vpnv4'),
+        capability_orf=pulumi.get(__ret__, 'capability_orf'),
+        capability_orf6=pulumi.get(__ret__, 'capability_orf6'),
+        capability_route_refresh=pulumi.get(__ret__, 'capability_route_refresh'),
+        conditional_advertise6s=pulumi.get(__ret__, 'conditional_advertise6s'),
+        conditional_advertises=pulumi.get(__ret__, 'conditional_advertises'),
+        connect_timer=pulumi.get(__ret__, 'connect_timer'),
+        default_originate_routemap=pulumi.get(__ret__, 'default_originate_routemap'),
+        default_originate_routemap6=pulumi.get(__ret__, 'default_originate_routemap6'),
+        description=pulumi.get(__ret__, 'description'),
+        distribute_list_in=pulumi.get(__ret__, 'distribute_list_in'),
+        distribute_list_in6=pulumi.get(__ret__, 'distribute_list_in6'),
+        distribute_list_in_vpnv4=pulumi.get(__ret__, 'distribute_list_in_vpnv4'),
+        distribute_list_out=pulumi.get(__ret__, 'distribute_list_out'),
+        distribute_list_out6=pulumi.get(__ret__, 'distribute_list_out6'),
+        distribute_list_out_vpnv4=pulumi.get(__ret__, 'distribute_list_out_vpnv4'),
+        dont_capability_negotiate=pulumi.get(__ret__, 'dont_capability_negotiate'),
+        ebgp_enforce_multihop=pulumi.get(__ret__, 'ebgp_enforce_multihop'),
+        ebgp_multihop_ttl=pulumi.get(__ret__, 'ebgp_multihop_ttl'),
+        filter_list_in=pulumi.get(__ret__, 'filter_list_in'),
+        filter_list_in6=pulumi.get(__ret__, 'filter_list_in6'),
+        filter_list_out=pulumi.get(__ret__, 'filter_list_out'),
+        filter_list_out6=pulumi.get(__ret__, 'filter_list_out6'),
+        holdtime_timer=pulumi.get(__ret__, 'holdtime_timer'),
+        id=pulumi.get(__ret__, 'id'),
+        interface=pulumi.get(__ret__, 'interface'),
+        ip=pulumi.get(__ret__, 'ip'),
+        keep_alive_timer=pulumi.get(__ret__, 'keep_alive_timer'),
+        link_down_failover=pulumi.get(__ret__, 'link_down_failover'),
+        local_as=pulumi.get(__ret__, 'local_as'),
+        local_as_no_prepend=pulumi.get(__ret__, 'local_as_no_prepend'),
+        local_as_replace_as=pulumi.get(__ret__, 'local_as_replace_as'),
+        maximum_prefix=pulumi.get(__ret__, 'maximum_prefix'),
+        maximum_prefix6=pulumi.get(__ret__, 'maximum_prefix6'),
+        maximum_prefix_evpn=pulumi.get(__ret__, 'maximum_prefix_evpn'),
+        maximum_prefix_threshold=pulumi.get(__ret__, 'maximum_prefix_threshold'),
+        maximum_prefix_threshold6=pulumi.get(__ret__, 'maximum_prefix_threshold6'),
+        maximum_prefix_threshold_evpn=pulumi.get(__ret__, 'maximum_prefix_threshold_evpn'),
+        maximum_prefix_threshold_vpnv4=pulumi.get(__ret__, 'maximum_prefix_threshold_vpnv4'),
+        maximum_prefix_vpnv4=pulumi.get(__ret__, 'maximum_prefix_vpnv4'),
+        maximum_prefix_warning_only=pulumi.get(__ret__, 'maximum_prefix_warning_only'),
+        maximum_prefix_warning_only6=pulumi.get(__ret__, 'maximum_prefix_warning_only6'),
+        maximum_prefix_warning_only_evpn=pulumi.get(__ret__, 'maximum_prefix_warning_only_evpn'),
+        maximum_prefix_warning_only_vpnv4=pulumi.get(__ret__, 'maximum_prefix_warning_only_vpnv4'),
+        next_hop_self=pulumi.get(__ret__, 'next_hop_self'),
+        next_hop_self6=pulumi.get(__ret__, 'next_hop_self6'),
+        next_hop_self_rr=pulumi.get(__ret__, 'next_hop_self_rr'),
+        next_hop_self_rr6=pulumi.get(__ret__, 'next_hop_self_rr6'),
+        next_hop_self_vpnv4=pulumi.get(__ret__, 'next_hop_self_vpnv4'),
+        override_capability=pulumi.get(__ret__, 'override_capability'),
+        passive=pulumi.get(__ret__, 'passive'),
+        password=pulumi.get(__ret__, 'password'),
+        prefix_list_in=pulumi.get(__ret__, 'prefix_list_in'),
+        prefix_list_in6=pulumi.get(__ret__, 'prefix_list_in6'),
+        prefix_list_in_vpnv4=pulumi.get(__ret__, 'prefix_list_in_vpnv4'),
+        prefix_list_out=pulumi.get(__ret__, 'prefix_list_out'),
+        prefix_list_out6=pulumi.get(__ret__, 'prefix_list_out6'),
+        prefix_list_out_vpnv4=pulumi.get(__ret__, 'prefix_list_out_vpnv4'),
+        remote_as=pulumi.get(__ret__, 'remote_as'),
+        remove_private_as=pulumi.get(__ret__, 'remove_private_as'),
+        remove_private_as6=pulumi.get(__ret__, 'remove_private_as6'),
+        remove_private_as_evpn=pulumi.get(__ret__, 'remove_private_as_evpn'),
+        remove_private_as_vpnv4=pulumi.get(__ret__, 'remove_private_as_vpnv4'),
+        restart_time=pulumi.get(__ret__, 'restart_time'),
+        retain_stale_time=pulumi.get(__ret__, 'retain_stale_time'),
+        route_map_in=pulumi.get(__ret__, 'route_map_in'),
+        route_map_in6=pulumi.get(__ret__, 'route_map_in6'),
+        route_map_in_evpn=pulumi.get(__ret__, 'route_map_in_evpn'),
+        route_map_in_vpnv4=pulumi.get(__ret__, 'route_map_in_vpnv4'),
+        route_map_out=pulumi.get(__ret__, 'route_map_out'),
+        route_map_out6=pulumi.get(__ret__, 'route_map_out6'),
+        route_map_out6_preferable=pulumi.get(__ret__, 'route_map_out6_preferable'),
+        route_map_out_evpn=pulumi.get(__ret__, 'route_map_out_evpn'),
+        route_map_out_preferable=pulumi.get(__ret__, 'route_map_out_preferable'),
+        route_map_out_vpnv4=pulumi.get(__ret__, 'route_map_out_vpnv4'),
+        route_map_out_vpnv4_preferable=pulumi.get(__ret__, 'route_map_out_vpnv4_preferable'),
+        route_reflector_client=pulumi.get(__ret__, 'route_reflector_client'),
+        route_reflector_client6=pulumi.get(__ret__, 'route_reflector_client6'),
+        route_reflector_client_evpn=pulumi.get(__ret__, 'route_reflector_client_evpn'),
+        route_reflector_client_vpnv4=pulumi.get(__ret__, 'route_reflector_client_vpnv4'),
+        route_server_client=pulumi.get(__ret__, 'route_server_client'),
+        route_server_client6=pulumi.get(__ret__, 'route_server_client6'),
+        route_server_client_evpn=pulumi.get(__ret__, 'route_server_client_evpn'),
+        route_server_client_vpnv4=pulumi.get(__ret__, 'route_server_client_vpnv4'),
+        send_community=pulumi.get(__ret__, 'send_community'),
+        send_community6=pulumi.get(__ret__, 'send_community6'),
+        send_community_evpn=pulumi.get(__ret__, 'send_community_evpn'),
+        send_community_vpnv4=pulumi.get(__ret__, 'send_community_vpnv4'),
+        shutdown=pulumi.get(__ret__, 'shutdown'),
+        soft_reconfiguration=pulumi.get(__ret__, 'soft_reconfiguration'),
+        soft_reconfiguration6=pulumi.get(__ret__, 'soft_reconfiguration6'),
+        soft_reconfiguration_evpn=pulumi.get(__ret__, 'soft_reconfiguration_evpn'),
+        soft_reconfiguration_vpnv4=pulumi.get(__ret__, 'soft_reconfiguration_vpnv4'),
+        stale_route=pulumi.get(__ret__, 'stale_route'),
+        strict_capability_match=pulumi.get(__ret__, 'strict_capability_match'),
+        unsuppress_map=pulumi.get(__ret__, 'unsuppress_map'),
+        unsuppress_map6=pulumi.get(__ret__, 'unsuppress_map6'),
+        update_source=pulumi.get(__ret__, 'update_source'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'),
+        weight=pulumi.get(__ret__, 'weight'))
 
 
 @_utilities.lift_output_func(get_routerbgp_neighbor)

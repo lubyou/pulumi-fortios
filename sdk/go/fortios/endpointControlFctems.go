@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -39,6 +40,7 @@ type EndpointControlFctems struct {
 	Status                         pulumi.StringOutput    `pulumi:"status"`
 	StatusCheckInterval            pulumi.IntOutput       `pulumi:"statusCheckInterval"`
 	TenantId                       pulumi.StringOutput    `pulumi:"tenantId"`
+	TrustCaCn                      pulumi.StringOutput    `pulumi:"trustCaCn"`
 	Vdomparam                      pulumi.StringPtrOutput `pulumi:"vdomparam"`
 	WebsocketOverride              pulumi.StringOutput    `pulumi:"websocketOverride"`
 }
@@ -57,7 +59,7 @@ func NewEndpointControlFctems(ctx *pulumi.Context,
 		"adminPassword",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource EndpointControlFctems
 	err := ctx.RegisterResource("fortios:index/endpointControlFctems:EndpointControlFctems", name, args, &resource, opts...)
 	if err != nil {
@@ -106,6 +108,7 @@ type endpointControlFctemsState struct {
 	Status                         *string `pulumi:"status"`
 	StatusCheckInterval            *int    `pulumi:"statusCheckInterval"`
 	TenantId                       *string `pulumi:"tenantId"`
+	TrustCaCn                      *string `pulumi:"trustCaCn"`
 	Vdomparam                      *string `pulumi:"vdomparam"`
 	WebsocketOverride              *string `pulumi:"websocketOverride"`
 }
@@ -137,6 +140,7 @@ type EndpointControlFctemsState struct {
 	Status                         pulumi.StringPtrInput
 	StatusCheckInterval            pulumi.IntPtrInput
 	TenantId                       pulumi.StringPtrInput
+	TrustCaCn                      pulumi.StringPtrInput
 	Vdomparam                      pulumi.StringPtrInput
 	WebsocketOverride              pulumi.StringPtrInput
 }
@@ -172,6 +176,7 @@ type endpointControlFctemsArgs struct {
 	Status                         *string `pulumi:"status"`
 	StatusCheckInterval            *int    `pulumi:"statusCheckInterval"`
 	TenantId                       *string `pulumi:"tenantId"`
+	TrustCaCn                      *string `pulumi:"trustCaCn"`
 	Vdomparam                      *string `pulumi:"vdomparam"`
 	WebsocketOverride              *string `pulumi:"websocketOverride"`
 }
@@ -204,6 +209,7 @@ type EndpointControlFctemsArgs struct {
 	Status                         pulumi.StringPtrInput
 	StatusCheckInterval            pulumi.IntPtrInput
 	TenantId                       pulumi.StringPtrInput
+	TrustCaCn                      pulumi.StringPtrInput
 	Vdomparam                      pulumi.StringPtrInput
 	WebsocketOverride              pulumi.StringPtrInput
 }
@@ -397,6 +403,10 @@ func (o EndpointControlFctemsOutput) StatusCheckInterval() pulumi.IntOutput {
 
 func (o EndpointControlFctemsOutput) TenantId() pulumi.StringOutput {
 	return o.ApplyT(func(v *EndpointControlFctems) pulumi.StringOutput { return v.TenantId }).(pulumi.StringOutput)
+}
+
+func (o EndpointControlFctemsOutput) TrustCaCn() pulumi.StringOutput {
+	return o.ApplyT(func(v *EndpointControlFctems) pulumi.StringOutput { return v.TrustCaCn }).(pulumi.StringOutput)
 }
 
 func (o EndpointControlFctemsOutput) Vdomparam() pulumi.StringPtrOutput {

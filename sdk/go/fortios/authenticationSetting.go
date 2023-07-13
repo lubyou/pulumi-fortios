@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -30,6 +31,7 @@ type AuthenticationSetting struct {
 	CookieRefreshDiv      pulumi.IntOutput                           `pulumi:"cookieRefreshDiv"`
 	DevRanges             AuthenticationSettingDevRangeArrayOutput   `pulumi:"devRanges"`
 	DynamicSortSubtable   pulumi.StringPtrOutput                     `pulumi:"dynamicSortSubtable"`
+	GetAllTables          pulumi.StringPtrOutput                     `pulumi:"getAllTables"`
 	IpAuthCookie          pulumi.StringOutput                        `pulumi:"ipAuthCookie"`
 	PersistentCookie      pulumi.StringOutput                        `pulumi:"persistentCookie"`
 	SsoAuthScheme         pulumi.StringOutput                        `pulumi:"ssoAuthScheme"`
@@ -45,7 +47,7 @@ func NewAuthenticationSetting(ctx *pulumi.Context,
 		args = &AuthenticationSettingArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource AuthenticationSetting
 	err := ctx.RegisterResource("fortios:index/authenticationSetting:AuthenticationSetting", name, args, &resource, opts...)
 	if err != nil {
@@ -85,6 +87,7 @@ type authenticationSettingState struct {
 	CookieRefreshDiv      *int                              `pulumi:"cookieRefreshDiv"`
 	DevRanges             []AuthenticationSettingDevRange   `pulumi:"devRanges"`
 	DynamicSortSubtable   *string                           `pulumi:"dynamicSortSubtable"`
+	GetAllTables          *string                           `pulumi:"getAllTables"`
 	IpAuthCookie          *string                           `pulumi:"ipAuthCookie"`
 	PersistentCookie      *string                           `pulumi:"persistentCookie"`
 	SsoAuthScheme         *string                           `pulumi:"ssoAuthScheme"`
@@ -111,6 +114,7 @@ type AuthenticationSettingState struct {
 	CookieRefreshDiv      pulumi.IntPtrInput
 	DevRanges             AuthenticationSettingDevRangeArrayInput
 	DynamicSortSubtable   pulumi.StringPtrInput
+	GetAllTables          pulumi.StringPtrInput
 	IpAuthCookie          pulumi.StringPtrInput
 	PersistentCookie      pulumi.StringPtrInput
 	SsoAuthScheme         pulumi.StringPtrInput
@@ -141,6 +145,7 @@ type authenticationSettingArgs struct {
 	CookieRefreshDiv      *int                              `pulumi:"cookieRefreshDiv"`
 	DevRanges             []AuthenticationSettingDevRange   `pulumi:"devRanges"`
 	DynamicSortSubtable   *string                           `pulumi:"dynamicSortSubtable"`
+	GetAllTables          *string                           `pulumi:"getAllTables"`
 	IpAuthCookie          *string                           `pulumi:"ipAuthCookie"`
 	PersistentCookie      *string                           `pulumi:"persistentCookie"`
 	SsoAuthScheme         *string                           `pulumi:"ssoAuthScheme"`
@@ -168,6 +173,7 @@ type AuthenticationSettingArgs struct {
 	CookieRefreshDiv      pulumi.IntPtrInput
 	DevRanges             AuthenticationSettingDevRangeArrayInput
 	DynamicSortSubtable   pulumi.StringPtrInput
+	GetAllTables          pulumi.StringPtrInput
 	IpAuthCookie          pulumi.StringPtrInput
 	PersistentCookie      pulumi.StringPtrInput
 	SsoAuthScheme         pulumi.StringPtrInput
@@ -329,6 +335,10 @@ func (o AuthenticationSettingOutput) DevRanges() AuthenticationSettingDevRangeAr
 
 func (o AuthenticationSettingOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthenticationSetting) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthenticationSettingOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *AuthenticationSetting) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o AuthenticationSettingOutput) IpAuthCookie() pulumi.StringOutput {

@@ -35,6 +35,7 @@ export class VpnIpsecFec extends pulumi.CustomResource {
     }
 
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly mappings!: pulumi.Output<outputs.VpnIpsecFecMapping[] | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -53,12 +54,14 @@ export class VpnIpsecFec extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as VpnIpsecFecState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["mappings"] = state ? state.mappings : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as VpnIpsecFecArgs | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["mappings"] = args ? args.mappings : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -73,6 +76,7 @@ export class VpnIpsecFec extends pulumi.CustomResource {
  */
 export interface VpnIpsecFecState {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     mappings?: pulumi.Input<pulumi.Input<inputs.VpnIpsecFecMapping>[]>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
@@ -83,6 +87,7 @@ export interface VpnIpsecFecState {
  */
 export interface VpnIpsecFecArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     mappings?: pulumi.Input<pulumi.Input<inputs.VpnIpsecFecMapping>[]>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;

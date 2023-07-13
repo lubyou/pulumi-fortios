@@ -27,6 +27,7 @@ class RouterOspf6Args:
                  default_information_route_map: Optional[pulumi.Input[str]] = None,
                  default_metric: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  log_neighbour_changes: Optional[pulumi.Input[str]] = None,
                  ospf6_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['RouterOspf6Ospf6InterfaceArgs']]]] = None,
                  passive_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['RouterOspf6PassiveInterfaceArgs']]]] = None,
@@ -61,6 +62,8 @@ class RouterOspf6Args:
             pulumi.set(__self__, "default_metric", default_metric)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if log_neighbour_changes is not None:
             pulumi.set(__self__, "log_neighbour_changes", log_neighbour_changes)
         if ospf6_interfaces is not None:
@@ -182,6 +185,15 @@ class RouterOspf6Args:
         pulumi.set(self, "dynamic_sort_subtable", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="logNeighbourChanges")
     def log_neighbour_changes(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "log_neighbour_changes")
@@ -285,6 +297,7 @@ class _RouterOspf6State:
                  default_information_route_map: Optional[pulumi.Input[str]] = None,
                  default_metric: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  log_neighbour_changes: Optional[pulumi.Input[str]] = None,
                  ospf6_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['RouterOspf6Ospf6InterfaceArgs']]]] = None,
                  passive_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['RouterOspf6PassiveInterfaceArgs']]]] = None,
@@ -319,6 +332,8 @@ class _RouterOspf6State:
             pulumi.set(__self__, "default_metric", default_metric)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if log_neighbour_changes is not None:
             pulumi.set(__self__, "log_neighbour_changes", log_neighbour_changes)
         if ospf6_interfaces is not None:
@@ -431,6 +446,15 @@ class _RouterOspf6State:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="logNeighbourChanges")
@@ -547,6 +571,7 @@ class RouterOspf6(pulumi.CustomResource):
                  default_information_route_map: Optional[pulumi.Input[str]] = None,
                  default_metric: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  log_neighbour_changes: Optional[pulumi.Input[str]] = None,
                  ospf6_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterOspf6Ospf6InterfaceArgs']]]]] = None,
                  passive_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterOspf6PassiveInterfaceArgs']]]]] = None,
@@ -597,6 +622,7 @@ class RouterOspf6(pulumi.CustomResource):
                  default_information_route_map: Optional[pulumi.Input[str]] = None,
                  default_metric: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  log_neighbour_changes: Optional[pulumi.Input[str]] = None,
                  ospf6_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterOspf6Ospf6InterfaceArgs']]]]] = None,
                  passive_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterOspf6PassiveInterfaceArgs']]]]] = None,
@@ -627,6 +653,7 @@ class RouterOspf6(pulumi.CustomResource):
             __props__.__dict__["default_information_route_map"] = default_information_route_map
             __props__.__dict__["default_metric"] = default_metric
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["log_neighbour_changes"] = log_neighbour_changes
             __props__.__dict__["ospf6_interfaces"] = ospf6_interfaces
             __props__.__dict__["passive_interfaces"] = passive_interfaces
@@ -660,6 +687,7 @@ class RouterOspf6(pulumi.CustomResource):
             default_information_route_map: Optional[pulumi.Input[str]] = None,
             default_metric: Optional[pulumi.Input[int]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             log_neighbour_changes: Optional[pulumi.Input[str]] = None,
             ospf6_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterOspf6Ospf6InterfaceArgs']]]]] = None,
             passive_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterOspf6PassiveInterfaceArgs']]]]] = None,
@@ -693,6 +721,7 @@ class RouterOspf6(pulumi.CustomResource):
         __props__.__dict__["default_information_route_map"] = default_information_route_map
         __props__.__dict__["default_metric"] = default_metric
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["log_neighbour_changes"] = log_neighbour_changes
         __props__.__dict__["ospf6_interfaces"] = ospf6_interfaces
         __props__.__dict__["passive_interfaces"] = passive_interfaces
@@ -755,6 +784,11 @@ class RouterOspf6(pulumi.CustomResource):
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="logNeighbourChanges")

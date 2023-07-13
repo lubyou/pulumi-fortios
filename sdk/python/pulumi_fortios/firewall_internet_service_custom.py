@@ -19,6 +19,7 @@ class FirewallInternetServiceCustomArgs:
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  entries: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallInternetServiceCustomEntryArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  reputation: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -31,6 +32,8 @@ class FirewallInternetServiceCustomArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if entries is not None:
             pulumi.set(__self__, "entries", entries)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if reputation is not None:
@@ -64,6 +67,15 @@ class FirewallInternetServiceCustomArgs:
     @entries.setter
     def entries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallInternetServiceCustomEntryArgs']]]]):
         pulumi.set(self, "entries", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -99,6 +111,7 @@ class _FirewallInternetServiceCustomState:
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  entries: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallInternetServiceCustomEntryArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  reputation: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -111,6 +124,8 @@ class _FirewallInternetServiceCustomState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if entries is not None:
             pulumi.set(__self__, "entries", entries)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if reputation is not None:
@@ -144,6 +159,15 @@ class _FirewallInternetServiceCustomState:
     @entries.setter
     def entries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallInternetServiceCustomEntryArgs']]]]):
         pulumi.set(self, "entries", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -181,6 +205,7 @@ class FirewallInternetServiceCustom(pulumi.CustomResource):
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  entries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallInternetServiceCustomEntryArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  reputation: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -216,6 +241,7 @@ class FirewallInternetServiceCustom(pulumi.CustomResource):
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  entries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallInternetServiceCustomEntryArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  reputation: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -231,6 +257,7 @@ class FirewallInternetServiceCustom(pulumi.CustomResource):
             __props__.__dict__["comment"] = comment
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["entries"] = entries
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["name"] = name
             __props__.__dict__["reputation"] = reputation
             __props__.__dict__["vdomparam"] = vdomparam
@@ -247,6 +274,7 @@ class FirewallInternetServiceCustom(pulumi.CustomResource):
             comment: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             entries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallInternetServiceCustomEntryArgs']]]]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             reputation: Optional[pulumi.Input[int]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'FirewallInternetServiceCustom':
@@ -265,6 +293,7 @@ class FirewallInternetServiceCustom(pulumi.CustomResource):
         __props__.__dict__["comment"] = comment
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["entries"] = entries
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["name"] = name
         __props__.__dict__["reputation"] = reputation
         __props__.__dict__["vdomparam"] = vdomparam
@@ -284,6 +313,11 @@ class FirewallInternetServiceCustom(pulumi.CustomResource):
     @pulumi.getter
     def entries(self) -> pulumi.Output[Optional[Sequence['outputs.FirewallInternetServiceCustomEntry']]]:
         return pulumi.get(self, "entries")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

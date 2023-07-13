@@ -84,10 +84,10 @@ def get_system_replacemsg_group_list(filter: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemReplacemsgGroupList:GetSystemReplacemsgGroupList', __args__, opts=opts, typ=GetSystemReplacemsgGroupListResult).value
 
     return AwaitableGetSystemReplacemsgGroupListResult(
-        filter=__ret__.filter,
-        id=__ret__.id,
-        namelists=__ret__.namelists,
-        vdomparam=__ret__.vdomparam)
+        filter=pulumi.get(__ret__, 'filter'),
+        id=pulumi.get(__ret__, 'id'),
+        namelists=pulumi.get(__ret__, 'namelists'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_replacemsg_group_list)

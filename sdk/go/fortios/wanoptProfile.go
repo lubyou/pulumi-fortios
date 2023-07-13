@@ -7,22 +7,24 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type WanoptProfile struct {
 	pulumi.CustomResourceState
 
-	AuthGroup   pulumi.StringOutput     `pulumi:"authGroup"`
-	Cifs        WanoptProfileCifsOutput `pulumi:"cifs"`
-	Comments    pulumi.StringPtrOutput  `pulumi:"comments"`
-	Ftp         WanoptProfileFtpOutput  `pulumi:"ftp"`
-	Http        WanoptProfileHttpOutput `pulumi:"http"`
-	Mapi        WanoptProfileMapiOutput `pulumi:"mapi"`
-	Name        pulumi.StringOutput     `pulumi:"name"`
-	Tcp         WanoptProfileTcpOutput  `pulumi:"tcp"`
-	Transparent pulumi.StringOutput     `pulumi:"transparent"`
-	Vdomparam   pulumi.StringPtrOutput  `pulumi:"vdomparam"`
+	AuthGroup    pulumi.StringOutput     `pulumi:"authGroup"`
+	Cifs         WanoptProfileCifsOutput `pulumi:"cifs"`
+	Comments     pulumi.StringPtrOutput  `pulumi:"comments"`
+	Ftp          WanoptProfileFtpOutput  `pulumi:"ftp"`
+	GetAllTables pulumi.StringPtrOutput  `pulumi:"getAllTables"`
+	Http         WanoptProfileHttpOutput `pulumi:"http"`
+	Mapi         WanoptProfileMapiOutput `pulumi:"mapi"`
+	Name         pulumi.StringOutput     `pulumi:"name"`
+	Tcp          WanoptProfileTcpOutput  `pulumi:"tcp"`
+	Transparent  pulumi.StringOutput     `pulumi:"transparent"`
+	Vdomparam    pulumi.StringPtrOutput  `pulumi:"vdomparam"`
 }
 
 // NewWanoptProfile registers a new resource with the given unique name, arguments, and options.
@@ -32,7 +34,7 @@ func NewWanoptProfile(ctx *pulumi.Context,
 		args = &WanoptProfileArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WanoptProfile
 	err := ctx.RegisterResource("fortios:index/wanoptProfile:WanoptProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -55,29 +57,31 @@ func GetWanoptProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering WanoptProfile resources.
 type wanoptProfileState struct {
-	AuthGroup   *string            `pulumi:"authGroup"`
-	Cifs        *WanoptProfileCifs `pulumi:"cifs"`
-	Comments    *string            `pulumi:"comments"`
-	Ftp         *WanoptProfileFtp  `pulumi:"ftp"`
-	Http        *WanoptProfileHttp `pulumi:"http"`
-	Mapi        *WanoptProfileMapi `pulumi:"mapi"`
-	Name        *string            `pulumi:"name"`
-	Tcp         *WanoptProfileTcp  `pulumi:"tcp"`
-	Transparent *string            `pulumi:"transparent"`
-	Vdomparam   *string            `pulumi:"vdomparam"`
+	AuthGroup    *string            `pulumi:"authGroup"`
+	Cifs         *WanoptProfileCifs `pulumi:"cifs"`
+	Comments     *string            `pulumi:"comments"`
+	Ftp          *WanoptProfileFtp  `pulumi:"ftp"`
+	GetAllTables *string            `pulumi:"getAllTables"`
+	Http         *WanoptProfileHttp `pulumi:"http"`
+	Mapi         *WanoptProfileMapi `pulumi:"mapi"`
+	Name         *string            `pulumi:"name"`
+	Tcp          *WanoptProfileTcp  `pulumi:"tcp"`
+	Transparent  *string            `pulumi:"transparent"`
+	Vdomparam    *string            `pulumi:"vdomparam"`
 }
 
 type WanoptProfileState struct {
-	AuthGroup   pulumi.StringPtrInput
-	Cifs        WanoptProfileCifsPtrInput
-	Comments    pulumi.StringPtrInput
-	Ftp         WanoptProfileFtpPtrInput
-	Http        WanoptProfileHttpPtrInput
-	Mapi        WanoptProfileMapiPtrInput
-	Name        pulumi.StringPtrInput
-	Tcp         WanoptProfileTcpPtrInput
-	Transparent pulumi.StringPtrInput
-	Vdomparam   pulumi.StringPtrInput
+	AuthGroup    pulumi.StringPtrInput
+	Cifs         WanoptProfileCifsPtrInput
+	Comments     pulumi.StringPtrInput
+	Ftp          WanoptProfileFtpPtrInput
+	GetAllTables pulumi.StringPtrInput
+	Http         WanoptProfileHttpPtrInput
+	Mapi         WanoptProfileMapiPtrInput
+	Name         pulumi.StringPtrInput
+	Tcp          WanoptProfileTcpPtrInput
+	Transparent  pulumi.StringPtrInput
+	Vdomparam    pulumi.StringPtrInput
 }
 
 func (WanoptProfileState) ElementType() reflect.Type {
@@ -85,30 +89,32 @@ func (WanoptProfileState) ElementType() reflect.Type {
 }
 
 type wanoptProfileArgs struct {
-	AuthGroup   *string            `pulumi:"authGroup"`
-	Cifs        *WanoptProfileCifs `pulumi:"cifs"`
-	Comments    *string            `pulumi:"comments"`
-	Ftp         *WanoptProfileFtp  `pulumi:"ftp"`
-	Http        *WanoptProfileHttp `pulumi:"http"`
-	Mapi        *WanoptProfileMapi `pulumi:"mapi"`
-	Name        *string            `pulumi:"name"`
-	Tcp         *WanoptProfileTcp  `pulumi:"tcp"`
-	Transparent *string            `pulumi:"transparent"`
-	Vdomparam   *string            `pulumi:"vdomparam"`
+	AuthGroup    *string            `pulumi:"authGroup"`
+	Cifs         *WanoptProfileCifs `pulumi:"cifs"`
+	Comments     *string            `pulumi:"comments"`
+	Ftp          *WanoptProfileFtp  `pulumi:"ftp"`
+	GetAllTables *string            `pulumi:"getAllTables"`
+	Http         *WanoptProfileHttp `pulumi:"http"`
+	Mapi         *WanoptProfileMapi `pulumi:"mapi"`
+	Name         *string            `pulumi:"name"`
+	Tcp          *WanoptProfileTcp  `pulumi:"tcp"`
+	Transparent  *string            `pulumi:"transparent"`
+	Vdomparam    *string            `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a WanoptProfile resource.
 type WanoptProfileArgs struct {
-	AuthGroup   pulumi.StringPtrInput
-	Cifs        WanoptProfileCifsPtrInput
-	Comments    pulumi.StringPtrInput
-	Ftp         WanoptProfileFtpPtrInput
-	Http        WanoptProfileHttpPtrInput
-	Mapi        WanoptProfileMapiPtrInput
-	Name        pulumi.StringPtrInput
-	Tcp         WanoptProfileTcpPtrInput
-	Transparent pulumi.StringPtrInput
-	Vdomparam   pulumi.StringPtrInput
+	AuthGroup    pulumi.StringPtrInput
+	Cifs         WanoptProfileCifsPtrInput
+	Comments     pulumi.StringPtrInput
+	Ftp          WanoptProfileFtpPtrInput
+	GetAllTables pulumi.StringPtrInput
+	Http         WanoptProfileHttpPtrInput
+	Mapi         WanoptProfileMapiPtrInput
+	Name         pulumi.StringPtrInput
+	Tcp          WanoptProfileTcpPtrInput
+	Transparent  pulumi.StringPtrInput
+	Vdomparam    pulumi.StringPtrInput
 }
 
 func (WanoptProfileArgs) ElementType() reflect.Type {
@@ -212,6 +218,10 @@ func (o WanoptProfileOutput) Comments() pulumi.StringPtrOutput {
 
 func (o WanoptProfileOutput) Ftp() WanoptProfileFtpOutput {
 	return o.ApplyT(func(v *WanoptProfile) WanoptProfileFtpOutput { return v.Ftp }).(WanoptProfileFtpOutput)
+}
+
+func (o WanoptProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WanoptProfile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o WanoptProfileOutput) Http() WanoptProfileHttpOutput {

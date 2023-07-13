@@ -84,10 +84,10 @@ def get_firewall_policy6_list(filter: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getFirewallPolicy6List:GetFirewallPolicy6List', __args__, opts=opts, typ=GetFirewallPolicy6ListResult).value
 
     return AwaitableGetFirewallPolicy6ListResult(
-        filter=__ret__.filter,
-        id=__ret__.id,
-        policyidlists=__ret__.policyidlists,
-        vdomparam=__ret__.vdomparam)
+        filter=pulumi.get(__ret__, 'filter'),
+        id=pulumi.get(__ret__, 'id'),
+        policyidlists=pulumi.get(__ret__, 'policyidlists'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_firewall_policy6_list)

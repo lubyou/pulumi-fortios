@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -32,7 +33,7 @@ func NewSystemNetflow(ctx *pulumi.Context,
 		args = &SystemNetflowArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemNetflow
 	err := ctx.RegisterResource("fortios:index/systemNetflow:SystemNetflow", name, args, &resource, opts...)
 	if err != nil {

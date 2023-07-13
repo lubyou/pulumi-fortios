@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -16,8 +17,11 @@ type SystemVxlan struct {
 
 	Dstport             pulumi.IntOutput                `pulumi:"dstport"`
 	DynamicSortSubtable pulumi.StringPtrOutput          `pulumi:"dynamicSortSubtable"`
+	EvpnId              pulumi.IntOutput                `pulumi:"evpnId"`
+	GetAllTables        pulumi.StringPtrOutput          `pulumi:"getAllTables"`
 	Interface           pulumi.StringOutput             `pulumi:"interface"`
 	IpVersion           pulumi.StringOutput             `pulumi:"ipVersion"`
+	LearnFromTraffic    pulumi.StringOutput             `pulumi:"learnFromTraffic"`
 	MulticastTtl        pulumi.IntOutput                `pulumi:"multicastTtl"`
 	Name                pulumi.StringOutput             `pulumi:"name"`
 	RemoteIp6s          SystemVxlanRemoteIp6ArrayOutput `pulumi:"remoteIp6s"`
@@ -42,7 +46,7 @@ func NewSystemVxlan(ctx *pulumi.Context,
 	if args.Vni == nil {
 		return nil, errors.New("invalid value for required argument 'Vni'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemVxlan
 	err := ctx.RegisterResource("fortios:index/systemVxlan:SystemVxlan", name, args, &resource, opts...)
 	if err != nil {
@@ -67,8 +71,11 @@ func GetSystemVxlan(ctx *pulumi.Context,
 type systemVxlanState struct {
 	Dstport             *int                   `pulumi:"dstport"`
 	DynamicSortSubtable *string                `pulumi:"dynamicSortSubtable"`
+	EvpnId              *int                   `pulumi:"evpnId"`
+	GetAllTables        *string                `pulumi:"getAllTables"`
 	Interface           *string                `pulumi:"interface"`
 	IpVersion           *string                `pulumi:"ipVersion"`
+	LearnFromTraffic    *string                `pulumi:"learnFromTraffic"`
 	MulticastTtl        *int                   `pulumi:"multicastTtl"`
 	Name                *string                `pulumi:"name"`
 	RemoteIp6s          []SystemVxlanRemoteIp6 `pulumi:"remoteIp6s"`
@@ -80,8 +87,11 @@ type systemVxlanState struct {
 type SystemVxlanState struct {
 	Dstport             pulumi.IntPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	EvpnId              pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Interface           pulumi.StringPtrInput
 	IpVersion           pulumi.StringPtrInput
+	LearnFromTraffic    pulumi.StringPtrInput
 	MulticastTtl        pulumi.IntPtrInput
 	Name                pulumi.StringPtrInput
 	RemoteIp6s          SystemVxlanRemoteIp6ArrayInput
@@ -97,8 +107,11 @@ func (SystemVxlanState) ElementType() reflect.Type {
 type systemVxlanArgs struct {
 	Dstport             *int                   `pulumi:"dstport"`
 	DynamicSortSubtable *string                `pulumi:"dynamicSortSubtable"`
+	EvpnId              *int                   `pulumi:"evpnId"`
+	GetAllTables        *string                `pulumi:"getAllTables"`
 	Interface           string                 `pulumi:"interface"`
 	IpVersion           string                 `pulumi:"ipVersion"`
+	LearnFromTraffic    *string                `pulumi:"learnFromTraffic"`
 	MulticastTtl        *int                   `pulumi:"multicastTtl"`
 	Name                *string                `pulumi:"name"`
 	RemoteIp6s          []SystemVxlanRemoteIp6 `pulumi:"remoteIp6s"`
@@ -111,8 +124,11 @@ type systemVxlanArgs struct {
 type SystemVxlanArgs struct {
 	Dstport             pulumi.IntPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	EvpnId              pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Interface           pulumi.StringInput
 	IpVersion           pulumi.StringInput
+	LearnFromTraffic    pulumi.StringPtrInput
 	MulticastTtl        pulumi.IntPtrInput
 	Name                pulumi.StringPtrInput
 	RemoteIp6s          SystemVxlanRemoteIp6ArrayInput
@@ -216,12 +232,24 @@ func (o SystemVxlanOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SystemVxlan) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
 }
 
+func (o SystemVxlanOutput) EvpnId() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemVxlan) pulumi.IntOutput { return v.EvpnId }).(pulumi.IntOutput)
+}
+
+func (o SystemVxlanOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemVxlan) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 func (o SystemVxlanOutput) Interface() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemVxlan) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
 }
 
 func (o SystemVxlanOutput) IpVersion() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemVxlan) pulumi.StringOutput { return v.IpVersion }).(pulumi.StringOutput)
+}
+
+func (o SystemVxlanOutput) LearnFromTraffic() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemVxlan) pulumi.StringOutput { return v.LearnFromTraffic }).(pulumi.StringOutput)
 }
 
 func (o SystemVxlanOutput) MulticastTtl() pulumi.IntOutput {

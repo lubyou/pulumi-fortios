@@ -39,6 +39,7 @@ export class SystemApiUser extends pulumi.CustomResource {
     public readonly comments!: pulumi.Output<string | undefined>;
     public readonly corsAllowOrigin!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly peerAuth!: pulumi.Output<string>;
     public readonly peerGroup!: pulumi.Output<string>;
@@ -65,6 +66,7 @@ export class SystemApiUser extends pulumi.CustomResource {
             resourceInputs["comments"] = state ? state.comments : undefined;
             resourceInputs["corsAllowOrigin"] = state ? state.corsAllowOrigin : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["peerAuth"] = state ? state.peerAuth : undefined;
             resourceInputs["peerGroup"] = state ? state.peerGroup : undefined;
@@ -82,6 +84,7 @@ export class SystemApiUser extends pulumi.CustomResource {
             resourceInputs["comments"] = args ? args.comments : undefined;
             resourceInputs["corsAllowOrigin"] = args ? args.corsAllowOrigin : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["peerAuth"] = args ? args.peerAuth : undefined;
             resourceInputs["peerGroup"] = args ? args.peerGroup : undefined;
@@ -106,6 +109,7 @@ export interface SystemApiUserState {
     comments?: pulumi.Input<string>;
     corsAllowOrigin?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     peerAuth?: pulumi.Input<string>;
     peerGroup?: pulumi.Input<string>;
@@ -124,6 +128,7 @@ export interface SystemApiUserArgs {
     comments?: pulumi.Input<string>;
     corsAllowOrigin?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     peerAuth?: pulumi.Input<string>;
     peerGroup?: pulumi.Input<string>;

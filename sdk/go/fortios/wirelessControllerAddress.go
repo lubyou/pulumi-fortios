@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -26,7 +27,7 @@ func NewWirelessControllerAddress(ctx *pulumi.Context,
 		args = &WirelessControllerAddressArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WirelessControllerAddress
 	err := ctx.RegisterResource("fortios:index/wirelessControllerAddress:WirelessControllerAddress", name, args, &resource, opts...)
 	if err != nil {

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,6 +20,7 @@ type ExtenderControllerExtenderProfile struct {
 	EnforceBandwidth    pulumi.StringOutput                                 `pulumi:"enforceBandwidth"`
 	Extension           pulumi.StringOutput                                 `pulumi:"extension"`
 	Fosid               pulumi.IntOutput                                    `pulumi:"fosid"`
+	GetAllTables        pulumi.StringPtrOutput                              `pulumi:"getAllTables"`
 	LanExtension        ExtenderControllerExtenderProfileLanExtensionOutput `pulumi:"lanExtension"`
 	LoginPassword       pulumi.StringPtrOutput                              `pulumi:"loginPassword"`
 	LoginPasswordChange pulumi.StringOutput                                 `pulumi:"loginPasswordChange"`
@@ -34,7 +36,7 @@ func NewExtenderControllerExtenderProfile(ctx *pulumi.Context,
 		args = &ExtenderControllerExtenderProfileArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ExtenderControllerExtenderProfile
 	err := ctx.RegisterResource("fortios:index/extenderControllerExtenderProfile:ExtenderControllerExtenderProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -63,6 +65,7 @@ type extenderControllerExtenderProfileState struct {
 	EnforceBandwidth    *string                                        `pulumi:"enforceBandwidth"`
 	Extension           *string                                        `pulumi:"extension"`
 	Fosid               *int                                           `pulumi:"fosid"`
+	GetAllTables        *string                                        `pulumi:"getAllTables"`
 	LanExtension        *ExtenderControllerExtenderProfileLanExtension `pulumi:"lanExtension"`
 	LoginPassword       *string                                        `pulumi:"loginPassword"`
 	LoginPasswordChange *string                                        `pulumi:"loginPasswordChange"`
@@ -78,6 +81,7 @@ type ExtenderControllerExtenderProfileState struct {
 	EnforceBandwidth    pulumi.StringPtrInput
 	Extension           pulumi.StringPtrInput
 	Fosid               pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	LanExtension        ExtenderControllerExtenderProfileLanExtensionPtrInput
 	LoginPassword       pulumi.StringPtrInput
 	LoginPasswordChange pulumi.StringPtrInput
@@ -97,6 +101,7 @@ type extenderControllerExtenderProfileArgs struct {
 	EnforceBandwidth    *string                                        `pulumi:"enforceBandwidth"`
 	Extension           *string                                        `pulumi:"extension"`
 	Fosid               *int                                           `pulumi:"fosid"`
+	GetAllTables        *string                                        `pulumi:"getAllTables"`
 	LanExtension        *ExtenderControllerExtenderProfileLanExtension `pulumi:"lanExtension"`
 	LoginPassword       *string                                        `pulumi:"loginPassword"`
 	LoginPasswordChange *string                                        `pulumi:"loginPasswordChange"`
@@ -113,6 +118,7 @@ type ExtenderControllerExtenderProfileArgs struct {
 	EnforceBandwidth    pulumi.StringPtrInput
 	Extension           pulumi.StringPtrInput
 	Fosid               pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	LanExtension        ExtenderControllerExtenderProfileLanExtensionPtrInput
 	LoginPassword       pulumi.StringPtrInput
 	LoginPasswordChange pulumi.StringPtrInput
@@ -232,6 +238,10 @@ func (o ExtenderControllerExtenderProfileOutput) Extension() pulumi.StringOutput
 
 func (o ExtenderControllerExtenderProfileOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *ExtenderControllerExtenderProfile) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o ExtenderControllerExtenderProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtenderProfile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o ExtenderControllerExtenderProfileOutput) LanExtension() ExtenderControllerExtenderProfileLanExtensionOutput {

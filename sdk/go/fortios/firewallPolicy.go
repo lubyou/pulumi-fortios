@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -62,6 +63,7 @@ type FirewallPolicy struct {
 	FssoGroups                      FirewallPolicyFssoGroupArrayOutput                      `pulumi:"fssoGroups"`
 	GeoipAnycast                    pulumi.StringOutput                                     `pulumi:"geoipAnycast"`
 	GeoipMatch                      pulumi.StringOutput                                     `pulumi:"geoipMatch"`
+	GetAllTables                    pulumi.StringPtrOutput                                  `pulumi:"getAllTables"`
 	GlobalLabel                     pulumi.StringPtrOutput                                  `pulumi:"globalLabel"`
 	Groups                          FirewallPolicyGroupArrayOutput                          `pulumi:"groups"`
 	HttpPolicyRedirect              pulumi.StringOutput                                     `pulumi:"httpPolicyRedirect"`
@@ -97,6 +99,7 @@ type FirewallPolicy struct {
 	InternetServiceSrcNegate        pulumi.StringOutput                                     `pulumi:"internetServiceSrcNegate"`
 	Ippool                          pulumi.StringOutput                                     `pulumi:"ippool"`
 	IpsSensor                       pulumi.StringPtrOutput                                  `pulumi:"ipsSensor"`
+	IpsVoipFilter                   pulumi.StringPtrOutput                                  `pulumi:"ipsVoipFilter"`
 	Label                           pulumi.StringPtrOutput                                  `pulumi:"label"`
 	LearningMode                    pulumi.StringPtrOutput                                  `pulumi:"learningMode"`
 	Logtraffic                      pulumi.StringOutput                                     `pulumi:"logtraffic"`
@@ -118,11 +121,15 @@ type FirewallPolicy struct {
 	NtlmGuest                       pulumi.StringOutput                                     `pulumi:"ntlmGuest"`
 	Outbound                        pulumi.StringOutput                                     `pulumi:"outbound"`
 	PassiveWanHealthMeasurement     pulumi.StringOutput                                     `pulumi:"passiveWanHealthMeasurement"`
+	PcpInbound                      pulumi.StringOutput                                     `pulumi:"pcpInbound"`
+	PcpOutbound                     pulumi.StringOutput                                     `pulumi:"pcpOutbound"`
+	PcpPoolnames                    FirewallPolicyPcpPoolnameArrayOutput                    `pulumi:"pcpPoolnames"`
 	PerIpShaper                     pulumi.StringPtrOutput                                  `pulumi:"perIpShaper"`
 	PermitAnyHost                   pulumi.StringOutput                                     `pulumi:"permitAnyHost"`
 	PermitStunHost                  pulumi.StringOutput                                     `pulumi:"permitStunHost"`
 	PolicyExpiry                    pulumi.StringOutput                                     `pulumi:"policyExpiry"`
 	PolicyExpiryDate                pulumi.StringOutput                                     `pulumi:"policyExpiryDate"`
+	PolicyExpiryDateUtc             pulumi.StringPtrOutput                                  `pulumi:"policyExpiryDateUtc"`
 	Policyid                        pulumi.IntOutput                                        `pulumi:"policyid"`
 	Poolname6s                      FirewallPolicyPoolname6ArrayOutput                      `pulumi:"poolname6s"`
 	Poolnames                       FirewallPolicyPoolnameArrayOutput                       `pulumi:"poolnames"`
@@ -195,9 +202,13 @@ type FirewallPolicy struct {
 	WebproxyForwardServer           pulumi.StringPtrOutput                                  `pulumi:"webproxyForwardServer"`
 	WebproxyProfile                 pulumi.StringPtrOutput                                  `pulumi:"webproxyProfile"`
 	Wsso                            pulumi.StringPtrOutput                                  `pulumi:"wsso"`
+	ZtnaDeviceOwnership             pulumi.StringOutput                                     `pulumi:"ztnaDeviceOwnership"`
+	ZtnaEmsTagSecondaries           FirewallPolicyZtnaEmsTagSecondaryArrayOutput            `pulumi:"ztnaEmsTagSecondaries"`
 	ZtnaEmsTags                     FirewallPolicyZtnaEmsTagArrayOutput                     `pulumi:"ztnaEmsTags"`
 	ZtnaGeoTags                     FirewallPolicyZtnaGeoTagArrayOutput                     `pulumi:"ztnaGeoTags"`
+	ZtnaPolicyRedirect              pulumi.StringOutput                                     `pulumi:"ztnaPolicyRedirect"`
 	ZtnaStatus                      pulumi.StringOutput                                     `pulumi:"ztnaStatus"`
+	ZtnaTagsMatchLogic              pulumi.StringOutput                                     `pulumi:"ztnaTagsMatchLogic"`
 }
 
 // NewFirewallPolicy registers a new resource with the given unique name, arguments, and options.
@@ -213,7 +224,7 @@ func NewFirewallPolicy(ctx *pulumi.Context,
 	if args.Srcintfs == nil {
 		return nil, errors.New("invalid value for required argument 'Srcintfs'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallPolicy
 	err := ctx.RegisterResource("fortios:index/firewallPolicy:FirewallPolicy", name, args, &resource, opts...)
 	if err != nil {
@@ -284,6 +295,7 @@ type firewallPolicyState struct {
 	FssoGroups                      []FirewallPolicyFssoGroup                      `pulumi:"fssoGroups"`
 	GeoipAnycast                    *string                                        `pulumi:"geoipAnycast"`
 	GeoipMatch                      *string                                        `pulumi:"geoipMatch"`
+	GetAllTables                    *string                                        `pulumi:"getAllTables"`
 	GlobalLabel                     *string                                        `pulumi:"globalLabel"`
 	Groups                          []FirewallPolicyGroup                          `pulumi:"groups"`
 	HttpPolicyRedirect              *string                                        `pulumi:"httpPolicyRedirect"`
@@ -319,6 +331,7 @@ type firewallPolicyState struct {
 	InternetServiceSrcNegate        *string                                        `pulumi:"internetServiceSrcNegate"`
 	Ippool                          *string                                        `pulumi:"ippool"`
 	IpsSensor                       *string                                        `pulumi:"ipsSensor"`
+	IpsVoipFilter                   *string                                        `pulumi:"ipsVoipFilter"`
 	Label                           *string                                        `pulumi:"label"`
 	LearningMode                    *string                                        `pulumi:"learningMode"`
 	Logtraffic                      *string                                        `pulumi:"logtraffic"`
@@ -340,11 +353,15 @@ type firewallPolicyState struct {
 	NtlmGuest                       *string                                        `pulumi:"ntlmGuest"`
 	Outbound                        *string                                        `pulumi:"outbound"`
 	PassiveWanHealthMeasurement     *string                                        `pulumi:"passiveWanHealthMeasurement"`
+	PcpInbound                      *string                                        `pulumi:"pcpInbound"`
+	PcpOutbound                     *string                                        `pulumi:"pcpOutbound"`
+	PcpPoolnames                    []FirewallPolicyPcpPoolname                    `pulumi:"pcpPoolnames"`
 	PerIpShaper                     *string                                        `pulumi:"perIpShaper"`
 	PermitAnyHost                   *string                                        `pulumi:"permitAnyHost"`
 	PermitStunHost                  *string                                        `pulumi:"permitStunHost"`
 	PolicyExpiry                    *string                                        `pulumi:"policyExpiry"`
 	PolicyExpiryDate                *string                                        `pulumi:"policyExpiryDate"`
+	PolicyExpiryDateUtc             *string                                        `pulumi:"policyExpiryDateUtc"`
 	Policyid                        *int                                           `pulumi:"policyid"`
 	Poolname6s                      []FirewallPolicyPoolname6                      `pulumi:"poolname6s"`
 	Poolnames                       []FirewallPolicyPoolname                       `pulumi:"poolnames"`
@@ -417,9 +434,13 @@ type firewallPolicyState struct {
 	WebproxyForwardServer           *string                                        `pulumi:"webproxyForwardServer"`
 	WebproxyProfile                 *string                                        `pulumi:"webproxyProfile"`
 	Wsso                            *string                                        `pulumi:"wsso"`
+	ZtnaDeviceOwnership             *string                                        `pulumi:"ztnaDeviceOwnership"`
+	ZtnaEmsTagSecondaries           []FirewallPolicyZtnaEmsTagSecondary            `pulumi:"ztnaEmsTagSecondaries"`
 	ZtnaEmsTags                     []FirewallPolicyZtnaEmsTag                     `pulumi:"ztnaEmsTags"`
 	ZtnaGeoTags                     []FirewallPolicyZtnaGeoTag                     `pulumi:"ztnaGeoTags"`
+	ZtnaPolicyRedirect              *string                                        `pulumi:"ztnaPolicyRedirect"`
 	ZtnaStatus                      *string                                        `pulumi:"ztnaStatus"`
+	ZtnaTagsMatchLogic              *string                                        `pulumi:"ztnaTagsMatchLogic"`
 }
 
 type FirewallPolicyState struct {
@@ -471,6 +492,7 @@ type FirewallPolicyState struct {
 	FssoGroups                      FirewallPolicyFssoGroupArrayInput
 	GeoipAnycast                    pulumi.StringPtrInput
 	GeoipMatch                      pulumi.StringPtrInput
+	GetAllTables                    pulumi.StringPtrInput
 	GlobalLabel                     pulumi.StringPtrInput
 	Groups                          FirewallPolicyGroupArrayInput
 	HttpPolicyRedirect              pulumi.StringPtrInput
@@ -506,6 +528,7 @@ type FirewallPolicyState struct {
 	InternetServiceSrcNegate        pulumi.StringPtrInput
 	Ippool                          pulumi.StringPtrInput
 	IpsSensor                       pulumi.StringPtrInput
+	IpsVoipFilter                   pulumi.StringPtrInput
 	Label                           pulumi.StringPtrInput
 	LearningMode                    pulumi.StringPtrInput
 	Logtraffic                      pulumi.StringPtrInput
@@ -527,11 +550,15 @@ type FirewallPolicyState struct {
 	NtlmGuest                       pulumi.StringPtrInput
 	Outbound                        pulumi.StringPtrInput
 	PassiveWanHealthMeasurement     pulumi.StringPtrInput
+	PcpInbound                      pulumi.StringPtrInput
+	PcpOutbound                     pulumi.StringPtrInput
+	PcpPoolnames                    FirewallPolicyPcpPoolnameArrayInput
 	PerIpShaper                     pulumi.StringPtrInput
 	PermitAnyHost                   pulumi.StringPtrInput
 	PermitStunHost                  pulumi.StringPtrInput
 	PolicyExpiry                    pulumi.StringPtrInput
 	PolicyExpiryDate                pulumi.StringPtrInput
+	PolicyExpiryDateUtc             pulumi.StringPtrInput
 	Policyid                        pulumi.IntPtrInput
 	Poolname6s                      FirewallPolicyPoolname6ArrayInput
 	Poolnames                       FirewallPolicyPoolnameArrayInput
@@ -604,9 +631,13 @@ type FirewallPolicyState struct {
 	WebproxyForwardServer           pulumi.StringPtrInput
 	WebproxyProfile                 pulumi.StringPtrInput
 	Wsso                            pulumi.StringPtrInput
+	ZtnaDeviceOwnership             pulumi.StringPtrInput
+	ZtnaEmsTagSecondaries           FirewallPolicyZtnaEmsTagSecondaryArrayInput
 	ZtnaEmsTags                     FirewallPolicyZtnaEmsTagArrayInput
 	ZtnaGeoTags                     FirewallPolicyZtnaGeoTagArrayInput
+	ZtnaPolicyRedirect              pulumi.StringPtrInput
 	ZtnaStatus                      pulumi.StringPtrInput
+	ZtnaTagsMatchLogic              pulumi.StringPtrInput
 }
 
 func (FirewallPolicyState) ElementType() reflect.Type {
@@ -662,6 +693,7 @@ type firewallPolicyArgs struct {
 	FssoGroups                      []FirewallPolicyFssoGroup                      `pulumi:"fssoGroups"`
 	GeoipAnycast                    *string                                        `pulumi:"geoipAnycast"`
 	GeoipMatch                      *string                                        `pulumi:"geoipMatch"`
+	GetAllTables                    *string                                        `pulumi:"getAllTables"`
 	GlobalLabel                     *string                                        `pulumi:"globalLabel"`
 	Groups                          []FirewallPolicyGroup                          `pulumi:"groups"`
 	HttpPolicyRedirect              *string                                        `pulumi:"httpPolicyRedirect"`
@@ -697,6 +729,7 @@ type firewallPolicyArgs struct {
 	InternetServiceSrcNegate        *string                                        `pulumi:"internetServiceSrcNegate"`
 	Ippool                          *string                                        `pulumi:"ippool"`
 	IpsSensor                       *string                                        `pulumi:"ipsSensor"`
+	IpsVoipFilter                   *string                                        `pulumi:"ipsVoipFilter"`
 	Label                           *string                                        `pulumi:"label"`
 	LearningMode                    *string                                        `pulumi:"learningMode"`
 	Logtraffic                      *string                                        `pulumi:"logtraffic"`
@@ -718,11 +751,15 @@ type firewallPolicyArgs struct {
 	NtlmGuest                       *string                                        `pulumi:"ntlmGuest"`
 	Outbound                        *string                                        `pulumi:"outbound"`
 	PassiveWanHealthMeasurement     *string                                        `pulumi:"passiveWanHealthMeasurement"`
+	PcpInbound                      *string                                        `pulumi:"pcpInbound"`
+	PcpOutbound                     *string                                        `pulumi:"pcpOutbound"`
+	PcpPoolnames                    []FirewallPolicyPcpPoolname                    `pulumi:"pcpPoolnames"`
 	PerIpShaper                     *string                                        `pulumi:"perIpShaper"`
 	PermitAnyHost                   *string                                        `pulumi:"permitAnyHost"`
 	PermitStunHost                  *string                                        `pulumi:"permitStunHost"`
 	PolicyExpiry                    *string                                        `pulumi:"policyExpiry"`
 	PolicyExpiryDate                *string                                        `pulumi:"policyExpiryDate"`
+	PolicyExpiryDateUtc             *string                                        `pulumi:"policyExpiryDateUtc"`
 	Policyid                        *int                                           `pulumi:"policyid"`
 	Poolname6s                      []FirewallPolicyPoolname6                      `pulumi:"poolname6s"`
 	Poolnames                       []FirewallPolicyPoolname                       `pulumi:"poolnames"`
@@ -795,9 +832,13 @@ type firewallPolicyArgs struct {
 	WebproxyForwardServer           *string                                        `pulumi:"webproxyForwardServer"`
 	WebproxyProfile                 *string                                        `pulumi:"webproxyProfile"`
 	Wsso                            *string                                        `pulumi:"wsso"`
+	ZtnaDeviceOwnership             *string                                        `pulumi:"ztnaDeviceOwnership"`
+	ZtnaEmsTagSecondaries           []FirewallPolicyZtnaEmsTagSecondary            `pulumi:"ztnaEmsTagSecondaries"`
 	ZtnaEmsTags                     []FirewallPolicyZtnaEmsTag                     `pulumi:"ztnaEmsTags"`
 	ZtnaGeoTags                     []FirewallPolicyZtnaGeoTag                     `pulumi:"ztnaGeoTags"`
+	ZtnaPolicyRedirect              *string                                        `pulumi:"ztnaPolicyRedirect"`
 	ZtnaStatus                      *string                                        `pulumi:"ztnaStatus"`
+	ZtnaTagsMatchLogic              *string                                        `pulumi:"ztnaTagsMatchLogic"`
 }
 
 // The set of arguments for constructing a FirewallPolicy resource.
@@ -850,6 +891,7 @@ type FirewallPolicyArgs struct {
 	FssoGroups                      FirewallPolicyFssoGroupArrayInput
 	GeoipAnycast                    pulumi.StringPtrInput
 	GeoipMatch                      pulumi.StringPtrInput
+	GetAllTables                    pulumi.StringPtrInput
 	GlobalLabel                     pulumi.StringPtrInput
 	Groups                          FirewallPolicyGroupArrayInput
 	HttpPolicyRedirect              pulumi.StringPtrInput
@@ -885,6 +927,7 @@ type FirewallPolicyArgs struct {
 	InternetServiceSrcNegate        pulumi.StringPtrInput
 	Ippool                          pulumi.StringPtrInput
 	IpsSensor                       pulumi.StringPtrInput
+	IpsVoipFilter                   pulumi.StringPtrInput
 	Label                           pulumi.StringPtrInput
 	LearningMode                    pulumi.StringPtrInput
 	Logtraffic                      pulumi.StringPtrInput
@@ -906,11 +949,15 @@ type FirewallPolicyArgs struct {
 	NtlmGuest                       pulumi.StringPtrInput
 	Outbound                        pulumi.StringPtrInput
 	PassiveWanHealthMeasurement     pulumi.StringPtrInput
+	PcpInbound                      pulumi.StringPtrInput
+	PcpOutbound                     pulumi.StringPtrInput
+	PcpPoolnames                    FirewallPolicyPcpPoolnameArrayInput
 	PerIpShaper                     pulumi.StringPtrInput
 	PermitAnyHost                   pulumi.StringPtrInput
 	PermitStunHost                  pulumi.StringPtrInput
 	PolicyExpiry                    pulumi.StringPtrInput
 	PolicyExpiryDate                pulumi.StringPtrInput
+	PolicyExpiryDateUtc             pulumi.StringPtrInput
 	Policyid                        pulumi.IntPtrInput
 	Poolname6s                      FirewallPolicyPoolname6ArrayInput
 	Poolnames                       FirewallPolicyPoolnameArrayInput
@@ -983,9 +1030,13 @@ type FirewallPolicyArgs struct {
 	WebproxyForwardServer           pulumi.StringPtrInput
 	WebproxyProfile                 pulumi.StringPtrInput
 	Wsso                            pulumi.StringPtrInput
+	ZtnaDeviceOwnership             pulumi.StringPtrInput
+	ZtnaEmsTagSecondaries           FirewallPolicyZtnaEmsTagSecondaryArrayInput
 	ZtnaEmsTags                     FirewallPolicyZtnaEmsTagArrayInput
 	ZtnaGeoTags                     FirewallPolicyZtnaGeoTagArrayInput
+	ZtnaPolicyRedirect              pulumi.StringPtrInput
 	ZtnaStatus                      pulumi.StringPtrInput
+	ZtnaTagsMatchLogic              pulumi.StringPtrInput
 }
 
 func (FirewallPolicyArgs) ElementType() reflect.Type {
@@ -1267,6 +1318,10 @@ func (o FirewallPolicyOutput) GeoipMatch() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallPolicy) pulumi.StringOutput { return v.GeoipMatch }).(pulumi.StringOutput)
 }
 
+func (o FirewallPolicyOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallPolicy) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 func (o FirewallPolicyOutput) GlobalLabel() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FirewallPolicy) pulumi.StringPtrOutput { return v.GlobalLabel }).(pulumi.StringPtrOutput)
 }
@@ -1433,6 +1488,10 @@ func (o FirewallPolicyOutput) IpsSensor() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FirewallPolicy) pulumi.StringPtrOutput { return v.IpsSensor }).(pulumi.StringPtrOutput)
 }
 
+func (o FirewallPolicyOutput) IpsVoipFilter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallPolicy) pulumi.StringPtrOutput { return v.IpsVoipFilter }).(pulumi.StringPtrOutput)
+}
+
 func (o FirewallPolicyOutput) Label() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FirewallPolicy) pulumi.StringPtrOutput { return v.Label }).(pulumi.StringPtrOutput)
 }
@@ -1521,6 +1580,18 @@ func (o FirewallPolicyOutput) PassiveWanHealthMeasurement() pulumi.StringOutput 
 	return o.ApplyT(func(v *FirewallPolicy) pulumi.StringOutput { return v.PassiveWanHealthMeasurement }).(pulumi.StringOutput)
 }
 
+func (o FirewallPolicyOutput) PcpInbound() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy) pulumi.StringOutput { return v.PcpInbound }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicyOutput) PcpOutbound() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy) pulumi.StringOutput { return v.PcpOutbound }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicyOutput) PcpPoolnames() FirewallPolicyPcpPoolnameArrayOutput {
+	return o.ApplyT(func(v *FirewallPolicy) FirewallPolicyPcpPoolnameArrayOutput { return v.PcpPoolnames }).(FirewallPolicyPcpPoolnameArrayOutput)
+}
+
 func (o FirewallPolicyOutput) PerIpShaper() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FirewallPolicy) pulumi.StringPtrOutput { return v.PerIpShaper }).(pulumi.StringPtrOutput)
 }
@@ -1539,6 +1610,10 @@ func (o FirewallPolicyOutput) PolicyExpiry() pulumi.StringOutput {
 
 func (o FirewallPolicyOutput) PolicyExpiryDate() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallPolicy) pulumi.StringOutput { return v.PolicyExpiryDate }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicyOutput) PolicyExpiryDateUtc() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallPolicy) pulumi.StringPtrOutput { return v.PolicyExpiryDateUtc }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallPolicyOutput) Policyid() pulumi.IntOutput {
@@ -1829,6 +1904,14 @@ func (o FirewallPolicyOutput) Wsso() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FirewallPolicy) pulumi.StringPtrOutput { return v.Wsso }).(pulumi.StringPtrOutput)
 }
 
+func (o FirewallPolicyOutput) ZtnaDeviceOwnership() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy) pulumi.StringOutput { return v.ZtnaDeviceOwnership }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicyOutput) ZtnaEmsTagSecondaries() FirewallPolicyZtnaEmsTagSecondaryArrayOutput {
+	return o.ApplyT(func(v *FirewallPolicy) FirewallPolicyZtnaEmsTagSecondaryArrayOutput { return v.ZtnaEmsTagSecondaries }).(FirewallPolicyZtnaEmsTagSecondaryArrayOutput)
+}
+
 func (o FirewallPolicyOutput) ZtnaEmsTags() FirewallPolicyZtnaEmsTagArrayOutput {
 	return o.ApplyT(func(v *FirewallPolicy) FirewallPolicyZtnaEmsTagArrayOutput { return v.ZtnaEmsTags }).(FirewallPolicyZtnaEmsTagArrayOutput)
 }
@@ -1837,8 +1920,16 @@ func (o FirewallPolicyOutput) ZtnaGeoTags() FirewallPolicyZtnaGeoTagArrayOutput 
 	return o.ApplyT(func(v *FirewallPolicy) FirewallPolicyZtnaGeoTagArrayOutput { return v.ZtnaGeoTags }).(FirewallPolicyZtnaGeoTagArrayOutput)
 }
 
+func (o FirewallPolicyOutput) ZtnaPolicyRedirect() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy) pulumi.StringOutput { return v.ZtnaPolicyRedirect }).(pulumi.StringOutput)
+}
+
 func (o FirewallPolicyOutput) ZtnaStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallPolicy) pulumi.StringOutput { return v.ZtnaStatus }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicyOutput) ZtnaTagsMatchLogic() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallPolicy) pulumi.StringOutput { return v.ZtnaTagsMatchLogic }).(pulumi.StringOutput)
 }
 
 type FirewallPolicyArrayOutput struct{ *pulumi.OutputState }

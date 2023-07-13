@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export function getSystemGlobal(args?: GetSystemGlobalArgs, opts?: pulumi.InvokeOptions): Promise<GetSystemGlobalResult> {
@@ -26,6 +28,7 @@ export interface GetSystemGlobalArgs {
 export interface GetSystemGlobalResult {
     readonly adminConcurrent: string;
     readonly adminConsoleTimeout: number;
+    readonly adminForticloudSsoDefaultProfile: string;
     readonly adminForticloudSsoLogin: string;
     readonly adminHost: string;
     readonly adminHstsMaxAge: number;
@@ -100,6 +103,8 @@ export interface GetSystemGlobalResult {
     readonly fdsStatisticsPeriod: number;
     readonly fecPort: number;
     readonly fgdAlertSubscription: string;
+    readonly forticonverterConfigUpload: string;
+    readonly forticonverterIntegration: string;
     readonly fortiextender: string;
     readonly fortiextenderDataPort: number;
     readonly fortiextenderDiscoveryLockdown: string;
@@ -109,7 +114,9 @@ export interface GetSystemGlobalResult {
     readonly fortiservicePort: number;
     readonly fortitokenCloud: string;
     readonly guiAllowDefaultHostname: string;
+    readonly guiAllowIncompatibleFabricFgt: string;
     readonly guiAppDetectionSdwan: string;
+    readonly guiCdnDomainOverride: string;
     readonly guiCdnUsage: string;
     readonly guiCertificates: string;
     readonly guiCustomLanguage: string;
@@ -141,8 +148,11 @@ export interface GetSystemGlobalResult {
     readonly id: string;
     readonly igmpStateLimit: number;
     readonly ikeEmbryonicLimit: number;
+    readonly interfaceSubnetUsage: string;
     readonly internetServiceDatabase: string;
+    readonly internetServiceDownloadLists: outputs.GetSystemGlobalInternetServiceDownloadList[];
     readonly interval: number;
+    readonly ipFragmentMemThresholds: number;
     readonly ipSrcPortRange: string;
     readonly ipsAffinity: string;
     readonly ipsecAsicOffload: string;
@@ -160,6 +170,7 @@ export interface GetSystemGlobalResult {
     readonly ldapconntimeout: number;
     readonly lldpReception: string;
     readonly lldpTransmission: string;
+    readonly logSingleCpuHigh: string;
     readonly logSslConnection: string;
     readonly logUuidAddress: string;
     readonly logUuidPolicy: string;
@@ -193,8 +204,10 @@ export interface GetSystemGlobalResult {
     readonly proxyCertUseMgmtVdom: string;
     readonly proxyCipherHardwareAcceleration: string;
     readonly proxyHardwareAcceleration: string;
+    readonly proxyKeepAliveMode: string;
     readonly proxyKxpHardwareAcceleration: string;
     readonly proxyReAuthenticationMode: string;
+    readonly proxyReAuthenticationTime: number;
     readonly proxyResourceMode: string;
     readonly proxyWorkerCount: number;
     readonly radiusPort: number;
@@ -209,6 +222,7 @@ export interface GetSystemGlobalResult {
     readonly securityRatingResultSubmission: string;
     readonly securityRatingRunOnSchedule: string;
     readonly sendPmtuIcmp: string;
+    readonly sflowdMaxChildrenNum: number;
     readonly snatRouteChange: string;
     readonly specialFile23Support: string;
     readonly speedtestServer: string;
@@ -221,6 +235,7 @@ export interface GetSystemGlobalResult {
     readonly sshCbcCipher: string;
     readonly sshEncAlgo: string;
     readonly sshHmacMd5: string;
+    readonly sshHostkeyAlgo: string;
     readonly sshKexAlgo: string;
     readonly sshKexSha1: string;
     readonly sshMacAlgo: string;
@@ -237,6 +252,7 @@ export interface GetSystemGlobalResult {
     readonly switchController: string;
     readonly switchControllerReservedNetwork: string;
     readonly sysPerfLogInterval: number;
+    readonly syslogAffinity: string;
     readonly tcpHalfcloseTimer: number;
     readonly tcpHalfopenTimer: number;
     readonly tcpOption: string;
@@ -266,10 +282,14 @@ export interface GetSystemGlobalResult {
     readonly virtualServerCount: number;
     readonly virtualServerHardwareAcceleration: string;
     readonly virtualSwitchVlan: string;
+    readonly vpnEmsSnCheck: string;
     readonly wadAffinity: string;
     readonly wadCsvcCsCount: number;
     readonly wadCsvcDbCount: number;
     readonly wadMemoryChangeGranularity: number;
+    readonly wadRestartEndTime: string;
+    readonly wadRestartMode: string;
+    readonly wadRestartStartTime: string;
     readonly wadSourceAffinity: string;
     readonly wadWorkerCount: number;
     readonly wifiCaCertificate: string;

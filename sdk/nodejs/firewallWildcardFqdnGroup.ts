@@ -37,6 +37,7 @@ export class FirewallWildcardFqdnGroup extends pulumi.CustomResource {
     public readonly color!: pulumi.Output<number>;
     public readonly comment!: pulumi.Output<string | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly members!: pulumi.Output<outputs.FirewallWildcardFqdnGroupMember[]>;
     public readonly name!: pulumi.Output<string>;
     public readonly uuid!: pulumi.Output<string>;
@@ -59,6 +60,7 @@ export class FirewallWildcardFqdnGroup extends pulumi.CustomResource {
             resourceInputs["color"] = state ? state.color : undefined;
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["members"] = state ? state.members : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["uuid"] = state ? state.uuid : undefined;
@@ -72,6 +74,7 @@ export class FirewallWildcardFqdnGroup extends pulumi.CustomResource {
             resourceInputs["color"] = args ? args.color : undefined;
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["members"] = args ? args.members : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["uuid"] = args ? args.uuid : undefined;
@@ -90,6 +93,7 @@ export interface FirewallWildcardFqdnGroupState {
     color?: pulumi.Input<number>;
     comment?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     members?: pulumi.Input<pulumi.Input<inputs.FirewallWildcardFqdnGroupMember>[]>;
     name?: pulumi.Input<string>;
     uuid?: pulumi.Input<string>;
@@ -104,6 +108,7 @@ export interface FirewallWildcardFqdnGroupArgs {
     color?: pulumi.Input<number>;
     comment?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     members: pulumi.Input<pulumi.Input<inputs.FirewallWildcardFqdnGroupMember>[]>;
     name?: pulumi.Input<string>;
     uuid?: pulumi.Input<string>;

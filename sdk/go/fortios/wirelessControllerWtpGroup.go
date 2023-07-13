@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -14,6 +15,7 @@ type WirelessControllerWtpGroup struct {
 	pulumi.CustomResourceState
 
 	DynamicSortSubtable pulumi.StringPtrOutput                   `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                   `pulumi:"getAllTables"`
 	Name                pulumi.StringOutput                      `pulumi:"name"`
 	PlatformType        pulumi.StringOutput                      `pulumi:"platformType"`
 	Vdomparam           pulumi.StringPtrOutput                   `pulumi:"vdomparam"`
@@ -27,7 +29,7 @@ func NewWirelessControllerWtpGroup(ctx *pulumi.Context,
 		args = &WirelessControllerWtpGroupArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WirelessControllerWtpGroup
 	err := ctx.RegisterResource("fortios:index/wirelessControllerWtpGroup:WirelessControllerWtpGroup", name, args, &resource, opts...)
 	if err != nil {
@@ -51,6 +53,7 @@ func GetWirelessControllerWtpGroup(ctx *pulumi.Context,
 // Input properties used for looking up and filtering WirelessControllerWtpGroup resources.
 type wirelessControllerWtpGroupState struct {
 	DynamicSortSubtable *string                         `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                         `pulumi:"getAllTables"`
 	Name                *string                         `pulumi:"name"`
 	PlatformType        *string                         `pulumi:"platformType"`
 	Vdomparam           *string                         `pulumi:"vdomparam"`
@@ -59,6 +62,7 @@ type wirelessControllerWtpGroupState struct {
 
 type WirelessControllerWtpGroupState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	PlatformType        pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
@@ -71,6 +75,7 @@ func (WirelessControllerWtpGroupState) ElementType() reflect.Type {
 
 type wirelessControllerWtpGroupArgs struct {
 	DynamicSortSubtable *string                         `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                         `pulumi:"getAllTables"`
 	Name                *string                         `pulumi:"name"`
 	PlatformType        *string                         `pulumi:"platformType"`
 	Vdomparam           *string                         `pulumi:"vdomparam"`
@@ -80,6 +85,7 @@ type wirelessControllerWtpGroupArgs struct {
 // The set of arguments for constructing a WirelessControllerWtpGroup resource.
 type WirelessControllerWtpGroupArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	PlatformType        pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
@@ -175,6 +181,10 @@ func (o WirelessControllerWtpGroupOutput) ToWirelessControllerWtpGroupOutputWith
 
 func (o WirelessControllerWtpGroupOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WirelessControllerWtpGroup) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerWtpGroupOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpGroup) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o WirelessControllerWtpGroupOutput) Name() pulumi.StringOutput {

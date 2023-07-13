@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func GetSystemAutomationDestinationList(ctx *pulumi.Context, args *GetSystemAutomationDestinationListArgs, opts ...pulumi.InvokeOption) (*GetSystemAutomationDestinationListResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetSystemAutomationDestinationListResult
 	err := ctx.Invoke("fortios:index/getSystemAutomationDestinationList:GetSystemAutomationDestinationList", args, &rv, opts...)
 	if err != nil {

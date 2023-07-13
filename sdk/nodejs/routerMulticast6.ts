@@ -35,6 +35,7 @@ export class RouterMulticast6 extends pulumi.CustomResource {
     }
 
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly interfaces!: pulumi.Output<outputs.RouterMulticast6Interface[] | undefined>;
     public readonly multicastPmtu!: pulumi.Output<string>;
     public readonly multicastRouting!: pulumi.Output<string>;
@@ -55,6 +56,7 @@ export class RouterMulticast6 extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as RouterMulticast6State | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["interfaces"] = state ? state.interfaces : undefined;
             resourceInputs["multicastPmtu"] = state ? state.multicastPmtu : undefined;
             resourceInputs["multicastRouting"] = state ? state.multicastRouting : undefined;
@@ -63,6 +65,7 @@ export class RouterMulticast6 extends pulumi.CustomResource {
         } else {
             const args = argsOrState as RouterMulticast6Args | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["interfaces"] = args ? args.interfaces : undefined;
             resourceInputs["multicastPmtu"] = args ? args.multicastPmtu : undefined;
             resourceInputs["multicastRouting"] = args ? args.multicastRouting : undefined;
@@ -79,6 +82,7 @@ export class RouterMulticast6 extends pulumi.CustomResource {
  */
 export interface RouterMulticast6State {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     interfaces?: pulumi.Input<pulumi.Input<inputs.RouterMulticast6Interface>[]>;
     multicastPmtu?: pulumi.Input<string>;
     multicastRouting?: pulumi.Input<string>;
@@ -91,6 +95,7 @@ export interface RouterMulticast6State {
  */
 export interface RouterMulticast6Args {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     interfaces?: pulumi.Input<pulumi.Input<inputs.RouterMulticast6Interface>[]>;
     multicastPmtu?: pulumi.Input<string>;
     multicastRouting?: pulumi.Input<string>;

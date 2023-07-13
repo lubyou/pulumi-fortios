@@ -8,69 +8,73 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type SwitchControllerManagedSwitch struct {
 	pulumi.CustomResourceState
 
-	AccessProfile             pulumi.StringOutput                                   `pulumi:"accessProfile"`
-	CustomCommands            SwitchControllerManagedSwitchCustomCommandArrayOutput `pulumi:"customCommands"`
-	DelayedRestartTrigger     pulumi.IntOutput                                      `pulumi:"delayedRestartTrigger"`
-	Description               pulumi.StringOutput                                   `pulumi:"description"`
-	DhcpServerAccessList      pulumi.StringOutput                                   `pulumi:"dhcpServerAccessList"`
-	DirectlyConnected         pulumi.IntOutput                                      `pulumi:"directlyConnected"`
-	DynamicCapability         pulumi.IntOutput                                      `pulumi:"dynamicCapability"`
-	DynamicSortSubtable       pulumi.StringPtrOutput                                `pulumi:"dynamicSortSubtable"`
-	DynamicallyDiscovered     pulumi.IntOutput                                      `pulumi:"dynamicallyDiscovered"`
-	FirmwareProvision         pulumi.StringOutput                                   `pulumi:"firmwareProvision"`
-	FirmwareProvisionLatest   pulumi.StringOutput                                   `pulumi:"firmwareProvisionLatest"`
-	FirmwareProvisionVersion  pulumi.StringOutput                                   `pulumi:"firmwareProvisionVersion"`
-	FlowIdentity              pulumi.StringOutput                                   `pulumi:"flowIdentity"`
-	FswWan1Admin              pulumi.StringOutput                                   `pulumi:"fswWan1Admin"`
-	FswWan1Peer               pulumi.StringOutput                                   `pulumi:"fswWan1Peer"`
-	FswWan2Admin              pulumi.StringOutput                                   `pulumi:"fswWan2Admin"`
-	FswWan2Peer               pulumi.StringOutput                                   `pulumi:"fswWan2Peer"`
-	IgmpSnooping              SwitchControllerManagedSwitchIgmpSnoopingOutput       `pulumi:"igmpSnooping"`
-	IpSourceGuards            SwitchControllerManagedSwitchIpSourceGuardArrayOutput `pulumi:"ipSourceGuards"`
-	L3Discovered              pulumi.IntOutput                                      `pulumi:"l3Discovered"`
-	MaxAllowedTrunkMembers    pulumi.IntOutput                                      `pulumi:"maxAllowedTrunkMembers"`
-	MclagIgmpSnoopingAware    pulumi.StringOutput                                   `pulumi:"mclagIgmpSnoopingAware"`
-	Mirrors                   SwitchControllerManagedSwitchMirrorArrayOutput        `pulumi:"mirrors"`
-	N8021xSettings            SwitchControllerManagedSwitchN8021xSettingsOutput     `pulumi:"n8021xSettings"`
-	Name                      pulumi.StringOutput                                   `pulumi:"name"`
-	OverrideSnmpCommunity     pulumi.StringOutput                                   `pulumi:"overrideSnmpCommunity"`
-	OverrideSnmpSysinfo       pulumi.StringOutput                                   `pulumi:"overrideSnmpSysinfo"`
-	OverrideSnmpTrapThreshold pulumi.StringOutput                                   `pulumi:"overrideSnmpTrapThreshold"`
-	OverrideSnmpUser          pulumi.StringOutput                                   `pulumi:"overrideSnmpUser"`
-	OwnerVdom                 pulumi.StringOutput                                   `pulumi:"ownerVdom"`
-	PoeDetectionType          pulumi.IntOutput                                      `pulumi:"poeDetectionType"`
-	PoeLldpDetection          pulumi.StringOutput                                   `pulumi:"poeLldpDetection"`
-	PoePreStandardDetection   pulumi.StringOutput                                   `pulumi:"poePreStandardDetection"`
-	Ports                     SwitchControllerManagedSwitchPortArrayOutput          `pulumi:"ports"`
-	PreProvisioned            pulumi.IntOutput                                      `pulumi:"preProvisioned"`
-	QosDropPolicy             pulumi.StringOutput                                   `pulumi:"qosDropPolicy"`
-	QosRedProbability         pulumi.IntOutput                                      `pulumi:"qosRedProbability"`
-	RemoteLogs                SwitchControllerManagedSwitchRemoteLogArrayOutput     `pulumi:"remoteLogs"`
-	SnmpCommunities           SwitchControllerManagedSwitchSnmpCommunityArrayOutput `pulumi:"snmpCommunities"`
-	SnmpSysinfo               SwitchControllerManagedSwitchSnmpSysinfoOutput        `pulumi:"snmpSysinfo"`
-	SnmpTrapThreshold         SwitchControllerManagedSwitchSnmpTrapThresholdOutput  `pulumi:"snmpTrapThreshold"`
-	SnmpUsers                 SwitchControllerManagedSwitchSnmpUserArrayOutput      `pulumi:"snmpUsers"`
-	StagedImageVersion        pulumi.StringOutput                                   `pulumi:"stagedImageVersion"`
-	StaticMacs                SwitchControllerManagedSwitchStaticMacArrayOutput     `pulumi:"staticMacs"`
-	StormControl              SwitchControllerManagedSwitchStormControlOutput       `pulumi:"stormControl"`
-	StpInstances              SwitchControllerManagedSwitchStpInstanceArrayOutput   `pulumi:"stpInstances"`
-	StpSettings               SwitchControllerManagedSwitchStpSettingsOutput        `pulumi:"stpSettings"`
-	SwitchDeviceTag           pulumi.StringOutput                                   `pulumi:"switchDeviceTag"`
-	SwitchDhcpOpt43Key        pulumi.StringOutput                                   `pulumi:"switchDhcpOpt43Key"`
-	SwitchId                  pulumi.StringOutput                                   `pulumi:"switchId"`
-	SwitchLog                 SwitchControllerManagedSwitchSwitchLogOutput          `pulumi:"switchLog"`
-	SwitchProfile             pulumi.StringOutput                                   `pulumi:"switchProfile"`
-	SwitchStpSettings         SwitchControllerManagedSwitchSwitchStpSettingsOutput  `pulumi:"switchStpSettings"`
-	TdrSupported              pulumi.StringOutput                                   `pulumi:"tdrSupported"`
-	Type                      pulumi.StringOutput                                   `pulumi:"type"`
-	Vdomparam                 pulumi.StringPtrOutput                                `pulumi:"vdomparam"`
-	Version                   pulumi.IntOutput                                      `pulumi:"version"`
+	AccessProfile             pulumi.StringOutput                                              `pulumi:"accessProfile"`
+	CustomCommands            SwitchControllerManagedSwitchCustomCommandArrayOutput            `pulumi:"customCommands"`
+	DelayedRestartTrigger     pulumi.IntOutput                                                 `pulumi:"delayedRestartTrigger"`
+	Description               pulumi.StringOutput                                              `pulumi:"description"`
+	DhcpServerAccessList      pulumi.StringOutput                                              `pulumi:"dhcpServerAccessList"`
+	DhcpSnoopingStaticClients SwitchControllerManagedSwitchDhcpSnoopingStaticClientArrayOutput `pulumi:"dhcpSnoopingStaticClients"`
+	DirectlyConnected         pulumi.IntOutput                                                 `pulumi:"directlyConnected"`
+	DynamicCapability         pulumi.IntOutput                                                 `pulumi:"dynamicCapability"`
+	DynamicSortSubtable       pulumi.StringPtrOutput                                           `pulumi:"dynamicSortSubtable"`
+	DynamicallyDiscovered     pulumi.IntOutput                                                 `pulumi:"dynamicallyDiscovered"`
+	FirmwareProvision         pulumi.StringOutput                                              `pulumi:"firmwareProvision"`
+	FirmwareProvisionLatest   pulumi.StringOutput                                              `pulumi:"firmwareProvisionLatest"`
+	FirmwareProvisionVersion  pulumi.StringOutput                                              `pulumi:"firmwareProvisionVersion"`
+	FlowIdentity              pulumi.StringOutput                                              `pulumi:"flowIdentity"`
+	FswWan1Admin              pulumi.StringOutput                                              `pulumi:"fswWan1Admin"`
+	FswWan1Peer               pulumi.StringOutput                                              `pulumi:"fswWan1Peer"`
+	FswWan2Admin              pulumi.StringOutput                                              `pulumi:"fswWan2Admin"`
+	FswWan2Peer               pulumi.StringOutput                                              `pulumi:"fswWan2Peer"`
+	GetAllTables              pulumi.StringPtrOutput                                           `pulumi:"getAllTables"`
+	IgmpSnooping              SwitchControllerManagedSwitchIgmpSnoopingOutput                  `pulumi:"igmpSnooping"`
+	IpSourceGuards            SwitchControllerManagedSwitchIpSourceGuardArrayOutput            `pulumi:"ipSourceGuards"`
+	L3Discovered              pulumi.IntOutput                                                 `pulumi:"l3Discovered"`
+	MaxAllowedTrunkMembers    pulumi.IntOutput                                                 `pulumi:"maxAllowedTrunkMembers"`
+	MclagIgmpSnoopingAware    pulumi.StringOutput                                              `pulumi:"mclagIgmpSnoopingAware"`
+	Mirrors                   SwitchControllerManagedSwitchMirrorArrayOutput                   `pulumi:"mirrors"`
+	N8021xSettings            SwitchControllerManagedSwitchN8021xSettingsOutput                `pulumi:"n8021xSettings"`
+	Name                      pulumi.StringOutput                                              `pulumi:"name"`
+	OverrideSnmpCommunity     pulumi.StringOutput                                              `pulumi:"overrideSnmpCommunity"`
+	OverrideSnmpSysinfo       pulumi.StringOutput                                              `pulumi:"overrideSnmpSysinfo"`
+	OverrideSnmpTrapThreshold pulumi.StringOutput                                              `pulumi:"overrideSnmpTrapThreshold"`
+	OverrideSnmpUser          pulumi.StringOutput                                              `pulumi:"overrideSnmpUser"`
+	OwnerVdom                 pulumi.StringOutput                                              `pulumi:"ownerVdom"`
+	PoeDetectionType          pulumi.IntOutput                                                 `pulumi:"poeDetectionType"`
+	PoeLldpDetection          pulumi.StringOutput                                              `pulumi:"poeLldpDetection"`
+	PoePreStandardDetection   pulumi.StringOutput                                              `pulumi:"poePreStandardDetection"`
+	Ports                     SwitchControllerManagedSwitchPortArrayOutput                     `pulumi:"ports"`
+	PreProvisioned            pulumi.IntOutput                                                 `pulumi:"preProvisioned"`
+	QosDropPolicy             pulumi.StringOutput                                              `pulumi:"qosDropPolicy"`
+	QosRedProbability         pulumi.IntOutput                                                 `pulumi:"qosRedProbability"`
+	RemoteLogs                SwitchControllerManagedSwitchRemoteLogArrayOutput                `pulumi:"remoteLogs"`
+	Sn                        pulumi.StringOutput                                              `pulumi:"sn"`
+	SnmpCommunities           SwitchControllerManagedSwitchSnmpCommunityArrayOutput            `pulumi:"snmpCommunities"`
+	SnmpSysinfo               SwitchControllerManagedSwitchSnmpSysinfoOutput                   `pulumi:"snmpSysinfo"`
+	SnmpTrapThreshold         SwitchControllerManagedSwitchSnmpTrapThresholdOutput             `pulumi:"snmpTrapThreshold"`
+	SnmpUsers                 SwitchControllerManagedSwitchSnmpUserArrayOutput                 `pulumi:"snmpUsers"`
+	StagedImageVersion        pulumi.StringOutput                                              `pulumi:"stagedImageVersion"`
+	StaticMacs                SwitchControllerManagedSwitchStaticMacArrayOutput                `pulumi:"staticMacs"`
+	StormControl              SwitchControllerManagedSwitchStormControlOutput                  `pulumi:"stormControl"`
+	StpInstances              SwitchControllerManagedSwitchStpInstanceArrayOutput              `pulumi:"stpInstances"`
+	StpSettings               SwitchControllerManagedSwitchStpSettingsOutput                   `pulumi:"stpSettings"`
+	SwitchDeviceTag           pulumi.StringOutput                                              `pulumi:"switchDeviceTag"`
+	SwitchDhcpOpt43Key        pulumi.StringOutput                                              `pulumi:"switchDhcpOpt43Key"`
+	SwitchId                  pulumi.StringOutput                                              `pulumi:"switchId"`
+	SwitchLog                 SwitchControllerManagedSwitchSwitchLogOutput                     `pulumi:"switchLog"`
+	SwitchProfile             pulumi.StringOutput                                              `pulumi:"switchProfile"`
+	SwitchStpSettings         SwitchControllerManagedSwitchSwitchStpSettingsOutput             `pulumi:"switchStpSettings"`
+	TdrSupported              pulumi.StringOutput                                              `pulumi:"tdrSupported"`
+	Type                      pulumi.StringOutput                                              `pulumi:"type"`
+	Vdomparam                 pulumi.StringPtrOutput                                           `pulumi:"vdomparam"`
+	Version                   pulumi.IntOutput                                                 `pulumi:"version"`
 }
 
 // NewSwitchControllerManagedSwitch registers a new resource with the given unique name, arguments, and options.
@@ -86,7 +90,7 @@ func NewSwitchControllerManagedSwitch(ctx *pulumi.Context,
 	if args.SwitchId == nil {
 		return nil, errors.New("invalid value for required argument 'SwitchId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SwitchControllerManagedSwitch
 	err := ctx.RegisterResource("fortios:index/switchControllerManagedSwitch:SwitchControllerManagedSwitch", name, args, &resource, opts...)
 	if err != nil {
@@ -109,63 +113,66 @@ func GetSwitchControllerManagedSwitch(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerManagedSwitch resources.
 type switchControllerManagedSwitchState struct {
-	AccessProfile             *string                                         `pulumi:"accessProfile"`
-	CustomCommands            []SwitchControllerManagedSwitchCustomCommand    `pulumi:"customCommands"`
-	DelayedRestartTrigger     *int                                            `pulumi:"delayedRestartTrigger"`
-	Description               *string                                         `pulumi:"description"`
-	DhcpServerAccessList      *string                                         `pulumi:"dhcpServerAccessList"`
-	DirectlyConnected         *int                                            `pulumi:"directlyConnected"`
-	DynamicCapability         *int                                            `pulumi:"dynamicCapability"`
-	DynamicSortSubtable       *string                                         `pulumi:"dynamicSortSubtable"`
-	DynamicallyDiscovered     *int                                            `pulumi:"dynamicallyDiscovered"`
-	FirmwareProvision         *string                                         `pulumi:"firmwareProvision"`
-	FirmwareProvisionLatest   *string                                         `pulumi:"firmwareProvisionLatest"`
-	FirmwareProvisionVersion  *string                                         `pulumi:"firmwareProvisionVersion"`
-	FlowIdentity              *string                                         `pulumi:"flowIdentity"`
-	FswWan1Admin              *string                                         `pulumi:"fswWan1Admin"`
-	FswWan1Peer               *string                                         `pulumi:"fswWan1Peer"`
-	FswWan2Admin              *string                                         `pulumi:"fswWan2Admin"`
-	FswWan2Peer               *string                                         `pulumi:"fswWan2Peer"`
-	IgmpSnooping              *SwitchControllerManagedSwitchIgmpSnooping      `pulumi:"igmpSnooping"`
-	IpSourceGuards            []SwitchControllerManagedSwitchIpSourceGuard    `pulumi:"ipSourceGuards"`
-	L3Discovered              *int                                            `pulumi:"l3Discovered"`
-	MaxAllowedTrunkMembers    *int                                            `pulumi:"maxAllowedTrunkMembers"`
-	MclagIgmpSnoopingAware    *string                                         `pulumi:"mclagIgmpSnoopingAware"`
-	Mirrors                   []SwitchControllerManagedSwitchMirror           `pulumi:"mirrors"`
-	N8021xSettings            *SwitchControllerManagedSwitchN8021xSettings    `pulumi:"n8021xSettings"`
-	Name                      *string                                         `pulumi:"name"`
-	OverrideSnmpCommunity     *string                                         `pulumi:"overrideSnmpCommunity"`
-	OverrideSnmpSysinfo       *string                                         `pulumi:"overrideSnmpSysinfo"`
-	OverrideSnmpTrapThreshold *string                                         `pulumi:"overrideSnmpTrapThreshold"`
-	OverrideSnmpUser          *string                                         `pulumi:"overrideSnmpUser"`
-	OwnerVdom                 *string                                         `pulumi:"ownerVdom"`
-	PoeDetectionType          *int                                            `pulumi:"poeDetectionType"`
-	PoeLldpDetection          *string                                         `pulumi:"poeLldpDetection"`
-	PoePreStandardDetection   *string                                         `pulumi:"poePreStandardDetection"`
-	Ports                     []SwitchControllerManagedSwitchPort             `pulumi:"ports"`
-	PreProvisioned            *int                                            `pulumi:"preProvisioned"`
-	QosDropPolicy             *string                                         `pulumi:"qosDropPolicy"`
-	QosRedProbability         *int                                            `pulumi:"qosRedProbability"`
-	RemoteLogs                []SwitchControllerManagedSwitchRemoteLog        `pulumi:"remoteLogs"`
-	SnmpCommunities           []SwitchControllerManagedSwitchSnmpCommunity    `pulumi:"snmpCommunities"`
-	SnmpSysinfo               *SwitchControllerManagedSwitchSnmpSysinfo       `pulumi:"snmpSysinfo"`
-	SnmpTrapThreshold         *SwitchControllerManagedSwitchSnmpTrapThreshold `pulumi:"snmpTrapThreshold"`
-	SnmpUsers                 []SwitchControllerManagedSwitchSnmpUser         `pulumi:"snmpUsers"`
-	StagedImageVersion        *string                                         `pulumi:"stagedImageVersion"`
-	StaticMacs                []SwitchControllerManagedSwitchStaticMac        `pulumi:"staticMacs"`
-	StormControl              *SwitchControllerManagedSwitchStormControl      `pulumi:"stormControl"`
-	StpInstances              []SwitchControllerManagedSwitchStpInstance      `pulumi:"stpInstances"`
-	StpSettings               *SwitchControllerManagedSwitchStpSettings       `pulumi:"stpSettings"`
-	SwitchDeviceTag           *string                                         `pulumi:"switchDeviceTag"`
-	SwitchDhcpOpt43Key        *string                                         `pulumi:"switchDhcpOpt43Key"`
-	SwitchId                  *string                                         `pulumi:"switchId"`
-	SwitchLog                 *SwitchControllerManagedSwitchSwitchLog         `pulumi:"switchLog"`
-	SwitchProfile             *string                                         `pulumi:"switchProfile"`
-	SwitchStpSettings         *SwitchControllerManagedSwitchSwitchStpSettings `pulumi:"switchStpSettings"`
-	TdrSupported              *string                                         `pulumi:"tdrSupported"`
-	Type                      *string                                         `pulumi:"type"`
-	Vdomparam                 *string                                         `pulumi:"vdomparam"`
-	Version                   *int                                            `pulumi:"version"`
+	AccessProfile             *string                                                 `pulumi:"accessProfile"`
+	CustomCommands            []SwitchControllerManagedSwitchCustomCommand            `pulumi:"customCommands"`
+	DelayedRestartTrigger     *int                                                    `pulumi:"delayedRestartTrigger"`
+	Description               *string                                                 `pulumi:"description"`
+	DhcpServerAccessList      *string                                                 `pulumi:"dhcpServerAccessList"`
+	DhcpSnoopingStaticClients []SwitchControllerManagedSwitchDhcpSnoopingStaticClient `pulumi:"dhcpSnoopingStaticClients"`
+	DirectlyConnected         *int                                                    `pulumi:"directlyConnected"`
+	DynamicCapability         *int                                                    `pulumi:"dynamicCapability"`
+	DynamicSortSubtable       *string                                                 `pulumi:"dynamicSortSubtable"`
+	DynamicallyDiscovered     *int                                                    `pulumi:"dynamicallyDiscovered"`
+	FirmwareProvision         *string                                                 `pulumi:"firmwareProvision"`
+	FirmwareProvisionLatest   *string                                                 `pulumi:"firmwareProvisionLatest"`
+	FirmwareProvisionVersion  *string                                                 `pulumi:"firmwareProvisionVersion"`
+	FlowIdentity              *string                                                 `pulumi:"flowIdentity"`
+	FswWan1Admin              *string                                                 `pulumi:"fswWan1Admin"`
+	FswWan1Peer               *string                                                 `pulumi:"fswWan1Peer"`
+	FswWan2Admin              *string                                                 `pulumi:"fswWan2Admin"`
+	FswWan2Peer               *string                                                 `pulumi:"fswWan2Peer"`
+	GetAllTables              *string                                                 `pulumi:"getAllTables"`
+	IgmpSnooping              *SwitchControllerManagedSwitchIgmpSnooping              `pulumi:"igmpSnooping"`
+	IpSourceGuards            []SwitchControllerManagedSwitchIpSourceGuard            `pulumi:"ipSourceGuards"`
+	L3Discovered              *int                                                    `pulumi:"l3Discovered"`
+	MaxAllowedTrunkMembers    *int                                                    `pulumi:"maxAllowedTrunkMembers"`
+	MclagIgmpSnoopingAware    *string                                                 `pulumi:"mclagIgmpSnoopingAware"`
+	Mirrors                   []SwitchControllerManagedSwitchMirror                   `pulumi:"mirrors"`
+	N8021xSettings            *SwitchControllerManagedSwitchN8021xSettings            `pulumi:"n8021xSettings"`
+	Name                      *string                                                 `pulumi:"name"`
+	OverrideSnmpCommunity     *string                                                 `pulumi:"overrideSnmpCommunity"`
+	OverrideSnmpSysinfo       *string                                                 `pulumi:"overrideSnmpSysinfo"`
+	OverrideSnmpTrapThreshold *string                                                 `pulumi:"overrideSnmpTrapThreshold"`
+	OverrideSnmpUser          *string                                                 `pulumi:"overrideSnmpUser"`
+	OwnerVdom                 *string                                                 `pulumi:"ownerVdom"`
+	PoeDetectionType          *int                                                    `pulumi:"poeDetectionType"`
+	PoeLldpDetection          *string                                                 `pulumi:"poeLldpDetection"`
+	PoePreStandardDetection   *string                                                 `pulumi:"poePreStandardDetection"`
+	Ports                     []SwitchControllerManagedSwitchPort                     `pulumi:"ports"`
+	PreProvisioned            *int                                                    `pulumi:"preProvisioned"`
+	QosDropPolicy             *string                                                 `pulumi:"qosDropPolicy"`
+	QosRedProbability         *int                                                    `pulumi:"qosRedProbability"`
+	RemoteLogs                []SwitchControllerManagedSwitchRemoteLog                `pulumi:"remoteLogs"`
+	Sn                        *string                                                 `pulumi:"sn"`
+	SnmpCommunities           []SwitchControllerManagedSwitchSnmpCommunity            `pulumi:"snmpCommunities"`
+	SnmpSysinfo               *SwitchControllerManagedSwitchSnmpSysinfo               `pulumi:"snmpSysinfo"`
+	SnmpTrapThreshold         *SwitchControllerManagedSwitchSnmpTrapThreshold         `pulumi:"snmpTrapThreshold"`
+	SnmpUsers                 []SwitchControllerManagedSwitchSnmpUser                 `pulumi:"snmpUsers"`
+	StagedImageVersion        *string                                                 `pulumi:"stagedImageVersion"`
+	StaticMacs                []SwitchControllerManagedSwitchStaticMac                `pulumi:"staticMacs"`
+	StormControl              *SwitchControllerManagedSwitchStormControl              `pulumi:"stormControl"`
+	StpInstances              []SwitchControllerManagedSwitchStpInstance              `pulumi:"stpInstances"`
+	StpSettings               *SwitchControllerManagedSwitchStpSettings               `pulumi:"stpSettings"`
+	SwitchDeviceTag           *string                                                 `pulumi:"switchDeviceTag"`
+	SwitchDhcpOpt43Key        *string                                                 `pulumi:"switchDhcpOpt43Key"`
+	SwitchId                  *string                                                 `pulumi:"switchId"`
+	SwitchLog                 *SwitchControllerManagedSwitchSwitchLog                 `pulumi:"switchLog"`
+	SwitchProfile             *string                                                 `pulumi:"switchProfile"`
+	SwitchStpSettings         *SwitchControllerManagedSwitchSwitchStpSettings         `pulumi:"switchStpSettings"`
+	TdrSupported              *string                                                 `pulumi:"tdrSupported"`
+	Type                      *string                                                 `pulumi:"type"`
+	Vdomparam                 *string                                                 `pulumi:"vdomparam"`
+	Version                   *int                                                    `pulumi:"version"`
 }
 
 type SwitchControllerManagedSwitchState struct {
@@ -174,6 +181,7 @@ type SwitchControllerManagedSwitchState struct {
 	DelayedRestartTrigger     pulumi.IntPtrInput
 	Description               pulumi.StringPtrInput
 	DhcpServerAccessList      pulumi.StringPtrInput
+	DhcpSnoopingStaticClients SwitchControllerManagedSwitchDhcpSnoopingStaticClientArrayInput
 	DirectlyConnected         pulumi.IntPtrInput
 	DynamicCapability         pulumi.IntPtrInput
 	DynamicSortSubtable       pulumi.StringPtrInput
@@ -186,6 +194,7 @@ type SwitchControllerManagedSwitchState struct {
 	FswWan1Peer               pulumi.StringPtrInput
 	FswWan2Admin              pulumi.StringPtrInput
 	FswWan2Peer               pulumi.StringPtrInput
+	GetAllTables              pulumi.StringPtrInput
 	IgmpSnooping              SwitchControllerManagedSwitchIgmpSnoopingPtrInput
 	IpSourceGuards            SwitchControllerManagedSwitchIpSourceGuardArrayInput
 	L3Discovered              pulumi.IntPtrInput
@@ -207,6 +216,7 @@ type SwitchControllerManagedSwitchState struct {
 	QosDropPolicy             pulumi.StringPtrInput
 	QosRedProbability         pulumi.IntPtrInput
 	RemoteLogs                SwitchControllerManagedSwitchRemoteLogArrayInput
+	Sn                        pulumi.StringPtrInput
 	SnmpCommunities           SwitchControllerManagedSwitchSnmpCommunityArrayInput
 	SnmpSysinfo               SwitchControllerManagedSwitchSnmpSysinfoPtrInput
 	SnmpTrapThreshold         SwitchControllerManagedSwitchSnmpTrapThresholdPtrInput
@@ -233,63 +243,66 @@ func (SwitchControllerManagedSwitchState) ElementType() reflect.Type {
 }
 
 type switchControllerManagedSwitchArgs struct {
-	AccessProfile             *string                                         `pulumi:"accessProfile"`
-	CustomCommands            []SwitchControllerManagedSwitchCustomCommand    `pulumi:"customCommands"`
-	DelayedRestartTrigger     *int                                            `pulumi:"delayedRestartTrigger"`
-	Description               *string                                         `pulumi:"description"`
-	DhcpServerAccessList      *string                                         `pulumi:"dhcpServerAccessList"`
-	DirectlyConnected         *int                                            `pulumi:"directlyConnected"`
-	DynamicCapability         *int                                            `pulumi:"dynamicCapability"`
-	DynamicSortSubtable       *string                                         `pulumi:"dynamicSortSubtable"`
-	DynamicallyDiscovered     *int                                            `pulumi:"dynamicallyDiscovered"`
-	FirmwareProvision         *string                                         `pulumi:"firmwareProvision"`
-	FirmwareProvisionLatest   *string                                         `pulumi:"firmwareProvisionLatest"`
-	FirmwareProvisionVersion  *string                                         `pulumi:"firmwareProvisionVersion"`
-	FlowIdentity              *string                                         `pulumi:"flowIdentity"`
-	FswWan1Admin              *string                                         `pulumi:"fswWan1Admin"`
-	FswWan1Peer               string                                          `pulumi:"fswWan1Peer"`
-	FswWan2Admin              *string                                         `pulumi:"fswWan2Admin"`
-	FswWan2Peer               *string                                         `pulumi:"fswWan2Peer"`
-	IgmpSnooping              *SwitchControllerManagedSwitchIgmpSnooping      `pulumi:"igmpSnooping"`
-	IpSourceGuards            []SwitchControllerManagedSwitchIpSourceGuard    `pulumi:"ipSourceGuards"`
-	L3Discovered              *int                                            `pulumi:"l3Discovered"`
-	MaxAllowedTrunkMembers    *int                                            `pulumi:"maxAllowedTrunkMembers"`
-	MclagIgmpSnoopingAware    *string                                         `pulumi:"mclagIgmpSnoopingAware"`
-	Mirrors                   []SwitchControllerManagedSwitchMirror           `pulumi:"mirrors"`
-	N8021xSettings            *SwitchControllerManagedSwitchN8021xSettings    `pulumi:"n8021xSettings"`
-	Name                      *string                                         `pulumi:"name"`
-	OverrideSnmpCommunity     *string                                         `pulumi:"overrideSnmpCommunity"`
-	OverrideSnmpSysinfo       *string                                         `pulumi:"overrideSnmpSysinfo"`
-	OverrideSnmpTrapThreshold *string                                         `pulumi:"overrideSnmpTrapThreshold"`
-	OverrideSnmpUser          *string                                         `pulumi:"overrideSnmpUser"`
-	OwnerVdom                 *string                                         `pulumi:"ownerVdom"`
-	PoeDetectionType          *int                                            `pulumi:"poeDetectionType"`
-	PoeLldpDetection          *string                                         `pulumi:"poeLldpDetection"`
-	PoePreStandardDetection   *string                                         `pulumi:"poePreStandardDetection"`
-	Ports                     []SwitchControllerManagedSwitchPort             `pulumi:"ports"`
-	PreProvisioned            *int                                            `pulumi:"preProvisioned"`
-	QosDropPolicy             *string                                         `pulumi:"qosDropPolicy"`
-	QosRedProbability         *int                                            `pulumi:"qosRedProbability"`
-	RemoteLogs                []SwitchControllerManagedSwitchRemoteLog        `pulumi:"remoteLogs"`
-	SnmpCommunities           []SwitchControllerManagedSwitchSnmpCommunity    `pulumi:"snmpCommunities"`
-	SnmpSysinfo               *SwitchControllerManagedSwitchSnmpSysinfo       `pulumi:"snmpSysinfo"`
-	SnmpTrapThreshold         *SwitchControllerManagedSwitchSnmpTrapThreshold `pulumi:"snmpTrapThreshold"`
-	SnmpUsers                 []SwitchControllerManagedSwitchSnmpUser         `pulumi:"snmpUsers"`
-	StagedImageVersion        *string                                         `pulumi:"stagedImageVersion"`
-	StaticMacs                []SwitchControllerManagedSwitchStaticMac        `pulumi:"staticMacs"`
-	StormControl              *SwitchControllerManagedSwitchStormControl      `pulumi:"stormControl"`
-	StpInstances              []SwitchControllerManagedSwitchStpInstance      `pulumi:"stpInstances"`
-	StpSettings               *SwitchControllerManagedSwitchStpSettings       `pulumi:"stpSettings"`
-	SwitchDeviceTag           *string                                         `pulumi:"switchDeviceTag"`
-	SwitchDhcpOpt43Key        *string                                         `pulumi:"switchDhcpOpt43Key"`
-	SwitchId                  string                                          `pulumi:"switchId"`
-	SwitchLog                 *SwitchControllerManagedSwitchSwitchLog         `pulumi:"switchLog"`
-	SwitchProfile             *string                                         `pulumi:"switchProfile"`
-	SwitchStpSettings         *SwitchControllerManagedSwitchSwitchStpSettings `pulumi:"switchStpSettings"`
-	TdrSupported              *string                                         `pulumi:"tdrSupported"`
-	Type                      *string                                         `pulumi:"type"`
-	Vdomparam                 *string                                         `pulumi:"vdomparam"`
-	Version                   *int                                            `pulumi:"version"`
+	AccessProfile             *string                                                 `pulumi:"accessProfile"`
+	CustomCommands            []SwitchControllerManagedSwitchCustomCommand            `pulumi:"customCommands"`
+	DelayedRestartTrigger     *int                                                    `pulumi:"delayedRestartTrigger"`
+	Description               *string                                                 `pulumi:"description"`
+	DhcpServerAccessList      *string                                                 `pulumi:"dhcpServerAccessList"`
+	DhcpSnoopingStaticClients []SwitchControllerManagedSwitchDhcpSnoopingStaticClient `pulumi:"dhcpSnoopingStaticClients"`
+	DirectlyConnected         *int                                                    `pulumi:"directlyConnected"`
+	DynamicCapability         *int                                                    `pulumi:"dynamicCapability"`
+	DynamicSortSubtable       *string                                                 `pulumi:"dynamicSortSubtable"`
+	DynamicallyDiscovered     *int                                                    `pulumi:"dynamicallyDiscovered"`
+	FirmwareProvision         *string                                                 `pulumi:"firmwareProvision"`
+	FirmwareProvisionLatest   *string                                                 `pulumi:"firmwareProvisionLatest"`
+	FirmwareProvisionVersion  *string                                                 `pulumi:"firmwareProvisionVersion"`
+	FlowIdentity              *string                                                 `pulumi:"flowIdentity"`
+	FswWan1Admin              *string                                                 `pulumi:"fswWan1Admin"`
+	FswWan1Peer               string                                                  `pulumi:"fswWan1Peer"`
+	FswWan2Admin              *string                                                 `pulumi:"fswWan2Admin"`
+	FswWan2Peer               *string                                                 `pulumi:"fswWan2Peer"`
+	GetAllTables              *string                                                 `pulumi:"getAllTables"`
+	IgmpSnooping              *SwitchControllerManagedSwitchIgmpSnooping              `pulumi:"igmpSnooping"`
+	IpSourceGuards            []SwitchControllerManagedSwitchIpSourceGuard            `pulumi:"ipSourceGuards"`
+	L3Discovered              *int                                                    `pulumi:"l3Discovered"`
+	MaxAllowedTrunkMembers    *int                                                    `pulumi:"maxAllowedTrunkMembers"`
+	MclagIgmpSnoopingAware    *string                                                 `pulumi:"mclagIgmpSnoopingAware"`
+	Mirrors                   []SwitchControllerManagedSwitchMirror                   `pulumi:"mirrors"`
+	N8021xSettings            *SwitchControllerManagedSwitchN8021xSettings            `pulumi:"n8021xSettings"`
+	Name                      *string                                                 `pulumi:"name"`
+	OverrideSnmpCommunity     *string                                                 `pulumi:"overrideSnmpCommunity"`
+	OverrideSnmpSysinfo       *string                                                 `pulumi:"overrideSnmpSysinfo"`
+	OverrideSnmpTrapThreshold *string                                                 `pulumi:"overrideSnmpTrapThreshold"`
+	OverrideSnmpUser          *string                                                 `pulumi:"overrideSnmpUser"`
+	OwnerVdom                 *string                                                 `pulumi:"ownerVdom"`
+	PoeDetectionType          *int                                                    `pulumi:"poeDetectionType"`
+	PoeLldpDetection          *string                                                 `pulumi:"poeLldpDetection"`
+	PoePreStandardDetection   *string                                                 `pulumi:"poePreStandardDetection"`
+	Ports                     []SwitchControllerManagedSwitchPort                     `pulumi:"ports"`
+	PreProvisioned            *int                                                    `pulumi:"preProvisioned"`
+	QosDropPolicy             *string                                                 `pulumi:"qosDropPolicy"`
+	QosRedProbability         *int                                                    `pulumi:"qosRedProbability"`
+	RemoteLogs                []SwitchControllerManagedSwitchRemoteLog                `pulumi:"remoteLogs"`
+	Sn                        *string                                                 `pulumi:"sn"`
+	SnmpCommunities           []SwitchControllerManagedSwitchSnmpCommunity            `pulumi:"snmpCommunities"`
+	SnmpSysinfo               *SwitchControllerManagedSwitchSnmpSysinfo               `pulumi:"snmpSysinfo"`
+	SnmpTrapThreshold         *SwitchControllerManagedSwitchSnmpTrapThreshold         `pulumi:"snmpTrapThreshold"`
+	SnmpUsers                 []SwitchControllerManagedSwitchSnmpUser                 `pulumi:"snmpUsers"`
+	StagedImageVersion        *string                                                 `pulumi:"stagedImageVersion"`
+	StaticMacs                []SwitchControllerManagedSwitchStaticMac                `pulumi:"staticMacs"`
+	StormControl              *SwitchControllerManagedSwitchStormControl              `pulumi:"stormControl"`
+	StpInstances              []SwitchControllerManagedSwitchStpInstance              `pulumi:"stpInstances"`
+	StpSettings               *SwitchControllerManagedSwitchStpSettings               `pulumi:"stpSettings"`
+	SwitchDeviceTag           *string                                                 `pulumi:"switchDeviceTag"`
+	SwitchDhcpOpt43Key        *string                                                 `pulumi:"switchDhcpOpt43Key"`
+	SwitchId                  string                                                  `pulumi:"switchId"`
+	SwitchLog                 *SwitchControllerManagedSwitchSwitchLog                 `pulumi:"switchLog"`
+	SwitchProfile             *string                                                 `pulumi:"switchProfile"`
+	SwitchStpSettings         *SwitchControllerManagedSwitchSwitchStpSettings         `pulumi:"switchStpSettings"`
+	TdrSupported              *string                                                 `pulumi:"tdrSupported"`
+	Type                      *string                                                 `pulumi:"type"`
+	Vdomparam                 *string                                                 `pulumi:"vdomparam"`
+	Version                   *int                                                    `pulumi:"version"`
 }
 
 // The set of arguments for constructing a SwitchControllerManagedSwitch resource.
@@ -299,6 +312,7 @@ type SwitchControllerManagedSwitchArgs struct {
 	DelayedRestartTrigger     pulumi.IntPtrInput
 	Description               pulumi.StringPtrInput
 	DhcpServerAccessList      pulumi.StringPtrInput
+	DhcpSnoopingStaticClients SwitchControllerManagedSwitchDhcpSnoopingStaticClientArrayInput
 	DirectlyConnected         pulumi.IntPtrInput
 	DynamicCapability         pulumi.IntPtrInput
 	DynamicSortSubtable       pulumi.StringPtrInput
@@ -311,6 +325,7 @@ type SwitchControllerManagedSwitchArgs struct {
 	FswWan1Peer               pulumi.StringInput
 	FswWan2Admin              pulumi.StringPtrInput
 	FswWan2Peer               pulumi.StringPtrInput
+	GetAllTables              pulumi.StringPtrInput
 	IgmpSnooping              SwitchControllerManagedSwitchIgmpSnoopingPtrInput
 	IpSourceGuards            SwitchControllerManagedSwitchIpSourceGuardArrayInput
 	L3Discovered              pulumi.IntPtrInput
@@ -332,6 +347,7 @@ type SwitchControllerManagedSwitchArgs struct {
 	QosDropPolicy             pulumi.StringPtrInput
 	QosRedProbability         pulumi.IntPtrInput
 	RemoteLogs                SwitchControllerManagedSwitchRemoteLogArrayInput
+	Sn                        pulumi.StringPtrInput
 	SnmpCommunities           SwitchControllerManagedSwitchSnmpCommunityArrayInput
 	SnmpSysinfo               SwitchControllerManagedSwitchSnmpSysinfoPtrInput
 	SnmpTrapThreshold         SwitchControllerManagedSwitchSnmpTrapThresholdPtrInput
@@ -462,6 +478,12 @@ func (o SwitchControllerManagedSwitchOutput) DhcpServerAccessList() pulumi.Strin
 	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringOutput { return v.DhcpServerAccessList }).(pulumi.StringOutput)
 }
 
+func (o SwitchControllerManagedSwitchOutput) DhcpSnoopingStaticClients() SwitchControllerManagedSwitchDhcpSnoopingStaticClientArrayOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) SwitchControllerManagedSwitchDhcpSnoopingStaticClientArrayOutput {
+		return v.DhcpSnoopingStaticClients
+	}).(SwitchControllerManagedSwitchDhcpSnoopingStaticClientArrayOutput)
+}
+
 func (o SwitchControllerManagedSwitchOutput) DirectlyConnected() pulumi.IntOutput {
 	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.IntOutput { return v.DirectlyConnected }).(pulumi.IntOutput)
 }
@@ -508,6 +530,10 @@ func (o SwitchControllerManagedSwitchOutput) FswWan2Admin() pulumi.StringOutput 
 
 func (o SwitchControllerManagedSwitchOutput) FswWan2Peer() pulumi.StringOutput {
 	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringOutput { return v.FswWan2Peer }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SwitchControllerManagedSwitchOutput) IgmpSnooping() SwitchControllerManagedSwitchIgmpSnoopingOutput {
@@ -602,6 +628,10 @@ func (o SwitchControllerManagedSwitchOutput) RemoteLogs() SwitchControllerManage
 	return o.ApplyT(func(v *SwitchControllerManagedSwitch) SwitchControllerManagedSwitchRemoteLogArrayOutput {
 		return v.RemoteLogs
 	}).(SwitchControllerManagedSwitchRemoteLogArrayOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) Sn() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringOutput { return v.Sn }).(pulumi.StringOutput)
 }
 
 func (o SwitchControllerManagedSwitchOutput) SnmpCommunities() SwitchControllerManagedSwitchSnmpCommunityArrayOutput {

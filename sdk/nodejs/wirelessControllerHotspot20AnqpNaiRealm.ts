@@ -35,6 +35,7 @@ export class WirelessControllerHotspot20AnqpNaiRealm extends pulumi.CustomResour
     }
 
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly naiLists!: pulumi.Output<outputs.WirelessControllerHotspot20AnqpNaiRealmNaiList[] | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -53,12 +54,14 @@ export class WirelessControllerHotspot20AnqpNaiRealm extends pulumi.CustomResour
         if (opts.id) {
             const state = argsOrState as WirelessControllerHotspot20AnqpNaiRealmState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["naiLists"] = state ? state.naiLists : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WirelessControllerHotspot20AnqpNaiRealmArgs | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["naiLists"] = args ? args.naiLists : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -73,6 +76,7 @@ export class WirelessControllerHotspot20AnqpNaiRealm extends pulumi.CustomResour
  */
 export interface WirelessControllerHotspot20AnqpNaiRealmState {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     naiLists?: pulumi.Input<pulumi.Input<inputs.WirelessControllerHotspot20AnqpNaiRealmNaiList>[]>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
@@ -83,6 +87,7 @@ export interface WirelessControllerHotspot20AnqpNaiRealmState {
  */
 export interface WirelessControllerHotspot20AnqpNaiRealmArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     naiLists?: pulumi.Input<pulumi.Input<inputs.WirelessControllerHotspot20AnqpNaiRealmNaiList>[]>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;

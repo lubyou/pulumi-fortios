@@ -84,10 +84,10 @@ def get_system_automation_action_list(filter: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemAutomationActionList:GetSystemAutomationActionList', __args__, opts=opts, typ=GetSystemAutomationActionListResult).value
 
     return AwaitableGetSystemAutomationActionListResult(
-        filter=__ret__.filter,
-        id=__ret__.id,
-        namelists=__ret__.namelists,
-        vdomparam=__ret__.vdomparam)
+        filter=pulumi.get(__ret__, 'filter'),
+        id=pulumi.get(__ret__, 'id'),
+        namelists=pulumi.get(__ret__, 'namelists'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_automation_action_list)

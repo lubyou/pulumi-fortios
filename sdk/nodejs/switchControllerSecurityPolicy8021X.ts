@@ -44,6 +44,7 @@ export class SwitchControllerSecurityPolicy8021X extends pulumi.CustomResource {
     public readonly eapAutoUntaggedVlans!: pulumi.Output<string>;
     public readonly eapPassthru!: pulumi.Output<string>;
     public readonly framevidApply!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly guestAuthDelay!: pulumi.Output<number>;
     public readonly guestVlan!: pulumi.Output<string>;
     public readonly guestVlanId!: pulumi.Output<string>;
@@ -80,6 +81,7 @@ export class SwitchControllerSecurityPolicy8021X extends pulumi.CustomResource {
             resourceInputs["eapAutoUntaggedVlans"] = state ? state.eapAutoUntaggedVlans : undefined;
             resourceInputs["eapPassthru"] = state ? state.eapPassthru : undefined;
             resourceInputs["framevidApply"] = state ? state.framevidApply : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["guestAuthDelay"] = state ? state.guestAuthDelay : undefined;
             resourceInputs["guestVlan"] = state ? state.guestVlan : undefined;
             resourceInputs["guestVlanId"] = state ? state.guestVlanId : undefined;
@@ -104,6 +106,7 @@ export class SwitchControllerSecurityPolicy8021X extends pulumi.CustomResource {
             resourceInputs["eapAutoUntaggedVlans"] = args ? args.eapAutoUntaggedVlans : undefined;
             resourceInputs["eapPassthru"] = args ? args.eapPassthru : undefined;
             resourceInputs["framevidApply"] = args ? args.framevidApply : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["guestAuthDelay"] = args ? args.guestAuthDelay : undefined;
             resourceInputs["guestVlan"] = args ? args.guestVlan : undefined;
             resourceInputs["guestVlanId"] = args ? args.guestVlanId : undefined;
@@ -136,6 +139,7 @@ export interface SwitchControllerSecurityPolicy8021XState {
     eapAutoUntaggedVlans?: pulumi.Input<string>;
     eapPassthru?: pulumi.Input<string>;
     framevidApply?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     guestAuthDelay?: pulumi.Input<number>;
     guestVlan?: pulumi.Input<string>;
     guestVlanId?: pulumi.Input<string>;
@@ -164,6 +168,7 @@ export interface SwitchControllerSecurityPolicy8021XArgs {
     eapAutoUntaggedVlans?: pulumi.Input<string>;
     eapPassthru?: pulumi.Input<string>;
     framevidApply?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     guestAuthDelay?: pulumi.Input<number>;
     guestVlan?: pulumi.Input<string>;
     guestVlanId?: pulumi.Input<string>;

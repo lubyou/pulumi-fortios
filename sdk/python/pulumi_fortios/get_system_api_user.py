@@ -157,18 +157,18 @@ def get_system_api_user(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemApiUser:GetSystemApiUser', __args__, opts=opts, typ=GetSystemApiUserResult).value
 
     return AwaitableGetSystemApiUserResult(
-        accprofile=__ret__.accprofile,
-        api_key=__ret__.api_key,
-        comments=__ret__.comments,
-        cors_allow_origin=__ret__.cors_allow_origin,
-        id=__ret__.id,
-        name=__ret__.name,
-        peer_auth=__ret__.peer_auth,
-        peer_group=__ret__.peer_group,
-        schedule=__ret__.schedule,
-        trusthosts=__ret__.trusthosts,
-        vdomparam=__ret__.vdomparam,
-        vdoms=__ret__.vdoms)
+        accprofile=pulumi.get(__ret__, 'accprofile'),
+        api_key=pulumi.get(__ret__, 'api_key'),
+        comments=pulumi.get(__ret__, 'comments'),
+        cors_allow_origin=pulumi.get(__ret__, 'cors_allow_origin'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        peer_auth=pulumi.get(__ret__, 'peer_auth'),
+        peer_group=pulumi.get(__ret__, 'peer_group'),
+        schedule=pulumi.get(__ret__, 'schedule'),
+        trusthosts=pulumi.get(__ret__, 'trusthosts'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'),
+        vdoms=pulumi.get(__ret__, 'vdoms'))
 
 
 @_utilities.lift_output_func(get_system_api_user)

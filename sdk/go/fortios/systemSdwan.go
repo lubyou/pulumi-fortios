@@ -7,17 +7,20 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 type SystemSdwan struct {
 	pulumi.CustomResourceState
 
+	AppPerfLogPeriod       pulumi.IntOutput                         `pulumi:"appPerfLogPeriod"`
 	DuplicationMaxNum      pulumi.IntOutput                         `pulumi:"duplicationMaxNum"`
 	Duplications           SystemSdwanDuplicationArrayOutput        `pulumi:"duplications"`
 	DynamicSortSubtable    pulumi.StringPtrOutput                   `pulumi:"dynamicSortSubtable"`
 	FailAlertInterfaces    SystemSdwanFailAlertInterfaceArrayOutput `pulumi:"failAlertInterfaces"`
 	FailDetect             pulumi.StringOutput                      `pulumi:"failDetect"`
+	GetAllTables           pulumi.StringPtrOutput                   `pulumi:"getAllTables"`
 	HealthChecks           SystemSdwanHealthCheckArrayOutput        `pulumi:"healthChecks"`
 	LoadBalanceMode        pulumi.StringOutput                      `pulumi:"loadBalanceMode"`
 	Members                SystemSdwanMemberArrayOutput             `pulumi:"members"`
@@ -39,7 +42,7 @@ func NewSystemSdwan(ctx *pulumi.Context,
 		args = &SystemSdwanArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemSdwan
 	err := ctx.RegisterResource("fortios:index/systemSdwan:SystemSdwan", name, args, &resource, opts...)
 	if err != nil {
@@ -62,11 +65,13 @@ func GetSystemSdwan(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemSdwan resources.
 type systemSdwanState struct {
+	AppPerfLogPeriod       *int                            `pulumi:"appPerfLogPeriod"`
 	DuplicationMaxNum      *int                            `pulumi:"duplicationMaxNum"`
 	Duplications           []SystemSdwanDuplication        `pulumi:"duplications"`
 	DynamicSortSubtable    *string                         `pulumi:"dynamicSortSubtable"`
 	FailAlertInterfaces    []SystemSdwanFailAlertInterface `pulumi:"failAlertInterfaces"`
 	FailDetect             *string                         `pulumi:"failDetect"`
+	GetAllTables           *string                         `pulumi:"getAllTables"`
 	HealthChecks           []SystemSdwanHealthCheck        `pulumi:"healthChecks"`
 	LoadBalanceMode        *string                         `pulumi:"loadBalanceMode"`
 	Members                []SystemSdwanMember             `pulumi:"members"`
@@ -82,11 +87,13 @@ type systemSdwanState struct {
 }
 
 type SystemSdwanState struct {
+	AppPerfLogPeriod       pulumi.IntPtrInput
 	DuplicationMaxNum      pulumi.IntPtrInput
 	Duplications           SystemSdwanDuplicationArrayInput
 	DynamicSortSubtable    pulumi.StringPtrInput
 	FailAlertInterfaces    SystemSdwanFailAlertInterfaceArrayInput
 	FailDetect             pulumi.StringPtrInput
+	GetAllTables           pulumi.StringPtrInput
 	HealthChecks           SystemSdwanHealthCheckArrayInput
 	LoadBalanceMode        pulumi.StringPtrInput
 	Members                SystemSdwanMemberArrayInput
@@ -106,11 +113,13 @@ func (SystemSdwanState) ElementType() reflect.Type {
 }
 
 type systemSdwanArgs struct {
+	AppPerfLogPeriod       *int                            `pulumi:"appPerfLogPeriod"`
 	DuplicationMaxNum      *int                            `pulumi:"duplicationMaxNum"`
 	Duplications           []SystemSdwanDuplication        `pulumi:"duplications"`
 	DynamicSortSubtable    *string                         `pulumi:"dynamicSortSubtable"`
 	FailAlertInterfaces    []SystemSdwanFailAlertInterface `pulumi:"failAlertInterfaces"`
 	FailDetect             *string                         `pulumi:"failDetect"`
+	GetAllTables           *string                         `pulumi:"getAllTables"`
 	HealthChecks           []SystemSdwanHealthCheck        `pulumi:"healthChecks"`
 	LoadBalanceMode        *string                         `pulumi:"loadBalanceMode"`
 	Members                []SystemSdwanMember             `pulumi:"members"`
@@ -127,11 +136,13 @@ type systemSdwanArgs struct {
 
 // The set of arguments for constructing a SystemSdwan resource.
 type SystemSdwanArgs struct {
+	AppPerfLogPeriod       pulumi.IntPtrInput
 	DuplicationMaxNum      pulumi.IntPtrInput
 	Duplications           SystemSdwanDuplicationArrayInput
 	DynamicSortSubtable    pulumi.StringPtrInput
 	FailAlertInterfaces    SystemSdwanFailAlertInterfaceArrayInput
 	FailDetect             pulumi.StringPtrInput
+	GetAllTables           pulumi.StringPtrInput
 	HealthChecks           SystemSdwanHealthCheckArrayInput
 	LoadBalanceMode        pulumi.StringPtrInput
 	Members                SystemSdwanMemberArrayInput
@@ -233,6 +244,10 @@ func (o SystemSdwanOutput) ToSystemSdwanOutputWithContext(ctx context.Context) S
 	return o
 }
 
+func (o SystemSdwanOutput) AppPerfLogPeriod() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemSdwan) pulumi.IntOutput { return v.AppPerfLogPeriod }).(pulumi.IntOutput)
+}
+
 func (o SystemSdwanOutput) DuplicationMaxNum() pulumi.IntOutput {
 	return o.ApplyT(func(v *SystemSdwan) pulumi.IntOutput { return v.DuplicationMaxNum }).(pulumi.IntOutput)
 }
@@ -251,6 +266,10 @@ func (o SystemSdwanOutput) FailAlertInterfaces() SystemSdwanFailAlertInterfaceAr
 
 func (o SystemSdwanOutput) FailDetect() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemSdwan) pulumi.StringOutput { return v.FailDetect }).(pulumi.StringOutput)
+}
+
+func (o SystemSdwanOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemSdwan) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemSdwanOutput) HealthChecks() SystemSdwanHealthCheckArrayOutput {

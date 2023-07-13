@@ -17,6 +17,7 @@ __all__ = ['SwitchControllerFortilinkSettingsArgs', 'SwitchControllerFortilinkSe
 class SwitchControllerFortilinkSettingsArgs:
     def __init__(__self__, *,
                  fortilink: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  inactive_timer: Optional[pulumi.Input[int]] = None,
                  link_down_flush: Optional[pulumi.Input[str]] = None,
                  nac_ports: Optional[pulumi.Input['SwitchControllerFortilinkSettingsNacPortsArgs']] = None,
@@ -27,6 +28,8 @@ class SwitchControllerFortilinkSettingsArgs:
         """
         if fortilink is not None:
             pulumi.set(__self__, "fortilink", fortilink)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if inactive_timer is not None:
             pulumi.set(__self__, "inactive_timer", inactive_timer)
         if link_down_flush is not None:
@@ -46,6 +49,15 @@ class SwitchControllerFortilinkSettingsArgs:
     @fortilink.setter
     def fortilink(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fortilink", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="inactiveTimer")
@@ -97,6 +109,7 @@ class SwitchControllerFortilinkSettingsArgs:
 class _SwitchControllerFortilinkSettingsState:
     def __init__(__self__, *,
                  fortilink: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  inactive_timer: Optional[pulumi.Input[int]] = None,
                  link_down_flush: Optional[pulumi.Input[str]] = None,
                  nac_ports: Optional[pulumi.Input['SwitchControllerFortilinkSettingsNacPortsArgs']] = None,
@@ -107,6 +120,8 @@ class _SwitchControllerFortilinkSettingsState:
         """
         if fortilink is not None:
             pulumi.set(__self__, "fortilink", fortilink)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if inactive_timer is not None:
             pulumi.set(__self__, "inactive_timer", inactive_timer)
         if link_down_flush is not None:
@@ -126,6 +141,15 @@ class _SwitchControllerFortilinkSettingsState:
     @fortilink.setter
     def fortilink(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fortilink", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="inactiveTimer")
@@ -179,6 +203,7 @@ class SwitchControllerFortilinkSettings(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  fortilink: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  inactive_timer: Optional[pulumi.Input[int]] = None,
                  link_down_flush: Optional[pulumi.Input[str]] = None,
                  nac_ports: Optional[pulumi.Input[pulumi.InputType['SwitchControllerFortilinkSettingsNacPortsArgs']]] = None,
@@ -214,6 +239,7 @@ class SwitchControllerFortilinkSettings(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  fortilink: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  inactive_timer: Optional[pulumi.Input[int]] = None,
                  link_down_flush: Optional[pulumi.Input[str]] = None,
                  nac_ports: Optional[pulumi.Input[pulumi.InputType['SwitchControllerFortilinkSettingsNacPortsArgs']]] = None,
@@ -229,6 +255,7 @@ class SwitchControllerFortilinkSettings(pulumi.CustomResource):
             __props__ = SwitchControllerFortilinkSettingsArgs.__new__(SwitchControllerFortilinkSettingsArgs)
 
             __props__.__dict__["fortilink"] = fortilink
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["inactive_timer"] = inactive_timer
             __props__.__dict__["link_down_flush"] = link_down_flush
             __props__.__dict__["nac_ports"] = nac_ports
@@ -245,6 +272,7 @@ class SwitchControllerFortilinkSettings(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             fortilink: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             inactive_timer: Optional[pulumi.Input[int]] = None,
             link_down_flush: Optional[pulumi.Input[str]] = None,
             nac_ports: Optional[pulumi.Input[pulumi.InputType['SwitchControllerFortilinkSettingsNacPortsArgs']]] = None,
@@ -263,6 +291,7 @@ class SwitchControllerFortilinkSettings(pulumi.CustomResource):
         __props__ = _SwitchControllerFortilinkSettingsState.__new__(_SwitchControllerFortilinkSettingsState)
 
         __props__.__dict__["fortilink"] = fortilink
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["inactive_timer"] = inactive_timer
         __props__.__dict__["link_down_flush"] = link_down_flush
         __props__.__dict__["nac_ports"] = nac_ports
@@ -274,6 +303,11 @@ class SwitchControllerFortilinkSettings(pulumi.CustomResource):
     @pulumi.getter
     def fortilink(self) -> pulumi.Output[str]:
         return pulumi.get(self, "fortilink")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="inactiveTimer")

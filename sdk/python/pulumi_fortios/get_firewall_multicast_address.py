@@ -157,18 +157,18 @@ def get_firewall_multicast_address(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getFirewallMulticastAddress:GetFirewallMulticastAddress', __args__, opts=opts, typ=GetFirewallMulticastAddressResult).value
 
     return AwaitableGetFirewallMulticastAddressResult(
-        associated_interface=__ret__.associated_interface,
-        color=__ret__.color,
-        comment=__ret__.comment,
-        end_ip=__ret__.end_ip,
-        id=__ret__.id,
-        name=__ret__.name,
-        start_ip=__ret__.start_ip,
-        subnet=__ret__.subnet,
-        taggings=__ret__.taggings,
-        type=__ret__.type,
-        vdomparam=__ret__.vdomparam,
-        visibility=__ret__.visibility)
+        associated_interface=pulumi.get(__ret__, 'associated_interface'),
+        color=pulumi.get(__ret__, 'color'),
+        comment=pulumi.get(__ret__, 'comment'),
+        end_ip=pulumi.get(__ret__, 'end_ip'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        start_ip=pulumi.get(__ret__, 'start_ip'),
+        subnet=pulumi.get(__ret__, 'subnet'),
+        taggings=pulumi.get(__ret__, 'taggings'),
+        type=pulumi.get(__ret__, 'type'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'),
+        visibility=pulumi.get(__ret__, 'visibility'))
 
 
 @_utilities.lift_output_func(get_firewall_multicast_address)

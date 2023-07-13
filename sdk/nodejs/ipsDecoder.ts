@@ -35,6 +35,7 @@ export class IpsDecoder extends pulumi.CustomResource {
     }
 
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly parameters!: pulumi.Output<outputs.IpsDecoderParameter[] | undefined>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -53,12 +54,14 @@ export class IpsDecoder extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as IpsDecoderState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["parameters"] = state ? state.parameters : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as IpsDecoderArgs | undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["parameters"] = args ? args.parameters : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -73,6 +76,7 @@ export class IpsDecoder extends pulumi.CustomResource {
  */
 export interface IpsDecoderState {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     parameters?: pulumi.Input<pulumi.Input<inputs.IpsDecoderParameter>[]>;
     vdomparam?: pulumi.Input<string>;
@@ -83,6 +87,7 @@ export interface IpsDecoderState {
  */
 export interface IpsDecoderArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     parameters?: pulumi.Input<pulumi.Input<inputs.IpsDecoderParameter>[]>;
     vdomparam?: pulumi.Input<string>;

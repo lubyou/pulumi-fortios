@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupSystemFortiguard(ctx *pulumi.Context, args *LookupSystemFortiguardArgs, opts ...pulumi.InvokeOption) (*LookupSystemFortiguardResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSystemFortiguardResult
 	err := ctx.Invoke("fortios:index/getSystemFortiguard:GetSystemFortiguard", args, &rv, opts...)
 	if err != nil {
@@ -29,6 +30,7 @@ type LookupSystemFortiguardArgs struct {
 type LookupSystemFortiguardResult struct {
 	AntispamCache                string `pulumi:"antispamCache"`
 	AntispamCacheMpercent        int    `pulumi:"antispamCacheMpercent"`
+	AntispamCacheMpermille       int    `pulumi:"antispamCacheMpermille"`
 	AntispamCacheTtl             int    `pulumi:"antispamCacheTtl"`
 	AntispamExpiration           int    `pulumi:"antispamExpiration"`
 	AntispamForceOff             string `pulumi:"antispamForceOff"`
@@ -38,56 +40,60 @@ type LookupSystemFortiguardResult struct {
 	AnycastSdnsServerPort        int    `pulumi:"anycastSdnsServerPort"`
 	AutoFirmwareUpgrade          string `pulumi:"autoFirmwareUpgrade"`
 	AutoFirmwareUpgradeDay       string `pulumi:"autoFirmwareUpgradeDay"`
+	AutoFirmwareUpgradeDelay     int    `pulumi:"autoFirmwareUpgradeDelay"`
 	AutoFirmwareUpgradeEndHour   int    `pulumi:"autoFirmwareUpgradeEndHour"`
 	AutoFirmwareUpgradeStartHour int    `pulumi:"autoFirmwareUpgradeStartHour"`
 	AutoJoinForticloud           string `pulumi:"autoJoinForticloud"`
 	DdnsServerIp                 string `pulumi:"ddnsServerIp"`
 	DdnsServerIp6                string `pulumi:"ddnsServerIp6"`
 	DdnsServerPort               int    `pulumi:"ddnsServerPort"`
+	FdsLicenseExpiringDays       int    `pulumi:"fdsLicenseExpiringDays"`
 	FortiguardAnycast            string `pulumi:"fortiguardAnycast"`
 	FortiguardAnycastSource      string `pulumi:"fortiguardAnycastSource"`
 	// The provider-assigned unique ID for this managed resource.
-	Id                              string  `pulumi:"id"`
-	Interface                       string  `pulumi:"interface"`
-	InterfaceSelectMethod           string  `pulumi:"interfaceSelectMethod"`
-	LoadBalanceServers              int     `pulumi:"loadBalanceServers"`
-	OutbreakPreventionCache         string  `pulumi:"outbreakPreventionCache"`
-	OutbreakPreventionCacheMpercent int     `pulumi:"outbreakPreventionCacheMpercent"`
-	OutbreakPreventionCacheTtl      int     `pulumi:"outbreakPreventionCacheTtl"`
-	OutbreakPreventionExpiration    int     `pulumi:"outbreakPreventionExpiration"`
-	OutbreakPreventionForceOff      string  `pulumi:"outbreakPreventionForceOff"`
-	OutbreakPreventionLicense       int     `pulumi:"outbreakPreventionLicense"`
-	OutbreakPreventionTimeout       int     `pulumi:"outbreakPreventionTimeout"`
-	PersistentConnection            string  `pulumi:"persistentConnection"`
-	Port                            string  `pulumi:"port"`
-	Protocol                        string  `pulumi:"protocol"`
-	ProxyPassword                   string  `pulumi:"proxyPassword"`
-	ProxyServerIp                   string  `pulumi:"proxyServerIp"`
-	ProxyServerPort                 int     `pulumi:"proxyServerPort"`
-	ProxyUsername                   string  `pulumi:"proxyUsername"`
-	SandboxInlineScan               string  `pulumi:"sandboxInlineScan"`
-	SandboxRegion                   string  `pulumi:"sandboxRegion"`
-	SdnsOptions                     string  `pulumi:"sdnsOptions"`
-	SdnsServerIp                    string  `pulumi:"sdnsServerIp"`
-	SdnsServerPort                  int     `pulumi:"sdnsServerPort"`
-	ServiceAccountId                string  `pulumi:"serviceAccountId"`
-	SourceIp                        string  `pulumi:"sourceIp"`
-	SourceIp6                       string  `pulumi:"sourceIp6"`
-	UpdateBuildProxy                string  `pulumi:"updateBuildProxy"`
-	UpdateExtdb                     string  `pulumi:"updateExtdb"`
-	UpdateFfdb                      string  `pulumi:"updateFfdb"`
-	UpdateServerLocation            string  `pulumi:"updateServerLocation"`
-	UpdateUwdb                      string  `pulumi:"updateUwdb"`
-	Vdom                            string  `pulumi:"vdom"`
-	Vdomparam                       *string `pulumi:"vdomparam"`
-	VideofilterExpiration           int     `pulumi:"videofilterExpiration"`
-	VideofilterLicense              int     `pulumi:"videofilterLicense"`
-	WebfilterCache                  string  `pulumi:"webfilterCache"`
-	WebfilterCacheTtl               int     `pulumi:"webfilterCacheTtl"`
-	WebfilterExpiration             int     `pulumi:"webfilterExpiration"`
-	WebfilterForceOff               string  `pulumi:"webfilterForceOff"`
-	WebfilterLicense                int     `pulumi:"webfilterLicense"`
-	WebfilterTimeout                int     `pulumi:"webfilterTimeout"`
+	Id                               string  `pulumi:"id"`
+	Interface                        string  `pulumi:"interface"`
+	InterfaceSelectMethod            string  `pulumi:"interfaceSelectMethod"`
+	LoadBalanceServers               int     `pulumi:"loadBalanceServers"`
+	OutbreakPreventionCache          string  `pulumi:"outbreakPreventionCache"`
+	OutbreakPreventionCacheMpercent  int     `pulumi:"outbreakPreventionCacheMpercent"`
+	OutbreakPreventionCacheMpermille int     `pulumi:"outbreakPreventionCacheMpermille"`
+	OutbreakPreventionCacheTtl       int     `pulumi:"outbreakPreventionCacheTtl"`
+	OutbreakPreventionExpiration     int     `pulumi:"outbreakPreventionExpiration"`
+	OutbreakPreventionForceOff       string  `pulumi:"outbreakPreventionForceOff"`
+	OutbreakPreventionLicense        int     `pulumi:"outbreakPreventionLicense"`
+	OutbreakPreventionTimeout        int     `pulumi:"outbreakPreventionTimeout"`
+	PersistentConnection             string  `pulumi:"persistentConnection"`
+	Port                             string  `pulumi:"port"`
+	Protocol                         string  `pulumi:"protocol"`
+	ProxyPassword                    string  `pulumi:"proxyPassword"`
+	ProxyServerIp                    string  `pulumi:"proxyServerIp"`
+	ProxyServerPort                  int     `pulumi:"proxyServerPort"`
+	ProxyUsername                    string  `pulumi:"proxyUsername"`
+	SandboxInlineScan                string  `pulumi:"sandboxInlineScan"`
+	SandboxRegion                    string  `pulumi:"sandboxRegion"`
+	SdnsOptions                      string  `pulumi:"sdnsOptions"`
+	SdnsServerIp                     string  `pulumi:"sdnsServerIp"`
+	SdnsServerPort                   int     `pulumi:"sdnsServerPort"`
+	ServiceAccountId                 string  `pulumi:"serviceAccountId"`
+	SourceIp                         string  `pulumi:"sourceIp"`
+	SourceIp6                        string  `pulumi:"sourceIp6"`
+	UpdateBuildProxy                 string  `pulumi:"updateBuildProxy"`
+	UpdateDldb                       string  `pulumi:"updateDldb"`
+	UpdateExtdb                      string  `pulumi:"updateExtdb"`
+	UpdateFfdb                       string  `pulumi:"updateFfdb"`
+	UpdateServerLocation             string  `pulumi:"updateServerLocation"`
+	UpdateUwdb                       string  `pulumi:"updateUwdb"`
+	Vdom                             string  `pulumi:"vdom"`
+	Vdomparam                        *string `pulumi:"vdomparam"`
+	VideofilterExpiration            int     `pulumi:"videofilterExpiration"`
+	VideofilterLicense               int     `pulumi:"videofilterLicense"`
+	WebfilterCache                   string  `pulumi:"webfilterCache"`
+	WebfilterCacheTtl                int     `pulumi:"webfilterCacheTtl"`
+	WebfilterExpiration              int     `pulumi:"webfilterExpiration"`
+	WebfilterForceOff                string  `pulumi:"webfilterForceOff"`
+	WebfilterLicense                 int     `pulumi:"webfilterLicense"`
+	WebfilterTimeout                 int     `pulumi:"webfilterTimeout"`
 }
 
 func LookupSystemFortiguardOutput(ctx *pulumi.Context, args LookupSystemFortiguardOutputArgs, opts ...pulumi.InvokeOption) LookupSystemFortiguardResultOutput {
@@ -135,6 +141,10 @@ func (o LookupSystemFortiguardResultOutput) AntispamCacheMpercent() pulumi.IntOu
 	return o.ApplyT(func(v LookupSystemFortiguardResult) int { return v.AntispamCacheMpercent }).(pulumi.IntOutput)
 }
 
+func (o LookupSystemFortiguardResultOutput) AntispamCacheMpermille() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) int { return v.AntispamCacheMpermille }).(pulumi.IntOutput)
+}
+
 func (o LookupSystemFortiguardResultOutput) AntispamCacheTtl() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemFortiguardResult) int { return v.AntispamCacheTtl }).(pulumi.IntOutput)
 }
@@ -171,6 +181,10 @@ func (o LookupSystemFortiguardResultOutput) AutoFirmwareUpgradeDay() pulumi.Stri
 	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.AutoFirmwareUpgradeDay }).(pulumi.StringOutput)
 }
 
+func (o LookupSystemFortiguardResultOutput) AutoFirmwareUpgradeDelay() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) int { return v.AutoFirmwareUpgradeDelay }).(pulumi.IntOutput)
+}
+
 func (o LookupSystemFortiguardResultOutput) AutoFirmwareUpgradeEndHour() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemFortiguardResult) int { return v.AutoFirmwareUpgradeEndHour }).(pulumi.IntOutput)
 }
@@ -193,6 +207,10 @@ func (o LookupSystemFortiguardResultOutput) DdnsServerIp6() pulumi.StringOutput 
 
 func (o LookupSystemFortiguardResultOutput) DdnsServerPort() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemFortiguardResult) int { return v.DdnsServerPort }).(pulumi.IntOutput)
+}
+
+func (o LookupSystemFortiguardResultOutput) FdsLicenseExpiringDays() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) int { return v.FdsLicenseExpiringDays }).(pulumi.IntOutput)
 }
 
 func (o LookupSystemFortiguardResultOutput) FortiguardAnycast() pulumi.StringOutput {
@@ -226,6 +244,10 @@ func (o LookupSystemFortiguardResultOutput) OutbreakPreventionCache() pulumi.Str
 
 func (o LookupSystemFortiguardResultOutput) OutbreakPreventionCacheMpercent() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemFortiguardResult) int { return v.OutbreakPreventionCacheMpercent }).(pulumi.IntOutput)
+}
+
+func (o LookupSystemFortiguardResultOutput) OutbreakPreventionCacheMpermille() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) int { return v.OutbreakPreventionCacheMpermille }).(pulumi.IntOutput)
 }
 
 func (o LookupSystemFortiguardResultOutput) OutbreakPreventionCacheTtl() pulumi.IntOutput {
@@ -310,6 +332,10 @@ func (o LookupSystemFortiguardResultOutput) SourceIp6() pulumi.StringOutput {
 
 func (o LookupSystemFortiguardResultOutput) UpdateBuildProxy() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.UpdateBuildProxy }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemFortiguardResultOutput) UpdateDldb() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.UpdateDldb }).(pulumi.StringOutput)
 }
 
 func (o LookupSystemFortiguardResultOutput) UpdateExtdb() pulumi.StringOutput {

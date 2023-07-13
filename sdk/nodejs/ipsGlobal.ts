@@ -42,6 +42,7 @@ export class IpsGlobal extends pulumi.CustomResource {
     public readonly engineCount!: pulumi.Output<number>;
     public readonly excludeSignatures!: pulumi.Output<string>;
     public readonly failOpen!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly intelligentMode!: pulumi.Output<string>;
     public readonly ipsReserveCpu!: pulumi.Output<string>;
     public readonly ngfwMaxScanRange!: pulumi.Output<number>;
@@ -76,6 +77,7 @@ export class IpsGlobal extends pulumi.CustomResource {
             resourceInputs["engineCount"] = state ? state.engineCount : undefined;
             resourceInputs["excludeSignatures"] = state ? state.excludeSignatures : undefined;
             resourceInputs["failOpen"] = state ? state.failOpen : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["intelligentMode"] = state ? state.intelligentMode : undefined;
             resourceInputs["ipsReserveCpu"] = state ? state.ipsReserveCpu : undefined;
             resourceInputs["ngfwMaxScanRange"] = state ? state.ngfwMaxScanRange : undefined;
@@ -98,6 +100,7 @@ export class IpsGlobal extends pulumi.CustomResource {
             resourceInputs["engineCount"] = args ? args.engineCount : undefined;
             resourceInputs["excludeSignatures"] = args ? args.excludeSignatures : undefined;
             resourceInputs["failOpen"] = args ? args.failOpen : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["intelligentMode"] = args ? args.intelligentMode : undefined;
             resourceInputs["ipsReserveCpu"] = args ? args.ipsReserveCpu : undefined;
             resourceInputs["ngfwMaxScanRange"] = args ? args.ngfwMaxScanRange : undefined;
@@ -128,6 +131,7 @@ export interface IpsGlobalState {
     engineCount?: pulumi.Input<number>;
     excludeSignatures?: pulumi.Input<string>;
     failOpen?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     intelligentMode?: pulumi.Input<string>;
     ipsReserveCpu?: pulumi.Input<string>;
     ngfwMaxScanRange?: pulumi.Input<number>;
@@ -154,6 +158,7 @@ export interface IpsGlobalArgs {
     engineCount?: pulumi.Input<number>;
     excludeSignatures?: pulumi.Input<string>;
     failOpen?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     intelligentMode?: pulumi.Input<string>;
     ipsReserveCpu?: pulumi.Input<string>;
     ngfwMaxScanRange?: pulumi.Input<number>;

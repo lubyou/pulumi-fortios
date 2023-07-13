@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupFirewallProxyAddress(ctx *pulumi.Context, args *LookupFirewallProxyAddressArgs, opts ...pulumi.InvokeOption) (*LookupFirewallProxyAddressResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallProxyAddressResult
 	err := ctx.Invoke("fortios:index/getFirewallProxyAddress:GetFirewallProxyAddress", args, &rv, opts...)
 	if err != nil {
@@ -48,6 +49,8 @@ type LookupFirewallProxyAddressResult struct {
 	Taggings   []GetFirewallProxyAddressTagging `pulumi:"taggings"`
 	Type       string                           `pulumi:"type"`
 	Ua         string                           `pulumi:"ua"`
+	UaMaxVer   string                           `pulumi:"uaMaxVer"`
+	UaMinVer   string                           `pulumi:"uaMinVer"`
 	Uuid       string                           `pulumi:"uuid"`
 	Vdomparam  *string                          `pulumi:"vdomparam"`
 	Visibility string                           `pulumi:"visibility"`
@@ -166,6 +169,14 @@ func (o LookupFirewallProxyAddressResultOutput) Type() pulumi.StringOutput {
 
 func (o LookupFirewallProxyAddressResultOutput) Ua() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallProxyAddressResult) string { return v.Ua }).(pulumi.StringOutput)
+}
+
+func (o LookupFirewallProxyAddressResultOutput) UaMaxVer() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallProxyAddressResult) string { return v.UaMaxVer }).(pulumi.StringOutput)
+}
+
+func (o LookupFirewallProxyAddressResultOutput) UaMinVer() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallProxyAddressResult) string { return v.UaMinVer }).(pulumi.StringOutput)
 }
 
 func (o LookupFirewallProxyAddressResultOutput) Uuid() pulumi.StringOutput {

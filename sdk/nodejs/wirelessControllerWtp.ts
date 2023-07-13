@@ -43,6 +43,7 @@ export class WirelessControllerWtp extends pulumi.CustomResource {
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly firmwareProvision!: pulumi.Output<string>;
     public readonly firmwareProvisionLatest!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly imageDownload!: pulumi.Output<string>;
     public readonly index!: pulumi.Output<number>;
     public readonly ipFragmentPreventing!: pulumi.Output<string>;
@@ -101,6 +102,7 @@ export class WirelessControllerWtp extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["firmwareProvision"] = state ? state.firmwareProvision : undefined;
             resourceInputs["firmwareProvisionLatest"] = state ? state.firmwareProvisionLatest : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["imageDownload"] = state ? state.imageDownload : undefined;
             resourceInputs["index"] = state ? state.index : undefined;
             resourceInputs["ipFragmentPreventing"] = state ? state.ipFragmentPreventing : undefined;
@@ -150,6 +152,7 @@ export class WirelessControllerWtp extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["firmwareProvision"] = args ? args.firmwareProvision : undefined;
             resourceInputs["firmwareProvisionLatest"] = args ? args.firmwareProvisionLatest : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["imageDownload"] = args ? args.imageDownload : undefined;
             resourceInputs["index"] = args ? args.index : undefined;
             resourceInputs["ipFragmentPreventing"] = args ? args.ipFragmentPreventing : undefined;
@@ -206,6 +209,7 @@ export interface WirelessControllerWtpState {
     dynamicSortSubtable?: pulumi.Input<string>;
     firmwareProvision?: pulumi.Input<string>;
     firmwareProvisionLatest?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     imageDownload?: pulumi.Input<string>;
     index?: pulumi.Input<number>;
     ipFragmentPreventing?: pulumi.Input<string>;
@@ -256,6 +260,7 @@ export interface WirelessControllerWtpArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
     firmwareProvision?: pulumi.Input<string>;
     firmwareProvisionLatest?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     imageDownload?: pulumi.Input<string>;
     index?: pulumi.Input<number>;
     ipFragmentPreventing?: pulumi.Input<string>;

@@ -18,6 +18,7 @@ class VoipProfileArgs:
     def __init__(__self__, *,
                  comment: Optional[pulumi.Input[str]] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  msrp: Optional[pulumi.Input['VoipProfileMsrpArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  sccp: Optional[pulumi.Input['VoipProfileSccpArgs']] = None,
@@ -30,6 +31,8 @@ class VoipProfileArgs:
             pulumi.set(__self__, "comment", comment)
         if feature_set is not None:
             pulumi.set(__self__, "feature_set", feature_set)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if msrp is not None:
             pulumi.set(__self__, "msrp", msrp)
         if name is not None:
@@ -58,6 +61,15 @@ class VoipProfileArgs:
     @feature_set.setter
     def feature_set(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "feature_set", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -110,6 +122,7 @@ class _VoipProfileState:
     def __init__(__self__, *,
                  comment: Optional[pulumi.Input[str]] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  msrp: Optional[pulumi.Input['VoipProfileMsrpArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  sccp: Optional[pulumi.Input['VoipProfileSccpArgs']] = None,
@@ -122,6 +135,8 @@ class _VoipProfileState:
             pulumi.set(__self__, "comment", comment)
         if feature_set is not None:
             pulumi.set(__self__, "feature_set", feature_set)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if msrp is not None:
             pulumi.set(__self__, "msrp", msrp)
         if name is not None:
@@ -150,6 +165,15 @@ class _VoipProfileState:
     @feature_set.setter
     def feature_set(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "feature_set", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -204,6 +228,7 @@ class VoipProfile(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  msrp: Optional[pulumi.Input[pulumi.InputType['VoipProfileMsrpArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  sccp: Optional[pulumi.Input[pulumi.InputType['VoipProfileSccpArgs']]] = None,
@@ -240,6 +265,7 @@ class VoipProfile(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  msrp: Optional[pulumi.Input[pulumi.InputType['VoipProfileMsrpArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  sccp: Optional[pulumi.Input[pulumi.InputType['VoipProfileSccpArgs']]] = None,
@@ -256,6 +282,7 @@ class VoipProfile(pulumi.CustomResource):
 
             __props__.__dict__["comment"] = comment
             __props__.__dict__["feature_set"] = feature_set
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["msrp"] = msrp
             __props__.__dict__["name"] = name
             __props__.__dict__["sccp"] = sccp
@@ -273,6 +300,7 @@ class VoipProfile(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             comment: Optional[pulumi.Input[str]] = None,
             feature_set: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             msrp: Optional[pulumi.Input[pulumi.InputType['VoipProfileMsrpArgs']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             sccp: Optional[pulumi.Input[pulumi.InputType['VoipProfileSccpArgs']]] = None,
@@ -292,6 +320,7 @@ class VoipProfile(pulumi.CustomResource):
 
         __props__.__dict__["comment"] = comment
         __props__.__dict__["feature_set"] = feature_set
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["msrp"] = msrp
         __props__.__dict__["name"] = name
         __props__.__dict__["sccp"] = sccp
@@ -308,6 +337,11 @@ class VoipProfile(pulumi.CustomResource):
     @pulumi.getter(name="featureSet")
     def feature_set(self) -> pulumi.Output[str]:
         return pulumi.get(self, "feature_set")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

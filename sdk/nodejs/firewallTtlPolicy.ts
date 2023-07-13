@@ -37,6 +37,7 @@ export class FirewallTtlPolicy extends pulumi.CustomResource {
     public readonly action!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly fosid!: pulumi.Output<number>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly schedule!: pulumi.Output<string>;
     public readonly services!: pulumi.Output<outputs.FirewallTtlPolicyService[]>;
     public readonly srcaddrs!: pulumi.Output<outputs.FirewallTtlPolicySrcaddr[]>;
@@ -61,6 +62,7 @@ export class FirewallTtlPolicy extends pulumi.CustomResource {
             resourceInputs["action"] = state ? state.action : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["schedule"] = state ? state.schedule : undefined;
             resourceInputs["services"] = state ? state.services : undefined;
             resourceInputs["srcaddrs"] = state ? state.srcaddrs : undefined;
@@ -91,6 +93,7 @@ export class FirewallTtlPolicy extends pulumi.CustomResource {
             resourceInputs["action"] = args ? args.action : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["schedule"] = args ? args.schedule : undefined;
             resourceInputs["services"] = args ? args.services : undefined;
             resourceInputs["srcaddrs"] = args ? args.srcaddrs : undefined;
@@ -111,6 +114,7 @@ export interface FirewallTtlPolicyState {
     action?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     fosid?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     schedule?: pulumi.Input<string>;
     services?: pulumi.Input<pulumi.Input<inputs.FirewallTtlPolicyService>[]>;
     srcaddrs?: pulumi.Input<pulumi.Input<inputs.FirewallTtlPolicySrcaddr>[]>;
@@ -127,6 +131,7 @@ export interface FirewallTtlPolicyArgs {
     action?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     fosid: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     schedule: pulumi.Input<string>;
     services: pulumi.Input<pulumi.Input<inputs.FirewallTtlPolicyService>[]>;
     srcaddrs: pulumi.Input<pulumi.Input<inputs.FirewallTtlPolicySrcaddr>[]>;

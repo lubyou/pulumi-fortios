@@ -42,6 +42,7 @@ class SystemInterfaceArgs:
                  client_options: Optional[pulumi.Input[Sequence[pulumi.Input['SystemInterfaceClientOptionArgs']]]] = None,
                  color: Optional[pulumi.Input[int]] = None,
                  dedicated_to: Optional[pulumi.Input[str]] = None,
+                 default_purdue_level: Optional[pulumi.Input[str]] = None,
                  defaultgw: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  detected_peer_mtu: Optional[pulumi.Input[int]] = None,
@@ -53,6 +54,7 @@ class SystemInterfaceArgs:
                  device_netscan: Optional[pulumi.Input[str]] = None,
                  device_user_identification: Optional[pulumi.Input[str]] = None,
                  devindex: Optional[pulumi.Input[int]] = None,
+                 dhcp_broadcast_flag: Optional[pulumi.Input[str]] = None,
                  dhcp_classless_route_addition: Optional[pulumi.Input[str]] = None,
                  dhcp_client_identifier: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_agent_option: Optional[pulumi.Input[str]] = None,
@@ -64,6 +66,7 @@ class SystemInterfaceArgs:
                  dhcp_relay_service: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_type: Optional[pulumi.Input[str]] = None,
                  dhcp_renew_time: Optional[pulumi.Input[int]] = None,
+                 dhcp_smart_relay: Optional[pulumi.Input[str]] = None,
                  dhcp_snooping_server_lists: Optional[pulumi.Input[Sequence[pulumi.Input['SystemInterfaceDhcpSnoopingServerListArgs']]]] = None,
                  disc_retry_timeout: Optional[pulumi.Input[int]] = None,
                  disconnect_threshold: Optional[pulumi.Input[int]] = None,
@@ -99,6 +102,7 @@ class SystemInterfaceArgs:
                  fortilink_stacking: Optional[pulumi.Input[str]] = None,
                  forward_domain: Optional[pulumi.Input[int]] = None,
                  forward_error_correction: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gwdetect: Optional[pulumi.Input[str]] = None,
                  ha_priority: Optional[pulumi.Input[int]] = None,
                  icmp_accept_redirect: Optional[pulumi.Input[str]] = None,
@@ -293,6 +297,8 @@ class SystemInterfaceArgs:
             pulumi.set(__self__, "color", color)
         if dedicated_to is not None:
             pulumi.set(__self__, "dedicated_to", dedicated_to)
+        if default_purdue_level is not None:
+            pulumi.set(__self__, "default_purdue_level", default_purdue_level)
         if defaultgw is not None:
             pulumi.set(__self__, "defaultgw", defaultgw)
         if description is not None:
@@ -315,6 +321,8 @@ class SystemInterfaceArgs:
             pulumi.set(__self__, "device_user_identification", device_user_identification)
         if devindex is not None:
             pulumi.set(__self__, "devindex", devindex)
+        if dhcp_broadcast_flag is not None:
+            pulumi.set(__self__, "dhcp_broadcast_flag", dhcp_broadcast_flag)
         if dhcp_classless_route_addition is not None:
             pulumi.set(__self__, "dhcp_classless_route_addition", dhcp_classless_route_addition)
         if dhcp_client_identifier is not None:
@@ -337,6 +345,8 @@ class SystemInterfaceArgs:
             pulumi.set(__self__, "dhcp_relay_type", dhcp_relay_type)
         if dhcp_renew_time is not None:
             pulumi.set(__self__, "dhcp_renew_time", dhcp_renew_time)
+        if dhcp_smart_relay is not None:
+            pulumi.set(__self__, "dhcp_smart_relay", dhcp_smart_relay)
         if dhcp_snooping_server_lists is not None:
             pulumi.set(__self__, "dhcp_snooping_server_lists", dhcp_snooping_server_lists)
         if disc_retry_timeout is not None:
@@ -407,6 +417,8 @@ class SystemInterfaceArgs:
             pulumi.set(__self__, "forward_domain", forward_domain)
         if forward_error_correction is not None:
             pulumi.set(__self__, "forward_error_correction", forward_error_correction)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gwdetect is not None:
             pulumi.set(__self__, "gwdetect", gwdetect)
         if ha_priority is not None:
@@ -923,6 +935,15 @@ class SystemInterfaceArgs:
         pulumi.set(self, "dedicated_to", value)
 
     @property
+    @pulumi.getter(name="defaultPurdueLevel")
+    def default_purdue_level(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "default_purdue_level")
+
+    @default_purdue_level.setter
+    def default_purdue_level(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "default_purdue_level", value)
+
+    @property
     @pulumi.getter
     def defaultgw(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "defaultgw")
@@ -1022,6 +1043,15 @@ class SystemInterfaceArgs:
         pulumi.set(self, "devindex", value)
 
     @property
+    @pulumi.getter(name="dhcpBroadcastFlag")
+    def dhcp_broadcast_flag(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "dhcp_broadcast_flag")
+
+    @dhcp_broadcast_flag.setter
+    def dhcp_broadcast_flag(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_broadcast_flag", value)
+
+    @property
     @pulumi.getter(name="dhcpClasslessRouteAddition")
     def dhcp_classless_route_addition(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "dhcp_classless_route_addition")
@@ -1119,6 +1149,15 @@ class SystemInterfaceArgs:
     @dhcp_renew_time.setter
     def dhcp_renew_time(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "dhcp_renew_time", value)
+
+    @property
+    @pulumi.getter(name="dhcpSmartRelay")
+    def dhcp_smart_relay(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "dhcp_smart_relay")
+
+    @dhcp_smart_relay.setter
+    def dhcp_smart_relay(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_smart_relay", value)
 
     @property
     @pulumi.getter(name="dhcpSnoopingServerLists")
@@ -1434,6 +1473,15 @@ class SystemInterfaceArgs:
     @forward_error_correction.setter
     def forward_error_correction(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "forward_error_correction", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -2724,6 +2772,7 @@ class _SystemInterfaceState:
                  client_options: Optional[pulumi.Input[Sequence[pulumi.Input['SystemInterfaceClientOptionArgs']]]] = None,
                  color: Optional[pulumi.Input[int]] = None,
                  dedicated_to: Optional[pulumi.Input[str]] = None,
+                 default_purdue_level: Optional[pulumi.Input[str]] = None,
                  defaultgw: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  detected_peer_mtu: Optional[pulumi.Input[int]] = None,
@@ -2735,6 +2784,7 @@ class _SystemInterfaceState:
                  device_netscan: Optional[pulumi.Input[str]] = None,
                  device_user_identification: Optional[pulumi.Input[str]] = None,
                  devindex: Optional[pulumi.Input[int]] = None,
+                 dhcp_broadcast_flag: Optional[pulumi.Input[str]] = None,
                  dhcp_classless_route_addition: Optional[pulumi.Input[str]] = None,
                  dhcp_client_identifier: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_agent_option: Optional[pulumi.Input[str]] = None,
@@ -2746,6 +2796,7 @@ class _SystemInterfaceState:
                  dhcp_relay_service: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_type: Optional[pulumi.Input[str]] = None,
                  dhcp_renew_time: Optional[pulumi.Input[int]] = None,
+                 dhcp_smart_relay: Optional[pulumi.Input[str]] = None,
                  dhcp_snooping_server_lists: Optional[pulumi.Input[Sequence[pulumi.Input['SystemInterfaceDhcpSnoopingServerListArgs']]]] = None,
                  disc_retry_timeout: Optional[pulumi.Input[int]] = None,
                  disconnect_threshold: Optional[pulumi.Input[int]] = None,
@@ -2781,6 +2832,7 @@ class _SystemInterfaceState:
                  fortilink_stacking: Optional[pulumi.Input[str]] = None,
                  forward_domain: Optional[pulumi.Input[int]] = None,
                  forward_error_correction: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gwdetect: Optional[pulumi.Input[str]] = None,
                  ha_priority: Optional[pulumi.Input[int]] = None,
                  icmp_accept_redirect: Optional[pulumi.Input[str]] = None,
@@ -2975,6 +3027,8 @@ class _SystemInterfaceState:
             pulumi.set(__self__, "color", color)
         if dedicated_to is not None:
             pulumi.set(__self__, "dedicated_to", dedicated_to)
+        if default_purdue_level is not None:
+            pulumi.set(__self__, "default_purdue_level", default_purdue_level)
         if defaultgw is not None:
             pulumi.set(__self__, "defaultgw", defaultgw)
         if description is not None:
@@ -2997,6 +3051,8 @@ class _SystemInterfaceState:
             pulumi.set(__self__, "device_user_identification", device_user_identification)
         if devindex is not None:
             pulumi.set(__self__, "devindex", devindex)
+        if dhcp_broadcast_flag is not None:
+            pulumi.set(__self__, "dhcp_broadcast_flag", dhcp_broadcast_flag)
         if dhcp_classless_route_addition is not None:
             pulumi.set(__self__, "dhcp_classless_route_addition", dhcp_classless_route_addition)
         if dhcp_client_identifier is not None:
@@ -3019,6 +3075,8 @@ class _SystemInterfaceState:
             pulumi.set(__self__, "dhcp_relay_type", dhcp_relay_type)
         if dhcp_renew_time is not None:
             pulumi.set(__self__, "dhcp_renew_time", dhcp_renew_time)
+        if dhcp_smart_relay is not None:
+            pulumi.set(__self__, "dhcp_smart_relay", dhcp_smart_relay)
         if dhcp_snooping_server_lists is not None:
             pulumi.set(__self__, "dhcp_snooping_server_lists", dhcp_snooping_server_lists)
         if disc_retry_timeout is not None:
@@ -3089,6 +3147,8 @@ class _SystemInterfaceState:
             pulumi.set(__self__, "forward_domain", forward_domain)
         if forward_error_correction is not None:
             pulumi.set(__self__, "forward_error_correction", forward_error_correction)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gwdetect is not None:
             pulumi.set(__self__, "gwdetect", gwdetect)
         if ha_priority is not None:
@@ -3598,6 +3658,15 @@ class _SystemInterfaceState:
         pulumi.set(self, "dedicated_to", value)
 
     @property
+    @pulumi.getter(name="defaultPurdueLevel")
+    def default_purdue_level(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "default_purdue_level")
+
+    @default_purdue_level.setter
+    def default_purdue_level(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "default_purdue_level", value)
+
+    @property
     @pulumi.getter
     def defaultgw(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "defaultgw")
@@ -3697,6 +3766,15 @@ class _SystemInterfaceState:
         pulumi.set(self, "devindex", value)
 
     @property
+    @pulumi.getter(name="dhcpBroadcastFlag")
+    def dhcp_broadcast_flag(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "dhcp_broadcast_flag")
+
+    @dhcp_broadcast_flag.setter
+    def dhcp_broadcast_flag(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_broadcast_flag", value)
+
+    @property
     @pulumi.getter(name="dhcpClasslessRouteAddition")
     def dhcp_classless_route_addition(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "dhcp_classless_route_addition")
@@ -3794,6 +3872,15 @@ class _SystemInterfaceState:
     @dhcp_renew_time.setter
     def dhcp_renew_time(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "dhcp_renew_time", value)
+
+    @property
+    @pulumi.getter(name="dhcpSmartRelay")
+    def dhcp_smart_relay(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "dhcp_smart_relay")
+
+    @dhcp_smart_relay.setter
+    def dhcp_smart_relay(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_smart_relay", value)
 
     @property
     @pulumi.getter(name="dhcpSnoopingServerLists")
@@ -4109,6 +4196,15 @@ class _SystemInterfaceState:
     @forward_error_correction.setter
     def forward_error_correction(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "forward_error_correction", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -5410,6 +5506,7 @@ class SystemInterface(pulumi.CustomResource):
                  client_options: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemInterfaceClientOptionArgs']]]]] = None,
                  color: Optional[pulumi.Input[int]] = None,
                  dedicated_to: Optional[pulumi.Input[str]] = None,
+                 default_purdue_level: Optional[pulumi.Input[str]] = None,
                  defaultgw: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  detected_peer_mtu: Optional[pulumi.Input[int]] = None,
@@ -5421,6 +5518,7 @@ class SystemInterface(pulumi.CustomResource):
                  device_netscan: Optional[pulumi.Input[str]] = None,
                  device_user_identification: Optional[pulumi.Input[str]] = None,
                  devindex: Optional[pulumi.Input[int]] = None,
+                 dhcp_broadcast_flag: Optional[pulumi.Input[str]] = None,
                  dhcp_classless_route_addition: Optional[pulumi.Input[str]] = None,
                  dhcp_client_identifier: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_agent_option: Optional[pulumi.Input[str]] = None,
@@ -5432,6 +5530,7 @@ class SystemInterface(pulumi.CustomResource):
                  dhcp_relay_service: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_type: Optional[pulumi.Input[str]] = None,
                  dhcp_renew_time: Optional[pulumi.Input[int]] = None,
+                 dhcp_smart_relay: Optional[pulumi.Input[str]] = None,
                  dhcp_snooping_server_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemInterfaceDhcpSnoopingServerListArgs']]]]] = None,
                  disc_retry_timeout: Optional[pulumi.Input[int]] = None,
                  disconnect_threshold: Optional[pulumi.Input[int]] = None,
@@ -5467,6 +5566,7 @@ class SystemInterface(pulumi.CustomResource):
                  fortilink_stacking: Optional[pulumi.Input[str]] = None,
                  forward_domain: Optional[pulumi.Input[int]] = None,
                  forward_error_correction: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gwdetect: Optional[pulumi.Input[str]] = None,
                  ha_priority: Optional[pulumi.Input[int]] = None,
                  icmp_accept_redirect: Optional[pulumi.Input[str]] = None,
@@ -5662,6 +5762,7 @@ class SystemInterface(pulumi.CustomResource):
                  client_options: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemInterfaceClientOptionArgs']]]]] = None,
                  color: Optional[pulumi.Input[int]] = None,
                  dedicated_to: Optional[pulumi.Input[str]] = None,
+                 default_purdue_level: Optional[pulumi.Input[str]] = None,
                  defaultgw: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  detected_peer_mtu: Optional[pulumi.Input[int]] = None,
@@ -5673,6 +5774,7 @@ class SystemInterface(pulumi.CustomResource):
                  device_netscan: Optional[pulumi.Input[str]] = None,
                  device_user_identification: Optional[pulumi.Input[str]] = None,
                  devindex: Optional[pulumi.Input[int]] = None,
+                 dhcp_broadcast_flag: Optional[pulumi.Input[str]] = None,
                  dhcp_classless_route_addition: Optional[pulumi.Input[str]] = None,
                  dhcp_client_identifier: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_agent_option: Optional[pulumi.Input[str]] = None,
@@ -5684,6 +5786,7 @@ class SystemInterface(pulumi.CustomResource):
                  dhcp_relay_service: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_type: Optional[pulumi.Input[str]] = None,
                  dhcp_renew_time: Optional[pulumi.Input[int]] = None,
+                 dhcp_smart_relay: Optional[pulumi.Input[str]] = None,
                  dhcp_snooping_server_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemInterfaceDhcpSnoopingServerListArgs']]]]] = None,
                  disc_retry_timeout: Optional[pulumi.Input[int]] = None,
                  disconnect_threshold: Optional[pulumi.Input[int]] = None,
@@ -5719,6 +5822,7 @@ class SystemInterface(pulumi.CustomResource):
                  fortilink_stacking: Optional[pulumi.Input[str]] = None,
                  forward_domain: Optional[pulumi.Input[int]] = None,
                  forward_error_correction: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gwdetect: Optional[pulumi.Input[str]] = None,
                  ha_priority: Optional[pulumi.Input[int]] = None,
                  icmp_accept_redirect: Optional[pulumi.Input[str]] = None,
@@ -5894,6 +5998,7 @@ class SystemInterface(pulumi.CustomResource):
             __props__.__dict__["client_options"] = client_options
             __props__.__dict__["color"] = color
             __props__.__dict__["dedicated_to"] = dedicated_to
+            __props__.__dict__["default_purdue_level"] = default_purdue_level
             __props__.__dict__["defaultgw"] = defaultgw
             __props__.__dict__["description"] = description
             __props__.__dict__["detected_peer_mtu"] = detected_peer_mtu
@@ -5905,6 +6010,7 @@ class SystemInterface(pulumi.CustomResource):
             __props__.__dict__["device_netscan"] = device_netscan
             __props__.__dict__["device_user_identification"] = device_user_identification
             __props__.__dict__["devindex"] = devindex
+            __props__.__dict__["dhcp_broadcast_flag"] = dhcp_broadcast_flag
             __props__.__dict__["dhcp_classless_route_addition"] = dhcp_classless_route_addition
             __props__.__dict__["dhcp_client_identifier"] = dhcp_client_identifier
             __props__.__dict__["dhcp_relay_agent_option"] = dhcp_relay_agent_option
@@ -5916,6 +6022,7 @@ class SystemInterface(pulumi.CustomResource):
             __props__.__dict__["dhcp_relay_service"] = dhcp_relay_service
             __props__.__dict__["dhcp_relay_type"] = dhcp_relay_type
             __props__.__dict__["dhcp_renew_time"] = dhcp_renew_time
+            __props__.__dict__["dhcp_smart_relay"] = dhcp_smart_relay
             __props__.__dict__["dhcp_snooping_server_lists"] = dhcp_snooping_server_lists
             __props__.__dict__["disc_retry_timeout"] = disc_retry_timeout
             __props__.__dict__["disconnect_threshold"] = disconnect_threshold
@@ -5951,6 +6058,7 @@ class SystemInterface(pulumi.CustomResource):
             __props__.__dict__["fortilink_stacking"] = fortilink_stacking
             __props__.__dict__["forward_domain"] = forward_domain
             __props__.__dict__["forward_error_correction"] = forward_error_correction
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["gwdetect"] = gwdetect
             __props__.__dict__["ha_priority"] = ha_priority
             __props__.__dict__["icmp_accept_redirect"] = icmp_accept_redirect
@@ -6131,6 +6239,7 @@ class SystemInterface(pulumi.CustomResource):
             client_options: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemInterfaceClientOptionArgs']]]]] = None,
             color: Optional[pulumi.Input[int]] = None,
             dedicated_to: Optional[pulumi.Input[str]] = None,
+            default_purdue_level: Optional[pulumi.Input[str]] = None,
             defaultgw: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             detected_peer_mtu: Optional[pulumi.Input[int]] = None,
@@ -6142,6 +6251,7 @@ class SystemInterface(pulumi.CustomResource):
             device_netscan: Optional[pulumi.Input[str]] = None,
             device_user_identification: Optional[pulumi.Input[str]] = None,
             devindex: Optional[pulumi.Input[int]] = None,
+            dhcp_broadcast_flag: Optional[pulumi.Input[str]] = None,
             dhcp_classless_route_addition: Optional[pulumi.Input[str]] = None,
             dhcp_client_identifier: Optional[pulumi.Input[str]] = None,
             dhcp_relay_agent_option: Optional[pulumi.Input[str]] = None,
@@ -6153,6 +6263,7 @@ class SystemInterface(pulumi.CustomResource):
             dhcp_relay_service: Optional[pulumi.Input[str]] = None,
             dhcp_relay_type: Optional[pulumi.Input[str]] = None,
             dhcp_renew_time: Optional[pulumi.Input[int]] = None,
+            dhcp_smart_relay: Optional[pulumi.Input[str]] = None,
             dhcp_snooping_server_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemInterfaceDhcpSnoopingServerListArgs']]]]] = None,
             disc_retry_timeout: Optional[pulumi.Input[int]] = None,
             disconnect_threshold: Optional[pulumi.Input[int]] = None,
@@ -6188,6 +6299,7 @@ class SystemInterface(pulumi.CustomResource):
             fortilink_stacking: Optional[pulumi.Input[str]] = None,
             forward_domain: Optional[pulumi.Input[int]] = None,
             forward_error_correction: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             gwdetect: Optional[pulumi.Input[str]] = None,
             ha_priority: Optional[pulumi.Input[int]] = None,
             icmp_accept_redirect: Optional[pulumi.Input[str]] = None,
@@ -6366,6 +6478,7 @@ class SystemInterface(pulumi.CustomResource):
         __props__.__dict__["client_options"] = client_options
         __props__.__dict__["color"] = color
         __props__.__dict__["dedicated_to"] = dedicated_to
+        __props__.__dict__["default_purdue_level"] = default_purdue_level
         __props__.__dict__["defaultgw"] = defaultgw
         __props__.__dict__["description"] = description
         __props__.__dict__["detected_peer_mtu"] = detected_peer_mtu
@@ -6377,6 +6490,7 @@ class SystemInterface(pulumi.CustomResource):
         __props__.__dict__["device_netscan"] = device_netscan
         __props__.__dict__["device_user_identification"] = device_user_identification
         __props__.__dict__["devindex"] = devindex
+        __props__.__dict__["dhcp_broadcast_flag"] = dhcp_broadcast_flag
         __props__.__dict__["dhcp_classless_route_addition"] = dhcp_classless_route_addition
         __props__.__dict__["dhcp_client_identifier"] = dhcp_client_identifier
         __props__.__dict__["dhcp_relay_agent_option"] = dhcp_relay_agent_option
@@ -6388,6 +6502,7 @@ class SystemInterface(pulumi.CustomResource):
         __props__.__dict__["dhcp_relay_service"] = dhcp_relay_service
         __props__.__dict__["dhcp_relay_type"] = dhcp_relay_type
         __props__.__dict__["dhcp_renew_time"] = dhcp_renew_time
+        __props__.__dict__["dhcp_smart_relay"] = dhcp_smart_relay
         __props__.__dict__["dhcp_snooping_server_lists"] = dhcp_snooping_server_lists
         __props__.__dict__["disc_retry_timeout"] = disc_retry_timeout
         __props__.__dict__["disconnect_threshold"] = disconnect_threshold
@@ -6423,6 +6538,7 @@ class SystemInterface(pulumi.CustomResource):
         __props__.__dict__["fortilink_stacking"] = fortilink_stacking
         __props__.__dict__["forward_domain"] = forward_domain
         __props__.__dict__["forward_error_correction"] = forward_error_correction
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["gwdetect"] = gwdetect
         __props__.__dict__["ha_priority"] = ha_priority
         __props__.__dict__["icmp_accept_redirect"] = icmp_accept_redirect
@@ -6692,6 +6808,11 @@ class SystemInterface(pulumi.CustomResource):
         return pulumi.get(self, "dedicated_to")
 
     @property
+    @pulumi.getter(name="defaultPurdueLevel")
+    def default_purdue_level(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "default_purdue_level")
+
+    @property
     @pulumi.getter
     def defaultgw(self) -> pulumi.Output[str]:
         return pulumi.get(self, "defaultgw")
@@ -6747,6 +6868,11 @@ class SystemInterface(pulumi.CustomResource):
         return pulumi.get(self, "devindex")
 
     @property
+    @pulumi.getter(name="dhcpBroadcastFlag")
+    def dhcp_broadcast_flag(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "dhcp_broadcast_flag")
+
+    @property
     @pulumi.getter(name="dhcpClasslessRouteAddition")
     def dhcp_classless_route_addition(self) -> pulumi.Output[str]:
         return pulumi.get(self, "dhcp_classless_route_addition")
@@ -6800,6 +6926,11 @@ class SystemInterface(pulumi.CustomResource):
     @pulumi.getter(name="dhcpRenewTime")
     def dhcp_renew_time(self) -> pulumi.Output[int]:
         return pulumi.get(self, "dhcp_renew_time")
+
+    @property
+    @pulumi.getter(name="dhcpSmartRelay")
+    def dhcp_smart_relay(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "dhcp_smart_relay")
 
     @property
     @pulumi.getter(name="dhcpSnoopingServerLists")
@@ -6975,6 +7106,11 @@ class SystemInterface(pulumi.CustomResource):
     @pulumi.getter(name="forwardErrorCorrection")
     def forward_error_correction(self) -> pulumi.Output[str]:
         return pulumi.get(self, "forward_error_correction")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,6 +16,7 @@ type SystemAlarm struct {
 
 	Audible             pulumi.StringOutput         `pulumi:"audible"`
 	DynamicSortSubtable pulumi.StringPtrOutput      `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput      `pulumi:"getAllTables"`
 	Groups              SystemAlarmGroupArrayOutput `pulumi:"groups"`
 	Status              pulumi.StringOutput         `pulumi:"status"`
 	Vdomparam           pulumi.StringPtrOutput      `pulumi:"vdomparam"`
@@ -27,7 +29,7 @@ func NewSystemAlarm(ctx *pulumi.Context,
 		args = &SystemAlarmArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemAlarm
 	err := ctx.RegisterResource("fortios:index/systemAlarm:SystemAlarm", name, args, &resource, opts...)
 	if err != nil {
@@ -52,6 +54,7 @@ func GetSystemAlarm(ctx *pulumi.Context,
 type systemAlarmState struct {
 	Audible             *string            `pulumi:"audible"`
 	DynamicSortSubtable *string            `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string            `pulumi:"getAllTables"`
 	Groups              []SystemAlarmGroup `pulumi:"groups"`
 	Status              *string            `pulumi:"status"`
 	Vdomparam           *string            `pulumi:"vdomparam"`
@@ -60,6 +63,7 @@ type systemAlarmState struct {
 type SystemAlarmState struct {
 	Audible             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Groups              SystemAlarmGroupArrayInput
 	Status              pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
@@ -72,6 +76,7 @@ func (SystemAlarmState) ElementType() reflect.Type {
 type systemAlarmArgs struct {
 	Audible             *string            `pulumi:"audible"`
 	DynamicSortSubtable *string            `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string            `pulumi:"getAllTables"`
 	Groups              []SystemAlarmGroup `pulumi:"groups"`
 	Status              *string            `pulumi:"status"`
 	Vdomparam           *string            `pulumi:"vdomparam"`
@@ -81,6 +86,7 @@ type systemAlarmArgs struct {
 type SystemAlarmArgs struct {
 	Audible             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Groups              SystemAlarmGroupArrayInput
 	Status              pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
@@ -179,6 +185,10 @@ func (o SystemAlarmOutput) Audible() pulumi.StringOutput {
 
 func (o SystemAlarmOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SystemAlarm) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemAlarmOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAlarm) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemAlarmOutput) Groups() SystemAlarmGroupArrayOutput {

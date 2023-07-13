@@ -28,8 +28,12 @@ class SystemCsfArgs:
                  fabric_devices: Optional[pulumi.Input[Sequence[pulumi.Input['SystemCsfFabricDeviceArgs']]]] = None,
                  fabric_object_unification: Optional[pulumi.Input[str]] = None,
                  fabric_workers: Optional[pulumi.Input[int]] = None,
+                 file_mgmt: Optional[pulumi.Input[str]] = None,
+                 file_quota: Optional[pulumi.Input[int]] = None,
+                 file_quota_warning: Optional[pulumi.Input[int]] = None,
                  fixed_key: Optional[pulumi.Input[str]] = None,
                  forticloud_account_enforcement: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
                  group_password: Optional[pulumi.Input[str]] = None,
                  log_unification: Optional[pulumi.Input[str]] = None,
@@ -67,10 +71,18 @@ class SystemCsfArgs:
             pulumi.set(__self__, "fabric_object_unification", fabric_object_unification)
         if fabric_workers is not None:
             pulumi.set(__self__, "fabric_workers", fabric_workers)
+        if file_mgmt is not None:
+            pulumi.set(__self__, "file_mgmt", file_mgmt)
+        if file_quota is not None:
+            pulumi.set(__self__, "file_quota", file_quota)
+        if file_quota_warning is not None:
+            pulumi.set(__self__, "file_quota_warning", file_quota_warning)
         if fixed_key is not None:
             pulumi.set(__self__, "fixed_key", fixed_key)
         if forticloud_account_enforcement is not None:
             pulumi.set(__self__, "forticloud_account_enforcement", forticloud_account_enforcement)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if group_name is not None:
             pulumi.set(__self__, "group_name", group_name)
         if group_password is not None:
@@ -203,6 +215,33 @@ class SystemCsfArgs:
         pulumi.set(self, "fabric_workers", value)
 
     @property
+    @pulumi.getter(name="fileMgmt")
+    def file_mgmt(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "file_mgmt")
+
+    @file_mgmt.setter
+    def file_mgmt(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "file_mgmt", value)
+
+    @property
+    @pulumi.getter(name="fileQuota")
+    def file_quota(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "file_quota")
+
+    @file_quota.setter
+    def file_quota(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "file_quota", value)
+
+    @property
+    @pulumi.getter(name="fileQuotaWarning")
+    def file_quota_warning(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "file_quota_warning")
+
+    @file_quota_warning.setter
+    def file_quota_warning(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "file_quota_warning", value)
+
+    @property
     @pulumi.getter(name="fixedKey")
     def fixed_key(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "fixed_key")
@@ -219,6 +258,15 @@ class SystemCsfArgs:
     @forticloud_account_enforcement.setter
     def forticloud_account_enforcement(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "forticloud_account_enforcement", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="groupName")
@@ -334,8 +382,12 @@ class _SystemCsfState:
                  fabric_devices: Optional[pulumi.Input[Sequence[pulumi.Input['SystemCsfFabricDeviceArgs']]]] = None,
                  fabric_object_unification: Optional[pulumi.Input[str]] = None,
                  fabric_workers: Optional[pulumi.Input[int]] = None,
+                 file_mgmt: Optional[pulumi.Input[str]] = None,
+                 file_quota: Optional[pulumi.Input[int]] = None,
+                 file_quota_warning: Optional[pulumi.Input[int]] = None,
                  fixed_key: Optional[pulumi.Input[str]] = None,
                  forticloud_account_enforcement: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
                  group_password: Optional[pulumi.Input[str]] = None,
                  log_unification: Optional[pulumi.Input[str]] = None,
@@ -373,10 +425,18 @@ class _SystemCsfState:
             pulumi.set(__self__, "fabric_object_unification", fabric_object_unification)
         if fabric_workers is not None:
             pulumi.set(__self__, "fabric_workers", fabric_workers)
+        if file_mgmt is not None:
+            pulumi.set(__self__, "file_mgmt", file_mgmt)
+        if file_quota is not None:
+            pulumi.set(__self__, "file_quota", file_quota)
+        if file_quota_warning is not None:
+            pulumi.set(__self__, "file_quota_warning", file_quota_warning)
         if fixed_key is not None:
             pulumi.set(__self__, "fixed_key", fixed_key)
         if forticloud_account_enforcement is not None:
             pulumi.set(__self__, "forticloud_account_enforcement", forticloud_account_enforcement)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if group_name is not None:
             pulumi.set(__self__, "group_name", group_name)
         if group_password is not None:
@@ -502,6 +562,33 @@ class _SystemCsfState:
         pulumi.set(self, "fabric_workers", value)
 
     @property
+    @pulumi.getter(name="fileMgmt")
+    def file_mgmt(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "file_mgmt")
+
+    @file_mgmt.setter
+    def file_mgmt(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "file_mgmt", value)
+
+    @property
+    @pulumi.getter(name="fileQuota")
+    def file_quota(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "file_quota")
+
+    @file_quota.setter
+    def file_quota(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "file_quota", value)
+
+    @property
+    @pulumi.getter(name="fileQuotaWarning")
+    def file_quota_warning(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "file_quota_warning")
+
+    @file_quota_warning.setter
+    def file_quota_warning(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "file_quota_warning", value)
+
+    @property
     @pulumi.getter(name="fixedKey")
     def fixed_key(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "fixed_key")
@@ -518,6 +605,15 @@ class _SystemCsfState:
     @forticloud_account_enforcement.setter
     def forticloud_account_enforcement(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "forticloud_account_enforcement", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="groupName")
@@ -644,8 +740,12 @@ class SystemCsf(pulumi.CustomResource):
                  fabric_devices: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemCsfFabricDeviceArgs']]]]] = None,
                  fabric_object_unification: Optional[pulumi.Input[str]] = None,
                  fabric_workers: Optional[pulumi.Input[int]] = None,
+                 file_mgmt: Optional[pulumi.Input[str]] = None,
+                 file_quota: Optional[pulumi.Input[int]] = None,
+                 file_quota_warning: Optional[pulumi.Input[int]] = None,
                  fixed_key: Optional[pulumi.Input[str]] = None,
                  forticloud_account_enforcement: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
                  group_password: Optional[pulumi.Input[str]] = None,
                  log_unification: Optional[pulumi.Input[str]] = None,
@@ -698,8 +798,12 @@ class SystemCsf(pulumi.CustomResource):
                  fabric_devices: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemCsfFabricDeviceArgs']]]]] = None,
                  fabric_object_unification: Optional[pulumi.Input[str]] = None,
                  fabric_workers: Optional[pulumi.Input[int]] = None,
+                 file_mgmt: Optional[pulumi.Input[str]] = None,
+                 file_quota: Optional[pulumi.Input[int]] = None,
+                 file_quota_warning: Optional[pulumi.Input[int]] = None,
                  fixed_key: Optional[pulumi.Input[str]] = None,
                  forticloud_account_enforcement: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
                  group_password: Optional[pulumi.Input[str]] = None,
                  log_unification: Optional[pulumi.Input[str]] = None,
@@ -732,8 +836,12 @@ class SystemCsf(pulumi.CustomResource):
             __props__.__dict__["fabric_devices"] = fabric_devices
             __props__.__dict__["fabric_object_unification"] = fabric_object_unification
             __props__.__dict__["fabric_workers"] = fabric_workers
+            __props__.__dict__["file_mgmt"] = file_mgmt
+            __props__.__dict__["file_quota"] = file_quota
+            __props__.__dict__["file_quota_warning"] = file_quota_warning
             __props__.__dict__["fixed_key"] = None if fixed_key is None else pulumi.Output.secret(fixed_key)
             __props__.__dict__["forticloud_account_enforcement"] = forticloud_account_enforcement
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["group_name"] = group_name
             __props__.__dict__["group_password"] = None if group_password is None else pulumi.Output.secret(group_password)
             __props__.__dict__["log_unification"] = log_unification
@@ -771,8 +879,12 @@ class SystemCsf(pulumi.CustomResource):
             fabric_devices: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemCsfFabricDeviceArgs']]]]] = None,
             fabric_object_unification: Optional[pulumi.Input[str]] = None,
             fabric_workers: Optional[pulumi.Input[int]] = None,
+            file_mgmt: Optional[pulumi.Input[str]] = None,
+            file_quota: Optional[pulumi.Input[int]] = None,
+            file_quota_warning: Optional[pulumi.Input[int]] = None,
             fixed_key: Optional[pulumi.Input[str]] = None,
             forticloud_account_enforcement: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             group_name: Optional[pulumi.Input[str]] = None,
             group_password: Optional[pulumi.Input[str]] = None,
             log_unification: Optional[pulumi.Input[str]] = None,
@@ -808,8 +920,12 @@ class SystemCsf(pulumi.CustomResource):
         __props__.__dict__["fabric_devices"] = fabric_devices
         __props__.__dict__["fabric_object_unification"] = fabric_object_unification
         __props__.__dict__["fabric_workers"] = fabric_workers
+        __props__.__dict__["file_mgmt"] = file_mgmt
+        __props__.__dict__["file_quota"] = file_quota
+        __props__.__dict__["file_quota_warning"] = file_quota_warning
         __props__.__dict__["fixed_key"] = fixed_key
         __props__.__dict__["forticloud_account_enforcement"] = forticloud_account_enforcement
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["group_name"] = group_name
         __props__.__dict__["group_password"] = group_password
         __props__.__dict__["log_unification"] = log_unification
@@ -880,6 +996,21 @@ class SystemCsf(pulumi.CustomResource):
         return pulumi.get(self, "fabric_workers")
 
     @property
+    @pulumi.getter(name="fileMgmt")
+    def file_mgmt(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "file_mgmt")
+
+    @property
+    @pulumi.getter(name="fileQuota")
+    def file_quota(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "file_quota")
+
+    @property
+    @pulumi.getter(name="fileQuotaWarning")
+    def file_quota_warning(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "file_quota_warning")
+
+    @property
     @pulumi.getter(name="fixedKey")
     def fixed_key(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "fixed_key")
@@ -888,6 +1019,11 @@ class SystemCsf(pulumi.CustomResource):
     @pulumi.getter(name="forticloudAccountEnforcement")
     def forticloud_account_enforcement(self) -> pulumi.Output[str]:
         return pulumi.get(self, "forticloud_account_enforcement")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="groupName")

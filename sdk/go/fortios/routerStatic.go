@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -23,15 +24,18 @@ type RouterStatic struct {
 	DynamicGateway        pulumi.StringOutput              `pulumi:"dynamicGateway"`
 	DynamicSortSubtable   pulumi.StringPtrOutput           `pulumi:"dynamicSortSubtable"`
 	Gateway               pulumi.StringOutput              `pulumi:"gateway"`
+	GetAllTables          pulumi.StringPtrOutput           `pulumi:"getAllTables"`
 	InternetService       pulumi.IntOutput                 `pulumi:"internetService"`
 	InternetServiceCustom pulumi.StringOutput              `pulumi:"internetServiceCustom"`
 	LinkMonitorExempt     pulumi.StringOutput              `pulumi:"linkMonitorExempt"`
+	PreferredSource       pulumi.StringOutput              `pulumi:"preferredSource"`
 	Priority              pulumi.IntOutput                 `pulumi:"priority"`
 	Sdwan                 pulumi.StringOutput              `pulumi:"sdwan"`
 	SdwanZones            RouterStaticSdwanZoneArrayOutput `pulumi:"sdwanZones"`
 	SeqNum                pulumi.IntOutput                 `pulumi:"seqNum"`
 	Src                   pulumi.StringOutput              `pulumi:"src"`
 	Status                pulumi.StringOutput              `pulumi:"status"`
+	Tag                   pulumi.IntOutput                 `pulumi:"tag"`
 	Vdomparam             pulumi.StringPtrOutput           `pulumi:"vdomparam"`
 	VirtualWanLink        pulumi.StringOutput              `pulumi:"virtualWanLink"`
 	Vrf                   pulumi.IntOutput                 `pulumi:"vrf"`
@@ -45,7 +49,7 @@ func NewRouterStatic(ctx *pulumi.Context,
 		args = &RouterStaticArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RouterStatic
 	err := ctx.RegisterResource("fortios:index/routerStatic:RouterStatic", name, args, &resource, opts...)
 	if err != nil {
@@ -78,15 +82,18 @@ type routerStaticState struct {
 	DynamicGateway        *string                 `pulumi:"dynamicGateway"`
 	DynamicSortSubtable   *string                 `pulumi:"dynamicSortSubtable"`
 	Gateway               *string                 `pulumi:"gateway"`
+	GetAllTables          *string                 `pulumi:"getAllTables"`
 	InternetService       *int                    `pulumi:"internetService"`
 	InternetServiceCustom *string                 `pulumi:"internetServiceCustom"`
 	LinkMonitorExempt     *string                 `pulumi:"linkMonitorExempt"`
+	PreferredSource       *string                 `pulumi:"preferredSource"`
 	Priority              *int                    `pulumi:"priority"`
 	Sdwan                 *string                 `pulumi:"sdwan"`
 	SdwanZones            []RouterStaticSdwanZone `pulumi:"sdwanZones"`
 	SeqNum                *int                    `pulumi:"seqNum"`
 	Src                   *string                 `pulumi:"src"`
 	Status                *string                 `pulumi:"status"`
+	Tag                   *int                    `pulumi:"tag"`
 	Vdomparam             *string                 `pulumi:"vdomparam"`
 	VirtualWanLink        *string                 `pulumi:"virtualWanLink"`
 	Vrf                   *int                    `pulumi:"vrf"`
@@ -104,15 +111,18 @@ type RouterStaticState struct {
 	DynamicGateway        pulumi.StringPtrInput
 	DynamicSortSubtable   pulumi.StringPtrInput
 	Gateway               pulumi.StringPtrInput
+	GetAllTables          pulumi.StringPtrInput
 	InternetService       pulumi.IntPtrInput
 	InternetServiceCustom pulumi.StringPtrInput
 	LinkMonitorExempt     pulumi.StringPtrInput
+	PreferredSource       pulumi.StringPtrInput
 	Priority              pulumi.IntPtrInput
 	Sdwan                 pulumi.StringPtrInput
 	SdwanZones            RouterStaticSdwanZoneArrayInput
 	SeqNum                pulumi.IntPtrInput
 	Src                   pulumi.StringPtrInput
 	Status                pulumi.StringPtrInput
+	Tag                   pulumi.IntPtrInput
 	Vdomparam             pulumi.StringPtrInput
 	VirtualWanLink        pulumi.StringPtrInput
 	Vrf                   pulumi.IntPtrInput
@@ -134,15 +144,18 @@ type routerStaticArgs struct {
 	DynamicGateway        *string                 `pulumi:"dynamicGateway"`
 	DynamicSortSubtable   *string                 `pulumi:"dynamicSortSubtable"`
 	Gateway               *string                 `pulumi:"gateway"`
+	GetAllTables          *string                 `pulumi:"getAllTables"`
 	InternetService       *int                    `pulumi:"internetService"`
 	InternetServiceCustom *string                 `pulumi:"internetServiceCustom"`
 	LinkMonitorExempt     *string                 `pulumi:"linkMonitorExempt"`
+	PreferredSource       *string                 `pulumi:"preferredSource"`
 	Priority              *int                    `pulumi:"priority"`
 	Sdwan                 *string                 `pulumi:"sdwan"`
 	SdwanZones            []RouterStaticSdwanZone `pulumi:"sdwanZones"`
 	SeqNum                *int                    `pulumi:"seqNum"`
 	Src                   *string                 `pulumi:"src"`
 	Status                *string                 `pulumi:"status"`
+	Tag                   *int                    `pulumi:"tag"`
 	Vdomparam             *string                 `pulumi:"vdomparam"`
 	VirtualWanLink        *string                 `pulumi:"virtualWanLink"`
 	Vrf                   *int                    `pulumi:"vrf"`
@@ -161,15 +174,18 @@ type RouterStaticArgs struct {
 	DynamicGateway        pulumi.StringPtrInput
 	DynamicSortSubtable   pulumi.StringPtrInput
 	Gateway               pulumi.StringPtrInput
+	GetAllTables          pulumi.StringPtrInput
 	InternetService       pulumi.IntPtrInput
 	InternetServiceCustom pulumi.StringPtrInput
 	LinkMonitorExempt     pulumi.StringPtrInput
+	PreferredSource       pulumi.StringPtrInput
 	Priority              pulumi.IntPtrInput
 	Sdwan                 pulumi.StringPtrInput
 	SdwanZones            RouterStaticSdwanZoneArrayInput
 	SeqNum                pulumi.IntPtrInput
 	Src                   pulumi.StringPtrInput
 	Status                pulumi.StringPtrInput
+	Tag                   pulumi.IntPtrInput
 	Vdomparam             pulumi.StringPtrInput
 	VirtualWanLink        pulumi.StringPtrInput
 	Vrf                   pulumi.IntPtrInput
@@ -303,6 +319,10 @@ func (o RouterStaticOutput) Gateway() pulumi.StringOutput {
 	return o.ApplyT(func(v *RouterStatic) pulumi.StringOutput { return v.Gateway }).(pulumi.StringOutput)
 }
 
+func (o RouterStaticOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterStatic) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 func (o RouterStaticOutput) InternetService() pulumi.IntOutput {
 	return o.ApplyT(func(v *RouterStatic) pulumi.IntOutput { return v.InternetService }).(pulumi.IntOutput)
 }
@@ -313,6 +333,10 @@ func (o RouterStaticOutput) InternetServiceCustom() pulumi.StringOutput {
 
 func (o RouterStaticOutput) LinkMonitorExempt() pulumi.StringOutput {
 	return o.ApplyT(func(v *RouterStatic) pulumi.StringOutput { return v.LinkMonitorExempt }).(pulumi.StringOutput)
+}
+
+func (o RouterStaticOutput) PreferredSource() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterStatic) pulumi.StringOutput { return v.PreferredSource }).(pulumi.StringOutput)
 }
 
 func (o RouterStaticOutput) Priority() pulumi.IntOutput {
@@ -337,6 +361,10 @@ func (o RouterStaticOutput) Src() pulumi.StringOutput {
 
 func (o RouterStaticOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *RouterStatic) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o RouterStaticOutput) Tag() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterStatic) pulumi.IntOutput { return v.Tag }).(pulumi.IntOutput)
 }
 
 func (o RouterStaticOutput) Vdomparam() pulumi.StringPtrOutput {

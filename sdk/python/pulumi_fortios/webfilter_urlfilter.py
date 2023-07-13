@@ -20,6 +20,8 @@ class WebfilterUrlfilterArgs:
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  entries: Optional[pulumi.Input[Sequence[pulumi.Input['WebfilterUrlfilterEntryArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 ip4_mapped_ip6: Optional[pulumi.Input[str]] = None,
                  ip_addr_block: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  one_arm_ips_urlfilter: Optional[pulumi.Input[str]] = None,
@@ -34,6 +36,10 @@ class WebfilterUrlfilterArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if entries is not None:
             pulumi.set(__self__, "entries", entries)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
+        if ip4_mapped_ip6 is not None:
+            pulumi.set(__self__, "ip4_mapped_ip6", ip4_mapped_ip6)
         if ip_addr_block is not None:
             pulumi.set(__self__, "ip_addr_block", ip_addr_block)
         if name is not None:
@@ -80,6 +86,24 @@ class WebfilterUrlfilterArgs:
         pulumi.set(self, "entries", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
+    @pulumi.getter(name="ip4MappedIp6")
+    def ip4_mapped_ip6(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ip4_mapped_ip6")
+
+    @ip4_mapped_ip6.setter
+    def ip4_mapped_ip6(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ip4_mapped_ip6", value)
+
+    @property
     @pulumi.getter(name="ipAddrBlock")
     def ip_addr_block(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "ip_addr_block")
@@ -123,6 +147,8 @@ class _WebfilterUrlfilterState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  entries: Optional[pulumi.Input[Sequence[pulumi.Input['WebfilterUrlfilterEntryArgs']]]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 ip4_mapped_ip6: Optional[pulumi.Input[str]] = None,
                  ip_addr_block: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  one_arm_ips_urlfilter: Optional[pulumi.Input[str]] = None,
@@ -138,6 +164,10 @@ class _WebfilterUrlfilterState:
             pulumi.set(__self__, "entries", entries)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
+        if ip4_mapped_ip6 is not None:
+            pulumi.set(__self__, "ip4_mapped_ip6", ip4_mapped_ip6)
         if ip_addr_block is not None:
             pulumi.set(__self__, "ip_addr_block", ip_addr_block)
         if name is not None:
@@ -182,6 +212,24 @@ class _WebfilterUrlfilterState:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
+    @pulumi.getter(name="ip4MappedIp6")
+    def ip4_mapped_ip6(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ip4_mapped_ip6")
+
+    @ip4_mapped_ip6.setter
+    def ip4_mapped_ip6(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ip4_mapped_ip6", value)
 
     @property
     @pulumi.getter(name="ipAddrBlock")
@@ -229,6 +277,8 @@ class WebfilterUrlfilter(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  entries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WebfilterUrlfilterEntryArgs']]]]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 ip4_mapped_ip6: Optional[pulumi.Input[str]] = None,
                  ip_addr_block: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  one_arm_ips_urlfilter: Optional[pulumi.Input[str]] = None,
@@ -266,6 +316,8 @@ class WebfilterUrlfilter(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  entries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WebfilterUrlfilterEntryArgs']]]]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
+                 ip4_mapped_ip6: Optional[pulumi.Input[str]] = None,
                  ip_addr_block: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  one_arm_ips_urlfilter: Optional[pulumi.Input[str]] = None,
@@ -285,6 +337,8 @@ class WebfilterUrlfilter(pulumi.CustomResource):
             if fosid is None and not opts.urn:
                 raise TypeError("Missing required property 'fosid'")
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["get_all_tables"] = get_all_tables
+            __props__.__dict__["ip4_mapped_ip6"] = ip4_mapped_ip6
             __props__.__dict__["ip_addr_block"] = ip_addr_block
             __props__.__dict__["name"] = name
             __props__.__dict__["one_arm_ips_urlfilter"] = one_arm_ips_urlfilter
@@ -303,6 +357,8 @@ class WebfilterUrlfilter(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             entries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WebfilterUrlfilterEntryArgs']]]]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
+            ip4_mapped_ip6: Optional[pulumi.Input[str]] = None,
             ip_addr_block: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             one_arm_ips_urlfilter: Optional[pulumi.Input[str]] = None,
@@ -323,6 +379,8 @@ class WebfilterUrlfilter(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["entries"] = entries
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["get_all_tables"] = get_all_tables
+        __props__.__dict__["ip4_mapped_ip6"] = ip4_mapped_ip6
         __props__.__dict__["ip_addr_block"] = ip_addr_block
         __props__.__dict__["name"] = name
         __props__.__dict__["one_arm_ips_urlfilter"] = one_arm_ips_urlfilter
@@ -348,6 +406,16 @@ class WebfilterUrlfilter(pulumi.CustomResource):
     @pulumi.getter
     def fosid(self) -> pulumi.Output[int]:
         return pulumi.get(self, "fosid")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @property
+    @pulumi.getter(name="ip4MappedIp6")
+    def ip4_mapped_ip6(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "ip4_mapped_ip6")
 
     @property
     @pulumi.getter(name="ipAddrBlock")

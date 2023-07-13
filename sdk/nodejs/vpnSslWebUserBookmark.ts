@@ -37,6 +37,7 @@ export class VpnSslWebUserBookmark extends pulumi.CustomResource {
     public readonly bookmarks!: pulumi.Output<outputs.VpnSslWebUserBookmarkBookmark[] | undefined>;
     public readonly customLang!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
@@ -56,6 +57,7 @@ export class VpnSslWebUserBookmark extends pulumi.CustomResource {
             resourceInputs["bookmarks"] = state ? state.bookmarks : undefined;
             resourceInputs["customLang"] = state ? state.customLang : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
@@ -63,6 +65,7 @@ export class VpnSslWebUserBookmark extends pulumi.CustomResource {
             resourceInputs["bookmarks"] = args ? args.bookmarks : undefined;
             resourceInputs["customLang"] = args ? args.customLang : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
@@ -78,6 +81,7 @@ export interface VpnSslWebUserBookmarkState {
     bookmarks?: pulumi.Input<pulumi.Input<inputs.VpnSslWebUserBookmarkBookmark>[]>;
     customLang?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }
@@ -89,6 +93,7 @@ export interface VpnSslWebUserBookmarkArgs {
     bookmarks?: pulumi.Input<pulumi.Input<inputs.VpnSslWebUserBookmarkBookmark>[]>;
     customLang?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }

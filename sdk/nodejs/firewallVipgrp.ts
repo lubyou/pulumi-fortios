@@ -37,6 +37,7 @@ export class FirewallVipgrp extends pulumi.CustomResource {
     public readonly color!: pulumi.Output<number>;
     public readonly comments!: pulumi.Output<string | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly interface!: pulumi.Output<string>;
     public readonly members!: pulumi.Output<outputs.FirewallVipgrpMember[]>;
     public readonly name!: pulumi.Output<string>;
@@ -59,6 +60,7 @@ export class FirewallVipgrp extends pulumi.CustomResource {
             resourceInputs["color"] = state ? state.color : undefined;
             resourceInputs["comments"] = state ? state.comments : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
             resourceInputs["members"] = state ? state.members : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -75,6 +77,7 @@ export class FirewallVipgrp extends pulumi.CustomResource {
             resourceInputs["color"] = args ? args.color : undefined;
             resourceInputs["comments"] = args ? args.comments : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
             resourceInputs["members"] = args ? args.members : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -93,6 +96,7 @@ export interface FirewallVipgrpState {
     color?: pulumi.Input<number>;
     comments?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     interface?: pulumi.Input<string>;
     members?: pulumi.Input<pulumi.Input<inputs.FirewallVipgrpMember>[]>;
     name?: pulumi.Input<string>;
@@ -107,6 +111,7 @@ export interface FirewallVipgrpArgs {
     color?: pulumi.Input<number>;
     comments?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     interface: pulumi.Input<string>;
     members: pulumi.Input<pulumi.Input<inputs.FirewallVipgrpMember>[]>;
     name?: pulumi.Input<string>;

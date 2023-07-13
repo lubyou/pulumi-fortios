@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['SystemGlobalArgs', 'SystemGlobal']
 
@@ -16,6 +18,7 @@ class SystemGlobalArgs:
     def __init__(__self__, *,
                  admin_concurrent: Optional[pulumi.Input[str]] = None,
                  admin_console_timeout: Optional[pulumi.Input[int]] = None,
+                 admin_forticloud_sso_default_profile: Optional[pulumi.Input[str]] = None,
                  admin_forticloud_sso_login: Optional[pulumi.Input[str]] = None,
                  admin_host: Optional[pulumi.Input[str]] = None,
                  admin_hsts_max_age: Optional[pulumi.Input[int]] = None,
@@ -79,6 +82,7 @@ class SystemGlobalArgs:
                  dh_params: Optional[pulumi.Input[str]] = None,
                  dnsproxy_worker_count: Optional[pulumi.Input[int]] = None,
                  dst: Optional[pulumi.Input[str]] = None,
+                 dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  early_tcp_npu_session: Optional[pulumi.Input[str]] = None,
                  edit_vdom_prompt: Optional[pulumi.Input[str]] = None,
                  endpoint_control_fds_access: Optional[pulumi.Input[str]] = None,
@@ -90,6 +94,8 @@ class SystemGlobalArgs:
                  fds_statistics_period: Optional[pulumi.Input[int]] = None,
                  fec_port: Optional[pulumi.Input[int]] = None,
                  fgd_alert_subscription: Optional[pulumi.Input[str]] = None,
+                 forticonverter_config_upload: Optional[pulumi.Input[str]] = None,
+                 forticonverter_integration: Optional[pulumi.Input[str]] = None,
                  fortiextender: Optional[pulumi.Input[str]] = None,
                  fortiextender_data_port: Optional[pulumi.Input[int]] = None,
                  fortiextender_discovery_lockdown: Optional[pulumi.Input[str]] = None,
@@ -98,8 +104,11 @@ class SystemGlobalArgs:
                  fortiipam_integration: Optional[pulumi.Input[str]] = None,
                  fortiservice_port: Optional[pulumi.Input[int]] = None,
                  fortitoken_cloud: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gui_allow_default_hostname: Optional[pulumi.Input[str]] = None,
+                 gui_allow_incompatible_fabric_fgt: Optional[pulumi.Input[str]] = None,
                  gui_app_detection_sdwan: Optional[pulumi.Input[str]] = None,
+                 gui_cdn_domain_override: Optional[pulumi.Input[str]] = None,
                  gui_cdn_usage: Optional[pulumi.Input[str]] = None,
                  gui_certificates: Optional[pulumi.Input[str]] = None,
                  gui_custom_language: Optional[pulumi.Input[str]] = None,
@@ -127,8 +136,11 @@ class SystemGlobalArgs:
                  hostname: Optional[pulumi.Input[str]] = None,
                  igmp_state_limit: Optional[pulumi.Input[int]] = None,
                  ike_embryonic_limit: Optional[pulumi.Input[int]] = None,
+                 interface_subnet_usage: Optional[pulumi.Input[str]] = None,
                  internet_service_database: Optional[pulumi.Input[str]] = None,
+                 internet_service_download_lists: Optional[pulumi.Input[Sequence[pulumi.Input['SystemGlobalInternetServiceDownloadListArgs']]]] = None,
                  interval: Optional[pulumi.Input[int]] = None,
+                 ip_fragment_mem_thresholds: Optional[pulumi.Input[int]] = None,
                  ip_src_port_range: Optional[pulumi.Input[str]] = None,
                  ips_affinity: Optional[pulumi.Input[str]] = None,
                  ipsec_asic_offload: Optional[pulumi.Input[str]] = None,
@@ -146,6 +158,7 @@ class SystemGlobalArgs:
                  ldapconntimeout: Optional[pulumi.Input[int]] = None,
                  lldp_reception: Optional[pulumi.Input[str]] = None,
                  lldp_transmission: Optional[pulumi.Input[str]] = None,
+                 log_single_cpu_high: Optional[pulumi.Input[str]] = None,
                  log_ssl_connection: Optional[pulumi.Input[str]] = None,
                  log_uuid_address: Optional[pulumi.Input[str]] = None,
                  log_uuid_policy: Optional[pulumi.Input[str]] = None,
@@ -179,8 +192,10 @@ class SystemGlobalArgs:
                  proxy_cert_use_mgmt_vdom: Optional[pulumi.Input[str]] = None,
                  proxy_cipher_hardware_acceleration: Optional[pulumi.Input[str]] = None,
                  proxy_hardware_acceleration: Optional[pulumi.Input[str]] = None,
+                 proxy_keep_alive_mode: Optional[pulumi.Input[str]] = None,
                  proxy_kxp_hardware_acceleration: Optional[pulumi.Input[str]] = None,
                  proxy_re_authentication_mode: Optional[pulumi.Input[str]] = None,
+                 proxy_re_authentication_time: Optional[pulumi.Input[int]] = None,
                  proxy_resource_mode: Optional[pulumi.Input[str]] = None,
                  proxy_worker_count: Optional[pulumi.Input[int]] = None,
                  radius_port: Optional[pulumi.Input[int]] = None,
@@ -195,6 +210,7 @@ class SystemGlobalArgs:
                  security_rating_result_submission: Optional[pulumi.Input[str]] = None,
                  security_rating_run_on_schedule: Optional[pulumi.Input[str]] = None,
                  send_pmtu_icmp: Optional[pulumi.Input[str]] = None,
+                 sflowd_max_children_num: Optional[pulumi.Input[int]] = None,
                  snat_route_change: Optional[pulumi.Input[str]] = None,
                  special_file23_support: Optional[pulumi.Input[str]] = None,
                  speedtest_server: Optional[pulumi.Input[str]] = None,
@@ -207,6 +223,7 @@ class SystemGlobalArgs:
                  ssh_cbc_cipher: Optional[pulumi.Input[str]] = None,
                  ssh_enc_algo: Optional[pulumi.Input[str]] = None,
                  ssh_hmac_md5: Optional[pulumi.Input[str]] = None,
+                 ssh_hostkey_algo: Optional[pulumi.Input[str]] = None,
                  ssh_kex_algo: Optional[pulumi.Input[str]] = None,
                  ssh_kex_sha1: Optional[pulumi.Input[str]] = None,
                  ssh_mac_algo: Optional[pulumi.Input[str]] = None,
@@ -223,6 +240,7 @@ class SystemGlobalArgs:
                  switch_controller: Optional[pulumi.Input[str]] = None,
                  switch_controller_reserved_network: Optional[pulumi.Input[str]] = None,
                  sys_perf_log_interval: Optional[pulumi.Input[int]] = None,
+                 syslog_affinity: Optional[pulumi.Input[str]] = None,
                  tcp_halfclose_timer: Optional[pulumi.Input[int]] = None,
                  tcp_halfopen_timer: Optional[pulumi.Input[int]] = None,
                  tcp_option: Optional[pulumi.Input[str]] = None,
@@ -252,10 +270,14 @@ class SystemGlobalArgs:
                  virtual_server_count: Optional[pulumi.Input[int]] = None,
                  virtual_server_hardware_acceleration: Optional[pulumi.Input[str]] = None,
                  virtual_switch_vlan: Optional[pulumi.Input[str]] = None,
+                 vpn_ems_sn_check: Optional[pulumi.Input[str]] = None,
                  wad_affinity: Optional[pulumi.Input[str]] = None,
                  wad_csvc_cs_count: Optional[pulumi.Input[int]] = None,
                  wad_csvc_db_count: Optional[pulumi.Input[int]] = None,
                  wad_memory_change_granularity: Optional[pulumi.Input[int]] = None,
+                 wad_restart_end_time: Optional[pulumi.Input[str]] = None,
+                 wad_restart_mode: Optional[pulumi.Input[str]] = None,
+                 wad_restart_start_time: Optional[pulumi.Input[str]] = None,
                  wad_source_affinity: Optional[pulumi.Input[str]] = None,
                  wad_worker_count: Optional[pulumi.Input[int]] = None,
                  wifi_ca_certificate: Optional[pulumi.Input[str]] = None,
@@ -270,6 +292,8 @@ class SystemGlobalArgs:
             pulumi.set(__self__, "admin_concurrent", admin_concurrent)
         if admin_console_timeout is not None:
             pulumi.set(__self__, "admin_console_timeout", admin_console_timeout)
+        if admin_forticloud_sso_default_profile is not None:
+            pulumi.set(__self__, "admin_forticloud_sso_default_profile", admin_forticloud_sso_default_profile)
         if admin_forticloud_sso_login is not None:
             pulumi.set(__self__, "admin_forticloud_sso_login", admin_forticloud_sso_login)
         if admin_host is not None:
@@ -396,6 +420,8 @@ class SystemGlobalArgs:
             pulumi.set(__self__, "dnsproxy_worker_count", dnsproxy_worker_count)
         if dst is not None:
             pulumi.set(__self__, "dst", dst)
+        if dynamic_sort_subtable is not None:
+            pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if early_tcp_npu_session is not None:
             pulumi.set(__self__, "early_tcp_npu_session", early_tcp_npu_session)
         if edit_vdom_prompt is not None:
@@ -418,6 +444,10 @@ class SystemGlobalArgs:
             pulumi.set(__self__, "fec_port", fec_port)
         if fgd_alert_subscription is not None:
             pulumi.set(__self__, "fgd_alert_subscription", fgd_alert_subscription)
+        if forticonverter_config_upload is not None:
+            pulumi.set(__self__, "forticonverter_config_upload", forticonverter_config_upload)
+        if forticonverter_integration is not None:
+            pulumi.set(__self__, "forticonverter_integration", forticonverter_integration)
         if fortiextender is not None:
             pulumi.set(__self__, "fortiextender", fortiextender)
         if fortiextender_data_port is not None:
@@ -434,10 +464,16 @@ class SystemGlobalArgs:
             pulumi.set(__self__, "fortiservice_port", fortiservice_port)
         if fortitoken_cloud is not None:
             pulumi.set(__self__, "fortitoken_cloud", fortitoken_cloud)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gui_allow_default_hostname is not None:
             pulumi.set(__self__, "gui_allow_default_hostname", gui_allow_default_hostname)
+        if gui_allow_incompatible_fabric_fgt is not None:
+            pulumi.set(__self__, "gui_allow_incompatible_fabric_fgt", gui_allow_incompatible_fabric_fgt)
         if gui_app_detection_sdwan is not None:
             pulumi.set(__self__, "gui_app_detection_sdwan", gui_app_detection_sdwan)
+        if gui_cdn_domain_override is not None:
+            pulumi.set(__self__, "gui_cdn_domain_override", gui_cdn_domain_override)
         if gui_cdn_usage is not None:
             pulumi.set(__self__, "gui_cdn_usage", gui_cdn_usage)
         if gui_certificates is not None:
@@ -492,10 +528,16 @@ class SystemGlobalArgs:
             pulumi.set(__self__, "igmp_state_limit", igmp_state_limit)
         if ike_embryonic_limit is not None:
             pulumi.set(__self__, "ike_embryonic_limit", ike_embryonic_limit)
+        if interface_subnet_usage is not None:
+            pulumi.set(__self__, "interface_subnet_usage", interface_subnet_usage)
         if internet_service_database is not None:
             pulumi.set(__self__, "internet_service_database", internet_service_database)
+        if internet_service_download_lists is not None:
+            pulumi.set(__self__, "internet_service_download_lists", internet_service_download_lists)
         if interval is not None:
             pulumi.set(__self__, "interval", interval)
+        if ip_fragment_mem_thresholds is not None:
+            pulumi.set(__self__, "ip_fragment_mem_thresholds", ip_fragment_mem_thresholds)
         if ip_src_port_range is not None:
             pulumi.set(__self__, "ip_src_port_range", ip_src_port_range)
         if ips_affinity is not None:
@@ -530,6 +572,8 @@ class SystemGlobalArgs:
             pulumi.set(__self__, "lldp_reception", lldp_reception)
         if lldp_transmission is not None:
             pulumi.set(__self__, "lldp_transmission", lldp_transmission)
+        if log_single_cpu_high is not None:
+            pulumi.set(__self__, "log_single_cpu_high", log_single_cpu_high)
         if log_ssl_connection is not None:
             pulumi.set(__self__, "log_ssl_connection", log_ssl_connection)
         if log_uuid_address is not None:
@@ -596,10 +640,14 @@ class SystemGlobalArgs:
             pulumi.set(__self__, "proxy_cipher_hardware_acceleration", proxy_cipher_hardware_acceleration)
         if proxy_hardware_acceleration is not None:
             pulumi.set(__self__, "proxy_hardware_acceleration", proxy_hardware_acceleration)
+        if proxy_keep_alive_mode is not None:
+            pulumi.set(__self__, "proxy_keep_alive_mode", proxy_keep_alive_mode)
         if proxy_kxp_hardware_acceleration is not None:
             pulumi.set(__self__, "proxy_kxp_hardware_acceleration", proxy_kxp_hardware_acceleration)
         if proxy_re_authentication_mode is not None:
             pulumi.set(__self__, "proxy_re_authentication_mode", proxy_re_authentication_mode)
+        if proxy_re_authentication_time is not None:
+            pulumi.set(__self__, "proxy_re_authentication_time", proxy_re_authentication_time)
         if proxy_resource_mode is not None:
             pulumi.set(__self__, "proxy_resource_mode", proxy_resource_mode)
         if proxy_worker_count is not None:
@@ -628,6 +676,8 @@ class SystemGlobalArgs:
             pulumi.set(__self__, "security_rating_run_on_schedule", security_rating_run_on_schedule)
         if send_pmtu_icmp is not None:
             pulumi.set(__self__, "send_pmtu_icmp", send_pmtu_icmp)
+        if sflowd_max_children_num is not None:
+            pulumi.set(__self__, "sflowd_max_children_num", sflowd_max_children_num)
         if snat_route_change is not None:
             pulumi.set(__self__, "snat_route_change", snat_route_change)
         if special_file23_support is not None:
@@ -652,6 +702,8 @@ class SystemGlobalArgs:
             pulumi.set(__self__, "ssh_enc_algo", ssh_enc_algo)
         if ssh_hmac_md5 is not None:
             pulumi.set(__self__, "ssh_hmac_md5", ssh_hmac_md5)
+        if ssh_hostkey_algo is not None:
+            pulumi.set(__self__, "ssh_hostkey_algo", ssh_hostkey_algo)
         if ssh_kex_algo is not None:
             pulumi.set(__self__, "ssh_kex_algo", ssh_kex_algo)
         if ssh_kex_sha1 is not None:
@@ -684,6 +736,8 @@ class SystemGlobalArgs:
             pulumi.set(__self__, "switch_controller_reserved_network", switch_controller_reserved_network)
         if sys_perf_log_interval is not None:
             pulumi.set(__self__, "sys_perf_log_interval", sys_perf_log_interval)
+        if syslog_affinity is not None:
+            pulumi.set(__self__, "syslog_affinity", syslog_affinity)
         if tcp_halfclose_timer is not None:
             pulumi.set(__self__, "tcp_halfclose_timer", tcp_halfclose_timer)
         if tcp_halfopen_timer is not None:
@@ -742,6 +796,8 @@ class SystemGlobalArgs:
             pulumi.set(__self__, "virtual_server_hardware_acceleration", virtual_server_hardware_acceleration)
         if virtual_switch_vlan is not None:
             pulumi.set(__self__, "virtual_switch_vlan", virtual_switch_vlan)
+        if vpn_ems_sn_check is not None:
+            pulumi.set(__self__, "vpn_ems_sn_check", vpn_ems_sn_check)
         if wad_affinity is not None:
             pulumi.set(__self__, "wad_affinity", wad_affinity)
         if wad_csvc_cs_count is not None:
@@ -750,6 +806,12 @@ class SystemGlobalArgs:
             pulumi.set(__self__, "wad_csvc_db_count", wad_csvc_db_count)
         if wad_memory_change_granularity is not None:
             pulumi.set(__self__, "wad_memory_change_granularity", wad_memory_change_granularity)
+        if wad_restart_end_time is not None:
+            pulumi.set(__self__, "wad_restart_end_time", wad_restart_end_time)
+        if wad_restart_mode is not None:
+            pulumi.set(__self__, "wad_restart_mode", wad_restart_mode)
+        if wad_restart_start_time is not None:
+            pulumi.set(__self__, "wad_restart_start_time", wad_restart_start_time)
         if wad_source_affinity is not None:
             pulumi.set(__self__, "wad_source_affinity", wad_source_affinity)
         if wad_worker_count is not None:
@@ -782,6 +844,15 @@ class SystemGlobalArgs:
     @admin_console_timeout.setter
     def admin_console_timeout(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "admin_console_timeout", value)
+
+    @property
+    @pulumi.getter(name="adminForticloudSsoDefaultProfile")
+    def admin_forticloud_sso_default_profile(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "admin_forticloud_sso_default_profile")
+
+    @admin_forticloud_sso_default_profile.setter
+    def admin_forticloud_sso_default_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "admin_forticloud_sso_default_profile", value)
 
     @property
     @pulumi.getter(name="adminForticloudSsoLogin")
@@ -1351,6 +1422,15 @@ class SystemGlobalArgs:
         pulumi.set(self, "dst", value)
 
     @property
+    @pulumi.getter(name="dynamicSortSubtable")
+    def dynamic_sort_subtable(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "dynamic_sort_subtable")
+
+    @dynamic_sort_subtable.setter
+    def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
     @pulumi.getter(name="earlyTcpNpuSession")
     def early_tcp_npu_session(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "early_tcp_npu_session")
@@ -1450,6 +1530,24 @@ class SystemGlobalArgs:
         pulumi.set(self, "fgd_alert_subscription", value)
 
     @property
+    @pulumi.getter(name="forticonverterConfigUpload")
+    def forticonverter_config_upload(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "forticonverter_config_upload")
+
+    @forticonverter_config_upload.setter
+    def forticonverter_config_upload(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "forticonverter_config_upload", value)
+
+    @property
+    @pulumi.getter(name="forticonverterIntegration")
+    def forticonverter_integration(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "forticonverter_integration")
+
+    @forticonverter_integration.setter
+    def forticonverter_integration(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "forticonverter_integration", value)
+
+    @property
     @pulumi.getter
     def fortiextender(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "fortiextender")
@@ -1522,6 +1620,15 @@ class SystemGlobalArgs:
         pulumi.set(self, "fortitoken_cloud", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="guiAllowDefaultHostname")
     def gui_allow_default_hostname(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "gui_allow_default_hostname")
@@ -1531,6 +1638,15 @@ class SystemGlobalArgs:
         pulumi.set(self, "gui_allow_default_hostname", value)
 
     @property
+    @pulumi.getter(name="guiAllowIncompatibleFabricFgt")
+    def gui_allow_incompatible_fabric_fgt(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "gui_allow_incompatible_fabric_fgt")
+
+    @gui_allow_incompatible_fabric_fgt.setter
+    def gui_allow_incompatible_fabric_fgt(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_allow_incompatible_fabric_fgt", value)
+
+    @property
     @pulumi.getter(name="guiAppDetectionSdwan")
     def gui_app_detection_sdwan(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "gui_app_detection_sdwan")
@@ -1538,6 +1654,15 @@ class SystemGlobalArgs:
     @gui_app_detection_sdwan.setter
     def gui_app_detection_sdwan(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gui_app_detection_sdwan", value)
+
+    @property
+    @pulumi.getter(name="guiCdnDomainOverride")
+    def gui_cdn_domain_override(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "gui_cdn_domain_override")
+
+    @gui_cdn_domain_override.setter
+    def gui_cdn_domain_override(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_cdn_domain_override", value)
 
     @property
     @pulumi.getter(name="guiCdnUsage")
@@ -1783,6 +1908,15 @@ class SystemGlobalArgs:
         pulumi.set(self, "ike_embryonic_limit", value)
 
     @property
+    @pulumi.getter(name="interfaceSubnetUsage")
+    def interface_subnet_usage(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "interface_subnet_usage")
+
+    @interface_subnet_usage.setter
+    def interface_subnet_usage(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "interface_subnet_usage", value)
+
+    @property
     @pulumi.getter(name="internetServiceDatabase")
     def internet_service_database(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "internet_service_database")
@@ -1792,6 +1926,15 @@ class SystemGlobalArgs:
         pulumi.set(self, "internet_service_database", value)
 
     @property
+    @pulumi.getter(name="internetServiceDownloadLists")
+    def internet_service_download_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SystemGlobalInternetServiceDownloadListArgs']]]]:
+        return pulumi.get(self, "internet_service_download_lists")
+
+    @internet_service_download_lists.setter
+    def internet_service_download_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemGlobalInternetServiceDownloadListArgs']]]]):
+        pulumi.set(self, "internet_service_download_lists", value)
+
+    @property
     @pulumi.getter
     def interval(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "interval")
@@ -1799,6 +1942,15 @@ class SystemGlobalArgs:
     @interval.setter
     def interval(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "interval", value)
+
+    @property
+    @pulumi.getter(name="ipFragmentMemThresholds")
+    def ip_fragment_mem_thresholds(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "ip_fragment_mem_thresholds")
+
+    @ip_fragment_mem_thresholds.setter
+    def ip_fragment_mem_thresholds(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ip_fragment_mem_thresholds", value)
 
     @property
     @pulumi.getter(name="ipSrcPortRange")
@@ -1952,6 +2104,15 @@ class SystemGlobalArgs:
     @lldp_transmission.setter
     def lldp_transmission(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "lldp_transmission", value)
+
+    @property
+    @pulumi.getter(name="logSingleCpuHigh")
+    def log_single_cpu_high(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "log_single_cpu_high")
+
+    @log_single_cpu_high.setter
+    def log_single_cpu_high(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "log_single_cpu_high", value)
 
     @property
     @pulumi.getter(name="logSslConnection")
@@ -2251,6 +2412,15 @@ class SystemGlobalArgs:
         pulumi.set(self, "proxy_hardware_acceleration", value)
 
     @property
+    @pulumi.getter(name="proxyKeepAliveMode")
+    def proxy_keep_alive_mode(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "proxy_keep_alive_mode")
+
+    @proxy_keep_alive_mode.setter
+    def proxy_keep_alive_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy_keep_alive_mode", value)
+
+    @property
     @pulumi.getter(name="proxyKxpHardwareAcceleration")
     def proxy_kxp_hardware_acceleration(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "proxy_kxp_hardware_acceleration")
@@ -2267,6 +2437,15 @@ class SystemGlobalArgs:
     @proxy_re_authentication_mode.setter
     def proxy_re_authentication_mode(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "proxy_re_authentication_mode", value)
+
+    @property
+    @pulumi.getter(name="proxyReAuthenticationTime")
+    def proxy_re_authentication_time(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "proxy_re_authentication_time")
+
+    @proxy_re_authentication_time.setter
+    def proxy_re_authentication_time(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "proxy_re_authentication_time", value)
 
     @property
     @pulumi.getter(name="proxyResourceMode")
@@ -2395,6 +2574,15 @@ class SystemGlobalArgs:
         pulumi.set(self, "send_pmtu_icmp", value)
 
     @property
+    @pulumi.getter(name="sflowdMaxChildrenNum")
+    def sflowd_max_children_num(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "sflowd_max_children_num")
+
+    @sflowd_max_children_num.setter
+    def sflowd_max_children_num(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "sflowd_max_children_num", value)
+
+    @property
     @pulumi.getter(name="snatRouteChange")
     def snat_route_change(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "snat_route_change")
@@ -2501,6 +2689,15 @@ class SystemGlobalArgs:
     @ssh_hmac_md5.setter
     def ssh_hmac_md5(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ssh_hmac_md5", value)
+
+    @property
+    @pulumi.getter(name="sshHostkeyAlgo")
+    def ssh_hostkey_algo(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ssh_hostkey_algo")
+
+    @ssh_hostkey_algo.setter
+    def ssh_hostkey_algo(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssh_hostkey_algo", value)
 
     @property
     @pulumi.getter(name="sshKexAlgo")
@@ -2645,6 +2842,15 @@ class SystemGlobalArgs:
     @sys_perf_log_interval.setter
     def sys_perf_log_interval(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "sys_perf_log_interval", value)
+
+    @property
+    @pulumi.getter(name="syslogAffinity")
+    def syslog_affinity(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "syslog_affinity")
+
+    @syslog_affinity.setter
+    def syslog_affinity(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "syslog_affinity", value)
 
     @property
     @pulumi.getter(name="tcpHalfcloseTimer")
@@ -2908,6 +3114,15 @@ class SystemGlobalArgs:
         pulumi.set(self, "virtual_switch_vlan", value)
 
     @property
+    @pulumi.getter(name="vpnEmsSnCheck")
+    def vpn_ems_sn_check(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "vpn_ems_sn_check")
+
+    @vpn_ems_sn_check.setter
+    def vpn_ems_sn_check(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vpn_ems_sn_check", value)
+
+    @property
     @pulumi.getter(name="wadAffinity")
     def wad_affinity(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "wad_affinity")
@@ -2942,6 +3157,33 @@ class SystemGlobalArgs:
     @wad_memory_change_granularity.setter
     def wad_memory_change_granularity(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "wad_memory_change_granularity", value)
+
+    @property
+    @pulumi.getter(name="wadRestartEndTime")
+    def wad_restart_end_time(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "wad_restart_end_time")
+
+    @wad_restart_end_time.setter
+    def wad_restart_end_time(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "wad_restart_end_time", value)
+
+    @property
+    @pulumi.getter(name="wadRestartMode")
+    def wad_restart_mode(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "wad_restart_mode")
+
+    @wad_restart_mode.setter
+    def wad_restart_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "wad_restart_mode", value)
+
+    @property
+    @pulumi.getter(name="wadRestartStartTime")
+    def wad_restart_start_time(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "wad_restart_start_time")
+
+    @wad_restart_start_time.setter
+    def wad_restart_start_time(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "wad_restart_start_time", value)
 
     @property
     @pulumi.getter(name="wadSourceAffinity")
@@ -3012,6 +3254,7 @@ class _SystemGlobalState:
     def __init__(__self__, *,
                  admin_concurrent: Optional[pulumi.Input[str]] = None,
                  admin_console_timeout: Optional[pulumi.Input[int]] = None,
+                 admin_forticloud_sso_default_profile: Optional[pulumi.Input[str]] = None,
                  admin_forticloud_sso_login: Optional[pulumi.Input[str]] = None,
                  admin_host: Optional[pulumi.Input[str]] = None,
                  admin_hsts_max_age: Optional[pulumi.Input[int]] = None,
@@ -3075,6 +3318,7 @@ class _SystemGlobalState:
                  dh_params: Optional[pulumi.Input[str]] = None,
                  dnsproxy_worker_count: Optional[pulumi.Input[int]] = None,
                  dst: Optional[pulumi.Input[str]] = None,
+                 dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  early_tcp_npu_session: Optional[pulumi.Input[str]] = None,
                  edit_vdom_prompt: Optional[pulumi.Input[str]] = None,
                  endpoint_control_fds_access: Optional[pulumi.Input[str]] = None,
@@ -3086,6 +3330,8 @@ class _SystemGlobalState:
                  fds_statistics_period: Optional[pulumi.Input[int]] = None,
                  fec_port: Optional[pulumi.Input[int]] = None,
                  fgd_alert_subscription: Optional[pulumi.Input[str]] = None,
+                 forticonverter_config_upload: Optional[pulumi.Input[str]] = None,
+                 forticonverter_integration: Optional[pulumi.Input[str]] = None,
                  fortiextender: Optional[pulumi.Input[str]] = None,
                  fortiextender_data_port: Optional[pulumi.Input[int]] = None,
                  fortiextender_discovery_lockdown: Optional[pulumi.Input[str]] = None,
@@ -3094,8 +3340,11 @@ class _SystemGlobalState:
                  fortiipam_integration: Optional[pulumi.Input[str]] = None,
                  fortiservice_port: Optional[pulumi.Input[int]] = None,
                  fortitoken_cloud: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gui_allow_default_hostname: Optional[pulumi.Input[str]] = None,
+                 gui_allow_incompatible_fabric_fgt: Optional[pulumi.Input[str]] = None,
                  gui_app_detection_sdwan: Optional[pulumi.Input[str]] = None,
+                 gui_cdn_domain_override: Optional[pulumi.Input[str]] = None,
                  gui_cdn_usage: Optional[pulumi.Input[str]] = None,
                  gui_certificates: Optional[pulumi.Input[str]] = None,
                  gui_custom_language: Optional[pulumi.Input[str]] = None,
@@ -3123,8 +3372,11 @@ class _SystemGlobalState:
                  hostname: Optional[pulumi.Input[str]] = None,
                  igmp_state_limit: Optional[pulumi.Input[int]] = None,
                  ike_embryonic_limit: Optional[pulumi.Input[int]] = None,
+                 interface_subnet_usage: Optional[pulumi.Input[str]] = None,
                  internet_service_database: Optional[pulumi.Input[str]] = None,
+                 internet_service_download_lists: Optional[pulumi.Input[Sequence[pulumi.Input['SystemGlobalInternetServiceDownloadListArgs']]]] = None,
                  interval: Optional[pulumi.Input[int]] = None,
+                 ip_fragment_mem_thresholds: Optional[pulumi.Input[int]] = None,
                  ip_src_port_range: Optional[pulumi.Input[str]] = None,
                  ips_affinity: Optional[pulumi.Input[str]] = None,
                  ipsec_asic_offload: Optional[pulumi.Input[str]] = None,
@@ -3142,6 +3394,7 @@ class _SystemGlobalState:
                  ldapconntimeout: Optional[pulumi.Input[int]] = None,
                  lldp_reception: Optional[pulumi.Input[str]] = None,
                  lldp_transmission: Optional[pulumi.Input[str]] = None,
+                 log_single_cpu_high: Optional[pulumi.Input[str]] = None,
                  log_ssl_connection: Optional[pulumi.Input[str]] = None,
                  log_uuid_address: Optional[pulumi.Input[str]] = None,
                  log_uuid_policy: Optional[pulumi.Input[str]] = None,
@@ -3175,8 +3428,10 @@ class _SystemGlobalState:
                  proxy_cert_use_mgmt_vdom: Optional[pulumi.Input[str]] = None,
                  proxy_cipher_hardware_acceleration: Optional[pulumi.Input[str]] = None,
                  proxy_hardware_acceleration: Optional[pulumi.Input[str]] = None,
+                 proxy_keep_alive_mode: Optional[pulumi.Input[str]] = None,
                  proxy_kxp_hardware_acceleration: Optional[pulumi.Input[str]] = None,
                  proxy_re_authentication_mode: Optional[pulumi.Input[str]] = None,
+                 proxy_re_authentication_time: Optional[pulumi.Input[int]] = None,
                  proxy_resource_mode: Optional[pulumi.Input[str]] = None,
                  proxy_worker_count: Optional[pulumi.Input[int]] = None,
                  radius_port: Optional[pulumi.Input[int]] = None,
@@ -3191,6 +3446,7 @@ class _SystemGlobalState:
                  security_rating_result_submission: Optional[pulumi.Input[str]] = None,
                  security_rating_run_on_schedule: Optional[pulumi.Input[str]] = None,
                  send_pmtu_icmp: Optional[pulumi.Input[str]] = None,
+                 sflowd_max_children_num: Optional[pulumi.Input[int]] = None,
                  snat_route_change: Optional[pulumi.Input[str]] = None,
                  special_file23_support: Optional[pulumi.Input[str]] = None,
                  speedtest_server: Optional[pulumi.Input[str]] = None,
@@ -3203,6 +3459,7 @@ class _SystemGlobalState:
                  ssh_cbc_cipher: Optional[pulumi.Input[str]] = None,
                  ssh_enc_algo: Optional[pulumi.Input[str]] = None,
                  ssh_hmac_md5: Optional[pulumi.Input[str]] = None,
+                 ssh_hostkey_algo: Optional[pulumi.Input[str]] = None,
                  ssh_kex_algo: Optional[pulumi.Input[str]] = None,
                  ssh_kex_sha1: Optional[pulumi.Input[str]] = None,
                  ssh_mac_algo: Optional[pulumi.Input[str]] = None,
@@ -3219,6 +3476,7 @@ class _SystemGlobalState:
                  switch_controller: Optional[pulumi.Input[str]] = None,
                  switch_controller_reserved_network: Optional[pulumi.Input[str]] = None,
                  sys_perf_log_interval: Optional[pulumi.Input[int]] = None,
+                 syslog_affinity: Optional[pulumi.Input[str]] = None,
                  tcp_halfclose_timer: Optional[pulumi.Input[int]] = None,
                  tcp_halfopen_timer: Optional[pulumi.Input[int]] = None,
                  tcp_option: Optional[pulumi.Input[str]] = None,
@@ -3248,10 +3506,14 @@ class _SystemGlobalState:
                  virtual_server_count: Optional[pulumi.Input[int]] = None,
                  virtual_server_hardware_acceleration: Optional[pulumi.Input[str]] = None,
                  virtual_switch_vlan: Optional[pulumi.Input[str]] = None,
+                 vpn_ems_sn_check: Optional[pulumi.Input[str]] = None,
                  wad_affinity: Optional[pulumi.Input[str]] = None,
                  wad_csvc_cs_count: Optional[pulumi.Input[int]] = None,
                  wad_csvc_db_count: Optional[pulumi.Input[int]] = None,
                  wad_memory_change_granularity: Optional[pulumi.Input[int]] = None,
+                 wad_restart_end_time: Optional[pulumi.Input[str]] = None,
+                 wad_restart_mode: Optional[pulumi.Input[str]] = None,
+                 wad_restart_start_time: Optional[pulumi.Input[str]] = None,
                  wad_source_affinity: Optional[pulumi.Input[str]] = None,
                  wad_worker_count: Optional[pulumi.Input[int]] = None,
                  wifi_ca_certificate: Optional[pulumi.Input[str]] = None,
@@ -3266,6 +3528,8 @@ class _SystemGlobalState:
             pulumi.set(__self__, "admin_concurrent", admin_concurrent)
         if admin_console_timeout is not None:
             pulumi.set(__self__, "admin_console_timeout", admin_console_timeout)
+        if admin_forticloud_sso_default_profile is not None:
+            pulumi.set(__self__, "admin_forticloud_sso_default_profile", admin_forticloud_sso_default_profile)
         if admin_forticloud_sso_login is not None:
             pulumi.set(__self__, "admin_forticloud_sso_login", admin_forticloud_sso_login)
         if admin_host is not None:
@@ -3392,6 +3656,8 @@ class _SystemGlobalState:
             pulumi.set(__self__, "dnsproxy_worker_count", dnsproxy_worker_count)
         if dst is not None:
             pulumi.set(__self__, "dst", dst)
+        if dynamic_sort_subtable is not None:
+            pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if early_tcp_npu_session is not None:
             pulumi.set(__self__, "early_tcp_npu_session", early_tcp_npu_session)
         if edit_vdom_prompt is not None:
@@ -3414,6 +3680,10 @@ class _SystemGlobalState:
             pulumi.set(__self__, "fec_port", fec_port)
         if fgd_alert_subscription is not None:
             pulumi.set(__self__, "fgd_alert_subscription", fgd_alert_subscription)
+        if forticonverter_config_upload is not None:
+            pulumi.set(__self__, "forticonverter_config_upload", forticonverter_config_upload)
+        if forticonverter_integration is not None:
+            pulumi.set(__self__, "forticonverter_integration", forticonverter_integration)
         if fortiextender is not None:
             pulumi.set(__self__, "fortiextender", fortiextender)
         if fortiextender_data_port is not None:
@@ -3430,10 +3700,16 @@ class _SystemGlobalState:
             pulumi.set(__self__, "fortiservice_port", fortiservice_port)
         if fortitoken_cloud is not None:
             pulumi.set(__self__, "fortitoken_cloud", fortitoken_cloud)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gui_allow_default_hostname is not None:
             pulumi.set(__self__, "gui_allow_default_hostname", gui_allow_default_hostname)
+        if gui_allow_incompatible_fabric_fgt is not None:
+            pulumi.set(__self__, "gui_allow_incompatible_fabric_fgt", gui_allow_incompatible_fabric_fgt)
         if gui_app_detection_sdwan is not None:
             pulumi.set(__self__, "gui_app_detection_sdwan", gui_app_detection_sdwan)
+        if gui_cdn_domain_override is not None:
+            pulumi.set(__self__, "gui_cdn_domain_override", gui_cdn_domain_override)
         if gui_cdn_usage is not None:
             pulumi.set(__self__, "gui_cdn_usage", gui_cdn_usage)
         if gui_certificates is not None:
@@ -3488,10 +3764,16 @@ class _SystemGlobalState:
             pulumi.set(__self__, "igmp_state_limit", igmp_state_limit)
         if ike_embryonic_limit is not None:
             pulumi.set(__self__, "ike_embryonic_limit", ike_embryonic_limit)
+        if interface_subnet_usage is not None:
+            pulumi.set(__self__, "interface_subnet_usage", interface_subnet_usage)
         if internet_service_database is not None:
             pulumi.set(__self__, "internet_service_database", internet_service_database)
+        if internet_service_download_lists is not None:
+            pulumi.set(__self__, "internet_service_download_lists", internet_service_download_lists)
         if interval is not None:
             pulumi.set(__self__, "interval", interval)
+        if ip_fragment_mem_thresholds is not None:
+            pulumi.set(__self__, "ip_fragment_mem_thresholds", ip_fragment_mem_thresholds)
         if ip_src_port_range is not None:
             pulumi.set(__self__, "ip_src_port_range", ip_src_port_range)
         if ips_affinity is not None:
@@ -3526,6 +3808,8 @@ class _SystemGlobalState:
             pulumi.set(__self__, "lldp_reception", lldp_reception)
         if lldp_transmission is not None:
             pulumi.set(__self__, "lldp_transmission", lldp_transmission)
+        if log_single_cpu_high is not None:
+            pulumi.set(__self__, "log_single_cpu_high", log_single_cpu_high)
         if log_ssl_connection is not None:
             pulumi.set(__self__, "log_ssl_connection", log_ssl_connection)
         if log_uuid_address is not None:
@@ -3592,10 +3876,14 @@ class _SystemGlobalState:
             pulumi.set(__self__, "proxy_cipher_hardware_acceleration", proxy_cipher_hardware_acceleration)
         if proxy_hardware_acceleration is not None:
             pulumi.set(__self__, "proxy_hardware_acceleration", proxy_hardware_acceleration)
+        if proxy_keep_alive_mode is not None:
+            pulumi.set(__self__, "proxy_keep_alive_mode", proxy_keep_alive_mode)
         if proxy_kxp_hardware_acceleration is not None:
             pulumi.set(__self__, "proxy_kxp_hardware_acceleration", proxy_kxp_hardware_acceleration)
         if proxy_re_authentication_mode is not None:
             pulumi.set(__self__, "proxy_re_authentication_mode", proxy_re_authentication_mode)
+        if proxy_re_authentication_time is not None:
+            pulumi.set(__self__, "proxy_re_authentication_time", proxy_re_authentication_time)
         if proxy_resource_mode is not None:
             pulumi.set(__self__, "proxy_resource_mode", proxy_resource_mode)
         if proxy_worker_count is not None:
@@ -3624,6 +3912,8 @@ class _SystemGlobalState:
             pulumi.set(__self__, "security_rating_run_on_schedule", security_rating_run_on_schedule)
         if send_pmtu_icmp is not None:
             pulumi.set(__self__, "send_pmtu_icmp", send_pmtu_icmp)
+        if sflowd_max_children_num is not None:
+            pulumi.set(__self__, "sflowd_max_children_num", sflowd_max_children_num)
         if snat_route_change is not None:
             pulumi.set(__self__, "snat_route_change", snat_route_change)
         if special_file23_support is not None:
@@ -3648,6 +3938,8 @@ class _SystemGlobalState:
             pulumi.set(__self__, "ssh_enc_algo", ssh_enc_algo)
         if ssh_hmac_md5 is not None:
             pulumi.set(__self__, "ssh_hmac_md5", ssh_hmac_md5)
+        if ssh_hostkey_algo is not None:
+            pulumi.set(__self__, "ssh_hostkey_algo", ssh_hostkey_algo)
         if ssh_kex_algo is not None:
             pulumi.set(__self__, "ssh_kex_algo", ssh_kex_algo)
         if ssh_kex_sha1 is not None:
@@ -3680,6 +3972,8 @@ class _SystemGlobalState:
             pulumi.set(__self__, "switch_controller_reserved_network", switch_controller_reserved_network)
         if sys_perf_log_interval is not None:
             pulumi.set(__self__, "sys_perf_log_interval", sys_perf_log_interval)
+        if syslog_affinity is not None:
+            pulumi.set(__self__, "syslog_affinity", syslog_affinity)
         if tcp_halfclose_timer is not None:
             pulumi.set(__self__, "tcp_halfclose_timer", tcp_halfclose_timer)
         if tcp_halfopen_timer is not None:
@@ -3738,6 +4032,8 @@ class _SystemGlobalState:
             pulumi.set(__self__, "virtual_server_hardware_acceleration", virtual_server_hardware_acceleration)
         if virtual_switch_vlan is not None:
             pulumi.set(__self__, "virtual_switch_vlan", virtual_switch_vlan)
+        if vpn_ems_sn_check is not None:
+            pulumi.set(__self__, "vpn_ems_sn_check", vpn_ems_sn_check)
         if wad_affinity is not None:
             pulumi.set(__self__, "wad_affinity", wad_affinity)
         if wad_csvc_cs_count is not None:
@@ -3746,6 +4042,12 @@ class _SystemGlobalState:
             pulumi.set(__self__, "wad_csvc_db_count", wad_csvc_db_count)
         if wad_memory_change_granularity is not None:
             pulumi.set(__self__, "wad_memory_change_granularity", wad_memory_change_granularity)
+        if wad_restart_end_time is not None:
+            pulumi.set(__self__, "wad_restart_end_time", wad_restart_end_time)
+        if wad_restart_mode is not None:
+            pulumi.set(__self__, "wad_restart_mode", wad_restart_mode)
+        if wad_restart_start_time is not None:
+            pulumi.set(__self__, "wad_restart_start_time", wad_restart_start_time)
         if wad_source_affinity is not None:
             pulumi.set(__self__, "wad_source_affinity", wad_source_affinity)
         if wad_worker_count is not None:
@@ -3778,6 +4080,15 @@ class _SystemGlobalState:
     @admin_console_timeout.setter
     def admin_console_timeout(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "admin_console_timeout", value)
+
+    @property
+    @pulumi.getter(name="adminForticloudSsoDefaultProfile")
+    def admin_forticloud_sso_default_profile(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "admin_forticloud_sso_default_profile")
+
+    @admin_forticloud_sso_default_profile.setter
+    def admin_forticloud_sso_default_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "admin_forticloud_sso_default_profile", value)
 
     @property
     @pulumi.getter(name="adminForticloudSsoLogin")
@@ -4347,6 +4658,15 @@ class _SystemGlobalState:
         pulumi.set(self, "dst", value)
 
     @property
+    @pulumi.getter(name="dynamicSortSubtable")
+    def dynamic_sort_subtable(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "dynamic_sort_subtable")
+
+    @dynamic_sort_subtable.setter
+    def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
     @pulumi.getter(name="earlyTcpNpuSession")
     def early_tcp_npu_session(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "early_tcp_npu_session")
@@ -4446,6 +4766,24 @@ class _SystemGlobalState:
         pulumi.set(self, "fgd_alert_subscription", value)
 
     @property
+    @pulumi.getter(name="forticonverterConfigUpload")
+    def forticonverter_config_upload(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "forticonverter_config_upload")
+
+    @forticonverter_config_upload.setter
+    def forticonverter_config_upload(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "forticonverter_config_upload", value)
+
+    @property
+    @pulumi.getter(name="forticonverterIntegration")
+    def forticonverter_integration(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "forticonverter_integration")
+
+    @forticonverter_integration.setter
+    def forticonverter_integration(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "forticonverter_integration", value)
+
+    @property
     @pulumi.getter
     def fortiextender(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "fortiextender")
@@ -4518,6 +4856,15 @@ class _SystemGlobalState:
         pulumi.set(self, "fortitoken_cloud", value)
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
+
+    @property
     @pulumi.getter(name="guiAllowDefaultHostname")
     def gui_allow_default_hostname(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "gui_allow_default_hostname")
@@ -4527,6 +4874,15 @@ class _SystemGlobalState:
         pulumi.set(self, "gui_allow_default_hostname", value)
 
     @property
+    @pulumi.getter(name="guiAllowIncompatibleFabricFgt")
+    def gui_allow_incompatible_fabric_fgt(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "gui_allow_incompatible_fabric_fgt")
+
+    @gui_allow_incompatible_fabric_fgt.setter
+    def gui_allow_incompatible_fabric_fgt(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_allow_incompatible_fabric_fgt", value)
+
+    @property
     @pulumi.getter(name="guiAppDetectionSdwan")
     def gui_app_detection_sdwan(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "gui_app_detection_sdwan")
@@ -4534,6 +4890,15 @@ class _SystemGlobalState:
     @gui_app_detection_sdwan.setter
     def gui_app_detection_sdwan(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gui_app_detection_sdwan", value)
+
+    @property
+    @pulumi.getter(name="guiCdnDomainOverride")
+    def gui_cdn_domain_override(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "gui_cdn_domain_override")
+
+    @gui_cdn_domain_override.setter
+    def gui_cdn_domain_override(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_cdn_domain_override", value)
 
     @property
     @pulumi.getter(name="guiCdnUsage")
@@ -4779,6 +5144,15 @@ class _SystemGlobalState:
         pulumi.set(self, "ike_embryonic_limit", value)
 
     @property
+    @pulumi.getter(name="interfaceSubnetUsage")
+    def interface_subnet_usage(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "interface_subnet_usage")
+
+    @interface_subnet_usage.setter
+    def interface_subnet_usage(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "interface_subnet_usage", value)
+
+    @property
     @pulumi.getter(name="internetServiceDatabase")
     def internet_service_database(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "internet_service_database")
@@ -4788,6 +5162,15 @@ class _SystemGlobalState:
         pulumi.set(self, "internet_service_database", value)
 
     @property
+    @pulumi.getter(name="internetServiceDownloadLists")
+    def internet_service_download_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SystemGlobalInternetServiceDownloadListArgs']]]]:
+        return pulumi.get(self, "internet_service_download_lists")
+
+    @internet_service_download_lists.setter
+    def internet_service_download_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemGlobalInternetServiceDownloadListArgs']]]]):
+        pulumi.set(self, "internet_service_download_lists", value)
+
+    @property
     @pulumi.getter
     def interval(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "interval")
@@ -4795,6 +5178,15 @@ class _SystemGlobalState:
     @interval.setter
     def interval(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "interval", value)
+
+    @property
+    @pulumi.getter(name="ipFragmentMemThresholds")
+    def ip_fragment_mem_thresholds(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "ip_fragment_mem_thresholds")
+
+    @ip_fragment_mem_thresholds.setter
+    def ip_fragment_mem_thresholds(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ip_fragment_mem_thresholds", value)
 
     @property
     @pulumi.getter(name="ipSrcPortRange")
@@ -4948,6 +5340,15 @@ class _SystemGlobalState:
     @lldp_transmission.setter
     def lldp_transmission(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "lldp_transmission", value)
+
+    @property
+    @pulumi.getter(name="logSingleCpuHigh")
+    def log_single_cpu_high(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "log_single_cpu_high")
+
+    @log_single_cpu_high.setter
+    def log_single_cpu_high(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "log_single_cpu_high", value)
 
     @property
     @pulumi.getter(name="logSslConnection")
@@ -5247,6 +5648,15 @@ class _SystemGlobalState:
         pulumi.set(self, "proxy_hardware_acceleration", value)
 
     @property
+    @pulumi.getter(name="proxyKeepAliveMode")
+    def proxy_keep_alive_mode(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "proxy_keep_alive_mode")
+
+    @proxy_keep_alive_mode.setter
+    def proxy_keep_alive_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy_keep_alive_mode", value)
+
+    @property
     @pulumi.getter(name="proxyKxpHardwareAcceleration")
     def proxy_kxp_hardware_acceleration(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "proxy_kxp_hardware_acceleration")
@@ -5263,6 +5673,15 @@ class _SystemGlobalState:
     @proxy_re_authentication_mode.setter
     def proxy_re_authentication_mode(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "proxy_re_authentication_mode", value)
+
+    @property
+    @pulumi.getter(name="proxyReAuthenticationTime")
+    def proxy_re_authentication_time(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "proxy_re_authentication_time")
+
+    @proxy_re_authentication_time.setter
+    def proxy_re_authentication_time(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "proxy_re_authentication_time", value)
 
     @property
     @pulumi.getter(name="proxyResourceMode")
@@ -5391,6 +5810,15 @@ class _SystemGlobalState:
         pulumi.set(self, "send_pmtu_icmp", value)
 
     @property
+    @pulumi.getter(name="sflowdMaxChildrenNum")
+    def sflowd_max_children_num(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "sflowd_max_children_num")
+
+    @sflowd_max_children_num.setter
+    def sflowd_max_children_num(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "sflowd_max_children_num", value)
+
+    @property
     @pulumi.getter(name="snatRouteChange")
     def snat_route_change(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "snat_route_change")
@@ -5497,6 +5925,15 @@ class _SystemGlobalState:
     @ssh_hmac_md5.setter
     def ssh_hmac_md5(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ssh_hmac_md5", value)
+
+    @property
+    @pulumi.getter(name="sshHostkeyAlgo")
+    def ssh_hostkey_algo(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ssh_hostkey_algo")
+
+    @ssh_hostkey_algo.setter
+    def ssh_hostkey_algo(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssh_hostkey_algo", value)
 
     @property
     @pulumi.getter(name="sshKexAlgo")
@@ -5641,6 +6078,15 @@ class _SystemGlobalState:
     @sys_perf_log_interval.setter
     def sys_perf_log_interval(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "sys_perf_log_interval", value)
+
+    @property
+    @pulumi.getter(name="syslogAffinity")
+    def syslog_affinity(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "syslog_affinity")
+
+    @syslog_affinity.setter
+    def syslog_affinity(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "syslog_affinity", value)
 
     @property
     @pulumi.getter(name="tcpHalfcloseTimer")
@@ -5904,6 +6350,15 @@ class _SystemGlobalState:
         pulumi.set(self, "virtual_switch_vlan", value)
 
     @property
+    @pulumi.getter(name="vpnEmsSnCheck")
+    def vpn_ems_sn_check(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "vpn_ems_sn_check")
+
+    @vpn_ems_sn_check.setter
+    def vpn_ems_sn_check(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vpn_ems_sn_check", value)
+
+    @property
     @pulumi.getter(name="wadAffinity")
     def wad_affinity(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "wad_affinity")
@@ -5938,6 +6393,33 @@ class _SystemGlobalState:
     @wad_memory_change_granularity.setter
     def wad_memory_change_granularity(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "wad_memory_change_granularity", value)
+
+    @property
+    @pulumi.getter(name="wadRestartEndTime")
+    def wad_restart_end_time(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "wad_restart_end_time")
+
+    @wad_restart_end_time.setter
+    def wad_restart_end_time(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "wad_restart_end_time", value)
+
+    @property
+    @pulumi.getter(name="wadRestartMode")
+    def wad_restart_mode(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "wad_restart_mode")
+
+    @wad_restart_mode.setter
+    def wad_restart_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "wad_restart_mode", value)
+
+    @property
+    @pulumi.getter(name="wadRestartStartTime")
+    def wad_restart_start_time(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "wad_restart_start_time")
+
+    @wad_restart_start_time.setter
+    def wad_restart_start_time(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "wad_restart_start_time", value)
 
     @property
     @pulumi.getter(name="wadSourceAffinity")
@@ -6010,6 +6492,7 @@ class SystemGlobal(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  admin_concurrent: Optional[pulumi.Input[str]] = None,
                  admin_console_timeout: Optional[pulumi.Input[int]] = None,
+                 admin_forticloud_sso_default_profile: Optional[pulumi.Input[str]] = None,
                  admin_forticloud_sso_login: Optional[pulumi.Input[str]] = None,
                  admin_host: Optional[pulumi.Input[str]] = None,
                  admin_hsts_max_age: Optional[pulumi.Input[int]] = None,
@@ -6073,6 +6556,7 @@ class SystemGlobal(pulumi.CustomResource):
                  dh_params: Optional[pulumi.Input[str]] = None,
                  dnsproxy_worker_count: Optional[pulumi.Input[int]] = None,
                  dst: Optional[pulumi.Input[str]] = None,
+                 dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  early_tcp_npu_session: Optional[pulumi.Input[str]] = None,
                  edit_vdom_prompt: Optional[pulumi.Input[str]] = None,
                  endpoint_control_fds_access: Optional[pulumi.Input[str]] = None,
@@ -6084,6 +6568,8 @@ class SystemGlobal(pulumi.CustomResource):
                  fds_statistics_period: Optional[pulumi.Input[int]] = None,
                  fec_port: Optional[pulumi.Input[int]] = None,
                  fgd_alert_subscription: Optional[pulumi.Input[str]] = None,
+                 forticonverter_config_upload: Optional[pulumi.Input[str]] = None,
+                 forticonverter_integration: Optional[pulumi.Input[str]] = None,
                  fortiextender: Optional[pulumi.Input[str]] = None,
                  fortiextender_data_port: Optional[pulumi.Input[int]] = None,
                  fortiextender_discovery_lockdown: Optional[pulumi.Input[str]] = None,
@@ -6092,8 +6578,11 @@ class SystemGlobal(pulumi.CustomResource):
                  fortiipam_integration: Optional[pulumi.Input[str]] = None,
                  fortiservice_port: Optional[pulumi.Input[int]] = None,
                  fortitoken_cloud: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gui_allow_default_hostname: Optional[pulumi.Input[str]] = None,
+                 gui_allow_incompatible_fabric_fgt: Optional[pulumi.Input[str]] = None,
                  gui_app_detection_sdwan: Optional[pulumi.Input[str]] = None,
+                 gui_cdn_domain_override: Optional[pulumi.Input[str]] = None,
                  gui_cdn_usage: Optional[pulumi.Input[str]] = None,
                  gui_certificates: Optional[pulumi.Input[str]] = None,
                  gui_custom_language: Optional[pulumi.Input[str]] = None,
@@ -6121,8 +6610,11 @@ class SystemGlobal(pulumi.CustomResource):
                  hostname: Optional[pulumi.Input[str]] = None,
                  igmp_state_limit: Optional[pulumi.Input[int]] = None,
                  ike_embryonic_limit: Optional[pulumi.Input[int]] = None,
+                 interface_subnet_usage: Optional[pulumi.Input[str]] = None,
                  internet_service_database: Optional[pulumi.Input[str]] = None,
+                 internet_service_download_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemGlobalInternetServiceDownloadListArgs']]]]] = None,
                  interval: Optional[pulumi.Input[int]] = None,
+                 ip_fragment_mem_thresholds: Optional[pulumi.Input[int]] = None,
                  ip_src_port_range: Optional[pulumi.Input[str]] = None,
                  ips_affinity: Optional[pulumi.Input[str]] = None,
                  ipsec_asic_offload: Optional[pulumi.Input[str]] = None,
@@ -6140,6 +6632,7 @@ class SystemGlobal(pulumi.CustomResource):
                  ldapconntimeout: Optional[pulumi.Input[int]] = None,
                  lldp_reception: Optional[pulumi.Input[str]] = None,
                  lldp_transmission: Optional[pulumi.Input[str]] = None,
+                 log_single_cpu_high: Optional[pulumi.Input[str]] = None,
                  log_ssl_connection: Optional[pulumi.Input[str]] = None,
                  log_uuid_address: Optional[pulumi.Input[str]] = None,
                  log_uuid_policy: Optional[pulumi.Input[str]] = None,
@@ -6173,8 +6666,10 @@ class SystemGlobal(pulumi.CustomResource):
                  proxy_cert_use_mgmt_vdom: Optional[pulumi.Input[str]] = None,
                  proxy_cipher_hardware_acceleration: Optional[pulumi.Input[str]] = None,
                  proxy_hardware_acceleration: Optional[pulumi.Input[str]] = None,
+                 proxy_keep_alive_mode: Optional[pulumi.Input[str]] = None,
                  proxy_kxp_hardware_acceleration: Optional[pulumi.Input[str]] = None,
                  proxy_re_authentication_mode: Optional[pulumi.Input[str]] = None,
+                 proxy_re_authentication_time: Optional[pulumi.Input[int]] = None,
                  proxy_resource_mode: Optional[pulumi.Input[str]] = None,
                  proxy_worker_count: Optional[pulumi.Input[int]] = None,
                  radius_port: Optional[pulumi.Input[int]] = None,
@@ -6189,6 +6684,7 @@ class SystemGlobal(pulumi.CustomResource):
                  security_rating_result_submission: Optional[pulumi.Input[str]] = None,
                  security_rating_run_on_schedule: Optional[pulumi.Input[str]] = None,
                  send_pmtu_icmp: Optional[pulumi.Input[str]] = None,
+                 sflowd_max_children_num: Optional[pulumi.Input[int]] = None,
                  snat_route_change: Optional[pulumi.Input[str]] = None,
                  special_file23_support: Optional[pulumi.Input[str]] = None,
                  speedtest_server: Optional[pulumi.Input[str]] = None,
@@ -6201,6 +6697,7 @@ class SystemGlobal(pulumi.CustomResource):
                  ssh_cbc_cipher: Optional[pulumi.Input[str]] = None,
                  ssh_enc_algo: Optional[pulumi.Input[str]] = None,
                  ssh_hmac_md5: Optional[pulumi.Input[str]] = None,
+                 ssh_hostkey_algo: Optional[pulumi.Input[str]] = None,
                  ssh_kex_algo: Optional[pulumi.Input[str]] = None,
                  ssh_kex_sha1: Optional[pulumi.Input[str]] = None,
                  ssh_mac_algo: Optional[pulumi.Input[str]] = None,
@@ -6217,6 +6714,7 @@ class SystemGlobal(pulumi.CustomResource):
                  switch_controller: Optional[pulumi.Input[str]] = None,
                  switch_controller_reserved_network: Optional[pulumi.Input[str]] = None,
                  sys_perf_log_interval: Optional[pulumi.Input[int]] = None,
+                 syslog_affinity: Optional[pulumi.Input[str]] = None,
                  tcp_halfclose_timer: Optional[pulumi.Input[int]] = None,
                  tcp_halfopen_timer: Optional[pulumi.Input[int]] = None,
                  tcp_option: Optional[pulumi.Input[str]] = None,
@@ -6246,10 +6744,14 @@ class SystemGlobal(pulumi.CustomResource):
                  virtual_server_count: Optional[pulumi.Input[int]] = None,
                  virtual_server_hardware_acceleration: Optional[pulumi.Input[str]] = None,
                  virtual_switch_vlan: Optional[pulumi.Input[str]] = None,
+                 vpn_ems_sn_check: Optional[pulumi.Input[str]] = None,
                  wad_affinity: Optional[pulumi.Input[str]] = None,
                  wad_csvc_cs_count: Optional[pulumi.Input[int]] = None,
                  wad_csvc_db_count: Optional[pulumi.Input[int]] = None,
                  wad_memory_change_granularity: Optional[pulumi.Input[int]] = None,
+                 wad_restart_end_time: Optional[pulumi.Input[str]] = None,
+                 wad_restart_mode: Optional[pulumi.Input[str]] = None,
+                 wad_restart_start_time: Optional[pulumi.Input[str]] = None,
                  wad_source_affinity: Optional[pulumi.Input[str]] = None,
                  wad_worker_count: Optional[pulumi.Input[int]] = None,
                  wifi_ca_certificate: Optional[pulumi.Input[str]] = None,
@@ -6288,6 +6790,7 @@ class SystemGlobal(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  admin_concurrent: Optional[pulumi.Input[str]] = None,
                  admin_console_timeout: Optional[pulumi.Input[int]] = None,
+                 admin_forticloud_sso_default_profile: Optional[pulumi.Input[str]] = None,
                  admin_forticloud_sso_login: Optional[pulumi.Input[str]] = None,
                  admin_host: Optional[pulumi.Input[str]] = None,
                  admin_hsts_max_age: Optional[pulumi.Input[int]] = None,
@@ -6351,6 +6854,7 @@ class SystemGlobal(pulumi.CustomResource):
                  dh_params: Optional[pulumi.Input[str]] = None,
                  dnsproxy_worker_count: Optional[pulumi.Input[int]] = None,
                  dst: Optional[pulumi.Input[str]] = None,
+                 dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  early_tcp_npu_session: Optional[pulumi.Input[str]] = None,
                  edit_vdom_prompt: Optional[pulumi.Input[str]] = None,
                  endpoint_control_fds_access: Optional[pulumi.Input[str]] = None,
@@ -6362,6 +6866,8 @@ class SystemGlobal(pulumi.CustomResource):
                  fds_statistics_period: Optional[pulumi.Input[int]] = None,
                  fec_port: Optional[pulumi.Input[int]] = None,
                  fgd_alert_subscription: Optional[pulumi.Input[str]] = None,
+                 forticonverter_config_upload: Optional[pulumi.Input[str]] = None,
+                 forticonverter_integration: Optional[pulumi.Input[str]] = None,
                  fortiextender: Optional[pulumi.Input[str]] = None,
                  fortiextender_data_port: Optional[pulumi.Input[int]] = None,
                  fortiextender_discovery_lockdown: Optional[pulumi.Input[str]] = None,
@@ -6370,8 +6876,11 @@ class SystemGlobal(pulumi.CustomResource):
                  fortiipam_integration: Optional[pulumi.Input[str]] = None,
                  fortiservice_port: Optional[pulumi.Input[int]] = None,
                  fortitoken_cloud: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  gui_allow_default_hostname: Optional[pulumi.Input[str]] = None,
+                 gui_allow_incompatible_fabric_fgt: Optional[pulumi.Input[str]] = None,
                  gui_app_detection_sdwan: Optional[pulumi.Input[str]] = None,
+                 gui_cdn_domain_override: Optional[pulumi.Input[str]] = None,
                  gui_cdn_usage: Optional[pulumi.Input[str]] = None,
                  gui_certificates: Optional[pulumi.Input[str]] = None,
                  gui_custom_language: Optional[pulumi.Input[str]] = None,
@@ -6399,8 +6908,11 @@ class SystemGlobal(pulumi.CustomResource):
                  hostname: Optional[pulumi.Input[str]] = None,
                  igmp_state_limit: Optional[pulumi.Input[int]] = None,
                  ike_embryonic_limit: Optional[pulumi.Input[int]] = None,
+                 interface_subnet_usage: Optional[pulumi.Input[str]] = None,
                  internet_service_database: Optional[pulumi.Input[str]] = None,
+                 internet_service_download_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemGlobalInternetServiceDownloadListArgs']]]]] = None,
                  interval: Optional[pulumi.Input[int]] = None,
+                 ip_fragment_mem_thresholds: Optional[pulumi.Input[int]] = None,
                  ip_src_port_range: Optional[pulumi.Input[str]] = None,
                  ips_affinity: Optional[pulumi.Input[str]] = None,
                  ipsec_asic_offload: Optional[pulumi.Input[str]] = None,
@@ -6418,6 +6930,7 @@ class SystemGlobal(pulumi.CustomResource):
                  ldapconntimeout: Optional[pulumi.Input[int]] = None,
                  lldp_reception: Optional[pulumi.Input[str]] = None,
                  lldp_transmission: Optional[pulumi.Input[str]] = None,
+                 log_single_cpu_high: Optional[pulumi.Input[str]] = None,
                  log_ssl_connection: Optional[pulumi.Input[str]] = None,
                  log_uuid_address: Optional[pulumi.Input[str]] = None,
                  log_uuid_policy: Optional[pulumi.Input[str]] = None,
@@ -6451,8 +6964,10 @@ class SystemGlobal(pulumi.CustomResource):
                  proxy_cert_use_mgmt_vdom: Optional[pulumi.Input[str]] = None,
                  proxy_cipher_hardware_acceleration: Optional[pulumi.Input[str]] = None,
                  proxy_hardware_acceleration: Optional[pulumi.Input[str]] = None,
+                 proxy_keep_alive_mode: Optional[pulumi.Input[str]] = None,
                  proxy_kxp_hardware_acceleration: Optional[pulumi.Input[str]] = None,
                  proxy_re_authentication_mode: Optional[pulumi.Input[str]] = None,
+                 proxy_re_authentication_time: Optional[pulumi.Input[int]] = None,
                  proxy_resource_mode: Optional[pulumi.Input[str]] = None,
                  proxy_worker_count: Optional[pulumi.Input[int]] = None,
                  radius_port: Optional[pulumi.Input[int]] = None,
@@ -6467,6 +6982,7 @@ class SystemGlobal(pulumi.CustomResource):
                  security_rating_result_submission: Optional[pulumi.Input[str]] = None,
                  security_rating_run_on_schedule: Optional[pulumi.Input[str]] = None,
                  send_pmtu_icmp: Optional[pulumi.Input[str]] = None,
+                 sflowd_max_children_num: Optional[pulumi.Input[int]] = None,
                  snat_route_change: Optional[pulumi.Input[str]] = None,
                  special_file23_support: Optional[pulumi.Input[str]] = None,
                  speedtest_server: Optional[pulumi.Input[str]] = None,
@@ -6479,6 +6995,7 @@ class SystemGlobal(pulumi.CustomResource):
                  ssh_cbc_cipher: Optional[pulumi.Input[str]] = None,
                  ssh_enc_algo: Optional[pulumi.Input[str]] = None,
                  ssh_hmac_md5: Optional[pulumi.Input[str]] = None,
+                 ssh_hostkey_algo: Optional[pulumi.Input[str]] = None,
                  ssh_kex_algo: Optional[pulumi.Input[str]] = None,
                  ssh_kex_sha1: Optional[pulumi.Input[str]] = None,
                  ssh_mac_algo: Optional[pulumi.Input[str]] = None,
@@ -6495,6 +7012,7 @@ class SystemGlobal(pulumi.CustomResource):
                  switch_controller: Optional[pulumi.Input[str]] = None,
                  switch_controller_reserved_network: Optional[pulumi.Input[str]] = None,
                  sys_perf_log_interval: Optional[pulumi.Input[int]] = None,
+                 syslog_affinity: Optional[pulumi.Input[str]] = None,
                  tcp_halfclose_timer: Optional[pulumi.Input[int]] = None,
                  tcp_halfopen_timer: Optional[pulumi.Input[int]] = None,
                  tcp_option: Optional[pulumi.Input[str]] = None,
@@ -6524,10 +7042,14 @@ class SystemGlobal(pulumi.CustomResource):
                  virtual_server_count: Optional[pulumi.Input[int]] = None,
                  virtual_server_hardware_acceleration: Optional[pulumi.Input[str]] = None,
                  virtual_switch_vlan: Optional[pulumi.Input[str]] = None,
+                 vpn_ems_sn_check: Optional[pulumi.Input[str]] = None,
                  wad_affinity: Optional[pulumi.Input[str]] = None,
                  wad_csvc_cs_count: Optional[pulumi.Input[int]] = None,
                  wad_csvc_db_count: Optional[pulumi.Input[int]] = None,
                  wad_memory_change_granularity: Optional[pulumi.Input[int]] = None,
+                 wad_restart_end_time: Optional[pulumi.Input[str]] = None,
+                 wad_restart_mode: Optional[pulumi.Input[str]] = None,
+                 wad_restart_start_time: Optional[pulumi.Input[str]] = None,
                  wad_source_affinity: Optional[pulumi.Input[str]] = None,
                  wad_worker_count: Optional[pulumi.Input[int]] = None,
                  wifi_ca_certificate: Optional[pulumi.Input[str]] = None,
@@ -6546,6 +7068,7 @@ class SystemGlobal(pulumi.CustomResource):
 
             __props__.__dict__["admin_concurrent"] = admin_concurrent
             __props__.__dict__["admin_console_timeout"] = admin_console_timeout
+            __props__.__dict__["admin_forticloud_sso_default_profile"] = admin_forticloud_sso_default_profile
             __props__.__dict__["admin_forticloud_sso_login"] = admin_forticloud_sso_login
             __props__.__dict__["admin_host"] = admin_host
             __props__.__dict__["admin_hsts_max_age"] = admin_hsts_max_age
@@ -6609,6 +7132,7 @@ class SystemGlobal(pulumi.CustomResource):
             __props__.__dict__["dh_params"] = dh_params
             __props__.__dict__["dnsproxy_worker_count"] = dnsproxy_worker_count
             __props__.__dict__["dst"] = dst
+            __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["early_tcp_npu_session"] = early_tcp_npu_session
             __props__.__dict__["edit_vdom_prompt"] = edit_vdom_prompt
             __props__.__dict__["endpoint_control_fds_access"] = endpoint_control_fds_access
@@ -6620,6 +7144,8 @@ class SystemGlobal(pulumi.CustomResource):
             __props__.__dict__["fds_statistics_period"] = fds_statistics_period
             __props__.__dict__["fec_port"] = fec_port
             __props__.__dict__["fgd_alert_subscription"] = fgd_alert_subscription
+            __props__.__dict__["forticonverter_config_upload"] = forticonverter_config_upload
+            __props__.__dict__["forticonverter_integration"] = forticonverter_integration
             __props__.__dict__["fortiextender"] = fortiextender
             __props__.__dict__["fortiextender_data_port"] = fortiextender_data_port
             __props__.__dict__["fortiextender_discovery_lockdown"] = fortiextender_discovery_lockdown
@@ -6628,8 +7154,11 @@ class SystemGlobal(pulumi.CustomResource):
             __props__.__dict__["fortiipam_integration"] = fortiipam_integration
             __props__.__dict__["fortiservice_port"] = fortiservice_port
             __props__.__dict__["fortitoken_cloud"] = fortitoken_cloud
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["gui_allow_default_hostname"] = gui_allow_default_hostname
+            __props__.__dict__["gui_allow_incompatible_fabric_fgt"] = gui_allow_incompatible_fabric_fgt
             __props__.__dict__["gui_app_detection_sdwan"] = gui_app_detection_sdwan
+            __props__.__dict__["gui_cdn_domain_override"] = gui_cdn_domain_override
             __props__.__dict__["gui_cdn_usage"] = gui_cdn_usage
             __props__.__dict__["gui_certificates"] = gui_certificates
             __props__.__dict__["gui_custom_language"] = gui_custom_language
@@ -6657,8 +7186,11 @@ class SystemGlobal(pulumi.CustomResource):
             __props__.__dict__["hostname"] = hostname
             __props__.__dict__["igmp_state_limit"] = igmp_state_limit
             __props__.__dict__["ike_embryonic_limit"] = ike_embryonic_limit
+            __props__.__dict__["interface_subnet_usage"] = interface_subnet_usage
             __props__.__dict__["internet_service_database"] = internet_service_database
+            __props__.__dict__["internet_service_download_lists"] = internet_service_download_lists
             __props__.__dict__["interval"] = interval
+            __props__.__dict__["ip_fragment_mem_thresholds"] = ip_fragment_mem_thresholds
             __props__.__dict__["ip_src_port_range"] = ip_src_port_range
             __props__.__dict__["ips_affinity"] = ips_affinity
             __props__.__dict__["ipsec_asic_offload"] = ipsec_asic_offload
@@ -6676,6 +7208,7 @@ class SystemGlobal(pulumi.CustomResource):
             __props__.__dict__["ldapconntimeout"] = ldapconntimeout
             __props__.__dict__["lldp_reception"] = lldp_reception
             __props__.__dict__["lldp_transmission"] = lldp_transmission
+            __props__.__dict__["log_single_cpu_high"] = log_single_cpu_high
             __props__.__dict__["log_ssl_connection"] = log_ssl_connection
             __props__.__dict__["log_uuid_address"] = log_uuid_address
             __props__.__dict__["log_uuid_policy"] = log_uuid_policy
@@ -6709,8 +7242,10 @@ class SystemGlobal(pulumi.CustomResource):
             __props__.__dict__["proxy_cert_use_mgmt_vdom"] = proxy_cert_use_mgmt_vdom
             __props__.__dict__["proxy_cipher_hardware_acceleration"] = proxy_cipher_hardware_acceleration
             __props__.__dict__["proxy_hardware_acceleration"] = proxy_hardware_acceleration
+            __props__.__dict__["proxy_keep_alive_mode"] = proxy_keep_alive_mode
             __props__.__dict__["proxy_kxp_hardware_acceleration"] = proxy_kxp_hardware_acceleration
             __props__.__dict__["proxy_re_authentication_mode"] = proxy_re_authentication_mode
+            __props__.__dict__["proxy_re_authentication_time"] = proxy_re_authentication_time
             __props__.__dict__["proxy_resource_mode"] = proxy_resource_mode
             __props__.__dict__["proxy_worker_count"] = proxy_worker_count
             __props__.__dict__["radius_port"] = radius_port
@@ -6725,6 +7260,7 @@ class SystemGlobal(pulumi.CustomResource):
             __props__.__dict__["security_rating_result_submission"] = security_rating_result_submission
             __props__.__dict__["security_rating_run_on_schedule"] = security_rating_run_on_schedule
             __props__.__dict__["send_pmtu_icmp"] = send_pmtu_icmp
+            __props__.__dict__["sflowd_max_children_num"] = sflowd_max_children_num
             __props__.__dict__["snat_route_change"] = snat_route_change
             __props__.__dict__["special_file23_support"] = special_file23_support
             __props__.__dict__["speedtest_server"] = speedtest_server
@@ -6737,6 +7273,7 @@ class SystemGlobal(pulumi.CustomResource):
             __props__.__dict__["ssh_cbc_cipher"] = ssh_cbc_cipher
             __props__.__dict__["ssh_enc_algo"] = ssh_enc_algo
             __props__.__dict__["ssh_hmac_md5"] = ssh_hmac_md5
+            __props__.__dict__["ssh_hostkey_algo"] = ssh_hostkey_algo
             __props__.__dict__["ssh_kex_algo"] = ssh_kex_algo
             __props__.__dict__["ssh_kex_sha1"] = ssh_kex_sha1
             __props__.__dict__["ssh_mac_algo"] = ssh_mac_algo
@@ -6753,6 +7290,7 @@ class SystemGlobal(pulumi.CustomResource):
             __props__.__dict__["switch_controller"] = switch_controller
             __props__.__dict__["switch_controller_reserved_network"] = switch_controller_reserved_network
             __props__.__dict__["sys_perf_log_interval"] = sys_perf_log_interval
+            __props__.__dict__["syslog_affinity"] = syslog_affinity
             __props__.__dict__["tcp_halfclose_timer"] = tcp_halfclose_timer
             __props__.__dict__["tcp_halfopen_timer"] = tcp_halfopen_timer
             __props__.__dict__["tcp_option"] = tcp_option
@@ -6782,10 +7320,14 @@ class SystemGlobal(pulumi.CustomResource):
             __props__.__dict__["virtual_server_count"] = virtual_server_count
             __props__.__dict__["virtual_server_hardware_acceleration"] = virtual_server_hardware_acceleration
             __props__.__dict__["virtual_switch_vlan"] = virtual_switch_vlan
+            __props__.__dict__["vpn_ems_sn_check"] = vpn_ems_sn_check
             __props__.__dict__["wad_affinity"] = wad_affinity
             __props__.__dict__["wad_csvc_cs_count"] = wad_csvc_cs_count
             __props__.__dict__["wad_csvc_db_count"] = wad_csvc_db_count
             __props__.__dict__["wad_memory_change_granularity"] = wad_memory_change_granularity
+            __props__.__dict__["wad_restart_end_time"] = wad_restart_end_time
+            __props__.__dict__["wad_restart_mode"] = wad_restart_mode
+            __props__.__dict__["wad_restart_start_time"] = wad_restart_start_time
             __props__.__dict__["wad_source_affinity"] = wad_source_affinity
             __props__.__dict__["wad_worker_count"] = wad_worker_count
             __props__.__dict__["wifi_ca_certificate"] = wifi_ca_certificate
@@ -6805,6 +7347,7 @@ class SystemGlobal(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             admin_concurrent: Optional[pulumi.Input[str]] = None,
             admin_console_timeout: Optional[pulumi.Input[int]] = None,
+            admin_forticloud_sso_default_profile: Optional[pulumi.Input[str]] = None,
             admin_forticloud_sso_login: Optional[pulumi.Input[str]] = None,
             admin_host: Optional[pulumi.Input[str]] = None,
             admin_hsts_max_age: Optional[pulumi.Input[int]] = None,
@@ -6868,6 +7411,7 @@ class SystemGlobal(pulumi.CustomResource):
             dh_params: Optional[pulumi.Input[str]] = None,
             dnsproxy_worker_count: Optional[pulumi.Input[int]] = None,
             dst: Optional[pulumi.Input[str]] = None,
+            dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             early_tcp_npu_session: Optional[pulumi.Input[str]] = None,
             edit_vdom_prompt: Optional[pulumi.Input[str]] = None,
             endpoint_control_fds_access: Optional[pulumi.Input[str]] = None,
@@ -6879,6 +7423,8 @@ class SystemGlobal(pulumi.CustomResource):
             fds_statistics_period: Optional[pulumi.Input[int]] = None,
             fec_port: Optional[pulumi.Input[int]] = None,
             fgd_alert_subscription: Optional[pulumi.Input[str]] = None,
+            forticonverter_config_upload: Optional[pulumi.Input[str]] = None,
+            forticonverter_integration: Optional[pulumi.Input[str]] = None,
             fortiextender: Optional[pulumi.Input[str]] = None,
             fortiextender_data_port: Optional[pulumi.Input[int]] = None,
             fortiextender_discovery_lockdown: Optional[pulumi.Input[str]] = None,
@@ -6887,8 +7433,11 @@ class SystemGlobal(pulumi.CustomResource):
             fortiipam_integration: Optional[pulumi.Input[str]] = None,
             fortiservice_port: Optional[pulumi.Input[int]] = None,
             fortitoken_cloud: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             gui_allow_default_hostname: Optional[pulumi.Input[str]] = None,
+            gui_allow_incompatible_fabric_fgt: Optional[pulumi.Input[str]] = None,
             gui_app_detection_sdwan: Optional[pulumi.Input[str]] = None,
+            gui_cdn_domain_override: Optional[pulumi.Input[str]] = None,
             gui_cdn_usage: Optional[pulumi.Input[str]] = None,
             gui_certificates: Optional[pulumi.Input[str]] = None,
             gui_custom_language: Optional[pulumi.Input[str]] = None,
@@ -6916,8 +7465,11 @@ class SystemGlobal(pulumi.CustomResource):
             hostname: Optional[pulumi.Input[str]] = None,
             igmp_state_limit: Optional[pulumi.Input[int]] = None,
             ike_embryonic_limit: Optional[pulumi.Input[int]] = None,
+            interface_subnet_usage: Optional[pulumi.Input[str]] = None,
             internet_service_database: Optional[pulumi.Input[str]] = None,
+            internet_service_download_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemGlobalInternetServiceDownloadListArgs']]]]] = None,
             interval: Optional[pulumi.Input[int]] = None,
+            ip_fragment_mem_thresholds: Optional[pulumi.Input[int]] = None,
             ip_src_port_range: Optional[pulumi.Input[str]] = None,
             ips_affinity: Optional[pulumi.Input[str]] = None,
             ipsec_asic_offload: Optional[pulumi.Input[str]] = None,
@@ -6935,6 +7487,7 @@ class SystemGlobal(pulumi.CustomResource):
             ldapconntimeout: Optional[pulumi.Input[int]] = None,
             lldp_reception: Optional[pulumi.Input[str]] = None,
             lldp_transmission: Optional[pulumi.Input[str]] = None,
+            log_single_cpu_high: Optional[pulumi.Input[str]] = None,
             log_ssl_connection: Optional[pulumi.Input[str]] = None,
             log_uuid_address: Optional[pulumi.Input[str]] = None,
             log_uuid_policy: Optional[pulumi.Input[str]] = None,
@@ -6968,8 +7521,10 @@ class SystemGlobal(pulumi.CustomResource):
             proxy_cert_use_mgmt_vdom: Optional[pulumi.Input[str]] = None,
             proxy_cipher_hardware_acceleration: Optional[pulumi.Input[str]] = None,
             proxy_hardware_acceleration: Optional[pulumi.Input[str]] = None,
+            proxy_keep_alive_mode: Optional[pulumi.Input[str]] = None,
             proxy_kxp_hardware_acceleration: Optional[pulumi.Input[str]] = None,
             proxy_re_authentication_mode: Optional[pulumi.Input[str]] = None,
+            proxy_re_authentication_time: Optional[pulumi.Input[int]] = None,
             proxy_resource_mode: Optional[pulumi.Input[str]] = None,
             proxy_worker_count: Optional[pulumi.Input[int]] = None,
             radius_port: Optional[pulumi.Input[int]] = None,
@@ -6984,6 +7539,7 @@ class SystemGlobal(pulumi.CustomResource):
             security_rating_result_submission: Optional[pulumi.Input[str]] = None,
             security_rating_run_on_schedule: Optional[pulumi.Input[str]] = None,
             send_pmtu_icmp: Optional[pulumi.Input[str]] = None,
+            sflowd_max_children_num: Optional[pulumi.Input[int]] = None,
             snat_route_change: Optional[pulumi.Input[str]] = None,
             special_file23_support: Optional[pulumi.Input[str]] = None,
             speedtest_server: Optional[pulumi.Input[str]] = None,
@@ -6996,6 +7552,7 @@ class SystemGlobal(pulumi.CustomResource):
             ssh_cbc_cipher: Optional[pulumi.Input[str]] = None,
             ssh_enc_algo: Optional[pulumi.Input[str]] = None,
             ssh_hmac_md5: Optional[pulumi.Input[str]] = None,
+            ssh_hostkey_algo: Optional[pulumi.Input[str]] = None,
             ssh_kex_algo: Optional[pulumi.Input[str]] = None,
             ssh_kex_sha1: Optional[pulumi.Input[str]] = None,
             ssh_mac_algo: Optional[pulumi.Input[str]] = None,
@@ -7012,6 +7569,7 @@ class SystemGlobal(pulumi.CustomResource):
             switch_controller: Optional[pulumi.Input[str]] = None,
             switch_controller_reserved_network: Optional[pulumi.Input[str]] = None,
             sys_perf_log_interval: Optional[pulumi.Input[int]] = None,
+            syslog_affinity: Optional[pulumi.Input[str]] = None,
             tcp_halfclose_timer: Optional[pulumi.Input[int]] = None,
             tcp_halfopen_timer: Optional[pulumi.Input[int]] = None,
             tcp_option: Optional[pulumi.Input[str]] = None,
@@ -7041,10 +7599,14 @@ class SystemGlobal(pulumi.CustomResource):
             virtual_server_count: Optional[pulumi.Input[int]] = None,
             virtual_server_hardware_acceleration: Optional[pulumi.Input[str]] = None,
             virtual_switch_vlan: Optional[pulumi.Input[str]] = None,
+            vpn_ems_sn_check: Optional[pulumi.Input[str]] = None,
             wad_affinity: Optional[pulumi.Input[str]] = None,
             wad_csvc_cs_count: Optional[pulumi.Input[int]] = None,
             wad_csvc_db_count: Optional[pulumi.Input[int]] = None,
             wad_memory_change_granularity: Optional[pulumi.Input[int]] = None,
+            wad_restart_end_time: Optional[pulumi.Input[str]] = None,
+            wad_restart_mode: Optional[pulumi.Input[str]] = None,
+            wad_restart_start_time: Optional[pulumi.Input[str]] = None,
             wad_source_affinity: Optional[pulumi.Input[str]] = None,
             wad_worker_count: Optional[pulumi.Input[int]] = None,
             wifi_ca_certificate: Optional[pulumi.Input[str]] = None,
@@ -7066,6 +7628,7 @@ class SystemGlobal(pulumi.CustomResource):
 
         __props__.__dict__["admin_concurrent"] = admin_concurrent
         __props__.__dict__["admin_console_timeout"] = admin_console_timeout
+        __props__.__dict__["admin_forticloud_sso_default_profile"] = admin_forticloud_sso_default_profile
         __props__.__dict__["admin_forticloud_sso_login"] = admin_forticloud_sso_login
         __props__.__dict__["admin_host"] = admin_host
         __props__.__dict__["admin_hsts_max_age"] = admin_hsts_max_age
@@ -7129,6 +7692,7 @@ class SystemGlobal(pulumi.CustomResource):
         __props__.__dict__["dh_params"] = dh_params
         __props__.__dict__["dnsproxy_worker_count"] = dnsproxy_worker_count
         __props__.__dict__["dst"] = dst
+        __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["early_tcp_npu_session"] = early_tcp_npu_session
         __props__.__dict__["edit_vdom_prompt"] = edit_vdom_prompt
         __props__.__dict__["endpoint_control_fds_access"] = endpoint_control_fds_access
@@ -7140,6 +7704,8 @@ class SystemGlobal(pulumi.CustomResource):
         __props__.__dict__["fds_statistics_period"] = fds_statistics_period
         __props__.__dict__["fec_port"] = fec_port
         __props__.__dict__["fgd_alert_subscription"] = fgd_alert_subscription
+        __props__.__dict__["forticonverter_config_upload"] = forticonverter_config_upload
+        __props__.__dict__["forticonverter_integration"] = forticonverter_integration
         __props__.__dict__["fortiextender"] = fortiextender
         __props__.__dict__["fortiextender_data_port"] = fortiextender_data_port
         __props__.__dict__["fortiextender_discovery_lockdown"] = fortiextender_discovery_lockdown
@@ -7148,8 +7714,11 @@ class SystemGlobal(pulumi.CustomResource):
         __props__.__dict__["fortiipam_integration"] = fortiipam_integration
         __props__.__dict__["fortiservice_port"] = fortiservice_port
         __props__.__dict__["fortitoken_cloud"] = fortitoken_cloud
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["gui_allow_default_hostname"] = gui_allow_default_hostname
+        __props__.__dict__["gui_allow_incompatible_fabric_fgt"] = gui_allow_incompatible_fabric_fgt
         __props__.__dict__["gui_app_detection_sdwan"] = gui_app_detection_sdwan
+        __props__.__dict__["gui_cdn_domain_override"] = gui_cdn_domain_override
         __props__.__dict__["gui_cdn_usage"] = gui_cdn_usage
         __props__.__dict__["gui_certificates"] = gui_certificates
         __props__.__dict__["gui_custom_language"] = gui_custom_language
@@ -7177,8 +7746,11 @@ class SystemGlobal(pulumi.CustomResource):
         __props__.__dict__["hostname"] = hostname
         __props__.__dict__["igmp_state_limit"] = igmp_state_limit
         __props__.__dict__["ike_embryonic_limit"] = ike_embryonic_limit
+        __props__.__dict__["interface_subnet_usage"] = interface_subnet_usage
         __props__.__dict__["internet_service_database"] = internet_service_database
+        __props__.__dict__["internet_service_download_lists"] = internet_service_download_lists
         __props__.__dict__["interval"] = interval
+        __props__.__dict__["ip_fragment_mem_thresholds"] = ip_fragment_mem_thresholds
         __props__.__dict__["ip_src_port_range"] = ip_src_port_range
         __props__.__dict__["ips_affinity"] = ips_affinity
         __props__.__dict__["ipsec_asic_offload"] = ipsec_asic_offload
@@ -7196,6 +7768,7 @@ class SystemGlobal(pulumi.CustomResource):
         __props__.__dict__["ldapconntimeout"] = ldapconntimeout
         __props__.__dict__["lldp_reception"] = lldp_reception
         __props__.__dict__["lldp_transmission"] = lldp_transmission
+        __props__.__dict__["log_single_cpu_high"] = log_single_cpu_high
         __props__.__dict__["log_ssl_connection"] = log_ssl_connection
         __props__.__dict__["log_uuid_address"] = log_uuid_address
         __props__.__dict__["log_uuid_policy"] = log_uuid_policy
@@ -7229,8 +7802,10 @@ class SystemGlobal(pulumi.CustomResource):
         __props__.__dict__["proxy_cert_use_mgmt_vdom"] = proxy_cert_use_mgmt_vdom
         __props__.__dict__["proxy_cipher_hardware_acceleration"] = proxy_cipher_hardware_acceleration
         __props__.__dict__["proxy_hardware_acceleration"] = proxy_hardware_acceleration
+        __props__.__dict__["proxy_keep_alive_mode"] = proxy_keep_alive_mode
         __props__.__dict__["proxy_kxp_hardware_acceleration"] = proxy_kxp_hardware_acceleration
         __props__.__dict__["proxy_re_authentication_mode"] = proxy_re_authentication_mode
+        __props__.__dict__["proxy_re_authentication_time"] = proxy_re_authentication_time
         __props__.__dict__["proxy_resource_mode"] = proxy_resource_mode
         __props__.__dict__["proxy_worker_count"] = proxy_worker_count
         __props__.__dict__["radius_port"] = radius_port
@@ -7245,6 +7820,7 @@ class SystemGlobal(pulumi.CustomResource):
         __props__.__dict__["security_rating_result_submission"] = security_rating_result_submission
         __props__.__dict__["security_rating_run_on_schedule"] = security_rating_run_on_schedule
         __props__.__dict__["send_pmtu_icmp"] = send_pmtu_icmp
+        __props__.__dict__["sflowd_max_children_num"] = sflowd_max_children_num
         __props__.__dict__["snat_route_change"] = snat_route_change
         __props__.__dict__["special_file23_support"] = special_file23_support
         __props__.__dict__["speedtest_server"] = speedtest_server
@@ -7257,6 +7833,7 @@ class SystemGlobal(pulumi.CustomResource):
         __props__.__dict__["ssh_cbc_cipher"] = ssh_cbc_cipher
         __props__.__dict__["ssh_enc_algo"] = ssh_enc_algo
         __props__.__dict__["ssh_hmac_md5"] = ssh_hmac_md5
+        __props__.__dict__["ssh_hostkey_algo"] = ssh_hostkey_algo
         __props__.__dict__["ssh_kex_algo"] = ssh_kex_algo
         __props__.__dict__["ssh_kex_sha1"] = ssh_kex_sha1
         __props__.__dict__["ssh_mac_algo"] = ssh_mac_algo
@@ -7273,6 +7850,7 @@ class SystemGlobal(pulumi.CustomResource):
         __props__.__dict__["switch_controller"] = switch_controller
         __props__.__dict__["switch_controller_reserved_network"] = switch_controller_reserved_network
         __props__.__dict__["sys_perf_log_interval"] = sys_perf_log_interval
+        __props__.__dict__["syslog_affinity"] = syslog_affinity
         __props__.__dict__["tcp_halfclose_timer"] = tcp_halfclose_timer
         __props__.__dict__["tcp_halfopen_timer"] = tcp_halfopen_timer
         __props__.__dict__["tcp_option"] = tcp_option
@@ -7302,10 +7880,14 @@ class SystemGlobal(pulumi.CustomResource):
         __props__.__dict__["virtual_server_count"] = virtual_server_count
         __props__.__dict__["virtual_server_hardware_acceleration"] = virtual_server_hardware_acceleration
         __props__.__dict__["virtual_switch_vlan"] = virtual_switch_vlan
+        __props__.__dict__["vpn_ems_sn_check"] = vpn_ems_sn_check
         __props__.__dict__["wad_affinity"] = wad_affinity
         __props__.__dict__["wad_csvc_cs_count"] = wad_csvc_cs_count
         __props__.__dict__["wad_csvc_db_count"] = wad_csvc_db_count
         __props__.__dict__["wad_memory_change_granularity"] = wad_memory_change_granularity
+        __props__.__dict__["wad_restart_end_time"] = wad_restart_end_time
+        __props__.__dict__["wad_restart_mode"] = wad_restart_mode
+        __props__.__dict__["wad_restart_start_time"] = wad_restart_start_time
         __props__.__dict__["wad_source_affinity"] = wad_source_affinity
         __props__.__dict__["wad_worker_count"] = wad_worker_count
         __props__.__dict__["wifi_ca_certificate"] = wifi_ca_certificate
@@ -7324,6 +7906,11 @@ class SystemGlobal(pulumi.CustomResource):
     @pulumi.getter(name="adminConsoleTimeout")
     def admin_console_timeout(self) -> pulumi.Output[int]:
         return pulumi.get(self, "admin_console_timeout")
+
+    @property
+    @pulumi.getter(name="adminForticloudSsoDefaultProfile")
+    def admin_forticloud_sso_default_profile(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "admin_forticloud_sso_default_profile")
 
     @property
     @pulumi.getter(name="adminForticloudSsoLogin")
@@ -7641,6 +8228,11 @@ class SystemGlobal(pulumi.CustomResource):
         return pulumi.get(self, "dst")
 
     @property
+    @pulumi.getter(name="dynamicSortSubtable")
+    def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
     @pulumi.getter(name="earlyTcpNpuSession")
     def early_tcp_npu_session(self) -> pulumi.Output[str]:
         return pulumi.get(self, "early_tcp_npu_session")
@@ -7696,6 +8288,16 @@ class SystemGlobal(pulumi.CustomResource):
         return pulumi.get(self, "fgd_alert_subscription")
 
     @property
+    @pulumi.getter(name="forticonverterConfigUpload")
+    def forticonverter_config_upload(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "forticonverter_config_upload")
+
+    @property
+    @pulumi.getter(name="forticonverterIntegration")
+    def forticonverter_integration(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "forticonverter_integration")
+
+    @property
     @pulumi.getter
     def fortiextender(self) -> pulumi.Output[str]:
         return pulumi.get(self, "fortiextender")
@@ -7736,14 +8338,29 @@ class SystemGlobal(pulumi.CustomResource):
         return pulumi.get(self, "fortitoken_cloud")
 
     @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @property
     @pulumi.getter(name="guiAllowDefaultHostname")
     def gui_allow_default_hostname(self) -> pulumi.Output[str]:
         return pulumi.get(self, "gui_allow_default_hostname")
 
     @property
+    @pulumi.getter(name="guiAllowIncompatibleFabricFgt")
+    def gui_allow_incompatible_fabric_fgt(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "gui_allow_incompatible_fabric_fgt")
+
+    @property
     @pulumi.getter(name="guiAppDetectionSdwan")
     def gui_app_detection_sdwan(self) -> pulumi.Output[str]:
         return pulumi.get(self, "gui_app_detection_sdwan")
+
+    @property
+    @pulumi.getter(name="guiCdnDomainOverride")
+    def gui_cdn_domain_override(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "gui_cdn_domain_override")
 
     @property
     @pulumi.getter(name="guiCdnUsage")
@@ -7881,14 +8498,29 @@ class SystemGlobal(pulumi.CustomResource):
         return pulumi.get(self, "ike_embryonic_limit")
 
     @property
+    @pulumi.getter(name="interfaceSubnetUsage")
+    def interface_subnet_usage(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "interface_subnet_usage")
+
+    @property
     @pulumi.getter(name="internetServiceDatabase")
     def internet_service_database(self) -> pulumi.Output[str]:
         return pulumi.get(self, "internet_service_database")
 
     @property
+    @pulumi.getter(name="internetServiceDownloadLists")
+    def internet_service_download_lists(self) -> pulumi.Output[Optional[Sequence['outputs.SystemGlobalInternetServiceDownloadList']]]:
+        return pulumi.get(self, "internet_service_download_lists")
+
+    @property
     @pulumi.getter
     def interval(self) -> pulumi.Output[int]:
         return pulumi.get(self, "interval")
+
+    @property
+    @pulumi.getter(name="ipFragmentMemThresholds")
+    def ip_fragment_mem_thresholds(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "ip_fragment_mem_thresholds")
 
     @property
     @pulumi.getter(name="ipSrcPortRange")
@@ -7974,6 +8606,11 @@ class SystemGlobal(pulumi.CustomResource):
     @pulumi.getter(name="lldpTransmission")
     def lldp_transmission(self) -> pulumi.Output[str]:
         return pulumi.get(self, "lldp_transmission")
+
+    @property
+    @pulumi.getter(name="logSingleCpuHigh")
+    def log_single_cpu_high(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "log_single_cpu_high")
 
     @property
     @pulumi.getter(name="logSslConnection")
@@ -8141,6 +8778,11 @@ class SystemGlobal(pulumi.CustomResource):
         return pulumi.get(self, "proxy_hardware_acceleration")
 
     @property
+    @pulumi.getter(name="proxyKeepAliveMode")
+    def proxy_keep_alive_mode(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "proxy_keep_alive_mode")
+
+    @property
     @pulumi.getter(name="proxyKxpHardwareAcceleration")
     def proxy_kxp_hardware_acceleration(self) -> pulumi.Output[str]:
         return pulumi.get(self, "proxy_kxp_hardware_acceleration")
@@ -8149,6 +8791,11 @@ class SystemGlobal(pulumi.CustomResource):
     @pulumi.getter(name="proxyReAuthenticationMode")
     def proxy_re_authentication_mode(self) -> pulumi.Output[str]:
         return pulumi.get(self, "proxy_re_authentication_mode")
+
+    @property
+    @pulumi.getter(name="proxyReAuthenticationTime")
+    def proxy_re_authentication_time(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "proxy_re_authentication_time")
 
     @property
     @pulumi.getter(name="proxyResourceMode")
@@ -8221,6 +8868,11 @@ class SystemGlobal(pulumi.CustomResource):
         return pulumi.get(self, "send_pmtu_icmp")
 
     @property
+    @pulumi.getter(name="sflowdMaxChildrenNum")
+    def sflowd_max_children_num(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "sflowd_max_children_num")
+
+    @property
     @pulumi.getter(name="snatRouteChange")
     def snat_route_change(self) -> pulumi.Output[str]:
         return pulumi.get(self, "snat_route_change")
@@ -8279,6 +8931,11 @@ class SystemGlobal(pulumi.CustomResource):
     @pulumi.getter(name="sshHmacMd5")
     def ssh_hmac_md5(self) -> pulumi.Output[str]:
         return pulumi.get(self, "ssh_hmac_md5")
+
+    @property
+    @pulumi.getter(name="sshHostkeyAlgo")
+    def ssh_hostkey_algo(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "ssh_hostkey_algo")
 
     @property
     @pulumi.getter(name="sshKexAlgo")
@@ -8359,6 +9016,11 @@ class SystemGlobal(pulumi.CustomResource):
     @pulumi.getter(name="sysPerfLogInterval")
     def sys_perf_log_interval(self) -> pulumi.Output[int]:
         return pulumi.get(self, "sys_perf_log_interval")
+
+    @property
+    @pulumi.getter(name="syslogAffinity")
+    def syslog_affinity(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "syslog_affinity")
 
     @property
     @pulumi.getter(name="tcpHalfcloseTimer")
@@ -8506,6 +9168,11 @@ class SystemGlobal(pulumi.CustomResource):
         return pulumi.get(self, "virtual_switch_vlan")
 
     @property
+    @pulumi.getter(name="vpnEmsSnCheck")
+    def vpn_ems_sn_check(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "vpn_ems_sn_check")
+
+    @property
     @pulumi.getter(name="wadAffinity")
     def wad_affinity(self) -> pulumi.Output[str]:
         return pulumi.get(self, "wad_affinity")
@@ -8524,6 +9191,21 @@ class SystemGlobal(pulumi.CustomResource):
     @pulumi.getter(name="wadMemoryChangeGranularity")
     def wad_memory_change_granularity(self) -> pulumi.Output[int]:
         return pulumi.get(self, "wad_memory_change_granularity")
+
+    @property
+    @pulumi.getter(name="wadRestartEndTime")
+    def wad_restart_end_time(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "wad_restart_end_time")
+
+    @property
+    @pulumi.getter(name="wadRestartMode")
+    def wad_restart_mode(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "wad_restart_mode")
+
+    @property
+    @pulumi.getter(name="wadRestartStartTime")
+    def wad_restart_start_time(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "wad_restart_start_time")
 
     @property
     @pulumi.getter(name="wadSourceAffinity")

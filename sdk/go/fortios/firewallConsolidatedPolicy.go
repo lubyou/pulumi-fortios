@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -37,6 +38,7 @@ type FirewallConsolidatedPolicy struct {
 	EmailfilterProfile             pulumi.StringOutput                                                `pulumi:"emailfilterProfile"`
 	Fixedport                      pulumi.StringOutput                                                `pulumi:"fixedport"`
 	FssoGroups                     FirewallConsolidatedPolicyFssoGroupArrayOutput                     `pulumi:"fssoGroups"`
+	GetAllTables                   pulumi.StringPtrOutput                                             `pulumi:"getAllTables"`
 	Groups                         FirewallConsolidatedPolicyGroupArrayOutput                         `pulumi:"groups"`
 	HttpPolicyRedirect             pulumi.StringOutput                                                `pulumi:"httpPolicyRedirect"`
 	IcapProfile                    pulumi.StringOutput                                                `pulumi:"icapProfile"`
@@ -114,7 +116,7 @@ func NewFirewallConsolidatedPolicy(ctx *pulumi.Context,
 		args = &FirewallConsolidatedPolicyArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallConsolidatedPolicy
 	err := ctx.RegisterResource("fortios:index/firewallConsolidatedPolicy:FirewallConsolidatedPolicy", name, args, &resource, opts...)
 	if err != nil {
@@ -161,6 +163,7 @@ type firewallConsolidatedPolicyState struct {
 	EmailfilterProfile             *string                                                   `pulumi:"emailfilterProfile"`
 	Fixedport                      *string                                                   `pulumi:"fixedport"`
 	FssoGroups                     []FirewallConsolidatedPolicyFssoGroup                     `pulumi:"fssoGroups"`
+	GetAllTables                   *string                                                   `pulumi:"getAllTables"`
 	Groups                         []FirewallConsolidatedPolicyGroup                         `pulumi:"groups"`
 	HttpPolicyRedirect             *string                                                   `pulumi:"httpPolicyRedirect"`
 	IcapProfile                    *string                                                   `pulumi:"icapProfile"`
@@ -256,6 +259,7 @@ type FirewallConsolidatedPolicyState struct {
 	EmailfilterProfile             pulumi.StringPtrInput
 	Fixedport                      pulumi.StringPtrInput
 	FssoGroups                     FirewallConsolidatedPolicyFssoGroupArrayInput
+	GetAllTables                   pulumi.StringPtrInput
 	Groups                         FirewallConsolidatedPolicyGroupArrayInput
 	HttpPolicyRedirect             pulumi.StringPtrInput
 	IcapProfile                    pulumi.StringPtrInput
@@ -355,6 +359,7 @@ type firewallConsolidatedPolicyArgs struct {
 	EmailfilterProfile             *string                                                   `pulumi:"emailfilterProfile"`
 	Fixedport                      *string                                                   `pulumi:"fixedport"`
 	FssoGroups                     []FirewallConsolidatedPolicyFssoGroup                     `pulumi:"fssoGroups"`
+	GetAllTables                   *string                                                   `pulumi:"getAllTables"`
 	Groups                         []FirewallConsolidatedPolicyGroup                         `pulumi:"groups"`
 	HttpPolicyRedirect             *string                                                   `pulumi:"httpPolicyRedirect"`
 	IcapProfile                    *string                                                   `pulumi:"icapProfile"`
@@ -451,6 +456,7 @@ type FirewallConsolidatedPolicyArgs struct {
 	EmailfilterProfile             pulumi.StringPtrInput
 	Fixedport                      pulumi.StringPtrInput
 	FssoGroups                     FirewallConsolidatedPolicyFssoGroupArrayInput
+	GetAllTables                   pulumi.StringPtrInput
 	Groups                         FirewallConsolidatedPolicyGroupArrayInput
 	HttpPolicyRedirect             pulumi.StringPtrInput
 	IcapProfile                    pulumi.StringPtrInput
@@ -708,6 +714,10 @@ func (o FirewallConsolidatedPolicyOutput) FssoGroups() FirewallConsolidatedPolic
 	return o.ApplyT(func(v *FirewallConsolidatedPolicy) FirewallConsolidatedPolicyFssoGroupArrayOutput {
 		return v.FssoGroups
 	}).(FirewallConsolidatedPolicyFssoGroupArrayOutput)
+}
+
+func (o FirewallConsolidatedPolicyOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallConsolidatedPolicy) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallConsolidatedPolicyOutput) Groups() FirewallConsolidatedPolicyGroupArrayOutput {

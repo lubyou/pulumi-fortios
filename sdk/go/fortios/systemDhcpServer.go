@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -38,6 +39,7 @@ type SystemDhcpServer struct {
 	Filename                  pulumi.StringOutput                        `pulumi:"filename"`
 	ForticlientOnNetStatus    pulumi.StringOutput                        `pulumi:"forticlientOnNetStatus"`
 	Fosid                     pulumi.IntOutput                           `pulumi:"fosid"`
+	GetAllTables              pulumi.StringPtrOutput                     `pulumi:"getAllTables"`
 	Interface                 pulumi.StringOutput                        `pulumi:"interface"`
 	IpMode                    pulumi.StringOutput                        `pulumi:"ipMode"`
 	IpRanges                  SystemDhcpServerIpRangeArrayOutput         `pulumi:"ipRanges"`
@@ -51,8 +53,10 @@ type SystemDhcpServer struct {
 	NtpServer3                pulumi.StringOutput                        `pulumi:"ntpServer3"`
 	NtpService                pulumi.StringOutput                        `pulumi:"ntpService"`
 	Options                   SystemDhcpServerOptionArrayOutput          `pulumi:"options"`
+	RelayAgent                pulumi.StringOutput                        `pulumi:"relayAgent"`
 	ReservedAddresses         SystemDhcpServerReservedAddressArrayOutput `pulumi:"reservedAddresses"`
 	ServerType                pulumi.StringOutput                        `pulumi:"serverType"`
+	SharedSubnet              pulumi.StringOutput                        `pulumi:"sharedSubnet"`
 	Status                    pulumi.StringOutput                        `pulumi:"status"`
 	TftpServers               SystemDhcpServerTftpServerArrayOutput      `pulumi:"tftpServers"`
 	Timezone                  pulumi.StringOutput                        `pulumi:"timezone"`
@@ -88,7 +92,7 @@ func NewSystemDhcpServer(ctx *pulumi.Context,
 		"ddnsKey",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemDhcpServer
 	err := ctx.RegisterResource("fortios:index/systemDhcpServer:SystemDhcpServer", name, args, &resource, opts...)
 	if err != nil {
@@ -135,6 +139,7 @@ type systemDhcpServerState struct {
 	Filename                  *string                           `pulumi:"filename"`
 	ForticlientOnNetStatus    *string                           `pulumi:"forticlientOnNetStatus"`
 	Fosid                     *int                              `pulumi:"fosid"`
+	GetAllTables              *string                           `pulumi:"getAllTables"`
 	Interface                 *string                           `pulumi:"interface"`
 	IpMode                    *string                           `pulumi:"ipMode"`
 	IpRanges                  []SystemDhcpServerIpRange         `pulumi:"ipRanges"`
@@ -148,8 +153,10 @@ type systemDhcpServerState struct {
 	NtpServer3                *string                           `pulumi:"ntpServer3"`
 	NtpService                *string                           `pulumi:"ntpService"`
 	Options                   []SystemDhcpServerOption          `pulumi:"options"`
+	RelayAgent                *string                           `pulumi:"relayAgent"`
 	ReservedAddresses         []SystemDhcpServerReservedAddress `pulumi:"reservedAddresses"`
 	ServerType                *string                           `pulumi:"serverType"`
+	SharedSubnet              *string                           `pulumi:"sharedSubnet"`
 	Status                    *string                           `pulumi:"status"`
 	TftpServers               []SystemDhcpServerTftpServer      `pulumi:"tftpServers"`
 	Timezone                  *string                           `pulumi:"timezone"`
@@ -190,6 +197,7 @@ type SystemDhcpServerState struct {
 	Filename                  pulumi.StringPtrInput
 	ForticlientOnNetStatus    pulumi.StringPtrInput
 	Fosid                     pulumi.IntPtrInput
+	GetAllTables              pulumi.StringPtrInput
 	Interface                 pulumi.StringPtrInput
 	IpMode                    pulumi.StringPtrInput
 	IpRanges                  SystemDhcpServerIpRangeArrayInput
@@ -203,8 +211,10 @@ type SystemDhcpServerState struct {
 	NtpServer3                pulumi.StringPtrInput
 	NtpService                pulumi.StringPtrInput
 	Options                   SystemDhcpServerOptionArrayInput
+	RelayAgent                pulumi.StringPtrInput
 	ReservedAddresses         SystemDhcpServerReservedAddressArrayInput
 	ServerType                pulumi.StringPtrInput
+	SharedSubnet              pulumi.StringPtrInput
 	Status                    pulumi.StringPtrInput
 	TftpServers               SystemDhcpServerTftpServerArrayInput
 	Timezone                  pulumi.StringPtrInput
@@ -249,6 +259,7 @@ type systemDhcpServerArgs struct {
 	Filename                  *string                           `pulumi:"filename"`
 	ForticlientOnNetStatus    *string                           `pulumi:"forticlientOnNetStatus"`
 	Fosid                     *int                              `pulumi:"fosid"`
+	GetAllTables              *string                           `pulumi:"getAllTables"`
 	Interface                 string                            `pulumi:"interface"`
 	IpMode                    *string                           `pulumi:"ipMode"`
 	IpRanges                  []SystemDhcpServerIpRange         `pulumi:"ipRanges"`
@@ -262,8 +273,10 @@ type systemDhcpServerArgs struct {
 	NtpServer3                *string                           `pulumi:"ntpServer3"`
 	NtpService                *string                           `pulumi:"ntpService"`
 	Options                   []SystemDhcpServerOption          `pulumi:"options"`
+	RelayAgent                *string                           `pulumi:"relayAgent"`
 	ReservedAddresses         []SystemDhcpServerReservedAddress `pulumi:"reservedAddresses"`
 	ServerType                *string                           `pulumi:"serverType"`
+	SharedSubnet              *string                           `pulumi:"sharedSubnet"`
 	Status                    *string                           `pulumi:"status"`
 	TftpServers               []SystemDhcpServerTftpServer      `pulumi:"tftpServers"`
 	Timezone                  *string                           `pulumi:"timezone"`
@@ -305,6 +318,7 @@ type SystemDhcpServerArgs struct {
 	Filename                  pulumi.StringPtrInput
 	ForticlientOnNetStatus    pulumi.StringPtrInput
 	Fosid                     pulumi.IntPtrInput
+	GetAllTables              pulumi.StringPtrInput
 	Interface                 pulumi.StringInput
 	IpMode                    pulumi.StringPtrInput
 	IpRanges                  SystemDhcpServerIpRangeArrayInput
@@ -318,8 +332,10 @@ type SystemDhcpServerArgs struct {
 	NtpServer3                pulumi.StringPtrInput
 	NtpService                pulumi.StringPtrInput
 	Options                   SystemDhcpServerOptionArrayInput
+	RelayAgent                pulumi.StringPtrInput
 	ReservedAddresses         SystemDhcpServerReservedAddressArrayInput
 	ServerType                pulumi.StringPtrInput
+	SharedSubnet              pulumi.StringPtrInput
 	Status                    pulumi.StringPtrInput
 	TftpServers               SystemDhcpServerTftpServerArrayInput
 	Timezone                  pulumi.StringPtrInput
@@ -518,6 +534,10 @@ func (o SystemDhcpServerOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *SystemDhcpServer) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
 }
 
+func (o SystemDhcpServerOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemDhcpServer) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 func (o SystemDhcpServerOutput) Interface() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemDhcpServer) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
 }
@@ -570,12 +590,20 @@ func (o SystemDhcpServerOutput) Options() SystemDhcpServerOptionArrayOutput {
 	return o.ApplyT(func(v *SystemDhcpServer) SystemDhcpServerOptionArrayOutput { return v.Options }).(SystemDhcpServerOptionArrayOutput)
 }
 
+func (o SystemDhcpServerOutput) RelayAgent() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDhcpServer) pulumi.StringOutput { return v.RelayAgent }).(pulumi.StringOutput)
+}
+
 func (o SystemDhcpServerOutput) ReservedAddresses() SystemDhcpServerReservedAddressArrayOutput {
 	return o.ApplyT(func(v *SystemDhcpServer) SystemDhcpServerReservedAddressArrayOutput { return v.ReservedAddresses }).(SystemDhcpServerReservedAddressArrayOutput)
 }
 
 func (o SystemDhcpServerOutput) ServerType() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemDhcpServer) pulumi.StringOutput { return v.ServerType }).(pulumi.StringOutput)
+}
+
+func (o SystemDhcpServerOutput) SharedSubnet() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDhcpServer) pulumi.StringOutput { return v.SharedSubnet }).(pulumi.StringOutput)
 }
 
 func (o SystemDhcpServerOutput) Status() pulumi.StringOutput {

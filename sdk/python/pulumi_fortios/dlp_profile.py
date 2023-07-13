@@ -22,6 +22,7 @@ class DlpProfileArgs:
                  extended_log: Optional[pulumi.Input[str]] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
                  full_archive_proto: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  nac_quar_log: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  replacemsg_group: Optional[pulumi.Input[str]] = None,
@@ -43,6 +44,8 @@ class DlpProfileArgs:
             pulumi.set(__self__, "feature_set", feature_set)
         if full_archive_proto is not None:
             pulumi.set(__self__, "full_archive_proto", full_archive_proto)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if nac_quar_log is not None:
             pulumi.set(__self__, "nac_quar_log", nac_quar_log)
         if name is not None:
@@ -109,6 +112,15 @@ class DlpProfileArgs:
     @full_archive_proto.setter
     def full_archive_proto(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "full_archive_proto", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="nacQuarLog")
@@ -174,6 +186,7 @@ class _DlpProfileState:
                  extended_log: Optional[pulumi.Input[str]] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
                  full_archive_proto: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  nac_quar_log: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  replacemsg_group: Optional[pulumi.Input[str]] = None,
@@ -195,6 +208,8 @@ class _DlpProfileState:
             pulumi.set(__self__, "feature_set", feature_set)
         if full_archive_proto is not None:
             pulumi.set(__self__, "full_archive_proto", full_archive_proto)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if nac_quar_log is not None:
             pulumi.set(__self__, "nac_quar_log", nac_quar_log)
         if name is not None:
@@ -261,6 +276,15 @@ class _DlpProfileState:
     @full_archive_proto.setter
     def full_archive_proto(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "full_archive_proto", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="nacQuarLog")
@@ -328,6 +352,7 @@ class DlpProfile(pulumi.CustomResource):
                  extended_log: Optional[pulumi.Input[str]] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
                  full_archive_proto: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  nac_quar_log: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  replacemsg_group: Optional[pulumi.Input[str]] = None,
@@ -369,6 +394,7 @@ class DlpProfile(pulumi.CustomResource):
                  extended_log: Optional[pulumi.Input[str]] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
                  full_archive_proto: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  nac_quar_log: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  replacemsg_group: Optional[pulumi.Input[str]] = None,
@@ -390,6 +416,7 @@ class DlpProfile(pulumi.CustomResource):
             __props__.__dict__["extended_log"] = extended_log
             __props__.__dict__["feature_set"] = feature_set
             __props__.__dict__["full_archive_proto"] = full_archive_proto
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["nac_quar_log"] = nac_quar_log
             __props__.__dict__["name"] = name
             __props__.__dict__["replacemsg_group"] = replacemsg_group
@@ -412,6 +439,7 @@ class DlpProfile(pulumi.CustomResource):
             extended_log: Optional[pulumi.Input[str]] = None,
             feature_set: Optional[pulumi.Input[str]] = None,
             full_archive_proto: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             nac_quar_log: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             replacemsg_group: Optional[pulumi.Input[str]] = None,
@@ -436,6 +464,7 @@ class DlpProfile(pulumi.CustomResource):
         __props__.__dict__["extended_log"] = extended_log
         __props__.__dict__["feature_set"] = feature_set
         __props__.__dict__["full_archive_proto"] = full_archive_proto
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["nac_quar_log"] = nac_quar_log
         __props__.__dict__["name"] = name
         __props__.__dict__["replacemsg_group"] = replacemsg_group
@@ -473,6 +502,11 @@ class DlpProfile(pulumi.CustomResource):
     @pulumi.getter(name="fullArchiveProto")
     def full_archive_proto(self) -> pulumi.Output[str]:
         return pulumi.get(self, "full_archive_proto")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="nacQuarLog")

@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -16,10 +17,12 @@ type FirewallScheduleOnetime struct {
 
 	Color          pulumi.IntOutput       `pulumi:"color"`
 	End            pulumi.StringOutput    `pulumi:"end"`
+	EndUtc         pulumi.StringOutput    `pulumi:"endUtc"`
 	ExpirationDays pulumi.IntOutput       `pulumi:"expirationDays"`
 	FabricObject   pulumi.StringOutput    `pulumi:"fabricObject"`
 	Name           pulumi.StringOutput    `pulumi:"name"`
 	Start          pulumi.StringOutput    `pulumi:"start"`
+	StartUtc       pulumi.StringOutput    `pulumi:"startUtc"`
 	Vdomparam      pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
@@ -36,7 +39,7 @@ func NewFirewallScheduleOnetime(ctx *pulumi.Context,
 	if args.Start == nil {
 		return nil, errors.New("invalid value for required argument 'Start'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallScheduleOnetime
 	err := ctx.RegisterResource("fortios:index/firewallScheduleOnetime:FirewallScheduleOnetime", name, args, &resource, opts...)
 	if err != nil {
@@ -61,20 +64,24 @@ func GetFirewallScheduleOnetime(ctx *pulumi.Context,
 type firewallScheduleOnetimeState struct {
 	Color          *int    `pulumi:"color"`
 	End            *string `pulumi:"end"`
+	EndUtc         *string `pulumi:"endUtc"`
 	ExpirationDays *int    `pulumi:"expirationDays"`
 	FabricObject   *string `pulumi:"fabricObject"`
 	Name           *string `pulumi:"name"`
 	Start          *string `pulumi:"start"`
+	StartUtc       *string `pulumi:"startUtc"`
 	Vdomparam      *string `pulumi:"vdomparam"`
 }
 
 type FirewallScheduleOnetimeState struct {
 	Color          pulumi.IntPtrInput
 	End            pulumi.StringPtrInput
+	EndUtc         pulumi.StringPtrInput
 	ExpirationDays pulumi.IntPtrInput
 	FabricObject   pulumi.StringPtrInput
 	Name           pulumi.StringPtrInput
 	Start          pulumi.StringPtrInput
+	StartUtc       pulumi.StringPtrInput
 	Vdomparam      pulumi.StringPtrInput
 }
 
@@ -85,10 +92,12 @@ func (FirewallScheduleOnetimeState) ElementType() reflect.Type {
 type firewallScheduleOnetimeArgs struct {
 	Color          *int    `pulumi:"color"`
 	End            string  `pulumi:"end"`
+	EndUtc         *string `pulumi:"endUtc"`
 	ExpirationDays *int    `pulumi:"expirationDays"`
 	FabricObject   *string `pulumi:"fabricObject"`
 	Name           *string `pulumi:"name"`
 	Start          string  `pulumi:"start"`
+	StartUtc       *string `pulumi:"startUtc"`
 	Vdomparam      *string `pulumi:"vdomparam"`
 }
 
@@ -96,10 +105,12 @@ type firewallScheduleOnetimeArgs struct {
 type FirewallScheduleOnetimeArgs struct {
 	Color          pulumi.IntPtrInput
 	End            pulumi.StringInput
+	EndUtc         pulumi.StringPtrInput
 	ExpirationDays pulumi.IntPtrInput
 	FabricObject   pulumi.StringPtrInput
 	Name           pulumi.StringPtrInput
 	Start          pulumi.StringInput
+	StartUtc       pulumi.StringPtrInput
 	Vdomparam      pulumi.StringPtrInput
 }
 
@@ -198,6 +209,10 @@ func (o FirewallScheduleOnetimeOutput) End() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallScheduleOnetime) pulumi.StringOutput { return v.End }).(pulumi.StringOutput)
 }
 
+func (o FirewallScheduleOnetimeOutput) EndUtc() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallScheduleOnetime) pulumi.StringOutput { return v.EndUtc }).(pulumi.StringOutput)
+}
+
 func (o FirewallScheduleOnetimeOutput) ExpirationDays() pulumi.IntOutput {
 	return o.ApplyT(func(v *FirewallScheduleOnetime) pulumi.IntOutput { return v.ExpirationDays }).(pulumi.IntOutput)
 }
@@ -212,6 +227,10 @@ func (o FirewallScheduleOnetimeOutput) Name() pulumi.StringOutput {
 
 func (o FirewallScheduleOnetimeOutput) Start() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallScheduleOnetime) pulumi.StringOutput { return v.Start }).(pulumi.StringOutput)
+}
+
+func (o FirewallScheduleOnetimeOutput) StartUtc() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallScheduleOnetime) pulumi.StringOutput { return v.StartUtc }).(pulumi.StringOutput)
 }
 
 func (o FirewallScheduleOnetimeOutput) Vdomparam() pulumi.StringPtrOutput {

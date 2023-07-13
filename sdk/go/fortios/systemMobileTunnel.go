@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,6 +16,7 @@ type SystemMobileTunnel struct {
 	pulumi.CustomResourceState
 
 	DynamicSortSubtable pulumi.StringPtrOutput               `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput               `pulumi:"getAllTables"`
 	HashAlgorithm       pulumi.StringOutput                  `pulumi:"hashAlgorithm"`
 	HomeAddress         pulumi.StringOutput                  `pulumi:"homeAddress"`
 	HomeAgent           pulumi.StringOutput                  `pulumi:"homeAgent"`
@@ -77,7 +79,7 @@ func NewSystemMobileTunnel(ctx *pulumi.Context,
 		"nMhaeKey",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemMobileTunnel
 	err := ctx.RegisterResource("fortios:index/systemMobileTunnel:SystemMobileTunnel", name, args, &resource, opts...)
 	if err != nil {
@@ -101,6 +103,7 @@ func GetSystemMobileTunnel(ctx *pulumi.Context,
 // Input properties used for looking up and filtering SystemMobileTunnel resources.
 type systemMobileTunnelState struct {
 	DynamicSortSubtable *string                     `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                     `pulumi:"getAllTables"`
 	HashAlgorithm       *string                     `pulumi:"hashAlgorithm"`
 	HomeAddress         *string                     `pulumi:"homeAddress"`
 	HomeAgent           *string                     `pulumi:"homeAgent"`
@@ -121,6 +124,7 @@ type systemMobileTunnelState struct {
 
 type SystemMobileTunnelState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	HashAlgorithm       pulumi.StringPtrInput
 	HomeAddress         pulumi.StringPtrInput
 	HomeAgent           pulumi.StringPtrInput
@@ -145,6 +149,7 @@ func (SystemMobileTunnelState) ElementType() reflect.Type {
 
 type systemMobileTunnelArgs struct {
 	DynamicSortSubtable *string                     `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                     `pulumi:"getAllTables"`
 	HashAlgorithm       string                      `pulumi:"hashAlgorithm"`
 	HomeAddress         *string                     `pulumi:"homeAddress"`
 	HomeAgent           string                      `pulumi:"homeAgent"`
@@ -166,6 +171,7 @@ type systemMobileTunnelArgs struct {
 // The set of arguments for constructing a SystemMobileTunnel resource.
 type SystemMobileTunnelArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	HashAlgorithm       pulumi.StringInput
 	HomeAddress         pulumi.StringPtrInput
 	HomeAgent           pulumi.StringInput
@@ -273,6 +279,10 @@ func (o SystemMobileTunnelOutput) ToSystemMobileTunnelOutputWithContext(ctx cont
 
 func (o SystemMobileTunnelOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SystemMobileTunnel) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemMobileTunnelOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemMobileTunnel) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemMobileTunnelOutput) HashAlgorithm() pulumi.StringOutput {

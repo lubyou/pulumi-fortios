@@ -128,15 +128,15 @@ def get_system_nat64(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemNat64:GetSystemNat64', __args__, opts=opts, typ=GetSystemNat64Result).value
 
     return AwaitableGetSystemNat64Result(
-        always_synthesize_aaaa_record=__ret__.always_synthesize_aaaa_record,
-        generate_ipv6_fragment_header=__ret__.generate_ipv6_fragment_header,
-        id=__ret__.id,
-        nat46_force_ipv4_packet_forwarding=__ret__.nat46_force_ipv4_packet_forwarding,
-        nat64_prefix=__ret__.nat64_prefix,
-        secondary_prefix_status=__ret__.secondary_prefix_status,
-        secondary_prefixes=__ret__.secondary_prefixes,
-        status=__ret__.status,
-        vdomparam=__ret__.vdomparam)
+        always_synthesize_aaaa_record=pulumi.get(__ret__, 'always_synthesize_aaaa_record'),
+        generate_ipv6_fragment_header=pulumi.get(__ret__, 'generate_ipv6_fragment_header'),
+        id=pulumi.get(__ret__, 'id'),
+        nat46_force_ipv4_packet_forwarding=pulumi.get(__ret__, 'nat46_force_ipv4_packet_forwarding'),
+        nat64_prefix=pulumi.get(__ret__, 'nat64_prefix'),
+        secondary_prefix_status=pulumi.get(__ret__, 'secondary_prefix_status'),
+        secondary_prefixes=pulumi.get(__ret__, 'secondary_prefixes'),
+        status=pulumi.get(__ret__, 'status'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_nat64)

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,6 +16,7 @@ type WirelessControllerAccessControlList struct {
 
 	Comment             pulumi.StringOutput                                          `pulumi:"comment"`
 	DynamicSortSubtable pulumi.StringPtrOutput                                       `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                                       `pulumi:"getAllTables"`
 	Layer3Ipv4Rules     WirelessControllerAccessControlListLayer3Ipv4RuleArrayOutput `pulumi:"layer3Ipv4Rules"`
 	Layer3Ipv6Rules     WirelessControllerAccessControlListLayer3Ipv6RuleArrayOutput `pulumi:"layer3Ipv6Rules"`
 	Name                pulumi.StringOutput                                          `pulumi:"name"`
@@ -28,7 +30,7 @@ func NewWirelessControllerAccessControlList(ctx *pulumi.Context,
 		args = &WirelessControllerAccessControlListArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WirelessControllerAccessControlList
 	err := ctx.RegisterResource("fortios:index/wirelessControllerAccessControlList:WirelessControllerAccessControlList", name, args, &resource, opts...)
 	if err != nil {
@@ -53,6 +55,7 @@ func GetWirelessControllerAccessControlList(ctx *pulumi.Context,
 type wirelessControllerAccessControlListState struct {
 	Comment             *string                                             `pulumi:"comment"`
 	DynamicSortSubtable *string                                             `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                                             `pulumi:"getAllTables"`
 	Layer3Ipv4Rules     []WirelessControllerAccessControlListLayer3Ipv4Rule `pulumi:"layer3Ipv4Rules"`
 	Layer3Ipv6Rules     []WirelessControllerAccessControlListLayer3Ipv6Rule `pulumi:"layer3Ipv6Rules"`
 	Name                *string                                             `pulumi:"name"`
@@ -62,6 +65,7 @@ type wirelessControllerAccessControlListState struct {
 type WirelessControllerAccessControlListState struct {
 	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Layer3Ipv4Rules     WirelessControllerAccessControlListLayer3Ipv4RuleArrayInput
 	Layer3Ipv6Rules     WirelessControllerAccessControlListLayer3Ipv6RuleArrayInput
 	Name                pulumi.StringPtrInput
@@ -75,6 +79,7 @@ func (WirelessControllerAccessControlListState) ElementType() reflect.Type {
 type wirelessControllerAccessControlListArgs struct {
 	Comment             *string                                             `pulumi:"comment"`
 	DynamicSortSubtable *string                                             `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                                             `pulumi:"getAllTables"`
 	Layer3Ipv4Rules     []WirelessControllerAccessControlListLayer3Ipv4Rule `pulumi:"layer3Ipv4Rules"`
 	Layer3Ipv6Rules     []WirelessControllerAccessControlListLayer3Ipv6Rule `pulumi:"layer3Ipv6Rules"`
 	Name                *string                                             `pulumi:"name"`
@@ -85,6 +90,7 @@ type wirelessControllerAccessControlListArgs struct {
 type WirelessControllerAccessControlListArgs struct {
 	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Layer3Ipv4Rules     WirelessControllerAccessControlListLayer3Ipv4RuleArrayInput
 	Layer3Ipv6Rules     WirelessControllerAccessControlListLayer3Ipv6RuleArrayInput
 	Name                pulumi.StringPtrInput
@@ -184,6 +190,10 @@ func (o WirelessControllerAccessControlListOutput) Comment() pulumi.StringOutput
 
 func (o WirelessControllerAccessControlListOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WirelessControllerAccessControlList) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerAccessControlListOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerAccessControlList) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o WirelessControllerAccessControlListOutput) Layer3Ipv4Rules() WirelessControllerAccessControlListLayer3Ipv4RuleArrayOutput {

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -22,6 +23,7 @@ type RouterPolicy struct {
 	EndPort                pulumi.IntOutput                             `pulumi:"endPort"`
 	EndSourcePort          pulumi.IntOutput                             `pulumi:"endSourcePort"`
 	Gateway                pulumi.StringOutput                          `pulumi:"gateway"`
+	GetAllTables           pulumi.StringPtrOutput                       `pulumi:"getAllTables"`
 	InputDeviceNegate      pulumi.StringOutput                          `pulumi:"inputDeviceNegate"`
 	InputDevices           RouterPolicyInputDeviceArrayOutput           `pulumi:"inputDevices"`
 	InternetServiceCustoms RouterPolicyInternetServiceCustomArrayOutput `pulumi:"internetServiceCustoms"`
@@ -47,7 +49,7 @@ func NewRouterPolicy(ctx *pulumi.Context,
 		args = &RouterPolicyArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RouterPolicy
 	err := ctx.RegisterResource("fortios:index/routerPolicy:RouterPolicy", name, args, &resource, opts...)
 	if err != nil {
@@ -79,6 +81,7 @@ type routerPolicyState struct {
 	EndPort                *int                                `pulumi:"endPort"`
 	EndSourcePort          *int                                `pulumi:"endSourcePort"`
 	Gateway                *string                             `pulumi:"gateway"`
+	GetAllTables           *string                             `pulumi:"getAllTables"`
 	InputDeviceNegate      *string                             `pulumi:"inputDeviceNegate"`
 	InputDevices           []RouterPolicyInputDevice           `pulumi:"inputDevices"`
 	InternetServiceCustoms []RouterPolicyInternetServiceCustom `pulumi:"internetServiceCustoms"`
@@ -107,6 +110,7 @@ type RouterPolicyState struct {
 	EndPort                pulumi.IntPtrInput
 	EndSourcePort          pulumi.IntPtrInput
 	Gateway                pulumi.StringPtrInput
+	GetAllTables           pulumi.StringPtrInput
 	InputDeviceNegate      pulumi.StringPtrInput
 	InputDevices           RouterPolicyInputDeviceArrayInput
 	InternetServiceCustoms RouterPolicyInternetServiceCustomArrayInput
@@ -139,6 +143,7 @@ type routerPolicyArgs struct {
 	EndPort                *int                                `pulumi:"endPort"`
 	EndSourcePort          *int                                `pulumi:"endSourcePort"`
 	Gateway                *string                             `pulumi:"gateway"`
+	GetAllTables           *string                             `pulumi:"getAllTables"`
 	InputDeviceNegate      *string                             `pulumi:"inputDeviceNegate"`
 	InputDevices           []RouterPolicyInputDevice           `pulumi:"inputDevices"`
 	InternetServiceCustoms []RouterPolicyInternetServiceCustom `pulumi:"internetServiceCustoms"`
@@ -168,6 +173,7 @@ type RouterPolicyArgs struct {
 	EndPort                pulumi.IntPtrInput
 	EndSourcePort          pulumi.IntPtrInput
 	Gateway                pulumi.StringPtrInput
+	GetAllTables           pulumi.StringPtrInput
 	InputDeviceNegate      pulumi.StringPtrInput
 	InputDevices           RouterPolicyInputDeviceArrayInput
 	InternetServiceCustoms RouterPolicyInternetServiceCustomArrayInput
@@ -307,6 +313,10 @@ func (o RouterPolicyOutput) EndSourcePort() pulumi.IntOutput {
 
 func (o RouterPolicyOutput) Gateway() pulumi.StringOutput {
 	return o.ApplyT(func(v *RouterPolicy) pulumi.StringOutput { return v.Gateway }).(pulumi.StringOutput)
+}
+
+func (o RouterPolicyOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterPolicy) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o RouterPolicyOutput) InputDeviceNegate() pulumi.StringOutput {

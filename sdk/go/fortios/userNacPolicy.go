@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,12 +20,14 @@ type UserNacPolicy struct {
 	EmsTag              pulumi.StringOutput                 `pulumi:"emsTag"`
 	Family              pulumi.StringOutput                 `pulumi:"family"`
 	FirewallAddress     pulumi.StringOutput                 `pulumi:"firewallAddress"`
+	GetAllTables        pulumi.StringPtrOutput              `pulumi:"getAllTables"`
 	Host                pulumi.StringOutput                 `pulumi:"host"`
 	HwVendor            pulumi.StringOutput                 `pulumi:"hwVendor"`
 	HwVersion           pulumi.StringOutput                 `pulumi:"hwVersion"`
 	Mac                 pulumi.StringOutput                 `pulumi:"mac"`
 	Name                pulumi.StringOutput                 `pulumi:"name"`
 	Os                  pulumi.StringOutput                 `pulumi:"os"`
+	Severities          UserNacPolicySeverityArrayOutput    `pulumi:"severities"`
 	Src                 pulumi.StringOutput                 `pulumi:"src"`
 	SsidPolicy          pulumi.StringOutput                 `pulumi:"ssidPolicy"`
 	Status              pulumi.StringOutput                 `pulumi:"status"`
@@ -48,7 +51,7 @@ func NewUserNacPolicy(ctx *pulumi.Context,
 		args = &UserNacPolicyArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource UserNacPolicy
 	err := ctx.RegisterResource("fortios:index/userNacPolicy:UserNacPolicy", name, args, &resource, opts...)
 	if err != nil {
@@ -77,12 +80,14 @@ type userNacPolicyState struct {
 	EmsTag              *string                    `pulumi:"emsTag"`
 	Family              *string                    `pulumi:"family"`
 	FirewallAddress     *string                    `pulumi:"firewallAddress"`
+	GetAllTables        *string                    `pulumi:"getAllTables"`
 	Host                *string                    `pulumi:"host"`
 	HwVendor            *string                    `pulumi:"hwVendor"`
 	HwVersion           *string                    `pulumi:"hwVersion"`
 	Mac                 *string                    `pulumi:"mac"`
 	Name                *string                    `pulumi:"name"`
 	Os                  *string                    `pulumi:"os"`
+	Severities          []UserNacPolicySeverity    `pulumi:"severities"`
 	Src                 *string                    `pulumi:"src"`
 	SsidPolicy          *string                    `pulumi:"ssidPolicy"`
 	Status              *string                    `pulumi:"status"`
@@ -106,12 +111,14 @@ type UserNacPolicyState struct {
 	EmsTag              pulumi.StringPtrInput
 	Family              pulumi.StringPtrInput
 	FirewallAddress     pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Host                pulumi.StringPtrInput
 	HwVendor            pulumi.StringPtrInput
 	HwVersion           pulumi.StringPtrInput
 	Mac                 pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Os                  pulumi.StringPtrInput
+	Severities          UserNacPolicySeverityArrayInput
 	Src                 pulumi.StringPtrInput
 	SsidPolicy          pulumi.StringPtrInput
 	Status              pulumi.StringPtrInput
@@ -139,12 +146,14 @@ type userNacPolicyArgs struct {
 	EmsTag              *string                    `pulumi:"emsTag"`
 	Family              *string                    `pulumi:"family"`
 	FirewallAddress     *string                    `pulumi:"firewallAddress"`
+	GetAllTables        *string                    `pulumi:"getAllTables"`
 	Host                *string                    `pulumi:"host"`
 	HwVendor            *string                    `pulumi:"hwVendor"`
 	HwVersion           *string                    `pulumi:"hwVersion"`
 	Mac                 *string                    `pulumi:"mac"`
 	Name                *string                    `pulumi:"name"`
 	Os                  *string                    `pulumi:"os"`
+	Severities          []UserNacPolicySeverity    `pulumi:"severities"`
 	Src                 *string                    `pulumi:"src"`
 	SsidPolicy          *string                    `pulumi:"ssidPolicy"`
 	Status              *string                    `pulumi:"status"`
@@ -169,12 +178,14 @@ type UserNacPolicyArgs struct {
 	EmsTag              pulumi.StringPtrInput
 	Family              pulumi.StringPtrInput
 	FirewallAddress     pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Host                pulumi.StringPtrInput
 	HwVendor            pulumi.StringPtrInput
 	HwVersion           pulumi.StringPtrInput
 	Mac                 pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Os                  pulumi.StringPtrInput
+	Severities          UserNacPolicySeverityArrayInput
 	Src                 pulumi.StringPtrInput
 	SsidPolicy          pulumi.StringPtrInput
 	Status              pulumi.StringPtrInput
@@ -302,6 +313,10 @@ func (o UserNacPolicyOutput) FirewallAddress() pulumi.StringOutput {
 	return o.ApplyT(func(v *UserNacPolicy) pulumi.StringOutput { return v.FirewallAddress }).(pulumi.StringOutput)
 }
 
+func (o UserNacPolicyOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserNacPolicy) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 func (o UserNacPolicyOutput) Host() pulumi.StringOutput {
 	return o.ApplyT(func(v *UserNacPolicy) pulumi.StringOutput { return v.Host }).(pulumi.StringOutput)
 }
@@ -324,6 +339,10 @@ func (o UserNacPolicyOutput) Name() pulumi.StringOutput {
 
 func (o UserNacPolicyOutput) Os() pulumi.StringOutput {
 	return o.ApplyT(func(v *UserNacPolicy) pulumi.StringOutput { return v.Os }).(pulumi.StringOutput)
+}
+
+func (o UserNacPolicyOutput) Severities() UserNacPolicySeverityArrayOutput {
+	return o.ApplyT(func(v *UserNacPolicy) UserNacPolicySeverityArrayOutput { return v.Severities }).(UserNacPolicySeverityArrayOutput)
 }
 
 func (o UserNacPolicyOutput) Src() pulumi.StringOutput {

@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -18,6 +19,7 @@ type WebfilterContent struct {
 	DynamicSortSubtable pulumi.StringPtrOutput           `pulumi:"dynamicSortSubtable"`
 	Entries             WebfilterContentEntryArrayOutput `pulumi:"entries"`
 	Fosid               pulumi.IntOutput                 `pulumi:"fosid"`
+	GetAllTables        pulumi.StringPtrOutput           `pulumi:"getAllTables"`
 	Name                pulumi.StringOutput              `pulumi:"name"`
 	Vdomparam           pulumi.StringPtrOutput           `pulumi:"vdomparam"`
 }
@@ -32,7 +34,7 @@ func NewWebfilterContent(ctx *pulumi.Context,
 	if args.Fosid == nil {
 		return nil, errors.New("invalid value for required argument 'Fosid'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WebfilterContent
 	err := ctx.RegisterResource("fortios:index/webfilterContent:WebfilterContent", name, args, &resource, opts...)
 	if err != nil {
@@ -59,6 +61,7 @@ type webfilterContentState struct {
 	DynamicSortSubtable *string                 `pulumi:"dynamicSortSubtable"`
 	Entries             []WebfilterContentEntry `pulumi:"entries"`
 	Fosid               *int                    `pulumi:"fosid"`
+	GetAllTables        *string                 `pulumi:"getAllTables"`
 	Name                *string                 `pulumi:"name"`
 	Vdomparam           *string                 `pulumi:"vdomparam"`
 }
@@ -68,6 +71,7 @@ type WebfilterContentState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	Entries             WebfilterContentEntryArrayInput
 	Fosid               pulumi.IntPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
 }
@@ -81,6 +85,7 @@ type webfilterContentArgs struct {
 	DynamicSortSubtable *string                 `pulumi:"dynamicSortSubtable"`
 	Entries             []WebfilterContentEntry `pulumi:"entries"`
 	Fosid               int                     `pulumi:"fosid"`
+	GetAllTables        *string                 `pulumi:"getAllTables"`
 	Name                *string                 `pulumi:"name"`
 	Vdomparam           *string                 `pulumi:"vdomparam"`
 }
@@ -91,6 +96,7 @@ type WebfilterContentArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	Entries             WebfilterContentEntryArrayInput
 	Fosid               pulumi.IntInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
 }
@@ -196,6 +202,10 @@ func (o WebfilterContentOutput) Entries() WebfilterContentEntryArrayOutput {
 
 func (o WebfilterContentOutput) Fosid() pulumi.IntOutput {
 	return o.ApplyT(func(v *WebfilterContent) pulumi.IntOutput { return v.Fosid }).(pulumi.IntOutput)
+}
+
+func (o WebfilterContentOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WebfilterContent) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o WebfilterContentOutput) Name() pulumi.StringOutput {

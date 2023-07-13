@@ -21,6 +21,7 @@ class AuthenticationRuleArgs:
                  dstaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input['AuthenticationRuleDstaddr6Args']]]] = None,
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['AuthenticationRuleDstaddrArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip_based: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
@@ -46,6 +47,8 @@ class AuthenticationRuleArgs:
             pulumi.set(__self__, "dstaddrs", dstaddrs)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ip_based is not None:
             pulumi.set(__self__, "ip_based", ip_based)
         if name is not None:
@@ -115,6 +118,15 @@ class AuthenticationRuleArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="ipBased")
@@ -233,6 +245,7 @@ class _AuthenticationRuleState:
                  dstaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input['AuthenticationRuleDstaddr6Args']]]] = None,
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['AuthenticationRuleDstaddrArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip_based: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
@@ -258,6 +271,8 @@ class _AuthenticationRuleState:
             pulumi.set(__self__, "dstaddrs", dstaddrs)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ip_based is not None:
             pulumi.set(__self__, "ip_based", ip_based)
         if name is not None:
@@ -327,6 +342,15 @@ class _AuthenticationRuleState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="ipBased")
@@ -447,6 +471,7 @@ class AuthenticationRule(pulumi.CustomResource):
                  dstaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationRuleDstaddr6Args']]]]] = None,
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationRuleDstaddrArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip_based: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
@@ -493,6 +518,7 @@ class AuthenticationRule(pulumi.CustomResource):
                  dstaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationRuleDstaddr6Args']]]]] = None,
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationRuleDstaddrArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip_based: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
@@ -519,6 +545,7 @@ class AuthenticationRule(pulumi.CustomResource):
             __props__.__dict__["dstaddr6s"] = dstaddr6s
             __props__.__dict__["dstaddrs"] = dstaddrs
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["ip_based"] = ip_based
             __props__.__dict__["name"] = name
             __props__.__dict__["protocol"] = protocol
@@ -546,6 +573,7 @@ class AuthenticationRule(pulumi.CustomResource):
             dstaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationRuleDstaddr6Args']]]]] = None,
             dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationRuleDstaddrArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             ip_based: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             protocol: Optional[pulumi.Input[str]] = None,
@@ -575,6 +603,7 @@ class AuthenticationRule(pulumi.CustomResource):
         __props__.__dict__["dstaddr6s"] = dstaddr6s
         __props__.__dict__["dstaddrs"] = dstaddrs
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["ip_based"] = ip_based
         __props__.__dict__["name"] = name
         __props__.__dict__["protocol"] = protocol
@@ -613,6 +642,11 @@ class AuthenticationRule(pulumi.CustomResource):
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="ipBased")

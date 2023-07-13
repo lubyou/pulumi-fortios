@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupUserSaml(ctx *pulumi.Context, args *LookupUserSamlArgs, opts ...pulumi.InvokeOption) (*LookupUserSamlResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupUserSamlResult
 	err := ctx.Invoke("fortios:index/getUserSaml:GetUserSaml", args, &rv, opts...)
 	if err != nil {

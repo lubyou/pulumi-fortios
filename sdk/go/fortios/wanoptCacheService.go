@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -18,6 +19,7 @@ type WanoptCacheService struct {
 	DeviceId              pulumi.StringOutput                  `pulumi:"deviceId"`
 	DstPeers              WanoptCacheServiceDstPeerArrayOutput `pulumi:"dstPeers"`
 	DynamicSortSubtable   pulumi.StringPtrOutput               `pulumi:"dynamicSortSubtable"`
+	GetAllTables          pulumi.StringPtrOutput               `pulumi:"getAllTables"`
 	PreferScenario        pulumi.StringOutput                  `pulumi:"preferScenario"`
 	SrcPeers              WanoptCacheServiceSrcPeerArrayOutput `pulumi:"srcPeers"`
 	Vdomparam             pulumi.StringPtrOutput               `pulumi:"vdomparam"`
@@ -30,7 +32,7 @@ func NewWanoptCacheService(ctx *pulumi.Context,
 		args = &WanoptCacheServiceArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WanoptCacheService
 	err := ctx.RegisterResource("fortios:index/wanoptCacheService:WanoptCacheService", name, args, &resource, opts...)
 	if err != nil {
@@ -58,6 +60,7 @@ type wanoptCacheServiceState struct {
 	DeviceId              *string                     `pulumi:"deviceId"`
 	DstPeers              []WanoptCacheServiceDstPeer `pulumi:"dstPeers"`
 	DynamicSortSubtable   *string                     `pulumi:"dynamicSortSubtable"`
+	GetAllTables          *string                     `pulumi:"getAllTables"`
 	PreferScenario        *string                     `pulumi:"preferScenario"`
 	SrcPeers              []WanoptCacheServiceSrcPeer `pulumi:"srcPeers"`
 	Vdomparam             *string                     `pulumi:"vdomparam"`
@@ -69,6 +72,7 @@ type WanoptCacheServiceState struct {
 	DeviceId              pulumi.StringPtrInput
 	DstPeers              WanoptCacheServiceDstPeerArrayInput
 	DynamicSortSubtable   pulumi.StringPtrInput
+	GetAllTables          pulumi.StringPtrInput
 	PreferScenario        pulumi.StringPtrInput
 	SrcPeers              WanoptCacheServiceSrcPeerArrayInput
 	Vdomparam             pulumi.StringPtrInput
@@ -84,6 +88,7 @@ type wanoptCacheServiceArgs struct {
 	DeviceId              *string                     `pulumi:"deviceId"`
 	DstPeers              []WanoptCacheServiceDstPeer `pulumi:"dstPeers"`
 	DynamicSortSubtable   *string                     `pulumi:"dynamicSortSubtable"`
+	GetAllTables          *string                     `pulumi:"getAllTables"`
 	PreferScenario        *string                     `pulumi:"preferScenario"`
 	SrcPeers              []WanoptCacheServiceSrcPeer `pulumi:"srcPeers"`
 	Vdomparam             *string                     `pulumi:"vdomparam"`
@@ -96,6 +101,7 @@ type WanoptCacheServiceArgs struct {
 	DeviceId              pulumi.StringPtrInput
 	DstPeers              WanoptCacheServiceDstPeerArrayInput
 	DynamicSortSubtable   pulumi.StringPtrInput
+	GetAllTables          pulumi.StringPtrInput
 	PreferScenario        pulumi.StringPtrInput
 	SrcPeers              WanoptCacheServiceSrcPeerArrayInput
 	Vdomparam             pulumi.StringPtrInput
@@ -206,6 +212,10 @@ func (o WanoptCacheServiceOutput) DstPeers() WanoptCacheServiceDstPeerArrayOutpu
 
 func (o WanoptCacheServiceOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WanoptCacheService) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o WanoptCacheServiceOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WanoptCacheService) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o WanoptCacheServiceOutput) PreferScenario() pulumi.StringOutput {

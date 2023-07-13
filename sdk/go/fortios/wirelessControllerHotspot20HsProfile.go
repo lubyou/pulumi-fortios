@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -28,6 +29,7 @@ type WirelessControllerHotspot20HsProfile struct {
 	DynamicSortSubtable   pulumi.StringPtrOutput                                     `pulumi:"dynamicSortSubtable"`
 	GasComebackDelay      pulumi.IntOutput                                           `pulumi:"gasComebackDelay"`
 	GasFragmentationLimit pulumi.IntOutput                                           `pulumi:"gasFragmentationLimit"`
+	GetAllTables          pulumi.StringPtrOutput                                     `pulumi:"getAllTables"`
 	Hessid                pulumi.StringOutput                                        `pulumi:"hessid"`
 	IpAddrType            pulumi.StringOutput                                        `pulumi:"ipAddrType"`
 	L2tif                 pulumi.StringOutput                                        `pulumi:"l2tif"`
@@ -62,7 +64,7 @@ func NewWirelessControllerHotspot20HsProfile(ctx *pulumi.Context,
 		args = &WirelessControllerHotspot20HsProfileArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WirelessControllerHotspot20HsProfile
 	err := ctx.RegisterResource("fortios:index/wirelessControllerHotspot20HsProfile:WirelessControllerHotspot20HsProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -100,6 +102,7 @@ type wirelessControllerHotspot20HsProfileState struct {
 	DynamicSortSubtable   *string                                           `pulumi:"dynamicSortSubtable"`
 	GasComebackDelay      *int                                              `pulumi:"gasComebackDelay"`
 	GasFragmentationLimit *int                                              `pulumi:"gasFragmentationLimit"`
+	GetAllTables          *string                                           `pulumi:"getAllTables"`
 	Hessid                *string                                           `pulumi:"hessid"`
 	IpAddrType            *string                                           `pulumi:"ipAddrType"`
 	L2tif                 *string                                           `pulumi:"l2tif"`
@@ -143,6 +146,7 @@ type WirelessControllerHotspot20HsProfileState struct {
 	DynamicSortSubtable   pulumi.StringPtrInput
 	GasComebackDelay      pulumi.IntPtrInput
 	GasFragmentationLimit pulumi.IntPtrInput
+	GetAllTables          pulumi.StringPtrInput
 	Hessid                pulumi.StringPtrInput
 	IpAddrType            pulumi.StringPtrInput
 	L2tif                 pulumi.StringPtrInput
@@ -190,6 +194,7 @@ type wirelessControllerHotspot20HsProfileArgs struct {
 	DynamicSortSubtable   *string                                           `pulumi:"dynamicSortSubtable"`
 	GasComebackDelay      *int                                              `pulumi:"gasComebackDelay"`
 	GasFragmentationLimit *int                                              `pulumi:"gasFragmentationLimit"`
+	GetAllTables          *string                                           `pulumi:"getAllTables"`
 	Hessid                *string                                           `pulumi:"hessid"`
 	IpAddrType            *string                                           `pulumi:"ipAddrType"`
 	L2tif                 *string                                           `pulumi:"l2tif"`
@@ -234,6 +239,7 @@ type WirelessControllerHotspot20HsProfileArgs struct {
 	DynamicSortSubtable   pulumi.StringPtrInput
 	GasComebackDelay      pulumi.IntPtrInput
 	GasFragmentationLimit pulumi.IntPtrInput
+	GetAllTables          pulumi.StringPtrInput
 	Hessid                pulumi.StringPtrInput
 	IpAddrType            pulumi.StringPtrInput
 	L2tif                 pulumi.StringPtrInput
@@ -406,6 +412,10 @@ func (o WirelessControllerHotspot20HsProfileOutput) GasComebackDelay() pulumi.In
 
 func (o WirelessControllerHotspot20HsProfileOutput) GasFragmentationLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.IntOutput { return v.GasFragmentationLimit }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerHotspot20HsProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerHotspot20HsProfile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o WirelessControllerHotspot20HsProfileOutput) Hessid() pulumi.StringOutput {

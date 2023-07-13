@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -16,6 +17,8 @@ type DlpDictionary struct {
 	Comment             pulumi.StringPtrOutput        `pulumi:"comment"`
 	DynamicSortSubtable pulumi.StringPtrOutput        `pulumi:"dynamicSortSubtable"`
 	Entries             DlpDictionaryEntryArrayOutput `pulumi:"entries"`
+	GetAllTables        pulumi.StringPtrOutput        `pulumi:"getAllTables"`
+	MatchAround         pulumi.StringOutput           `pulumi:"matchAround"`
 	MatchType           pulumi.StringOutput           `pulumi:"matchType"`
 	Name                pulumi.StringOutput           `pulumi:"name"`
 	Uuid                pulumi.StringOutput           `pulumi:"uuid"`
@@ -29,7 +32,7 @@ func NewDlpDictionary(ctx *pulumi.Context,
 		args = &DlpDictionaryArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DlpDictionary
 	err := ctx.RegisterResource("fortios:index/dlpDictionary:DlpDictionary", name, args, &resource, opts...)
 	if err != nil {
@@ -55,6 +58,8 @@ type dlpDictionaryState struct {
 	Comment             *string              `pulumi:"comment"`
 	DynamicSortSubtable *string              `pulumi:"dynamicSortSubtable"`
 	Entries             []DlpDictionaryEntry `pulumi:"entries"`
+	GetAllTables        *string              `pulumi:"getAllTables"`
+	MatchAround         *string              `pulumi:"matchAround"`
 	MatchType           *string              `pulumi:"matchType"`
 	Name                *string              `pulumi:"name"`
 	Uuid                *string              `pulumi:"uuid"`
@@ -65,6 +70,8 @@ type DlpDictionaryState struct {
 	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	Entries             DlpDictionaryEntryArrayInput
+	GetAllTables        pulumi.StringPtrInput
+	MatchAround         pulumi.StringPtrInput
 	MatchType           pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Uuid                pulumi.StringPtrInput
@@ -79,6 +86,8 @@ type dlpDictionaryArgs struct {
 	Comment             *string              `pulumi:"comment"`
 	DynamicSortSubtable *string              `pulumi:"dynamicSortSubtable"`
 	Entries             []DlpDictionaryEntry `pulumi:"entries"`
+	GetAllTables        *string              `pulumi:"getAllTables"`
+	MatchAround         *string              `pulumi:"matchAround"`
 	MatchType           *string              `pulumi:"matchType"`
 	Name                *string              `pulumi:"name"`
 	Uuid                *string              `pulumi:"uuid"`
@@ -90,6 +99,8 @@ type DlpDictionaryArgs struct {
 	Comment             pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	Entries             DlpDictionaryEntryArrayInput
+	GetAllTables        pulumi.StringPtrInput
+	MatchAround         pulumi.StringPtrInput
 	MatchType           pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Uuid                pulumi.StringPtrInput
@@ -193,6 +204,14 @@ func (o DlpDictionaryOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 
 func (o DlpDictionaryOutput) Entries() DlpDictionaryEntryArrayOutput {
 	return o.ApplyT(func(v *DlpDictionary) DlpDictionaryEntryArrayOutput { return v.Entries }).(DlpDictionaryEntryArrayOutput)
+}
+
+func (o DlpDictionaryOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DlpDictionary) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
+func (o DlpDictionaryOutput) MatchAround() pulumi.StringOutput {
+	return o.ApplyT(func(v *DlpDictionary) pulumi.StringOutput { return v.MatchAround }).(pulumi.StringOutput)
 }
 
 func (o DlpDictionaryOutput) MatchType() pulumi.StringOutput {

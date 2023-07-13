@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,6 +16,7 @@ type UserSecurityExemptList struct {
 
 	Description         pulumi.StringOutput                   `pulumi:"description"`
 	DynamicSortSubtable pulumi.StringPtrOutput                `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                `pulumi:"getAllTables"`
 	Name                pulumi.StringOutput                   `pulumi:"name"`
 	Rules               UserSecurityExemptListRuleArrayOutput `pulumi:"rules"`
 	Vdomparam           pulumi.StringPtrOutput                `pulumi:"vdomparam"`
@@ -27,7 +29,7 @@ func NewUserSecurityExemptList(ctx *pulumi.Context,
 		args = &UserSecurityExemptListArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource UserSecurityExemptList
 	err := ctx.RegisterResource("fortios:index/userSecurityExemptList:UserSecurityExemptList", name, args, &resource, opts...)
 	if err != nil {
@@ -52,6 +54,7 @@ func GetUserSecurityExemptList(ctx *pulumi.Context,
 type userSecurityExemptListState struct {
 	Description         *string                      `pulumi:"description"`
 	DynamicSortSubtable *string                      `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                      `pulumi:"getAllTables"`
 	Name                *string                      `pulumi:"name"`
 	Rules               []UserSecurityExemptListRule `pulumi:"rules"`
 	Vdomparam           *string                      `pulumi:"vdomparam"`
@@ -60,6 +63,7 @@ type userSecurityExemptListState struct {
 type UserSecurityExemptListState struct {
 	Description         pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Rules               UserSecurityExemptListRuleArrayInput
 	Vdomparam           pulumi.StringPtrInput
@@ -72,6 +76,7 @@ func (UserSecurityExemptListState) ElementType() reflect.Type {
 type userSecurityExemptListArgs struct {
 	Description         *string                      `pulumi:"description"`
 	DynamicSortSubtable *string                      `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                      `pulumi:"getAllTables"`
 	Name                *string                      `pulumi:"name"`
 	Rules               []UserSecurityExemptListRule `pulumi:"rules"`
 	Vdomparam           *string                      `pulumi:"vdomparam"`
@@ -81,6 +86,7 @@ type userSecurityExemptListArgs struct {
 type UserSecurityExemptListArgs struct {
 	Description         pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Rules               UserSecurityExemptListRuleArrayInput
 	Vdomparam           pulumi.StringPtrInput
@@ -179,6 +185,10 @@ func (o UserSecurityExemptListOutput) Description() pulumi.StringOutput {
 
 func (o UserSecurityExemptListOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *UserSecurityExemptList) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o UserSecurityExemptListOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserSecurityExemptList) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o UserSecurityExemptListOutput) Name() pulumi.StringOutput {

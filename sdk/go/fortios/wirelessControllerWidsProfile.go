@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -56,6 +57,7 @@ type WirelessControllerWidsProfile struct {
 	EapolSuccFlood           pulumi.StringOutput                                             `pulumi:"eapolSuccFlood"`
 	EapolSuccIntv            pulumi.IntOutput                                                `pulumi:"eapolSuccIntv"`
 	EapolSuccThresh          pulumi.IntOutput                                                `pulumi:"eapolSuccThresh"`
+	GetAllTables             pulumi.StringPtrOutput                                          `pulumi:"getAllTables"`
 	InvalidMacOui            pulumi.StringOutput                                             `pulumi:"invalidMacOui"`
 	LongDurationAttack       pulumi.StringOutput                                             `pulumi:"longDurationAttack"`
 	LongDurationThresh       pulumi.IntOutput                                                `pulumi:"longDurationThresh"`
@@ -75,7 +77,7 @@ func NewWirelessControllerWidsProfile(ctx *pulumi.Context,
 		args = &WirelessControllerWidsProfileArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WirelessControllerWidsProfile
 	err := ctx.RegisterResource("fortios:index/wirelessControllerWidsProfile:WirelessControllerWidsProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -141,6 +143,7 @@ type wirelessControllerWidsProfileState struct {
 	EapolSuccFlood           *string                                                `pulumi:"eapolSuccFlood"`
 	EapolSuccIntv            *int                                                   `pulumi:"eapolSuccIntv"`
 	EapolSuccThresh          *int                                                   `pulumi:"eapolSuccThresh"`
+	GetAllTables             *string                                                `pulumi:"getAllTables"`
 	InvalidMacOui            *string                                                `pulumi:"invalidMacOui"`
 	LongDurationAttack       *string                                                `pulumi:"longDurationAttack"`
 	LongDurationThresh       *int                                                   `pulumi:"longDurationThresh"`
@@ -197,6 +200,7 @@ type WirelessControllerWidsProfileState struct {
 	EapolSuccFlood           pulumi.StringPtrInput
 	EapolSuccIntv            pulumi.IntPtrInput
 	EapolSuccThresh          pulumi.IntPtrInput
+	GetAllTables             pulumi.StringPtrInput
 	InvalidMacOui            pulumi.StringPtrInput
 	LongDurationAttack       pulumi.StringPtrInput
 	LongDurationThresh       pulumi.IntPtrInput
@@ -257,6 +261,7 @@ type wirelessControllerWidsProfileArgs struct {
 	EapolSuccFlood           *string                                                `pulumi:"eapolSuccFlood"`
 	EapolSuccIntv            *int                                                   `pulumi:"eapolSuccIntv"`
 	EapolSuccThresh          *int                                                   `pulumi:"eapolSuccThresh"`
+	GetAllTables             *string                                                `pulumi:"getAllTables"`
 	InvalidMacOui            *string                                                `pulumi:"invalidMacOui"`
 	LongDurationAttack       *string                                                `pulumi:"longDurationAttack"`
 	LongDurationThresh       *int                                                   `pulumi:"longDurationThresh"`
@@ -314,6 +319,7 @@ type WirelessControllerWidsProfileArgs struct {
 	EapolSuccFlood           pulumi.StringPtrInput
 	EapolSuccIntv            pulumi.IntPtrInput
 	EapolSuccThresh          pulumi.IntPtrInput
+	GetAllTables             pulumi.StringPtrInput
 	InvalidMacOui            pulumi.StringPtrInput
 	LongDurationAttack       pulumi.StringPtrInput
 	LongDurationThresh       pulumi.IntPtrInput
@@ -585,6 +591,10 @@ func (o WirelessControllerWidsProfileOutput) EapolSuccIntv() pulumi.IntOutput {
 
 func (o WirelessControllerWidsProfileOutput) EapolSuccThresh() pulumi.IntOutput {
 	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.IntOutput { return v.EapolSuccThresh }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o WirelessControllerWidsProfileOutput) InvalidMacOui() pulumi.StringOutput {

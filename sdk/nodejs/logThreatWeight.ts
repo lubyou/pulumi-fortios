@@ -40,6 +40,7 @@ export class LogThreatWeight extends pulumi.CustomResource {
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly failedConnection!: pulumi.Output<string>;
     public readonly geolocations!: pulumi.Output<outputs.LogThreatWeightGeolocation[] | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly ips!: pulumi.Output<outputs.LogThreatWeightIps>;
     public readonly level!: pulumi.Output<outputs.LogThreatWeightLevel>;
     public readonly malware!: pulumi.Output<outputs.LogThreatWeightMalware>;
@@ -67,6 +68,7 @@ export class LogThreatWeight extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["failedConnection"] = state ? state.failedConnection : undefined;
             resourceInputs["geolocations"] = state ? state.geolocations : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["ips"] = state ? state.ips : undefined;
             resourceInputs["level"] = state ? state.level : undefined;
             resourceInputs["malware"] = state ? state.malware : undefined;
@@ -82,6 +84,7 @@ export class LogThreatWeight extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["failedConnection"] = args ? args.failedConnection : undefined;
             resourceInputs["geolocations"] = args ? args.geolocations : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["ips"] = args ? args.ips : undefined;
             resourceInputs["level"] = args ? args.level : undefined;
             resourceInputs["malware"] = args ? args.malware : undefined;
@@ -105,6 +108,7 @@ export interface LogThreatWeightState {
     dynamicSortSubtable?: pulumi.Input<string>;
     failedConnection?: pulumi.Input<string>;
     geolocations?: pulumi.Input<pulumi.Input<inputs.LogThreatWeightGeolocation>[]>;
+    getAllTables?: pulumi.Input<string>;
     ips?: pulumi.Input<inputs.LogThreatWeightIps>;
     level?: pulumi.Input<inputs.LogThreatWeightLevel>;
     malware?: pulumi.Input<inputs.LogThreatWeightMalware>;
@@ -124,6 +128,7 @@ export interface LogThreatWeightArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
     failedConnection?: pulumi.Input<string>;
     geolocations?: pulumi.Input<pulumi.Input<inputs.LogThreatWeightGeolocation>[]>;
+    getAllTables?: pulumi.Input<string>;
     ips?: pulumi.Input<inputs.LogThreatWeightIps>;
     level?: pulumi.Input<inputs.LogThreatWeightLevel>;
     malware?: pulumi.Input<inputs.LogThreatWeightMalware>;

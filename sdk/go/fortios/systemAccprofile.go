@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -20,6 +21,7 @@ type SystemAccprofile struct {
 	Ftviewgrp            pulumi.StringOutput                    `pulumi:"ftviewgrp"`
 	Fwgrp                pulumi.StringOutput                    `pulumi:"fwgrp"`
 	FwgrpPermission      SystemAccprofileFwgrpPermissionOutput  `pulumi:"fwgrpPermission"`
+	GetAllTables         pulumi.StringPtrOutput                 `pulumi:"getAllTables"`
 	Loggrp               pulumi.StringOutput                    `pulumi:"loggrp"`
 	LoggrpPermission     SystemAccprofileLoggrpPermissionOutput `pulumi:"loggrpPermission"`
 	Name                 pulumi.StringOutput                    `pulumi:"name"`
@@ -47,7 +49,7 @@ func NewSystemAccprofile(ctx *pulumi.Context,
 		args = &SystemAccprofileArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemAccprofile
 	err := ctx.RegisterResource("fortios:index/systemAccprofile:SystemAccprofile", name, args, &resource, opts...)
 	if err != nil {
@@ -77,6 +79,7 @@ type systemAccprofileState struct {
 	Ftviewgrp            *string                           `pulumi:"ftviewgrp"`
 	Fwgrp                *string                           `pulumi:"fwgrp"`
 	FwgrpPermission      *SystemAccprofileFwgrpPermission  `pulumi:"fwgrpPermission"`
+	GetAllTables         *string                           `pulumi:"getAllTables"`
 	Loggrp               *string                           `pulumi:"loggrp"`
 	LoggrpPermission     *SystemAccprofileLoggrpPermission `pulumi:"loggrpPermission"`
 	Name                 *string                           `pulumi:"name"`
@@ -105,6 +108,7 @@ type SystemAccprofileState struct {
 	Ftviewgrp            pulumi.StringPtrInput
 	Fwgrp                pulumi.StringPtrInput
 	FwgrpPermission      SystemAccprofileFwgrpPermissionPtrInput
+	GetAllTables         pulumi.StringPtrInput
 	Loggrp               pulumi.StringPtrInput
 	LoggrpPermission     SystemAccprofileLoggrpPermissionPtrInput
 	Name                 pulumi.StringPtrInput
@@ -137,6 +141,7 @@ type systemAccprofileArgs struct {
 	Ftviewgrp            *string                           `pulumi:"ftviewgrp"`
 	Fwgrp                *string                           `pulumi:"fwgrp"`
 	FwgrpPermission      *SystemAccprofileFwgrpPermission  `pulumi:"fwgrpPermission"`
+	GetAllTables         *string                           `pulumi:"getAllTables"`
 	Loggrp               *string                           `pulumi:"loggrp"`
 	LoggrpPermission     *SystemAccprofileLoggrpPermission `pulumi:"loggrpPermission"`
 	Name                 *string                           `pulumi:"name"`
@@ -166,6 +171,7 @@ type SystemAccprofileArgs struct {
 	Ftviewgrp            pulumi.StringPtrInput
 	Fwgrp                pulumi.StringPtrInput
 	FwgrpPermission      SystemAccprofileFwgrpPermissionPtrInput
+	GetAllTables         pulumi.StringPtrInput
 	Loggrp               pulumi.StringPtrInput
 	LoggrpPermission     SystemAccprofileLoggrpPermissionPtrInput
 	Name                 pulumi.StringPtrInput
@@ -299,6 +305,10 @@ func (o SystemAccprofileOutput) Fwgrp() pulumi.StringOutput {
 
 func (o SystemAccprofileOutput) FwgrpPermission() SystemAccprofileFwgrpPermissionOutput {
 	return o.ApplyT(func(v *SystemAccprofile) SystemAccprofileFwgrpPermissionOutput { return v.FwgrpPermission }).(SystemAccprofileFwgrpPermissionOutput)
+}
+
+func (o SystemAccprofileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemAccprofile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemAccprofileOutput) Loggrp() pulumi.StringOutput {

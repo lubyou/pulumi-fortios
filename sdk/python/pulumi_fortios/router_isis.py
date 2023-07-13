@@ -32,6 +32,7 @@ class RouterIsisArgs:
                  default_originate6: Optional[pulumi.Input[str]] = None,
                  dynamic_hostname: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ignore_lsp_errors: Optional[pulumi.Input[str]] = None,
                  is_type: Optional[pulumi.Input[str]] = None,
                  isis_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['RouterIsisIsisInterfaceArgs']]]] = None,
@@ -94,6 +95,8 @@ class RouterIsisArgs:
             pulumi.set(__self__, "dynamic_hostname", dynamic_hostname)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ignore_lsp_errors is not None:
             pulumi.set(__self__, "ignore_lsp_errors", ignore_lsp_errors)
         if is_type is not None:
@@ -292,6 +295,15 @@ class RouterIsisArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="ignoreLspErrors")
@@ -556,6 +568,7 @@ class _RouterIsisState:
                  default_originate6: Optional[pulumi.Input[str]] = None,
                  dynamic_hostname: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ignore_lsp_errors: Optional[pulumi.Input[str]] = None,
                  is_type: Optional[pulumi.Input[str]] = None,
                  isis_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['RouterIsisIsisInterfaceArgs']]]] = None,
@@ -618,6 +631,8 @@ class _RouterIsisState:
             pulumi.set(__self__, "dynamic_hostname", dynamic_hostname)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ignore_lsp_errors is not None:
             pulumi.set(__self__, "ignore_lsp_errors", ignore_lsp_errors)
         if is_type is not None:
@@ -816,6 +831,15 @@ class _RouterIsisState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="ignoreLspErrors")
@@ -1082,6 +1106,7 @@ class RouterIsis(pulumi.CustomResource):
                  default_originate6: Optional[pulumi.Input[str]] = None,
                  dynamic_hostname: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ignore_lsp_errors: Optional[pulumi.Input[str]] = None,
                  is_type: Optional[pulumi.Input[str]] = None,
                  isis_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterIsisIsisInterfaceArgs']]]]] = None,
@@ -1154,6 +1179,7 @@ class RouterIsis(pulumi.CustomResource):
                  default_originate6: Optional[pulumi.Input[str]] = None,
                  dynamic_hostname: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  ignore_lsp_errors: Optional[pulumi.Input[str]] = None,
                  is_type: Optional[pulumi.Input[str]] = None,
                  isis_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterIsisIsisInterfaceArgs']]]]] = None,
@@ -1206,6 +1232,7 @@ class RouterIsis(pulumi.CustomResource):
             __props__.__dict__["default_originate6"] = default_originate6
             __props__.__dict__["dynamic_hostname"] = dynamic_hostname
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["ignore_lsp_errors"] = ignore_lsp_errors
             __props__.__dict__["is_type"] = is_type
             __props__.__dict__["isis_interfaces"] = isis_interfaces
@@ -1261,6 +1288,7 @@ class RouterIsis(pulumi.CustomResource):
             default_originate6: Optional[pulumi.Input[str]] = None,
             dynamic_hostname: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             ignore_lsp_errors: Optional[pulumi.Input[str]] = None,
             is_type: Optional[pulumi.Input[str]] = None,
             isis_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterIsisIsisInterfaceArgs']]]]] = None,
@@ -1316,6 +1344,7 @@ class RouterIsis(pulumi.CustomResource):
         __props__.__dict__["default_originate6"] = default_originate6
         __props__.__dict__["dynamic_hostname"] = dynamic_hostname
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["ignore_lsp_errors"] = ignore_lsp_errors
         __props__.__dict__["is_type"] = is_type
         __props__.__dict__["isis_interfaces"] = isis_interfaces
@@ -1424,6 +1453,11 @@ class RouterIsis(pulumi.CustomResource):
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="ignoreLspErrors")

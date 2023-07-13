@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,6 +20,7 @@ type ExtenderControllerExtender1 struct {
 	Description      pulumi.StringOutput                               `pulumi:"description"`
 	ExtName          pulumi.StringOutput                               `pulumi:"extName"`
 	Fosid            pulumi.StringOutput                               `pulumi:"fosid"`
+	GetAllTables     pulumi.StringPtrOutput                            `pulumi:"getAllTables"`
 	LoginPassword    pulumi.StringPtrOutput                            `pulumi:"loginPassword"`
 	Modem1           ExtenderControllerExtender1Modem1Output           `pulumi:"modem1"`
 	Modem2           ExtenderControllerExtender1Modem2Output           `pulumi:"modem2"`
@@ -44,7 +46,7 @@ func NewExtenderControllerExtender1(ctx *pulumi.Context,
 		"loginPassword",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ExtenderControllerExtender1
 	err := ctx.RegisterResource("fortios:index/extenderControllerExtender1:ExtenderControllerExtender1", name, args, &resource, opts...)
 	if err != nil {
@@ -72,6 +74,7 @@ type extenderControllerExtender1State struct {
 	Description      *string                                      `pulumi:"description"`
 	ExtName          *string                                      `pulumi:"extName"`
 	Fosid            *string                                      `pulumi:"fosid"`
+	GetAllTables     *string                                      `pulumi:"getAllTables"`
 	LoginPassword    *string                                      `pulumi:"loginPassword"`
 	Modem1           *ExtenderControllerExtender1Modem1           `pulumi:"modem1"`
 	Modem2           *ExtenderControllerExtender1Modem2           `pulumi:"modem2"`
@@ -86,6 +89,7 @@ type ExtenderControllerExtender1State struct {
 	Description      pulumi.StringPtrInput
 	ExtName          pulumi.StringPtrInput
 	Fosid            pulumi.StringPtrInput
+	GetAllTables     pulumi.StringPtrInput
 	LoginPassword    pulumi.StringPtrInput
 	Modem1           ExtenderControllerExtender1Modem1PtrInput
 	Modem2           ExtenderControllerExtender1Modem2PtrInput
@@ -104,6 +108,7 @@ type extenderControllerExtender1Args struct {
 	Description      *string                                      `pulumi:"description"`
 	ExtName          *string                                      `pulumi:"extName"`
 	Fosid            *string                                      `pulumi:"fosid"`
+	GetAllTables     *string                                      `pulumi:"getAllTables"`
 	LoginPassword    *string                                      `pulumi:"loginPassword"`
 	Modem1           *ExtenderControllerExtender1Modem1           `pulumi:"modem1"`
 	Modem2           *ExtenderControllerExtender1Modem2           `pulumi:"modem2"`
@@ -119,6 +124,7 @@ type ExtenderControllerExtender1Args struct {
 	Description      pulumi.StringPtrInput
 	ExtName          pulumi.StringPtrInput
 	Fosid            pulumi.StringPtrInput
+	GetAllTables     pulumi.StringPtrInput
 	LoginPassword    pulumi.StringPtrInput
 	Modem1           ExtenderControllerExtender1Modem1PtrInput
 	Modem2           ExtenderControllerExtender1Modem2PtrInput
@@ -234,6 +240,10 @@ func (o ExtenderControllerExtender1Output) ExtName() pulumi.StringOutput {
 
 func (o ExtenderControllerExtender1Output) Fosid() pulumi.StringOutput {
 	return o.ApplyT(func(v *ExtenderControllerExtender1) pulumi.StringOutput { return v.Fosid }).(pulumi.StringOutput)
+}
+
+func (o ExtenderControllerExtender1Output) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ExtenderControllerExtender1) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o ExtenderControllerExtender1Output) LoginPassword() pulumi.StringPtrOutput {

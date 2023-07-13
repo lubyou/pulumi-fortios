@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupRouterStatic(ctx *pulumi.Context, args *LookupRouterStaticArgs, opts ...pulumi.InvokeOption) (*LookupRouterStaticResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupRouterStaticResult
 	err := ctx.Invoke("fortios:index/getRouterStatic:GetRouterStatic", args, &rv, opts...)
 	if err != nil {
@@ -42,12 +43,14 @@ type LookupRouterStaticResult struct {
 	InternetService       int                        `pulumi:"internetService"`
 	InternetServiceCustom string                     `pulumi:"internetServiceCustom"`
 	LinkMonitorExempt     string                     `pulumi:"linkMonitorExempt"`
+	PreferredSource       string                     `pulumi:"preferredSource"`
 	Priority              int                        `pulumi:"priority"`
 	Sdwan                 string                     `pulumi:"sdwan"`
 	SdwanZones            []GetRouterStaticSdwanZone `pulumi:"sdwanZones"`
 	SeqNum                int                        `pulumi:"seqNum"`
 	Src                   string                     `pulumi:"src"`
 	Status                string                     `pulumi:"status"`
+	Tag                   int                        `pulumi:"tag"`
 	Vdomparam             *string                    `pulumi:"vdomparam"`
 	VirtualWanLink        string                     `pulumi:"virtualWanLink"`
 	Vrf                   int                        `pulumi:"vrf"`
@@ -145,6 +148,10 @@ func (o LookupRouterStaticResultOutput) LinkMonitorExempt() pulumi.StringOutput 
 	return o.ApplyT(func(v LookupRouterStaticResult) string { return v.LinkMonitorExempt }).(pulumi.StringOutput)
 }
 
+func (o LookupRouterStaticResultOutput) PreferredSource() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterStaticResult) string { return v.PreferredSource }).(pulumi.StringOutput)
+}
+
 func (o LookupRouterStaticResultOutput) Priority() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupRouterStaticResult) int { return v.Priority }).(pulumi.IntOutput)
 }
@@ -167,6 +174,10 @@ func (o LookupRouterStaticResultOutput) Src() pulumi.StringOutput {
 
 func (o LookupRouterStaticResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterStaticResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o LookupRouterStaticResultOutput) Tag() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupRouterStaticResult) int { return v.Tag }).(pulumi.IntOutput)
 }
 
 func (o LookupRouterStaticResultOutput) Vdomparam() pulumi.StringPtrOutput {

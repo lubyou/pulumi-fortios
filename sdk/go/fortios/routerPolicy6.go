@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -22,6 +23,7 @@ type RouterPolicy6 struct {
 	DynamicSortSubtable    pulumi.StringPtrOutput                        `pulumi:"dynamicSortSubtable"`
 	EndPort                pulumi.IntOutput                              `pulumi:"endPort"`
 	Gateway                pulumi.StringOutput                           `pulumi:"gateway"`
+	GetAllTables           pulumi.StringPtrOutput                        `pulumi:"getAllTables"`
 	InputDevice            pulumi.StringOutput                           `pulumi:"inputDevice"`
 	InputDeviceNegate      pulumi.StringOutput                           `pulumi:"inputDeviceNegate"`
 	InternetServiceCustoms RouterPolicy6InternetServiceCustomArrayOutput `pulumi:"internetServiceCustoms"`
@@ -49,7 +51,7 @@ func NewRouterPolicy6(ctx *pulumi.Context,
 	if args.InputDevice == nil {
 		return nil, errors.New("invalid value for required argument 'InputDevice'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RouterPolicy6
 	err := ctx.RegisterResource("fortios:index/routerPolicy6:RouterPolicy6", name, args, &resource, opts...)
 	if err != nil {
@@ -80,6 +82,7 @@ type routerPolicy6State struct {
 	DynamicSortSubtable    *string                              `pulumi:"dynamicSortSubtable"`
 	EndPort                *int                                 `pulumi:"endPort"`
 	Gateway                *string                              `pulumi:"gateway"`
+	GetAllTables           *string                              `pulumi:"getAllTables"`
 	InputDevice            *string                              `pulumi:"inputDevice"`
 	InputDeviceNegate      *string                              `pulumi:"inputDeviceNegate"`
 	InternetServiceCustoms []RouterPolicy6InternetServiceCustom `pulumi:"internetServiceCustoms"`
@@ -106,6 +109,7 @@ type RouterPolicy6State struct {
 	DynamicSortSubtable    pulumi.StringPtrInput
 	EndPort                pulumi.IntPtrInput
 	Gateway                pulumi.StringPtrInput
+	GetAllTables           pulumi.StringPtrInput
 	InputDevice            pulumi.StringPtrInput
 	InputDeviceNegate      pulumi.StringPtrInput
 	InternetServiceCustoms RouterPolicy6InternetServiceCustomArrayInput
@@ -136,6 +140,7 @@ type routerPolicy6Args struct {
 	DynamicSortSubtable    *string                              `pulumi:"dynamicSortSubtable"`
 	EndPort                *int                                 `pulumi:"endPort"`
 	Gateway                *string                              `pulumi:"gateway"`
+	GetAllTables           *string                              `pulumi:"getAllTables"`
 	InputDevice            string                               `pulumi:"inputDevice"`
 	InputDeviceNegate      *string                              `pulumi:"inputDeviceNegate"`
 	InternetServiceCustoms []RouterPolicy6InternetServiceCustom `pulumi:"internetServiceCustoms"`
@@ -163,6 +168,7 @@ type RouterPolicy6Args struct {
 	DynamicSortSubtable    pulumi.StringPtrInput
 	EndPort                pulumi.IntPtrInput
 	Gateway                pulumi.StringPtrInput
+	GetAllTables           pulumi.StringPtrInput
 	InputDevice            pulumi.StringInput
 	InputDeviceNegate      pulumi.StringPtrInput
 	InternetServiceCustoms RouterPolicy6InternetServiceCustomArrayInput
@@ -297,6 +303,10 @@ func (o RouterPolicy6Output) EndPort() pulumi.IntOutput {
 
 func (o RouterPolicy6Output) Gateway() pulumi.StringOutput {
 	return o.ApplyT(func(v *RouterPolicy6) pulumi.StringOutput { return v.Gateway }).(pulumi.StringOutput)
+}
+
+func (o RouterPolicy6Output) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterPolicy6) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o RouterPolicy6Output) InputDevice() pulumi.StringOutput {

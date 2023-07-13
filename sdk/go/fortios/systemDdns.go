@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -31,6 +32,7 @@ type SystemDdns struct {
 	DdnsZone            pulumi.StringOutput                   `pulumi:"ddnsZone"`
 	Ddnsid              pulumi.IntOutput                      `pulumi:"ddnsid"`
 	DynamicSortSubtable pulumi.StringPtrOutput                `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                `pulumi:"getAllTables"`
 	MonitorInterfaces   SystemDdnsMonitorInterfaceArrayOutput `pulumi:"monitorInterfaces"`
 	ServerType          pulumi.StringOutput                   `pulumi:"serverType"`
 	SslCertificate      pulumi.StringOutput                   `pulumi:"sslCertificate"`
@@ -63,7 +65,7 @@ func NewSystemDdns(ctx *pulumi.Context,
 		"ddnsPassword",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemDdns
 	err := ctx.RegisterResource("fortios:index/systemDdns:SystemDdns", name, args, &resource, opts...)
 	if err != nil {
@@ -103,6 +105,7 @@ type systemDdnsState struct {
 	DdnsZone            *string                      `pulumi:"ddnsZone"`
 	Ddnsid              *int                         `pulumi:"ddnsid"`
 	DynamicSortSubtable *string                      `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                      `pulumi:"getAllTables"`
 	MonitorInterfaces   []SystemDdnsMonitorInterface `pulumi:"monitorInterfaces"`
 	ServerType          *string                      `pulumi:"serverType"`
 	SslCertificate      *string                      `pulumi:"sslCertificate"`
@@ -129,6 +132,7 @@ type SystemDdnsState struct {
 	DdnsZone            pulumi.StringPtrInput
 	Ddnsid              pulumi.IntPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	MonitorInterfaces   SystemDdnsMonitorInterfaceArrayInput
 	ServerType          pulumi.StringPtrInput
 	SslCertificate      pulumi.StringPtrInput
@@ -159,6 +163,7 @@ type systemDdnsArgs struct {
 	DdnsZone            *string                      `pulumi:"ddnsZone"`
 	Ddnsid              *int                         `pulumi:"ddnsid"`
 	DynamicSortSubtable *string                      `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                      `pulumi:"getAllTables"`
 	MonitorInterfaces   []SystemDdnsMonitorInterface `pulumi:"monitorInterfaces"`
 	ServerType          *string                      `pulumi:"serverType"`
 	SslCertificate      *string                      `pulumi:"sslCertificate"`
@@ -186,6 +191,7 @@ type SystemDdnsArgs struct {
 	DdnsZone            pulumi.StringPtrInput
 	Ddnsid              pulumi.IntPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	MonitorInterfaces   SystemDdnsMonitorInterfaceArrayInput
 	ServerType          pulumi.StringPtrInput
 	SslCertificate      pulumi.StringPtrInput
@@ -347,6 +353,10 @@ func (o SystemDdnsOutput) Ddnsid() pulumi.IntOutput {
 
 func (o SystemDdnsOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SystemDdns) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemDdnsOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemDdns) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemDdnsOutput) MonitorInterfaces() SystemDdnsMonitorInterfaceArrayOutput {

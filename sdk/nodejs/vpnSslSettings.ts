@@ -50,6 +50,9 @@ export class VpnSslSettings extends pulumi.CustomResource {
     public readonly dnsServer1!: pulumi.Output<string>;
     public readonly dnsServer2!: pulumi.Output<string>;
     public readonly dnsSuffix!: pulumi.Output<string | undefined>;
+    public readonly dtlsHeartbeatFailCount!: pulumi.Output<number>;
+    public readonly dtlsHeartbeatIdleTimeout!: pulumi.Output<number>;
+    public readonly dtlsHeartbeatInterval!: pulumi.Output<number>;
     public readonly dtlsHelloTimeout!: pulumi.Output<number>;
     public readonly dtlsMaxProtoVer!: pulumi.Output<string>;
     public readonly dtlsMinProtoVer!: pulumi.Output<string>;
@@ -59,6 +62,7 @@ export class VpnSslSettings extends pulumi.CustomResource {
     public readonly encode2fSequence!: pulumi.Output<string>;
     public readonly encryptAndStorePassword!: pulumi.Output<string>;
     public readonly forceTwoFactorAuth!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly headerXForwardedFor!: pulumi.Output<string>;
     public readonly hstsIncludeSubdomains!: pulumi.Output<string>;
     public readonly httpCompression!: pulumi.Output<string>;
@@ -79,6 +83,7 @@ export class VpnSslSettings extends pulumi.CustomResource {
     public readonly reqclientcert!: pulumi.Output<string>;
     public readonly routeSourceInterface!: pulumi.Output<string>;
     public readonly samlRedirectPort!: pulumi.Output<number>;
+    public readonly serverHostname!: pulumi.Output<string>;
     public readonly servercert!: pulumi.Output<string>;
     public readonly sourceAddress6Negate!: pulumi.Output<string>;
     public readonly sourceAddress6s!: pulumi.Output<outputs.VpnSslSettingsSourceAddress6[] | undefined>;
@@ -139,6 +144,9 @@ export class VpnSslSettings extends pulumi.CustomResource {
             resourceInputs["dnsServer1"] = state ? state.dnsServer1 : undefined;
             resourceInputs["dnsServer2"] = state ? state.dnsServer2 : undefined;
             resourceInputs["dnsSuffix"] = state ? state.dnsSuffix : undefined;
+            resourceInputs["dtlsHeartbeatFailCount"] = state ? state.dtlsHeartbeatFailCount : undefined;
+            resourceInputs["dtlsHeartbeatIdleTimeout"] = state ? state.dtlsHeartbeatIdleTimeout : undefined;
+            resourceInputs["dtlsHeartbeatInterval"] = state ? state.dtlsHeartbeatInterval : undefined;
             resourceInputs["dtlsHelloTimeout"] = state ? state.dtlsHelloTimeout : undefined;
             resourceInputs["dtlsMaxProtoVer"] = state ? state.dtlsMaxProtoVer : undefined;
             resourceInputs["dtlsMinProtoVer"] = state ? state.dtlsMinProtoVer : undefined;
@@ -148,6 +156,7 @@ export class VpnSslSettings extends pulumi.CustomResource {
             resourceInputs["encode2fSequence"] = state ? state.encode2fSequence : undefined;
             resourceInputs["encryptAndStorePassword"] = state ? state.encryptAndStorePassword : undefined;
             resourceInputs["forceTwoFactorAuth"] = state ? state.forceTwoFactorAuth : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["headerXForwardedFor"] = state ? state.headerXForwardedFor : undefined;
             resourceInputs["hstsIncludeSubdomains"] = state ? state.hstsIncludeSubdomains : undefined;
             resourceInputs["httpCompression"] = state ? state.httpCompression : undefined;
@@ -168,6 +177,7 @@ export class VpnSslSettings extends pulumi.CustomResource {
             resourceInputs["reqclientcert"] = state ? state.reqclientcert : undefined;
             resourceInputs["routeSourceInterface"] = state ? state.routeSourceInterface : undefined;
             resourceInputs["samlRedirectPort"] = state ? state.samlRedirectPort : undefined;
+            resourceInputs["serverHostname"] = state ? state.serverHostname : undefined;
             resourceInputs["servercert"] = state ? state.servercert : undefined;
             resourceInputs["sourceAddress6Negate"] = state ? state.sourceAddress6Negate : undefined;
             resourceInputs["sourceAddress6s"] = state ? state.sourceAddress6s : undefined;
@@ -216,6 +226,9 @@ export class VpnSslSettings extends pulumi.CustomResource {
             resourceInputs["dnsServer1"] = args ? args.dnsServer1 : undefined;
             resourceInputs["dnsServer2"] = args ? args.dnsServer2 : undefined;
             resourceInputs["dnsSuffix"] = args ? args.dnsSuffix : undefined;
+            resourceInputs["dtlsHeartbeatFailCount"] = args ? args.dtlsHeartbeatFailCount : undefined;
+            resourceInputs["dtlsHeartbeatIdleTimeout"] = args ? args.dtlsHeartbeatIdleTimeout : undefined;
+            resourceInputs["dtlsHeartbeatInterval"] = args ? args.dtlsHeartbeatInterval : undefined;
             resourceInputs["dtlsHelloTimeout"] = args ? args.dtlsHelloTimeout : undefined;
             resourceInputs["dtlsMaxProtoVer"] = args ? args.dtlsMaxProtoVer : undefined;
             resourceInputs["dtlsMinProtoVer"] = args ? args.dtlsMinProtoVer : undefined;
@@ -225,6 +238,7 @@ export class VpnSslSettings extends pulumi.CustomResource {
             resourceInputs["encode2fSequence"] = args ? args.encode2fSequence : undefined;
             resourceInputs["encryptAndStorePassword"] = args ? args.encryptAndStorePassword : undefined;
             resourceInputs["forceTwoFactorAuth"] = args ? args.forceTwoFactorAuth : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["headerXForwardedFor"] = args ? args.headerXForwardedFor : undefined;
             resourceInputs["hstsIncludeSubdomains"] = args ? args.hstsIncludeSubdomains : undefined;
             resourceInputs["httpCompression"] = args ? args.httpCompression : undefined;
@@ -245,6 +259,7 @@ export class VpnSslSettings extends pulumi.CustomResource {
             resourceInputs["reqclientcert"] = args ? args.reqclientcert : undefined;
             resourceInputs["routeSourceInterface"] = args ? args.routeSourceInterface : undefined;
             resourceInputs["samlRedirectPort"] = args ? args.samlRedirectPort : undefined;
+            resourceInputs["serverHostname"] = args ? args.serverHostname : undefined;
             resourceInputs["servercert"] = args ? args.servercert : undefined;
             resourceInputs["sourceAddress6Negate"] = args ? args.sourceAddress6Negate : undefined;
             resourceInputs["sourceAddress6s"] = args ? args.sourceAddress6s : undefined;
@@ -301,6 +316,9 @@ export interface VpnSslSettingsState {
     dnsServer1?: pulumi.Input<string>;
     dnsServer2?: pulumi.Input<string>;
     dnsSuffix?: pulumi.Input<string>;
+    dtlsHeartbeatFailCount?: pulumi.Input<number>;
+    dtlsHeartbeatIdleTimeout?: pulumi.Input<number>;
+    dtlsHeartbeatInterval?: pulumi.Input<number>;
     dtlsHelloTimeout?: pulumi.Input<number>;
     dtlsMaxProtoVer?: pulumi.Input<string>;
     dtlsMinProtoVer?: pulumi.Input<string>;
@@ -310,6 +328,7 @@ export interface VpnSslSettingsState {
     encode2fSequence?: pulumi.Input<string>;
     encryptAndStorePassword?: pulumi.Input<string>;
     forceTwoFactorAuth?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     headerXForwardedFor?: pulumi.Input<string>;
     hstsIncludeSubdomains?: pulumi.Input<string>;
     httpCompression?: pulumi.Input<string>;
@@ -330,6 +349,7 @@ export interface VpnSslSettingsState {
     reqclientcert?: pulumi.Input<string>;
     routeSourceInterface?: pulumi.Input<string>;
     samlRedirectPort?: pulumi.Input<number>;
+    serverHostname?: pulumi.Input<string>;
     servercert?: pulumi.Input<string>;
     sourceAddress6Negate?: pulumi.Input<string>;
     sourceAddress6s?: pulumi.Input<pulumi.Input<inputs.VpnSslSettingsSourceAddress6>[]>;
@@ -382,6 +402,9 @@ export interface VpnSslSettingsArgs {
     dnsServer1?: pulumi.Input<string>;
     dnsServer2?: pulumi.Input<string>;
     dnsSuffix?: pulumi.Input<string>;
+    dtlsHeartbeatFailCount?: pulumi.Input<number>;
+    dtlsHeartbeatIdleTimeout?: pulumi.Input<number>;
+    dtlsHeartbeatInterval?: pulumi.Input<number>;
     dtlsHelloTimeout?: pulumi.Input<number>;
     dtlsMaxProtoVer?: pulumi.Input<string>;
     dtlsMinProtoVer?: pulumi.Input<string>;
@@ -391,6 +414,7 @@ export interface VpnSslSettingsArgs {
     encode2fSequence?: pulumi.Input<string>;
     encryptAndStorePassword?: pulumi.Input<string>;
     forceTwoFactorAuth?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     headerXForwardedFor?: pulumi.Input<string>;
     hstsIncludeSubdomains?: pulumi.Input<string>;
     httpCompression?: pulumi.Input<string>;
@@ -411,6 +435,7 @@ export interface VpnSslSettingsArgs {
     reqclientcert?: pulumi.Input<string>;
     routeSourceInterface?: pulumi.Input<string>;
     samlRedirectPort?: pulumi.Input<number>;
+    serverHostname?: pulumi.Input<string>;
     servercert?: pulumi.Input<string>;
     sourceAddress6Negate?: pulumi.Input<string>;
     sourceAddress6s?: pulumi.Input<pulumi.Input<inputs.VpnSslSettingsSourceAddress6>[]>;

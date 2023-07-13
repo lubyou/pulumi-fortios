@@ -22,6 +22,7 @@ class SwitchControllerVlanPolicyArgs:
                  discard_mode: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fortilink: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  untagged_vlans: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerVlanPolicyUntaggedVlanArgs']]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -41,6 +42,8 @@ class SwitchControllerVlanPolicyArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fortilink is not None:
             pulumi.set(__self__, "fortilink", fortilink)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if untagged_vlans is not None:
@@ -103,6 +106,15 @@ class SwitchControllerVlanPolicyArgs:
     @fortilink.setter
     def fortilink(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fortilink", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -150,6 +162,7 @@ class _SwitchControllerVlanPolicyState:
                  discard_mode: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fortilink: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  untagged_vlans: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerVlanPolicyUntaggedVlanArgs']]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -169,6 +182,8 @@ class _SwitchControllerVlanPolicyState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if fortilink is not None:
             pulumi.set(__self__, "fortilink", fortilink)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if untagged_vlans is not None:
@@ -231,6 +246,15 @@ class _SwitchControllerVlanPolicyState:
     @fortilink.setter
     def fortilink(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fortilink", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -280,6 +304,7 @@ class SwitchControllerVlanPolicy(pulumi.CustomResource):
                  discard_mode: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fortilink: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  untagged_vlans: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerVlanPolicyUntaggedVlanArgs']]]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -319,6 +344,7 @@ class SwitchControllerVlanPolicy(pulumi.CustomResource):
                  discard_mode: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fortilink: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  untagged_vlans: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerVlanPolicyUntaggedVlanArgs']]]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -338,6 +364,7 @@ class SwitchControllerVlanPolicy(pulumi.CustomResource):
             __props__.__dict__["discard_mode"] = discard_mode
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["fortilink"] = fortilink
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["name"] = name
             __props__.__dict__["untagged_vlans"] = untagged_vlans
             __props__.__dict__["vdomparam"] = vdomparam
@@ -358,6 +385,7 @@ class SwitchControllerVlanPolicy(pulumi.CustomResource):
             discard_mode: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             fortilink: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             untagged_vlans: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerVlanPolicyUntaggedVlanArgs']]]]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
@@ -380,6 +408,7 @@ class SwitchControllerVlanPolicy(pulumi.CustomResource):
         __props__.__dict__["discard_mode"] = discard_mode
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["fortilink"] = fortilink
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["name"] = name
         __props__.__dict__["untagged_vlans"] = untagged_vlans
         __props__.__dict__["vdomparam"] = vdomparam
@@ -415,6 +444,11 @@ class SwitchControllerVlanPolicy(pulumi.CustomResource):
     @pulumi.getter
     def fortilink(self) -> pulumi.Output[str]:
         return pulumi.get(self, "fortilink")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

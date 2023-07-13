@@ -39,6 +39,7 @@ export class FirewallLocalInPolicy extends pulumi.CustomResource {
     public readonly dstaddrNegate!: pulumi.Output<string>;
     public readonly dstaddrs!: pulumi.Output<outputs.FirewallLocalInPolicyDstaddr[]>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly haMgmtIntfOnly!: pulumi.Output<string>;
     public readonly intf!: pulumi.Output<string>;
     public readonly policyid!: pulumi.Output<number>;
@@ -50,6 +51,7 @@ export class FirewallLocalInPolicy extends pulumi.CustomResource {
     public readonly status!: pulumi.Output<string>;
     public readonly uuid!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
+    public readonly virtualPatch!: pulumi.Output<string>;
 
     /**
      * Create a FirewallLocalInPolicy resource with the given unique name, arguments, and options.
@@ -69,6 +71,7 @@ export class FirewallLocalInPolicy extends pulumi.CustomResource {
             resourceInputs["dstaddrNegate"] = state ? state.dstaddrNegate : undefined;
             resourceInputs["dstaddrs"] = state ? state.dstaddrs : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["haMgmtIntfOnly"] = state ? state.haMgmtIntfOnly : undefined;
             resourceInputs["intf"] = state ? state.intf : undefined;
             resourceInputs["policyid"] = state ? state.policyid : undefined;
@@ -80,6 +83,7 @@ export class FirewallLocalInPolicy extends pulumi.CustomResource {
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["uuid"] = state ? state.uuid : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["virtualPatch"] = state ? state.virtualPatch : undefined;
         } else {
             const args = argsOrState as FirewallLocalInPolicyArgs | undefined;
             if ((!args || args.dstaddrs === undefined) && !opts.urn) {
@@ -96,6 +100,7 @@ export class FirewallLocalInPolicy extends pulumi.CustomResource {
             resourceInputs["dstaddrNegate"] = args ? args.dstaddrNegate : undefined;
             resourceInputs["dstaddrs"] = args ? args.dstaddrs : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["haMgmtIntfOnly"] = args ? args.haMgmtIntfOnly : undefined;
             resourceInputs["intf"] = args ? args.intf : undefined;
             resourceInputs["policyid"] = args ? args.policyid : undefined;
@@ -107,6 +112,7 @@ export class FirewallLocalInPolicy extends pulumi.CustomResource {
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["uuid"] = args ? args.uuid : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["virtualPatch"] = args ? args.virtualPatch : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(FirewallLocalInPolicy.__pulumiType, name, resourceInputs, opts);
@@ -122,6 +128,7 @@ export interface FirewallLocalInPolicyState {
     dstaddrNegate?: pulumi.Input<string>;
     dstaddrs?: pulumi.Input<pulumi.Input<inputs.FirewallLocalInPolicyDstaddr>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     haMgmtIntfOnly?: pulumi.Input<string>;
     intf?: pulumi.Input<string>;
     policyid?: pulumi.Input<number>;
@@ -133,6 +140,7 @@ export interface FirewallLocalInPolicyState {
     status?: pulumi.Input<string>;
     uuid?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
+    virtualPatch?: pulumi.Input<string>;
 }
 
 /**
@@ -144,6 +152,7 @@ export interface FirewallLocalInPolicyArgs {
     dstaddrNegate?: pulumi.Input<string>;
     dstaddrs: pulumi.Input<pulumi.Input<inputs.FirewallLocalInPolicyDstaddr>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     haMgmtIntfOnly?: pulumi.Input<string>;
     intf?: pulumi.Input<string>;
     policyid?: pulumi.Input<number>;
@@ -155,4 +164,5 @@ export interface FirewallLocalInPolicyArgs {
     status?: pulumi.Input<string>;
     uuid?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
+    virtualPatch?: pulumi.Input<string>;
 }

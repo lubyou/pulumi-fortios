@@ -62,6 +62,7 @@ export class FirewallPolicy6 extends pulumi.CustomResource {
     public readonly firewallSessionDirty!: pulumi.Output<string>;
     public readonly fixedport!: pulumi.Output<string>;
     public readonly fssoGroups!: pulumi.Output<outputs.FirewallPolicy6FssoGroup[] | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly globalLabel!: pulumi.Output<string>;
     public readonly groups!: pulumi.Output<outputs.FirewallPolicy6Group[] | undefined>;
     public readonly httpPolicyRedirect!: pulumi.Output<string>;
@@ -168,6 +169,7 @@ export class FirewallPolicy6 extends pulumi.CustomResource {
             resourceInputs["firewallSessionDirty"] = state ? state.firewallSessionDirty : undefined;
             resourceInputs["fixedport"] = state ? state.fixedport : undefined;
             resourceInputs["fssoGroups"] = state ? state.fssoGroups : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["globalLabel"] = state ? state.globalLabel : undefined;
             resourceInputs["groups"] = state ? state.groups : undefined;
             resourceInputs["httpPolicyRedirect"] = state ? state.httpPolicyRedirect : undefined;
@@ -277,6 +279,7 @@ export class FirewallPolicy6 extends pulumi.CustomResource {
             resourceInputs["firewallSessionDirty"] = args ? args.firewallSessionDirty : undefined;
             resourceInputs["fixedport"] = args ? args.fixedport : undefined;
             resourceInputs["fssoGroups"] = args ? args.fssoGroups : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["globalLabel"] = args ? args.globalLabel : undefined;
             resourceInputs["groups"] = args ? args.groups : undefined;
             resourceInputs["httpPolicyRedirect"] = args ? args.httpPolicyRedirect : undefined;
@@ -379,6 +382,7 @@ export interface FirewallPolicy6State {
     firewallSessionDirty?: pulumi.Input<string>;
     fixedport?: pulumi.Input<string>;
     fssoGroups?: pulumi.Input<pulumi.Input<inputs.FirewallPolicy6FssoGroup>[]>;
+    getAllTables?: pulumi.Input<string>;
     globalLabel?: pulumi.Input<string>;
     groups?: pulumi.Input<pulumi.Input<inputs.FirewallPolicy6Group>[]>;
     httpPolicyRedirect?: pulumi.Input<string>;
@@ -477,6 +481,7 @@ export interface FirewallPolicy6Args {
     firewallSessionDirty?: pulumi.Input<string>;
     fixedport?: pulumi.Input<string>;
     fssoGroups?: pulumi.Input<pulumi.Input<inputs.FirewallPolicy6FssoGroup>[]>;
+    getAllTables?: pulumi.Input<string>;
     globalLabel?: pulumi.Input<string>;
     groups?: pulumi.Input<pulumi.Input<inputs.FirewallPolicy6Group>[]>;
     httpPolicyRedirect?: pulumi.Input<string>;

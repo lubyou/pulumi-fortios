@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -26,6 +27,7 @@ type LogDiskFilter struct {
 	FilterType           pulumi.StringOutput               `pulumi:"filterType"`
 	ForwardTraffic       pulumi.StringOutput               `pulumi:"forwardTraffic"`
 	FreeStyles           LogDiskFilterFreeStyleArrayOutput `pulumi:"freeStyles"`
+	GetAllTables         pulumi.StringPtrOutput            `pulumi:"getAllTables"`
 	Gtp                  pulumi.StringOutput               `pulumi:"gtp"`
 	Ha                   pulumi.StringOutput               `pulumi:"ha"`
 	Ipsec                pulumi.StringOutput               `pulumi:"ipsec"`
@@ -59,7 +61,7 @@ func NewLogDiskFilter(ctx *pulumi.Context,
 		args = &LogDiskFilterArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource LogDiskFilter
 	err := ctx.RegisterResource("fortios:index/logDiskFilter:LogDiskFilter", name, args, &resource, opts...)
 	if err != nil {
@@ -95,6 +97,7 @@ type logDiskFilterState struct {
 	FilterType           *string                  `pulumi:"filterType"`
 	ForwardTraffic       *string                  `pulumi:"forwardTraffic"`
 	FreeStyles           []LogDiskFilterFreeStyle `pulumi:"freeStyles"`
+	GetAllTables         *string                  `pulumi:"getAllTables"`
 	Gtp                  *string                  `pulumi:"gtp"`
 	Ha                   *string                  `pulumi:"ha"`
 	Ipsec                *string                  `pulumi:"ipsec"`
@@ -135,6 +138,7 @@ type LogDiskFilterState struct {
 	FilterType           pulumi.StringPtrInput
 	ForwardTraffic       pulumi.StringPtrInput
 	FreeStyles           LogDiskFilterFreeStyleArrayInput
+	GetAllTables         pulumi.StringPtrInput
 	Gtp                  pulumi.StringPtrInput
 	Ha                   pulumi.StringPtrInput
 	Ipsec                pulumi.StringPtrInput
@@ -179,6 +183,7 @@ type logDiskFilterArgs struct {
 	FilterType           *string                  `pulumi:"filterType"`
 	ForwardTraffic       *string                  `pulumi:"forwardTraffic"`
 	FreeStyles           []LogDiskFilterFreeStyle `pulumi:"freeStyles"`
+	GetAllTables         *string                  `pulumi:"getAllTables"`
 	Gtp                  *string                  `pulumi:"gtp"`
 	Ha                   *string                  `pulumi:"ha"`
 	Ipsec                *string                  `pulumi:"ipsec"`
@@ -220,6 +225,7 @@ type LogDiskFilterArgs struct {
 	FilterType           pulumi.StringPtrInput
 	ForwardTraffic       pulumi.StringPtrInput
 	FreeStyles           LogDiskFilterFreeStyleArrayInput
+	GetAllTables         pulumi.StringPtrInput
 	Gtp                  pulumi.StringPtrInput
 	Ha                   pulumi.StringPtrInput
 	Ipsec                pulumi.StringPtrInput
@@ -383,6 +389,10 @@ func (o LogDiskFilterOutput) ForwardTraffic() pulumi.StringOutput {
 
 func (o LogDiskFilterOutput) FreeStyles() LogDiskFilterFreeStyleArrayOutput {
 	return o.ApplyT(func(v *LogDiskFilter) LogDiskFilterFreeStyleArrayOutput { return v.FreeStyles }).(LogDiskFilterFreeStyleArrayOutput)
+}
+
+func (o LogDiskFilterOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LogDiskFilter) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o LogDiskFilterOutput) Gtp() pulumi.StringOutput {

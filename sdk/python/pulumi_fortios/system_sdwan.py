@@ -16,11 +16,13 @@ __all__ = ['SystemSdwanArgs', 'SystemSdwan']
 @pulumi.input_type
 class SystemSdwanArgs:
     def __init__(__self__, *,
+                 app_perf_log_period: Optional[pulumi.Input[int]] = None,
                  duplication_max_num: Optional[pulumi.Input[int]] = None,
                  duplications: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdwanDuplicationArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fail_alert_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdwanFailAlertInterfaceArgs']]]] = None,
                  fail_detect: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  health_checks: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdwanHealthCheckArgs']]]] = None,
                  load_balance_mode: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdwanMemberArgs']]]] = None,
@@ -36,6 +38,8 @@ class SystemSdwanArgs:
         """
         The set of arguments for constructing a SystemSdwan resource.
         """
+        if app_perf_log_period is not None:
+            pulumi.set(__self__, "app_perf_log_period", app_perf_log_period)
         if duplication_max_num is not None:
             pulumi.set(__self__, "duplication_max_num", duplication_max_num)
         if duplications is not None:
@@ -46,6 +50,8 @@ class SystemSdwanArgs:
             pulumi.set(__self__, "fail_alert_interfaces", fail_alert_interfaces)
         if fail_detect is not None:
             pulumi.set(__self__, "fail_detect", fail_detect)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if health_checks is not None:
             pulumi.set(__self__, "health_checks", health_checks)
         if load_balance_mode is not None:
@@ -70,6 +76,15 @@ class SystemSdwanArgs:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if zones is not None:
             pulumi.set(__self__, "zones", zones)
+
+    @property
+    @pulumi.getter(name="appPerfLogPeriod")
+    def app_perf_log_period(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "app_perf_log_period")
+
+    @app_perf_log_period.setter
+    def app_perf_log_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "app_perf_log_period", value)
 
     @property
     @pulumi.getter(name="duplicationMaxNum")
@@ -115,6 +130,15 @@ class SystemSdwanArgs:
     @fail_detect.setter
     def fail_detect(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fail_detect", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="healthChecks")
@@ -228,11 +252,13 @@ class SystemSdwanArgs:
 @pulumi.input_type
 class _SystemSdwanState:
     def __init__(__self__, *,
+                 app_perf_log_period: Optional[pulumi.Input[int]] = None,
                  duplication_max_num: Optional[pulumi.Input[int]] = None,
                  duplications: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdwanDuplicationArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fail_alert_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdwanFailAlertInterfaceArgs']]]] = None,
                  fail_detect: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  health_checks: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdwanHealthCheckArgs']]]] = None,
                  load_balance_mode: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdwanMemberArgs']]]] = None,
@@ -248,6 +274,8 @@ class _SystemSdwanState:
         """
         Input properties used for looking up and filtering SystemSdwan resources.
         """
+        if app_perf_log_period is not None:
+            pulumi.set(__self__, "app_perf_log_period", app_perf_log_period)
         if duplication_max_num is not None:
             pulumi.set(__self__, "duplication_max_num", duplication_max_num)
         if duplications is not None:
@@ -258,6 +286,8 @@ class _SystemSdwanState:
             pulumi.set(__self__, "fail_alert_interfaces", fail_alert_interfaces)
         if fail_detect is not None:
             pulumi.set(__self__, "fail_detect", fail_detect)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if health_checks is not None:
             pulumi.set(__self__, "health_checks", health_checks)
         if load_balance_mode is not None:
@@ -282,6 +312,15 @@ class _SystemSdwanState:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if zones is not None:
             pulumi.set(__self__, "zones", zones)
+
+    @property
+    @pulumi.getter(name="appPerfLogPeriod")
+    def app_perf_log_period(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "app_perf_log_period")
+
+    @app_perf_log_period.setter
+    def app_perf_log_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "app_perf_log_period", value)
 
     @property
     @pulumi.getter(name="duplicationMaxNum")
@@ -327,6 +366,15 @@ class _SystemSdwanState:
     @fail_detect.setter
     def fail_detect(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fail_detect", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter(name="healthChecks")
@@ -442,11 +490,13 @@ class SystemSdwan(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 app_perf_log_period: Optional[pulumi.Input[int]] = None,
                  duplication_max_num: Optional[pulumi.Input[int]] = None,
                  duplications: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdwanDuplicationArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fail_alert_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdwanFailAlertInterfaceArgs']]]]] = None,
                  fail_detect: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  health_checks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdwanHealthCheckArgs']]]]] = None,
                  load_balance_mode: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdwanMemberArgs']]]]] = None,
@@ -488,11 +538,13 @@ class SystemSdwan(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 app_perf_log_period: Optional[pulumi.Input[int]] = None,
                  duplication_max_num: Optional[pulumi.Input[int]] = None,
                  duplications: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdwanDuplicationArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fail_alert_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdwanFailAlertInterfaceArgs']]]]] = None,
                  fail_detect: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  health_checks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdwanHealthCheckArgs']]]]] = None,
                  load_balance_mode: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdwanMemberArgs']]]]] = None,
@@ -514,11 +566,13 @@ class SystemSdwan(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SystemSdwanArgs.__new__(SystemSdwanArgs)
 
+            __props__.__dict__["app_perf_log_period"] = app_perf_log_period
             __props__.__dict__["duplication_max_num"] = duplication_max_num
             __props__.__dict__["duplications"] = duplications
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["fail_alert_interfaces"] = fail_alert_interfaces
             __props__.__dict__["fail_detect"] = fail_detect
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["health_checks"] = health_checks
             __props__.__dict__["load_balance_mode"] = load_balance_mode
             __props__.__dict__["members"] = members
@@ -541,11 +595,13 @@ class SystemSdwan(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            app_perf_log_period: Optional[pulumi.Input[int]] = None,
             duplication_max_num: Optional[pulumi.Input[int]] = None,
             duplications: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdwanDuplicationArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             fail_alert_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdwanFailAlertInterfaceArgs']]]]] = None,
             fail_detect: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             health_checks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdwanHealthCheckArgs']]]]] = None,
             load_balance_mode: Optional[pulumi.Input[str]] = None,
             members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdwanMemberArgs']]]]] = None,
@@ -570,11 +626,13 @@ class SystemSdwan(pulumi.CustomResource):
 
         __props__ = _SystemSdwanState.__new__(_SystemSdwanState)
 
+        __props__.__dict__["app_perf_log_period"] = app_perf_log_period
         __props__.__dict__["duplication_max_num"] = duplication_max_num
         __props__.__dict__["duplications"] = duplications
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["fail_alert_interfaces"] = fail_alert_interfaces
         __props__.__dict__["fail_detect"] = fail_detect
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["health_checks"] = health_checks
         __props__.__dict__["load_balance_mode"] = load_balance_mode
         __props__.__dict__["members"] = members
@@ -588,6 +646,11 @@ class SystemSdwan(pulumi.CustomResource):
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["zones"] = zones
         return SystemSdwan(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="appPerfLogPeriod")
+    def app_perf_log_period(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "app_perf_log_period")
 
     @property
     @pulumi.getter(name="duplicationMaxNum")
@@ -613,6 +676,11 @@ class SystemSdwan(pulumi.CustomResource):
     @pulumi.getter(name="failDetect")
     def fail_detect(self) -> pulumi.Output[str]:
         return pulumi.get(self, "fail_detect")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter(name="healthChecks")

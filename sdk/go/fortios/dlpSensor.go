@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -23,6 +24,7 @@ type DlpSensor struct {
 	Filters             DlpSensorFilterArrayOutput `pulumi:"filters"`
 	FlowBased           pulumi.StringOutput        `pulumi:"flowBased"`
 	FullArchiveProto    pulumi.StringOutput        `pulumi:"fullArchiveProto"`
+	GetAllTables        pulumi.StringPtrOutput     `pulumi:"getAllTables"`
 	MatchType           pulumi.StringOutput        `pulumi:"matchType"`
 	NacQuarLog          pulumi.StringOutput        `pulumi:"nacQuarLog"`
 	Name                pulumi.StringOutput        `pulumi:"name"`
@@ -39,7 +41,7 @@ func NewDlpSensor(ctx *pulumi.Context,
 		args = &DlpSensorArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DlpSensor
 	err := ctx.RegisterResource("fortios:index/dlpSensor:DlpSensor", name, args, &resource, opts...)
 	if err != nil {
@@ -72,6 +74,7 @@ type dlpSensorState struct {
 	Filters             []DlpSensorFilter `pulumi:"filters"`
 	FlowBased           *string           `pulumi:"flowBased"`
 	FullArchiveProto    *string           `pulumi:"fullArchiveProto"`
+	GetAllTables        *string           `pulumi:"getAllTables"`
 	MatchType           *string           `pulumi:"matchType"`
 	NacQuarLog          *string           `pulumi:"nacQuarLog"`
 	Name                *string           `pulumi:"name"`
@@ -92,6 +95,7 @@ type DlpSensorState struct {
 	Filters             DlpSensorFilterArrayInput
 	FlowBased           pulumi.StringPtrInput
 	FullArchiveProto    pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	MatchType           pulumi.StringPtrInput
 	NacQuarLog          pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
@@ -116,6 +120,7 @@ type dlpSensorArgs struct {
 	Filters             []DlpSensorFilter `pulumi:"filters"`
 	FlowBased           *string           `pulumi:"flowBased"`
 	FullArchiveProto    *string           `pulumi:"fullArchiveProto"`
+	GetAllTables        *string           `pulumi:"getAllTables"`
 	MatchType           *string           `pulumi:"matchType"`
 	NacQuarLog          *string           `pulumi:"nacQuarLog"`
 	Name                *string           `pulumi:"name"`
@@ -137,6 +142,7 @@ type DlpSensorArgs struct {
 	Filters             DlpSensorFilterArrayInput
 	FlowBased           pulumi.StringPtrInput
 	FullArchiveProto    pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	MatchType           pulumi.StringPtrInput
 	NacQuarLog          pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
@@ -271,6 +277,10 @@ func (o DlpSensorOutput) FlowBased() pulumi.StringOutput {
 
 func (o DlpSensorOutput) FullArchiveProto() pulumi.StringOutput {
 	return o.ApplyT(func(v *DlpSensor) pulumi.StringOutput { return v.FullArchiveProto }).(pulumi.StringOutput)
+}
+
+func (o DlpSensorOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DlpSensor) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o DlpSensorOutput) MatchType() pulumi.StringOutput {

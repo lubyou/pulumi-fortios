@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupFirewallShaperTrafficShaper(ctx *pulumi.Context, args *LookupFirewallShaperTrafficShaperArgs, opts ...pulumi.InvokeOption) (*LookupFirewallShaperTrafficShaperResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallShaperTrafficShaperResult
 	err := ctx.Invoke("fortios:index/getFirewallShaperTrafficShaper:GetFirewallShaperTrafficShaper", args, &rv, opts...)
 	if err != nil {
@@ -29,16 +30,21 @@ type LookupFirewallShaperTrafficShaperArgs struct {
 // A collection of values returned by GetFirewallShaperTrafficShaper.
 type LookupFirewallShaperTrafficShaperResult struct {
 	BandwidthUnit       string `pulumi:"bandwidthUnit"`
+	Cos                 string `pulumi:"cos"`
+	CosMarking          string `pulumi:"cosMarking"`
+	CosMarkingMethod    string `pulumi:"cosMarkingMethod"`
 	Diffserv            string `pulumi:"diffserv"`
 	Diffservcode        string `pulumi:"diffservcode"`
 	DscpMarkingMethod   string `pulumi:"dscpMarkingMethod"`
 	ExceedBandwidth     int    `pulumi:"exceedBandwidth"`
 	ExceedClassId       int    `pulumi:"exceedClassId"`
+	ExceedCos           string `pulumi:"exceedCos"`
 	ExceedDscp          string `pulumi:"exceedDscp"`
 	GuaranteedBandwidth int    `pulumi:"guaranteedBandwidth"`
 	// The provider-assigned unique ID for this managed resource.
 	Id               string  `pulumi:"id"`
 	MaximumBandwidth int     `pulumi:"maximumBandwidth"`
+	MaximumCos       string  `pulumi:"maximumCos"`
 	MaximumDscp      string  `pulumi:"maximumDscp"`
 	Name             string  `pulumi:"name"`
 	Overhead         int     `pulumi:"overhead"`
@@ -89,6 +95,18 @@ func (o LookupFirewallShaperTrafficShaperResultOutput) BandwidthUnit() pulumi.St
 	return o.ApplyT(func(v LookupFirewallShaperTrafficShaperResult) string { return v.BandwidthUnit }).(pulumi.StringOutput)
 }
 
+func (o LookupFirewallShaperTrafficShaperResultOutput) Cos() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallShaperTrafficShaperResult) string { return v.Cos }).(pulumi.StringOutput)
+}
+
+func (o LookupFirewallShaperTrafficShaperResultOutput) CosMarking() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallShaperTrafficShaperResult) string { return v.CosMarking }).(pulumi.StringOutput)
+}
+
+func (o LookupFirewallShaperTrafficShaperResultOutput) CosMarkingMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallShaperTrafficShaperResult) string { return v.CosMarkingMethod }).(pulumi.StringOutput)
+}
+
 func (o LookupFirewallShaperTrafficShaperResultOutput) Diffserv() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallShaperTrafficShaperResult) string { return v.Diffserv }).(pulumi.StringOutput)
 }
@@ -109,6 +127,10 @@ func (o LookupFirewallShaperTrafficShaperResultOutput) ExceedClassId() pulumi.In
 	return o.ApplyT(func(v LookupFirewallShaperTrafficShaperResult) int { return v.ExceedClassId }).(pulumi.IntOutput)
 }
 
+func (o LookupFirewallShaperTrafficShaperResultOutput) ExceedCos() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallShaperTrafficShaperResult) string { return v.ExceedCos }).(pulumi.StringOutput)
+}
+
 func (o LookupFirewallShaperTrafficShaperResultOutput) ExceedDscp() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallShaperTrafficShaperResult) string { return v.ExceedDscp }).(pulumi.StringOutput)
 }
@@ -124,6 +146,10 @@ func (o LookupFirewallShaperTrafficShaperResultOutput) Id() pulumi.StringOutput 
 
 func (o LookupFirewallShaperTrafficShaperResultOutput) MaximumBandwidth() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupFirewallShaperTrafficShaperResult) int { return v.MaximumBandwidth }).(pulumi.IntOutput)
+}
+
+func (o LookupFirewallShaperTrafficShaperResultOutput) MaximumCos() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallShaperTrafficShaperResult) string { return v.MaximumCos }).(pulumi.StringOutput)
 }
 
 func (o LookupFirewallShaperTrafficShaperResultOutput) MaximumDscp() pulumi.StringOutput {

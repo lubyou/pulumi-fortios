@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,6 +16,7 @@ type ReportDataset struct {
 
 	DynamicSortSubtable pulumi.StringPtrOutput            `pulumi:"dynamicSortSubtable"`
 	Fields              ReportDatasetFieldArrayOutput     `pulumi:"fields"`
+	GetAllTables        pulumi.StringPtrOutput            `pulumi:"getAllTables"`
 	Name                pulumi.StringOutput               `pulumi:"name"`
 	Parameters          ReportDatasetParameterArrayOutput `pulumi:"parameters"`
 	Policy              pulumi.IntOutput                  `pulumi:"policy"`
@@ -29,7 +31,7 @@ func NewReportDataset(ctx *pulumi.Context,
 		args = &ReportDatasetArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ReportDataset
 	err := ctx.RegisterResource("fortios:index/reportDataset:ReportDataset", name, args, &resource, opts...)
 	if err != nil {
@@ -54,6 +56,7 @@ func GetReportDataset(ctx *pulumi.Context,
 type reportDatasetState struct {
 	DynamicSortSubtable *string                  `pulumi:"dynamicSortSubtable"`
 	Fields              []ReportDatasetField     `pulumi:"fields"`
+	GetAllTables        *string                  `pulumi:"getAllTables"`
 	Name                *string                  `pulumi:"name"`
 	Parameters          []ReportDatasetParameter `pulumi:"parameters"`
 	Policy              *int                     `pulumi:"policy"`
@@ -64,6 +67,7 @@ type reportDatasetState struct {
 type ReportDatasetState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	Fields              ReportDatasetFieldArrayInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Parameters          ReportDatasetParameterArrayInput
 	Policy              pulumi.IntPtrInput
@@ -78,6 +82,7 @@ func (ReportDatasetState) ElementType() reflect.Type {
 type reportDatasetArgs struct {
 	DynamicSortSubtable *string                  `pulumi:"dynamicSortSubtable"`
 	Fields              []ReportDatasetField     `pulumi:"fields"`
+	GetAllTables        *string                  `pulumi:"getAllTables"`
 	Name                *string                  `pulumi:"name"`
 	Parameters          []ReportDatasetParameter `pulumi:"parameters"`
 	Policy              *int                     `pulumi:"policy"`
@@ -89,6 +94,7 @@ type reportDatasetArgs struct {
 type ReportDatasetArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	Fields              ReportDatasetFieldArrayInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	Parameters          ReportDatasetParameterArrayInput
 	Policy              pulumi.IntPtrInput
@@ -189,6 +195,10 @@ func (o ReportDatasetOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 
 func (o ReportDatasetOutput) Fields() ReportDatasetFieldArrayOutput {
 	return o.ApplyT(func(v *ReportDataset) ReportDatasetFieldArrayOutput { return v.Fields }).(ReportDatasetFieldArrayOutput)
+}
+
+func (o ReportDatasetOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ReportDataset) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o ReportDatasetOutput) Name() pulumi.StringOutput {

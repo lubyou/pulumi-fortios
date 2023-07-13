@@ -36,6 +36,7 @@ export class SwitchControllerQosIpDscpMap extends pulumi.CustomResource {
 
     public readonly description!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly maps!: pulumi.Output<outputs.SwitchControllerQosIpDscpMapMap[] | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -55,6 +56,7 @@ export class SwitchControllerQosIpDscpMap extends pulumi.CustomResource {
             const state = argsOrState as SwitchControllerQosIpDscpMapState | undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["maps"] = state ? state.maps : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
@@ -62,6 +64,7 @@ export class SwitchControllerQosIpDscpMap extends pulumi.CustomResource {
             const args = argsOrState as SwitchControllerQosIpDscpMapArgs | undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["maps"] = args ? args.maps : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -77,6 +80,7 @@ export class SwitchControllerQosIpDscpMap extends pulumi.CustomResource {
 export interface SwitchControllerQosIpDscpMapState {
     description?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     maps?: pulumi.Input<pulumi.Input<inputs.SwitchControllerQosIpDscpMapMap>[]>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
@@ -88,6 +92,7 @@ export interface SwitchControllerQosIpDscpMapState {
 export interface SwitchControllerQosIpDscpMapArgs {
     description?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     maps?: pulumi.Input<pulumi.Input<inputs.SwitchControllerQosIpDscpMapMap>[]>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;

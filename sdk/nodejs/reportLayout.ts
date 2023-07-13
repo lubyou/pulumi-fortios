@@ -43,6 +43,7 @@ export class ReportLayout extends pulumi.CustomResource {
     public readonly emailRecipients!: pulumi.Output<string>;
     public readonly emailSend!: pulumi.Output<string>;
     public readonly format!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly maxPdfReport!: pulumi.Output<number>;
     public readonly name!: pulumi.Output<string>;
     public readonly options!: pulumi.Output<string>;
@@ -76,6 +77,7 @@ export class ReportLayout extends pulumi.CustomResource {
             resourceInputs["emailRecipients"] = state ? state.emailRecipients : undefined;
             resourceInputs["emailSend"] = state ? state.emailSend : undefined;
             resourceInputs["format"] = state ? state.format : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["maxPdfReport"] = state ? state.maxPdfReport : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["options"] = state ? state.options : undefined;
@@ -100,6 +102,7 @@ export class ReportLayout extends pulumi.CustomResource {
             resourceInputs["emailRecipients"] = args ? args.emailRecipients : undefined;
             resourceInputs["emailSend"] = args ? args.emailSend : undefined;
             resourceInputs["format"] = args ? args.format : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["maxPdfReport"] = args ? args.maxPdfReport : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["options"] = args ? args.options : undefined;
@@ -129,6 +132,7 @@ export interface ReportLayoutState {
     emailRecipients?: pulumi.Input<string>;
     emailSend?: pulumi.Input<string>;
     format?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     maxPdfReport?: pulumi.Input<number>;
     name?: pulumi.Input<string>;
     options?: pulumi.Input<string>;
@@ -154,6 +158,7 @@ export interface ReportLayoutArgs {
     emailRecipients?: pulumi.Input<string>;
     emailSend?: pulumi.Input<string>;
     format?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     maxPdfReport?: pulumi.Input<number>;
     name?: pulumi.Input<string>;
     options?: pulumi.Input<string>;

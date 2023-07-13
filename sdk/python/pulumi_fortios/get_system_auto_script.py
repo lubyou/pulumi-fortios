@@ -129,15 +129,15 @@ def get_system_auto_script(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemAutoScript:GetSystemAutoScript', __args__, opts=opts, typ=GetSystemAutoScriptResult).value
 
     return AwaitableGetSystemAutoScriptResult(
-        id=__ret__.id,
-        interval=__ret__.interval,
-        name=__ret__.name,
-        output_size=__ret__.output_size,
-        repeat=__ret__.repeat,
-        script=__ret__.script,
-        start=__ret__.start,
-        timeout=__ret__.timeout,
-        vdomparam=__ret__.vdomparam)
+        id=pulumi.get(__ret__, 'id'),
+        interval=pulumi.get(__ret__, 'interval'),
+        name=pulumi.get(__ret__, 'name'),
+        output_size=pulumi.get(__ret__, 'output_size'),
+        repeat=pulumi.get(__ret__, 'repeat'),
+        script=pulumi.get(__ret__, 'script'),
+        start=pulumi.get(__ret__, 'start'),
+        timeout=pulumi.get(__ret__, 'timeout'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_auto_script)

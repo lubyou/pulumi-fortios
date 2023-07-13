@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func GetSystemDnsServerList(ctx *pulumi.Context, args *GetSystemDnsServerListArgs, opts ...pulumi.InvokeOption) (*GetSystemDnsServerListResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetSystemDnsServerListResult
 	err := ctx.Invoke("fortios:index/getSystemDnsServerList:GetSystemDnsServerList", args, &rv, opts...)
 	if err != nil {

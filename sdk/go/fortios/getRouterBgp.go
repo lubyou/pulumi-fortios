@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupRouterBgp(ctx *pulumi.Context, args *LookupRouterBgpArgs, opts ...pulumi.InvokeOption) (*LookupRouterBgpResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupRouterBgpResult
 	err := ctx.Invoke("fortios:index/getRouterBgp:GetRouterBgp", args, &rv, opts...)
 	if err != nil {
@@ -38,6 +39,7 @@ type LookupRouterBgpResult struct {
 	AggregateAddresses              []GetRouterBgpAggregateAddress  `pulumi:"aggregateAddresses"`
 	AlwaysCompareMed                string                          `pulumi:"alwaysCompareMed"`
 	As                              int                             `pulumi:"as"`
+	AsString                        string                          `pulumi:"asString"`
 	BestpathAsPathIgnore            string                          `pulumi:"bestpathAsPathIgnore"`
 	BestpathCmpConfedAspath         string                          `pulumi:"bestpathCmpConfedAspath"`
 	BestpathCmpRouterid             string                          `pulumi:"bestpathCmpRouterid"`
@@ -47,6 +49,7 @@ type LookupRouterBgpResult struct {
 	ClusterId                       string                          `pulumi:"clusterId"`
 	ConfederationIdentifier         int                             `pulumi:"confederationIdentifier"`
 	ConfederationPeers              []GetRouterBgpConfederationPeer `pulumi:"confederationPeers"`
+	CrossFamilyConditionalAdv       string                          `pulumi:"crossFamilyConditionalAdv"`
 	Dampening                       string                          `pulumi:"dampening"`
 	DampeningMaxSuppressTime        int                             `pulumi:"dampeningMaxSuppressTime"`
 	DampeningReachabilityHalfLife   int                             `pulumi:"dampeningReachabilityHalfLife"`
@@ -178,6 +181,10 @@ func (o LookupRouterBgpResultOutput) As() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupRouterBgpResult) int { return v.As }).(pulumi.IntOutput)
 }
 
+func (o LookupRouterBgpResultOutput) AsString() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterBgpResult) string { return v.AsString }).(pulumi.StringOutput)
+}
+
 func (o LookupRouterBgpResultOutput) BestpathAsPathIgnore() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterBgpResult) string { return v.BestpathAsPathIgnore }).(pulumi.StringOutput)
 }
@@ -212,6 +219,10 @@ func (o LookupRouterBgpResultOutput) ConfederationIdentifier() pulumi.IntOutput 
 
 func (o LookupRouterBgpResultOutput) ConfederationPeers() GetRouterBgpConfederationPeerArrayOutput {
 	return o.ApplyT(func(v LookupRouterBgpResult) []GetRouterBgpConfederationPeer { return v.ConfederationPeers }).(GetRouterBgpConfederationPeerArrayOutput)
+}
+
+func (o LookupRouterBgpResultOutput) CrossFamilyConditionalAdv() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterBgpResult) string { return v.CrossFamilyConditionalAdv }).(pulumi.StringOutput)
 }
 
 func (o LookupRouterBgpResultOutput) Dampening() pulumi.StringOutput {

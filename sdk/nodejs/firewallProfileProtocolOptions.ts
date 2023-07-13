@@ -39,6 +39,7 @@ export class FirewallProfileProtocolOptions extends pulumi.CustomResource {
     public readonly dns!: pulumi.Output<outputs.FirewallProfileProtocolOptionsDns>;
     public readonly featureSet!: pulumi.Output<string>;
     public readonly ftp!: pulumi.Output<outputs.FirewallProfileProtocolOptionsFtp>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly http!: pulumi.Output<outputs.FirewallProfileProtocolOptionsHttp>;
     public readonly imap!: pulumi.Output<outputs.FirewallProfileProtocolOptionsImap>;
     public readonly mailSignature!: pulumi.Output<outputs.FirewallProfileProtocolOptionsMailSignature>;
@@ -72,6 +73,7 @@ export class FirewallProfileProtocolOptions extends pulumi.CustomResource {
             resourceInputs["dns"] = state ? state.dns : undefined;
             resourceInputs["featureSet"] = state ? state.featureSet : undefined;
             resourceInputs["ftp"] = state ? state.ftp : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["http"] = state ? state.http : undefined;
             resourceInputs["imap"] = state ? state.imap : undefined;
             resourceInputs["mailSignature"] = state ? state.mailSignature : undefined;
@@ -93,6 +95,7 @@ export class FirewallProfileProtocolOptions extends pulumi.CustomResource {
             resourceInputs["dns"] = args ? args.dns : undefined;
             resourceInputs["featureSet"] = args ? args.featureSet : undefined;
             resourceInputs["ftp"] = args ? args.ftp : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["http"] = args ? args.http : undefined;
             resourceInputs["imap"] = args ? args.imap : undefined;
             resourceInputs["mailSignature"] = args ? args.mailSignature : undefined;
@@ -122,6 +125,7 @@ export interface FirewallProfileProtocolOptionsState {
     dns?: pulumi.Input<inputs.FirewallProfileProtocolOptionsDns>;
     featureSet?: pulumi.Input<string>;
     ftp?: pulumi.Input<inputs.FirewallProfileProtocolOptionsFtp>;
+    getAllTables?: pulumi.Input<string>;
     http?: pulumi.Input<inputs.FirewallProfileProtocolOptionsHttp>;
     imap?: pulumi.Input<inputs.FirewallProfileProtocolOptionsImap>;
     mailSignature?: pulumi.Input<inputs.FirewallProfileProtocolOptionsMailSignature>;
@@ -147,6 +151,7 @@ export interface FirewallProfileProtocolOptionsArgs {
     dns?: pulumi.Input<inputs.FirewallProfileProtocolOptionsDns>;
     featureSet?: pulumi.Input<string>;
     ftp?: pulumi.Input<inputs.FirewallProfileProtocolOptionsFtp>;
+    getAllTables?: pulumi.Input<string>;
     http?: pulumi.Input<inputs.FirewallProfileProtocolOptionsHttp>;
     imap?: pulumi.Input<inputs.FirewallProfileProtocolOptionsImap>;
     mailSignature?: pulumi.Input<inputs.FirewallProfileProtocolOptionsMailSignature>;

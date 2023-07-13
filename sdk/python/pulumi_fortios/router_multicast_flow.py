@@ -19,6 +19,7 @@ class RouterMulticastFlowArgs:
                  comments: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  flows: Optional[pulumi.Input[Sequence[pulumi.Input['RouterMulticastFlowFlowArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
@@ -30,6 +31,8 @@ class RouterMulticastFlowArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if flows is not None:
             pulumi.set(__self__, "flows", flows)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if vdomparam is not None:
@@ -61,6 +64,15 @@ class RouterMulticastFlowArgs:
     @flows.setter
     def flows(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RouterMulticastFlowFlowArgs']]]]):
         pulumi.set(self, "flows", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -87,6 +99,7 @@ class _RouterMulticastFlowState:
                  comments: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  flows: Optional[pulumi.Input[Sequence[pulumi.Input['RouterMulticastFlowFlowArgs']]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
@@ -98,6 +111,8 @@ class _RouterMulticastFlowState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if flows is not None:
             pulumi.set(__self__, "flows", flows)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if vdomparam is not None:
@@ -129,6 +144,15 @@ class _RouterMulticastFlowState:
     @flows.setter
     def flows(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RouterMulticastFlowFlowArgs']]]]):
         pulumi.set(self, "flows", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -157,6 +181,7 @@ class RouterMulticastFlow(pulumi.CustomResource):
                  comments: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  flows: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterMulticastFlowFlowArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -191,6 +216,7 @@ class RouterMulticastFlow(pulumi.CustomResource):
                  comments: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  flows: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterMulticastFlowFlowArgs']]]]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -205,6 +231,7 @@ class RouterMulticastFlow(pulumi.CustomResource):
             __props__.__dict__["comments"] = comments
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["flows"] = flows
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["name"] = name
             __props__.__dict__["vdomparam"] = vdomparam
         super(RouterMulticastFlow, __self__).__init__(
@@ -220,6 +247,7 @@ class RouterMulticastFlow(pulumi.CustomResource):
             comments: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             flows: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterMulticastFlowFlowArgs']]]]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'RouterMulticastFlow':
         """
@@ -237,6 +265,7 @@ class RouterMulticastFlow(pulumi.CustomResource):
         __props__.__dict__["comments"] = comments
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["flows"] = flows
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["name"] = name
         __props__.__dict__["vdomparam"] = vdomparam
         return RouterMulticastFlow(resource_name, opts=opts, __props__=__props__)
@@ -255,6 +284,11 @@ class RouterMulticastFlow(pulumi.CustomResource):
     @pulumi.getter
     def flows(self) -> pulumi.Output[Optional[Sequence['outputs.RouterMulticastFlowFlow']]]:
         return pulumi.get(self, "flows")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

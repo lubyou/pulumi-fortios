@@ -24,6 +24,7 @@ class FirewallSslSshProfileArgs:
                  dot: Optional[pulumi.Input['FirewallSslSshProfileDotArgs']] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  ftps: Optional[pulumi.Input['FirewallSslSshProfileFtpsArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  https: Optional[pulumi.Input['FirewallSslSshProfileHttpsArgs']] = None,
                  imaps: Optional[pulumi.Input['FirewallSslSshProfileImapsArgs']] = None,
                  mapi_over_https: Optional[pulumi.Input[str]] = None,
@@ -69,6 +70,8 @@ class FirewallSslSshProfileArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if ftps is not None:
             pulumi.set(__self__, "ftps", ftps)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if https is not None:
             pulumi.set(__self__, "https", https)
         if imaps is not None:
@@ -193,6 +196,15 @@ class FirewallSslSshProfileArgs:
     @ftps.setter
     def ftps(self, value: Optional[pulumi.Input['FirewallSslSshProfileFtpsArgs']]):
         pulumi.set(self, "ftps", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -440,6 +452,7 @@ class _FirewallSslSshProfileState:
                  dot: Optional[pulumi.Input['FirewallSslSshProfileDotArgs']] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  ftps: Optional[pulumi.Input['FirewallSslSshProfileFtpsArgs']] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  https: Optional[pulumi.Input['FirewallSslSshProfileHttpsArgs']] = None,
                  imaps: Optional[pulumi.Input['FirewallSslSshProfileImapsArgs']] = None,
                  mapi_over_https: Optional[pulumi.Input[str]] = None,
@@ -485,6 +498,8 @@ class _FirewallSslSshProfileState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if ftps is not None:
             pulumi.set(__self__, "ftps", ftps)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if https is not None:
             pulumi.set(__self__, "https", https)
         if imaps is not None:
@@ -609,6 +624,15 @@ class _FirewallSslSshProfileState:
     @ftps.setter
     def ftps(self, value: Optional[pulumi.Input['FirewallSslSshProfileFtpsArgs']]):
         pulumi.set(self, "ftps", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -858,6 +882,7 @@ class FirewallSslSshProfile(pulumi.CustomResource):
                  dot: Optional[pulumi.Input[pulumi.InputType['FirewallSslSshProfileDotArgs']]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  ftps: Optional[pulumi.Input[pulumi.InputType['FirewallSslSshProfileFtpsArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  https: Optional[pulumi.Input[pulumi.InputType['FirewallSslSshProfileHttpsArgs']]] = None,
                  imaps: Optional[pulumi.Input[pulumi.InputType['FirewallSslSshProfileImapsArgs']]] = None,
                  mapi_over_https: Optional[pulumi.Input[str]] = None,
@@ -921,6 +946,7 @@ class FirewallSslSshProfile(pulumi.CustomResource):
                  dot: Optional[pulumi.Input[pulumi.InputType['FirewallSslSshProfileDotArgs']]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  ftps: Optional[pulumi.Input[pulumi.InputType['FirewallSslSshProfileFtpsArgs']]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  https: Optional[pulumi.Input[pulumi.InputType['FirewallSslSshProfileHttpsArgs']]] = None,
                  imaps: Optional[pulumi.Input[pulumi.InputType['FirewallSslSshProfileImapsArgs']]] = None,
                  mapi_over_https: Optional[pulumi.Input[str]] = None,
@@ -964,6 +990,7 @@ class FirewallSslSshProfile(pulumi.CustomResource):
             __props__.__dict__["dot"] = dot
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["ftps"] = ftps
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["https"] = https
             __props__.__dict__["imaps"] = imaps
             __props__.__dict__["mapi_over_https"] = mapi_over_https
@@ -1008,6 +1035,7 @@ class FirewallSslSshProfile(pulumi.CustomResource):
             dot: Optional[pulumi.Input[pulumi.InputType['FirewallSslSshProfileDotArgs']]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             ftps: Optional[pulumi.Input[pulumi.InputType['FirewallSslSshProfileFtpsArgs']]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             https: Optional[pulumi.Input[pulumi.InputType['FirewallSslSshProfileHttpsArgs']]] = None,
             imaps: Optional[pulumi.Input[pulumi.InputType['FirewallSslSshProfileImapsArgs']]] = None,
             mapi_over_https: Optional[pulumi.Input[str]] = None,
@@ -1054,6 +1082,7 @@ class FirewallSslSshProfile(pulumi.CustomResource):
         __props__.__dict__["dot"] = dot
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["ftps"] = ftps
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["https"] = https
         __props__.__dict__["imaps"] = imaps
         __props__.__dict__["mapi_over_https"] = mapi_over_https
@@ -1121,6 +1150,11 @@ class FirewallSslSshProfile(pulumi.CustomResource):
     @pulumi.getter
     def ftps(self) -> pulumi.Output['outputs.FirewallSslSshProfileFtps']:
         return pulumi.get(self, "ftps")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter

@@ -36,6 +36,7 @@ export class SystemVdomException extends pulumi.CustomResource {
 
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly fosid!: pulumi.Output<number>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly object!: pulumi.Output<string>;
     public readonly oid!: pulumi.Output<number>;
     public readonly scope!: pulumi.Output<string>;
@@ -57,6 +58,7 @@ export class SystemVdomException extends pulumi.CustomResource {
             const state = argsOrState as SystemVdomExceptionState | undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["object"] = state ? state.object : undefined;
             resourceInputs["oid"] = state ? state.oid : undefined;
             resourceInputs["scope"] = state ? state.scope : undefined;
@@ -69,6 +71,7 @@ export class SystemVdomException extends pulumi.CustomResource {
             }
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["object"] = args ? args.object : undefined;
             resourceInputs["oid"] = args ? args.oid : undefined;
             resourceInputs["scope"] = args ? args.scope : undefined;
@@ -86,6 +89,7 @@ export class SystemVdomException extends pulumi.CustomResource {
 export interface SystemVdomExceptionState {
     dynamicSortSubtable?: pulumi.Input<string>;
     fosid?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     object?: pulumi.Input<string>;
     oid?: pulumi.Input<number>;
     scope?: pulumi.Input<string>;
@@ -99,6 +103,7 @@ export interface SystemVdomExceptionState {
 export interface SystemVdomExceptionArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
     fosid?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     object: pulumi.Input<string>;
     oid?: pulumi.Input<number>;
     scope?: pulumi.Input<string>;

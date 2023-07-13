@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func GetIPMaskCIDR(ctx *pulumi.Context, args *GetIPMaskCIDRArgs, opts ...pulumi.InvokeOption) (*GetIPMaskCIDRResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetIPMaskCIDRResult
 	err := ctx.Invoke("fortios:index/getIPMaskCIDR:GetIPMaskCIDR", args, &rv, opts...)
 	if err != nil {

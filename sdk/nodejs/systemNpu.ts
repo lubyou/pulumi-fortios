@@ -38,6 +38,7 @@ export class SystemNpu extends pulumi.CustomResource {
     public readonly dedicatedManagementAffinity!: pulumi.Output<string>;
     public readonly dedicatedManagementCpu!: pulumi.Output<string>;
     public readonly fastpath!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly ipsecDecSubengineMask!: pulumi.Output<string>;
     public readonly ipsecEncSubengineMask!: pulumi.Output<string>;
     public readonly ipsecInboundCache!: pulumi.Output<string>;
@@ -72,6 +73,7 @@ export class SystemNpu extends pulumi.CustomResource {
             resourceInputs["dedicatedManagementAffinity"] = state ? state.dedicatedManagementAffinity : undefined;
             resourceInputs["dedicatedManagementCpu"] = state ? state.dedicatedManagementCpu : undefined;
             resourceInputs["fastpath"] = state ? state.fastpath : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["ipsecDecSubengineMask"] = state ? state.ipsecDecSubengineMask : undefined;
             resourceInputs["ipsecEncSubengineMask"] = state ? state.ipsecEncSubengineMask : undefined;
             resourceInputs["ipsecInboundCache"] = state ? state.ipsecInboundCache : undefined;
@@ -94,6 +96,7 @@ export class SystemNpu extends pulumi.CustomResource {
             resourceInputs["dedicatedManagementAffinity"] = args ? args.dedicatedManagementAffinity : undefined;
             resourceInputs["dedicatedManagementCpu"] = args ? args.dedicatedManagementCpu : undefined;
             resourceInputs["fastpath"] = args ? args.fastpath : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["ipsecDecSubengineMask"] = args ? args.ipsecDecSubengineMask : undefined;
             resourceInputs["ipsecEncSubengineMask"] = args ? args.ipsecEncSubengineMask : undefined;
             resourceInputs["ipsecInboundCache"] = args ? args.ipsecInboundCache : undefined;
@@ -124,6 +127,7 @@ export interface SystemNpuState {
     dedicatedManagementAffinity?: pulumi.Input<string>;
     dedicatedManagementCpu?: pulumi.Input<string>;
     fastpath?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     ipsecDecSubengineMask?: pulumi.Input<string>;
     ipsecEncSubengineMask?: pulumi.Input<string>;
     ipsecInboundCache?: pulumi.Input<string>;
@@ -150,6 +154,7 @@ export interface SystemNpuArgs {
     dedicatedManagementAffinity?: pulumi.Input<string>;
     dedicatedManagementCpu?: pulumi.Input<string>;
     fastpath?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     ipsecDecSubengineMask?: pulumi.Input<string>;
     ipsecEncSubengineMask?: pulumi.Input<string>;
     ipsecInboundCache?: pulumi.Input<string>;

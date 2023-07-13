@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -14,12 +15,14 @@ type IcapProfile struct {
 	pulumi.CustomResourceState
 
 	ChunkEncap             pulumi.StringOutput                      `pulumi:"chunkEncap"`
+	Comment                pulumi.StringPtrOutput                   `pulumi:"comment"`
 	DynamicSortSubtable    pulumi.StringPtrOutput                   `pulumi:"dynamicSortSubtable"`
 	ExtensionFeature       pulumi.StringOutput                      `pulumi:"extensionFeature"`
 	FileTransfer           pulumi.StringOutput                      `pulumi:"fileTransfer"`
 	FileTransferFailure    pulumi.StringOutput                      `pulumi:"fileTransferFailure"`
 	FileTransferPath       pulumi.StringOutput                      `pulumi:"fileTransferPath"`
 	FileTransferServer     pulumi.StringOutput                      `pulumi:"fileTransferServer"`
+	GetAllTables           pulumi.StringPtrOutput                   `pulumi:"getAllTables"`
 	IcapBlockLog           pulumi.StringOutput                      `pulumi:"icapBlockLog"`
 	IcapHeaders            IcapProfileIcapHeaderArrayOutput         `pulumi:"icapHeaders"`
 	Methods                pulumi.StringOutput                      `pulumi:"methods"`
@@ -53,7 +56,7 @@ func NewIcapProfile(ctx *pulumi.Context,
 		args = &IcapProfileArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource IcapProfile
 	err := ctx.RegisterResource("fortios:index/icapProfile:IcapProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -77,12 +80,14 @@ func GetIcapProfile(ctx *pulumi.Context,
 // Input properties used for looking up and filtering IcapProfile resources.
 type icapProfileState struct {
 	ChunkEncap             *string                         `pulumi:"chunkEncap"`
+	Comment                *string                         `pulumi:"comment"`
 	DynamicSortSubtable    *string                         `pulumi:"dynamicSortSubtable"`
 	ExtensionFeature       *string                         `pulumi:"extensionFeature"`
 	FileTransfer           *string                         `pulumi:"fileTransfer"`
 	FileTransferFailure    *string                         `pulumi:"fileTransferFailure"`
 	FileTransferPath       *string                         `pulumi:"fileTransferPath"`
 	FileTransferServer     *string                         `pulumi:"fileTransferServer"`
+	GetAllTables           *string                         `pulumi:"getAllTables"`
 	IcapBlockLog           *string                         `pulumi:"icapBlockLog"`
 	IcapHeaders            []IcapProfileIcapHeader         `pulumi:"icapHeaders"`
 	Methods                *string                         `pulumi:"methods"`
@@ -111,12 +116,14 @@ type icapProfileState struct {
 
 type IcapProfileState struct {
 	ChunkEncap             pulumi.StringPtrInput
+	Comment                pulumi.StringPtrInput
 	DynamicSortSubtable    pulumi.StringPtrInput
 	ExtensionFeature       pulumi.StringPtrInput
 	FileTransfer           pulumi.StringPtrInput
 	FileTransferFailure    pulumi.StringPtrInput
 	FileTransferPath       pulumi.StringPtrInput
 	FileTransferServer     pulumi.StringPtrInput
+	GetAllTables           pulumi.StringPtrInput
 	IcapBlockLog           pulumi.StringPtrInput
 	IcapHeaders            IcapProfileIcapHeaderArrayInput
 	Methods                pulumi.StringPtrInput
@@ -149,12 +156,14 @@ func (IcapProfileState) ElementType() reflect.Type {
 
 type icapProfileArgs struct {
 	ChunkEncap             *string                         `pulumi:"chunkEncap"`
+	Comment                *string                         `pulumi:"comment"`
 	DynamicSortSubtable    *string                         `pulumi:"dynamicSortSubtable"`
 	ExtensionFeature       *string                         `pulumi:"extensionFeature"`
 	FileTransfer           *string                         `pulumi:"fileTransfer"`
 	FileTransferFailure    *string                         `pulumi:"fileTransferFailure"`
 	FileTransferPath       *string                         `pulumi:"fileTransferPath"`
 	FileTransferServer     *string                         `pulumi:"fileTransferServer"`
+	GetAllTables           *string                         `pulumi:"getAllTables"`
 	IcapBlockLog           *string                         `pulumi:"icapBlockLog"`
 	IcapHeaders            []IcapProfileIcapHeader         `pulumi:"icapHeaders"`
 	Methods                *string                         `pulumi:"methods"`
@@ -184,12 +193,14 @@ type icapProfileArgs struct {
 // The set of arguments for constructing a IcapProfile resource.
 type IcapProfileArgs struct {
 	ChunkEncap             pulumi.StringPtrInput
+	Comment                pulumi.StringPtrInput
 	DynamicSortSubtable    pulumi.StringPtrInput
 	ExtensionFeature       pulumi.StringPtrInput
 	FileTransfer           pulumi.StringPtrInput
 	FileTransferFailure    pulumi.StringPtrInput
 	FileTransferPath       pulumi.StringPtrInput
 	FileTransferServer     pulumi.StringPtrInput
+	GetAllTables           pulumi.StringPtrInput
 	IcapBlockLog           pulumi.StringPtrInput
 	IcapHeaders            IcapProfileIcapHeaderArrayInput
 	Methods                pulumi.StringPtrInput
@@ -307,6 +318,10 @@ func (o IcapProfileOutput) ChunkEncap() pulumi.StringOutput {
 	return o.ApplyT(func(v *IcapProfile) pulumi.StringOutput { return v.ChunkEncap }).(pulumi.StringOutput)
 }
 
+func (o IcapProfileOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IcapProfile) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
 func (o IcapProfileOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IcapProfile) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
 }
@@ -329,6 +344,10 @@ func (o IcapProfileOutput) FileTransferPath() pulumi.StringOutput {
 
 func (o IcapProfileOutput) FileTransferServer() pulumi.StringOutput {
 	return o.ApplyT(func(v *IcapProfile) pulumi.StringOutput { return v.FileTransferServer }).(pulumi.StringOutput)
+}
+
+func (o IcapProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IcapProfile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o IcapProfileOutput) IcapBlockLog() pulumi.StringOutput {

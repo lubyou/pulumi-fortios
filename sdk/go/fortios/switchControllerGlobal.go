@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -17,11 +18,18 @@ type SwitchControllerGlobal struct {
 	BounceQuarantinedLink            pulumi.StringOutput                               `pulumi:"bounceQuarantinedLink"`
 	CustomCommands                   SwitchControllerGlobalCustomCommandArrayOutput    `pulumi:"customCommands"`
 	DefaultVirtualSwitchVlan         pulumi.StringOutput                               `pulumi:"defaultVirtualSwitchVlan"`
+	DhcpOption82CircuitId            pulumi.StringOutput                               `pulumi:"dhcpOption82CircuitId"`
+	DhcpOption82Format               pulumi.StringOutput                               `pulumi:"dhcpOption82Format"`
+	DhcpOption82RemoteId             pulumi.StringOutput                               `pulumi:"dhcpOption82RemoteId"`
 	DhcpServerAccessList             pulumi.StringOutput                               `pulumi:"dhcpServerAccessList"`
+	DhcpSnoopClientDbExp             pulumi.IntOutput                                  `pulumi:"dhcpSnoopClientDbExp"`
+	DhcpSnoopClientReq               pulumi.StringOutput                               `pulumi:"dhcpSnoopClientReq"`
+	DhcpSnoopDbPerPortLearnLimit     pulumi.IntOutput                                  `pulumi:"dhcpSnoopDbPerPortLearnLimit"`
 	DisableDiscoveries               SwitchControllerGlobalDisableDiscoveryArrayOutput `pulumi:"disableDiscoveries"`
 	DynamicSortSubtable              pulumi.StringPtrOutput                            `pulumi:"dynamicSortSubtable"`
 	FipsEnforce                      pulumi.StringOutput                               `pulumi:"fipsEnforce"`
 	FirmwareProvisionOnAuthorization pulumi.StringOutput                               `pulumi:"firmwareProvisionOnAuthorization"`
+	GetAllTables                     pulumi.StringPtrOutput                            `pulumi:"getAllTables"`
 	HttpsImagePush                   pulumi.StringOutput                               `pulumi:"httpsImagePush"`
 	LogMacLimitViolations            pulumi.StringOutput                               `pulumi:"logMacLimitViolations"`
 	MacAgingInterval                 pulumi.IntOutput                                  `pulumi:"macAgingInterval"`
@@ -43,7 +51,7 @@ func NewSwitchControllerGlobal(ctx *pulumi.Context,
 		args = &SwitchControllerGlobalArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SwitchControllerGlobal
 	err := ctx.RegisterResource("fortios:index/switchControllerGlobal:SwitchControllerGlobal", name, args, &resource, opts...)
 	if err != nil {
@@ -70,11 +78,18 @@ type switchControllerGlobalState struct {
 	BounceQuarantinedLink            *string                                  `pulumi:"bounceQuarantinedLink"`
 	CustomCommands                   []SwitchControllerGlobalCustomCommand    `pulumi:"customCommands"`
 	DefaultVirtualSwitchVlan         *string                                  `pulumi:"defaultVirtualSwitchVlan"`
+	DhcpOption82CircuitId            *string                                  `pulumi:"dhcpOption82CircuitId"`
+	DhcpOption82Format               *string                                  `pulumi:"dhcpOption82Format"`
+	DhcpOption82RemoteId             *string                                  `pulumi:"dhcpOption82RemoteId"`
 	DhcpServerAccessList             *string                                  `pulumi:"dhcpServerAccessList"`
+	DhcpSnoopClientDbExp             *int                                     `pulumi:"dhcpSnoopClientDbExp"`
+	DhcpSnoopClientReq               *string                                  `pulumi:"dhcpSnoopClientReq"`
+	DhcpSnoopDbPerPortLearnLimit     *int                                     `pulumi:"dhcpSnoopDbPerPortLearnLimit"`
 	DisableDiscoveries               []SwitchControllerGlobalDisableDiscovery `pulumi:"disableDiscoveries"`
 	DynamicSortSubtable              *string                                  `pulumi:"dynamicSortSubtable"`
 	FipsEnforce                      *string                                  `pulumi:"fipsEnforce"`
 	FirmwareProvisionOnAuthorization *string                                  `pulumi:"firmwareProvisionOnAuthorization"`
+	GetAllTables                     *string                                  `pulumi:"getAllTables"`
 	HttpsImagePush                   *string                                  `pulumi:"httpsImagePush"`
 	LogMacLimitViolations            *string                                  `pulumi:"logMacLimitViolations"`
 	MacAgingInterval                 *int                                     `pulumi:"macAgingInterval"`
@@ -94,11 +109,18 @@ type SwitchControllerGlobalState struct {
 	BounceQuarantinedLink            pulumi.StringPtrInput
 	CustomCommands                   SwitchControllerGlobalCustomCommandArrayInput
 	DefaultVirtualSwitchVlan         pulumi.StringPtrInput
+	DhcpOption82CircuitId            pulumi.StringPtrInput
+	DhcpOption82Format               pulumi.StringPtrInput
+	DhcpOption82RemoteId             pulumi.StringPtrInput
 	DhcpServerAccessList             pulumi.StringPtrInput
+	DhcpSnoopClientDbExp             pulumi.IntPtrInput
+	DhcpSnoopClientReq               pulumi.StringPtrInput
+	DhcpSnoopDbPerPortLearnLimit     pulumi.IntPtrInput
 	DisableDiscoveries               SwitchControllerGlobalDisableDiscoveryArrayInput
 	DynamicSortSubtable              pulumi.StringPtrInput
 	FipsEnforce                      pulumi.StringPtrInput
 	FirmwareProvisionOnAuthorization pulumi.StringPtrInput
+	GetAllTables                     pulumi.StringPtrInput
 	HttpsImagePush                   pulumi.StringPtrInput
 	LogMacLimitViolations            pulumi.StringPtrInput
 	MacAgingInterval                 pulumi.IntPtrInput
@@ -122,11 +144,18 @@ type switchControllerGlobalArgs struct {
 	BounceQuarantinedLink            *string                                  `pulumi:"bounceQuarantinedLink"`
 	CustomCommands                   []SwitchControllerGlobalCustomCommand    `pulumi:"customCommands"`
 	DefaultVirtualSwitchVlan         *string                                  `pulumi:"defaultVirtualSwitchVlan"`
+	DhcpOption82CircuitId            *string                                  `pulumi:"dhcpOption82CircuitId"`
+	DhcpOption82Format               *string                                  `pulumi:"dhcpOption82Format"`
+	DhcpOption82RemoteId             *string                                  `pulumi:"dhcpOption82RemoteId"`
 	DhcpServerAccessList             *string                                  `pulumi:"dhcpServerAccessList"`
+	DhcpSnoopClientDbExp             *int                                     `pulumi:"dhcpSnoopClientDbExp"`
+	DhcpSnoopClientReq               *string                                  `pulumi:"dhcpSnoopClientReq"`
+	DhcpSnoopDbPerPortLearnLimit     *int                                     `pulumi:"dhcpSnoopDbPerPortLearnLimit"`
 	DisableDiscoveries               []SwitchControllerGlobalDisableDiscovery `pulumi:"disableDiscoveries"`
 	DynamicSortSubtable              *string                                  `pulumi:"dynamicSortSubtable"`
 	FipsEnforce                      *string                                  `pulumi:"fipsEnforce"`
 	FirmwareProvisionOnAuthorization *string                                  `pulumi:"firmwareProvisionOnAuthorization"`
+	GetAllTables                     *string                                  `pulumi:"getAllTables"`
 	HttpsImagePush                   *string                                  `pulumi:"httpsImagePush"`
 	LogMacLimitViolations            *string                                  `pulumi:"logMacLimitViolations"`
 	MacAgingInterval                 *int                                     `pulumi:"macAgingInterval"`
@@ -147,11 +176,18 @@ type SwitchControllerGlobalArgs struct {
 	BounceQuarantinedLink            pulumi.StringPtrInput
 	CustomCommands                   SwitchControllerGlobalCustomCommandArrayInput
 	DefaultVirtualSwitchVlan         pulumi.StringPtrInput
+	DhcpOption82CircuitId            pulumi.StringPtrInput
+	DhcpOption82Format               pulumi.StringPtrInput
+	DhcpOption82RemoteId             pulumi.StringPtrInput
 	DhcpServerAccessList             pulumi.StringPtrInput
+	DhcpSnoopClientDbExp             pulumi.IntPtrInput
+	DhcpSnoopClientReq               pulumi.StringPtrInput
+	DhcpSnoopDbPerPortLearnLimit     pulumi.IntPtrInput
 	DisableDiscoveries               SwitchControllerGlobalDisableDiscoveryArrayInput
 	DynamicSortSubtable              pulumi.StringPtrInput
 	FipsEnforce                      pulumi.StringPtrInput
 	FirmwareProvisionOnAuthorization pulumi.StringPtrInput
+	GetAllTables                     pulumi.StringPtrInput
 	HttpsImagePush                   pulumi.StringPtrInput
 	LogMacLimitViolations            pulumi.StringPtrInput
 	MacAgingInterval                 pulumi.IntPtrInput
@@ -271,8 +307,32 @@ func (o SwitchControllerGlobalOutput) DefaultVirtualSwitchVlan() pulumi.StringOu
 	return o.ApplyT(func(v *SwitchControllerGlobal) pulumi.StringOutput { return v.DefaultVirtualSwitchVlan }).(pulumi.StringOutput)
 }
 
+func (o SwitchControllerGlobalOutput) DhcpOption82CircuitId() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerGlobal) pulumi.StringOutput { return v.DhcpOption82CircuitId }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerGlobalOutput) DhcpOption82Format() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerGlobal) pulumi.StringOutput { return v.DhcpOption82Format }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerGlobalOutput) DhcpOption82RemoteId() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerGlobal) pulumi.StringOutput { return v.DhcpOption82RemoteId }).(pulumi.StringOutput)
+}
+
 func (o SwitchControllerGlobalOutput) DhcpServerAccessList() pulumi.StringOutput {
 	return o.ApplyT(func(v *SwitchControllerGlobal) pulumi.StringOutput { return v.DhcpServerAccessList }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerGlobalOutput) DhcpSnoopClientDbExp() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerGlobal) pulumi.IntOutput { return v.DhcpSnoopClientDbExp }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerGlobalOutput) DhcpSnoopClientReq() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerGlobal) pulumi.StringOutput { return v.DhcpSnoopClientReq }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerGlobalOutput) DhcpSnoopDbPerPortLearnLimit() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerGlobal) pulumi.IntOutput { return v.DhcpSnoopDbPerPortLearnLimit }).(pulumi.IntOutput)
 }
 
 func (o SwitchControllerGlobalOutput) DisableDiscoveries() SwitchControllerGlobalDisableDiscoveryArrayOutput {
@@ -291,6 +351,10 @@ func (o SwitchControllerGlobalOutput) FipsEnforce() pulumi.StringOutput {
 
 func (o SwitchControllerGlobalOutput) FirmwareProvisionOnAuthorization() pulumi.StringOutput {
 	return o.ApplyT(func(v *SwitchControllerGlobal) pulumi.StringOutput { return v.FirmwareProvisionOnAuthorization }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerGlobalOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerGlobal) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SwitchControllerGlobalOutput) HttpsImagePush() pulumi.StringOutput {

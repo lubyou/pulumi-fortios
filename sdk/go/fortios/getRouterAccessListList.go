@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func GetRouterAccessListList(ctx *pulumi.Context, args *GetRouterAccessListListArgs, opts ...pulumi.InvokeOption) (*GetRouterAccessListListResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetRouterAccessListListResult
 	err := ctx.Invoke("fortios:index/getRouterAccessListList:GetRouterAccessListList", args, &rv, opts...)
 	if err != nil {

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -25,6 +26,7 @@ type WirelessControllerTimers struct {
 	DynamicSortSubtable     pulumi.StringPtrOutput                       `pulumi:"dynamicSortSubtable"`
 	EchoInterval            pulumi.IntOutput                             `pulumi:"echoInterval"`
 	FakeApLog               pulumi.IntOutput                             `pulumi:"fakeApLog"`
+	GetAllTables            pulumi.StringPtrOutput                       `pulumi:"getAllTables"`
 	IpsecIntfCleanup        pulumi.IntOutput                             `pulumi:"ipsecIntfCleanup"`
 	RadioStatsInterval      pulumi.IntOutput                             `pulumi:"radioStatsInterval"`
 	RogueApCleanup          pulumi.IntOutput                             `pulumi:"rogueApCleanup"`
@@ -43,7 +45,7 @@ func NewWirelessControllerTimers(ctx *pulumi.Context,
 		args = &WirelessControllerTimersArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource WirelessControllerTimers
 	err := ctx.RegisterResource("fortios:index/wirelessControllerTimers:WirelessControllerTimers", name, args, &resource, opts...)
 	if err != nil {
@@ -78,6 +80,7 @@ type wirelessControllerTimersState struct {
 	DynamicSortSubtable     *string                             `pulumi:"dynamicSortSubtable"`
 	EchoInterval            *int                                `pulumi:"echoInterval"`
 	FakeApLog               *int                                `pulumi:"fakeApLog"`
+	GetAllTables            *string                             `pulumi:"getAllTables"`
 	IpsecIntfCleanup        *int                                `pulumi:"ipsecIntfCleanup"`
 	RadioStatsInterval      *int                                `pulumi:"radioStatsInterval"`
 	RogueApCleanup          *int                                `pulumi:"rogueApCleanup"`
@@ -102,6 +105,7 @@ type WirelessControllerTimersState struct {
 	DynamicSortSubtable     pulumi.StringPtrInput
 	EchoInterval            pulumi.IntPtrInput
 	FakeApLog               pulumi.IntPtrInput
+	GetAllTables            pulumi.StringPtrInput
 	IpsecIntfCleanup        pulumi.IntPtrInput
 	RadioStatsInterval      pulumi.IntPtrInput
 	RogueApCleanup          pulumi.IntPtrInput
@@ -130,6 +134,7 @@ type wirelessControllerTimersArgs struct {
 	DynamicSortSubtable     *string                             `pulumi:"dynamicSortSubtable"`
 	EchoInterval            *int                                `pulumi:"echoInterval"`
 	FakeApLog               *int                                `pulumi:"fakeApLog"`
+	GetAllTables            *string                             `pulumi:"getAllTables"`
 	IpsecIntfCleanup        *int                                `pulumi:"ipsecIntfCleanup"`
 	RadioStatsInterval      *int                                `pulumi:"radioStatsInterval"`
 	RogueApCleanup          *int                                `pulumi:"rogueApCleanup"`
@@ -155,6 +160,7 @@ type WirelessControllerTimersArgs struct {
 	DynamicSortSubtable     pulumi.StringPtrInput
 	EchoInterval            pulumi.IntPtrInput
 	FakeApLog               pulumi.IntPtrInput
+	GetAllTables            pulumi.StringPtrInput
 	IpsecIntfCleanup        pulumi.IntPtrInput
 	RadioStatsInterval      pulumi.IntPtrInput
 	RogueApCleanup          pulumi.IntPtrInput
@@ -299,6 +305,10 @@ func (o WirelessControllerTimersOutput) EchoInterval() pulumi.IntOutput {
 
 func (o WirelessControllerTimersOutput) FakeApLog() pulumi.IntOutput {
 	return o.ApplyT(func(v *WirelessControllerTimers) pulumi.IntOutput { return v.FakeApLog }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerTimersOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerTimers) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o WirelessControllerTimersOutput) IpsecIntfCleanup() pulumi.IntOutput {

@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -17,8 +18,10 @@ type FirewallCentralSnatMap struct {
 	Comments            pulumi.StringPtrOutput                      `pulumi:"comments"`
 	DstAddr6s           FirewallCentralSnatMapDstAddr6ArrayOutput   `pulumi:"dstAddr6s"`
 	DstAddrs            FirewallCentralSnatMapDstAddrArrayOutput    `pulumi:"dstAddrs"`
+	DstPort             pulumi.StringOutput                         `pulumi:"dstPort"`
 	Dstintfs            FirewallCentralSnatMapDstintfArrayOutput    `pulumi:"dstintfs"`
 	DynamicSortSubtable pulumi.StringPtrOutput                      `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput                      `pulumi:"getAllTables"`
 	Nat                 pulumi.StringOutput                         `pulumi:"nat"`
 	Nat46               pulumi.StringOutput                         `pulumi:"nat46"`
 	Nat64               pulumi.StringOutput                         `pulumi:"nat64"`
@@ -65,7 +68,7 @@ func NewFirewallCentralSnatMap(ctx *pulumi.Context,
 	if args.Srcintfs == nil {
 		return nil, errors.New("invalid value for required argument 'Srcintfs'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallCentralSnatMap
 	err := ctx.RegisterResource("fortios:index/firewallCentralSnatMap:FirewallCentralSnatMap", name, args, &resource, opts...)
 	if err != nil {
@@ -91,8 +94,10 @@ type firewallCentralSnatMapState struct {
 	Comments            *string                            `pulumi:"comments"`
 	DstAddr6s           []FirewallCentralSnatMapDstAddr6   `pulumi:"dstAddr6s"`
 	DstAddrs            []FirewallCentralSnatMapDstAddr    `pulumi:"dstAddrs"`
+	DstPort             *string                            `pulumi:"dstPort"`
 	Dstintfs            []FirewallCentralSnatMapDstintf    `pulumi:"dstintfs"`
 	DynamicSortSubtable *string                            `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                            `pulumi:"getAllTables"`
 	Nat                 *string                            `pulumi:"nat"`
 	Nat46               *string                            `pulumi:"nat46"`
 	Nat64               *string                            `pulumi:"nat64"`
@@ -115,8 +120,10 @@ type FirewallCentralSnatMapState struct {
 	Comments            pulumi.StringPtrInput
 	DstAddr6s           FirewallCentralSnatMapDstAddr6ArrayInput
 	DstAddrs            FirewallCentralSnatMapDstAddrArrayInput
+	DstPort             pulumi.StringPtrInput
 	Dstintfs            FirewallCentralSnatMapDstintfArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Nat                 pulumi.StringPtrInput
 	Nat46               pulumi.StringPtrInput
 	Nat64               pulumi.StringPtrInput
@@ -143,8 +150,10 @@ type firewallCentralSnatMapArgs struct {
 	Comments            *string                            `pulumi:"comments"`
 	DstAddr6s           []FirewallCentralSnatMapDstAddr6   `pulumi:"dstAddr6s"`
 	DstAddrs            []FirewallCentralSnatMapDstAddr    `pulumi:"dstAddrs"`
+	DstPort             *string                            `pulumi:"dstPort"`
 	Dstintfs            []FirewallCentralSnatMapDstintf    `pulumi:"dstintfs"`
 	DynamicSortSubtable *string                            `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                            `pulumi:"getAllTables"`
 	Nat                 string                             `pulumi:"nat"`
 	Nat46               *string                            `pulumi:"nat46"`
 	Nat64               *string                            `pulumi:"nat64"`
@@ -168,8 +177,10 @@ type FirewallCentralSnatMapArgs struct {
 	Comments            pulumi.StringPtrInput
 	DstAddr6s           FirewallCentralSnatMapDstAddr6ArrayInput
 	DstAddrs            FirewallCentralSnatMapDstAddrArrayInput
+	DstPort             pulumi.StringPtrInput
 	Dstintfs            FirewallCentralSnatMapDstintfArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Nat                 pulumi.StringInput
 	Nat46               pulumi.StringPtrInput
 	Nat64               pulumi.StringPtrInput
@@ -287,12 +298,20 @@ func (o FirewallCentralSnatMapOutput) DstAddrs() FirewallCentralSnatMapDstAddrAr
 	return o.ApplyT(func(v *FirewallCentralSnatMap) FirewallCentralSnatMapDstAddrArrayOutput { return v.DstAddrs }).(FirewallCentralSnatMapDstAddrArrayOutput)
 }
 
+func (o FirewallCentralSnatMapOutput) DstPort() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallCentralSnatMap) pulumi.StringOutput { return v.DstPort }).(pulumi.StringOutput)
+}
+
 func (o FirewallCentralSnatMapOutput) Dstintfs() FirewallCentralSnatMapDstintfArrayOutput {
 	return o.ApplyT(func(v *FirewallCentralSnatMap) FirewallCentralSnatMapDstintfArrayOutput { return v.Dstintfs }).(FirewallCentralSnatMapDstintfArrayOutput)
 }
 
 func (o FirewallCentralSnatMapOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FirewallCentralSnatMap) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o FirewallCentralSnatMapOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallCentralSnatMap) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallCentralSnatMapOutput) Nat() pulumi.StringOutput {

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -16,6 +17,7 @@ type SpamfilterProfile struct {
 	Comment                   pulumi.StringPtrOutput            `pulumi:"comment"`
 	External                  pulumi.StringOutput               `pulumi:"external"`
 	FlowBased                 pulumi.StringOutput               `pulumi:"flowBased"`
+	GetAllTables              pulumi.StringPtrOutput            `pulumi:"getAllTables"`
 	Gmail                     SpamfilterProfileGmailOutput      `pulumi:"gmail"`
 	Imap                      SpamfilterProfileImapOutput       `pulumi:"imap"`
 	Mapi                      SpamfilterProfileMapiOutput       `pulumi:"mapi"`
@@ -45,7 +47,7 @@ func NewSpamfilterProfile(ctx *pulumi.Context,
 		args = &SpamfilterProfileArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SpamfilterProfile
 	err := ctx.RegisterResource("fortios:index/spamfilterProfile:SpamfilterProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -71,6 +73,7 @@ type spamfilterProfileState struct {
 	Comment                   *string                      `pulumi:"comment"`
 	External                  *string                      `pulumi:"external"`
 	FlowBased                 *string                      `pulumi:"flowBased"`
+	GetAllTables              *string                      `pulumi:"getAllTables"`
 	Gmail                     *SpamfilterProfileGmail      `pulumi:"gmail"`
 	Imap                      *SpamfilterProfileImap       `pulumi:"imap"`
 	Mapi                      *SpamfilterProfileMapi       `pulumi:"mapi"`
@@ -97,6 +100,7 @@ type SpamfilterProfileState struct {
 	Comment                   pulumi.StringPtrInput
 	External                  pulumi.StringPtrInput
 	FlowBased                 pulumi.StringPtrInput
+	GetAllTables              pulumi.StringPtrInput
 	Gmail                     SpamfilterProfileGmailPtrInput
 	Imap                      SpamfilterProfileImapPtrInput
 	Mapi                      SpamfilterProfileMapiPtrInput
@@ -127,6 +131,7 @@ type spamfilterProfileArgs struct {
 	Comment                   *string                      `pulumi:"comment"`
 	External                  *string                      `pulumi:"external"`
 	FlowBased                 *string                      `pulumi:"flowBased"`
+	GetAllTables              *string                      `pulumi:"getAllTables"`
 	Gmail                     *SpamfilterProfileGmail      `pulumi:"gmail"`
 	Imap                      *SpamfilterProfileImap       `pulumi:"imap"`
 	Mapi                      *SpamfilterProfileMapi       `pulumi:"mapi"`
@@ -154,6 +159,7 @@ type SpamfilterProfileArgs struct {
 	Comment                   pulumi.StringPtrInput
 	External                  pulumi.StringPtrInput
 	FlowBased                 pulumi.StringPtrInput
+	GetAllTables              pulumi.StringPtrInput
 	Gmail                     SpamfilterProfileGmailPtrInput
 	Imap                      SpamfilterProfileImapPtrInput
 	Mapi                      SpamfilterProfileMapiPtrInput
@@ -273,6 +279,10 @@ func (o SpamfilterProfileOutput) External() pulumi.StringOutput {
 
 func (o SpamfilterProfileOutput) FlowBased() pulumi.StringOutput {
 	return o.ApplyT(func(v *SpamfilterProfile) pulumi.StringOutput { return v.FlowBased }).(pulumi.StringOutput)
+}
+
+func (o SpamfilterProfileOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SpamfilterProfile) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SpamfilterProfileOutput) Gmail() SpamfilterProfileGmailOutput {

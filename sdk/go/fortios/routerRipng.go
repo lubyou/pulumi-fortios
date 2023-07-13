@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -20,6 +21,7 @@ type RouterRipng struct {
 	DistributeLists             RouterRipngDistributeListArrayOutput   `pulumi:"distributeLists"`
 	DynamicSortSubtable         pulumi.StringPtrOutput                 `pulumi:"dynamicSortSubtable"`
 	GarbageTimer                pulumi.IntOutput                       `pulumi:"garbageTimer"`
+	GetAllTables                pulumi.StringPtrOutput                 `pulumi:"getAllTables"`
 	Interfaces                  RouterRipngInterfaceArrayOutput        `pulumi:"interfaces"`
 	MaxOutMetric                pulumi.IntOutput                       `pulumi:"maxOutMetric"`
 	Neighbors                   RouterRipngNeighborArrayOutput         `pulumi:"neighbors"`
@@ -39,7 +41,7 @@ func NewRouterRipng(ctx *pulumi.Context,
 		args = &RouterRipngArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource RouterRipng
 	err := ctx.RegisterResource("fortios:index/routerRipng:RouterRipng", name, args, &resource, opts...)
 	if err != nil {
@@ -69,6 +71,7 @@ type routerRipngState struct {
 	DistributeLists             []RouterRipngDistributeList   `pulumi:"distributeLists"`
 	DynamicSortSubtable         *string                       `pulumi:"dynamicSortSubtable"`
 	GarbageTimer                *int                          `pulumi:"garbageTimer"`
+	GetAllTables                *string                       `pulumi:"getAllTables"`
 	Interfaces                  []RouterRipngInterface        `pulumi:"interfaces"`
 	MaxOutMetric                *int                          `pulumi:"maxOutMetric"`
 	Neighbors                   []RouterRipngNeighbor         `pulumi:"neighbors"`
@@ -89,6 +92,7 @@ type RouterRipngState struct {
 	DistributeLists             RouterRipngDistributeListArrayInput
 	DynamicSortSubtable         pulumi.StringPtrInput
 	GarbageTimer                pulumi.IntPtrInput
+	GetAllTables                pulumi.StringPtrInput
 	Interfaces                  RouterRipngInterfaceArrayInput
 	MaxOutMetric                pulumi.IntPtrInput
 	Neighbors                   RouterRipngNeighborArrayInput
@@ -113,6 +117,7 @@ type routerRipngArgs struct {
 	DistributeLists             []RouterRipngDistributeList   `pulumi:"distributeLists"`
 	DynamicSortSubtable         *string                       `pulumi:"dynamicSortSubtable"`
 	GarbageTimer                *int                          `pulumi:"garbageTimer"`
+	GetAllTables                *string                       `pulumi:"getAllTables"`
 	Interfaces                  []RouterRipngInterface        `pulumi:"interfaces"`
 	MaxOutMetric                *int                          `pulumi:"maxOutMetric"`
 	Neighbors                   []RouterRipngNeighbor         `pulumi:"neighbors"`
@@ -134,6 +139,7 @@ type RouterRipngArgs struct {
 	DistributeLists             RouterRipngDistributeListArrayInput
 	DynamicSortSubtable         pulumi.StringPtrInput
 	GarbageTimer                pulumi.IntPtrInput
+	GetAllTables                pulumi.StringPtrInput
 	Interfaces                  RouterRipngInterfaceArrayInput
 	MaxOutMetric                pulumi.IntPtrInput
 	Neighbors                   RouterRipngNeighborArrayInput
@@ -259,6 +265,10 @@ func (o RouterRipngOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 
 func (o RouterRipngOutput) GarbageTimer() pulumi.IntOutput {
 	return o.ApplyT(func(v *RouterRipng) pulumi.IntOutput { return v.GarbageTimer }).(pulumi.IntOutput)
+}
+
+func (o RouterRipngOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *RouterRipng) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o RouterRipngOutput) Interfaces() RouterRipngInterfaceArrayOutput {

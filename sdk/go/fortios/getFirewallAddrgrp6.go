@@ -7,11 +7,12 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 func LookupFirewallAddrgrp6(ctx *pulumi.Context, args *LookupFirewallAddrgrp6Args, opts ...pulumi.InvokeOption) (*LookupFirewallAddrgrp6Result, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallAddrgrp6Result
 	err := ctx.Invoke("fortios:index/getFirewallAddrgrp6:GetFirewallAddrgrp6", args, &rv, opts...)
 	if err != nil {
@@ -28,9 +29,11 @@ type LookupFirewallAddrgrp6Args struct {
 
 // A collection of values returned by GetFirewallAddrgrp6.
 type LookupFirewallAddrgrp6Result struct {
-	Color        int    `pulumi:"color"`
-	Comment      string `pulumi:"comment"`
-	FabricObject string `pulumi:"fabricObject"`
+	Color          int                                `pulumi:"color"`
+	Comment        string                             `pulumi:"comment"`
+	Exclude        string                             `pulumi:"exclude"`
+	ExcludeMembers []GetFirewallAddrgrp6ExcludeMember `pulumi:"excludeMembers"`
+	FabricObject   string                             `pulumi:"fabricObject"`
 	// The provider-assigned unique ID for this managed resource.
 	Id         string                       `pulumi:"id"`
 	Members    []GetFirewallAddrgrp6Member  `pulumi:"members"`
@@ -85,6 +88,14 @@ func (o LookupFirewallAddrgrp6ResultOutput) Color() pulumi.IntOutput {
 
 func (o LookupFirewallAddrgrp6ResultOutput) Comment() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallAddrgrp6Result) string { return v.Comment }).(pulumi.StringOutput)
+}
+
+func (o LookupFirewallAddrgrp6ResultOutput) Exclude() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddrgrp6Result) string { return v.Exclude }).(pulumi.StringOutput)
+}
+
+func (o LookupFirewallAddrgrp6ResultOutput) ExcludeMembers() GetFirewallAddrgrp6ExcludeMemberArrayOutput {
+	return o.ApplyT(func(v LookupFirewallAddrgrp6Result) []GetFirewallAddrgrp6ExcludeMember { return v.ExcludeMembers }).(GetFirewallAddrgrp6ExcludeMemberArrayOutput)
 }
 
 func (o LookupFirewallAddrgrp6ResultOutput) FabricObject() pulumi.StringOutput {

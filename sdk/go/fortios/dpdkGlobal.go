@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,6 +16,7 @@ type DpdkGlobal struct {
 
 	DynamicSortSubtable  pulumi.StringPtrOutput         `pulumi:"dynamicSortSubtable"`
 	Elasticbuffer        pulumi.StringOutput            `pulumi:"elasticbuffer"`
+	GetAllTables         pulumi.StringPtrOutput         `pulumi:"getAllTables"`
 	HugepagePercentage   pulumi.IntOutput               `pulumi:"hugepagePercentage"`
 	Interfaces           DpdkGlobalInterfaceArrayOutput `pulumi:"interfaces"`
 	IpsecOffload         pulumi.StringOutput            `pulumi:"ipsecOffload"`
@@ -33,7 +35,7 @@ func NewDpdkGlobal(ctx *pulumi.Context,
 		args = &DpdkGlobalArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource DpdkGlobal
 	err := ctx.RegisterResource("fortios:index/dpdkGlobal:DpdkGlobal", name, args, &resource, opts...)
 	if err != nil {
@@ -58,6 +60,7 @@ func GetDpdkGlobal(ctx *pulumi.Context,
 type dpdkGlobalState struct {
 	DynamicSortSubtable  *string               `pulumi:"dynamicSortSubtable"`
 	Elasticbuffer        *string               `pulumi:"elasticbuffer"`
+	GetAllTables         *string               `pulumi:"getAllTables"`
 	HugepagePercentage   *int                  `pulumi:"hugepagePercentage"`
 	Interfaces           []DpdkGlobalInterface `pulumi:"interfaces"`
 	IpsecOffload         *string               `pulumi:"ipsecOffload"`
@@ -72,6 +75,7 @@ type dpdkGlobalState struct {
 type DpdkGlobalState struct {
 	DynamicSortSubtable  pulumi.StringPtrInput
 	Elasticbuffer        pulumi.StringPtrInput
+	GetAllTables         pulumi.StringPtrInput
 	HugepagePercentage   pulumi.IntPtrInput
 	Interfaces           DpdkGlobalInterfaceArrayInput
 	IpsecOffload         pulumi.StringPtrInput
@@ -90,6 +94,7 @@ func (DpdkGlobalState) ElementType() reflect.Type {
 type dpdkGlobalArgs struct {
 	DynamicSortSubtable  *string               `pulumi:"dynamicSortSubtable"`
 	Elasticbuffer        *string               `pulumi:"elasticbuffer"`
+	GetAllTables         *string               `pulumi:"getAllTables"`
 	HugepagePercentage   *int                  `pulumi:"hugepagePercentage"`
 	Interfaces           []DpdkGlobalInterface `pulumi:"interfaces"`
 	IpsecOffload         *string               `pulumi:"ipsecOffload"`
@@ -105,6 +110,7 @@ type dpdkGlobalArgs struct {
 type DpdkGlobalArgs struct {
 	DynamicSortSubtable  pulumi.StringPtrInput
 	Elasticbuffer        pulumi.StringPtrInput
+	GetAllTables         pulumi.StringPtrInput
 	HugepagePercentage   pulumi.IntPtrInput
 	Interfaces           DpdkGlobalInterfaceArrayInput
 	IpsecOffload         pulumi.StringPtrInput
@@ -209,6 +215,10 @@ func (o DpdkGlobalOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 
 func (o DpdkGlobalOutput) Elasticbuffer() pulumi.StringOutput {
 	return o.ApplyT(func(v *DpdkGlobal) pulumi.StringOutput { return v.Elasticbuffer }).(pulumi.StringOutput)
+}
+
+func (o DpdkGlobalOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DpdkGlobal) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o DpdkGlobalOutput) HugepagePercentage() pulumi.IntOutput {

@@ -83,10 +83,10 @@ def get_router_bfd6(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getRouterBfd6:GetRouterBfd6', __args__, opts=opts, typ=GetRouterBfd6Result).value
 
     return AwaitableGetRouterBfd6Result(
-        id=__ret__.id,
-        multihop_templates=__ret__.multihop_templates,
-        neighbors=__ret__.neighbors,
-        vdomparam=__ret__.vdomparam)
+        id=pulumi.get(__ret__, 'id'),
+        multihop_templates=pulumi.get(__ret__, 'multihop_templates'),
+        neighbors=pulumi.get(__ret__, 'neighbors'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_router_bfd6)

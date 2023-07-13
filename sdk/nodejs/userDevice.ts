@@ -39,6 +39,7 @@ export class UserDevice extends pulumi.CustomResource {
     public readonly category!: pulumi.Output<string>;
     public readonly comment!: pulumi.Output<string | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly mac!: pulumi.Output<string>;
     public readonly masterDevice!: pulumi.Output<string>;
     public readonly taggings!: pulumi.Output<outputs.UserDeviceTagging[] | undefined>;
@@ -64,6 +65,7 @@ export class UserDevice extends pulumi.CustomResource {
             resourceInputs["category"] = state ? state.category : undefined;
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["mac"] = state ? state.mac : undefined;
             resourceInputs["masterDevice"] = state ? state.masterDevice : undefined;
             resourceInputs["taggings"] = state ? state.taggings : undefined;
@@ -77,6 +79,7 @@ export class UserDevice extends pulumi.CustomResource {
             resourceInputs["category"] = args ? args.category : undefined;
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["mac"] = args ? args.mac : undefined;
             resourceInputs["masterDevice"] = args ? args.masterDevice : undefined;
             resourceInputs["taggings"] = args ? args.taggings : undefined;
@@ -98,6 +101,7 @@ export interface UserDeviceState {
     category?: pulumi.Input<string>;
     comment?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     mac?: pulumi.Input<string>;
     masterDevice?: pulumi.Input<string>;
     taggings?: pulumi.Input<pulumi.Input<inputs.UserDeviceTagging>[]>;
@@ -115,6 +119,7 @@ export interface UserDeviceArgs {
     category?: pulumi.Input<string>;
     comment?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     mac?: pulumi.Input<string>;
     masterDevice?: pulumi.Input<string>;
     taggings?: pulumi.Input<pulumi.Input<inputs.UserDeviceTagging>[]>;

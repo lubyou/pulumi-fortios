@@ -40,6 +40,7 @@ export class FirewallPolicy64 extends pulumi.CustomResource {
     public readonly dstintf!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly fixedport!: pulumi.Output<string>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly ippool!: pulumi.Output<string>;
     public readonly logtraffic!: pulumi.Output<string>;
     public readonly logtrafficStart!: pulumi.Output<string>;
@@ -79,6 +80,7 @@ export class FirewallPolicy64 extends pulumi.CustomResource {
             resourceInputs["dstintf"] = state ? state.dstintf : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fixedport"] = state ? state.fixedport : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["ippool"] = state ? state.ippool : undefined;
             resourceInputs["logtraffic"] = state ? state.logtraffic : undefined;
             resourceInputs["logtrafficStart"] = state ? state.logtrafficStart : undefined;
@@ -121,6 +123,7 @@ export class FirewallPolicy64 extends pulumi.CustomResource {
             resourceInputs["dstintf"] = args ? args.dstintf : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fixedport"] = args ? args.fixedport : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["ippool"] = args ? args.ippool : undefined;
             resourceInputs["logtraffic"] = args ? args.logtraffic : undefined;
             resourceInputs["logtrafficStart"] = args ? args.logtrafficStart : undefined;
@@ -156,6 +159,7 @@ export interface FirewallPolicy64State {
     dstintf?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     fixedport?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     ippool?: pulumi.Input<string>;
     logtraffic?: pulumi.Input<string>;
     logtrafficStart?: pulumi.Input<string>;
@@ -187,6 +191,7 @@ export interface FirewallPolicy64Args {
     dstintf: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     fixedport?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     ippool?: pulumi.Input<string>;
     logtraffic?: pulumi.Input<string>;
     logtrafficStart?: pulumi.Input<string>;

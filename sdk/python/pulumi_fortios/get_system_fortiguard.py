@@ -21,13 +21,16 @@ class GetSystemFortiguardResult:
     """
     A collection of values returned by GetSystemFortiguard.
     """
-    def __init__(__self__, antispam_cache=None, antispam_cache_mpercent=None, antispam_cache_ttl=None, antispam_expiration=None, antispam_force_off=None, antispam_license=None, antispam_timeout=None, anycast_sdns_server_ip=None, anycast_sdns_server_port=None, auto_firmware_upgrade=None, auto_firmware_upgrade_day=None, auto_firmware_upgrade_end_hour=None, auto_firmware_upgrade_start_hour=None, auto_join_forticloud=None, ddns_server_ip=None, ddns_server_ip6=None, ddns_server_port=None, fortiguard_anycast=None, fortiguard_anycast_source=None, id=None, interface=None, interface_select_method=None, load_balance_servers=None, outbreak_prevention_cache=None, outbreak_prevention_cache_mpercent=None, outbreak_prevention_cache_ttl=None, outbreak_prevention_expiration=None, outbreak_prevention_force_off=None, outbreak_prevention_license=None, outbreak_prevention_timeout=None, persistent_connection=None, port=None, protocol=None, proxy_password=None, proxy_server_ip=None, proxy_server_port=None, proxy_username=None, sandbox_inline_scan=None, sandbox_region=None, sdns_options=None, sdns_server_ip=None, sdns_server_port=None, service_account_id=None, source_ip=None, source_ip6=None, update_build_proxy=None, update_extdb=None, update_ffdb=None, update_server_location=None, update_uwdb=None, vdom=None, vdomparam=None, videofilter_expiration=None, videofilter_license=None, webfilter_cache=None, webfilter_cache_ttl=None, webfilter_expiration=None, webfilter_force_off=None, webfilter_license=None, webfilter_timeout=None):
+    def __init__(__self__, antispam_cache=None, antispam_cache_mpercent=None, antispam_cache_mpermille=None, antispam_cache_ttl=None, antispam_expiration=None, antispam_force_off=None, antispam_license=None, antispam_timeout=None, anycast_sdns_server_ip=None, anycast_sdns_server_port=None, auto_firmware_upgrade=None, auto_firmware_upgrade_day=None, auto_firmware_upgrade_delay=None, auto_firmware_upgrade_end_hour=None, auto_firmware_upgrade_start_hour=None, auto_join_forticloud=None, ddns_server_ip=None, ddns_server_ip6=None, ddns_server_port=None, fds_license_expiring_days=None, fortiguard_anycast=None, fortiguard_anycast_source=None, id=None, interface=None, interface_select_method=None, load_balance_servers=None, outbreak_prevention_cache=None, outbreak_prevention_cache_mpercent=None, outbreak_prevention_cache_mpermille=None, outbreak_prevention_cache_ttl=None, outbreak_prevention_expiration=None, outbreak_prevention_force_off=None, outbreak_prevention_license=None, outbreak_prevention_timeout=None, persistent_connection=None, port=None, protocol=None, proxy_password=None, proxy_server_ip=None, proxy_server_port=None, proxy_username=None, sandbox_inline_scan=None, sandbox_region=None, sdns_options=None, sdns_server_ip=None, sdns_server_port=None, service_account_id=None, source_ip=None, source_ip6=None, update_build_proxy=None, update_dldb=None, update_extdb=None, update_ffdb=None, update_server_location=None, update_uwdb=None, vdom=None, vdomparam=None, videofilter_expiration=None, videofilter_license=None, webfilter_cache=None, webfilter_cache_ttl=None, webfilter_expiration=None, webfilter_force_off=None, webfilter_license=None, webfilter_timeout=None):
         if antispam_cache and not isinstance(antispam_cache, str):
             raise TypeError("Expected argument 'antispam_cache' to be a str")
         pulumi.set(__self__, "antispam_cache", antispam_cache)
         if antispam_cache_mpercent and not isinstance(antispam_cache_mpercent, int):
             raise TypeError("Expected argument 'antispam_cache_mpercent' to be a int")
         pulumi.set(__self__, "antispam_cache_mpercent", antispam_cache_mpercent)
+        if antispam_cache_mpermille and not isinstance(antispam_cache_mpermille, int):
+            raise TypeError("Expected argument 'antispam_cache_mpermille' to be a int")
+        pulumi.set(__self__, "antispam_cache_mpermille", antispam_cache_mpermille)
         if antispam_cache_ttl and not isinstance(antispam_cache_ttl, int):
             raise TypeError("Expected argument 'antispam_cache_ttl' to be a int")
         pulumi.set(__self__, "antispam_cache_ttl", antispam_cache_ttl)
@@ -55,6 +58,9 @@ class GetSystemFortiguardResult:
         if auto_firmware_upgrade_day and not isinstance(auto_firmware_upgrade_day, str):
             raise TypeError("Expected argument 'auto_firmware_upgrade_day' to be a str")
         pulumi.set(__self__, "auto_firmware_upgrade_day", auto_firmware_upgrade_day)
+        if auto_firmware_upgrade_delay and not isinstance(auto_firmware_upgrade_delay, int):
+            raise TypeError("Expected argument 'auto_firmware_upgrade_delay' to be a int")
+        pulumi.set(__self__, "auto_firmware_upgrade_delay", auto_firmware_upgrade_delay)
         if auto_firmware_upgrade_end_hour and not isinstance(auto_firmware_upgrade_end_hour, int):
             raise TypeError("Expected argument 'auto_firmware_upgrade_end_hour' to be a int")
         pulumi.set(__self__, "auto_firmware_upgrade_end_hour", auto_firmware_upgrade_end_hour)
@@ -73,6 +79,9 @@ class GetSystemFortiguardResult:
         if ddns_server_port and not isinstance(ddns_server_port, int):
             raise TypeError("Expected argument 'ddns_server_port' to be a int")
         pulumi.set(__self__, "ddns_server_port", ddns_server_port)
+        if fds_license_expiring_days and not isinstance(fds_license_expiring_days, int):
+            raise TypeError("Expected argument 'fds_license_expiring_days' to be a int")
+        pulumi.set(__self__, "fds_license_expiring_days", fds_license_expiring_days)
         if fortiguard_anycast and not isinstance(fortiguard_anycast, str):
             raise TypeError("Expected argument 'fortiguard_anycast' to be a str")
         pulumi.set(__self__, "fortiguard_anycast", fortiguard_anycast)
@@ -97,6 +106,9 @@ class GetSystemFortiguardResult:
         if outbreak_prevention_cache_mpercent and not isinstance(outbreak_prevention_cache_mpercent, int):
             raise TypeError("Expected argument 'outbreak_prevention_cache_mpercent' to be a int")
         pulumi.set(__self__, "outbreak_prevention_cache_mpercent", outbreak_prevention_cache_mpercent)
+        if outbreak_prevention_cache_mpermille and not isinstance(outbreak_prevention_cache_mpermille, int):
+            raise TypeError("Expected argument 'outbreak_prevention_cache_mpermille' to be a int")
+        pulumi.set(__self__, "outbreak_prevention_cache_mpermille", outbreak_prevention_cache_mpermille)
         if outbreak_prevention_cache_ttl and not isinstance(outbreak_prevention_cache_ttl, int):
             raise TypeError("Expected argument 'outbreak_prevention_cache_ttl' to be a int")
         pulumi.set(__self__, "outbreak_prevention_cache_ttl", outbreak_prevention_cache_ttl)
@@ -160,6 +172,9 @@ class GetSystemFortiguardResult:
         if update_build_proxy and not isinstance(update_build_proxy, str):
             raise TypeError("Expected argument 'update_build_proxy' to be a str")
         pulumi.set(__self__, "update_build_proxy", update_build_proxy)
+        if update_dldb and not isinstance(update_dldb, str):
+            raise TypeError("Expected argument 'update_dldb' to be a str")
+        pulumi.set(__self__, "update_dldb", update_dldb)
         if update_extdb and not isinstance(update_extdb, str):
             raise TypeError("Expected argument 'update_extdb' to be a str")
         pulumi.set(__self__, "update_extdb", update_extdb)
@@ -214,6 +229,11 @@ class GetSystemFortiguardResult:
         return pulumi.get(self, "antispam_cache_mpercent")
 
     @property
+    @pulumi.getter(name="antispamCacheMpermille")
+    def antispam_cache_mpermille(self) -> int:
+        return pulumi.get(self, "antispam_cache_mpermille")
+
+    @property
     @pulumi.getter(name="antispamCacheTtl")
     def antispam_cache_ttl(self) -> int:
         return pulumi.get(self, "antispam_cache_ttl")
@@ -259,6 +279,11 @@ class GetSystemFortiguardResult:
         return pulumi.get(self, "auto_firmware_upgrade_day")
 
     @property
+    @pulumi.getter(name="autoFirmwareUpgradeDelay")
+    def auto_firmware_upgrade_delay(self) -> int:
+        return pulumi.get(self, "auto_firmware_upgrade_delay")
+
+    @property
     @pulumi.getter(name="autoFirmwareUpgradeEndHour")
     def auto_firmware_upgrade_end_hour(self) -> int:
         return pulumi.get(self, "auto_firmware_upgrade_end_hour")
@@ -287,6 +312,11 @@ class GetSystemFortiguardResult:
     @pulumi.getter(name="ddnsServerPort")
     def ddns_server_port(self) -> int:
         return pulumi.get(self, "ddns_server_port")
+
+    @property
+    @pulumi.getter(name="fdsLicenseExpiringDays")
+    def fds_license_expiring_days(self) -> int:
+        return pulumi.get(self, "fds_license_expiring_days")
 
     @property
     @pulumi.getter(name="fortiguardAnycast")
@@ -330,6 +360,11 @@ class GetSystemFortiguardResult:
     @pulumi.getter(name="outbreakPreventionCacheMpercent")
     def outbreak_prevention_cache_mpercent(self) -> int:
         return pulumi.get(self, "outbreak_prevention_cache_mpercent")
+
+    @property
+    @pulumi.getter(name="outbreakPreventionCacheMpermille")
+    def outbreak_prevention_cache_mpermille(self) -> int:
+        return pulumi.get(self, "outbreak_prevention_cache_mpermille")
 
     @property
     @pulumi.getter(name="outbreakPreventionCacheTtl")
@@ -437,6 +472,11 @@ class GetSystemFortiguardResult:
         return pulumi.get(self, "update_build_proxy")
 
     @property
+    @pulumi.getter(name="updateDldb")
+    def update_dldb(self) -> str:
+        return pulumi.get(self, "update_dldb")
+
+    @property
     @pulumi.getter(name="updateExtdb")
     def update_extdb(self) -> str:
         return pulumi.get(self, "update_extdb")
@@ -515,6 +555,7 @@ class AwaitableGetSystemFortiguardResult(GetSystemFortiguardResult):
         return GetSystemFortiguardResult(
             antispam_cache=self.antispam_cache,
             antispam_cache_mpercent=self.antispam_cache_mpercent,
+            antispam_cache_mpermille=self.antispam_cache_mpermille,
             antispam_cache_ttl=self.antispam_cache_ttl,
             antispam_expiration=self.antispam_expiration,
             antispam_force_off=self.antispam_force_off,
@@ -524,12 +565,14 @@ class AwaitableGetSystemFortiguardResult(GetSystemFortiguardResult):
             anycast_sdns_server_port=self.anycast_sdns_server_port,
             auto_firmware_upgrade=self.auto_firmware_upgrade,
             auto_firmware_upgrade_day=self.auto_firmware_upgrade_day,
+            auto_firmware_upgrade_delay=self.auto_firmware_upgrade_delay,
             auto_firmware_upgrade_end_hour=self.auto_firmware_upgrade_end_hour,
             auto_firmware_upgrade_start_hour=self.auto_firmware_upgrade_start_hour,
             auto_join_forticloud=self.auto_join_forticloud,
             ddns_server_ip=self.ddns_server_ip,
             ddns_server_ip6=self.ddns_server_ip6,
             ddns_server_port=self.ddns_server_port,
+            fds_license_expiring_days=self.fds_license_expiring_days,
             fortiguard_anycast=self.fortiguard_anycast,
             fortiguard_anycast_source=self.fortiguard_anycast_source,
             id=self.id,
@@ -538,6 +581,7 @@ class AwaitableGetSystemFortiguardResult(GetSystemFortiguardResult):
             load_balance_servers=self.load_balance_servers,
             outbreak_prevention_cache=self.outbreak_prevention_cache,
             outbreak_prevention_cache_mpercent=self.outbreak_prevention_cache_mpercent,
+            outbreak_prevention_cache_mpermille=self.outbreak_prevention_cache_mpermille,
             outbreak_prevention_cache_ttl=self.outbreak_prevention_cache_ttl,
             outbreak_prevention_expiration=self.outbreak_prevention_expiration,
             outbreak_prevention_force_off=self.outbreak_prevention_force_off,
@@ -559,6 +603,7 @@ class AwaitableGetSystemFortiguardResult(GetSystemFortiguardResult):
             source_ip=self.source_ip,
             source_ip6=self.source_ip6,
             update_build_proxy=self.update_build_proxy,
+            update_dldb=self.update_dldb,
             update_extdb=self.update_extdb,
             update_ffdb=self.update_ffdb,
             update_server_location=self.update_server_location,
@@ -586,66 +631,71 @@ def get_system_fortiguard(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemFortiguard:GetSystemFortiguard', __args__, opts=opts, typ=GetSystemFortiguardResult).value
 
     return AwaitableGetSystemFortiguardResult(
-        antispam_cache=__ret__.antispam_cache,
-        antispam_cache_mpercent=__ret__.antispam_cache_mpercent,
-        antispam_cache_ttl=__ret__.antispam_cache_ttl,
-        antispam_expiration=__ret__.antispam_expiration,
-        antispam_force_off=__ret__.antispam_force_off,
-        antispam_license=__ret__.antispam_license,
-        antispam_timeout=__ret__.antispam_timeout,
-        anycast_sdns_server_ip=__ret__.anycast_sdns_server_ip,
-        anycast_sdns_server_port=__ret__.anycast_sdns_server_port,
-        auto_firmware_upgrade=__ret__.auto_firmware_upgrade,
-        auto_firmware_upgrade_day=__ret__.auto_firmware_upgrade_day,
-        auto_firmware_upgrade_end_hour=__ret__.auto_firmware_upgrade_end_hour,
-        auto_firmware_upgrade_start_hour=__ret__.auto_firmware_upgrade_start_hour,
-        auto_join_forticloud=__ret__.auto_join_forticloud,
-        ddns_server_ip=__ret__.ddns_server_ip,
-        ddns_server_ip6=__ret__.ddns_server_ip6,
-        ddns_server_port=__ret__.ddns_server_port,
-        fortiguard_anycast=__ret__.fortiguard_anycast,
-        fortiguard_anycast_source=__ret__.fortiguard_anycast_source,
-        id=__ret__.id,
-        interface=__ret__.interface,
-        interface_select_method=__ret__.interface_select_method,
-        load_balance_servers=__ret__.load_balance_servers,
-        outbreak_prevention_cache=__ret__.outbreak_prevention_cache,
-        outbreak_prevention_cache_mpercent=__ret__.outbreak_prevention_cache_mpercent,
-        outbreak_prevention_cache_ttl=__ret__.outbreak_prevention_cache_ttl,
-        outbreak_prevention_expiration=__ret__.outbreak_prevention_expiration,
-        outbreak_prevention_force_off=__ret__.outbreak_prevention_force_off,
-        outbreak_prevention_license=__ret__.outbreak_prevention_license,
-        outbreak_prevention_timeout=__ret__.outbreak_prevention_timeout,
-        persistent_connection=__ret__.persistent_connection,
-        port=__ret__.port,
-        protocol=__ret__.protocol,
-        proxy_password=__ret__.proxy_password,
-        proxy_server_ip=__ret__.proxy_server_ip,
-        proxy_server_port=__ret__.proxy_server_port,
-        proxy_username=__ret__.proxy_username,
-        sandbox_inline_scan=__ret__.sandbox_inline_scan,
-        sandbox_region=__ret__.sandbox_region,
-        sdns_options=__ret__.sdns_options,
-        sdns_server_ip=__ret__.sdns_server_ip,
-        sdns_server_port=__ret__.sdns_server_port,
-        service_account_id=__ret__.service_account_id,
-        source_ip=__ret__.source_ip,
-        source_ip6=__ret__.source_ip6,
-        update_build_proxy=__ret__.update_build_proxy,
-        update_extdb=__ret__.update_extdb,
-        update_ffdb=__ret__.update_ffdb,
-        update_server_location=__ret__.update_server_location,
-        update_uwdb=__ret__.update_uwdb,
-        vdom=__ret__.vdom,
-        vdomparam=__ret__.vdomparam,
-        videofilter_expiration=__ret__.videofilter_expiration,
-        videofilter_license=__ret__.videofilter_license,
-        webfilter_cache=__ret__.webfilter_cache,
-        webfilter_cache_ttl=__ret__.webfilter_cache_ttl,
-        webfilter_expiration=__ret__.webfilter_expiration,
-        webfilter_force_off=__ret__.webfilter_force_off,
-        webfilter_license=__ret__.webfilter_license,
-        webfilter_timeout=__ret__.webfilter_timeout)
+        antispam_cache=pulumi.get(__ret__, 'antispam_cache'),
+        antispam_cache_mpercent=pulumi.get(__ret__, 'antispam_cache_mpercent'),
+        antispam_cache_mpermille=pulumi.get(__ret__, 'antispam_cache_mpermille'),
+        antispam_cache_ttl=pulumi.get(__ret__, 'antispam_cache_ttl'),
+        antispam_expiration=pulumi.get(__ret__, 'antispam_expiration'),
+        antispam_force_off=pulumi.get(__ret__, 'antispam_force_off'),
+        antispam_license=pulumi.get(__ret__, 'antispam_license'),
+        antispam_timeout=pulumi.get(__ret__, 'antispam_timeout'),
+        anycast_sdns_server_ip=pulumi.get(__ret__, 'anycast_sdns_server_ip'),
+        anycast_sdns_server_port=pulumi.get(__ret__, 'anycast_sdns_server_port'),
+        auto_firmware_upgrade=pulumi.get(__ret__, 'auto_firmware_upgrade'),
+        auto_firmware_upgrade_day=pulumi.get(__ret__, 'auto_firmware_upgrade_day'),
+        auto_firmware_upgrade_delay=pulumi.get(__ret__, 'auto_firmware_upgrade_delay'),
+        auto_firmware_upgrade_end_hour=pulumi.get(__ret__, 'auto_firmware_upgrade_end_hour'),
+        auto_firmware_upgrade_start_hour=pulumi.get(__ret__, 'auto_firmware_upgrade_start_hour'),
+        auto_join_forticloud=pulumi.get(__ret__, 'auto_join_forticloud'),
+        ddns_server_ip=pulumi.get(__ret__, 'ddns_server_ip'),
+        ddns_server_ip6=pulumi.get(__ret__, 'ddns_server_ip6'),
+        ddns_server_port=pulumi.get(__ret__, 'ddns_server_port'),
+        fds_license_expiring_days=pulumi.get(__ret__, 'fds_license_expiring_days'),
+        fortiguard_anycast=pulumi.get(__ret__, 'fortiguard_anycast'),
+        fortiguard_anycast_source=pulumi.get(__ret__, 'fortiguard_anycast_source'),
+        id=pulumi.get(__ret__, 'id'),
+        interface=pulumi.get(__ret__, 'interface'),
+        interface_select_method=pulumi.get(__ret__, 'interface_select_method'),
+        load_balance_servers=pulumi.get(__ret__, 'load_balance_servers'),
+        outbreak_prevention_cache=pulumi.get(__ret__, 'outbreak_prevention_cache'),
+        outbreak_prevention_cache_mpercent=pulumi.get(__ret__, 'outbreak_prevention_cache_mpercent'),
+        outbreak_prevention_cache_mpermille=pulumi.get(__ret__, 'outbreak_prevention_cache_mpermille'),
+        outbreak_prevention_cache_ttl=pulumi.get(__ret__, 'outbreak_prevention_cache_ttl'),
+        outbreak_prevention_expiration=pulumi.get(__ret__, 'outbreak_prevention_expiration'),
+        outbreak_prevention_force_off=pulumi.get(__ret__, 'outbreak_prevention_force_off'),
+        outbreak_prevention_license=pulumi.get(__ret__, 'outbreak_prevention_license'),
+        outbreak_prevention_timeout=pulumi.get(__ret__, 'outbreak_prevention_timeout'),
+        persistent_connection=pulumi.get(__ret__, 'persistent_connection'),
+        port=pulumi.get(__ret__, 'port'),
+        protocol=pulumi.get(__ret__, 'protocol'),
+        proxy_password=pulumi.get(__ret__, 'proxy_password'),
+        proxy_server_ip=pulumi.get(__ret__, 'proxy_server_ip'),
+        proxy_server_port=pulumi.get(__ret__, 'proxy_server_port'),
+        proxy_username=pulumi.get(__ret__, 'proxy_username'),
+        sandbox_inline_scan=pulumi.get(__ret__, 'sandbox_inline_scan'),
+        sandbox_region=pulumi.get(__ret__, 'sandbox_region'),
+        sdns_options=pulumi.get(__ret__, 'sdns_options'),
+        sdns_server_ip=pulumi.get(__ret__, 'sdns_server_ip'),
+        sdns_server_port=pulumi.get(__ret__, 'sdns_server_port'),
+        service_account_id=pulumi.get(__ret__, 'service_account_id'),
+        source_ip=pulumi.get(__ret__, 'source_ip'),
+        source_ip6=pulumi.get(__ret__, 'source_ip6'),
+        update_build_proxy=pulumi.get(__ret__, 'update_build_proxy'),
+        update_dldb=pulumi.get(__ret__, 'update_dldb'),
+        update_extdb=pulumi.get(__ret__, 'update_extdb'),
+        update_ffdb=pulumi.get(__ret__, 'update_ffdb'),
+        update_server_location=pulumi.get(__ret__, 'update_server_location'),
+        update_uwdb=pulumi.get(__ret__, 'update_uwdb'),
+        vdom=pulumi.get(__ret__, 'vdom'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'),
+        videofilter_expiration=pulumi.get(__ret__, 'videofilter_expiration'),
+        videofilter_license=pulumi.get(__ret__, 'videofilter_license'),
+        webfilter_cache=pulumi.get(__ret__, 'webfilter_cache'),
+        webfilter_cache_ttl=pulumi.get(__ret__, 'webfilter_cache_ttl'),
+        webfilter_expiration=pulumi.get(__ret__, 'webfilter_expiration'),
+        webfilter_force_off=pulumi.get(__ret__, 'webfilter_force_off'),
+        webfilter_license=pulumi.get(__ret__, 'webfilter_license'),
+        webfilter_timeout=pulumi.get(__ret__, 'webfilter_timeout'))
 
 
 @_utilities.lift_output_func(get_system_fortiguard)

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -23,6 +24,7 @@ type FirewallProfileGroup struct {
 	FileFilterProfile      pulumi.StringOutput    `pulumi:"fileFilterProfile"`
 	IcapProfile            pulumi.StringOutput    `pulumi:"icapProfile"`
 	IpsSensor              pulumi.StringOutput    `pulumi:"ipsSensor"`
+	IpsVoipFilter          pulumi.StringOutput    `pulumi:"ipsVoipFilter"`
 	Name                   pulumi.StringOutput    `pulumi:"name"`
 	ProfileProtocolOptions pulumi.StringOutput    `pulumi:"profileProtocolOptions"`
 	SctpFilterProfile      pulumi.StringOutput    `pulumi:"sctpFilterProfile"`
@@ -43,7 +45,7 @@ func NewFirewallProfileGroup(ctx *pulumi.Context,
 		args = &FirewallProfileGroupArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallProfileGroup
 	err := ctx.RegisterResource("fortios:index/firewallProfileGroup:FirewallProfileGroup", name, args, &resource, opts...)
 	if err != nil {
@@ -76,6 +78,7 @@ type firewallProfileGroupState struct {
 	FileFilterProfile      *string `pulumi:"fileFilterProfile"`
 	IcapProfile            *string `pulumi:"icapProfile"`
 	IpsSensor              *string `pulumi:"ipsSensor"`
+	IpsVoipFilter          *string `pulumi:"ipsVoipFilter"`
 	Name                   *string `pulumi:"name"`
 	ProfileProtocolOptions *string `pulumi:"profileProtocolOptions"`
 	SctpFilterProfile      *string `pulumi:"sctpFilterProfile"`
@@ -100,6 +103,7 @@ type FirewallProfileGroupState struct {
 	FileFilterProfile      pulumi.StringPtrInput
 	IcapProfile            pulumi.StringPtrInput
 	IpsSensor              pulumi.StringPtrInput
+	IpsVoipFilter          pulumi.StringPtrInput
 	Name                   pulumi.StringPtrInput
 	ProfileProtocolOptions pulumi.StringPtrInput
 	SctpFilterProfile      pulumi.StringPtrInput
@@ -128,6 +132,7 @@ type firewallProfileGroupArgs struct {
 	FileFilterProfile      *string `pulumi:"fileFilterProfile"`
 	IcapProfile            *string `pulumi:"icapProfile"`
 	IpsSensor              *string `pulumi:"ipsSensor"`
+	IpsVoipFilter          *string `pulumi:"ipsVoipFilter"`
 	Name                   *string `pulumi:"name"`
 	ProfileProtocolOptions *string `pulumi:"profileProtocolOptions"`
 	SctpFilterProfile      *string `pulumi:"sctpFilterProfile"`
@@ -153,6 +158,7 @@ type FirewallProfileGroupArgs struct {
 	FileFilterProfile      pulumi.StringPtrInput
 	IcapProfile            pulumi.StringPtrInput
 	IpsSensor              pulumi.StringPtrInput
+	IpsVoipFilter          pulumi.StringPtrInput
 	Name                   pulumi.StringPtrInput
 	ProfileProtocolOptions pulumi.StringPtrInput
 	SctpFilterProfile      pulumi.StringPtrInput
@@ -291,6 +297,10 @@ func (o FirewallProfileGroupOutput) IcapProfile() pulumi.StringOutput {
 
 func (o FirewallProfileGroupOutput) IpsSensor() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallProfileGroup) pulumi.StringOutput { return v.IpsSensor }).(pulumi.StringOutput)
+}
+
+func (o FirewallProfileGroupOutput) IpsVoipFilter() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProfileGroup) pulumi.StringOutput { return v.IpsVoipFilter }).(pulumi.StringOutput)
 }
 
 func (o FirewallProfileGroupOutput) Name() pulumi.StringOutput {

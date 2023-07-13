@@ -36,6 +36,7 @@ export class SystemAlarm extends pulumi.CustomResource {
 
     public readonly audible!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly groups!: pulumi.Output<outputs.SystemAlarmGroup[] | undefined>;
     public readonly status!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -55,6 +56,7 @@ export class SystemAlarm extends pulumi.CustomResource {
             const state = argsOrState as SystemAlarmState | undefined;
             resourceInputs["audible"] = state ? state.audible : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["groups"] = state ? state.groups : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
@@ -62,6 +64,7 @@ export class SystemAlarm extends pulumi.CustomResource {
             const args = argsOrState as SystemAlarmArgs | undefined;
             resourceInputs["audible"] = args ? args.audible : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["groups"] = args ? args.groups : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -77,6 +80,7 @@ export class SystemAlarm extends pulumi.CustomResource {
 export interface SystemAlarmState {
     audible?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     groups?: pulumi.Input<pulumi.Input<inputs.SystemAlarmGroup>[]>;
     status?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
@@ -88,6 +92,7 @@ export interface SystemAlarmState {
 export interface SystemAlarmArgs {
     audible?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     groups?: pulumi.Input<pulumi.Input<inputs.SystemAlarmGroup>[]>;
     status?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -14,6 +15,7 @@ type SystemVirtualSwitch struct {
 	pulumi.CustomResourceState
 
 	DynamicSortSubtable pulumi.StringPtrOutput             `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput             `pulumi:"getAllTables"`
 	Name                pulumi.StringOutput                `pulumi:"name"`
 	PhysicalSwitch      pulumi.StringOutput                `pulumi:"physicalSwitch"`
 	Ports               SystemVirtualSwitchPortArrayOutput `pulumi:"ports"`
@@ -32,7 +34,7 @@ func NewSystemVirtualSwitch(ctx *pulumi.Context,
 		args = &SystemVirtualSwitchArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SystemVirtualSwitch
 	err := ctx.RegisterResource("fortios:index/systemVirtualSwitch:SystemVirtualSwitch", name, args, &resource, opts...)
 	if err != nil {
@@ -56,6 +58,7 @@ func GetSystemVirtualSwitch(ctx *pulumi.Context,
 // Input properties used for looking up and filtering SystemVirtualSwitch resources.
 type systemVirtualSwitchState struct {
 	DynamicSortSubtable *string                   `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                   `pulumi:"getAllTables"`
 	Name                *string                   `pulumi:"name"`
 	PhysicalSwitch      *string                   `pulumi:"physicalSwitch"`
 	Ports               []SystemVirtualSwitchPort `pulumi:"ports"`
@@ -69,6 +72,7 @@ type systemVirtualSwitchState struct {
 
 type SystemVirtualSwitchState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	PhysicalSwitch      pulumi.StringPtrInput
 	Ports               SystemVirtualSwitchPortArrayInput
@@ -86,6 +90,7 @@ func (SystemVirtualSwitchState) ElementType() reflect.Type {
 
 type systemVirtualSwitchArgs struct {
 	DynamicSortSubtable *string                   `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                   `pulumi:"getAllTables"`
 	Name                *string                   `pulumi:"name"`
 	PhysicalSwitch      *string                   `pulumi:"physicalSwitch"`
 	Ports               []SystemVirtualSwitchPort `pulumi:"ports"`
@@ -100,6 +105,7 @@ type systemVirtualSwitchArgs struct {
 // The set of arguments for constructing a SystemVirtualSwitch resource.
 type SystemVirtualSwitchArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Name                pulumi.StringPtrInput
 	PhysicalSwitch      pulumi.StringPtrInput
 	Ports               SystemVirtualSwitchPortArrayInput
@@ -200,6 +206,10 @@ func (o SystemVirtualSwitchOutput) ToSystemVirtualSwitchOutputWithContext(ctx co
 
 func (o SystemVirtualSwitchOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SystemVirtualSwitch) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemVirtualSwitchOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SystemVirtualSwitch) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SystemVirtualSwitchOutput) Name() pulumi.StringOutput {

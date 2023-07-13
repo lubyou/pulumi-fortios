@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -14,10 +15,12 @@ type FirewallAuthPortal struct {
 	pulumi.CustomResourceState
 
 	DynamicSortSubtable pulumi.StringPtrOutput             `pulumi:"dynamicSortSubtable"`
+	GetAllTables        pulumi.StringPtrOutput             `pulumi:"getAllTables"`
 	Groups              FirewallAuthPortalGroupArrayOutput `pulumi:"groups"`
 	IdentityBasedRoute  pulumi.StringOutput                `pulumi:"identityBasedRoute"`
 	PortalAddr          pulumi.StringOutput                `pulumi:"portalAddr"`
 	PortalAddr6         pulumi.StringOutput                `pulumi:"portalAddr6"`
+	ProxyAuth           pulumi.StringOutput                `pulumi:"proxyAuth"`
 	Vdomparam           pulumi.StringPtrOutput             `pulumi:"vdomparam"`
 }
 
@@ -28,7 +31,7 @@ func NewFirewallAuthPortal(ctx *pulumi.Context,
 		args = &FirewallAuthPortalArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallAuthPortal
 	err := ctx.RegisterResource("fortios:index/firewallAuthPortal:FirewallAuthPortal", name, args, &resource, opts...)
 	if err != nil {
@@ -52,19 +55,23 @@ func GetFirewallAuthPortal(ctx *pulumi.Context,
 // Input properties used for looking up and filtering FirewallAuthPortal resources.
 type firewallAuthPortalState struct {
 	DynamicSortSubtable *string                   `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                   `pulumi:"getAllTables"`
 	Groups              []FirewallAuthPortalGroup `pulumi:"groups"`
 	IdentityBasedRoute  *string                   `pulumi:"identityBasedRoute"`
 	PortalAddr          *string                   `pulumi:"portalAddr"`
 	PortalAddr6         *string                   `pulumi:"portalAddr6"`
+	ProxyAuth           *string                   `pulumi:"proxyAuth"`
 	Vdomparam           *string                   `pulumi:"vdomparam"`
 }
 
 type FirewallAuthPortalState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Groups              FirewallAuthPortalGroupArrayInput
 	IdentityBasedRoute  pulumi.StringPtrInput
 	PortalAddr          pulumi.StringPtrInput
 	PortalAddr6         pulumi.StringPtrInput
+	ProxyAuth           pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
 }
 
@@ -74,20 +81,24 @@ func (FirewallAuthPortalState) ElementType() reflect.Type {
 
 type firewallAuthPortalArgs struct {
 	DynamicSortSubtable *string                   `pulumi:"dynamicSortSubtable"`
+	GetAllTables        *string                   `pulumi:"getAllTables"`
 	Groups              []FirewallAuthPortalGroup `pulumi:"groups"`
 	IdentityBasedRoute  *string                   `pulumi:"identityBasedRoute"`
 	PortalAddr          *string                   `pulumi:"portalAddr"`
 	PortalAddr6         *string                   `pulumi:"portalAddr6"`
+	ProxyAuth           *string                   `pulumi:"proxyAuth"`
 	Vdomparam           *string                   `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallAuthPortal resource.
 type FirewallAuthPortalArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Groups              FirewallAuthPortalGroupArrayInput
 	IdentityBasedRoute  pulumi.StringPtrInput
 	PortalAddr          pulumi.StringPtrInput
 	PortalAddr6         pulumi.StringPtrInput
+	ProxyAuth           pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
 }
 
@@ -182,6 +193,10 @@ func (o FirewallAuthPortalOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FirewallAuthPortal) pulumi.StringPtrOutput { return v.DynamicSortSubtable }).(pulumi.StringPtrOutput)
 }
 
+func (o FirewallAuthPortalOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallAuthPortal) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
+}
+
 func (o FirewallAuthPortalOutput) Groups() FirewallAuthPortalGroupArrayOutput {
 	return o.ApplyT(func(v *FirewallAuthPortal) FirewallAuthPortalGroupArrayOutput { return v.Groups }).(FirewallAuthPortalGroupArrayOutput)
 }
@@ -196,6 +211,10 @@ func (o FirewallAuthPortalOutput) PortalAddr() pulumi.StringOutput {
 
 func (o FirewallAuthPortalOutput) PortalAddr6() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallAuthPortal) pulumi.StringOutput { return v.PortalAddr6 }).(pulumi.StringOutput)
+}
+
+func (o FirewallAuthPortalOutput) ProxyAuth() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallAuthPortal) pulumi.StringOutput { return v.ProxyAuth }).(pulumi.StringOutput)
 }
 
 func (o FirewallAuthPortalOutput) Vdomparam() pulumi.StringPtrOutput {

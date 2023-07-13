@@ -37,6 +37,7 @@ export class FirewallMulticastAddress6 extends pulumi.CustomResource {
     public readonly color!: pulumi.Output<number>;
     public readonly comment!: pulumi.Output<string | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly ip6!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
     public readonly taggings!: pulumi.Output<outputs.FirewallMulticastAddress6Tagging[] | undefined>;
@@ -59,6 +60,7 @@ export class FirewallMulticastAddress6 extends pulumi.CustomResource {
             resourceInputs["color"] = state ? state.color : undefined;
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["ip6"] = state ? state.ip6 : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["taggings"] = state ? state.taggings : undefined;
@@ -72,6 +74,7 @@ export class FirewallMulticastAddress6 extends pulumi.CustomResource {
             resourceInputs["color"] = args ? args.color : undefined;
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["ip6"] = args ? args.ip6 : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["taggings"] = args ? args.taggings : undefined;
@@ -90,6 +93,7 @@ export interface FirewallMulticastAddress6State {
     color?: pulumi.Input<number>;
     comment?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     ip6?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     taggings?: pulumi.Input<pulumi.Input<inputs.FirewallMulticastAddress6Tagging>[]>;
@@ -104,6 +108,7 @@ export interface FirewallMulticastAddress6Args {
     color?: pulumi.Input<number>;
     comment?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
+    getAllTables?: pulumi.Input<string>;
     ip6: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     taggings?: pulumi.Input<pulumi.Input<inputs.FirewallMulticastAddress6Tagging>[]>;

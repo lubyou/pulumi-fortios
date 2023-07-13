@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -40,7 +41,7 @@ func NewFirewallSecurityPolicySeq(ctx *pulumi.Context,
 	if args.PolicySrcId == nil {
 		return nil, errors.New("invalid value for required argument 'PolicySrcId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource FirewallSecurityPolicySeq
 	err := ctx.RegisterResource("fortios:index/firewallSecurityPolicySeq:FirewallSecurityPolicySeq", name, args, &resource, opts...)
 	if err != nil {

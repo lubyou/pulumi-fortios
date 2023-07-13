@@ -38,6 +38,7 @@ export class ApplicationName extends pulumi.CustomResource {
     public readonly category!: pulumi.Output<number>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly fosid!: pulumi.Output<number>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly metadatas!: pulumi.Output<outputs.ApplicationNameMetadata[] | undefined>;
     public readonly name!: pulumi.Output<string>;
     public readonly parameter!: pulumi.Output<string>;
@@ -68,6 +69,7 @@ export class ApplicationName extends pulumi.CustomResource {
             resourceInputs["category"] = state ? state.category : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["metadatas"] = state ? state.metadatas : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["parameter"] = state ? state.parameter : undefined;
@@ -89,6 +91,7 @@ export class ApplicationName extends pulumi.CustomResource {
             resourceInputs["category"] = args ? args.category : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["metadatas"] = args ? args.metadatas : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["parameter"] = args ? args.parameter : undefined;
@@ -115,6 +118,7 @@ export interface ApplicationNameState {
     category?: pulumi.Input<number>;
     dynamicSortSubtable?: pulumi.Input<string>;
     fosid?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     metadatas?: pulumi.Input<pulumi.Input<inputs.ApplicationNameMetadata>[]>;
     name?: pulumi.Input<string>;
     parameter?: pulumi.Input<string>;
@@ -137,6 +141,7 @@ export interface ApplicationNameArgs {
     category: pulumi.Input<number>;
     dynamicSortSubtable?: pulumi.Input<string>;
     fosid?: pulumi.Input<number>;
+    getAllTables?: pulumi.Input<string>;
     metadatas?: pulumi.Input<pulumi.Input<inputs.ApplicationNameMetadata>[]>;
     name?: pulumi.Input<string>;
     parameter?: pulumi.Input<string>;

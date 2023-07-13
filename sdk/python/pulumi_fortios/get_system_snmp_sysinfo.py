@@ -145,17 +145,17 @@ def get_system_snmp_sysinfo(vdomparam: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemSnmpSysinfo:GetSystemSnmpSysinfo', __args__, opts=opts, typ=GetSystemSnmpSysinfoResult).value
 
     return AwaitableGetSystemSnmpSysinfoResult(
-        contact_info=__ret__.contact_info,
-        description=__ret__.description,
-        engine_id=__ret__.engine_id,
-        engine_id_type=__ret__.engine_id_type,
-        id=__ret__.id,
-        location=__ret__.location,
-        status=__ret__.status,
-        trap_high_cpu_threshold=__ret__.trap_high_cpu_threshold,
-        trap_log_full_threshold=__ret__.trap_log_full_threshold,
-        trap_low_memory_threshold=__ret__.trap_low_memory_threshold,
-        vdomparam=__ret__.vdomparam)
+        contact_info=pulumi.get(__ret__, 'contact_info'),
+        description=pulumi.get(__ret__, 'description'),
+        engine_id=pulumi.get(__ret__, 'engine_id'),
+        engine_id_type=pulumi.get(__ret__, 'engine_id_type'),
+        id=pulumi.get(__ret__, 'id'),
+        location=pulumi.get(__ret__, 'location'),
+        status=pulumi.get(__ret__, 'status'),
+        trap_high_cpu_threshold=pulumi.get(__ret__, 'trap_high_cpu_threshold'),
+        trap_log_full_threshold=pulumi.get(__ret__, 'trap_log_full_threshold'),
+        trap_low_memory_threshold=pulumi.get(__ret__, 'trap_low_memory_threshold'),
+        vdomparam=pulumi.get(__ret__, 'vdomparam'))
 
 
 @_utilities.lift_output_func(get_system_snmp_sysinfo)

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,6 +16,7 @@ type SwitchControllerStpInstance struct {
 
 	DynamicSortSubtable pulumi.StringPtrOutput                          `pulumi:"dynamicSortSubtable"`
 	Fosid               pulumi.StringOutput                             `pulumi:"fosid"`
+	GetAllTables        pulumi.StringPtrOutput                          `pulumi:"getAllTables"`
 	Vdomparam           pulumi.StringPtrOutput                          `pulumi:"vdomparam"`
 	VlanRanges          SwitchControllerStpInstanceVlanRangeArrayOutput `pulumi:"vlanRanges"`
 }
@@ -26,7 +28,7 @@ func NewSwitchControllerStpInstance(ctx *pulumi.Context,
 		args = &SwitchControllerStpInstanceArgs{}
 	}
 
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource SwitchControllerStpInstance
 	err := ctx.RegisterResource("fortios:index/switchControllerStpInstance:SwitchControllerStpInstance", name, args, &resource, opts...)
 	if err != nil {
@@ -51,6 +53,7 @@ func GetSwitchControllerStpInstance(ctx *pulumi.Context,
 type switchControllerStpInstanceState struct {
 	DynamicSortSubtable *string                                `pulumi:"dynamicSortSubtable"`
 	Fosid               *string                                `pulumi:"fosid"`
+	GetAllTables        *string                                `pulumi:"getAllTables"`
 	Vdomparam           *string                                `pulumi:"vdomparam"`
 	VlanRanges          []SwitchControllerStpInstanceVlanRange `pulumi:"vlanRanges"`
 }
@@ -58,6 +61,7 @@ type switchControllerStpInstanceState struct {
 type SwitchControllerStpInstanceState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	Fosid               pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
 	VlanRanges          SwitchControllerStpInstanceVlanRangeArrayInput
 }
@@ -69,6 +73,7 @@ func (SwitchControllerStpInstanceState) ElementType() reflect.Type {
 type switchControllerStpInstanceArgs struct {
 	DynamicSortSubtable *string                                `pulumi:"dynamicSortSubtable"`
 	Fosid               *string                                `pulumi:"fosid"`
+	GetAllTables        *string                                `pulumi:"getAllTables"`
 	Vdomparam           *string                                `pulumi:"vdomparam"`
 	VlanRanges          []SwitchControllerStpInstanceVlanRange `pulumi:"vlanRanges"`
 }
@@ -77,6 +82,7 @@ type switchControllerStpInstanceArgs struct {
 type SwitchControllerStpInstanceArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	Fosid               pulumi.StringPtrInput
+	GetAllTables        pulumi.StringPtrInput
 	Vdomparam           pulumi.StringPtrInput
 	VlanRanges          SwitchControllerStpInstanceVlanRangeArrayInput
 }
@@ -174,6 +180,10 @@ func (o SwitchControllerStpInstanceOutput) DynamicSortSubtable() pulumi.StringPt
 
 func (o SwitchControllerStpInstanceOutput) Fosid() pulumi.StringOutput {
 	return o.ApplyT(func(v *SwitchControllerStpInstance) pulumi.StringOutput { return v.Fosid }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerStpInstanceOutput) GetAllTables() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *SwitchControllerStpInstance) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
 
 func (o SwitchControllerStpInstanceOutput) Vdomparam() pulumi.StringPtrOutput {

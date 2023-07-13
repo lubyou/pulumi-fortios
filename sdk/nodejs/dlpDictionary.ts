@@ -37,6 +37,8 @@ export class DlpDictionary extends pulumi.CustomResource {
     public readonly comment!: pulumi.Output<string | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly entries!: pulumi.Output<outputs.DlpDictionaryEntry[] | undefined>;
+    public readonly getAllTables!: pulumi.Output<string | undefined>;
+    public readonly matchAround!: pulumi.Output<string>;
     public readonly matchType!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
     public readonly uuid!: pulumi.Output<string>;
@@ -58,6 +60,8 @@ export class DlpDictionary extends pulumi.CustomResource {
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["entries"] = state ? state.entries : undefined;
+            resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
+            resourceInputs["matchAround"] = state ? state.matchAround : undefined;
             resourceInputs["matchType"] = state ? state.matchType : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["uuid"] = state ? state.uuid : undefined;
@@ -67,6 +71,8 @@ export class DlpDictionary extends pulumi.CustomResource {
             resourceInputs["comment"] = args ? args.comment : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["entries"] = args ? args.entries : undefined;
+            resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
+            resourceInputs["matchAround"] = args ? args.matchAround : undefined;
             resourceInputs["matchType"] = args ? args.matchType : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["uuid"] = args ? args.uuid : undefined;
@@ -84,6 +90,8 @@ export interface DlpDictionaryState {
     comment?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     entries?: pulumi.Input<pulumi.Input<inputs.DlpDictionaryEntry>[]>;
+    getAllTables?: pulumi.Input<string>;
+    matchAround?: pulumi.Input<string>;
     matchType?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     uuid?: pulumi.Input<string>;
@@ -97,6 +105,8 @@ export interface DlpDictionaryArgs {
     comment?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     entries?: pulumi.Input<pulumi.Input<inputs.DlpDictionaryEntry>[]>;
+    getAllTables?: pulumi.Input<string>;
+    matchAround?: pulumi.Input<string>;
     matchType?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     uuid?: pulumi.Input<string>;

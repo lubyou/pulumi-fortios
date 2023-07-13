@@ -16,21 +16,36 @@ __all__ = ['SystemSsoForticloudAdminArgs', 'SystemSsoForticloudAdmin']
 @pulumi.input_type
 class SystemSsoForticloudAdminArgs:
     def __init__(__self__, *,
+                 accprofile: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vdoms: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSsoForticloudAdminVdomArgs']]]] = None):
         """
         The set of arguments for constructing a SystemSsoForticloudAdmin resource.
         """
+        if accprofile is not None:
+            pulumi.set(__self__, "accprofile", accprofile)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if vdoms is not None:
             pulumi.set(__self__, "vdoms", vdoms)
+
+    @property
+    @pulumi.getter
+    def accprofile(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "accprofile")
+
+    @accprofile.setter
+    def accprofile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "accprofile", value)
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -40,6 +55,15 @@ class SystemSsoForticloudAdminArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -72,21 +96,36 @@ class SystemSsoForticloudAdminArgs:
 @pulumi.input_type
 class _SystemSsoForticloudAdminState:
     def __init__(__self__, *,
+                 accprofile: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vdoms: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSsoForticloudAdminVdomArgs']]]] = None):
         """
         Input properties used for looking up and filtering SystemSsoForticloudAdmin resources.
         """
+        if accprofile is not None:
+            pulumi.set(__self__, "accprofile", accprofile)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if get_all_tables is not None:
+            pulumi.set(__self__, "get_all_tables", get_all_tables)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if vdoms is not None:
             pulumi.set(__self__, "vdoms", vdoms)
+
+    @property
+    @pulumi.getter
+    def accprofile(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "accprofile")
+
+    @accprofile.setter
+    def accprofile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "accprofile", value)
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -96,6 +135,15 @@ class _SystemSsoForticloudAdminState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "get_all_tables")
+
+    @get_all_tables.setter
+    def get_all_tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "get_all_tables", value)
 
     @property
     @pulumi.getter
@@ -130,7 +178,9 @@ class SystemSsoForticloudAdmin(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 accprofile: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vdoms: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSsoForticloudAdminVdomArgs']]]]] = None,
@@ -163,7 +213,9 @@ class SystemSsoForticloudAdmin(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 accprofile: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vdoms: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSsoForticloudAdminVdomArgs']]]]] = None,
@@ -176,7 +228,9 @@ class SystemSsoForticloudAdmin(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SystemSsoForticloudAdminArgs.__new__(SystemSsoForticloudAdminArgs)
 
+            __props__.__dict__["accprofile"] = accprofile
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["name"] = name
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["vdoms"] = vdoms
@@ -190,7 +244,9 @@ class SystemSsoForticloudAdmin(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            accprofile: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            get_all_tables: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             vdoms: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSsoForticloudAdminVdomArgs']]]]] = None) -> 'SystemSsoForticloudAdmin':
@@ -206,16 +262,28 @@ class SystemSsoForticloudAdmin(pulumi.CustomResource):
 
         __props__ = _SystemSsoForticloudAdminState.__new__(_SystemSsoForticloudAdminState)
 
+        __props__.__dict__["accprofile"] = accprofile
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["name"] = name
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["vdoms"] = vdoms
         return SystemSsoForticloudAdmin(resource_name, opts=opts, __props__=__props__)
 
     @property
+    @pulumi.getter
+    def accprofile(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "accprofile")
+
+    @property
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="getAllTables")
+    def get_all_tables(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "get_all_tables")
 
     @property
     @pulumi.getter
