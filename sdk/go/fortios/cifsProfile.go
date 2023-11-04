@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type CifsProfile struct {
@@ -125,6 +126,12 @@ func (i *CifsProfile) ToCifsProfileOutputWithContext(ctx context.Context) CifsPr
 	return pulumi.ToOutputWithContext(ctx, i).(CifsProfileOutput)
 }
 
+func (i *CifsProfile) ToOutput(ctx context.Context) pulumix.Output[*CifsProfile] {
+	return pulumix.Output[*CifsProfile]{
+		OutputState: i.ToCifsProfileOutputWithContext(ctx).OutputState,
+	}
+}
+
 // CifsProfileArrayInput is an input type that accepts CifsProfileArray and CifsProfileArrayOutput values.
 // You can construct a concrete instance of `CifsProfileArrayInput` via:
 //
@@ -148,6 +155,12 @@ func (i CifsProfileArray) ToCifsProfileArrayOutput() CifsProfileArrayOutput {
 
 func (i CifsProfileArray) ToCifsProfileArrayOutputWithContext(ctx context.Context) CifsProfileArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CifsProfileArrayOutput)
+}
+
+func (i CifsProfileArray) ToOutput(ctx context.Context) pulumix.Output[[]*CifsProfile] {
+	return pulumix.Output[[]*CifsProfile]{
+		OutputState: i.ToCifsProfileArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // CifsProfileMapInput is an input type that accepts CifsProfileMap and CifsProfileMapOutput values.
@@ -175,6 +188,12 @@ func (i CifsProfileMap) ToCifsProfileMapOutputWithContext(ctx context.Context) C
 	return pulumi.ToOutputWithContext(ctx, i).(CifsProfileMapOutput)
 }
 
+func (i CifsProfileMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*CifsProfile] {
+	return pulumix.Output[map[string]*CifsProfile]{
+		OutputState: i.ToCifsProfileMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type CifsProfileOutput struct{ *pulumi.OutputState }
 
 func (CifsProfileOutput) ElementType() reflect.Type {
@@ -187,6 +206,12 @@ func (o CifsProfileOutput) ToCifsProfileOutput() CifsProfileOutput {
 
 func (o CifsProfileOutput) ToCifsProfileOutputWithContext(ctx context.Context) CifsProfileOutput {
 	return o
+}
+
+func (o CifsProfileOutput) ToOutput(ctx context.Context) pulumix.Output[*CifsProfile] {
+	return pulumix.Output[*CifsProfile]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o CifsProfileOutput) DomainController() pulumi.StringOutput {
@@ -235,6 +260,12 @@ func (o CifsProfileArrayOutput) ToCifsProfileArrayOutputWithContext(ctx context.
 	return o
 }
 
+func (o CifsProfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*CifsProfile] {
+	return pulumix.Output[[]*CifsProfile]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o CifsProfileArrayOutput) Index(i pulumi.IntInput) CifsProfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CifsProfile {
 		return vs[0].([]*CifsProfile)[vs[1].(int)]
@@ -253,6 +284,12 @@ func (o CifsProfileMapOutput) ToCifsProfileMapOutput() CifsProfileMapOutput {
 
 func (o CifsProfileMapOutput) ToCifsProfileMapOutputWithContext(ctx context.Context) CifsProfileMapOutput {
 	return o
+}
+
+func (o CifsProfileMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*CifsProfile] {
+	return pulumix.Output[map[string]*CifsProfile]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o CifsProfileMapOutput) MapIndex(k pulumi.StringInput) CifsProfileOutput {

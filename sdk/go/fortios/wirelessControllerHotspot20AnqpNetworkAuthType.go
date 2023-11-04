@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WirelessControllerHotspot20AnqpNetworkAuthType struct {
@@ -105,6 +106,12 @@ func (i *WirelessControllerHotspot20AnqpNetworkAuthType) ToWirelessControllerHot
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20AnqpNetworkAuthTypeOutput)
 }
 
+func (i *WirelessControllerHotspot20AnqpNetworkAuthType) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerHotspot20AnqpNetworkAuthType] {
+	return pulumix.Output[*WirelessControllerHotspot20AnqpNetworkAuthType]{
+		OutputState: i.ToWirelessControllerHotspot20AnqpNetworkAuthTypeOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerHotspot20AnqpNetworkAuthTypeArrayInput is an input type that accepts WirelessControllerHotspot20AnqpNetworkAuthTypeArray and WirelessControllerHotspot20AnqpNetworkAuthTypeArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20AnqpNetworkAuthTypeArrayInput` via:
 //
@@ -128,6 +135,12 @@ func (i WirelessControllerHotspot20AnqpNetworkAuthTypeArray) ToWirelessControlle
 
 func (i WirelessControllerHotspot20AnqpNetworkAuthTypeArray) ToWirelessControllerHotspot20AnqpNetworkAuthTypeArrayOutputWithContext(ctx context.Context) WirelessControllerHotspot20AnqpNetworkAuthTypeArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20AnqpNetworkAuthTypeArrayOutput)
+}
+
+func (i WirelessControllerHotspot20AnqpNetworkAuthTypeArray) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerHotspot20AnqpNetworkAuthType] {
+	return pulumix.Output[[]*WirelessControllerHotspot20AnqpNetworkAuthType]{
+		OutputState: i.ToWirelessControllerHotspot20AnqpNetworkAuthTypeArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // WirelessControllerHotspot20AnqpNetworkAuthTypeMapInput is an input type that accepts WirelessControllerHotspot20AnqpNetworkAuthTypeMap and WirelessControllerHotspot20AnqpNetworkAuthTypeMapOutput values.
@@ -155,6 +168,12 @@ func (i WirelessControllerHotspot20AnqpNetworkAuthTypeMap) ToWirelessControllerH
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20AnqpNetworkAuthTypeMapOutput)
 }
 
+func (i WirelessControllerHotspot20AnqpNetworkAuthTypeMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerHotspot20AnqpNetworkAuthType] {
+	return pulumix.Output[map[string]*WirelessControllerHotspot20AnqpNetworkAuthType]{
+		OutputState: i.ToWirelessControllerHotspot20AnqpNetworkAuthTypeMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerHotspot20AnqpNetworkAuthTypeOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20AnqpNetworkAuthTypeOutput) ElementType() reflect.Type {
@@ -167,6 +186,12 @@ func (o WirelessControllerHotspot20AnqpNetworkAuthTypeOutput) ToWirelessControll
 
 func (o WirelessControllerHotspot20AnqpNetworkAuthTypeOutput) ToWirelessControllerHotspot20AnqpNetworkAuthTypeOutputWithContext(ctx context.Context) WirelessControllerHotspot20AnqpNetworkAuthTypeOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20AnqpNetworkAuthTypeOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerHotspot20AnqpNetworkAuthType] {
+	return pulumix.Output[*WirelessControllerHotspot20AnqpNetworkAuthType]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20AnqpNetworkAuthTypeOutput) AuthType() pulumi.StringOutput {
@@ -199,6 +224,12 @@ func (o WirelessControllerHotspot20AnqpNetworkAuthTypeArrayOutput) ToWirelessCon
 	return o
 }
 
+func (o WirelessControllerHotspot20AnqpNetworkAuthTypeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerHotspot20AnqpNetworkAuthType] {
+	return pulumix.Output[[]*WirelessControllerHotspot20AnqpNetworkAuthType]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o WirelessControllerHotspot20AnqpNetworkAuthTypeArrayOutput) Index(i pulumi.IntInput) WirelessControllerHotspot20AnqpNetworkAuthTypeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerHotspot20AnqpNetworkAuthType {
 		return vs[0].([]*WirelessControllerHotspot20AnqpNetworkAuthType)[vs[1].(int)]
@@ -217,6 +248,12 @@ func (o WirelessControllerHotspot20AnqpNetworkAuthTypeMapOutput) ToWirelessContr
 
 func (o WirelessControllerHotspot20AnqpNetworkAuthTypeMapOutput) ToWirelessControllerHotspot20AnqpNetworkAuthTypeMapOutputWithContext(ctx context.Context) WirelessControllerHotspot20AnqpNetworkAuthTypeMapOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20AnqpNetworkAuthTypeMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerHotspot20AnqpNetworkAuthType] {
+	return pulumix.Output[map[string]*WirelessControllerHotspot20AnqpNetworkAuthType]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20AnqpNetworkAuthTypeMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerHotspot20AnqpNetworkAuthTypeOutput {

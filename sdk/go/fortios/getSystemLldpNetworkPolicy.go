@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemLldpNetworkPolicy(ctx *pulumi.Context, args *LookupSystemLldpNetworkPolicyArgs, opts ...pulumi.InvokeOption) (*LookupSystemLldpNetworkPolicyResult, error) {
@@ -80,6 +81,12 @@ func (o LookupSystemLldpNetworkPolicyResultOutput) ToLookupSystemLldpNetworkPoli
 
 func (o LookupSystemLldpNetworkPolicyResultOutput) ToLookupSystemLldpNetworkPolicyResultOutputWithContext(ctx context.Context) LookupSystemLldpNetworkPolicyResultOutput {
 	return o
+}
+
+func (o LookupSystemLldpNetworkPolicyResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemLldpNetworkPolicyResult] {
+	return pulumix.Output[LookupSystemLldpNetworkPolicyResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupSystemLldpNetworkPolicyResultOutput) Comment() pulumi.StringOutput {

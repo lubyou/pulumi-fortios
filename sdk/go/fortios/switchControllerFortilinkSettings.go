@@ -9,18 +9,20 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerFortilinkSettings struct {
 	pulumi.CustomResourceState
 
-	Fortilink     pulumi.StringOutput                             `pulumi:"fortilink"`
-	GetAllTables  pulumi.StringPtrOutput                          `pulumi:"getAllTables"`
-	InactiveTimer pulumi.IntOutput                                `pulumi:"inactiveTimer"`
-	LinkDownFlush pulumi.StringOutput                             `pulumi:"linkDownFlush"`
-	NacPorts      SwitchControllerFortilinkSettingsNacPortsOutput `pulumi:"nacPorts"`
-	Name          pulumi.StringOutput                             `pulumi:"name"`
-	Vdomparam     pulumi.StringPtrOutput                          `pulumi:"vdomparam"`
+	AccessVlanMode pulumi.StringOutput                             `pulumi:"accessVlanMode"`
+	Fortilink      pulumi.StringOutput                             `pulumi:"fortilink"`
+	GetAllTables   pulumi.StringPtrOutput                          `pulumi:"getAllTables"`
+	InactiveTimer  pulumi.IntOutput                                `pulumi:"inactiveTimer"`
+	LinkDownFlush  pulumi.StringOutput                             `pulumi:"linkDownFlush"`
+	NacPorts       SwitchControllerFortilinkSettingsNacPortsOutput `pulumi:"nacPorts"`
+	Name           pulumi.StringOutput                             `pulumi:"name"`
+	Vdomparam      pulumi.StringPtrOutput                          `pulumi:"vdomparam"`
 }
 
 // NewSwitchControllerFortilinkSettings registers a new resource with the given unique name, arguments, and options.
@@ -53,23 +55,25 @@ func GetSwitchControllerFortilinkSettings(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerFortilinkSettings resources.
 type switchControllerFortilinkSettingsState struct {
-	Fortilink     *string                                    `pulumi:"fortilink"`
-	GetAllTables  *string                                    `pulumi:"getAllTables"`
-	InactiveTimer *int                                       `pulumi:"inactiveTimer"`
-	LinkDownFlush *string                                    `pulumi:"linkDownFlush"`
-	NacPorts      *SwitchControllerFortilinkSettingsNacPorts `pulumi:"nacPorts"`
-	Name          *string                                    `pulumi:"name"`
-	Vdomparam     *string                                    `pulumi:"vdomparam"`
+	AccessVlanMode *string                                    `pulumi:"accessVlanMode"`
+	Fortilink      *string                                    `pulumi:"fortilink"`
+	GetAllTables   *string                                    `pulumi:"getAllTables"`
+	InactiveTimer  *int                                       `pulumi:"inactiveTimer"`
+	LinkDownFlush  *string                                    `pulumi:"linkDownFlush"`
+	NacPorts       *SwitchControllerFortilinkSettingsNacPorts `pulumi:"nacPorts"`
+	Name           *string                                    `pulumi:"name"`
+	Vdomparam      *string                                    `pulumi:"vdomparam"`
 }
 
 type SwitchControllerFortilinkSettingsState struct {
-	Fortilink     pulumi.StringPtrInput
-	GetAllTables  pulumi.StringPtrInput
-	InactiveTimer pulumi.IntPtrInput
-	LinkDownFlush pulumi.StringPtrInput
-	NacPorts      SwitchControllerFortilinkSettingsNacPortsPtrInput
-	Name          pulumi.StringPtrInput
-	Vdomparam     pulumi.StringPtrInput
+	AccessVlanMode pulumi.StringPtrInput
+	Fortilink      pulumi.StringPtrInput
+	GetAllTables   pulumi.StringPtrInput
+	InactiveTimer  pulumi.IntPtrInput
+	LinkDownFlush  pulumi.StringPtrInput
+	NacPorts       SwitchControllerFortilinkSettingsNacPortsPtrInput
+	Name           pulumi.StringPtrInput
+	Vdomparam      pulumi.StringPtrInput
 }
 
 func (SwitchControllerFortilinkSettingsState) ElementType() reflect.Type {
@@ -77,24 +81,26 @@ func (SwitchControllerFortilinkSettingsState) ElementType() reflect.Type {
 }
 
 type switchControllerFortilinkSettingsArgs struct {
-	Fortilink     *string                                    `pulumi:"fortilink"`
-	GetAllTables  *string                                    `pulumi:"getAllTables"`
-	InactiveTimer *int                                       `pulumi:"inactiveTimer"`
-	LinkDownFlush *string                                    `pulumi:"linkDownFlush"`
-	NacPorts      *SwitchControllerFortilinkSettingsNacPorts `pulumi:"nacPorts"`
-	Name          *string                                    `pulumi:"name"`
-	Vdomparam     *string                                    `pulumi:"vdomparam"`
+	AccessVlanMode *string                                    `pulumi:"accessVlanMode"`
+	Fortilink      *string                                    `pulumi:"fortilink"`
+	GetAllTables   *string                                    `pulumi:"getAllTables"`
+	InactiveTimer  *int                                       `pulumi:"inactiveTimer"`
+	LinkDownFlush  *string                                    `pulumi:"linkDownFlush"`
+	NacPorts       *SwitchControllerFortilinkSettingsNacPorts `pulumi:"nacPorts"`
+	Name           *string                                    `pulumi:"name"`
+	Vdomparam      *string                                    `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerFortilinkSettings resource.
 type SwitchControllerFortilinkSettingsArgs struct {
-	Fortilink     pulumi.StringPtrInput
-	GetAllTables  pulumi.StringPtrInput
-	InactiveTimer pulumi.IntPtrInput
-	LinkDownFlush pulumi.StringPtrInput
-	NacPorts      SwitchControllerFortilinkSettingsNacPortsPtrInput
-	Name          pulumi.StringPtrInput
-	Vdomparam     pulumi.StringPtrInput
+	AccessVlanMode pulumi.StringPtrInput
+	Fortilink      pulumi.StringPtrInput
+	GetAllTables   pulumi.StringPtrInput
+	InactiveTimer  pulumi.IntPtrInput
+	LinkDownFlush  pulumi.StringPtrInput
+	NacPorts       SwitchControllerFortilinkSettingsNacPortsPtrInput
+	Name           pulumi.StringPtrInput
+	Vdomparam      pulumi.StringPtrInput
 }
 
 func (SwitchControllerFortilinkSettingsArgs) ElementType() reflect.Type {
@@ -118,6 +124,12 @@ func (i *SwitchControllerFortilinkSettings) ToSwitchControllerFortilinkSettingsO
 
 func (i *SwitchControllerFortilinkSettings) ToSwitchControllerFortilinkSettingsOutputWithContext(ctx context.Context) SwitchControllerFortilinkSettingsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerFortilinkSettingsOutput)
+}
+
+func (i *SwitchControllerFortilinkSettings) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerFortilinkSettings] {
+	return pulumix.Output[*SwitchControllerFortilinkSettings]{
+		OutputState: i.ToSwitchControllerFortilinkSettingsOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SwitchControllerFortilinkSettingsArrayInput is an input type that accepts SwitchControllerFortilinkSettingsArray and SwitchControllerFortilinkSettingsArrayOutput values.
@@ -145,6 +157,12 @@ func (i SwitchControllerFortilinkSettingsArray) ToSwitchControllerFortilinkSetti
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerFortilinkSettingsArrayOutput)
 }
 
+func (i SwitchControllerFortilinkSettingsArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerFortilinkSettings] {
+	return pulumix.Output[[]*SwitchControllerFortilinkSettings]{
+		OutputState: i.ToSwitchControllerFortilinkSettingsArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SwitchControllerFortilinkSettingsMapInput is an input type that accepts SwitchControllerFortilinkSettingsMap and SwitchControllerFortilinkSettingsMapOutput values.
 // You can construct a concrete instance of `SwitchControllerFortilinkSettingsMapInput` via:
 //
@@ -170,6 +188,12 @@ func (i SwitchControllerFortilinkSettingsMap) ToSwitchControllerFortilinkSetting
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerFortilinkSettingsMapOutput)
 }
 
+func (i SwitchControllerFortilinkSettingsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerFortilinkSettings] {
+	return pulumix.Output[map[string]*SwitchControllerFortilinkSettings]{
+		OutputState: i.ToSwitchControllerFortilinkSettingsMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SwitchControllerFortilinkSettingsOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerFortilinkSettingsOutput) ElementType() reflect.Type {
@@ -182,6 +206,16 @@ func (o SwitchControllerFortilinkSettingsOutput) ToSwitchControllerFortilinkSett
 
 func (o SwitchControllerFortilinkSettingsOutput) ToSwitchControllerFortilinkSettingsOutputWithContext(ctx context.Context) SwitchControllerFortilinkSettingsOutput {
 	return o
+}
+
+func (o SwitchControllerFortilinkSettingsOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerFortilinkSettings] {
+	return pulumix.Output[*SwitchControllerFortilinkSettings]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o SwitchControllerFortilinkSettingsOutput) AccessVlanMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerFortilinkSettings) pulumi.StringOutput { return v.AccessVlanMode }).(pulumi.StringOutput)
 }
 
 func (o SwitchControllerFortilinkSettingsOutput) Fortilink() pulumi.StringOutput {
@@ -228,6 +262,12 @@ func (o SwitchControllerFortilinkSettingsArrayOutput) ToSwitchControllerFortilin
 	return o
 }
 
+func (o SwitchControllerFortilinkSettingsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerFortilinkSettings] {
+	return pulumix.Output[[]*SwitchControllerFortilinkSettings]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SwitchControllerFortilinkSettingsArrayOutput) Index(i pulumi.IntInput) SwitchControllerFortilinkSettingsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerFortilinkSettings {
 		return vs[0].([]*SwitchControllerFortilinkSettings)[vs[1].(int)]
@@ -246,6 +286,12 @@ func (o SwitchControllerFortilinkSettingsMapOutput) ToSwitchControllerFortilinkS
 
 func (o SwitchControllerFortilinkSettingsMapOutput) ToSwitchControllerFortilinkSettingsMapOutputWithContext(ctx context.Context) SwitchControllerFortilinkSettingsMapOutput {
 	return o
+}
+
+func (o SwitchControllerFortilinkSettingsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerFortilinkSettings] {
+	return pulumix.Output[map[string]*SwitchControllerFortilinkSettings]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerFortilinkSettingsMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerFortilinkSettingsOutput {

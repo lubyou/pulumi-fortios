@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetFirewallAddrgrp6List(ctx *pulumi.Context, args *GetFirewallAddrgrp6ListArgs, opts ...pulumi.InvokeOption) (*GetFirewallAddrgrp6ListResult, error) {
@@ -72,6 +73,12 @@ func (o GetFirewallAddrgrp6ListResultOutput) ToGetFirewallAddrgrp6ListResultOutp
 
 func (o GetFirewallAddrgrp6ListResultOutput) ToGetFirewallAddrgrp6ListResultOutputWithContext(ctx context.Context) GetFirewallAddrgrp6ListResultOutput {
 	return o
+}
+
+func (o GetFirewallAddrgrp6ListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetFirewallAddrgrp6ListResult] {
+	return pulumix.Output[GetFirewallAddrgrp6ListResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetFirewallAddrgrp6ListResultOutput) Filter() pulumi.StringPtrOutput {

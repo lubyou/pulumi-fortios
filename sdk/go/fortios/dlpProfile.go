@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type DlpProfile struct {
@@ -150,6 +151,12 @@ func (i *DlpProfile) ToDlpProfileOutputWithContext(ctx context.Context) DlpProfi
 	return pulumi.ToOutputWithContext(ctx, i).(DlpProfileOutput)
 }
 
+func (i *DlpProfile) ToOutput(ctx context.Context) pulumix.Output[*DlpProfile] {
+	return pulumix.Output[*DlpProfile]{
+		OutputState: i.ToDlpProfileOutputWithContext(ctx).OutputState,
+	}
+}
+
 // DlpProfileArrayInput is an input type that accepts DlpProfileArray and DlpProfileArrayOutput values.
 // You can construct a concrete instance of `DlpProfileArrayInput` via:
 //
@@ -173,6 +180,12 @@ func (i DlpProfileArray) ToDlpProfileArrayOutput() DlpProfileArrayOutput {
 
 func (i DlpProfileArray) ToDlpProfileArrayOutputWithContext(ctx context.Context) DlpProfileArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DlpProfileArrayOutput)
+}
+
+func (i DlpProfileArray) ToOutput(ctx context.Context) pulumix.Output[[]*DlpProfile] {
+	return pulumix.Output[[]*DlpProfile]{
+		OutputState: i.ToDlpProfileArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // DlpProfileMapInput is an input type that accepts DlpProfileMap and DlpProfileMapOutput values.
@@ -200,6 +213,12 @@ func (i DlpProfileMap) ToDlpProfileMapOutputWithContext(ctx context.Context) Dlp
 	return pulumi.ToOutputWithContext(ctx, i).(DlpProfileMapOutput)
 }
 
+func (i DlpProfileMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DlpProfile] {
+	return pulumix.Output[map[string]*DlpProfile]{
+		OutputState: i.ToDlpProfileMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DlpProfileOutput struct{ *pulumi.OutputState }
 
 func (DlpProfileOutput) ElementType() reflect.Type {
@@ -212,6 +231,12 @@ func (o DlpProfileOutput) ToDlpProfileOutput() DlpProfileOutput {
 
 func (o DlpProfileOutput) ToDlpProfileOutputWithContext(ctx context.Context) DlpProfileOutput {
 	return o
+}
+
+func (o DlpProfileOutput) ToOutput(ctx context.Context) pulumix.Output[*DlpProfile] {
+	return pulumix.Output[*DlpProfile]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DlpProfileOutput) Comment() pulumi.StringPtrOutput {
@@ -280,6 +305,12 @@ func (o DlpProfileArrayOutput) ToDlpProfileArrayOutputWithContext(ctx context.Co
 	return o
 }
 
+func (o DlpProfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DlpProfile] {
+	return pulumix.Output[[]*DlpProfile]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DlpProfileArrayOutput) Index(i pulumi.IntInput) DlpProfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DlpProfile {
 		return vs[0].([]*DlpProfile)[vs[1].(int)]
@@ -298,6 +329,12 @@ func (o DlpProfileMapOutput) ToDlpProfileMapOutput() DlpProfileMapOutput {
 
 func (o DlpProfileMapOutput) ToDlpProfileMapOutputWithContext(ctx context.Context) DlpProfileMapOutput {
 	return o
+}
+
+func (o DlpProfileMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DlpProfile] {
+	return pulumix.Output[map[string]*DlpProfile]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DlpProfileMapOutput) MapIndex(k pulumi.StringInput) DlpProfileOutput {

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupRouterStatic(ctx *pulumi.Context, args *LookupRouterStaticArgs, opts ...pulumi.InvokeOption) (*LookupRouterStaticResult, error) {
@@ -93,6 +94,12 @@ func (o LookupRouterStaticResultOutput) ToLookupRouterStaticResultOutput() Looku
 
 func (o LookupRouterStaticResultOutput) ToLookupRouterStaticResultOutputWithContext(ctx context.Context) LookupRouterStaticResultOutput {
 	return o
+}
+
+func (o LookupRouterStaticResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupRouterStaticResult] {
+	return pulumix.Output[LookupRouterStaticResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupRouterStaticResultOutput) Bfd() pulumi.StringOutput {

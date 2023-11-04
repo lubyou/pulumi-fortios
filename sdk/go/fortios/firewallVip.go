@@ -9,101 +9,106 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallVip struct {
 	pulumi.CustomResourceState
 
-	AddNat46Route                pulumi.StringOutput                        `pulumi:"addNat46Route"`
-	ArpReply                     pulumi.StringOutput                        `pulumi:"arpReply"`
-	Color                        pulumi.IntOutput                           `pulumi:"color"`
-	Comment                      pulumi.StringPtrOutput                     `pulumi:"comment"`
-	DnsMappingTtl                pulumi.IntOutput                           `pulumi:"dnsMappingTtl"`
-	DynamicSortSubtable          pulumi.StringPtrOutput                     `pulumi:"dynamicSortSubtable"`
-	Extaddrs                     FirewallVipExtaddrArrayOutput              `pulumi:"extaddrs"`
-	Extintf                      pulumi.StringOutput                        `pulumi:"extintf"`
-	Extip                        pulumi.StringOutput                        `pulumi:"extip"`
-	Extport                      pulumi.StringOutput                        `pulumi:"extport"`
-	Fosid                        pulumi.IntOutput                           `pulumi:"fosid"`
-	GetAllTables                 pulumi.StringPtrOutput                     `pulumi:"getAllTables"`
-	GratuitousArpInterval        pulumi.IntOutput                           `pulumi:"gratuitousArpInterval"`
-	HttpCookieAge                pulumi.IntOutput                           `pulumi:"httpCookieAge"`
-	HttpCookieDomain             pulumi.StringOutput                        `pulumi:"httpCookieDomain"`
-	HttpCookieDomainFromHost     pulumi.StringOutput                        `pulumi:"httpCookieDomainFromHost"`
-	HttpCookieGeneration         pulumi.IntOutput                           `pulumi:"httpCookieGeneration"`
-	HttpCookiePath               pulumi.StringOutput                        `pulumi:"httpCookiePath"`
-	HttpCookieShare              pulumi.StringOutput                        `pulumi:"httpCookieShare"`
-	HttpIpHeader                 pulumi.StringOutput                        `pulumi:"httpIpHeader"`
-	HttpIpHeaderName             pulumi.StringOutput                        `pulumi:"httpIpHeaderName"`
-	HttpMultiplex                pulumi.StringOutput                        `pulumi:"httpMultiplex"`
-	HttpMultiplexMaxRequest      pulumi.IntOutput                           `pulumi:"httpMultiplexMaxRequest"`
-	HttpMultiplexTtl             pulumi.IntOutput                           `pulumi:"httpMultiplexTtl"`
-	HttpRedirect                 pulumi.StringOutput                        `pulumi:"httpRedirect"`
-	HttpSupportedMaxVersion      pulumi.StringOutput                        `pulumi:"httpSupportedMaxVersion"`
-	HttpsCookieSecure            pulumi.StringOutput                        `pulumi:"httpsCookieSecure"`
-	Ipv6Mappedip                 pulumi.StringOutput                        `pulumi:"ipv6Mappedip"`
-	Ipv6Mappedport               pulumi.StringOutput                        `pulumi:"ipv6Mappedport"`
-	LdbMethod                    pulumi.StringOutput                        `pulumi:"ldbMethod"`
-	MappedAddr                   pulumi.StringOutput                        `pulumi:"mappedAddr"`
-	Mappedips                    FirewallVipMappedipArrayOutput             `pulumi:"mappedips"`
-	Mappedport                   pulumi.StringOutput                        `pulumi:"mappedport"`
-	MaxEmbryonicConnections      pulumi.IntOutput                           `pulumi:"maxEmbryonicConnections"`
-	Monitors                     FirewallVipMonitorArrayOutput              `pulumi:"monitors"`
-	Name                         pulumi.StringOutput                        `pulumi:"name"`
-	Nat44                        pulumi.StringOutput                        `pulumi:"nat44"`
-	Nat46                        pulumi.StringOutput                        `pulumi:"nat46"`
-	NatSourceVip                 pulumi.StringOutput                        `pulumi:"natSourceVip"`
-	OutlookWebAccess             pulumi.StringOutput                        `pulumi:"outlookWebAccess"`
-	Persistence                  pulumi.StringOutput                        `pulumi:"persistence"`
-	Portforward                  pulumi.StringOutput                        `pulumi:"portforward"`
-	PortmappingType              pulumi.StringOutput                        `pulumi:"portmappingType"`
-	Protocol                     pulumi.StringOutput                        `pulumi:"protocol"`
-	Realservers                  FirewallVipRealserverArrayOutput           `pulumi:"realservers"`
-	ServerType                   pulumi.StringOutput                        `pulumi:"serverType"`
-	Services                     FirewallVipServiceArrayOutput              `pulumi:"services"`
-	SrcFilters                   FirewallVipSrcFilterArrayOutput            `pulumi:"srcFilters"`
-	SrcintfFilters               FirewallVipSrcintfFilterArrayOutput        `pulumi:"srcintfFilters"`
-	SslAcceptFfdheGroups         pulumi.StringOutput                        `pulumi:"sslAcceptFfdheGroups"`
-	SslAlgorithm                 pulumi.StringOutput                        `pulumi:"sslAlgorithm"`
-	SslCertificate               pulumi.StringOutput                        `pulumi:"sslCertificate"`
-	SslCipherSuites              FirewallVipSslCipherSuiteArrayOutput       `pulumi:"sslCipherSuites"`
-	SslClientFallback            pulumi.StringOutput                        `pulumi:"sslClientFallback"`
-	SslClientRekeyCount          pulumi.IntOutput                           `pulumi:"sslClientRekeyCount"`
-	SslClientRenegotiation       pulumi.StringOutput                        `pulumi:"sslClientRenegotiation"`
-	SslClientSessionStateMax     pulumi.IntOutput                           `pulumi:"sslClientSessionStateMax"`
-	SslClientSessionStateTimeout pulumi.IntOutput                           `pulumi:"sslClientSessionStateTimeout"`
-	SslClientSessionStateType    pulumi.StringOutput                        `pulumi:"sslClientSessionStateType"`
-	SslDhBits                    pulumi.StringOutput                        `pulumi:"sslDhBits"`
-	SslHpkp                      pulumi.StringOutput                        `pulumi:"sslHpkp"`
-	SslHpkpAge                   pulumi.IntOutput                           `pulumi:"sslHpkpAge"`
-	SslHpkpBackup                pulumi.StringOutput                        `pulumi:"sslHpkpBackup"`
-	SslHpkpIncludeSubdomains     pulumi.StringOutput                        `pulumi:"sslHpkpIncludeSubdomains"`
-	SslHpkpPrimary               pulumi.StringOutput                        `pulumi:"sslHpkpPrimary"`
-	SslHpkpReportUri             pulumi.StringPtrOutput                     `pulumi:"sslHpkpReportUri"`
-	SslHsts                      pulumi.StringOutput                        `pulumi:"sslHsts"`
-	SslHstsAge                   pulumi.IntOutput                           `pulumi:"sslHstsAge"`
-	SslHstsIncludeSubdomains     pulumi.StringOutput                        `pulumi:"sslHstsIncludeSubdomains"`
-	SslHttpLocationConversion    pulumi.StringOutput                        `pulumi:"sslHttpLocationConversion"`
-	SslHttpMatchHost             pulumi.StringOutput                        `pulumi:"sslHttpMatchHost"`
-	SslMaxVersion                pulumi.StringOutput                        `pulumi:"sslMaxVersion"`
-	SslMinVersion                pulumi.StringOutput                        `pulumi:"sslMinVersion"`
-	SslMode                      pulumi.StringOutput                        `pulumi:"sslMode"`
-	SslPfs                       pulumi.StringOutput                        `pulumi:"sslPfs"`
-	SslSendEmptyFrags            pulumi.StringOutput                        `pulumi:"sslSendEmptyFrags"`
-	SslServerAlgorithm           pulumi.StringOutput                        `pulumi:"sslServerAlgorithm"`
-	SslServerCipherSuites        FirewallVipSslServerCipherSuiteArrayOutput `pulumi:"sslServerCipherSuites"`
-	SslServerMaxVersion          pulumi.StringOutput                        `pulumi:"sslServerMaxVersion"`
-	SslServerMinVersion          pulumi.StringOutput                        `pulumi:"sslServerMinVersion"`
-	SslServerRenegotiation       pulumi.StringOutput                        `pulumi:"sslServerRenegotiation"`
-	SslServerSessionStateMax     pulumi.IntOutput                           `pulumi:"sslServerSessionStateMax"`
-	SslServerSessionStateTimeout pulumi.IntOutput                           `pulumi:"sslServerSessionStateTimeout"`
-	SslServerSessionStateType    pulumi.StringOutput                        `pulumi:"sslServerSessionStateType"`
-	Status                       pulumi.StringOutput                        `pulumi:"status"`
-	Type                         pulumi.StringOutput                        `pulumi:"type"`
-	Uuid                         pulumi.StringOutput                        `pulumi:"uuid"`
-	Vdomparam                    pulumi.StringPtrOutput                     `pulumi:"vdomparam"`
-	WeblogicServer               pulumi.StringOutput                        `pulumi:"weblogicServer"`
-	WebsphereServer              pulumi.StringOutput                        `pulumi:"websphereServer"`
+	AddNat46Route                     pulumi.StringOutput                        `pulumi:"addNat46Route"`
+	ArpReply                          pulumi.StringOutput                        `pulumi:"arpReply"`
+	Color                             pulumi.IntOutput                           `pulumi:"color"`
+	Comment                           pulumi.StringPtrOutput                     `pulumi:"comment"`
+	DnsMappingTtl                     pulumi.IntOutput                           `pulumi:"dnsMappingTtl"`
+	DynamicSortSubtable               pulumi.StringPtrOutput                     `pulumi:"dynamicSortSubtable"`
+	Extaddrs                          FirewallVipExtaddrArrayOutput              `pulumi:"extaddrs"`
+	Extintf                           pulumi.StringOutput                        `pulumi:"extintf"`
+	Extip                             pulumi.StringOutput                        `pulumi:"extip"`
+	Extport                           pulumi.StringOutput                        `pulumi:"extport"`
+	Fosid                             pulumi.IntOutput                           `pulumi:"fosid"`
+	GetAllTables                      pulumi.StringPtrOutput                     `pulumi:"getAllTables"`
+	GratuitousArpInterval             pulumi.IntOutput                           `pulumi:"gratuitousArpInterval"`
+	H2Support                         pulumi.StringOutput                        `pulumi:"h2Support"`
+	H3Support                         pulumi.StringOutput                        `pulumi:"h3Support"`
+	HttpCookieAge                     pulumi.IntOutput                           `pulumi:"httpCookieAge"`
+	HttpCookieDomain                  pulumi.StringOutput                        `pulumi:"httpCookieDomain"`
+	HttpCookieDomainFromHost          pulumi.StringOutput                        `pulumi:"httpCookieDomainFromHost"`
+	HttpCookieGeneration              pulumi.IntOutput                           `pulumi:"httpCookieGeneration"`
+	HttpCookiePath                    pulumi.StringOutput                        `pulumi:"httpCookiePath"`
+	HttpCookieShare                   pulumi.StringOutput                        `pulumi:"httpCookieShare"`
+	HttpIpHeader                      pulumi.StringOutput                        `pulumi:"httpIpHeader"`
+	HttpIpHeaderName                  pulumi.StringOutput                        `pulumi:"httpIpHeaderName"`
+	HttpMultiplex                     pulumi.StringOutput                        `pulumi:"httpMultiplex"`
+	HttpMultiplexMaxConcurrentRequest pulumi.IntOutput                           `pulumi:"httpMultiplexMaxConcurrentRequest"`
+	HttpMultiplexMaxRequest           pulumi.IntOutput                           `pulumi:"httpMultiplexMaxRequest"`
+	HttpMultiplexTtl                  pulumi.IntOutput                           `pulumi:"httpMultiplexTtl"`
+	HttpRedirect                      pulumi.StringOutput                        `pulumi:"httpRedirect"`
+	HttpSupportedMaxVersion           pulumi.StringOutput                        `pulumi:"httpSupportedMaxVersion"`
+	HttpsCookieSecure                 pulumi.StringOutput                        `pulumi:"httpsCookieSecure"`
+	Ipv6Mappedip                      pulumi.StringOutput                        `pulumi:"ipv6Mappedip"`
+	Ipv6Mappedport                    pulumi.StringOutput                        `pulumi:"ipv6Mappedport"`
+	LdbMethod                         pulumi.StringOutput                        `pulumi:"ldbMethod"`
+	MappedAddr                        pulumi.StringOutput                        `pulumi:"mappedAddr"`
+	Mappedips                         FirewallVipMappedipArrayOutput             `pulumi:"mappedips"`
+	Mappedport                        pulumi.StringOutput                        `pulumi:"mappedport"`
+	MaxEmbryonicConnections           pulumi.IntOutput                           `pulumi:"maxEmbryonicConnections"`
+	Monitors                          FirewallVipMonitorArrayOutput              `pulumi:"monitors"`
+	Name                              pulumi.StringOutput                        `pulumi:"name"`
+	Nat44                             pulumi.StringOutput                        `pulumi:"nat44"`
+	Nat46                             pulumi.StringOutput                        `pulumi:"nat46"`
+	NatSourceVip                      pulumi.StringOutput                        `pulumi:"natSourceVip"`
+	OutlookWebAccess                  pulumi.StringOutput                        `pulumi:"outlookWebAccess"`
+	Persistence                       pulumi.StringOutput                        `pulumi:"persistence"`
+	Portforward                       pulumi.StringOutput                        `pulumi:"portforward"`
+	PortmappingType                   pulumi.StringOutput                        `pulumi:"portmappingType"`
+	Protocol                          pulumi.StringOutput                        `pulumi:"protocol"`
+	Quic                              FirewallVipQuicOutput                      `pulumi:"quic"`
+	Realservers                       FirewallVipRealserverArrayOutput           `pulumi:"realservers"`
+	ServerType                        pulumi.StringOutput                        `pulumi:"serverType"`
+	Services                          FirewallVipServiceArrayOutput              `pulumi:"services"`
+	SrcFilters                        FirewallVipSrcFilterArrayOutput            `pulumi:"srcFilters"`
+	SrcintfFilters                    FirewallVipSrcintfFilterArrayOutput        `pulumi:"srcintfFilters"`
+	SslAcceptFfdheGroups              pulumi.StringOutput                        `pulumi:"sslAcceptFfdheGroups"`
+	SslAlgorithm                      pulumi.StringOutput                        `pulumi:"sslAlgorithm"`
+	SslCertificate                    pulumi.StringOutput                        `pulumi:"sslCertificate"`
+	SslCipherSuites                   FirewallVipSslCipherSuiteArrayOutput       `pulumi:"sslCipherSuites"`
+	SslClientFallback                 pulumi.StringOutput                        `pulumi:"sslClientFallback"`
+	SslClientRekeyCount               pulumi.IntOutput                           `pulumi:"sslClientRekeyCount"`
+	SslClientRenegotiation            pulumi.StringOutput                        `pulumi:"sslClientRenegotiation"`
+	SslClientSessionStateMax          pulumi.IntOutput                           `pulumi:"sslClientSessionStateMax"`
+	SslClientSessionStateTimeout      pulumi.IntOutput                           `pulumi:"sslClientSessionStateTimeout"`
+	SslClientSessionStateType         pulumi.StringOutput                        `pulumi:"sslClientSessionStateType"`
+	SslDhBits                         pulumi.StringOutput                        `pulumi:"sslDhBits"`
+	SslHpkp                           pulumi.StringOutput                        `pulumi:"sslHpkp"`
+	SslHpkpAge                        pulumi.IntOutput                           `pulumi:"sslHpkpAge"`
+	SslHpkpBackup                     pulumi.StringOutput                        `pulumi:"sslHpkpBackup"`
+	SslHpkpIncludeSubdomains          pulumi.StringOutput                        `pulumi:"sslHpkpIncludeSubdomains"`
+	SslHpkpPrimary                    pulumi.StringOutput                        `pulumi:"sslHpkpPrimary"`
+	SslHpkpReportUri                  pulumi.StringPtrOutput                     `pulumi:"sslHpkpReportUri"`
+	SslHsts                           pulumi.StringOutput                        `pulumi:"sslHsts"`
+	SslHstsAge                        pulumi.IntOutput                           `pulumi:"sslHstsAge"`
+	SslHstsIncludeSubdomains          pulumi.StringOutput                        `pulumi:"sslHstsIncludeSubdomains"`
+	SslHttpLocationConversion         pulumi.StringOutput                        `pulumi:"sslHttpLocationConversion"`
+	SslHttpMatchHost                  pulumi.StringOutput                        `pulumi:"sslHttpMatchHost"`
+	SslMaxVersion                     pulumi.StringOutput                        `pulumi:"sslMaxVersion"`
+	SslMinVersion                     pulumi.StringOutput                        `pulumi:"sslMinVersion"`
+	SslMode                           pulumi.StringOutput                        `pulumi:"sslMode"`
+	SslPfs                            pulumi.StringOutput                        `pulumi:"sslPfs"`
+	SslSendEmptyFrags                 pulumi.StringOutput                        `pulumi:"sslSendEmptyFrags"`
+	SslServerAlgorithm                pulumi.StringOutput                        `pulumi:"sslServerAlgorithm"`
+	SslServerCipherSuites             FirewallVipSslServerCipherSuiteArrayOutput `pulumi:"sslServerCipherSuites"`
+	SslServerMaxVersion               pulumi.StringOutput                        `pulumi:"sslServerMaxVersion"`
+	SslServerMinVersion               pulumi.StringOutput                        `pulumi:"sslServerMinVersion"`
+	SslServerRenegotiation            pulumi.StringOutput                        `pulumi:"sslServerRenegotiation"`
+	SslServerSessionStateMax          pulumi.IntOutput                           `pulumi:"sslServerSessionStateMax"`
+	SslServerSessionStateTimeout      pulumi.IntOutput                           `pulumi:"sslServerSessionStateTimeout"`
+	SslServerSessionStateType         pulumi.StringOutput                        `pulumi:"sslServerSessionStateType"`
+	Status                            pulumi.StringOutput                        `pulumi:"status"`
+	Type                              pulumi.StringOutput                        `pulumi:"type"`
+	Uuid                              pulumi.StringOutput                        `pulumi:"uuid"`
+	Vdomparam                         pulumi.StringPtrOutput                     `pulumi:"vdomparam"`
+	WeblogicServer                    pulumi.StringOutput                        `pulumi:"weblogicServer"`
+	WebsphereServer                   pulumi.StringOutput                        `pulumi:"websphereServer"`
 }
 
 // NewFirewallVip registers a new resource with the given unique name, arguments, and options.
@@ -136,189 +141,197 @@ func GetFirewallVip(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallVip resources.
 type firewallVipState struct {
-	AddNat46Route                *string                           `pulumi:"addNat46Route"`
-	ArpReply                     *string                           `pulumi:"arpReply"`
-	Color                        *int                              `pulumi:"color"`
-	Comment                      *string                           `pulumi:"comment"`
-	DnsMappingTtl                *int                              `pulumi:"dnsMappingTtl"`
-	DynamicSortSubtable          *string                           `pulumi:"dynamicSortSubtable"`
-	Extaddrs                     []FirewallVipExtaddr              `pulumi:"extaddrs"`
-	Extintf                      *string                           `pulumi:"extintf"`
-	Extip                        *string                           `pulumi:"extip"`
-	Extport                      *string                           `pulumi:"extport"`
-	Fosid                        *int                              `pulumi:"fosid"`
-	GetAllTables                 *string                           `pulumi:"getAllTables"`
-	GratuitousArpInterval        *int                              `pulumi:"gratuitousArpInterval"`
-	HttpCookieAge                *int                              `pulumi:"httpCookieAge"`
-	HttpCookieDomain             *string                           `pulumi:"httpCookieDomain"`
-	HttpCookieDomainFromHost     *string                           `pulumi:"httpCookieDomainFromHost"`
-	HttpCookieGeneration         *int                              `pulumi:"httpCookieGeneration"`
-	HttpCookiePath               *string                           `pulumi:"httpCookiePath"`
-	HttpCookieShare              *string                           `pulumi:"httpCookieShare"`
-	HttpIpHeader                 *string                           `pulumi:"httpIpHeader"`
-	HttpIpHeaderName             *string                           `pulumi:"httpIpHeaderName"`
-	HttpMultiplex                *string                           `pulumi:"httpMultiplex"`
-	HttpMultiplexMaxRequest      *int                              `pulumi:"httpMultiplexMaxRequest"`
-	HttpMultiplexTtl             *int                              `pulumi:"httpMultiplexTtl"`
-	HttpRedirect                 *string                           `pulumi:"httpRedirect"`
-	HttpSupportedMaxVersion      *string                           `pulumi:"httpSupportedMaxVersion"`
-	HttpsCookieSecure            *string                           `pulumi:"httpsCookieSecure"`
-	Ipv6Mappedip                 *string                           `pulumi:"ipv6Mappedip"`
-	Ipv6Mappedport               *string                           `pulumi:"ipv6Mappedport"`
-	LdbMethod                    *string                           `pulumi:"ldbMethod"`
-	MappedAddr                   *string                           `pulumi:"mappedAddr"`
-	Mappedips                    []FirewallVipMappedip             `pulumi:"mappedips"`
-	Mappedport                   *string                           `pulumi:"mappedport"`
-	MaxEmbryonicConnections      *int                              `pulumi:"maxEmbryonicConnections"`
-	Monitors                     []FirewallVipMonitor              `pulumi:"monitors"`
-	Name                         *string                           `pulumi:"name"`
-	Nat44                        *string                           `pulumi:"nat44"`
-	Nat46                        *string                           `pulumi:"nat46"`
-	NatSourceVip                 *string                           `pulumi:"natSourceVip"`
-	OutlookWebAccess             *string                           `pulumi:"outlookWebAccess"`
-	Persistence                  *string                           `pulumi:"persistence"`
-	Portforward                  *string                           `pulumi:"portforward"`
-	PortmappingType              *string                           `pulumi:"portmappingType"`
-	Protocol                     *string                           `pulumi:"protocol"`
-	Realservers                  []FirewallVipRealserver           `pulumi:"realservers"`
-	ServerType                   *string                           `pulumi:"serverType"`
-	Services                     []FirewallVipService              `pulumi:"services"`
-	SrcFilters                   []FirewallVipSrcFilter            `pulumi:"srcFilters"`
-	SrcintfFilters               []FirewallVipSrcintfFilter        `pulumi:"srcintfFilters"`
-	SslAcceptFfdheGroups         *string                           `pulumi:"sslAcceptFfdheGroups"`
-	SslAlgorithm                 *string                           `pulumi:"sslAlgorithm"`
-	SslCertificate               *string                           `pulumi:"sslCertificate"`
-	SslCipherSuites              []FirewallVipSslCipherSuite       `pulumi:"sslCipherSuites"`
-	SslClientFallback            *string                           `pulumi:"sslClientFallback"`
-	SslClientRekeyCount          *int                              `pulumi:"sslClientRekeyCount"`
-	SslClientRenegotiation       *string                           `pulumi:"sslClientRenegotiation"`
-	SslClientSessionStateMax     *int                              `pulumi:"sslClientSessionStateMax"`
-	SslClientSessionStateTimeout *int                              `pulumi:"sslClientSessionStateTimeout"`
-	SslClientSessionStateType    *string                           `pulumi:"sslClientSessionStateType"`
-	SslDhBits                    *string                           `pulumi:"sslDhBits"`
-	SslHpkp                      *string                           `pulumi:"sslHpkp"`
-	SslHpkpAge                   *int                              `pulumi:"sslHpkpAge"`
-	SslHpkpBackup                *string                           `pulumi:"sslHpkpBackup"`
-	SslHpkpIncludeSubdomains     *string                           `pulumi:"sslHpkpIncludeSubdomains"`
-	SslHpkpPrimary               *string                           `pulumi:"sslHpkpPrimary"`
-	SslHpkpReportUri             *string                           `pulumi:"sslHpkpReportUri"`
-	SslHsts                      *string                           `pulumi:"sslHsts"`
-	SslHstsAge                   *int                              `pulumi:"sslHstsAge"`
-	SslHstsIncludeSubdomains     *string                           `pulumi:"sslHstsIncludeSubdomains"`
-	SslHttpLocationConversion    *string                           `pulumi:"sslHttpLocationConversion"`
-	SslHttpMatchHost             *string                           `pulumi:"sslHttpMatchHost"`
-	SslMaxVersion                *string                           `pulumi:"sslMaxVersion"`
-	SslMinVersion                *string                           `pulumi:"sslMinVersion"`
-	SslMode                      *string                           `pulumi:"sslMode"`
-	SslPfs                       *string                           `pulumi:"sslPfs"`
-	SslSendEmptyFrags            *string                           `pulumi:"sslSendEmptyFrags"`
-	SslServerAlgorithm           *string                           `pulumi:"sslServerAlgorithm"`
-	SslServerCipherSuites        []FirewallVipSslServerCipherSuite `pulumi:"sslServerCipherSuites"`
-	SslServerMaxVersion          *string                           `pulumi:"sslServerMaxVersion"`
-	SslServerMinVersion          *string                           `pulumi:"sslServerMinVersion"`
-	SslServerRenegotiation       *string                           `pulumi:"sslServerRenegotiation"`
-	SslServerSessionStateMax     *int                              `pulumi:"sslServerSessionStateMax"`
-	SslServerSessionStateTimeout *int                              `pulumi:"sslServerSessionStateTimeout"`
-	SslServerSessionStateType    *string                           `pulumi:"sslServerSessionStateType"`
-	Status                       *string                           `pulumi:"status"`
-	Type                         *string                           `pulumi:"type"`
-	Uuid                         *string                           `pulumi:"uuid"`
-	Vdomparam                    *string                           `pulumi:"vdomparam"`
-	WeblogicServer               *string                           `pulumi:"weblogicServer"`
-	WebsphereServer              *string                           `pulumi:"websphereServer"`
+	AddNat46Route                     *string                           `pulumi:"addNat46Route"`
+	ArpReply                          *string                           `pulumi:"arpReply"`
+	Color                             *int                              `pulumi:"color"`
+	Comment                           *string                           `pulumi:"comment"`
+	DnsMappingTtl                     *int                              `pulumi:"dnsMappingTtl"`
+	DynamicSortSubtable               *string                           `pulumi:"dynamicSortSubtable"`
+	Extaddrs                          []FirewallVipExtaddr              `pulumi:"extaddrs"`
+	Extintf                           *string                           `pulumi:"extintf"`
+	Extip                             *string                           `pulumi:"extip"`
+	Extport                           *string                           `pulumi:"extport"`
+	Fosid                             *int                              `pulumi:"fosid"`
+	GetAllTables                      *string                           `pulumi:"getAllTables"`
+	GratuitousArpInterval             *int                              `pulumi:"gratuitousArpInterval"`
+	H2Support                         *string                           `pulumi:"h2Support"`
+	H3Support                         *string                           `pulumi:"h3Support"`
+	HttpCookieAge                     *int                              `pulumi:"httpCookieAge"`
+	HttpCookieDomain                  *string                           `pulumi:"httpCookieDomain"`
+	HttpCookieDomainFromHost          *string                           `pulumi:"httpCookieDomainFromHost"`
+	HttpCookieGeneration              *int                              `pulumi:"httpCookieGeneration"`
+	HttpCookiePath                    *string                           `pulumi:"httpCookiePath"`
+	HttpCookieShare                   *string                           `pulumi:"httpCookieShare"`
+	HttpIpHeader                      *string                           `pulumi:"httpIpHeader"`
+	HttpIpHeaderName                  *string                           `pulumi:"httpIpHeaderName"`
+	HttpMultiplex                     *string                           `pulumi:"httpMultiplex"`
+	HttpMultiplexMaxConcurrentRequest *int                              `pulumi:"httpMultiplexMaxConcurrentRequest"`
+	HttpMultiplexMaxRequest           *int                              `pulumi:"httpMultiplexMaxRequest"`
+	HttpMultiplexTtl                  *int                              `pulumi:"httpMultiplexTtl"`
+	HttpRedirect                      *string                           `pulumi:"httpRedirect"`
+	HttpSupportedMaxVersion           *string                           `pulumi:"httpSupportedMaxVersion"`
+	HttpsCookieSecure                 *string                           `pulumi:"httpsCookieSecure"`
+	Ipv6Mappedip                      *string                           `pulumi:"ipv6Mappedip"`
+	Ipv6Mappedport                    *string                           `pulumi:"ipv6Mappedport"`
+	LdbMethod                         *string                           `pulumi:"ldbMethod"`
+	MappedAddr                        *string                           `pulumi:"mappedAddr"`
+	Mappedips                         []FirewallVipMappedip             `pulumi:"mappedips"`
+	Mappedport                        *string                           `pulumi:"mappedport"`
+	MaxEmbryonicConnections           *int                              `pulumi:"maxEmbryonicConnections"`
+	Monitors                          []FirewallVipMonitor              `pulumi:"monitors"`
+	Name                              *string                           `pulumi:"name"`
+	Nat44                             *string                           `pulumi:"nat44"`
+	Nat46                             *string                           `pulumi:"nat46"`
+	NatSourceVip                      *string                           `pulumi:"natSourceVip"`
+	OutlookWebAccess                  *string                           `pulumi:"outlookWebAccess"`
+	Persistence                       *string                           `pulumi:"persistence"`
+	Portforward                       *string                           `pulumi:"portforward"`
+	PortmappingType                   *string                           `pulumi:"portmappingType"`
+	Protocol                          *string                           `pulumi:"protocol"`
+	Quic                              *FirewallVipQuic                  `pulumi:"quic"`
+	Realservers                       []FirewallVipRealserver           `pulumi:"realservers"`
+	ServerType                        *string                           `pulumi:"serverType"`
+	Services                          []FirewallVipService              `pulumi:"services"`
+	SrcFilters                        []FirewallVipSrcFilter            `pulumi:"srcFilters"`
+	SrcintfFilters                    []FirewallVipSrcintfFilter        `pulumi:"srcintfFilters"`
+	SslAcceptFfdheGroups              *string                           `pulumi:"sslAcceptFfdheGroups"`
+	SslAlgorithm                      *string                           `pulumi:"sslAlgorithm"`
+	SslCertificate                    *string                           `pulumi:"sslCertificate"`
+	SslCipherSuites                   []FirewallVipSslCipherSuite       `pulumi:"sslCipherSuites"`
+	SslClientFallback                 *string                           `pulumi:"sslClientFallback"`
+	SslClientRekeyCount               *int                              `pulumi:"sslClientRekeyCount"`
+	SslClientRenegotiation            *string                           `pulumi:"sslClientRenegotiation"`
+	SslClientSessionStateMax          *int                              `pulumi:"sslClientSessionStateMax"`
+	SslClientSessionStateTimeout      *int                              `pulumi:"sslClientSessionStateTimeout"`
+	SslClientSessionStateType         *string                           `pulumi:"sslClientSessionStateType"`
+	SslDhBits                         *string                           `pulumi:"sslDhBits"`
+	SslHpkp                           *string                           `pulumi:"sslHpkp"`
+	SslHpkpAge                        *int                              `pulumi:"sslHpkpAge"`
+	SslHpkpBackup                     *string                           `pulumi:"sslHpkpBackup"`
+	SslHpkpIncludeSubdomains          *string                           `pulumi:"sslHpkpIncludeSubdomains"`
+	SslHpkpPrimary                    *string                           `pulumi:"sslHpkpPrimary"`
+	SslHpkpReportUri                  *string                           `pulumi:"sslHpkpReportUri"`
+	SslHsts                           *string                           `pulumi:"sslHsts"`
+	SslHstsAge                        *int                              `pulumi:"sslHstsAge"`
+	SslHstsIncludeSubdomains          *string                           `pulumi:"sslHstsIncludeSubdomains"`
+	SslHttpLocationConversion         *string                           `pulumi:"sslHttpLocationConversion"`
+	SslHttpMatchHost                  *string                           `pulumi:"sslHttpMatchHost"`
+	SslMaxVersion                     *string                           `pulumi:"sslMaxVersion"`
+	SslMinVersion                     *string                           `pulumi:"sslMinVersion"`
+	SslMode                           *string                           `pulumi:"sslMode"`
+	SslPfs                            *string                           `pulumi:"sslPfs"`
+	SslSendEmptyFrags                 *string                           `pulumi:"sslSendEmptyFrags"`
+	SslServerAlgorithm                *string                           `pulumi:"sslServerAlgorithm"`
+	SslServerCipherSuites             []FirewallVipSslServerCipherSuite `pulumi:"sslServerCipherSuites"`
+	SslServerMaxVersion               *string                           `pulumi:"sslServerMaxVersion"`
+	SslServerMinVersion               *string                           `pulumi:"sslServerMinVersion"`
+	SslServerRenegotiation            *string                           `pulumi:"sslServerRenegotiation"`
+	SslServerSessionStateMax          *int                              `pulumi:"sslServerSessionStateMax"`
+	SslServerSessionStateTimeout      *int                              `pulumi:"sslServerSessionStateTimeout"`
+	SslServerSessionStateType         *string                           `pulumi:"sslServerSessionStateType"`
+	Status                            *string                           `pulumi:"status"`
+	Type                              *string                           `pulumi:"type"`
+	Uuid                              *string                           `pulumi:"uuid"`
+	Vdomparam                         *string                           `pulumi:"vdomparam"`
+	WeblogicServer                    *string                           `pulumi:"weblogicServer"`
+	WebsphereServer                   *string                           `pulumi:"websphereServer"`
 }
 
 type FirewallVipState struct {
-	AddNat46Route                pulumi.StringPtrInput
-	ArpReply                     pulumi.StringPtrInput
-	Color                        pulumi.IntPtrInput
-	Comment                      pulumi.StringPtrInput
-	DnsMappingTtl                pulumi.IntPtrInput
-	DynamicSortSubtable          pulumi.StringPtrInput
-	Extaddrs                     FirewallVipExtaddrArrayInput
-	Extintf                      pulumi.StringPtrInput
-	Extip                        pulumi.StringPtrInput
-	Extport                      pulumi.StringPtrInput
-	Fosid                        pulumi.IntPtrInput
-	GetAllTables                 pulumi.StringPtrInput
-	GratuitousArpInterval        pulumi.IntPtrInput
-	HttpCookieAge                pulumi.IntPtrInput
-	HttpCookieDomain             pulumi.StringPtrInput
-	HttpCookieDomainFromHost     pulumi.StringPtrInput
-	HttpCookieGeneration         pulumi.IntPtrInput
-	HttpCookiePath               pulumi.StringPtrInput
-	HttpCookieShare              pulumi.StringPtrInput
-	HttpIpHeader                 pulumi.StringPtrInput
-	HttpIpHeaderName             pulumi.StringPtrInput
-	HttpMultiplex                pulumi.StringPtrInput
-	HttpMultiplexMaxRequest      pulumi.IntPtrInput
-	HttpMultiplexTtl             pulumi.IntPtrInput
-	HttpRedirect                 pulumi.StringPtrInput
-	HttpSupportedMaxVersion      pulumi.StringPtrInput
-	HttpsCookieSecure            pulumi.StringPtrInput
-	Ipv6Mappedip                 pulumi.StringPtrInput
-	Ipv6Mappedport               pulumi.StringPtrInput
-	LdbMethod                    pulumi.StringPtrInput
-	MappedAddr                   pulumi.StringPtrInput
-	Mappedips                    FirewallVipMappedipArrayInput
-	Mappedport                   pulumi.StringPtrInput
-	MaxEmbryonicConnections      pulumi.IntPtrInput
-	Monitors                     FirewallVipMonitorArrayInput
-	Name                         pulumi.StringPtrInput
-	Nat44                        pulumi.StringPtrInput
-	Nat46                        pulumi.StringPtrInput
-	NatSourceVip                 pulumi.StringPtrInput
-	OutlookWebAccess             pulumi.StringPtrInput
-	Persistence                  pulumi.StringPtrInput
-	Portforward                  pulumi.StringPtrInput
-	PortmappingType              pulumi.StringPtrInput
-	Protocol                     pulumi.StringPtrInput
-	Realservers                  FirewallVipRealserverArrayInput
-	ServerType                   pulumi.StringPtrInput
-	Services                     FirewallVipServiceArrayInput
-	SrcFilters                   FirewallVipSrcFilterArrayInput
-	SrcintfFilters               FirewallVipSrcintfFilterArrayInput
-	SslAcceptFfdheGroups         pulumi.StringPtrInput
-	SslAlgorithm                 pulumi.StringPtrInput
-	SslCertificate               pulumi.StringPtrInput
-	SslCipherSuites              FirewallVipSslCipherSuiteArrayInput
-	SslClientFallback            pulumi.StringPtrInput
-	SslClientRekeyCount          pulumi.IntPtrInput
-	SslClientRenegotiation       pulumi.StringPtrInput
-	SslClientSessionStateMax     pulumi.IntPtrInput
-	SslClientSessionStateTimeout pulumi.IntPtrInput
-	SslClientSessionStateType    pulumi.StringPtrInput
-	SslDhBits                    pulumi.StringPtrInput
-	SslHpkp                      pulumi.StringPtrInput
-	SslHpkpAge                   pulumi.IntPtrInput
-	SslHpkpBackup                pulumi.StringPtrInput
-	SslHpkpIncludeSubdomains     pulumi.StringPtrInput
-	SslHpkpPrimary               pulumi.StringPtrInput
-	SslHpkpReportUri             pulumi.StringPtrInput
-	SslHsts                      pulumi.StringPtrInput
-	SslHstsAge                   pulumi.IntPtrInput
-	SslHstsIncludeSubdomains     pulumi.StringPtrInput
-	SslHttpLocationConversion    pulumi.StringPtrInput
-	SslHttpMatchHost             pulumi.StringPtrInput
-	SslMaxVersion                pulumi.StringPtrInput
-	SslMinVersion                pulumi.StringPtrInput
-	SslMode                      pulumi.StringPtrInput
-	SslPfs                       pulumi.StringPtrInput
-	SslSendEmptyFrags            pulumi.StringPtrInput
-	SslServerAlgorithm           pulumi.StringPtrInput
-	SslServerCipherSuites        FirewallVipSslServerCipherSuiteArrayInput
-	SslServerMaxVersion          pulumi.StringPtrInput
-	SslServerMinVersion          pulumi.StringPtrInput
-	SslServerRenegotiation       pulumi.StringPtrInput
-	SslServerSessionStateMax     pulumi.IntPtrInput
-	SslServerSessionStateTimeout pulumi.IntPtrInput
-	SslServerSessionStateType    pulumi.StringPtrInput
-	Status                       pulumi.StringPtrInput
-	Type                         pulumi.StringPtrInput
-	Uuid                         pulumi.StringPtrInput
-	Vdomparam                    pulumi.StringPtrInput
-	WeblogicServer               pulumi.StringPtrInput
-	WebsphereServer              pulumi.StringPtrInput
+	AddNat46Route                     pulumi.StringPtrInput
+	ArpReply                          pulumi.StringPtrInput
+	Color                             pulumi.IntPtrInput
+	Comment                           pulumi.StringPtrInput
+	DnsMappingTtl                     pulumi.IntPtrInput
+	DynamicSortSubtable               pulumi.StringPtrInput
+	Extaddrs                          FirewallVipExtaddrArrayInput
+	Extintf                           pulumi.StringPtrInput
+	Extip                             pulumi.StringPtrInput
+	Extport                           pulumi.StringPtrInput
+	Fosid                             pulumi.IntPtrInput
+	GetAllTables                      pulumi.StringPtrInput
+	GratuitousArpInterval             pulumi.IntPtrInput
+	H2Support                         pulumi.StringPtrInput
+	H3Support                         pulumi.StringPtrInput
+	HttpCookieAge                     pulumi.IntPtrInput
+	HttpCookieDomain                  pulumi.StringPtrInput
+	HttpCookieDomainFromHost          pulumi.StringPtrInput
+	HttpCookieGeneration              pulumi.IntPtrInput
+	HttpCookiePath                    pulumi.StringPtrInput
+	HttpCookieShare                   pulumi.StringPtrInput
+	HttpIpHeader                      pulumi.StringPtrInput
+	HttpIpHeaderName                  pulumi.StringPtrInput
+	HttpMultiplex                     pulumi.StringPtrInput
+	HttpMultiplexMaxConcurrentRequest pulumi.IntPtrInput
+	HttpMultiplexMaxRequest           pulumi.IntPtrInput
+	HttpMultiplexTtl                  pulumi.IntPtrInput
+	HttpRedirect                      pulumi.StringPtrInput
+	HttpSupportedMaxVersion           pulumi.StringPtrInput
+	HttpsCookieSecure                 pulumi.StringPtrInput
+	Ipv6Mappedip                      pulumi.StringPtrInput
+	Ipv6Mappedport                    pulumi.StringPtrInput
+	LdbMethod                         pulumi.StringPtrInput
+	MappedAddr                        pulumi.StringPtrInput
+	Mappedips                         FirewallVipMappedipArrayInput
+	Mappedport                        pulumi.StringPtrInput
+	MaxEmbryonicConnections           pulumi.IntPtrInput
+	Monitors                          FirewallVipMonitorArrayInput
+	Name                              pulumi.StringPtrInput
+	Nat44                             pulumi.StringPtrInput
+	Nat46                             pulumi.StringPtrInput
+	NatSourceVip                      pulumi.StringPtrInput
+	OutlookWebAccess                  pulumi.StringPtrInput
+	Persistence                       pulumi.StringPtrInput
+	Portforward                       pulumi.StringPtrInput
+	PortmappingType                   pulumi.StringPtrInput
+	Protocol                          pulumi.StringPtrInput
+	Quic                              FirewallVipQuicPtrInput
+	Realservers                       FirewallVipRealserverArrayInput
+	ServerType                        pulumi.StringPtrInput
+	Services                          FirewallVipServiceArrayInput
+	SrcFilters                        FirewallVipSrcFilterArrayInput
+	SrcintfFilters                    FirewallVipSrcintfFilterArrayInput
+	SslAcceptFfdheGroups              pulumi.StringPtrInput
+	SslAlgorithm                      pulumi.StringPtrInput
+	SslCertificate                    pulumi.StringPtrInput
+	SslCipherSuites                   FirewallVipSslCipherSuiteArrayInput
+	SslClientFallback                 pulumi.StringPtrInput
+	SslClientRekeyCount               pulumi.IntPtrInput
+	SslClientRenegotiation            pulumi.StringPtrInput
+	SslClientSessionStateMax          pulumi.IntPtrInput
+	SslClientSessionStateTimeout      pulumi.IntPtrInput
+	SslClientSessionStateType         pulumi.StringPtrInput
+	SslDhBits                         pulumi.StringPtrInput
+	SslHpkp                           pulumi.StringPtrInput
+	SslHpkpAge                        pulumi.IntPtrInput
+	SslHpkpBackup                     pulumi.StringPtrInput
+	SslHpkpIncludeSubdomains          pulumi.StringPtrInput
+	SslHpkpPrimary                    pulumi.StringPtrInput
+	SslHpkpReportUri                  pulumi.StringPtrInput
+	SslHsts                           pulumi.StringPtrInput
+	SslHstsAge                        pulumi.IntPtrInput
+	SslHstsIncludeSubdomains          pulumi.StringPtrInput
+	SslHttpLocationConversion         pulumi.StringPtrInput
+	SslHttpMatchHost                  pulumi.StringPtrInput
+	SslMaxVersion                     pulumi.StringPtrInput
+	SslMinVersion                     pulumi.StringPtrInput
+	SslMode                           pulumi.StringPtrInput
+	SslPfs                            pulumi.StringPtrInput
+	SslSendEmptyFrags                 pulumi.StringPtrInput
+	SslServerAlgorithm                pulumi.StringPtrInput
+	SslServerCipherSuites             FirewallVipSslServerCipherSuiteArrayInput
+	SslServerMaxVersion               pulumi.StringPtrInput
+	SslServerMinVersion               pulumi.StringPtrInput
+	SslServerRenegotiation            pulumi.StringPtrInput
+	SslServerSessionStateMax          pulumi.IntPtrInput
+	SslServerSessionStateTimeout      pulumi.IntPtrInput
+	SslServerSessionStateType         pulumi.StringPtrInput
+	Status                            pulumi.StringPtrInput
+	Type                              pulumi.StringPtrInput
+	Uuid                              pulumi.StringPtrInput
+	Vdomparam                         pulumi.StringPtrInput
+	WeblogicServer                    pulumi.StringPtrInput
+	WebsphereServer                   pulumi.StringPtrInput
 }
 
 func (FirewallVipState) ElementType() reflect.Type {
@@ -326,190 +339,198 @@ func (FirewallVipState) ElementType() reflect.Type {
 }
 
 type firewallVipArgs struct {
-	AddNat46Route                *string                           `pulumi:"addNat46Route"`
-	ArpReply                     *string                           `pulumi:"arpReply"`
-	Color                        *int                              `pulumi:"color"`
-	Comment                      *string                           `pulumi:"comment"`
-	DnsMappingTtl                *int                              `pulumi:"dnsMappingTtl"`
-	DynamicSortSubtable          *string                           `pulumi:"dynamicSortSubtable"`
-	Extaddrs                     []FirewallVipExtaddr              `pulumi:"extaddrs"`
-	Extintf                      *string                           `pulumi:"extintf"`
-	Extip                        *string                           `pulumi:"extip"`
-	Extport                      *string                           `pulumi:"extport"`
-	Fosid                        *int                              `pulumi:"fosid"`
-	GetAllTables                 *string                           `pulumi:"getAllTables"`
-	GratuitousArpInterval        *int                              `pulumi:"gratuitousArpInterval"`
-	HttpCookieAge                *int                              `pulumi:"httpCookieAge"`
-	HttpCookieDomain             *string                           `pulumi:"httpCookieDomain"`
-	HttpCookieDomainFromHost     *string                           `pulumi:"httpCookieDomainFromHost"`
-	HttpCookieGeneration         *int                              `pulumi:"httpCookieGeneration"`
-	HttpCookiePath               *string                           `pulumi:"httpCookiePath"`
-	HttpCookieShare              *string                           `pulumi:"httpCookieShare"`
-	HttpIpHeader                 *string                           `pulumi:"httpIpHeader"`
-	HttpIpHeaderName             *string                           `pulumi:"httpIpHeaderName"`
-	HttpMultiplex                *string                           `pulumi:"httpMultiplex"`
-	HttpMultiplexMaxRequest      *int                              `pulumi:"httpMultiplexMaxRequest"`
-	HttpMultiplexTtl             *int                              `pulumi:"httpMultiplexTtl"`
-	HttpRedirect                 *string                           `pulumi:"httpRedirect"`
-	HttpSupportedMaxVersion      *string                           `pulumi:"httpSupportedMaxVersion"`
-	HttpsCookieSecure            *string                           `pulumi:"httpsCookieSecure"`
-	Ipv6Mappedip                 *string                           `pulumi:"ipv6Mappedip"`
-	Ipv6Mappedport               *string                           `pulumi:"ipv6Mappedport"`
-	LdbMethod                    *string                           `pulumi:"ldbMethod"`
-	MappedAddr                   *string                           `pulumi:"mappedAddr"`
-	Mappedips                    []FirewallVipMappedip             `pulumi:"mappedips"`
-	Mappedport                   *string                           `pulumi:"mappedport"`
-	MaxEmbryonicConnections      *int                              `pulumi:"maxEmbryonicConnections"`
-	Monitors                     []FirewallVipMonitor              `pulumi:"monitors"`
-	Name                         *string                           `pulumi:"name"`
-	Nat44                        *string                           `pulumi:"nat44"`
-	Nat46                        *string                           `pulumi:"nat46"`
-	NatSourceVip                 *string                           `pulumi:"natSourceVip"`
-	OutlookWebAccess             *string                           `pulumi:"outlookWebAccess"`
-	Persistence                  *string                           `pulumi:"persistence"`
-	Portforward                  *string                           `pulumi:"portforward"`
-	PortmappingType              *string                           `pulumi:"portmappingType"`
-	Protocol                     *string                           `pulumi:"protocol"`
-	Realservers                  []FirewallVipRealserver           `pulumi:"realservers"`
-	ServerType                   *string                           `pulumi:"serverType"`
-	Services                     []FirewallVipService              `pulumi:"services"`
-	SrcFilters                   []FirewallVipSrcFilter            `pulumi:"srcFilters"`
-	SrcintfFilters               []FirewallVipSrcintfFilter        `pulumi:"srcintfFilters"`
-	SslAcceptFfdheGroups         *string                           `pulumi:"sslAcceptFfdheGroups"`
-	SslAlgorithm                 *string                           `pulumi:"sslAlgorithm"`
-	SslCertificate               *string                           `pulumi:"sslCertificate"`
-	SslCipherSuites              []FirewallVipSslCipherSuite       `pulumi:"sslCipherSuites"`
-	SslClientFallback            *string                           `pulumi:"sslClientFallback"`
-	SslClientRekeyCount          *int                              `pulumi:"sslClientRekeyCount"`
-	SslClientRenegotiation       *string                           `pulumi:"sslClientRenegotiation"`
-	SslClientSessionStateMax     *int                              `pulumi:"sslClientSessionStateMax"`
-	SslClientSessionStateTimeout *int                              `pulumi:"sslClientSessionStateTimeout"`
-	SslClientSessionStateType    *string                           `pulumi:"sslClientSessionStateType"`
-	SslDhBits                    *string                           `pulumi:"sslDhBits"`
-	SslHpkp                      *string                           `pulumi:"sslHpkp"`
-	SslHpkpAge                   *int                              `pulumi:"sslHpkpAge"`
-	SslHpkpBackup                *string                           `pulumi:"sslHpkpBackup"`
-	SslHpkpIncludeSubdomains     *string                           `pulumi:"sslHpkpIncludeSubdomains"`
-	SslHpkpPrimary               *string                           `pulumi:"sslHpkpPrimary"`
-	SslHpkpReportUri             *string                           `pulumi:"sslHpkpReportUri"`
-	SslHsts                      *string                           `pulumi:"sslHsts"`
-	SslHstsAge                   *int                              `pulumi:"sslHstsAge"`
-	SslHstsIncludeSubdomains     *string                           `pulumi:"sslHstsIncludeSubdomains"`
-	SslHttpLocationConversion    *string                           `pulumi:"sslHttpLocationConversion"`
-	SslHttpMatchHost             *string                           `pulumi:"sslHttpMatchHost"`
-	SslMaxVersion                *string                           `pulumi:"sslMaxVersion"`
-	SslMinVersion                *string                           `pulumi:"sslMinVersion"`
-	SslMode                      *string                           `pulumi:"sslMode"`
-	SslPfs                       *string                           `pulumi:"sslPfs"`
-	SslSendEmptyFrags            *string                           `pulumi:"sslSendEmptyFrags"`
-	SslServerAlgorithm           *string                           `pulumi:"sslServerAlgorithm"`
-	SslServerCipherSuites        []FirewallVipSslServerCipherSuite `pulumi:"sslServerCipherSuites"`
-	SslServerMaxVersion          *string                           `pulumi:"sslServerMaxVersion"`
-	SslServerMinVersion          *string                           `pulumi:"sslServerMinVersion"`
-	SslServerRenegotiation       *string                           `pulumi:"sslServerRenegotiation"`
-	SslServerSessionStateMax     *int                              `pulumi:"sslServerSessionStateMax"`
-	SslServerSessionStateTimeout *int                              `pulumi:"sslServerSessionStateTimeout"`
-	SslServerSessionStateType    *string                           `pulumi:"sslServerSessionStateType"`
-	Status                       *string                           `pulumi:"status"`
-	Type                         *string                           `pulumi:"type"`
-	Uuid                         *string                           `pulumi:"uuid"`
-	Vdomparam                    *string                           `pulumi:"vdomparam"`
-	WeblogicServer               *string                           `pulumi:"weblogicServer"`
-	WebsphereServer              *string                           `pulumi:"websphereServer"`
+	AddNat46Route                     *string                           `pulumi:"addNat46Route"`
+	ArpReply                          *string                           `pulumi:"arpReply"`
+	Color                             *int                              `pulumi:"color"`
+	Comment                           *string                           `pulumi:"comment"`
+	DnsMappingTtl                     *int                              `pulumi:"dnsMappingTtl"`
+	DynamicSortSubtable               *string                           `pulumi:"dynamicSortSubtable"`
+	Extaddrs                          []FirewallVipExtaddr              `pulumi:"extaddrs"`
+	Extintf                           *string                           `pulumi:"extintf"`
+	Extip                             *string                           `pulumi:"extip"`
+	Extport                           *string                           `pulumi:"extport"`
+	Fosid                             *int                              `pulumi:"fosid"`
+	GetAllTables                      *string                           `pulumi:"getAllTables"`
+	GratuitousArpInterval             *int                              `pulumi:"gratuitousArpInterval"`
+	H2Support                         *string                           `pulumi:"h2Support"`
+	H3Support                         *string                           `pulumi:"h3Support"`
+	HttpCookieAge                     *int                              `pulumi:"httpCookieAge"`
+	HttpCookieDomain                  *string                           `pulumi:"httpCookieDomain"`
+	HttpCookieDomainFromHost          *string                           `pulumi:"httpCookieDomainFromHost"`
+	HttpCookieGeneration              *int                              `pulumi:"httpCookieGeneration"`
+	HttpCookiePath                    *string                           `pulumi:"httpCookiePath"`
+	HttpCookieShare                   *string                           `pulumi:"httpCookieShare"`
+	HttpIpHeader                      *string                           `pulumi:"httpIpHeader"`
+	HttpIpHeaderName                  *string                           `pulumi:"httpIpHeaderName"`
+	HttpMultiplex                     *string                           `pulumi:"httpMultiplex"`
+	HttpMultiplexMaxConcurrentRequest *int                              `pulumi:"httpMultiplexMaxConcurrentRequest"`
+	HttpMultiplexMaxRequest           *int                              `pulumi:"httpMultiplexMaxRequest"`
+	HttpMultiplexTtl                  *int                              `pulumi:"httpMultiplexTtl"`
+	HttpRedirect                      *string                           `pulumi:"httpRedirect"`
+	HttpSupportedMaxVersion           *string                           `pulumi:"httpSupportedMaxVersion"`
+	HttpsCookieSecure                 *string                           `pulumi:"httpsCookieSecure"`
+	Ipv6Mappedip                      *string                           `pulumi:"ipv6Mappedip"`
+	Ipv6Mappedport                    *string                           `pulumi:"ipv6Mappedport"`
+	LdbMethod                         *string                           `pulumi:"ldbMethod"`
+	MappedAddr                        *string                           `pulumi:"mappedAddr"`
+	Mappedips                         []FirewallVipMappedip             `pulumi:"mappedips"`
+	Mappedport                        *string                           `pulumi:"mappedport"`
+	MaxEmbryonicConnections           *int                              `pulumi:"maxEmbryonicConnections"`
+	Monitors                          []FirewallVipMonitor              `pulumi:"monitors"`
+	Name                              *string                           `pulumi:"name"`
+	Nat44                             *string                           `pulumi:"nat44"`
+	Nat46                             *string                           `pulumi:"nat46"`
+	NatSourceVip                      *string                           `pulumi:"natSourceVip"`
+	OutlookWebAccess                  *string                           `pulumi:"outlookWebAccess"`
+	Persistence                       *string                           `pulumi:"persistence"`
+	Portforward                       *string                           `pulumi:"portforward"`
+	PortmappingType                   *string                           `pulumi:"portmappingType"`
+	Protocol                          *string                           `pulumi:"protocol"`
+	Quic                              *FirewallVipQuic                  `pulumi:"quic"`
+	Realservers                       []FirewallVipRealserver           `pulumi:"realservers"`
+	ServerType                        *string                           `pulumi:"serverType"`
+	Services                          []FirewallVipService              `pulumi:"services"`
+	SrcFilters                        []FirewallVipSrcFilter            `pulumi:"srcFilters"`
+	SrcintfFilters                    []FirewallVipSrcintfFilter        `pulumi:"srcintfFilters"`
+	SslAcceptFfdheGroups              *string                           `pulumi:"sslAcceptFfdheGroups"`
+	SslAlgorithm                      *string                           `pulumi:"sslAlgorithm"`
+	SslCertificate                    *string                           `pulumi:"sslCertificate"`
+	SslCipherSuites                   []FirewallVipSslCipherSuite       `pulumi:"sslCipherSuites"`
+	SslClientFallback                 *string                           `pulumi:"sslClientFallback"`
+	SslClientRekeyCount               *int                              `pulumi:"sslClientRekeyCount"`
+	SslClientRenegotiation            *string                           `pulumi:"sslClientRenegotiation"`
+	SslClientSessionStateMax          *int                              `pulumi:"sslClientSessionStateMax"`
+	SslClientSessionStateTimeout      *int                              `pulumi:"sslClientSessionStateTimeout"`
+	SslClientSessionStateType         *string                           `pulumi:"sslClientSessionStateType"`
+	SslDhBits                         *string                           `pulumi:"sslDhBits"`
+	SslHpkp                           *string                           `pulumi:"sslHpkp"`
+	SslHpkpAge                        *int                              `pulumi:"sslHpkpAge"`
+	SslHpkpBackup                     *string                           `pulumi:"sslHpkpBackup"`
+	SslHpkpIncludeSubdomains          *string                           `pulumi:"sslHpkpIncludeSubdomains"`
+	SslHpkpPrimary                    *string                           `pulumi:"sslHpkpPrimary"`
+	SslHpkpReportUri                  *string                           `pulumi:"sslHpkpReportUri"`
+	SslHsts                           *string                           `pulumi:"sslHsts"`
+	SslHstsAge                        *int                              `pulumi:"sslHstsAge"`
+	SslHstsIncludeSubdomains          *string                           `pulumi:"sslHstsIncludeSubdomains"`
+	SslHttpLocationConversion         *string                           `pulumi:"sslHttpLocationConversion"`
+	SslHttpMatchHost                  *string                           `pulumi:"sslHttpMatchHost"`
+	SslMaxVersion                     *string                           `pulumi:"sslMaxVersion"`
+	SslMinVersion                     *string                           `pulumi:"sslMinVersion"`
+	SslMode                           *string                           `pulumi:"sslMode"`
+	SslPfs                            *string                           `pulumi:"sslPfs"`
+	SslSendEmptyFrags                 *string                           `pulumi:"sslSendEmptyFrags"`
+	SslServerAlgorithm                *string                           `pulumi:"sslServerAlgorithm"`
+	SslServerCipherSuites             []FirewallVipSslServerCipherSuite `pulumi:"sslServerCipherSuites"`
+	SslServerMaxVersion               *string                           `pulumi:"sslServerMaxVersion"`
+	SslServerMinVersion               *string                           `pulumi:"sslServerMinVersion"`
+	SslServerRenegotiation            *string                           `pulumi:"sslServerRenegotiation"`
+	SslServerSessionStateMax          *int                              `pulumi:"sslServerSessionStateMax"`
+	SslServerSessionStateTimeout      *int                              `pulumi:"sslServerSessionStateTimeout"`
+	SslServerSessionStateType         *string                           `pulumi:"sslServerSessionStateType"`
+	Status                            *string                           `pulumi:"status"`
+	Type                              *string                           `pulumi:"type"`
+	Uuid                              *string                           `pulumi:"uuid"`
+	Vdomparam                         *string                           `pulumi:"vdomparam"`
+	WeblogicServer                    *string                           `pulumi:"weblogicServer"`
+	WebsphereServer                   *string                           `pulumi:"websphereServer"`
 }
 
 // The set of arguments for constructing a FirewallVip resource.
 type FirewallVipArgs struct {
-	AddNat46Route                pulumi.StringPtrInput
-	ArpReply                     pulumi.StringPtrInput
-	Color                        pulumi.IntPtrInput
-	Comment                      pulumi.StringPtrInput
-	DnsMappingTtl                pulumi.IntPtrInput
-	DynamicSortSubtable          pulumi.StringPtrInput
-	Extaddrs                     FirewallVipExtaddrArrayInput
-	Extintf                      pulumi.StringPtrInput
-	Extip                        pulumi.StringPtrInput
-	Extport                      pulumi.StringPtrInput
-	Fosid                        pulumi.IntPtrInput
-	GetAllTables                 pulumi.StringPtrInput
-	GratuitousArpInterval        pulumi.IntPtrInput
-	HttpCookieAge                pulumi.IntPtrInput
-	HttpCookieDomain             pulumi.StringPtrInput
-	HttpCookieDomainFromHost     pulumi.StringPtrInput
-	HttpCookieGeneration         pulumi.IntPtrInput
-	HttpCookiePath               pulumi.StringPtrInput
-	HttpCookieShare              pulumi.StringPtrInput
-	HttpIpHeader                 pulumi.StringPtrInput
-	HttpIpHeaderName             pulumi.StringPtrInput
-	HttpMultiplex                pulumi.StringPtrInput
-	HttpMultiplexMaxRequest      pulumi.IntPtrInput
-	HttpMultiplexTtl             pulumi.IntPtrInput
-	HttpRedirect                 pulumi.StringPtrInput
-	HttpSupportedMaxVersion      pulumi.StringPtrInput
-	HttpsCookieSecure            pulumi.StringPtrInput
-	Ipv6Mappedip                 pulumi.StringPtrInput
-	Ipv6Mappedport               pulumi.StringPtrInput
-	LdbMethod                    pulumi.StringPtrInput
-	MappedAddr                   pulumi.StringPtrInput
-	Mappedips                    FirewallVipMappedipArrayInput
-	Mappedport                   pulumi.StringPtrInput
-	MaxEmbryonicConnections      pulumi.IntPtrInput
-	Monitors                     FirewallVipMonitorArrayInput
-	Name                         pulumi.StringPtrInput
-	Nat44                        pulumi.StringPtrInput
-	Nat46                        pulumi.StringPtrInput
-	NatSourceVip                 pulumi.StringPtrInput
-	OutlookWebAccess             pulumi.StringPtrInput
-	Persistence                  pulumi.StringPtrInput
-	Portforward                  pulumi.StringPtrInput
-	PortmappingType              pulumi.StringPtrInput
-	Protocol                     pulumi.StringPtrInput
-	Realservers                  FirewallVipRealserverArrayInput
-	ServerType                   pulumi.StringPtrInput
-	Services                     FirewallVipServiceArrayInput
-	SrcFilters                   FirewallVipSrcFilterArrayInput
-	SrcintfFilters               FirewallVipSrcintfFilterArrayInput
-	SslAcceptFfdheGroups         pulumi.StringPtrInput
-	SslAlgorithm                 pulumi.StringPtrInput
-	SslCertificate               pulumi.StringPtrInput
-	SslCipherSuites              FirewallVipSslCipherSuiteArrayInput
-	SslClientFallback            pulumi.StringPtrInput
-	SslClientRekeyCount          pulumi.IntPtrInput
-	SslClientRenegotiation       pulumi.StringPtrInput
-	SslClientSessionStateMax     pulumi.IntPtrInput
-	SslClientSessionStateTimeout pulumi.IntPtrInput
-	SslClientSessionStateType    pulumi.StringPtrInput
-	SslDhBits                    pulumi.StringPtrInput
-	SslHpkp                      pulumi.StringPtrInput
-	SslHpkpAge                   pulumi.IntPtrInput
-	SslHpkpBackup                pulumi.StringPtrInput
-	SslHpkpIncludeSubdomains     pulumi.StringPtrInput
-	SslHpkpPrimary               pulumi.StringPtrInput
-	SslHpkpReportUri             pulumi.StringPtrInput
-	SslHsts                      pulumi.StringPtrInput
-	SslHstsAge                   pulumi.IntPtrInput
-	SslHstsIncludeSubdomains     pulumi.StringPtrInput
-	SslHttpLocationConversion    pulumi.StringPtrInput
-	SslHttpMatchHost             pulumi.StringPtrInput
-	SslMaxVersion                pulumi.StringPtrInput
-	SslMinVersion                pulumi.StringPtrInput
-	SslMode                      pulumi.StringPtrInput
-	SslPfs                       pulumi.StringPtrInput
-	SslSendEmptyFrags            pulumi.StringPtrInput
-	SslServerAlgorithm           pulumi.StringPtrInput
-	SslServerCipherSuites        FirewallVipSslServerCipherSuiteArrayInput
-	SslServerMaxVersion          pulumi.StringPtrInput
-	SslServerMinVersion          pulumi.StringPtrInput
-	SslServerRenegotiation       pulumi.StringPtrInput
-	SslServerSessionStateMax     pulumi.IntPtrInput
-	SslServerSessionStateTimeout pulumi.IntPtrInput
-	SslServerSessionStateType    pulumi.StringPtrInput
-	Status                       pulumi.StringPtrInput
-	Type                         pulumi.StringPtrInput
-	Uuid                         pulumi.StringPtrInput
-	Vdomparam                    pulumi.StringPtrInput
-	WeblogicServer               pulumi.StringPtrInput
-	WebsphereServer              pulumi.StringPtrInput
+	AddNat46Route                     pulumi.StringPtrInput
+	ArpReply                          pulumi.StringPtrInput
+	Color                             pulumi.IntPtrInput
+	Comment                           pulumi.StringPtrInput
+	DnsMappingTtl                     pulumi.IntPtrInput
+	DynamicSortSubtable               pulumi.StringPtrInput
+	Extaddrs                          FirewallVipExtaddrArrayInput
+	Extintf                           pulumi.StringPtrInput
+	Extip                             pulumi.StringPtrInput
+	Extport                           pulumi.StringPtrInput
+	Fosid                             pulumi.IntPtrInput
+	GetAllTables                      pulumi.StringPtrInput
+	GratuitousArpInterval             pulumi.IntPtrInput
+	H2Support                         pulumi.StringPtrInput
+	H3Support                         pulumi.StringPtrInput
+	HttpCookieAge                     pulumi.IntPtrInput
+	HttpCookieDomain                  pulumi.StringPtrInput
+	HttpCookieDomainFromHost          pulumi.StringPtrInput
+	HttpCookieGeneration              pulumi.IntPtrInput
+	HttpCookiePath                    pulumi.StringPtrInput
+	HttpCookieShare                   pulumi.StringPtrInput
+	HttpIpHeader                      pulumi.StringPtrInput
+	HttpIpHeaderName                  pulumi.StringPtrInput
+	HttpMultiplex                     pulumi.StringPtrInput
+	HttpMultiplexMaxConcurrentRequest pulumi.IntPtrInput
+	HttpMultiplexMaxRequest           pulumi.IntPtrInput
+	HttpMultiplexTtl                  pulumi.IntPtrInput
+	HttpRedirect                      pulumi.StringPtrInput
+	HttpSupportedMaxVersion           pulumi.StringPtrInput
+	HttpsCookieSecure                 pulumi.StringPtrInput
+	Ipv6Mappedip                      pulumi.StringPtrInput
+	Ipv6Mappedport                    pulumi.StringPtrInput
+	LdbMethod                         pulumi.StringPtrInput
+	MappedAddr                        pulumi.StringPtrInput
+	Mappedips                         FirewallVipMappedipArrayInput
+	Mappedport                        pulumi.StringPtrInput
+	MaxEmbryonicConnections           pulumi.IntPtrInput
+	Monitors                          FirewallVipMonitorArrayInput
+	Name                              pulumi.StringPtrInput
+	Nat44                             pulumi.StringPtrInput
+	Nat46                             pulumi.StringPtrInput
+	NatSourceVip                      pulumi.StringPtrInput
+	OutlookWebAccess                  pulumi.StringPtrInput
+	Persistence                       pulumi.StringPtrInput
+	Portforward                       pulumi.StringPtrInput
+	PortmappingType                   pulumi.StringPtrInput
+	Protocol                          pulumi.StringPtrInput
+	Quic                              FirewallVipQuicPtrInput
+	Realservers                       FirewallVipRealserverArrayInput
+	ServerType                        pulumi.StringPtrInput
+	Services                          FirewallVipServiceArrayInput
+	SrcFilters                        FirewallVipSrcFilterArrayInput
+	SrcintfFilters                    FirewallVipSrcintfFilterArrayInput
+	SslAcceptFfdheGroups              pulumi.StringPtrInput
+	SslAlgorithm                      pulumi.StringPtrInput
+	SslCertificate                    pulumi.StringPtrInput
+	SslCipherSuites                   FirewallVipSslCipherSuiteArrayInput
+	SslClientFallback                 pulumi.StringPtrInput
+	SslClientRekeyCount               pulumi.IntPtrInput
+	SslClientRenegotiation            pulumi.StringPtrInput
+	SslClientSessionStateMax          pulumi.IntPtrInput
+	SslClientSessionStateTimeout      pulumi.IntPtrInput
+	SslClientSessionStateType         pulumi.StringPtrInput
+	SslDhBits                         pulumi.StringPtrInput
+	SslHpkp                           pulumi.StringPtrInput
+	SslHpkpAge                        pulumi.IntPtrInput
+	SslHpkpBackup                     pulumi.StringPtrInput
+	SslHpkpIncludeSubdomains          pulumi.StringPtrInput
+	SslHpkpPrimary                    pulumi.StringPtrInput
+	SslHpkpReportUri                  pulumi.StringPtrInput
+	SslHsts                           pulumi.StringPtrInput
+	SslHstsAge                        pulumi.IntPtrInput
+	SslHstsIncludeSubdomains          pulumi.StringPtrInput
+	SslHttpLocationConversion         pulumi.StringPtrInput
+	SslHttpMatchHost                  pulumi.StringPtrInput
+	SslMaxVersion                     pulumi.StringPtrInput
+	SslMinVersion                     pulumi.StringPtrInput
+	SslMode                           pulumi.StringPtrInput
+	SslPfs                            pulumi.StringPtrInput
+	SslSendEmptyFrags                 pulumi.StringPtrInput
+	SslServerAlgorithm                pulumi.StringPtrInput
+	SslServerCipherSuites             FirewallVipSslServerCipherSuiteArrayInput
+	SslServerMaxVersion               pulumi.StringPtrInput
+	SslServerMinVersion               pulumi.StringPtrInput
+	SslServerRenegotiation            pulumi.StringPtrInput
+	SslServerSessionStateMax          pulumi.IntPtrInput
+	SslServerSessionStateTimeout      pulumi.IntPtrInput
+	SslServerSessionStateType         pulumi.StringPtrInput
+	Status                            pulumi.StringPtrInput
+	Type                              pulumi.StringPtrInput
+	Uuid                              pulumi.StringPtrInput
+	Vdomparam                         pulumi.StringPtrInput
+	WeblogicServer                    pulumi.StringPtrInput
+	WebsphereServer                   pulumi.StringPtrInput
 }
 
 func (FirewallVipArgs) ElementType() reflect.Type {
@@ -533,6 +554,12 @@ func (i *FirewallVip) ToFirewallVipOutput() FirewallVipOutput {
 
 func (i *FirewallVip) ToFirewallVipOutputWithContext(ctx context.Context) FirewallVipOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallVipOutput)
+}
+
+func (i *FirewallVip) ToOutput(ctx context.Context) pulumix.Output[*FirewallVip] {
+	return pulumix.Output[*FirewallVip]{
+		OutputState: i.ToFirewallVipOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallVipArrayInput is an input type that accepts FirewallVipArray and FirewallVipArrayOutput values.
@@ -560,6 +587,12 @@ func (i FirewallVipArray) ToFirewallVipArrayOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallVipArrayOutput)
 }
 
+func (i FirewallVipArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallVip] {
+	return pulumix.Output[[]*FirewallVip]{
+		OutputState: i.ToFirewallVipArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallVipMapInput is an input type that accepts FirewallVipMap and FirewallVipMapOutput values.
 // You can construct a concrete instance of `FirewallVipMapInput` via:
 //
@@ -585,6 +618,12 @@ func (i FirewallVipMap) ToFirewallVipMapOutputWithContext(ctx context.Context) F
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallVipMapOutput)
 }
 
+func (i FirewallVipMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallVip] {
+	return pulumix.Output[map[string]*FirewallVip]{
+		OutputState: i.ToFirewallVipMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallVipOutput struct{ *pulumi.OutputState }
 
 func (FirewallVipOutput) ElementType() reflect.Type {
@@ -597,6 +636,12 @@ func (o FirewallVipOutput) ToFirewallVipOutput() FirewallVipOutput {
 
 func (o FirewallVipOutput) ToFirewallVipOutputWithContext(ctx context.Context) FirewallVipOutput {
 	return o
+}
+
+func (o FirewallVipOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallVip] {
+	return pulumix.Output[*FirewallVip]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallVipOutput) AddNat46Route() pulumi.StringOutput {
@@ -651,6 +696,14 @@ func (o FirewallVipOutput) GratuitousArpInterval() pulumi.IntOutput {
 	return o.ApplyT(func(v *FirewallVip) pulumi.IntOutput { return v.GratuitousArpInterval }).(pulumi.IntOutput)
 }
 
+func (o FirewallVipOutput) H2Support() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip) pulumi.StringOutput { return v.H2Support }).(pulumi.StringOutput)
+}
+
+func (o FirewallVipOutput) H3Support() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallVip) pulumi.StringOutput { return v.H3Support }).(pulumi.StringOutput)
+}
+
 func (o FirewallVipOutput) HttpCookieAge() pulumi.IntOutput {
 	return o.ApplyT(func(v *FirewallVip) pulumi.IntOutput { return v.HttpCookieAge }).(pulumi.IntOutput)
 }
@@ -685,6 +738,10 @@ func (o FirewallVipOutput) HttpIpHeaderName() pulumi.StringOutput {
 
 func (o FirewallVipOutput) HttpMultiplex() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallVip) pulumi.StringOutput { return v.HttpMultiplex }).(pulumi.StringOutput)
+}
+
+func (o FirewallVipOutput) HttpMultiplexMaxConcurrentRequest() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallVip) pulumi.IntOutput { return v.HttpMultiplexMaxConcurrentRequest }).(pulumi.IntOutput)
 }
 
 func (o FirewallVipOutput) HttpMultiplexMaxRequest() pulumi.IntOutput {
@@ -773,6 +830,10 @@ func (o FirewallVipOutput) PortmappingType() pulumi.StringOutput {
 
 func (o FirewallVipOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallVip) pulumi.StringOutput { return v.Protocol }).(pulumi.StringOutput)
+}
+
+func (o FirewallVipOutput) Quic() FirewallVipQuicOutput {
+	return o.ApplyT(func(v *FirewallVip) FirewallVipQuicOutput { return v.Quic }).(FirewallVipQuicOutput)
 }
 
 func (o FirewallVipOutput) Realservers() FirewallVipRealserverArrayOutput {
@@ -973,6 +1034,12 @@ func (o FirewallVipArrayOutput) ToFirewallVipArrayOutputWithContext(ctx context.
 	return o
 }
 
+func (o FirewallVipArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallVip] {
+	return pulumix.Output[[]*FirewallVip]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallVipArrayOutput) Index(i pulumi.IntInput) FirewallVipOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallVip {
 		return vs[0].([]*FirewallVip)[vs[1].(int)]
@@ -991,6 +1058,12 @@ func (o FirewallVipMapOutput) ToFirewallVipMapOutput() FirewallVipMapOutput {
 
 func (o FirewallVipMapOutput) ToFirewallVipMapOutputWithContext(ctx context.Context) FirewallVipMapOutput {
 	return o
+}
+
+func (o FirewallVipMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallVip] {
+	return pulumix.Output[map[string]*FirewallVip]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallVipMapOutput) MapIndex(k pulumi.StringInput) FirewallVipOutput {

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type ReportTheme struct {
@@ -240,6 +241,12 @@ func (i *ReportTheme) ToReportThemeOutputWithContext(ctx context.Context) Report
 	return pulumi.ToOutputWithContext(ctx, i).(ReportThemeOutput)
 }
 
+func (i *ReportTheme) ToOutput(ctx context.Context) pulumix.Output[*ReportTheme] {
+	return pulumix.Output[*ReportTheme]{
+		OutputState: i.ToReportThemeOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ReportThemeArrayInput is an input type that accepts ReportThemeArray and ReportThemeArrayOutput values.
 // You can construct a concrete instance of `ReportThemeArrayInput` via:
 //
@@ -263,6 +270,12 @@ func (i ReportThemeArray) ToReportThemeArrayOutput() ReportThemeArrayOutput {
 
 func (i ReportThemeArray) ToReportThemeArrayOutputWithContext(ctx context.Context) ReportThemeArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ReportThemeArrayOutput)
+}
+
+func (i ReportThemeArray) ToOutput(ctx context.Context) pulumix.Output[[]*ReportTheme] {
+	return pulumix.Output[[]*ReportTheme]{
+		OutputState: i.ToReportThemeArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ReportThemeMapInput is an input type that accepts ReportThemeMap and ReportThemeMapOutput values.
@@ -290,6 +303,12 @@ func (i ReportThemeMap) ToReportThemeMapOutputWithContext(ctx context.Context) R
 	return pulumi.ToOutputWithContext(ctx, i).(ReportThemeMapOutput)
 }
 
+func (i ReportThemeMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ReportTheme] {
+	return pulumix.Output[map[string]*ReportTheme]{
+		OutputState: i.ToReportThemeMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ReportThemeOutput struct{ *pulumi.OutputState }
 
 func (ReportThemeOutput) ElementType() reflect.Type {
@@ -302,6 +321,12 @@ func (o ReportThemeOutput) ToReportThemeOutput() ReportThemeOutput {
 
 func (o ReportThemeOutput) ToReportThemeOutputWithContext(ctx context.Context) ReportThemeOutput {
 	return o
+}
+
+func (o ReportThemeOutput) ToOutput(ctx context.Context) pulumix.Output[*ReportTheme] {
+	return pulumix.Output[*ReportTheme]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ReportThemeOutput) BulletListStyle() pulumi.StringOutput {
@@ -442,6 +467,12 @@ func (o ReportThemeArrayOutput) ToReportThemeArrayOutputWithContext(ctx context.
 	return o
 }
 
+func (o ReportThemeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ReportTheme] {
+	return pulumix.Output[[]*ReportTheme]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ReportThemeArrayOutput) Index(i pulumi.IntInput) ReportThemeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ReportTheme {
 		return vs[0].([]*ReportTheme)[vs[1].(int)]
@@ -460,6 +491,12 @@ func (o ReportThemeMapOutput) ToReportThemeMapOutput() ReportThemeMapOutput {
 
 func (o ReportThemeMapOutput) ToReportThemeMapOutputWithContext(ctx context.Context) ReportThemeMapOutput {
 	return o
+}
+
+func (o ReportThemeMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ReportTheme] {
+	return pulumix.Output[map[string]*ReportTheme]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ReportThemeMapOutput) MapIndex(k pulumi.StringInput) ReportThemeOutput {

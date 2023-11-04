@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupFirewallInternetService(ctx *pulumi.Context, args *LookupFirewallInternetServiceArgs, opts ...pulumi.InvokeOption) (*LookupFirewallInternetServiceResult, error) {
@@ -84,6 +85,12 @@ func (o LookupFirewallInternetServiceResultOutput) ToLookupFirewallInternetServi
 
 func (o LookupFirewallInternetServiceResultOutput) ToLookupFirewallInternetServiceResultOutputWithContext(ctx context.Context) LookupFirewallInternetServiceResultOutput {
 	return o
+}
+
+func (o LookupFirewallInternetServiceResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupFirewallInternetServiceResult] {
+	return pulumix.Output[LookupFirewallInternetServiceResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupFirewallInternetServiceResultOutput) Database() pulumi.StringOutput {

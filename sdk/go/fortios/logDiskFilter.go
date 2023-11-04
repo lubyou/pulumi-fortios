@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type LogDiskFilter struct {
@@ -275,6 +276,12 @@ func (i *LogDiskFilter) ToLogDiskFilterOutputWithContext(ctx context.Context) Lo
 	return pulumi.ToOutputWithContext(ctx, i).(LogDiskFilterOutput)
 }
 
+func (i *LogDiskFilter) ToOutput(ctx context.Context) pulumix.Output[*LogDiskFilter] {
+	return pulumix.Output[*LogDiskFilter]{
+		OutputState: i.ToLogDiskFilterOutputWithContext(ctx).OutputState,
+	}
+}
+
 // LogDiskFilterArrayInput is an input type that accepts LogDiskFilterArray and LogDiskFilterArrayOutput values.
 // You can construct a concrete instance of `LogDiskFilterArrayInput` via:
 //
@@ -298,6 +305,12 @@ func (i LogDiskFilterArray) ToLogDiskFilterArrayOutput() LogDiskFilterArrayOutpu
 
 func (i LogDiskFilterArray) ToLogDiskFilterArrayOutputWithContext(ctx context.Context) LogDiskFilterArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogDiskFilterArrayOutput)
+}
+
+func (i LogDiskFilterArray) ToOutput(ctx context.Context) pulumix.Output[[]*LogDiskFilter] {
+	return pulumix.Output[[]*LogDiskFilter]{
+		OutputState: i.ToLogDiskFilterArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // LogDiskFilterMapInput is an input type that accepts LogDiskFilterMap and LogDiskFilterMapOutput values.
@@ -325,6 +338,12 @@ func (i LogDiskFilterMap) ToLogDiskFilterMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(LogDiskFilterMapOutput)
 }
 
+func (i LogDiskFilterMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogDiskFilter] {
+	return pulumix.Output[map[string]*LogDiskFilter]{
+		OutputState: i.ToLogDiskFilterMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type LogDiskFilterOutput struct{ *pulumi.OutputState }
 
 func (LogDiskFilterOutput) ElementType() reflect.Type {
@@ -337,6 +356,12 @@ func (o LogDiskFilterOutput) ToLogDiskFilterOutput() LogDiskFilterOutput {
 
 func (o LogDiskFilterOutput) ToLogDiskFilterOutputWithContext(ctx context.Context) LogDiskFilterOutput {
 	return o
+}
+
+func (o LogDiskFilterOutput) ToOutput(ctx context.Context) pulumix.Output[*LogDiskFilter] {
+	return pulumix.Output[*LogDiskFilter]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LogDiskFilterOutput) Admin() pulumi.StringOutput {
@@ -505,6 +530,12 @@ func (o LogDiskFilterArrayOutput) ToLogDiskFilterArrayOutputWithContext(ctx cont
 	return o
 }
 
+func (o LogDiskFilterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LogDiskFilter] {
+	return pulumix.Output[[]*LogDiskFilter]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LogDiskFilterArrayOutput) Index(i pulumi.IntInput) LogDiskFilterOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogDiskFilter {
 		return vs[0].([]*LogDiskFilter)[vs[1].(int)]
@@ -523,6 +554,12 @@ func (o LogDiskFilterMapOutput) ToLogDiskFilterMapOutput() LogDiskFilterMapOutpu
 
 func (o LogDiskFilterMapOutput) ToLogDiskFilterMapOutputWithContext(ctx context.Context) LogDiskFilterMapOutput {
 	return o
+}
+
+func (o LogDiskFilterMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogDiskFilter] {
+	return pulumix.Output[map[string]*LogDiskFilter]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LogDiskFilterMapOutput) MapIndex(k pulumi.StringInput) LogDiskFilterOutput {

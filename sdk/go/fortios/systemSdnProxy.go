@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemSdnProxy struct {
@@ -120,6 +121,12 @@ func (i *SystemSdnProxy) ToSystemSdnProxyOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSdnProxyOutput)
 }
 
+func (i *SystemSdnProxy) ToOutput(ctx context.Context) pulumix.Output[*SystemSdnProxy] {
+	return pulumix.Output[*SystemSdnProxy]{
+		OutputState: i.ToSystemSdnProxyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemSdnProxyArrayInput is an input type that accepts SystemSdnProxyArray and SystemSdnProxyArrayOutput values.
 // You can construct a concrete instance of `SystemSdnProxyArrayInput` via:
 //
@@ -143,6 +150,12 @@ func (i SystemSdnProxyArray) ToSystemSdnProxyArrayOutput() SystemSdnProxyArrayOu
 
 func (i SystemSdnProxyArray) ToSystemSdnProxyArrayOutputWithContext(ctx context.Context) SystemSdnProxyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSdnProxyArrayOutput)
+}
+
+func (i SystemSdnProxyArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSdnProxy] {
+	return pulumix.Output[[]*SystemSdnProxy]{
+		OutputState: i.ToSystemSdnProxyArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemSdnProxyMapInput is an input type that accepts SystemSdnProxyMap and SystemSdnProxyMapOutput values.
@@ -170,6 +183,12 @@ func (i SystemSdnProxyMap) ToSystemSdnProxyMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSdnProxyMapOutput)
 }
 
+func (i SystemSdnProxyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSdnProxy] {
+	return pulumix.Output[map[string]*SystemSdnProxy]{
+		OutputState: i.ToSystemSdnProxyMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemSdnProxyOutput struct{ *pulumi.OutputState }
 
 func (SystemSdnProxyOutput) ElementType() reflect.Type {
@@ -182,6 +201,12 @@ func (o SystemSdnProxyOutput) ToSystemSdnProxyOutput() SystemSdnProxyOutput {
 
 func (o SystemSdnProxyOutput) ToSystemSdnProxyOutputWithContext(ctx context.Context) SystemSdnProxyOutput {
 	return o
+}
+
+func (o SystemSdnProxyOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemSdnProxy] {
+	return pulumix.Output[*SystemSdnProxy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemSdnProxyOutput) Name() pulumi.StringOutput {
@@ -226,6 +251,12 @@ func (o SystemSdnProxyArrayOutput) ToSystemSdnProxyArrayOutputWithContext(ctx co
 	return o
 }
 
+func (o SystemSdnProxyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSdnProxy] {
+	return pulumix.Output[[]*SystemSdnProxy]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemSdnProxyArrayOutput) Index(i pulumi.IntInput) SystemSdnProxyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSdnProxy {
 		return vs[0].([]*SystemSdnProxy)[vs[1].(int)]
@@ -244,6 +275,12 @@ func (o SystemSdnProxyMapOutput) ToSystemSdnProxyMapOutput() SystemSdnProxyMapOu
 
 func (o SystemSdnProxyMapOutput) ToSystemSdnProxyMapOutputWithContext(ctx context.Context) SystemSdnProxyMapOutput {
 	return o
+}
+
+func (o SystemSdnProxyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSdnProxy] {
+	return pulumix.Output[map[string]*SystemSdnProxy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemSdnProxyMapOutput) MapIndex(k pulumi.StringInput) SystemSdnProxyOutput {

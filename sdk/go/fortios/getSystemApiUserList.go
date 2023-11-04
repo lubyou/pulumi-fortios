@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetSystemApiUserList(ctx *pulumi.Context, args *GetSystemApiUserListArgs, opts ...pulumi.InvokeOption) (*GetSystemApiUserListResult, error) {
@@ -72,6 +73,12 @@ func (o GetSystemApiUserListResultOutput) ToGetSystemApiUserListResultOutput() G
 
 func (o GetSystemApiUserListResultOutput) ToGetSystemApiUserListResultOutputWithContext(ctx context.Context) GetSystemApiUserListResultOutput {
 	return o
+}
+
+func (o GetSystemApiUserListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSystemApiUserListResult] {
+	return pulumix.Output[GetSystemApiUserListResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetSystemApiUserListResultOutput) Filter() pulumi.StringPtrOutput {

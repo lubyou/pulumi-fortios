@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemCustomLanguage struct {
@@ -109,6 +110,12 @@ func (i *SystemCustomLanguage) ToSystemCustomLanguageOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(SystemCustomLanguageOutput)
 }
 
+func (i *SystemCustomLanguage) ToOutput(ctx context.Context) pulumix.Output[*SystemCustomLanguage] {
+	return pulumix.Output[*SystemCustomLanguage]{
+		OutputState: i.ToSystemCustomLanguageOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemCustomLanguageArrayInput is an input type that accepts SystemCustomLanguageArray and SystemCustomLanguageArrayOutput values.
 // You can construct a concrete instance of `SystemCustomLanguageArrayInput` via:
 //
@@ -132,6 +139,12 @@ func (i SystemCustomLanguageArray) ToSystemCustomLanguageArrayOutput() SystemCus
 
 func (i SystemCustomLanguageArray) ToSystemCustomLanguageArrayOutputWithContext(ctx context.Context) SystemCustomLanguageArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemCustomLanguageArrayOutput)
+}
+
+func (i SystemCustomLanguageArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemCustomLanguage] {
+	return pulumix.Output[[]*SystemCustomLanguage]{
+		OutputState: i.ToSystemCustomLanguageArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemCustomLanguageMapInput is an input type that accepts SystemCustomLanguageMap and SystemCustomLanguageMapOutput values.
@@ -159,6 +172,12 @@ func (i SystemCustomLanguageMap) ToSystemCustomLanguageMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(SystemCustomLanguageMapOutput)
 }
 
+func (i SystemCustomLanguageMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemCustomLanguage] {
+	return pulumix.Output[map[string]*SystemCustomLanguage]{
+		OutputState: i.ToSystemCustomLanguageMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemCustomLanguageOutput struct{ *pulumi.OutputState }
 
 func (SystemCustomLanguageOutput) ElementType() reflect.Type {
@@ -171,6 +190,12 @@ func (o SystemCustomLanguageOutput) ToSystemCustomLanguageOutput() SystemCustomL
 
 func (o SystemCustomLanguageOutput) ToSystemCustomLanguageOutputWithContext(ctx context.Context) SystemCustomLanguageOutput {
 	return o
+}
+
+func (o SystemCustomLanguageOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemCustomLanguage] {
+	return pulumix.Output[*SystemCustomLanguage]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemCustomLanguageOutput) Comments() pulumi.StringPtrOutput {
@@ -203,6 +228,12 @@ func (o SystemCustomLanguageArrayOutput) ToSystemCustomLanguageArrayOutputWithCo
 	return o
 }
 
+func (o SystemCustomLanguageArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemCustomLanguage] {
+	return pulumix.Output[[]*SystemCustomLanguage]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemCustomLanguageArrayOutput) Index(i pulumi.IntInput) SystemCustomLanguageOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemCustomLanguage {
 		return vs[0].([]*SystemCustomLanguage)[vs[1].(int)]
@@ -221,6 +252,12 @@ func (o SystemCustomLanguageMapOutput) ToSystemCustomLanguageMapOutput() SystemC
 
 func (o SystemCustomLanguageMapOutput) ToSystemCustomLanguageMapOutputWithContext(ctx context.Context) SystemCustomLanguageMapOutput {
 	return o
+}
+
+func (o SystemCustomLanguageMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemCustomLanguage] {
+	return pulumix.Output[map[string]*SystemCustomLanguage]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemCustomLanguageMapOutput) MapIndex(k pulumi.StringInput) SystemCustomLanguageOutput {

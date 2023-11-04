@@ -32,6 +32,7 @@ export class SystemFtmPush extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemFtmPush.__pulumiType;
     }
 
+    public readonly proxy!: pulumi.Output<string>;
     public readonly server!: pulumi.Output<string>;
     public readonly serverCert!: pulumi.Output<string>;
     public readonly serverIp!: pulumi.Output<string>;
@@ -52,6 +53,7 @@ export class SystemFtmPush extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemFtmPushState | undefined;
+            resourceInputs["proxy"] = state ? state.proxy : undefined;
             resourceInputs["server"] = state ? state.server : undefined;
             resourceInputs["serverCert"] = state ? state.serverCert : undefined;
             resourceInputs["serverIp"] = state ? state.serverIp : undefined;
@@ -60,6 +62,7 @@ export class SystemFtmPush extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemFtmPushArgs | undefined;
+            resourceInputs["proxy"] = args ? args.proxy : undefined;
             resourceInputs["server"] = args ? args.server : undefined;
             resourceInputs["serverCert"] = args ? args.serverCert : undefined;
             resourceInputs["serverIp"] = args ? args.serverIp : undefined;
@@ -76,6 +79,7 @@ export class SystemFtmPush extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemFtmPush resources.
  */
 export interface SystemFtmPushState {
+    proxy?: pulumi.Input<string>;
     server?: pulumi.Input<string>;
     serverCert?: pulumi.Input<string>;
     serverIp?: pulumi.Input<string>;
@@ -88,6 +92,7 @@ export interface SystemFtmPushState {
  * The set of arguments for constructing a SystemFtmPush resource.
  */
 export interface SystemFtmPushArgs {
+    proxy?: pulumi.Input<string>;
     server?: pulumi.Input<string>;
     serverCert?: pulumi.Input<string>;
     serverIp?: pulumi.Input<string>;

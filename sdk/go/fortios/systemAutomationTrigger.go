@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemAutomationTrigger struct {
@@ -215,6 +216,12 @@ func (i *SystemAutomationTrigger) ToSystemAutomationTriggerOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutomationTriggerOutput)
 }
 
+func (i *SystemAutomationTrigger) ToOutput(ctx context.Context) pulumix.Output[*SystemAutomationTrigger] {
+	return pulumix.Output[*SystemAutomationTrigger]{
+		OutputState: i.ToSystemAutomationTriggerOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemAutomationTriggerArrayInput is an input type that accepts SystemAutomationTriggerArray and SystemAutomationTriggerArrayOutput values.
 // You can construct a concrete instance of `SystemAutomationTriggerArrayInput` via:
 //
@@ -238,6 +245,12 @@ func (i SystemAutomationTriggerArray) ToSystemAutomationTriggerArrayOutput() Sys
 
 func (i SystemAutomationTriggerArray) ToSystemAutomationTriggerArrayOutputWithContext(ctx context.Context) SystemAutomationTriggerArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutomationTriggerArrayOutput)
+}
+
+func (i SystemAutomationTriggerArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemAutomationTrigger] {
+	return pulumix.Output[[]*SystemAutomationTrigger]{
+		OutputState: i.ToSystemAutomationTriggerArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemAutomationTriggerMapInput is an input type that accepts SystemAutomationTriggerMap and SystemAutomationTriggerMapOutput values.
@@ -265,6 +278,12 @@ func (i SystemAutomationTriggerMap) ToSystemAutomationTriggerMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutomationTriggerMapOutput)
 }
 
+func (i SystemAutomationTriggerMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemAutomationTrigger] {
+	return pulumix.Output[map[string]*SystemAutomationTrigger]{
+		OutputState: i.ToSystemAutomationTriggerMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemAutomationTriggerOutput struct{ *pulumi.OutputState }
 
 func (SystemAutomationTriggerOutput) ElementType() reflect.Type {
@@ -277,6 +296,12 @@ func (o SystemAutomationTriggerOutput) ToSystemAutomationTriggerOutput() SystemA
 
 func (o SystemAutomationTriggerOutput) ToSystemAutomationTriggerOutputWithContext(ctx context.Context) SystemAutomationTriggerOutput {
 	return o
+}
+
+func (o SystemAutomationTriggerOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemAutomationTrigger] {
+	return pulumix.Output[*SystemAutomationTrigger]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemAutomationTriggerOutput) Description() pulumi.StringPtrOutput {
@@ -397,6 +422,12 @@ func (o SystemAutomationTriggerArrayOutput) ToSystemAutomationTriggerArrayOutput
 	return o
 }
 
+func (o SystemAutomationTriggerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemAutomationTrigger] {
+	return pulumix.Output[[]*SystemAutomationTrigger]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemAutomationTriggerArrayOutput) Index(i pulumi.IntInput) SystemAutomationTriggerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemAutomationTrigger {
 		return vs[0].([]*SystemAutomationTrigger)[vs[1].(int)]
@@ -415,6 +446,12 @@ func (o SystemAutomationTriggerMapOutput) ToSystemAutomationTriggerMapOutput() S
 
 func (o SystemAutomationTriggerMapOutput) ToSystemAutomationTriggerMapOutputWithContext(ctx context.Context) SystemAutomationTriggerMapOutput {
 	return o
+}
+
+func (o SystemAutomationTriggerMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemAutomationTrigger] {
+	return pulumix.Output[map[string]*SystemAutomationTrigger]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemAutomationTriggerMapOutput) MapIndex(k pulumi.StringInput) SystemAutomationTriggerOutput {

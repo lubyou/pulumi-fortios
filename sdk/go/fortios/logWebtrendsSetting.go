@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type LogWebtrendsSetting struct {
@@ -100,6 +101,12 @@ func (i *LogWebtrendsSetting) ToLogWebtrendsSettingOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(LogWebtrendsSettingOutput)
 }
 
+func (i *LogWebtrendsSetting) ToOutput(ctx context.Context) pulumix.Output[*LogWebtrendsSetting] {
+	return pulumix.Output[*LogWebtrendsSetting]{
+		OutputState: i.ToLogWebtrendsSettingOutputWithContext(ctx).OutputState,
+	}
+}
+
 // LogWebtrendsSettingArrayInput is an input type that accepts LogWebtrendsSettingArray and LogWebtrendsSettingArrayOutput values.
 // You can construct a concrete instance of `LogWebtrendsSettingArrayInput` via:
 //
@@ -123,6 +130,12 @@ func (i LogWebtrendsSettingArray) ToLogWebtrendsSettingArrayOutput() LogWebtrend
 
 func (i LogWebtrendsSettingArray) ToLogWebtrendsSettingArrayOutputWithContext(ctx context.Context) LogWebtrendsSettingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogWebtrendsSettingArrayOutput)
+}
+
+func (i LogWebtrendsSettingArray) ToOutput(ctx context.Context) pulumix.Output[[]*LogWebtrendsSetting] {
+	return pulumix.Output[[]*LogWebtrendsSetting]{
+		OutputState: i.ToLogWebtrendsSettingArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // LogWebtrendsSettingMapInput is an input type that accepts LogWebtrendsSettingMap and LogWebtrendsSettingMapOutput values.
@@ -150,6 +163,12 @@ func (i LogWebtrendsSettingMap) ToLogWebtrendsSettingMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(LogWebtrendsSettingMapOutput)
 }
 
+func (i LogWebtrendsSettingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogWebtrendsSetting] {
+	return pulumix.Output[map[string]*LogWebtrendsSetting]{
+		OutputState: i.ToLogWebtrendsSettingMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type LogWebtrendsSettingOutput struct{ *pulumi.OutputState }
 
 func (LogWebtrendsSettingOutput) ElementType() reflect.Type {
@@ -162,6 +181,12 @@ func (o LogWebtrendsSettingOutput) ToLogWebtrendsSettingOutput() LogWebtrendsSet
 
 func (o LogWebtrendsSettingOutput) ToLogWebtrendsSettingOutputWithContext(ctx context.Context) LogWebtrendsSettingOutput {
 	return o
+}
+
+func (o LogWebtrendsSettingOutput) ToOutput(ctx context.Context) pulumix.Output[*LogWebtrendsSetting] {
+	return pulumix.Output[*LogWebtrendsSetting]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LogWebtrendsSettingOutput) Server() pulumi.StringOutput {
@@ -190,6 +215,12 @@ func (o LogWebtrendsSettingArrayOutput) ToLogWebtrendsSettingArrayOutputWithCont
 	return o
 }
 
+func (o LogWebtrendsSettingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LogWebtrendsSetting] {
+	return pulumix.Output[[]*LogWebtrendsSetting]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LogWebtrendsSettingArrayOutput) Index(i pulumi.IntInput) LogWebtrendsSettingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogWebtrendsSetting {
 		return vs[0].([]*LogWebtrendsSetting)[vs[1].(int)]
@@ -208,6 +239,12 @@ func (o LogWebtrendsSettingMapOutput) ToLogWebtrendsSettingMapOutput() LogWebtre
 
 func (o LogWebtrendsSettingMapOutput) ToLogWebtrendsSettingMapOutputWithContext(ctx context.Context) LogWebtrendsSettingMapOutput {
 	return o
+}
+
+func (o LogWebtrendsSettingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogWebtrendsSetting] {
+	return pulumix.Output[map[string]*LogWebtrendsSetting]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LogWebtrendsSettingMapOutput) MapIndex(k pulumi.StringInput) LogWebtrendsSettingOutput {

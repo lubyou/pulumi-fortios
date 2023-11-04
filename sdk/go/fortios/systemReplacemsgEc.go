@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemReplacemsgEc struct {
@@ -114,6 +115,12 @@ func (i *SystemReplacemsgEc) ToSystemReplacemsgEcOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgEcOutput)
 }
 
+func (i *SystemReplacemsgEc) ToOutput(ctx context.Context) pulumix.Output[*SystemReplacemsgEc] {
+	return pulumix.Output[*SystemReplacemsgEc]{
+		OutputState: i.ToSystemReplacemsgEcOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemReplacemsgEcArrayInput is an input type that accepts SystemReplacemsgEcArray and SystemReplacemsgEcArrayOutput values.
 // You can construct a concrete instance of `SystemReplacemsgEcArrayInput` via:
 //
@@ -137,6 +144,12 @@ func (i SystemReplacemsgEcArray) ToSystemReplacemsgEcArrayOutput() SystemReplace
 
 func (i SystemReplacemsgEcArray) ToSystemReplacemsgEcArrayOutputWithContext(ctx context.Context) SystemReplacemsgEcArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgEcArrayOutput)
+}
+
+func (i SystemReplacemsgEcArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemReplacemsgEc] {
+	return pulumix.Output[[]*SystemReplacemsgEc]{
+		OutputState: i.ToSystemReplacemsgEcArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemReplacemsgEcMapInput is an input type that accepts SystemReplacemsgEcMap and SystemReplacemsgEcMapOutput values.
@@ -164,6 +177,12 @@ func (i SystemReplacemsgEcMap) ToSystemReplacemsgEcMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgEcMapOutput)
 }
 
+func (i SystemReplacemsgEcMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemReplacemsgEc] {
+	return pulumix.Output[map[string]*SystemReplacemsgEc]{
+		OutputState: i.ToSystemReplacemsgEcMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemReplacemsgEcOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgEcOutput) ElementType() reflect.Type {
@@ -176,6 +195,12 @@ func (o SystemReplacemsgEcOutput) ToSystemReplacemsgEcOutput() SystemReplacemsgE
 
 func (o SystemReplacemsgEcOutput) ToSystemReplacemsgEcOutputWithContext(ctx context.Context) SystemReplacemsgEcOutput {
 	return o
+}
+
+func (o SystemReplacemsgEcOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemReplacemsgEc] {
+	return pulumix.Output[*SystemReplacemsgEc]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemReplacemsgEcOutput) Buffer() pulumi.StringPtrOutput {
@@ -212,6 +237,12 @@ func (o SystemReplacemsgEcArrayOutput) ToSystemReplacemsgEcArrayOutputWithContex
 	return o
 }
 
+func (o SystemReplacemsgEcArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemReplacemsgEc] {
+	return pulumix.Output[[]*SystemReplacemsgEc]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemReplacemsgEcArrayOutput) Index(i pulumi.IntInput) SystemReplacemsgEcOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemReplacemsgEc {
 		return vs[0].([]*SystemReplacemsgEc)[vs[1].(int)]
@@ -230,6 +261,12 @@ func (o SystemReplacemsgEcMapOutput) ToSystemReplacemsgEcMapOutput() SystemRepla
 
 func (o SystemReplacemsgEcMapOutput) ToSystemReplacemsgEcMapOutputWithContext(ctx context.Context) SystemReplacemsgEcMapOutput {
 	return o
+}
+
+func (o SystemReplacemsgEcMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemReplacemsgEc] {
+	return pulumix.Output[map[string]*SystemReplacemsgEc]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemReplacemsgEcMapOutput) MapIndex(k pulumi.StringInput) SystemReplacemsgEcOutput {

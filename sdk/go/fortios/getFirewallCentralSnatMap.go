@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupFirewallCentralSnatMap(ctx *pulumi.Context, args *LookupFirewallCentralSnatMapArgs, opts ...pulumi.InvokeOption) (*LookupFirewallCentralSnatMapResult, error) {
@@ -90,6 +91,12 @@ func (o LookupFirewallCentralSnatMapResultOutput) ToLookupFirewallCentralSnatMap
 
 func (o LookupFirewallCentralSnatMapResultOutput) ToLookupFirewallCentralSnatMapResultOutputWithContext(ctx context.Context) LookupFirewallCentralSnatMapResultOutput {
 	return o
+}
+
+func (o LookupFirewallCentralSnatMapResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupFirewallCentralSnatMapResult] {
+	return pulumix.Output[LookupFirewallCentralSnatMapResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupFirewallCentralSnatMapResultOutput) Comments() pulumi.StringOutput {

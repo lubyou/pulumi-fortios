@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerIgmpSnooping struct {
@@ -105,6 +106,12 @@ func (i *SwitchControllerIgmpSnooping) ToSwitchControllerIgmpSnoopingOutputWithC
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerIgmpSnoopingOutput)
 }
 
+func (i *SwitchControllerIgmpSnooping) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerIgmpSnooping] {
+	return pulumix.Output[*SwitchControllerIgmpSnooping]{
+		OutputState: i.ToSwitchControllerIgmpSnoopingOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SwitchControllerIgmpSnoopingArrayInput is an input type that accepts SwitchControllerIgmpSnoopingArray and SwitchControllerIgmpSnoopingArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerIgmpSnoopingArrayInput` via:
 //
@@ -128,6 +135,12 @@ func (i SwitchControllerIgmpSnoopingArray) ToSwitchControllerIgmpSnoopingArrayOu
 
 func (i SwitchControllerIgmpSnoopingArray) ToSwitchControllerIgmpSnoopingArrayOutputWithContext(ctx context.Context) SwitchControllerIgmpSnoopingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerIgmpSnoopingArrayOutput)
+}
+
+func (i SwitchControllerIgmpSnoopingArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerIgmpSnooping] {
+	return pulumix.Output[[]*SwitchControllerIgmpSnooping]{
+		OutputState: i.ToSwitchControllerIgmpSnoopingArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SwitchControllerIgmpSnoopingMapInput is an input type that accepts SwitchControllerIgmpSnoopingMap and SwitchControllerIgmpSnoopingMapOutput values.
@@ -155,6 +168,12 @@ func (i SwitchControllerIgmpSnoopingMap) ToSwitchControllerIgmpSnoopingMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerIgmpSnoopingMapOutput)
 }
 
+func (i SwitchControllerIgmpSnoopingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerIgmpSnooping] {
+	return pulumix.Output[map[string]*SwitchControllerIgmpSnooping]{
+		OutputState: i.ToSwitchControllerIgmpSnoopingMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SwitchControllerIgmpSnoopingOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerIgmpSnoopingOutput) ElementType() reflect.Type {
@@ -167,6 +186,12 @@ func (o SwitchControllerIgmpSnoopingOutput) ToSwitchControllerIgmpSnoopingOutput
 
 func (o SwitchControllerIgmpSnoopingOutput) ToSwitchControllerIgmpSnoopingOutputWithContext(ctx context.Context) SwitchControllerIgmpSnoopingOutput {
 	return o
+}
+
+func (o SwitchControllerIgmpSnoopingOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerIgmpSnooping] {
+	return pulumix.Output[*SwitchControllerIgmpSnooping]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerIgmpSnoopingOutput) AgingTime() pulumi.IntOutput {
@@ -199,6 +224,12 @@ func (o SwitchControllerIgmpSnoopingArrayOutput) ToSwitchControllerIgmpSnoopingA
 	return o
 }
 
+func (o SwitchControllerIgmpSnoopingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerIgmpSnooping] {
+	return pulumix.Output[[]*SwitchControllerIgmpSnooping]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SwitchControllerIgmpSnoopingArrayOutput) Index(i pulumi.IntInput) SwitchControllerIgmpSnoopingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerIgmpSnooping {
 		return vs[0].([]*SwitchControllerIgmpSnooping)[vs[1].(int)]
@@ -217,6 +248,12 @@ func (o SwitchControllerIgmpSnoopingMapOutput) ToSwitchControllerIgmpSnoopingMap
 
 func (o SwitchControllerIgmpSnoopingMapOutput) ToSwitchControllerIgmpSnoopingMapOutputWithContext(ctx context.Context) SwitchControllerIgmpSnoopingMapOutput {
 	return o
+}
+
+func (o SwitchControllerIgmpSnoopingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerIgmpSnooping] {
+	return pulumix.Output[map[string]*SwitchControllerIgmpSnooping]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerIgmpSnoopingMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerIgmpSnoopingOutput {

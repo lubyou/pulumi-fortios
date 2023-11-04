@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemGeneve struct {
@@ -143,6 +144,12 @@ func (i *SystemGeneve) ToSystemGeneveOutputWithContext(ctx context.Context) Syst
 	return pulumi.ToOutputWithContext(ctx, i).(SystemGeneveOutput)
 }
 
+func (i *SystemGeneve) ToOutput(ctx context.Context) pulumix.Output[*SystemGeneve] {
+	return pulumix.Output[*SystemGeneve]{
+		OutputState: i.ToSystemGeneveOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemGeneveArrayInput is an input type that accepts SystemGeneveArray and SystemGeneveArrayOutput values.
 // You can construct a concrete instance of `SystemGeneveArrayInput` via:
 //
@@ -166,6 +173,12 @@ func (i SystemGeneveArray) ToSystemGeneveArrayOutput() SystemGeneveArrayOutput {
 
 func (i SystemGeneveArray) ToSystemGeneveArrayOutputWithContext(ctx context.Context) SystemGeneveArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemGeneveArrayOutput)
+}
+
+func (i SystemGeneveArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemGeneve] {
+	return pulumix.Output[[]*SystemGeneve]{
+		OutputState: i.ToSystemGeneveArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemGeneveMapInput is an input type that accepts SystemGeneveMap and SystemGeneveMapOutput values.
@@ -193,6 +206,12 @@ func (i SystemGeneveMap) ToSystemGeneveMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(SystemGeneveMapOutput)
 }
 
+func (i SystemGeneveMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemGeneve] {
+	return pulumix.Output[map[string]*SystemGeneve]{
+		OutputState: i.ToSystemGeneveMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemGeneveOutput struct{ *pulumi.OutputState }
 
 func (SystemGeneveOutput) ElementType() reflect.Type {
@@ -205,6 +224,12 @@ func (o SystemGeneveOutput) ToSystemGeneveOutput() SystemGeneveOutput {
 
 func (o SystemGeneveOutput) ToSystemGeneveOutputWithContext(ctx context.Context) SystemGeneveOutput {
 	return o
+}
+
+func (o SystemGeneveOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemGeneve] {
+	return pulumix.Output[*SystemGeneve]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemGeneveOutput) Dstport() pulumi.IntOutput {
@@ -257,6 +282,12 @@ func (o SystemGeneveArrayOutput) ToSystemGeneveArrayOutputWithContext(ctx contex
 	return o
 }
 
+func (o SystemGeneveArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemGeneve] {
+	return pulumix.Output[[]*SystemGeneve]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemGeneveArrayOutput) Index(i pulumi.IntInput) SystemGeneveOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemGeneve {
 		return vs[0].([]*SystemGeneve)[vs[1].(int)]
@@ -275,6 +306,12 @@ func (o SystemGeneveMapOutput) ToSystemGeneveMapOutput() SystemGeneveMapOutput {
 
 func (o SystemGeneveMapOutput) ToSystemGeneveMapOutputWithContext(ctx context.Context) SystemGeneveMapOutput {
 	return o
+}
+
+func (o SystemGeneveMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemGeneve] {
+	return pulumix.Output[map[string]*SystemGeneve]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemGeneveMapOutput) MapIndex(k pulumi.StringInput) SystemGeneveOutput {

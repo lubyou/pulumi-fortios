@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type EmailfilterIptrust struct {
@@ -120,6 +121,12 @@ func (i *EmailfilterIptrust) ToEmailfilterIptrustOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterIptrustOutput)
 }
 
+func (i *EmailfilterIptrust) ToOutput(ctx context.Context) pulumix.Output[*EmailfilterIptrust] {
+	return pulumix.Output[*EmailfilterIptrust]{
+		OutputState: i.ToEmailfilterIptrustOutputWithContext(ctx).OutputState,
+	}
+}
+
 // EmailfilterIptrustArrayInput is an input type that accepts EmailfilterIptrustArray and EmailfilterIptrustArrayOutput values.
 // You can construct a concrete instance of `EmailfilterIptrustArrayInput` via:
 //
@@ -143,6 +150,12 @@ func (i EmailfilterIptrustArray) ToEmailfilterIptrustArrayOutput() EmailfilterIp
 
 func (i EmailfilterIptrustArray) ToEmailfilterIptrustArrayOutputWithContext(ctx context.Context) EmailfilterIptrustArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterIptrustArrayOutput)
+}
+
+func (i EmailfilterIptrustArray) ToOutput(ctx context.Context) pulumix.Output[[]*EmailfilterIptrust] {
+	return pulumix.Output[[]*EmailfilterIptrust]{
+		OutputState: i.ToEmailfilterIptrustArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // EmailfilterIptrustMapInput is an input type that accepts EmailfilterIptrustMap and EmailfilterIptrustMapOutput values.
@@ -170,6 +183,12 @@ func (i EmailfilterIptrustMap) ToEmailfilterIptrustMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterIptrustMapOutput)
 }
 
+func (i EmailfilterIptrustMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*EmailfilterIptrust] {
+	return pulumix.Output[map[string]*EmailfilterIptrust]{
+		OutputState: i.ToEmailfilterIptrustMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type EmailfilterIptrustOutput struct{ *pulumi.OutputState }
 
 func (EmailfilterIptrustOutput) ElementType() reflect.Type {
@@ -182,6 +201,12 @@ func (o EmailfilterIptrustOutput) ToEmailfilterIptrustOutput() EmailfilterIptrus
 
 func (o EmailfilterIptrustOutput) ToEmailfilterIptrustOutputWithContext(ctx context.Context) EmailfilterIptrustOutput {
 	return o
+}
+
+func (o EmailfilterIptrustOutput) ToOutput(ctx context.Context) pulumix.Output[*EmailfilterIptrust] {
+	return pulumix.Output[*EmailfilterIptrust]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o EmailfilterIptrustOutput) Comment() pulumi.StringPtrOutput {
@@ -226,6 +251,12 @@ func (o EmailfilterIptrustArrayOutput) ToEmailfilterIptrustArrayOutputWithContex
 	return o
 }
 
+func (o EmailfilterIptrustArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*EmailfilterIptrust] {
+	return pulumix.Output[[]*EmailfilterIptrust]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o EmailfilterIptrustArrayOutput) Index(i pulumi.IntInput) EmailfilterIptrustOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *EmailfilterIptrust {
 		return vs[0].([]*EmailfilterIptrust)[vs[1].(int)]
@@ -244,6 +275,12 @@ func (o EmailfilterIptrustMapOutput) ToEmailfilterIptrustMapOutput() Emailfilter
 
 func (o EmailfilterIptrustMapOutput) ToEmailfilterIptrustMapOutputWithContext(ctx context.Context) EmailfilterIptrustMapOutput {
 	return o
+}
+
+func (o EmailfilterIptrustMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*EmailfilterIptrust] {
+	return pulumix.Output[map[string]*EmailfilterIptrust]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o EmailfilterIptrustMapOutput) MapIndex(k pulumi.StringInput) EmailfilterIptrustOutput {

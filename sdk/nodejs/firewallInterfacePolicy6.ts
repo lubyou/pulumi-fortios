@@ -39,6 +39,8 @@ export class FirewallInterfacePolicy6 extends pulumi.CustomResource {
     public readonly applicationListStatus!: pulumi.Output<string>;
     public readonly avProfile!: pulumi.Output<string>;
     public readonly avProfileStatus!: pulumi.Output<string>;
+    public readonly casbProfile!: pulumi.Output<string>;
+    public readonly casbProfileStatus!: pulumi.Output<string>;
     public readonly comments!: pulumi.Output<string | undefined>;
     public readonly dlpProfile!: pulumi.Output<string>;
     public readonly dlpProfileStatus!: pulumi.Output<string>;
@@ -84,6 +86,8 @@ export class FirewallInterfacePolicy6 extends pulumi.CustomResource {
             resourceInputs["applicationListStatus"] = state ? state.applicationListStatus : undefined;
             resourceInputs["avProfile"] = state ? state.avProfile : undefined;
             resourceInputs["avProfileStatus"] = state ? state.avProfileStatus : undefined;
+            resourceInputs["casbProfile"] = state ? state.casbProfile : undefined;
+            resourceInputs["casbProfileStatus"] = state ? state.casbProfileStatus : undefined;
             resourceInputs["comments"] = state ? state.comments : undefined;
             resourceInputs["dlpProfile"] = state ? state.dlpProfile : undefined;
             resourceInputs["dlpProfileStatus"] = state ? state.dlpProfileStatus : undefined;
@@ -126,6 +130,8 @@ export class FirewallInterfacePolicy6 extends pulumi.CustomResource {
             resourceInputs["applicationListStatus"] = args ? args.applicationListStatus : undefined;
             resourceInputs["avProfile"] = args ? args.avProfile : undefined;
             resourceInputs["avProfileStatus"] = args ? args.avProfileStatus : undefined;
+            resourceInputs["casbProfile"] = args ? args.casbProfile : undefined;
+            resourceInputs["casbProfileStatus"] = args ? args.casbProfileStatus : undefined;
             resourceInputs["comments"] = args ? args.comments : undefined;
             resourceInputs["dlpProfile"] = args ? args.dlpProfile : undefined;
             resourceInputs["dlpProfileStatus"] = args ? args.dlpProfileStatus : undefined;
@@ -167,6 +173,8 @@ export interface FirewallInterfacePolicy6State {
     applicationListStatus?: pulumi.Input<string>;
     avProfile?: pulumi.Input<string>;
     avProfileStatus?: pulumi.Input<string>;
+    casbProfile?: pulumi.Input<string>;
+    casbProfileStatus?: pulumi.Input<string>;
     comments?: pulumi.Input<string>;
     dlpProfile?: pulumi.Input<string>;
     dlpProfileStatus?: pulumi.Input<string>;
@@ -204,6 +212,8 @@ export interface FirewallInterfacePolicy6Args {
     applicationListStatus?: pulumi.Input<string>;
     avProfile?: pulumi.Input<string>;
     avProfileStatus?: pulumi.Input<string>;
+    casbProfile?: pulumi.Input<string>;
+    casbProfileStatus?: pulumi.Input<string>;
     comments?: pulumi.Input<string>;
     dlpProfile?: pulumi.Input<string>;
     dlpProfileStatus?: pulumi.Input<string>;

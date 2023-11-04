@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemResourceLimits struct {
@@ -180,6 +181,12 @@ func (i *SystemResourceLimits) ToSystemResourceLimitsOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(SystemResourceLimitsOutput)
 }
 
+func (i *SystemResourceLimits) ToOutput(ctx context.Context) pulumix.Output[*SystemResourceLimits] {
+	return pulumix.Output[*SystemResourceLimits]{
+		OutputState: i.ToSystemResourceLimitsOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemResourceLimitsArrayInput is an input type that accepts SystemResourceLimitsArray and SystemResourceLimitsArrayOutput values.
 // You can construct a concrete instance of `SystemResourceLimitsArrayInput` via:
 //
@@ -203,6 +210,12 @@ func (i SystemResourceLimitsArray) ToSystemResourceLimitsArrayOutput() SystemRes
 
 func (i SystemResourceLimitsArray) ToSystemResourceLimitsArrayOutputWithContext(ctx context.Context) SystemResourceLimitsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemResourceLimitsArrayOutput)
+}
+
+func (i SystemResourceLimitsArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemResourceLimits] {
+	return pulumix.Output[[]*SystemResourceLimits]{
+		OutputState: i.ToSystemResourceLimitsArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemResourceLimitsMapInput is an input type that accepts SystemResourceLimitsMap and SystemResourceLimitsMapOutput values.
@@ -230,6 +243,12 @@ func (i SystemResourceLimitsMap) ToSystemResourceLimitsMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(SystemResourceLimitsMapOutput)
 }
 
+func (i SystemResourceLimitsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemResourceLimits] {
+	return pulumix.Output[map[string]*SystemResourceLimits]{
+		OutputState: i.ToSystemResourceLimitsMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemResourceLimitsOutput struct{ *pulumi.OutputState }
 
 func (SystemResourceLimitsOutput) ElementType() reflect.Type {
@@ -242,6 +261,12 @@ func (o SystemResourceLimitsOutput) ToSystemResourceLimitsOutput() SystemResourc
 
 func (o SystemResourceLimitsOutput) ToSystemResourceLimitsOutputWithContext(ctx context.Context) SystemResourceLimitsOutput {
 	return o
+}
+
+func (o SystemResourceLimitsOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemResourceLimits] {
+	return pulumix.Output[*SystemResourceLimits]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemResourceLimitsOutput) CustomService() pulumi.IntOutput {
@@ -334,6 +359,12 @@ func (o SystemResourceLimitsArrayOutput) ToSystemResourceLimitsArrayOutputWithCo
 	return o
 }
 
+func (o SystemResourceLimitsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemResourceLimits] {
+	return pulumix.Output[[]*SystemResourceLimits]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemResourceLimitsArrayOutput) Index(i pulumi.IntInput) SystemResourceLimitsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemResourceLimits {
 		return vs[0].([]*SystemResourceLimits)[vs[1].(int)]
@@ -352,6 +383,12 @@ func (o SystemResourceLimitsMapOutput) ToSystemResourceLimitsMapOutput() SystemR
 
 func (o SystemResourceLimitsMapOutput) ToSystemResourceLimitsMapOutputWithContext(ctx context.Context) SystemResourceLimitsMapOutput {
 	return o
+}
+
+func (o SystemResourceLimitsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemResourceLimits] {
+	return pulumix.Output[map[string]*SystemResourceLimits]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemResourceLimitsMapOutput) MapIndex(k pulumi.StringInput) SystemResourceLimitsOutput {

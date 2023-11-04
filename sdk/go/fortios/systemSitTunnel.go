@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemSitTunnel struct {
@@ -129,6 +130,12 @@ func (i *SystemSitTunnel) ToSystemSitTunnelOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSitTunnelOutput)
 }
 
+func (i *SystemSitTunnel) ToOutput(ctx context.Context) pulumix.Output[*SystemSitTunnel] {
+	return pulumix.Output[*SystemSitTunnel]{
+		OutputState: i.ToSystemSitTunnelOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemSitTunnelArrayInput is an input type that accepts SystemSitTunnelArray and SystemSitTunnelArrayOutput values.
 // You can construct a concrete instance of `SystemSitTunnelArrayInput` via:
 //
@@ -152,6 +159,12 @@ func (i SystemSitTunnelArray) ToSystemSitTunnelArrayOutput() SystemSitTunnelArra
 
 func (i SystemSitTunnelArray) ToSystemSitTunnelArrayOutputWithContext(ctx context.Context) SystemSitTunnelArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSitTunnelArrayOutput)
+}
+
+func (i SystemSitTunnelArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSitTunnel] {
+	return pulumix.Output[[]*SystemSitTunnel]{
+		OutputState: i.ToSystemSitTunnelArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemSitTunnelMapInput is an input type that accepts SystemSitTunnelMap and SystemSitTunnelMapOutput values.
@@ -179,6 +192,12 @@ func (i SystemSitTunnelMap) ToSystemSitTunnelMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSitTunnelMapOutput)
 }
 
+func (i SystemSitTunnelMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSitTunnel] {
+	return pulumix.Output[map[string]*SystemSitTunnel]{
+		OutputState: i.ToSystemSitTunnelMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemSitTunnelOutput struct{ *pulumi.OutputState }
 
 func (SystemSitTunnelOutput) ElementType() reflect.Type {
@@ -191,6 +210,12 @@ func (o SystemSitTunnelOutput) ToSystemSitTunnelOutput() SystemSitTunnelOutput {
 
 func (o SystemSitTunnelOutput) ToSystemSitTunnelOutputWithContext(ctx context.Context) SystemSitTunnelOutput {
 	return o
+}
+
+func (o SystemSitTunnelOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemSitTunnel] {
+	return pulumix.Output[*SystemSitTunnel]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemSitTunnelOutput) AutoAsicOffload() pulumi.StringOutput {
@@ -239,6 +264,12 @@ func (o SystemSitTunnelArrayOutput) ToSystemSitTunnelArrayOutputWithContext(ctx 
 	return o
 }
 
+func (o SystemSitTunnelArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSitTunnel] {
+	return pulumix.Output[[]*SystemSitTunnel]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemSitTunnelArrayOutput) Index(i pulumi.IntInput) SystemSitTunnelOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSitTunnel {
 		return vs[0].([]*SystemSitTunnel)[vs[1].(int)]
@@ -257,6 +288,12 @@ func (o SystemSitTunnelMapOutput) ToSystemSitTunnelMapOutput() SystemSitTunnelMa
 
 func (o SystemSitTunnelMapOutput) ToSystemSitTunnelMapOutputWithContext(ctx context.Context) SystemSitTunnelMapOutput {
 	return o
+}
+
+func (o SystemSitTunnelMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSitTunnel] {
+	return pulumix.Output[map[string]*SystemSitTunnel]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemSitTunnelMapOutput) MapIndex(k pulumi.StringInput) SystemSitTunnelOutput {

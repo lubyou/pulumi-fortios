@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemAutoupdateSchedule struct {
@@ -120,6 +121,12 @@ func (i *SystemAutoupdateSchedule) ToSystemAutoupdateScheduleOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutoupdateScheduleOutput)
 }
 
+func (i *SystemAutoupdateSchedule) ToOutput(ctx context.Context) pulumix.Output[*SystemAutoupdateSchedule] {
+	return pulumix.Output[*SystemAutoupdateSchedule]{
+		OutputState: i.ToSystemAutoupdateScheduleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemAutoupdateScheduleArrayInput is an input type that accepts SystemAutoupdateScheduleArray and SystemAutoupdateScheduleArrayOutput values.
 // You can construct a concrete instance of `SystemAutoupdateScheduleArrayInput` via:
 //
@@ -143,6 +150,12 @@ func (i SystemAutoupdateScheduleArray) ToSystemAutoupdateScheduleArrayOutput() S
 
 func (i SystemAutoupdateScheduleArray) ToSystemAutoupdateScheduleArrayOutputWithContext(ctx context.Context) SystemAutoupdateScheduleArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutoupdateScheduleArrayOutput)
+}
+
+func (i SystemAutoupdateScheduleArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemAutoupdateSchedule] {
+	return pulumix.Output[[]*SystemAutoupdateSchedule]{
+		OutputState: i.ToSystemAutoupdateScheduleArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemAutoupdateScheduleMapInput is an input type that accepts SystemAutoupdateScheduleMap and SystemAutoupdateScheduleMapOutput values.
@@ -170,6 +183,12 @@ func (i SystemAutoupdateScheduleMap) ToSystemAutoupdateScheduleMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutoupdateScheduleMapOutput)
 }
 
+func (i SystemAutoupdateScheduleMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemAutoupdateSchedule] {
+	return pulumix.Output[map[string]*SystemAutoupdateSchedule]{
+		OutputState: i.ToSystemAutoupdateScheduleMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemAutoupdateScheduleOutput struct{ *pulumi.OutputState }
 
 func (SystemAutoupdateScheduleOutput) ElementType() reflect.Type {
@@ -182,6 +201,12 @@ func (o SystemAutoupdateScheduleOutput) ToSystemAutoupdateScheduleOutput() Syste
 
 func (o SystemAutoupdateScheduleOutput) ToSystemAutoupdateScheduleOutputWithContext(ctx context.Context) SystemAutoupdateScheduleOutput {
 	return o
+}
+
+func (o SystemAutoupdateScheduleOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemAutoupdateSchedule] {
+	return pulumix.Output[*SystemAutoupdateSchedule]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemAutoupdateScheduleOutput) Day() pulumi.StringOutput {
@@ -218,6 +243,12 @@ func (o SystemAutoupdateScheduleArrayOutput) ToSystemAutoupdateScheduleArrayOutp
 	return o
 }
 
+func (o SystemAutoupdateScheduleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemAutoupdateSchedule] {
+	return pulumix.Output[[]*SystemAutoupdateSchedule]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemAutoupdateScheduleArrayOutput) Index(i pulumi.IntInput) SystemAutoupdateScheduleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemAutoupdateSchedule {
 		return vs[0].([]*SystemAutoupdateSchedule)[vs[1].(int)]
@@ -236,6 +267,12 @@ func (o SystemAutoupdateScheduleMapOutput) ToSystemAutoupdateScheduleMapOutput()
 
 func (o SystemAutoupdateScheduleMapOutput) ToSystemAutoupdateScheduleMapOutputWithContext(ctx context.Context) SystemAutoupdateScheduleMapOutput {
 	return o
+}
+
+func (o SystemAutoupdateScheduleMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemAutoupdateSchedule] {
+	return pulumix.Output[map[string]*SystemAutoupdateSchedule]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemAutoupdateScheduleMapOutput) MapIndex(k pulumi.StringInput) SystemAutoupdateScheduleOutput {

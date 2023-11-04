@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type VideofilterProfile struct {
@@ -145,6 +146,12 @@ func (i *VideofilterProfile) ToVideofilterProfileOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(VideofilterProfileOutput)
 }
 
+func (i *VideofilterProfile) ToOutput(ctx context.Context) pulumix.Output[*VideofilterProfile] {
+	return pulumix.Output[*VideofilterProfile]{
+		OutputState: i.ToVideofilterProfileOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VideofilterProfileArrayInput is an input type that accepts VideofilterProfileArray and VideofilterProfileArrayOutput values.
 // You can construct a concrete instance of `VideofilterProfileArrayInput` via:
 //
@@ -168,6 +175,12 @@ func (i VideofilterProfileArray) ToVideofilterProfileArrayOutput() VideofilterPr
 
 func (i VideofilterProfileArray) ToVideofilterProfileArrayOutputWithContext(ctx context.Context) VideofilterProfileArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VideofilterProfileArrayOutput)
+}
+
+func (i VideofilterProfileArray) ToOutput(ctx context.Context) pulumix.Output[[]*VideofilterProfile] {
+	return pulumix.Output[[]*VideofilterProfile]{
+		OutputState: i.ToVideofilterProfileArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // VideofilterProfileMapInput is an input type that accepts VideofilterProfileMap and VideofilterProfileMapOutput values.
@@ -195,6 +208,12 @@ func (i VideofilterProfileMap) ToVideofilterProfileMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(VideofilterProfileMapOutput)
 }
 
+func (i VideofilterProfileMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VideofilterProfile] {
+	return pulumix.Output[map[string]*VideofilterProfile]{
+		OutputState: i.ToVideofilterProfileMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VideofilterProfileOutput struct{ *pulumi.OutputState }
 
 func (VideofilterProfileOutput) ElementType() reflect.Type {
@@ -207,6 +226,12 @@ func (o VideofilterProfileOutput) ToVideofilterProfileOutput() VideofilterProfil
 
 func (o VideofilterProfileOutput) ToVideofilterProfileOutputWithContext(ctx context.Context) VideofilterProfileOutput {
 	return o
+}
+
+func (o VideofilterProfileOutput) ToOutput(ctx context.Context) pulumix.Output[*VideofilterProfile] {
+	return pulumix.Output[*VideofilterProfile]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VideofilterProfileOutput) Comment() pulumi.StringPtrOutput {
@@ -271,6 +296,12 @@ func (o VideofilterProfileArrayOutput) ToVideofilterProfileArrayOutputWithContex
 	return o
 }
 
+func (o VideofilterProfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VideofilterProfile] {
+	return pulumix.Output[[]*VideofilterProfile]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o VideofilterProfileArrayOutput) Index(i pulumi.IntInput) VideofilterProfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VideofilterProfile {
 		return vs[0].([]*VideofilterProfile)[vs[1].(int)]
@@ -289,6 +320,12 @@ func (o VideofilterProfileMapOutput) ToVideofilterProfileMapOutput() Videofilter
 
 func (o VideofilterProfileMapOutput) ToVideofilterProfileMapOutputWithContext(ctx context.Context) VideofilterProfileMapOutput {
 	return o
+}
+
+func (o VideofilterProfileMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VideofilterProfile] {
+	return pulumix.Output[map[string]*VideofilterProfile]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VideofilterProfileMapOutput) MapIndex(k pulumi.StringInput) VideofilterProfileOutput {

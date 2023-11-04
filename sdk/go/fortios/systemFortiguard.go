@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemFortiguard struct {
@@ -422,6 +423,12 @@ func (i *SystemFortiguard) ToSystemFortiguardOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFortiguardOutput)
 }
 
+func (i *SystemFortiguard) ToOutput(ctx context.Context) pulumix.Output[*SystemFortiguard] {
+	return pulumix.Output[*SystemFortiguard]{
+		OutputState: i.ToSystemFortiguardOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemFortiguardArrayInput is an input type that accepts SystemFortiguardArray and SystemFortiguardArrayOutput values.
 // You can construct a concrete instance of `SystemFortiguardArrayInput` via:
 //
@@ -445,6 +452,12 @@ func (i SystemFortiguardArray) ToSystemFortiguardArrayOutput() SystemFortiguardA
 
 func (i SystemFortiguardArray) ToSystemFortiguardArrayOutputWithContext(ctx context.Context) SystemFortiguardArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFortiguardArrayOutput)
+}
+
+func (i SystemFortiguardArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemFortiguard] {
+	return pulumix.Output[[]*SystemFortiguard]{
+		OutputState: i.ToSystemFortiguardArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemFortiguardMapInput is an input type that accepts SystemFortiguardMap and SystemFortiguardMapOutput values.
@@ -472,6 +485,12 @@ func (i SystemFortiguardMap) ToSystemFortiguardMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFortiguardMapOutput)
 }
 
+func (i SystemFortiguardMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemFortiguard] {
+	return pulumix.Output[map[string]*SystemFortiguard]{
+		OutputState: i.ToSystemFortiguardMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemFortiguardOutput struct{ *pulumi.OutputState }
 
 func (SystemFortiguardOutput) ElementType() reflect.Type {
@@ -484,6 +503,12 @@ func (o SystemFortiguardOutput) ToSystemFortiguardOutput() SystemFortiguardOutpu
 
 func (o SystemFortiguardOutput) ToSystemFortiguardOutputWithContext(ctx context.Context) SystemFortiguardOutput {
 	return o
+}
+
+func (o SystemFortiguardOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemFortiguard] {
+	return pulumix.Output[*SystemFortiguard]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemFortiguardOutput) AntispamCache() pulumi.StringOutput {
@@ -756,6 +781,12 @@ func (o SystemFortiguardArrayOutput) ToSystemFortiguardArrayOutputWithContext(ct
 	return o
 }
 
+func (o SystemFortiguardArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemFortiguard] {
+	return pulumix.Output[[]*SystemFortiguard]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemFortiguardArrayOutput) Index(i pulumi.IntInput) SystemFortiguardOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemFortiguard {
 		return vs[0].([]*SystemFortiguard)[vs[1].(int)]
@@ -774,6 +805,12 @@ func (o SystemFortiguardMapOutput) ToSystemFortiguardMapOutput() SystemFortiguar
 
 func (o SystemFortiguardMapOutput) ToSystemFortiguardMapOutputWithContext(ctx context.Context) SystemFortiguardMapOutput {
 	return o
+}
+
+func (o SystemFortiguardMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemFortiguard] {
+	return pulumix.Output[map[string]*SystemFortiguard]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemFortiguardMapOutput) MapIndex(k pulumi.StringInput) SystemFortiguardOutput {

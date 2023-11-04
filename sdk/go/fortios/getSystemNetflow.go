@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemNetflow(ctx *pulumi.Context, args *LookupSystemNetflowArgs, opts ...pulumi.InvokeOption) (*LookupSystemNetflowResult, error) {
@@ -77,6 +78,12 @@ func (o LookupSystemNetflowResultOutput) ToLookupSystemNetflowResultOutput() Loo
 
 func (o LookupSystemNetflowResultOutput) ToLookupSystemNetflowResultOutputWithContext(ctx context.Context) LookupSystemNetflowResultOutput {
 	return o
+}
+
+func (o LookupSystemNetflowResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemNetflowResult] {
+	return pulumix.Output[LookupSystemNetflowResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupSystemNetflowResultOutput) ActiveFlowTimeout() pulumi.IntOutput {

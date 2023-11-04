@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type UserPop3 struct {
@@ -119,6 +120,12 @@ func (i *UserPop3) ToUserPop3OutputWithContext(ctx context.Context) UserPop3Outp
 	return pulumi.ToOutputWithContext(ctx, i).(UserPop3Output)
 }
 
+func (i *UserPop3) ToOutput(ctx context.Context) pulumix.Output[*UserPop3] {
+	return pulumix.Output[*UserPop3]{
+		OutputState: i.ToUserPop3OutputWithContext(ctx).OutputState,
+	}
+}
+
 // UserPop3ArrayInput is an input type that accepts UserPop3Array and UserPop3ArrayOutput values.
 // You can construct a concrete instance of `UserPop3ArrayInput` via:
 //
@@ -142,6 +149,12 @@ func (i UserPop3Array) ToUserPop3ArrayOutput() UserPop3ArrayOutput {
 
 func (i UserPop3Array) ToUserPop3ArrayOutputWithContext(ctx context.Context) UserPop3ArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserPop3ArrayOutput)
+}
+
+func (i UserPop3Array) ToOutput(ctx context.Context) pulumix.Output[[]*UserPop3] {
+	return pulumix.Output[[]*UserPop3]{
+		OutputState: i.ToUserPop3ArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // UserPop3MapInput is an input type that accepts UserPop3Map and UserPop3MapOutput values.
@@ -169,6 +182,12 @@ func (i UserPop3Map) ToUserPop3MapOutputWithContext(ctx context.Context) UserPop
 	return pulumi.ToOutputWithContext(ctx, i).(UserPop3MapOutput)
 }
 
+func (i UserPop3Map) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserPop3] {
+	return pulumix.Output[map[string]*UserPop3]{
+		OutputState: i.ToUserPop3MapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type UserPop3Output struct{ *pulumi.OutputState }
 
 func (UserPop3Output) ElementType() reflect.Type {
@@ -181,6 +200,12 @@ func (o UserPop3Output) ToUserPop3Output() UserPop3Output {
 
 func (o UserPop3Output) ToUserPop3OutputWithContext(ctx context.Context) UserPop3Output {
 	return o
+}
+
+func (o UserPop3Output) ToOutput(ctx context.Context) pulumix.Output[*UserPop3] {
+	return pulumix.Output[*UserPop3]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserPop3Output) Name() pulumi.StringOutput {
@@ -221,6 +246,12 @@ func (o UserPop3ArrayOutput) ToUserPop3ArrayOutputWithContext(ctx context.Contex
 	return o
 }
 
+func (o UserPop3ArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*UserPop3] {
+	return pulumix.Output[[]*UserPop3]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o UserPop3ArrayOutput) Index(i pulumi.IntInput) UserPop3Output {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserPop3 {
 		return vs[0].([]*UserPop3)[vs[1].(int)]
@@ -239,6 +270,12 @@ func (o UserPop3MapOutput) ToUserPop3MapOutput() UserPop3MapOutput {
 
 func (o UserPop3MapOutput) ToUserPop3MapOutputWithContext(ctx context.Context) UserPop3MapOutput {
 	return o
+}
+
+func (o UserPop3MapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserPop3] {
+	return pulumix.Output[map[string]*UserPop3]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserPop3MapOutput) MapIndex(k pulumi.StringInput) UserPop3Output {

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemPasswordPolicy struct {
@@ -150,6 +151,12 @@ func (i *SystemPasswordPolicy) ToSystemPasswordPolicyOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(SystemPasswordPolicyOutput)
 }
 
+func (i *SystemPasswordPolicy) ToOutput(ctx context.Context) pulumix.Output[*SystemPasswordPolicy] {
+	return pulumix.Output[*SystemPasswordPolicy]{
+		OutputState: i.ToSystemPasswordPolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemPasswordPolicyArrayInput is an input type that accepts SystemPasswordPolicyArray and SystemPasswordPolicyArrayOutput values.
 // You can construct a concrete instance of `SystemPasswordPolicyArrayInput` via:
 //
@@ -173,6 +180,12 @@ func (i SystemPasswordPolicyArray) ToSystemPasswordPolicyArrayOutput() SystemPas
 
 func (i SystemPasswordPolicyArray) ToSystemPasswordPolicyArrayOutputWithContext(ctx context.Context) SystemPasswordPolicyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemPasswordPolicyArrayOutput)
+}
+
+func (i SystemPasswordPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemPasswordPolicy] {
+	return pulumix.Output[[]*SystemPasswordPolicy]{
+		OutputState: i.ToSystemPasswordPolicyArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemPasswordPolicyMapInput is an input type that accepts SystemPasswordPolicyMap and SystemPasswordPolicyMapOutput values.
@@ -200,6 +213,12 @@ func (i SystemPasswordPolicyMap) ToSystemPasswordPolicyMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(SystemPasswordPolicyMapOutput)
 }
 
+func (i SystemPasswordPolicyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemPasswordPolicy] {
+	return pulumix.Output[map[string]*SystemPasswordPolicy]{
+		OutputState: i.ToSystemPasswordPolicyMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemPasswordPolicyOutput struct{ *pulumi.OutputState }
 
 func (SystemPasswordPolicyOutput) ElementType() reflect.Type {
@@ -212,6 +231,12 @@ func (o SystemPasswordPolicyOutput) ToSystemPasswordPolicyOutput() SystemPasswor
 
 func (o SystemPasswordPolicyOutput) ToSystemPasswordPolicyOutputWithContext(ctx context.Context) SystemPasswordPolicyOutput {
 	return o
+}
+
+func (o SystemPasswordPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemPasswordPolicy] {
+	return pulumix.Output[*SystemPasswordPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemPasswordPolicyOutput) ApplyTo() pulumi.StringOutput {
@@ -280,6 +305,12 @@ func (o SystemPasswordPolicyArrayOutput) ToSystemPasswordPolicyArrayOutputWithCo
 	return o
 }
 
+func (o SystemPasswordPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemPasswordPolicy] {
+	return pulumix.Output[[]*SystemPasswordPolicy]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemPasswordPolicyArrayOutput) Index(i pulumi.IntInput) SystemPasswordPolicyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemPasswordPolicy {
 		return vs[0].([]*SystemPasswordPolicy)[vs[1].(int)]
@@ -298,6 +329,12 @@ func (o SystemPasswordPolicyMapOutput) ToSystemPasswordPolicyMapOutput() SystemP
 
 func (o SystemPasswordPolicyMapOutput) ToSystemPasswordPolicyMapOutputWithContext(ctx context.Context) SystemPasswordPolicyMapOutput {
 	return o
+}
+
+func (o SystemPasswordPolicyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemPasswordPolicy] {
+	return pulumix.Output[map[string]*SystemPasswordPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemPasswordPolicyMapOutput) MapIndex(k pulumi.StringInput) SystemPasswordPolicyOutput {

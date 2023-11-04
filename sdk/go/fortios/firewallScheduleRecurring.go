@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallScheduleRecurring struct {
@@ -127,6 +128,12 @@ func (i *FirewallScheduleRecurring) ToFirewallScheduleRecurringOutputWithContext
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallScheduleRecurringOutput)
 }
 
+func (i *FirewallScheduleRecurring) ToOutput(ctx context.Context) pulumix.Output[*FirewallScheduleRecurring] {
+	return pulumix.Output[*FirewallScheduleRecurring]{
+		OutputState: i.ToFirewallScheduleRecurringOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallScheduleRecurringArrayInput is an input type that accepts FirewallScheduleRecurringArray and FirewallScheduleRecurringArrayOutput values.
 // You can construct a concrete instance of `FirewallScheduleRecurringArrayInput` via:
 //
@@ -150,6 +157,12 @@ func (i FirewallScheduleRecurringArray) ToFirewallScheduleRecurringArrayOutput()
 
 func (i FirewallScheduleRecurringArray) ToFirewallScheduleRecurringArrayOutputWithContext(ctx context.Context) FirewallScheduleRecurringArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallScheduleRecurringArrayOutput)
+}
+
+func (i FirewallScheduleRecurringArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallScheduleRecurring] {
+	return pulumix.Output[[]*FirewallScheduleRecurring]{
+		OutputState: i.ToFirewallScheduleRecurringArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallScheduleRecurringMapInput is an input type that accepts FirewallScheduleRecurringMap and FirewallScheduleRecurringMapOutput values.
@@ -177,6 +190,12 @@ func (i FirewallScheduleRecurringMap) ToFirewallScheduleRecurringMapOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallScheduleRecurringMapOutput)
 }
 
+func (i FirewallScheduleRecurringMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallScheduleRecurring] {
+	return pulumix.Output[map[string]*FirewallScheduleRecurring]{
+		OutputState: i.ToFirewallScheduleRecurringMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallScheduleRecurringOutput struct{ *pulumi.OutputState }
 
 func (FirewallScheduleRecurringOutput) ElementType() reflect.Type {
@@ -189,6 +208,12 @@ func (o FirewallScheduleRecurringOutput) ToFirewallScheduleRecurringOutput() Fir
 
 func (o FirewallScheduleRecurringOutput) ToFirewallScheduleRecurringOutputWithContext(ctx context.Context) FirewallScheduleRecurringOutput {
 	return o
+}
+
+func (o FirewallScheduleRecurringOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallScheduleRecurring] {
+	return pulumix.Output[*FirewallScheduleRecurring]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallScheduleRecurringOutput) Color() pulumi.IntOutput {
@@ -233,6 +258,12 @@ func (o FirewallScheduleRecurringArrayOutput) ToFirewallScheduleRecurringArrayOu
 	return o
 }
 
+func (o FirewallScheduleRecurringArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallScheduleRecurring] {
+	return pulumix.Output[[]*FirewallScheduleRecurring]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallScheduleRecurringArrayOutput) Index(i pulumi.IntInput) FirewallScheduleRecurringOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallScheduleRecurring {
 		return vs[0].([]*FirewallScheduleRecurring)[vs[1].(int)]
@@ -251,6 +282,12 @@ func (o FirewallScheduleRecurringMapOutput) ToFirewallScheduleRecurringMapOutput
 
 func (o FirewallScheduleRecurringMapOutput) ToFirewallScheduleRecurringMapOutputWithContext(ctx context.Context) FirewallScheduleRecurringMapOutput {
 	return o
+}
+
+func (o FirewallScheduleRecurringMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallScheduleRecurring] {
+	return pulumix.Output[map[string]*FirewallScheduleRecurring]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallScheduleRecurringMapOutput) MapIndex(k pulumi.StringInput) FirewallScheduleRecurringOutput {

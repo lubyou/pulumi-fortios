@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupFirewallScheduleRecurring(ctx *pulumi.Context, args *LookupFirewallScheduleRecurringArgs, opts ...pulumi.InvokeOption) (*LookupFirewallScheduleRecurringResult, error) {
@@ -76,6 +77,12 @@ func (o LookupFirewallScheduleRecurringResultOutput) ToLookupFirewallScheduleRec
 
 func (o LookupFirewallScheduleRecurringResultOutput) ToLookupFirewallScheduleRecurringResultOutputWithContext(ctx context.Context) LookupFirewallScheduleRecurringResultOutput {
 	return o
+}
+
+func (o LookupFirewallScheduleRecurringResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupFirewallScheduleRecurringResult] {
+	return pulumix.Output[LookupFirewallScheduleRecurringResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupFirewallScheduleRecurringResultOutput) Color() pulumi.IntOutput {

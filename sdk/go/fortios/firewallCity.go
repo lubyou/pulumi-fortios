@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallCity struct {
@@ -100,6 +101,12 @@ func (i *FirewallCity) ToFirewallCityOutputWithContext(ctx context.Context) Fire
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallCityOutput)
 }
 
+func (i *FirewallCity) ToOutput(ctx context.Context) pulumix.Output[*FirewallCity] {
+	return pulumix.Output[*FirewallCity]{
+		OutputState: i.ToFirewallCityOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallCityArrayInput is an input type that accepts FirewallCityArray and FirewallCityArrayOutput values.
 // You can construct a concrete instance of `FirewallCityArrayInput` via:
 //
@@ -123,6 +130,12 @@ func (i FirewallCityArray) ToFirewallCityArrayOutput() FirewallCityArrayOutput {
 
 func (i FirewallCityArray) ToFirewallCityArrayOutputWithContext(ctx context.Context) FirewallCityArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallCityArrayOutput)
+}
+
+func (i FirewallCityArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallCity] {
+	return pulumix.Output[[]*FirewallCity]{
+		OutputState: i.ToFirewallCityArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallCityMapInput is an input type that accepts FirewallCityMap and FirewallCityMapOutput values.
@@ -150,6 +163,12 @@ func (i FirewallCityMap) ToFirewallCityMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallCityMapOutput)
 }
 
+func (i FirewallCityMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallCity] {
+	return pulumix.Output[map[string]*FirewallCity]{
+		OutputState: i.ToFirewallCityMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallCityOutput struct{ *pulumi.OutputState }
 
 func (FirewallCityOutput) ElementType() reflect.Type {
@@ -162,6 +181,12 @@ func (o FirewallCityOutput) ToFirewallCityOutput() FirewallCityOutput {
 
 func (o FirewallCityOutput) ToFirewallCityOutputWithContext(ctx context.Context) FirewallCityOutput {
 	return o
+}
+
+func (o FirewallCityOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallCity] {
+	return pulumix.Output[*FirewallCity]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallCityOutput) Fosid() pulumi.IntOutput {
@@ -190,6 +215,12 @@ func (o FirewallCityArrayOutput) ToFirewallCityArrayOutputWithContext(ctx contex
 	return o
 }
 
+func (o FirewallCityArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallCity] {
+	return pulumix.Output[[]*FirewallCity]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallCityArrayOutput) Index(i pulumi.IntInput) FirewallCityOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallCity {
 		return vs[0].([]*FirewallCity)[vs[1].(int)]
@@ -208,6 +239,12 @@ func (o FirewallCityMapOutput) ToFirewallCityMapOutput() FirewallCityMapOutput {
 
 func (o FirewallCityMapOutput) ToFirewallCityMapOutputWithContext(ctx context.Context) FirewallCityMapOutput {
 	return o
+}
+
+func (o FirewallCityMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallCity] {
+	return pulumix.Output[map[string]*FirewallCity]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallCityMapOutput) MapIndex(k pulumi.StringInput) FirewallCityOutput {

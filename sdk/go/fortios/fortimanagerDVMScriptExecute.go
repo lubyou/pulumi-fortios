@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FortimanagerDVMScriptExecute struct {
@@ -119,6 +120,12 @@ func (i *FortimanagerDVMScriptExecute) ToFortimanagerDVMScriptExecuteOutputWithC
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerDVMScriptExecuteOutput)
 }
 
+func (i *FortimanagerDVMScriptExecute) ToOutput(ctx context.Context) pulumix.Output[*FortimanagerDVMScriptExecute] {
+	return pulumix.Output[*FortimanagerDVMScriptExecute]{
+		OutputState: i.ToFortimanagerDVMScriptExecuteOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FortimanagerDVMScriptExecuteArrayInput is an input type that accepts FortimanagerDVMScriptExecuteArray and FortimanagerDVMScriptExecuteArrayOutput values.
 // You can construct a concrete instance of `FortimanagerDVMScriptExecuteArrayInput` via:
 //
@@ -142,6 +149,12 @@ func (i FortimanagerDVMScriptExecuteArray) ToFortimanagerDVMScriptExecuteArrayOu
 
 func (i FortimanagerDVMScriptExecuteArray) ToFortimanagerDVMScriptExecuteArrayOutputWithContext(ctx context.Context) FortimanagerDVMScriptExecuteArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerDVMScriptExecuteArrayOutput)
+}
+
+func (i FortimanagerDVMScriptExecuteArray) ToOutput(ctx context.Context) pulumix.Output[[]*FortimanagerDVMScriptExecute] {
+	return pulumix.Output[[]*FortimanagerDVMScriptExecute]{
+		OutputState: i.ToFortimanagerDVMScriptExecuteArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FortimanagerDVMScriptExecuteMapInput is an input type that accepts FortimanagerDVMScriptExecuteMap and FortimanagerDVMScriptExecuteMapOutput values.
@@ -169,6 +182,12 @@ func (i FortimanagerDVMScriptExecuteMap) ToFortimanagerDVMScriptExecuteMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerDVMScriptExecuteMapOutput)
 }
 
+func (i FortimanagerDVMScriptExecuteMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FortimanagerDVMScriptExecute] {
+	return pulumix.Output[map[string]*FortimanagerDVMScriptExecute]{
+		OutputState: i.ToFortimanagerDVMScriptExecuteMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FortimanagerDVMScriptExecuteOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerDVMScriptExecuteOutput) ElementType() reflect.Type {
@@ -181,6 +200,12 @@ func (o FortimanagerDVMScriptExecuteOutput) ToFortimanagerDVMScriptExecuteOutput
 
 func (o FortimanagerDVMScriptExecuteOutput) ToFortimanagerDVMScriptExecuteOutputWithContext(ctx context.Context) FortimanagerDVMScriptExecuteOutput {
 	return o
+}
+
+func (o FortimanagerDVMScriptExecuteOutput) ToOutput(ctx context.Context) pulumix.Output[*FortimanagerDVMScriptExecute] {
+	return pulumix.Output[*FortimanagerDVMScriptExecute]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FortimanagerDVMScriptExecuteOutput) Adom() pulumi.StringPtrOutput {
@@ -221,6 +246,12 @@ func (o FortimanagerDVMScriptExecuteArrayOutput) ToFortimanagerDVMScriptExecuteA
 	return o
 }
 
+func (o FortimanagerDVMScriptExecuteArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FortimanagerDVMScriptExecute] {
+	return pulumix.Output[[]*FortimanagerDVMScriptExecute]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FortimanagerDVMScriptExecuteArrayOutput) Index(i pulumi.IntInput) FortimanagerDVMScriptExecuteOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FortimanagerDVMScriptExecute {
 		return vs[0].([]*FortimanagerDVMScriptExecute)[vs[1].(int)]
@@ -239,6 +270,12 @@ func (o FortimanagerDVMScriptExecuteMapOutput) ToFortimanagerDVMScriptExecuteMap
 
 func (o FortimanagerDVMScriptExecuteMapOutput) ToFortimanagerDVMScriptExecuteMapOutputWithContext(ctx context.Context) FortimanagerDVMScriptExecuteMapOutput {
 	return o
+}
+
+func (o FortimanagerDVMScriptExecuteMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FortimanagerDVMScriptExecute] {
+	return pulumix.Output[map[string]*FortimanagerDVMScriptExecute]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FortimanagerDVMScriptExecuteMapOutput) MapIndex(k pulumi.StringInput) FortimanagerDVMScriptExecuteOutput {

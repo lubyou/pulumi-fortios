@@ -70,8 +70,10 @@ class RouterbgpNeighborArgs:
                  ebgp_multihop_ttl: Optional[pulumi.Input[int]] = None,
                  filter_list_in: Optional[pulumi.Input[str]] = None,
                  filter_list_in6: Optional[pulumi.Input[str]] = None,
+                 filter_list_in_vpnv4: Optional[pulumi.Input[str]] = None,
                  filter_list_out: Optional[pulumi.Input[str]] = None,
                  filter_list_out6: Optional[pulumi.Input[str]] = None,
+                 filter_list_out_vpnv4: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  holdtime_timer: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
@@ -258,10 +260,14 @@ class RouterbgpNeighborArgs:
             pulumi.set(__self__, "filter_list_in", filter_list_in)
         if filter_list_in6 is not None:
             pulumi.set(__self__, "filter_list_in6", filter_list_in6)
+        if filter_list_in_vpnv4 is not None:
+            pulumi.set(__self__, "filter_list_in_vpnv4", filter_list_in_vpnv4)
         if filter_list_out is not None:
             pulumi.set(__self__, "filter_list_out", filter_list_out)
         if filter_list_out6 is not None:
             pulumi.set(__self__, "filter_list_out6", filter_list_out6)
+        if filter_list_out_vpnv4 is not None:
+            pulumi.set(__self__, "filter_list_out_vpnv4", filter_list_out_vpnv4)
         if get_all_tables is not None:
             pulumi.set(__self__, "get_all_tables", get_all_tables)
         if holdtime_timer is not None:
@@ -902,6 +908,15 @@ class RouterbgpNeighborArgs:
         pulumi.set(self, "filter_list_in6", value)
 
     @property
+    @pulumi.getter(name="filterListInVpnv4")
+    def filter_list_in_vpnv4(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "filter_list_in_vpnv4")
+
+    @filter_list_in_vpnv4.setter
+    def filter_list_in_vpnv4(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "filter_list_in_vpnv4", value)
+
+    @property
     @pulumi.getter(name="filterListOut")
     def filter_list_out(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "filter_list_out")
@@ -918,6 +933,15 @@ class RouterbgpNeighborArgs:
     @filter_list_out6.setter
     def filter_list_out6(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "filter_list_out6", value)
+
+    @property
+    @pulumi.getter(name="filterListOutVpnv4")
+    def filter_list_out_vpnv4(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "filter_list_out_vpnv4")
+
+    @filter_list_out_vpnv4.setter
+    def filter_list_out_vpnv4(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "filter_list_out_vpnv4", value)
 
     @property
     @pulumi.getter(name="getAllTables")
@@ -1660,8 +1684,10 @@ class _RouterbgpNeighborState:
                  ebgp_multihop_ttl: Optional[pulumi.Input[int]] = None,
                  filter_list_in: Optional[pulumi.Input[str]] = None,
                  filter_list_in6: Optional[pulumi.Input[str]] = None,
+                 filter_list_in_vpnv4: Optional[pulumi.Input[str]] = None,
                  filter_list_out: Optional[pulumi.Input[str]] = None,
                  filter_list_out6: Optional[pulumi.Input[str]] = None,
+                 filter_list_out_vpnv4: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  holdtime_timer: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
@@ -1848,10 +1874,14 @@ class _RouterbgpNeighborState:
             pulumi.set(__self__, "filter_list_in", filter_list_in)
         if filter_list_in6 is not None:
             pulumi.set(__self__, "filter_list_in6", filter_list_in6)
+        if filter_list_in_vpnv4 is not None:
+            pulumi.set(__self__, "filter_list_in_vpnv4", filter_list_in_vpnv4)
         if filter_list_out is not None:
             pulumi.set(__self__, "filter_list_out", filter_list_out)
         if filter_list_out6 is not None:
             pulumi.set(__self__, "filter_list_out6", filter_list_out6)
+        if filter_list_out_vpnv4 is not None:
+            pulumi.set(__self__, "filter_list_out_vpnv4", filter_list_out_vpnv4)
         if get_all_tables is not None:
             pulumi.set(__self__, "get_all_tables", get_all_tables)
         if holdtime_timer is not None:
@@ -2485,6 +2515,15 @@ class _RouterbgpNeighborState:
         pulumi.set(self, "filter_list_in6", value)
 
     @property
+    @pulumi.getter(name="filterListInVpnv4")
+    def filter_list_in_vpnv4(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "filter_list_in_vpnv4")
+
+    @filter_list_in_vpnv4.setter
+    def filter_list_in_vpnv4(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "filter_list_in_vpnv4", value)
+
+    @property
     @pulumi.getter(name="filterListOut")
     def filter_list_out(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "filter_list_out")
@@ -2501,6 +2540,15 @@ class _RouterbgpNeighborState:
     @filter_list_out6.setter
     def filter_list_out6(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "filter_list_out6", value)
+
+    @property
+    @pulumi.getter(name="filterListOutVpnv4")
+    def filter_list_out_vpnv4(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "filter_list_out_vpnv4")
+
+    @filter_list_out_vpnv4.setter
+    def filter_list_out_vpnv4(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "filter_list_out_vpnv4", value)
 
     @property
     @pulumi.getter(name="getAllTables")
@@ -3254,8 +3302,10 @@ class RouterbgpNeighbor(pulumi.CustomResource):
                  ebgp_multihop_ttl: Optional[pulumi.Input[int]] = None,
                  filter_list_in: Optional[pulumi.Input[str]] = None,
                  filter_list_in6: Optional[pulumi.Input[str]] = None,
+                 filter_list_in_vpnv4: Optional[pulumi.Input[str]] = None,
                  filter_list_out: Optional[pulumi.Input[str]] = None,
                  filter_list_out6: Optional[pulumi.Input[str]] = None,
+                 filter_list_out_vpnv4: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  holdtime_timer: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
@@ -3415,8 +3465,10 @@ class RouterbgpNeighbor(pulumi.CustomResource):
                  ebgp_multihop_ttl: Optional[pulumi.Input[int]] = None,
                  filter_list_in: Optional[pulumi.Input[str]] = None,
                  filter_list_in6: Optional[pulumi.Input[str]] = None,
+                 filter_list_in_vpnv4: Optional[pulumi.Input[str]] = None,
                  filter_list_out: Optional[pulumi.Input[str]] = None,
                  filter_list_out6: Optional[pulumi.Input[str]] = None,
+                 filter_list_out_vpnv4: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  holdtime_timer: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
@@ -3556,8 +3608,10 @@ class RouterbgpNeighbor(pulumi.CustomResource):
             __props__.__dict__["ebgp_multihop_ttl"] = ebgp_multihop_ttl
             __props__.__dict__["filter_list_in"] = filter_list_in
             __props__.__dict__["filter_list_in6"] = filter_list_in6
+            __props__.__dict__["filter_list_in_vpnv4"] = filter_list_in_vpnv4
             __props__.__dict__["filter_list_out"] = filter_list_out
             __props__.__dict__["filter_list_out6"] = filter_list_out6
+            __props__.__dict__["filter_list_out_vpnv4"] = filter_list_out_vpnv4
             __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["holdtime_timer"] = holdtime_timer
             __props__.__dict__["interface"] = interface
@@ -3702,8 +3756,10 @@ class RouterbgpNeighbor(pulumi.CustomResource):
             ebgp_multihop_ttl: Optional[pulumi.Input[int]] = None,
             filter_list_in: Optional[pulumi.Input[str]] = None,
             filter_list_in6: Optional[pulumi.Input[str]] = None,
+            filter_list_in_vpnv4: Optional[pulumi.Input[str]] = None,
             filter_list_out: Optional[pulumi.Input[str]] = None,
             filter_list_out6: Optional[pulumi.Input[str]] = None,
+            filter_list_out_vpnv4: Optional[pulumi.Input[str]] = None,
             get_all_tables: Optional[pulumi.Input[str]] = None,
             holdtime_timer: Optional[pulumi.Input[int]] = None,
             interface: Optional[pulumi.Input[str]] = None,
@@ -3846,8 +3902,10 @@ class RouterbgpNeighbor(pulumi.CustomResource):
         __props__.__dict__["ebgp_multihop_ttl"] = ebgp_multihop_ttl
         __props__.__dict__["filter_list_in"] = filter_list_in
         __props__.__dict__["filter_list_in6"] = filter_list_in6
+        __props__.__dict__["filter_list_in_vpnv4"] = filter_list_in_vpnv4
         __props__.__dict__["filter_list_out"] = filter_list_out
         __props__.__dict__["filter_list_out6"] = filter_list_out6
+        __props__.__dict__["filter_list_out_vpnv4"] = filter_list_out_vpnv4
         __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["holdtime_timer"] = holdtime_timer
         __props__.__dict__["interface"] = interface
@@ -4193,6 +4251,11 @@ class RouterbgpNeighbor(pulumi.CustomResource):
         return pulumi.get(self, "filter_list_in6")
 
     @property
+    @pulumi.getter(name="filterListInVpnv4")
+    def filter_list_in_vpnv4(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "filter_list_in_vpnv4")
+
+    @property
     @pulumi.getter(name="filterListOut")
     def filter_list_out(self) -> pulumi.Output[str]:
         return pulumi.get(self, "filter_list_out")
@@ -4201,6 +4264,11 @@ class RouterbgpNeighbor(pulumi.CustomResource):
     @pulumi.getter(name="filterListOut6")
     def filter_list_out6(self) -> pulumi.Output[str]:
         return pulumi.get(self, "filter_list_out6")
+
+    @property
+    @pulumi.getter(name="filterListOutVpnv4")
+    def filter_list_out_vpnv4(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "filter_list_out_vpnv4")
 
     @property
     @pulumi.getter(name="getAllTables")

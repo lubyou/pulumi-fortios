@@ -35,6 +35,7 @@ class UserSettingArgs:
                  auth_timeout: Optional[pulumi.Input[int]] = None,
                  auth_timeout_type: Optional[pulumi.Input[str]] = None,
                  auth_type: Optional[pulumi.Input[str]] = None,
+                 default_user_password_policy: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  per_policy_disclaimer: Optional[pulumi.Input[str]] = None,
@@ -81,6 +82,8 @@ class UserSettingArgs:
             pulumi.set(__self__, "auth_timeout_type", auth_timeout_type)
         if auth_type is not None:
             pulumi.set(__self__, "auth_type", auth_type)
+        if default_user_password_policy is not None:
+            pulumi.set(__self__, "default_user_password_policy", default_user_password_policy)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if get_all_tables is not None:
@@ -262,6 +265,15 @@ class UserSettingArgs:
     @auth_type.setter
     def auth_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "auth_type", value)
+
+    @property
+    @pulumi.getter(name="defaultUserPasswordPolicy")
+    def default_user_password_policy(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "default_user_password_policy")
+
+    @default_user_password_policy.setter
+    def default_user_password_policy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "default_user_password_policy", value)
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -331,6 +343,7 @@ class _UserSettingState:
                  auth_timeout: Optional[pulumi.Input[int]] = None,
                  auth_timeout_type: Optional[pulumi.Input[str]] = None,
                  auth_type: Optional[pulumi.Input[str]] = None,
+                 default_user_password_policy: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  per_policy_disclaimer: Optional[pulumi.Input[str]] = None,
@@ -377,6 +390,8 @@ class _UserSettingState:
             pulumi.set(__self__, "auth_timeout_type", auth_timeout_type)
         if auth_type is not None:
             pulumi.set(__self__, "auth_type", auth_type)
+        if default_user_password_policy is not None:
+            pulumi.set(__self__, "default_user_password_policy", default_user_password_policy)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if get_all_tables is not None:
@@ -558,6 +573,15 @@ class _UserSettingState:
     @auth_type.setter
     def auth_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "auth_type", value)
+
+    @property
+    @pulumi.getter(name="defaultUserPasswordPolicy")
+    def default_user_password_policy(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "default_user_password_policy")
+
+    @default_user_password_policy.setter
+    def default_user_password_policy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "default_user_password_policy", value)
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -629,6 +653,7 @@ class UserSetting(pulumi.CustomResource):
                  auth_timeout: Optional[pulumi.Input[int]] = None,
                  auth_timeout_type: Optional[pulumi.Input[str]] = None,
                  auth_type: Optional[pulumi.Input[str]] = None,
+                 default_user_password_policy: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  per_policy_disclaimer: Optional[pulumi.Input[str]] = None,
@@ -682,6 +707,7 @@ class UserSetting(pulumi.CustomResource):
                  auth_timeout: Optional[pulumi.Input[int]] = None,
                  auth_timeout_type: Optional[pulumi.Input[str]] = None,
                  auth_type: Optional[pulumi.Input[str]] = None,
+                 default_user_password_policy: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  per_policy_disclaimer: Optional[pulumi.Input[str]] = None,
@@ -715,6 +741,7 @@ class UserSetting(pulumi.CustomResource):
             __props__.__dict__["auth_timeout"] = auth_timeout
             __props__.__dict__["auth_timeout_type"] = auth_timeout_type
             __props__.__dict__["auth_type"] = auth_type
+            __props__.__dict__["default_user_password_policy"] = default_user_password_policy
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["per_policy_disclaimer"] = per_policy_disclaimer
@@ -749,6 +776,7 @@ class UserSetting(pulumi.CustomResource):
             auth_timeout: Optional[pulumi.Input[int]] = None,
             auth_timeout_type: Optional[pulumi.Input[str]] = None,
             auth_type: Optional[pulumi.Input[str]] = None,
+            default_user_password_policy: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             get_all_tables: Optional[pulumi.Input[str]] = None,
             per_policy_disclaimer: Optional[pulumi.Input[str]] = None,
@@ -785,6 +813,7 @@ class UserSetting(pulumi.CustomResource):
         __props__.__dict__["auth_timeout"] = auth_timeout
         __props__.__dict__["auth_timeout_type"] = auth_timeout_type
         __props__.__dict__["auth_type"] = auth_type
+        __props__.__dict__["default_user_password_policy"] = default_user_password_policy
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["per_policy_disclaimer"] = per_policy_disclaimer
@@ -886,6 +915,11 @@ class UserSetting(pulumi.CustomResource):
     @pulumi.getter(name="authType")
     def auth_type(self) -> pulumi.Output[str]:
         return pulumi.get(self, "auth_type")
+
+    @property
+    @pulumi.getter(name="defaultUserPasswordPolicy")
+    def default_user_password_policy(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "default_user_password_policy")
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")

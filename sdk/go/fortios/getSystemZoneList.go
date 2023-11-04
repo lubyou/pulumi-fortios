@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetSystemZoneList(ctx *pulumi.Context, args *GetSystemZoneListArgs, opts ...pulumi.InvokeOption) (*GetSystemZoneListResult, error) {
@@ -72,6 +73,12 @@ func (o GetSystemZoneListResultOutput) ToGetSystemZoneListResultOutput() GetSyst
 
 func (o GetSystemZoneListResultOutput) ToGetSystemZoneListResultOutputWithContext(ctx context.Context) GetSystemZoneListResultOutput {
 	return o
+}
+
+func (o GetSystemZoneListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSystemZoneListResult] {
+	return pulumix.Output[GetSystemZoneListResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetSystemZoneListResultOutput) Filter() pulumi.StringPtrOutput {

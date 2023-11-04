@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupJSONGenericAPI(ctx *pulumi.Context, args *LookupJSONGenericAPIArgs, opts ...pulumi.InvokeOption) (*LookupJSONGenericAPIResult, error) {
@@ -75,6 +76,12 @@ func (o LookupJSONGenericAPIResultOutput) ToLookupJSONGenericAPIResultOutput() L
 
 func (o LookupJSONGenericAPIResultOutput) ToLookupJSONGenericAPIResultOutputWithContext(ctx context.Context) LookupJSONGenericAPIResultOutput {
 	return o
+}
+
+func (o LookupJSONGenericAPIResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupJSONGenericAPIResult] {
+	return pulumix.Output[LookupJSONGenericAPIResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.

@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallAddress6Template struct {
@@ -132,6 +133,12 @@ func (i *FirewallAddress6Template) ToFirewallAddress6TemplateOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallAddress6TemplateOutput)
 }
 
+func (i *FirewallAddress6Template) ToOutput(ctx context.Context) pulumix.Output[*FirewallAddress6Template] {
+	return pulumix.Output[*FirewallAddress6Template]{
+		OutputState: i.ToFirewallAddress6TemplateOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallAddress6TemplateArrayInput is an input type that accepts FirewallAddress6TemplateArray and FirewallAddress6TemplateArrayOutput values.
 // You can construct a concrete instance of `FirewallAddress6TemplateArrayInput` via:
 //
@@ -155,6 +162,12 @@ func (i FirewallAddress6TemplateArray) ToFirewallAddress6TemplateArrayOutput() F
 
 func (i FirewallAddress6TemplateArray) ToFirewallAddress6TemplateArrayOutputWithContext(ctx context.Context) FirewallAddress6TemplateArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallAddress6TemplateArrayOutput)
+}
+
+func (i FirewallAddress6TemplateArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallAddress6Template] {
+	return pulumix.Output[[]*FirewallAddress6Template]{
+		OutputState: i.ToFirewallAddress6TemplateArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallAddress6TemplateMapInput is an input type that accepts FirewallAddress6TemplateMap and FirewallAddress6TemplateMapOutput values.
@@ -182,6 +195,12 @@ func (i FirewallAddress6TemplateMap) ToFirewallAddress6TemplateMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallAddress6TemplateMapOutput)
 }
 
+func (i FirewallAddress6TemplateMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallAddress6Template] {
+	return pulumix.Output[map[string]*FirewallAddress6Template]{
+		OutputState: i.ToFirewallAddress6TemplateMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallAddress6TemplateOutput struct{ *pulumi.OutputState }
 
 func (FirewallAddress6TemplateOutput) ElementType() reflect.Type {
@@ -194,6 +213,12 @@ func (o FirewallAddress6TemplateOutput) ToFirewallAddress6TemplateOutput() Firew
 
 func (o FirewallAddress6TemplateOutput) ToFirewallAddress6TemplateOutputWithContext(ctx context.Context) FirewallAddress6TemplateOutput {
 	return o
+}
+
+func (o FirewallAddress6TemplateOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallAddress6Template] {
+	return pulumix.Output[*FirewallAddress6Template]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallAddress6TemplateOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -244,6 +269,12 @@ func (o FirewallAddress6TemplateArrayOutput) ToFirewallAddress6TemplateArrayOutp
 	return o
 }
 
+func (o FirewallAddress6TemplateArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallAddress6Template] {
+	return pulumix.Output[[]*FirewallAddress6Template]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallAddress6TemplateArrayOutput) Index(i pulumi.IntInput) FirewallAddress6TemplateOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallAddress6Template {
 		return vs[0].([]*FirewallAddress6Template)[vs[1].(int)]
@@ -262,6 +293,12 @@ func (o FirewallAddress6TemplateMapOutput) ToFirewallAddress6TemplateMapOutput()
 
 func (o FirewallAddress6TemplateMapOutput) ToFirewallAddress6TemplateMapOutputWithContext(ctx context.Context) FirewallAddress6TemplateMapOutput {
 	return o
+}
+
+func (o FirewallAddress6TemplateMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallAddress6Template] {
+	return pulumix.Output[map[string]*FirewallAddress6Template]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallAddress6TemplateMapOutput) MapIndex(k pulumi.StringInput) FirewallAddress6TemplateOutput {

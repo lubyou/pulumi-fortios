@@ -9,29 +9,31 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type DnsfilterProfile struct {
 	pulumi.CustomResourceState
 
-	BlockAction          pulumi.StringOutput                            `pulumi:"blockAction"`
-	BlockBotnet          pulumi.StringOutput                            `pulumi:"blockBotnet"`
-	Comment              pulumi.StringPtrOutput                         `pulumi:"comment"`
-	DnsTranslations      DnsfilterProfileDnsTranslationArrayOutput      `pulumi:"dnsTranslations"`
-	DomainFilter         DnsfilterProfileDomainFilterOutput             `pulumi:"domainFilter"`
-	DynamicSortSubtable  pulumi.StringPtrOutput                         `pulumi:"dynamicSortSubtable"`
-	ExternalIpBlocklists DnsfilterProfileExternalIpBlocklistArrayOutput `pulumi:"externalIpBlocklists"`
-	FtgdDns              DnsfilterProfileFtgdDnsOutput                  `pulumi:"ftgdDns"`
-	GetAllTables         pulumi.StringPtrOutput                         `pulumi:"getAllTables"`
-	LogAllDomain         pulumi.StringOutput                            `pulumi:"logAllDomain"`
-	Name                 pulumi.StringOutput                            `pulumi:"name"`
-	RedirectPortal       pulumi.StringOutput                            `pulumi:"redirectPortal"`
-	RedirectPortal6      pulumi.StringOutput                            `pulumi:"redirectPortal6"`
-	SafeSearch           pulumi.StringOutput                            `pulumi:"safeSearch"`
-	SdnsDomainLog        pulumi.StringOutput                            `pulumi:"sdnsDomainLog"`
-	SdnsFtgdErrLog       pulumi.StringOutput                            `pulumi:"sdnsFtgdErrLog"`
-	Vdomparam            pulumi.StringPtrOutput                         `pulumi:"vdomparam"`
-	YoutubeRestrict      pulumi.StringOutput                            `pulumi:"youtubeRestrict"`
+	BlockAction             pulumi.StringOutput                               `pulumi:"blockAction"`
+	BlockBotnet             pulumi.StringOutput                               `pulumi:"blockBotnet"`
+	Comment                 pulumi.StringPtrOutput                            `pulumi:"comment"`
+	DnsTranslations         DnsfilterProfileDnsTranslationArrayOutput         `pulumi:"dnsTranslations"`
+	DomainFilter            DnsfilterProfileDomainFilterOutput                `pulumi:"domainFilter"`
+	DynamicSortSubtable     pulumi.StringPtrOutput                            `pulumi:"dynamicSortSubtable"`
+	ExternalIpBlocklists    DnsfilterProfileExternalIpBlocklistArrayOutput    `pulumi:"externalIpBlocklists"`
+	FtgdDns                 DnsfilterProfileFtgdDnsOutput                     `pulumi:"ftgdDns"`
+	GetAllTables            pulumi.StringPtrOutput                            `pulumi:"getAllTables"`
+	LogAllDomain            pulumi.StringOutput                               `pulumi:"logAllDomain"`
+	Name                    pulumi.StringOutput                               `pulumi:"name"`
+	RedirectPortal          pulumi.StringOutput                               `pulumi:"redirectPortal"`
+	RedirectPortal6         pulumi.StringOutput                               `pulumi:"redirectPortal6"`
+	SafeSearch              pulumi.StringOutput                               `pulumi:"safeSearch"`
+	SdnsDomainLog           pulumi.StringOutput                               `pulumi:"sdnsDomainLog"`
+	SdnsFtgdErrLog          pulumi.StringOutput                               `pulumi:"sdnsFtgdErrLog"`
+	TransparentDnsDatabases DnsfilterProfileTransparentDnsDatabaseArrayOutput `pulumi:"transparentDnsDatabases"`
+	Vdomparam               pulumi.StringPtrOutput                            `pulumi:"vdomparam"`
+	YoutubeRestrict         pulumi.StringOutput                               `pulumi:"youtubeRestrict"`
 }
 
 // NewDnsfilterProfile registers a new resource with the given unique name, arguments, and options.
@@ -64,45 +66,47 @@ func GetDnsfilterProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DnsfilterProfile resources.
 type dnsfilterProfileState struct {
-	BlockAction          *string                               `pulumi:"blockAction"`
-	BlockBotnet          *string                               `pulumi:"blockBotnet"`
-	Comment              *string                               `pulumi:"comment"`
-	DnsTranslations      []DnsfilterProfileDnsTranslation      `pulumi:"dnsTranslations"`
-	DomainFilter         *DnsfilterProfileDomainFilter         `pulumi:"domainFilter"`
-	DynamicSortSubtable  *string                               `pulumi:"dynamicSortSubtable"`
-	ExternalIpBlocklists []DnsfilterProfileExternalIpBlocklist `pulumi:"externalIpBlocklists"`
-	FtgdDns              *DnsfilterProfileFtgdDns              `pulumi:"ftgdDns"`
-	GetAllTables         *string                               `pulumi:"getAllTables"`
-	LogAllDomain         *string                               `pulumi:"logAllDomain"`
-	Name                 *string                               `pulumi:"name"`
-	RedirectPortal       *string                               `pulumi:"redirectPortal"`
-	RedirectPortal6      *string                               `pulumi:"redirectPortal6"`
-	SafeSearch           *string                               `pulumi:"safeSearch"`
-	SdnsDomainLog        *string                               `pulumi:"sdnsDomainLog"`
-	SdnsFtgdErrLog       *string                               `pulumi:"sdnsFtgdErrLog"`
-	Vdomparam            *string                               `pulumi:"vdomparam"`
-	YoutubeRestrict      *string                               `pulumi:"youtubeRestrict"`
+	BlockAction             *string                                  `pulumi:"blockAction"`
+	BlockBotnet             *string                                  `pulumi:"blockBotnet"`
+	Comment                 *string                                  `pulumi:"comment"`
+	DnsTranslations         []DnsfilterProfileDnsTranslation         `pulumi:"dnsTranslations"`
+	DomainFilter            *DnsfilterProfileDomainFilter            `pulumi:"domainFilter"`
+	DynamicSortSubtable     *string                                  `pulumi:"dynamicSortSubtable"`
+	ExternalIpBlocklists    []DnsfilterProfileExternalIpBlocklist    `pulumi:"externalIpBlocklists"`
+	FtgdDns                 *DnsfilterProfileFtgdDns                 `pulumi:"ftgdDns"`
+	GetAllTables            *string                                  `pulumi:"getAllTables"`
+	LogAllDomain            *string                                  `pulumi:"logAllDomain"`
+	Name                    *string                                  `pulumi:"name"`
+	RedirectPortal          *string                                  `pulumi:"redirectPortal"`
+	RedirectPortal6         *string                                  `pulumi:"redirectPortal6"`
+	SafeSearch              *string                                  `pulumi:"safeSearch"`
+	SdnsDomainLog           *string                                  `pulumi:"sdnsDomainLog"`
+	SdnsFtgdErrLog          *string                                  `pulumi:"sdnsFtgdErrLog"`
+	TransparentDnsDatabases []DnsfilterProfileTransparentDnsDatabase `pulumi:"transparentDnsDatabases"`
+	Vdomparam               *string                                  `pulumi:"vdomparam"`
+	YoutubeRestrict         *string                                  `pulumi:"youtubeRestrict"`
 }
 
 type DnsfilterProfileState struct {
-	BlockAction          pulumi.StringPtrInput
-	BlockBotnet          pulumi.StringPtrInput
-	Comment              pulumi.StringPtrInput
-	DnsTranslations      DnsfilterProfileDnsTranslationArrayInput
-	DomainFilter         DnsfilterProfileDomainFilterPtrInput
-	DynamicSortSubtable  pulumi.StringPtrInput
-	ExternalIpBlocklists DnsfilterProfileExternalIpBlocklistArrayInput
-	FtgdDns              DnsfilterProfileFtgdDnsPtrInput
-	GetAllTables         pulumi.StringPtrInput
-	LogAllDomain         pulumi.StringPtrInput
-	Name                 pulumi.StringPtrInput
-	RedirectPortal       pulumi.StringPtrInput
-	RedirectPortal6      pulumi.StringPtrInput
-	SafeSearch           pulumi.StringPtrInput
-	SdnsDomainLog        pulumi.StringPtrInput
-	SdnsFtgdErrLog       pulumi.StringPtrInput
-	Vdomparam            pulumi.StringPtrInput
-	YoutubeRestrict      pulumi.StringPtrInput
+	BlockAction             pulumi.StringPtrInput
+	BlockBotnet             pulumi.StringPtrInput
+	Comment                 pulumi.StringPtrInput
+	DnsTranslations         DnsfilterProfileDnsTranslationArrayInput
+	DomainFilter            DnsfilterProfileDomainFilterPtrInput
+	DynamicSortSubtable     pulumi.StringPtrInput
+	ExternalIpBlocklists    DnsfilterProfileExternalIpBlocklistArrayInput
+	FtgdDns                 DnsfilterProfileFtgdDnsPtrInput
+	GetAllTables            pulumi.StringPtrInput
+	LogAllDomain            pulumi.StringPtrInput
+	Name                    pulumi.StringPtrInput
+	RedirectPortal          pulumi.StringPtrInput
+	RedirectPortal6         pulumi.StringPtrInput
+	SafeSearch              pulumi.StringPtrInput
+	SdnsDomainLog           pulumi.StringPtrInput
+	SdnsFtgdErrLog          pulumi.StringPtrInput
+	TransparentDnsDatabases DnsfilterProfileTransparentDnsDatabaseArrayInput
+	Vdomparam               pulumi.StringPtrInput
+	YoutubeRestrict         pulumi.StringPtrInput
 }
 
 func (DnsfilterProfileState) ElementType() reflect.Type {
@@ -110,46 +114,48 @@ func (DnsfilterProfileState) ElementType() reflect.Type {
 }
 
 type dnsfilterProfileArgs struct {
-	BlockAction          *string                               `pulumi:"blockAction"`
-	BlockBotnet          *string                               `pulumi:"blockBotnet"`
-	Comment              *string                               `pulumi:"comment"`
-	DnsTranslations      []DnsfilterProfileDnsTranslation      `pulumi:"dnsTranslations"`
-	DomainFilter         *DnsfilterProfileDomainFilter         `pulumi:"domainFilter"`
-	DynamicSortSubtable  *string                               `pulumi:"dynamicSortSubtable"`
-	ExternalIpBlocklists []DnsfilterProfileExternalIpBlocklist `pulumi:"externalIpBlocklists"`
-	FtgdDns              *DnsfilterProfileFtgdDns              `pulumi:"ftgdDns"`
-	GetAllTables         *string                               `pulumi:"getAllTables"`
-	LogAllDomain         *string                               `pulumi:"logAllDomain"`
-	Name                 *string                               `pulumi:"name"`
-	RedirectPortal       *string                               `pulumi:"redirectPortal"`
-	RedirectPortal6      *string                               `pulumi:"redirectPortal6"`
-	SafeSearch           *string                               `pulumi:"safeSearch"`
-	SdnsDomainLog        *string                               `pulumi:"sdnsDomainLog"`
-	SdnsFtgdErrLog       *string                               `pulumi:"sdnsFtgdErrLog"`
-	Vdomparam            *string                               `pulumi:"vdomparam"`
-	YoutubeRestrict      *string                               `pulumi:"youtubeRestrict"`
+	BlockAction             *string                                  `pulumi:"blockAction"`
+	BlockBotnet             *string                                  `pulumi:"blockBotnet"`
+	Comment                 *string                                  `pulumi:"comment"`
+	DnsTranslations         []DnsfilterProfileDnsTranslation         `pulumi:"dnsTranslations"`
+	DomainFilter            *DnsfilterProfileDomainFilter            `pulumi:"domainFilter"`
+	DynamicSortSubtable     *string                                  `pulumi:"dynamicSortSubtable"`
+	ExternalIpBlocklists    []DnsfilterProfileExternalIpBlocklist    `pulumi:"externalIpBlocklists"`
+	FtgdDns                 *DnsfilterProfileFtgdDns                 `pulumi:"ftgdDns"`
+	GetAllTables            *string                                  `pulumi:"getAllTables"`
+	LogAllDomain            *string                                  `pulumi:"logAllDomain"`
+	Name                    *string                                  `pulumi:"name"`
+	RedirectPortal          *string                                  `pulumi:"redirectPortal"`
+	RedirectPortal6         *string                                  `pulumi:"redirectPortal6"`
+	SafeSearch              *string                                  `pulumi:"safeSearch"`
+	SdnsDomainLog           *string                                  `pulumi:"sdnsDomainLog"`
+	SdnsFtgdErrLog          *string                                  `pulumi:"sdnsFtgdErrLog"`
+	TransparentDnsDatabases []DnsfilterProfileTransparentDnsDatabase `pulumi:"transparentDnsDatabases"`
+	Vdomparam               *string                                  `pulumi:"vdomparam"`
+	YoutubeRestrict         *string                                  `pulumi:"youtubeRestrict"`
 }
 
 // The set of arguments for constructing a DnsfilterProfile resource.
 type DnsfilterProfileArgs struct {
-	BlockAction          pulumi.StringPtrInput
-	BlockBotnet          pulumi.StringPtrInput
-	Comment              pulumi.StringPtrInput
-	DnsTranslations      DnsfilterProfileDnsTranslationArrayInput
-	DomainFilter         DnsfilterProfileDomainFilterPtrInput
-	DynamicSortSubtable  pulumi.StringPtrInput
-	ExternalIpBlocklists DnsfilterProfileExternalIpBlocklistArrayInput
-	FtgdDns              DnsfilterProfileFtgdDnsPtrInput
-	GetAllTables         pulumi.StringPtrInput
-	LogAllDomain         pulumi.StringPtrInput
-	Name                 pulumi.StringPtrInput
-	RedirectPortal       pulumi.StringPtrInput
-	RedirectPortal6      pulumi.StringPtrInput
-	SafeSearch           pulumi.StringPtrInput
-	SdnsDomainLog        pulumi.StringPtrInput
-	SdnsFtgdErrLog       pulumi.StringPtrInput
-	Vdomparam            pulumi.StringPtrInput
-	YoutubeRestrict      pulumi.StringPtrInput
+	BlockAction             pulumi.StringPtrInput
+	BlockBotnet             pulumi.StringPtrInput
+	Comment                 pulumi.StringPtrInput
+	DnsTranslations         DnsfilterProfileDnsTranslationArrayInput
+	DomainFilter            DnsfilterProfileDomainFilterPtrInput
+	DynamicSortSubtable     pulumi.StringPtrInput
+	ExternalIpBlocklists    DnsfilterProfileExternalIpBlocklistArrayInput
+	FtgdDns                 DnsfilterProfileFtgdDnsPtrInput
+	GetAllTables            pulumi.StringPtrInput
+	LogAllDomain            pulumi.StringPtrInput
+	Name                    pulumi.StringPtrInput
+	RedirectPortal          pulumi.StringPtrInput
+	RedirectPortal6         pulumi.StringPtrInput
+	SafeSearch              pulumi.StringPtrInput
+	SdnsDomainLog           pulumi.StringPtrInput
+	SdnsFtgdErrLog          pulumi.StringPtrInput
+	TransparentDnsDatabases DnsfilterProfileTransparentDnsDatabaseArrayInput
+	Vdomparam               pulumi.StringPtrInput
+	YoutubeRestrict         pulumi.StringPtrInput
 }
 
 func (DnsfilterProfileArgs) ElementType() reflect.Type {
@@ -173,6 +179,12 @@ func (i *DnsfilterProfile) ToDnsfilterProfileOutput() DnsfilterProfileOutput {
 
 func (i *DnsfilterProfile) ToDnsfilterProfileOutputWithContext(ctx context.Context) DnsfilterProfileOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DnsfilterProfileOutput)
+}
+
+func (i *DnsfilterProfile) ToOutput(ctx context.Context) pulumix.Output[*DnsfilterProfile] {
+	return pulumix.Output[*DnsfilterProfile]{
+		OutputState: i.ToDnsfilterProfileOutputWithContext(ctx).OutputState,
+	}
 }
 
 // DnsfilterProfileArrayInput is an input type that accepts DnsfilterProfileArray and DnsfilterProfileArrayOutput values.
@@ -200,6 +212,12 @@ func (i DnsfilterProfileArray) ToDnsfilterProfileArrayOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(DnsfilterProfileArrayOutput)
 }
 
+func (i DnsfilterProfileArray) ToOutput(ctx context.Context) pulumix.Output[[]*DnsfilterProfile] {
+	return pulumix.Output[[]*DnsfilterProfile]{
+		OutputState: i.ToDnsfilterProfileArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 // DnsfilterProfileMapInput is an input type that accepts DnsfilterProfileMap and DnsfilterProfileMapOutput values.
 // You can construct a concrete instance of `DnsfilterProfileMapInput` via:
 //
@@ -225,6 +243,12 @@ func (i DnsfilterProfileMap) ToDnsfilterProfileMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(DnsfilterProfileMapOutput)
 }
 
+func (i DnsfilterProfileMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DnsfilterProfile] {
+	return pulumix.Output[map[string]*DnsfilterProfile]{
+		OutputState: i.ToDnsfilterProfileMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DnsfilterProfileOutput struct{ *pulumi.OutputState }
 
 func (DnsfilterProfileOutput) ElementType() reflect.Type {
@@ -237,6 +261,12 @@ func (o DnsfilterProfileOutput) ToDnsfilterProfileOutput() DnsfilterProfileOutpu
 
 func (o DnsfilterProfileOutput) ToDnsfilterProfileOutputWithContext(ctx context.Context) DnsfilterProfileOutput {
 	return o
+}
+
+func (o DnsfilterProfileOutput) ToOutput(ctx context.Context) pulumix.Output[*DnsfilterProfile] {
+	return pulumix.Output[*DnsfilterProfile]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DnsfilterProfileOutput) BlockAction() pulumi.StringOutput {
@@ -305,6 +335,12 @@ func (o DnsfilterProfileOutput) SdnsFtgdErrLog() pulumi.StringOutput {
 	return o.ApplyT(func(v *DnsfilterProfile) pulumi.StringOutput { return v.SdnsFtgdErrLog }).(pulumi.StringOutput)
 }
 
+func (o DnsfilterProfileOutput) TransparentDnsDatabases() DnsfilterProfileTransparentDnsDatabaseArrayOutput {
+	return o.ApplyT(func(v *DnsfilterProfile) DnsfilterProfileTransparentDnsDatabaseArrayOutput {
+		return v.TransparentDnsDatabases
+	}).(DnsfilterProfileTransparentDnsDatabaseArrayOutput)
+}
+
 func (o DnsfilterProfileOutput) Vdomparam() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DnsfilterProfile) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
@@ -327,6 +363,12 @@ func (o DnsfilterProfileArrayOutput) ToDnsfilterProfileArrayOutputWithContext(ct
 	return o
 }
 
+func (o DnsfilterProfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DnsfilterProfile] {
+	return pulumix.Output[[]*DnsfilterProfile]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DnsfilterProfileArrayOutput) Index(i pulumi.IntInput) DnsfilterProfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DnsfilterProfile {
 		return vs[0].([]*DnsfilterProfile)[vs[1].(int)]
@@ -345,6 +387,12 @@ func (o DnsfilterProfileMapOutput) ToDnsfilterProfileMapOutput() DnsfilterProfil
 
 func (o DnsfilterProfileMapOutput) ToDnsfilterProfileMapOutputWithContext(ctx context.Context) DnsfilterProfileMapOutput {
 	return o
+}
+
+func (o DnsfilterProfileMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DnsfilterProfile] {
+	return pulumix.Output[map[string]*DnsfilterProfile]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DnsfilterProfileMapOutput) MapIndex(k pulumi.StringInput) DnsfilterProfileOutput {

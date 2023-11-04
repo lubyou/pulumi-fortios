@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type LogFortianalyzer3OverrideSetting struct {
@@ -16,11 +17,13 @@ type LogFortianalyzer3OverrideSetting struct {
 
 	__changeIp                pulumi.IntOutput                                  `pulumi:"__changeIp"`
 	AccessConfig              pulumi.StringOutput                               `pulumi:"accessConfig"`
+	AltServer                 pulumi.StringOutput                               `pulumi:"altServer"`
 	Certificate               pulumi.StringOutput                               `pulumi:"certificate"`
 	CertificateVerification   pulumi.StringOutput                               `pulumi:"certificateVerification"`
 	ConnTimeout               pulumi.IntOutput                                  `pulumi:"connTimeout"`
 	DynamicSortSubtable       pulumi.StringPtrOutput                            `pulumi:"dynamicSortSubtable"`
 	EncAlgorithm              pulumi.StringOutput                               `pulumi:"encAlgorithm"`
+	FallbackToPrimary         pulumi.StringOutput                               `pulumi:"fallbackToPrimary"`
 	FazType                   pulumi.IntOutput                                  `pulumi:"fazType"`
 	GetAllTables              pulumi.StringPtrOutput                            `pulumi:"getAllTables"`
 	HmacAlgorithm             pulumi.StringOutput                               `pulumi:"hmacAlgorithm"`
@@ -80,11 +83,13 @@ func GetLogFortianalyzer3OverrideSetting(ctx *pulumi.Context,
 type logFortianalyzer3OverrideSettingState struct {
 	__changeIp                *int                                     `pulumi:"__changeIp"`
 	AccessConfig              *string                                  `pulumi:"accessConfig"`
+	AltServer                 *string                                  `pulumi:"altServer"`
 	Certificate               *string                                  `pulumi:"certificate"`
 	CertificateVerification   *string                                  `pulumi:"certificateVerification"`
 	ConnTimeout               *int                                     `pulumi:"connTimeout"`
 	DynamicSortSubtable       *string                                  `pulumi:"dynamicSortSubtable"`
 	EncAlgorithm              *string                                  `pulumi:"encAlgorithm"`
+	FallbackToPrimary         *string                                  `pulumi:"fallbackToPrimary"`
 	FazType                   *int                                     `pulumi:"fazType"`
 	GetAllTables              *string                                  `pulumi:"getAllTables"`
 	HmacAlgorithm             *string                                  `pulumi:"hmacAlgorithm"`
@@ -115,11 +120,13 @@ type logFortianalyzer3OverrideSettingState struct {
 type LogFortianalyzer3OverrideSettingState struct {
 	__changeIp                pulumi.IntPtrInput
 	AccessConfig              pulumi.StringPtrInput
+	AltServer                 pulumi.StringPtrInput
 	Certificate               pulumi.StringPtrInput
 	CertificateVerification   pulumi.StringPtrInput
 	ConnTimeout               pulumi.IntPtrInput
 	DynamicSortSubtable       pulumi.StringPtrInput
 	EncAlgorithm              pulumi.StringPtrInput
+	FallbackToPrimary         pulumi.StringPtrInput
 	FazType                   pulumi.IntPtrInput
 	GetAllTables              pulumi.StringPtrInput
 	HmacAlgorithm             pulumi.StringPtrInput
@@ -154,11 +161,13 @@ func (LogFortianalyzer3OverrideSettingState) ElementType() reflect.Type {
 type logFortianalyzer3OverrideSettingArgs struct {
 	__changeIp                *int                                     `pulumi:"__changeIp"`
 	AccessConfig              *string                                  `pulumi:"accessConfig"`
+	AltServer                 *string                                  `pulumi:"altServer"`
 	Certificate               *string                                  `pulumi:"certificate"`
 	CertificateVerification   *string                                  `pulumi:"certificateVerification"`
 	ConnTimeout               *int                                     `pulumi:"connTimeout"`
 	DynamicSortSubtable       *string                                  `pulumi:"dynamicSortSubtable"`
 	EncAlgorithm              *string                                  `pulumi:"encAlgorithm"`
+	FallbackToPrimary         *string                                  `pulumi:"fallbackToPrimary"`
 	FazType                   *int                                     `pulumi:"fazType"`
 	GetAllTables              *string                                  `pulumi:"getAllTables"`
 	HmacAlgorithm             *string                                  `pulumi:"hmacAlgorithm"`
@@ -190,11 +199,13 @@ type logFortianalyzer3OverrideSettingArgs struct {
 type LogFortianalyzer3OverrideSettingArgs struct {
 	__changeIp                pulumi.IntPtrInput
 	AccessConfig              pulumi.StringPtrInput
+	AltServer                 pulumi.StringPtrInput
 	Certificate               pulumi.StringPtrInput
 	CertificateVerification   pulumi.StringPtrInput
 	ConnTimeout               pulumi.IntPtrInput
 	DynamicSortSubtable       pulumi.StringPtrInput
 	EncAlgorithm              pulumi.StringPtrInput
+	FallbackToPrimary         pulumi.StringPtrInput
 	FazType                   pulumi.IntPtrInput
 	GetAllTables              pulumi.StringPtrInput
 	HmacAlgorithm             pulumi.StringPtrInput
@@ -245,6 +256,12 @@ func (i *LogFortianalyzer3OverrideSetting) ToLogFortianalyzer3OverrideSettingOut
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzer3OverrideSettingOutput)
 }
 
+func (i *LogFortianalyzer3OverrideSetting) ToOutput(ctx context.Context) pulumix.Output[*LogFortianalyzer3OverrideSetting] {
+	return pulumix.Output[*LogFortianalyzer3OverrideSetting]{
+		OutputState: i.ToLogFortianalyzer3OverrideSettingOutputWithContext(ctx).OutputState,
+	}
+}
+
 // LogFortianalyzer3OverrideSettingArrayInput is an input type that accepts LogFortianalyzer3OverrideSettingArray and LogFortianalyzer3OverrideSettingArrayOutput values.
 // You can construct a concrete instance of `LogFortianalyzer3OverrideSettingArrayInput` via:
 //
@@ -268,6 +285,12 @@ func (i LogFortianalyzer3OverrideSettingArray) ToLogFortianalyzer3OverrideSettin
 
 func (i LogFortianalyzer3OverrideSettingArray) ToLogFortianalyzer3OverrideSettingArrayOutputWithContext(ctx context.Context) LogFortianalyzer3OverrideSettingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzer3OverrideSettingArrayOutput)
+}
+
+func (i LogFortianalyzer3OverrideSettingArray) ToOutput(ctx context.Context) pulumix.Output[[]*LogFortianalyzer3OverrideSetting] {
+	return pulumix.Output[[]*LogFortianalyzer3OverrideSetting]{
+		OutputState: i.ToLogFortianalyzer3OverrideSettingArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // LogFortianalyzer3OverrideSettingMapInput is an input type that accepts LogFortianalyzer3OverrideSettingMap and LogFortianalyzer3OverrideSettingMapOutput values.
@@ -295,6 +318,12 @@ func (i LogFortianalyzer3OverrideSettingMap) ToLogFortianalyzer3OverrideSettingM
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzer3OverrideSettingMapOutput)
 }
 
+func (i LogFortianalyzer3OverrideSettingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogFortianalyzer3OverrideSetting] {
+	return pulumix.Output[map[string]*LogFortianalyzer3OverrideSetting]{
+		OutputState: i.ToLogFortianalyzer3OverrideSettingMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type LogFortianalyzer3OverrideSettingOutput struct{ *pulumi.OutputState }
 
 func (LogFortianalyzer3OverrideSettingOutput) ElementType() reflect.Type {
@@ -309,12 +338,22 @@ func (o LogFortianalyzer3OverrideSettingOutput) ToLogFortianalyzer3OverrideSetti
 	return o
 }
 
+func (o LogFortianalyzer3OverrideSettingOutput) ToOutput(ctx context.Context) pulumix.Output[*LogFortianalyzer3OverrideSetting] {
+	return pulumix.Output[*LogFortianalyzer3OverrideSetting]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LogFortianalyzer3OverrideSettingOutput) __changeIp() pulumi.IntOutput {
 	return o.ApplyT(func(v *LogFortianalyzer3OverrideSetting) pulumi.IntOutput { return v.__changeIp }).(pulumi.IntOutput)
 }
 
 func (o LogFortianalyzer3OverrideSettingOutput) AccessConfig() pulumi.StringOutput {
 	return o.ApplyT(func(v *LogFortianalyzer3OverrideSetting) pulumi.StringOutput { return v.AccessConfig }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzer3OverrideSettingOutput) AltServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzer3OverrideSetting) pulumi.StringOutput { return v.AltServer }).(pulumi.StringOutput)
 }
 
 func (o LogFortianalyzer3OverrideSettingOutput) Certificate() pulumi.StringOutput {
@@ -335,6 +374,10 @@ func (o LogFortianalyzer3OverrideSettingOutput) DynamicSortSubtable() pulumi.Str
 
 func (o LogFortianalyzer3OverrideSettingOutput) EncAlgorithm() pulumi.StringOutput {
 	return o.ApplyT(func(v *LogFortianalyzer3OverrideSetting) pulumi.StringOutput { return v.EncAlgorithm }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzer3OverrideSettingOutput) FallbackToPrimary() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzer3OverrideSetting) pulumi.StringOutput { return v.FallbackToPrimary }).(pulumi.StringOutput)
 }
 
 func (o LogFortianalyzer3OverrideSettingOutput) FazType() pulumi.IntOutput {
@@ -453,6 +496,12 @@ func (o LogFortianalyzer3OverrideSettingArrayOutput) ToLogFortianalyzer3Override
 	return o
 }
 
+func (o LogFortianalyzer3OverrideSettingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LogFortianalyzer3OverrideSetting] {
+	return pulumix.Output[[]*LogFortianalyzer3OverrideSetting]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LogFortianalyzer3OverrideSettingArrayOutput) Index(i pulumi.IntInput) LogFortianalyzer3OverrideSettingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogFortianalyzer3OverrideSetting {
 		return vs[0].([]*LogFortianalyzer3OverrideSetting)[vs[1].(int)]
@@ -471,6 +520,12 @@ func (o LogFortianalyzer3OverrideSettingMapOutput) ToLogFortianalyzer3OverrideSe
 
 func (o LogFortianalyzer3OverrideSettingMapOutput) ToLogFortianalyzer3OverrideSettingMapOutputWithContext(ctx context.Context) LogFortianalyzer3OverrideSettingMapOutput {
 	return o
+}
+
+func (o LogFortianalyzer3OverrideSettingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogFortianalyzer3OverrideSetting] {
+	return pulumix.Output[map[string]*LogFortianalyzer3OverrideSetting]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LogFortianalyzer3OverrideSettingMapOutput) MapIndex(k pulumi.StringInput) LogFortianalyzer3OverrideSettingOutput {

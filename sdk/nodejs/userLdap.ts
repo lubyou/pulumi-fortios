@@ -32,6 +32,7 @@ export class UserLdap extends pulumi.CustomResource {
         return obj['__pulumiType'] === UserLdap.__pulumiType;
     }
 
+    public readonly accountKeyCertField!: pulumi.Output<string>;
     public readonly accountKeyFilter!: pulumi.Output<string>;
     public readonly accountKeyProcessing!: pulumi.Output<string>;
     public readonly accountKeyUpnSan!: pulumi.Output<string>;
@@ -86,6 +87,7 @@ export class UserLdap extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserLdapState | undefined;
+            resourceInputs["accountKeyCertField"] = state ? state.accountKeyCertField : undefined;
             resourceInputs["accountKeyFilter"] = state ? state.accountKeyFilter : undefined;
             resourceInputs["accountKeyProcessing"] = state ? state.accountKeyProcessing : undefined;
             resourceInputs["accountKeyUpnSan"] = state ? state.accountKeyUpnSan : undefined;
@@ -134,6 +136,7 @@ export class UserLdap extends pulumi.CustomResource {
             if ((!args || args.server === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'server'");
             }
+            resourceInputs["accountKeyCertField"] = args ? args.accountKeyCertField : undefined;
             resourceInputs["accountKeyFilter"] = args ? args.accountKeyFilter : undefined;
             resourceInputs["accountKeyProcessing"] = args ? args.accountKeyProcessing : undefined;
             resourceInputs["accountKeyUpnSan"] = args ? args.accountKeyUpnSan : undefined;
@@ -186,6 +189,7 @@ export class UserLdap extends pulumi.CustomResource {
  * Input properties used for looking up and filtering UserLdap resources.
  */
 export interface UserLdapState {
+    accountKeyCertField?: pulumi.Input<string>;
     accountKeyFilter?: pulumi.Input<string>;
     accountKeyProcessing?: pulumi.Input<string>;
     accountKeyUpnSan?: pulumi.Input<string>;
@@ -232,6 +236,7 @@ export interface UserLdapState {
  * The set of arguments for constructing a UserLdap resource.
  */
 export interface UserLdapArgs {
+    accountKeyCertField?: pulumi.Input<string>;
     accountKeyFilter?: pulumi.Input<string>;
     accountKeyProcessing?: pulumi.Input<string>;
     accountKeyUpnSan?: pulumi.Input<string>;

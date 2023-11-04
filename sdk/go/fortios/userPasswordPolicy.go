@@ -9,14 +9,23 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type UserPasswordPolicy struct {
 	pulumi.CustomResourceState
 
 	ExpireDays             pulumi.IntOutput       `pulumi:"expireDays"`
+	ExpireStatus           pulumi.StringOutput    `pulumi:"expireStatus"`
 	ExpiredPasswordRenewal pulumi.StringOutput    `pulumi:"expiredPasswordRenewal"`
+	MinChangeCharacters    pulumi.IntOutput       `pulumi:"minChangeCharacters"`
+	MinLowerCaseLetter     pulumi.IntOutput       `pulumi:"minLowerCaseLetter"`
+	MinNonAlphanumeric     pulumi.IntOutput       `pulumi:"minNonAlphanumeric"`
+	MinNumber              pulumi.IntOutput       `pulumi:"minNumber"`
+	MinUpperCaseLetter     pulumi.IntOutput       `pulumi:"minUpperCaseLetter"`
+	MinimumLength          pulumi.IntOutput       `pulumi:"minimumLength"`
 	Name                   pulumi.StringOutput    `pulumi:"name"`
+	ReusePassword          pulumi.StringOutput    `pulumi:"reusePassword"`
 	Vdomparam              pulumi.StringPtrOutput `pulumi:"vdomparam"`
 	WarnDays               pulumi.IntOutput       `pulumi:"warnDays"`
 }
@@ -52,16 +61,32 @@ func GetUserPasswordPolicy(ctx *pulumi.Context,
 // Input properties used for looking up and filtering UserPasswordPolicy resources.
 type userPasswordPolicyState struct {
 	ExpireDays             *int    `pulumi:"expireDays"`
+	ExpireStatus           *string `pulumi:"expireStatus"`
 	ExpiredPasswordRenewal *string `pulumi:"expiredPasswordRenewal"`
+	MinChangeCharacters    *int    `pulumi:"minChangeCharacters"`
+	MinLowerCaseLetter     *int    `pulumi:"minLowerCaseLetter"`
+	MinNonAlphanumeric     *int    `pulumi:"minNonAlphanumeric"`
+	MinNumber              *int    `pulumi:"minNumber"`
+	MinUpperCaseLetter     *int    `pulumi:"minUpperCaseLetter"`
+	MinimumLength          *int    `pulumi:"minimumLength"`
 	Name                   *string `pulumi:"name"`
+	ReusePassword          *string `pulumi:"reusePassword"`
 	Vdomparam              *string `pulumi:"vdomparam"`
 	WarnDays               *int    `pulumi:"warnDays"`
 }
 
 type UserPasswordPolicyState struct {
 	ExpireDays             pulumi.IntPtrInput
+	ExpireStatus           pulumi.StringPtrInput
 	ExpiredPasswordRenewal pulumi.StringPtrInput
+	MinChangeCharacters    pulumi.IntPtrInput
+	MinLowerCaseLetter     pulumi.IntPtrInput
+	MinNonAlphanumeric     pulumi.IntPtrInput
+	MinNumber              pulumi.IntPtrInput
+	MinUpperCaseLetter     pulumi.IntPtrInput
+	MinimumLength          pulumi.IntPtrInput
 	Name                   pulumi.StringPtrInput
+	ReusePassword          pulumi.StringPtrInput
 	Vdomparam              pulumi.StringPtrInput
 	WarnDays               pulumi.IntPtrInput
 }
@@ -72,8 +97,16 @@ func (UserPasswordPolicyState) ElementType() reflect.Type {
 
 type userPasswordPolicyArgs struct {
 	ExpireDays             *int    `pulumi:"expireDays"`
+	ExpireStatus           *string `pulumi:"expireStatus"`
 	ExpiredPasswordRenewal *string `pulumi:"expiredPasswordRenewal"`
+	MinChangeCharacters    *int    `pulumi:"minChangeCharacters"`
+	MinLowerCaseLetter     *int    `pulumi:"minLowerCaseLetter"`
+	MinNonAlphanumeric     *int    `pulumi:"minNonAlphanumeric"`
+	MinNumber              *int    `pulumi:"minNumber"`
+	MinUpperCaseLetter     *int    `pulumi:"minUpperCaseLetter"`
+	MinimumLength          *int    `pulumi:"minimumLength"`
 	Name                   *string `pulumi:"name"`
+	ReusePassword          *string `pulumi:"reusePassword"`
 	Vdomparam              *string `pulumi:"vdomparam"`
 	WarnDays               *int    `pulumi:"warnDays"`
 }
@@ -81,8 +114,16 @@ type userPasswordPolicyArgs struct {
 // The set of arguments for constructing a UserPasswordPolicy resource.
 type UserPasswordPolicyArgs struct {
 	ExpireDays             pulumi.IntPtrInput
+	ExpireStatus           pulumi.StringPtrInput
 	ExpiredPasswordRenewal pulumi.StringPtrInput
+	MinChangeCharacters    pulumi.IntPtrInput
+	MinLowerCaseLetter     pulumi.IntPtrInput
+	MinNonAlphanumeric     pulumi.IntPtrInput
+	MinNumber              pulumi.IntPtrInput
+	MinUpperCaseLetter     pulumi.IntPtrInput
+	MinimumLength          pulumi.IntPtrInput
 	Name                   pulumi.StringPtrInput
+	ReusePassword          pulumi.StringPtrInput
 	Vdomparam              pulumi.StringPtrInput
 	WarnDays               pulumi.IntPtrInput
 }
@@ -110,6 +151,12 @@ func (i *UserPasswordPolicy) ToUserPasswordPolicyOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(UserPasswordPolicyOutput)
 }
 
+func (i *UserPasswordPolicy) ToOutput(ctx context.Context) pulumix.Output[*UserPasswordPolicy] {
+	return pulumix.Output[*UserPasswordPolicy]{
+		OutputState: i.ToUserPasswordPolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // UserPasswordPolicyArrayInput is an input type that accepts UserPasswordPolicyArray and UserPasswordPolicyArrayOutput values.
 // You can construct a concrete instance of `UserPasswordPolicyArrayInput` via:
 //
@@ -133,6 +180,12 @@ func (i UserPasswordPolicyArray) ToUserPasswordPolicyArrayOutput() UserPasswordP
 
 func (i UserPasswordPolicyArray) ToUserPasswordPolicyArrayOutputWithContext(ctx context.Context) UserPasswordPolicyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserPasswordPolicyArrayOutput)
+}
+
+func (i UserPasswordPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]*UserPasswordPolicy] {
+	return pulumix.Output[[]*UserPasswordPolicy]{
+		OutputState: i.ToUserPasswordPolicyArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // UserPasswordPolicyMapInput is an input type that accepts UserPasswordPolicyMap and UserPasswordPolicyMapOutput values.
@@ -160,6 +213,12 @@ func (i UserPasswordPolicyMap) ToUserPasswordPolicyMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(UserPasswordPolicyMapOutput)
 }
 
+func (i UserPasswordPolicyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserPasswordPolicy] {
+	return pulumix.Output[map[string]*UserPasswordPolicy]{
+		OutputState: i.ToUserPasswordPolicyMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type UserPasswordPolicyOutput struct{ *pulumi.OutputState }
 
 func (UserPasswordPolicyOutput) ElementType() reflect.Type {
@@ -174,16 +233,54 @@ func (o UserPasswordPolicyOutput) ToUserPasswordPolicyOutputWithContext(ctx cont
 	return o
 }
 
+func (o UserPasswordPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[*UserPasswordPolicy] {
+	return pulumix.Output[*UserPasswordPolicy]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o UserPasswordPolicyOutput) ExpireDays() pulumi.IntOutput {
 	return o.ApplyT(func(v *UserPasswordPolicy) pulumi.IntOutput { return v.ExpireDays }).(pulumi.IntOutput)
+}
+
+func (o UserPasswordPolicyOutput) ExpireStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserPasswordPolicy) pulumi.StringOutput { return v.ExpireStatus }).(pulumi.StringOutput)
 }
 
 func (o UserPasswordPolicyOutput) ExpiredPasswordRenewal() pulumi.StringOutput {
 	return o.ApplyT(func(v *UserPasswordPolicy) pulumi.StringOutput { return v.ExpiredPasswordRenewal }).(pulumi.StringOutput)
 }
 
+func (o UserPasswordPolicyOutput) MinChangeCharacters() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserPasswordPolicy) pulumi.IntOutput { return v.MinChangeCharacters }).(pulumi.IntOutput)
+}
+
+func (o UserPasswordPolicyOutput) MinLowerCaseLetter() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserPasswordPolicy) pulumi.IntOutput { return v.MinLowerCaseLetter }).(pulumi.IntOutput)
+}
+
+func (o UserPasswordPolicyOutput) MinNonAlphanumeric() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserPasswordPolicy) pulumi.IntOutput { return v.MinNonAlphanumeric }).(pulumi.IntOutput)
+}
+
+func (o UserPasswordPolicyOutput) MinNumber() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserPasswordPolicy) pulumi.IntOutput { return v.MinNumber }).(pulumi.IntOutput)
+}
+
+func (o UserPasswordPolicyOutput) MinUpperCaseLetter() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserPasswordPolicy) pulumi.IntOutput { return v.MinUpperCaseLetter }).(pulumi.IntOutput)
+}
+
+func (o UserPasswordPolicyOutput) MinimumLength() pulumi.IntOutput {
+	return o.ApplyT(func(v *UserPasswordPolicy) pulumi.IntOutput { return v.MinimumLength }).(pulumi.IntOutput)
+}
+
 func (o UserPasswordPolicyOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *UserPasswordPolicy) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o UserPasswordPolicyOutput) ReusePassword() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserPasswordPolicy) pulumi.StringOutput { return v.ReusePassword }).(pulumi.StringOutput)
 }
 
 func (o UserPasswordPolicyOutput) Vdomparam() pulumi.StringPtrOutput {
@@ -208,6 +305,12 @@ func (o UserPasswordPolicyArrayOutput) ToUserPasswordPolicyArrayOutputWithContex
 	return o
 }
 
+func (o UserPasswordPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*UserPasswordPolicy] {
+	return pulumix.Output[[]*UserPasswordPolicy]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o UserPasswordPolicyArrayOutput) Index(i pulumi.IntInput) UserPasswordPolicyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserPasswordPolicy {
 		return vs[0].([]*UserPasswordPolicy)[vs[1].(int)]
@@ -226,6 +329,12 @@ func (o UserPasswordPolicyMapOutput) ToUserPasswordPolicyMapOutput() UserPasswor
 
 func (o UserPasswordPolicyMapOutput) ToUserPasswordPolicyMapOutputWithContext(ctx context.Context) UserPasswordPolicyMapOutput {
 	return o
+}
+
+func (o UserPasswordPolicyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserPasswordPolicy] {
+	return pulumix.Output[map[string]*UserPasswordPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserPasswordPolicyMapOutput) MapIndex(k pulumi.StringInput) UserPasswordPolicyOutput {

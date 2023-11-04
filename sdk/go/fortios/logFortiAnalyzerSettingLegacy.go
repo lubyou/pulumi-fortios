@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type LogFortiAnalyzerSettingLegacy struct {
@@ -124,6 +125,12 @@ func (i *LogFortiAnalyzerSettingLegacy) ToLogFortiAnalyzerSettingLegacyOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortiAnalyzerSettingLegacyOutput)
 }
 
+func (i *LogFortiAnalyzerSettingLegacy) ToOutput(ctx context.Context) pulumix.Output[*LogFortiAnalyzerSettingLegacy] {
+	return pulumix.Output[*LogFortiAnalyzerSettingLegacy]{
+		OutputState: i.ToLogFortiAnalyzerSettingLegacyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // LogFortiAnalyzerSettingLegacyArrayInput is an input type that accepts LogFortiAnalyzerSettingLegacyArray and LogFortiAnalyzerSettingLegacyArrayOutput values.
 // You can construct a concrete instance of `LogFortiAnalyzerSettingLegacyArrayInput` via:
 //
@@ -147,6 +154,12 @@ func (i LogFortiAnalyzerSettingLegacyArray) ToLogFortiAnalyzerSettingLegacyArray
 
 func (i LogFortiAnalyzerSettingLegacyArray) ToLogFortiAnalyzerSettingLegacyArrayOutputWithContext(ctx context.Context) LogFortiAnalyzerSettingLegacyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortiAnalyzerSettingLegacyArrayOutput)
+}
+
+func (i LogFortiAnalyzerSettingLegacyArray) ToOutput(ctx context.Context) pulumix.Output[[]*LogFortiAnalyzerSettingLegacy] {
+	return pulumix.Output[[]*LogFortiAnalyzerSettingLegacy]{
+		OutputState: i.ToLogFortiAnalyzerSettingLegacyArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // LogFortiAnalyzerSettingLegacyMapInput is an input type that accepts LogFortiAnalyzerSettingLegacyMap and LogFortiAnalyzerSettingLegacyMapOutput values.
@@ -174,6 +187,12 @@ func (i LogFortiAnalyzerSettingLegacyMap) ToLogFortiAnalyzerSettingLegacyMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortiAnalyzerSettingLegacyMapOutput)
 }
 
+func (i LogFortiAnalyzerSettingLegacyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogFortiAnalyzerSettingLegacy] {
+	return pulumix.Output[map[string]*LogFortiAnalyzerSettingLegacy]{
+		OutputState: i.ToLogFortiAnalyzerSettingLegacyMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type LogFortiAnalyzerSettingLegacyOutput struct{ *pulumi.OutputState }
 
 func (LogFortiAnalyzerSettingLegacyOutput) ElementType() reflect.Type {
@@ -186,6 +205,12 @@ func (o LogFortiAnalyzerSettingLegacyOutput) ToLogFortiAnalyzerSettingLegacyOutp
 
 func (o LogFortiAnalyzerSettingLegacyOutput) ToLogFortiAnalyzerSettingLegacyOutputWithContext(ctx context.Context) LogFortiAnalyzerSettingLegacyOutput {
 	return o
+}
+
+func (o LogFortiAnalyzerSettingLegacyOutput) ToOutput(ctx context.Context) pulumix.Output[*LogFortiAnalyzerSettingLegacy] {
+	return pulumix.Output[*LogFortiAnalyzerSettingLegacy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LogFortiAnalyzerSettingLegacyOutput) EncAlgorithm() pulumi.StringOutput {
@@ -230,6 +255,12 @@ func (o LogFortiAnalyzerSettingLegacyArrayOutput) ToLogFortiAnalyzerSettingLegac
 	return o
 }
 
+func (o LogFortiAnalyzerSettingLegacyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LogFortiAnalyzerSettingLegacy] {
+	return pulumix.Output[[]*LogFortiAnalyzerSettingLegacy]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LogFortiAnalyzerSettingLegacyArrayOutput) Index(i pulumi.IntInput) LogFortiAnalyzerSettingLegacyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogFortiAnalyzerSettingLegacy {
 		return vs[0].([]*LogFortiAnalyzerSettingLegacy)[vs[1].(int)]
@@ -248,6 +279,12 @@ func (o LogFortiAnalyzerSettingLegacyMapOutput) ToLogFortiAnalyzerSettingLegacyM
 
 func (o LogFortiAnalyzerSettingLegacyMapOutput) ToLogFortiAnalyzerSettingLegacyMapOutputWithContext(ctx context.Context) LogFortiAnalyzerSettingLegacyMapOutput {
 	return o
+}
+
+func (o LogFortiAnalyzerSettingLegacyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogFortiAnalyzerSettingLegacy] {
+	return pulumix.Output[map[string]*LogFortiAnalyzerSettingLegacy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LogFortiAnalyzerSettingLegacyMapOutput) MapIndex(k pulumi.StringInput) LogFortiAnalyzerSettingLegacyOutput {

@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemReplacemsgAuth struct {
@@ -114,6 +115,12 @@ func (i *SystemReplacemsgAuth) ToSystemReplacemsgAuthOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgAuthOutput)
 }
 
+func (i *SystemReplacemsgAuth) ToOutput(ctx context.Context) pulumix.Output[*SystemReplacemsgAuth] {
+	return pulumix.Output[*SystemReplacemsgAuth]{
+		OutputState: i.ToSystemReplacemsgAuthOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemReplacemsgAuthArrayInput is an input type that accepts SystemReplacemsgAuthArray and SystemReplacemsgAuthArrayOutput values.
 // You can construct a concrete instance of `SystemReplacemsgAuthArrayInput` via:
 //
@@ -137,6 +144,12 @@ func (i SystemReplacemsgAuthArray) ToSystemReplacemsgAuthArrayOutput() SystemRep
 
 func (i SystemReplacemsgAuthArray) ToSystemReplacemsgAuthArrayOutputWithContext(ctx context.Context) SystemReplacemsgAuthArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgAuthArrayOutput)
+}
+
+func (i SystemReplacemsgAuthArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemReplacemsgAuth] {
+	return pulumix.Output[[]*SystemReplacemsgAuth]{
+		OutputState: i.ToSystemReplacemsgAuthArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemReplacemsgAuthMapInput is an input type that accepts SystemReplacemsgAuthMap and SystemReplacemsgAuthMapOutput values.
@@ -164,6 +177,12 @@ func (i SystemReplacemsgAuthMap) ToSystemReplacemsgAuthMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgAuthMapOutput)
 }
 
+func (i SystemReplacemsgAuthMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemReplacemsgAuth] {
+	return pulumix.Output[map[string]*SystemReplacemsgAuth]{
+		OutputState: i.ToSystemReplacemsgAuthMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemReplacemsgAuthOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgAuthOutput) ElementType() reflect.Type {
@@ -176,6 +195,12 @@ func (o SystemReplacemsgAuthOutput) ToSystemReplacemsgAuthOutput() SystemReplace
 
 func (o SystemReplacemsgAuthOutput) ToSystemReplacemsgAuthOutputWithContext(ctx context.Context) SystemReplacemsgAuthOutput {
 	return o
+}
+
+func (o SystemReplacemsgAuthOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemReplacemsgAuth] {
+	return pulumix.Output[*SystemReplacemsgAuth]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemReplacemsgAuthOutput) Buffer() pulumi.StringPtrOutput {
@@ -212,6 +237,12 @@ func (o SystemReplacemsgAuthArrayOutput) ToSystemReplacemsgAuthArrayOutputWithCo
 	return o
 }
 
+func (o SystemReplacemsgAuthArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemReplacemsgAuth] {
+	return pulumix.Output[[]*SystemReplacemsgAuth]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemReplacemsgAuthArrayOutput) Index(i pulumi.IntInput) SystemReplacemsgAuthOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemReplacemsgAuth {
 		return vs[0].([]*SystemReplacemsgAuth)[vs[1].(int)]
@@ -230,6 +261,12 @@ func (o SystemReplacemsgAuthMapOutput) ToSystemReplacemsgAuthMapOutput() SystemR
 
 func (o SystemReplacemsgAuthMapOutput) ToSystemReplacemsgAuthMapOutputWithContext(ctx context.Context) SystemReplacemsgAuthMapOutput {
 	return o
+}
+
+func (o SystemReplacemsgAuthMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemReplacemsgAuth] {
+	return pulumix.Output[map[string]*SystemReplacemsgAuth]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemReplacemsgAuthMapOutput) MapIndex(k pulumi.StringInput) SystemReplacemsgAuthOutput {

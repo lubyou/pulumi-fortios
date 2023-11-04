@@ -80,6 +80,21 @@ export type AutomationSetting = import("./automationSetting").AutomationSetting;
 export const AutomationSetting: typeof import("./automationSetting").AutomationSetting = null as any;
 utilities.lazyLoad(exports, ["AutomationSetting"], () => require("./automationSetting"));
 
+export { CasbProfileArgs, CasbProfileState } from "./casbProfile";
+export type CasbProfile = import("./casbProfile").CasbProfile;
+export const CasbProfile: typeof import("./casbProfile").CasbProfile = null as any;
+utilities.lazyLoad(exports, ["CasbProfile"], () => require("./casbProfile"));
+
+export { CasbSaasApplicationArgs, CasbSaasApplicationState } from "./casbSaasApplication";
+export type CasbSaasApplication = import("./casbSaasApplication").CasbSaasApplication;
+export const CasbSaasApplication: typeof import("./casbSaasApplication").CasbSaasApplication = null as any;
+utilities.lazyLoad(exports, ["CasbSaasApplication"], () => require("./casbSaasApplication"));
+
+export { CasbUserActivityArgs, CasbUserActivityState } from "./casbUserActivity";
+export type CasbUserActivity = import("./casbUserActivity").CasbUserActivity;
+export const CasbUserActivity: typeof import("./casbUserActivity").CasbUserActivity = null as any;
+utilities.lazyLoad(exports, ["CasbUserActivity"], () => require("./casbUserActivity"));
+
 export { CertificateCaArgs, CertificateCaState } from "./certificateCa";
 export type CertificateCa = import("./certificateCa").CertificateCa;
 export const CertificateCa: typeof import("./certificateCa").CertificateCa = null as any;
@@ -645,6 +660,26 @@ export type FirewallPolicy64 = import("./firewallPolicy64").FirewallPolicy64;
 export const FirewallPolicy64: typeof import("./firewallPolicy64").FirewallPolicy64 = null as any;
 utilities.lazyLoad(exports, ["FirewallPolicy64"], () => require("./firewallPolicy64"));
 
+export { FirewallPolicyMoveArgs, FirewallPolicyMoveState } from "./firewallPolicyMove";
+export type FirewallPolicyMove = import("./firewallPolicyMove").FirewallPolicyMove;
+export const FirewallPolicyMove: typeof import("./firewallPolicyMove").FirewallPolicyMove = null as any;
+utilities.lazyLoad(exports, ["FirewallPolicyMove"], () => require("./firewallPolicyMove"));
+
+export { FirewallPolicyOldvSeqArgs, FirewallPolicyOldvSeqState } from "./firewallPolicyOldvSeq";
+export type FirewallPolicyOldvSeq = import("./firewallPolicyOldvSeq").FirewallPolicyOldvSeq;
+export const FirewallPolicyOldvSeq: typeof import("./firewallPolicyOldvSeq").FirewallPolicyOldvSeq = null as any;
+utilities.lazyLoad(exports, ["FirewallPolicyOldvSeq"], () => require("./firewallPolicyOldvSeq"));
+
+export { FirewallPolicyOldvSortArgs, FirewallPolicyOldvSortState } from "./firewallPolicyOldvSort";
+export type FirewallPolicyOldvSort = import("./firewallPolicyOldvSort").FirewallPolicyOldvSort;
+export const FirewallPolicyOldvSort: typeof import("./firewallPolicyOldvSort").FirewallPolicyOldvSort = null as any;
+utilities.lazyLoad(exports, ["FirewallPolicyOldvSort"], () => require("./firewallPolicyOldvSort"));
+
+export { FirewallPolicySortArgs, FirewallPolicySortState } from "./firewallPolicySort";
+export type FirewallPolicySort = import("./firewallPolicySort").FirewallPolicySort;
+export const FirewallPolicySort: typeof import("./firewallPolicySort").FirewallPolicySort = null as any;
+utilities.lazyLoad(exports, ["FirewallPolicySort"], () => require("./firewallPolicySort"));
+
 export { FirewallProfileGroupArgs, FirewallProfileGroupState } from "./firewallProfileGroup";
 export type FirewallProfileGroup = import("./firewallProfileGroup").FirewallProfileGroup;
 export const FirewallProfileGroup: typeof import("./firewallProfileGroup").FirewallProfileGroup = null as any;
@@ -710,15 +745,15 @@ export type FirewallSecurityPolicy1 = import("./firewallSecurityPolicy1").Firewa
 export const FirewallSecurityPolicy1: typeof import("./firewallSecurityPolicy1").FirewallSecurityPolicy1 = null as any;
 utilities.lazyLoad(exports, ["FirewallSecurityPolicy1"], () => require("./firewallSecurityPolicy1"));
 
-export { FirewallSecurityPolicySeqArgs, FirewallSecurityPolicySeqState } from "./firewallSecurityPolicySeq";
-export type FirewallSecurityPolicySeq = import("./firewallSecurityPolicySeq").FirewallSecurityPolicySeq;
-export const FirewallSecurityPolicySeq: typeof import("./firewallSecurityPolicySeq").FirewallSecurityPolicySeq = null as any;
-utilities.lazyLoad(exports, ["FirewallSecurityPolicySeq"], () => require("./firewallSecurityPolicySeq"));
+export { FirewallSecuritypolicyMoveArgs, FirewallSecuritypolicyMoveState } from "./firewallSecuritypolicyMove";
+export type FirewallSecuritypolicyMove = import("./firewallSecuritypolicyMove").FirewallSecuritypolicyMove;
+export const FirewallSecuritypolicyMove: typeof import("./firewallSecuritypolicyMove").FirewallSecuritypolicyMove = null as any;
+utilities.lazyLoad(exports, ["FirewallSecuritypolicyMove"], () => require("./firewallSecuritypolicyMove"));
 
-export { FirewallSecurityPolicySortArgs, FirewallSecurityPolicySortState } from "./firewallSecurityPolicySort";
-export type FirewallSecurityPolicySort = import("./firewallSecurityPolicySort").FirewallSecurityPolicySort;
-export const FirewallSecurityPolicySort: typeof import("./firewallSecurityPolicySort").FirewallSecurityPolicySort = null as any;
-utilities.lazyLoad(exports, ["FirewallSecurityPolicySort"], () => require("./firewallSecurityPolicySort"));
+export { FirewallSecuritypolicySortArgs, FirewallSecuritypolicySortState } from "./firewallSecuritypolicySort";
+export type FirewallSecuritypolicySort = import("./firewallSecuritypolicySort").FirewallSecuritypolicySort;
+export const FirewallSecuritypolicySort: typeof import("./firewallSecuritypolicySort").FirewallSecuritypolicySort = null as any;
+utilities.lazyLoad(exports, ["FirewallSecuritypolicySort"], () => require("./firewallSecuritypolicySort"));
 
 export { FirewallServiceCategoryArgs, FirewallServiceCategoryState } from "./firewallServiceCategory";
 export type FirewallServiceCategory = import("./firewallServiceCategory").FirewallServiceCategory;
@@ -2715,6 +2750,16 @@ export type RouterospfOspfInterface = import("./routerospfOspfInterface").Router
 export const RouterospfOspfInterface: typeof import("./routerospfOspfInterface").RouterospfOspfInterface = null as any;
 utilities.lazyLoad(exports, ["RouterospfOspfInterface"], () => require("./routerospfOspfInterface"));
 
+export { RuleOtdtArgs, RuleOtdtState } from "./ruleOtdt";
+export type RuleOtdt = import("./ruleOtdt").RuleOtdt;
+export const RuleOtdt: typeof import("./ruleOtdt").RuleOtdt = null as any;
+utilities.lazyLoad(exports, ["RuleOtdt"], () => require("./ruleOtdt"));
+
+export { RuleOtvpArgs, RuleOtvpState } from "./ruleOtvp";
+export type RuleOtvp = import("./ruleOtvp").RuleOtvp;
+export const RuleOtvp: typeof import("./ruleOtvp").RuleOtvp = null as any;
+utilities.lazyLoad(exports, ["RuleOtvp"], () => require("./ruleOtvp"));
+
 export { SctpFilterProfileArgs, SctpFilterProfileState } from "./sctpFilterProfile";
 export type SctpFilterProfile = import("./sctpFilterProfile").SctpFilterProfile;
 export const SctpFilterProfile: typeof import("./sctpFilterProfile").SctpFilterProfile = null as any;
@@ -2880,10 +2925,20 @@ export type SwitchControllerPortPolicy = import("./switchControllerPortPolicy").
 export const SwitchControllerPortPolicy: typeof import("./switchControllerPortPolicy").SwitchControllerPortPolicy = null as any;
 utilities.lazyLoad(exports, ["SwitchControllerPortPolicy"], () => require("./switchControllerPortPolicy"));
 
+export { SwitchControllerPtpInterfacePolicyArgs, SwitchControllerPtpInterfacePolicyState } from "./switchControllerPtpInterfacePolicy";
+export type SwitchControllerPtpInterfacePolicy = import("./switchControllerPtpInterfacePolicy").SwitchControllerPtpInterfacePolicy;
+export const SwitchControllerPtpInterfacePolicy: typeof import("./switchControllerPtpInterfacePolicy").SwitchControllerPtpInterfacePolicy = null as any;
+utilities.lazyLoad(exports, ["SwitchControllerPtpInterfacePolicy"], () => require("./switchControllerPtpInterfacePolicy"));
+
 export { SwitchControllerPtpPolicyArgs, SwitchControllerPtpPolicyState } from "./switchControllerPtpPolicy";
 export type SwitchControllerPtpPolicy = import("./switchControllerPtpPolicy").SwitchControllerPtpPolicy;
 export const SwitchControllerPtpPolicy: typeof import("./switchControllerPtpPolicy").SwitchControllerPtpPolicy = null as any;
 utilities.lazyLoad(exports, ["SwitchControllerPtpPolicy"], () => require("./switchControllerPtpPolicy"));
+
+export { SwitchControllerPtpProfileArgs, SwitchControllerPtpProfileState } from "./switchControllerPtpProfile";
+export type SwitchControllerPtpProfile = import("./switchControllerPtpProfile").SwitchControllerPtpProfile;
+export const SwitchControllerPtpProfile: typeof import("./switchControllerPtpProfile").SwitchControllerPtpProfile = null as any;
+utilities.lazyLoad(exports, ["SwitchControllerPtpProfile"], () => require("./switchControllerPtpProfile"));
 
 export { SwitchControllerPtpSettingsArgs, SwitchControllerPtpSettingsState } from "./switchControllerPtpSettings";
 export type SwitchControllerPtpSettings = import("./switchControllerPtpSettings").SwitchControllerPtpSettings;
@@ -3695,6 +3750,11 @@ export type SystemSpeedTestServer = import("./systemSpeedTestServer").SystemSpee
 export const SystemSpeedTestServer: typeof import("./systemSpeedTestServer").SystemSpeedTestServer = null as any;
 utilities.lazyLoad(exports, ["SystemSpeedTestServer"], () => require("./systemSpeedTestServer"));
 
+export { SystemSpeedTestSettingArgs, SystemSpeedTestSettingState } from "./systemSpeedTestSetting";
+export type SystemSpeedTestSetting = import("./systemSpeedTestSetting").SystemSpeedTestSetting;
+export const SystemSpeedTestSetting: typeof import("./systemSpeedTestSetting").SystemSpeedTestSetting = null as any;
+utilities.lazyLoad(exports, ["SystemSpeedTestSetting"], () => require("./systemSpeedTestSetting"));
+
 export { SystemSsoAdminArgs, SystemSsoAdminState } from "./systemSsoAdmin";
 export type SystemSsoAdmin = import("./systemSsoAdmin").SystemSsoAdmin;
 export const SystemSsoAdmin: typeof import("./systemSsoAdmin").SystemSsoAdmin = null as any;
@@ -3960,6 +4020,11 @@ export type VideofilterYoutubeKey = import("./videofilterYoutubeKey").Videofilte
 export const VideofilterYoutubeKey: typeof import("./videofilterYoutubeKey").VideofilterYoutubeKey = null as any;
 utilities.lazyLoad(exports, ["VideofilterYoutubeKey"], () => require("./videofilterYoutubeKey"));
 
+export { VirtualPatchProfileArgs, VirtualPatchProfileState } from "./virtualPatchProfile";
+export type VirtualPatchProfile = import("./virtualPatchProfile").VirtualPatchProfile;
+export const VirtualPatchProfile: typeof import("./virtualPatchProfile").VirtualPatchProfile = null as any;
+utilities.lazyLoad(exports, ["VirtualPatchProfile"], () => require("./virtualPatchProfile"));
+
 export { VoipProfileArgs, VoipProfileState } from "./voipProfile";
 export type VoipProfile = import("./voipProfile").VoipProfile;
 export const VoipProfile: typeof import("./voipProfile").VoipProfile = null as any;
@@ -4174,6 +4239,11 @@ export { WebProxyExplicitArgs, WebProxyExplicitState } from "./webProxyExplicit"
 export type WebProxyExplicit = import("./webProxyExplicit").WebProxyExplicit;
 export const WebProxyExplicit: typeof import("./webProxyExplicit").WebProxyExplicit = null as any;
 utilities.lazyLoad(exports, ["WebProxyExplicit"], () => require("./webProxyExplicit"));
+
+export { WebProxyFastFallbackArgs, WebProxyFastFallbackState } from "./webProxyFastFallback";
+export type WebProxyFastFallback = import("./webProxyFastFallback").WebProxyFastFallback;
+export const WebProxyFastFallback: typeof import("./webProxyFastFallback").WebProxyFastFallback = null as any;
+utilities.lazyLoad(exports, ["WebProxyFastFallback"], () => require("./webProxyFastFallback"));
 
 export { WebProxyForwardServerArgs, WebProxyForwardServerState } from "./webProxyForwardServer";
 export type WebProxyForwardServer = import("./webProxyForwardServer").WebProxyForwardServer;
@@ -4534,6 +4604,12 @@ const _module = {
                 return new AuthenticationSetting(name, <any>undefined, { urn })
             case "fortios:index/automationSetting:AutomationSetting":
                 return new AutomationSetting(name, <any>undefined, { urn })
+            case "fortios:index/casbProfile:CasbProfile":
+                return new CasbProfile(name, <any>undefined, { urn })
+            case "fortios:index/casbSaasApplication:CasbSaasApplication":
+                return new CasbSaasApplication(name, <any>undefined, { urn })
+            case "fortios:index/casbUserActivity:CasbUserActivity":
+                return new CasbUserActivity(name, <any>undefined, { urn })
             case "fortios:index/certificateCa:CertificateCa":
                 return new CertificateCa(name, <any>undefined, { urn })
             case "fortios:index/certificateCrl:CertificateCrl":
@@ -4760,6 +4836,14 @@ const _module = {
                 return new FirewallPolicy6(name, <any>undefined, { urn })
             case "fortios:index/firewallPolicy:FirewallPolicy":
                 return new FirewallPolicy(name, <any>undefined, { urn })
+            case "fortios:index/firewallPolicyMove:FirewallPolicyMove":
+                return new FirewallPolicyMove(name, <any>undefined, { urn })
+            case "fortios:index/firewallPolicyOldvSeq:FirewallPolicyOldvSeq":
+                return new FirewallPolicyOldvSeq(name, <any>undefined, { urn })
+            case "fortios:index/firewallPolicyOldvSort:FirewallPolicyOldvSort":
+                return new FirewallPolicyOldvSort(name, <any>undefined, { urn })
+            case "fortios:index/firewallPolicySort:FirewallPolicySort":
+                return new FirewallPolicySort(name, <any>undefined, { urn })
             case "fortios:index/firewallProfileGroup:FirewallProfileGroup":
                 return new FirewallProfileGroup(name, <any>undefined, { urn })
             case "fortios:index/firewallProfileProtocolOptions:FirewallProfileProtocolOptions":
@@ -4786,10 +4870,10 @@ const _module = {
                 return new FirewallSecurityPolicy1(name, <any>undefined, { urn })
             case "fortios:index/firewallSecurityPolicy:FirewallSecurityPolicy":
                 return new FirewallSecurityPolicy(name, <any>undefined, { urn })
-            case "fortios:index/firewallSecurityPolicySeq:FirewallSecurityPolicySeq":
-                return new FirewallSecurityPolicySeq(name, <any>undefined, { urn })
-            case "fortios:index/firewallSecurityPolicySort:FirewallSecurityPolicySort":
-                return new FirewallSecurityPolicySort(name, <any>undefined, { urn })
+            case "fortios:index/firewallSecuritypolicyMove:FirewallSecuritypolicyMove":
+                return new FirewallSecuritypolicyMove(name, <any>undefined, { urn })
+            case "fortios:index/firewallSecuritypolicySort:FirewallSecuritypolicySort":
+                return new FirewallSecuritypolicySort(name, <any>undefined, { urn })
             case "fortios:index/firewallServiceCategory:FirewallServiceCategory":
                 return new FirewallServiceCategory(name, <any>undefined, { urn })
             case "fortios:index/firewallServiceCustom:FirewallServiceCustom":
@@ -5124,6 +5208,10 @@ const _module = {
                 return new RouterospfNetwork(name, <any>undefined, { urn })
             case "fortios:index/routerospfOspfInterface:RouterospfOspfInterface":
                 return new RouterospfOspfInterface(name, <any>undefined, { urn })
+            case "fortios:index/ruleOtdt:RuleOtdt":
+                return new RuleOtdt(name, <any>undefined, { urn })
+            case "fortios:index/ruleOtvp:RuleOtvp":
+                return new RuleOtvp(name, <any>undefined, { urn })
             case "fortios:index/sctpFilterProfile:SctpFilterProfile":
                 return new SctpFilterProfile(name, <any>undefined, { urn })
             case "fortios:index/spamfilterBwl:SpamfilterBwl":
@@ -5190,8 +5278,12 @@ const _module = {
                 return new SwitchControllerNetworkMonitorSettings(name, <any>undefined, { urn })
             case "fortios:index/switchControllerPortPolicy:SwitchControllerPortPolicy":
                 return new SwitchControllerPortPolicy(name, <any>undefined, { urn })
+            case "fortios:index/switchControllerPtpInterfacePolicy:SwitchControllerPtpInterfacePolicy":
+                return new SwitchControllerPtpInterfacePolicy(name, <any>undefined, { urn })
             case "fortios:index/switchControllerPtpPolicy:SwitchControllerPtpPolicy":
                 return new SwitchControllerPtpPolicy(name, <any>undefined, { urn })
+            case "fortios:index/switchControllerPtpProfile:SwitchControllerPtpProfile":
+                return new SwitchControllerPtpProfile(name, <any>undefined, { urn })
             case "fortios:index/switchControllerPtpSettings:SwitchControllerPtpSettings":
                 return new SwitchControllerPtpSettings(name, <any>undefined, { urn })
             case "fortios:index/switchControllerQosDot1PMap:SwitchControllerQosDot1PMap":
@@ -5516,6 +5608,8 @@ const _module = {
                 return new SystemSpeedTestSchedule(name, <any>undefined, { urn })
             case "fortios:index/systemSpeedTestServer:SystemSpeedTestServer":
                 return new SystemSpeedTestServer(name, <any>undefined, { urn })
+            case "fortios:index/systemSpeedTestSetting:SystemSpeedTestSetting":
+                return new SystemSpeedTestSetting(name, <any>undefined, { urn })
             case "fortios:index/systemSsoAdmin:SystemSsoAdmin":
                 return new SystemSsoAdmin(name, <any>undefined, { urn })
             case "fortios:index/systemSsoForticloudAdmin:SystemSsoForticloudAdmin":
@@ -5626,6 +5720,8 @@ const _module = {
                 return new VideofilterYoutubeChannelFilter(name, <any>undefined, { urn })
             case "fortios:index/videofilterYoutubeKey:VideofilterYoutubeKey":
                 return new VideofilterYoutubeKey(name, <any>undefined, { urn })
+            case "fortios:index/virtualPatchProfile:VirtualPatchProfile":
+                return new VirtualPatchProfile(name, <any>undefined, { urn })
             case "fortios:index/voipProfile:VoipProfile":
                 return new VoipProfile(name, <any>undefined, { urn })
             case "fortios:index/vpnCertificateCa:VpnCertificateCa":
@@ -5708,6 +5804,8 @@ const _module = {
                 return new WebProxyDebugUrl(name, <any>undefined, { urn })
             case "fortios:index/webProxyExplicit:WebProxyExplicit":
                 return new WebProxyExplicit(name, <any>undefined, { urn })
+            case "fortios:index/webProxyFastFallback:WebProxyFastFallback":
+                return new WebProxyFastFallback(name, <any>undefined, { urn })
             case "fortios:index/webProxyForwardServer:WebProxyForwardServer":
                 return new WebProxyForwardServer(name, <any>undefined, { urn })
             case "fortios:index/webProxyForwardServerGroup:WebProxyForwardServerGroup":
@@ -5854,6 +5952,9 @@ pulumi.runtime.registerResourceModule("fortios", "index/authenticationRule", _mo
 pulumi.runtime.registerResourceModule("fortios", "index/authenticationScheme", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/authenticationSetting", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/automationSetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/casbProfile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/casbSaasApplication", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/casbUserActivity", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/certificateCa", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/certificateCrl", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/certificateLocal", _module)
@@ -5967,6 +6068,10 @@ pulumi.runtime.registerResourceModule("fortios", "index/firewallPolicy", _module
 pulumi.runtime.registerResourceModule("fortios", "index/firewallPolicy46", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/firewallPolicy6", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/firewallPolicy64", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallPolicyMove", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallPolicyOldvSeq", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallPolicyOldvSort", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallPolicySort", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/firewallProfileGroup", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/firewallProfileProtocolOptions", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/firewallProxyAddress", _module)
@@ -5980,8 +6085,8 @@ pulumi.runtime.registerResourceModule("fortios", "index/firewallScheduleOnetime"
 pulumi.runtime.registerResourceModule("fortios", "index/firewallScheduleRecurring", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/firewallSecurityPolicy", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/firewallSecurityPolicy1", _module)
-pulumi.runtime.registerResourceModule("fortios", "index/firewallSecurityPolicySeq", _module)
-pulumi.runtime.registerResourceModule("fortios", "index/firewallSecurityPolicySort", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallSecuritypolicyMove", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallSecuritypolicySort", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/firewallServiceCategory", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/firewallServiceCustom", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/firewallServiceGroup", _module)
@@ -6149,6 +6254,8 @@ pulumi.runtime.registerResourceModule("fortios", "index/routerospf6Ospf6Interfac
 pulumi.runtime.registerResourceModule("fortios", "index/routerospfNeighbor", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/routerospfNetwork", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/routerospfOspfInterface", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/ruleOtdt", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/ruleOtvp", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/sctpFilterProfile", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/spamfilterBwl", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/spamfilterBword", _module)
@@ -6182,7 +6289,9 @@ pulumi.runtime.registerResourceModule("fortios", "index/switchControllerNacDevic
 pulumi.runtime.registerResourceModule("fortios", "index/switchControllerNacSettings", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/switchControllerNetworkMonitorSettings", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/switchControllerPortPolicy", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchControllerPtpInterfacePolicy", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/switchControllerPtpPolicy", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchControllerPtpProfile", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/switchControllerPtpSettings", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/switchControllerQosDot1PMap", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/switchControllerQosIpDscpMap", _module)
@@ -6345,6 +6454,7 @@ pulumi.runtime.registerResourceModule("fortios", "index/systemSnmpSysinfo", _mod
 pulumi.runtime.registerResourceModule("fortios", "index/systemSnmpUser", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemSpeedTestSchedule", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemSpeedTestServer", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemSpeedTestSetting", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemSsoAdmin", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemSsoForticloudAdmin", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemSsoFortigateCloudAdmin", _module)
@@ -6400,6 +6510,7 @@ pulumi.runtime.registerResourceModule("fortios", "index/vPNIPsecPhase2InterfaceL
 pulumi.runtime.registerResourceModule("fortios", "index/videofilterProfile", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/videofilterYoutubeChannelFilter", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/videofilterYoutubeKey", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/virtualPatchProfile", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/voipProfile", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/vpnCertificateCa", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/vpnCertificateCrl", _module)
@@ -6441,6 +6552,7 @@ pulumi.runtime.registerResourceModule("fortios", "index/wanoptSettings", _module
 pulumi.runtime.registerResourceModule("fortios", "index/wanoptWebcache", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/webProxyDebugUrl", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/webProxyExplicit", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/webProxyFastFallback", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/webProxyForwardServer", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/webProxyForwardServerGroup", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/webProxyGlobal", _module)

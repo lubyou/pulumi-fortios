@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallInternetServiceBotnet struct {
@@ -100,6 +101,12 @@ func (i *FirewallInternetServiceBotnet) ToFirewallInternetServiceBotnetOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceBotnetOutput)
 }
 
+func (i *FirewallInternetServiceBotnet) ToOutput(ctx context.Context) pulumix.Output[*FirewallInternetServiceBotnet] {
+	return pulumix.Output[*FirewallInternetServiceBotnet]{
+		OutputState: i.ToFirewallInternetServiceBotnetOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallInternetServiceBotnetArrayInput is an input type that accepts FirewallInternetServiceBotnetArray and FirewallInternetServiceBotnetArrayOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceBotnetArrayInput` via:
 //
@@ -123,6 +130,12 @@ func (i FirewallInternetServiceBotnetArray) ToFirewallInternetServiceBotnetArray
 
 func (i FirewallInternetServiceBotnetArray) ToFirewallInternetServiceBotnetArrayOutputWithContext(ctx context.Context) FirewallInternetServiceBotnetArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceBotnetArrayOutput)
+}
+
+func (i FirewallInternetServiceBotnetArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallInternetServiceBotnet] {
+	return pulumix.Output[[]*FirewallInternetServiceBotnet]{
+		OutputState: i.ToFirewallInternetServiceBotnetArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallInternetServiceBotnetMapInput is an input type that accepts FirewallInternetServiceBotnetMap and FirewallInternetServiceBotnetMapOutput values.
@@ -150,6 +163,12 @@ func (i FirewallInternetServiceBotnetMap) ToFirewallInternetServiceBotnetMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceBotnetMapOutput)
 }
 
+func (i FirewallInternetServiceBotnetMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallInternetServiceBotnet] {
+	return pulumix.Output[map[string]*FirewallInternetServiceBotnet]{
+		OutputState: i.ToFirewallInternetServiceBotnetMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallInternetServiceBotnetOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceBotnetOutput) ElementType() reflect.Type {
@@ -162,6 +181,12 @@ func (o FirewallInternetServiceBotnetOutput) ToFirewallInternetServiceBotnetOutp
 
 func (o FirewallInternetServiceBotnetOutput) ToFirewallInternetServiceBotnetOutputWithContext(ctx context.Context) FirewallInternetServiceBotnetOutput {
 	return o
+}
+
+func (o FirewallInternetServiceBotnetOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallInternetServiceBotnet] {
+	return pulumix.Output[*FirewallInternetServiceBotnet]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallInternetServiceBotnetOutput) Fosid() pulumi.IntOutput {
@@ -190,6 +215,12 @@ func (o FirewallInternetServiceBotnetArrayOutput) ToFirewallInternetServiceBotne
 	return o
 }
 
+func (o FirewallInternetServiceBotnetArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallInternetServiceBotnet] {
+	return pulumix.Output[[]*FirewallInternetServiceBotnet]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallInternetServiceBotnetArrayOutput) Index(i pulumi.IntInput) FirewallInternetServiceBotnetOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallInternetServiceBotnet {
 		return vs[0].([]*FirewallInternetServiceBotnet)[vs[1].(int)]
@@ -208,6 +239,12 @@ func (o FirewallInternetServiceBotnetMapOutput) ToFirewallInternetServiceBotnetM
 
 func (o FirewallInternetServiceBotnetMapOutput) ToFirewallInternetServiceBotnetMapOutputWithContext(ctx context.Context) FirewallInternetServiceBotnetMapOutput {
 	return o
+}
+
+func (o FirewallInternetServiceBotnetMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallInternetServiceBotnet] {
+	return pulumix.Output[map[string]*FirewallInternetServiceBotnet]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallInternetServiceBotnetMapOutput) MapIndex(k pulumi.StringInput) FirewallInternetServiceBotnetOutput {

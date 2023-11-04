@@ -33,6 +33,7 @@ export class SystemAffinityInterrupt extends pulumi.CustomResource {
     }
 
     public readonly affinityCpumask!: pulumi.Output<string>;
+    public readonly defaultAffinityCpumask!: pulumi.Output<string>;
     public readonly fosid!: pulumi.Output<number>;
     public readonly interrupt!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -51,6 +52,7 @@ export class SystemAffinityInterrupt extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as SystemAffinityInterruptState | undefined;
             resourceInputs["affinityCpumask"] = state ? state.affinityCpumask : undefined;
+            resourceInputs["defaultAffinityCpumask"] = state ? state.defaultAffinityCpumask : undefined;
             resourceInputs["fosid"] = state ? state.fosid : undefined;
             resourceInputs["interrupt"] = state ? state.interrupt : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
@@ -66,6 +68,7 @@ export class SystemAffinityInterrupt extends pulumi.CustomResource {
                 throw new Error("Missing required property 'interrupt'");
             }
             resourceInputs["affinityCpumask"] = args ? args.affinityCpumask : undefined;
+            resourceInputs["defaultAffinityCpumask"] = args ? args.defaultAffinityCpumask : undefined;
             resourceInputs["fosid"] = args ? args.fosid : undefined;
             resourceInputs["interrupt"] = args ? args.interrupt : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -80,6 +83,7 @@ export class SystemAffinityInterrupt extends pulumi.CustomResource {
  */
 export interface SystemAffinityInterruptState {
     affinityCpumask?: pulumi.Input<string>;
+    defaultAffinityCpumask?: pulumi.Input<string>;
     fosid?: pulumi.Input<number>;
     interrupt?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
@@ -90,6 +94,7 @@ export interface SystemAffinityInterruptState {
  */
 export interface SystemAffinityInterruptArgs {
     affinityCpumask: pulumi.Input<string>;
+    defaultAffinityCpumask?: pulumi.Input<string>;
     fosid: pulumi.Input<number>;
     interrupt: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;

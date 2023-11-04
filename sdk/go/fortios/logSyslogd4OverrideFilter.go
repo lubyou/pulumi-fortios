@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type LogSyslogd4OverrideFilter struct {
@@ -180,6 +181,12 @@ func (i *LogSyslogd4OverrideFilter) ToLogSyslogd4OverrideFilterOutputWithContext
 	return pulumi.ToOutputWithContext(ctx, i).(LogSyslogd4OverrideFilterOutput)
 }
 
+func (i *LogSyslogd4OverrideFilter) ToOutput(ctx context.Context) pulumix.Output[*LogSyslogd4OverrideFilter] {
+	return pulumix.Output[*LogSyslogd4OverrideFilter]{
+		OutputState: i.ToLogSyslogd4OverrideFilterOutputWithContext(ctx).OutputState,
+	}
+}
+
 // LogSyslogd4OverrideFilterArrayInput is an input type that accepts LogSyslogd4OverrideFilterArray and LogSyslogd4OverrideFilterArrayOutput values.
 // You can construct a concrete instance of `LogSyslogd4OverrideFilterArrayInput` via:
 //
@@ -203,6 +210,12 @@ func (i LogSyslogd4OverrideFilterArray) ToLogSyslogd4OverrideFilterArrayOutput()
 
 func (i LogSyslogd4OverrideFilterArray) ToLogSyslogd4OverrideFilterArrayOutputWithContext(ctx context.Context) LogSyslogd4OverrideFilterArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogSyslogd4OverrideFilterArrayOutput)
+}
+
+func (i LogSyslogd4OverrideFilterArray) ToOutput(ctx context.Context) pulumix.Output[[]*LogSyslogd4OverrideFilter] {
+	return pulumix.Output[[]*LogSyslogd4OverrideFilter]{
+		OutputState: i.ToLogSyslogd4OverrideFilterArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // LogSyslogd4OverrideFilterMapInput is an input type that accepts LogSyslogd4OverrideFilterMap and LogSyslogd4OverrideFilterMapOutput values.
@@ -230,6 +243,12 @@ func (i LogSyslogd4OverrideFilterMap) ToLogSyslogd4OverrideFilterMapOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(LogSyslogd4OverrideFilterMapOutput)
 }
 
+func (i LogSyslogd4OverrideFilterMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogSyslogd4OverrideFilter] {
+	return pulumix.Output[map[string]*LogSyslogd4OverrideFilter]{
+		OutputState: i.ToLogSyslogd4OverrideFilterMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type LogSyslogd4OverrideFilterOutput struct{ *pulumi.OutputState }
 
 func (LogSyslogd4OverrideFilterOutput) ElementType() reflect.Type {
@@ -242,6 +261,12 @@ func (o LogSyslogd4OverrideFilterOutput) ToLogSyslogd4OverrideFilterOutput() Log
 
 func (o LogSyslogd4OverrideFilterOutput) ToLogSyslogd4OverrideFilterOutputWithContext(ctx context.Context) LogSyslogd4OverrideFilterOutput {
 	return o
+}
+
+func (o LogSyslogd4OverrideFilterOutput) ToOutput(ctx context.Context) pulumix.Output[*LogSyslogd4OverrideFilter] {
+	return pulumix.Output[*LogSyslogd4OverrideFilter]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LogSyslogd4OverrideFilterOutput) Anomaly() pulumi.StringOutput {
@@ -334,6 +359,12 @@ func (o LogSyslogd4OverrideFilterArrayOutput) ToLogSyslogd4OverrideFilterArrayOu
 	return o
 }
 
+func (o LogSyslogd4OverrideFilterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LogSyslogd4OverrideFilter] {
+	return pulumix.Output[[]*LogSyslogd4OverrideFilter]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LogSyslogd4OverrideFilterArrayOutput) Index(i pulumi.IntInput) LogSyslogd4OverrideFilterOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogSyslogd4OverrideFilter {
 		return vs[0].([]*LogSyslogd4OverrideFilter)[vs[1].(int)]
@@ -352,6 +383,12 @@ func (o LogSyslogd4OverrideFilterMapOutput) ToLogSyslogd4OverrideFilterMapOutput
 
 func (o LogSyslogd4OverrideFilterMapOutput) ToLogSyslogd4OverrideFilterMapOutputWithContext(ctx context.Context) LogSyslogd4OverrideFilterMapOutput {
 	return o
+}
+
+func (o LogSyslogd4OverrideFilterMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogSyslogd4OverrideFilter] {
+	return pulumix.Output[map[string]*LogSyslogd4OverrideFilter]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LogSyslogd4OverrideFilterMapOutput) MapIndex(k pulumi.StringInput) LogSyslogd4OverrideFilterOutput {

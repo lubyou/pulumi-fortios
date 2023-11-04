@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallTrafficClass struct {
@@ -100,6 +101,12 @@ func (i *FirewallTrafficClass) ToFirewallTrafficClassOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallTrafficClassOutput)
 }
 
+func (i *FirewallTrafficClass) ToOutput(ctx context.Context) pulumix.Output[*FirewallTrafficClass] {
+	return pulumix.Output[*FirewallTrafficClass]{
+		OutputState: i.ToFirewallTrafficClassOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallTrafficClassArrayInput is an input type that accepts FirewallTrafficClassArray and FirewallTrafficClassArrayOutput values.
 // You can construct a concrete instance of `FirewallTrafficClassArrayInput` via:
 //
@@ -123,6 +130,12 @@ func (i FirewallTrafficClassArray) ToFirewallTrafficClassArrayOutput() FirewallT
 
 func (i FirewallTrafficClassArray) ToFirewallTrafficClassArrayOutputWithContext(ctx context.Context) FirewallTrafficClassArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallTrafficClassArrayOutput)
+}
+
+func (i FirewallTrafficClassArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallTrafficClass] {
+	return pulumix.Output[[]*FirewallTrafficClass]{
+		OutputState: i.ToFirewallTrafficClassArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallTrafficClassMapInput is an input type that accepts FirewallTrafficClassMap and FirewallTrafficClassMapOutput values.
@@ -150,6 +163,12 @@ func (i FirewallTrafficClassMap) ToFirewallTrafficClassMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallTrafficClassMapOutput)
 }
 
+func (i FirewallTrafficClassMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallTrafficClass] {
+	return pulumix.Output[map[string]*FirewallTrafficClass]{
+		OutputState: i.ToFirewallTrafficClassMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallTrafficClassOutput struct{ *pulumi.OutputState }
 
 func (FirewallTrafficClassOutput) ElementType() reflect.Type {
@@ -162,6 +181,12 @@ func (o FirewallTrafficClassOutput) ToFirewallTrafficClassOutput() FirewallTraff
 
 func (o FirewallTrafficClassOutput) ToFirewallTrafficClassOutputWithContext(ctx context.Context) FirewallTrafficClassOutput {
 	return o
+}
+
+func (o FirewallTrafficClassOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallTrafficClass] {
+	return pulumix.Output[*FirewallTrafficClass]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallTrafficClassOutput) ClassId() pulumi.IntOutput {
@@ -190,6 +215,12 @@ func (o FirewallTrafficClassArrayOutput) ToFirewallTrafficClassArrayOutputWithCo
 	return o
 }
 
+func (o FirewallTrafficClassArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallTrafficClass] {
+	return pulumix.Output[[]*FirewallTrafficClass]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallTrafficClassArrayOutput) Index(i pulumi.IntInput) FirewallTrafficClassOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallTrafficClass {
 		return vs[0].([]*FirewallTrafficClass)[vs[1].(int)]
@@ -208,6 +239,12 @@ func (o FirewallTrafficClassMapOutput) ToFirewallTrafficClassMapOutput() Firewal
 
 func (o FirewallTrafficClassMapOutput) ToFirewallTrafficClassMapOutputWithContext(ctx context.Context) FirewallTrafficClassMapOutput {
 	return o
+}
+
+func (o FirewallTrafficClassMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallTrafficClass] {
+	return pulumix.Output[map[string]*FirewallTrafficClass]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallTrafficClassMapOutput) MapIndex(k pulumi.StringInput) FirewallTrafficClassOutput {

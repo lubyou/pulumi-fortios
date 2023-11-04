@@ -9,11 +9,13 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemFtmPush struct {
 	pulumi.CustomResourceState
 
+	Proxy      pulumi.StringOutput    `pulumi:"proxy"`
 	Server     pulumi.StringOutput    `pulumi:"server"`
 	ServerCert pulumi.StringOutput    `pulumi:"serverCert"`
 	ServerIp   pulumi.StringOutput    `pulumi:"serverIp"`
@@ -52,6 +54,7 @@ func GetSystemFtmPush(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemFtmPush resources.
 type systemFtmPushState struct {
+	Proxy      *string `pulumi:"proxy"`
 	Server     *string `pulumi:"server"`
 	ServerCert *string `pulumi:"serverCert"`
 	ServerIp   *string `pulumi:"serverIp"`
@@ -61,6 +64,7 @@ type systemFtmPushState struct {
 }
 
 type SystemFtmPushState struct {
+	Proxy      pulumi.StringPtrInput
 	Server     pulumi.StringPtrInput
 	ServerCert pulumi.StringPtrInput
 	ServerIp   pulumi.StringPtrInput
@@ -74,6 +78,7 @@ func (SystemFtmPushState) ElementType() reflect.Type {
 }
 
 type systemFtmPushArgs struct {
+	Proxy      *string `pulumi:"proxy"`
 	Server     *string `pulumi:"server"`
 	ServerCert *string `pulumi:"serverCert"`
 	ServerIp   *string `pulumi:"serverIp"`
@@ -84,6 +89,7 @@ type systemFtmPushArgs struct {
 
 // The set of arguments for constructing a SystemFtmPush resource.
 type SystemFtmPushArgs struct {
+	Proxy      pulumi.StringPtrInput
 	Server     pulumi.StringPtrInput
 	ServerCert pulumi.StringPtrInput
 	ServerIp   pulumi.StringPtrInput
@@ -115,6 +121,12 @@ func (i *SystemFtmPush) ToSystemFtmPushOutputWithContext(ctx context.Context) Sy
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFtmPushOutput)
 }
 
+func (i *SystemFtmPush) ToOutput(ctx context.Context) pulumix.Output[*SystemFtmPush] {
+	return pulumix.Output[*SystemFtmPush]{
+		OutputState: i.ToSystemFtmPushOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemFtmPushArrayInput is an input type that accepts SystemFtmPushArray and SystemFtmPushArrayOutput values.
 // You can construct a concrete instance of `SystemFtmPushArrayInput` via:
 //
@@ -138,6 +150,12 @@ func (i SystemFtmPushArray) ToSystemFtmPushArrayOutput() SystemFtmPushArrayOutpu
 
 func (i SystemFtmPushArray) ToSystemFtmPushArrayOutputWithContext(ctx context.Context) SystemFtmPushArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFtmPushArrayOutput)
+}
+
+func (i SystemFtmPushArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemFtmPush] {
+	return pulumix.Output[[]*SystemFtmPush]{
+		OutputState: i.ToSystemFtmPushArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemFtmPushMapInput is an input type that accepts SystemFtmPushMap and SystemFtmPushMapOutput values.
@@ -165,6 +183,12 @@ func (i SystemFtmPushMap) ToSystemFtmPushMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFtmPushMapOutput)
 }
 
+func (i SystemFtmPushMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemFtmPush] {
+	return pulumix.Output[map[string]*SystemFtmPush]{
+		OutputState: i.ToSystemFtmPushMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemFtmPushOutput struct{ *pulumi.OutputState }
 
 func (SystemFtmPushOutput) ElementType() reflect.Type {
@@ -177,6 +201,16 @@ func (o SystemFtmPushOutput) ToSystemFtmPushOutput() SystemFtmPushOutput {
 
 func (o SystemFtmPushOutput) ToSystemFtmPushOutputWithContext(ctx context.Context) SystemFtmPushOutput {
 	return o
+}
+
+func (o SystemFtmPushOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemFtmPush] {
+	return pulumix.Output[*SystemFtmPush]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o SystemFtmPushOutput) Proxy() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemFtmPush) pulumi.StringOutput { return v.Proxy }).(pulumi.StringOutput)
 }
 
 func (o SystemFtmPushOutput) Server() pulumi.StringOutput {
@@ -217,6 +251,12 @@ func (o SystemFtmPushArrayOutput) ToSystemFtmPushArrayOutputWithContext(ctx cont
 	return o
 }
 
+func (o SystemFtmPushArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemFtmPush] {
+	return pulumix.Output[[]*SystemFtmPush]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemFtmPushArrayOutput) Index(i pulumi.IntInput) SystemFtmPushOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemFtmPush {
 		return vs[0].([]*SystemFtmPush)[vs[1].(int)]
@@ -235,6 +275,12 @@ func (o SystemFtmPushMapOutput) ToSystemFtmPushMapOutput() SystemFtmPushMapOutpu
 
 func (o SystemFtmPushMapOutput) ToSystemFtmPushMapOutputWithContext(ctx context.Context) SystemFtmPushMapOutput {
 	return o
+}
+
+func (o SystemFtmPushMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemFtmPush] {
+	return pulumix.Output[map[string]*SystemFtmPush]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemFtmPushMapOutput) MapIndex(k pulumi.StringInput) SystemFtmPushOutput {

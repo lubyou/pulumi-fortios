@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetSystemAdminList(ctx *pulumi.Context, args *GetSystemAdminListArgs, opts ...pulumi.InvokeOption) (*GetSystemAdminListResult, error) {
@@ -72,6 +73,12 @@ func (o GetSystemAdminListResultOutput) ToGetSystemAdminListResultOutput() GetSy
 
 func (o GetSystemAdminListResultOutput) ToGetSystemAdminListResultOutputWithContext(ctx context.Context) GetSystemAdminListResultOutput {
 	return o
+}
+
+func (o GetSystemAdminListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSystemAdminListResult] {
+	return pulumix.Output[GetSystemAdminListResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetSystemAdminListResultOutput) Filter() pulumi.StringPtrOutput {

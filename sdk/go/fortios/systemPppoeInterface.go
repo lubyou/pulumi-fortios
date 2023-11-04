@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemPppoeInterface struct {
@@ -181,6 +182,12 @@ func (i *SystemPppoeInterface) ToSystemPppoeInterfaceOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(SystemPppoeInterfaceOutput)
 }
 
+func (i *SystemPppoeInterface) ToOutput(ctx context.Context) pulumix.Output[*SystemPppoeInterface] {
+	return pulumix.Output[*SystemPppoeInterface]{
+		OutputState: i.ToSystemPppoeInterfaceOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemPppoeInterfaceArrayInput is an input type that accepts SystemPppoeInterfaceArray and SystemPppoeInterfaceArrayOutput values.
 // You can construct a concrete instance of `SystemPppoeInterfaceArrayInput` via:
 //
@@ -204,6 +211,12 @@ func (i SystemPppoeInterfaceArray) ToSystemPppoeInterfaceArrayOutput() SystemPpp
 
 func (i SystemPppoeInterfaceArray) ToSystemPppoeInterfaceArrayOutputWithContext(ctx context.Context) SystemPppoeInterfaceArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemPppoeInterfaceArrayOutput)
+}
+
+func (i SystemPppoeInterfaceArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemPppoeInterface] {
+	return pulumix.Output[[]*SystemPppoeInterface]{
+		OutputState: i.ToSystemPppoeInterfaceArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemPppoeInterfaceMapInput is an input type that accepts SystemPppoeInterfaceMap and SystemPppoeInterfaceMapOutput values.
@@ -231,6 +244,12 @@ func (i SystemPppoeInterfaceMap) ToSystemPppoeInterfaceMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(SystemPppoeInterfaceMapOutput)
 }
 
+func (i SystemPppoeInterfaceMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemPppoeInterface] {
+	return pulumix.Output[map[string]*SystemPppoeInterface]{
+		OutputState: i.ToSystemPppoeInterfaceMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemPppoeInterfaceOutput struct{ *pulumi.OutputState }
 
 func (SystemPppoeInterfaceOutput) ElementType() reflect.Type {
@@ -243,6 +262,12 @@ func (o SystemPppoeInterfaceOutput) ToSystemPppoeInterfaceOutput() SystemPppoeIn
 
 func (o SystemPppoeInterfaceOutput) ToSystemPppoeInterfaceOutputWithContext(ctx context.Context) SystemPppoeInterfaceOutput {
 	return o
+}
+
+func (o SystemPppoeInterfaceOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemPppoeInterface] {
+	return pulumix.Output[*SystemPppoeInterface]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemPppoeInterfaceOutput) AcName() pulumi.StringOutput {
@@ -327,6 +352,12 @@ func (o SystemPppoeInterfaceArrayOutput) ToSystemPppoeInterfaceArrayOutputWithCo
 	return o
 }
 
+func (o SystemPppoeInterfaceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemPppoeInterface] {
+	return pulumix.Output[[]*SystemPppoeInterface]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemPppoeInterfaceArrayOutput) Index(i pulumi.IntInput) SystemPppoeInterfaceOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemPppoeInterface {
 		return vs[0].([]*SystemPppoeInterface)[vs[1].(int)]
@@ -345,6 +376,12 @@ func (o SystemPppoeInterfaceMapOutput) ToSystemPppoeInterfaceMapOutput() SystemP
 
 func (o SystemPppoeInterfaceMapOutput) ToSystemPppoeInterfaceMapOutputWithContext(ctx context.Context) SystemPppoeInterfaceMapOutput {
 	return o
+}
+
+func (o SystemPppoeInterfaceMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemPppoeInterface] {
+	return pulumix.Output[map[string]*SystemPppoeInterface]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemPppoeInterfaceMapOutput) MapIndex(k pulumi.StringInput) SystemPppoeInterfaceOutput {

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type DlpDictionary struct {
@@ -130,6 +131,12 @@ func (i *DlpDictionary) ToDlpDictionaryOutputWithContext(ctx context.Context) Dl
 	return pulumi.ToOutputWithContext(ctx, i).(DlpDictionaryOutput)
 }
 
+func (i *DlpDictionary) ToOutput(ctx context.Context) pulumix.Output[*DlpDictionary] {
+	return pulumix.Output[*DlpDictionary]{
+		OutputState: i.ToDlpDictionaryOutputWithContext(ctx).OutputState,
+	}
+}
+
 // DlpDictionaryArrayInput is an input type that accepts DlpDictionaryArray and DlpDictionaryArrayOutput values.
 // You can construct a concrete instance of `DlpDictionaryArrayInput` via:
 //
@@ -153,6 +160,12 @@ func (i DlpDictionaryArray) ToDlpDictionaryArrayOutput() DlpDictionaryArrayOutpu
 
 func (i DlpDictionaryArray) ToDlpDictionaryArrayOutputWithContext(ctx context.Context) DlpDictionaryArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DlpDictionaryArrayOutput)
+}
+
+func (i DlpDictionaryArray) ToOutput(ctx context.Context) pulumix.Output[[]*DlpDictionary] {
+	return pulumix.Output[[]*DlpDictionary]{
+		OutputState: i.ToDlpDictionaryArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // DlpDictionaryMapInput is an input type that accepts DlpDictionaryMap and DlpDictionaryMapOutput values.
@@ -180,6 +193,12 @@ func (i DlpDictionaryMap) ToDlpDictionaryMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(DlpDictionaryMapOutput)
 }
 
+func (i DlpDictionaryMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DlpDictionary] {
+	return pulumix.Output[map[string]*DlpDictionary]{
+		OutputState: i.ToDlpDictionaryMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DlpDictionaryOutput struct{ *pulumi.OutputState }
 
 func (DlpDictionaryOutput) ElementType() reflect.Type {
@@ -192,6 +211,12 @@ func (o DlpDictionaryOutput) ToDlpDictionaryOutput() DlpDictionaryOutput {
 
 func (o DlpDictionaryOutput) ToDlpDictionaryOutputWithContext(ctx context.Context) DlpDictionaryOutput {
 	return o
+}
+
+func (o DlpDictionaryOutput) ToOutput(ctx context.Context) pulumix.Output[*DlpDictionary] {
+	return pulumix.Output[*DlpDictionary]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DlpDictionaryOutput) Comment() pulumi.StringPtrOutput {
@@ -244,6 +269,12 @@ func (o DlpDictionaryArrayOutput) ToDlpDictionaryArrayOutputWithContext(ctx cont
 	return o
 }
 
+func (o DlpDictionaryArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DlpDictionary] {
+	return pulumix.Output[[]*DlpDictionary]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DlpDictionaryArrayOutput) Index(i pulumi.IntInput) DlpDictionaryOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DlpDictionary {
 		return vs[0].([]*DlpDictionary)[vs[1].(int)]
@@ -262,6 +293,12 @@ func (o DlpDictionaryMapOutput) ToDlpDictionaryMapOutput() DlpDictionaryMapOutpu
 
 func (o DlpDictionaryMapOutput) ToDlpDictionaryMapOutputWithContext(ctx context.Context) DlpDictionaryMapOutput {
 	return o
+}
+
+func (o DlpDictionaryMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DlpDictionary] {
+	return pulumix.Output[map[string]*DlpDictionary]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DlpDictionaryMapOutput) MapIndex(k pulumi.StringInput) DlpDictionaryOutput {

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemObjectTagging(ctx *pulumi.Context, args *LookupSystemObjectTaggingArgs, opts ...pulumi.InvokeOption) (*LookupSystemObjectTaggingResult, error) {
@@ -77,6 +78,12 @@ func (o LookupSystemObjectTaggingResultOutput) ToLookupSystemObjectTaggingResult
 
 func (o LookupSystemObjectTaggingResultOutput) ToLookupSystemObjectTaggingResultOutputWithContext(ctx context.Context) LookupSystemObjectTaggingResultOutput {
 	return o
+}
+
+func (o LookupSystemObjectTaggingResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemObjectTaggingResult] {
+	return pulumix.Output[LookupSystemObjectTaggingResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupSystemObjectTaggingResultOutput) Address() pulumi.StringOutput {

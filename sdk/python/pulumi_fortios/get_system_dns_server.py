@@ -21,13 +21,19 @@ class GetSystemDnsServerResult:
     """
     A collection of values returned by GetSystemDnsServer.
     """
-    def __init__(__self__, dnsfilter_profile=None, doh=None, id=None, mode=None, name=None, vdomparam=None):
+    def __init__(__self__, dnsfilter_profile=None, doh=None, doh3=None, doq=None, id=None, mode=None, name=None, vdomparam=None):
         if dnsfilter_profile and not isinstance(dnsfilter_profile, str):
             raise TypeError("Expected argument 'dnsfilter_profile' to be a str")
         pulumi.set(__self__, "dnsfilter_profile", dnsfilter_profile)
         if doh and not isinstance(doh, str):
             raise TypeError("Expected argument 'doh' to be a str")
         pulumi.set(__self__, "doh", doh)
+        if doh3 and not isinstance(doh3, str):
+            raise TypeError("Expected argument 'doh3' to be a str")
+        pulumi.set(__self__, "doh3", doh3)
+        if doq and not isinstance(doq, str):
+            raise TypeError("Expected argument 'doq' to be a str")
+        pulumi.set(__self__, "doq", doq)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -50,6 +56,16 @@ class GetSystemDnsServerResult:
     @pulumi.getter
     def doh(self) -> str:
         return pulumi.get(self, "doh")
+
+    @property
+    @pulumi.getter
+    def doh3(self) -> str:
+        return pulumi.get(self, "doh3")
+
+    @property
+    @pulumi.getter
+    def doq(self) -> str:
+        return pulumi.get(self, "doq")
 
     @property
     @pulumi.getter
@@ -83,6 +99,8 @@ class AwaitableGetSystemDnsServerResult(GetSystemDnsServerResult):
         return GetSystemDnsServerResult(
             dnsfilter_profile=self.dnsfilter_profile,
             doh=self.doh,
+            doh3=self.doh3,
+            doq=self.doq,
             id=self.id,
             mode=self.mode,
             name=self.name,
@@ -104,6 +122,8 @@ def get_system_dns_server(name: Optional[str] = None,
     return AwaitableGetSystemDnsServerResult(
         dnsfilter_profile=pulumi.get(__ret__, 'dnsfilter_profile'),
         doh=pulumi.get(__ret__, 'doh'),
+        doh3=pulumi.get(__ret__, 'doh3'),
+        doq=pulumi.get(__ret__, 'doq'),
         id=pulumi.get(__ret__, 'id'),
         mode=pulumi.get(__ret__, 'mode'),
         name=pulumi.get(__ret__, 'name'),

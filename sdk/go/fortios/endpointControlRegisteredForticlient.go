@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type EndpointControlRegisteredForticlient struct {
@@ -125,6 +126,12 @@ func (i *EndpointControlRegisteredForticlient) ToEndpointControlRegisteredFortic
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlRegisteredForticlientOutput)
 }
 
+func (i *EndpointControlRegisteredForticlient) ToOutput(ctx context.Context) pulumix.Output[*EndpointControlRegisteredForticlient] {
+	return pulumix.Output[*EndpointControlRegisteredForticlient]{
+		OutputState: i.ToEndpointControlRegisteredForticlientOutputWithContext(ctx).OutputState,
+	}
+}
+
 // EndpointControlRegisteredForticlientArrayInput is an input type that accepts EndpointControlRegisteredForticlientArray and EndpointControlRegisteredForticlientArrayOutput values.
 // You can construct a concrete instance of `EndpointControlRegisteredForticlientArrayInput` via:
 //
@@ -148,6 +155,12 @@ func (i EndpointControlRegisteredForticlientArray) ToEndpointControlRegisteredFo
 
 func (i EndpointControlRegisteredForticlientArray) ToEndpointControlRegisteredForticlientArrayOutputWithContext(ctx context.Context) EndpointControlRegisteredForticlientArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlRegisteredForticlientArrayOutput)
+}
+
+func (i EndpointControlRegisteredForticlientArray) ToOutput(ctx context.Context) pulumix.Output[[]*EndpointControlRegisteredForticlient] {
+	return pulumix.Output[[]*EndpointControlRegisteredForticlient]{
+		OutputState: i.ToEndpointControlRegisteredForticlientArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // EndpointControlRegisteredForticlientMapInput is an input type that accepts EndpointControlRegisteredForticlientMap and EndpointControlRegisteredForticlientMapOutput values.
@@ -175,6 +188,12 @@ func (i EndpointControlRegisteredForticlientMap) ToEndpointControlRegisteredFort
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlRegisteredForticlientMapOutput)
 }
 
+func (i EndpointControlRegisteredForticlientMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*EndpointControlRegisteredForticlient] {
+	return pulumix.Output[map[string]*EndpointControlRegisteredForticlient]{
+		OutputState: i.ToEndpointControlRegisteredForticlientMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type EndpointControlRegisteredForticlientOutput struct{ *pulumi.OutputState }
 
 func (EndpointControlRegisteredForticlientOutput) ElementType() reflect.Type {
@@ -187,6 +206,12 @@ func (o EndpointControlRegisteredForticlientOutput) ToEndpointControlRegisteredF
 
 func (o EndpointControlRegisteredForticlientOutput) ToEndpointControlRegisteredForticlientOutputWithContext(ctx context.Context) EndpointControlRegisteredForticlientOutput {
 	return o
+}
+
+func (o EndpointControlRegisteredForticlientOutput) ToOutput(ctx context.Context) pulumix.Output[*EndpointControlRegisteredForticlient] {
+	return pulumix.Output[*EndpointControlRegisteredForticlient]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o EndpointControlRegisteredForticlientOutput) Flag() pulumi.IntOutput {
@@ -235,6 +260,12 @@ func (o EndpointControlRegisteredForticlientArrayOutput) ToEndpointControlRegist
 	return o
 }
 
+func (o EndpointControlRegisteredForticlientArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*EndpointControlRegisteredForticlient] {
+	return pulumix.Output[[]*EndpointControlRegisteredForticlient]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o EndpointControlRegisteredForticlientArrayOutput) Index(i pulumi.IntInput) EndpointControlRegisteredForticlientOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *EndpointControlRegisteredForticlient {
 		return vs[0].([]*EndpointControlRegisteredForticlient)[vs[1].(int)]
@@ -253,6 +284,12 @@ func (o EndpointControlRegisteredForticlientMapOutput) ToEndpointControlRegister
 
 func (o EndpointControlRegisteredForticlientMapOutput) ToEndpointControlRegisteredForticlientMapOutputWithContext(ctx context.Context) EndpointControlRegisteredForticlientMapOutput {
 	return o
+}
+
+func (o EndpointControlRegisteredForticlientMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*EndpointControlRegisteredForticlient] {
+	return pulumix.Output[map[string]*EndpointControlRegisteredForticlient]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o EndpointControlRegisteredForticlientMapOutput) MapIndex(k pulumi.StringInput) EndpointControlRegisteredForticlientOutput {

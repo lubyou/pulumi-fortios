@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallInternetServiceOwner struct {
@@ -100,6 +101,12 @@ func (i *FirewallInternetServiceOwner) ToFirewallInternetServiceOwnerOutputWithC
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceOwnerOutput)
 }
 
+func (i *FirewallInternetServiceOwner) ToOutput(ctx context.Context) pulumix.Output[*FirewallInternetServiceOwner] {
+	return pulumix.Output[*FirewallInternetServiceOwner]{
+		OutputState: i.ToFirewallInternetServiceOwnerOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallInternetServiceOwnerArrayInput is an input type that accepts FirewallInternetServiceOwnerArray and FirewallInternetServiceOwnerArrayOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceOwnerArrayInput` via:
 //
@@ -123,6 +130,12 @@ func (i FirewallInternetServiceOwnerArray) ToFirewallInternetServiceOwnerArrayOu
 
 func (i FirewallInternetServiceOwnerArray) ToFirewallInternetServiceOwnerArrayOutputWithContext(ctx context.Context) FirewallInternetServiceOwnerArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceOwnerArrayOutput)
+}
+
+func (i FirewallInternetServiceOwnerArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallInternetServiceOwner] {
+	return pulumix.Output[[]*FirewallInternetServiceOwner]{
+		OutputState: i.ToFirewallInternetServiceOwnerArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallInternetServiceOwnerMapInput is an input type that accepts FirewallInternetServiceOwnerMap and FirewallInternetServiceOwnerMapOutput values.
@@ -150,6 +163,12 @@ func (i FirewallInternetServiceOwnerMap) ToFirewallInternetServiceOwnerMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceOwnerMapOutput)
 }
 
+func (i FirewallInternetServiceOwnerMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallInternetServiceOwner] {
+	return pulumix.Output[map[string]*FirewallInternetServiceOwner]{
+		OutputState: i.ToFirewallInternetServiceOwnerMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallInternetServiceOwnerOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceOwnerOutput) ElementType() reflect.Type {
@@ -162,6 +181,12 @@ func (o FirewallInternetServiceOwnerOutput) ToFirewallInternetServiceOwnerOutput
 
 func (o FirewallInternetServiceOwnerOutput) ToFirewallInternetServiceOwnerOutputWithContext(ctx context.Context) FirewallInternetServiceOwnerOutput {
 	return o
+}
+
+func (o FirewallInternetServiceOwnerOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallInternetServiceOwner] {
+	return pulumix.Output[*FirewallInternetServiceOwner]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallInternetServiceOwnerOutput) Fosid() pulumi.IntOutput {
@@ -190,6 +215,12 @@ func (o FirewallInternetServiceOwnerArrayOutput) ToFirewallInternetServiceOwnerA
 	return o
 }
 
+func (o FirewallInternetServiceOwnerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallInternetServiceOwner] {
+	return pulumix.Output[[]*FirewallInternetServiceOwner]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallInternetServiceOwnerArrayOutput) Index(i pulumi.IntInput) FirewallInternetServiceOwnerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallInternetServiceOwner {
 		return vs[0].([]*FirewallInternetServiceOwner)[vs[1].(int)]
@@ -208,6 +239,12 @@ func (o FirewallInternetServiceOwnerMapOutput) ToFirewallInternetServiceOwnerMap
 
 func (o FirewallInternetServiceOwnerMapOutput) ToFirewallInternetServiceOwnerMapOutputWithContext(ctx context.Context) FirewallInternetServiceOwnerMapOutput {
 	return o
+}
+
+func (o FirewallInternetServiceOwnerMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallInternetServiceOwner] {
+	return pulumix.Output[map[string]*FirewallInternetServiceOwner]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallInternetServiceOwnerMapOutput) MapIndex(k pulumi.StringInput) FirewallInternetServiceOwnerOutput {

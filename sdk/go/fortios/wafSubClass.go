@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WafSubClass struct {
@@ -100,6 +101,12 @@ func (i *WafSubClass) ToWafSubClassOutputWithContext(ctx context.Context) WafSub
 	return pulumi.ToOutputWithContext(ctx, i).(WafSubClassOutput)
 }
 
+func (i *WafSubClass) ToOutput(ctx context.Context) pulumix.Output[*WafSubClass] {
+	return pulumix.Output[*WafSubClass]{
+		OutputState: i.ToWafSubClassOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WafSubClassArrayInput is an input type that accepts WafSubClassArray and WafSubClassArrayOutput values.
 // You can construct a concrete instance of `WafSubClassArrayInput` via:
 //
@@ -123,6 +130,12 @@ func (i WafSubClassArray) ToWafSubClassArrayOutput() WafSubClassArrayOutput {
 
 func (i WafSubClassArray) ToWafSubClassArrayOutputWithContext(ctx context.Context) WafSubClassArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WafSubClassArrayOutput)
+}
+
+func (i WafSubClassArray) ToOutput(ctx context.Context) pulumix.Output[[]*WafSubClass] {
+	return pulumix.Output[[]*WafSubClass]{
+		OutputState: i.ToWafSubClassArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // WafSubClassMapInput is an input type that accepts WafSubClassMap and WafSubClassMapOutput values.
@@ -150,6 +163,12 @@ func (i WafSubClassMap) ToWafSubClassMapOutputWithContext(ctx context.Context) W
 	return pulumi.ToOutputWithContext(ctx, i).(WafSubClassMapOutput)
 }
 
+func (i WafSubClassMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WafSubClass] {
+	return pulumix.Output[map[string]*WafSubClass]{
+		OutputState: i.ToWafSubClassMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WafSubClassOutput struct{ *pulumi.OutputState }
 
 func (WafSubClassOutput) ElementType() reflect.Type {
@@ -162,6 +181,12 @@ func (o WafSubClassOutput) ToWafSubClassOutput() WafSubClassOutput {
 
 func (o WafSubClassOutput) ToWafSubClassOutputWithContext(ctx context.Context) WafSubClassOutput {
 	return o
+}
+
+func (o WafSubClassOutput) ToOutput(ctx context.Context) pulumix.Output[*WafSubClass] {
+	return pulumix.Output[*WafSubClass]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafSubClassOutput) Fosid() pulumi.IntOutput {
@@ -190,6 +215,12 @@ func (o WafSubClassArrayOutput) ToWafSubClassArrayOutputWithContext(ctx context.
 	return o
 }
 
+func (o WafSubClassArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WafSubClass] {
+	return pulumix.Output[[]*WafSubClass]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o WafSubClassArrayOutput) Index(i pulumi.IntInput) WafSubClassOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WafSubClass {
 		return vs[0].([]*WafSubClass)[vs[1].(int)]
@@ -208,6 +239,12 @@ func (o WafSubClassMapOutput) ToWafSubClassMapOutput() WafSubClassMapOutput {
 
 func (o WafSubClassMapOutput) ToWafSubClassMapOutputWithContext(ctx context.Context) WafSubClassMapOutput {
 	return o
+}
+
+func (o WafSubClassMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WafSubClass] {
+	return pulumix.Output[map[string]*WafSubClass]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafSubClassMapOutput) MapIndex(k pulumi.StringInput) WafSubClassOutput {

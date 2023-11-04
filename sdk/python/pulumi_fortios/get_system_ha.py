@@ -22,7 +22,7 @@ class GetSystemHaResult:
     """
     A collection of values returned by GetSystemHa.
     """
-    def __init__(__self__, arps=None, arps_interval=None, authentication=None, cpu_threshold=None, encryption=None, evpn_ttl=None, failover_hold_time=None, ftp_proxy_threshold=None, gratuitous_arps=None, group_id=None, group_name=None, ha_direct=None, ha_eth_type=None, ha_mgmt_interfaces=None, ha_mgmt_status=None, ha_uptime_diff_margin=None, hb_interval=None, hb_interval_in_milliseconds=None, hb_lost_threshold=None, hbdev=None, hc_eth_type=None, hello_holddown=None, http_proxy_threshold=None, id=None, imap_proxy_threshold=None, inter_cluster_session_sync=None, key=None, l2ep_eth_type=None, link_failed_signal=None, load_balance_all=None, logical_sn=None, memory_based_failover=None, memory_compatible_mode=None, memory_failover_flip_timeout=None, memory_failover_monitor_period=None, memory_failover_sample_rate=None, memory_failover_threshold=None, memory_threshold=None, mode=None, monitor=None, multicast_ttl=None, nntp_proxy_threshold=None, override=None, override_wait_time=None, password=None, pingserver_failover_threshold=None, pingserver_flip_timeout=None, pingserver_monitor_interface=None, pingserver_secondary_force_reset=None, pingserver_slave_force_reset=None, pop3_proxy_threshold=None, priority=None, route_hold=None, route_ttl=None, route_wait=None, schedule=None, secondary_vclusters=None, session_pickup=None, session_pickup_connectionless=None, session_pickup_delay=None, session_pickup_expectation=None, session_pickup_nat=None, session_sync_dev=None, smtp_proxy_threshold=None, ssd_failover=None, standalone_config_sync=None, standalone_mgmt_vdom=None, sync_config=None, sync_packet_balance=None, unicast_gateway=None, unicast_hb=None, unicast_hb_netmask=None, unicast_hb_peerip=None, unicast_peers=None, unicast_status=None, uninterruptible_primary_wait=None, uninterruptible_upgrade=None, vcluster2=None, vcluster_id=None, vcluster_status=None, vclusters=None, vdom=None, vdomparam=None, weight=None):
+    def __init__(__self__, arps=None, arps_interval=None, authentication=None, cpu_threshold=None, encryption=None, evpn_ttl=None, failover_hold_time=None, ftp_proxy_threshold=None, gratuitous_arps=None, group_id=None, group_name=None, ha_direct=None, ha_eth_type=None, ha_mgmt_interfaces=None, ha_mgmt_status=None, ha_uptime_diff_margin=None, hb_interval=None, hb_interval_in_milliseconds=None, hb_lost_threshold=None, hbdev=None, hc_eth_type=None, hello_holddown=None, http_proxy_threshold=None, id=None, imap_proxy_threshold=None, inter_cluster_session_sync=None, key=None, l2ep_eth_type=None, link_failed_signal=None, load_balance_all=None, logical_sn=None, memory_based_failover=None, memory_compatible_mode=None, memory_failover_flip_timeout=None, memory_failover_monitor_period=None, memory_failover_sample_rate=None, memory_failover_threshold=None, memory_threshold=None, mode=None, monitor=None, multicast_ttl=None, nntp_proxy_threshold=None, override=None, override_wait_time=None, password=None, pingserver_failover_threshold=None, pingserver_flip_timeout=None, pingserver_monitor_interface=None, pingserver_secondary_force_reset=None, pingserver_slave_force_reset=None, pop3_proxy_threshold=None, priority=None, route_hold=None, route_ttl=None, route_wait=None, schedule=None, secondary_vclusters=None, session_pickup=None, session_pickup_connectionless=None, session_pickup_delay=None, session_pickup_expectation=None, session_pickup_nat=None, session_sync_dev=None, smtp_proxy_threshold=None, ssd_failover=None, standalone_config_sync=None, standalone_mgmt_vdom=None, sync_config=None, sync_packet_balance=None, unicast_gateway=None, unicast_hb=None, unicast_hb_netmask=None, unicast_hb_peerip=None, unicast_peers=None, unicast_status=None, uninterruptible_primary_wait=None, uninterruptible_upgrade=None, upgrade_mode=None, vcluster2=None, vcluster_id=None, vcluster_status=None, vclusters=None, vdom=None, vdomparam=None, weight=None):
         if arps and not isinstance(arps, int):
             raise TypeError("Expected argument 'arps' to be a int")
         pulumi.set(__self__, "arps", arps)
@@ -254,6 +254,9 @@ class GetSystemHaResult:
         if uninterruptible_upgrade and not isinstance(uninterruptible_upgrade, str):
             raise TypeError("Expected argument 'uninterruptible_upgrade' to be a str")
         pulumi.set(__self__, "uninterruptible_upgrade", uninterruptible_upgrade)
+        if upgrade_mode and not isinstance(upgrade_mode, str):
+            raise TypeError("Expected argument 'upgrade_mode' to be a str")
+        pulumi.set(__self__, "upgrade_mode", upgrade_mode)
         if vcluster2 and not isinstance(vcluster2, str):
             raise TypeError("Expected argument 'vcluster2' to be a str")
         pulumi.set(__self__, "vcluster2", vcluster2)
@@ -665,6 +668,11 @@ class GetSystemHaResult:
         return pulumi.get(self, "uninterruptible_upgrade")
 
     @property
+    @pulumi.getter(name="upgradeMode")
+    def upgrade_mode(self) -> str:
+        return pulumi.get(self, "upgrade_mode")
+
+    @property
     @pulumi.getter
     def vcluster2(self) -> str:
         return pulumi.get(self, "vcluster2")
@@ -783,6 +791,7 @@ class AwaitableGetSystemHaResult(GetSystemHaResult):
             unicast_status=self.unicast_status,
             uninterruptible_primary_wait=self.uninterruptible_primary_wait,
             uninterruptible_upgrade=self.uninterruptible_upgrade,
+            upgrade_mode=self.upgrade_mode,
             vcluster2=self.vcluster2,
             vcluster_id=self.vcluster_id,
             vcluster_status=self.vcluster_status,
@@ -880,6 +889,7 @@ def get_system_ha(vdomparam: Optional[str] = None,
         unicast_status=pulumi.get(__ret__, 'unicast_status'),
         uninterruptible_primary_wait=pulumi.get(__ret__, 'uninterruptible_primary_wait'),
         uninterruptible_upgrade=pulumi.get(__ret__, 'uninterruptible_upgrade'),
+        upgrade_mode=pulumi.get(__ret__, 'upgrade_mode'),
         vcluster2=pulumi.get(__ret__, 'vcluster2'),
         vcluster_id=pulumi.get(__ret__, 'vcluster_id'),
         vcluster_status=pulumi.get(__ret__, 'vcluster_status'),

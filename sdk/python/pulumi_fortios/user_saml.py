@@ -29,6 +29,7 @@ class UserSamlArgs:
                  idp_single_logout_url: Optional[pulumi.Input[str]] = None,
                  limit_relaystate: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 reauth: Optional[pulumi.Input[str]] = None,
                  single_logout_url: Optional[pulumi.Input[str]] = None,
                  user_claim_type: Optional[pulumi.Input[str]] = None,
                  user_name: Optional[pulumi.Input[str]] = None,
@@ -61,6 +62,8 @@ class UserSamlArgs:
             pulumi.set(__self__, "limit_relaystate", limit_relaystate)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if reauth is not None:
+            pulumi.set(__self__, "reauth", reauth)
         if single_logout_url is not None:
             pulumi.set(__self__, "single_logout_url", single_logout_url)
         if user_claim_type is not None:
@@ -206,6 +209,15 @@ class UserSamlArgs:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter
+    def reauth(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "reauth")
+
+    @reauth.setter
+    def reauth(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "reauth", value)
+
+    @property
     @pulumi.getter(name="singleLogoutUrl")
     def single_logout_url(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "single_logout_url")
@@ -259,6 +271,7 @@ class _UserSamlState:
                  idp_single_sign_on_url: Optional[pulumi.Input[str]] = None,
                  limit_relaystate: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 reauth: Optional[pulumi.Input[str]] = None,
                  single_logout_url: Optional[pulumi.Input[str]] = None,
                  single_sign_on_url: Optional[pulumi.Input[str]] = None,
                  user_claim_type: Optional[pulumi.Input[str]] = None,
@@ -295,6 +308,8 @@ class _UserSamlState:
             pulumi.set(__self__, "limit_relaystate", limit_relaystate)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if reauth is not None:
+            pulumi.set(__self__, "reauth", reauth)
         if single_logout_url is not None:
             pulumi.set(__self__, "single_logout_url", single_logout_url)
         if single_sign_on_url is not None:
@@ -433,6 +448,15 @@ class _UserSamlState:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter
+    def reauth(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "reauth")
+
+    @reauth.setter
+    def reauth(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "reauth", value)
+
+    @property
     @pulumi.getter(name="singleLogoutUrl")
     def single_logout_url(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "single_logout_url")
@@ -497,6 +521,7 @@ class UserSaml(pulumi.CustomResource):
                  idp_single_sign_on_url: Optional[pulumi.Input[str]] = None,
                  limit_relaystate: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 reauth: Optional[pulumi.Input[str]] = None,
                  single_logout_url: Optional[pulumi.Input[str]] = None,
                  single_sign_on_url: Optional[pulumi.Input[str]] = None,
                  user_claim_type: Optional[pulumi.Input[str]] = None,
@@ -545,6 +570,7 @@ class UserSaml(pulumi.CustomResource):
                  idp_single_sign_on_url: Optional[pulumi.Input[str]] = None,
                  limit_relaystate: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 reauth: Optional[pulumi.Input[str]] = None,
                  single_logout_url: Optional[pulumi.Input[str]] = None,
                  single_sign_on_url: Optional[pulumi.Input[str]] = None,
                  user_claim_type: Optional[pulumi.Input[str]] = None,
@@ -581,6 +607,7 @@ class UserSaml(pulumi.CustomResource):
             __props__.__dict__["idp_single_sign_on_url"] = idp_single_sign_on_url
             __props__.__dict__["limit_relaystate"] = limit_relaystate
             __props__.__dict__["name"] = name
+            __props__.__dict__["reauth"] = reauth
             __props__.__dict__["single_logout_url"] = single_logout_url
             if single_sign_on_url is None and not opts.urn:
                 raise TypeError("Missing required property 'single_sign_on_url'")
@@ -612,6 +639,7 @@ class UserSaml(pulumi.CustomResource):
             idp_single_sign_on_url: Optional[pulumi.Input[str]] = None,
             limit_relaystate: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            reauth: Optional[pulumi.Input[str]] = None,
             single_logout_url: Optional[pulumi.Input[str]] = None,
             single_sign_on_url: Optional[pulumi.Input[str]] = None,
             user_claim_type: Optional[pulumi.Input[str]] = None,
@@ -643,6 +671,7 @@ class UserSaml(pulumi.CustomResource):
         __props__.__dict__["idp_single_sign_on_url"] = idp_single_sign_on_url
         __props__.__dict__["limit_relaystate"] = limit_relaystate
         __props__.__dict__["name"] = name
+        __props__.__dict__["reauth"] = reauth
         __props__.__dict__["single_logout_url"] = single_logout_url
         __props__.__dict__["single_sign_on_url"] = single_sign_on_url
         __props__.__dict__["user_claim_type"] = user_claim_type
@@ -719,6 +748,11 @@ class UserSaml(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def reauth(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "reauth")
 
     @property
     @pulumi.getter(name="singleLogoutUrl")

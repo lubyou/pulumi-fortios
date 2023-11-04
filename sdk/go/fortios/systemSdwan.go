@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemSdwan struct {
@@ -180,6 +181,12 @@ func (i *SystemSdwan) ToSystemSdwanOutputWithContext(ctx context.Context) System
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSdwanOutput)
 }
 
+func (i *SystemSdwan) ToOutput(ctx context.Context) pulumix.Output[*SystemSdwan] {
+	return pulumix.Output[*SystemSdwan]{
+		OutputState: i.ToSystemSdwanOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemSdwanArrayInput is an input type that accepts SystemSdwanArray and SystemSdwanArrayOutput values.
 // You can construct a concrete instance of `SystemSdwanArrayInput` via:
 //
@@ -203,6 +210,12 @@ func (i SystemSdwanArray) ToSystemSdwanArrayOutput() SystemSdwanArrayOutput {
 
 func (i SystemSdwanArray) ToSystemSdwanArrayOutputWithContext(ctx context.Context) SystemSdwanArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSdwanArrayOutput)
+}
+
+func (i SystemSdwanArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSdwan] {
+	return pulumix.Output[[]*SystemSdwan]{
+		OutputState: i.ToSystemSdwanArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemSdwanMapInput is an input type that accepts SystemSdwanMap and SystemSdwanMapOutput values.
@@ -230,6 +243,12 @@ func (i SystemSdwanMap) ToSystemSdwanMapOutputWithContext(ctx context.Context) S
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSdwanMapOutput)
 }
 
+func (i SystemSdwanMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSdwan] {
+	return pulumix.Output[map[string]*SystemSdwan]{
+		OutputState: i.ToSystemSdwanMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemSdwanOutput struct{ *pulumi.OutputState }
 
 func (SystemSdwanOutput) ElementType() reflect.Type {
@@ -242,6 +261,12 @@ func (o SystemSdwanOutput) ToSystemSdwanOutput() SystemSdwanOutput {
 
 func (o SystemSdwanOutput) ToSystemSdwanOutputWithContext(ctx context.Context) SystemSdwanOutput {
 	return o
+}
+
+func (o SystemSdwanOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemSdwan] {
+	return pulumix.Output[*SystemSdwan]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemSdwanOutput) AppPerfLogPeriod() pulumi.IntOutput {
@@ -334,6 +359,12 @@ func (o SystemSdwanArrayOutput) ToSystemSdwanArrayOutputWithContext(ctx context.
 	return o
 }
 
+func (o SystemSdwanArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSdwan] {
+	return pulumix.Output[[]*SystemSdwan]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemSdwanArrayOutput) Index(i pulumi.IntInput) SystemSdwanOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSdwan {
 		return vs[0].([]*SystemSdwan)[vs[1].(int)]
@@ -352,6 +383,12 @@ func (o SystemSdwanMapOutput) ToSystemSdwanMapOutput() SystemSdwanMapOutput {
 
 func (o SystemSdwanMapOutput) ToSystemSdwanMapOutputWithContext(ctx context.Context) SystemSdwanMapOutput {
 	return o
+}
+
+func (o SystemSdwanMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSdwan] {
+	return pulumix.Output[map[string]*SystemSdwan]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemSdwanMapOutput) MapIndex(k pulumi.StringInput) SystemSdwanOutput {

@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerCustomCommand struct {
@@ -109,6 +110,12 @@ func (i *SwitchControllerCustomCommand) ToSwitchControllerCustomCommandOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerCustomCommandOutput)
 }
 
+func (i *SwitchControllerCustomCommand) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerCustomCommand] {
+	return pulumix.Output[*SwitchControllerCustomCommand]{
+		OutputState: i.ToSwitchControllerCustomCommandOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SwitchControllerCustomCommandArrayInput is an input type that accepts SwitchControllerCustomCommandArray and SwitchControllerCustomCommandArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerCustomCommandArrayInput` via:
 //
@@ -132,6 +139,12 @@ func (i SwitchControllerCustomCommandArray) ToSwitchControllerCustomCommandArray
 
 func (i SwitchControllerCustomCommandArray) ToSwitchControllerCustomCommandArrayOutputWithContext(ctx context.Context) SwitchControllerCustomCommandArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerCustomCommandArrayOutput)
+}
+
+func (i SwitchControllerCustomCommandArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerCustomCommand] {
+	return pulumix.Output[[]*SwitchControllerCustomCommand]{
+		OutputState: i.ToSwitchControllerCustomCommandArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SwitchControllerCustomCommandMapInput is an input type that accepts SwitchControllerCustomCommandMap and SwitchControllerCustomCommandMapOutput values.
@@ -159,6 +172,12 @@ func (i SwitchControllerCustomCommandMap) ToSwitchControllerCustomCommandMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerCustomCommandMapOutput)
 }
 
+func (i SwitchControllerCustomCommandMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerCustomCommand] {
+	return pulumix.Output[map[string]*SwitchControllerCustomCommand]{
+		OutputState: i.ToSwitchControllerCustomCommandMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SwitchControllerCustomCommandOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerCustomCommandOutput) ElementType() reflect.Type {
@@ -171,6 +190,12 @@ func (o SwitchControllerCustomCommandOutput) ToSwitchControllerCustomCommandOutp
 
 func (o SwitchControllerCustomCommandOutput) ToSwitchControllerCustomCommandOutputWithContext(ctx context.Context) SwitchControllerCustomCommandOutput {
 	return o
+}
+
+func (o SwitchControllerCustomCommandOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerCustomCommand] {
+	return pulumix.Output[*SwitchControllerCustomCommand]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerCustomCommandOutput) Command() pulumi.StringOutput {
@@ -203,6 +228,12 @@ func (o SwitchControllerCustomCommandArrayOutput) ToSwitchControllerCustomComman
 	return o
 }
 
+func (o SwitchControllerCustomCommandArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerCustomCommand] {
+	return pulumix.Output[[]*SwitchControllerCustomCommand]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SwitchControllerCustomCommandArrayOutput) Index(i pulumi.IntInput) SwitchControllerCustomCommandOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerCustomCommand {
 		return vs[0].([]*SwitchControllerCustomCommand)[vs[1].(int)]
@@ -221,6 +252,12 @@ func (o SwitchControllerCustomCommandMapOutput) ToSwitchControllerCustomCommandM
 
 func (o SwitchControllerCustomCommandMapOutput) ToSwitchControllerCustomCommandMapOutputWithContext(ctx context.Context) SwitchControllerCustomCommandMapOutput {
 	return o
+}
+
+func (o SwitchControllerCustomCommandMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerCustomCommand] {
+	return pulumix.Output[map[string]*SwitchControllerCustomCommand]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerCustomCommandMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerCustomCommandOutput {

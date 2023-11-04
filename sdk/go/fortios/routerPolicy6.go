@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type RouterPolicy6 struct {
@@ -22,6 +23,7 @@ type RouterPolicy6 struct {
 	Dstaddrs               RouterPolicy6DstaddrArrayOutput               `pulumi:"dstaddrs"`
 	DynamicSortSubtable    pulumi.StringPtrOutput                        `pulumi:"dynamicSortSubtable"`
 	EndPort                pulumi.IntOutput                              `pulumi:"endPort"`
+	EndSourcePort          pulumi.IntOutput                              `pulumi:"endSourcePort"`
 	Gateway                pulumi.StringOutput                           `pulumi:"gateway"`
 	GetAllTables           pulumi.StringPtrOutput                        `pulumi:"getAllTables"`
 	InputDevice            pulumi.StringOutput                           `pulumi:"inputDevice"`
@@ -35,6 +37,7 @@ type RouterPolicy6 struct {
 	SrcNegate              pulumi.StringOutput                           `pulumi:"srcNegate"`
 	Srcaddrs               RouterPolicy6SrcaddrArrayOutput               `pulumi:"srcaddrs"`
 	StartPort              pulumi.IntOutput                              `pulumi:"startPort"`
+	StartSourcePort        pulumi.IntOutput                              `pulumi:"startSourcePort"`
 	Status                 pulumi.StringOutput                           `pulumi:"status"`
 	Tos                    pulumi.StringOutput                           `pulumi:"tos"`
 	TosMask                pulumi.StringOutput                           `pulumi:"tosMask"`
@@ -81,6 +84,7 @@ type routerPolicy6State struct {
 	Dstaddrs               []RouterPolicy6Dstaddr               `pulumi:"dstaddrs"`
 	DynamicSortSubtable    *string                              `pulumi:"dynamicSortSubtable"`
 	EndPort                *int                                 `pulumi:"endPort"`
+	EndSourcePort          *int                                 `pulumi:"endSourcePort"`
 	Gateway                *string                              `pulumi:"gateway"`
 	GetAllTables           *string                              `pulumi:"getAllTables"`
 	InputDevice            *string                              `pulumi:"inputDevice"`
@@ -94,6 +98,7 @@ type routerPolicy6State struct {
 	SrcNegate              *string                              `pulumi:"srcNegate"`
 	Srcaddrs               []RouterPolicy6Srcaddr               `pulumi:"srcaddrs"`
 	StartPort              *int                                 `pulumi:"startPort"`
+	StartSourcePort        *int                                 `pulumi:"startSourcePort"`
 	Status                 *string                              `pulumi:"status"`
 	Tos                    *string                              `pulumi:"tos"`
 	TosMask                *string                              `pulumi:"tosMask"`
@@ -108,6 +113,7 @@ type RouterPolicy6State struct {
 	Dstaddrs               RouterPolicy6DstaddrArrayInput
 	DynamicSortSubtable    pulumi.StringPtrInput
 	EndPort                pulumi.IntPtrInput
+	EndSourcePort          pulumi.IntPtrInput
 	Gateway                pulumi.StringPtrInput
 	GetAllTables           pulumi.StringPtrInput
 	InputDevice            pulumi.StringPtrInput
@@ -121,6 +127,7 @@ type RouterPolicy6State struct {
 	SrcNegate              pulumi.StringPtrInput
 	Srcaddrs               RouterPolicy6SrcaddrArrayInput
 	StartPort              pulumi.IntPtrInput
+	StartSourcePort        pulumi.IntPtrInput
 	Status                 pulumi.StringPtrInput
 	Tos                    pulumi.StringPtrInput
 	TosMask                pulumi.StringPtrInput
@@ -139,6 +146,7 @@ type routerPolicy6Args struct {
 	Dstaddrs               []RouterPolicy6Dstaddr               `pulumi:"dstaddrs"`
 	DynamicSortSubtable    *string                              `pulumi:"dynamicSortSubtable"`
 	EndPort                *int                                 `pulumi:"endPort"`
+	EndSourcePort          *int                                 `pulumi:"endSourcePort"`
 	Gateway                *string                              `pulumi:"gateway"`
 	GetAllTables           *string                              `pulumi:"getAllTables"`
 	InputDevice            string                               `pulumi:"inputDevice"`
@@ -152,6 +160,7 @@ type routerPolicy6Args struct {
 	SrcNegate              *string                              `pulumi:"srcNegate"`
 	Srcaddrs               []RouterPolicy6Srcaddr               `pulumi:"srcaddrs"`
 	StartPort              *int                                 `pulumi:"startPort"`
+	StartSourcePort        *int                                 `pulumi:"startSourcePort"`
 	Status                 *string                              `pulumi:"status"`
 	Tos                    *string                              `pulumi:"tos"`
 	TosMask                *string                              `pulumi:"tosMask"`
@@ -167,6 +176,7 @@ type RouterPolicy6Args struct {
 	Dstaddrs               RouterPolicy6DstaddrArrayInput
 	DynamicSortSubtable    pulumi.StringPtrInput
 	EndPort                pulumi.IntPtrInput
+	EndSourcePort          pulumi.IntPtrInput
 	Gateway                pulumi.StringPtrInput
 	GetAllTables           pulumi.StringPtrInput
 	InputDevice            pulumi.StringInput
@@ -180,6 +190,7 @@ type RouterPolicy6Args struct {
 	SrcNegate              pulumi.StringPtrInput
 	Srcaddrs               RouterPolicy6SrcaddrArrayInput
 	StartPort              pulumi.IntPtrInput
+	StartSourcePort        pulumi.IntPtrInput
 	Status                 pulumi.StringPtrInput
 	Tos                    pulumi.StringPtrInput
 	TosMask                pulumi.StringPtrInput
@@ -209,6 +220,12 @@ func (i *RouterPolicy6) ToRouterPolicy6OutputWithContext(ctx context.Context) Ro
 	return pulumi.ToOutputWithContext(ctx, i).(RouterPolicy6Output)
 }
 
+func (i *RouterPolicy6) ToOutput(ctx context.Context) pulumix.Output[*RouterPolicy6] {
+	return pulumix.Output[*RouterPolicy6]{
+		OutputState: i.ToRouterPolicy6OutputWithContext(ctx).OutputState,
+	}
+}
+
 // RouterPolicy6ArrayInput is an input type that accepts RouterPolicy6Array and RouterPolicy6ArrayOutput values.
 // You can construct a concrete instance of `RouterPolicy6ArrayInput` via:
 //
@@ -232,6 +249,12 @@ func (i RouterPolicy6Array) ToRouterPolicy6ArrayOutput() RouterPolicy6ArrayOutpu
 
 func (i RouterPolicy6Array) ToRouterPolicy6ArrayOutputWithContext(ctx context.Context) RouterPolicy6ArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterPolicy6ArrayOutput)
+}
+
+func (i RouterPolicy6Array) ToOutput(ctx context.Context) pulumix.Output[[]*RouterPolicy6] {
+	return pulumix.Output[[]*RouterPolicy6]{
+		OutputState: i.ToRouterPolicy6ArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // RouterPolicy6MapInput is an input type that accepts RouterPolicy6Map and RouterPolicy6MapOutput values.
@@ -259,6 +282,12 @@ func (i RouterPolicy6Map) ToRouterPolicy6MapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(RouterPolicy6MapOutput)
 }
 
+func (i RouterPolicy6Map) ToOutput(ctx context.Context) pulumix.Output[map[string]*RouterPolicy6] {
+	return pulumix.Output[map[string]*RouterPolicy6]{
+		OutputState: i.ToRouterPolicy6MapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RouterPolicy6Output struct{ *pulumi.OutputState }
 
 func (RouterPolicy6Output) ElementType() reflect.Type {
@@ -271,6 +300,12 @@ func (o RouterPolicy6Output) ToRouterPolicy6Output() RouterPolicy6Output {
 
 func (o RouterPolicy6Output) ToRouterPolicy6OutputWithContext(ctx context.Context) RouterPolicy6Output {
 	return o
+}
+
+func (o RouterPolicy6Output) ToOutput(ctx context.Context) pulumix.Output[*RouterPolicy6] {
+	return pulumix.Output[*RouterPolicy6]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RouterPolicy6Output) Action() pulumi.StringOutput {
@@ -299,6 +334,10 @@ func (o RouterPolicy6Output) DynamicSortSubtable() pulumi.StringPtrOutput {
 
 func (o RouterPolicy6Output) EndPort() pulumi.IntOutput {
 	return o.ApplyT(func(v *RouterPolicy6) pulumi.IntOutput { return v.EndPort }).(pulumi.IntOutput)
+}
+
+func (o RouterPolicy6Output) EndSourcePort() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterPolicy6) pulumi.IntOutput { return v.EndSourcePort }).(pulumi.IntOutput)
 }
 
 func (o RouterPolicy6Output) Gateway() pulumi.StringOutput {
@@ -353,6 +392,10 @@ func (o RouterPolicy6Output) StartPort() pulumi.IntOutput {
 	return o.ApplyT(func(v *RouterPolicy6) pulumi.IntOutput { return v.StartPort }).(pulumi.IntOutput)
 }
 
+func (o RouterPolicy6Output) StartSourcePort() pulumi.IntOutput {
+	return o.ApplyT(func(v *RouterPolicy6) pulumi.IntOutput { return v.StartSourcePort }).(pulumi.IntOutput)
+}
+
 func (o RouterPolicy6Output) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *RouterPolicy6) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
@@ -383,6 +426,12 @@ func (o RouterPolicy6ArrayOutput) ToRouterPolicy6ArrayOutputWithContext(ctx cont
 	return o
 }
 
+func (o RouterPolicy6ArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RouterPolicy6] {
+	return pulumix.Output[[]*RouterPolicy6]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o RouterPolicy6ArrayOutput) Index(i pulumi.IntInput) RouterPolicy6Output {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RouterPolicy6 {
 		return vs[0].([]*RouterPolicy6)[vs[1].(int)]
@@ -401,6 +450,12 @@ func (o RouterPolicy6MapOutput) ToRouterPolicy6MapOutput() RouterPolicy6MapOutpu
 
 func (o RouterPolicy6MapOutput) ToRouterPolicy6MapOutputWithContext(ctx context.Context) RouterPolicy6MapOutput {
 	return o
+}
+
+func (o RouterPolicy6MapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RouterPolicy6] {
+	return pulumix.Output[map[string]*RouterPolicy6]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RouterPolicy6MapOutput) MapIndex(k pulumi.StringInput) RouterPolicy6Output {

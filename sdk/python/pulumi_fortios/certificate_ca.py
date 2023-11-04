@@ -18,6 +18,7 @@ class CertificateCaArgs:
                  auto_update_days: Optional[pulumi.Input[int]] = None,
                  auto_update_days_warning: Optional[pulumi.Input[int]] = None,
                  ca_identifier: Optional[pulumi.Input[str]] = None,
+                 est_url: Optional[pulumi.Input[str]] = None,
                  last_updated: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  obsolete: Optional[pulumi.Input[str]] = None,
@@ -38,6 +39,8 @@ class CertificateCaArgs:
             pulumi.set(__self__, "auto_update_days_warning", auto_update_days_warning)
         if ca_identifier is not None:
             pulumi.set(__self__, "ca_identifier", ca_identifier)
+        if est_url is not None:
+            pulumi.set(__self__, "est_url", est_url)
         if last_updated is not None:
             pulumi.set(__self__, "last_updated", last_updated)
         if name is not None:
@@ -94,6 +97,15 @@ class CertificateCaArgs:
     @ca_identifier.setter
     def ca_identifier(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ca_identifier", value)
+
+    @property
+    @pulumi.getter(name="estUrl")
+    def est_url(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "est_url")
+
+    @est_url.setter
+    def est_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "est_url", value)
 
     @property
     @pulumi.getter(name="lastUpdated")
@@ -193,6 +205,7 @@ class _CertificateCaState:
                  auto_update_days_warning: Optional[pulumi.Input[int]] = None,
                  ca: Optional[pulumi.Input[str]] = None,
                  ca_identifier: Optional[pulumi.Input[str]] = None,
+                 est_url: Optional[pulumi.Input[str]] = None,
                  last_updated: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  obsolete: Optional[pulumi.Input[str]] = None,
@@ -214,6 +227,8 @@ class _CertificateCaState:
             pulumi.set(__self__, "ca", ca)
         if ca_identifier is not None:
             pulumi.set(__self__, "ca_identifier", ca_identifier)
+        if est_url is not None:
+            pulumi.set(__self__, "est_url", est_url)
         if last_updated is not None:
             pulumi.set(__self__, "last_updated", last_updated)
         if name is not None:
@@ -270,6 +285,15 @@ class _CertificateCaState:
     @ca_identifier.setter
     def ca_identifier(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ca_identifier", value)
+
+    @property
+    @pulumi.getter(name="estUrl")
+    def est_url(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "est_url")
+
+    @est_url.setter
+    def est_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "est_url", value)
 
     @property
     @pulumi.getter(name="lastUpdated")
@@ -371,6 +395,7 @@ class CertificateCa(pulumi.CustomResource):
                  auto_update_days_warning: Optional[pulumi.Input[int]] = None,
                  ca: Optional[pulumi.Input[str]] = None,
                  ca_identifier: Optional[pulumi.Input[str]] = None,
+                 est_url: Optional[pulumi.Input[str]] = None,
                  last_updated: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  obsolete: Optional[pulumi.Input[str]] = None,
@@ -414,6 +439,7 @@ class CertificateCa(pulumi.CustomResource):
                  auto_update_days_warning: Optional[pulumi.Input[int]] = None,
                  ca: Optional[pulumi.Input[str]] = None,
                  ca_identifier: Optional[pulumi.Input[str]] = None,
+                 est_url: Optional[pulumi.Input[str]] = None,
                  last_updated: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  obsolete: Optional[pulumi.Input[str]] = None,
@@ -439,6 +465,7 @@ class CertificateCa(pulumi.CustomResource):
                 raise TypeError("Missing required property 'ca'")
             __props__.__dict__["ca"] = ca
             __props__.__dict__["ca_identifier"] = ca_identifier
+            __props__.__dict__["est_url"] = est_url
             __props__.__dict__["last_updated"] = last_updated
             __props__.__dict__["name"] = name
             __props__.__dict__["obsolete"] = obsolete
@@ -463,6 +490,7 @@ class CertificateCa(pulumi.CustomResource):
             auto_update_days_warning: Optional[pulumi.Input[int]] = None,
             ca: Optional[pulumi.Input[str]] = None,
             ca_identifier: Optional[pulumi.Input[str]] = None,
+            est_url: Optional[pulumi.Input[str]] = None,
             last_updated: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             obsolete: Optional[pulumi.Input[str]] = None,
@@ -489,6 +517,7 @@ class CertificateCa(pulumi.CustomResource):
         __props__.__dict__["auto_update_days_warning"] = auto_update_days_warning
         __props__.__dict__["ca"] = ca
         __props__.__dict__["ca_identifier"] = ca_identifier
+        __props__.__dict__["est_url"] = est_url
         __props__.__dict__["last_updated"] = last_updated
         __props__.__dict__["name"] = name
         __props__.__dict__["obsolete"] = obsolete
@@ -520,6 +549,11 @@ class CertificateCa(pulumi.CustomResource):
     @pulumi.getter(name="caIdentifier")
     def ca_identifier(self) -> pulumi.Output[str]:
         return pulumi.get(self, "ca_identifier")
+
+    @property
+    @pulumi.getter(name="estUrl")
+    def est_url(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "est_url")
 
     @property
     @pulumi.getter(name="lastUpdated")

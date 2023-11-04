@@ -93,6 +93,7 @@ export class VpnIpsecPhase1 extends pulumi.CustomResource {
     public readonly inboundDscpCopy!: pulumi.Output<string>;
     public readonly includeLocalLan!: pulumi.Output<string>;
     public readonly interface!: pulumi.Output<string>;
+    public readonly internalDomainLists!: pulumi.Output<outputs.VpnIpsecPhase1InternalDomainList[] | undefined>;
     public readonly ipDelayInterval!: pulumi.Output<number>;
     public readonly ipv4DnsServer1!: pulumi.Output<string>;
     public readonly ipv4DnsServer2!: pulumi.Output<string>;
@@ -233,6 +234,7 @@ export class VpnIpsecPhase1 extends pulumi.CustomResource {
             resourceInputs["inboundDscpCopy"] = state ? state.inboundDscpCopy : undefined;
             resourceInputs["includeLocalLan"] = state ? state.includeLocalLan : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["internalDomainLists"] = state ? state.internalDomainLists : undefined;
             resourceInputs["ipDelayInterval"] = state ? state.ipDelayInterval : undefined;
             resourceInputs["ipv4DnsServer1"] = state ? state.ipv4DnsServer1 : undefined;
             resourceInputs["ipv4DnsServer2"] = state ? state.ipv4DnsServer2 : undefined;
@@ -370,6 +372,7 @@ export class VpnIpsecPhase1 extends pulumi.CustomResource {
             resourceInputs["inboundDscpCopy"] = args ? args.inboundDscpCopy : undefined;
             resourceInputs["includeLocalLan"] = args ? args.includeLocalLan : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["internalDomainLists"] = args ? args.internalDomainLists : undefined;
             resourceInputs["ipDelayInterval"] = args ? args.ipDelayInterval : undefined;
             resourceInputs["ipv4DnsServer1"] = args ? args.ipv4DnsServer1 : undefined;
             resourceInputs["ipv4DnsServer2"] = args ? args.ipv4DnsServer2 : undefined;
@@ -508,6 +511,7 @@ export interface VpnIpsecPhase1State {
     inboundDscpCopy?: pulumi.Input<string>;
     includeLocalLan?: pulumi.Input<string>;
     interface?: pulumi.Input<string>;
+    internalDomainLists?: pulumi.Input<pulumi.Input<inputs.VpnIpsecPhase1InternalDomainList>[]>;
     ipDelayInterval?: pulumi.Input<number>;
     ipv4DnsServer1?: pulumi.Input<string>;
     ipv4DnsServer2?: pulumi.Input<string>;
@@ -640,6 +644,7 @@ export interface VpnIpsecPhase1Args {
     inboundDscpCopy?: pulumi.Input<string>;
     includeLocalLan?: pulumi.Input<string>;
     interface: pulumi.Input<string>;
+    internalDomainLists?: pulumi.Input<pulumi.Input<inputs.VpnIpsecPhase1InternalDomainList>[]>;
     ipDelayInterval?: pulumi.Input<number>;
     ipv4DnsServer1?: pulumi.Input<string>;
     ipv4DnsServer2?: pulumi.Input<string>;

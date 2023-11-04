@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemSessionHelper struct {
@@ -117,6 +118,12 @@ func (i *SystemSessionHelper) ToSystemSessionHelperOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSessionHelperOutput)
 }
 
+func (i *SystemSessionHelper) ToOutput(ctx context.Context) pulumix.Output[*SystemSessionHelper] {
+	return pulumix.Output[*SystemSessionHelper]{
+		OutputState: i.ToSystemSessionHelperOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemSessionHelperArrayInput is an input type that accepts SystemSessionHelperArray and SystemSessionHelperArrayOutput values.
 // You can construct a concrete instance of `SystemSessionHelperArrayInput` via:
 //
@@ -140,6 +147,12 @@ func (i SystemSessionHelperArray) ToSystemSessionHelperArrayOutput() SystemSessi
 
 func (i SystemSessionHelperArray) ToSystemSessionHelperArrayOutputWithContext(ctx context.Context) SystemSessionHelperArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSessionHelperArrayOutput)
+}
+
+func (i SystemSessionHelperArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSessionHelper] {
+	return pulumix.Output[[]*SystemSessionHelper]{
+		OutputState: i.ToSystemSessionHelperArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemSessionHelperMapInput is an input type that accepts SystemSessionHelperMap and SystemSessionHelperMapOutput values.
@@ -167,6 +180,12 @@ func (i SystemSessionHelperMap) ToSystemSessionHelperMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSessionHelperMapOutput)
 }
 
+func (i SystemSessionHelperMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSessionHelper] {
+	return pulumix.Output[map[string]*SystemSessionHelper]{
+		OutputState: i.ToSystemSessionHelperMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemSessionHelperOutput struct{ *pulumi.OutputState }
 
 func (SystemSessionHelperOutput) ElementType() reflect.Type {
@@ -179,6 +198,12 @@ func (o SystemSessionHelperOutput) ToSystemSessionHelperOutput() SystemSessionHe
 
 func (o SystemSessionHelperOutput) ToSystemSessionHelperOutputWithContext(ctx context.Context) SystemSessionHelperOutput {
 	return o
+}
+
+func (o SystemSessionHelperOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemSessionHelper] {
+	return pulumix.Output[*SystemSessionHelper]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemSessionHelperOutput) Fosid() pulumi.IntOutput {
@@ -215,6 +240,12 @@ func (o SystemSessionHelperArrayOutput) ToSystemSessionHelperArrayOutputWithCont
 	return o
 }
 
+func (o SystemSessionHelperArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSessionHelper] {
+	return pulumix.Output[[]*SystemSessionHelper]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemSessionHelperArrayOutput) Index(i pulumi.IntInput) SystemSessionHelperOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSessionHelper {
 		return vs[0].([]*SystemSessionHelper)[vs[1].(int)]
@@ -233,6 +264,12 @@ func (o SystemSessionHelperMapOutput) ToSystemSessionHelperMapOutput() SystemSes
 
 func (o SystemSessionHelperMapOutput) ToSystemSessionHelperMapOutputWithContext(ctx context.Context) SystemSessionHelperMapOutput {
 	return o
+}
+
+func (o SystemSessionHelperMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSessionHelper] {
+	return pulumix.Output[map[string]*SystemSessionHelper]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemSessionHelperMapOutput) MapIndex(k pulumi.StringInput) SystemSessionHelperOutput {

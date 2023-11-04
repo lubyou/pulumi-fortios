@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type UserFssoPolling struct {
@@ -182,6 +183,12 @@ func (i *UserFssoPolling) ToUserFssoPollingOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(UserFssoPollingOutput)
 }
 
+func (i *UserFssoPolling) ToOutput(ctx context.Context) pulumix.Output[*UserFssoPolling] {
+	return pulumix.Output[*UserFssoPolling]{
+		OutputState: i.ToUserFssoPollingOutputWithContext(ctx).OutputState,
+	}
+}
+
 // UserFssoPollingArrayInput is an input type that accepts UserFssoPollingArray and UserFssoPollingArrayOutput values.
 // You can construct a concrete instance of `UserFssoPollingArrayInput` via:
 //
@@ -205,6 +212,12 @@ func (i UserFssoPollingArray) ToUserFssoPollingArrayOutput() UserFssoPollingArra
 
 func (i UserFssoPollingArray) ToUserFssoPollingArrayOutputWithContext(ctx context.Context) UserFssoPollingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserFssoPollingArrayOutput)
+}
+
+func (i UserFssoPollingArray) ToOutput(ctx context.Context) pulumix.Output[[]*UserFssoPolling] {
+	return pulumix.Output[[]*UserFssoPolling]{
+		OutputState: i.ToUserFssoPollingArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // UserFssoPollingMapInput is an input type that accepts UserFssoPollingMap and UserFssoPollingMapOutput values.
@@ -232,6 +245,12 @@ func (i UserFssoPollingMap) ToUserFssoPollingMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(UserFssoPollingMapOutput)
 }
 
+func (i UserFssoPollingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserFssoPolling] {
+	return pulumix.Output[map[string]*UserFssoPolling]{
+		OutputState: i.ToUserFssoPollingMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type UserFssoPollingOutput struct{ *pulumi.OutputState }
 
 func (UserFssoPollingOutput) ElementType() reflect.Type {
@@ -244,6 +263,12 @@ func (o UserFssoPollingOutput) ToUserFssoPollingOutput() UserFssoPollingOutput {
 
 func (o UserFssoPollingOutput) ToUserFssoPollingOutputWithContext(ctx context.Context) UserFssoPollingOutput {
 	return o
+}
+
+func (o UserFssoPollingOutput) ToOutput(ctx context.Context) pulumix.Output[*UserFssoPolling] {
+	return pulumix.Output[*UserFssoPolling]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserFssoPollingOutput) Adgrps() UserFssoPollingAdgrpArrayOutput {
@@ -324,6 +349,12 @@ func (o UserFssoPollingArrayOutput) ToUserFssoPollingArrayOutputWithContext(ctx 
 	return o
 }
 
+func (o UserFssoPollingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*UserFssoPolling] {
+	return pulumix.Output[[]*UserFssoPolling]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o UserFssoPollingArrayOutput) Index(i pulumi.IntInput) UserFssoPollingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserFssoPolling {
 		return vs[0].([]*UserFssoPolling)[vs[1].(int)]
@@ -342,6 +373,12 @@ func (o UserFssoPollingMapOutput) ToUserFssoPollingMapOutput() UserFssoPollingMa
 
 func (o UserFssoPollingMapOutput) ToUserFssoPollingMapOutputWithContext(ctx context.Context) UserFssoPollingMapOutput {
 	return o
+}
+
+func (o UserFssoPollingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserFssoPolling] {
+	return pulumix.Output[map[string]*UserFssoPolling]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserFssoPollingMapOutput) MapIndex(k pulumi.StringInput) UserFssoPollingOutput {

@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerManagedSwitch struct {
@@ -52,9 +53,14 @@ type SwitchControllerManagedSwitch struct {
 	PoePreStandardDetection   pulumi.StringOutput                                              `pulumi:"poePreStandardDetection"`
 	Ports                     SwitchControllerManagedSwitchPortArrayOutput                     `pulumi:"ports"`
 	PreProvisioned            pulumi.IntOutput                                                 `pulumi:"preProvisioned"`
+	PtpProfile                pulumi.StringOutput                                              `pulumi:"ptpProfile"`
+	PtpStatus                 pulumi.StringOutput                                              `pulumi:"ptpStatus"`
 	QosDropPolicy             pulumi.StringOutput                                              `pulumi:"qosDropPolicy"`
 	QosRedProbability         pulumi.IntOutput                                                 `pulumi:"qosRedProbability"`
 	RemoteLogs                SwitchControllerManagedSwitchRemoteLogArrayOutput                `pulumi:"remoteLogs"`
+	RouteOffload              pulumi.StringOutput                                              `pulumi:"routeOffload"`
+	RouteOffloadMclag         pulumi.StringOutput                                              `pulumi:"routeOffloadMclag"`
+	RouteOffloadRouters       SwitchControllerManagedSwitchRouteOffloadRouterArrayOutput       `pulumi:"routeOffloadRouters"`
 	Sn                        pulumi.StringOutput                                              `pulumi:"sn"`
 	SnmpCommunities           SwitchControllerManagedSwitchSnmpCommunityArrayOutput            `pulumi:"snmpCommunities"`
 	SnmpSysinfo               SwitchControllerManagedSwitchSnmpSysinfoOutput                   `pulumi:"snmpSysinfo"`
@@ -150,9 +156,14 @@ type switchControllerManagedSwitchState struct {
 	PoePreStandardDetection   *string                                                 `pulumi:"poePreStandardDetection"`
 	Ports                     []SwitchControllerManagedSwitchPort                     `pulumi:"ports"`
 	PreProvisioned            *int                                                    `pulumi:"preProvisioned"`
+	PtpProfile                *string                                                 `pulumi:"ptpProfile"`
+	PtpStatus                 *string                                                 `pulumi:"ptpStatus"`
 	QosDropPolicy             *string                                                 `pulumi:"qosDropPolicy"`
 	QosRedProbability         *int                                                    `pulumi:"qosRedProbability"`
 	RemoteLogs                []SwitchControllerManagedSwitchRemoteLog                `pulumi:"remoteLogs"`
+	RouteOffload              *string                                                 `pulumi:"routeOffload"`
+	RouteOffloadMclag         *string                                                 `pulumi:"routeOffloadMclag"`
+	RouteOffloadRouters       []SwitchControllerManagedSwitchRouteOffloadRouter       `pulumi:"routeOffloadRouters"`
 	Sn                        *string                                                 `pulumi:"sn"`
 	SnmpCommunities           []SwitchControllerManagedSwitchSnmpCommunity            `pulumi:"snmpCommunities"`
 	SnmpSysinfo               *SwitchControllerManagedSwitchSnmpSysinfo               `pulumi:"snmpSysinfo"`
@@ -213,9 +224,14 @@ type SwitchControllerManagedSwitchState struct {
 	PoePreStandardDetection   pulumi.StringPtrInput
 	Ports                     SwitchControllerManagedSwitchPortArrayInput
 	PreProvisioned            pulumi.IntPtrInput
+	PtpProfile                pulumi.StringPtrInput
+	PtpStatus                 pulumi.StringPtrInput
 	QosDropPolicy             pulumi.StringPtrInput
 	QosRedProbability         pulumi.IntPtrInput
 	RemoteLogs                SwitchControllerManagedSwitchRemoteLogArrayInput
+	RouteOffload              pulumi.StringPtrInput
+	RouteOffloadMclag         pulumi.StringPtrInput
+	RouteOffloadRouters       SwitchControllerManagedSwitchRouteOffloadRouterArrayInput
 	Sn                        pulumi.StringPtrInput
 	SnmpCommunities           SwitchControllerManagedSwitchSnmpCommunityArrayInput
 	SnmpSysinfo               SwitchControllerManagedSwitchSnmpSysinfoPtrInput
@@ -280,9 +296,14 @@ type switchControllerManagedSwitchArgs struct {
 	PoePreStandardDetection   *string                                                 `pulumi:"poePreStandardDetection"`
 	Ports                     []SwitchControllerManagedSwitchPort                     `pulumi:"ports"`
 	PreProvisioned            *int                                                    `pulumi:"preProvisioned"`
+	PtpProfile                *string                                                 `pulumi:"ptpProfile"`
+	PtpStatus                 *string                                                 `pulumi:"ptpStatus"`
 	QosDropPolicy             *string                                                 `pulumi:"qosDropPolicy"`
 	QosRedProbability         *int                                                    `pulumi:"qosRedProbability"`
 	RemoteLogs                []SwitchControllerManagedSwitchRemoteLog                `pulumi:"remoteLogs"`
+	RouteOffload              *string                                                 `pulumi:"routeOffload"`
+	RouteOffloadMclag         *string                                                 `pulumi:"routeOffloadMclag"`
+	RouteOffloadRouters       []SwitchControllerManagedSwitchRouteOffloadRouter       `pulumi:"routeOffloadRouters"`
 	Sn                        *string                                                 `pulumi:"sn"`
 	SnmpCommunities           []SwitchControllerManagedSwitchSnmpCommunity            `pulumi:"snmpCommunities"`
 	SnmpSysinfo               *SwitchControllerManagedSwitchSnmpSysinfo               `pulumi:"snmpSysinfo"`
@@ -344,9 +365,14 @@ type SwitchControllerManagedSwitchArgs struct {
 	PoePreStandardDetection   pulumi.StringPtrInput
 	Ports                     SwitchControllerManagedSwitchPortArrayInput
 	PreProvisioned            pulumi.IntPtrInput
+	PtpProfile                pulumi.StringPtrInput
+	PtpStatus                 pulumi.StringPtrInput
 	QosDropPolicy             pulumi.StringPtrInput
 	QosRedProbability         pulumi.IntPtrInput
 	RemoteLogs                SwitchControllerManagedSwitchRemoteLogArrayInput
+	RouteOffload              pulumi.StringPtrInput
+	RouteOffloadMclag         pulumi.StringPtrInput
+	RouteOffloadRouters       SwitchControllerManagedSwitchRouteOffloadRouterArrayInput
 	Sn                        pulumi.StringPtrInput
 	SnmpCommunities           SwitchControllerManagedSwitchSnmpCommunityArrayInput
 	SnmpSysinfo               SwitchControllerManagedSwitchSnmpSysinfoPtrInput
@@ -392,6 +418,12 @@ func (i *SwitchControllerManagedSwitch) ToSwitchControllerManagedSwitchOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerManagedSwitchOutput)
 }
 
+func (i *SwitchControllerManagedSwitch) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerManagedSwitch] {
+	return pulumix.Output[*SwitchControllerManagedSwitch]{
+		OutputState: i.ToSwitchControllerManagedSwitchOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SwitchControllerManagedSwitchArrayInput is an input type that accepts SwitchControllerManagedSwitchArray and SwitchControllerManagedSwitchArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerManagedSwitchArrayInput` via:
 //
@@ -415,6 +447,12 @@ func (i SwitchControllerManagedSwitchArray) ToSwitchControllerManagedSwitchArray
 
 func (i SwitchControllerManagedSwitchArray) ToSwitchControllerManagedSwitchArrayOutputWithContext(ctx context.Context) SwitchControllerManagedSwitchArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerManagedSwitchArrayOutput)
+}
+
+func (i SwitchControllerManagedSwitchArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerManagedSwitch] {
+	return pulumix.Output[[]*SwitchControllerManagedSwitch]{
+		OutputState: i.ToSwitchControllerManagedSwitchArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SwitchControllerManagedSwitchMapInput is an input type that accepts SwitchControllerManagedSwitchMap and SwitchControllerManagedSwitchMapOutput values.
@@ -442,6 +480,12 @@ func (i SwitchControllerManagedSwitchMap) ToSwitchControllerManagedSwitchMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerManagedSwitchMapOutput)
 }
 
+func (i SwitchControllerManagedSwitchMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerManagedSwitch] {
+	return pulumix.Output[map[string]*SwitchControllerManagedSwitch]{
+		OutputState: i.ToSwitchControllerManagedSwitchMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SwitchControllerManagedSwitchOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerManagedSwitchOutput) ElementType() reflect.Type {
@@ -454,6 +498,12 @@ func (o SwitchControllerManagedSwitchOutput) ToSwitchControllerManagedSwitchOutp
 
 func (o SwitchControllerManagedSwitchOutput) ToSwitchControllerManagedSwitchOutputWithContext(ctx context.Context) SwitchControllerManagedSwitchOutput {
 	return o
+}
+
+func (o SwitchControllerManagedSwitchOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerManagedSwitch] {
+	return pulumix.Output[*SwitchControllerManagedSwitch]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerManagedSwitchOutput) AccessProfile() pulumi.StringOutput {
@@ -616,6 +666,14 @@ func (o SwitchControllerManagedSwitchOutput) PreProvisioned() pulumi.IntOutput {
 	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.IntOutput { return v.PreProvisioned }).(pulumi.IntOutput)
 }
 
+func (o SwitchControllerManagedSwitchOutput) PtpProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringOutput { return v.PtpProfile }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) PtpStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringOutput { return v.PtpStatus }).(pulumi.StringOutput)
+}
+
 func (o SwitchControllerManagedSwitchOutput) QosDropPolicy() pulumi.StringOutput {
 	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringOutput { return v.QosDropPolicy }).(pulumi.StringOutput)
 }
@@ -628,6 +686,20 @@ func (o SwitchControllerManagedSwitchOutput) RemoteLogs() SwitchControllerManage
 	return o.ApplyT(func(v *SwitchControllerManagedSwitch) SwitchControllerManagedSwitchRemoteLogArrayOutput {
 		return v.RemoteLogs
 	}).(SwitchControllerManagedSwitchRemoteLogArrayOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) RouteOffload() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringOutput { return v.RouteOffload }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) RouteOffloadMclag() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) pulumi.StringOutput { return v.RouteOffloadMclag }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerManagedSwitchOutput) RouteOffloadRouters() SwitchControllerManagedSwitchRouteOffloadRouterArrayOutput {
+	return o.ApplyT(func(v *SwitchControllerManagedSwitch) SwitchControllerManagedSwitchRouteOffloadRouterArrayOutput {
+		return v.RouteOffloadRouters
+	}).(SwitchControllerManagedSwitchRouteOffloadRouterArrayOutput)
 }
 
 func (o SwitchControllerManagedSwitchOutput) Sn() pulumi.StringOutput {
@@ -744,6 +816,12 @@ func (o SwitchControllerManagedSwitchArrayOutput) ToSwitchControllerManagedSwitc
 	return o
 }
 
+func (o SwitchControllerManagedSwitchArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerManagedSwitch] {
+	return pulumix.Output[[]*SwitchControllerManagedSwitch]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SwitchControllerManagedSwitchArrayOutput) Index(i pulumi.IntInput) SwitchControllerManagedSwitchOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerManagedSwitch {
 		return vs[0].([]*SwitchControllerManagedSwitch)[vs[1].(int)]
@@ -762,6 +840,12 @@ func (o SwitchControllerManagedSwitchMapOutput) ToSwitchControllerManagedSwitchM
 
 func (o SwitchControllerManagedSwitchMapOutput) ToSwitchControllerManagedSwitchMapOutputWithContext(ctx context.Context) SwitchControllerManagedSwitchMapOutput {
 	return o
+}
+
+func (o SwitchControllerManagedSwitchMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerManagedSwitch] {
+	return pulumix.Output[map[string]*SwitchControllerManagedSwitch]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerManagedSwitchMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerManagedSwitchOutput {

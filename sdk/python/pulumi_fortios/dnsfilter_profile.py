@@ -32,6 +32,7 @@ class DnsfilterProfileArgs:
                  safe_search: Optional[pulumi.Input[str]] = None,
                  sdns_domain_log: Optional[pulumi.Input[str]] = None,
                  sdns_ftgd_err_log: Optional[pulumi.Input[str]] = None,
+                 transparent_dns_databases: Optional[pulumi.Input[Sequence[pulumi.Input['DnsfilterProfileTransparentDnsDatabaseArgs']]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  youtube_restrict: Optional[pulumi.Input[str]] = None):
         """
@@ -69,6 +70,8 @@ class DnsfilterProfileArgs:
             pulumi.set(__self__, "sdns_domain_log", sdns_domain_log)
         if sdns_ftgd_err_log is not None:
             pulumi.set(__self__, "sdns_ftgd_err_log", sdns_ftgd_err_log)
+        if transparent_dns_databases is not None:
+            pulumi.set(__self__, "transparent_dns_databases", transparent_dns_databases)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if youtube_restrict is not None:
@@ -217,6 +220,15 @@ class DnsfilterProfileArgs:
     @sdns_ftgd_err_log.setter
     def sdns_ftgd_err_log(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sdns_ftgd_err_log", value)
+
+    @property
+    @pulumi.getter(name="transparentDnsDatabases")
+    def transparent_dns_databases(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DnsfilterProfileTransparentDnsDatabaseArgs']]]]:
+        return pulumi.get(self, "transparent_dns_databases")
+
+    @transparent_dns_databases.setter
+    def transparent_dns_databases(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DnsfilterProfileTransparentDnsDatabaseArgs']]]]):
+        pulumi.set(self, "transparent_dns_databases", value)
 
     @property
     @pulumi.getter
@@ -256,6 +268,7 @@ class _DnsfilterProfileState:
                  safe_search: Optional[pulumi.Input[str]] = None,
                  sdns_domain_log: Optional[pulumi.Input[str]] = None,
                  sdns_ftgd_err_log: Optional[pulumi.Input[str]] = None,
+                 transparent_dns_databases: Optional[pulumi.Input[Sequence[pulumi.Input['DnsfilterProfileTransparentDnsDatabaseArgs']]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  youtube_restrict: Optional[pulumi.Input[str]] = None):
         """
@@ -293,6 +306,8 @@ class _DnsfilterProfileState:
             pulumi.set(__self__, "sdns_domain_log", sdns_domain_log)
         if sdns_ftgd_err_log is not None:
             pulumi.set(__self__, "sdns_ftgd_err_log", sdns_ftgd_err_log)
+        if transparent_dns_databases is not None:
+            pulumi.set(__self__, "transparent_dns_databases", transparent_dns_databases)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if youtube_restrict is not None:
@@ -441,6 +456,15 @@ class _DnsfilterProfileState:
     @sdns_ftgd_err_log.setter
     def sdns_ftgd_err_log(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sdns_ftgd_err_log", value)
+
+    @property
+    @pulumi.getter(name="transparentDnsDatabases")
+    def transparent_dns_databases(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DnsfilterProfileTransparentDnsDatabaseArgs']]]]:
+        return pulumi.get(self, "transparent_dns_databases")
+
+    @transparent_dns_databases.setter
+    def transparent_dns_databases(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DnsfilterProfileTransparentDnsDatabaseArgs']]]]):
+        pulumi.set(self, "transparent_dns_databases", value)
 
     @property
     @pulumi.getter
@@ -482,6 +506,7 @@ class DnsfilterProfile(pulumi.CustomResource):
                  safe_search: Optional[pulumi.Input[str]] = None,
                  sdns_domain_log: Optional[pulumi.Input[str]] = None,
                  sdns_ftgd_err_log: Optional[pulumi.Input[str]] = None,
+                 transparent_dns_databases: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DnsfilterProfileTransparentDnsDatabaseArgs']]]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  youtube_restrict: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -529,6 +554,7 @@ class DnsfilterProfile(pulumi.CustomResource):
                  safe_search: Optional[pulumi.Input[str]] = None,
                  sdns_domain_log: Optional[pulumi.Input[str]] = None,
                  sdns_ftgd_err_log: Optional[pulumi.Input[str]] = None,
+                 transparent_dns_databases: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DnsfilterProfileTransparentDnsDatabaseArgs']]]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  youtube_restrict: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -556,6 +582,7 @@ class DnsfilterProfile(pulumi.CustomResource):
             __props__.__dict__["safe_search"] = safe_search
             __props__.__dict__["sdns_domain_log"] = sdns_domain_log
             __props__.__dict__["sdns_ftgd_err_log"] = sdns_ftgd_err_log
+            __props__.__dict__["transparent_dns_databases"] = transparent_dns_databases
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["youtube_restrict"] = youtube_restrict
         super(DnsfilterProfile, __self__).__init__(
@@ -584,6 +611,7 @@ class DnsfilterProfile(pulumi.CustomResource):
             safe_search: Optional[pulumi.Input[str]] = None,
             sdns_domain_log: Optional[pulumi.Input[str]] = None,
             sdns_ftgd_err_log: Optional[pulumi.Input[str]] = None,
+            transparent_dns_databases: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DnsfilterProfileTransparentDnsDatabaseArgs']]]]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             youtube_restrict: Optional[pulumi.Input[str]] = None) -> 'DnsfilterProfile':
         """
@@ -614,6 +642,7 @@ class DnsfilterProfile(pulumi.CustomResource):
         __props__.__dict__["safe_search"] = safe_search
         __props__.__dict__["sdns_domain_log"] = sdns_domain_log
         __props__.__dict__["sdns_ftgd_err_log"] = sdns_ftgd_err_log
+        __props__.__dict__["transparent_dns_databases"] = transparent_dns_databases
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["youtube_restrict"] = youtube_restrict
         return DnsfilterProfile(resource_name, opts=opts, __props__=__props__)
@@ -697,6 +726,11 @@ class DnsfilterProfile(pulumi.CustomResource):
     @pulumi.getter(name="sdnsFtgdErrLog")
     def sdns_ftgd_err_log(self) -> pulumi.Output[str]:
         return pulumi.get(self, "sdns_ftgd_err_log")
+
+    @property
+    @pulumi.getter(name="transparentDnsDatabases")
+    def transparent_dns_databases(self) -> pulumi.Output[Optional[Sequence['outputs.DnsfilterProfileTransparentDnsDatabase']]]:
+        return pulumi.get(self, "transparent_dns_databases")
 
     @property
     @pulumi.getter

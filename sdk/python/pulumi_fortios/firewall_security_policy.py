@@ -22,6 +22,7 @@ class FirewallSecurityPolicyArgs:
                  application_list: Optional[pulumi.Input[str]] = None,
                  applications: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyApplicationArgs']]]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
                  cifs_profile: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  dlp_profile: Optional[pulumi.Input[str]] = None,
@@ -99,6 +100,7 @@ class FirewallSecurityPolicyArgs:
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  videofilter_profile: Optional[pulumi.Input[str]] = None,
+                 virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  voip_profile: Optional[pulumi.Input[str]] = None,
                  webfilter_profile: Optional[pulumi.Input[str]] = None):
         """
@@ -116,6 +118,8 @@ class FirewallSecurityPolicyArgs:
             pulumi.set(__self__, "applications", applications)
         if av_profile is not None:
             pulumi.set(__self__, "av_profile", av_profile)
+        if casb_profile is not None:
+            pulumi.set(__self__, "casb_profile", casb_profile)
         if cifs_profile is not None:
             pulumi.set(__self__, "cifs_profile", cifs_profile)
         if comments is not None:
@@ -270,6 +274,8 @@ class FirewallSecurityPolicyArgs:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if videofilter_profile is not None:
             pulumi.set(__self__, "videofilter_profile", videofilter_profile)
+        if virtual_patch_profile is not None:
+            pulumi.set(__self__, "virtual_patch_profile", virtual_patch_profile)
         if voip_profile is not None:
             pulumi.set(__self__, "voip_profile", voip_profile)
         if webfilter_profile is not None:
@@ -328,6 +334,15 @@ class FirewallSecurityPolicyArgs:
     @av_profile.setter
     def av_profile(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "av_profile", value)
+
+    @property
+    @pulumi.getter(name="casbProfile")
+    def casb_profile(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "casb_profile")
+
+    @casb_profile.setter
+    def casb_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "casb_profile", value)
 
     @property
     @pulumi.getter(name="cifsProfile")
@@ -1021,6 +1036,15 @@ class FirewallSecurityPolicyArgs:
     @videofilter_profile.setter
     def videofilter_profile(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "videofilter_profile", value)
+
+    @property
+    @pulumi.getter(name="virtualPatchProfile")
+    def virtual_patch_profile(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "virtual_patch_profile")
+
+    @virtual_patch_profile.setter
+    def virtual_patch_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "virtual_patch_profile", value)
 
     @property
     @pulumi.getter(name="voipProfile")
@@ -1050,6 +1074,7 @@ class _FirewallSecurityPolicyState:
                  application_list: Optional[pulumi.Input[str]] = None,
                  applications: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyApplicationArgs']]]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
                  cifs_profile: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  dlp_profile: Optional[pulumi.Input[str]] = None,
@@ -1127,6 +1152,7 @@ class _FirewallSecurityPolicyState:
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  videofilter_profile: Optional[pulumi.Input[str]] = None,
+                 virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  voip_profile: Optional[pulumi.Input[str]] = None,
                  webfilter_profile: Optional[pulumi.Input[str]] = None):
         """
@@ -1144,6 +1170,8 @@ class _FirewallSecurityPolicyState:
             pulumi.set(__self__, "applications", applications)
         if av_profile is not None:
             pulumi.set(__self__, "av_profile", av_profile)
+        if casb_profile is not None:
+            pulumi.set(__self__, "casb_profile", casb_profile)
         if cifs_profile is not None:
             pulumi.set(__self__, "cifs_profile", cifs_profile)
         if comments is not None:
@@ -1298,6 +1326,8 @@ class _FirewallSecurityPolicyState:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if videofilter_profile is not None:
             pulumi.set(__self__, "videofilter_profile", videofilter_profile)
+        if virtual_patch_profile is not None:
+            pulumi.set(__self__, "virtual_patch_profile", virtual_patch_profile)
         if voip_profile is not None:
             pulumi.set(__self__, "voip_profile", voip_profile)
         if webfilter_profile is not None:
@@ -1356,6 +1386,15 @@ class _FirewallSecurityPolicyState:
     @av_profile.setter
     def av_profile(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "av_profile", value)
+
+    @property
+    @pulumi.getter(name="casbProfile")
+    def casb_profile(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "casb_profile")
+
+    @casb_profile.setter
+    def casb_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "casb_profile", value)
 
     @property
     @pulumi.getter(name="cifsProfile")
@@ -2049,6 +2088,15 @@ class _FirewallSecurityPolicyState:
     @videofilter_profile.setter
     def videofilter_profile(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "videofilter_profile", value)
+
+    @property
+    @pulumi.getter(name="virtualPatchProfile")
+    def virtual_patch_profile(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "virtual_patch_profile")
+
+    @virtual_patch_profile.setter
+    def virtual_patch_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "virtual_patch_profile", value)
 
     @property
     @pulumi.getter(name="voipProfile")
@@ -2080,6 +2128,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
                  application_list: Optional[pulumi.Input[str]] = None,
                  applications: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyApplicationArgs']]]]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
                  cifs_profile: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  dlp_profile: Optional[pulumi.Input[str]] = None,
@@ -2157,6 +2206,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  videofilter_profile: Optional[pulumi.Input[str]] = None,
+                 virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  voip_profile: Optional[pulumi.Input[str]] = None,
                  webfilter_profile: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -2194,6 +2244,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
                  application_list: Optional[pulumi.Input[str]] = None,
                  applications: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyApplicationArgs']]]]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
                  cifs_profile: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  dlp_profile: Optional[pulumi.Input[str]] = None,
@@ -2271,6 +2322,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  videofilter_profile: Optional[pulumi.Input[str]] = None,
+                 virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  voip_profile: Optional[pulumi.Input[str]] = None,
                  webfilter_profile: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -2288,6 +2340,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
             __props__.__dict__["application_list"] = application_list
             __props__.__dict__["applications"] = applications
             __props__.__dict__["av_profile"] = av_profile
+            __props__.__dict__["casb_profile"] = casb_profile
             __props__.__dict__["cifs_profile"] = cifs_profile
             __props__.__dict__["comments"] = comments
             __props__.__dict__["dlp_profile"] = dlp_profile
@@ -2365,6 +2418,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
             __props__.__dict__["uuid"] = uuid
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["videofilter_profile"] = videofilter_profile
+            __props__.__dict__["virtual_patch_profile"] = virtual_patch_profile
             __props__.__dict__["voip_profile"] = voip_profile
             __props__.__dict__["webfilter_profile"] = webfilter_profile
         super(FirewallSecurityPolicy, __self__).__init__(
@@ -2383,6 +2437,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
             application_list: Optional[pulumi.Input[str]] = None,
             applications: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyApplicationArgs']]]]] = None,
             av_profile: Optional[pulumi.Input[str]] = None,
+            casb_profile: Optional[pulumi.Input[str]] = None,
             cifs_profile: Optional[pulumi.Input[str]] = None,
             comments: Optional[pulumi.Input[str]] = None,
             dlp_profile: Optional[pulumi.Input[str]] = None,
@@ -2460,6 +2515,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
             uuid: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             videofilter_profile: Optional[pulumi.Input[str]] = None,
+            virtual_patch_profile: Optional[pulumi.Input[str]] = None,
             voip_profile: Optional[pulumi.Input[str]] = None,
             webfilter_profile: Optional[pulumi.Input[str]] = None) -> 'FirewallSecurityPolicy':
         """
@@ -2480,6 +2536,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
         __props__.__dict__["application_list"] = application_list
         __props__.__dict__["applications"] = applications
         __props__.__dict__["av_profile"] = av_profile
+        __props__.__dict__["casb_profile"] = casb_profile
         __props__.__dict__["cifs_profile"] = cifs_profile
         __props__.__dict__["comments"] = comments
         __props__.__dict__["dlp_profile"] = dlp_profile
@@ -2557,6 +2614,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
         __props__.__dict__["uuid"] = uuid
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["videofilter_profile"] = videofilter_profile
+        __props__.__dict__["virtual_patch_profile"] = virtual_patch_profile
         __props__.__dict__["voip_profile"] = voip_profile
         __props__.__dict__["webfilter_profile"] = webfilter_profile
         return FirewallSecurityPolicy(resource_name, opts=opts, __props__=__props__)
@@ -2590,6 +2648,11 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
     @pulumi.getter(name="avProfile")
     def av_profile(self) -> pulumi.Output[str]:
         return pulumi.get(self, "av_profile")
+
+    @property
+    @pulumi.getter(name="casbProfile")
+    def casb_profile(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "casb_profile")
 
     @property
     @pulumi.getter(name="cifsProfile")
@@ -2975,6 +3038,11 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
     @pulumi.getter(name="videofilterProfile")
     def videofilter_profile(self) -> pulumi.Output[str]:
         return pulumi.get(self, "videofilter_profile")
+
+    @property
+    @pulumi.getter(name="virtualPatchProfile")
+    def virtual_patch_profile(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "virtual_patch_profile")
 
     @property
     @pulumi.getter(name="voipProfile")

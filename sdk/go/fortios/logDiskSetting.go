@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type LogDiskSetting struct {
@@ -251,6 +252,12 @@ func (i *LogDiskSetting) ToLogDiskSettingOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(LogDiskSettingOutput)
 }
 
+func (i *LogDiskSetting) ToOutput(ctx context.Context) pulumix.Output[*LogDiskSetting] {
+	return pulumix.Output[*LogDiskSetting]{
+		OutputState: i.ToLogDiskSettingOutputWithContext(ctx).OutputState,
+	}
+}
+
 // LogDiskSettingArrayInput is an input type that accepts LogDiskSettingArray and LogDiskSettingArrayOutput values.
 // You can construct a concrete instance of `LogDiskSettingArrayInput` via:
 //
@@ -274,6 +281,12 @@ func (i LogDiskSettingArray) ToLogDiskSettingArrayOutput() LogDiskSettingArrayOu
 
 func (i LogDiskSettingArray) ToLogDiskSettingArrayOutputWithContext(ctx context.Context) LogDiskSettingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogDiskSettingArrayOutput)
+}
+
+func (i LogDiskSettingArray) ToOutput(ctx context.Context) pulumix.Output[[]*LogDiskSetting] {
+	return pulumix.Output[[]*LogDiskSetting]{
+		OutputState: i.ToLogDiskSettingArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // LogDiskSettingMapInput is an input type that accepts LogDiskSettingMap and LogDiskSettingMapOutput values.
@@ -301,6 +314,12 @@ func (i LogDiskSettingMap) ToLogDiskSettingMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(LogDiskSettingMapOutput)
 }
 
+func (i LogDiskSettingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogDiskSetting] {
+	return pulumix.Output[map[string]*LogDiskSetting]{
+		OutputState: i.ToLogDiskSettingMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type LogDiskSettingOutput struct{ *pulumi.OutputState }
 
 func (LogDiskSettingOutput) ElementType() reflect.Type {
@@ -313,6 +332,12 @@ func (o LogDiskSettingOutput) ToLogDiskSettingOutput() LogDiskSettingOutput {
 
 func (o LogDiskSettingOutput) ToLogDiskSettingOutputWithContext(ctx context.Context) LogDiskSettingOutput {
 	return o
+}
+
+func (o LogDiskSettingOutput) ToOutput(ctx context.Context) pulumix.Output[*LogDiskSetting] {
+	return pulumix.Output[*LogDiskSetting]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LogDiskSettingOutput) Diskfull() pulumi.StringOutput {
@@ -453,6 +478,12 @@ func (o LogDiskSettingArrayOutput) ToLogDiskSettingArrayOutputWithContext(ctx co
 	return o
 }
 
+func (o LogDiskSettingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LogDiskSetting] {
+	return pulumix.Output[[]*LogDiskSetting]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LogDiskSettingArrayOutput) Index(i pulumi.IntInput) LogDiskSettingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogDiskSetting {
 		return vs[0].([]*LogDiskSetting)[vs[1].(int)]
@@ -471,6 +502,12 @@ func (o LogDiskSettingMapOutput) ToLogDiskSettingMapOutput() LogDiskSettingMapOu
 
 func (o LogDiskSettingMapOutput) ToLogDiskSettingMapOutputWithContext(ctx context.Context) LogDiskSettingMapOutput {
 	return o
+}
+
+func (o LogDiskSettingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogDiskSetting] {
+	return pulumix.Output[map[string]*LogDiskSetting]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LogDiskSettingMapOutput) MapIndex(k pulumi.StringInput) LogDiskSettingOutput {

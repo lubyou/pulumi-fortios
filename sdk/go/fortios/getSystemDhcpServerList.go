@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetSystemDhcpServerList(ctx *pulumi.Context, args *GetSystemDhcpServerListArgs, opts ...pulumi.InvokeOption) (*GetSystemDhcpServerListResult, error) {
@@ -72,6 +73,12 @@ func (o GetSystemDhcpServerListResultOutput) ToGetSystemDhcpServerListResultOutp
 
 func (o GetSystemDhcpServerListResultOutput) ToGetSystemDhcpServerListResultOutputWithContext(ctx context.Context) GetSystemDhcpServerListResultOutput {
 	return o
+}
+
+func (o GetSystemDhcpServerListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSystemDhcpServerListResult] {
+	return pulumix.Output[GetSystemDhcpServerListResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetSystemDhcpServerListResultOutput) Filter() pulumi.StringPtrOutput {

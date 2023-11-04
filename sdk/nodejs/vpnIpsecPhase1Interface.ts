@@ -80,6 +80,7 @@ export class VpnIpsecPhase1Interface extends pulumi.CustomResource {
     public readonly eap!: pulumi.Output<string>;
     public readonly eapExcludePeergrp!: pulumi.Output<string>;
     public readonly eapIdentity!: pulumi.Output<string>;
+    public readonly emsSnCheck!: pulumi.Output<string>;
     public readonly encapLocalGw4!: pulumi.Output<string>;
     public readonly encapLocalGw6!: pulumi.Output<string>;
     public readonly encapRemoteGw4!: pulumi.Output<string>;
@@ -116,6 +117,7 @@ export class VpnIpsecPhase1Interface extends pulumi.CustomResource {
     public readonly inboundDscpCopy!: pulumi.Output<string>;
     public readonly includeLocalLan!: pulumi.Output<string>;
     public readonly interface!: pulumi.Output<string>;
+    public readonly internalDomainLists!: pulumi.Output<outputs.VpnIpsecPhase1InterfaceInternalDomainList[] | undefined>;
     public readonly ipDelayInterval!: pulumi.Output<number>;
     public readonly ipFragmentation!: pulumi.Output<string>;
     public readonly ipVersion!: pulumi.Output<string>;
@@ -159,6 +161,7 @@ export class VpnIpsecPhase1Interface extends pulumi.CustomResource {
     public readonly monitorHoldDownTime!: pulumi.Output<string>;
     public readonly monitorHoldDownType!: pulumi.Output<string>;
     public readonly monitorHoldDownWeekday!: pulumi.Output<string>;
+    public readonly monitorMin!: pulumi.Output<number>;
     public readonly name!: pulumi.Output<string>;
     public readonly nattraversal!: pulumi.Output<string>;
     public readonly negotiateTimeout!: pulumi.Output<number>;
@@ -259,6 +262,7 @@ export class VpnIpsecPhase1Interface extends pulumi.CustomResource {
             resourceInputs["eap"] = state ? state.eap : undefined;
             resourceInputs["eapExcludePeergrp"] = state ? state.eapExcludePeergrp : undefined;
             resourceInputs["eapIdentity"] = state ? state.eapIdentity : undefined;
+            resourceInputs["emsSnCheck"] = state ? state.emsSnCheck : undefined;
             resourceInputs["encapLocalGw4"] = state ? state.encapLocalGw4 : undefined;
             resourceInputs["encapLocalGw6"] = state ? state.encapLocalGw6 : undefined;
             resourceInputs["encapRemoteGw4"] = state ? state.encapRemoteGw4 : undefined;
@@ -295,6 +299,7 @@ export class VpnIpsecPhase1Interface extends pulumi.CustomResource {
             resourceInputs["inboundDscpCopy"] = state ? state.inboundDscpCopy : undefined;
             resourceInputs["includeLocalLan"] = state ? state.includeLocalLan : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["internalDomainLists"] = state ? state.internalDomainLists : undefined;
             resourceInputs["ipDelayInterval"] = state ? state.ipDelayInterval : undefined;
             resourceInputs["ipFragmentation"] = state ? state.ipFragmentation : undefined;
             resourceInputs["ipVersion"] = state ? state.ipVersion : undefined;
@@ -338,6 +343,7 @@ export class VpnIpsecPhase1Interface extends pulumi.CustomResource {
             resourceInputs["monitorHoldDownTime"] = state ? state.monitorHoldDownTime : undefined;
             resourceInputs["monitorHoldDownType"] = state ? state.monitorHoldDownType : undefined;
             resourceInputs["monitorHoldDownWeekday"] = state ? state.monitorHoldDownWeekday : undefined;
+            resourceInputs["monitorMin"] = state ? state.monitorMin : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["nattraversal"] = state ? state.nattraversal : undefined;
             resourceInputs["negotiateTimeout"] = state ? state.negotiateTimeout : undefined;
@@ -432,6 +438,7 @@ export class VpnIpsecPhase1Interface extends pulumi.CustomResource {
             resourceInputs["eap"] = args ? args.eap : undefined;
             resourceInputs["eapExcludePeergrp"] = args ? args.eapExcludePeergrp : undefined;
             resourceInputs["eapIdentity"] = args ? args.eapIdentity : undefined;
+            resourceInputs["emsSnCheck"] = args ? args.emsSnCheck : undefined;
             resourceInputs["encapLocalGw4"] = args ? args.encapLocalGw4 : undefined;
             resourceInputs["encapLocalGw6"] = args ? args.encapLocalGw6 : undefined;
             resourceInputs["encapRemoteGw4"] = args ? args.encapRemoteGw4 : undefined;
@@ -468,6 +475,7 @@ export class VpnIpsecPhase1Interface extends pulumi.CustomResource {
             resourceInputs["inboundDscpCopy"] = args ? args.inboundDscpCopy : undefined;
             resourceInputs["includeLocalLan"] = args ? args.includeLocalLan : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["internalDomainLists"] = args ? args.internalDomainLists : undefined;
             resourceInputs["ipDelayInterval"] = args ? args.ipDelayInterval : undefined;
             resourceInputs["ipFragmentation"] = args ? args.ipFragmentation : undefined;
             resourceInputs["ipVersion"] = args ? args.ipVersion : undefined;
@@ -511,6 +519,7 @@ export class VpnIpsecPhase1Interface extends pulumi.CustomResource {
             resourceInputs["monitorHoldDownTime"] = args ? args.monitorHoldDownTime : undefined;
             resourceInputs["monitorHoldDownType"] = args ? args.monitorHoldDownType : undefined;
             resourceInputs["monitorHoldDownWeekday"] = args ? args.monitorHoldDownWeekday : undefined;
+            resourceInputs["monitorMin"] = args ? args.monitorMin : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["nattraversal"] = args ? args.nattraversal : undefined;
             resourceInputs["negotiateTimeout"] = args ? args.negotiateTimeout : undefined;
@@ -609,6 +618,7 @@ export interface VpnIpsecPhase1InterfaceState {
     eap?: pulumi.Input<string>;
     eapExcludePeergrp?: pulumi.Input<string>;
     eapIdentity?: pulumi.Input<string>;
+    emsSnCheck?: pulumi.Input<string>;
     encapLocalGw4?: pulumi.Input<string>;
     encapLocalGw6?: pulumi.Input<string>;
     encapRemoteGw4?: pulumi.Input<string>;
@@ -645,6 +655,7 @@ export interface VpnIpsecPhase1InterfaceState {
     inboundDscpCopy?: pulumi.Input<string>;
     includeLocalLan?: pulumi.Input<string>;
     interface?: pulumi.Input<string>;
+    internalDomainLists?: pulumi.Input<pulumi.Input<inputs.VpnIpsecPhase1InterfaceInternalDomainList>[]>;
     ipDelayInterval?: pulumi.Input<number>;
     ipFragmentation?: pulumi.Input<string>;
     ipVersion?: pulumi.Input<string>;
@@ -688,6 +699,7 @@ export interface VpnIpsecPhase1InterfaceState {
     monitorHoldDownTime?: pulumi.Input<string>;
     monitorHoldDownType?: pulumi.Input<string>;
     monitorHoldDownWeekday?: pulumi.Input<string>;
+    monitorMin?: pulumi.Input<number>;
     name?: pulumi.Input<string>;
     nattraversal?: pulumi.Input<string>;
     negotiateTimeout?: pulumi.Input<number>;
@@ -780,6 +792,7 @@ export interface VpnIpsecPhase1InterfaceArgs {
     eap?: pulumi.Input<string>;
     eapExcludePeergrp?: pulumi.Input<string>;
     eapIdentity?: pulumi.Input<string>;
+    emsSnCheck?: pulumi.Input<string>;
     encapLocalGw4?: pulumi.Input<string>;
     encapLocalGw6?: pulumi.Input<string>;
     encapRemoteGw4?: pulumi.Input<string>;
@@ -816,6 +829,7 @@ export interface VpnIpsecPhase1InterfaceArgs {
     inboundDscpCopy?: pulumi.Input<string>;
     includeLocalLan?: pulumi.Input<string>;
     interface: pulumi.Input<string>;
+    internalDomainLists?: pulumi.Input<pulumi.Input<inputs.VpnIpsecPhase1InterfaceInternalDomainList>[]>;
     ipDelayInterval?: pulumi.Input<number>;
     ipFragmentation?: pulumi.Input<string>;
     ipVersion?: pulumi.Input<string>;
@@ -859,6 +873,7 @@ export interface VpnIpsecPhase1InterfaceArgs {
     monitorHoldDownTime?: pulumi.Input<string>;
     monitorHoldDownType?: pulumi.Input<string>;
     monitorHoldDownWeekday?: pulumi.Input<string>;
+    monitorMin?: pulumi.Input<number>;
     name?: pulumi.Input<string>;
     nattraversal?: pulumi.Input<string>;
     negotiateTimeout?: pulumi.Input<number>;

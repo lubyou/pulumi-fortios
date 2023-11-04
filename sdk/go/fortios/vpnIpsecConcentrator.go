@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type VpnIpsecConcentrator struct {
@@ -120,6 +121,12 @@ func (i *VpnIpsecConcentrator) ToVpnIpsecConcentratorOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecConcentratorOutput)
 }
 
+func (i *VpnIpsecConcentrator) ToOutput(ctx context.Context) pulumix.Output[*VpnIpsecConcentrator] {
+	return pulumix.Output[*VpnIpsecConcentrator]{
+		OutputState: i.ToVpnIpsecConcentratorOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnIpsecConcentratorArrayInput is an input type that accepts VpnIpsecConcentratorArray and VpnIpsecConcentratorArrayOutput values.
 // You can construct a concrete instance of `VpnIpsecConcentratorArrayInput` via:
 //
@@ -143,6 +150,12 @@ func (i VpnIpsecConcentratorArray) ToVpnIpsecConcentratorArrayOutput() VpnIpsecC
 
 func (i VpnIpsecConcentratorArray) ToVpnIpsecConcentratorArrayOutputWithContext(ctx context.Context) VpnIpsecConcentratorArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecConcentratorArrayOutput)
+}
+
+func (i VpnIpsecConcentratorArray) ToOutput(ctx context.Context) pulumix.Output[[]*VpnIpsecConcentrator] {
+	return pulumix.Output[[]*VpnIpsecConcentrator]{
+		OutputState: i.ToVpnIpsecConcentratorArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // VpnIpsecConcentratorMapInput is an input type that accepts VpnIpsecConcentratorMap and VpnIpsecConcentratorMapOutput values.
@@ -170,6 +183,12 @@ func (i VpnIpsecConcentratorMap) ToVpnIpsecConcentratorMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecConcentratorMapOutput)
 }
 
+func (i VpnIpsecConcentratorMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnIpsecConcentrator] {
+	return pulumix.Output[map[string]*VpnIpsecConcentrator]{
+		OutputState: i.ToVpnIpsecConcentratorMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnIpsecConcentratorOutput struct{ *pulumi.OutputState }
 
 func (VpnIpsecConcentratorOutput) ElementType() reflect.Type {
@@ -182,6 +201,12 @@ func (o VpnIpsecConcentratorOutput) ToVpnIpsecConcentratorOutput() VpnIpsecConce
 
 func (o VpnIpsecConcentratorOutput) ToVpnIpsecConcentratorOutputWithContext(ctx context.Context) VpnIpsecConcentratorOutput {
 	return o
+}
+
+func (o VpnIpsecConcentratorOutput) ToOutput(ctx context.Context) pulumix.Output[*VpnIpsecConcentrator] {
+	return pulumix.Output[*VpnIpsecConcentrator]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnIpsecConcentratorOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -226,6 +251,12 @@ func (o VpnIpsecConcentratorArrayOutput) ToVpnIpsecConcentratorArrayOutputWithCo
 	return o
 }
 
+func (o VpnIpsecConcentratorArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VpnIpsecConcentrator] {
+	return pulumix.Output[[]*VpnIpsecConcentrator]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o VpnIpsecConcentratorArrayOutput) Index(i pulumi.IntInput) VpnIpsecConcentratorOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnIpsecConcentrator {
 		return vs[0].([]*VpnIpsecConcentrator)[vs[1].(int)]
@@ -244,6 +275,12 @@ func (o VpnIpsecConcentratorMapOutput) ToVpnIpsecConcentratorMapOutput() VpnIpse
 
 func (o VpnIpsecConcentratorMapOutput) ToVpnIpsecConcentratorMapOutputWithContext(ctx context.Context) VpnIpsecConcentratorMapOutput {
 	return o
+}
+
+func (o VpnIpsecConcentratorMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnIpsecConcentrator] {
+	return pulumix.Output[map[string]*VpnIpsecConcentrator]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnIpsecConcentratorMapOutput) MapIndex(k pulumi.StringInput) VpnIpsecConcentratorOutput {

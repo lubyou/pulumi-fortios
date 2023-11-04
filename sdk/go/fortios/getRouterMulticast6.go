@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupRouterMulticast6(ctx *pulumi.Context, args *LookupRouterMulticast6Args, opts ...pulumi.InvokeOption) (*LookupRouterMulticast6Result, error) {
@@ -72,6 +73,12 @@ func (o LookupRouterMulticast6ResultOutput) ToLookupRouterMulticast6ResultOutput
 
 func (o LookupRouterMulticast6ResultOutput) ToLookupRouterMulticast6ResultOutputWithContext(ctx context.Context) LookupRouterMulticast6ResultOutput {
 	return o
+}
+
+func (o LookupRouterMulticast6ResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupRouterMulticast6Result] {
+	return pulumix.Output[LookupRouterMulticast6Result]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.

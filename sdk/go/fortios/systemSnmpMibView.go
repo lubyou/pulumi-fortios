@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemSnmpMibView struct {
@@ -105,6 +106,12 @@ func (i *SystemSnmpMibView) ToSystemSnmpMibViewOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSnmpMibViewOutput)
 }
 
+func (i *SystemSnmpMibView) ToOutput(ctx context.Context) pulumix.Output[*SystemSnmpMibView] {
+	return pulumix.Output[*SystemSnmpMibView]{
+		OutputState: i.ToSystemSnmpMibViewOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemSnmpMibViewArrayInput is an input type that accepts SystemSnmpMibViewArray and SystemSnmpMibViewArrayOutput values.
 // You can construct a concrete instance of `SystemSnmpMibViewArrayInput` via:
 //
@@ -128,6 +135,12 @@ func (i SystemSnmpMibViewArray) ToSystemSnmpMibViewArrayOutput() SystemSnmpMibVi
 
 func (i SystemSnmpMibViewArray) ToSystemSnmpMibViewArrayOutputWithContext(ctx context.Context) SystemSnmpMibViewArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSnmpMibViewArrayOutput)
+}
+
+func (i SystemSnmpMibViewArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSnmpMibView] {
+	return pulumix.Output[[]*SystemSnmpMibView]{
+		OutputState: i.ToSystemSnmpMibViewArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemSnmpMibViewMapInput is an input type that accepts SystemSnmpMibViewMap and SystemSnmpMibViewMapOutput values.
@@ -155,6 +168,12 @@ func (i SystemSnmpMibViewMap) ToSystemSnmpMibViewMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSnmpMibViewMapOutput)
 }
 
+func (i SystemSnmpMibViewMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSnmpMibView] {
+	return pulumix.Output[map[string]*SystemSnmpMibView]{
+		OutputState: i.ToSystemSnmpMibViewMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemSnmpMibViewOutput struct{ *pulumi.OutputState }
 
 func (SystemSnmpMibViewOutput) ElementType() reflect.Type {
@@ -167,6 +186,12 @@ func (o SystemSnmpMibViewOutput) ToSystemSnmpMibViewOutput() SystemSnmpMibViewOu
 
 func (o SystemSnmpMibViewOutput) ToSystemSnmpMibViewOutputWithContext(ctx context.Context) SystemSnmpMibViewOutput {
 	return o
+}
+
+func (o SystemSnmpMibViewOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemSnmpMibView] {
+	return pulumix.Output[*SystemSnmpMibView]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemSnmpMibViewOutput) Exclude() pulumi.StringOutput {
@@ -199,6 +224,12 @@ func (o SystemSnmpMibViewArrayOutput) ToSystemSnmpMibViewArrayOutputWithContext(
 	return o
 }
 
+func (o SystemSnmpMibViewArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSnmpMibView] {
+	return pulumix.Output[[]*SystemSnmpMibView]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemSnmpMibViewArrayOutput) Index(i pulumi.IntInput) SystemSnmpMibViewOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSnmpMibView {
 		return vs[0].([]*SystemSnmpMibView)[vs[1].(int)]
@@ -217,6 +248,12 @@ func (o SystemSnmpMibViewMapOutput) ToSystemSnmpMibViewMapOutput() SystemSnmpMib
 
 func (o SystemSnmpMibViewMapOutput) ToSystemSnmpMibViewMapOutputWithContext(ctx context.Context) SystemSnmpMibViewMapOutput {
 	return o
+}
+
+func (o SystemSnmpMibViewMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSnmpMibView] {
+	return pulumix.Output[map[string]*SystemSnmpMibView]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemSnmpMibViewMapOutput) MapIndex(k pulumi.StringInput) SystemSnmpMibViewOutput {

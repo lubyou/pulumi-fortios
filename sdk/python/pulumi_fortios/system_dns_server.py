@@ -16,6 +16,8 @@ class SystemDnsServerArgs:
     def __init__(__self__, *,
                  dnsfilter_profile: Optional[pulumi.Input[str]] = None,
                  doh: Optional[pulumi.Input[str]] = None,
+                 doh3: Optional[pulumi.Input[str]] = None,
+                 doq: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -26,6 +28,10 @@ class SystemDnsServerArgs:
             pulumi.set(__self__, "dnsfilter_profile", dnsfilter_profile)
         if doh is not None:
             pulumi.set(__self__, "doh", doh)
+        if doh3 is not None:
+            pulumi.set(__self__, "doh3", doh3)
+        if doq is not None:
+            pulumi.set(__self__, "doq", doq)
         if mode is not None:
             pulumi.set(__self__, "mode", mode)
         if name is not None:
@@ -50,6 +56,24 @@ class SystemDnsServerArgs:
     @doh.setter
     def doh(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "doh", value)
+
+    @property
+    @pulumi.getter
+    def doh3(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "doh3")
+
+    @doh3.setter
+    def doh3(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "doh3", value)
+
+    @property
+    @pulumi.getter
+    def doq(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "doq")
+
+    @doq.setter
+    def doq(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "doq", value)
 
     @property
     @pulumi.getter
@@ -84,6 +108,8 @@ class _SystemDnsServerState:
     def __init__(__self__, *,
                  dnsfilter_profile: Optional[pulumi.Input[str]] = None,
                  doh: Optional[pulumi.Input[str]] = None,
+                 doh3: Optional[pulumi.Input[str]] = None,
+                 doq: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -94,6 +120,10 @@ class _SystemDnsServerState:
             pulumi.set(__self__, "dnsfilter_profile", dnsfilter_profile)
         if doh is not None:
             pulumi.set(__self__, "doh", doh)
+        if doh3 is not None:
+            pulumi.set(__self__, "doh3", doh3)
+        if doq is not None:
+            pulumi.set(__self__, "doq", doq)
         if mode is not None:
             pulumi.set(__self__, "mode", mode)
         if name is not None:
@@ -118,6 +148,24 @@ class _SystemDnsServerState:
     @doh.setter
     def doh(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "doh", value)
+
+    @property
+    @pulumi.getter
+    def doh3(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "doh3")
+
+    @doh3.setter
+    def doh3(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "doh3", value)
+
+    @property
+    @pulumi.getter
+    def doq(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "doq")
+
+    @doq.setter
+    def doq(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "doq", value)
 
     @property
     @pulumi.getter
@@ -154,6 +202,8 @@ class SystemDnsServer(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dnsfilter_profile: Optional[pulumi.Input[str]] = None,
                  doh: Optional[pulumi.Input[str]] = None,
+                 doh3: Optional[pulumi.Input[str]] = None,
+                 doq: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -188,6 +238,8 @@ class SystemDnsServer(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dnsfilter_profile: Optional[pulumi.Input[str]] = None,
                  doh: Optional[pulumi.Input[str]] = None,
+                 doh3: Optional[pulumi.Input[str]] = None,
+                 doq: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -202,6 +254,8 @@ class SystemDnsServer(pulumi.CustomResource):
 
             __props__.__dict__["dnsfilter_profile"] = dnsfilter_profile
             __props__.__dict__["doh"] = doh
+            __props__.__dict__["doh3"] = doh3
+            __props__.__dict__["doq"] = doq
             __props__.__dict__["mode"] = mode
             __props__.__dict__["name"] = name
             __props__.__dict__["vdomparam"] = vdomparam
@@ -217,6 +271,8 @@ class SystemDnsServer(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             dnsfilter_profile: Optional[pulumi.Input[str]] = None,
             doh: Optional[pulumi.Input[str]] = None,
+            doh3: Optional[pulumi.Input[str]] = None,
+            doq: Optional[pulumi.Input[str]] = None,
             mode: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'SystemDnsServer':
@@ -234,6 +290,8 @@ class SystemDnsServer(pulumi.CustomResource):
 
         __props__.__dict__["dnsfilter_profile"] = dnsfilter_profile
         __props__.__dict__["doh"] = doh
+        __props__.__dict__["doh3"] = doh3
+        __props__.__dict__["doq"] = doq
         __props__.__dict__["mode"] = mode
         __props__.__dict__["name"] = name
         __props__.__dict__["vdomparam"] = vdomparam
@@ -248,6 +306,16 @@ class SystemDnsServer(pulumi.CustomResource):
     @pulumi.getter
     def doh(self) -> pulumi.Output[str]:
         return pulumi.get(self, "doh")
+
+    @property
+    @pulumi.getter
+    def doh3(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "doh3")
+
+    @property
+    @pulumi.getter
+    def doq(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "doq")
 
     @property
     @pulumi.getter

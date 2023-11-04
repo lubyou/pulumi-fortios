@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type EndpointControlFctems struct {
@@ -237,6 +238,12 @@ func (i *EndpointControlFctems) ToEndpointControlFctemsOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlFctemsOutput)
 }
 
+func (i *EndpointControlFctems) ToOutput(ctx context.Context) pulumix.Output[*EndpointControlFctems] {
+	return pulumix.Output[*EndpointControlFctems]{
+		OutputState: i.ToEndpointControlFctemsOutputWithContext(ctx).OutputState,
+	}
+}
+
 // EndpointControlFctemsArrayInput is an input type that accepts EndpointControlFctemsArray and EndpointControlFctemsArrayOutput values.
 // You can construct a concrete instance of `EndpointControlFctemsArrayInput` via:
 //
@@ -260,6 +267,12 @@ func (i EndpointControlFctemsArray) ToEndpointControlFctemsArrayOutput() Endpoin
 
 func (i EndpointControlFctemsArray) ToEndpointControlFctemsArrayOutputWithContext(ctx context.Context) EndpointControlFctemsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlFctemsArrayOutput)
+}
+
+func (i EndpointControlFctemsArray) ToOutput(ctx context.Context) pulumix.Output[[]*EndpointControlFctems] {
+	return pulumix.Output[[]*EndpointControlFctems]{
+		OutputState: i.ToEndpointControlFctemsArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // EndpointControlFctemsMapInput is an input type that accepts EndpointControlFctemsMap and EndpointControlFctemsMapOutput values.
@@ -287,6 +300,12 @@ func (i EndpointControlFctemsMap) ToEndpointControlFctemsMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlFctemsMapOutput)
 }
 
+func (i EndpointControlFctemsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*EndpointControlFctems] {
+	return pulumix.Output[map[string]*EndpointControlFctems]{
+		OutputState: i.ToEndpointControlFctemsMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type EndpointControlFctemsOutput struct{ *pulumi.OutputState }
 
 func (EndpointControlFctemsOutput) ElementType() reflect.Type {
@@ -299,6 +318,12 @@ func (o EndpointControlFctemsOutput) ToEndpointControlFctemsOutput() EndpointCon
 
 func (o EndpointControlFctemsOutput) ToEndpointControlFctemsOutputWithContext(ctx context.Context) EndpointControlFctemsOutput {
 	return o
+}
+
+func (o EndpointControlFctemsOutput) ToOutput(ctx context.Context) pulumix.Output[*EndpointControlFctems] {
+	return pulumix.Output[*EndpointControlFctems]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o EndpointControlFctemsOutput) AdminPassword() pulumi.StringPtrOutput {
@@ -431,6 +456,12 @@ func (o EndpointControlFctemsArrayOutput) ToEndpointControlFctemsArrayOutputWith
 	return o
 }
 
+func (o EndpointControlFctemsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*EndpointControlFctems] {
+	return pulumix.Output[[]*EndpointControlFctems]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o EndpointControlFctemsArrayOutput) Index(i pulumi.IntInput) EndpointControlFctemsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *EndpointControlFctems {
 		return vs[0].([]*EndpointControlFctems)[vs[1].(int)]
@@ -449,6 +480,12 @@ func (o EndpointControlFctemsMapOutput) ToEndpointControlFctemsMapOutput() Endpo
 
 func (o EndpointControlFctemsMapOutput) ToEndpointControlFctemsMapOutputWithContext(ctx context.Context) EndpointControlFctemsMapOutput {
 	return o
+}
+
+func (o EndpointControlFctemsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*EndpointControlFctems] {
+	return pulumix.Output[map[string]*EndpointControlFctems]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o EndpointControlFctemsMapOutput) MapIndex(k pulumi.StringInput) EndpointControlFctemsOutput {

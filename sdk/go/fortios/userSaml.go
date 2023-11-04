@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type UserSaml struct {
@@ -29,6 +30,7 @@ type UserSaml struct {
 	IdpSingleSignOnUrl pulumi.StringOutput    `pulumi:"idpSingleSignOnUrl"`
 	LimitRelaystate    pulumi.StringOutput    `pulumi:"limitRelaystate"`
 	Name               pulumi.StringOutput    `pulumi:"name"`
+	Reauth             pulumi.StringOutput    `pulumi:"reauth"`
 	SingleLogoutUrl    pulumi.StringOutput    `pulumi:"singleLogoutUrl"`
 	SingleSignOnUrl    pulumi.StringOutput    `pulumi:"singleSignOnUrl"`
 	UserClaimType      pulumi.StringOutput    `pulumi:"userClaimType"`
@@ -95,6 +97,7 @@ type userSamlState struct {
 	IdpSingleSignOnUrl *string `pulumi:"idpSingleSignOnUrl"`
 	LimitRelaystate    *string `pulumi:"limitRelaystate"`
 	Name               *string `pulumi:"name"`
+	Reauth             *string `pulumi:"reauth"`
 	SingleLogoutUrl    *string `pulumi:"singleLogoutUrl"`
 	SingleSignOnUrl    *string `pulumi:"singleSignOnUrl"`
 	UserClaimType      *string `pulumi:"userClaimType"`
@@ -117,6 +120,7 @@ type UserSamlState struct {
 	IdpSingleSignOnUrl pulumi.StringPtrInput
 	LimitRelaystate    pulumi.StringPtrInput
 	Name               pulumi.StringPtrInput
+	Reauth             pulumi.StringPtrInput
 	SingleLogoutUrl    pulumi.StringPtrInput
 	SingleSignOnUrl    pulumi.StringPtrInput
 	UserClaimType      pulumi.StringPtrInput
@@ -143,6 +147,7 @@ type userSamlArgs struct {
 	IdpSingleSignOnUrl string  `pulumi:"idpSingleSignOnUrl"`
 	LimitRelaystate    *string `pulumi:"limitRelaystate"`
 	Name               *string `pulumi:"name"`
+	Reauth             *string `pulumi:"reauth"`
 	SingleLogoutUrl    *string `pulumi:"singleLogoutUrl"`
 	SingleSignOnUrl    string  `pulumi:"singleSignOnUrl"`
 	UserClaimType      *string `pulumi:"userClaimType"`
@@ -166,6 +171,7 @@ type UserSamlArgs struct {
 	IdpSingleSignOnUrl pulumi.StringInput
 	LimitRelaystate    pulumi.StringPtrInput
 	Name               pulumi.StringPtrInput
+	Reauth             pulumi.StringPtrInput
 	SingleLogoutUrl    pulumi.StringPtrInput
 	SingleSignOnUrl    pulumi.StringInput
 	UserClaimType      pulumi.StringPtrInput
@@ -196,6 +202,12 @@ func (i *UserSaml) ToUserSamlOutputWithContext(ctx context.Context) UserSamlOutp
 	return pulumi.ToOutputWithContext(ctx, i).(UserSamlOutput)
 }
 
+func (i *UserSaml) ToOutput(ctx context.Context) pulumix.Output[*UserSaml] {
+	return pulumix.Output[*UserSaml]{
+		OutputState: i.ToUserSamlOutputWithContext(ctx).OutputState,
+	}
+}
+
 // UserSamlArrayInput is an input type that accepts UserSamlArray and UserSamlArrayOutput values.
 // You can construct a concrete instance of `UserSamlArrayInput` via:
 //
@@ -219,6 +231,12 @@ func (i UserSamlArray) ToUserSamlArrayOutput() UserSamlArrayOutput {
 
 func (i UserSamlArray) ToUserSamlArrayOutputWithContext(ctx context.Context) UserSamlArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserSamlArrayOutput)
+}
+
+func (i UserSamlArray) ToOutput(ctx context.Context) pulumix.Output[[]*UserSaml] {
+	return pulumix.Output[[]*UserSaml]{
+		OutputState: i.ToUserSamlArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // UserSamlMapInput is an input type that accepts UserSamlMap and UserSamlMapOutput values.
@@ -246,6 +264,12 @@ func (i UserSamlMap) ToUserSamlMapOutputWithContext(ctx context.Context) UserSam
 	return pulumi.ToOutputWithContext(ctx, i).(UserSamlMapOutput)
 }
 
+func (i UserSamlMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserSaml] {
+	return pulumix.Output[map[string]*UserSaml]{
+		OutputState: i.ToUserSamlMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type UserSamlOutput struct{ *pulumi.OutputState }
 
 func (UserSamlOutput) ElementType() reflect.Type {
@@ -258,6 +282,12 @@ func (o UserSamlOutput) ToUserSamlOutput() UserSamlOutput {
 
 func (o UserSamlOutput) ToUserSamlOutputWithContext(ctx context.Context) UserSamlOutput {
 	return o
+}
+
+func (o UserSamlOutput) ToOutput(ctx context.Context) pulumix.Output[*UserSaml] {
+	return pulumix.Output[*UserSaml]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserSamlOutput) AdfsClaim() pulumi.StringOutput {
@@ -316,6 +346,10 @@ func (o UserSamlOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *UserSaml) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+func (o UserSamlOutput) Reauth() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserSaml) pulumi.StringOutput { return v.Reauth }).(pulumi.StringOutput)
+}
+
 func (o UserSamlOutput) SingleLogoutUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v *UserSaml) pulumi.StringOutput { return v.SingleLogoutUrl }).(pulumi.StringOutput)
 }
@@ -350,6 +384,12 @@ func (o UserSamlArrayOutput) ToUserSamlArrayOutputWithContext(ctx context.Contex
 	return o
 }
 
+func (o UserSamlArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*UserSaml] {
+	return pulumix.Output[[]*UserSaml]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o UserSamlArrayOutput) Index(i pulumi.IntInput) UserSamlOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserSaml {
 		return vs[0].([]*UserSaml)[vs[1].(int)]
@@ -368,6 +408,12 @@ func (o UserSamlMapOutput) ToUserSamlMapOutput() UserSamlMapOutput {
 
 func (o UserSamlMapOutput) ToUserSamlMapOutputWithContext(ctx context.Context) UserSamlMapOutput {
 	return o
+}
+
+func (o UserSamlMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserSaml] {
+	return pulumix.Output[map[string]*UserSaml]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserSamlMapOutput) MapIndex(k pulumi.StringInput) UserSamlOutput {

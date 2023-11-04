@@ -26,6 +26,7 @@ class SystemDnsDatabaseArgs:
                  dns_entries: Optional[pulumi.Input[Sequence[pulumi.Input['SystemDnsDatabaseDnsEntryArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  forwarder: Optional[pulumi.Input[str]] = None,
+                 forwarder6: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip_master: Optional[pulumi.Input[str]] = None,
                  ip_primary: Optional[pulumi.Input[str]] = None,
@@ -33,6 +34,7 @@ class SystemDnsDatabaseArgs:
                  primary_name: Optional[pulumi.Input[str]] = None,
                  rr_max: Optional[pulumi.Input[int]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
+                 source_ip6: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
@@ -53,6 +55,8 @@ class SystemDnsDatabaseArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if forwarder is not None:
             pulumi.set(__self__, "forwarder", forwarder)
+        if forwarder6 is not None:
+            pulumi.set(__self__, "forwarder6", forwarder6)
         if get_all_tables is not None:
             pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ip_master is not None:
@@ -67,6 +71,8 @@ class SystemDnsDatabaseArgs:
             pulumi.set(__self__, "rr_max", rr_max)
         if source_ip is not None:
             pulumi.set(__self__, "source_ip", source_ip)
+        if source_ip6 is not None:
+            pulumi.set(__self__, "source_ip6", source_ip6)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if vdomparam is not None:
@@ -163,6 +169,15 @@ class SystemDnsDatabaseArgs:
         pulumi.set(self, "forwarder", value)
 
     @property
+    @pulumi.getter
+    def forwarder6(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "forwarder6")
+
+    @forwarder6.setter
+    def forwarder6(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "forwarder6", value)
+
+    @property
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "get_all_tables")
@@ -226,6 +241,15 @@ class SystemDnsDatabaseArgs:
         pulumi.set(self, "source_ip", value)
 
     @property
+    @pulumi.getter(name="sourceIp6")
+    def source_ip6(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "source_ip6")
+
+    @source_ip6.setter
+    def source_ip6(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "source_ip6", value)
+
+    @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "status")
@@ -254,6 +278,7 @@ class _SystemDnsDatabaseState:
                  domain: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  forwarder: Optional[pulumi.Input[str]] = None,
+                 forwarder6: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip_master: Optional[pulumi.Input[str]] = None,
                  ip_primary: Optional[pulumi.Input[str]] = None,
@@ -261,6 +286,7 @@ class _SystemDnsDatabaseState:
                  primary_name: Optional[pulumi.Input[str]] = None,
                  rr_max: Optional[pulumi.Input[int]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
+                 source_ip6: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[int]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -283,6 +309,8 @@ class _SystemDnsDatabaseState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if forwarder is not None:
             pulumi.set(__self__, "forwarder", forwarder)
+        if forwarder6 is not None:
+            pulumi.set(__self__, "forwarder6", forwarder6)
         if get_all_tables is not None:
             pulumi.set(__self__, "get_all_tables", get_all_tables)
         if ip_master is not None:
@@ -297,6 +325,8 @@ class _SystemDnsDatabaseState:
             pulumi.set(__self__, "rr_max", rr_max)
         if source_ip is not None:
             pulumi.set(__self__, "source_ip", source_ip)
+        if source_ip6 is not None:
+            pulumi.set(__self__, "source_ip6", source_ip6)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if ttl is not None:
@@ -372,6 +402,15 @@ class _SystemDnsDatabaseState:
         pulumi.set(self, "forwarder", value)
 
     @property
+    @pulumi.getter
+    def forwarder6(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "forwarder6")
+
+    @forwarder6.setter
+    def forwarder6(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "forwarder6", value)
+
+    @property
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "get_all_tables")
@@ -435,6 +474,15 @@ class _SystemDnsDatabaseState:
         pulumi.set(self, "source_ip", value)
 
     @property
+    @pulumi.getter(name="sourceIp6")
+    def source_ip6(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "source_ip6")
+
+    @source_ip6.setter
+    def source_ip6(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "source_ip6", value)
+
+    @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "status")
@@ -492,6 +540,7 @@ class SystemDnsDatabase(pulumi.CustomResource):
                  domain: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  forwarder: Optional[pulumi.Input[str]] = None,
+                 forwarder6: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip_master: Optional[pulumi.Input[str]] = None,
                  ip_primary: Optional[pulumi.Input[str]] = None,
@@ -499,6 +548,7 @@ class SystemDnsDatabase(pulumi.CustomResource):
                  primary_name: Optional[pulumi.Input[str]] = None,
                  rr_max: Optional[pulumi.Input[int]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
+                 source_ip6: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[int]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -540,6 +590,7 @@ class SystemDnsDatabase(pulumi.CustomResource):
                  domain: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  forwarder: Optional[pulumi.Input[str]] = None,
+                 forwarder6: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  ip_master: Optional[pulumi.Input[str]] = None,
                  ip_primary: Optional[pulumi.Input[str]] = None,
@@ -547,6 +598,7 @@ class SystemDnsDatabase(pulumi.CustomResource):
                  primary_name: Optional[pulumi.Input[str]] = None,
                  rr_max: Optional[pulumi.Input[int]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
+                 source_ip6: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  ttl: Optional[pulumi.Input[int]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -572,6 +624,7 @@ class SystemDnsDatabase(pulumi.CustomResource):
             __props__.__dict__["domain"] = domain
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["forwarder"] = forwarder
+            __props__.__dict__["forwarder6"] = forwarder6
             __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["ip_master"] = ip_master
             __props__.__dict__["ip_primary"] = ip_primary
@@ -579,6 +632,7 @@ class SystemDnsDatabase(pulumi.CustomResource):
             __props__.__dict__["primary_name"] = primary_name
             __props__.__dict__["rr_max"] = rr_max
             __props__.__dict__["source_ip"] = source_ip
+            __props__.__dict__["source_ip6"] = source_ip6
             __props__.__dict__["status"] = status
             if ttl is None and not opts.urn:
                 raise TypeError("Missing required property 'ttl'")
@@ -607,6 +661,7 @@ class SystemDnsDatabase(pulumi.CustomResource):
             domain: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             forwarder: Optional[pulumi.Input[str]] = None,
+            forwarder6: Optional[pulumi.Input[str]] = None,
             get_all_tables: Optional[pulumi.Input[str]] = None,
             ip_master: Optional[pulumi.Input[str]] = None,
             ip_primary: Optional[pulumi.Input[str]] = None,
@@ -614,6 +669,7 @@ class SystemDnsDatabase(pulumi.CustomResource):
             primary_name: Optional[pulumi.Input[str]] = None,
             rr_max: Optional[pulumi.Input[int]] = None,
             source_ip: Optional[pulumi.Input[str]] = None,
+            source_ip6: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             ttl: Optional[pulumi.Input[int]] = None,
             type: Optional[pulumi.Input[str]] = None,
@@ -638,6 +694,7 @@ class SystemDnsDatabase(pulumi.CustomResource):
         __props__.__dict__["domain"] = domain
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["forwarder"] = forwarder
+        __props__.__dict__["forwarder6"] = forwarder6
         __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["ip_master"] = ip_master
         __props__.__dict__["ip_primary"] = ip_primary
@@ -645,6 +702,7 @@ class SystemDnsDatabase(pulumi.CustomResource):
         __props__.__dict__["primary_name"] = primary_name
         __props__.__dict__["rr_max"] = rr_max
         __props__.__dict__["source_ip"] = source_ip
+        __props__.__dict__["source_ip6"] = source_ip6
         __props__.__dict__["status"] = status
         __props__.__dict__["ttl"] = ttl
         __props__.__dict__["type"] = type
@@ -688,6 +746,11 @@ class SystemDnsDatabase(pulumi.CustomResource):
         return pulumi.get(self, "forwarder")
 
     @property
+    @pulumi.getter
+    def forwarder6(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "forwarder6")
+
+    @property
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "get_all_tables")
@@ -721,6 +784,11 @@ class SystemDnsDatabase(pulumi.CustomResource):
     @pulumi.getter(name="sourceIp")
     def source_ip(self) -> pulumi.Output[str]:
         return pulumi.get(self, "source_ip")
+
+    @property
+    @pulumi.getter(name="sourceIp6")
+    def source_ip6(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "source_ip6")
 
     @property
     @pulumi.getter

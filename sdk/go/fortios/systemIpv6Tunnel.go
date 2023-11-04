@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemIpv6Tunnel struct {
@@ -124,6 +125,12 @@ func (i *SystemIpv6Tunnel) ToSystemIpv6TunnelOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(SystemIpv6TunnelOutput)
 }
 
+func (i *SystemIpv6Tunnel) ToOutput(ctx context.Context) pulumix.Output[*SystemIpv6Tunnel] {
+	return pulumix.Output[*SystemIpv6Tunnel]{
+		OutputState: i.ToSystemIpv6TunnelOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemIpv6TunnelArrayInput is an input type that accepts SystemIpv6TunnelArray and SystemIpv6TunnelArrayOutput values.
 // You can construct a concrete instance of `SystemIpv6TunnelArrayInput` via:
 //
@@ -147,6 +154,12 @@ func (i SystemIpv6TunnelArray) ToSystemIpv6TunnelArrayOutput() SystemIpv6TunnelA
 
 func (i SystemIpv6TunnelArray) ToSystemIpv6TunnelArrayOutputWithContext(ctx context.Context) SystemIpv6TunnelArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemIpv6TunnelArrayOutput)
+}
+
+func (i SystemIpv6TunnelArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemIpv6Tunnel] {
+	return pulumix.Output[[]*SystemIpv6Tunnel]{
+		OutputState: i.ToSystemIpv6TunnelArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemIpv6TunnelMapInput is an input type that accepts SystemIpv6TunnelMap and SystemIpv6TunnelMapOutput values.
@@ -174,6 +187,12 @@ func (i SystemIpv6TunnelMap) ToSystemIpv6TunnelMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(SystemIpv6TunnelMapOutput)
 }
 
+func (i SystemIpv6TunnelMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemIpv6Tunnel] {
+	return pulumix.Output[map[string]*SystemIpv6Tunnel]{
+		OutputState: i.ToSystemIpv6TunnelMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemIpv6TunnelOutput struct{ *pulumi.OutputState }
 
 func (SystemIpv6TunnelOutput) ElementType() reflect.Type {
@@ -186,6 +205,12 @@ func (o SystemIpv6TunnelOutput) ToSystemIpv6TunnelOutput() SystemIpv6TunnelOutpu
 
 func (o SystemIpv6TunnelOutput) ToSystemIpv6TunnelOutputWithContext(ctx context.Context) SystemIpv6TunnelOutput {
 	return o
+}
+
+func (o SystemIpv6TunnelOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemIpv6Tunnel] {
+	return pulumix.Output[*SystemIpv6Tunnel]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemIpv6TunnelOutput) AutoAsicOffload() pulumi.StringOutput {
@@ -230,6 +255,12 @@ func (o SystemIpv6TunnelArrayOutput) ToSystemIpv6TunnelArrayOutputWithContext(ct
 	return o
 }
 
+func (o SystemIpv6TunnelArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemIpv6Tunnel] {
+	return pulumix.Output[[]*SystemIpv6Tunnel]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemIpv6TunnelArrayOutput) Index(i pulumi.IntInput) SystemIpv6TunnelOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemIpv6Tunnel {
 		return vs[0].([]*SystemIpv6Tunnel)[vs[1].(int)]
@@ -248,6 +279,12 @@ func (o SystemIpv6TunnelMapOutput) ToSystemIpv6TunnelMapOutput() SystemIpv6Tunne
 
 func (o SystemIpv6TunnelMapOutput) ToSystemIpv6TunnelMapOutputWithContext(ctx context.Context) SystemIpv6TunnelMapOutput {
 	return o
+}
+
+func (o SystemIpv6TunnelMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemIpv6Tunnel] {
+	return pulumix.Output[map[string]*SystemIpv6Tunnel]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemIpv6TunnelMapOutput) MapIndex(k pulumi.StringInput) SystemIpv6TunnelOutput {

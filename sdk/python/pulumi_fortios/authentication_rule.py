@@ -18,6 +18,8 @@ class AuthenticationRuleArgs:
     def __init__(__self__, *,
                  active_auth_method: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
+                 cors_depth: Optional[pulumi.Input[int]] = None,
+                 cors_stateful: Optional[pulumi.Input[str]] = None,
                  dstaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input['AuthenticationRuleDstaddr6Args']]]] = None,
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['AuthenticationRuleDstaddrArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
@@ -41,6 +43,10 @@ class AuthenticationRuleArgs:
             pulumi.set(__self__, "active_auth_method", active_auth_method)
         if comments is not None:
             pulumi.set(__self__, "comments", comments)
+        if cors_depth is not None:
+            pulumi.set(__self__, "cors_depth", cors_depth)
+        if cors_stateful is not None:
+            pulumi.set(__self__, "cors_stateful", cors_stateful)
         if dstaddr6s is not None:
             pulumi.set(__self__, "dstaddr6s", dstaddr6s)
         if dstaddrs is not None:
@@ -91,6 +97,24 @@ class AuthenticationRuleArgs:
     @comments.setter
     def comments(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "comments", value)
+
+    @property
+    @pulumi.getter(name="corsDepth")
+    def cors_depth(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "cors_depth")
+
+    @cors_depth.setter
+    def cors_depth(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "cors_depth", value)
+
+    @property
+    @pulumi.getter(name="corsStateful")
+    def cors_stateful(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "cors_stateful")
+
+    @cors_stateful.setter
+    def cors_stateful(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cors_stateful", value)
 
     @property
     @pulumi.getter
@@ -242,6 +266,8 @@ class _AuthenticationRuleState:
     def __init__(__self__, *,
                  active_auth_method: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
+                 cors_depth: Optional[pulumi.Input[int]] = None,
+                 cors_stateful: Optional[pulumi.Input[str]] = None,
                  dstaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input['AuthenticationRuleDstaddr6Args']]]] = None,
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['AuthenticationRuleDstaddrArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
@@ -265,6 +291,10 @@ class _AuthenticationRuleState:
             pulumi.set(__self__, "active_auth_method", active_auth_method)
         if comments is not None:
             pulumi.set(__self__, "comments", comments)
+        if cors_depth is not None:
+            pulumi.set(__self__, "cors_depth", cors_depth)
+        if cors_stateful is not None:
+            pulumi.set(__self__, "cors_stateful", cors_stateful)
         if dstaddr6s is not None:
             pulumi.set(__self__, "dstaddr6s", dstaddr6s)
         if dstaddrs is not None:
@@ -315,6 +345,24 @@ class _AuthenticationRuleState:
     @comments.setter
     def comments(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "comments", value)
+
+    @property
+    @pulumi.getter(name="corsDepth")
+    def cors_depth(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "cors_depth")
+
+    @cors_depth.setter
+    def cors_depth(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "cors_depth", value)
+
+    @property
+    @pulumi.getter(name="corsStateful")
+    def cors_stateful(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "cors_stateful")
+
+    @cors_stateful.setter
+    def cors_stateful(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cors_stateful", value)
 
     @property
     @pulumi.getter
@@ -468,6 +516,8 @@ class AuthenticationRule(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  active_auth_method: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
+                 cors_depth: Optional[pulumi.Input[int]] = None,
+                 cors_stateful: Optional[pulumi.Input[str]] = None,
                  dstaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationRuleDstaddr6Args']]]]] = None,
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationRuleDstaddrArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
@@ -515,6 +565,8 @@ class AuthenticationRule(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  active_auth_method: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
+                 cors_depth: Optional[pulumi.Input[int]] = None,
+                 cors_stateful: Optional[pulumi.Input[str]] = None,
                  dstaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationRuleDstaddr6Args']]]]] = None,
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationRuleDstaddrArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
@@ -542,6 +594,8 @@ class AuthenticationRule(pulumi.CustomResource):
 
             __props__.__dict__["active_auth_method"] = active_auth_method
             __props__.__dict__["comments"] = comments
+            __props__.__dict__["cors_depth"] = cors_depth
+            __props__.__dict__["cors_stateful"] = cors_stateful
             __props__.__dict__["dstaddr6s"] = dstaddr6s
             __props__.__dict__["dstaddrs"] = dstaddrs
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
@@ -570,6 +624,8 @@ class AuthenticationRule(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             active_auth_method: Optional[pulumi.Input[str]] = None,
             comments: Optional[pulumi.Input[str]] = None,
+            cors_depth: Optional[pulumi.Input[int]] = None,
+            cors_stateful: Optional[pulumi.Input[str]] = None,
             dstaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationRuleDstaddr6Args']]]]] = None,
             dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationRuleDstaddrArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
@@ -600,6 +656,8 @@ class AuthenticationRule(pulumi.CustomResource):
 
         __props__.__dict__["active_auth_method"] = active_auth_method
         __props__.__dict__["comments"] = comments
+        __props__.__dict__["cors_depth"] = cors_depth
+        __props__.__dict__["cors_stateful"] = cors_stateful
         __props__.__dict__["dstaddr6s"] = dstaddr6s
         __props__.__dict__["dstaddrs"] = dstaddrs
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
@@ -627,6 +685,16 @@ class AuthenticationRule(pulumi.CustomResource):
     @pulumi.getter
     def comments(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "comments")
+
+    @property
+    @pulumi.getter(name="corsDepth")
+    def cors_depth(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "cors_depth")
+
+    @property
+    @pulumi.getter(name="corsStateful")
+    def cors_stateful(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "cors_stateful")
 
     @property
     @pulumi.getter

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type IcapServerGroup struct {
@@ -115,6 +116,12 @@ func (i *IcapServerGroup) ToIcapServerGroupOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(IcapServerGroupOutput)
 }
 
+func (i *IcapServerGroup) ToOutput(ctx context.Context) pulumix.Output[*IcapServerGroup] {
+	return pulumix.Output[*IcapServerGroup]{
+		OutputState: i.ToIcapServerGroupOutputWithContext(ctx).OutputState,
+	}
+}
+
 // IcapServerGroupArrayInput is an input type that accepts IcapServerGroupArray and IcapServerGroupArrayOutput values.
 // You can construct a concrete instance of `IcapServerGroupArrayInput` via:
 //
@@ -138,6 +145,12 @@ func (i IcapServerGroupArray) ToIcapServerGroupArrayOutput() IcapServerGroupArra
 
 func (i IcapServerGroupArray) ToIcapServerGroupArrayOutputWithContext(ctx context.Context) IcapServerGroupArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IcapServerGroupArrayOutput)
+}
+
+func (i IcapServerGroupArray) ToOutput(ctx context.Context) pulumix.Output[[]*IcapServerGroup] {
+	return pulumix.Output[[]*IcapServerGroup]{
+		OutputState: i.ToIcapServerGroupArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // IcapServerGroupMapInput is an input type that accepts IcapServerGroupMap and IcapServerGroupMapOutput values.
@@ -165,6 +178,12 @@ func (i IcapServerGroupMap) ToIcapServerGroupMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(IcapServerGroupMapOutput)
 }
 
+func (i IcapServerGroupMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*IcapServerGroup] {
+	return pulumix.Output[map[string]*IcapServerGroup]{
+		OutputState: i.ToIcapServerGroupMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type IcapServerGroupOutput struct{ *pulumi.OutputState }
 
 func (IcapServerGroupOutput) ElementType() reflect.Type {
@@ -177,6 +196,12 @@ func (o IcapServerGroupOutput) ToIcapServerGroupOutput() IcapServerGroupOutput {
 
 func (o IcapServerGroupOutput) ToIcapServerGroupOutputWithContext(ctx context.Context) IcapServerGroupOutput {
 	return o
+}
+
+func (o IcapServerGroupOutput) ToOutput(ctx context.Context) pulumix.Output[*IcapServerGroup] {
+	return pulumix.Output[*IcapServerGroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o IcapServerGroupOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -217,6 +242,12 @@ func (o IcapServerGroupArrayOutput) ToIcapServerGroupArrayOutputWithContext(ctx 
 	return o
 }
 
+func (o IcapServerGroupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*IcapServerGroup] {
+	return pulumix.Output[[]*IcapServerGroup]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o IcapServerGroupArrayOutput) Index(i pulumi.IntInput) IcapServerGroupOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IcapServerGroup {
 		return vs[0].([]*IcapServerGroup)[vs[1].(int)]
@@ -235,6 +266,12 @@ func (o IcapServerGroupMapOutput) ToIcapServerGroupMapOutput() IcapServerGroupMa
 
 func (o IcapServerGroupMapOutput) ToIcapServerGroupMapOutputWithContext(ctx context.Context) IcapServerGroupMapOutput {
 	return o
+}
+
+func (o IcapServerGroupMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*IcapServerGroup] {
+	return pulumix.Output[map[string]*IcapServerGroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o IcapServerGroupMapOutput) MapIndex(k pulumi.StringInput) IcapServerGroupOutput {

@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemReplacemsgAdmin struct {
@@ -114,6 +115,12 @@ func (i *SystemReplacemsgAdmin) ToSystemReplacemsgAdminOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgAdminOutput)
 }
 
+func (i *SystemReplacemsgAdmin) ToOutput(ctx context.Context) pulumix.Output[*SystemReplacemsgAdmin] {
+	return pulumix.Output[*SystemReplacemsgAdmin]{
+		OutputState: i.ToSystemReplacemsgAdminOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemReplacemsgAdminArrayInput is an input type that accepts SystemReplacemsgAdminArray and SystemReplacemsgAdminArrayOutput values.
 // You can construct a concrete instance of `SystemReplacemsgAdminArrayInput` via:
 //
@@ -137,6 +144,12 @@ func (i SystemReplacemsgAdminArray) ToSystemReplacemsgAdminArrayOutput() SystemR
 
 func (i SystemReplacemsgAdminArray) ToSystemReplacemsgAdminArrayOutputWithContext(ctx context.Context) SystemReplacemsgAdminArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgAdminArrayOutput)
+}
+
+func (i SystemReplacemsgAdminArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemReplacemsgAdmin] {
+	return pulumix.Output[[]*SystemReplacemsgAdmin]{
+		OutputState: i.ToSystemReplacemsgAdminArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemReplacemsgAdminMapInput is an input type that accepts SystemReplacemsgAdminMap and SystemReplacemsgAdminMapOutput values.
@@ -164,6 +177,12 @@ func (i SystemReplacemsgAdminMap) ToSystemReplacemsgAdminMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgAdminMapOutput)
 }
 
+func (i SystemReplacemsgAdminMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemReplacemsgAdmin] {
+	return pulumix.Output[map[string]*SystemReplacemsgAdmin]{
+		OutputState: i.ToSystemReplacemsgAdminMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemReplacemsgAdminOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgAdminOutput) ElementType() reflect.Type {
@@ -176,6 +195,12 @@ func (o SystemReplacemsgAdminOutput) ToSystemReplacemsgAdminOutput() SystemRepla
 
 func (o SystemReplacemsgAdminOutput) ToSystemReplacemsgAdminOutputWithContext(ctx context.Context) SystemReplacemsgAdminOutput {
 	return o
+}
+
+func (o SystemReplacemsgAdminOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemReplacemsgAdmin] {
+	return pulumix.Output[*SystemReplacemsgAdmin]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemReplacemsgAdminOutput) Buffer() pulumi.StringPtrOutput {
@@ -212,6 +237,12 @@ func (o SystemReplacemsgAdminArrayOutput) ToSystemReplacemsgAdminArrayOutputWith
 	return o
 }
 
+func (o SystemReplacemsgAdminArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemReplacemsgAdmin] {
+	return pulumix.Output[[]*SystemReplacemsgAdmin]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemReplacemsgAdminArrayOutput) Index(i pulumi.IntInput) SystemReplacemsgAdminOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemReplacemsgAdmin {
 		return vs[0].([]*SystemReplacemsgAdmin)[vs[1].(int)]
@@ -230,6 +261,12 @@ func (o SystemReplacemsgAdminMapOutput) ToSystemReplacemsgAdminMapOutput() Syste
 
 func (o SystemReplacemsgAdminMapOutput) ToSystemReplacemsgAdminMapOutputWithContext(ctx context.Context) SystemReplacemsgAdminMapOutput {
 	return o
+}
+
+func (o SystemReplacemsgAdminMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemReplacemsgAdmin] {
+	return pulumix.Output[map[string]*SystemReplacemsgAdmin]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemReplacemsgAdminMapOutput) MapIndex(k pulumi.StringInput) SystemReplacemsgAdminOutput {

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type UserPeergrp struct {
@@ -110,6 +111,12 @@ func (i *UserPeergrp) ToUserPeergrpOutputWithContext(ctx context.Context) UserPe
 	return pulumi.ToOutputWithContext(ctx, i).(UserPeergrpOutput)
 }
 
+func (i *UserPeergrp) ToOutput(ctx context.Context) pulumix.Output[*UserPeergrp] {
+	return pulumix.Output[*UserPeergrp]{
+		OutputState: i.ToUserPeergrpOutputWithContext(ctx).OutputState,
+	}
+}
+
 // UserPeergrpArrayInput is an input type that accepts UserPeergrpArray and UserPeergrpArrayOutput values.
 // You can construct a concrete instance of `UserPeergrpArrayInput` via:
 //
@@ -133,6 +140,12 @@ func (i UserPeergrpArray) ToUserPeergrpArrayOutput() UserPeergrpArrayOutput {
 
 func (i UserPeergrpArray) ToUserPeergrpArrayOutputWithContext(ctx context.Context) UserPeergrpArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserPeergrpArrayOutput)
+}
+
+func (i UserPeergrpArray) ToOutput(ctx context.Context) pulumix.Output[[]*UserPeergrp] {
+	return pulumix.Output[[]*UserPeergrp]{
+		OutputState: i.ToUserPeergrpArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // UserPeergrpMapInput is an input type that accepts UserPeergrpMap and UserPeergrpMapOutput values.
@@ -160,6 +173,12 @@ func (i UserPeergrpMap) ToUserPeergrpMapOutputWithContext(ctx context.Context) U
 	return pulumi.ToOutputWithContext(ctx, i).(UserPeergrpMapOutput)
 }
 
+func (i UserPeergrpMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserPeergrp] {
+	return pulumix.Output[map[string]*UserPeergrp]{
+		OutputState: i.ToUserPeergrpMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type UserPeergrpOutput struct{ *pulumi.OutputState }
 
 func (UserPeergrpOutput) ElementType() reflect.Type {
@@ -172,6 +191,12 @@ func (o UserPeergrpOutput) ToUserPeergrpOutput() UserPeergrpOutput {
 
 func (o UserPeergrpOutput) ToUserPeergrpOutputWithContext(ctx context.Context) UserPeergrpOutput {
 	return o
+}
+
+func (o UserPeergrpOutput) ToOutput(ctx context.Context) pulumix.Output[*UserPeergrp] {
+	return pulumix.Output[*UserPeergrp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserPeergrpOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -208,6 +233,12 @@ func (o UserPeergrpArrayOutput) ToUserPeergrpArrayOutputWithContext(ctx context.
 	return o
 }
 
+func (o UserPeergrpArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*UserPeergrp] {
+	return pulumix.Output[[]*UserPeergrp]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o UserPeergrpArrayOutput) Index(i pulumi.IntInput) UserPeergrpOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserPeergrp {
 		return vs[0].([]*UserPeergrp)[vs[1].(int)]
@@ -226,6 +257,12 @@ func (o UserPeergrpMapOutput) ToUserPeergrpMapOutput() UserPeergrpMapOutput {
 
 func (o UserPeergrpMapOutput) ToUserPeergrpMapOutputWithContext(ctx context.Context) UserPeergrpMapOutput {
 	return o
+}
+
+func (o UserPeergrpMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserPeergrp] {
+	return pulumix.Output[map[string]*UserPeergrp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserPeergrpMapOutput) MapIndex(k pulumi.StringInput) UserPeergrpOutput {

@@ -33,6 +33,7 @@ export interface GetSystemDnsDatabaseResult {
     readonly dnsEntries: outputs.GetSystemDnsDatabaseDnsEntry[];
     readonly domain: string;
     readonly forwarder: string;
+    readonly forwarder6: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
@@ -43,6 +44,7 @@ export interface GetSystemDnsDatabaseResult {
     readonly primaryName: string;
     readonly rrMax: number;
     readonly sourceIp: string;
+    readonly sourceIp6: string;
     readonly status: string;
     readonly ttl: number;
     readonly type: string;

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetSystemObjectTaggingList(ctx *pulumi.Context, args *GetSystemObjectTaggingListArgs, opts ...pulumi.InvokeOption) (*GetSystemObjectTaggingListResult, error) {
@@ -72,6 +73,12 @@ func (o GetSystemObjectTaggingListResultOutput) ToGetSystemObjectTaggingListResu
 
 func (o GetSystemObjectTaggingListResultOutput) ToGetSystemObjectTaggingListResultOutputWithContext(ctx context.Context) GetSystemObjectTaggingListResultOutput {
 	return o
+}
+
+func (o GetSystemObjectTaggingListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSystemObjectTaggingListResult] {
+	return pulumix.Output[GetSystemObjectTaggingListResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetSystemObjectTaggingListResultOutput) Categorylists() pulumi.StringArrayOutput {

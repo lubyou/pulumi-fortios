@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemSettings struct {
@@ -61,6 +62,7 @@ type SystemSettings struct {
 	GuiAntivirus                    pulumi.StringOutput                             `pulumi:"guiAntivirus"`
 	GuiApProfile                    pulumi.StringOutput                             `pulumi:"guiApProfile"`
 	GuiApplicationControl           pulumi.StringOutput                             `pulumi:"guiApplicationControl"`
+	GuiCasb                         pulumi.StringOutput                             `pulumi:"guiCasb"`
 	GuiDefaultPolicyColumns         SystemSettingsGuiDefaultPolicyColumnArrayOutput `pulumi:"guiDefaultPolicyColumns"`
 	GuiDhcpAdvanced                 pulumi.StringOutput                             `pulumi:"guiDhcpAdvanced"`
 	GuiDlp                          pulumi.StringOutput                             `pulumi:"guiDlp"`
@@ -101,12 +103,14 @@ type SystemSettings struct {
 	GuiRouteTagAddressCreation      pulumi.StringOutput                             `pulumi:"guiRouteTagAddressCreation"`
 	GuiSecurityProfileGroup         pulumi.StringOutput                             `pulumi:"guiSecurityProfileGroup"`
 	GuiSpamfilter                   pulumi.StringOutput                             `pulumi:"guiSpamfilter"`
+	GuiSslvpn                       pulumi.StringOutput                             `pulumi:"guiSslvpn"`
 	GuiSslvpnPersonalBookmarks      pulumi.StringOutput                             `pulumi:"guiSslvpnPersonalBookmarks"`
 	GuiSslvpnRealms                 pulumi.StringOutput                             `pulumi:"guiSslvpnRealms"`
 	GuiSwitchController             pulumi.StringOutput                             `pulumi:"guiSwitchController"`
 	GuiThreatWeight                 pulumi.StringOutput                             `pulumi:"guiThreatWeight"`
 	GuiTrafficShaping               pulumi.StringOutput                             `pulumi:"guiTrafficShaping"`
 	GuiVideofilter                  pulumi.StringOutput                             `pulumi:"guiVideofilter"`
+	GuiVirtualPatchProfile          pulumi.StringOutput                             `pulumi:"guiVirtualPatchProfile"`
 	GuiVoipProfile                  pulumi.StringOutput                             `pulumi:"guiVoipProfile"`
 	GuiVpn                          pulumi.StringOutput                             `pulumi:"guiVpn"`
 	GuiWafProfile                   pulumi.StringOutput                             `pulumi:"guiWafProfile"`
@@ -246,6 +250,7 @@ type systemSettingsState struct {
 	GuiAntivirus                    *string                                `pulumi:"guiAntivirus"`
 	GuiApProfile                    *string                                `pulumi:"guiApProfile"`
 	GuiApplicationControl           *string                                `pulumi:"guiApplicationControl"`
+	GuiCasb                         *string                                `pulumi:"guiCasb"`
 	GuiDefaultPolicyColumns         []SystemSettingsGuiDefaultPolicyColumn `pulumi:"guiDefaultPolicyColumns"`
 	GuiDhcpAdvanced                 *string                                `pulumi:"guiDhcpAdvanced"`
 	GuiDlp                          *string                                `pulumi:"guiDlp"`
@@ -286,12 +291,14 @@ type systemSettingsState struct {
 	GuiRouteTagAddressCreation      *string                                `pulumi:"guiRouteTagAddressCreation"`
 	GuiSecurityProfileGroup         *string                                `pulumi:"guiSecurityProfileGroup"`
 	GuiSpamfilter                   *string                                `pulumi:"guiSpamfilter"`
+	GuiSslvpn                       *string                                `pulumi:"guiSslvpn"`
 	GuiSslvpnPersonalBookmarks      *string                                `pulumi:"guiSslvpnPersonalBookmarks"`
 	GuiSslvpnRealms                 *string                                `pulumi:"guiSslvpnRealms"`
 	GuiSwitchController             *string                                `pulumi:"guiSwitchController"`
 	GuiThreatWeight                 *string                                `pulumi:"guiThreatWeight"`
 	GuiTrafficShaping               *string                                `pulumi:"guiTrafficShaping"`
 	GuiVideofilter                  *string                                `pulumi:"guiVideofilter"`
+	GuiVirtualPatchProfile          *string                                `pulumi:"guiVirtualPatchProfile"`
 	GuiVoipProfile                  *string                                `pulumi:"guiVoipProfile"`
 	GuiVpn                          *string                                `pulumi:"guiVpn"`
 	GuiWafProfile                   *string                                `pulumi:"guiWafProfile"`
@@ -402,6 +409,7 @@ type SystemSettingsState struct {
 	GuiAntivirus                    pulumi.StringPtrInput
 	GuiApProfile                    pulumi.StringPtrInput
 	GuiApplicationControl           pulumi.StringPtrInput
+	GuiCasb                         pulumi.StringPtrInput
 	GuiDefaultPolicyColumns         SystemSettingsGuiDefaultPolicyColumnArrayInput
 	GuiDhcpAdvanced                 pulumi.StringPtrInput
 	GuiDlp                          pulumi.StringPtrInput
@@ -442,12 +450,14 @@ type SystemSettingsState struct {
 	GuiRouteTagAddressCreation      pulumi.StringPtrInput
 	GuiSecurityProfileGroup         pulumi.StringPtrInput
 	GuiSpamfilter                   pulumi.StringPtrInput
+	GuiSslvpn                       pulumi.StringPtrInput
 	GuiSslvpnPersonalBookmarks      pulumi.StringPtrInput
 	GuiSslvpnRealms                 pulumi.StringPtrInput
 	GuiSwitchController             pulumi.StringPtrInput
 	GuiThreatWeight                 pulumi.StringPtrInput
 	GuiTrafficShaping               pulumi.StringPtrInput
 	GuiVideofilter                  pulumi.StringPtrInput
+	GuiVirtualPatchProfile          pulumi.StringPtrInput
 	GuiVoipProfile                  pulumi.StringPtrInput
 	GuiVpn                          pulumi.StringPtrInput
 	GuiWafProfile                   pulumi.StringPtrInput
@@ -562,6 +572,7 @@ type systemSettingsArgs struct {
 	GuiAntivirus                    *string                                `pulumi:"guiAntivirus"`
 	GuiApProfile                    *string                                `pulumi:"guiApProfile"`
 	GuiApplicationControl           *string                                `pulumi:"guiApplicationControl"`
+	GuiCasb                         *string                                `pulumi:"guiCasb"`
 	GuiDefaultPolicyColumns         []SystemSettingsGuiDefaultPolicyColumn `pulumi:"guiDefaultPolicyColumns"`
 	GuiDhcpAdvanced                 *string                                `pulumi:"guiDhcpAdvanced"`
 	GuiDlp                          *string                                `pulumi:"guiDlp"`
@@ -602,12 +613,14 @@ type systemSettingsArgs struct {
 	GuiRouteTagAddressCreation      *string                                `pulumi:"guiRouteTagAddressCreation"`
 	GuiSecurityProfileGroup         *string                                `pulumi:"guiSecurityProfileGroup"`
 	GuiSpamfilter                   *string                                `pulumi:"guiSpamfilter"`
+	GuiSslvpn                       *string                                `pulumi:"guiSslvpn"`
 	GuiSslvpnPersonalBookmarks      *string                                `pulumi:"guiSslvpnPersonalBookmarks"`
 	GuiSslvpnRealms                 *string                                `pulumi:"guiSslvpnRealms"`
 	GuiSwitchController             *string                                `pulumi:"guiSwitchController"`
 	GuiThreatWeight                 *string                                `pulumi:"guiThreatWeight"`
 	GuiTrafficShaping               *string                                `pulumi:"guiTrafficShaping"`
 	GuiVideofilter                  *string                                `pulumi:"guiVideofilter"`
+	GuiVirtualPatchProfile          *string                                `pulumi:"guiVirtualPatchProfile"`
 	GuiVoipProfile                  *string                                `pulumi:"guiVoipProfile"`
 	GuiVpn                          *string                                `pulumi:"guiVpn"`
 	GuiWafProfile                   *string                                `pulumi:"guiWafProfile"`
@@ -719,6 +732,7 @@ type SystemSettingsArgs struct {
 	GuiAntivirus                    pulumi.StringPtrInput
 	GuiApProfile                    pulumi.StringPtrInput
 	GuiApplicationControl           pulumi.StringPtrInput
+	GuiCasb                         pulumi.StringPtrInput
 	GuiDefaultPolicyColumns         SystemSettingsGuiDefaultPolicyColumnArrayInput
 	GuiDhcpAdvanced                 pulumi.StringPtrInput
 	GuiDlp                          pulumi.StringPtrInput
@@ -759,12 +773,14 @@ type SystemSettingsArgs struct {
 	GuiRouteTagAddressCreation      pulumi.StringPtrInput
 	GuiSecurityProfileGroup         pulumi.StringPtrInput
 	GuiSpamfilter                   pulumi.StringPtrInput
+	GuiSslvpn                       pulumi.StringPtrInput
 	GuiSslvpnPersonalBookmarks      pulumi.StringPtrInput
 	GuiSslvpnRealms                 pulumi.StringPtrInput
 	GuiSwitchController             pulumi.StringPtrInput
 	GuiThreatWeight                 pulumi.StringPtrInput
 	GuiTrafficShaping               pulumi.StringPtrInput
 	GuiVideofilter                  pulumi.StringPtrInput
+	GuiVirtualPatchProfile          pulumi.StringPtrInput
 	GuiVoipProfile                  pulumi.StringPtrInput
 	GuiVpn                          pulumi.StringPtrInput
 	GuiWafProfile                   pulumi.StringPtrInput
@@ -850,6 +866,12 @@ func (i *SystemSettings) ToSystemSettingsOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSettingsOutput)
 }
 
+func (i *SystemSettings) ToOutput(ctx context.Context) pulumix.Output[*SystemSettings] {
+	return pulumix.Output[*SystemSettings]{
+		OutputState: i.ToSystemSettingsOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemSettingsArrayInput is an input type that accepts SystemSettingsArray and SystemSettingsArrayOutput values.
 // You can construct a concrete instance of `SystemSettingsArrayInput` via:
 //
@@ -873,6 +895,12 @@ func (i SystemSettingsArray) ToSystemSettingsArrayOutput() SystemSettingsArrayOu
 
 func (i SystemSettingsArray) ToSystemSettingsArrayOutputWithContext(ctx context.Context) SystemSettingsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSettingsArrayOutput)
+}
+
+func (i SystemSettingsArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSettings] {
+	return pulumix.Output[[]*SystemSettings]{
+		OutputState: i.ToSystemSettingsArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemSettingsMapInput is an input type that accepts SystemSettingsMap and SystemSettingsMapOutput values.
@@ -900,6 +928,12 @@ func (i SystemSettingsMap) ToSystemSettingsMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSettingsMapOutput)
 }
 
+func (i SystemSettingsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSettings] {
+	return pulumix.Output[map[string]*SystemSettings]{
+		OutputState: i.ToSystemSettingsMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemSettingsOutput struct{ *pulumi.OutputState }
 
 func (SystemSettingsOutput) ElementType() reflect.Type {
@@ -912,6 +946,12 @@ func (o SystemSettingsOutput) ToSystemSettingsOutput() SystemSettingsOutput {
 
 func (o SystemSettingsOutput) ToSystemSettingsOutputWithContext(ctx context.Context) SystemSettingsOutput {
 	return o
+}
+
+func (o SystemSettingsOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemSettings] {
+	return pulumix.Output[*SystemSettings]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemSettingsOutput) AllowLinkdownPath() pulumi.StringOutput {
@@ -1102,6 +1142,10 @@ func (o SystemSettingsOutput) GuiApplicationControl() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiApplicationControl }).(pulumi.StringOutput)
 }
 
+func (o SystemSettingsOutput) GuiCasb() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiCasb }).(pulumi.StringOutput)
+}
+
 func (o SystemSettingsOutput) GuiDefaultPolicyColumns() SystemSettingsGuiDefaultPolicyColumnArrayOutput {
 	return o.ApplyT(func(v *SystemSettings) SystemSettingsGuiDefaultPolicyColumnArrayOutput {
 		return v.GuiDefaultPolicyColumns
@@ -1264,6 +1308,10 @@ func (o SystemSettingsOutput) GuiSpamfilter() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiSpamfilter }).(pulumi.StringOutput)
 }
 
+func (o SystemSettingsOutput) GuiSslvpn() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiSslvpn }).(pulumi.StringOutput)
+}
+
 func (o SystemSettingsOutput) GuiSslvpnPersonalBookmarks() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiSslvpnPersonalBookmarks }).(pulumi.StringOutput)
 }
@@ -1286,6 +1334,10 @@ func (o SystemSettingsOutput) GuiTrafficShaping() pulumi.StringOutput {
 
 func (o SystemSettingsOutput) GuiVideofilter() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiVideofilter }).(pulumi.StringOutput)
+}
+
+func (o SystemSettingsOutput) GuiVirtualPatchProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSettings) pulumi.StringOutput { return v.GuiVirtualPatchProfile }).(pulumi.StringOutput)
 }
 
 func (o SystemSettingsOutput) GuiVoipProfile() pulumi.StringOutput {
@@ -1542,6 +1594,12 @@ func (o SystemSettingsArrayOutput) ToSystemSettingsArrayOutputWithContext(ctx co
 	return o
 }
 
+func (o SystemSettingsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSettings] {
+	return pulumix.Output[[]*SystemSettings]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemSettingsArrayOutput) Index(i pulumi.IntInput) SystemSettingsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSettings {
 		return vs[0].([]*SystemSettings)[vs[1].(int)]
@@ -1560,6 +1618,12 @@ func (o SystemSettingsMapOutput) ToSystemSettingsMapOutput() SystemSettingsMapOu
 
 func (o SystemSettingsMapOutput) ToSystemSettingsMapOutputWithContext(ctx context.Context) SystemSettingsMapOutput {
 	return o
+}
+
+func (o SystemSettingsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSettings] {
+	return pulumix.Output[map[string]*SystemSettings]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemSettingsMapOutput) MapIndex(k pulumi.StringInput) SystemSettingsOutput {

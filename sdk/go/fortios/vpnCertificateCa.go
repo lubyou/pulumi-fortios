@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type VpnCertificateCa struct {
@@ -19,6 +20,7 @@ type VpnCertificateCa struct {
 	AutoUpdateDaysWarning pulumi.IntOutput       `pulumi:"autoUpdateDaysWarning"`
 	Ca                    pulumi.StringOutput    `pulumi:"ca"`
 	CaIdentifier          pulumi.StringOutput    `pulumi:"caIdentifier"`
+	EstUrl                pulumi.StringOutput    `pulumi:"estUrl"`
 	LastUpdated           pulumi.IntOutput       `pulumi:"lastUpdated"`
 	Name                  pulumi.StringOutput    `pulumi:"name"`
 	Obsolete              pulumi.StringOutput    `pulumi:"obsolete"`
@@ -68,6 +70,7 @@ type vpnCertificateCaState struct {
 	AutoUpdateDaysWarning *int    `pulumi:"autoUpdateDaysWarning"`
 	Ca                    *string `pulumi:"ca"`
 	CaIdentifier          *string `pulumi:"caIdentifier"`
+	EstUrl                *string `pulumi:"estUrl"`
 	LastUpdated           *int    `pulumi:"lastUpdated"`
 	Name                  *string `pulumi:"name"`
 	Obsolete              *string `pulumi:"obsolete"`
@@ -85,6 +88,7 @@ type VpnCertificateCaState struct {
 	AutoUpdateDaysWarning pulumi.IntPtrInput
 	Ca                    pulumi.StringPtrInput
 	CaIdentifier          pulumi.StringPtrInput
+	EstUrl                pulumi.StringPtrInput
 	LastUpdated           pulumi.IntPtrInput
 	Name                  pulumi.StringPtrInput
 	Obsolete              pulumi.StringPtrInput
@@ -106,6 +110,7 @@ type vpnCertificateCaArgs struct {
 	AutoUpdateDaysWarning *int    `pulumi:"autoUpdateDaysWarning"`
 	Ca                    string  `pulumi:"ca"`
 	CaIdentifier          *string `pulumi:"caIdentifier"`
+	EstUrl                *string `pulumi:"estUrl"`
 	LastUpdated           *int    `pulumi:"lastUpdated"`
 	Name                  *string `pulumi:"name"`
 	Obsolete              *string `pulumi:"obsolete"`
@@ -124,6 +129,7 @@ type VpnCertificateCaArgs struct {
 	AutoUpdateDaysWarning pulumi.IntPtrInput
 	Ca                    pulumi.StringInput
 	CaIdentifier          pulumi.StringPtrInput
+	EstUrl                pulumi.StringPtrInput
 	LastUpdated           pulumi.IntPtrInput
 	Name                  pulumi.StringPtrInput
 	Obsolete              pulumi.StringPtrInput
@@ -159,6 +165,12 @@ func (i *VpnCertificateCa) ToVpnCertificateCaOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(VpnCertificateCaOutput)
 }
 
+func (i *VpnCertificateCa) ToOutput(ctx context.Context) pulumix.Output[*VpnCertificateCa] {
+	return pulumix.Output[*VpnCertificateCa]{
+		OutputState: i.ToVpnCertificateCaOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnCertificateCaArrayInput is an input type that accepts VpnCertificateCaArray and VpnCertificateCaArrayOutput values.
 // You can construct a concrete instance of `VpnCertificateCaArrayInput` via:
 //
@@ -182,6 +194,12 @@ func (i VpnCertificateCaArray) ToVpnCertificateCaArrayOutput() VpnCertificateCaA
 
 func (i VpnCertificateCaArray) ToVpnCertificateCaArrayOutputWithContext(ctx context.Context) VpnCertificateCaArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnCertificateCaArrayOutput)
+}
+
+func (i VpnCertificateCaArray) ToOutput(ctx context.Context) pulumix.Output[[]*VpnCertificateCa] {
+	return pulumix.Output[[]*VpnCertificateCa]{
+		OutputState: i.ToVpnCertificateCaArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // VpnCertificateCaMapInput is an input type that accepts VpnCertificateCaMap and VpnCertificateCaMapOutput values.
@@ -209,6 +227,12 @@ func (i VpnCertificateCaMap) ToVpnCertificateCaMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(VpnCertificateCaMapOutput)
 }
 
+func (i VpnCertificateCaMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnCertificateCa] {
+	return pulumix.Output[map[string]*VpnCertificateCa]{
+		OutputState: i.ToVpnCertificateCaMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnCertificateCaOutput struct{ *pulumi.OutputState }
 
 func (VpnCertificateCaOutput) ElementType() reflect.Type {
@@ -221,6 +245,12 @@ func (o VpnCertificateCaOutput) ToVpnCertificateCaOutput() VpnCertificateCaOutpu
 
 func (o VpnCertificateCaOutput) ToVpnCertificateCaOutputWithContext(ctx context.Context) VpnCertificateCaOutput {
 	return o
+}
+
+func (o VpnCertificateCaOutput) ToOutput(ctx context.Context) pulumix.Output[*VpnCertificateCa] {
+	return pulumix.Output[*VpnCertificateCa]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnCertificateCaOutput) AutoUpdateDays() pulumi.IntOutput {
@@ -237,6 +267,10 @@ func (o VpnCertificateCaOutput) Ca() pulumi.StringOutput {
 
 func (o VpnCertificateCaOutput) CaIdentifier() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpnCertificateCa) pulumi.StringOutput { return v.CaIdentifier }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateCaOutput) EstUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateCa) pulumi.StringOutput { return v.EstUrl }).(pulumi.StringOutput)
 }
 
 func (o VpnCertificateCaOutput) LastUpdated() pulumi.IntOutput {
@@ -293,6 +327,12 @@ func (o VpnCertificateCaArrayOutput) ToVpnCertificateCaArrayOutputWithContext(ct
 	return o
 }
 
+func (o VpnCertificateCaArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VpnCertificateCa] {
+	return pulumix.Output[[]*VpnCertificateCa]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o VpnCertificateCaArrayOutput) Index(i pulumi.IntInput) VpnCertificateCaOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnCertificateCa {
 		return vs[0].([]*VpnCertificateCa)[vs[1].(int)]
@@ -311,6 +351,12 @@ func (o VpnCertificateCaMapOutput) ToVpnCertificateCaMapOutput() VpnCertificateC
 
 func (o VpnCertificateCaMapOutput) ToVpnCertificateCaMapOutputWithContext(ctx context.Context) VpnCertificateCaMapOutput {
 	return o
+}
+
+func (o VpnCertificateCaMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnCertificateCa] {
+	return pulumix.Output[map[string]*VpnCertificateCa]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnCertificateCaMapOutput) MapIndex(k pulumi.StringInput) VpnCertificateCaOutput {

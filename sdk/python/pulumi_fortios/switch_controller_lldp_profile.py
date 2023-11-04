@@ -17,6 +17,12 @@ __all__ = ['SwitchControllerLldpProfileArgs', 'SwitchControllerLldpProfile']
 class SwitchControllerLldpProfileArgs:
     def __init__(__self__, *,
                  auto_isl: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth_encrypt: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth_identity: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth_macsec_profile: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth_reauth: Optional[pulumi.Input[int]] = None,
+                 auto_isl_auth_user: Optional[pulumi.Input[str]] = None,
                  auto_isl_hello_timer: Optional[pulumi.Input[int]] = None,
                  auto_isl_port_group: Optional[pulumi.Input[int]] = None,
                  auto_isl_receive_timeout: Optional[pulumi.Input[int]] = None,
@@ -36,6 +42,18 @@ class SwitchControllerLldpProfileArgs:
         """
         if auto_isl is not None:
             pulumi.set(__self__, "auto_isl", auto_isl)
+        if auto_isl_auth is not None:
+            pulumi.set(__self__, "auto_isl_auth", auto_isl_auth)
+        if auto_isl_auth_encrypt is not None:
+            pulumi.set(__self__, "auto_isl_auth_encrypt", auto_isl_auth_encrypt)
+        if auto_isl_auth_identity is not None:
+            pulumi.set(__self__, "auto_isl_auth_identity", auto_isl_auth_identity)
+        if auto_isl_auth_macsec_profile is not None:
+            pulumi.set(__self__, "auto_isl_auth_macsec_profile", auto_isl_auth_macsec_profile)
+        if auto_isl_auth_reauth is not None:
+            pulumi.set(__self__, "auto_isl_auth_reauth", auto_isl_auth_reauth)
+        if auto_isl_auth_user is not None:
+            pulumi.set(__self__, "auto_isl_auth_user", auto_isl_auth_user)
         if auto_isl_hello_timer is not None:
             pulumi.set(__self__, "auto_isl_hello_timer", auto_isl_hello_timer)
         if auto_isl_port_group is not None:
@@ -73,6 +91,60 @@ class SwitchControllerLldpProfileArgs:
     @auto_isl.setter
     def auto_isl(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "auto_isl", value)
+
+    @property
+    @pulumi.getter(name="autoIslAuth")
+    def auto_isl_auth(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "auto_isl_auth")
+
+    @auto_isl_auth.setter
+    def auto_isl_auth(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auto_isl_auth", value)
+
+    @property
+    @pulumi.getter(name="autoIslAuthEncrypt")
+    def auto_isl_auth_encrypt(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "auto_isl_auth_encrypt")
+
+    @auto_isl_auth_encrypt.setter
+    def auto_isl_auth_encrypt(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auto_isl_auth_encrypt", value)
+
+    @property
+    @pulumi.getter(name="autoIslAuthIdentity")
+    def auto_isl_auth_identity(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "auto_isl_auth_identity")
+
+    @auto_isl_auth_identity.setter
+    def auto_isl_auth_identity(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auto_isl_auth_identity", value)
+
+    @property
+    @pulumi.getter(name="autoIslAuthMacsecProfile")
+    def auto_isl_auth_macsec_profile(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "auto_isl_auth_macsec_profile")
+
+    @auto_isl_auth_macsec_profile.setter
+    def auto_isl_auth_macsec_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auto_isl_auth_macsec_profile", value)
+
+    @property
+    @pulumi.getter(name="autoIslAuthReauth")
+    def auto_isl_auth_reauth(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "auto_isl_auth_reauth")
+
+    @auto_isl_auth_reauth.setter
+    def auto_isl_auth_reauth(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "auto_isl_auth_reauth", value)
+
+    @property
+    @pulumi.getter(name="autoIslAuthUser")
+    def auto_isl_auth_user(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "auto_isl_auth_user")
+
+    @auto_isl_auth_user.setter
+    def auto_isl_auth_user(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auto_isl_auth_user", value)
 
     @property
     @pulumi.getter(name="autoIslHelloTimer")
@@ -205,6 +277,12 @@ class SwitchControllerLldpProfileArgs:
 class _SwitchControllerLldpProfileState:
     def __init__(__self__, *,
                  auto_isl: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth_encrypt: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth_identity: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth_macsec_profile: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth_reauth: Optional[pulumi.Input[int]] = None,
+                 auto_isl_auth_user: Optional[pulumi.Input[str]] = None,
                  auto_isl_hello_timer: Optional[pulumi.Input[int]] = None,
                  auto_isl_port_group: Optional[pulumi.Input[int]] = None,
                  auto_isl_receive_timeout: Optional[pulumi.Input[int]] = None,
@@ -224,6 +302,18 @@ class _SwitchControllerLldpProfileState:
         """
         if auto_isl is not None:
             pulumi.set(__self__, "auto_isl", auto_isl)
+        if auto_isl_auth is not None:
+            pulumi.set(__self__, "auto_isl_auth", auto_isl_auth)
+        if auto_isl_auth_encrypt is not None:
+            pulumi.set(__self__, "auto_isl_auth_encrypt", auto_isl_auth_encrypt)
+        if auto_isl_auth_identity is not None:
+            pulumi.set(__self__, "auto_isl_auth_identity", auto_isl_auth_identity)
+        if auto_isl_auth_macsec_profile is not None:
+            pulumi.set(__self__, "auto_isl_auth_macsec_profile", auto_isl_auth_macsec_profile)
+        if auto_isl_auth_reauth is not None:
+            pulumi.set(__self__, "auto_isl_auth_reauth", auto_isl_auth_reauth)
+        if auto_isl_auth_user is not None:
+            pulumi.set(__self__, "auto_isl_auth_user", auto_isl_auth_user)
         if auto_isl_hello_timer is not None:
             pulumi.set(__self__, "auto_isl_hello_timer", auto_isl_hello_timer)
         if auto_isl_port_group is not None:
@@ -261,6 +351,60 @@ class _SwitchControllerLldpProfileState:
     @auto_isl.setter
     def auto_isl(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "auto_isl", value)
+
+    @property
+    @pulumi.getter(name="autoIslAuth")
+    def auto_isl_auth(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "auto_isl_auth")
+
+    @auto_isl_auth.setter
+    def auto_isl_auth(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auto_isl_auth", value)
+
+    @property
+    @pulumi.getter(name="autoIslAuthEncrypt")
+    def auto_isl_auth_encrypt(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "auto_isl_auth_encrypt")
+
+    @auto_isl_auth_encrypt.setter
+    def auto_isl_auth_encrypt(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auto_isl_auth_encrypt", value)
+
+    @property
+    @pulumi.getter(name="autoIslAuthIdentity")
+    def auto_isl_auth_identity(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "auto_isl_auth_identity")
+
+    @auto_isl_auth_identity.setter
+    def auto_isl_auth_identity(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auto_isl_auth_identity", value)
+
+    @property
+    @pulumi.getter(name="autoIslAuthMacsecProfile")
+    def auto_isl_auth_macsec_profile(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "auto_isl_auth_macsec_profile")
+
+    @auto_isl_auth_macsec_profile.setter
+    def auto_isl_auth_macsec_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auto_isl_auth_macsec_profile", value)
+
+    @property
+    @pulumi.getter(name="autoIslAuthReauth")
+    def auto_isl_auth_reauth(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "auto_isl_auth_reauth")
+
+    @auto_isl_auth_reauth.setter
+    def auto_isl_auth_reauth(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "auto_isl_auth_reauth", value)
+
+    @property
+    @pulumi.getter(name="autoIslAuthUser")
+    def auto_isl_auth_user(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "auto_isl_auth_user")
+
+    @auto_isl_auth_user.setter
+    def auto_isl_auth_user(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auto_isl_auth_user", value)
 
     @property
     @pulumi.getter(name="autoIslHelloTimer")
@@ -395,6 +539,12 @@ class SwitchControllerLldpProfile(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auto_isl: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth_encrypt: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth_identity: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth_macsec_profile: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth_reauth: Optional[pulumi.Input[int]] = None,
+                 auto_isl_auth_user: Optional[pulumi.Input[str]] = None,
                  auto_isl_hello_timer: Optional[pulumi.Input[int]] = None,
                  auto_isl_port_group: Optional[pulumi.Input[int]] = None,
                  auto_isl_receive_timeout: Optional[pulumi.Input[int]] = None,
@@ -439,6 +589,12 @@ class SwitchControllerLldpProfile(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auto_isl: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth_encrypt: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth_identity: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth_macsec_profile: Optional[pulumi.Input[str]] = None,
+                 auto_isl_auth_reauth: Optional[pulumi.Input[int]] = None,
+                 auto_isl_auth_user: Optional[pulumi.Input[str]] = None,
                  auto_isl_hello_timer: Optional[pulumi.Input[int]] = None,
                  auto_isl_port_group: Optional[pulumi.Input[int]] = None,
                  auto_isl_receive_timeout: Optional[pulumi.Input[int]] = None,
@@ -463,6 +619,12 @@ class SwitchControllerLldpProfile(pulumi.CustomResource):
             __props__ = SwitchControllerLldpProfileArgs.__new__(SwitchControllerLldpProfileArgs)
 
             __props__.__dict__["auto_isl"] = auto_isl
+            __props__.__dict__["auto_isl_auth"] = auto_isl_auth
+            __props__.__dict__["auto_isl_auth_encrypt"] = auto_isl_auth_encrypt
+            __props__.__dict__["auto_isl_auth_identity"] = auto_isl_auth_identity
+            __props__.__dict__["auto_isl_auth_macsec_profile"] = auto_isl_auth_macsec_profile
+            __props__.__dict__["auto_isl_auth_reauth"] = auto_isl_auth_reauth
+            __props__.__dict__["auto_isl_auth_user"] = auto_isl_auth_user
             __props__.__dict__["auto_isl_hello_timer"] = auto_isl_hello_timer
             __props__.__dict__["auto_isl_port_group"] = auto_isl_port_group
             __props__.__dict__["auto_isl_receive_timeout"] = auto_isl_receive_timeout
@@ -488,6 +650,12 @@ class SwitchControllerLldpProfile(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             auto_isl: Optional[pulumi.Input[str]] = None,
+            auto_isl_auth: Optional[pulumi.Input[str]] = None,
+            auto_isl_auth_encrypt: Optional[pulumi.Input[str]] = None,
+            auto_isl_auth_identity: Optional[pulumi.Input[str]] = None,
+            auto_isl_auth_macsec_profile: Optional[pulumi.Input[str]] = None,
+            auto_isl_auth_reauth: Optional[pulumi.Input[int]] = None,
+            auto_isl_auth_user: Optional[pulumi.Input[str]] = None,
             auto_isl_hello_timer: Optional[pulumi.Input[int]] = None,
             auto_isl_port_group: Optional[pulumi.Input[int]] = None,
             auto_isl_receive_timeout: Optional[pulumi.Input[int]] = None,
@@ -515,6 +683,12 @@ class SwitchControllerLldpProfile(pulumi.CustomResource):
         __props__ = _SwitchControllerLldpProfileState.__new__(_SwitchControllerLldpProfileState)
 
         __props__.__dict__["auto_isl"] = auto_isl
+        __props__.__dict__["auto_isl_auth"] = auto_isl_auth
+        __props__.__dict__["auto_isl_auth_encrypt"] = auto_isl_auth_encrypt
+        __props__.__dict__["auto_isl_auth_identity"] = auto_isl_auth_identity
+        __props__.__dict__["auto_isl_auth_macsec_profile"] = auto_isl_auth_macsec_profile
+        __props__.__dict__["auto_isl_auth_reauth"] = auto_isl_auth_reauth
+        __props__.__dict__["auto_isl_auth_user"] = auto_isl_auth_user
         __props__.__dict__["auto_isl_hello_timer"] = auto_isl_hello_timer
         __props__.__dict__["auto_isl_port_group"] = auto_isl_port_group
         __props__.__dict__["auto_isl_receive_timeout"] = auto_isl_receive_timeout
@@ -535,6 +709,36 @@ class SwitchControllerLldpProfile(pulumi.CustomResource):
     @pulumi.getter(name="autoIsl")
     def auto_isl(self) -> pulumi.Output[str]:
         return pulumi.get(self, "auto_isl")
+
+    @property
+    @pulumi.getter(name="autoIslAuth")
+    def auto_isl_auth(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "auto_isl_auth")
+
+    @property
+    @pulumi.getter(name="autoIslAuthEncrypt")
+    def auto_isl_auth_encrypt(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "auto_isl_auth_encrypt")
+
+    @property
+    @pulumi.getter(name="autoIslAuthIdentity")
+    def auto_isl_auth_identity(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "auto_isl_auth_identity")
+
+    @property
+    @pulumi.getter(name="autoIslAuthMacsecProfile")
+    def auto_isl_auth_macsec_profile(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "auto_isl_auth_macsec_profile")
+
+    @property
+    @pulumi.getter(name="autoIslAuthReauth")
+    def auto_isl_auth_reauth(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "auto_isl_auth_reauth")
+
+    @property
+    @pulumi.getter(name="autoIslAuthUser")
+    def auto_isl_auth_user(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "auto_isl_auth_user")
 
     @property
     @pulumi.getter(name="autoIslHelloTimer")

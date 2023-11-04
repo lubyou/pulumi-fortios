@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SpamfilterMheader struct {
@@ -124,6 +125,12 @@ func (i *SpamfilterMheader) ToSpamfilterMheaderOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(SpamfilterMheaderOutput)
 }
 
+func (i *SpamfilterMheader) ToOutput(ctx context.Context) pulumix.Output[*SpamfilterMheader] {
+	return pulumix.Output[*SpamfilterMheader]{
+		OutputState: i.ToSpamfilterMheaderOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SpamfilterMheaderArrayInput is an input type that accepts SpamfilterMheaderArray and SpamfilterMheaderArrayOutput values.
 // You can construct a concrete instance of `SpamfilterMheaderArrayInput` via:
 //
@@ -147,6 +154,12 @@ func (i SpamfilterMheaderArray) ToSpamfilterMheaderArrayOutput() SpamfilterMhead
 
 func (i SpamfilterMheaderArray) ToSpamfilterMheaderArrayOutputWithContext(ctx context.Context) SpamfilterMheaderArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SpamfilterMheaderArrayOutput)
+}
+
+func (i SpamfilterMheaderArray) ToOutput(ctx context.Context) pulumix.Output[[]*SpamfilterMheader] {
+	return pulumix.Output[[]*SpamfilterMheader]{
+		OutputState: i.ToSpamfilterMheaderArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SpamfilterMheaderMapInput is an input type that accepts SpamfilterMheaderMap and SpamfilterMheaderMapOutput values.
@@ -174,6 +187,12 @@ func (i SpamfilterMheaderMap) ToSpamfilterMheaderMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SpamfilterMheaderMapOutput)
 }
 
+func (i SpamfilterMheaderMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SpamfilterMheader] {
+	return pulumix.Output[map[string]*SpamfilterMheader]{
+		OutputState: i.ToSpamfilterMheaderMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SpamfilterMheaderOutput struct{ *pulumi.OutputState }
 
 func (SpamfilterMheaderOutput) ElementType() reflect.Type {
@@ -186,6 +205,12 @@ func (o SpamfilterMheaderOutput) ToSpamfilterMheaderOutput() SpamfilterMheaderOu
 
 func (o SpamfilterMheaderOutput) ToSpamfilterMheaderOutputWithContext(ctx context.Context) SpamfilterMheaderOutput {
 	return o
+}
+
+func (o SpamfilterMheaderOutput) ToOutput(ctx context.Context) pulumix.Output[*SpamfilterMheader] {
+	return pulumix.Output[*SpamfilterMheader]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SpamfilterMheaderOutput) Comment() pulumi.StringPtrOutput {
@@ -230,6 +255,12 @@ func (o SpamfilterMheaderArrayOutput) ToSpamfilterMheaderArrayOutputWithContext(
 	return o
 }
 
+func (o SpamfilterMheaderArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SpamfilterMheader] {
+	return pulumix.Output[[]*SpamfilterMheader]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SpamfilterMheaderArrayOutput) Index(i pulumi.IntInput) SpamfilterMheaderOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SpamfilterMheader {
 		return vs[0].([]*SpamfilterMheader)[vs[1].(int)]
@@ -248,6 +279,12 @@ func (o SpamfilterMheaderMapOutput) ToSpamfilterMheaderMapOutput() SpamfilterMhe
 
 func (o SpamfilterMheaderMapOutput) ToSpamfilterMheaderMapOutputWithContext(ctx context.Context) SpamfilterMheaderMapOutput {
 	return o
+}
+
+func (o SpamfilterMheaderMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SpamfilterMheader] {
+	return pulumix.Output[map[string]*SpamfilterMheader]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SpamfilterMheaderMapOutput) MapIndex(k pulumi.StringInput) SpamfilterMheaderOutput {

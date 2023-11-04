@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetSystemAccprofileList(ctx *pulumi.Context, args *GetSystemAccprofileListArgs, opts ...pulumi.InvokeOption) (*GetSystemAccprofileListResult, error) {
@@ -72,6 +73,12 @@ func (o GetSystemAccprofileListResultOutput) ToGetSystemAccprofileListResultOutp
 
 func (o GetSystemAccprofileListResultOutput) ToGetSystemAccprofileListResultOutputWithContext(ctx context.Context) GetSystemAccprofileListResultOutput {
 	return o
+}
+
+func (o GetSystemAccprofileListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSystemAccprofileListResult] {
+	return pulumix.Output[GetSystemAccprofileListResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetSystemAccprofileListResultOutput) Filter() pulumi.StringPtrOutput {

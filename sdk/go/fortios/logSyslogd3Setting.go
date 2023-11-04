@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type LogSyslogd3Setting struct {
@@ -180,6 +181,12 @@ func (i *LogSyslogd3Setting) ToLogSyslogd3SettingOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(LogSyslogd3SettingOutput)
 }
 
+func (i *LogSyslogd3Setting) ToOutput(ctx context.Context) pulumix.Output[*LogSyslogd3Setting] {
+	return pulumix.Output[*LogSyslogd3Setting]{
+		OutputState: i.ToLogSyslogd3SettingOutputWithContext(ctx).OutputState,
+	}
+}
+
 // LogSyslogd3SettingArrayInput is an input type that accepts LogSyslogd3SettingArray and LogSyslogd3SettingArrayOutput values.
 // You can construct a concrete instance of `LogSyslogd3SettingArrayInput` via:
 //
@@ -203,6 +210,12 @@ func (i LogSyslogd3SettingArray) ToLogSyslogd3SettingArrayOutput() LogSyslogd3Se
 
 func (i LogSyslogd3SettingArray) ToLogSyslogd3SettingArrayOutputWithContext(ctx context.Context) LogSyslogd3SettingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogSyslogd3SettingArrayOutput)
+}
+
+func (i LogSyslogd3SettingArray) ToOutput(ctx context.Context) pulumix.Output[[]*LogSyslogd3Setting] {
+	return pulumix.Output[[]*LogSyslogd3Setting]{
+		OutputState: i.ToLogSyslogd3SettingArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // LogSyslogd3SettingMapInput is an input type that accepts LogSyslogd3SettingMap and LogSyslogd3SettingMapOutput values.
@@ -230,6 +243,12 @@ func (i LogSyslogd3SettingMap) ToLogSyslogd3SettingMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(LogSyslogd3SettingMapOutput)
 }
 
+func (i LogSyslogd3SettingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogSyslogd3Setting] {
+	return pulumix.Output[map[string]*LogSyslogd3Setting]{
+		OutputState: i.ToLogSyslogd3SettingMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type LogSyslogd3SettingOutput struct{ *pulumi.OutputState }
 
 func (LogSyslogd3SettingOutput) ElementType() reflect.Type {
@@ -242,6 +261,12 @@ func (o LogSyslogd3SettingOutput) ToLogSyslogd3SettingOutput() LogSyslogd3Settin
 
 func (o LogSyslogd3SettingOutput) ToLogSyslogd3SettingOutputWithContext(ctx context.Context) LogSyslogd3SettingOutput {
 	return o
+}
+
+func (o LogSyslogd3SettingOutput) ToOutput(ctx context.Context) pulumix.Output[*LogSyslogd3Setting] {
+	return pulumix.Output[*LogSyslogd3Setting]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LogSyslogd3SettingOutput) Certificate() pulumi.StringOutput {
@@ -334,6 +359,12 @@ func (o LogSyslogd3SettingArrayOutput) ToLogSyslogd3SettingArrayOutputWithContex
 	return o
 }
 
+func (o LogSyslogd3SettingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LogSyslogd3Setting] {
+	return pulumix.Output[[]*LogSyslogd3Setting]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LogSyslogd3SettingArrayOutput) Index(i pulumi.IntInput) LogSyslogd3SettingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogSyslogd3Setting {
 		return vs[0].([]*LogSyslogd3Setting)[vs[1].(int)]
@@ -352,6 +383,12 @@ func (o LogSyslogd3SettingMapOutput) ToLogSyslogd3SettingMapOutput() LogSyslogd3
 
 func (o LogSyslogd3SettingMapOutput) ToLogSyslogd3SettingMapOutputWithContext(ctx context.Context) LogSyslogd3SettingMapOutput {
 	return o
+}
+
+func (o LogSyslogd3SettingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogSyslogd3Setting] {
+	return pulumix.Output[map[string]*LogSyslogd3Setting]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LogSyslogd3SettingMapOutput) MapIndex(k pulumi.StringInput) LogSyslogd3SettingOutput {

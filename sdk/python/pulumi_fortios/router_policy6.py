@@ -24,6 +24,7 @@ class RouterPolicy6Args:
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['RouterPolicy6DstaddrArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  end_port: Optional[pulumi.Input[int]] = None,
+                 end_source_port: Optional[pulumi.Input[int]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  input_device_negate: Optional[pulumi.Input[str]] = None,
@@ -36,6 +37,7 @@ class RouterPolicy6Args:
                  src_negate: Optional[pulumi.Input[str]] = None,
                  srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['RouterPolicy6SrcaddrArgs']]]] = None,
                  start_port: Optional[pulumi.Input[int]] = None,
+                 start_source_port: Optional[pulumi.Input[int]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  tos: Optional[pulumi.Input[str]] = None,
                  tos_mask: Optional[pulumi.Input[str]] = None,
@@ -58,6 +60,8 @@ class RouterPolicy6Args:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if end_port is not None:
             pulumi.set(__self__, "end_port", end_port)
+        if end_source_port is not None:
+            pulumi.set(__self__, "end_source_port", end_source_port)
         if gateway is not None:
             pulumi.set(__self__, "gateway", gateway)
         if get_all_tables is not None:
@@ -82,6 +86,8 @@ class RouterPolicy6Args:
             pulumi.set(__self__, "srcaddrs", srcaddrs)
         if start_port is not None:
             pulumi.set(__self__, "start_port", start_port)
+        if start_source_port is not None:
+            pulumi.set(__self__, "start_source_port", start_source_port)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if tos is not None:
@@ -162,6 +168,15 @@ class RouterPolicy6Args:
     @end_port.setter
     def end_port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "end_port", value)
+
+    @property
+    @pulumi.getter(name="endSourcePort")
+    def end_source_port(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "end_source_port")
+
+    @end_source_port.setter
+    def end_source_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "end_source_port", value)
 
     @property
     @pulumi.getter
@@ -272,6 +287,15 @@ class RouterPolicy6Args:
         pulumi.set(self, "start_port", value)
 
     @property
+    @pulumi.getter(name="startSourcePort")
+    def start_source_port(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "start_source_port")
+
+    @start_source_port.setter
+    def start_source_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "start_source_port", value)
+
+    @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "status")
@@ -318,6 +342,7 @@ class _RouterPolicy6State:
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['RouterPolicy6DstaddrArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  end_port: Optional[pulumi.Input[int]] = None,
+                 end_source_port: Optional[pulumi.Input[int]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  input_device: Optional[pulumi.Input[str]] = None,
@@ -331,6 +356,7 @@ class _RouterPolicy6State:
                  src_negate: Optional[pulumi.Input[str]] = None,
                  srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['RouterPolicy6SrcaddrArgs']]]] = None,
                  start_port: Optional[pulumi.Input[int]] = None,
+                 start_source_port: Optional[pulumi.Input[int]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  tos: Optional[pulumi.Input[str]] = None,
                  tos_mask: Optional[pulumi.Input[str]] = None,
@@ -352,6 +378,8 @@ class _RouterPolicy6State:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if end_port is not None:
             pulumi.set(__self__, "end_port", end_port)
+        if end_source_port is not None:
+            pulumi.set(__self__, "end_source_port", end_source_port)
         if gateway is not None:
             pulumi.set(__self__, "gateway", gateway)
         if get_all_tables is not None:
@@ -378,6 +406,8 @@ class _RouterPolicy6State:
             pulumi.set(__self__, "srcaddrs", srcaddrs)
         if start_port is not None:
             pulumi.set(__self__, "start_port", start_port)
+        if start_source_port is not None:
+            pulumi.set(__self__, "start_source_port", start_source_port)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if tos is not None:
@@ -449,6 +479,15 @@ class _RouterPolicy6State:
     @end_port.setter
     def end_port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "end_port", value)
+
+    @property
+    @pulumi.getter(name="endSourcePort")
+    def end_source_port(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "end_source_port")
+
+    @end_source_port.setter
+    def end_source_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "end_source_port", value)
 
     @property
     @pulumi.getter
@@ -568,6 +607,15 @@ class _RouterPolicy6State:
         pulumi.set(self, "start_port", value)
 
     @property
+    @pulumi.getter(name="startSourcePort")
+    def start_source_port(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "start_source_port")
+
+    @start_source_port.setter
+    def start_source_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "start_source_port", value)
+
+    @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "status")
@@ -616,6 +664,7 @@ class RouterPolicy6(pulumi.CustomResource):
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterPolicy6DstaddrArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  end_port: Optional[pulumi.Input[int]] = None,
+                 end_source_port: Optional[pulumi.Input[int]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  input_device: Optional[pulumi.Input[str]] = None,
@@ -629,6 +678,7 @@ class RouterPolicy6(pulumi.CustomResource):
                  src_negate: Optional[pulumi.Input[str]] = None,
                  srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterPolicy6SrcaddrArgs']]]]] = None,
                  start_port: Optional[pulumi.Input[int]] = None,
+                 start_source_port: Optional[pulumi.Input[int]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  tos: Optional[pulumi.Input[str]] = None,
                  tos_mask: Optional[pulumi.Input[str]] = None,
@@ -669,6 +719,7 @@ class RouterPolicy6(pulumi.CustomResource):
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterPolicy6DstaddrArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  end_port: Optional[pulumi.Input[int]] = None,
+                 end_source_port: Optional[pulumi.Input[int]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  input_device: Optional[pulumi.Input[str]] = None,
@@ -682,6 +733,7 @@ class RouterPolicy6(pulumi.CustomResource):
                  src_negate: Optional[pulumi.Input[str]] = None,
                  srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterPolicy6SrcaddrArgs']]]]] = None,
                  start_port: Optional[pulumi.Input[int]] = None,
+                 start_source_port: Optional[pulumi.Input[int]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  tos: Optional[pulumi.Input[str]] = None,
                  tos_mask: Optional[pulumi.Input[str]] = None,
@@ -702,6 +754,7 @@ class RouterPolicy6(pulumi.CustomResource):
             __props__.__dict__["dstaddrs"] = dstaddrs
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["end_port"] = end_port
+            __props__.__dict__["end_source_port"] = end_source_port
             __props__.__dict__["gateway"] = gateway
             __props__.__dict__["get_all_tables"] = get_all_tables
             if input_device is None and not opts.urn:
@@ -717,6 +770,7 @@ class RouterPolicy6(pulumi.CustomResource):
             __props__.__dict__["src_negate"] = src_negate
             __props__.__dict__["srcaddrs"] = srcaddrs
             __props__.__dict__["start_port"] = start_port
+            __props__.__dict__["start_source_port"] = start_source_port
             __props__.__dict__["status"] = status
             __props__.__dict__["tos"] = tos
             __props__.__dict__["tos_mask"] = tos_mask
@@ -738,6 +792,7 @@ class RouterPolicy6(pulumi.CustomResource):
             dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterPolicy6DstaddrArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             end_port: Optional[pulumi.Input[int]] = None,
+            end_source_port: Optional[pulumi.Input[int]] = None,
             gateway: Optional[pulumi.Input[str]] = None,
             get_all_tables: Optional[pulumi.Input[str]] = None,
             input_device: Optional[pulumi.Input[str]] = None,
@@ -751,6 +806,7 @@ class RouterPolicy6(pulumi.CustomResource):
             src_negate: Optional[pulumi.Input[str]] = None,
             srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterPolicy6SrcaddrArgs']]]]] = None,
             start_port: Optional[pulumi.Input[int]] = None,
+            start_source_port: Optional[pulumi.Input[int]] = None,
             status: Optional[pulumi.Input[str]] = None,
             tos: Optional[pulumi.Input[str]] = None,
             tos_mask: Optional[pulumi.Input[str]] = None,
@@ -774,6 +830,7 @@ class RouterPolicy6(pulumi.CustomResource):
         __props__.__dict__["dstaddrs"] = dstaddrs
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["end_port"] = end_port
+        __props__.__dict__["end_source_port"] = end_source_port
         __props__.__dict__["gateway"] = gateway
         __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["input_device"] = input_device
@@ -787,6 +844,7 @@ class RouterPolicy6(pulumi.CustomResource):
         __props__.__dict__["src_negate"] = src_negate
         __props__.__dict__["srcaddrs"] = srcaddrs
         __props__.__dict__["start_port"] = start_port
+        __props__.__dict__["start_source_port"] = start_source_port
         __props__.__dict__["status"] = status
         __props__.__dict__["tos"] = tos
         __props__.__dict__["tos_mask"] = tos_mask
@@ -827,6 +885,11 @@ class RouterPolicy6(pulumi.CustomResource):
     @pulumi.getter(name="endPort")
     def end_port(self) -> pulumi.Output[int]:
         return pulumi.get(self, "end_port")
+
+    @property
+    @pulumi.getter(name="endSourcePort")
+    def end_source_port(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "end_source_port")
 
     @property
     @pulumi.getter
@@ -892,6 +955,11 @@ class RouterPolicy6(pulumi.CustomResource):
     @pulumi.getter(name="startPort")
     def start_port(self) -> pulumi.Output[int]:
         return pulumi.get(self, "start_port")
+
+    @property
+    @pulumi.getter(name="startSourcePort")
+    def start_source_port(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "start_source_port")
 
     @property
     @pulumi.getter

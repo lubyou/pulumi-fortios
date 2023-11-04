@@ -16,6 +16,7 @@ class UserLdapArgs:
     def __init__(__self__, *,
                  dn: pulumi.Input[str],
                  server: pulumi.Input[str],
+                 account_key_cert_field: Optional[pulumi.Input[str]] = None,
                  account_key_filter: Optional[pulumi.Input[str]] = None,
                  account_key_processing: Optional[pulumi.Input[str]] = None,
                  account_key_upn_san: Optional[pulumi.Input[str]] = None,
@@ -59,6 +60,8 @@ class UserLdapArgs:
         """
         pulumi.set(__self__, "dn", dn)
         pulumi.set(__self__, "server", server)
+        if account_key_cert_field is not None:
+            pulumi.set(__self__, "account_key_cert_field", account_key_cert_field)
         if account_key_filter is not None:
             pulumi.set(__self__, "account_key_filter", account_key_filter)
         if account_key_processing is not None:
@@ -153,6 +156,15 @@ class UserLdapArgs:
     @server.setter
     def server(self, value: pulumi.Input[str]):
         pulumi.set(self, "server", value)
+
+    @property
+    @pulumi.getter(name="accountKeyCertField")
+    def account_key_cert_field(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "account_key_cert_field")
+
+    @account_key_cert_field.setter
+    def account_key_cert_field(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "account_key_cert_field", value)
 
     @property
     @pulumi.getter(name="accountKeyFilter")
@@ -500,6 +512,7 @@ class UserLdapArgs:
 @pulumi.input_type
 class _UserLdapState:
     def __init__(__self__, *,
+                 account_key_cert_field: Optional[pulumi.Input[str]] = None,
                  account_key_filter: Optional[pulumi.Input[str]] = None,
                  account_key_processing: Optional[pulumi.Input[str]] = None,
                  account_key_upn_san: Optional[pulumi.Input[str]] = None,
@@ -543,6 +556,8 @@ class _UserLdapState:
         """
         Input properties used for looking up and filtering UserLdap resources.
         """
+        if account_key_cert_field is not None:
+            pulumi.set(__self__, "account_key_cert_field", account_key_cert_field)
         if account_key_filter is not None:
             pulumi.set(__self__, "account_key_filter", account_key_filter)
         if account_key_processing is not None:
@@ -623,6 +638,15 @@ class _UserLdapState:
             pulumi.set(__self__, "username", username)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="accountKeyCertField")
+    def account_key_cert_field(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "account_key_cert_field")
+
+    @account_key_cert_field.setter
+    def account_key_cert_field(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "account_key_cert_field", value)
 
     @property
     @pulumi.getter(name="accountKeyFilter")
@@ -990,6 +1014,7 @@ class UserLdap(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 account_key_cert_field: Optional[pulumi.Input[str]] = None,
                  account_key_filter: Optional[pulumi.Input[str]] = None,
                  account_key_processing: Optional[pulumi.Input[str]] = None,
                  account_key_upn_san: Optional[pulumi.Input[str]] = None,
@@ -1059,6 +1084,7 @@ class UserLdap(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 account_key_cert_field: Optional[pulumi.Input[str]] = None,
                  account_key_filter: Optional[pulumi.Input[str]] = None,
                  account_key_processing: Optional[pulumi.Input[str]] = None,
                  account_key_upn_san: Optional[pulumi.Input[str]] = None,
@@ -1108,6 +1134,7 @@ class UserLdap(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = UserLdapArgs.__new__(UserLdapArgs)
 
+            __props__.__dict__["account_key_cert_field"] = account_key_cert_field
             __props__.__dict__["account_key_filter"] = account_key_filter
             __props__.__dict__["account_key_processing"] = account_key_processing
             __props__.__dict__["account_key_upn_san"] = account_key_upn_san
@@ -1164,6 +1191,7 @@ class UserLdap(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            account_key_cert_field: Optional[pulumi.Input[str]] = None,
             account_key_filter: Optional[pulumi.Input[str]] = None,
             account_key_processing: Optional[pulumi.Input[str]] = None,
             account_key_upn_san: Optional[pulumi.Input[str]] = None,
@@ -1216,6 +1244,7 @@ class UserLdap(pulumi.CustomResource):
 
         __props__ = _UserLdapState.__new__(_UserLdapState)
 
+        __props__.__dict__["account_key_cert_field"] = account_key_cert_field
         __props__.__dict__["account_key_filter"] = account_key_filter
         __props__.__dict__["account_key_processing"] = account_key_processing
         __props__.__dict__["account_key_upn_san"] = account_key_upn_san
@@ -1257,6 +1286,11 @@ class UserLdap(pulumi.CustomResource):
         __props__.__dict__["username"] = username
         __props__.__dict__["vdomparam"] = vdomparam
         return UserLdap(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="accountKeyCertField")
+    def account_key_cert_field(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "account_key_cert_field")
 
     @property
     @pulumi.getter(name="accountKeyFilter")

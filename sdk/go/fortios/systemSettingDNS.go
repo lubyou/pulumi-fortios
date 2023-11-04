@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemSettingDNS struct {
@@ -100,6 +101,12 @@ func (i *SystemSettingDNS) ToSystemSettingDNSOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSettingDNSOutput)
 }
 
+func (i *SystemSettingDNS) ToOutput(ctx context.Context) pulumix.Output[*SystemSettingDNS] {
+	return pulumix.Output[*SystemSettingDNS]{
+		OutputState: i.ToSystemSettingDNSOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemSettingDNSArrayInput is an input type that accepts SystemSettingDNSArray and SystemSettingDNSArrayOutput values.
 // You can construct a concrete instance of `SystemSettingDNSArrayInput` via:
 //
@@ -123,6 +130,12 @@ func (i SystemSettingDNSArray) ToSystemSettingDNSArrayOutput() SystemSettingDNSA
 
 func (i SystemSettingDNSArray) ToSystemSettingDNSArrayOutputWithContext(ctx context.Context) SystemSettingDNSArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSettingDNSArrayOutput)
+}
+
+func (i SystemSettingDNSArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSettingDNS] {
+	return pulumix.Output[[]*SystemSettingDNS]{
+		OutputState: i.ToSystemSettingDNSArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemSettingDNSMapInput is an input type that accepts SystemSettingDNSMap and SystemSettingDNSMapOutput values.
@@ -150,6 +163,12 @@ func (i SystemSettingDNSMap) ToSystemSettingDNSMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSettingDNSMapOutput)
 }
 
+func (i SystemSettingDNSMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSettingDNS] {
+	return pulumix.Output[map[string]*SystemSettingDNS]{
+		OutputState: i.ToSystemSettingDNSMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemSettingDNSOutput struct{ *pulumi.OutputState }
 
 func (SystemSettingDNSOutput) ElementType() reflect.Type {
@@ -162,6 +181,12 @@ func (o SystemSettingDNSOutput) ToSystemSettingDNSOutput() SystemSettingDNSOutpu
 
 func (o SystemSettingDNSOutput) ToSystemSettingDNSOutputWithContext(ctx context.Context) SystemSettingDNSOutput {
 	return o
+}
+
+func (o SystemSettingDNSOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemSettingDNS] {
+	return pulumix.Output[*SystemSettingDNS]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemSettingDNSOutput) DnsOverTls() pulumi.StringOutput {
@@ -190,6 +215,12 @@ func (o SystemSettingDNSArrayOutput) ToSystemSettingDNSArrayOutputWithContext(ct
 	return o
 }
 
+func (o SystemSettingDNSArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSettingDNS] {
+	return pulumix.Output[[]*SystemSettingDNS]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemSettingDNSArrayOutput) Index(i pulumi.IntInput) SystemSettingDNSOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSettingDNS {
 		return vs[0].([]*SystemSettingDNS)[vs[1].(int)]
@@ -208,6 +239,12 @@ func (o SystemSettingDNSMapOutput) ToSystemSettingDNSMapOutput() SystemSettingDN
 
 func (o SystemSettingDNSMapOutput) ToSystemSettingDNSMapOutputWithContext(ctx context.Context) SystemSettingDNSMapOutput {
 	return o
+}
+
+func (o SystemSettingDNSMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSettingDNS] {
+	return pulumix.Output[map[string]*SystemSettingDNS]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemSettingDNSMapOutput) MapIndex(k pulumi.StringInput) SystemSettingDNSOutput {

@@ -50,6 +50,7 @@ export class DnsfilterProfile extends pulumi.CustomResource {
     public readonly safeSearch!: pulumi.Output<string>;
     public readonly sdnsDomainLog!: pulumi.Output<string>;
     public readonly sdnsFtgdErrLog!: pulumi.Output<string>;
+    public readonly transparentDnsDatabases!: pulumi.Output<outputs.DnsfilterProfileTransparentDnsDatabase[] | undefined>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
     public readonly youtubeRestrict!: pulumi.Output<string>;
 
@@ -82,6 +83,7 @@ export class DnsfilterProfile extends pulumi.CustomResource {
             resourceInputs["safeSearch"] = state ? state.safeSearch : undefined;
             resourceInputs["sdnsDomainLog"] = state ? state.sdnsDomainLog : undefined;
             resourceInputs["sdnsFtgdErrLog"] = state ? state.sdnsFtgdErrLog : undefined;
+            resourceInputs["transparentDnsDatabases"] = state ? state.transparentDnsDatabases : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["youtubeRestrict"] = state ? state.youtubeRestrict : undefined;
         } else {
@@ -102,6 +104,7 @@ export class DnsfilterProfile extends pulumi.CustomResource {
             resourceInputs["safeSearch"] = args ? args.safeSearch : undefined;
             resourceInputs["sdnsDomainLog"] = args ? args.sdnsDomainLog : undefined;
             resourceInputs["sdnsFtgdErrLog"] = args ? args.sdnsFtgdErrLog : undefined;
+            resourceInputs["transparentDnsDatabases"] = args ? args.transparentDnsDatabases : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["youtubeRestrict"] = args ? args.youtubeRestrict : undefined;
         }
@@ -130,6 +133,7 @@ export interface DnsfilterProfileState {
     safeSearch?: pulumi.Input<string>;
     sdnsDomainLog?: pulumi.Input<string>;
     sdnsFtgdErrLog?: pulumi.Input<string>;
+    transparentDnsDatabases?: pulumi.Input<pulumi.Input<inputs.DnsfilterProfileTransparentDnsDatabase>[]>;
     vdomparam?: pulumi.Input<string>;
     youtubeRestrict?: pulumi.Input<string>;
 }
@@ -154,6 +158,7 @@ export interface DnsfilterProfileArgs {
     safeSearch?: pulumi.Input<string>;
     sdnsDomainLog?: pulumi.Input<string>;
     sdnsFtgdErrLog?: pulumi.Input<string>;
+    transparentDnsDatabases?: pulumi.Input<pulumi.Input<inputs.DnsfilterProfileTransparentDnsDatabase>[]>;
     vdomparam?: pulumi.Input<string>;
     youtubeRestrict?: pulumi.Input<string>;
 }

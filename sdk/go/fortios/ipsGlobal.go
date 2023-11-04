@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type IpsGlobal struct {
@@ -190,6 +191,12 @@ func (i *IpsGlobal) ToIpsGlobalOutputWithContext(ctx context.Context) IpsGlobalO
 	return pulumi.ToOutputWithContext(ctx, i).(IpsGlobalOutput)
 }
 
+func (i *IpsGlobal) ToOutput(ctx context.Context) pulumix.Output[*IpsGlobal] {
+	return pulumix.Output[*IpsGlobal]{
+		OutputState: i.ToIpsGlobalOutputWithContext(ctx).OutputState,
+	}
+}
+
 // IpsGlobalArrayInput is an input type that accepts IpsGlobalArray and IpsGlobalArrayOutput values.
 // You can construct a concrete instance of `IpsGlobalArrayInput` via:
 //
@@ -213,6 +220,12 @@ func (i IpsGlobalArray) ToIpsGlobalArrayOutput() IpsGlobalArrayOutput {
 
 func (i IpsGlobalArray) ToIpsGlobalArrayOutputWithContext(ctx context.Context) IpsGlobalArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IpsGlobalArrayOutput)
+}
+
+func (i IpsGlobalArray) ToOutput(ctx context.Context) pulumix.Output[[]*IpsGlobal] {
+	return pulumix.Output[[]*IpsGlobal]{
+		OutputState: i.ToIpsGlobalArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // IpsGlobalMapInput is an input type that accepts IpsGlobalMap and IpsGlobalMapOutput values.
@@ -240,6 +253,12 @@ func (i IpsGlobalMap) ToIpsGlobalMapOutputWithContext(ctx context.Context) IpsGl
 	return pulumi.ToOutputWithContext(ctx, i).(IpsGlobalMapOutput)
 }
 
+func (i IpsGlobalMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*IpsGlobal] {
+	return pulumix.Output[map[string]*IpsGlobal]{
+		OutputState: i.ToIpsGlobalMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type IpsGlobalOutput struct{ *pulumi.OutputState }
 
 func (IpsGlobalOutput) ElementType() reflect.Type {
@@ -252,6 +271,12 @@ func (o IpsGlobalOutput) ToIpsGlobalOutput() IpsGlobalOutput {
 
 func (o IpsGlobalOutput) ToIpsGlobalOutputWithContext(ctx context.Context) IpsGlobalOutput {
 	return o
+}
+
+func (o IpsGlobalOutput) ToOutput(ctx context.Context) pulumix.Output[*IpsGlobal] {
+	return pulumix.Output[*IpsGlobal]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o IpsGlobalOutput) AnomalyMode() pulumi.StringOutput {
@@ -352,6 +377,12 @@ func (o IpsGlobalArrayOutput) ToIpsGlobalArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
+func (o IpsGlobalArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*IpsGlobal] {
+	return pulumix.Output[[]*IpsGlobal]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o IpsGlobalArrayOutput) Index(i pulumi.IntInput) IpsGlobalOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IpsGlobal {
 		return vs[0].([]*IpsGlobal)[vs[1].(int)]
@@ -370,6 +401,12 @@ func (o IpsGlobalMapOutput) ToIpsGlobalMapOutput() IpsGlobalMapOutput {
 
 func (o IpsGlobalMapOutput) ToIpsGlobalMapOutputWithContext(ctx context.Context) IpsGlobalMapOutput {
 	return o
+}
+
+func (o IpsGlobalMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*IpsGlobal] {
+	return pulumix.Output[map[string]*IpsGlobal]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o IpsGlobalMapOutput) MapIndex(k pulumi.StringInput) IpsGlobalOutput {

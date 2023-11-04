@@ -9,9 +9,3790 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 var _ = internal.GetEnvOrDefault
+
+type SystemVirtualWanLinkServiceSrc struct {
+	Name *string `pulumi:"name"`
+}
+
+// SystemVirtualWanLinkServiceSrcInput is an input type that accepts SystemVirtualWanLinkServiceSrcArgs and SystemVirtualWanLinkServiceSrcOutput values.
+// You can construct a concrete instance of `SystemVirtualWanLinkServiceSrcInput` via:
+//
+//	SystemVirtualWanLinkServiceSrcArgs{...}
+type SystemVirtualWanLinkServiceSrcInput interface {
+	pulumi.Input
+
+	ToSystemVirtualWanLinkServiceSrcOutput() SystemVirtualWanLinkServiceSrcOutput
+	ToSystemVirtualWanLinkServiceSrcOutputWithContext(context.Context) SystemVirtualWanLinkServiceSrcOutput
+}
+
+type SystemVirtualWanLinkServiceSrcArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (SystemVirtualWanLinkServiceSrcArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SystemVirtualWanLinkServiceSrc)(nil)).Elem()
+}
+
+func (i SystemVirtualWanLinkServiceSrcArgs) ToSystemVirtualWanLinkServiceSrcOutput() SystemVirtualWanLinkServiceSrcOutput {
+	return i.ToSystemVirtualWanLinkServiceSrcOutputWithContext(context.Background())
+}
+
+func (i SystemVirtualWanLinkServiceSrcArgs) ToSystemVirtualWanLinkServiceSrcOutputWithContext(ctx context.Context) SystemVirtualWanLinkServiceSrcOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SystemVirtualWanLinkServiceSrcOutput)
+}
+
+func (i SystemVirtualWanLinkServiceSrcArgs) ToOutput(ctx context.Context) pulumix.Output[SystemVirtualWanLinkServiceSrc] {
+	return pulumix.Output[SystemVirtualWanLinkServiceSrc]{
+		OutputState: i.ToSystemVirtualWanLinkServiceSrcOutputWithContext(ctx).OutputState,
+	}
+}
+
+// SystemVirtualWanLinkServiceSrcArrayInput is an input type that accepts SystemVirtualWanLinkServiceSrcArray and SystemVirtualWanLinkServiceSrcArrayOutput values.
+// You can construct a concrete instance of `SystemVirtualWanLinkServiceSrcArrayInput` via:
+//
+//	SystemVirtualWanLinkServiceSrcArray{ SystemVirtualWanLinkServiceSrcArgs{...} }
+type SystemVirtualWanLinkServiceSrcArrayInput interface {
+	pulumi.Input
+
+	ToSystemVirtualWanLinkServiceSrcArrayOutput() SystemVirtualWanLinkServiceSrcArrayOutput
+	ToSystemVirtualWanLinkServiceSrcArrayOutputWithContext(context.Context) SystemVirtualWanLinkServiceSrcArrayOutput
+}
+
+type SystemVirtualWanLinkServiceSrcArray []SystemVirtualWanLinkServiceSrcInput
+
+func (SystemVirtualWanLinkServiceSrcArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SystemVirtualWanLinkServiceSrc)(nil)).Elem()
+}
+
+func (i SystemVirtualWanLinkServiceSrcArray) ToSystemVirtualWanLinkServiceSrcArrayOutput() SystemVirtualWanLinkServiceSrcArrayOutput {
+	return i.ToSystemVirtualWanLinkServiceSrcArrayOutputWithContext(context.Background())
+}
+
+func (i SystemVirtualWanLinkServiceSrcArray) ToSystemVirtualWanLinkServiceSrcArrayOutputWithContext(ctx context.Context) SystemVirtualWanLinkServiceSrcArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SystemVirtualWanLinkServiceSrcArrayOutput)
+}
+
+func (i SystemVirtualWanLinkServiceSrcArray) ToOutput(ctx context.Context) pulumix.Output[[]SystemVirtualWanLinkServiceSrc] {
+	return pulumix.Output[[]SystemVirtualWanLinkServiceSrc]{
+		OutputState: i.ToSystemVirtualWanLinkServiceSrcArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type SystemVirtualWanLinkServiceSrcOutput struct{ *pulumi.OutputState }
+
+func (SystemVirtualWanLinkServiceSrcOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SystemVirtualWanLinkServiceSrc)(nil)).Elem()
+}
+
+func (o SystemVirtualWanLinkServiceSrcOutput) ToSystemVirtualWanLinkServiceSrcOutput() SystemVirtualWanLinkServiceSrcOutput {
+	return o
+}
+
+func (o SystemVirtualWanLinkServiceSrcOutput) ToSystemVirtualWanLinkServiceSrcOutputWithContext(ctx context.Context) SystemVirtualWanLinkServiceSrcOutput {
+	return o
+}
+
+func (o SystemVirtualWanLinkServiceSrcOutput) ToOutput(ctx context.Context) pulumix.Output[SystemVirtualWanLinkServiceSrc] {
+	return pulumix.Output[SystemVirtualWanLinkServiceSrc]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o SystemVirtualWanLinkServiceSrcOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SystemVirtualWanLinkServiceSrc) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type SystemVirtualWanLinkServiceSrcArrayOutput struct{ *pulumi.OutputState }
+
+func (SystemVirtualWanLinkServiceSrcArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SystemVirtualWanLinkServiceSrc)(nil)).Elem()
+}
+
+func (o SystemVirtualWanLinkServiceSrcArrayOutput) ToSystemVirtualWanLinkServiceSrcArrayOutput() SystemVirtualWanLinkServiceSrcArrayOutput {
+	return o
+}
+
+func (o SystemVirtualWanLinkServiceSrcArrayOutput) ToSystemVirtualWanLinkServiceSrcArrayOutputWithContext(ctx context.Context) SystemVirtualWanLinkServiceSrcArrayOutput {
+	return o
+}
+
+func (o SystemVirtualWanLinkServiceSrcArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SystemVirtualWanLinkServiceSrc] {
+	return pulumix.Output[[]SystemVirtualWanLinkServiceSrc]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o SystemVirtualWanLinkServiceSrcArrayOutput) Index(i pulumi.IntInput) SystemVirtualWanLinkServiceSrcOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemVirtualWanLinkServiceSrc {
+		return vs[0].([]SystemVirtualWanLinkServiceSrc)[vs[1].(int)]
+	}).(SystemVirtualWanLinkServiceSrcOutput)
+}
+
+type SystemVirtualWanLinkServiceUser struct {
+	Name *string `pulumi:"name"`
+}
+
+// SystemVirtualWanLinkServiceUserInput is an input type that accepts SystemVirtualWanLinkServiceUserArgs and SystemVirtualWanLinkServiceUserOutput values.
+// You can construct a concrete instance of `SystemVirtualWanLinkServiceUserInput` via:
+//
+//	SystemVirtualWanLinkServiceUserArgs{...}
+type SystemVirtualWanLinkServiceUserInput interface {
+	pulumi.Input
+
+	ToSystemVirtualWanLinkServiceUserOutput() SystemVirtualWanLinkServiceUserOutput
+	ToSystemVirtualWanLinkServiceUserOutputWithContext(context.Context) SystemVirtualWanLinkServiceUserOutput
+}
+
+type SystemVirtualWanLinkServiceUserArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (SystemVirtualWanLinkServiceUserArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SystemVirtualWanLinkServiceUser)(nil)).Elem()
+}
+
+func (i SystemVirtualWanLinkServiceUserArgs) ToSystemVirtualWanLinkServiceUserOutput() SystemVirtualWanLinkServiceUserOutput {
+	return i.ToSystemVirtualWanLinkServiceUserOutputWithContext(context.Background())
+}
+
+func (i SystemVirtualWanLinkServiceUserArgs) ToSystemVirtualWanLinkServiceUserOutputWithContext(ctx context.Context) SystemVirtualWanLinkServiceUserOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SystemVirtualWanLinkServiceUserOutput)
+}
+
+func (i SystemVirtualWanLinkServiceUserArgs) ToOutput(ctx context.Context) pulumix.Output[SystemVirtualWanLinkServiceUser] {
+	return pulumix.Output[SystemVirtualWanLinkServiceUser]{
+		OutputState: i.ToSystemVirtualWanLinkServiceUserOutputWithContext(ctx).OutputState,
+	}
+}
+
+// SystemVirtualWanLinkServiceUserArrayInput is an input type that accepts SystemVirtualWanLinkServiceUserArray and SystemVirtualWanLinkServiceUserArrayOutput values.
+// You can construct a concrete instance of `SystemVirtualWanLinkServiceUserArrayInput` via:
+//
+//	SystemVirtualWanLinkServiceUserArray{ SystemVirtualWanLinkServiceUserArgs{...} }
+type SystemVirtualWanLinkServiceUserArrayInput interface {
+	pulumi.Input
+
+	ToSystemVirtualWanLinkServiceUserArrayOutput() SystemVirtualWanLinkServiceUserArrayOutput
+	ToSystemVirtualWanLinkServiceUserArrayOutputWithContext(context.Context) SystemVirtualWanLinkServiceUserArrayOutput
+}
+
+type SystemVirtualWanLinkServiceUserArray []SystemVirtualWanLinkServiceUserInput
+
+func (SystemVirtualWanLinkServiceUserArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SystemVirtualWanLinkServiceUser)(nil)).Elem()
+}
+
+func (i SystemVirtualWanLinkServiceUserArray) ToSystemVirtualWanLinkServiceUserArrayOutput() SystemVirtualWanLinkServiceUserArrayOutput {
+	return i.ToSystemVirtualWanLinkServiceUserArrayOutputWithContext(context.Background())
+}
+
+func (i SystemVirtualWanLinkServiceUserArray) ToSystemVirtualWanLinkServiceUserArrayOutputWithContext(ctx context.Context) SystemVirtualWanLinkServiceUserArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SystemVirtualWanLinkServiceUserArrayOutput)
+}
+
+func (i SystemVirtualWanLinkServiceUserArray) ToOutput(ctx context.Context) pulumix.Output[[]SystemVirtualWanLinkServiceUser] {
+	return pulumix.Output[[]SystemVirtualWanLinkServiceUser]{
+		OutputState: i.ToSystemVirtualWanLinkServiceUserArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type SystemVirtualWanLinkServiceUserOutput struct{ *pulumi.OutputState }
+
+func (SystemVirtualWanLinkServiceUserOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SystemVirtualWanLinkServiceUser)(nil)).Elem()
+}
+
+func (o SystemVirtualWanLinkServiceUserOutput) ToSystemVirtualWanLinkServiceUserOutput() SystemVirtualWanLinkServiceUserOutput {
+	return o
+}
+
+func (o SystemVirtualWanLinkServiceUserOutput) ToSystemVirtualWanLinkServiceUserOutputWithContext(ctx context.Context) SystemVirtualWanLinkServiceUserOutput {
+	return o
+}
+
+func (o SystemVirtualWanLinkServiceUserOutput) ToOutput(ctx context.Context) pulumix.Output[SystemVirtualWanLinkServiceUser] {
+	return pulumix.Output[SystemVirtualWanLinkServiceUser]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o SystemVirtualWanLinkServiceUserOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SystemVirtualWanLinkServiceUser) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type SystemVirtualWanLinkServiceUserArrayOutput struct{ *pulumi.OutputState }
+
+func (SystemVirtualWanLinkServiceUserArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SystemVirtualWanLinkServiceUser)(nil)).Elem()
+}
+
+func (o SystemVirtualWanLinkServiceUserArrayOutput) ToSystemVirtualWanLinkServiceUserArrayOutput() SystemVirtualWanLinkServiceUserArrayOutput {
+	return o
+}
+
+func (o SystemVirtualWanLinkServiceUserArrayOutput) ToSystemVirtualWanLinkServiceUserArrayOutputWithContext(ctx context.Context) SystemVirtualWanLinkServiceUserArrayOutput {
+	return o
+}
+
+func (o SystemVirtualWanLinkServiceUserArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SystemVirtualWanLinkServiceUser] {
+	return pulumix.Output[[]SystemVirtualWanLinkServiceUser]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o SystemVirtualWanLinkServiceUserArrayOutput) Index(i pulumi.IntInput) SystemVirtualWanLinkServiceUserOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemVirtualWanLinkServiceUser {
+		return vs[0].([]SystemVirtualWanLinkServiceUser)[vs[1].(int)]
+	}).(SystemVirtualWanLinkServiceUserOutput)
+}
+
+type SystemVirtualWanLinkZone struct {
+	Name *string `pulumi:"name"`
+}
+
+// SystemVirtualWanLinkZoneInput is an input type that accepts SystemVirtualWanLinkZoneArgs and SystemVirtualWanLinkZoneOutput values.
+// You can construct a concrete instance of `SystemVirtualWanLinkZoneInput` via:
+//
+//	SystemVirtualWanLinkZoneArgs{...}
+type SystemVirtualWanLinkZoneInput interface {
+	pulumi.Input
+
+	ToSystemVirtualWanLinkZoneOutput() SystemVirtualWanLinkZoneOutput
+	ToSystemVirtualWanLinkZoneOutputWithContext(context.Context) SystemVirtualWanLinkZoneOutput
+}
+
+type SystemVirtualWanLinkZoneArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (SystemVirtualWanLinkZoneArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SystemVirtualWanLinkZone)(nil)).Elem()
+}
+
+func (i SystemVirtualWanLinkZoneArgs) ToSystemVirtualWanLinkZoneOutput() SystemVirtualWanLinkZoneOutput {
+	return i.ToSystemVirtualWanLinkZoneOutputWithContext(context.Background())
+}
+
+func (i SystemVirtualWanLinkZoneArgs) ToSystemVirtualWanLinkZoneOutputWithContext(ctx context.Context) SystemVirtualWanLinkZoneOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SystemVirtualWanLinkZoneOutput)
+}
+
+func (i SystemVirtualWanLinkZoneArgs) ToOutput(ctx context.Context) pulumix.Output[SystemVirtualWanLinkZone] {
+	return pulumix.Output[SystemVirtualWanLinkZone]{
+		OutputState: i.ToSystemVirtualWanLinkZoneOutputWithContext(ctx).OutputState,
+	}
+}
+
+// SystemVirtualWanLinkZoneArrayInput is an input type that accepts SystemVirtualWanLinkZoneArray and SystemVirtualWanLinkZoneArrayOutput values.
+// You can construct a concrete instance of `SystemVirtualWanLinkZoneArrayInput` via:
+//
+//	SystemVirtualWanLinkZoneArray{ SystemVirtualWanLinkZoneArgs{...} }
+type SystemVirtualWanLinkZoneArrayInput interface {
+	pulumi.Input
+
+	ToSystemVirtualWanLinkZoneArrayOutput() SystemVirtualWanLinkZoneArrayOutput
+	ToSystemVirtualWanLinkZoneArrayOutputWithContext(context.Context) SystemVirtualWanLinkZoneArrayOutput
+}
+
+type SystemVirtualWanLinkZoneArray []SystemVirtualWanLinkZoneInput
+
+func (SystemVirtualWanLinkZoneArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SystemVirtualWanLinkZone)(nil)).Elem()
+}
+
+func (i SystemVirtualWanLinkZoneArray) ToSystemVirtualWanLinkZoneArrayOutput() SystemVirtualWanLinkZoneArrayOutput {
+	return i.ToSystemVirtualWanLinkZoneArrayOutputWithContext(context.Background())
+}
+
+func (i SystemVirtualWanLinkZoneArray) ToSystemVirtualWanLinkZoneArrayOutputWithContext(ctx context.Context) SystemVirtualWanLinkZoneArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SystemVirtualWanLinkZoneArrayOutput)
+}
+
+func (i SystemVirtualWanLinkZoneArray) ToOutput(ctx context.Context) pulumix.Output[[]SystemVirtualWanLinkZone] {
+	return pulumix.Output[[]SystemVirtualWanLinkZone]{
+		OutputState: i.ToSystemVirtualWanLinkZoneArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type SystemVirtualWanLinkZoneOutput struct{ *pulumi.OutputState }
+
+func (SystemVirtualWanLinkZoneOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SystemVirtualWanLinkZone)(nil)).Elem()
+}
+
+func (o SystemVirtualWanLinkZoneOutput) ToSystemVirtualWanLinkZoneOutput() SystemVirtualWanLinkZoneOutput {
+	return o
+}
+
+func (o SystemVirtualWanLinkZoneOutput) ToSystemVirtualWanLinkZoneOutputWithContext(ctx context.Context) SystemVirtualWanLinkZoneOutput {
+	return o
+}
+
+func (o SystemVirtualWanLinkZoneOutput) ToOutput(ctx context.Context) pulumix.Output[SystemVirtualWanLinkZone] {
+	return pulumix.Output[SystemVirtualWanLinkZone]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o SystemVirtualWanLinkZoneOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SystemVirtualWanLinkZone) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type SystemVirtualWanLinkZoneArrayOutput struct{ *pulumi.OutputState }
+
+func (SystemVirtualWanLinkZoneArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SystemVirtualWanLinkZone)(nil)).Elem()
+}
+
+func (o SystemVirtualWanLinkZoneArrayOutput) ToSystemVirtualWanLinkZoneArrayOutput() SystemVirtualWanLinkZoneArrayOutput {
+	return o
+}
+
+func (o SystemVirtualWanLinkZoneArrayOutput) ToSystemVirtualWanLinkZoneArrayOutputWithContext(ctx context.Context) SystemVirtualWanLinkZoneArrayOutput {
+	return o
+}
+
+func (o SystemVirtualWanLinkZoneArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SystemVirtualWanLinkZone] {
+	return pulumix.Output[[]SystemVirtualWanLinkZone]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o SystemVirtualWanLinkZoneArrayOutput) Index(i pulumi.IntInput) SystemVirtualWanLinkZoneOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemVirtualWanLinkZone {
+		return vs[0].([]SystemVirtualWanLinkZone)[vs[1].(int)]
+	}).(SystemVirtualWanLinkZoneOutput)
+}
+
+type SystemVirtualWirePairMember struct {
+	InterfaceName *string `pulumi:"interfaceName"`
+}
+
+// SystemVirtualWirePairMemberInput is an input type that accepts SystemVirtualWirePairMemberArgs and SystemVirtualWirePairMemberOutput values.
+// You can construct a concrete instance of `SystemVirtualWirePairMemberInput` via:
+//
+//	SystemVirtualWirePairMemberArgs{...}
+type SystemVirtualWirePairMemberInput interface {
+	pulumi.Input
+
+	ToSystemVirtualWirePairMemberOutput() SystemVirtualWirePairMemberOutput
+	ToSystemVirtualWirePairMemberOutputWithContext(context.Context) SystemVirtualWirePairMemberOutput
+}
+
+type SystemVirtualWirePairMemberArgs struct {
+	InterfaceName pulumi.StringPtrInput `pulumi:"interfaceName"`
+}
+
+func (SystemVirtualWirePairMemberArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SystemVirtualWirePairMember)(nil)).Elem()
+}
+
+func (i SystemVirtualWirePairMemberArgs) ToSystemVirtualWirePairMemberOutput() SystemVirtualWirePairMemberOutput {
+	return i.ToSystemVirtualWirePairMemberOutputWithContext(context.Background())
+}
+
+func (i SystemVirtualWirePairMemberArgs) ToSystemVirtualWirePairMemberOutputWithContext(ctx context.Context) SystemVirtualWirePairMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SystemVirtualWirePairMemberOutput)
+}
+
+func (i SystemVirtualWirePairMemberArgs) ToOutput(ctx context.Context) pulumix.Output[SystemVirtualWirePairMember] {
+	return pulumix.Output[SystemVirtualWirePairMember]{
+		OutputState: i.ToSystemVirtualWirePairMemberOutputWithContext(ctx).OutputState,
+	}
+}
+
+// SystemVirtualWirePairMemberArrayInput is an input type that accepts SystemVirtualWirePairMemberArray and SystemVirtualWirePairMemberArrayOutput values.
+// You can construct a concrete instance of `SystemVirtualWirePairMemberArrayInput` via:
+//
+//	SystemVirtualWirePairMemberArray{ SystemVirtualWirePairMemberArgs{...} }
+type SystemVirtualWirePairMemberArrayInput interface {
+	pulumi.Input
+
+	ToSystemVirtualWirePairMemberArrayOutput() SystemVirtualWirePairMemberArrayOutput
+	ToSystemVirtualWirePairMemberArrayOutputWithContext(context.Context) SystemVirtualWirePairMemberArrayOutput
+}
+
+type SystemVirtualWirePairMemberArray []SystemVirtualWirePairMemberInput
+
+func (SystemVirtualWirePairMemberArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SystemVirtualWirePairMember)(nil)).Elem()
+}
+
+func (i SystemVirtualWirePairMemberArray) ToSystemVirtualWirePairMemberArrayOutput() SystemVirtualWirePairMemberArrayOutput {
+	return i.ToSystemVirtualWirePairMemberArrayOutputWithContext(context.Background())
+}
+
+func (i SystemVirtualWirePairMemberArray) ToSystemVirtualWirePairMemberArrayOutputWithContext(ctx context.Context) SystemVirtualWirePairMemberArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SystemVirtualWirePairMemberArrayOutput)
+}
+
+func (i SystemVirtualWirePairMemberArray) ToOutput(ctx context.Context) pulumix.Output[[]SystemVirtualWirePairMember] {
+	return pulumix.Output[[]SystemVirtualWirePairMember]{
+		OutputState: i.ToSystemVirtualWirePairMemberArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type SystemVirtualWirePairMemberOutput struct{ *pulumi.OutputState }
+
+func (SystemVirtualWirePairMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SystemVirtualWirePairMember)(nil)).Elem()
+}
+
+func (o SystemVirtualWirePairMemberOutput) ToSystemVirtualWirePairMemberOutput() SystemVirtualWirePairMemberOutput {
+	return o
+}
+
+func (o SystemVirtualWirePairMemberOutput) ToSystemVirtualWirePairMemberOutputWithContext(ctx context.Context) SystemVirtualWirePairMemberOutput {
+	return o
+}
+
+func (o SystemVirtualWirePairMemberOutput) ToOutput(ctx context.Context) pulumix.Output[SystemVirtualWirePairMember] {
+	return pulumix.Output[SystemVirtualWirePairMember]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o SystemVirtualWirePairMemberOutput) InterfaceName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SystemVirtualWirePairMember) *string { return v.InterfaceName }).(pulumi.StringPtrOutput)
+}
+
+type SystemVirtualWirePairMemberArrayOutput struct{ *pulumi.OutputState }
+
+func (SystemVirtualWirePairMemberArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SystemVirtualWirePairMember)(nil)).Elem()
+}
+
+func (o SystemVirtualWirePairMemberArrayOutput) ToSystemVirtualWirePairMemberArrayOutput() SystemVirtualWirePairMemberArrayOutput {
+	return o
+}
+
+func (o SystemVirtualWirePairMemberArrayOutput) ToSystemVirtualWirePairMemberArrayOutputWithContext(ctx context.Context) SystemVirtualWirePairMemberArrayOutput {
+	return o
+}
+
+func (o SystemVirtualWirePairMemberArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SystemVirtualWirePairMember] {
+	return pulumix.Output[[]SystemVirtualWirePairMember]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o SystemVirtualWirePairMemberArrayOutput) Index(i pulumi.IntInput) SystemVirtualWirePairMemberOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemVirtualWirePairMember {
+		return vs[0].([]SystemVirtualWirePairMember)[vs[1].(int)]
+	}).(SystemVirtualWirePairMemberOutput)
+}
+
+type SystemVxlanRemoteIp6 struct {
+	Ip6 *string `pulumi:"ip6"`
+}
+
+// SystemVxlanRemoteIp6Input is an input type that accepts SystemVxlanRemoteIp6Args and SystemVxlanRemoteIp6Output values.
+// You can construct a concrete instance of `SystemVxlanRemoteIp6Input` via:
+//
+//	SystemVxlanRemoteIp6Args{...}
+type SystemVxlanRemoteIp6Input interface {
+	pulumi.Input
+
+	ToSystemVxlanRemoteIp6Output() SystemVxlanRemoteIp6Output
+	ToSystemVxlanRemoteIp6OutputWithContext(context.Context) SystemVxlanRemoteIp6Output
+}
+
+type SystemVxlanRemoteIp6Args struct {
+	Ip6 pulumi.StringPtrInput `pulumi:"ip6"`
+}
+
+func (SystemVxlanRemoteIp6Args) ElementType() reflect.Type {
+	return reflect.TypeOf((*SystemVxlanRemoteIp6)(nil)).Elem()
+}
+
+func (i SystemVxlanRemoteIp6Args) ToSystemVxlanRemoteIp6Output() SystemVxlanRemoteIp6Output {
+	return i.ToSystemVxlanRemoteIp6OutputWithContext(context.Background())
+}
+
+func (i SystemVxlanRemoteIp6Args) ToSystemVxlanRemoteIp6OutputWithContext(ctx context.Context) SystemVxlanRemoteIp6Output {
+	return pulumi.ToOutputWithContext(ctx, i).(SystemVxlanRemoteIp6Output)
+}
+
+func (i SystemVxlanRemoteIp6Args) ToOutput(ctx context.Context) pulumix.Output[SystemVxlanRemoteIp6] {
+	return pulumix.Output[SystemVxlanRemoteIp6]{
+		OutputState: i.ToSystemVxlanRemoteIp6OutputWithContext(ctx).OutputState,
+	}
+}
+
+// SystemVxlanRemoteIp6ArrayInput is an input type that accepts SystemVxlanRemoteIp6Array and SystemVxlanRemoteIp6ArrayOutput values.
+// You can construct a concrete instance of `SystemVxlanRemoteIp6ArrayInput` via:
+//
+//	SystemVxlanRemoteIp6Array{ SystemVxlanRemoteIp6Args{...} }
+type SystemVxlanRemoteIp6ArrayInput interface {
+	pulumi.Input
+
+	ToSystemVxlanRemoteIp6ArrayOutput() SystemVxlanRemoteIp6ArrayOutput
+	ToSystemVxlanRemoteIp6ArrayOutputWithContext(context.Context) SystemVxlanRemoteIp6ArrayOutput
+}
+
+type SystemVxlanRemoteIp6Array []SystemVxlanRemoteIp6Input
+
+func (SystemVxlanRemoteIp6Array) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SystemVxlanRemoteIp6)(nil)).Elem()
+}
+
+func (i SystemVxlanRemoteIp6Array) ToSystemVxlanRemoteIp6ArrayOutput() SystemVxlanRemoteIp6ArrayOutput {
+	return i.ToSystemVxlanRemoteIp6ArrayOutputWithContext(context.Background())
+}
+
+func (i SystemVxlanRemoteIp6Array) ToSystemVxlanRemoteIp6ArrayOutputWithContext(ctx context.Context) SystemVxlanRemoteIp6ArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SystemVxlanRemoteIp6ArrayOutput)
+}
+
+func (i SystemVxlanRemoteIp6Array) ToOutput(ctx context.Context) pulumix.Output[[]SystemVxlanRemoteIp6] {
+	return pulumix.Output[[]SystemVxlanRemoteIp6]{
+		OutputState: i.ToSystemVxlanRemoteIp6ArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type SystemVxlanRemoteIp6Output struct{ *pulumi.OutputState }
+
+func (SystemVxlanRemoteIp6Output) ElementType() reflect.Type {
+	return reflect.TypeOf((*SystemVxlanRemoteIp6)(nil)).Elem()
+}
+
+func (o SystemVxlanRemoteIp6Output) ToSystemVxlanRemoteIp6Output() SystemVxlanRemoteIp6Output {
+	return o
+}
+
+func (o SystemVxlanRemoteIp6Output) ToSystemVxlanRemoteIp6OutputWithContext(ctx context.Context) SystemVxlanRemoteIp6Output {
+	return o
+}
+
+func (o SystemVxlanRemoteIp6Output) ToOutput(ctx context.Context) pulumix.Output[SystemVxlanRemoteIp6] {
+	return pulumix.Output[SystemVxlanRemoteIp6]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o SystemVxlanRemoteIp6Output) Ip6() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SystemVxlanRemoteIp6) *string { return v.Ip6 }).(pulumi.StringPtrOutput)
+}
+
+type SystemVxlanRemoteIp6ArrayOutput struct{ *pulumi.OutputState }
+
+func (SystemVxlanRemoteIp6ArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SystemVxlanRemoteIp6)(nil)).Elem()
+}
+
+func (o SystemVxlanRemoteIp6ArrayOutput) ToSystemVxlanRemoteIp6ArrayOutput() SystemVxlanRemoteIp6ArrayOutput {
+	return o
+}
+
+func (o SystemVxlanRemoteIp6ArrayOutput) ToSystemVxlanRemoteIp6ArrayOutputWithContext(ctx context.Context) SystemVxlanRemoteIp6ArrayOutput {
+	return o
+}
+
+func (o SystemVxlanRemoteIp6ArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SystemVxlanRemoteIp6] {
+	return pulumix.Output[[]SystemVxlanRemoteIp6]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o SystemVxlanRemoteIp6ArrayOutput) Index(i pulumi.IntInput) SystemVxlanRemoteIp6Output {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemVxlanRemoteIp6 {
+		return vs[0].([]SystemVxlanRemoteIp6)[vs[1].(int)]
+	}).(SystemVxlanRemoteIp6Output)
+}
+
+type SystemVxlanRemoteIp struct {
+	Ip *string `pulumi:"ip"`
+}
+
+// SystemVxlanRemoteIpInput is an input type that accepts SystemVxlanRemoteIpArgs and SystemVxlanRemoteIpOutput values.
+// You can construct a concrete instance of `SystemVxlanRemoteIpInput` via:
+//
+//	SystemVxlanRemoteIpArgs{...}
+type SystemVxlanRemoteIpInput interface {
+	pulumi.Input
+
+	ToSystemVxlanRemoteIpOutput() SystemVxlanRemoteIpOutput
+	ToSystemVxlanRemoteIpOutputWithContext(context.Context) SystemVxlanRemoteIpOutput
+}
+
+type SystemVxlanRemoteIpArgs struct {
+	Ip pulumi.StringPtrInput `pulumi:"ip"`
+}
+
+func (SystemVxlanRemoteIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SystemVxlanRemoteIp)(nil)).Elem()
+}
+
+func (i SystemVxlanRemoteIpArgs) ToSystemVxlanRemoteIpOutput() SystemVxlanRemoteIpOutput {
+	return i.ToSystemVxlanRemoteIpOutputWithContext(context.Background())
+}
+
+func (i SystemVxlanRemoteIpArgs) ToSystemVxlanRemoteIpOutputWithContext(ctx context.Context) SystemVxlanRemoteIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SystemVxlanRemoteIpOutput)
+}
+
+func (i SystemVxlanRemoteIpArgs) ToOutput(ctx context.Context) pulumix.Output[SystemVxlanRemoteIp] {
+	return pulumix.Output[SystemVxlanRemoteIp]{
+		OutputState: i.ToSystemVxlanRemoteIpOutputWithContext(ctx).OutputState,
+	}
+}
+
+// SystemVxlanRemoteIpArrayInput is an input type that accepts SystemVxlanRemoteIpArray and SystemVxlanRemoteIpArrayOutput values.
+// You can construct a concrete instance of `SystemVxlanRemoteIpArrayInput` via:
+//
+//	SystemVxlanRemoteIpArray{ SystemVxlanRemoteIpArgs{...} }
+type SystemVxlanRemoteIpArrayInput interface {
+	pulumi.Input
+
+	ToSystemVxlanRemoteIpArrayOutput() SystemVxlanRemoteIpArrayOutput
+	ToSystemVxlanRemoteIpArrayOutputWithContext(context.Context) SystemVxlanRemoteIpArrayOutput
+}
+
+type SystemVxlanRemoteIpArray []SystemVxlanRemoteIpInput
+
+func (SystemVxlanRemoteIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SystemVxlanRemoteIp)(nil)).Elem()
+}
+
+func (i SystemVxlanRemoteIpArray) ToSystemVxlanRemoteIpArrayOutput() SystemVxlanRemoteIpArrayOutput {
+	return i.ToSystemVxlanRemoteIpArrayOutputWithContext(context.Background())
+}
+
+func (i SystemVxlanRemoteIpArray) ToSystemVxlanRemoteIpArrayOutputWithContext(ctx context.Context) SystemVxlanRemoteIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SystemVxlanRemoteIpArrayOutput)
+}
+
+func (i SystemVxlanRemoteIpArray) ToOutput(ctx context.Context) pulumix.Output[[]SystemVxlanRemoteIp] {
+	return pulumix.Output[[]SystemVxlanRemoteIp]{
+		OutputState: i.ToSystemVxlanRemoteIpArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type SystemVxlanRemoteIpOutput struct{ *pulumi.OutputState }
+
+func (SystemVxlanRemoteIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SystemVxlanRemoteIp)(nil)).Elem()
+}
+
+func (o SystemVxlanRemoteIpOutput) ToSystemVxlanRemoteIpOutput() SystemVxlanRemoteIpOutput {
+	return o
+}
+
+func (o SystemVxlanRemoteIpOutput) ToSystemVxlanRemoteIpOutputWithContext(ctx context.Context) SystemVxlanRemoteIpOutput {
+	return o
+}
+
+func (o SystemVxlanRemoteIpOutput) ToOutput(ctx context.Context) pulumix.Output[SystemVxlanRemoteIp] {
+	return pulumix.Output[SystemVxlanRemoteIp]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o SystemVxlanRemoteIpOutput) Ip() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SystemVxlanRemoteIp) *string { return v.Ip }).(pulumi.StringPtrOutput)
+}
+
+type SystemVxlanRemoteIpArrayOutput struct{ *pulumi.OutputState }
+
+func (SystemVxlanRemoteIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SystemVxlanRemoteIp)(nil)).Elem()
+}
+
+func (o SystemVxlanRemoteIpArrayOutput) ToSystemVxlanRemoteIpArrayOutput() SystemVxlanRemoteIpArrayOutput {
+	return o
+}
+
+func (o SystemVxlanRemoteIpArrayOutput) ToSystemVxlanRemoteIpArrayOutputWithContext(ctx context.Context) SystemVxlanRemoteIpArrayOutput {
+	return o
+}
+
+func (o SystemVxlanRemoteIpArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SystemVxlanRemoteIp] {
+	return pulumix.Output[[]SystemVxlanRemoteIp]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o SystemVxlanRemoteIpArrayOutput) Index(i pulumi.IntInput) SystemVxlanRemoteIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemVxlanRemoteIp {
+		return vs[0].([]SystemVxlanRemoteIp)[vs[1].(int)]
+	}).(SystemVxlanRemoteIpOutput)
+}
+
+type SystemZoneInterface struct {
+	InterfaceName *string `pulumi:"interfaceName"`
+}
+
+// SystemZoneInterfaceInput is an input type that accepts SystemZoneInterfaceArgs and SystemZoneInterfaceOutput values.
+// You can construct a concrete instance of `SystemZoneInterfaceInput` via:
+//
+//	SystemZoneInterfaceArgs{...}
+type SystemZoneInterfaceInput interface {
+	pulumi.Input
+
+	ToSystemZoneInterfaceOutput() SystemZoneInterfaceOutput
+	ToSystemZoneInterfaceOutputWithContext(context.Context) SystemZoneInterfaceOutput
+}
+
+type SystemZoneInterfaceArgs struct {
+	InterfaceName pulumi.StringPtrInput `pulumi:"interfaceName"`
+}
+
+func (SystemZoneInterfaceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SystemZoneInterface)(nil)).Elem()
+}
+
+func (i SystemZoneInterfaceArgs) ToSystemZoneInterfaceOutput() SystemZoneInterfaceOutput {
+	return i.ToSystemZoneInterfaceOutputWithContext(context.Background())
+}
+
+func (i SystemZoneInterfaceArgs) ToSystemZoneInterfaceOutputWithContext(ctx context.Context) SystemZoneInterfaceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SystemZoneInterfaceOutput)
+}
+
+func (i SystemZoneInterfaceArgs) ToOutput(ctx context.Context) pulumix.Output[SystemZoneInterface] {
+	return pulumix.Output[SystemZoneInterface]{
+		OutputState: i.ToSystemZoneInterfaceOutputWithContext(ctx).OutputState,
+	}
+}
+
+// SystemZoneInterfaceArrayInput is an input type that accepts SystemZoneInterfaceArray and SystemZoneInterfaceArrayOutput values.
+// You can construct a concrete instance of `SystemZoneInterfaceArrayInput` via:
+//
+//	SystemZoneInterfaceArray{ SystemZoneInterfaceArgs{...} }
+type SystemZoneInterfaceArrayInput interface {
+	pulumi.Input
+
+	ToSystemZoneInterfaceArrayOutput() SystemZoneInterfaceArrayOutput
+	ToSystemZoneInterfaceArrayOutputWithContext(context.Context) SystemZoneInterfaceArrayOutput
+}
+
+type SystemZoneInterfaceArray []SystemZoneInterfaceInput
+
+func (SystemZoneInterfaceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SystemZoneInterface)(nil)).Elem()
+}
+
+func (i SystemZoneInterfaceArray) ToSystemZoneInterfaceArrayOutput() SystemZoneInterfaceArrayOutput {
+	return i.ToSystemZoneInterfaceArrayOutputWithContext(context.Background())
+}
+
+func (i SystemZoneInterfaceArray) ToSystemZoneInterfaceArrayOutputWithContext(ctx context.Context) SystemZoneInterfaceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SystemZoneInterfaceArrayOutput)
+}
+
+func (i SystemZoneInterfaceArray) ToOutput(ctx context.Context) pulumix.Output[[]SystemZoneInterface] {
+	return pulumix.Output[[]SystemZoneInterface]{
+		OutputState: i.ToSystemZoneInterfaceArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type SystemZoneInterfaceOutput struct{ *pulumi.OutputState }
+
+func (SystemZoneInterfaceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SystemZoneInterface)(nil)).Elem()
+}
+
+func (o SystemZoneInterfaceOutput) ToSystemZoneInterfaceOutput() SystemZoneInterfaceOutput {
+	return o
+}
+
+func (o SystemZoneInterfaceOutput) ToSystemZoneInterfaceOutputWithContext(ctx context.Context) SystemZoneInterfaceOutput {
+	return o
+}
+
+func (o SystemZoneInterfaceOutput) ToOutput(ctx context.Context) pulumix.Output[SystemZoneInterface] {
+	return pulumix.Output[SystemZoneInterface]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o SystemZoneInterfaceOutput) InterfaceName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SystemZoneInterface) *string { return v.InterfaceName }).(pulumi.StringPtrOutput)
+}
+
+type SystemZoneInterfaceArrayOutput struct{ *pulumi.OutputState }
+
+func (SystemZoneInterfaceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SystemZoneInterface)(nil)).Elem()
+}
+
+func (o SystemZoneInterfaceArrayOutput) ToSystemZoneInterfaceArrayOutput() SystemZoneInterfaceArrayOutput {
+	return o
+}
+
+func (o SystemZoneInterfaceArrayOutput) ToSystemZoneInterfaceArrayOutputWithContext(ctx context.Context) SystemZoneInterfaceArrayOutput {
+	return o
+}
+
+func (o SystemZoneInterfaceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SystemZoneInterface] {
+	return pulumix.Output[[]SystemZoneInterface]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o SystemZoneInterfaceArrayOutput) Index(i pulumi.IntInput) SystemZoneInterfaceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemZoneInterface {
+		return vs[0].([]SystemZoneInterface)[vs[1].(int)]
+	}).(SystemZoneInterfaceOutput)
+}
+
+type SystemZoneTagging struct {
+	Category *string                `pulumi:"category"`
+	Name     *string                `pulumi:"name"`
+	Tags     []SystemZoneTaggingTag `pulumi:"tags"`
+}
+
+// SystemZoneTaggingInput is an input type that accepts SystemZoneTaggingArgs and SystemZoneTaggingOutput values.
+// You can construct a concrete instance of `SystemZoneTaggingInput` via:
+//
+//	SystemZoneTaggingArgs{...}
+type SystemZoneTaggingInput interface {
+	pulumi.Input
+
+	ToSystemZoneTaggingOutput() SystemZoneTaggingOutput
+	ToSystemZoneTaggingOutputWithContext(context.Context) SystemZoneTaggingOutput
+}
+
+type SystemZoneTaggingArgs struct {
+	Category pulumi.StringPtrInput          `pulumi:"category"`
+	Name     pulumi.StringPtrInput          `pulumi:"name"`
+	Tags     SystemZoneTaggingTagArrayInput `pulumi:"tags"`
+}
+
+func (SystemZoneTaggingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SystemZoneTagging)(nil)).Elem()
+}
+
+func (i SystemZoneTaggingArgs) ToSystemZoneTaggingOutput() SystemZoneTaggingOutput {
+	return i.ToSystemZoneTaggingOutputWithContext(context.Background())
+}
+
+func (i SystemZoneTaggingArgs) ToSystemZoneTaggingOutputWithContext(ctx context.Context) SystemZoneTaggingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SystemZoneTaggingOutput)
+}
+
+func (i SystemZoneTaggingArgs) ToOutput(ctx context.Context) pulumix.Output[SystemZoneTagging] {
+	return pulumix.Output[SystemZoneTagging]{
+		OutputState: i.ToSystemZoneTaggingOutputWithContext(ctx).OutputState,
+	}
+}
+
+// SystemZoneTaggingArrayInput is an input type that accepts SystemZoneTaggingArray and SystemZoneTaggingArrayOutput values.
+// You can construct a concrete instance of `SystemZoneTaggingArrayInput` via:
+//
+//	SystemZoneTaggingArray{ SystemZoneTaggingArgs{...} }
+type SystemZoneTaggingArrayInput interface {
+	pulumi.Input
+
+	ToSystemZoneTaggingArrayOutput() SystemZoneTaggingArrayOutput
+	ToSystemZoneTaggingArrayOutputWithContext(context.Context) SystemZoneTaggingArrayOutput
+}
+
+type SystemZoneTaggingArray []SystemZoneTaggingInput
+
+func (SystemZoneTaggingArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SystemZoneTagging)(nil)).Elem()
+}
+
+func (i SystemZoneTaggingArray) ToSystemZoneTaggingArrayOutput() SystemZoneTaggingArrayOutput {
+	return i.ToSystemZoneTaggingArrayOutputWithContext(context.Background())
+}
+
+func (i SystemZoneTaggingArray) ToSystemZoneTaggingArrayOutputWithContext(ctx context.Context) SystemZoneTaggingArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SystemZoneTaggingArrayOutput)
+}
+
+func (i SystemZoneTaggingArray) ToOutput(ctx context.Context) pulumix.Output[[]SystemZoneTagging] {
+	return pulumix.Output[[]SystemZoneTagging]{
+		OutputState: i.ToSystemZoneTaggingArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type SystemZoneTaggingOutput struct{ *pulumi.OutputState }
+
+func (SystemZoneTaggingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SystemZoneTagging)(nil)).Elem()
+}
+
+func (o SystemZoneTaggingOutput) ToSystemZoneTaggingOutput() SystemZoneTaggingOutput {
+	return o
+}
+
+func (o SystemZoneTaggingOutput) ToSystemZoneTaggingOutputWithContext(ctx context.Context) SystemZoneTaggingOutput {
+	return o
+}
+
+func (o SystemZoneTaggingOutput) ToOutput(ctx context.Context) pulumix.Output[SystemZoneTagging] {
+	return pulumix.Output[SystemZoneTagging]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o SystemZoneTaggingOutput) Category() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SystemZoneTagging) *string { return v.Category }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemZoneTaggingOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SystemZoneTagging) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o SystemZoneTaggingOutput) Tags() SystemZoneTaggingTagArrayOutput {
+	return o.ApplyT(func(v SystemZoneTagging) []SystemZoneTaggingTag { return v.Tags }).(SystemZoneTaggingTagArrayOutput)
+}
+
+type SystemZoneTaggingArrayOutput struct{ *pulumi.OutputState }
+
+func (SystemZoneTaggingArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SystemZoneTagging)(nil)).Elem()
+}
+
+func (o SystemZoneTaggingArrayOutput) ToSystemZoneTaggingArrayOutput() SystemZoneTaggingArrayOutput {
+	return o
+}
+
+func (o SystemZoneTaggingArrayOutput) ToSystemZoneTaggingArrayOutputWithContext(ctx context.Context) SystemZoneTaggingArrayOutput {
+	return o
+}
+
+func (o SystemZoneTaggingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SystemZoneTagging] {
+	return pulumix.Output[[]SystemZoneTagging]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o SystemZoneTaggingArrayOutput) Index(i pulumi.IntInput) SystemZoneTaggingOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemZoneTagging {
+		return vs[0].([]SystemZoneTagging)[vs[1].(int)]
+	}).(SystemZoneTaggingOutput)
+}
+
+type SystemZoneTaggingTag struct {
+	Name *string `pulumi:"name"`
+}
+
+// SystemZoneTaggingTagInput is an input type that accepts SystemZoneTaggingTagArgs and SystemZoneTaggingTagOutput values.
+// You can construct a concrete instance of `SystemZoneTaggingTagInput` via:
+//
+//	SystemZoneTaggingTagArgs{...}
+type SystemZoneTaggingTagInput interface {
+	pulumi.Input
+
+	ToSystemZoneTaggingTagOutput() SystemZoneTaggingTagOutput
+	ToSystemZoneTaggingTagOutputWithContext(context.Context) SystemZoneTaggingTagOutput
+}
+
+type SystemZoneTaggingTagArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (SystemZoneTaggingTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SystemZoneTaggingTag)(nil)).Elem()
+}
+
+func (i SystemZoneTaggingTagArgs) ToSystemZoneTaggingTagOutput() SystemZoneTaggingTagOutput {
+	return i.ToSystemZoneTaggingTagOutputWithContext(context.Background())
+}
+
+func (i SystemZoneTaggingTagArgs) ToSystemZoneTaggingTagOutputWithContext(ctx context.Context) SystemZoneTaggingTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SystemZoneTaggingTagOutput)
+}
+
+func (i SystemZoneTaggingTagArgs) ToOutput(ctx context.Context) pulumix.Output[SystemZoneTaggingTag] {
+	return pulumix.Output[SystemZoneTaggingTag]{
+		OutputState: i.ToSystemZoneTaggingTagOutputWithContext(ctx).OutputState,
+	}
+}
+
+// SystemZoneTaggingTagArrayInput is an input type that accepts SystemZoneTaggingTagArray and SystemZoneTaggingTagArrayOutput values.
+// You can construct a concrete instance of `SystemZoneTaggingTagArrayInput` via:
+//
+//	SystemZoneTaggingTagArray{ SystemZoneTaggingTagArgs{...} }
+type SystemZoneTaggingTagArrayInput interface {
+	pulumi.Input
+
+	ToSystemZoneTaggingTagArrayOutput() SystemZoneTaggingTagArrayOutput
+	ToSystemZoneTaggingTagArrayOutputWithContext(context.Context) SystemZoneTaggingTagArrayOutput
+}
+
+type SystemZoneTaggingTagArray []SystemZoneTaggingTagInput
+
+func (SystemZoneTaggingTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SystemZoneTaggingTag)(nil)).Elem()
+}
+
+func (i SystemZoneTaggingTagArray) ToSystemZoneTaggingTagArrayOutput() SystemZoneTaggingTagArrayOutput {
+	return i.ToSystemZoneTaggingTagArrayOutputWithContext(context.Background())
+}
+
+func (i SystemZoneTaggingTagArray) ToSystemZoneTaggingTagArrayOutputWithContext(ctx context.Context) SystemZoneTaggingTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SystemZoneTaggingTagArrayOutput)
+}
+
+func (i SystemZoneTaggingTagArray) ToOutput(ctx context.Context) pulumix.Output[[]SystemZoneTaggingTag] {
+	return pulumix.Output[[]SystemZoneTaggingTag]{
+		OutputState: i.ToSystemZoneTaggingTagArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type SystemZoneTaggingTagOutput struct{ *pulumi.OutputState }
+
+func (SystemZoneTaggingTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SystemZoneTaggingTag)(nil)).Elem()
+}
+
+func (o SystemZoneTaggingTagOutput) ToSystemZoneTaggingTagOutput() SystemZoneTaggingTagOutput {
+	return o
+}
+
+func (o SystemZoneTaggingTagOutput) ToSystemZoneTaggingTagOutputWithContext(ctx context.Context) SystemZoneTaggingTagOutput {
+	return o
+}
+
+func (o SystemZoneTaggingTagOutput) ToOutput(ctx context.Context) pulumix.Output[SystemZoneTaggingTag] {
+	return pulumix.Output[SystemZoneTaggingTag]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o SystemZoneTaggingTagOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v SystemZoneTaggingTag) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type SystemZoneTaggingTagArrayOutput struct{ *pulumi.OutputState }
+
+func (SystemZoneTaggingTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]SystemZoneTaggingTag)(nil)).Elem()
+}
+
+func (o SystemZoneTaggingTagArrayOutput) ToSystemZoneTaggingTagArrayOutput() SystemZoneTaggingTagArrayOutput {
+	return o
+}
+
+func (o SystemZoneTaggingTagArrayOutput) ToSystemZoneTaggingTagArrayOutputWithContext(ctx context.Context) SystemZoneTaggingTagArrayOutput {
+	return o
+}
+
+func (o SystemZoneTaggingTagArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]SystemZoneTaggingTag] {
+	return pulumix.Output[[]SystemZoneTaggingTag]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o SystemZoneTaggingTagArrayOutput) Index(i pulumi.IntInput) SystemZoneTaggingTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemZoneTaggingTag {
+		return vs[0].([]SystemZoneTaggingTag)[vs[1].(int)]
+	}).(SystemZoneTaggingTagOutput)
+}
+
+type UserDeviceAccessListDeviceList struct {
+	Action *string `pulumi:"action"`
+	Device *string `pulumi:"device"`
+	Id     *int    `pulumi:"id"`
+}
+
+// UserDeviceAccessListDeviceListInput is an input type that accepts UserDeviceAccessListDeviceListArgs and UserDeviceAccessListDeviceListOutput values.
+// You can construct a concrete instance of `UserDeviceAccessListDeviceListInput` via:
+//
+//	UserDeviceAccessListDeviceListArgs{...}
+type UserDeviceAccessListDeviceListInput interface {
+	pulumi.Input
+
+	ToUserDeviceAccessListDeviceListOutput() UserDeviceAccessListDeviceListOutput
+	ToUserDeviceAccessListDeviceListOutputWithContext(context.Context) UserDeviceAccessListDeviceListOutput
+}
+
+type UserDeviceAccessListDeviceListArgs struct {
+	Action pulumi.StringPtrInput `pulumi:"action"`
+	Device pulumi.StringPtrInput `pulumi:"device"`
+	Id     pulumi.IntPtrInput    `pulumi:"id"`
+}
+
+func (UserDeviceAccessListDeviceListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserDeviceAccessListDeviceList)(nil)).Elem()
+}
+
+func (i UserDeviceAccessListDeviceListArgs) ToUserDeviceAccessListDeviceListOutput() UserDeviceAccessListDeviceListOutput {
+	return i.ToUserDeviceAccessListDeviceListOutputWithContext(context.Background())
+}
+
+func (i UserDeviceAccessListDeviceListArgs) ToUserDeviceAccessListDeviceListOutputWithContext(ctx context.Context) UserDeviceAccessListDeviceListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserDeviceAccessListDeviceListOutput)
+}
+
+func (i UserDeviceAccessListDeviceListArgs) ToOutput(ctx context.Context) pulumix.Output[UserDeviceAccessListDeviceList] {
+	return pulumix.Output[UserDeviceAccessListDeviceList]{
+		OutputState: i.ToUserDeviceAccessListDeviceListOutputWithContext(ctx).OutputState,
+	}
+}
+
+// UserDeviceAccessListDeviceListArrayInput is an input type that accepts UserDeviceAccessListDeviceListArray and UserDeviceAccessListDeviceListArrayOutput values.
+// You can construct a concrete instance of `UserDeviceAccessListDeviceListArrayInput` via:
+//
+//	UserDeviceAccessListDeviceListArray{ UserDeviceAccessListDeviceListArgs{...} }
+type UserDeviceAccessListDeviceListArrayInput interface {
+	pulumi.Input
+
+	ToUserDeviceAccessListDeviceListArrayOutput() UserDeviceAccessListDeviceListArrayOutput
+	ToUserDeviceAccessListDeviceListArrayOutputWithContext(context.Context) UserDeviceAccessListDeviceListArrayOutput
+}
+
+type UserDeviceAccessListDeviceListArray []UserDeviceAccessListDeviceListInput
+
+func (UserDeviceAccessListDeviceListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserDeviceAccessListDeviceList)(nil)).Elem()
+}
+
+func (i UserDeviceAccessListDeviceListArray) ToUserDeviceAccessListDeviceListArrayOutput() UserDeviceAccessListDeviceListArrayOutput {
+	return i.ToUserDeviceAccessListDeviceListArrayOutputWithContext(context.Background())
+}
+
+func (i UserDeviceAccessListDeviceListArray) ToUserDeviceAccessListDeviceListArrayOutputWithContext(ctx context.Context) UserDeviceAccessListDeviceListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserDeviceAccessListDeviceListArrayOutput)
+}
+
+func (i UserDeviceAccessListDeviceListArray) ToOutput(ctx context.Context) pulumix.Output[[]UserDeviceAccessListDeviceList] {
+	return pulumix.Output[[]UserDeviceAccessListDeviceList]{
+		OutputState: i.ToUserDeviceAccessListDeviceListArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type UserDeviceAccessListDeviceListOutput struct{ *pulumi.OutputState }
+
+func (UserDeviceAccessListDeviceListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserDeviceAccessListDeviceList)(nil)).Elem()
+}
+
+func (o UserDeviceAccessListDeviceListOutput) ToUserDeviceAccessListDeviceListOutput() UserDeviceAccessListDeviceListOutput {
+	return o
+}
+
+func (o UserDeviceAccessListDeviceListOutput) ToUserDeviceAccessListDeviceListOutputWithContext(ctx context.Context) UserDeviceAccessListDeviceListOutput {
+	return o
+}
+
+func (o UserDeviceAccessListDeviceListOutput) ToOutput(ctx context.Context) pulumix.Output[UserDeviceAccessListDeviceList] {
+	return pulumix.Output[UserDeviceAccessListDeviceList]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserDeviceAccessListDeviceListOutput) Action() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserDeviceAccessListDeviceList) *string { return v.Action }).(pulumi.StringPtrOutput)
+}
+
+func (o UserDeviceAccessListDeviceListOutput) Device() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserDeviceAccessListDeviceList) *string { return v.Device }).(pulumi.StringPtrOutput)
+}
+
+func (o UserDeviceAccessListDeviceListOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v UserDeviceAccessListDeviceList) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+type UserDeviceAccessListDeviceListArrayOutput struct{ *pulumi.OutputState }
+
+func (UserDeviceAccessListDeviceListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserDeviceAccessListDeviceList)(nil)).Elem()
+}
+
+func (o UserDeviceAccessListDeviceListArrayOutput) ToUserDeviceAccessListDeviceListArrayOutput() UserDeviceAccessListDeviceListArrayOutput {
+	return o
+}
+
+func (o UserDeviceAccessListDeviceListArrayOutput) ToUserDeviceAccessListDeviceListArrayOutputWithContext(ctx context.Context) UserDeviceAccessListDeviceListArrayOutput {
+	return o
+}
+
+func (o UserDeviceAccessListDeviceListArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]UserDeviceAccessListDeviceList] {
+	return pulumix.Output[[]UserDeviceAccessListDeviceList]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserDeviceAccessListDeviceListArrayOutput) Index(i pulumi.IntInput) UserDeviceAccessListDeviceListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserDeviceAccessListDeviceList {
+		return vs[0].([]UserDeviceAccessListDeviceList)[vs[1].(int)]
+	}).(UserDeviceAccessListDeviceListOutput)
+}
+
+type UserDeviceGroupMember struct {
+	Name *string `pulumi:"name"`
+}
+
+// UserDeviceGroupMemberInput is an input type that accepts UserDeviceGroupMemberArgs and UserDeviceGroupMemberOutput values.
+// You can construct a concrete instance of `UserDeviceGroupMemberInput` via:
+//
+//	UserDeviceGroupMemberArgs{...}
+type UserDeviceGroupMemberInput interface {
+	pulumi.Input
+
+	ToUserDeviceGroupMemberOutput() UserDeviceGroupMemberOutput
+	ToUserDeviceGroupMemberOutputWithContext(context.Context) UserDeviceGroupMemberOutput
+}
+
+type UserDeviceGroupMemberArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (UserDeviceGroupMemberArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserDeviceGroupMember)(nil)).Elem()
+}
+
+func (i UserDeviceGroupMemberArgs) ToUserDeviceGroupMemberOutput() UserDeviceGroupMemberOutput {
+	return i.ToUserDeviceGroupMemberOutputWithContext(context.Background())
+}
+
+func (i UserDeviceGroupMemberArgs) ToUserDeviceGroupMemberOutputWithContext(ctx context.Context) UserDeviceGroupMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserDeviceGroupMemberOutput)
+}
+
+func (i UserDeviceGroupMemberArgs) ToOutput(ctx context.Context) pulumix.Output[UserDeviceGroupMember] {
+	return pulumix.Output[UserDeviceGroupMember]{
+		OutputState: i.ToUserDeviceGroupMemberOutputWithContext(ctx).OutputState,
+	}
+}
+
+// UserDeviceGroupMemberArrayInput is an input type that accepts UserDeviceGroupMemberArray and UserDeviceGroupMemberArrayOutput values.
+// You can construct a concrete instance of `UserDeviceGroupMemberArrayInput` via:
+//
+//	UserDeviceGroupMemberArray{ UserDeviceGroupMemberArgs{...} }
+type UserDeviceGroupMemberArrayInput interface {
+	pulumi.Input
+
+	ToUserDeviceGroupMemberArrayOutput() UserDeviceGroupMemberArrayOutput
+	ToUserDeviceGroupMemberArrayOutputWithContext(context.Context) UserDeviceGroupMemberArrayOutput
+}
+
+type UserDeviceGroupMemberArray []UserDeviceGroupMemberInput
+
+func (UserDeviceGroupMemberArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserDeviceGroupMember)(nil)).Elem()
+}
+
+func (i UserDeviceGroupMemberArray) ToUserDeviceGroupMemberArrayOutput() UserDeviceGroupMemberArrayOutput {
+	return i.ToUserDeviceGroupMemberArrayOutputWithContext(context.Background())
+}
+
+func (i UserDeviceGroupMemberArray) ToUserDeviceGroupMemberArrayOutputWithContext(ctx context.Context) UserDeviceGroupMemberArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserDeviceGroupMemberArrayOutput)
+}
+
+func (i UserDeviceGroupMemberArray) ToOutput(ctx context.Context) pulumix.Output[[]UserDeviceGroupMember] {
+	return pulumix.Output[[]UserDeviceGroupMember]{
+		OutputState: i.ToUserDeviceGroupMemberArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type UserDeviceGroupMemberOutput struct{ *pulumi.OutputState }
+
+func (UserDeviceGroupMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserDeviceGroupMember)(nil)).Elem()
+}
+
+func (o UserDeviceGroupMemberOutput) ToUserDeviceGroupMemberOutput() UserDeviceGroupMemberOutput {
+	return o
+}
+
+func (o UserDeviceGroupMemberOutput) ToUserDeviceGroupMemberOutputWithContext(ctx context.Context) UserDeviceGroupMemberOutput {
+	return o
+}
+
+func (o UserDeviceGroupMemberOutput) ToOutput(ctx context.Context) pulumix.Output[UserDeviceGroupMember] {
+	return pulumix.Output[UserDeviceGroupMember]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserDeviceGroupMemberOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserDeviceGroupMember) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type UserDeviceGroupMemberArrayOutput struct{ *pulumi.OutputState }
+
+func (UserDeviceGroupMemberArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserDeviceGroupMember)(nil)).Elem()
+}
+
+func (o UserDeviceGroupMemberArrayOutput) ToUserDeviceGroupMemberArrayOutput() UserDeviceGroupMemberArrayOutput {
+	return o
+}
+
+func (o UserDeviceGroupMemberArrayOutput) ToUserDeviceGroupMemberArrayOutputWithContext(ctx context.Context) UserDeviceGroupMemberArrayOutput {
+	return o
+}
+
+func (o UserDeviceGroupMemberArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]UserDeviceGroupMember] {
+	return pulumix.Output[[]UserDeviceGroupMember]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserDeviceGroupMemberArrayOutput) Index(i pulumi.IntInput) UserDeviceGroupMemberOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserDeviceGroupMember {
+		return vs[0].([]UserDeviceGroupMember)[vs[1].(int)]
+	}).(UserDeviceGroupMemberOutput)
+}
+
+type UserDeviceGroupTagging struct {
+	Category *string                     `pulumi:"category"`
+	Name     *string                     `pulumi:"name"`
+	Tags     []UserDeviceGroupTaggingTag `pulumi:"tags"`
+}
+
+// UserDeviceGroupTaggingInput is an input type that accepts UserDeviceGroupTaggingArgs and UserDeviceGroupTaggingOutput values.
+// You can construct a concrete instance of `UserDeviceGroupTaggingInput` via:
+//
+//	UserDeviceGroupTaggingArgs{...}
+type UserDeviceGroupTaggingInput interface {
+	pulumi.Input
+
+	ToUserDeviceGroupTaggingOutput() UserDeviceGroupTaggingOutput
+	ToUserDeviceGroupTaggingOutputWithContext(context.Context) UserDeviceGroupTaggingOutput
+}
+
+type UserDeviceGroupTaggingArgs struct {
+	Category pulumi.StringPtrInput               `pulumi:"category"`
+	Name     pulumi.StringPtrInput               `pulumi:"name"`
+	Tags     UserDeviceGroupTaggingTagArrayInput `pulumi:"tags"`
+}
+
+func (UserDeviceGroupTaggingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserDeviceGroupTagging)(nil)).Elem()
+}
+
+func (i UserDeviceGroupTaggingArgs) ToUserDeviceGroupTaggingOutput() UserDeviceGroupTaggingOutput {
+	return i.ToUserDeviceGroupTaggingOutputWithContext(context.Background())
+}
+
+func (i UserDeviceGroupTaggingArgs) ToUserDeviceGroupTaggingOutputWithContext(ctx context.Context) UserDeviceGroupTaggingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserDeviceGroupTaggingOutput)
+}
+
+func (i UserDeviceGroupTaggingArgs) ToOutput(ctx context.Context) pulumix.Output[UserDeviceGroupTagging] {
+	return pulumix.Output[UserDeviceGroupTagging]{
+		OutputState: i.ToUserDeviceGroupTaggingOutputWithContext(ctx).OutputState,
+	}
+}
+
+// UserDeviceGroupTaggingArrayInput is an input type that accepts UserDeviceGroupTaggingArray and UserDeviceGroupTaggingArrayOutput values.
+// You can construct a concrete instance of `UserDeviceGroupTaggingArrayInput` via:
+//
+//	UserDeviceGroupTaggingArray{ UserDeviceGroupTaggingArgs{...} }
+type UserDeviceGroupTaggingArrayInput interface {
+	pulumi.Input
+
+	ToUserDeviceGroupTaggingArrayOutput() UserDeviceGroupTaggingArrayOutput
+	ToUserDeviceGroupTaggingArrayOutputWithContext(context.Context) UserDeviceGroupTaggingArrayOutput
+}
+
+type UserDeviceGroupTaggingArray []UserDeviceGroupTaggingInput
+
+func (UserDeviceGroupTaggingArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserDeviceGroupTagging)(nil)).Elem()
+}
+
+func (i UserDeviceGroupTaggingArray) ToUserDeviceGroupTaggingArrayOutput() UserDeviceGroupTaggingArrayOutput {
+	return i.ToUserDeviceGroupTaggingArrayOutputWithContext(context.Background())
+}
+
+func (i UserDeviceGroupTaggingArray) ToUserDeviceGroupTaggingArrayOutputWithContext(ctx context.Context) UserDeviceGroupTaggingArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserDeviceGroupTaggingArrayOutput)
+}
+
+func (i UserDeviceGroupTaggingArray) ToOutput(ctx context.Context) pulumix.Output[[]UserDeviceGroupTagging] {
+	return pulumix.Output[[]UserDeviceGroupTagging]{
+		OutputState: i.ToUserDeviceGroupTaggingArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type UserDeviceGroupTaggingOutput struct{ *pulumi.OutputState }
+
+func (UserDeviceGroupTaggingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserDeviceGroupTagging)(nil)).Elem()
+}
+
+func (o UserDeviceGroupTaggingOutput) ToUserDeviceGroupTaggingOutput() UserDeviceGroupTaggingOutput {
+	return o
+}
+
+func (o UserDeviceGroupTaggingOutput) ToUserDeviceGroupTaggingOutputWithContext(ctx context.Context) UserDeviceGroupTaggingOutput {
+	return o
+}
+
+func (o UserDeviceGroupTaggingOutput) ToOutput(ctx context.Context) pulumix.Output[UserDeviceGroupTagging] {
+	return pulumix.Output[UserDeviceGroupTagging]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserDeviceGroupTaggingOutput) Category() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserDeviceGroupTagging) *string { return v.Category }).(pulumi.StringPtrOutput)
+}
+
+func (o UserDeviceGroupTaggingOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserDeviceGroupTagging) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o UserDeviceGroupTaggingOutput) Tags() UserDeviceGroupTaggingTagArrayOutput {
+	return o.ApplyT(func(v UserDeviceGroupTagging) []UserDeviceGroupTaggingTag { return v.Tags }).(UserDeviceGroupTaggingTagArrayOutput)
+}
+
+type UserDeviceGroupTaggingArrayOutput struct{ *pulumi.OutputState }
+
+func (UserDeviceGroupTaggingArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserDeviceGroupTagging)(nil)).Elem()
+}
+
+func (o UserDeviceGroupTaggingArrayOutput) ToUserDeviceGroupTaggingArrayOutput() UserDeviceGroupTaggingArrayOutput {
+	return o
+}
+
+func (o UserDeviceGroupTaggingArrayOutput) ToUserDeviceGroupTaggingArrayOutputWithContext(ctx context.Context) UserDeviceGroupTaggingArrayOutput {
+	return o
+}
+
+func (o UserDeviceGroupTaggingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]UserDeviceGroupTagging] {
+	return pulumix.Output[[]UserDeviceGroupTagging]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserDeviceGroupTaggingArrayOutput) Index(i pulumi.IntInput) UserDeviceGroupTaggingOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserDeviceGroupTagging {
+		return vs[0].([]UserDeviceGroupTagging)[vs[1].(int)]
+	}).(UserDeviceGroupTaggingOutput)
+}
+
+type UserDeviceGroupTaggingTag struct {
+	Name *string `pulumi:"name"`
+}
+
+// UserDeviceGroupTaggingTagInput is an input type that accepts UserDeviceGroupTaggingTagArgs and UserDeviceGroupTaggingTagOutput values.
+// You can construct a concrete instance of `UserDeviceGroupTaggingTagInput` via:
+//
+//	UserDeviceGroupTaggingTagArgs{...}
+type UserDeviceGroupTaggingTagInput interface {
+	pulumi.Input
+
+	ToUserDeviceGroupTaggingTagOutput() UserDeviceGroupTaggingTagOutput
+	ToUserDeviceGroupTaggingTagOutputWithContext(context.Context) UserDeviceGroupTaggingTagOutput
+}
+
+type UserDeviceGroupTaggingTagArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (UserDeviceGroupTaggingTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserDeviceGroupTaggingTag)(nil)).Elem()
+}
+
+func (i UserDeviceGroupTaggingTagArgs) ToUserDeviceGroupTaggingTagOutput() UserDeviceGroupTaggingTagOutput {
+	return i.ToUserDeviceGroupTaggingTagOutputWithContext(context.Background())
+}
+
+func (i UserDeviceGroupTaggingTagArgs) ToUserDeviceGroupTaggingTagOutputWithContext(ctx context.Context) UserDeviceGroupTaggingTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserDeviceGroupTaggingTagOutput)
+}
+
+func (i UserDeviceGroupTaggingTagArgs) ToOutput(ctx context.Context) pulumix.Output[UserDeviceGroupTaggingTag] {
+	return pulumix.Output[UserDeviceGroupTaggingTag]{
+		OutputState: i.ToUserDeviceGroupTaggingTagOutputWithContext(ctx).OutputState,
+	}
+}
+
+// UserDeviceGroupTaggingTagArrayInput is an input type that accepts UserDeviceGroupTaggingTagArray and UserDeviceGroupTaggingTagArrayOutput values.
+// You can construct a concrete instance of `UserDeviceGroupTaggingTagArrayInput` via:
+//
+//	UserDeviceGroupTaggingTagArray{ UserDeviceGroupTaggingTagArgs{...} }
+type UserDeviceGroupTaggingTagArrayInput interface {
+	pulumi.Input
+
+	ToUserDeviceGroupTaggingTagArrayOutput() UserDeviceGroupTaggingTagArrayOutput
+	ToUserDeviceGroupTaggingTagArrayOutputWithContext(context.Context) UserDeviceGroupTaggingTagArrayOutput
+}
+
+type UserDeviceGroupTaggingTagArray []UserDeviceGroupTaggingTagInput
+
+func (UserDeviceGroupTaggingTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserDeviceGroupTaggingTag)(nil)).Elem()
+}
+
+func (i UserDeviceGroupTaggingTagArray) ToUserDeviceGroupTaggingTagArrayOutput() UserDeviceGroupTaggingTagArrayOutput {
+	return i.ToUserDeviceGroupTaggingTagArrayOutputWithContext(context.Background())
+}
+
+func (i UserDeviceGroupTaggingTagArray) ToUserDeviceGroupTaggingTagArrayOutputWithContext(ctx context.Context) UserDeviceGroupTaggingTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserDeviceGroupTaggingTagArrayOutput)
+}
+
+func (i UserDeviceGroupTaggingTagArray) ToOutput(ctx context.Context) pulumix.Output[[]UserDeviceGroupTaggingTag] {
+	return pulumix.Output[[]UserDeviceGroupTaggingTag]{
+		OutputState: i.ToUserDeviceGroupTaggingTagArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type UserDeviceGroupTaggingTagOutput struct{ *pulumi.OutputState }
+
+func (UserDeviceGroupTaggingTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserDeviceGroupTaggingTag)(nil)).Elem()
+}
+
+func (o UserDeviceGroupTaggingTagOutput) ToUserDeviceGroupTaggingTagOutput() UserDeviceGroupTaggingTagOutput {
+	return o
+}
+
+func (o UserDeviceGroupTaggingTagOutput) ToUserDeviceGroupTaggingTagOutputWithContext(ctx context.Context) UserDeviceGroupTaggingTagOutput {
+	return o
+}
+
+func (o UserDeviceGroupTaggingTagOutput) ToOutput(ctx context.Context) pulumix.Output[UserDeviceGroupTaggingTag] {
+	return pulumix.Output[UserDeviceGroupTaggingTag]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserDeviceGroupTaggingTagOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserDeviceGroupTaggingTag) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type UserDeviceGroupTaggingTagArrayOutput struct{ *pulumi.OutputState }
+
+func (UserDeviceGroupTaggingTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserDeviceGroupTaggingTag)(nil)).Elem()
+}
+
+func (o UserDeviceGroupTaggingTagArrayOutput) ToUserDeviceGroupTaggingTagArrayOutput() UserDeviceGroupTaggingTagArrayOutput {
+	return o
+}
+
+func (o UserDeviceGroupTaggingTagArrayOutput) ToUserDeviceGroupTaggingTagArrayOutputWithContext(ctx context.Context) UserDeviceGroupTaggingTagArrayOutput {
+	return o
+}
+
+func (o UserDeviceGroupTaggingTagArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]UserDeviceGroupTaggingTag] {
+	return pulumix.Output[[]UserDeviceGroupTaggingTag]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserDeviceGroupTaggingTagArrayOutput) Index(i pulumi.IntInput) UserDeviceGroupTaggingTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserDeviceGroupTaggingTag {
+		return vs[0].([]UserDeviceGroupTaggingTag)[vs[1].(int)]
+	}).(UserDeviceGroupTaggingTagOutput)
+}
+
+type UserDeviceTagging struct {
+	Category *string                `pulumi:"category"`
+	Name     *string                `pulumi:"name"`
+	Tags     []UserDeviceTaggingTag `pulumi:"tags"`
+}
+
+// UserDeviceTaggingInput is an input type that accepts UserDeviceTaggingArgs and UserDeviceTaggingOutput values.
+// You can construct a concrete instance of `UserDeviceTaggingInput` via:
+//
+//	UserDeviceTaggingArgs{...}
+type UserDeviceTaggingInput interface {
+	pulumi.Input
+
+	ToUserDeviceTaggingOutput() UserDeviceTaggingOutput
+	ToUserDeviceTaggingOutputWithContext(context.Context) UserDeviceTaggingOutput
+}
+
+type UserDeviceTaggingArgs struct {
+	Category pulumi.StringPtrInput          `pulumi:"category"`
+	Name     pulumi.StringPtrInput          `pulumi:"name"`
+	Tags     UserDeviceTaggingTagArrayInput `pulumi:"tags"`
+}
+
+func (UserDeviceTaggingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserDeviceTagging)(nil)).Elem()
+}
+
+func (i UserDeviceTaggingArgs) ToUserDeviceTaggingOutput() UserDeviceTaggingOutput {
+	return i.ToUserDeviceTaggingOutputWithContext(context.Background())
+}
+
+func (i UserDeviceTaggingArgs) ToUserDeviceTaggingOutputWithContext(ctx context.Context) UserDeviceTaggingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserDeviceTaggingOutput)
+}
+
+func (i UserDeviceTaggingArgs) ToOutput(ctx context.Context) pulumix.Output[UserDeviceTagging] {
+	return pulumix.Output[UserDeviceTagging]{
+		OutputState: i.ToUserDeviceTaggingOutputWithContext(ctx).OutputState,
+	}
+}
+
+// UserDeviceTaggingArrayInput is an input type that accepts UserDeviceTaggingArray and UserDeviceTaggingArrayOutput values.
+// You can construct a concrete instance of `UserDeviceTaggingArrayInput` via:
+//
+//	UserDeviceTaggingArray{ UserDeviceTaggingArgs{...} }
+type UserDeviceTaggingArrayInput interface {
+	pulumi.Input
+
+	ToUserDeviceTaggingArrayOutput() UserDeviceTaggingArrayOutput
+	ToUserDeviceTaggingArrayOutputWithContext(context.Context) UserDeviceTaggingArrayOutput
+}
+
+type UserDeviceTaggingArray []UserDeviceTaggingInput
+
+func (UserDeviceTaggingArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserDeviceTagging)(nil)).Elem()
+}
+
+func (i UserDeviceTaggingArray) ToUserDeviceTaggingArrayOutput() UserDeviceTaggingArrayOutput {
+	return i.ToUserDeviceTaggingArrayOutputWithContext(context.Background())
+}
+
+func (i UserDeviceTaggingArray) ToUserDeviceTaggingArrayOutputWithContext(ctx context.Context) UserDeviceTaggingArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserDeviceTaggingArrayOutput)
+}
+
+func (i UserDeviceTaggingArray) ToOutput(ctx context.Context) pulumix.Output[[]UserDeviceTagging] {
+	return pulumix.Output[[]UserDeviceTagging]{
+		OutputState: i.ToUserDeviceTaggingArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type UserDeviceTaggingOutput struct{ *pulumi.OutputState }
+
+func (UserDeviceTaggingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserDeviceTagging)(nil)).Elem()
+}
+
+func (o UserDeviceTaggingOutput) ToUserDeviceTaggingOutput() UserDeviceTaggingOutput {
+	return o
+}
+
+func (o UserDeviceTaggingOutput) ToUserDeviceTaggingOutputWithContext(ctx context.Context) UserDeviceTaggingOutput {
+	return o
+}
+
+func (o UserDeviceTaggingOutput) ToOutput(ctx context.Context) pulumix.Output[UserDeviceTagging] {
+	return pulumix.Output[UserDeviceTagging]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserDeviceTaggingOutput) Category() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserDeviceTagging) *string { return v.Category }).(pulumi.StringPtrOutput)
+}
+
+func (o UserDeviceTaggingOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserDeviceTagging) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o UserDeviceTaggingOutput) Tags() UserDeviceTaggingTagArrayOutput {
+	return o.ApplyT(func(v UserDeviceTagging) []UserDeviceTaggingTag { return v.Tags }).(UserDeviceTaggingTagArrayOutput)
+}
+
+type UserDeviceTaggingArrayOutput struct{ *pulumi.OutputState }
+
+func (UserDeviceTaggingArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserDeviceTagging)(nil)).Elem()
+}
+
+func (o UserDeviceTaggingArrayOutput) ToUserDeviceTaggingArrayOutput() UserDeviceTaggingArrayOutput {
+	return o
+}
+
+func (o UserDeviceTaggingArrayOutput) ToUserDeviceTaggingArrayOutputWithContext(ctx context.Context) UserDeviceTaggingArrayOutput {
+	return o
+}
+
+func (o UserDeviceTaggingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]UserDeviceTagging] {
+	return pulumix.Output[[]UserDeviceTagging]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserDeviceTaggingArrayOutput) Index(i pulumi.IntInput) UserDeviceTaggingOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserDeviceTagging {
+		return vs[0].([]UserDeviceTagging)[vs[1].(int)]
+	}).(UserDeviceTaggingOutput)
+}
+
+type UserDeviceTaggingTag struct {
+	Name *string `pulumi:"name"`
+}
+
+// UserDeviceTaggingTagInput is an input type that accepts UserDeviceTaggingTagArgs and UserDeviceTaggingTagOutput values.
+// You can construct a concrete instance of `UserDeviceTaggingTagInput` via:
+//
+//	UserDeviceTaggingTagArgs{...}
+type UserDeviceTaggingTagInput interface {
+	pulumi.Input
+
+	ToUserDeviceTaggingTagOutput() UserDeviceTaggingTagOutput
+	ToUserDeviceTaggingTagOutputWithContext(context.Context) UserDeviceTaggingTagOutput
+}
+
+type UserDeviceTaggingTagArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (UserDeviceTaggingTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserDeviceTaggingTag)(nil)).Elem()
+}
+
+func (i UserDeviceTaggingTagArgs) ToUserDeviceTaggingTagOutput() UserDeviceTaggingTagOutput {
+	return i.ToUserDeviceTaggingTagOutputWithContext(context.Background())
+}
+
+func (i UserDeviceTaggingTagArgs) ToUserDeviceTaggingTagOutputWithContext(ctx context.Context) UserDeviceTaggingTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserDeviceTaggingTagOutput)
+}
+
+func (i UserDeviceTaggingTagArgs) ToOutput(ctx context.Context) pulumix.Output[UserDeviceTaggingTag] {
+	return pulumix.Output[UserDeviceTaggingTag]{
+		OutputState: i.ToUserDeviceTaggingTagOutputWithContext(ctx).OutputState,
+	}
+}
+
+// UserDeviceTaggingTagArrayInput is an input type that accepts UserDeviceTaggingTagArray and UserDeviceTaggingTagArrayOutput values.
+// You can construct a concrete instance of `UserDeviceTaggingTagArrayInput` via:
+//
+//	UserDeviceTaggingTagArray{ UserDeviceTaggingTagArgs{...} }
+type UserDeviceTaggingTagArrayInput interface {
+	pulumi.Input
+
+	ToUserDeviceTaggingTagArrayOutput() UserDeviceTaggingTagArrayOutput
+	ToUserDeviceTaggingTagArrayOutputWithContext(context.Context) UserDeviceTaggingTagArrayOutput
+}
+
+type UserDeviceTaggingTagArray []UserDeviceTaggingTagInput
+
+func (UserDeviceTaggingTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserDeviceTaggingTag)(nil)).Elem()
+}
+
+func (i UserDeviceTaggingTagArray) ToUserDeviceTaggingTagArrayOutput() UserDeviceTaggingTagArrayOutput {
+	return i.ToUserDeviceTaggingTagArrayOutputWithContext(context.Background())
+}
+
+func (i UserDeviceTaggingTagArray) ToUserDeviceTaggingTagArrayOutputWithContext(ctx context.Context) UserDeviceTaggingTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserDeviceTaggingTagArrayOutput)
+}
+
+func (i UserDeviceTaggingTagArray) ToOutput(ctx context.Context) pulumix.Output[[]UserDeviceTaggingTag] {
+	return pulumix.Output[[]UserDeviceTaggingTag]{
+		OutputState: i.ToUserDeviceTaggingTagArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type UserDeviceTaggingTagOutput struct{ *pulumi.OutputState }
+
+func (UserDeviceTaggingTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserDeviceTaggingTag)(nil)).Elem()
+}
+
+func (o UserDeviceTaggingTagOutput) ToUserDeviceTaggingTagOutput() UserDeviceTaggingTagOutput {
+	return o
+}
+
+func (o UserDeviceTaggingTagOutput) ToUserDeviceTaggingTagOutputWithContext(ctx context.Context) UserDeviceTaggingTagOutput {
+	return o
+}
+
+func (o UserDeviceTaggingTagOutput) ToOutput(ctx context.Context) pulumix.Output[UserDeviceTaggingTag] {
+	return pulumix.Output[UserDeviceTaggingTag]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserDeviceTaggingTagOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserDeviceTaggingTag) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type UserDeviceTaggingTagArrayOutput struct{ *pulumi.OutputState }
+
+func (UserDeviceTaggingTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserDeviceTaggingTag)(nil)).Elem()
+}
+
+func (o UserDeviceTaggingTagArrayOutput) ToUserDeviceTaggingTagArrayOutput() UserDeviceTaggingTagArrayOutput {
+	return o
+}
+
+func (o UserDeviceTaggingTagArrayOutput) ToUserDeviceTaggingTagArrayOutputWithContext(ctx context.Context) UserDeviceTaggingTagArrayOutput {
+	return o
+}
+
+func (o UserDeviceTaggingTagArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]UserDeviceTaggingTag] {
+	return pulumix.Output[[]UserDeviceTaggingTag]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserDeviceTaggingTagArrayOutput) Index(i pulumi.IntInput) UserDeviceTaggingTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserDeviceTaggingTag {
+		return vs[0].([]UserDeviceTaggingTag)[vs[1].(int)]
+	}).(UserDeviceTaggingTagOutput)
+}
+
+type UserDomainControllerExtraServer struct {
+	Id              *int    `pulumi:"id"`
+	IpAddress       *string `pulumi:"ipAddress"`
+	Port            *int    `pulumi:"port"`
+	SourceIpAddress *string `pulumi:"sourceIpAddress"`
+	SourcePort      *int    `pulumi:"sourcePort"`
+}
+
+// UserDomainControllerExtraServerInput is an input type that accepts UserDomainControllerExtraServerArgs and UserDomainControllerExtraServerOutput values.
+// You can construct a concrete instance of `UserDomainControllerExtraServerInput` via:
+//
+//	UserDomainControllerExtraServerArgs{...}
+type UserDomainControllerExtraServerInput interface {
+	pulumi.Input
+
+	ToUserDomainControllerExtraServerOutput() UserDomainControllerExtraServerOutput
+	ToUserDomainControllerExtraServerOutputWithContext(context.Context) UserDomainControllerExtraServerOutput
+}
+
+type UserDomainControllerExtraServerArgs struct {
+	Id              pulumi.IntPtrInput    `pulumi:"id"`
+	IpAddress       pulumi.StringPtrInput `pulumi:"ipAddress"`
+	Port            pulumi.IntPtrInput    `pulumi:"port"`
+	SourceIpAddress pulumi.StringPtrInput `pulumi:"sourceIpAddress"`
+	SourcePort      pulumi.IntPtrInput    `pulumi:"sourcePort"`
+}
+
+func (UserDomainControllerExtraServerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserDomainControllerExtraServer)(nil)).Elem()
+}
+
+func (i UserDomainControllerExtraServerArgs) ToUserDomainControllerExtraServerOutput() UserDomainControllerExtraServerOutput {
+	return i.ToUserDomainControllerExtraServerOutputWithContext(context.Background())
+}
+
+func (i UserDomainControllerExtraServerArgs) ToUserDomainControllerExtraServerOutputWithContext(ctx context.Context) UserDomainControllerExtraServerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserDomainControllerExtraServerOutput)
+}
+
+func (i UserDomainControllerExtraServerArgs) ToOutput(ctx context.Context) pulumix.Output[UserDomainControllerExtraServer] {
+	return pulumix.Output[UserDomainControllerExtraServer]{
+		OutputState: i.ToUserDomainControllerExtraServerOutputWithContext(ctx).OutputState,
+	}
+}
+
+// UserDomainControllerExtraServerArrayInput is an input type that accepts UserDomainControllerExtraServerArray and UserDomainControllerExtraServerArrayOutput values.
+// You can construct a concrete instance of `UserDomainControllerExtraServerArrayInput` via:
+//
+//	UserDomainControllerExtraServerArray{ UserDomainControllerExtraServerArgs{...} }
+type UserDomainControllerExtraServerArrayInput interface {
+	pulumi.Input
+
+	ToUserDomainControllerExtraServerArrayOutput() UserDomainControllerExtraServerArrayOutput
+	ToUserDomainControllerExtraServerArrayOutputWithContext(context.Context) UserDomainControllerExtraServerArrayOutput
+}
+
+type UserDomainControllerExtraServerArray []UserDomainControllerExtraServerInput
+
+func (UserDomainControllerExtraServerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserDomainControllerExtraServer)(nil)).Elem()
+}
+
+func (i UserDomainControllerExtraServerArray) ToUserDomainControllerExtraServerArrayOutput() UserDomainControllerExtraServerArrayOutput {
+	return i.ToUserDomainControllerExtraServerArrayOutputWithContext(context.Background())
+}
+
+func (i UserDomainControllerExtraServerArray) ToUserDomainControllerExtraServerArrayOutputWithContext(ctx context.Context) UserDomainControllerExtraServerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserDomainControllerExtraServerArrayOutput)
+}
+
+func (i UserDomainControllerExtraServerArray) ToOutput(ctx context.Context) pulumix.Output[[]UserDomainControllerExtraServer] {
+	return pulumix.Output[[]UserDomainControllerExtraServer]{
+		OutputState: i.ToUserDomainControllerExtraServerArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type UserDomainControllerExtraServerOutput struct{ *pulumi.OutputState }
+
+func (UserDomainControllerExtraServerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserDomainControllerExtraServer)(nil)).Elem()
+}
+
+func (o UserDomainControllerExtraServerOutput) ToUserDomainControllerExtraServerOutput() UserDomainControllerExtraServerOutput {
+	return o
+}
+
+func (o UserDomainControllerExtraServerOutput) ToUserDomainControllerExtraServerOutputWithContext(ctx context.Context) UserDomainControllerExtraServerOutput {
+	return o
+}
+
+func (o UserDomainControllerExtraServerOutput) ToOutput(ctx context.Context) pulumix.Output[UserDomainControllerExtraServer] {
+	return pulumix.Output[UserDomainControllerExtraServer]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserDomainControllerExtraServerOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v UserDomainControllerExtraServer) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+func (o UserDomainControllerExtraServerOutput) IpAddress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserDomainControllerExtraServer) *string { return v.IpAddress }).(pulumi.StringPtrOutput)
+}
+
+func (o UserDomainControllerExtraServerOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v UserDomainControllerExtraServer) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+func (o UserDomainControllerExtraServerOutput) SourceIpAddress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserDomainControllerExtraServer) *string { return v.SourceIpAddress }).(pulumi.StringPtrOutput)
+}
+
+func (o UserDomainControllerExtraServerOutput) SourcePort() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v UserDomainControllerExtraServer) *int { return v.SourcePort }).(pulumi.IntPtrOutput)
+}
+
+type UserDomainControllerExtraServerArrayOutput struct{ *pulumi.OutputState }
+
+func (UserDomainControllerExtraServerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserDomainControllerExtraServer)(nil)).Elem()
+}
+
+func (o UserDomainControllerExtraServerArrayOutput) ToUserDomainControllerExtraServerArrayOutput() UserDomainControllerExtraServerArrayOutput {
+	return o
+}
+
+func (o UserDomainControllerExtraServerArrayOutput) ToUserDomainControllerExtraServerArrayOutputWithContext(ctx context.Context) UserDomainControllerExtraServerArrayOutput {
+	return o
+}
+
+func (o UserDomainControllerExtraServerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]UserDomainControllerExtraServer] {
+	return pulumix.Output[[]UserDomainControllerExtraServer]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserDomainControllerExtraServerArrayOutput) Index(i pulumi.IntInput) UserDomainControllerExtraServerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserDomainControllerExtraServer {
+		return vs[0].([]UserDomainControllerExtraServer)[vs[1].(int)]
+	}).(UserDomainControllerExtraServerOutput)
+}
+
+type UserExchangeKdcIp struct {
+	Ipv4 *string `pulumi:"ipv4"`
+}
+
+// UserExchangeKdcIpInput is an input type that accepts UserExchangeKdcIpArgs and UserExchangeKdcIpOutput values.
+// You can construct a concrete instance of `UserExchangeKdcIpInput` via:
+//
+//	UserExchangeKdcIpArgs{...}
+type UserExchangeKdcIpInput interface {
+	pulumi.Input
+
+	ToUserExchangeKdcIpOutput() UserExchangeKdcIpOutput
+	ToUserExchangeKdcIpOutputWithContext(context.Context) UserExchangeKdcIpOutput
+}
+
+type UserExchangeKdcIpArgs struct {
+	Ipv4 pulumi.StringPtrInput `pulumi:"ipv4"`
+}
+
+func (UserExchangeKdcIpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserExchangeKdcIp)(nil)).Elem()
+}
+
+func (i UserExchangeKdcIpArgs) ToUserExchangeKdcIpOutput() UserExchangeKdcIpOutput {
+	return i.ToUserExchangeKdcIpOutputWithContext(context.Background())
+}
+
+func (i UserExchangeKdcIpArgs) ToUserExchangeKdcIpOutputWithContext(ctx context.Context) UserExchangeKdcIpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserExchangeKdcIpOutput)
+}
+
+func (i UserExchangeKdcIpArgs) ToOutput(ctx context.Context) pulumix.Output[UserExchangeKdcIp] {
+	return pulumix.Output[UserExchangeKdcIp]{
+		OutputState: i.ToUserExchangeKdcIpOutputWithContext(ctx).OutputState,
+	}
+}
+
+// UserExchangeKdcIpArrayInput is an input type that accepts UserExchangeKdcIpArray and UserExchangeKdcIpArrayOutput values.
+// You can construct a concrete instance of `UserExchangeKdcIpArrayInput` via:
+//
+//	UserExchangeKdcIpArray{ UserExchangeKdcIpArgs{...} }
+type UserExchangeKdcIpArrayInput interface {
+	pulumi.Input
+
+	ToUserExchangeKdcIpArrayOutput() UserExchangeKdcIpArrayOutput
+	ToUserExchangeKdcIpArrayOutputWithContext(context.Context) UserExchangeKdcIpArrayOutput
+}
+
+type UserExchangeKdcIpArray []UserExchangeKdcIpInput
+
+func (UserExchangeKdcIpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserExchangeKdcIp)(nil)).Elem()
+}
+
+func (i UserExchangeKdcIpArray) ToUserExchangeKdcIpArrayOutput() UserExchangeKdcIpArrayOutput {
+	return i.ToUserExchangeKdcIpArrayOutputWithContext(context.Background())
+}
+
+func (i UserExchangeKdcIpArray) ToUserExchangeKdcIpArrayOutputWithContext(ctx context.Context) UserExchangeKdcIpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserExchangeKdcIpArrayOutput)
+}
+
+func (i UserExchangeKdcIpArray) ToOutput(ctx context.Context) pulumix.Output[[]UserExchangeKdcIp] {
+	return pulumix.Output[[]UserExchangeKdcIp]{
+		OutputState: i.ToUserExchangeKdcIpArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type UserExchangeKdcIpOutput struct{ *pulumi.OutputState }
+
+func (UserExchangeKdcIpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserExchangeKdcIp)(nil)).Elem()
+}
+
+func (o UserExchangeKdcIpOutput) ToUserExchangeKdcIpOutput() UserExchangeKdcIpOutput {
+	return o
+}
+
+func (o UserExchangeKdcIpOutput) ToUserExchangeKdcIpOutputWithContext(ctx context.Context) UserExchangeKdcIpOutput {
+	return o
+}
+
+func (o UserExchangeKdcIpOutput) ToOutput(ctx context.Context) pulumix.Output[UserExchangeKdcIp] {
+	return pulumix.Output[UserExchangeKdcIp]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserExchangeKdcIpOutput) Ipv4() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserExchangeKdcIp) *string { return v.Ipv4 }).(pulumi.StringPtrOutput)
+}
+
+type UserExchangeKdcIpArrayOutput struct{ *pulumi.OutputState }
+
+func (UserExchangeKdcIpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserExchangeKdcIp)(nil)).Elem()
+}
+
+func (o UserExchangeKdcIpArrayOutput) ToUserExchangeKdcIpArrayOutput() UserExchangeKdcIpArrayOutput {
+	return o
+}
+
+func (o UserExchangeKdcIpArrayOutput) ToUserExchangeKdcIpArrayOutputWithContext(ctx context.Context) UserExchangeKdcIpArrayOutput {
+	return o
+}
+
+func (o UserExchangeKdcIpArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]UserExchangeKdcIp] {
+	return pulumix.Output[[]UserExchangeKdcIp]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserExchangeKdcIpArrayOutput) Index(i pulumi.IntInput) UserExchangeKdcIpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserExchangeKdcIp {
+		return vs[0].([]UserExchangeKdcIp)[vs[1].(int)]
+	}).(UserExchangeKdcIpOutput)
+}
+
+type UserFssoPollingAdgrp struct {
+	Name *string `pulumi:"name"`
+}
+
+// UserFssoPollingAdgrpInput is an input type that accepts UserFssoPollingAdgrpArgs and UserFssoPollingAdgrpOutput values.
+// You can construct a concrete instance of `UserFssoPollingAdgrpInput` via:
+//
+//	UserFssoPollingAdgrpArgs{...}
+type UserFssoPollingAdgrpInput interface {
+	pulumi.Input
+
+	ToUserFssoPollingAdgrpOutput() UserFssoPollingAdgrpOutput
+	ToUserFssoPollingAdgrpOutputWithContext(context.Context) UserFssoPollingAdgrpOutput
+}
+
+type UserFssoPollingAdgrpArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (UserFssoPollingAdgrpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserFssoPollingAdgrp)(nil)).Elem()
+}
+
+func (i UserFssoPollingAdgrpArgs) ToUserFssoPollingAdgrpOutput() UserFssoPollingAdgrpOutput {
+	return i.ToUserFssoPollingAdgrpOutputWithContext(context.Background())
+}
+
+func (i UserFssoPollingAdgrpArgs) ToUserFssoPollingAdgrpOutputWithContext(ctx context.Context) UserFssoPollingAdgrpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserFssoPollingAdgrpOutput)
+}
+
+func (i UserFssoPollingAdgrpArgs) ToOutput(ctx context.Context) pulumix.Output[UserFssoPollingAdgrp] {
+	return pulumix.Output[UserFssoPollingAdgrp]{
+		OutputState: i.ToUserFssoPollingAdgrpOutputWithContext(ctx).OutputState,
+	}
+}
+
+// UserFssoPollingAdgrpArrayInput is an input type that accepts UserFssoPollingAdgrpArray and UserFssoPollingAdgrpArrayOutput values.
+// You can construct a concrete instance of `UserFssoPollingAdgrpArrayInput` via:
+//
+//	UserFssoPollingAdgrpArray{ UserFssoPollingAdgrpArgs{...} }
+type UserFssoPollingAdgrpArrayInput interface {
+	pulumi.Input
+
+	ToUserFssoPollingAdgrpArrayOutput() UserFssoPollingAdgrpArrayOutput
+	ToUserFssoPollingAdgrpArrayOutputWithContext(context.Context) UserFssoPollingAdgrpArrayOutput
+}
+
+type UserFssoPollingAdgrpArray []UserFssoPollingAdgrpInput
+
+func (UserFssoPollingAdgrpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserFssoPollingAdgrp)(nil)).Elem()
+}
+
+func (i UserFssoPollingAdgrpArray) ToUserFssoPollingAdgrpArrayOutput() UserFssoPollingAdgrpArrayOutput {
+	return i.ToUserFssoPollingAdgrpArrayOutputWithContext(context.Background())
+}
+
+func (i UserFssoPollingAdgrpArray) ToUserFssoPollingAdgrpArrayOutputWithContext(ctx context.Context) UserFssoPollingAdgrpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserFssoPollingAdgrpArrayOutput)
+}
+
+func (i UserFssoPollingAdgrpArray) ToOutput(ctx context.Context) pulumix.Output[[]UserFssoPollingAdgrp] {
+	return pulumix.Output[[]UserFssoPollingAdgrp]{
+		OutputState: i.ToUserFssoPollingAdgrpArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type UserFssoPollingAdgrpOutput struct{ *pulumi.OutputState }
+
+func (UserFssoPollingAdgrpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserFssoPollingAdgrp)(nil)).Elem()
+}
+
+func (o UserFssoPollingAdgrpOutput) ToUserFssoPollingAdgrpOutput() UserFssoPollingAdgrpOutput {
+	return o
+}
+
+func (o UserFssoPollingAdgrpOutput) ToUserFssoPollingAdgrpOutputWithContext(ctx context.Context) UserFssoPollingAdgrpOutput {
+	return o
+}
+
+func (o UserFssoPollingAdgrpOutput) ToOutput(ctx context.Context) pulumix.Output[UserFssoPollingAdgrp] {
+	return pulumix.Output[UserFssoPollingAdgrp]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserFssoPollingAdgrpOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserFssoPollingAdgrp) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type UserFssoPollingAdgrpArrayOutput struct{ *pulumi.OutputState }
+
+func (UserFssoPollingAdgrpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserFssoPollingAdgrp)(nil)).Elem()
+}
+
+func (o UserFssoPollingAdgrpArrayOutput) ToUserFssoPollingAdgrpArrayOutput() UserFssoPollingAdgrpArrayOutput {
+	return o
+}
+
+func (o UserFssoPollingAdgrpArrayOutput) ToUserFssoPollingAdgrpArrayOutputWithContext(ctx context.Context) UserFssoPollingAdgrpArrayOutput {
+	return o
+}
+
+func (o UserFssoPollingAdgrpArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]UserFssoPollingAdgrp] {
+	return pulumix.Output[[]UserFssoPollingAdgrp]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserFssoPollingAdgrpArrayOutput) Index(i pulumi.IntInput) UserFssoPollingAdgrpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserFssoPollingAdgrp {
+		return vs[0].([]UserFssoPollingAdgrp)[vs[1].(int)]
+	}).(UserFssoPollingAdgrpOutput)
+}
+
+type UserGroupGuest struct {
+	Comment     *string `pulumi:"comment"`
+	Company     *string `pulumi:"company"`
+	Email       *string `pulumi:"email"`
+	Expiration  *string `pulumi:"expiration"`
+	Id          *int    `pulumi:"id"`
+	MobilePhone *string `pulumi:"mobilePhone"`
+	Name        *string `pulumi:"name"`
+	Password    *string `pulumi:"password"`
+	Sponsor     *string `pulumi:"sponsor"`
+	UserId      *string `pulumi:"userId"`
+}
+
+// UserGroupGuestInput is an input type that accepts UserGroupGuestArgs and UserGroupGuestOutput values.
+// You can construct a concrete instance of `UserGroupGuestInput` via:
+//
+//	UserGroupGuestArgs{...}
+type UserGroupGuestInput interface {
+	pulumi.Input
+
+	ToUserGroupGuestOutput() UserGroupGuestOutput
+	ToUserGroupGuestOutputWithContext(context.Context) UserGroupGuestOutput
+}
+
+type UserGroupGuestArgs struct {
+	Comment     pulumi.StringPtrInput `pulumi:"comment"`
+	Company     pulumi.StringPtrInput `pulumi:"company"`
+	Email       pulumi.StringPtrInput `pulumi:"email"`
+	Expiration  pulumi.StringPtrInput `pulumi:"expiration"`
+	Id          pulumi.IntPtrInput    `pulumi:"id"`
+	MobilePhone pulumi.StringPtrInput `pulumi:"mobilePhone"`
+	Name        pulumi.StringPtrInput `pulumi:"name"`
+	Password    pulumi.StringPtrInput `pulumi:"password"`
+	Sponsor     pulumi.StringPtrInput `pulumi:"sponsor"`
+	UserId      pulumi.StringPtrInput `pulumi:"userId"`
+}
+
+func (UserGroupGuestArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserGroupGuest)(nil)).Elem()
+}
+
+func (i UserGroupGuestArgs) ToUserGroupGuestOutput() UserGroupGuestOutput {
+	return i.ToUserGroupGuestOutputWithContext(context.Background())
+}
+
+func (i UserGroupGuestArgs) ToUserGroupGuestOutputWithContext(ctx context.Context) UserGroupGuestOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserGroupGuestOutput)
+}
+
+func (i UserGroupGuestArgs) ToOutput(ctx context.Context) pulumix.Output[UserGroupGuest] {
+	return pulumix.Output[UserGroupGuest]{
+		OutputState: i.ToUserGroupGuestOutputWithContext(ctx).OutputState,
+	}
+}
+
+// UserGroupGuestArrayInput is an input type that accepts UserGroupGuestArray and UserGroupGuestArrayOutput values.
+// You can construct a concrete instance of `UserGroupGuestArrayInput` via:
+//
+//	UserGroupGuestArray{ UserGroupGuestArgs{...} }
+type UserGroupGuestArrayInput interface {
+	pulumi.Input
+
+	ToUserGroupGuestArrayOutput() UserGroupGuestArrayOutput
+	ToUserGroupGuestArrayOutputWithContext(context.Context) UserGroupGuestArrayOutput
+}
+
+type UserGroupGuestArray []UserGroupGuestInput
+
+func (UserGroupGuestArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserGroupGuest)(nil)).Elem()
+}
+
+func (i UserGroupGuestArray) ToUserGroupGuestArrayOutput() UserGroupGuestArrayOutput {
+	return i.ToUserGroupGuestArrayOutputWithContext(context.Background())
+}
+
+func (i UserGroupGuestArray) ToUserGroupGuestArrayOutputWithContext(ctx context.Context) UserGroupGuestArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserGroupGuestArrayOutput)
+}
+
+func (i UserGroupGuestArray) ToOutput(ctx context.Context) pulumix.Output[[]UserGroupGuest] {
+	return pulumix.Output[[]UserGroupGuest]{
+		OutputState: i.ToUserGroupGuestArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type UserGroupGuestOutput struct{ *pulumi.OutputState }
+
+func (UserGroupGuestOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserGroupGuest)(nil)).Elem()
+}
+
+func (o UserGroupGuestOutput) ToUserGroupGuestOutput() UserGroupGuestOutput {
+	return o
+}
+
+func (o UserGroupGuestOutput) ToUserGroupGuestOutputWithContext(ctx context.Context) UserGroupGuestOutput {
+	return o
+}
+
+func (o UserGroupGuestOutput) ToOutput(ctx context.Context) pulumix.Output[UserGroupGuest] {
+	return pulumix.Output[UserGroupGuest]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserGroupGuestOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserGroupGuest) *string { return v.Comment }).(pulumi.StringPtrOutput)
+}
+
+func (o UserGroupGuestOutput) Company() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserGroupGuest) *string { return v.Company }).(pulumi.StringPtrOutput)
+}
+
+func (o UserGroupGuestOutput) Email() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserGroupGuest) *string { return v.Email }).(pulumi.StringPtrOutput)
+}
+
+func (o UserGroupGuestOutput) Expiration() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserGroupGuest) *string { return v.Expiration }).(pulumi.StringPtrOutput)
+}
+
+func (o UserGroupGuestOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v UserGroupGuest) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+func (o UserGroupGuestOutput) MobilePhone() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserGroupGuest) *string { return v.MobilePhone }).(pulumi.StringPtrOutput)
+}
+
+func (o UserGroupGuestOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserGroupGuest) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o UserGroupGuestOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserGroupGuest) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+func (o UserGroupGuestOutput) Sponsor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserGroupGuest) *string { return v.Sponsor }).(pulumi.StringPtrOutput)
+}
+
+func (o UserGroupGuestOutput) UserId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserGroupGuest) *string { return v.UserId }).(pulumi.StringPtrOutput)
+}
+
+type UserGroupGuestArrayOutput struct{ *pulumi.OutputState }
+
+func (UserGroupGuestArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserGroupGuest)(nil)).Elem()
+}
+
+func (o UserGroupGuestArrayOutput) ToUserGroupGuestArrayOutput() UserGroupGuestArrayOutput {
+	return o
+}
+
+func (o UserGroupGuestArrayOutput) ToUserGroupGuestArrayOutputWithContext(ctx context.Context) UserGroupGuestArrayOutput {
+	return o
+}
+
+func (o UserGroupGuestArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]UserGroupGuest] {
+	return pulumix.Output[[]UserGroupGuest]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserGroupGuestArrayOutput) Index(i pulumi.IntInput) UserGroupGuestOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserGroupGuest {
+		return vs[0].([]UserGroupGuest)[vs[1].(int)]
+	}).(UserGroupGuestOutput)
+}
+
+type UserGroupMatch struct {
+	GroupName  *string `pulumi:"groupName"`
+	Id         *int    `pulumi:"id"`
+	ServerName *string `pulumi:"serverName"`
+}
+
+// UserGroupMatchInput is an input type that accepts UserGroupMatchArgs and UserGroupMatchOutput values.
+// You can construct a concrete instance of `UserGroupMatchInput` via:
+//
+//	UserGroupMatchArgs{...}
+type UserGroupMatchInput interface {
+	pulumi.Input
+
+	ToUserGroupMatchOutput() UserGroupMatchOutput
+	ToUserGroupMatchOutputWithContext(context.Context) UserGroupMatchOutput
+}
+
+type UserGroupMatchArgs struct {
+	GroupName  pulumi.StringPtrInput `pulumi:"groupName"`
+	Id         pulumi.IntPtrInput    `pulumi:"id"`
+	ServerName pulumi.StringPtrInput `pulumi:"serverName"`
+}
+
+func (UserGroupMatchArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserGroupMatch)(nil)).Elem()
+}
+
+func (i UserGroupMatchArgs) ToUserGroupMatchOutput() UserGroupMatchOutput {
+	return i.ToUserGroupMatchOutputWithContext(context.Background())
+}
+
+func (i UserGroupMatchArgs) ToUserGroupMatchOutputWithContext(ctx context.Context) UserGroupMatchOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserGroupMatchOutput)
+}
+
+func (i UserGroupMatchArgs) ToOutput(ctx context.Context) pulumix.Output[UserGroupMatch] {
+	return pulumix.Output[UserGroupMatch]{
+		OutputState: i.ToUserGroupMatchOutputWithContext(ctx).OutputState,
+	}
+}
+
+// UserGroupMatchArrayInput is an input type that accepts UserGroupMatchArray and UserGroupMatchArrayOutput values.
+// You can construct a concrete instance of `UserGroupMatchArrayInput` via:
+//
+//	UserGroupMatchArray{ UserGroupMatchArgs{...} }
+type UserGroupMatchArrayInput interface {
+	pulumi.Input
+
+	ToUserGroupMatchArrayOutput() UserGroupMatchArrayOutput
+	ToUserGroupMatchArrayOutputWithContext(context.Context) UserGroupMatchArrayOutput
+}
+
+type UserGroupMatchArray []UserGroupMatchInput
+
+func (UserGroupMatchArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserGroupMatch)(nil)).Elem()
+}
+
+func (i UserGroupMatchArray) ToUserGroupMatchArrayOutput() UserGroupMatchArrayOutput {
+	return i.ToUserGroupMatchArrayOutputWithContext(context.Background())
+}
+
+func (i UserGroupMatchArray) ToUserGroupMatchArrayOutputWithContext(ctx context.Context) UserGroupMatchArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserGroupMatchArrayOutput)
+}
+
+func (i UserGroupMatchArray) ToOutput(ctx context.Context) pulumix.Output[[]UserGroupMatch] {
+	return pulumix.Output[[]UserGroupMatch]{
+		OutputState: i.ToUserGroupMatchArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type UserGroupMatchOutput struct{ *pulumi.OutputState }
+
+func (UserGroupMatchOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserGroupMatch)(nil)).Elem()
+}
+
+func (o UserGroupMatchOutput) ToUserGroupMatchOutput() UserGroupMatchOutput {
+	return o
+}
+
+func (o UserGroupMatchOutput) ToUserGroupMatchOutputWithContext(ctx context.Context) UserGroupMatchOutput {
+	return o
+}
+
+func (o UserGroupMatchOutput) ToOutput(ctx context.Context) pulumix.Output[UserGroupMatch] {
+	return pulumix.Output[UserGroupMatch]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserGroupMatchOutput) GroupName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserGroupMatch) *string { return v.GroupName }).(pulumi.StringPtrOutput)
+}
+
+func (o UserGroupMatchOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v UserGroupMatch) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+func (o UserGroupMatchOutput) ServerName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserGroupMatch) *string { return v.ServerName }).(pulumi.StringPtrOutput)
+}
+
+type UserGroupMatchArrayOutput struct{ *pulumi.OutputState }
+
+func (UserGroupMatchArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserGroupMatch)(nil)).Elem()
+}
+
+func (o UserGroupMatchArrayOutput) ToUserGroupMatchArrayOutput() UserGroupMatchArrayOutput {
+	return o
+}
+
+func (o UserGroupMatchArrayOutput) ToUserGroupMatchArrayOutputWithContext(ctx context.Context) UserGroupMatchArrayOutput {
+	return o
+}
+
+func (o UserGroupMatchArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]UserGroupMatch] {
+	return pulumix.Output[[]UserGroupMatch]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserGroupMatchArrayOutput) Index(i pulumi.IntInput) UserGroupMatchOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserGroupMatch {
+		return vs[0].([]UserGroupMatch)[vs[1].(int)]
+	}).(UserGroupMatchOutput)
+}
+
+type UserGroupMember struct {
+	Name *string `pulumi:"name"`
+}
+
+// UserGroupMemberInput is an input type that accepts UserGroupMemberArgs and UserGroupMemberOutput values.
+// You can construct a concrete instance of `UserGroupMemberInput` via:
+//
+//	UserGroupMemberArgs{...}
+type UserGroupMemberInput interface {
+	pulumi.Input
+
+	ToUserGroupMemberOutput() UserGroupMemberOutput
+	ToUserGroupMemberOutputWithContext(context.Context) UserGroupMemberOutput
+}
+
+type UserGroupMemberArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (UserGroupMemberArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserGroupMember)(nil)).Elem()
+}
+
+func (i UserGroupMemberArgs) ToUserGroupMemberOutput() UserGroupMemberOutput {
+	return i.ToUserGroupMemberOutputWithContext(context.Background())
+}
+
+func (i UserGroupMemberArgs) ToUserGroupMemberOutputWithContext(ctx context.Context) UserGroupMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserGroupMemberOutput)
+}
+
+func (i UserGroupMemberArgs) ToOutput(ctx context.Context) pulumix.Output[UserGroupMember] {
+	return pulumix.Output[UserGroupMember]{
+		OutputState: i.ToUserGroupMemberOutputWithContext(ctx).OutputState,
+	}
+}
+
+// UserGroupMemberArrayInput is an input type that accepts UserGroupMemberArray and UserGroupMemberArrayOutput values.
+// You can construct a concrete instance of `UserGroupMemberArrayInput` via:
+//
+//	UserGroupMemberArray{ UserGroupMemberArgs{...} }
+type UserGroupMemberArrayInput interface {
+	pulumi.Input
+
+	ToUserGroupMemberArrayOutput() UserGroupMemberArrayOutput
+	ToUserGroupMemberArrayOutputWithContext(context.Context) UserGroupMemberArrayOutput
+}
+
+type UserGroupMemberArray []UserGroupMemberInput
+
+func (UserGroupMemberArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserGroupMember)(nil)).Elem()
+}
+
+func (i UserGroupMemberArray) ToUserGroupMemberArrayOutput() UserGroupMemberArrayOutput {
+	return i.ToUserGroupMemberArrayOutputWithContext(context.Background())
+}
+
+func (i UserGroupMemberArray) ToUserGroupMemberArrayOutputWithContext(ctx context.Context) UserGroupMemberArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserGroupMemberArrayOutput)
+}
+
+func (i UserGroupMemberArray) ToOutput(ctx context.Context) pulumix.Output[[]UserGroupMember] {
+	return pulumix.Output[[]UserGroupMember]{
+		OutputState: i.ToUserGroupMemberArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type UserGroupMemberOutput struct{ *pulumi.OutputState }
+
+func (UserGroupMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserGroupMember)(nil)).Elem()
+}
+
+func (o UserGroupMemberOutput) ToUserGroupMemberOutput() UserGroupMemberOutput {
+	return o
+}
+
+func (o UserGroupMemberOutput) ToUserGroupMemberOutputWithContext(ctx context.Context) UserGroupMemberOutput {
+	return o
+}
+
+func (o UserGroupMemberOutput) ToOutput(ctx context.Context) pulumix.Output[UserGroupMember] {
+	return pulumix.Output[UserGroupMember]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserGroupMemberOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserGroupMember) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type UserGroupMemberArrayOutput struct{ *pulumi.OutputState }
+
+func (UserGroupMemberArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserGroupMember)(nil)).Elem()
+}
+
+func (o UserGroupMemberArrayOutput) ToUserGroupMemberArrayOutput() UserGroupMemberArrayOutput {
+	return o
+}
+
+func (o UserGroupMemberArrayOutput) ToUserGroupMemberArrayOutputWithContext(ctx context.Context) UserGroupMemberArrayOutput {
+	return o
+}
+
+func (o UserGroupMemberArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]UserGroupMember] {
+	return pulumix.Output[[]UserGroupMember]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserGroupMemberArrayOutput) Index(i pulumi.IntInput) UserGroupMemberOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserGroupMember {
+		return vs[0].([]UserGroupMember)[vs[1].(int)]
+	}).(UserGroupMemberOutput)
+}
+
+type UserNacPolicySeverity struct {
+	SeverityNum *int `pulumi:"severityNum"`
+}
+
+// UserNacPolicySeverityInput is an input type that accepts UserNacPolicySeverityArgs and UserNacPolicySeverityOutput values.
+// You can construct a concrete instance of `UserNacPolicySeverityInput` via:
+//
+//	UserNacPolicySeverityArgs{...}
+type UserNacPolicySeverityInput interface {
+	pulumi.Input
+
+	ToUserNacPolicySeverityOutput() UserNacPolicySeverityOutput
+	ToUserNacPolicySeverityOutputWithContext(context.Context) UserNacPolicySeverityOutput
+}
+
+type UserNacPolicySeverityArgs struct {
+	SeverityNum pulumi.IntPtrInput `pulumi:"severityNum"`
+}
+
+func (UserNacPolicySeverityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserNacPolicySeverity)(nil)).Elem()
+}
+
+func (i UserNacPolicySeverityArgs) ToUserNacPolicySeverityOutput() UserNacPolicySeverityOutput {
+	return i.ToUserNacPolicySeverityOutputWithContext(context.Background())
+}
+
+func (i UserNacPolicySeverityArgs) ToUserNacPolicySeverityOutputWithContext(ctx context.Context) UserNacPolicySeverityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserNacPolicySeverityOutput)
+}
+
+func (i UserNacPolicySeverityArgs) ToOutput(ctx context.Context) pulumix.Output[UserNacPolicySeverity] {
+	return pulumix.Output[UserNacPolicySeverity]{
+		OutputState: i.ToUserNacPolicySeverityOutputWithContext(ctx).OutputState,
+	}
+}
+
+// UserNacPolicySeverityArrayInput is an input type that accepts UserNacPolicySeverityArray and UserNacPolicySeverityArrayOutput values.
+// You can construct a concrete instance of `UserNacPolicySeverityArrayInput` via:
+//
+//	UserNacPolicySeverityArray{ UserNacPolicySeverityArgs{...} }
+type UserNacPolicySeverityArrayInput interface {
+	pulumi.Input
+
+	ToUserNacPolicySeverityArrayOutput() UserNacPolicySeverityArrayOutput
+	ToUserNacPolicySeverityArrayOutputWithContext(context.Context) UserNacPolicySeverityArrayOutput
+}
+
+type UserNacPolicySeverityArray []UserNacPolicySeverityInput
+
+func (UserNacPolicySeverityArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserNacPolicySeverity)(nil)).Elem()
+}
+
+func (i UserNacPolicySeverityArray) ToUserNacPolicySeverityArrayOutput() UserNacPolicySeverityArrayOutput {
+	return i.ToUserNacPolicySeverityArrayOutputWithContext(context.Background())
+}
+
+func (i UserNacPolicySeverityArray) ToUserNacPolicySeverityArrayOutputWithContext(ctx context.Context) UserNacPolicySeverityArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserNacPolicySeverityArrayOutput)
+}
+
+func (i UserNacPolicySeverityArray) ToOutput(ctx context.Context) pulumix.Output[[]UserNacPolicySeverity] {
+	return pulumix.Output[[]UserNacPolicySeverity]{
+		OutputState: i.ToUserNacPolicySeverityArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type UserNacPolicySeverityOutput struct{ *pulumi.OutputState }
+
+func (UserNacPolicySeverityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserNacPolicySeverity)(nil)).Elem()
+}
+
+func (o UserNacPolicySeverityOutput) ToUserNacPolicySeverityOutput() UserNacPolicySeverityOutput {
+	return o
+}
+
+func (o UserNacPolicySeverityOutput) ToUserNacPolicySeverityOutputWithContext(ctx context.Context) UserNacPolicySeverityOutput {
+	return o
+}
+
+func (o UserNacPolicySeverityOutput) ToOutput(ctx context.Context) pulumix.Output[UserNacPolicySeverity] {
+	return pulumix.Output[UserNacPolicySeverity]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserNacPolicySeverityOutput) SeverityNum() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v UserNacPolicySeverity) *int { return v.SeverityNum }).(pulumi.IntPtrOutput)
+}
+
+type UserNacPolicySeverityArrayOutput struct{ *pulumi.OutputState }
+
+func (UserNacPolicySeverityArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserNacPolicySeverity)(nil)).Elem()
+}
+
+func (o UserNacPolicySeverityArrayOutput) ToUserNacPolicySeverityArrayOutput() UserNacPolicySeverityArrayOutput {
+	return o
+}
+
+func (o UserNacPolicySeverityArrayOutput) ToUserNacPolicySeverityArrayOutputWithContext(ctx context.Context) UserNacPolicySeverityArrayOutput {
+	return o
+}
+
+func (o UserNacPolicySeverityArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]UserNacPolicySeverity] {
+	return pulumix.Output[[]UserNacPolicySeverity]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserNacPolicySeverityArrayOutput) Index(i pulumi.IntInput) UserNacPolicySeverityOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserNacPolicySeverity {
+		return vs[0].([]UserNacPolicySeverity)[vs[1].(int)]
+	}).(UserNacPolicySeverityOutput)
+}
+
+type UserNacPolicySwitchGroup struct {
+	Name *string `pulumi:"name"`
+}
+
+// UserNacPolicySwitchGroupInput is an input type that accepts UserNacPolicySwitchGroupArgs and UserNacPolicySwitchGroupOutput values.
+// You can construct a concrete instance of `UserNacPolicySwitchGroupInput` via:
+//
+//	UserNacPolicySwitchGroupArgs{...}
+type UserNacPolicySwitchGroupInput interface {
+	pulumi.Input
+
+	ToUserNacPolicySwitchGroupOutput() UserNacPolicySwitchGroupOutput
+	ToUserNacPolicySwitchGroupOutputWithContext(context.Context) UserNacPolicySwitchGroupOutput
+}
+
+type UserNacPolicySwitchGroupArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (UserNacPolicySwitchGroupArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserNacPolicySwitchGroup)(nil)).Elem()
+}
+
+func (i UserNacPolicySwitchGroupArgs) ToUserNacPolicySwitchGroupOutput() UserNacPolicySwitchGroupOutput {
+	return i.ToUserNacPolicySwitchGroupOutputWithContext(context.Background())
+}
+
+func (i UserNacPolicySwitchGroupArgs) ToUserNacPolicySwitchGroupOutputWithContext(ctx context.Context) UserNacPolicySwitchGroupOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserNacPolicySwitchGroupOutput)
+}
+
+func (i UserNacPolicySwitchGroupArgs) ToOutput(ctx context.Context) pulumix.Output[UserNacPolicySwitchGroup] {
+	return pulumix.Output[UserNacPolicySwitchGroup]{
+		OutputState: i.ToUserNacPolicySwitchGroupOutputWithContext(ctx).OutputState,
+	}
+}
+
+// UserNacPolicySwitchGroupArrayInput is an input type that accepts UserNacPolicySwitchGroupArray and UserNacPolicySwitchGroupArrayOutput values.
+// You can construct a concrete instance of `UserNacPolicySwitchGroupArrayInput` via:
+//
+//	UserNacPolicySwitchGroupArray{ UserNacPolicySwitchGroupArgs{...} }
+type UserNacPolicySwitchGroupArrayInput interface {
+	pulumi.Input
+
+	ToUserNacPolicySwitchGroupArrayOutput() UserNacPolicySwitchGroupArrayOutput
+	ToUserNacPolicySwitchGroupArrayOutputWithContext(context.Context) UserNacPolicySwitchGroupArrayOutput
+}
+
+type UserNacPolicySwitchGroupArray []UserNacPolicySwitchGroupInput
+
+func (UserNacPolicySwitchGroupArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserNacPolicySwitchGroup)(nil)).Elem()
+}
+
+func (i UserNacPolicySwitchGroupArray) ToUserNacPolicySwitchGroupArrayOutput() UserNacPolicySwitchGroupArrayOutput {
+	return i.ToUserNacPolicySwitchGroupArrayOutputWithContext(context.Background())
+}
+
+func (i UserNacPolicySwitchGroupArray) ToUserNacPolicySwitchGroupArrayOutputWithContext(ctx context.Context) UserNacPolicySwitchGroupArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserNacPolicySwitchGroupArrayOutput)
+}
+
+func (i UserNacPolicySwitchGroupArray) ToOutput(ctx context.Context) pulumix.Output[[]UserNacPolicySwitchGroup] {
+	return pulumix.Output[[]UserNacPolicySwitchGroup]{
+		OutputState: i.ToUserNacPolicySwitchGroupArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type UserNacPolicySwitchGroupOutput struct{ *pulumi.OutputState }
+
+func (UserNacPolicySwitchGroupOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserNacPolicySwitchGroup)(nil)).Elem()
+}
+
+func (o UserNacPolicySwitchGroupOutput) ToUserNacPolicySwitchGroupOutput() UserNacPolicySwitchGroupOutput {
+	return o
+}
+
+func (o UserNacPolicySwitchGroupOutput) ToUserNacPolicySwitchGroupOutputWithContext(ctx context.Context) UserNacPolicySwitchGroupOutput {
+	return o
+}
+
+func (o UserNacPolicySwitchGroupOutput) ToOutput(ctx context.Context) pulumix.Output[UserNacPolicySwitchGroup] {
+	return pulumix.Output[UserNacPolicySwitchGroup]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserNacPolicySwitchGroupOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserNacPolicySwitchGroup) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type UserNacPolicySwitchGroupArrayOutput struct{ *pulumi.OutputState }
+
+func (UserNacPolicySwitchGroupArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserNacPolicySwitchGroup)(nil)).Elem()
+}
+
+func (o UserNacPolicySwitchGroupArrayOutput) ToUserNacPolicySwitchGroupArrayOutput() UserNacPolicySwitchGroupArrayOutput {
+	return o
+}
+
+func (o UserNacPolicySwitchGroupArrayOutput) ToUserNacPolicySwitchGroupArrayOutputWithContext(ctx context.Context) UserNacPolicySwitchGroupArrayOutput {
+	return o
+}
+
+func (o UserNacPolicySwitchGroupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]UserNacPolicySwitchGroup] {
+	return pulumix.Output[[]UserNacPolicySwitchGroup]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserNacPolicySwitchGroupArrayOutput) Index(i pulumi.IntInput) UserNacPolicySwitchGroupOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserNacPolicySwitchGroup {
+		return vs[0].([]UserNacPolicySwitchGroup)[vs[1].(int)]
+	}).(UserNacPolicySwitchGroupOutput)
+}
+
+type UserNacPolicySwitchScope struct {
+	SwitchId *string `pulumi:"switchId"`
+}
+
+// UserNacPolicySwitchScopeInput is an input type that accepts UserNacPolicySwitchScopeArgs and UserNacPolicySwitchScopeOutput values.
+// You can construct a concrete instance of `UserNacPolicySwitchScopeInput` via:
+//
+//	UserNacPolicySwitchScopeArgs{...}
+type UserNacPolicySwitchScopeInput interface {
+	pulumi.Input
+
+	ToUserNacPolicySwitchScopeOutput() UserNacPolicySwitchScopeOutput
+	ToUserNacPolicySwitchScopeOutputWithContext(context.Context) UserNacPolicySwitchScopeOutput
+}
+
+type UserNacPolicySwitchScopeArgs struct {
+	SwitchId pulumi.StringPtrInput `pulumi:"switchId"`
+}
+
+func (UserNacPolicySwitchScopeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserNacPolicySwitchScope)(nil)).Elem()
+}
+
+func (i UserNacPolicySwitchScopeArgs) ToUserNacPolicySwitchScopeOutput() UserNacPolicySwitchScopeOutput {
+	return i.ToUserNacPolicySwitchScopeOutputWithContext(context.Background())
+}
+
+func (i UserNacPolicySwitchScopeArgs) ToUserNacPolicySwitchScopeOutputWithContext(ctx context.Context) UserNacPolicySwitchScopeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserNacPolicySwitchScopeOutput)
+}
+
+func (i UserNacPolicySwitchScopeArgs) ToOutput(ctx context.Context) pulumix.Output[UserNacPolicySwitchScope] {
+	return pulumix.Output[UserNacPolicySwitchScope]{
+		OutputState: i.ToUserNacPolicySwitchScopeOutputWithContext(ctx).OutputState,
+	}
+}
+
+// UserNacPolicySwitchScopeArrayInput is an input type that accepts UserNacPolicySwitchScopeArray and UserNacPolicySwitchScopeArrayOutput values.
+// You can construct a concrete instance of `UserNacPolicySwitchScopeArrayInput` via:
+//
+//	UserNacPolicySwitchScopeArray{ UserNacPolicySwitchScopeArgs{...} }
+type UserNacPolicySwitchScopeArrayInput interface {
+	pulumi.Input
+
+	ToUserNacPolicySwitchScopeArrayOutput() UserNacPolicySwitchScopeArrayOutput
+	ToUserNacPolicySwitchScopeArrayOutputWithContext(context.Context) UserNacPolicySwitchScopeArrayOutput
+}
+
+type UserNacPolicySwitchScopeArray []UserNacPolicySwitchScopeInput
+
+func (UserNacPolicySwitchScopeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserNacPolicySwitchScope)(nil)).Elem()
+}
+
+func (i UserNacPolicySwitchScopeArray) ToUserNacPolicySwitchScopeArrayOutput() UserNacPolicySwitchScopeArrayOutput {
+	return i.ToUserNacPolicySwitchScopeArrayOutputWithContext(context.Background())
+}
+
+func (i UserNacPolicySwitchScopeArray) ToUserNacPolicySwitchScopeArrayOutputWithContext(ctx context.Context) UserNacPolicySwitchScopeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserNacPolicySwitchScopeArrayOutput)
+}
+
+func (i UserNacPolicySwitchScopeArray) ToOutput(ctx context.Context) pulumix.Output[[]UserNacPolicySwitchScope] {
+	return pulumix.Output[[]UserNacPolicySwitchScope]{
+		OutputState: i.ToUserNacPolicySwitchScopeArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type UserNacPolicySwitchScopeOutput struct{ *pulumi.OutputState }
+
+func (UserNacPolicySwitchScopeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserNacPolicySwitchScope)(nil)).Elem()
+}
+
+func (o UserNacPolicySwitchScopeOutput) ToUserNacPolicySwitchScopeOutput() UserNacPolicySwitchScopeOutput {
+	return o
+}
+
+func (o UserNacPolicySwitchScopeOutput) ToUserNacPolicySwitchScopeOutputWithContext(ctx context.Context) UserNacPolicySwitchScopeOutput {
+	return o
+}
+
+func (o UserNacPolicySwitchScopeOutput) ToOutput(ctx context.Context) pulumix.Output[UserNacPolicySwitchScope] {
+	return pulumix.Output[UserNacPolicySwitchScope]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserNacPolicySwitchScopeOutput) SwitchId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserNacPolicySwitchScope) *string { return v.SwitchId }).(pulumi.StringPtrOutput)
+}
+
+type UserNacPolicySwitchScopeArrayOutput struct{ *pulumi.OutputState }
+
+func (UserNacPolicySwitchScopeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserNacPolicySwitchScope)(nil)).Elem()
+}
+
+func (o UserNacPolicySwitchScopeArrayOutput) ToUserNacPolicySwitchScopeArrayOutput() UserNacPolicySwitchScopeArrayOutput {
+	return o
+}
+
+func (o UserNacPolicySwitchScopeArrayOutput) ToUserNacPolicySwitchScopeArrayOutputWithContext(ctx context.Context) UserNacPolicySwitchScopeArrayOutput {
+	return o
+}
+
+func (o UserNacPolicySwitchScopeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]UserNacPolicySwitchScope] {
+	return pulumix.Output[[]UserNacPolicySwitchScope]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserNacPolicySwitchScopeArrayOutput) Index(i pulumi.IntInput) UserNacPolicySwitchScopeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserNacPolicySwitchScope {
+		return vs[0].([]UserNacPolicySwitchScope)[vs[1].(int)]
+	}).(UserNacPolicySwitchScopeOutput)
+}
+
+type UserPeergrpMember struct {
+	Name *string `pulumi:"name"`
+}
+
+// UserPeergrpMemberInput is an input type that accepts UserPeergrpMemberArgs and UserPeergrpMemberOutput values.
+// You can construct a concrete instance of `UserPeergrpMemberInput` via:
+//
+//	UserPeergrpMemberArgs{...}
+type UserPeergrpMemberInput interface {
+	pulumi.Input
+
+	ToUserPeergrpMemberOutput() UserPeergrpMemberOutput
+	ToUserPeergrpMemberOutputWithContext(context.Context) UserPeergrpMemberOutput
+}
+
+type UserPeergrpMemberArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (UserPeergrpMemberArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserPeergrpMember)(nil)).Elem()
+}
+
+func (i UserPeergrpMemberArgs) ToUserPeergrpMemberOutput() UserPeergrpMemberOutput {
+	return i.ToUserPeergrpMemberOutputWithContext(context.Background())
+}
+
+func (i UserPeergrpMemberArgs) ToUserPeergrpMemberOutputWithContext(ctx context.Context) UserPeergrpMemberOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserPeergrpMemberOutput)
+}
+
+func (i UserPeergrpMemberArgs) ToOutput(ctx context.Context) pulumix.Output[UserPeergrpMember] {
+	return pulumix.Output[UserPeergrpMember]{
+		OutputState: i.ToUserPeergrpMemberOutputWithContext(ctx).OutputState,
+	}
+}
+
+// UserPeergrpMemberArrayInput is an input type that accepts UserPeergrpMemberArray and UserPeergrpMemberArrayOutput values.
+// You can construct a concrete instance of `UserPeergrpMemberArrayInput` via:
+//
+//	UserPeergrpMemberArray{ UserPeergrpMemberArgs{...} }
+type UserPeergrpMemberArrayInput interface {
+	pulumi.Input
+
+	ToUserPeergrpMemberArrayOutput() UserPeergrpMemberArrayOutput
+	ToUserPeergrpMemberArrayOutputWithContext(context.Context) UserPeergrpMemberArrayOutput
+}
+
+type UserPeergrpMemberArray []UserPeergrpMemberInput
+
+func (UserPeergrpMemberArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserPeergrpMember)(nil)).Elem()
+}
+
+func (i UserPeergrpMemberArray) ToUserPeergrpMemberArrayOutput() UserPeergrpMemberArrayOutput {
+	return i.ToUserPeergrpMemberArrayOutputWithContext(context.Background())
+}
+
+func (i UserPeergrpMemberArray) ToUserPeergrpMemberArrayOutputWithContext(ctx context.Context) UserPeergrpMemberArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserPeergrpMemberArrayOutput)
+}
+
+func (i UserPeergrpMemberArray) ToOutput(ctx context.Context) pulumix.Output[[]UserPeergrpMember] {
+	return pulumix.Output[[]UserPeergrpMember]{
+		OutputState: i.ToUserPeergrpMemberArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type UserPeergrpMemberOutput struct{ *pulumi.OutputState }
+
+func (UserPeergrpMemberOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserPeergrpMember)(nil)).Elem()
+}
+
+func (o UserPeergrpMemberOutput) ToUserPeergrpMemberOutput() UserPeergrpMemberOutput {
+	return o
+}
+
+func (o UserPeergrpMemberOutput) ToUserPeergrpMemberOutputWithContext(ctx context.Context) UserPeergrpMemberOutput {
+	return o
+}
+
+func (o UserPeergrpMemberOutput) ToOutput(ctx context.Context) pulumix.Output[UserPeergrpMember] {
+	return pulumix.Output[UserPeergrpMember]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserPeergrpMemberOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserPeergrpMember) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type UserPeergrpMemberArrayOutput struct{ *pulumi.OutputState }
+
+func (UserPeergrpMemberArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserPeergrpMember)(nil)).Elem()
+}
+
+func (o UserPeergrpMemberArrayOutput) ToUserPeergrpMemberArrayOutput() UserPeergrpMemberArrayOutput {
+	return o
+}
+
+func (o UserPeergrpMemberArrayOutput) ToUserPeergrpMemberArrayOutputWithContext(ctx context.Context) UserPeergrpMemberArrayOutput {
+	return o
+}
+
+func (o UserPeergrpMemberArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]UserPeergrpMember] {
+	return pulumix.Output[[]UserPeergrpMember]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserPeergrpMemberArrayOutput) Index(i pulumi.IntInput) UserPeergrpMemberOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserPeergrpMember {
+		return vs[0].([]UserPeergrpMember)[vs[1].(int)]
+	}).(UserPeergrpMemberOutput)
+}
+
+type UserQuarantineTarget struct {
+	Description *string                   `pulumi:"description"`
+	Entry       *string                   `pulumi:"entry"`
+	Macs        []UserQuarantineTargetMac `pulumi:"macs"`
+}
+
+// UserQuarantineTargetInput is an input type that accepts UserQuarantineTargetArgs and UserQuarantineTargetOutput values.
+// You can construct a concrete instance of `UserQuarantineTargetInput` via:
+//
+//	UserQuarantineTargetArgs{...}
+type UserQuarantineTargetInput interface {
+	pulumi.Input
+
+	ToUserQuarantineTargetOutput() UserQuarantineTargetOutput
+	ToUserQuarantineTargetOutputWithContext(context.Context) UserQuarantineTargetOutput
+}
+
+type UserQuarantineTargetArgs struct {
+	Description pulumi.StringPtrInput             `pulumi:"description"`
+	Entry       pulumi.StringPtrInput             `pulumi:"entry"`
+	Macs        UserQuarantineTargetMacArrayInput `pulumi:"macs"`
+}
+
+func (UserQuarantineTargetArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserQuarantineTarget)(nil)).Elem()
+}
+
+func (i UserQuarantineTargetArgs) ToUserQuarantineTargetOutput() UserQuarantineTargetOutput {
+	return i.ToUserQuarantineTargetOutputWithContext(context.Background())
+}
+
+func (i UserQuarantineTargetArgs) ToUserQuarantineTargetOutputWithContext(ctx context.Context) UserQuarantineTargetOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserQuarantineTargetOutput)
+}
+
+func (i UserQuarantineTargetArgs) ToOutput(ctx context.Context) pulumix.Output[UserQuarantineTarget] {
+	return pulumix.Output[UserQuarantineTarget]{
+		OutputState: i.ToUserQuarantineTargetOutputWithContext(ctx).OutputState,
+	}
+}
+
+// UserQuarantineTargetArrayInput is an input type that accepts UserQuarantineTargetArray and UserQuarantineTargetArrayOutput values.
+// You can construct a concrete instance of `UserQuarantineTargetArrayInput` via:
+//
+//	UserQuarantineTargetArray{ UserQuarantineTargetArgs{...} }
+type UserQuarantineTargetArrayInput interface {
+	pulumi.Input
+
+	ToUserQuarantineTargetArrayOutput() UserQuarantineTargetArrayOutput
+	ToUserQuarantineTargetArrayOutputWithContext(context.Context) UserQuarantineTargetArrayOutput
+}
+
+type UserQuarantineTargetArray []UserQuarantineTargetInput
+
+func (UserQuarantineTargetArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserQuarantineTarget)(nil)).Elem()
+}
+
+func (i UserQuarantineTargetArray) ToUserQuarantineTargetArrayOutput() UserQuarantineTargetArrayOutput {
+	return i.ToUserQuarantineTargetArrayOutputWithContext(context.Background())
+}
+
+func (i UserQuarantineTargetArray) ToUserQuarantineTargetArrayOutputWithContext(ctx context.Context) UserQuarantineTargetArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserQuarantineTargetArrayOutput)
+}
+
+func (i UserQuarantineTargetArray) ToOutput(ctx context.Context) pulumix.Output[[]UserQuarantineTarget] {
+	return pulumix.Output[[]UserQuarantineTarget]{
+		OutputState: i.ToUserQuarantineTargetArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type UserQuarantineTargetOutput struct{ *pulumi.OutputState }
+
+func (UserQuarantineTargetOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserQuarantineTarget)(nil)).Elem()
+}
+
+func (o UserQuarantineTargetOutput) ToUserQuarantineTargetOutput() UserQuarantineTargetOutput {
+	return o
+}
+
+func (o UserQuarantineTargetOutput) ToUserQuarantineTargetOutputWithContext(ctx context.Context) UserQuarantineTargetOutput {
+	return o
+}
+
+func (o UserQuarantineTargetOutput) ToOutput(ctx context.Context) pulumix.Output[UserQuarantineTarget] {
+	return pulumix.Output[UserQuarantineTarget]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserQuarantineTargetOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserQuarantineTarget) *string { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+func (o UserQuarantineTargetOutput) Entry() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserQuarantineTarget) *string { return v.Entry }).(pulumi.StringPtrOutput)
+}
+
+func (o UserQuarantineTargetOutput) Macs() UserQuarantineTargetMacArrayOutput {
+	return o.ApplyT(func(v UserQuarantineTarget) []UserQuarantineTargetMac { return v.Macs }).(UserQuarantineTargetMacArrayOutput)
+}
+
+type UserQuarantineTargetArrayOutput struct{ *pulumi.OutputState }
+
+func (UserQuarantineTargetArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserQuarantineTarget)(nil)).Elem()
+}
+
+func (o UserQuarantineTargetArrayOutput) ToUserQuarantineTargetArrayOutput() UserQuarantineTargetArrayOutput {
+	return o
+}
+
+func (o UserQuarantineTargetArrayOutput) ToUserQuarantineTargetArrayOutputWithContext(ctx context.Context) UserQuarantineTargetArrayOutput {
+	return o
+}
+
+func (o UserQuarantineTargetArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]UserQuarantineTarget] {
+	return pulumix.Output[[]UserQuarantineTarget]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserQuarantineTargetArrayOutput) Index(i pulumi.IntInput) UserQuarantineTargetOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserQuarantineTarget {
+		return vs[0].([]UserQuarantineTarget)[vs[1].(int)]
+	}).(UserQuarantineTargetOutput)
+}
+
+type UserQuarantineTargetMac struct {
+	Description *string `pulumi:"description"`
+	Drop        *string `pulumi:"drop"`
+	EntryId     *int    `pulumi:"entryId"`
+	Mac         *string `pulumi:"mac"`
+	Parent      *string `pulumi:"parent"`
+}
+
+// UserQuarantineTargetMacInput is an input type that accepts UserQuarantineTargetMacArgs and UserQuarantineTargetMacOutput values.
+// You can construct a concrete instance of `UserQuarantineTargetMacInput` via:
+//
+//	UserQuarantineTargetMacArgs{...}
+type UserQuarantineTargetMacInput interface {
+	pulumi.Input
+
+	ToUserQuarantineTargetMacOutput() UserQuarantineTargetMacOutput
+	ToUserQuarantineTargetMacOutputWithContext(context.Context) UserQuarantineTargetMacOutput
+}
+
+type UserQuarantineTargetMacArgs struct {
+	Description pulumi.StringPtrInput `pulumi:"description"`
+	Drop        pulumi.StringPtrInput `pulumi:"drop"`
+	EntryId     pulumi.IntPtrInput    `pulumi:"entryId"`
+	Mac         pulumi.StringPtrInput `pulumi:"mac"`
+	Parent      pulumi.StringPtrInput `pulumi:"parent"`
+}
+
+func (UserQuarantineTargetMacArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserQuarantineTargetMac)(nil)).Elem()
+}
+
+func (i UserQuarantineTargetMacArgs) ToUserQuarantineTargetMacOutput() UserQuarantineTargetMacOutput {
+	return i.ToUserQuarantineTargetMacOutputWithContext(context.Background())
+}
+
+func (i UserQuarantineTargetMacArgs) ToUserQuarantineTargetMacOutputWithContext(ctx context.Context) UserQuarantineTargetMacOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserQuarantineTargetMacOutput)
+}
+
+func (i UserQuarantineTargetMacArgs) ToOutput(ctx context.Context) pulumix.Output[UserQuarantineTargetMac] {
+	return pulumix.Output[UserQuarantineTargetMac]{
+		OutputState: i.ToUserQuarantineTargetMacOutputWithContext(ctx).OutputState,
+	}
+}
+
+// UserQuarantineTargetMacArrayInput is an input type that accepts UserQuarantineTargetMacArray and UserQuarantineTargetMacArrayOutput values.
+// You can construct a concrete instance of `UserQuarantineTargetMacArrayInput` via:
+//
+//	UserQuarantineTargetMacArray{ UserQuarantineTargetMacArgs{...} }
+type UserQuarantineTargetMacArrayInput interface {
+	pulumi.Input
+
+	ToUserQuarantineTargetMacArrayOutput() UserQuarantineTargetMacArrayOutput
+	ToUserQuarantineTargetMacArrayOutputWithContext(context.Context) UserQuarantineTargetMacArrayOutput
+}
+
+type UserQuarantineTargetMacArray []UserQuarantineTargetMacInput
+
+func (UserQuarantineTargetMacArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserQuarantineTargetMac)(nil)).Elem()
+}
+
+func (i UserQuarantineTargetMacArray) ToUserQuarantineTargetMacArrayOutput() UserQuarantineTargetMacArrayOutput {
+	return i.ToUserQuarantineTargetMacArrayOutputWithContext(context.Background())
+}
+
+func (i UserQuarantineTargetMacArray) ToUserQuarantineTargetMacArrayOutputWithContext(ctx context.Context) UserQuarantineTargetMacArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserQuarantineTargetMacArrayOutput)
+}
+
+func (i UserQuarantineTargetMacArray) ToOutput(ctx context.Context) pulumix.Output[[]UserQuarantineTargetMac] {
+	return pulumix.Output[[]UserQuarantineTargetMac]{
+		OutputState: i.ToUserQuarantineTargetMacArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type UserQuarantineTargetMacOutput struct{ *pulumi.OutputState }
+
+func (UserQuarantineTargetMacOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserQuarantineTargetMac)(nil)).Elem()
+}
+
+func (o UserQuarantineTargetMacOutput) ToUserQuarantineTargetMacOutput() UserQuarantineTargetMacOutput {
+	return o
+}
+
+func (o UserQuarantineTargetMacOutput) ToUserQuarantineTargetMacOutputWithContext(ctx context.Context) UserQuarantineTargetMacOutput {
+	return o
+}
+
+func (o UserQuarantineTargetMacOutput) ToOutput(ctx context.Context) pulumix.Output[UserQuarantineTargetMac] {
+	return pulumix.Output[UserQuarantineTargetMac]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserQuarantineTargetMacOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserQuarantineTargetMac) *string { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+func (o UserQuarantineTargetMacOutput) Drop() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserQuarantineTargetMac) *string { return v.Drop }).(pulumi.StringPtrOutput)
+}
+
+func (o UserQuarantineTargetMacOutput) EntryId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v UserQuarantineTargetMac) *int { return v.EntryId }).(pulumi.IntPtrOutput)
+}
+
+func (o UserQuarantineTargetMacOutput) Mac() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserQuarantineTargetMac) *string { return v.Mac }).(pulumi.StringPtrOutput)
+}
+
+func (o UserQuarantineTargetMacOutput) Parent() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserQuarantineTargetMac) *string { return v.Parent }).(pulumi.StringPtrOutput)
+}
+
+type UserQuarantineTargetMacArrayOutput struct{ *pulumi.OutputState }
+
+func (UserQuarantineTargetMacArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserQuarantineTargetMac)(nil)).Elem()
+}
+
+func (o UserQuarantineTargetMacArrayOutput) ToUserQuarantineTargetMacArrayOutput() UserQuarantineTargetMacArrayOutput {
+	return o
+}
+
+func (o UserQuarantineTargetMacArrayOutput) ToUserQuarantineTargetMacArrayOutputWithContext(ctx context.Context) UserQuarantineTargetMacArrayOutput {
+	return o
+}
+
+func (o UserQuarantineTargetMacArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]UserQuarantineTargetMac] {
+	return pulumix.Output[[]UserQuarantineTargetMac]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserQuarantineTargetMacArrayOutput) Index(i pulumi.IntInput) UserQuarantineTargetMacOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserQuarantineTargetMac {
+		return vs[0].([]UserQuarantineTargetMac)[vs[1].(int)]
+	}).(UserQuarantineTargetMacOutput)
+}
+
+type UserRadiusAccountingServer struct {
+	Id                    *int    `pulumi:"id"`
+	Interface             *string `pulumi:"interface"`
+	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
+	Port                  *int    `pulumi:"port"`
+	Secret                *string `pulumi:"secret"`
+	Server                *string `pulumi:"server"`
+	SourceIp              *string `pulumi:"sourceIp"`
+	Status                *string `pulumi:"status"`
+}
+
+// UserRadiusAccountingServerInput is an input type that accepts UserRadiusAccountingServerArgs and UserRadiusAccountingServerOutput values.
+// You can construct a concrete instance of `UserRadiusAccountingServerInput` via:
+//
+//	UserRadiusAccountingServerArgs{...}
+type UserRadiusAccountingServerInput interface {
+	pulumi.Input
+
+	ToUserRadiusAccountingServerOutput() UserRadiusAccountingServerOutput
+	ToUserRadiusAccountingServerOutputWithContext(context.Context) UserRadiusAccountingServerOutput
+}
+
+type UserRadiusAccountingServerArgs struct {
+	Id                    pulumi.IntPtrInput    `pulumi:"id"`
+	Interface             pulumi.StringPtrInput `pulumi:"interface"`
+	InterfaceSelectMethod pulumi.StringPtrInput `pulumi:"interfaceSelectMethod"`
+	Port                  pulumi.IntPtrInput    `pulumi:"port"`
+	Secret                pulumi.StringPtrInput `pulumi:"secret"`
+	Server                pulumi.StringPtrInput `pulumi:"server"`
+	SourceIp              pulumi.StringPtrInput `pulumi:"sourceIp"`
+	Status                pulumi.StringPtrInput `pulumi:"status"`
+}
+
+func (UserRadiusAccountingServerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserRadiusAccountingServer)(nil)).Elem()
+}
+
+func (i UserRadiusAccountingServerArgs) ToUserRadiusAccountingServerOutput() UserRadiusAccountingServerOutput {
+	return i.ToUserRadiusAccountingServerOutputWithContext(context.Background())
+}
+
+func (i UserRadiusAccountingServerArgs) ToUserRadiusAccountingServerOutputWithContext(ctx context.Context) UserRadiusAccountingServerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserRadiusAccountingServerOutput)
+}
+
+func (i UserRadiusAccountingServerArgs) ToOutput(ctx context.Context) pulumix.Output[UserRadiusAccountingServer] {
+	return pulumix.Output[UserRadiusAccountingServer]{
+		OutputState: i.ToUserRadiusAccountingServerOutputWithContext(ctx).OutputState,
+	}
+}
+
+// UserRadiusAccountingServerArrayInput is an input type that accepts UserRadiusAccountingServerArray and UserRadiusAccountingServerArrayOutput values.
+// You can construct a concrete instance of `UserRadiusAccountingServerArrayInput` via:
+//
+//	UserRadiusAccountingServerArray{ UserRadiusAccountingServerArgs{...} }
+type UserRadiusAccountingServerArrayInput interface {
+	pulumi.Input
+
+	ToUserRadiusAccountingServerArrayOutput() UserRadiusAccountingServerArrayOutput
+	ToUserRadiusAccountingServerArrayOutputWithContext(context.Context) UserRadiusAccountingServerArrayOutput
+}
+
+type UserRadiusAccountingServerArray []UserRadiusAccountingServerInput
+
+func (UserRadiusAccountingServerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserRadiusAccountingServer)(nil)).Elem()
+}
+
+func (i UserRadiusAccountingServerArray) ToUserRadiusAccountingServerArrayOutput() UserRadiusAccountingServerArrayOutput {
+	return i.ToUserRadiusAccountingServerArrayOutputWithContext(context.Background())
+}
+
+func (i UserRadiusAccountingServerArray) ToUserRadiusAccountingServerArrayOutputWithContext(ctx context.Context) UserRadiusAccountingServerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserRadiusAccountingServerArrayOutput)
+}
+
+func (i UserRadiusAccountingServerArray) ToOutput(ctx context.Context) pulumix.Output[[]UserRadiusAccountingServer] {
+	return pulumix.Output[[]UserRadiusAccountingServer]{
+		OutputState: i.ToUserRadiusAccountingServerArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type UserRadiusAccountingServerOutput struct{ *pulumi.OutputState }
+
+func (UserRadiusAccountingServerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserRadiusAccountingServer)(nil)).Elem()
+}
+
+func (o UserRadiusAccountingServerOutput) ToUserRadiusAccountingServerOutput() UserRadiusAccountingServerOutput {
+	return o
+}
+
+func (o UserRadiusAccountingServerOutput) ToUserRadiusAccountingServerOutputWithContext(ctx context.Context) UserRadiusAccountingServerOutput {
+	return o
+}
+
+func (o UserRadiusAccountingServerOutput) ToOutput(ctx context.Context) pulumix.Output[UserRadiusAccountingServer] {
+	return pulumix.Output[UserRadiusAccountingServer]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserRadiusAccountingServerOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v UserRadiusAccountingServer) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+func (o UserRadiusAccountingServerOutput) Interface() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserRadiusAccountingServer) *string { return v.Interface }).(pulumi.StringPtrOutput)
+}
+
+func (o UserRadiusAccountingServerOutput) InterfaceSelectMethod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserRadiusAccountingServer) *string { return v.InterfaceSelectMethod }).(pulumi.StringPtrOutput)
+}
+
+func (o UserRadiusAccountingServerOutput) Port() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v UserRadiusAccountingServer) *int { return v.Port }).(pulumi.IntPtrOutput)
+}
+
+func (o UserRadiusAccountingServerOutput) Secret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserRadiusAccountingServer) *string { return v.Secret }).(pulumi.StringPtrOutput)
+}
+
+func (o UserRadiusAccountingServerOutput) Server() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserRadiusAccountingServer) *string { return v.Server }).(pulumi.StringPtrOutput)
+}
+
+func (o UserRadiusAccountingServerOutput) SourceIp() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserRadiusAccountingServer) *string { return v.SourceIp }).(pulumi.StringPtrOutput)
+}
+
+func (o UserRadiusAccountingServerOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserRadiusAccountingServer) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+type UserRadiusAccountingServerArrayOutput struct{ *pulumi.OutputState }
+
+func (UserRadiusAccountingServerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserRadiusAccountingServer)(nil)).Elem()
+}
+
+func (o UserRadiusAccountingServerArrayOutput) ToUserRadiusAccountingServerArrayOutput() UserRadiusAccountingServerArrayOutput {
+	return o
+}
+
+func (o UserRadiusAccountingServerArrayOutput) ToUserRadiusAccountingServerArrayOutputWithContext(ctx context.Context) UserRadiusAccountingServerArrayOutput {
+	return o
+}
+
+func (o UserRadiusAccountingServerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]UserRadiusAccountingServer] {
+	return pulumix.Output[[]UserRadiusAccountingServer]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserRadiusAccountingServerArrayOutput) Index(i pulumi.IntInput) UserRadiusAccountingServerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserRadiusAccountingServer {
+		return vs[0].([]UserRadiusAccountingServer)[vs[1].(int)]
+	}).(UserRadiusAccountingServerOutput)
+}
+
+type UserRadiusClass struct {
+	Name *string `pulumi:"name"`
+}
+
+// UserRadiusClassInput is an input type that accepts UserRadiusClassArgs and UserRadiusClassOutput values.
+// You can construct a concrete instance of `UserRadiusClassInput` via:
+//
+//	UserRadiusClassArgs{...}
+type UserRadiusClassInput interface {
+	pulumi.Input
+
+	ToUserRadiusClassOutput() UserRadiusClassOutput
+	ToUserRadiusClassOutputWithContext(context.Context) UserRadiusClassOutput
+}
+
+type UserRadiusClassArgs struct {
+	Name pulumi.StringPtrInput `pulumi:"name"`
+}
+
+func (UserRadiusClassArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserRadiusClass)(nil)).Elem()
+}
+
+func (i UserRadiusClassArgs) ToUserRadiusClassOutput() UserRadiusClassOutput {
+	return i.ToUserRadiusClassOutputWithContext(context.Background())
+}
+
+func (i UserRadiusClassArgs) ToUserRadiusClassOutputWithContext(ctx context.Context) UserRadiusClassOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserRadiusClassOutput)
+}
+
+func (i UserRadiusClassArgs) ToOutput(ctx context.Context) pulumix.Output[UserRadiusClass] {
+	return pulumix.Output[UserRadiusClass]{
+		OutputState: i.ToUserRadiusClassOutputWithContext(ctx).OutputState,
+	}
+}
+
+// UserRadiusClassArrayInput is an input type that accepts UserRadiusClassArray and UserRadiusClassArrayOutput values.
+// You can construct a concrete instance of `UserRadiusClassArrayInput` via:
+//
+//	UserRadiusClassArray{ UserRadiusClassArgs{...} }
+type UserRadiusClassArrayInput interface {
+	pulumi.Input
+
+	ToUserRadiusClassArrayOutput() UserRadiusClassArrayOutput
+	ToUserRadiusClassArrayOutputWithContext(context.Context) UserRadiusClassArrayOutput
+}
+
+type UserRadiusClassArray []UserRadiusClassInput
+
+func (UserRadiusClassArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserRadiusClass)(nil)).Elem()
+}
+
+func (i UserRadiusClassArray) ToUserRadiusClassArrayOutput() UserRadiusClassArrayOutput {
+	return i.ToUserRadiusClassArrayOutputWithContext(context.Background())
+}
+
+func (i UserRadiusClassArray) ToUserRadiusClassArrayOutputWithContext(ctx context.Context) UserRadiusClassArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserRadiusClassArrayOutput)
+}
+
+func (i UserRadiusClassArray) ToOutput(ctx context.Context) pulumix.Output[[]UserRadiusClass] {
+	return pulumix.Output[[]UserRadiusClass]{
+		OutputState: i.ToUserRadiusClassArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type UserRadiusClassOutput struct{ *pulumi.OutputState }
+
+func (UserRadiusClassOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserRadiusClass)(nil)).Elem()
+}
+
+func (o UserRadiusClassOutput) ToUserRadiusClassOutput() UserRadiusClassOutput {
+	return o
+}
+
+func (o UserRadiusClassOutput) ToUserRadiusClassOutputWithContext(ctx context.Context) UserRadiusClassOutput {
+	return o
+}
+
+func (o UserRadiusClassOutput) ToOutput(ctx context.Context) pulumix.Output[UserRadiusClass] {
+	return pulumix.Output[UserRadiusClass]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserRadiusClassOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v UserRadiusClass) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+type UserRadiusClassArrayOutput struct{ *pulumi.OutputState }
+
+func (UserRadiusClassArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserRadiusClass)(nil)).Elem()
+}
+
+func (o UserRadiusClassArrayOutput) ToUserRadiusClassArrayOutput() UserRadiusClassArrayOutput {
+	return o
+}
+
+func (o UserRadiusClassArrayOutput) ToUserRadiusClassArrayOutputWithContext(ctx context.Context) UserRadiusClassArrayOutput {
+	return o
+}
+
+func (o UserRadiusClassArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]UserRadiusClass] {
+	return pulumix.Output[[]UserRadiusClass]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserRadiusClassArrayOutput) Index(i pulumi.IntInput) UserRadiusClassOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserRadiusClass {
+		return vs[0].([]UserRadiusClass)[vs[1].(int)]
+	}).(UserRadiusClassOutput)
+}
+
+type UserSecurityExemptListRule struct {
+	Devices  []UserSecurityExemptListRuleDevice  `pulumi:"devices"`
+	Dstaddrs []UserSecurityExemptListRuleDstaddr `pulumi:"dstaddrs"`
+	Id       *int                                `pulumi:"id"`
+	Services []UserSecurityExemptListRuleService `pulumi:"services"`
+	Srcaddrs []UserSecurityExemptListRuleSrcaddr `pulumi:"srcaddrs"`
+}
+
+// UserSecurityExemptListRuleInput is an input type that accepts UserSecurityExemptListRuleArgs and UserSecurityExemptListRuleOutput values.
+// You can construct a concrete instance of `UserSecurityExemptListRuleInput` via:
+//
+//	UserSecurityExemptListRuleArgs{...}
+type UserSecurityExemptListRuleInput interface {
+	pulumi.Input
+
+	ToUserSecurityExemptListRuleOutput() UserSecurityExemptListRuleOutput
+	ToUserSecurityExemptListRuleOutputWithContext(context.Context) UserSecurityExemptListRuleOutput
+}
+
+type UserSecurityExemptListRuleArgs struct {
+	Devices  UserSecurityExemptListRuleDeviceArrayInput  `pulumi:"devices"`
+	Dstaddrs UserSecurityExemptListRuleDstaddrArrayInput `pulumi:"dstaddrs"`
+	Id       pulumi.IntPtrInput                          `pulumi:"id"`
+	Services UserSecurityExemptListRuleServiceArrayInput `pulumi:"services"`
+	Srcaddrs UserSecurityExemptListRuleSrcaddrArrayInput `pulumi:"srcaddrs"`
+}
+
+func (UserSecurityExemptListRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserSecurityExemptListRule)(nil)).Elem()
+}
+
+func (i UserSecurityExemptListRuleArgs) ToUserSecurityExemptListRuleOutput() UserSecurityExemptListRuleOutput {
+	return i.ToUserSecurityExemptListRuleOutputWithContext(context.Background())
+}
+
+func (i UserSecurityExemptListRuleArgs) ToUserSecurityExemptListRuleOutputWithContext(ctx context.Context) UserSecurityExemptListRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserSecurityExemptListRuleOutput)
+}
+
+func (i UserSecurityExemptListRuleArgs) ToOutput(ctx context.Context) pulumix.Output[UserSecurityExemptListRule] {
+	return pulumix.Output[UserSecurityExemptListRule]{
+		OutputState: i.ToUserSecurityExemptListRuleOutputWithContext(ctx).OutputState,
+	}
+}
+
+// UserSecurityExemptListRuleArrayInput is an input type that accepts UserSecurityExemptListRuleArray and UserSecurityExemptListRuleArrayOutput values.
+// You can construct a concrete instance of `UserSecurityExemptListRuleArrayInput` via:
+//
+//	UserSecurityExemptListRuleArray{ UserSecurityExemptListRuleArgs{...} }
+type UserSecurityExemptListRuleArrayInput interface {
+	pulumi.Input
+
+	ToUserSecurityExemptListRuleArrayOutput() UserSecurityExemptListRuleArrayOutput
+	ToUserSecurityExemptListRuleArrayOutputWithContext(context.Context) UserSecurityExemptListRuleArrayOutput
+}
+
+type UserSecurityExemptListRuleArray []UserSecurityExemptListRuleInput
+
+func (UserSecurityExemptListRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserSecurityExemptListRule)(nil)).Elem()
+}
+
+func (i UserSecurityExemptListRuleArray) ToUserSecurityExemptListRuleArrayOutput() UserSecurityExemptListRuleArrayOutput {
+	return i.ToUserSecurityExemptListRuleArrayOutputWithContext(context.Background())
+}
+
+func (i UserSecurityExemptListRuleArray) ToUserSecurityExemptListRuleArrayOutputWithContext(ctx context.Context) UserSecurityExemptListRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(UserSecurityExemptListRuleArrayOutput)
+}
+
+func (i UserSecurityExemptListRuleArray) ToOutput(ctx context.Context) pulumix.Output[[]UserSecurityExemptListRule] {
+	return pulumix.Output[[]UserSecurityExemptListRule]{
+		OutputState: i.ToUserSecurityExemptListRuleArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type UserSecurityExemptListRuleOutput struct{ *pulumi.OutputState }
+
+func (UserSecurityExemptListRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*UserSecurityExemptListRule)(nil)).Elem()
+}
+
+func (o UserSecurityExemptListRuleOutput) ToUserSecurityExemptListRuleOutput() UserSecurityExemptListRuleOutput {
+	return o
+}
+
+func (o UserSecurityExemptListRuleOutput) ToUserSecurityExemptListRuleOutputWithContext(ctx context.Context) UserSecurityExemptListRuleOutput {
+	return o
+}
+
+func (o UserSecurityExemptListRuleOutput) ToOutput(ctx context.Context) pulumix.Output[UserSecurityExemptListRule] {
+	return pulumix.Output[UserSecurityExemptListRule]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserSecurityExemptListRuleOutput) Devices() UserSecurityExemptListRuleDeviceArrayOutput {
+	return o.ApplyT(func(v UserSecurityExemptListRule) []UserSecurityExemptListRuleDevice { return v.Devices }).(UserSecurityExemptListRuleDeviceArrayOutput)
+}
+
+func (o UserSecurityExemptListRuleOutput) Dstaddrs() UserSecurityExemptListRuleDstaddrArrayOutput {
+	return o.ApplyT(func(v UserSecurityExemptListRule) []UserSecurityExemptListRuleDstaddr { return v.Dstaddrs }).(UserSecurityExemptListRuleDstaddrArrayOutput)
+}
+
+func (o UserSecurityExemptListRuleOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v UserSecurityExemptListRule) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+func (o UserSecurityExemptListRuleOutput) Services() UserSecurityExemptListRuleServiceArrayOutput {
+	return o.ApplyT(func(v UserSecurityExemptListRule) []UserSecurityExemptListRuleService { return v.Services }).(UserSecurityExemptListRuleServiceArrayOutput)
+}
+
+func (o UserSecurityExemptListRuleOutput) Srcaddrs() UserSecurityExemptListRuleSrcaddrArrayOutput {
+	return o.ApplyT(func(v UserSecurityExemptListRule) []UserSecurityExemptListRuleSrcaddr { return v.Srcaddrs }).(UserSecurityExemptListRuleSrcaddrArrayOutput)
+}
+
+type UserSecurityExemptListRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (UserSecurityExemptListRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]UserSecurityExemptListRule)(nil)).Elem()
+}
+
+func (o UserSecurityExemptListRuleArrayOutput) ToUserSecurityExemptListRuleArrayOutput() UserSecurityExemptListRuleArrayOutput {
+	return o
+}
+
+func (o UserSecurityExemptListRuleArrayOutput) ToUserSecurityExemptListRuleArrayOutputWithContext(ctx context.Context) UserSecurityExemptListRuleArrayOutput {
+	return o
+}
+
+func (o UserSecurityExemptListRuleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]UserSecurityExemptListRule] {
+	return pulumix.Output[[]UserSecurityExemptListRule]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserSecurityExemptListRuleArrayOutput) Index(i pulumi.IntInput) UserSecurityExemptListRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserSecurityExemptListRule {
+		return vs[0].([]UserSecurityExemptListRule)[vs[1].(int)]
+	}).(UserSecurityExemptListRuleOutput)
+}
 
 type UserSecurityExemptListRuleDevice struct {
 	Name *string `pulumi:"name"`
@@ -44,6 +3825,12 @@ func (i UserSecurityExemptListRuleDeviceArgs) ToUserSecurityExemptListRuleDevice
 	return pulumi.ToOutputWithContext(ctx, i).(UserSecurityExemptListRuleDeviceOutput)
 }
 
+func (i UserSecurityExemptListRuleDeviceArgs) ToOutput(ctx context.Context) pulumix.Output[UserSecurityExemptListRuleDevice] {
+	return pulumix.Output[UserSecurityExemptListRuleDevice]{
+		OutputState: i.ToUserSecurityExemptListRuleDeviceOutputWithContext(ctx).OutputState,
+	}
+}
+
 // UserSecurityExemptListRuleDeviceArrayInput is an input type that accepts UserSecurityExemptListRuleDeviceArray and UserSecurityExemptListRuleDeviceArrayOutput values.
 // You can construct a concrete instance of `UserSecurityExemptListRuleDeviceArrayInput` via:
 //
@@ -69,6 +3856,12 @@ func (i UserSecurityExemptListRuleDeviceArray) ToUserSecurityExemptListRuleDevic
 	return pulumi.ToOutputWithContext(ctx, i).(UserSecurityExemptListRuleDeviceArrayOutput)
 }
 
+func (i UserSecurityExemptListRuleDeviceArray) ToOutput(ctx context.Context) pulumix.Output[[]UserSecurityExemptListRuleDevice] {
+	return pulumix.Output[[]UserSecurityExemptListRuleDevice]{
+		OutputState: i.ToUserSecurityExemptListRuleDeviceArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type UserSecurityExemptListRuleDeviceOutput struct{ *pulumi.OutputState }
 
 func (UserSecurityExemptListRuleDeviceOutput) ElementType() reflect.Type {
@@ -81,6 +3874,12 @@ func (o UserSecurityExemptListRuleDeviceOutput) ToUserSecurityExemptListRuleDevi
 
 func (o UserSecurityExemptListRuleDeviceOutput) ToUserSecurityExemptListRuleDeviceOutputWithContext(ctx context.Context) UserSecurityExemptListRuleDeviceOutput {
 	return o
+}
+
+func (o UserSecurityExemptListRuleDeviceOutput) ToOutput(ctx context.Context) pulumix.Output[UserSecurityExemptListRuleDevice] {
+	return pulumix.Output[UserSecurityExemptListRuleDevice]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserSecurityExemptListRuleDeviceOutput) Name() pulumi.StringPtrOutput {
@@ -99,6 +3898,12 @@ func (o UserSecurityExemptListRuleDeviceArrayOutput) ToUserSecurityExemptListRul
 
 func (o UserSecurityExemptListRuleDeviceArrayOutput) ToUserSecurityExemptListRuleDeviceArrayOutputWithContext(ctx context.Context) UserSecurityExemptListRuleDeviceArrayOutput {
 	return o
+}
+
+func (o UserSecurityExemptListRuleDeviceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]UserSecurityExemptListRuleDevice] {
+	return pulumix.Output[[]UserSecurityExemptListRuleDevice]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserSecurityExemptListRuleDeviceArrayOutput) Index(i pulumi.IntInput) UserSecurityExemptListRuleDeviceOutput {
@@ -138,6 +3943,12 @@ func (i UserSecurityExemptListRuleDstaddrArgs) ToUserSecurityExemptListRuleDstad
 	return pulumi.ToOutputWithContext(ctx, i).(UserSecurityExemptListRuleDstaddrOutput)
 }
 
+func (i UserSecurityExemptListRuleDstaddrArgs) ToOutput(ctx context.Context) pulumix.Output[UserSecurityExemptListRuleDstaddr] {
+	return pulumix.Output[UserSecurityExemptListRuleDstaddr]{
+		OutputState: i.ToUserSecurityExemptListRuleDstaddrOutputWithContext(ctx).OutputState,
+	}
+}
+
 // UserSecurityExemptListRuleDstaddrArrayInput is an input type that accepts UserSecurityExemptListRuleDstaddrArray and UserSecurityExemptListRuleDstaddrArrayOutput values.
 // You can construct a concrete instance of `UserSecurityExemptListRuleDstaddrArrayInput` via:
 //
@@ -163,6 +3974,12 @@ func (i UserSecurityExemptListRuleDstaddrArray) ToUserSecurityExemptListRuleDsta
 	return pulumi.ToOutputWithContext(ctx, i).(UserSecurityExemptListRuleDstaddrArrayOutput)
 }
 
+func (i UserSecurityExemptListRuleDstaddrArray) ToOutput(ctx context.Context) pulumix.Output[[]UserSecurityExemptListRuleDstaddr] {
+	return pulumix.Output[[]UserSecurityExemptListRuleDstaddr]{
+		OutputState: i.ToUserSecurityExemptListRuleDstaddrArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type UserSecurityExemptListRuleDstaddrOutput struct{ *pulumi.OutputState }
 
 func (UserSecurityExemptListRuleDstaddrOutput) ElementType() reflect.Type {
@@ -175,6 +3992,12 @@ func (o UserSecurityExemptListRuleDstaddrOutput) ToUserSecurityExemptListRuleDst
 
 func (o UserSecurityExemptListRuleDstaddrOutput) ToUserSecurityExemptListRuleDstaddrOutputWithContext(ctx context.Context) UserSecurityExemptListRuleDstaddrOutput {
 	return o
+}
+
+func (o UserSecurityExemptListRuleDstaddrOutput) ToOutput(ctx context.Context) pulumix.Output[UserSecurityExemptListRuleDstaddr] {
+	return pulumix.Output[UserSecurityExemptListRuleDstaddr]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserSecurityExemptListRuleDstaddrOutput) Name() pulumi.StringPtrOutput {
@@ -193,6 +4016,12 @@ func (o UserSecurityExemptListRuleDstaddrArrayOutput) ToUserSecurityExemptListRu
 
 func (o UserSecurityExemptListRuleDstaddrArrayOutput) ToUserSecurityExemptListRuleDstaddrArrayOutputWithContext(ctx context.Context) UserSecurityExemptListRuleDstaddrArrayOutput {
 	return o
+}
+
+func (o UserSecurityExemptListRuleDstaddrArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]UserSecurityExemptListRuleDstaddr] {
+	return pulumix.Output[[]UserSecurityExemptListRuleDstaddr]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserSecurityExemptListRuleDstaddrArrayOutput) Index(i pulumi.IntInput) UserSecurityExemptListRuleDstaddrOutput {
@@ -232,6 +4061,12 @@ func (i UserSecurityExemptListRuleServiceArgs) ToUserSecurityExemptListRuleServi
 	return pulumi.ToOutputWithContext(ctx, i).(UserSecurityExemptListRuleServiceOutput)
 }
 
+func (i UserSecurityExemptListRuleServiceArgs) ToOutput(ctx context.Context) pulumix.Output[UserSecurityExemptListRuleService] {
+	return pulumix.Output[UserSecurityExemptListRuleService]{
+		OutputState: i.ToUserSecurityExemptListRuleServiceOutputWithContext(ctx).OutputState,
+	}
+}
+
 // UserSecurityExemptListRuleServiceArrayInput is an input type that accepts UserSecurityExemptListRuleServiceArray and UserSecurityExemptListRuleServiceArrayOutput values.
 // You can construct a concrete instance of `UserSecurityExemptListRuleServiceArrayInput` via:
 //
@@ -257,6 +4092,12 @@ func (i UserSecurityExemptListRuleServiceArray) ToUserSecurityExemptListRuleServ
 	return pulumi.ToOutputWithContext(ctx, i).(UserSecurityExemptListRuleServiceArrayOutput)
 }
 
+func (i UserSecurityExemptListRuleServiceArray) ToOutput(ctx context.Context) pulumix.Output[[]UserSecurityExemptListRuleService] {
+	return pulumix.Output[[]UserSecurityExemptListRuleService]{
+		OutputState: i.ToUserSecurityExemptListRuleServiceArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type UserSecurityExemptListRuleServiceOutput struct{ *pulumi.OutputState }
 
 func (UserSecurityExemptListRuleServiceOutput) ElementType() reflect.Type {
@@ -269,6 +4110,12 @@ func (o UserSecurityExemptListRuleServiceOutput) ToUserSecurityExemptListRuleSer
 
 func (o UserSecurityExemptListRuleServiceOutput) ToUserSecurityExemptListRuleServiceOutputWithContext(ctx context.Context) UserSecurityExemptListRuleServiceOutput {
 	return o
+}
+
+func (o UserSecurityExemptListRuleServiceOutput) ToOutput(ctx context.Context) pulumix.Output[UserSecurityExemptListRuleService] {
+	return pulumix.Output[UserSecurityExemptListRuleService]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserSecurityExemptListRuleServiceOutput) Name() pulumi.StringPtrOutput {
@@ -287,6 +4134,12 @@ func (o UserSecurityExemptListRuleServiceArrayOutput) ToUserSecurityExemptListRu
 
 func (o UserSecurityExemptListRuleServiceArrayOutput) ToUserSecurityExemptListRuleServiceArrayOutputWithContext(ctx context.Context) UserSecurityExemptListRuleServiceArrayOutput {
 	return o
+}
+
+func (o UserSecurityExemptListRuleServiceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]UserSecurityExemptListRuleService] {
+	return pulumix.Output[[]UserSecurityExemptListRuleService]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserSecurityExemptListRuleServiceArrayOutput) Index(i pulumi.IntInput) UserSecurityExemptListRuleServiceOutput {
@@ -326,6 +4179,12 @@ func (i UserSecurityExemptListRuleSrcaddrArgs) ToUserSecurityExemptListRuleSrcad
 	return pulumi.ToOutputWithContext(ctx, i).(UserSecurityExemptListRuleSrcaddrOutput)
 }
 
+func (i UserSecurityExemptListRuleSrcaddrArgs) ToOutput(ctx context.Context) pulumix.Output[UserSecurityExemptListRuleSrcaddr] {
+	return pulumix.Output[UserSecurityExemptListRuleSrcaddr]{
+		OutputState: i.ToUserSecurityExemptListRuleSrcaddrOutputWithContext(ctx).OutputState,
+	}
+}
+
 // UserSecurityExemptListRuleSrcaddrArrayInput is an input type that accepts UserSecurityExemptListRuleSrcaddrArray and UserSecurityExemptListRuleSrcaddrArrayOutput values.
 // You can construct a concrete instance of `UserSecurityExemptListRuleSrcaddrArrayInput` via:
 //
@@ -351,6 +4210,12 @@ func (i UserSecurityExemptListRuleSrcaddrArray) ToUserSecurityExemptListRuleSrca
 	return pulumi.ToOutputWithContext(ctx, i).(UserSecurityExemptListRuleSrcaddrArrayOutput)
 }
 
+func (i UserSecurityExemptListRuleSrcaddrArray) ToOutput(ctx context.Context) pulumix.Output[[]UserSecurityExemptListRuleSrcaddr] {
+	return pulumix.Output[[]UserSecurityExemptListRuleSrcaddr]{
+		OutputState: i.ToUserSecurityExemptListRuleSrcaddrArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type UserSecurityExemptListRuleSrcaddrOutput struct{ *pulumi.OutputState }
 
 func (UserSecurityExemptListRuleSrcaddrOutput) ElementType() reflect.Type {
@@ -363,6 +4228,12 @@ func (o UserSecurityExemptListRuleSrcaddrOutput) ToUserSecurityExemptListRuleSrc
 
 func (o UserSecurityExemptListRuleSrcaddrOutput) ToUserSecurityExemptListRuleSrcaddrOutputWithContext(ctx context.Context) UserSecurityExemptListRuleSrcaddrOutput {
 	return o
+}
+
+func (o UserSecurityExemptListRuleSrcaddrOutput) ToOutput(ctx context.Context) pulumix.Output[UserSecurityExemptListRuleSrcaddr] {
+	return pulumix.Output[UserSecurityExemptListRuleSrcaddr]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserSecurityExemptListRuleSrcaddrOutput) Name() pulumi.StringPtrOutput {
@@ -381,6 +4252,12 @@ func (o UserSecurityExemptListRuleSrcaddrArrayOutput) ToUserSecurityExemptListRu
 
 func (o UserSecurityExemptListRuleSrcaddrArrayOutput) ToUserSecurityExemptListRuleSrcaddrArrayOutputWithContext(ctx context.Context) UserSecurityExemptListRuleSrcaddrArrayOutput {
 	return o
+}
+
+func (o UserSecurityExemptListRuleSrcaddrArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]UserSecurityExemptListRuleSrcaddr] {
+	return pulumix.Output[[]UserSecurityExemptListRuleSrcaddr]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserSecurityExemptListRuleSrcaddrArrayOutput) Index(i pulumi.IntInput) UserSecurityExemptListRuleSrcaddrOutput {
@@ -424,6 +4301,12 @@ func (i UserSettingAuthPortArgs) ToUserSettingAuthPortOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(UserSettingAuthPortOutput)
 }
 
+func (i UserSettingAuthPortArgs) ToOutput(ctx context.Context) pulumix.Output[UserSettingAuthPort] {
+	return pulumix.Output[UserSettingAuthPort]{
+		OutputState: i.ToUserSettingAuthPortOutputWithContext(ctx).OutputState,
+	}
+}
+
 // UserSettingAuthPortArrayInput is an input type that accepts UserSettingAuthPortArray and UserSettingAuthPortArrayOutput values.
 // You can construct a concrete instance of `UserSettingAuthPortArrayInput` via:
 //
@@ -449,6 +4332,12 @@ func (i UserSettingAuthPortArray) ToUserSettingAuthPortArrayOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(UserSettingAuthPortArrayOutput)
 }
 
+func (i UserSettingAuthPortArray) ToOutput(ctx context.Context) pulumix.Output[[]UserSettingAuthPort] {
+	return pulumix.Output[[]UserSettingAuthPort]{
+		OutputState: i.ToUserSettingAuthPortArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type UserSettingAuthPortOutput struct{ *pulumi.OutputState }
 
 func (UserSettingAuthPortOutput) ElementType() reflect.Type {
@@ -461,6 +4350,12 @@ func (o UserSettingAuthPortOutput) ToUserSettingAuthPortOutput() UserSettingAuth
 
 func (o UserSettingAuthPortOutput) ToUserSettingAuthPortOutputWithContext(ctx context.Context) UserSettingAuthPortOutput {
 	return o
+}
+
+func (o UserSettingAuthPortOutput) ToOutput(ctx context.Context) pulumix.Output[UserSettingAuthPort] {
+	return pulumix.Output[UserSettingAuthPort]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserSettingAuthPortOutput) Id() pulumi.IntPtrOutput {
@@ -487,6 +4382,12 @@ func (o UserSettingAuthPortArrayOutput) ToUserSettingAuthPortArrayOutput() UserS
 
 func (o UserSettingAuthPortArrayOutput) ToUserSettingAuthPortArrayOutputWithContext(ctx context.Context) UserSettingAuthPortArrayOutput {
 	return o
+}
+
+func (o UserSettingAuthPortArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]UserSettingAuthPort] {
+	return pulumix.Output[[]UserSettingAuthPort]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserSettingAuthPortArrayOutput) Index(i pulumi.IntInput) UserSettingAuthPortOutput {
@@ -524,6 +4425,12 @@ func (i VideofilterProfileFortiguardCategoryArgs) ToVideofilterProfileFortiguard
 
 func (i VideofilterProfileFortiguardCategoryArgs) ToVideofilterProfileFortiguardCategoryOutputWithContext(ctx context.Context) VideofilterProfileFortiguardCategoryOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VideofilterProfileFortiguardCategoryOutput)
+}
+
+func (i VideofilterProfileFortiguardCategoryArgs) ToOutput(ctx context.Context) pulumix.Output[VideofilterProfileFortiguardCategory] {
+	return pulumix.Output[VideofilterProfileFortiguardCategory]{
+		OutputState: i.ToVideofilterProfileFortiguardCategoryOutputWithContext(ctx).OutputState,
+	}
 }
 
 func (i VideofilterProfileFortiguardCategoryArgs) ToVideofilterProfileFortiguardCategoryPtrOutput() VideofilterProfileFortiguardCategoryPtrOutput {
@@ -567,6 +4474,12 @@ func (i *videofilterProfileFortiguardCategoryPtrType) ToVideofilterProfileFortig
 	return pulumi.ToOutputWithContext(ctx, i).(VideofilterProfileFortiguardCategoryPtrOutput)
 }
 
+func (i *videofilterProfileFortiguardCategoryPtrType) ToOutput(ctx context.Context) pulumix.Output[*VideofilterProfileFortiguardCategory] {
+	return pulumix.Output[*VideofilterProfileFortiguardCategory]{
+		OutputState: i.ToVideofilterProfileFortiguardCategoryPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VideofilterProfileFortiguardCategoryOutput struct{ *pulumi.OutputState }
 
 func (VideofilterProfileFortiguardCategoryOutput) ElementType() reflect.Type {
@@ -591,6 +4504,12 @@ func (o VideofilterProfileFortiguardCategoryOutput) ToVideofilterProfileFortigua
 	}).(VideofilterProfileFortiguardCategoryPtrOutput)
 }
 
+func (o VideofilterProfileFortiguardCategoryOutput) ToOutput(ctx context.Context) pulumix.Output[VideofilterProfileFortiguardCategory] {
+	return pulumix.Output[VideofilterProfileFortiguardCategory]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o VideofilterProfileFortiguardCategoryOutput) Filters() VideofilterProfileFortiguardCategoryFilterArrayOutput {
 	return o.ApplyT(func(v VideofilterProfileFortiguardCategory) []VideofilterProfileFortiguardCategoryFilter {
 		return v.Filters
@@ -609,6 +4528,12 @@ func (o VideofilterProfileFortiguardCategoryPtrOutput) ToVideofilterProfileForti
 
 func (o VideofilterProfileFortiguardCategoryPtrOutput) ToVideofilterProfileFortiguardCategoryPtrOutputWithContext(ctx context.Context) VideofilterProfileFortiguardCategoryPtrOutput {
 	return o
+}
+
+func (o VideofilterProfileFortiguardCategoryPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*VideofilterProfileFortiguardCategory] {
+	return pulumix.Output[*VideofilterProfileFortiguardCategory]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VideofilterProfileFortiguardCategoryPtrOutput) Elem() VideofilterProfileFortiguardCategoryOutput {
@@ -667,6 +4592,12 @@ func (i VideofilterProfileFortiguardCategoryFilterArgs) ToVideofilterProfileFort
 	return pulumi.ToOutputWithContext(ctx, i).(VideofilterProfileFortiguardCategoryFilterOutput)
 }
 
+func (i VideofilterProfileFortiguardCategoryFilterArgs) ToOutput(ctx context.Context) pulumix.Output[VideofilterProfileFortiguardCategoryFilter] {
+	return pulumix.Output[VideofilterProfileFortiguardCategoryFilter]{
+		OutputState: i.ToVideofilterProfileFortiguardCategoryFilterOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VideofilterProfileFortiguardCategoryFilterArrayInput is an input type that accepts VideofilterProfileFortiguardCategoryFilterArray and VideofilterProfileFortiguardCategoryFilterArrayOutput values.
 // You can construct a concrete instance of `VideofilterProfileFortiguardCategoryFilterArrayInput` via:
 //
@@ -692,6 +4623,12 @@ func (i VideofilterProfileFortiguardCategoryFilterArray) ToVideofilterProfileFor
 	return pulumi.ToOutputWithContext(ctx, i).(VideofilterProfileFortiguardCategoryFilterArrayOutput)
 }
 
+func (i VideofilterProfileFortiguardCategoryFilterArray) ToOutput(ctx context.Context) pulumix.Output[[]VideofilterProfileFortiguardCategoryFilter] {
+	return pulumix.Output[[]VideofilterProfileFortiguardCategoryFilter]{
+		OutputState: i.ToVideofilterProfileFortiguardCategoryFilterArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VideofilterProfileFortiguardCategoryFilterOutput struct{ *pulumi.OutputState }
 
 func (VideofilterProfileFortiguardCategoryFilterOutput) ElementType() reflect.Type {
@@ -704,6 +4641,12 @@ func (o VideofilterProfileFortiguardCategoryFilterOutput) ToVideofilterProfileFo
 
 func (o VideofilterProfileFortiguardCategoryFilterOutput) ToVideofilterProfileFortiguardCategoryFilterOutputWithContext(ctx context.Context) VideofilterProfileFortiguardCategoryFilterOutput {
 	return o
+}
+
+func (o VideofilterProfileFortiguardCategoryFilterOutput) ToOutput(ctx context.Context) pulumix.Output[VideofilterProfileFortiguardCategoryFilter] {
+	return pulumix.Output[VideofilterProfileFortiguardCategoryFilter]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VideofilterProfileFortiguardCategoryFilterOutput) Action() pulumi.StringPtrOutput {
@@ -734,6 +4677,12 @@ func (o VideofilterProfileFortiguardCategoryFilterArrayOutput) ToVideofilterProf
 
 func (o VideofilterProfileFortiguardCategoryFilterArrayOutput) ToVideofilterProfileFortiguardCategoryFilterArrayOutputWithContext(ctx context.Context) VideofilterProfileFortiguardCategoryFilterArrayOutput {
 	return o
+}
+
+func (o VideofilterProfileFortiguardCategoryFilterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VideofilterProfileFortiguardCategoryFilter] {
+	return pulumix.Output[[]VideofilterProfileFortiguardCategoryFilter]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VideofilterProfileFortiguardCategoryFilterArrayOutput) Index(i pulumi.IntInput) VideofilterProfileFortiguardCategoryFilterOutput {
@@ -779,6 +4728,12 @@ func (i VideofilterYoutubeChannelFilterEntryArgs) ToVideofilterYoutubeChannelFil
 	return pulumi.ToOutputWithContext(ctx, i).(VideofilterYoutubeChannelFilterEntryOutput)
 }
 
+func (i VideofilterYoutubeChannelFilterEntryArgs) ToOutput(ctx context.Context) pulumix.Output[VideofilterYoutubeChannelFilterEntry] {
+	return pulumix.Output[VideofilterYoutubeChannelFilterEntry]{
+		OutputState: i.ToVideofilterYoutubeChannelFilterEntryOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VideofilterYoutubeChannelFilterEntryArrayInput is an input type that accepts VideofilterYoutubeChannelFilterEntryArray and VideofilterYoutubeChannelFilterEntryArrayOutput values.
 // You can construct a concrete instance of `VideofilterYoutubeChannelFilterEntryArrayInput` via:
 //
@@ -804,6 +4759,12 @@ func (i VideofilterYoutubeChannelFilterEntryArray) ToVideofilterYoutubeChannelFi
 	return pulumi.ToOutputWithContext(ctx, i).(VideofilterYoutubeChannelFilterEntryArrayOutput)
 }
 
+func (i VideofilterYoutubeChannelFilterEntryArray) ToOutput(ctx context.Context) pulumix.Output[[]VideofilterYoutubeChannelFilterEntry] {
+	return pulumix.Output[[]VideofilterYoutubeChannelFilterEntry]{
+		OutputState: i.ToVideofilterYoutubeChannelFilterEntryArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VideofilterYoutubeChannelFilterEntryOutput struct{ *pulumi.OutputState }
 
 func (VideofilterYoutubeChannelFilterEntryOutput) ElementType() reflect.Type {
@@ -816,6 +4777,12 @@ func (o VideofilterYoutubeChannelFilterEntryOutput) ToVideofilterYoutubeChannelF
 
 func (o VideofilterYoutubeChannelFilterEntryOutput) ToVideofilterYoutubeChannelFilterEntryOutputWithContext(ctx context.Context) VideofilterYoutubeChannelFilterEntryOutput {
 	return o
+}
+
+func (o VideofilterYoutubeChannelFilterEntryOutput) ToOutput(ctx context.Context) pulumix.Output[VideofilterYoutubeChannelFilterEntry] {
+	return pulumix.Output[VideofilterYoutubeChannelFilterEntry]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VideofilterYoutubeChannelFilterEntryOutput) Action() pulumi.StringPtrOutput {
@@ -848,10 +4815,388 @@ func (o VideofilterYoutubeChannelFilterEntryArrayOutput) ToVideofilterYoutubeCha
 	return o
 }
 
+func (o VideofilterYoutubeChannelFilterEntryArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VideofilterYoutubeChannelFilterEntry] {
+	return pulumix.Output[[]VideofilterYoutubeChannelFilterEntry]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o VideofilterYoutubeChannelFilterEntryArrayOutput) Index(i pulumi.IntInput) VideofilterYoutubeChannelFilterEntryOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VideofilterYoutubeChannelFilterEntry {
 		return vs[0].([]VideofilterYoutubeChannelFilterEntry)[vs[1].(int)]
 	}).(VideofilterYoutubeChannelFilterEntryOutput)
+}
+
+type VirtualPatchProfileExemption struct {
+	Devices []VirtualPatchProfileExemptionDevice `pulumi:"devices"`
+	Id      *int                                 `pulumi:"id"`
+	Rules   []VirtualPatchProfileExemptionRule   `pulumi:"rules"`
+	Status  *string                              `pulumi:"status"`
+}
+
+// VirtualPatchProfileExemptionInput is an input type that accepts VirtualPatchProfileExemptionArgs and VirtualPatchProfileExemptionOutput values.
+// You can construct a concrete instance of `VirtualPatchProfileExemptionInput` via:
+//
+//	VirtualPatchProfileExemptionArgs{...}
+type VirtualPatchProfileExemptionInput interface {
+	pulumi.Input
+
+	ToVirtualPatchProfileExemptionOutput() VirtualPatchProfileExemptionOutput
+	ToVirtualPatchProfileExemptionOutputWithContext(context.Context) VirtualPatchProfileExemptionOutput
+}
+
+type VirtualPatchProfileExemptionArgs struct {
+	Devices VirtualPatchProfileExemptionDeviceArrayInput `pulumi:"devices"`
+	Id      pulumi.IntPtrInput                           `pulumi:"id"`
+	Rules   VirtualPatchProfileExemptionRuleArrayInput   `pulumi:"rules"`
+	Status  pulumi.StringPtrInput                        `pulumi:"status"`
+}
+
+func (VirtualPatchProfileExemptionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VirtualPatchProfileExemption)(nil)).Elem()
+}
+
+func (i VirtualPatchProfileExemptionArgs) ToVirtualPatchProfileExemptionOutput() VirtualPatchProfileExemptionOutput {
+	return i.ToVirtualPatchProfileExemptionOutputWithContext(context.Background())
+}
+
+func (i VirtualPatchProfileExemptionArgs) ToVirtualPatchProfileExemptionOutputWithContext(ctx context.Context) VirtualPatchProfileExemptionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VirtualPatchProfileExemptionOutput)
+}
+
+func (i VirtualPatchProfileExemptionArgs) ToOutput(ctx context.Context) pulumix.Output[VirtualPatchProfileExemption] {
+	return pulumix.Output[VirtualPatchProfileExemption]{
+		OutputState: i.ToVirtualPatchProfileExemptionOutputWithContext(ctx).OutputState,
+	}
+}
+
+// VirtualPatchProfileExemptionArrayInput is an input type that accepts VirtualPatchProfileExemptionArray and VirtualPatchProfileExemptionArrayOutput values.
+// You can construct a concrete instance of `VirtualPatchProfileExemptionArrayInput` via:
+//
+//	VirtualPatchProfileExemptionArray{ VirtualPatchProfileExemptionArgs{...} }
+type VirtualPatchProfileExemptionArrayInput interface {
+	pulumi.Input
+
+	ToVirtualPatchProfileExemptionArrayOutput() VirtualPatchProfileExemptionArrayOutput
+	ToVirtualPatchProfileExemptionArrayOutputWithContext(context.Context) VirtualPatchProfileExemptionArrayOutput
+}
+
+type VirtualPatchProfileExemptionArray []VirtualPatchProfileExemptionInput
+
+func (VirtualPatchProfileExemptionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VirtualPatchProfileExemption)(nil)).Elem()
+}
+
+func (i VirtualPatchProfileExemptionArray) ToVirtualPatchProfileExemptionArrayOutput() VirtualPatchProfileExemptionArrayOutput {
+	return i.ToVirtualPatchProfileExemptionArrayOutputWithContext(context.Background())
+}
+
+func (i VirtualPatchProfileExemptionArray) ToVirtualPatchProfileExemptionArrayOutputWithContext(ctx context.Context) VirtualPatchProfileExemptionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VirtualPatchProfileExemptionArrayOutput)
+}
+
+func (i VirtualPatchProfileExemptionArray) ToOutput(ctx context.Context) pulumix.Output[[]VirtualPatchProfileExemption] {
+	return pulumix.Output[[]VirtualPatchProfileExemption]{
+		OutputState: i.ToVirtualPatchProfileExemptionArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type VirtualPatchProfileExemptionOutput struct{ *pulumi.OutputState }
+
+func (VirtualPatchProfileExemptionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VirtualPatchProfileExemption)(nil)).Elem()
+}
+
+func (o VirtualPatchProfileExemptionOutput) ToVirtualPatchProfileExemptionOutput() VirtualPatchProfileExemptionOutput {
+	return o
+}
+
+func (o VirtualPatchProfileExemptionOutput) ToVirtualPatchProfileExemptionOutputWithContext(ctx context.Context) VirtualPatchProfileExemptionOutput {
+	return o
+}
+
+func (o VirtualPatchProfileExemptionOutput) ToOutput(ctx context.Context) pulumix.Output[VirtualPatchProfileExemption] {
+	return pulumix.Output[VirtualPatchProfileExemption]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o VirtualPatchProfileExemptionOutput) Devices() VirtualPatchProfileExemptionDeviceArrayOutput {
+	return o.ApplyT(func(v VirtualPatchProfileExemption) []VirtualPatchProfileExemptionDevice { return v.Devices }).(VirtualPatchProfileExemptionDeviceArrayOutput)
+}
+
+func (o VirtualPatchProfileExemptionOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VirtualPatchProfileExemption) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+func (o VirtualPatchProfileExemptionOutput) Rules() VirtualPatchProfileExemptionRuleArrayOutput {
+	return o.ApplyT(func(v VirtualPatchProfileExemption) []VirtualPatchProfileExemptionRule { return v.Rules }).(VirtualPatchProfileExemptionRuleArrayOutput)
+}
+
+func (o VirtualPatchProfileExemptionOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VirtualPatchProfileExemption) *string { return v.Status }).(pulumi.StringPtrOutput)
+}
+
+type VirtualPatchProfileExemptionArrayOutput struct{ *pulumi.OutputState }
+
+func (VirtualPatchProfileExemptionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VirtualPatchProfileExemption)(nil)).Elem()
+}
+
+func (o VirtualPatchProfileExemptionArrayOutput) ToVirtualPatchProfileExemptionArrayOutput() VirtualPatchProfileExemptionArrayOutput {
+	return o
+}
+
+func (o VirtualPatchProfileExemptionArrayOutput) ToVirtualPatchProfileExemptionArrayOutputWithContext(ctx context.Context) VirtualPatchProfileExemptionArrayOutput {
+	return o
+}
+
+func (o VirtualPatchProfileExemptionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VirtualPatchProfileExemption] {
+	return pulumix.Output[[]VirtualPatchProfileExemption]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o VirtualPatchProfileExemptionArrayOutput) Index(i pulumi.IntInput) VirtualPatchProfileExemptionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VirtualPatchProfileExemption {
+		return vs[0].([]VirtualPatchProfileExemption)[vs[1].(int)]
+	}).(VirtualPatchProfileExemptionOutput)
+}
+
+type VirtualPatchProfileExemptionDevice struct {
+	Mac *string `pulumi:"mac"`
+}
+
+// VirtualPatchProfileExemptionDeviceInput is an input type that accepts VirtualPatchProfileExemptionDeviceArgs and VirtualPatchProfileExemptionDeviceOutput values.
+// You can construct a concrete instance of `VirtualPatchProfileExemptionDeviceInput` via:
+//
+//	VirtualPatchProfileExemptionDeviceArgs{...}
+type VirtualPatchProfileExemptionDeviceInput interface {
+	pulumi.Input
+
+	ToVirtualPatchProfileExemptionDeviceOutput() VirtualPatchProfileExemptionDeviceOutput
+	ToVirtualPatchProfileExemptionDeviceOutputWithContext(context.Context) VirtualPatchProfileExemptionDeviceOutput
+}
+
+type VirtualPatchProfileExemptionDeviceArgs struct {
+	Mac pulumi.StringPtrInput `pulumi:"mac"`
+}
+
+func (VirtualPatchProfileExemptionDeviceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VirtualPatchProfileExemptionDevice)(nil)).Elem()
+}
+
+func (i VirtualPatchProfileExemptionDeviceArgs) ToVirtualPatchProfileExemptionDeviceOutput() VirtualPatchProfileExemptionDeviceOutput {
+	return i.ToVirtualPatchProfileExemptionDeviceOutputWithContext(context.Background())
+}
+
+func (i VirtualPatchProfileExemptionDeviceArgs) ToVirtualPatchProfileExemptionDeviceOutputWithContext(ctx context.Context) VirtualPatchProfileExemptionDeviceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VirtualPatchProfileExemptionDeviceOutput)
+}
+
+func (i VirtualPatchProfileExemptionDeviceArgs) ToOutput(ctx context.Context) pulumix.Output[VirtualPatchProfileExemptionDevice] {
+	return pulumix.Output[VirtualPatchProfileExemptionDevice]{
+		OutputState: i.ToVirtualPatchProfileExemptionDeviceOutputWithContext(ctx).OutputState,
+	}
+}
+
+// VirtualPatchProfileExemptionDeviceArrayInput is an input type that accepts VirtualPatchProfileExemptionDeviceArray and VirtualPatchProfileExemptionDeviceArrayOutput values.
+// You can construct a concrete instance of `VirtualPatchProfileExemptionDeviceArrayInput` via:
+//
+//	VirtualPatchProfileExemptionDeviceArray{ VirtualPatchProfileExemptionDeviceArgs{...} }
+type VirtualPatchProfileExemptionDeviceArrayInput interface {
+	pulumi.Input
+
+	ToVirtualPatchProfileExemptionDeviceArrayOutput() VirtualPatchProfileExemptionDeviceArrayOutput
+	ToVirtualPatchProfileExemptionDeviceArrayOutputWithContext(context.Context) VirtualPatchProfileExemptionDeviceArrayOutput
+}
+
+type VirtualPatchProfileExemptionDeviceArray []VirtualPatchProfileExemptionDeviceInput
+
+func (VirtualPatchProfileExemptionDeviceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VirtualPatchProfileExemptionDevice)(nil)).Elem()
+}
+
+func (i VirtualPatchProfileExemptionDeviceArray) ToVirtualPatchProfileExemptionDeviceArrayOutput() VirtualPatchProfileExemptionDeviceArrayOutput {
+	return i.ToVirtualPatchProfileExemptionDeviceArrayOutputWithContext(context.Background())
+}
+
+func (i VirtualPatchProfileExemptionDeviceArray) ToVirtualPatchProfileExemptionDeviceArrayOutputWithContext(ctx context.Context) VirtualPatchProfileExemptionDeviceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VirtualPatchProfileExemptionDeviceArrayOutput)
+}
+
+func (i VirtualPatchProfileExemptionDeviceArray) ToOutput(ctx context.Context) pulumix.Output[[]VirtualPatchProfileExemptionDevice] {
+	return pulumix.Output[[]VirtualPatchProfileExemptionDevice]{
+		OutputState: i.ToVirtualPatchProfileExemptionDeviceArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type VirtualPatchProfileExemptionDeviceOutput struct{ *pulumi.OutputState }
+
+func (VirtualPatchProfileExemptionDeviceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VirtualPatchProfileExemptionDevice)(nil)).Elem()
+}
+
+func (o VirtualPatchProfileExemptionDeviceOutput) ToVirtualPatchProfileExemptionDeviceOutput() VirtualPatchProfileExemptionDeviceOutput {
+	return o
+}
+
+func (o VirtualPatchProfileExemptionDeviceOutput) ToVirtualPatchProfileExemptionDeviceOutputWithContext(ctx context.Context) VirtualPatchProfileExemptionDeviceOutput {
+	return o
+}
+
+func (o VirtualPatchProfileExemptionDeviceOutput) ToOutput(ctx context.Context) pulumix.Output[VirtualPatchProfileExemptionDevice] {
+	return pulumix.Output[VirtualPatchProfileExemptionDevice]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o VirtualPatchProfileExemptionDeviceOutput) Mac() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VirtualPatchProfileExemptionDevice) *string { return v.Mac }).(pulumi.StringPtrOutput)
+}
+
+type VirtualPatchProfileExemptionDeviceArrayOutput struct{ *pulumi.OutputState }
+
+func (VirtualPatchProfileExemptionDeviceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VirtualPatchProfileExemptionDevice)(nil)).Elem()
+}
+
+func (o VirtualPatchProfileExemptionDeviceArrayOutput) ToVirtualPatchProfileExemptionDeviceArrayOutput() VirtualPatchProfileExemptionDeviceArrayOutput {
+	return o
+}
+
+func (o VirtualPatchProfileExemptionDeviceArrayOutput) ToVirtualPatchProfileExemptionDeviceArrayOutputWithContext(ctx context.Context) VirtualPatchProfileExemptionDeviceArrayOutput {
+	return o
+}
+
+func (o VirtualPatchProfileExemptionDeviceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VirtualPatchProfileExemptionDevice] {
+	return pulumix.Output[[]VirtualPatchProfileExemptionDevice]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o VirtualPatchProfileExemptionDeviceArrayOutput) Index(i pulumi.IntInput) VirtualPatchProfileExemptionDeviceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VirtualPatchProfileExemptionDevice {
+		return vs[0].([]VirtualPatchProfileExemptionDevice)[vs[1].(int)]
+	}).(VirtualPatchProfileExemptionDeviceOutput)
+}
+
+type VirtualPatchProfileExemptionRule struct {
+	Id *int `pulumi:"id"`
+}
+
+// VirtualPatchProfileExemptionRuleInput is an input type that accepts VirtualPatchProfileExemptionRuleArgs and VirtualPatchProfileExemptionRuleOutput values.
+// You can construct a concrete instance of `VirtualPatchProfileExemptionRuleInput` via:
+//
+//	VirtualPatchProfileExemptionRuleArgs{...}
+type VirtualPatchProfileExemptionRuleInput interface {
+	pulumi.Input
+
+	ToVirtualPatchProfileExemptionRuleOutput() VirtualPatchProfileExemptionRuleOutput
+	ToVirtualPatchProfileExemptionRuleOutputWithContext(context.Context) VirtualPatchProfileExemptionRuleOutput
+}
+
+type VirtualPatchProfileExemptionRuleArgs struct {
+	Id pulumi.IntPtrInput `pulumi:"id"`
+}
+
+func (VirtualPatchProfileExemptionRuleArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VirtualPatchProfileExemptionRule)(nil)).Elem()
+}
+
+func (i VirtualPatchProfileExemptionRuleArgs) ToVirtualPatchProfileExemptionRuleOutput() VirtualPatchProfileExemptionRuleOutput {
+	return i.ToVirtualPatchProfileExemptionRuleOutputWithContext(context.Background())
+}
+
+func (i VirtualPatchProfileExemptionRuleArgs) ToVirtualPatchProfileExemptionRuleOutputWithContext(ctx context.Context) VirtualPatchProfileExemptionRuleOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VirtualPatchProfileExemptionRuleOutput)
+}
+
+func (i VirtualPatchProfileExemptionRuleArgs) ToOutput(ctx context.Context) pulumix.Output[VirtualPatchProfileExemptionRule] {
+	return pulumix.Output[VirtualPatchProfileExemptionRule]{
+		OutputState: i.ToVirtualPatchProfileExemptionRuleOutputWithContext(ctx).OutputState,
+	}
+}
+
+// VirtualPatchProfileExemptionRuleArrayInput is an input type that accepts VirtualPatchProfileExemptionRuleArray and VirtualPatchProfileExemptionRuleArrayOutput values.
+// You can construct a concrete instance of `VirtualPatchProfileExemptionRuleArrayInput` via:
+//
+//	VirtualPatchProfileExemptionRuleArray{ VirtualPatchProfileExemptionRuleArgs{...} }
+type VirtualPatchProfileExemptionRuleArrayInput interface {
+	pulumi.Input
+
+	ToVirtualPatchProfileExemptionRuleArrayOutput() VirtualPatchProfileExemptionRuleArrayOutput
+	ToVirtualPatchProfileExemptionRuleArrayOutputWithContext(context.Context) VirtualPatchProfileExemptionRuleArrayOutput
+}
+
+type VirtualPatchProfileExemptionRuleArray []VirtualPatchProfileExemptionRuleInput
+
+func (VirtualPatchProfileExemptionRuleArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VirtualPatchProfileExemptionRule)(nil)).Elem()
+}
+
+func (i VirtualPatchProfileExemptionRuleArray) ToVirtualPatchProfileExemptionRuleArrayOutput() VirtualPatchProfileExemptionRuleArrayOutput {
+	return i.ToVirtualPatchProfileExemptionRuleArrayOutputWithContext(context.Background())
+}
+
+func (i VirtualPatchProfileExemptionRuleArray) ToVirtualPatchProfileExemptionRuleArrayOutputWithContext(ctx context.Context) VirtualPatchProfileExemptionRuleArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VirtualPatchProfileExemptionRuleArrayOutput)
+}
+
+func (i VirtualPatchProfileExemptionRuleArray) ToOutput(ctx context.Context) pulumix.Output[[]VirtualPatchProfileExemptionRule] {
+	return pulumix.Output[[]VirtualPatchProfileExemptionRule]{
+		OutputState: i.ToVirtualPatchProfileExemptionRuleArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type VirtualPatchProfileExemptionRuleOutput struct{ *pulumi.OutputState }
+
+func (VirtualPatchProfileExemptionRuleOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VirtualPatchProfileExemptionRule)(nil)).Elem()
+}
+
+func (o VirtualPatchProfileExemptionRuleOutput) ToVirtualPatchProfileExemptionRuleOutput() VirtualPatchProfileExemptionRuleOutput {
+	return o
+}
+
+func (o VirtualPatchProfileExemptionRuleOutput) ToVirtualPatchProfileExemptionRuleOutputWithContext(ctx context.Context) VirtualPatchProfileExemptionRuleOutput {
+	return o
+}
+
+func (o VirtualPatchProfileExemptionRuleOutput) ToOutput(ctx context.Context) pulumix.Output[VirtualPatchProfileExemptionRule] {
+	return pulumix.Output[VirtualPatchProfileExemptionRule]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o VirtualPatchProfileExemptionRuleOutput) Id() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v VirtualPatchProfileExemptionRule) *int { return v.Id }).(pulumi.IntPtrOutput)
+}
+
+type VirtualPatchProfileExemptionRuleArrayOutput struct{ *pulumi.OutputState }
+
+func (VirtualPatchProfileExemptionRuleArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VirtualPatchProfileExemptionRule)(nil)).Elem()
+}
+
+func (o VirtualPatchProfileExemptionRuleArrayOutput) ToVirtualPatchProfileExemptionRuleArrayOutput() VirtualPatchProfileExemptionRuleArrayOutput {
+	return o
+}
+
+func (o VirtualPatchProfileExemptionRuleArrayOutput) ToVirtualPatchProfileExemptionRuleArrayOutputWithContext(ctx context.Context) VirtualPatchProfileExemptionRuleArrayOutput {
+	return o
+}
+
+func (o VirtualPatchProfileExemptionRuleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VirtualPatchProfileExemptionRule] {
+	return pulumix.Output[[]VirtualPatchProfileExemptionRule]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o VirtualPatchProfileExemptionRuleArrayOutput) Index(i pulumi.IntInput) VirtualPatchProfileExemptionRuleOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VirtualPatchProfileExemptionRule {
+		return vs[0].([]VirtualPatchProfileExemptionRule)[vs[1].(int)]
+	}).(VirtualPatchProfileExemptionRuleOutput)
 }
 
 type VoipProfileMsrp struct {
@@ -889,6 +5234,12 @@ func (i VoipProfileMsrpArgs) ToVoipProfileMsrpOutput() VoipProfileMsrpOutput {
 
 func (i VoipProfileMsrpArgs) ToVoipProfileMsrpOutputWithContext(ctx context.Context) VoipProfileMsrpOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VoipProfileMsrpOutput)
+}
+
+func (i VoipProfileMsrpArgs) ToOutput(ctx context.Context) pulumix.Output[VoipProfileMsrp] {
+	return pulumix.Output[VoipProfileMsrp]{
+		OutputState: i.ToVoipProfileMsrpOutputWithContext(ctx).OutputState,
+	}
 }
 
 func (i VoipProfileMsrpArgs) ToVoipProfileMsrpPtrOutput() VoipProfileMsrpPtrOutput {
@@ -932,6 +5283,12 @@ func (i *voipProfileMsrpPtrType) ToVoipProfileMsrpPtrOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(VoipProfileMsrpPtrOutput)
 }
 
+func (i *voipProfileMsrpPtrType) ToOutput(ctx context.Context) pulumix.Output[*VoipProfileMsrp] {
+	return pulumix.Output[*VoipProfileMsrp]{
+		OutputState: i.ToVoipProfileMsrpPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VoipProfileMsrpOutput struct{ *pulumi.OutputState }
 
 func (VoipProfileMsrpOutput) ElementType() reflect.Type {
@@ -954,6 +5311,12 @@ func (o VoipProfileMsrpOutput) ToVoipProfileMsrpPtrOutputWithContext(ctx context
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v VoipProfileMsrp) *VoipProfileMsrp {
 		return &v
 	}).(VoipProfileMsrpPtrOutput)
+}
+
+func (o VoipProfileMsrpOutput) ToOutput(ctx context.Context) pulumix.Output[VoipProfileMsrp] {
+	return pulumix.Output[VoipProfileMsrp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VoipProfileMsrpOutput) LogViolations() pulumi.StringPtrOutput {
@@ -984,6 +5347,12 @@ func (o VoipProfileMsrpPtrOutput) ToVoipProfileMsrpPtrOutput() VoipProfileMsrpPt
 
 func (o VoipProfileMsrpPtrOutput) ToVoipProfileMsrpPtrOutputWithContext(ctx context.Context) VoipProfileMsrpPtrOutput {
 	return o
+}
+
+func (o VoipProfileMsrpPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*VoipProfileMsrp] {
+	return pulumix.Output[*VoipProfileMsrp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VoipProfileMsrpPtrOutput) Elem() VoipProfileMsrpOutput {
@@ -1073,6 +5442,12 @@ func (i VoipProfileSccpArgs) ToVoipProfileSccpOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(VoipProfileSccpOutput)
 }
 
+func (i VoipProfileSccpArgs) ToOutput(ctx context.Context) pulumix.Output[VoipProfileSccp] {
+	return pulumix.Output[VoipProfileSccp]{
+		OutputState: i.ToVoipProfileSccpOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i VoipProfileSccpArgs) ToVoipProfileSccpPtrOutput() VoipProfileSccpPtrOutput {
 	return i.ToVoipProfileSccpPtrOutputWithContext(context.Background())
 }
@@ -1114,6 +5489,12 @@ func (i *voipProfileSccpPtrType) ToVoipProfileSccpPtrOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(VoipProfileSccpPtrOutput)
 }
 
+func (i *voipProfileSccpPtrType) ToOutput(ctx context.Context) pulumix.Output[*VoipProfileSccp] {
+	return pulumix.Output[*VoipProfileSccp]{
+		OutputState: i.ToVoipProfileSccpPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VoipProfileSccpOutput struct{ *pulumi.OutputState }
 
 func (VoipProfileSccpOutput) ElementType() reflect.Type {
@@ -1136,6 +5517,12 @@ func (o VoipProfileSccpOutput) ToVoipProfileSccpPtrOutputWithContext(ctx context
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v VoipProfileSccp) *VoipProfileSccp {
 		return &v
 	}).(VoipProfileSccpPtrOutput)
+}
+
+func (o VoipProfileSccpOutput) ToOutput(ctx context.Context) pulumix.Output[VoipProfileSccp] {
+	return pulumix.Output[VoipProfileSccp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VoipProfileSccpOutput) BlockMcast() pulumi.StringPtrOutput {
@@ -1174,6 +5561,12 @@ func (o VoipProfileSccpPtrOutput) ToVoipProfileSccpPtrOutput() VoipProfileSccpPt
 
 func (o VoipProfileSccpPtrOutput) ToVoipProfileSccpPtrOutputWithContext(ctx context.Context) VoipProfileSccpPtrOutput {
 	return o
+}
+
+func (o VoipProfileSccpPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*VoipProfileSccp] {
+	return pulumix.Output[*VoipProfileSccp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VoipProfileSccpPtrOutput) Elem() VoipProfileSccpOutput {
@@ -1499,6 +5892,12 @@ func (i VoipProfileSipArgs) ToVoipProfileSipOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(VoipProfileSipOutput)
 }
 
+func (i VoipProfileSipArgs) ToOutput(ctx context.Context) pulumix.Output[VoipProfileSip] {
+	return pulumix.Output[VoipProfileSip]{
+		OutputState: i.ToVoipProfileSipOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i VoipProfileSipArgs) ToVoipProfileSipPtrOutput() VoipProfileSipPtrOutput {
 	return i.ToVoipProfileSipPtrOutputWithContext(context.Background())
 }
@@ -1540,6 +5939,12 @@ func (i *voipProfileSipPtrType) ToVoipProfileSipPtrOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(VoipProfileSipPtrOutput)
 }
 
+func (i *voipProfileSipPtrType) ToOutput(ctx context.Context) pulumix.Output[*VoipProfileSip] {
+	return pulumix.Output[*VoipProfileSip]{
+		OutputState: i.ToVoipProfileSipPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VoipProfileSipOutput struct{ *pulumi.OutputState }
 
 func (VoipProfileSipOutput) ElementType() reflect.Type {
@@ -1562,6 +5967,12 @@ func (o VoipProfileSipOutput) ToVoipProfileSipPtrOutputWithContext(ctx context.C
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v VoipProfileSip) *VoipProfileSip {
 		return &v
 	}).(VoipProfileSipPtrOutput)
+}
+
+func (o VoipProfileSipOutput) ToOutput(ctx context.Context) pulumix.Output[VoipProfileSip] {
+	return pulumix.Output[VoipProfileSip]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VoipProfileSipOutput) AckRate() pulumi.IntPtrOutput {
@@ -2036,6 +6447,12 @@ func (o VoipProfileSipPtrOutput) ToVoipProfileSipPtrOutput() VoipProfileSipPtrOu
 
 func (o VoipProfileSipPtrOutput) ToVoipProfileSipPtrOutputWithContext(ctx context.Context) VoipProfileSipPtrOutput {
 	return o
+}
+
+func (o VoipProfileSipPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*VoipProfileSip] {
+	return pulumix.Output[*VoipProfileSip]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VoipProfileSipPtrOutput) Elem() VoipProfileSipOutput {
@@ -3118,6 +7535,12 @@ func (i VpnCertificateSettingCrlVerificationArgs) ToVpnCertificateSettingCrlVeri
 	return pulumi.ToOutputWithContext(ctx, i).(VpnCertificateSettingCrlVerificationOutput)
 }
 
+func (i VpnCertificateSettingCrlVerificationArgs) ToOutput(ctx context.Context) pulumix.Output[VpnCertificateSettingCrlVerification] {
+	return pulumix.Output[VpnCertificateSettingCrlVerification]{
+		OutputState: i.ToVpnCertificateSettingCrlVerificationOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i VpnCertificateSettingCrlVerificationArgs) ToVpnCertificateSettingCrlVerificationPtrOutput() VpnCertificateSettingCrlVerificationPtrOutput {
 	return i.ToVpnCertificateSettingCrlVerificationPtrOutputWithContext(context.Background())
 }
@@ -3159,6 +7582,12 @@ func (i *vpnCertificateSettingCrlVerificationPtrType) ToVpnCertificateSettingCrl
 	return pulumi.ToOutputWithContext(ctx, i).(VpnCertificateSettingCrlVerificationPtrOutput)
 }
 
+func (i *vpnCertificateSettingCrlVerificationPtrType) ToOutput(ctx context.Context) pulumix.Output[*VpnCertificateSettingCrlVerification] {
+	return pulumix.Output[*VpnCertificateSettingCrlVerification]{
+		OutputState: i.ToVpnCertificateSettingCrlVerificationPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnCertificateSettingCrlVerificationOutput struct{ *pulumi.OutputState }
 
 func (VpnCertificateSettingCrlVerificationOutput) ElementType() reflect.Type {
@@ -3181,6 +7610,12 @@ func (o VpnCertificateSettingCrlVerificationOutput) ToVpnCertificateSettingCrlVe
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v VpnCertificateSettingCrlVerification) *VpnCertificateSettingCrlVerification {
 		return &v
 	}).(VpnCertificateSettingCrlVerificationPtrOutput)
+}
+
+func (o VpnCertificateSettingCrlVerificationOutput) ToOutput(ctx context.Context) pulumix.Output[VpnCertificateSettingCrlVerification] {
+	return pulumix.Output[VpnCertificateSettingCrlVerification]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnCertificateSettingCrlVerificationOutput) ChainCrlAbsence() pulumi.StringPtrOutput {
@@ -3207,6 +7642,12 @@ func (o VpnCertificateSettingCrlVerificationPtrOutput) ToVpnCertificateSettingCr
 
 func (o VpnCertificateSettingCrlVerificationPtrOutput) ToVpnCertificateSettingCrlVerificationPtrOutputWithContext(ctx context.Context) VpnCertificateSettingCrlVerificationPtrOutput {
 	return o
+}
+
+func (o VpnCertificateSettingCrlVerificationPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*VpnCertificateSettingCrlVerification] {
+	return pulumix.Output[*VpnCertificateSettingCrlVerification]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnCertificateSettingCrlVerificationPtrOutput) Elem() VpnCertificateSettingCrlVerificationOutput {
@@ -3277,6 +7718,12 @@ func (i VpnIpsecConcentratorMemberArgs) ToVpnIpsecConcentratorMemberOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecConcentratorMemberOutput)
 }
 
+func (i VpnIpsecConcentratorMemberArgs) ToOutput(ctx context.Context) pulumix.Output[VpnIpsecConcentratorMember] {
+	return pulumix.Output[VpnIpsecConcentratorMember]{
+		OutputState: i.ToVpnIpsecConcentratorMemberOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnIpsecConcentratorMemberArrayInput is an input type that accepts VpnIpsecConcentratorMemberArray and VpnIpsecConcentratorMemberArrayOutput values.
 // You can construct a concrete instance of `VpnIpsecConcentratorMemberArrayInput` via:
 //
@@ -3302,6 +7749,12 @@ func (i VpnIpsecConcentratorMemberArray) ToVpnIpsecConcentratorMemberArrayOutput
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecConcentratorMemberArrayOutput)
 }
 
+func (i VpnIpsecConcentratorMemberArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnIpsecConcentratorMember] {
+	return pulumix.Output[[]VpnIpsecConcentratorMember]{
+		OutputState: i.ToVpnIpsecConcentratorMemberArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnIpsecConcentratorMemberOutput struct{ *pulumi.OutputState }
 
 func (VpnIpsecConcentratorMemberOutput) ElementType() reflect.Type {
@@ -3314,6 +7767,12 @@ func (o VpnIpsecConcentratorMemberOutput) ToVpnIpsecConcentratorMemberOutput() V
 
 func (o VpnIpsecConcentratorMemberOutput) ToVpnIpsecConcentratorMemberOutputWithContext(ctx context.Context) VpnIpsecConcentratorMemberOutput {
 	return o
+}
+
+func (o VpnIpsecConcentratorMemberOutput) ToOutput(ctx context.Context) pulumix.Output[VpnIpsecConcentratorMember] {
+	return pulumix.Output[VpnIpsecConcentratorMember]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnIpsecConcentratorMemberOutput) Name() pulumi.StringPtrOutput {
@@ -3332,6 +7791,12 @@ func (o VpnIpsecConcentratorMemberArrayOutput) ToVpnIpsecConcentratorMemberArray
 
 func (o VpnIpsecConcentratorMemberArrayOutput) ToVpnIpsecConcentratorMemberArrayOutputWithContext(ctx context.Context) VpnIpsecConcentratorMemberArrayOutput {
 	return o
+}
+
+func (o VpnIpsecConcentratorMemberArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnIpsecConcentratorMember] {
+	return pulumix.Output[[]VpnIpsecConcentratorMember]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnIpsecConcentratorMemberArrayOutput) Index(i pulumi.IntInput) VpnIpsecConcentratorMemberOutput {
@@ -3385,6 +7850,12 @@ func (i VpnIpsecFecMappingArgs) ToVpnIpsecFecMappingOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecFecMappingOutput)
 }
 
+func (i VpnIpsecFecMappingArgs) ToOutput(ctx context.Context) pulumix.Output[VpnIpsecFecMapping] {
+	return pulumix.Output[VpnIpsecFecMapping]{
+		OutputState: i.ToVpnIpsecFecMappingOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnIpsecFecMappingArrayInput is an input type that accepts VpnIpsecFecMappingArray and VpnIpsecFecMappingArrayOutput values.
 // You can construct a concrete instance of `VpnIpsecFecMappingArrayInput` via:
 //
@@ -3410,6 +7881,12 @@ func (i VpnIpsecFecMappingArray) ToVpnIpsecFecMappingArrayOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecFecMappingArrayOutput)
 }
 
+func (i VpnIpsecFecMappingArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnIpsecFecMapping] {
+	return pulumix.Output[[]VpnIpsecFecMapping]{
+		OutputState: i.ToVpnIpsecFecMappingArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnIpsecFecMappingOutput struct{ *pulumi.OutputState }
 
 func (VpnIpsecFecMappingOutput) ElementType() reflect.Type {
@@ -3422,6 +7899,12 @@ func (o VpnIpsecFecMappingOutput) ToVpnIpsecFecMappingOutput() VpnIpsecFecMappin
 
 func (o VpnIpsecFecMappingOutput) ToVpnIpsecFecMappingOutputWithContext(ctx context.Context) VpnIpsecFecMappingOutput {
 	return o
+}
+
+func (o VpnIpsecFecMappingOutput) ToOutput(ctx context.Context) pulumix.Output[VpnIpsecFecMapping] {
+	return pulumix.Output[VpnIpsecFecMapping]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnIpsecFecMappingOutput) BandwidthBiThreshold() pulumi.IntPtrOutput {
@@ -3470,6 +7953,12 @@ func (o VpnIpsecFecMappingArrayOutput) ToVpnIpsecFecMappingArrayOutputWithContex
 	return o
 }
 
+func (o VpnIpsecFecMappingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnIpsecFecMapping] {
+	return pulumix.Output[[]VpnIpsecFecMapping]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o VpnIpsecFecMappingArrayOutput) Index(i pulumi.IntInput) VpnIpsecFecMappingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnIpsecFecMapping {
 		return vs[0].([]VpnIpsecFecMapping)[vs[1].(int)]
@@ -3507,6 +7996,12 @@ func (i VpnIpsecPhase1BackupGatewayArgs) ToVpnIpsecPhase1BackupGatewayOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1BackupGatewayOutput)
 }
 
+func (i VpnIpsecPhase1BackupGatewayArgs) ToOutput(ctx context.Context) pulumix.Output[VpnIpsecPhase1BackupGateway] {
+	return pulumix.Output[VpnIpsecPhase1BackupGateway]{
+		OutputState: i.ToVpnIpsecPhase1BackupGatewayOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnIpsecPhase1BackupGatewayArrayInput is an input type that accepts VpnIpsecPhase1BackupGatewayArray and VpnIpsecPhase1BackupGatewayArrayOutput values.
 // You can construct a concrete instance of `VpnIpsecPhase1BackupGatewayArrayInput` via:
 //
@@ -3532,6 +8027,12 @@ func (i VpnIpsecPhase1BackupGatewayArray) ToVpnIpsecPhase1BackupGatewayArrayOutp
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1BackupGatewayArrayOutput)
 }
 
+func (i VpnIpsecPhase1BackupGatewayArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnIpsecPhase1BackupGateway] {
+	return pulumix.Output[[]VpnIpsecPhase1BackupGateway]{
+		OutputState: i.ToVpnIpsecPhase1BackupGatewayArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnIpsecPhase1BackupGatewayOutput struct{ *pulumi.OutputState }
 
 func (VpnIpsecPhase1BackupGatewayOutput) ElementType() reflect.Type {
@@ -3544,6 +8045,12 @@ func (o VpnIpsecPhase1BackupGatewayOutput) ToVpnIpsecPhase1BackupGatewayOutput()
 
 func (o VpnIpsecPhase1BackupGatewayOutput) ToVpnIpsecPhase1BackupGatewayOutputWithContext(ctx context.Context) VpnIpsecPhase1BackupGatewayOutput {
 	return o
+}
+
+func (o VpnIpsecPhase1BackupGatewayOutput) ToOutput(ctx context.Context) pulumix.Output[VpnIpsecPhase1BackupGateway] {
+	return pulumix.Output[VpnIpsecPhase1BackupGateway]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnIpsecPhase1BackupGatewayOutput) Address() pulumi.StringPtrOutput {
@@ -3562,6 +8069,12 @@ func (o VpnIpsecPhase1BackupGatewayArrayOutput) ToVpnIpsecPhase1BackupGatewayArr
 
 func (o VpnIpsecPhase1BackupGatewayArrayOutput) ToVpnIpsecPhase1BackupGatewayArrayOutputWithContext(ctx context.Context) VpnIpsecPhase1BackupGatewayArrayOutput {
 	return o
+}
+
+func (o VpnIpsecPhase1BackupGatewayArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnIpsecPhase1BackupGateway] {
+	return pulumix.Output[[]VpnIpsecPhase1BackupGateway]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnIpsecPhase1BackupGatewayArrayOutput) Index(i pulumi.IntInput) VpnIpsecPhase1BackupGatewayOutput {
@@ -3601,6 +8114,12 @@ func (i VpnIpsecPhase1CertificateArgs) ToVpnIpsecPhase1CertificateOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1CertificateOutput)
 }
 
+func (i VpnIpsecPhase1CertificateArgs) ToOutput(ctx context.Context) pulumix.Output[VpnIpsecPhase1Certificate] {
+	return pulumix.Output[VpnIpsecPhase1Certificate]{
+		OutputState: i.ToVpnIpsecPhase1CertificateOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnIpsecPhase1CertificateArrayInput is an input type that accepts VpnIpsecPhase1CertificateArray and VpnIpsecPhase1CertificateArrayOutput values.
 // You can construct a concrete instance of `VpnIpsecPhase1CertificateArrayInput` via:
 //
@@ -3626,6 +8145,12 @@ func (i VpnIpsecPhase1CertificateArray) ToVpnIpsecPhase1CertificateArrayOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1CertificateArrayOutput)
 }
 
+func (i VpnIpsecPhase1CertificateArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnIpsecPhase1Certificate] {
+	return pulumix.Output[[]VpnIpsecPhase1Certificate]{
+		OutputState: i.ToVpnIpsecPhase1CertificateArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnIpsecPhase1CertificateOutput struct{ *pulumi.OutputState }
 
 func (VpnIpsecPhase1CertificateOutput) ElementType() reflect.Type {
@@ -3638,6 +8163,12 @@ func (o VpnIpsecPhase1CertificateOutput) ToVpnIpsecPhase1CertificateOutput() Vpn
 
 func (o VpnIpsecPhase1CertificateOutput) ToVpnIpsecPhase1CertificateOutputWithContext(ctx context.Context) VpnIpsecPhase1CertificateOutput {
 	return o
+}
+
+func (o VpnIpsecPhase1CertificateOutput) ToOutput(ctx context.Context) pulumix.Output[VpnIpsecPhase1Certificate] {
+	return pulumix.Output[VpnIpsecPhase1Certificate]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnIpsecPhase1CertificateOutput) Name() pulumi.StringPtrOutput {
@@ -3656,6 +8187,12 @@ func (o VpnIpsecPhase1CertificateArrayOutput) ToVpnIpsecPhase1CertificateArrayOu
 
 func (o VpnIpsecPhase1CertificateArrayOutput) ToVpnIpsecPhase1CertificateArrayOutputWithContext(ctx context.Context) VpnIpsecPhase1CertificateArrayOutput {
 	return o
+}
+
+func (o VpnIpsecPhase1CertificateArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnIpsecPhase1Certificate] {
+	return pulumix.Output[[]VpnIpsecPhase1Certificate]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnIpsecPhase1CertificateArrayOutput) Index(i pulumi.IntInput) VpnIpsecPhase1CertificateOutput {
@@ -3695,6 +8232,12 @@ func (i VpnIpsecPhase1InterfaceBackupGatewayArgs) ToVpnIpsecPhase1InterfaceBacku
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1InterfaceBackupGatewayOutput)
 }
 
+func (i VpnIpsecPhase1InterfaceBackupGatewayArgs) ToOutput(ctx context.Context) pulumix.Output[VpnIpsecPhase1InterfaceBackupGateway] {
+	return pulumix.Output[VpnIpsecPhase1InterfaceBackupGateway]{
+		OutputState: i.ToVpnIpsecPhase1InterfaceBackupGatewayOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnIpsecPhase1InterfaceBackupGatewayArrayInput is an input type that accepts VpnIpsecPhase1InterfaceBackupGatewayArray and VpnIpsecPhase1InterfaceBackupGatewayArrayOutput values.
 // You can construct a concrete instance of `VpnIpsecPhase1InterfaceBackupGatewayArrayInput` via:
 //
@@ -3720,6 +8263,12 @@ func (i VpnIpsecPhase1InterfaceBackupGatewayArray) ToVpnIpsecPhase1InterfaceBack
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1InterfaceBackupGatewayArrayOutput)
 }
 
+func (i VpnIpsecPhase1InterfaceBackupGatewayArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnIpsecPhase1InterfaceBackupGateway] {
+	return pulumix.Output[[]VpnIpsecPhase1InterfaceBackupGateway]{
+		OutputState: i.ToVpnIpsecPhase1InterfaceBackupGatewayArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnIpsecPhase1InterfaceBackupGatewayOutput struct{ *pulumi.OutputState }
 
 func (VpnIpsecPhase1InterfaceBackupGatewayOutput) ElementType() reflect.Type {
@@ -3732,6 +8281,12 @@ func (o VpnIpsecPhase1InterfaceBackupGatewayOutput) ToVpnIpsecPhase1InterfaceBac
 
 func (o VpnIpsecPhase1InterfaceBackupGatewayOutput) ToVpnIpsecPhase1InterfaceBackupGatewayOutputWithContext(ctx context.Context) VpnIpsecPhase1InterfaceBackupGatewayOutput {
 	return o
+}
+
+func (o VpnIpsecPhase1InterfaceBackupGatewayOutput) ToOutput(ctx context.Context) pulumix.Output[VpnIpsecPhase1InterfaceBackupGateway] {
+	return pulumix.Output[VpnIpsecPhase1InterfaceBackupGateway]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnIpsecPhase1InterfaceBackupGatewayOutput) Address() pulumi.StringPtrOutput {
@@ -3750,6 +8305,12 @@ func (o VpnIpsecPhase1InterfaceBackupGatewayArrayOutput) ToVpnIpsecPhase1Interfa
 
 func (o VpnIpsecPhase1InterfaceBackupGatewayArrayOutput) ToVpnIpsecPhase1InterfaceBackupGatewayArrayOutputWithContext(ctx context.Context) VpnIpsecPhase1InterfaceBackupGatewayArrayOutput {
 	return o
+}
+
+func (o VpnIpsecPhase1InterfaceBackupGatewayArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnIpsecPhase1InterfaceBackupGateway] {
+	return pulumix.Output[[]VpnIpsecPhase1InterfaceBackupGateway]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnIpsecPhase1InterfaceBackupGatewayArrayOutput) Index(i pulumi.IntInput) VpnIpsecPhase1InterfaceBackupGatewayOutput {
@@ -3789,6 +8350,12 @@ func (i VpnIpsecPhase1InterfaceCertificateArgs) ToVpnIpsecPhase1InterfaceCertifi
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1InterfaceCertificateOutput)
 }
 
+func (i VpnIpsecPhase1InterfaceCertificateArgs) ToOutput(ctx context.Context) pulumix.Output[VpnIpsecPhase1InterfaceCertificate] {
+	return pulumix.Output[VpnIpsecPhase1InterfaceCertificate]{
+		OutputState: i.ToVpnIpsecPhase1InterfaceCertificateOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnIpsecPhase1InterfaceCertificateArrayInput is an input type that accepts VpnIpsecPhase1InterfaceCertificateArray and VpnIpsecPhase1InterfaceCertificateArrayOutput values.
 // You can construct a concrete instance of `VpnIpsecPhase1InterfaceCertificateArrayInput` via:
 //
@@ -3814,6 +8381,12 @@ func (i VpnIpsecPhase1InterfaceCertificateArray) ToVpnIpsecPhase1InterfaceCertif
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1InterfaceCertificateArrayOutput)
 }
 
+func (i VpnIpsecPhase1InterfaceCertificateArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnIpsecPhase1InterfaceCertificate] {
+	return pulumix.Output[[]VpnIpsecPhase1InterfaceCertificate]{
+		OutputState: i.ToVpnIpsecPhase1InterfaceCertificateArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnIpsecPhase1InterfaceCertificateOutput struct{ *pulumi.OutputState }
 
 func (VpnIpsecPhase1InterfaceCertificateOutput) ElementType() reflect.Type {
@@ -3826,6 +8399,12 @@ func (o VpnIpsecPhase1InterfaceCertificateOutput) ToVpnIpsecPhase1InterfaceCerti
 
 func (o VpnIpsecPhase1InterfaceCertificateOutput) ToVpnIpsecPhase1InterfaceCertificateOutputWithContext(ctx context.Context) VpnIpsecPhase1InterfaceCertificateOutput {
 	return o
+}
+
+func (o VpnIpsecPhase1InterfaceCertificateOutput) ToOutput(ctx context.Context) pulumix.Output[VpnIpsecPhase1InterfaceCertificate] {
+	return pulumix.Output[VpnIpsecPhase1InterfaceCertificate]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnIpsecPhase1InterfaceCertificateOutput) Name() pulumi.StringPtrOutput {
@@ -3846,10 +8425,134 @@ func (o VpnIpsecPhase1InterfaceCertificateArrayOutput) ToVpnIpsecPhase1Interface
 	return o
 }
 
+func (o VpnIpsecPhase1InterfaceCertificateArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnIpsecPhase1InterfaceCertificate] {
+	return pulumix.Output[[]VpnIpsecPhase1InterfaceCertificate]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o VpnIpsecPhase1InterfaceCertificateArrayOutput) Index(i pulumi.IntInput) VpnIpsecPhase1InterfaceCertificateOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnIpsecPhase1InterfaceCertificate {
 		return vs[0].([]VpnIpsecPhase1InterfaceCertificate)[vs[1].(int)]
 	}).(VpnIpsecPhase1InterfaceCertificateOutput)
+}
+
+type VpnIpsecPhase1InterfaceInternalDomainList struct {
+	DomainName *string `pulumi:"domainName"`
+}
+
+// VpnIpsecPhase1InterfaceInternalDomainListInput is an input type that accepts VpnIpsecPhase1InterfaceInternalDomainListArgs and VpnIpsecPhase1InterfaceInternalDomainListOutput values.
+// You can construct a concrete instance of `VpnIpsecPhase1InterfaceInternalDomainListInput` via:
+//
+//	VpnIpsecPhase1InterfaceInternalDomainListArgs{...}
+type VpnIpsecPhase1InterfaceInternalDomainListInput interface {
+	pulumi.Input
+
+	ToVpnIpsecPhase1InterfaceInternalDomainListOutput() VpnIpsecPhase1InterfaceInternalDomainListOutput
+	ToVpnIpsecPhase1InterfaceInternalDomainListOutputWithContext(context.Context) VpnIpsecPhase1InterfaceInternalDomainListOutput
+}
+
+type VpnIpsecPhase1InterfaceInternalDomainListArgs struct {
+	DomainName pulumi.StringPtrInput `pulumi:"domainName"`
+}
+
+func (VpnIpsecPhase1InterfaceInternalDomainListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnIpsecPhase1InterfaceInternalDomainList)(nil)).Elem()
+}
+
+func (i VpnIpsecPhase1InterfaceInternalDomainListArgs) ToVpnIpsecPhase1InterfaceInternalDomainListOutput() VpnIpsecPhase1InterfaceInternalDomainListOutput {
+	return i.ToVpnIpsecPhase1InterfaceInternalDomainListOutputWithContext(context.Background())
+}
+
+func (i VpnIpsecPhase1InterfaceInternalDomainListArgs) ToVpnIpsecPhase1InterfaceInternalDomainListOutputWithContext(ctx context.Context) VpnIpsecPhase1InterfaceInternalDomainListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1InterfaceInternalDomainListOutput)
+}
+
+func (i VpnIpsecPhase1InterfaceInternalDomainListArgs) ToOutput(ctx context.Context) pulumix.Output[VpnIpsecPhase1InterfaceInternalDomainList] {
+	return pulumix.Output[VpnIpsecPhase1InterfaceInternalDomainList]{
+		OutputState: i.ToVpnIpsecPhase1InterfaceInternalDomainListOutputWithContext(ctx).OutputState,
+	}
+}
+
+// VpnIpsecPhase1InterfaceInternalDomainListArrayInput is an input type that accepts VpnIpsecPhase1InterfaceInternalDomainListArray and VpnIpsecPhase1InterfaceInternalDomainListArrayOutput values.
+// You can construct a concrete instance of `VpnIpsecPhase1InterfaceInternalDomainListArrayInput` via:
+//
+//	VpnIpsecPhase1InterfaceInternalDomainListArray{ VpnIpsecPhase1InterfaceInternalDomainListArgs{...} }
+type VpnIpsecPhase1InterfaceInternalDomainListArrayInput interface {
+	pulumi.Input
+
+	ToVpnIpsecPhase1InterfaceInternalDomainListArrayOutput() VpnIpsecPhase1InterfaceInternalDomainListArrayOutput
+	ToVpnIpsecPhase1InterfaceInternalDomainListArrayOutputWithContext(context.Context) VpnIpsecPhase1InterfaceInternalDomainListArrayOutput
+}
+
+type VpnIpsecPhase1InterfaceInternalDomainListArray []VpnIpsecPhase1InterfaceInternalDomainListInput
+
+func (VpnIpsecPhase1InterfaceInternalDomainListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnIpsecPhase1InterfaceInternalDomainList)(nil)).Elem()
+}
+
+func (i VpnIpsecPhase1InterfaceInternalDomainListArray) ToVpnIpsecPhase1InterfaceInternalDomainListArrayOutput() VpnIpsecPhase1InterfaceInternalDomainListArrayOutput {
+	return i.ToVpnIpsecPhase1InterfaceInternalDomainListArrayOutputWithContext(context.Background())
+}
+
+func (i VpnIpsecPhase1InterfaceInternalDomainListArray) ToVpnIpsecPhase1InterfaceInternalDomainListArrayOutputWithContext(ctx context.Context) VpnIpsecPhase1InterfaceInternalDomainListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1InterfaceInternalDomainListArrayOutput)
+}
+
+func (i VpnIpsecPhase1InterfaceInternalDomainListArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnIpsecPhase1InterfaceInternalDomainList] {
+	return pulumix.Output[[]VpnIpsecPhase1InterfaceInternalDomainList]{
+		OutputState: i.ToVpnIpsecPhase1InterfaceInternalDomainListArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type VpnIpsecPhase1InterfaceInternalDomainListOutput struct{ *pulumi.OutputState }
+
+func (VpnIpsecPhase1InterfaceInternalDomainListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnIpsecPhase1InterfaceInternalDomainList)(nil)).Elem()
+}
+
+func (o VpnIpsecPhase1InterfaceInternalDomainListOutput) ToVpnIpsecPhase1InterfaceInternalDomainListOutput() VpnIpsecPhase1InterfaceInternalDomainListOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1InterfaceInternalDomainListOutput) ToVpnIpsecPhase1InterfaceInternalDomainListOutputWithContext(ctx context.Context) VpnIpsecPhase1InterfaceInternalDomainListOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1InterfaceInternalDomainListOutput) ToOutput(ctx context.Context) pulumix.Output[VpnIpsecPhase1InterfaceInternalDomainList] {
+	return pulumix.Output[VpnIpsecPhase1InterfaceInternalDomainList]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o VpnIpsecPhase1InterfaceInternalDomainListOutput) DomainName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnIpsecPhase1InterfaceInternalDomainList) *string { return v.DomainName }).(pulumi.StringPtrOutput)
+}
+
+type VpnIpsecPhase1InterfaceInternalDomainListArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnIpsecPhase1InterfaceInternalDomainListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnIpsecPhase1InterfaceInternalDomainList)(nil)).Elem()
+}
+
+func (o VpnIpsecPhase1InterfaceInternalDomainListArrayOutput) ToVpnIpsecPhase1InterfaceInternalDomainListArrayOutput() VpnIpsecPhase1InterfaceInternalDomainListArrayOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1InterfaceInternalDomainListArrayOutput) ToVpnIpsecPhase1InterfaceInternalDomainListArrayOutputWithContext(ctx context.Context) VpnIpsecPhase1InterfaceInternalDomainListArrayOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1InterfaceInternalDomainListArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnIpsecPhase1InterfaceInternalDomainList] {
+	return pulumix.Output[[]VpnIpsecPhase1InterfaceInternalDomainList]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o VpnIpsecPhase1InterfaceInternalDomainListArrayOutput) Index(i pulumi.IntInput) VpnIpsecPhase1InterfaceInternalDomainListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnIpsecPhase1InterfaceInternalDomainList {
+		return vs[0].([]VpnIpsecPhase1InterfaceInternalDomainList)[vs[1].(int)]
+	}).(VpnIpsecPhase1InterfaceInternalDomainListOutput)
 }
 
 type VpnIpsecPhase1InterfaceIpv4ExcludeRange struct {
@@ -3887,6 +8590,12 @@ func (i VpnIpsecPhase1InterfaceIpv4ExcludeRangeArgs) ToVpnIpsecPhase1InterfaceIp
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1InterfaceIpv4ExcludeRangeOutput)
 }
 
+func (i VpnIpsecPhase1InterfaceIpv4ExcludeRangeArgs) ToOutput(ctx context.Context) pulumix.Output[VpnIpsecPhase1InterfaceIpv4ExcludeRange] {
+	return pulumix.Output[VpnIpsecPhase1InterfaceIpv4ExcludeRange]{
+		OutputState: i.ToVpnIpsecPhase1InterfaceIpv4ExcludeRangeOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayInput is an input type that accepts VpnIpsecPhase1InterfaceIpv4ExcludeRangeArray and VpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayOutput values.
 // You can construct a concrete instance of `VpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayInput` via:
 //
@@ -3912,6 +8621,12 @@ func (i VpnIpsecPhase1InterfaceIpv4ExcludeRangeArray) ToVpnIpsecPhase1InterfaceI
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayOutput)
 }
 
+func (i VpnIpsecPhase1InterfaceIpv4ExcludeRangeArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnIpsecPhase1InterfaceIpv4ExcludeRange] {
+	return pulumix.Output[[]VpnIpsecPhase1InterfaceIpv4ExcludeRange]{
+		OutputState: i.ToVpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnIpsecPhase1InterfaceIpv4ExcludeRangeOutput struct{ *pulumi.OutputState }
 
 func (VpnIpsecPhase1InterfaceIpv4ExcludeRangeOutput) ElementType() reflect.Type {
@@ -3924,6 +8639,12 @@ func (o VpnIpsecPhase1InterfaceIpv4ExcludeRangeOutput) ToVpnIpsecPhase1Interface
 
 func (o VpnIpsecPhase1InterfaceIpv4ExcludeRangeOutput) ToVpnIpsecPhase1InterfaceIpv4ExcludeRangeOutputWithContext(ctx context.Context) VpnIpsecPhase1InterfaceIpv4ExcludeRangeOutput {
 	return o
+}
+
+func (o VpnIpsecPhase1InterfaceIpv4ExcludeRangeOutput) ToOutput(ctx context.Context) pulumix.Output[VpnIpsecPhase1InterfaceIpv4ExcludeRange] {
+	return pulumix.Output[VpnIpsecPhase1InterfaceIpv4ExcludeRange]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnIpsecPhase1InterfaceIpv4ExcludeRangeOutput) EndIp() pulumi.StringPtrOutput {
@@ -3950,6 +8671,12 @@ func (o VpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayOutput) ToVpnIpsecPhase1Inte
 
 func (o VpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayOutput) ToVpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayOutputWithContext(ctx context.Context) VpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayOutput {
 	return o
+}
+
+func (o VpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnIpsecPhase1InterfaceIpv4ExcludeRange] {
+	return pulumix.Output[[]VpnIpsecPhase1InterfaceIpv4ExcludeRange]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayOutput) Index(i pulumi.IntInput) VpnIpsecPhase1InterfaceIpv4ExcludeRangeOutput {
@@ -3993,6 +8720,12 @@ func (i VpnIpsecPhase1InterfaceIpv6ExcludeRangeArgs) ToVpnIpsecPhase1InterfaceIp
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1InterfaceIpv6ExcludeRangeOutput)
 }
 
+func (i VpnIpsecPhase1InterfaceIpv6ExcludeRangeArgs) ToOutput(ctx context.Context) pulumix.Output[VpnIpsecPhase1InterfaceIpv6ExcludeRange] {
+	return pulumix.Output[VpnIpsecPhase1InterfaceIpv6ExcludeRange]{
+		OutputState: i.ToVpnIpsecPhase1InterfaceIpv6ExcludeRangeOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnIpsecPhase1InterfaceIpv6ExcludeRangeArrayInput is an input type that accepts VpnIpsecPhase1InterfaceIpv6ExcludeRangeArray and VpnIpsecPhase1InterfaceIpv6ExcludeRangeArrayOutput values.
 // You can construct a concrete instance of `VpnIpsecPhase1InterfaceIpv6ExcludeRangeArrayInput` via:
 //
@@ -4018,6 +8751,12 @@ func (i VpnIpsecPhase1InterfaceIpv6ExcludeRangeArray) ToVpnIpsecPhase1InterfaceI
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1InterfaceIpv6ExcludeRangeArrayOutput)
 }
 
+func (i VpnIpsecPhase1InterfaceIpv6ExcludeRangeArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnIpsecPhase1InterfaceIpv6ExcludeRange] {
+	return pulumix.Output[[]VpnIpsecPhase1InterfaceIpv6ExcludeRange]{
+		OutputState: i.ToVpnIpsecPhase1InterfaceIpv6ExcludeRangeArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnIpsecPhase1InterfaceIpv6ExcludeRangeOutput struct{ *pulumi.OutputState }
 
 func (VpnIpsecPhase1InterfaceIpv6ExcludeRangeOutput) ElementType() reflect.Type {
@@ -4030,6 +8769,12 @@ func (o VpnIpsecPhase1InterfaceIpv6ExcludeRangeOutput) ToVpnIpsecPhase1Interface
 
 func (o VpnIpsecPhase1InterfaceIpv6ExcludeRangeOutput) ToVpnIpsecPhase1InterfaceIpv6ExcludeRangeOutputWithContext(ctx context.Context) VpnIpsecPhase1InterfaceIpv6ExcludeRangeOutput {
 	return o
+}
+
+func (o VpnIpsecPhase1InterfaceIpv6ExcludeRangeOutput) ToOutput(ctx context.Context) pulumix.Output[VpnIpsecPhase1InterfaceIpv6ExcludeRange] {
+	return pulumix.Output[VpnIpsecPhase1InterfaceIpv6ExcludeRange]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnIpsecPhase1InterfaceIpv6ExcludeRangeOutput) EndIp() pulumi.StringPtrOutput {
@@ -4058,10 +8803,134 @@ func (o VpnIpsecPhase1InterfaceIpv6ExcludeRangeArrayOutput) ToVpnIpsecPhase1Inte
 	return o
 }
 
+func (o VpnIpsecPhase1InterfaceIpv6ExcludeRangeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnIpsecPhase1InterfaceIpv6ExcludeRange] {
+	return pulumix.Output[[]VpnIpsecPhase1InterfaceIpv6ExcludeRange]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o VpnIpsecPhase1InterfaceIpv6ExcludeRangeArrayOutput) Index(i pulumi.IntInput) VpnIpsecPhase1InterfaceIpv6ExcludeRangeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnIpsecPhase1InterfaceIpv6ExcludeRange {
 		return vs[0].([]VpnIpsecPhase1InterfaceIpv6ExcludeRange)[vs[1].(int)]
 	}).(VpnIpsecPhase1InterfaceIpv6ExcludeRangeOutput)
+}
+
+type VpnIpsecPhase1InternalDomainList struct {
+	DomainName *string `pulumi:"domainName"`
+}
+
+// VpnIpsecPhase1InternalDomainListInput is an input type that accepts VpnIpsecPhase1InternalDomainListArgs and VpnIpsecPhase1InternalDomainListOutput values.
+// You can construct a concrete instance of `VpnIpsecPhase1InternalDomainListInput` via:
+//
+//	VpnIpsecPhase1InternalDomainListArgs{...}
+type VpnIpsecPhase1InternalDomainListInput interface {
+	pulumi.Input
+
+	ToVpnIpsecPhase1InternalDomainListOutput() VpnIpsecPhase1InternalDomainListOutput
+	ToVpnIpsecPhase1InternalDomainListOutputWithContext(context.Context) VpnIpsecPhase1InternalDomainListOutput
+}
+
+type VpnIpsecPhase1InternalDomainListArgs struct {
+	DomainName pulumi.StringPtrInput `pulumi:"domainName"`
+}
+
+func (VpnIpsecPhase1InternalDomainListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnIpsecPhase1InternalDomainList)(nil)).Elem()
+}
+
+func (i VpnIpsecPhase1InternalDomainListArgs) ToVpnIpsecPhase1InternalDomainListOutput() VpnIpsecPhase1InternalDomainListOutput {
+	return i.ToVpnIpsecPhase1InternalDomainListOutputWithContext(context.Background())
+}
+
+func (i VpnIpsecPhase1InternalDomainListArgs) ToVpnIpsecPhase1InternalDomainListOutputWithContext(ctx context.Context) VpnIpsecPhase1InternalDomainListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1InternalDomainListOutput)
+}
+
+func (i VpnIpsecPhase1InternalDomainListArgs) ToOutput(ctx context.Context) pulumix.Output[VpnIpsecPhase1InternalDomainList] {
+	return pulumix.Output[VpnIpsecPhase1InternalDomainList]{
+		OutputState: i.ToVpnIpsecPhase1InternalDomainListOutputWithContext(ctx).OutputState,
+	}
+}
+
+// VpnIpsecPhase1InternalDomainListArrayInput is an input type that accepts VpnIpsecPhase1InternalDomainListArray and VpnIpsecPhase1InternalDomainListArrayOutput values.
+// You can construct a concrete instance of `VpnIpsecPhase1InternalDomainListArrayInput` via:
+//
+//	VpnIpsecPhase1InternalDomainListArray{ VpnIpsecPhase1InternalDomainListArgs{...} }
+type VpnIpsecPhase1InternalDomainListArrayInput interface {
+	pulumi.Input
+
+	ToVpnIpsecPhase1InternalDomainListArrayOutput() VpnIpsecPhase1InternalDomainListArrayOutput
+	ToVpnIpsecPhase1InternalDomainListArrayOutputWithContext(context.Context) VpnIpsecPhase1InternalDomainListArrayOutput
+}
+
+type VpnIpsecPhase1InternalDomainListArray []VpnIpsecPhase1InternalDomainListInput
+
+func (VpnIpsecPhase1InternalDomainListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnIpsecPhase1InternalDomainList)(nil)).Elem()
+}
+
+func (i VpnIpsecPhase1InternalDomainListArray) ToVpnIpsecPhase1InternalDomainListArrayOutput() VpnIpsecPhase1InternalDomainListArrayOutput {
+	return i.ToVpnIpsecPhase1InternalDomainListArrayOutputWithContext(context.Background())
+}
+
+func (i VpnIpsecPhase1InternalDomainListArray) ToVpnIpsecPhase1InternalDomainListArrayOutputWithContext(ctx context.Context) VpnIpsecPhase1InternalDomainListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1InternalDomainListArrayOutput)
+}
+
+func (i VpnIpsecPhase1InternalDomainListArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnIpsecPhase1InternalDomainList] {
+	return pulumix.Output[[]VpnIpsecPhase1InternalDomainList]{
+		OutputState: i.ToVpnIpsecPhase1InternalDomainListArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type VpnIpsecPhase1InternalDomainListOutput struct{ *pulumi.OutputState }
+
+func (VpnIpsecPhase1InternalDomainListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*VpnIpsecPhase1InternalDomainList)(nil)).Elem()
+}
+
+func (o VpnIpsecPhase1InternalDomainListOutput) ToVpnIpsecPhase1InternalDomainListOutput() VpnIpsecPhase1InternalDomainListOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1InternalDomainListOutput) ToVpnIpsecPhase1InternalDomainListOutputWithContext(ctx context.Context) VpnIpsecPhase1InternalDomainListOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1InternalDomainListOutput) ToOutput(ctx context.Context) pulumix.Output[VpnIpsecPhase1InternalDomainList] {
+	return pulumix.Output[VpnIpsecPhase1InternalDomainList]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o VpnIpsecPhase1InternalDomainListOutput) DomainName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v VpnIpsecPhase1InternalDomainList) *string { return v.DomainName }).(pulumi.StringPtrOutput)
+}
+
+type VpnIpsecPhase1InternalDomainListArrayOutput struct{ *pulumi.OutputState }
+
+func (VpnIpsecPhase1InternalDomainListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]VpnIpsecPhase1InternalDomainList)(nil)).Elem()
+}
+
+func (o VpnIpsecPhase1InternalDomainListArrayOutput) ToVpnIpsecPhase1InternalDomainListArrayOutput() VpnIpsecPhase1InternalDomainListArrayOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1InternalDomainListArrayOutput) ToVpnIpsecPhase1InternalDomainListArrayOutputWithContext(ctx context.Context) VpnIpsecPhase1InternalDomainListArrayOutput {
+	return o
+}
+
+func (o VpnIpsecPhase1InternalDomainListArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnIpsecPhase1InternalDomainList] {
+	return pulumix.Output[[]VpnIpsecPhase1InternalDomainList]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o VpnIpsecPhase1InternalDomainListArrayOutput) Index(i pulumi.IntInput) VpnIpsecPhase1InternalDomainListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnIpsecPhase1InternalDomainList {
+		return vs[0].([]VpnIpsecPhase1InternalDomainList)[vs[1].(int)]
+	}).(VpnIpsecPhase1InternalDomainListOutput)
 }
 
 type VpnIpsecPhase1Ipv4ExcludeRange struct {
@@ -4099,6 +8968,12 @@ func (i VpnIpsecPhase1Ipv4ExcludeRangeArgs) ToVpnIpsecPhase1Ipv4ExcludeRangeOutp
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1Ipv4ExcludeRangeOutput)
 }
 
+func (i VpnIpsecPhase1Ipv4ExcludeRangeArgs) ToOutput(ctx context.Context) pulumix.Output[VpnIpsecPhase1Ipv4ExcludeRange] {
+	return pulumix.Output[VpnIpsecPhase1Ipv4ExcludeRange]{
+		OutputState: i.ToVpnIpsecPhase1Ipv4ExcludeRangeOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnIpsecPhase1Ipv4ExcludeRangeArrayInput is an input type that accepts VpnIpsecPhase1Ipv4ExcludeRangeArray and VpnIpsecPhase1Ipv4ExcludeRangeArrayOutput values.
 // You can construct a concrete instance of `VpnIpsecPhase1Ipv4ExcludeRangeArrayInput` via:
 //
@@ -4124,6 +8999,12 @@ func (i VpnIpsecPhase1Ipv4ExcludeRangeArray) ToVpnIpsecPhase1Ipv4ExcludeRangeArr
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1Ipv4ExcludeRangeArrayOutput)
 }
 
+func (i VpnIpsecPhase1Ipv4ExcludeRangeArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnIpsecPhase1Ipv4ExcludeRange] {
+	return pulumix.Output[[]VpnIpsecPhase1Ipv4ExcludeRange]{
+		OutputState: i.ToVpnIpsecPhase1Ipv4ExcludeRangeArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnIpsecPhase1Ipv4ExcludeRangeOutput struct{ *pulumi.OutputState }
 
 func (VpnIpsecPhase1Ipv4ExcludeRangeOutput) ElementType() reflect.Type {
@@ -4136,6 +9017,12 @@ func (o VpnIpsecPhase1Ipv4ExcludeRangeOutput) ToVpnIpsecPhase1Ipv4ExcludeRangeOu
 
 func (o VpnIpsecPhase1Ipv4ExcludeRangeOutput) ToVpnIpsecPhase1Ipv4ExcludeRangeOutputWithContext(ctx context.Context) VpnIpsecPhase1Ipv4ExcludeRangeOutput {
 	return o
+}
+
+func (o VpnIpsecPhase1Ipv4ExcludeRangeOutput) ToOutput(ctx context.Context) pulumix.Output[VpnIpsecPhase1Ipv4ExcludeRange] {
+	return pulumix.Output[VpnIpsecPhase1Ipv4ExcludeRange]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnIpsecPhase1Ipv4ExcludeRangeOutput) EndIp() pulumi.StringPtrOutput {
@@ -4162,6 +9049,12 @@ func (o VpnIpsecPhase1Ipv4ExcludeRangeArrayOutput) ToVpnIpsecPhase1Ipv4ExcludeRa
 
 func (o VpnIpsecPhase1Ipv4ExcludeRangeArrayOutput) ToVpnIpsecPhase1Ipv4ExcludeRangeArrayOutputWithContext(ctx context.Context) VpnIpsecPhase1Ipv4ExcludeRangeArrayOutput {
 	return o
+}
+
+func (o VpnIpsecPhase1Ipv4ExcludeRangeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnIpsecPhase1Ipv4ExcludeRange] {
+	return pulumix.Output[[]VpnIpsecPhase1Ipv4ExcludeRange]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnIpsecPhase1Ipv4ExcludeRangeArrayOutput) Index(i pulumi.IntInput) VpnIpsecPhase1Ipv4ExcludeRangeOutput {
@@ -4205,6 +9098,12 @@ func (i VpnIpsecPhase1Ipv6ExcludeRangeArgs) ToVpnIpsecPhase1Ipv6ExcludeRangeOutp
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1Ipv6ExcludeRangeOutput)
 }
 
+func (i VpnIpsecPhase1Ipv6ExcludeRangeArgs) ToOutput(ctx context.Context) pulumix.Output[VpnIpsecPhase1Ipv6ExcludeRange] {
+	return pulumix.Output[VpnIpsecPhase1Ipv6ExcludeRange]{
+		OutputState: i.ToVpnIpsecPhase1Ipv6ExcludeRangeOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnIpsecPhase1Ipv6ExcludeRangeArrayInput is an input type that accepts VpnIpsecPhase1Ipv6ExcludeRangeArray and VpnIpsecPhase1Ipv6ExcludeRangeArrayOutput values.
 // You can construct a concrete instance of `VpnIpsecPhase1Ipv6ExcludeRangeArrayInput` via:
 //
@@ -4230,6 +9129,12 @@ func (i VpnIpsecPhase1Ipv6ExcludeRangeArray) ToVpnIpsecPhase1Ipv6ExcludeRangeArr
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1Ipv6ExcludeRangeArrayOutput)
 }
 
+func (i VpnIpsecPhase1Ipv6ExcludeRangeArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnIpsecPhase1Ipv6ExcludeRange] {
+	return pulumix.Output[[]VpnIpsecPhase1Ipv6ExcludeRange]{
+		OutputState: i.ToVpnIpsecPhase1Ipv6ExcludeRangeArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnIpsecPhase1Ipv6ExcludeRangeOutput struct{ *pulumi.OutputState }
 
 func (VpnIpsecPhase1Ipv6ExcludeRangeOutput) ElementType() reflect.Type {
@@ -4242,6 +9147,12 @@ func (o VpnIpsecPhase1Ipv6ExcludeRangeOutput) ToVpnIpsecPhase1Ipv6ExcludeRangeOu
 
 func (o VpnIpsecPhase1Ipv6ExcludeRangeOutput) ToVpnIpsecPhase1Ipv6ExcludeRangeOutputWithContext(ctx context.Context) VpnIpsecPhase1Ipv6ExcludeRangeOutput {
 	return o
+}
+
+func (o VpnIpsecPhase1Ipv6ExcludeRangeOutput) ToOutput(ctx context.Context) pulumix.Output[VpnIpsecPhase1Ipv6ExcludeRange] {
+	return pulumix.Output[VpnIpsecPhase1Ipv6ExcludeRange]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnIpsecPhase1Ipv6ExcludeRangeOutput) EndIp() pulumi.StringPtrOutput {
@@ -4268,6 +9179,12 @@ func (o VpnIpsecPhase1Ipv6ExcludeRangeArrayOutput) ToVpnIpsecPhase1Ipv6ExcludeRa
 
 func (o VpnIpsecPhase1Ipv6ExcludeRangeArrayOutput) ToVpnIpsecPhase1Ipv6ExcludeRangeArrayOutputWithContext(ctx context.Context) VpnIpsecPhase1Ipv6ExcludeRangeArrayOutput {
 	return o
+}
+
+func (o VpnIpsecPhase1Ipv6ExcludeRangeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnIpsecPhase1Ipv6ExcludeRange] {
+	return pulumix.Output[[]VpnIpsecPhase1Ipv6ExcludeRange]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnIpsecPhase1Ipv6ExcludeRangeArrayOutput) Index(i pulumi.IntInput) VpnIpsecPhase1Ipv6ExcludeRangeOutput {
@@ -4315,6 +9232,12 @@ func (i VpnKmipServerServerListArgs) ToVpnKmipServerServerListOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(VpnKmipServerServerListOutput)
 }
 
+func (i VpnKmipServerServerListArgs) ToOutput(ctx context.Context) pulumix.Output[VpnKmipServerServerList] {
+	return pulumix.Output[VpnKmipServerServerList]{
+		OutputState: i.ToVpnKmipServerServerListOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnKmipServerServerListArrayInput is an input type that accepts VpnKmipServerServerListArray and VpnKmipServerServerListArrayOutput values.
 // You can construct a concrete instance of `VpnKmipServerServerListArrayInput` via:
 //
@@ -4340,6 +9263,12 @@ func (i VpnKmipServerServerListArray) ToVpnKmipServerServerListArrayOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(VpnKmipServerServerListArrayOutput)
 }
 
+func (i VpnKmipServerServerListArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnKmipServerServerList] {
+	return pulumix.Output[[]VpnKmipServerServerList]{
+		OutputState: i.ToVpnKmipServerServerListArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnKmipServerServerListOutput struct{ *pulumi.OutputState }
 
 func (VpnKmipServerServerListOutput) ElementType() reflect.Type {
@@ -4352,6 +9281,12 @@ func (o VpnKmipServerServerListOutput) ToVpnKmipServerServerListOutput() VpnKmip
 
 func (o VpnKmipServerServerListOutput) ToVpnKmipServerServerListOutputWithContext(ctx context.Context) VpnKmipServerServerListOutput {
 	return o
+}
+
+func (o VpnKmipServerServerListOutput) ToOutput(ctx context.Context) pulumix.Output[VpnKmipServerServerList] {
+	return pulumix.Output[VpnKmipServerServerList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnKmipServerServerListOutput) Cert() pulumi.StringPtrOutput {
@@ -4386,6 +9321,12 @@ func (o VpnKmipServerServerListArrayOutput) ToVpnKmipServerServerListArrayOutput
 
 func (o VpnKmipServerServerListArrayOutput) ToVpnKmipServerServerListArrayOutputWithContext(ctx context.Context) VpnKmipServerServerListArrayOutput {
 	return o
+}
+
+func (o VpnKmipServerServerListArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnKmipServerServerList] {
+	return pulumix.Output[[]VpnKmipServerServerList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnKmipServerServerListArrayOutput) Index(i pulumi.IntInput) VpnKmipServerServerListOutput {
@@ -4429,6 +9370,12 @@ func (i VpnOcvpnForticlientAccessArgs) ToVpnOcvpnForticlientAccessOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(VpnOcvpnForticlientAccessOutput)
 }
 
+func (i VpnOcvpnForticlientAccessArgs) ToOutput(ctx context.Context) pulumix.Output[VpnOcvpnForticlientAccess] {
+	return pulumix.Output[VpnOcvpnForticlientAccess]{
+		OutputState: i.ToVpnOcvpnForticlientAccessOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i VpnOcvpnForticlientAccessArgs) ToVpnOcvpnForticlientAccessPtrOutput() VpnOcvpnForticlientAccessPtrOutput {
 	return i.ToVpnOcvpnForticlientAccessPtrOutputWithContext(context.Background())
 }
@@ -4470,6 +9417,12 @@ func (i *vpnOcvpnForticlientAccessPtrType) ToVpnOcvpnForticlientAccessPtrOutputW
 	return pulumi.ToOutputWithContext(ctx, i).(VpnOcvpnForticlientAccessPtrOutput)
 }
 
+func (i *vpnOcvpnForticlientAccessPtrType) ToOutput(ctx context.Context) pulumix.Output[*VpnOcvpnForticlientAccess] {
+	return pulumix.Output[*VpnOcvpnForticlientAccess]{
+		OutputState: i.ToVpnOcvpnForticlientAccessPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnOcvpnForticlientAccessOutput struct{ *pulumi.OutputState }
 
 func (VpnOcvpnForticlientAccessOutput) ElementType() reflect.Type {
@@ -4492,6 +9445,12 @@ func (o VpnOcvpnForticlientAccessOutput) ToVpnOcvpnForticlientAccessPtrOutputWit
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v VpnOcvpnForticlientAccess) *VpnOcvpnForticlientAccess {
 		return &v
 	}).(VpnOcvpnForticlientAccessPtrOutput)
+}
+
+func (o VpnOcvpnForticlientAccessOutput) ToOutput(ctx context.Context) pulumix.Output[VpnOcvpnForticlientAccess] {
+	return pulumix.Output[VpnOcvpnForticlientAccess]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnOcvpnForticlientAccessOutput) AuthGroups() VpnOcvpnForticlientAccessAuthGroupArrayOutput {
@@ -4518,6 +9477,12 @@ func (o VpnOcvpnForticlientAccessPtrOutput) ToVpnOcvpnForticlientAccessPtrOutput
 
 func (o VpnOcvpnForticlientAccessPtrOutput) ToVpnOcvpnForticlientAccessPtrOutputWithContext(ctx context.Context) VpnOcvpnForticlientAccessPtrOutput {
 	return o
+}
+
+func (o VpnOcvpnForticlientAccessPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*VpnOcvpnForticlientAccess] {
+	return pulumix.Output[*VpnOcvpnForticlientAccess]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnOcvpnForticlientAccessPtrOutput) Elem() VpnOcvpnForticlientAccessOutput {
@@ -4592,6 +9557,12 @@ func (i VpnOcvpnForticlientAccessAuthGroupArgs) ToVpnOcvpnForticlientAccessAuthG
 	return pulumi.ToOutputWithContext(ctx, i).(VpnOcvpnForticlientAccessAuthGroupOutput)
 }
 
+func (i VpnOcvpnForticlientAccessAuthGroupArgs) ToOutput(ctx context.Context) pulumix.Output[VpnOcvpnForticlientAccessAuthGroup] {
+	return pulumix.Output[VpnOcvpnForticlientAccessAuthGroup]{
+		OutputState: i.ToVpnOcvpnForticlientAccessAuthGroupOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnOcvpnForticlientAccessAuthGroupArrayInput is an input type that accepts VpnOcvpnForticlientAccessAuthGroupArray and VpnOcvpnForticlientAccessAuthGroupArrayOutput values.
 // You can construct a concrete instance of `VpnOcvpnForticlientAccessAuthGroupArrayInput` via:
 //
@@ -4617,6 +9588,12 @@ func (i VpnOcvpnForticlientAccessAuthGroupArray) ToVpnOcvpnForticlientAccessAuth
 	return pulumi.ToOutputWithContext(ctx, i).(VpnOcvpnForticlientAccessAuthGroupArrayOutput)
 }
 
+func (i VpnOcvpnForticlientAccessAuthGroupArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnOcvpnForticlientAccessAuthGroup] {
+	return pulumix.Output[[]VpnOcvpnForticlientAccessAuthGroup]{
+		OutputState: i.ToVpnOcvpnForticlientAccessAuthGroupArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnOcvpnForticlientAccessAuthGroupOutput struct{ *pulumi.OutputState }
 
 func (VpnOcvpnForticlientAccessAuthGroupOutput) ElementType() reflect.Type {
@@ -4629,6 +9606,12 @@ func (o VpnOcvpnForticlientAccessAuthGroupOutput) ToVpnOcvpnForticlientAccessAut
 
 func (o VpnOcvpnForticlientAccessAuthGroupOutput) ToVpnOcvpnForticlientAccessAuthGroupOutputWithContext(ctx context.Context) VpnOcvpnForticlientAccessAuthGroupOutput {
 	return o
+}
+
+func (o VpnOcvpnForticlientAccessAuthGroupOutput) ToOutput(ctx context.Context) pulumix.Output[VpnOcvpnForticlientAccessAuthGroup] {
+	return pulumix.Output[VpnOcvpnForticlientAccessAuthGroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnOcvpnForticlientAccessAuthGroupOutput) AuthGroup() pulumi.StringPtrOutput {
@@ -4657,6 +9640,12 @@ func (o VpnOcvpnForticlientAccessAuthGroupArrayOutput) ToVpnOcvpnForticlientAcce
 
 func (o VpnOcvpnForticlientAccessAuthGroupArrayOutput) ToVpnOcvpnForticlientAccessAuthGroupArrayOutputWithContext(ctx context.Context) VpnOcvpnForticlientAccessAuthGroupArrayOutput {
 	return o
+}
+
+func (o VpnOcvpnForticlientAccessAuthGroupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnOcvpnForticlientAccessAuthGroup] {
+	return pulumix.Output[[]VpnOcvpnForticlientAccessAuthGroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnOcvpnForticlientAccessAuthGroupArrayOutput) Index(i pulumi.IntInput) VpnOcvpnForticlientAccessAuthGroupOutput {
@@ -4696,6 +9685,12 @@ func (i VpnOcvpnForticlientAccessAuthGroupOverlayArgs) ToVpnOcvpnForticlientAcce
 	return pulumi.ToOutputWithContext(ctx, i).(VpnOcvpnForticlientAccessAuthGroupOverlayOutput)
 }
 
+func (i VpnOcvpnForticlientAccessAuthGroupOverlayArgs) ToOutput(ctx context.Context) pulumix.Output[VpnOcvpnForticlientAccessAuthGroupOverlay] {
+	return pulumix.Output[VpnOcvpnForticlientAccessAuthGroupOverlay]{
+		OutputState: i.ToVpnOcvpnForticlientAccessAuthGroupOverlayOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnOcvpnForticlientAccessAuthGroupOverlayArrayInput is an input type that accepts VpnOcvpnForticlientAccessAuthGroupOverlayArray and VpnOcvpnForticlientAccessAuthGroupOverlayArrayOutput values.
 // You can construct a concrete instance of `VpnOcvpnForticlientAccessAuthGroupOverlayArrayInput` via:
 //
@@ -4721,6 +9716,12 @@ func (i VpnOcvpnForticlientAccessAuthGroupOverlayArray) ToVpnOcvpnForticlientAcc
 	return pulumi.ToOutputWithContext(ctx, i).(VpnOcvpnForticlientAccessAuthGroupOverlayArrayOutput)
 }
 
+func (i VpnOcvpnForticlientAccessAuthGroupOverlayArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnOcvpnForticlientAccessAuthGroupOverlay] {
+	return pulumix.Output[[]VpnOcvpnForticlientAccessAuthGroupOverlay]{
+		OutputState: i.ToVpnOcvpnForticlientAccessAuthGroupOverlayArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnOcvpnForticlientAccessAuthGroupOverlayOutput struct{ *pulumi.OutputState }
 
 func (VpnOcvpnForticlientAccessAuthGroupOverlayOutput) ElementType() reflect.Type {
@@ -4733,6 +9734,12 @@ func (o VpnOcvpnForticlientAccessAuthGroupOverlayOutput) ToVpnOcvpnForticlientAc
 
 func (o VpnOcvpnForticlientAccessAuthGroupOverlayOutput) ToVpnOcvpnForticlientAccessAuthGroupOverlayOutputWithContext(ctx context.Context) VpnOcvpnForticlientAccessAuthGroupOverlayOutput {
 	return o
+}
+
+func (o VpnOcvpnForticlientAccessAuthGroupOverlayOutput) ToOutput(ctx context.Context) pulumix.Output[VpnOcvpnForticlientAccessAuthGroupOverlay] {
+	return pulumix.Output[VpnOcvpnForticlientAccessAuthGroupOverlay]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnOcvpnForticlientAccessAuthGroupOverlayOutput) OverlayName() pulumi.StringPtrOutput {
@@ -4751,6 +9758,12 @@ func (o VpnOcvpnForticlientAccessAuthGroupOverlayArrayOutput) ToVpnOcvpnForticli
 
 func (o VpnOcvpnForticlientAccessAuthGroupOverlayArrayOutput) ToVpnOcvpnForticlientAccessAuthGroupOverlayArrayOutputWithContext(ctx context.Context) VpnOcvpnForticlientAccessAuthGroupOverlayArrayOutput {
 	return o
+}
+
+func (o VpnOcvpnForticlientAccessAuthGroupOverlayArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnOcvpnForticlientAccessAuthGroupOverlay] {
+	return pulumix.Output[[]VpnOcvpnForticlientAccessAuthGroupOverlay]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnOcvpnForticlientAccessAuthGroupOverlayArrayOutput) Index(i pulumi.IntInput) VpnOcvpnForticlientAccessAuthGroupOverlayOutput {
@@ -4804,6 +9817,12 @@ func (i VpnOcvpnOverlayArgs) ToVpnOcvpnOverlayOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(VpnOcvpnOverlayOutput)
 }
 
+func (i VpnOcvpnOverlayArgs) ToOutput(ctx context.Context) pulumix.Output[VpnOcvpnOverlay] {
+	return pulumix.Output[VpnOcvpnOverlay]{
+		OutputState: i.ToVpnOcvpnOverlayOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnOcvpnOverlayArrayInput is an input type that accepts VpnOcvpnOverlayArray and VpnOcvpnOverlayArrayOutput values.
 // You can construct a concrete instance of `VpnOcvpnOverlayArrayInput` via:
 //
@@ -4829,6 +9848,12 @@ func (i VpnOcvpnOverlayArray) ToVpnOcvpnOverlayArrayOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(VpnOcvpnOverlayArrayOutput)
 }
 
+func (i VpnOcvpnOverlayArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnOcvpnOverlay] {
+	return pulumix.Output[[]VpnOcvpnOverlay]{
+		OutputState: i.ToVpnOcvpnOverlayArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnOcvpnOverlayOutput struct{ *pulumi.OutputState }
 
 func (VpnOcvpnOverlayOutput) ElementType() reflect.Type {
@@ -4841,6 +9866,12 @@ func (o VpnOcvpnOverlayOutput) ToVpnOcvpnOverlayOutput() VpnOcvpnOverlayOutput {
 
 func (o VpnOcvpnOverlayOutput) ToVpnOcvpnOverlayOutputWithContext(ctx context.Context) VpnOcvpnOverlayOutput {
 	return o
+}
+
+func (o VpnOcvpnOverlayOutput) ToOutput(ctx context.Context) pulumix.Output[VpnOcvpnOverlay] {
+	return pulumix.Output[VpnOcvpnOverlay]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnOcvpnOverlayOutput) AssignIp() pulumi.StringPtrOutput {
@@ -4889,6 +9920,12 @@ func (o VpnOcvpnOverlayArrayOutput) ToVpnOcvpnOverlayArrayOutputWithContext(ctx 
 	return o
 }
 
+func (o VpnOcvpnOverlayArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnOcvpnOverlay] {
+	return pulumix.Output[[]VpnOcvpnOverlay]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o VpnOcvpnOverlayArrayOutput) Index(i pulumi.IntInput) VpnOcvpnOverlayOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnOcvpnOverlay {
 		return vs[0].([]VpnOcvpnOverlay)[vs[1].(int)]
@@ -4932,6 +9969,12 @@ func (i VpnOcvpnOverlaySubnetArgs) ToVpnOcvpnOverlaySubnetOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(VpnOcvpnOverlaySubnetOutput)
 }
 
+func (i VpnOcvpnOverlaySubnetArgs) ToOutput(ctx context.Context) pulumix.Output[VpnOcvpnOverlaySubnet] {
+	return pulumix.Output[VpnOcvpnOverlaySubnet]{
+		OutputState: i.ToVpnOcvpnOverlaySubnetOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnOcvpnOverlaySubnetArrayInput is an input type that accepts VpnOcvpnOverlaySubnetArray and VpnOcvpnOverlaySubnetArrayOutput values.
 // You can construct a concrete instance of `VpnOcvpnOverlaySubnetArrayInput` via:
 //
@@ -4957,6 +10000,12 @@ func (i VpnOcvpnOverlaySubnetArray) ToVpnOcvpnOverlaySubnetArrayOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(VpnOcvpnOverlaySubnetArrayOutput)
 }
 
+func (i VpnOcvpnOverlaySubnetArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnOcvpnOverlaySubnet] {
+	return pulumix.Output[[]VpnOcvpnOverlaySubnet]{
+		OutputState: i.ToVpnOcvpnOverlaySubnetArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnOcvpnOverlaySubnetOutput struct{ *pulumi.OutputState }
 
 func (VpnOcvpnOverlaySubnetOutput) ElementType() reflect.Type {
@@ -4969,6 +10018,12 @@ func (o VpnOcvpnOverlaySubnetOutput) ToVpnOcvpnOverlaySubnetOutput() VpnOcvpnOve
 
 func (o VpnOcvpnOverlaySubnetOutput) ToVpnOcvpnOverlaySubnetOutputWithContext(ctx context.Context) VpnOcvpnOverlaySubnetOutput {
 	return o
+}
+
+func (o VpnOcvpnOverlaySubnetOutput) ToOutput(ctx context.Context) pulumix.Output[VpnOcvpnOverlaySubnet] {
+	return pulumix.Output[VpnOcvpnOverlaySubnet]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnOcvpnOverlaySubnetOutput) Id() pulumi.IntPtrOutput {
@@ -4999,6 +10054,12 @@ func (o VpnOcvpnOverlaySubnetArrayOutput) ToVpnOcvpnOverlaySubnetArrayOutput() V
 
 func (o VpnOcvpnOverlaySubnetArrayOutput) ToVpnOcvpnOverlaySubnetArrayOutputWithContext(ctx context.Context) VpnOcvpnOverlaySubnetArrayOutput {
 	return o
+}
+
+func (o VpnOcvpnOverlaySubnetArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnOcvpnOverlaySubnet] {
+	return pulumix.Output[[]VpnOcvpnOverlaySubnet]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnOcvpnOverlaySubnetArrayOutput) Index(i pulumi.IntInput) VpnOcvpnOverlaySubnetOutput {
@@ -5038,6 +10099,12 @@ func (i VpnOcvpnWanInterfaceArgs) ToVpnOcvpnWanInterfaceOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(VpnOcvpnWanInterfaceOutput)
 }
 
+func (i VpnOcvpnWanInterfaceArgs) ToOutput(ctx context.Context) pulumix.Output[VpnOcvpnWanInterface] {
+	return pulumix.Output[VpnOcvpnWanInterface]{
+		OutputState: i.ToVpnOcvpnWanInterfaceOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnOcvpnWanInterfaceArrayInput is an input type that accepts VpnOcvpnWanInterfaceArray and VpnOcvpnWanInterfaceArrayOutput values.
 // You can construct a concrete instance of `VpnOcvpnWanInterfaceArrayInput` via:
 //
@@ -5063,6 +10130,12 @@ func (i VpnOcvpnWanInterfaceArray) ToVpnOcvpnWanInterfaceArrayOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(VpnOcvpnWanInterfaceArrayOutput)
 }
 
+func (i VpnOcvpnWanInterfaceArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnOcvpnWanInterface] {
+	return pulumix.Output[[]VpnOcvpnWanInterface]{
+		OutputState: i.ToVpnOcvpnWanInterfaceArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnOcvpnWanInterfaceOutput struct{ *pulumi.OutputState }
 
 func (VpnOcvpnWanInterfaceOutput) ElementType() reflect.Type {
@@ -5075,6 +10148,12 @@ func (o VpnOcvpnWanInterfaceOutput) ToVpnOcvpnWanInterfaceOutput() VpnOcvpnWanIn
 
 func (o VpnOcvpnWanInterfaceOutput) ToVpnOcvpnWanInterfaceOutputWithContext(ctx context.Context) VpnOcvpnWanInterfaceOutput {
 	return o
+}
+
+func (o VpnOcvpnWanInterfaceOutput) ToOutput(ctx context.Context) pulumix.Output[VpnOcvpnWanInterface] {
+	return pulumix.Output[VpnOcvpnWanInterface]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnOcvpnWanInterfaceOutput) Name() pulumi.StringPtrOutput {
@@ -5093,6 +10172,12 @@ func (o VpnOcvpnWanInterfaceArrayOutput) ToVpnOcvpnWanInterfaceArrayOutput() Vpn
 
 func (o VpnOcvpnWanInterfaceArrayOutput) ToVpnOcvpnWanInterfaceArrayOutputWithContext(ctx context.Context) VpnOcvpnWanInterfaceArrayOutput {
 	return o
+}
+
+func (o VpnOcvpnWanInterfaceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnOcvpnWanInterface] {
+	return pulumix.Output[[]VpnOcvpnWanInterface]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnOcvpnWanInterfaceArrayOutput) Index(i pulumi.IntInput) VpnOcvpnWanInterfaceOutput {
@@ -5158,6 +10243,12 @@ func (i VpnSslSettingsAuthenticationRuleArgs) ToVpnSslSettingsAuthenticationRule
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsAuthenticationRuleOutput)
 }
 
+func (i VpnSslSettingsAuthenticationRuleArgs) ToOutput(ctx context.Context) pulumix.Output[VpnSslSettingsAuthenticationRule] {
+	return pulumix.Output[VpnSslSettingsAuthenticationRule]{
+		OutputState: i.ToVpnSslSettingsAuthenticationRuleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnSslSettingsAuthenticationRuleArrayInput is an input type that accepts VpnSslSettingsAuthenticationRuleArray and VpnSslSettingsAuthenticationRuleArrayOutput values.
 // You can construct a concrete instance of `VpnSslSettingsAuthenticationRuleArrayInput` via:
 //
@@ -5183,6 +10274,12 @@ func (i VpnSslSettingsAuthenticationRuleArray) ToVpnSslSettingsAuthenticationRul
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsAuthenticationRuleArrayOutput)
 }
 
+func (i VpnSslSettingsAuthenticationRuleArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslSettingsAuthenticationRule] {
+	return pulumix.Output[[]VpnSslSettingsAuthenticationRule]{
+		OutputState: i.ToVpnSslSettingsAuthenticationRuleArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnSslSettingsAuthenticationRuleOutput struct{ *pulumi.OutputState }
 
 func (VpnSslSettingsAuthenticationRuleOutput) ElementType() reflect.Type {
@@ -5195,6 +10292,12 @@ func (o VpnSslSettingsAuthenticationRuleOutput) ToVpnSslSettingsAuthenticationRu
 
 func (o VpnSslSettingsAuthenticationRuleOutput) ToVpnSslSettingsAuthenticationRuleOutputWithContext(ctx context.Context) VpnSslSettingsAuthenticationRuleOutput {
 	return o
+}
+
+func (o VpnSslSettingsAuthenticationRuleOutput) ToOutput(ctx context.Context) pulumix.Output[VpnSslSettingsAuthenticationRule] {
+	return pulumix.Output[VpnSslSettingsAuthenticationRule]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslSettingsAuthenticationRuleOutput) Auth() pulumi.StringPtrOutput {
@@ -5273,6 +10376,12 @@ func (o VpnSslSettingsAuthenticationRuleArrayOutput) ToVpnSslSettingsAuthenticat
 	return o
 }
 
+func (o VpnSslSettingsAuthenticationRuleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslSettingsAuthenticationRule] {
+	return pulumix.Output[[]VpnSslSettingsAuthenticationRule]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o VpnSslSettingsAuthenticationRuleArrayOutput) Index(i pulumi.IntInput) VpnSslSettingsAuthenticationRuleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnSslSettingsAuthenticationRule {
 		return vs[0].([]VpnSslSettingsAuthenticationRule)[vs[1].(int)]
@@ -5310,6 +10419,12 @@ func (i VpnSslSettingsAuthenticationRuleGroupArgs) ToVpnSslSettingsAuthenticatio
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsAuthenticationRuleGroupOutput)
 }
 
+func (i VpnSslSettingsAuthenticationRuleGroupArgs) ToOutput(ctx context.Context) pulumix.Output[VpnSslSettingsAuthenticationRuleGroup] {
+	return pulumix.Output[VpnSslSettingsAuthenticationRuleGroup]{
+		OutputState: i.ToVpnSslSettingsAuthenticationRuleGroupOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnSslSettingsAuthenticationRuleGroupArrayInput is an input type that accepts VpnSslSettingsAuthenticationRuleGroupArray and VpnSslSettingsAuthenticationRuleGroupArrayOutput values.
 // You can construct a concrete instance of `VpnSslSettingsAuthenticationRuleGroupArrayInput` via:
 //
@@ -5335,6 +10450,12 @@ func (i VpnSslSettingsAuthenticationRuleGroupArray) ToVpnSslSettingsAuthenticati
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsAuthenticationRuleGroupArrayOutput)
 }
 
+func (i VpnSslSettingsAuthenticationRuleGroupArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslSettingsAuthenticationRuleGroup] {
+	return pulumix.Output[[]VpnSslSettingsAuthenticationRuleGroup]{
+		OutputState: i.ToVpnSslSettingsAuthenticationRuleGroupArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnSslSettingsAuthenticationRuleGroupOutput struct{ *pulumi.OutputState }
 
 func (VpnSslSettingsAuthenticationRuleGroupOutput) ElementType() reflect.Type {
@@ -5347,6 +10468,12 @@ func (o VpnSslSettingsAuthenticationRuleGroupOutput) ToVpnSslSettingsAuthenticat
 
 func (o VpnSslSettingsAuthenticationRuleGroupOutput) ToVpnSslSettingsAuthenticationRuleGroupOutputWithContext(ctx context.Context) VpnSslSettingsAuthenticationRuleGroupOutput {
 	return o
+}
+
+func (o VpnSslSettingsAuthenticationRuleGroupOutput) ToOutput(ctx context.Context) pulumix.Output[VpnSslSettingsAuthenticationRuleGroup] {
+	return pulumix.Output[VpnSslSettingsAuthenticationRuleGroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslSettingsAuthenticationRuleGroupOutput) Name() pulumi.StringPtrOutput {
@@ -5365,6 +10492,12 @@ func (o VpnSslSettingsAuthenticationRuleGroupArrayOutput) ToVpnSslSettingsAuthen
 
 func (o VpnSslSettingsAuthenticationRuleGroupArrayOutput) ToVpnSslSettingsAuthenticationRuleGroupArrayOutputWithContext(ctx context.Context) VpnSslSettingsAuthenticationRuleGroupArrayOutput {
 	return o
+}
+
+func (o VpnSslSettingsAuthenticationRuleGroupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslSettingsAuthenticationRuleGroup] {
+	return pulumix.Output[[]VpnSslSettingsAuthenticationRuleGroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslSettingsAuthenticationRuleGroupArrayOutput) Index(i pulumi.IntInput) VpnSslSettingsAuthenticationRuleGroupOutput {
@@ -5404,6 +10537,12 @@ func (i VpnSslSettingsAuthenticationRuleSourceAddress6Args) ToVpnSslSettingsAuth
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsAuthenticationRuleSourceAddress6Output)
 }
 
+func (i VpnSslSettingsAuthenticationRuleSourceAddress6Args) ToOutput(ctx context.Context) pulumix.Output[VpnSslSettingsAuthenticationRuleSourceAddress6] {
+	return pulumix.Output[VpnSslSettingsAuthenticationRuleSourceAddress6]{
+		OutputState: i.ToVpnSslSettingsAuthenticationRuleSourceAddress6OutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnSslSettingsAuthenticationRuleSourceAddress6ArrayInput is an input type that accepts VpnSslSettingsAuthenticationRuleSourceAddress6Array and VpnSslSettingsAuthenticationRuleSourceAddress6ArrayOutput values.
 // You can construct a concrete instance of `VpnSslSettingsAuthenticationRuleSourceAddress6ArrayInput` via:
 //
@@ -5429,6 +10568,12 @@ func (i VpnSslSettingsAuthenticationRuleSourceAddress6Array) ToVpnSslSettingsAut
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsAuthenticationRuleSourceAddress6ArrayOutput)
 }
 
+func (i VpnSslSettingsAuthenticationRuleSourceAddress6Array) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslSettingsAuthenticationRuleSourceAddress6] {
+	return pulumix.Output[[]VpnSslSettingsAuthenticationRuleSourceAddress6]{
+		OutputState: i.ToVpnSslSettingsAuthenticationRuleSourceAddress6ArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnSslSettingsAuthenticationRuleSourceAddress6Output struct{ *pulumi.OutputState }
 
 func (VpnSslSettingsAuthenticationRuleSourceAddress6Output) ElementType() reflect.Type {
@@ -5441,6 +10586,12 @@ func (o VpnSslSettingsAuthenticationRuleSourceAddress6Output) ToVpnSslSettingsAu
 
 func (o VpnSslSettingsAuthenticationRuleSourceAddress6Output) ToVpnSslSettingsAuthenticationRuleSourceAddress6OutputWithContext(ctx context.Context) VpnSslSettingsAuthenticationRuleSourceAddress6Output {
 	return o
+}
+
+func (o VpnSslSettingsAuthenticationRuleSourceAddress6Output) ToOutput(ctx context.Context) pulumix.Output[VpnSslSettingsAuthenticationRuleSourceAddress6] {
+	return pulumix.Output[VpnSslSettingsAuthenticationRuleSourceAddress6]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslSettingsAuthenticationRuleSourceAddress6Output) Name() pulumi.StringPtrOutput {
@@ -5459,6 +10610,12 @@ func (o VpnSslSettingsAuthenticationRuleSourceAddress6ArrayOutput) ToVpnSslSetti
 
 func (o VpnSslSettingsAuthenticationRuleSourceAddress6ArrayOutput) ToVpnSslSettingsAuthenticationRuleSourceAddress6ArrayOutputWithContext(ctx context.Context) VpnSslSettingsAuthenticationRuleSourceAddress6ArrayOutput {
 	return o
+}
+
+func (o VpnSslSettingsAuthenticationRuleSourceAddress6ArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslSettingsAuthenticationRuleSourceAddress6] {
+	return pulumix.Output[[]VpnSslSettingsAuthenticationRuleSourceAddress6]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslSettingsAuthenticationRuleSourceAddress6ArrayOutput) Index(i pulumi.IntInput) VpnSslSettingsAuthenticationRuleSourceAddress6Output {
@@ -5498,6 +10655,12 @@ func (i VpnSslSettingsAuthenticationRuleSourceAddressArgs) ToVpnSslSettingsAuthe
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsAuthenticationRuleSourceAddressOutput)
 }
 
+func (i VpnSslSettingsAuthenticationRuleSourceAddressArgs) ToOutput(ctx context.Context) pulumix.Output[VpnSslSettingsAuthenticationRuleSourceAddress] {
+	return pulumix.Output[VpnSslSettingsAuthenticationRuleSourceAddress]{
+		OutputState: i.ToVpnSslSettingsAuthenticationRuleSourceAddressOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnSslSettingsAuthenticationRuleSourceAddressArrayInput is an input type that accepts VpnSslSettingsAuthenticationRuleSourceAddressArray and VpnSslSettingsAuthenticationRuleSourceAddressArrayOutput values.
 // You can construct a concrete instance of `VpnSslSettingsAuthenticationRuleSourceAddressArrayInput` via:
 //
@@ -5523,6 +10686,12 @@ func (i VpnSslSettingsAuthenticationRuleSourceAddressArray) ToVpnSslSettingsAuth
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsAuthenticationRuleSourceAddressArrayOutput)
 }
 
+func (i VpnSslSettingsAuthenticationRuleSourceAddressArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslSettingsAuthenticationRuleSourceAddress] {
+	return pulumix.Output[[]VpnSslSettingsAuthenticationRuleSourceAddress]{
+		OutputState: i.ToVpnSslSettingsAuthenticationRuleSourceAddressArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnSslSettingsAuthenticationRuleSourceAddressOutput struct{ *pulumi.OutputState }
 
 func (VpnSslSettingsAuthenticationRuleSourceAddressOutput) ElementType() reflect.Type {
@@ -5535,6 +10704,12 @@ func (o VpnSslSettingsAuthenticationRuleSourceAddressOutput) ToVpnSslSettingsAut
 
 func (o VpnSslSettingsAuthenticationRuleSourceAddressOutput) ToVpnSslSettingsAuthenticationRuleSourceAddressOutputWithContext(ctx context.Context) VpnSslSettingsAuthenticationRuleSourceAddressOutput {
 	return o
+}
+
+func (o VpnSslSettingsAuthenticationRuleSourceAddressOutput) ToOutput(ctx context.Context) pulumix.Output[VpnSslSettingsAuthenticationRuleSourceAddress] {
+	return pulumix.Output[VpnSslSettingsAuthenticationRuleSourceAddress]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslSettingsAuthenticationRuleSourceAddressOutput) Name() pulumi.StringPtrOutput {
@@ -5553,6 +10728,12 @@ func (o VpnSslSettingsAuthenticationRuleSourceAddressArrayOutput) ToVpnSslSettin
 
 func (o VpnSslSettingsAuthenticationRuleSourceAddressArrayOutput) ToVpnSslSettingsAuthenticationRuleSourceAddressArrayOutputWithContext(ctx context.Context) VpnSslSettingsAuthenticationRuleSourceAddressArrayOutput {
 	return o
+}
+
+func (o VpnSslSettingsAuthenticationRuleSourceAddressArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslSettingsAuthenticationRuleSourceAddress] {
+	return pulumix.Output[[]VpnSslSettingsAuthenticationRuleSourceAddress]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslSettingsAuthenticationRuleSourceAddressArrayOutput) Index(i pulumi.IntInput) VpnSslSettingsAuthenticationRuleSourceAddressOutput {
@@ -5592,6 +10773,12 @@ func (i VpnSslSettingsAuthenticationRuleSourceInterfaceArgs) ToVpnSslSettingsAut
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsAuthenticationRuleSourceInterfaceOutput)
 }
 
+func (i VpnSslSettingsAuthenticationRuleSourceInterfaceArgs) ToOutput(ctx context.Context) pulumix.Output[VpnSslSettingsAuthenticationRuleSourceInterface] {
+	return pulumix.Output[VpnSslSettingsAuthenticationRuleSourceInterface]{
+		OutputState: i.ToVpnSslSettingsAuthenticationRuleSourceInterfaceOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnSslSettingsAuthenticationRuleSourceInterfaceArrayInput is an input type that accepts VpnSslSettingsAuthenticationRuleSourceInterfaceArray and VpnSslSettingsAuthenticationRuleSourceInterfaceArrayOutput values.
 // You can construct a concrete instance of `VpnSslSettingsAuthenticationRuleSourceInterfaceArrayInput` via:
 //
@@ -5617,6 +10804,12 @@ func (i VpnSslSettingsAuthenticationRuleSourceInterfaceArray) ToVpnSslSettingsAu
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsAuthenticationRuleSourceInterfaceArrayOutput)
 }
 
+func (i VpnSslSettingsAuthenticationRuleSourceInterfaceArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslSettingsAuthenticationRuleSourceInterface] {
+	return pulumix.Output[[]VpnSslSettingsAuthenticationRuleSourceInterface]{
+		OutputState: i.ToVpnSslSettingsAuthenticationRuleSourceInterfaceArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnSslSettingsAuthenticationRuleSourceInterfaceOutput struct{ *pulumi.OutputState }
 
 func (VpnSslSettingsAuthenticationRuleSourceInterfaceOutput) ElementType() reflect.Type {
@@ -5629,6 +10822,12 @@ func (o VpnSslSettingsAuthenticationRuleSourceInterfaceOutput) ToVpnSslSettingsA
 
 func (o VpnSslSettingsAuthenticationRuleSourceInterfaceOutput) ToVpnSslSettingsAuthenticationRuleSourceInterfaceOutputWithContext(ctx context.Context) VpnSslSettingsAuthenticationRuleSourceInterfaceOutput {
 	return o
+}
+
+func (o VpnSslSettingsAuthenticationRuleSourceInterfaceOutput) ToOutput(ctx context.Context) pulumix.Output[VpnSslSettingsAuthenticationRuleSourceInterface] {
+	return pulumix.Output[VpnSslSettingsAuthenticationRuleSourceInterface]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslSettingsAuthenticationRuleSourceInterfaceOutput) Name() pulumi.StringPtrOutput {
@@ -5647,6 +10846,12 @@ func (o VpnSslSettingsAuthenticationRuleSourceInterfaceArrayOutput) ToVpnSslSett
 
 func (o VpnSslSettingsAuthenticationRuleSourceInterfaceArrayOutput) ToVpnSslSettingsAuthenticationRuleSourceInterfaceArrayOutputWithContext(ctx context.Context) VpnSslSettingsAuthenticationRuleSourceInterfaceArrayOutput {
 	return o
+}
+
+func (o VpnSslSettingsAuthenticationRuleSourceInterfaceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslSettingsAuthenticationRuleSourceInterface] {
+	return pulumix.Output[[]VpnSslSettingsAuthenticationRuleSourceInterface]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslSettingsAuthenticationRuleSourceInterfaceArrayOutput) Index(i pulumi.IntInput) VpnSslSettingsAuthenticationRuleSourceInterfaceOutput {
@@ -5686,6 +10891,12 @@ func (i VpnSslSettingsAuthenticationRuleUserArgs) ToVpnSslSettingsAuthentication
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsAuthenticationRuleUserOutput)
 }
 
+func (i VpnSslSettingsAuthenticationRuleUserArgs) ToOutput(ctx context.Context) pulumix.Output[VpnSslSettingsAuthenticationRuleUser] {
+	return pulumix.Output[VpnSslSettingsAuthenticationRuleUser]{
+		OutputState: i.ToVpnSslSettingsAuthenticationRuleUserOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnSslSettingsAuthenticationRuleUserArrayInput is an input type that accepts VpnSslSettingsAuthenticationRuleUserArray and VpnSslSettingsAuthenticationRuleUserArrayOutput values.
 // You can construct a concrete instance of `VpnSslSettingsAuthenticationRuleUserArrayInput` via:
 //
@@ -5711,6 +10922,12 @@ func (i VpnSslSettingsAuthenticationRuleUserArray) ToVpnSslSettingsAuthenticatio
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsAuthenticationRuleUserArrayOutput)
 }
 
+func (i VpnSslSettingsAuthenticationRuleUserArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslSettingsAuthenticationRuleUser] {
+	return pulumix.Output[[]VpnSslSettingsAuthenticationRuleUser]{
+		OutputState: i.ToVpnSslSettingsAuthenticationRuleUserArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnSslSettingsAuthenticationRuleUserOutput struct{ *pulumi.OutputState }
 
 func (VpnSslSettingsAuthenticationRuleUserOutput) ElementType() reflect.Type {
@@ -5723,6 +10940,12 @@ func (o VpnSslSettingsAuthenticationRuleUserOutput) ToVpnSslSettingsAuthenticati
 
 func (o VpnSslSettingsAuthenticationRuleUserOutput) ToVpnSslSettingsAuthenticationRuleUserOutputWithContext(ctx context.Context) VpnSslSettingsAuthenticationRuleUserOutput {
 	return o
+}
+
+func (o VpnSslSettingsAuthenticationRuleUserOutput) ToOutput(ctx context.Context) pulumix.Output[VpnSslSettingsAuthenticationRuleUser] {
+	return pulumix.Output[VpnSslSettingsAuthenticationRuleUser]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslSettingsAuthenticationRuleUserOutput) Name() pulumi.StringPtrOutput {
@@ -5741,6 +10964,12 @@ func (o VpnSslSettingsAuthenticationRuleUserArrayOutput) ToVpnSslSettingsAuthent
 
 func (o VpnSslSettingsAuthenticationRuleUserArrayOutput) ToVpnSslSettingsAuthenticationRuleUserArrayOutputWithContext(ctx context.Context) VpnSslSettingsAuthenticationRuleUserArrayOutput {
 	return o
+}
+
+func (o VpnSslSettingsAuthenticationRuleUserArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslSettingsAuthenticationRuleUser] {
+	return pulumix.Output[[]VpnSslSettingsAuthenticationRuleUser]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslSettingsAuthenticationRuleUserArrayOutput) Index(i pulumi.IntInput) VpnSslSettingsAuthenticationRuleUserOutput {
@@ -5780,6 +11009,12 @@ func (i VpnSslSettingsSourceAddress6Args) ToVpnSslSettingsSourceAddress6OutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsSourceAddress6Output)
 }
 
+func (i VpnSslSettingsSourceAddress6Args) ToOutput(ctx context.Context) pulumix.Output[VpnSslSettingsSourceAddress6] {
+	return pulumix.Output[VpnSslSettingsSourceAddress6]{
+		OutputState: i.ToVpnSslSettingsSourceAddress6OutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnSslSettingsSourceAddress6ArrayInput is an input type that accepts VpnSslSettingsSourceAddress6Array and VpnSslSettingsSourceAddress6ArrayOutput values.
 // You can construct a concrete instance of `VpnSslSettingsSourceAddress6ArrayInput` via:
 //
@@ -5805,6 +11040,12 @@ func (i VpnSslSettingsSourceAddress6Array) ToVpnSslSettingsSourceAddress6ArrayOu
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsSourceAddress6ArrayOutput)
 }
 
+func (i VpnSslSettingsSourceAddress6Array) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslSettingsSourceAddress6] {
+	return pulumix.Output[[]VpnSslSettingsSourceAddress6]{
+		OutputState: i.ToVpnSslSettingsSourceAddress6ArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnSslSettingsSourceAddress6Output struct{ *pulumi.OutputState }
 
 func (VpnSslSettingsSourceAddress6Output) ElementType() reflect.Type {
@@ -5817,6 +11058,12 @@ func (o VpnSslSettingsSourceAddress6Output) ToVpnSslSettingsSourceAddress6Output
 
 func (o VpnSslSettingsSourceAddress6Output) ToVpnSslSettingsSourceAddress6OutputWithContext(ctx context.Context) VpnSslSettingsSourceAddress6Output {
 	return o
+}
+
+func (o VpnSslSettingsSourceAddress6Output) ToOutput(ctx context.Context) pulumix.Output[VpnSslSettingsSourceAddress6] {
+	return pulumix.Output[VpnSslSettingsSourceAddress6]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslSettingsSourceAddress6Output) Name() pulumi.StringPtrOutput {
@@ -5835,6 +11082,12 @@ func (o VpnSslSettingsSourceAddress6ArrayOutput) ToVpnSslSettingsSourceAddress6A
 
 func (o VpnSslSettingsSourceAddress6ArrayOutput) ToVpnSslSettingsSourceAddress6ArrayOutputWithContext(ctx context.Context) VpnSslSettingsSourceAddress6ArrayOutput {
 	return o
+}
+
+func (o VpnSslSettingsSourceAddress6ArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslSettingsSourceAddress6] {
+	return pulumix.Output[[]VpnSslSettingsSourceAddress6]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslSettingsSourceAddress6ArrayOutput) Index(i pulumi.IntInput) VpnSslSettingsSourceAddress6Output {
@@ -5874,6 +11127,12 @@ func (i VpnSslSettingsSourceAddressArgs) ToVpnSslSettingsSourceAddressOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsSourceAddressOutput)
 }
 
+func (i VpnSslSettingsSourceAddressArgs) ToOutput(ctx context.Context) pulumix.Output[VpnSslSettingsSourceAddress] {
+	return pulumix.Output[VpnSslSettingsSourceAddress]{
+		OutputState: i.ToVpnSslSettingsSourceAddressOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnSslSettingsSourceAddressArrayInput is an input type that accepts VpnSslSettingsSourceAddressArray and VpnSslSettingsSourceAddressArrayOutput values.
 // You can construct a concrete instance of `VpnSslSettingsSourceAddressArrayInput` via:
 //
@@ -5899,6 +11158,12 @@ func (i VpnSslSettingsSourceAddressArray) ToVpnSslSettingsSourceAddressArrayOutp
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsSourceAddressArrayOutput)
 }
 
+func (i VpnSslSettingsSourceAddressArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslSettingsSourceAddress] {
+	return pulumix.Output[[]VpnSslSettingsSourceAddress]{
+		OutputState: i.ToVpnSslSettingsSourceAddressArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnSslSettingsSourceAddressOutput struct{ *pulumi.OutputState }
 
 func (VpnSslSettingsSourceAddressOutput) ElementType() reflect.Type {
@@ -5911,6 +11176,12 @@ func (o VpnSslSettingsSourceAddressOutput) ToVpnSslSettingsSourceAddressOutput()
 
 func (o VpnSslSettingsSourceAddressOutput) ToVpnSslSettingsSourceAddressOutputWithContext(ctx context.Context) VpnSslSettingsSourceAddressOutput {
 	return o
+}
+
+func (o VpnSslSettingsSourceAddressOutput) ToOutput(ctx context.Context) pulumix.Output[VpnSslSettingsSourceAddress] {
+	return pulumix.Output[VpnSslSettingsSourceAddress]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslSettingsSourceAddressOutput) Name() pulumi.StringPtrOutput {
@@ -5929,6 +11200,12 @@ func (o VpnSslSettingsSourceAddressArrayOutput) ToVpnSslSettingsSourceAddressArr
 
 func (o VpnSslSettingsSourceAddressArrayOutput) ToVpnSslSettingsSourceAddressArrayOutputWithContext(ctx context.Context) VpnSslSettingsSourceAddressArrayOutput {
 	return o
+}
+
+func (o VpnSslSettingsSourceAddressArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslSettingsSourceAddress] {
+	return pulumix.Output[[]VpnSslSettingsSourceAddress]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslSettingsSourceAddressArrayOutput) Index(i pulumi.IntInput) VpnSslSettingsSourceAddressOutput {
@@ -5968,6 +11245,12 @@ func (i VpnSslSettingsSourceInterfaceArgs) ToVpnSslSettingsSourceInterfaceOutput
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsSourceInterfaceOutput)
 }
 
+func (i VpnSslSettingsSourceInterfaceArgs) ToOutput(ctx context.Context) pulumix.Output[VpnSslSettingsSourceInterface] {
+	return pulumix.Output[VpnSslSettingsSourceInterface]{
+		OutputState: i.ToVpnSslSettingsSourceInterfaceOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnSslSettingsSourceInterfaceArrayInput is an input type that accepts VpnSslSettingsSourceInterfaceArray and VpnSslSettingsSourceInterfaceArrayOutput values.
 // You can construct a concrete instance of `VpnSslSettingsSourceInterfaceArrayInput` via:
 //
@@ -5993,6 +11276,12 @@ func (i VpnSslSettingsSourceInterfaceArray) ToVpnSslSettingsSourceInterfaceArray
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsSourceInterfaceArrayOutput)
 }
 
+func (i VpnSslSettingsSourceInterfaceArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslSettingsSourceInterface] {
+	return pulumix.Output[[]VpnSslSettingsSourceInterface]{
+		OutputState: i.ToVpnSslSettingsSourceInterfaceArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnSslSettingsSourceInterfaceOutput struct{ *pulumi.OutputState }
 
 func (VpnSslSettingsSourceInterfaceOutput) ElementType() reflect.Type {
@@ -6005,6 +11294,12 @@ func (o VpnSslSettingsSourceInterfaceOutput) ToVpnSslSettingsSourceInterfaceOutp
 
 func (o VpnSslSettingsSourceInterfaceOutput) ToVpnSslSettingsSourceInterfaceOutputWithContext(ctx context.Context) VpnSslSettingsSourceInterfaceOutput {
 	return o
+}
+
+func (o VpnSslSettingsSourceInterfaceOutput) ToOutput(ctx context.Context) pulumix.Output[VpnSslSettingsSourceInterface] {
+	return pulumix.Output[VpnSslSettingsSourceInterface]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslSettingsSourceInterfaceOutput) Name() pulumi.StringPtrOutput {
@@ -6023,6 +11318,12 @@ func (o VpnSslSettingsSourceInterfaceArrayOutput) ToVpnSslSettingsSourceInterfac
 
 func (o VpnSslSettingsSourceInterfaceArrayOutput) ToVpnSslSettingsSourceInterfaceArrayOutputWithContext(ctx context.Context) VpnSslSettingsSourceInterfaceArrayOutput {
 	return o
+}
+
+func (o VpnSslSettingsSourceInterfaceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslSettingsSourceInterface] {
+	return pulumix.Output[[]VpnSslSettingsSourceInterface]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslSettingsSourceInterfaceArrayOutput) Index(i pulumi.IntInput) VpnSslSettingsSourceInterfaceOutput {
@@ -6062,6 +11363,12 @@ func (i VpnSslSettingsTunnelIpPoolArgs) ToVpnSslSettingsTunnelIpPoolOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsTunnelIpPoolOutput)
 }
 
+func (i VpnSslSettingsTunnelIpPoolArgs) ToOutput(ctx context.Context) pulumix.Output[VpnSslSettingsTunnelIpPool] {
+	return pulumix.Output[VpnSslSettingsTunnelIpPool]{
+		OutputState: i.ToVpnSslSettingsTunnelIpPoolOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnSslSettingsTunnelIpPoolArrayInput is an input type that accepts VpnSslSettingsTunnelIpPoolArray and VpnSslSettingsTunnelIpPoolArrayOutput values.
 // You can construct a concrete instance of `VpnSslSettingsTunnelIpPoolArrayInput` via:
 //
@@ -6087,6 +11394,12 @@ func (i VpnSslSettingsTunnelIpPoolArray) ToVpnSslSettingsTunnelIpPoolArrayOutput
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsTunnelIpPoolArrayOutput)
 }
 
+func (i VpnSslSettingsTunnelIpPoolArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslSettingsTunnelIpPool] {
+	return pulumix.Output[[]VpnSslSettingsTunnelIpPool]{
+		OutputState: i.ToVpnSslSettingsTunnelIpPoolArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnSslSettingsTunnelIpPoolOutput struct{ *pulumi.OutputState }
 
 func (VpnSslSettingsTunnelIpPoolOutput) ElementType() reflect.Type {
@@ -6099,6 +11412,12 @@ func (o VpnSslSettingsTunnelIpPoolOutput) ToVpnSslSettingsTunnelIpPoolOutput() V
 
 func (o VpnSslSettingsTunnelIpPoolOutput) ToVpnSslSettingsTunnelIpPoolOutputWithContext(ctx context.Context) VpnSslSettingsTunnelIpPoolOutput {
 	return o
+}
+
+func (o VpnSslSettingsTunnelIpPoolOutput) ToOutput(ctx context.Context) pulumix.Output[VpnSslSettingsTunnelIpPool] {
+	return pulumix.Output[VpnSslSettingsTunnelIpPool]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslSettingsTunnelIpPoolOutput) Name() pulumi.StringPtrOutput {
@@ -6117,6 +11436,12 @@ func (o VpnSslSettingsTunnelIpPoolArrayOutput) ToVpnSslSettingsTunnelIpPoolArray
 
 func (o VpnSslSettingsTunnelIpPoolArrayOutput) ToVpnSslSettingsTunnelIpPoolArrayOutputWithContext(ctx context.Context) VpnSslSettingsTunnelIpPoolArrayOutput {
 	return o
+}
+
+func (o VpnSslSettingsTunnelIpPoolArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslSettingsTunnelIpPool] {
+	return pulumix.Output[[]VpnSslSettingsTunnelIpPool]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslSettingsTunnelIpPoolArrayOutput) Index(i pulumi.IntInput) VpnSslSettingsTunnelIpPoolOutput {
@@ -6156,6 +11481,12 @@ func (i VpnSslSettingsTunnelIpv6PoolArgs) ToVpnSslSettingsTunnelIpv6PoolOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsTunnelIpv6PoolOutput)
 }
 
+func (i VpnSslSettingsTunnelIpv6PoolArgs) ToOutput(ctx context.Context) pulumix.Output[VpnSslSettingsTunnelIpv6Pool] {
+	return pulumix.Output[VpnSslSettingsTunnelIpv6Pool]{
+		OutputState: i.ToVpnSslSettingsTunnelIpv6PoolOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnSslSettingsTunnelIpv6PoolArrayInput is an input type that accepts VpnSslSettingsTunnelIpv6PoolArray and VpnSslSettingsTunnelIpv6PoolArrayOutput values.
 // You can construct a concrete instance of `VpnSslSettingsTunnelIpv6PoolArrayInput` via:
 //
@@ -6181,6 +11512,12 @@ func (i VpnSslSettingsTunnelIpv6PoolArray) ToVpnSslSettingsTunnelIpv6PoolArrayOu
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsTunnelIpv6PoolArrayOutput)
 }
 
+func (i VpnSslSettingsTunnelIpv6PoolArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslSettingsTunnelIpv6Pool] {
+	return pulumix.Output[[]VpnSslSettingsTunnelIpv6Pool]{
+		OutputState: i.ToVpnSslSettingsTunnelIpv6PoolArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnSslSettingsTunnelIpv6PoolOutput struct{ *pulumi.OutputState }
 
 func (VpnSslSettingsTunnelIpv6PoolOutput) ElementType() reflect.Type {
@@ -6193,6 +11530,12 @@ func (o VpnSslSettingsTunnelIpv6PoolOutput) ToVpnSslSettingsTunnelIpv6PoolOutput
 
 func (o VpnSslSettingsTunnelIpv6PoolOutput) ToVpnSslSettingsTunnelIpv6PoolOutputWithContext(ctx context.Context) VpnSslSettingsTunnelIpv6PoolOutput {
 	return o
+}
+
+func (o VpnSslSettingsTunnelIpv6PoolOutput) ToOutput(ctx context.Context) pulumix.Output[VpnSslSettingsTunnelIpv6Pool] {
+	return pulumix.Output[VpnSslSettingsTunnelIpv6Pool]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslSettingsTunnelIpv6PoolOutput) Name() pulumi.StringPtrOutput {
@@ -6211,6 +11554,12 @@ func (o VpnSslSettingsTunnelIpv6PoolArrayOutput) ToVpnSslSettingsTunnelIpv6PoolA
 
 func (o VpnSslSettingsTunnelIpv6PoolArrayOutput) ToVpnSslSettingsTunnelIpv6PoolArrayOutputWithContext(ctx context.Context) VpnSslSettingsTunnelIpv6PoolArrayOutput {
 	return o
+}
+
+func (o VpnSslSettingsTunnelIpv6PoolArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslSettingsTunnelIpv6Pool] {
+	return pulumix.Output[[]VpnSslSettingsTunnelIpv6Pool]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslSettingsTunnelIpv6PoolArrayOutput) Index(i pulumi.IntInput) VpnSslSettingsTunnelIpv6PoolOutput {
@@ -6260,6 +11609,12 @@ func (i VpnSslWebHostCheckSoftwareCheckItemListArgs) ToVpnSslWebHostCheckSoftwar
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebHostCheckSoftwareCheckItemListOutput)
 }
 
+func (i VpnSslWebHostCheckSoftwareCheckItemListArgs) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebHostCheckSoftwareCheckItemList] {
+	return pulumix.Output[VpnSslWebHostCheckSoftwareCheckItemList]{
+		OutputState: i.ToVpnSslWebHostCheckSoftwareCheckItemListOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnSslWebHostCheckSoftwareCheckItemListArrayInput is an input type that accepts VpnSslWebHostCheckSoftwareCheckItemListArray and VpnSslWebHostCheckSoftwareCheckItemListArrayOutput values.
 // You can construct a concrete instance of `VpnSslWebHostCheckSoftwareCheckItemListArrayInput` via:
 //
@@ -6285,6 +11640,12 @@ func (i VpnSslWebHostCheckSoftwareCheckItemListArray) ToVpnSslWebHostCheckSoftwa
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebHostCheckSoftwareCheckItemListArrayOutput)
 }
 
+func (i VpnSslWebHostCheckSoftwareCheckItemListArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebHostCheckSoftwareCheckItemList] {
+	return pulumix.Output[[]VpnSslWebHostCheckSoftwareCheckItemList]{
+		OutputState: i.ToVpnSslWebHostCheckSoftwareCheckItemListArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnSslWebHostCheckSoftwareCheckItemListOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebHostCheckSoftwareCheckItemListOutput) ElementType() reflect.Type {
@@ -6297,6 +11658,12 @@ func (o VpnSslWebHostCheckSoftwareCheckItemListOutput) ToVpnSslWebHostCheckSoftw
 
 func (o VpnSslWebHostCheckSoftwareCheckItemListOutput) ToVpnSslWebHostCheckSoftwareCheckItemListOutputWithContext(ctx context.Context) VpnSslWebHostCheckSoftwareCheckItemListOutput {
 	return o
+}
+
+func (o VpnSslWebHostCheckSoftwareCheckItemListOutput) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebHostCheckSoftwareCheckItemList] {
+	return pulumix.Output[VpnSslWebHostCheckSoftwareCheckItemList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebHostCheckSoftwareCheckItemListOutput) Action() pulumi.StringPtrOutput {
@@ -6339,6 +11706,12 @@ func (o VpnSslWebHostCheckSoftwareCheckItemListArrayOutput) ToVpnSslWebHostCheck
 	return o
 }
 
+func (o VpnSslWebHostCheckSoftwareCheckItemListArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebHostCheckSoftwareCheckItemList] {
+	return pulumix.Output[[]VpnSslWebHostCheckSoftwareCheckItemList]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o VpnSslWebHostCheckSoftwareCheckItemListArrayOutput) Index(i pulumi.IntInput) VpnSslWebHostCheckSoftwareCheckItemListOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnSslWebHostCheckSoftwareCheckItemList {
 		return vs[0].([]VpnSslWebHostCheckSoftwareCheckItemList)[vs[1].(int)]
@@ -6376,6 +11749,12 @@ func (i VpnSslWebHostCheckSoftwareCheckItemListMd5Args) ToVpnSslWebHostCheckSoft
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebHostCheckSoftwareCheckItemListMd5Output)
 }
 
+func (i VpnSslWebHostCheckSoftwareCheckItemListMd5Args) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebHostCheckSoftwareCheckItemListMd5] {
+	return pulumix.Output[VpnSslWebHostCheckSoftwareCheckItemListMd5]{
+		OutputState: i.ToVpnSslWebHostCheckSoftwareCheckItemListMd5OutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnSslWebHostCheckSoftwareCheckItemListMd5ArrayInput is an input type that accepts VpnSslWebHostCheckSoftwareCheckItemListMd5Array and VpnSslWebHostCheckSoftwareCheckItemListMd5ArrayOutput values.
 // You can construct a concrete instance of `VpnSslWebHostCheckSoftwareCheckItemListMd5ArrayInput` via:
 //
@@ -6401,6 +11780,12 @@ func (i VpnSslWebHostCheckSoftwareCheckItemListMd5Array) ToVpnSslWebHostCheckSof
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebHostCheckSoftwareCheckItemListMd5ArrayOutput)
 }
 
+func (i VpnSslWebHostCheckSoftwareCheckItemListMd5Array) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebHostCheckSoftwareCheckItemListMd5] {
+	return pulumix.Output[[]VpnSslWebHostCheckSoftwareCheckItemListMd5]{
+		OutputState: i.ToVpnSslWebHostCheckSoftwareCheckItemListMd5ArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnSslWebHostCheckSoftwareCheckItemListMd5Output struct{ *pulumi.OutputState }
 
 func (VpnSslWebHostCheckSoftwareCheckItemListMd5Output) ElementType() reflect.Type {
@@ -6413,6 +11798,12 @@ func (o VpnSslWebHostCheckSoftwareCheckItemListMd5Output) ToVpnSslWebHostCheckSo
 
 func (o VpnSslWebHostCheckSoftwareCheckItemListMd5Output) ToVpnSslWebHostCheckSoftwareCheckItemListMd5OutputWithContext(ctx context.Context) VpnSslWebHostCheckSoftwareCheckItemListMd5Output {
 	return o
+}
+
+func (o VpnSslWebHostCheckSoftwareCheckItemListMd5Output) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebHostCheckSoftwareCheckItemListMd5] {
+	return pulumix.Output[VpnSslWebHostCheckSoftwareCheckItemListMd5]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebHostCheckSoftwareCheckItemListMd5Output) Id() pulumi.StringPtrOutput {
@@ -6431,6 +11822,12 @@ func (o VpnSslWebHostCheckSoftwareCheckItemListMd5ArrayOutput) ToVpnSslWebHostCh
 
 func (o VpnSslWebHostCheckSoftwareCheckItemListMd5ArrayOutput) ToVpnSslWebHostCheckSoftwareCheckItemListMd5ArrayOutputWithContext(ctx context.Context) VpnSslWebHostCheckSoftwareCheckItemListMd5ArrayOutput {
 	return o
+}
+
+func (o VpnSslWebHostCheckSoftwareCheckItemListMd5ArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebHostCheckSoftwareCheckItemListMd5] {
+	return pulumix.Output[[]VpnSslWebHostCheckSoftwareCheckItemListMd5]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebHostCheckSoftwareCheckItemListMd5ArrayOutput) Index(i pulumi.IntInput) VpnSslWebHostCheckSoftwareCheckItemListMd5Output {
@@ -6472,6 +11869,12 @@ func (i VpnSslWebPortalBookmarkGroupArgs) ToVpnSslWebPortalBookmarkGroupOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalBookmarkGroupOutput)
 }
 
+func (i VpnSslWebPortalBookmarkGroupArgs) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebPortalBookmarkGroup] {
+	return pulumix.Output[VpnSslWebPortalBookmarkGroup]{
+		OutputState: i.ToVpnSslWebPortalBookmarkGroupOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnSslWebPortalBookmarkGroupArrayInput is an input type that accepts VpnSslWebPortalBookmarkGroupArray and VpnSslWebPortalBookmarkGroupArrayOutput values.
 // You can construct a concrete instance of `VpnSslWebPortalBookmarkGroupArrayInput` via:
 //
@@ -6497,6 +11900,12 @@ func (i VpnSslWebPortalBookmarkGroupArray) ToVpnSslWebPortalBookmarkGroupArrayOu
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalBookmarkGroupArrayOutput)
 }
 
+func (i VpnSslWebPortalBookmarkGroupArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebPortalBookmarkGroup] {
+	return pulumix.Output[[]VpnSslWebPortalBookmarkGroup]{
+		OutputState: i.ToVpnSslWebPortalBookmarkGroupArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnSslWebPortalBookmarkGroupOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebPortalBookmarkGroupOutput) ElementType() reflect.Type {
@@ -6509,6 +11918,12 @@ func (o VpnSslWebPortalBookmarkGroupOutput) ToVpnSslWebPortalBookmarkGroupOutput
 
 func (o VpnSslWebPortalBookmarkGroupOutput) ToVpnSslWebPortalBookmarkGroupOutputWithContext(ctx context.Context) VpnSslWebPortalBookmarkGroupOutput {
 	return o
+}
+
+func (o VpnSslWebPortalBookmarkGroupOutput) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebPortalBookmarkGroup] {
+	return pulumix.Output[VpnSslWebPortalBookmarkGroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebPortalBookmarkGroupOutput) Bookmarks() VpnSslWebPortalBookmarkGroupBookmarkArrayOutput {
@@ -6531,6 +11946,12 @@ func (o VpnSslWebPortalBookmarkGroupArrayOutput) ToVpnSslWebPortalBookmarkGroupA
 
 func (o VpnSslWebPortalBookmarkGroupArrayOutput) ToVpnSslWebPortalBookmarkGroupArrayOutputWithContext(ctx context.Context) VpnSslWebPortalBookmarkGroupArrayOutput {
 	return o
+}
+
+func (o VpnSslWebPortalBookmarkGroupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebPortalBookmarkGroup] {
+	return pulumix.Output[[]VpnSslWebPortalBookmarkGroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebPortalBookmarkGroupArrayOutput) Index(i pulumi.IntInput) VpnSslWebPortalBookmarkGroupOutput {
@@ -6632,6 +12053,12 @@ func (i VpnSslWebPortalBookmarkGroupBookmarkArgs) ToVpnSslWebPortalBookmarkGroup
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalBookmarkGroupBookmarkOutput)
 }
 
+func (i VpnSslWebPortalBookmarkGroupBookmarkArgs) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebPortalBookmarkGroupBookmark] {
+	return pulumix.Output[VpnSslWebPortalBookmarkGroupBookmark]{
+		OutputState: i.ToVpnSslWebPortalBookmarkGroupBookmarkOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnSslWebPortalBookmarkGroupBookmarkArrayInput is an input type that accepts VpnSslWebPortalBookmarkGroupBookmarkArray and VpnSslWebPortalBookmarkGroupBookmarkArrayOutput values.
 // You can construct a concrete instance of `VpnSslWebPortalBookmarkGroupBookmarkArrayInput` via:
 //
@@ -6657,6 +12084,12 @@ func (i VpnSslWebPortalBookmarkGroupBookmarkArray) ToVpnSslWebPortalBookmarkGrou
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalBookmarkGroupBookmarkArrayOutput)
 }
 
+func (i VpnSslWebPortalBookmarkGroupBookmarkArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebPortalBookmarkGroupBookmark] {
+	return pulumix.Output[[]VpnSslWebPortalBookmarkGroupBookmark]{
+		OutputState: i.ToVpnSslWebPortalBookmarkGroupBookmarkArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnSslWebPortalBookmarkGroupBookmarkOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebPortalBookmarkGroupBookmarkOutput) ElementType() reflect.Type {
@@ -6669,6 +12102,12 @@ func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) ToVpnSslWebPortalBookmarkGro
 
 func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) ToVpnSslWebPortalBookmarkGroupBookmarkOutputWithContext(ctx context.Context) VpnSslWebPortalBookmarkGroupBookmarkOutput {
 	return o
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebPortalBookmarkGroupBookmark] {
+	return pulumix.Output[VpnSslWebPortalBookmarkGroupBookmark]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebPortalBookmarkGroupBookmarkOutput) AdditionalParams() pulumi.StringPtrOutput {
@@ -6815,6 +12254,12 @@ func (o VpnSslWebPortalBookmarkGroupBookmarkArrayOutput) ToVpnSslWebPortalBookma
 	return o
 }
 
+func (o VpnSslWebPortalBookmarkGroupBookmarkArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebPortalBookmarkGroupBookmark] {
+	return pulumix.Output[[]VpnSslWebPortalBookmarkGroupBookmark]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o VpnSslWebPortalBookmarkGroupBookmarkArrayOutput) Index(i pulumi.IntInput) VpnSslWebPortalBookmarkGroupBookmarkOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnSslWebPortalBookmarkGroupBookmark {
 		return vs[0].([]VpnSslWebPortalBookmarkGroupBookmark)[vs[1].(int)]
@@ -6854,6 +12299,12 @@ func (i VpnSslWebPortalBookmarkGroupBookmarkFormDataArgs) ToVpnSslWebPortalBookm
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalBookmarkGroupBookmarkFormDataOutput)
 }
 
+func (i VpnSslWebPortalBookmarkGroupBookmarkFormDataArgs) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebPortalBookmarkGroupBookmarkFormData] {
+	return pulumix.Output[VpnSslWebPortalBookmarkGroupBookmarkFormData]{
+		OutputState: i.ToVpnSslWebPortalBookmarkGroupBookmarkFormDataOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnSslWebPortalBookmarkGroupBookmarkFormDataArrayInput is an input type that accepts VpnSslWebPortalBookmarkGroupBookmarkFormDataArray and VpnSslWebPortalBookmarkGroupBookmarkFormDataArrayOutput values.
 // You can construct a concrete instance of `VpnSslWebPortalBookmarkGroupBookmarkFormDataArrayInput` via:
 //
@@ -6879,6 +12330,12 @@ func (i VpnSslWebPortalBookmarkGroupBookmarkFormDataArray) ToVpnSslWebPortalBook
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalBookmarkGroupBookmarkFormDataArrayOutput)
 }
 
+func (i VpnSslWebPortalBookmarkGroupBookmarkFormDataArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebPortalBookmarkGroupBookmarkFormData] {
+	return pulumix.Output[[]VpnSslWebPortalBookmarkGroupBookmarkFormData]{
+		OutputState: i.ToVpnSslWebPortalBookmarkGroupBookmarkFormDataArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnSslWebPortalBookmarkGroupBookmarkFormDataOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebPortalBookmarkGroupBookmarkFormDataOutput) ElementType() reflect.Type {
@@ -6891,6 +12348,12 @@ func (o VpnSslWebPortalBookmarkGroupBookmarkFormDataOutput) ToVpnSslWebPortalBoo
 
 func (o VpnSslWebPortalBookmarkGroupBookmarkFormDataOutput) ToVpnSslWebPortalBookmarkGroupBookmarkFormDataOutputWithContext(ctx context.Context) VpnSslWebPortalBookmarkGroupBookmarkFormDataOutput {
 	return o
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkFormDataOutput) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebPortalBookmarkGroupBookmarkFormData] {
+	return pulumix.Output[VpnSslWebPortalBookmarkGroupBookmarkFormData]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebPortalBookmarkGroupBookmarkFormDataOutput) Name() pulumi.StringPtrOutput {
@@ -6913,6 +12376,12 @@ func (o VpnSslWebPortalBookmarkGroupBookmarkFormDataArrayOutput) ToVpnSslWebPort
 
 func (o VpnSslWebPortalBookmarkGroupBookmarkFormDataArrayOutput) ToVpnSslWebPortalBookmarkGroupBookmarkFormDataArrayOutputWithContext(ctx context.Context) VpnSslWebPortalBookmarkGroupBookmarkFormDataArrayOutput {
 	return o
+}
+
+func (o VpnSslWebPortalBookmarkGroupBookmarkFormDataArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebPortalBookmarkGroupBookmarkFormData] {
+	return pulumix.Output[[]VpnSslWebPortalBookmarkGroupBookmarkFormData]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebPortalBookmarkGroupBookmarkFormDataArrayOutput) Index(i pulumi.IntInput) VpnSslWebPortalBookmarkGroupBookmarkFormDataOutput {
@@ -6952,6 +12421,12 @@ func (i VpnSslWebPortalHostCheckPolicyArgs) ToVpnSslWebPortalHostCheckPolicyOutp
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalHostCheckPolicyOutput)
 }
 
+func (i VpnSslWebPortalHostCheckPolicyArgs) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebPortalHostCheckPolicy] {
+	return pulumix.Output[VpnSslWebPortalHostCheckPolicy]{
+		OutputState: i.ToVpnSslWebPortalHostCheckPolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnSslWebPortalHostCheckPolicyArrayInput is an input type that accepts VpnSslWebPortalHostCheckPolicyArray and VpnSslWebPortalHostCheckPolicyArrayOutput values.
 // You can construct a concrete instance of `VpnSslWebPortalHostCheckPolicyArrayInput` via:
 //
@@ -6977,6 +12452,12 @@ func (i VpnSslWebPortalHostCheckPolicyArray) ToVpnSslWebPortalHostCheckPolicyArr
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalHostCheckPolicyArrayOutput)
 }
 
+func (i VpnSslWebPortalHostCheckPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebPortalHostCheckPolicy] {
+	return pulumix.Output[[]VpnSslWebPortalHostCheckPolicy]{
+		OutputState: i.ToVpnSslWebPortalHostCheckPolicyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnSslWebPortalHostCheckPolicyOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebPortalHostCheckPolicyOutput) ElementType() reflect.Type {
@@ -6989,6 +12470,12 @@ func (o VpnSslWebPortalHostCheckPolicyOutput) ToVpnSslWebPortalHostCheckPolicyOu
 
 func (o VpnSslWebPortalHostCheckPolicyOutput) ToVpnSslWebPortalHostCheckPolicyOutputWithContext(ctx context.Context) VpnSslWebPortalHostCheckPolicyOutput {
 	return o
+}
+
+func (o VpnSslWebPortalHostCheckPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebPortalHostCheckPolicy] {
+	return pulumix.Output[VpnSslWebPortalHostCheckPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebPortalHostCheckPolicyOutput) Name() pulumi.StringPtrOutput {
@@ -7007,6 +12494,12 @@ func (o VpnSslWebPortalHostCheckPolicyArrayOutput) ToVpnSslWebPortalHostCheckPol
 
 func (o VpnSslWebPortalHostCheckPolicyArrayOutput) ToVpnSslWebPortalHostCheckPolicyArrayOutputWithContext(ctx context.Context) VpnSslWebPortalHostCheckPolicyArrayOutput {
 	return o
+}
+
+func (o VpnSslWebPortalHostCheckPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebPortalHostCheckPolicy] {
+	return pulumix.Output[[]VpnSslWebPortalHostCheckPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebPortalHostCheckPolicyArrayOutput) Index(i pulumi.IntInput) VpnSslWebPortalHostCheckPolicyOutput {
@@ -7046,6 +12539,12 @@ func (i VpnSslWebPortalIpPoolArgs) ToVpnSslWebPortalIpPoolOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalIpPoolOutput)
 }
 
+func (i VpnSslWebPortalIpPoolArgs) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebPortalIpPool] {
+	return pulumix.Output[VpnSslWebPortalIpPool]{
+		OutputState: i.ToVpnSslWebPortalIpPoolOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnSslWebPortalIpPoolArrayInput is an input type that accepts VpnSslWebPortalIpPoolArray and VpnSslWebPortalIpPoolArrayOutput values.
 // You can construct a concrete instance of `VpnSslWebPortalIpPoolArrayInput` via:
 //
@@ -7071,6 +12570,12 @@ func (i VpnSslWebPortalIpPoolArray) ToVpnSslWebPortalIpPoolArrayOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalIpPoolArrayOutput)
 }
 
+func (i VpnSslWebPortalIpPoolArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebPortalIpPool] {
+	return pulumix.Output[[]VpnSslWebPortalIpPool]{
+		OutputState: i.ToVpnSslWebPortalIpPoolArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnSslWebPortalIpPoolOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebPortalIpPoolOutput) ElementType() reflect.Type {
@@ -7083,6 +12588,12 @@ func (o VpnSslWebPortalIpPoolOutput) ToVpnSslWebPortalIpPoolOutput() VpnSslWebPo
 
 func (o VpnSslWebPortalIpPoolOutput) ToVpnSslWebPortalIpPoolOutputWithContext(ctx context.Context) VpnSslWebPortalIpPoolOutput {
 	return o
+}
+
+func (o VpnSslWebPortalIpPoolOutput) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebPortalIpPool] {
+	return pulumix.Output[VpnSslWebPortalIpPool]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebPortalIpPoolOutput) Name() pulumi.StringPtrOutput {
@@ -7101,6 +12612,12 @@ func (o VpnSslWebPortalIpPoolArrayOutput) ToVpnSslWebPortalIpPoolArrayOutput() V
 
 func (o VpnSslWebPortalIpPoolArrayOutput) ToVpnSslWebPortalIpPoolArrayOutputWithContext(ctx context.Context) VpnSslWebPortalIpPoolArrayOutput {
 	return o
+}
+
+func (o VpnSslWebPortalIpPoolArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebPortalIpPool] {
+	return pulumix.Output[[]VpnSslWebPortalIpPool]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebPortalIpPoolArrayOutput) Index(i pulumi.IntInput) VpnSslWebPortalIpPoolOutput {
@@ -7140,6 +12657,12 @@ func (i VpnSslWebPortalIpv6PoolArgs) ToVpnSslWebPortalIpv6PoolOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalIpv6PoolOutput)
 }
 
+func (i VpnSslWebPortalIpv6PoolArgs) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebPortalIpv6Pool] {
+	return pulumix.Output[VpnSslWebPortalIpv6Pool]{
+		OutputState: i.ToVpnSslWebPortalIpv6PoolOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnSslWebPortalIpv6PoolArrayInput is an input type that accepts VpnSslWebPortalIpv6PoolArray and VpnSslWebPortalIpv6PoolArrayOutput values.
 // You can construct a concrete instance of `VpnSslWebPortalIpv6PoolArrayInput` via:
 //
@@ -7165,6 +12688,12 @@ func (i VpnSslWebPortalIpv6PoolArray) ToVpnSslWebPortalIpv6PoolArrayOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalIpv6PoolArrayOutput)
 }
 
+func (i VpnSslWebPortalIpv6PoolArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebPortalIpv6Pool] {
+	return pulumix.Output[[]VpnSslWebPortalIpv6Pool]{
+		OutputState: i.ToVpnSslWebPortalIpv6PoolArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnSslWebPortalIpv6PoolOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebPortalIpv6PoolOutput) ElementType() reflect.Type {
@@ -7177,6 +12706,12 @@ func (o VpnSslWebPortalIpv6PoolOutput) ToVpnSslWebPortalIpv6PoolOutput() VpnSslW
 
 func (o VpnSslWebPortalIpv6PoolOutput) ToVpnSslWebPortalIpv6PoolOutputWithContext(ctx context.Context) VpnSslWebPortalIpv6PoolOutput {
 	return o
+}
+
+func (o VpnSslWebPortalIpv6PoolOutput) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebPortalIpv6Pool] {
+	return pulumix.Output[VpnSslWebPortalIpv6Pool]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebPortalIpv6PoolOutput) Name() pulumi.StringPtrOutput {
@@ -7195,6 +12730,12 @@ func (o VpnSslWebPortalIpv6PoolArrayOutput) ToVpnSslWebPortalIpv6PoolArrayOutput
 
 func (o VpnSslWebPortalIpv6PoolArrayOutput) ToVpnSslWebPortalIpv6PoolArrayOutputWithContext(ctx context.Context) VpnSslWebPortalIpv6PoolArrayOutput {
 	return o
+}
+
+func (o VpnSslWebPortalIpv6PoolArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebPortalIpv6Pool] {
+	return pulumix.Output[[]VpnSslWebPortalIpv6Pool]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebPortalIpv6PoolArrayOutput) Index(i pulumi.IntInput) VpnSslWebPortalIpv6PoolOutput {
@@ -7234,6 +12775,12 @@ func (i VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArgs) ToVpnSslWebPortalIp
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalIpv6SplitTunnelingRoutingAddressOutput)
 }
 
+func (i VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArgs) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebPortalIpv6SplitTunnelingRoutingAddress] {
+	return pulumix.Output[VpnSslWebPortalIpv6SplitTunnelingRoutingAddress]{
+		OutputState: i.ToVpnSslWebPortalIpv6SplitTunnelingRoutingAddressOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayInput is an input type that accepts VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArray and VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayOutput values.
 // You can construct a concrete instance of `VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayInput` via:
 //
@@ -7259,6 +12806,12 @@ func (i VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArray) ToVpnSslWebPortalI
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayOutput)
 }
 
+func (i VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebPortalIpv6SplitTunnelingRoutingAddress] {
+	return pulumix.Output[[]VpnSslWebPortalIpv6SplitTunnelingRoutingAddress]{
+		OutputState: i.ToVpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnSslWebPortalIpv6SplitTunnelingRoutingAddressOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebPortalIpv6SplitTunnelingRoutingAddressOutput) ElementType() reflect.Type {
@@ -7271,6 +12824,12 @@ func (o VpnSslWebPortalIpv6SplitTunnelingRoutingAddressOutput) ToVpnSslWebPortal
 
 func (o VpnSslWebPortalIpv6SplitTunnelingRoutingAddressOutput) ToVpnSslWebPortalIpv6SplitTunnelingRoutingAddressOutputWithContext(ctx context.Context) VpnSslWebPortalIpv6SplitTunnelingRoutingAddressOutput {
 	return o
+}
+
+func (o VpnSslWebPortalIpv6SplitTunnelingRoutingAddressOutput) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebPortalIpv6SplitTunnelingRoutingAddress] {
+	return pulumix.Output[VpnSslWebPortalIpv6SplitTunnelingRoutingAddress]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebPortalIpv6SplitTunnelingRoutingAddressOutput) Name() pulumi.StringPtrOutput {
@@ -7289,6 +12848,12 @@ func (o VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayOutput) ToVpnSslWebP
 
 func (o VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayOutput) ToVpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayOutputWithContext(ctx context.Context) VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayOutput {
 	return o
+}
+
+func (o VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebPortalIpv6SplitTunnelingRoutingAddress] {
+	return pulumix.Output[[]VpnSslWebPortalIpv6SplitTunnelingRoutingAddress]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebPortalIpv6SplitTunnelingRoutingAddressArrayOutput) Index(i pulumi.IntInput) VpnSslWebPortalIpv6SplitTunnelingRoutingAddressOutput {
@@ -7340,6 +12905,12 @@ func (i VpnSslWebPortalLandingPageArgs) ToVpnSslWebPortalLandingPageOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalLandingPageOutput)
 }
 
+func (i VpnSslWebPortalLandingPageArgs) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebPortalLandingPage] {
+	return pulumix.Output[VpnSslWebPortalLandingPage]{
+		OutputState: i.ToVpnSslWebPortalLandingPageOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i VpnSslWebPortalLandingPageArgs) ToVpnSslWebPortalLandingPagePtrOutput() VpnSslWebPortalLandingPagePtrOutput {
 	return i.ToVpnSslWebPortalLandingPagePtrOutputWithContext(context.Background())
 }
@@ -7381,6 +12952,12 @@ func (i *vpnSslWebPortalLandingPagePtrType) ToVpnSslWebPortalLandingPagePtrOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalLandingPagePtrOutput)
 }
 
+func (i *vpnSslWebPortalLandingPagePtrType) ToOutput(ctx context.Context) pulumix.Output[*VpnSslWebPortalLandingPage] {
+	return pulumix.Output[*VpnSslWebPortalLandingPage]{
+		OutputState: i.ToVpnSslWebPortalLandingPagePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnSslWebPortalLandingPageOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebPortalLandingPageOutput) ElementType() reflect.Type {
@@ -7403,6 +12980,12 @@ func (o VpnSslWebPortalLandingPageOutput) ToVpnSslWebPortalLandingPagePtrOutputW
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v VpnSslWebPortalLandingPage) *VpnSslWebPortalLandingPage {
 		return &v
 	}).(VpnSslWebPortalLandingPagePtrOutput)
+}
+
+func (o VpnSslWebPortalLandingPageOutput) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebPortalLandingPage] {
+	return pulumix.Output[VpnSslWebPortalLandingPage]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebPortalLandingPageOutput) FormDatas() VpnSslWebPortalLandingPageFormDataArrayOutput {
@@ -7445,6 +13028,12 @@ func (o VpnSslWebPortalLandingPagePtrOutput) ToVpnSslWebPortalLandingPagePtrOutp
 
 func (o VpnSslWebPortalLandingPagePtrOutput) ToVpnSslWebPortalLandingPagePtrOutputWithContext(ctx context.Context) VpnSslWebPortalLandingPagePtrOutput {
 	return o
+}
+
+func (o VpnSslWebPortalLandingPagePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*VpnSslWebPortalLandingPage] {
+	return pulumix.Output[*VpnSslWebPortalLandingPage]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebPortalLandingPagePtrOutput) Elem() VpnSslWebPortalLandingPageOutput {
@@ -7553,6 +13142,12 @@ func (i VpnSslWebPortalLandingPageFormDataArgs) ToVpnSslWebPortalLandingPageForm
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalLandingPageFormDataOutput)
 }
 
+func (i VpnSslWebPortalLandingPageFormDataArgs) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebPortalLandingPageFormData] {
+	return pulumix.Output[VpnSslWebPortalLandingPageFormData]{
+		OutputState: i.ToVpnSslWebPortalLandingPageFormDataOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnSslWebPortalLandingPageFormDataArrayInput is an input type that accepts VpnSslWebPortalLandingPageFormDataArray and VpnSslWebPortalLandingPageFormDataArrayOutput values.
 // You can construct a concrete instance of `VpnSslWebPortalLandingPageFormDataArrayInput` via:
 //
@@ -7578,6 +13173,12 @@ func (i VpnSslWebPortalLandingPageFormDataArray) ToVpnSslWebPortalLandingPageFor
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalLandingPageFormDataArrayOutput)
 }
 
+func (i VpnSslWebPortalLandingPageFormDataArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebPortalLandingPageFormData] {
+	return pulumix.Output[[]VpnSslWebPortalLandingPageFormData]{
+		OutputState: i.ToVpnSslWebPortalLandingPageFormDataArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnSslWebPortalLandingPageFormDataOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebPortalLandingPageFormDataOutput) ElementType() reflect.Type {
@@ -7590,6 +13191,12 @@ func (o VpnSslWebPortalLandingPageFormDataOutput) ToVpnSslWebPortalLandingPageFo
 
 func (o VpnSslWebPortalLandingPageFormDataOutput) ToVpnSslWebPortalLandingPageFormDataOutputWithContext(ctx context.Context) VpnSslWebPortalLandingPageFormDataOutput {
 	return o
+}
+
+func (o VpnSslWebPortalLandingPageFormDataOutput) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebPortalLandingPageFormData] {
+	return pulumix.Output[VpnSslWebPortalLandingPageFormData]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebPortalLandingPageFormDataOutput) Name() pulumi.StringPtrOutput {
@@ -7612,6 +13219,12 @@ func (o VpnSslWebPortalLandingPageFormDataArrayOutput) ToVpnSslWebPortalLandingP
 
 func (o VpnSslWebPortalLandingPageFormDataArrayOutput) ToVpnSslWebPortalLandingPageFormDataArrayOutputWithContext(ctx context.Context) VpnSslWebPortalLandingPageFormDataArrayOutput {
 	return o
+}
+
+func (o VpnSslWebPortalLandingPageFormDataArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebPortalLandingPageFormData] {
+	return pulumix.Output[[]VpnSslWebPortalLandingPageFormData]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebPortalLandingPageFormDataArrayOutput) Index(i pulumi.IntInput) VpnSslWebPortalLandingPageFormDataOutput {
@@ -7655,6 +13268,12 @@ func (i VpnSslWebPortalMacAddrCheckRuleArgs) ToVpnSslWebPortalMacAddrCheckRuleOu
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalMacAddrCheckRuleOutput)
 }
 
+func (i VpnSslWebPortalMacAddrCheckRuleArgs) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebPortalMacAddrCheckRule] {
+	return pulumix.Output[VpnSslWebPortalMacAddrCheckRule]{
+		OutputState: i.ToVpnSslWebPortalMacAddrCheckRuleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnSslWebPortalMacAddrCheckRuleArrayInput is an input type that accepts VpnSslWebPortalMacAddrCheckRuleArray and VpnSslWebPortalMacAddrCheckRuleArrayOutput values.
 // You can construct a concrete instance of `VpnSslWebPortalMacAddrCheckRuleArrayInput` via:
 //
@@ -7680,6 +13299,12 @@ func (i VpnSslWebPortalMacAddrCheckRuleArray) ToVpnSslWebPortalMacAddrCheckRuleA
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalMacAddrCheckRuleArrayOutput)
 }
 
+func (i VpnSslWebPortalMacAddrCheckRuleArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebPortalMacAddrCheckRule] {
+	return pulumix.Output[[]VpnSslWebPortalMacAddrCheckRule]{
+		OutputState: i.ToVpnSslWebPortalMacAddrCheckRuleArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnSslWebPortalMacAddrCheckRuleOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebPortalMacAddrCheckRuleOutput) ElementType() reflect.Type {
@@ -7692,6 +13317,12 @@ func (o VpnSslWebPortalMacAddrCheckRuleOutput) ToVpnSslWebPortalMacAddrCheckRule
 
 func (o VpnSslWebPortalMacAddrCheckRuleOutput) ToVpnSslWebPortalMacAddrCheckRuleOutputWithContext(ctx context.Context) VpnSslWebPortalMacAddrCheckRuleOutput {
 	return o
+}
+
+func (o VpnSslWebPortalMacAddrCheckRuleOutput) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebPortalMacAddrCheckRule] {
+	return pulumix.Output[VpnSslWebPortalMacAddrCheckRule]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebPortalMacAddrCheckRuleOutput) MacAddrLists() VpnSslWebPortalMacAddrCheckRuleMacAddrListArrayOutput {
@@ -7720,6 +13351,12 @@ func (o VpnSslWebPortalMacAddrCheckRuleArrayOutput) ToVpnSslWebPortalMacAddrChec
 
 func (o VpnSslWebPortalMacAddrCheckRuleArrayOutput) ToVpnSslWebPortalMacAddrCheckRuleArrayOutputWithContext(ctx context.Context) VpnSslWebPortalMacAddrCheckRuleArrayOutput {
 	return o
+}
+
+func (o VpnSslWebPortalMacAddrCheckRuleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebPortalMacAddrCheckRule] {
+	return pulumix.Output[[]VpnSslWebPortalMacAddrCheckRule]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebPortalMacAddrCheckRuleArrayOutput) Index(i pulumi.IntInput) VpnSslWebPortalMacAddrCheckRuleOutput {
@@ -7759,6 +13396,12 @@ func (i VpnSslWebPortalMacAddrCheckRuleMacAddrListArgs) ToVpnSslWebPortalMacAddr
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalMacAddrCheckRuleMacAddrListOutput)
 }
 
+func (i VpnSslWebPortalMacAddrCheckRuleMacAddrListArgs) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebPortalMacAddrCheckRuleMacAddrList] {
+	return pulumix.Output[VpnSslWebPortalMacAddrCheckRuleMacAddrList]{
+		OutputState: i.ToVpnSslWebPortalMacAddrCheckRuleMacAddrListOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnSslWebPortalMacAddrCheckRuleMacAddrListArrayInput is an input type that accepts VpnSslWebPortalMacAddrCheckRuleMacAddrListArray and VpnSslWebPortalMacAddrCheckRuleMacAddrListArrayOutput values.
 // You can construct a concrete instance of `VpnSslWebPortalMacAddrCheckRuleMacAddrListArrayInput` via:
 //
@@ -7784,6 +13427,12 @@ func (i VpnSslWebPortalMacAddrCheckRuleMacAddrListArray) ToVpnSslWebPortalMacAdd
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalMacAddrCheckRuleMacAddrListArrayOutput)
 }
 
+func (i VpnSslWebPortalMacAddrCheckRuleMacAddrListArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebPortalMacAddrCheckRuleMacAddrList] {
+	return pulumix.Output[[]VpnSslWebPortalMacAddrCheckRuleMacAddrList]{
+		OutputState: i.ToVpnSslWebPortalMacAddrCheckRuleMacAddrListArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnSslWebPortalMacAddrCheckRuleMacAddrListOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebPortalMacAddrCheckRuleMacAddrListOutput) ElementType() reflect.Type {
@@ -7796,6 +13445,12 @@ func (o VpnSslWebPortalMacAddrCheckRuleMacAddrListOutput) ToVpnSslWebPortalMacAd
 
 func (o VpnSslWebPortalMacAddrCheckRuleMacAddrListOutput) ToVpnSslWebPortalMacAddrCheckRuleMacAddrListOutputWithContext(ctx context.Context) VpnSslWebPortalMacAddrCheckRuleMacAddrListOutput {
 	return o
+}
+
+func (o VpnSslWebPortalMacAddrCheckRuleMacAddrListOutput) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebPortalMacAddrCheckRuleMacAddrList] {
+	return pulumix.Output[VpnSslWebPortalMacAddrCheckRuleMacAddrList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebPortalMacAddrCheckRuleMacAddrListOutput) Addr() pulumi.StringPtrOutput {
@@ -7814,6 +13469,12 @@ func (o VpnSslWebPortalMacAddrCheckRuleMacAddrListArrayOutput) ToVpnSslWebPortal
 
 func (o VpnSslWebPortalMacAddrCheckRuleMacAddrListArrayOutput) ToVpnSslWebPortalMacAddrCheckRuleMacAddrListArrayOutputWithContext(ctx context.Context) VpnSslWebPortalMacAddrCheckRuleMacAddrListArrayOutput {
 	return o
+}
+
+func (o VpnSslWebPortalMacAddrCheckRuleMacAddrListArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebPortalMacAddrCheckRuleMacAddrList] {
+	return pulumix.Output[[]VpnSslWebPortalMacAddrCheckRuleMacAddrList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebPortalMacAddrCheckRuleMacAddrListArrayOutput) Index(i pulumi.IntInput) VpnSslWebPortalMacAddrCheckRuleMacAddrListOutput {
@@ -7859,6 +13520,12 @@ func (i VpnSslWebPortalOsCheckListArgs) ToVpnSslWebPortalOsCheckListOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalOsCheckListOutput)
 }
 
+func (i VpnSslWebPortalOsCheckListArgs) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebPortalOsCheckList] {
+	return pulumix.Output[VpnSslWebPortalOsCheckList]{
+		OutputState: i.ToVpnSslWebPortalOsCheckListOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnSslWebPortalOsCheckListArrayInput is an input type that accepts VpnSslWebPortalOsCheckListArray and VpnSslWebPortalOsCheckListArrayOutput values.
 // You can construct a concrete instance of `VpnSslWebPortalOsCheckListArrayInput` via:
 //
@@ -7884,6 +13551,12 @@ func (i VpnSslWebPortalOsCheckListArray) ToVpnSslWebPortalOsCheckListArrayOutput
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalOsCheckListArrayOutput)
 }
 
+func (i VpnSslWebPortalOsCheckListArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebPortalOsCheckList] {
+	return pulumix.Output[[]VpnSslWebPortalOsCheckList]{
+		OutputState: i.ToVpnSslWebPortalOsCheckListArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnSslWebPortalOsCheckListOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebPortalOsCheckListOutput) ElementType() reflect.Type {
@@ -7896,6 +13569,12 @@ func (o VpnSslWebPortalOsCheckListOutput) ToVpnSslWebPortalOsCheckListOutput() V
 
 func (o VpnSslWebPortalOsCheckListOutput) ToVpnSslWebPortalOsCheckListOutputWithContext(ctx context.Context) VpnSslWebPortalOsCheckListOutput {
 	return o
+}
+
+func (o VpnSslWebPortalOsCheckListOutput) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebPortalOsCheckList] {
+	return pulumix.Output[VpnSslWebPortalOsCheckList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebPortalOsCheckListOutput) Action() pulumi.StringPtrOutput {
@@ -7926,6 +13605,12 @@ func (o VpnSslWebPortalOsCheckListArrayOutput) ToVpnSslWebPortalOsCheckListArray
 
 func (o VpnSslWebPortalOsCheckListArrayOutput) ToVpnSslWebPortalOsCheckListArrayOutputWithContext(ctx context.Context) VpnSslWebPortalOsCheckListArrayOutput {
 	return o
+}
+
+func (o VpnSslWebPortalOsCheckListArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebPortalOsCheckList] {
+	return pulumix.Output[[]VpnSslWebPortalOsCheckList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebPortalOsCheckListArrayOutput) Index(i pulumi.IntInput) VpnSslWebPortalOsCheckListOutput {
@@ -7975,6 +13660,12 @@ func (i VpnSslWebPortalSplitDnArgs) ToVpnSslWebPortalSplitDnOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalSplitDnOutput)
 }
 
+func (i VpnSslWebPortalSplitDnArgs) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebPortalSplitDn] {
+	return pulumix.Output[VpnSslWebPortalSplitDn]{
+		OutputState: i.ToVpnSslWebPortalSplitDnOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnSslWebPortalSplitDnArrayInput is an input type that accepts VpnSslWebPortalSplitDnArray and VpnSslWebPortalSplitDnArrayOutput values.
 // You can construct a concrete instance of `VpnSslWebPortalSplitDnArrayInput` via:
 //
@@ -8000,6 +13691,12 @@ func (i VpnSslWebPortalSplitDnArray) ToVpnSslWebPortalSplitDnArrayOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalSplitDnArrayOutput)
 }
 
+func (i VpnSslWebPortalSplitDnArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebPortalSplitDn] {
+	return pulumix.Output[[]VpnSslWebPortalSplitDn]{
+		OutputState: i.ToVpnSslWebPortalSplitDnArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnSslWebPortalSplitDnOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebPortalSplitDnOutput) ElementType() reflect.Type {
@@ -8012,6 +13709,12 @@ func (o VpnSslWebPortalSplitDnOutput) ToVpnSslWebPortalSplitDnOutput() VpnSslWeb
 
 func (o VpnSslWebPortalSplitDnOutput) ToVpnSslWebPortalSplitDnOutputWithContext(ctx context.Context) VpnSslWebPortalSplitDnOutput {
 	return o
+}
+
+func (o VpnSslWebPortalSplitDnOutput) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebPortalSplitDn] {
+	return pulumix.Output[VpnSslWebPortalSplitDn]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebPortalSplitDnOutput) DnsServer1() pulumi.StringPtrOutput {
@@ -8052,6 +13755,12 @@ func (o VpnSslWebPortalSplitDnArrayOutput) ToVpnSslWebPortalSplitDnArrayOutputWi
 	return o
 }
 
+func (o VpnSslWebPortalSplitDnArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebPortalSplitDn] {
+	return pulumix.Output[[]VpnSslWebPortalSplitDn]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o VpnSslWebPortalSplitDnArrayOutput) Index(i pulumi.IntInput) VpnSslWebPortalSplitDnOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnSslWebPortalSplitDn {
 		return vs[0].([]VpnSslWebPortalSplitDn)[vs[1].(int)]
@@ -8089,6 +13798,12 @@ func (i VpnSslWebPortalSplitTunnelingRoutingAddressArgs) ToVpnSslWebPortalSplitT
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalSplitTunnelingRoutingAddressOutput)
 }
 
+func (i VpnSslWebPortalSplitTunnelingRoutingAddressArgs) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebPortalSplitTunnelingRoutingAddress] {
+	return pulumix.Output[VpnSslWebPortalSplitTunnelingRoutingAddress]{
+		OutputState: i.ToVpnSslWebPortalSplitTunnelingRoutingAddressOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnSslWebPortalSplitTunnelingRoutingAddressArrayInput is an input type that accepts VpnSslWebPortalSplitTunnelingRoutingAddressArray and VpnSslWebPortalSplitTunnelingRoutingAddressArrayOutput values.
 // You can construct a concrete instance of `VpnSslWebPortalSplitTunnelingRoutingAddressArrayInput` via:
 //
@@ -8114,6 +13829,12 @@ func (i VpnSslWebPortalSplitTunnelingRoutingAddressArray) ToVpnSslWebPortalSplit
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalSplitTunnelingRoutingAddressArrayOutput)
 }
 
+func (i VpnSslWebPortalSplitTunnelingRoutingAddressArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebPortalSplitTunnelingRoutingAddress] {
+	return pulumix.Output[[]VpnSslWebPortalSplitTunnelingRoutingAddress]{
+		OutputState: i.ToVpnSslWebPortalSplitTunnelingRoutingAddressArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnSslWebPortalSplitTunnelingRoutingAddressOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebPortalSplitTunnelingRoutingAddressOutput) ElementType() reflect.Type {
@@ -8126,6 +13847,12 @@ func (o VpnSslWebPortalSplitTunnelingRoutingAddressOutput) ToVpnSslWebPortalSpli
 
 func (o VpnSslWebPortalSplitTunnelingRoutingAddressOutput) ToVpnSslWebPortalSplitTunnelingRoutingAddressOutputWithContext(ctx context.Context) VpnSslWebPortalSplitTunnelingRoutingAddressOutput {
 	return o
+}
+
+func (o VpnSslWebPortalSplitTunnelingRoutingAddressOutput) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebPortalSplitTunnelingRoutingAddress] {
+	return pulumix.Output[VpnSslWebPortalSplitTunnelingRoutingAddress]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebPortalSplitTunnelingRoutingAddressOutput) Name() pulumi.StringPtrOutput {
@@ -8144,6 +13871,12 @@ func (o VpnSslWebPortalSplitTunnelingRoutingAddressArrayOutput) ToVpnSslWebPorta
 
 func (o VpnSslWebPortalSplitTunnelingRoutingAddressArrayOutput) ToVpnSslWebPortalSplitTunnelingRoutingAddressArrayOutputWithContext(ctx context.Context) VpnSslWebPortalSplitTunnelingRoutingAddressArrayOutput {
 	return o
+}
+
+func (o VpnSslWebPortalSplitTunnelingRoutingAddressArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebPortalSplitTunnelingRoutingAddress] {
+	return pulumix.Output[[]VpnSslWebPortalSplitTunnelingRoutingAddress]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebPortalSplitTunnelingRoutingAddressArrayOutput) Index(i pulumi.IntInput) VpnSslWebPortalSplitTunnelingRoutingAddressOutput {
@@ -8245,6 +13978,12 @@ func (i VpnSslWebUserBookmarkBookmarkArgs) ToVpnSslWebUserBookmarkBookmarkOutput
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebUserBookmarkBookmarkOutput)
 }
 
+func (i VpnSslWebUserBookmarkBookmarkArgs) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebUserBookmarkBookmark] {
+	return pulumix.Output[VpnSslWebUserBookmarkBookmark]{
+		OutputState: i.ToVpnSslWebUserBookmarkBookmarkOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnSslWebUserBookmarkBookmarkArrayInput is an input type that accepts VpnSslWebUserBookmarkBookmarkArray and VpnSslWebUserBookmarkBookmarkArrayOutput values.
 // You can construct a concrete instance of `VpnSslWebUserBookmarkBookmarkArrayInput` via:
 //
@@ -8270,6 +14009,12 @@ func (i VpnSslWebUserBookmarkBookmarkArray) ToVpnSslWebUserBookmarkBookmarkArray
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebUserBookmarkBookmarkArrayOutput)
 }
 
+func (i VpnSslWebUserBookmarkBookmarkArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebUserBookmarkBookmark] {
+	return pulumix.Output[[]VpnSslWebUserBookmarkBookmark]{
+		OutputState: i.ToVpnSslWebUserBookmarkBookmarkArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnSslWebUserBookmarkBookmarkOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebUserBookmarkBookmarkOutput) ElementType() reflect.Type {
@@ -8282,6 +14027,12 @@ func (o VpnSslWebUserBookmarkBookmarkOutput) ToVpnSslWebUserBookmarkBookmarkOutp
 
 func (o VpnSslWebUserBookmarkBookmarkOutput) ToVpnSslWebUserBookmarkBookmarkOutputWithContext(ctx context.Context) VpnSslWebUserBookmarkBookmarkOutput {
 	return o
+}
+
+func (o VpnSslWebUserBookmarkBookmarkOutput) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebUserBookmarkBookmark] {
+	return pulumix.Output[VpnSslWebUserBookmarkBookmark]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebUserBookmarkBookmarkOutput) AdditionalParams() pulumi.StringPtrOutput {
@@ -8426,6 +14177,12 @@ func (o VpnSslWebUserBookmarkBookmarkArrayOutput) ToVpnSslWebUserBookmarkBookmar
 	return o
 }
 
+func (o VpnSslWebUserBookmarkBookmarkArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebUserBookmarkBookmark] {
+	return pulumix.Output[[]VpnSslWebUserBookmarkBookmark]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o VpnSslWebUserBookmarkBookmarkArrayOutput) Index(i pulumi.IntInput) VpnSslWebUserBookmarkBookmarkOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnSslWebUserBookmarkBookmark {
 		return vs[0].([]VpnSslWebUserBookmarkBookmark)[vs[1].(int)]
@@ -8465,6 +14222,12 @@ func (i VpnSslWebUserBookmarkBookmarkFormDataArgs) ToVpnSslWebUserBookmarkBookma
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebUserBookmarkBookmarkFormDataOutput)
 }
 
+func (i VpnSslWebUserBookmarkBookmarkFormDataArgs) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebUserBookmarkBookmarkFormData] {
+	return pulumix.Output[VpnSslWebUserBookmarkBookmarkFormData]{
+		OutputState: i.ToVpnSslWebUserBookmarkBookmarkFormDataOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnSslWebUserBookmarkBookmarkFormDataArrayInput is an input type that accepts VpnSslWebUserBookmarkBookmarkFormDataArray and VpnSslWebUserBookmarkBookmarkFormDataArrayOutput values.
 // You can construct a concrete instance of `VpnSslWebUserBookmarkBookmarkFormDataArrayInput` via:
 //
@@ -8490,6 +14253,12 @@ func (i VpnSslWebUserBookmarkBookmarkFormDataArray) ToVpnSslWebUserBookmarkBookm
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebUserBookmarkBookmarkFormDataArrayOutput)
 }
 
+func (i VpnSslWebUserBookmarkBookmarkFormDataArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebUserBookmarkBookmarkFormData] {
+	return pulumix.Output[[]VpnSslWebUserBookmarkBookmarkFormData]{
+		OutputState: i.ToVpnSslWebUserBookmarkBookmarkFormDataArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnSslWebUserBookmarkBookmarkFormDataOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebUserBookmarkBookmarkFormDataOutput) ElementType() reflect.Type {
@@ -8502,6 +14271,12 @@ func (o VpnSslWebUserBookmarkBookmarkFormDataOutput) ToVpnSslWebUserBookmarkBook
 
 func (o VpnSslWebUserBookmarkBookmarkFormDataOutput) ToVpnSslWebUserBookmarkBookmarkFormDataOutputWithContext(ctx context.Context) VpnSslWebUserBookmarkBookmarkFormDataOutput {
 	return o
+}
+
+func (o VpnSslWebUserBookmarkBookmarkFormDataOutput) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebUserBookmarkBookmarkFormData] {
+	return pulumix.Output[VpnSslWebUserBookmarkBookmarkFormData]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebUserBookmarkBookmarkFormDataOutput) Name() pulumi.StringPtrOutput {
@@ -8524,6 +14299,12 @@ func (o VpnSslWebUserBookmarkBookmarkFormDataArrayOutput) ToVpnSslWebUserBookmar
 
 func (o VpnSslWebUserBookmarkBookmarkFormDataArrayOutput) ToVpnSslWebUserBookmarkBookmarkFormDataArrayOutputWithContext(ctx context.Context) VpnSslWebUserBookmarkBookmarkFormDataArrayOutput {
 	return o
+}
+
+func (o VpnSslWebUserBookmarkBookmarkFormDataArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebUserBookmarkBookmarkFormData] {
+	return pulumix.Output[[]VpnSslWebUserBookmarkBookmarkFormData]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebUserBookmarkBookmarkFormDataArrayOutput) Index(i pulumi.IntInput) VpnSslWebUserBookmarkBookmarkFormDataOutput {
@@ -8625,6 +14406,12 @@ func (i VpnSslWebUserGroupBookmarkBookmarkArgs) ToVpnSslWebUserGroupBookmarkBook
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebUserGroupBookmarkBookmarkOutput)
 }
 
+func (i VpnSslWebUserGroupBookmarkBookmarkArgs) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebUserGroupBookmarkBookmark] {
+	return pulumix.Output[VpnSslWebUserGroupBookmarkBookmark]{
+		OutputState: i.ToVpnSslWebUserGroupBookmarkBookmarkOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnSslWebUserGroupBookmarkBookmarkArrayInput is an input type that accepts VpnSslWebUserGroupBookmarkBookmarkArray and VpnSslWebUserGroupBookmarkBookmarkArrayOutput values.
 // You can construct a concrete instance of `VpnSslWebUserGroupBookmarkBookmarkArrayInput` via:
 //
@@ -8650,6 +14437,12 @@ func (i VpnSslWebUserGroupBookmarkBookmarkArray) ToVpnSslWebUserGroupBookmarkBoo
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebUserGroupBookmarkBookmarkArrayOutput)
 }
 
+func (i VpnSslWebUserGroupBookmarkBookmarkArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebUserGroupBookmarkBookmark] {
+	return pulumix.Output[[]VpnSslWebUserGroupBookmarkBookmark]{
+		OutputState: i.ToVpnSslWebUserGroupBookmarkBookmarkArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnSslWebUserGroupBookmarkBookmarkOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebUserGroupBookmarkBookmarkOutput) ElementType() reflect.Type {
@@ -8662,6 +14455,12 @@ func (o VpnSslWebUserGroupBookmarkBookmarkOutput) ToVpnSslWebUserGroupBookmarkBo
 
 func (o VpnSslWebUserGroupBookmarkBookmarkOutput) ToVpnSslWebUserGroupBookmarkBookmarkOutputWithContext(ctx context.Context) VpnSslWebUserGroupBookmarkBookmarkOutput {
 	return o
+}
+
+func (o VpnSslWebUserGroupBookmarkBookmarkOutput) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebUserGroupBookmarkBookmark] {
+	return pulumix.Output[VpnSslWebUserGroupBookmarkBookmark]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebUserGroupBookmarkBookmarkOutput) AdditionalParams() pulumi.StringPtrOutput {
@@ -8808,6 +14607,12 @@ func (o VpnSslWebUserGroupBookmarkBookmarkArrayOutput) ToVpnSslWebUserGroupBookm
 	return o
 }
 
+func (o VpnSslWebUserGroupBookmarkBookmarkArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebUserGroupBookmarkBookmark] {
+	return pulumix.Output[[]VpnSslWebUserGroupBookmarkBookmark]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o VpnSslWebUserGroupBookmarkBookmarkArrayOutput) Index(i pulumi.IntInput) VpnSslWebUserGroupBookmarkBookmarkOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnSslWebUserGroupBookmarkBookmark {
 		return vs[0].([]VpnSslWebUserGroupBookmarkBookmark)[vs[1].(int)]
@@ -8847,6 +14652,12 @@ func (i VpnSslWebUserGroupBookmarkBookmarkFormDataArgs) ToVpnSslWebUserGroupBook
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebUserGroupBookmarkBookmarkFormDataOutput)
 }
 
+func (i VpnSslWebUserGroupBookmarkBookmarkFormDataArgs) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebUserGroupBookmarkBookmarkFormData] {
+	return pulumix.Output[VpnSslWebUserGroupBookmarkBookmarkFormData]{
+		OutputState: i.ToVpnSslWebUserGroupBookmarkBookmarkFormDataOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnSslWebUserGroupBookmarkBookmarkFormDataArrayInput is an input type that accepts VpnSslWebUserGroupBookmarkBookmarkFormDataArray and VpnSslWebUserGroupBookmarkBookmarkFormDataArrayOutput values.
 // You can construct a concrete instance of `VpnSslWebUserGroupBookmarkBookmarkFormDataArrayInput` via:
 //
@@ -8872,6 +14683,12 @@ func (i VpnSslWebUserGroupBookmarkBookmarkFormDataArray) ToVpnSslWebUserGroupBoo
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebUserGroupBookmarkBookmarkFormDataArrayOutput)
 }
 
+func (i VpnSslWebUserGroupBookmarkBookmarkFormDataArray) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebUserGroupBookmarkBookmarkFormData] {
+	return pulumix.Output[[]VpnSslWebUserGroupBookmarkBookmarkFormData]{
+		OutputState: i.ToVpnSslWebUserGroupBookmarkBookmarkFormDataArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnSslWebUserGroupBookmarkBookmarkFormDataOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebUserGroupBookmarkBookmarkFormDataOutput) ElementType() reflect.Type {
@@ -8884,6 +14701,12 @@ func (o VpnSslWebUserGroupBookmarkBookmarkFormDataOutput) ToVpnSslWebUserGroupBo
 
 func (o VpnSslWebUserGroupBookmarkBookmarkFormDataOutput) ToVpnSslWebUserGroupBookmarkBookmarkFormDataOutputWithContext(ctx context.Context) VpnSslWebUserGroupBookmarkBookmarkFormDataOutput {
 	return o
+}
+
+func (o VpnSslWebUserGroupBookmarkBookmarkFormDataOutput) ToOutput(ctx context.Context) pulumix.Output[VpnSslWebUserGroupBookmarkBookmarkFormData] {
+	return pulumix.Output[VpnSslWebUserGroupBookmarkBookmarkFormData]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebUserGroupBookmarkBookmarkFormDataOutput) Name() pulumi.StringPtrOutput {
@@ -8906,6 +14729,12 @@ func (o VpnSslWebUserGroupBookmarkBookmarkFormDataArrayOutput) ToVpnSslWebUserGr
 
 func (o VpnSslWebUserGroupBookmarkBookmarkFormDataArrayOutput) ToVpnSslWebUserGroupBookmarkBookmarkFormDataArrayOutputWithContext(ctx context.Context) VpnSslWebUserGroupBookmarkBookmarkFormDataArrayOutput {
 	return o
+}
+
+func (o VpnSslWebUserGroupBookmarkBookmarkFormDataArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]VpnSslWebUserGroupBookmarkBookmarkFormData] {
+	return pulumix.Output[[]VpnSslWebUserGroupBookmarkBookmarkFormData]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebUserGroupBookmarkBookmarkFormDataArrayOutput) Index(i pulumi.IntInput) VpnSslWebUserGroupBookmarkBookmarkFormDataOutput {
@@ -8953,6 +14782,12 @@ func (i WafProfileAddressListArgs) ToWafProfileAddressListOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileAddressListOutput)
 }
 
+func (i WafProfileAddressListArgs) ToOutput(ctx context.Context) pulumix.Output[WafProfileAddressList] {
+	return pulumix.Output[WafProfileAddressList]{
+		OutputState: i.ToWafProfileAddressListOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WafProfileAddressListArgs) ToWafProfileAddressListPtrOutput() WafProfileAddressListPtrOutput {
 	return i.ToWafProfileAddressListPtrOutputWithContext(context.Background())
 }
@@ -8994,6 +14829,12 @@ func (i *wafProfileAddressListPtrType) ToWafProfileAddressListPtrOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileAddressListPtrOutput)
 }
 
+func (i *wafProfileAddressListPtrType) ToOutput(ctx context.Context) pulumix.Output[*WafProfileAddressList] {
+	return pulumix.Output[*WafProfileAddressList]{
+		OutputState: i.ToWafProfileAddressListPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WafProfileAddressListOutput struct{ *pulumi.OutputState }
 
 func (WafProfileAddressListOutput) ElementType() reflect.Type {
@@ -9016,6 +14857,12 @@ func (o WafProfileAddressListOutput) ToWafProfileAddressListPtrOutputWithContext
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WafProfileAddressList) *WafProfileAddressList {
 		return &v
 	}).(WafProfileAddressListPtrOutput)
+}
+
+func (o WafProfileAddressListOutput) ToOutput(ctx context.Context) pulumix.Output[WafProfileAddressList] {
+	return pulumix.Output[WafProfileAddressList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileAddressListOutput) BlockedAddresses() WafProfileAddressListBlockedAddressArrayOutput {
@@ -9050,6 +14897,12 @@ func (o WafProfileAddressListPtrOutput) ToWafProfileAddressListPtrOutput() WafPr
 
 func (o WafProfileAddressListPtrOutput) ToWafProfileAddressListPtrOutputWithContext(ctx context.Context) WafProfileAddressListPtrOutput {
 	return o
+}
+
+func (o WafProfileAddressListPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WafProfileAddressList] {
+	return pulumix.Output[*WafProfileAddressList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileAddressListPtrOutput) Elem() WafProfileAddressListOutput {
@@ -9138,6 +14991,12 @@ func (i WafProfileAddressListBlockedAddressArgs) ToWafProfileAddressListBlockedA
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileAddressListBlockedAddressOutput)
 }
 
+func (i WafProfileAddressListBlockedAddressArgs) ToOutput(ctx context.Context) pulumix.Output[WafProfileAddressListBlockedAddress] {
+	return pulumix.Output[WafProfileAddressListBlockedAddress]{
+		OutputState: i.ToWafProfileAddressListBlockedAddressOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WafProfileAddressListBlockedAddressArrayInput is an input type that accepts WafProfileAddressListBlockedAddressArray and WafProfileAddressListBlockedAddressArrayOutput values.
 // You can construct a concrete instance of `WafProfileAddressListBlockedAddressArrayInput` via:
 //
@@ -9163,6 +15022,12 @@ func (i WafProfileAddressListBlockedAddressArray) ToWafProfileAddressListBlocked
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileAddressListBlockedAddressArrayOutput)
 }
 
+func (i WafProfileAddressListBlockedAddressArray) ToOutput(ctx context.Context) pulumix.Output[[]WafProfileAddressListBlockedAddress] {
+	return pulumix.Output[[]WafProfileAddressListBlockedAddress]{
+		OutputState: i.ToWafProfileAddressListBlockedAddressArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WafProfileAddressListBlockedAddressOutput struct{ *pulumi.OutputState }
 
 func (WafProfileAddressListBlockedAddressOutput) ElementType() reflect.Type {
@@ -9175,6 +15040,12 @@ func (o WafProfileAddressListBlockedAddressOutput) ToWafProfileAddressListBlocke
 
 func (o WafProfileAddressListBlockedAddressOutput) ToWafProfileAddressListBlockedAddressOutputWithContext(ctx context.Context) WafProfileAddressListBlockedAddressOutput {
 	return o
+}
+
+func (o WafProfileAddressListBlockedAddressOutput) ToOutput(ctx context.Context) pulumix.Output[WafProfileAddressListBlockedAddress] {
+	return pulumix.Output[WafProfileAddressListBlockedAddress]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileAddressListBlockedAddressOutput) Name() pulumi.StringPtrOutput {
@@ -9193,6 +15064,12 @@ func (o WafProfileAddressListBlockedAddressArrayOutput) ToWafProfileAddressListB
 
 func (o WafProfileAddressListBlockedAddressArrayOutput) ToWafProfileAddressListBlockedAddressArrayOutputWithContext(ctx context.Context) WafProfileAddressListBlockedAddressArrayOutput {
 	return o
+}
+
+func (o WafProfileAddressListBlockedAddressArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WafProfileAddressListBlockedAddress] {
+	return pulumix.Output[[]WafProfileAddressListBlockedAddress]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileAddressListBlockedAddressArrayOutput) Index(i pulumi.IntInput) WafProfileAddressListBlockedAddressOutput {
@@ -9232,6 +15109,12 @@ func (i WafProfileAddressListTrustedAddressArgs) ToWafProfileAddressListTrustedA
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileAddressListTrustedAddressOutput)
 }
 
+func (i WafProfileAddressListTrustedAddressArgs) ToOutput(ctx context.Context) pulumix.Output[WafProfileAddressListTrustedAddress] {
+	return pulumix.Output[WafProfileAddressListTrustedAddress]{
+		OutputState: i.ToWafProfileAddressListTrustedAddressOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WafProfileAddressListTrustedAddressArrayInput is an input type that accepts WafProfileAddressListTrustedAddressArray and WafProfileAddressListTrustedAddressArrayOutput values.
 // You can construct a concrete instance of `WafProfileAddressListTrustedAddressArrayInput` via:
 //
@@ -9257,6 +15140,12 @@ func (i WafProfileAddressListTrustedAddressArray) ToWafProfileAddressListTrusted
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileAddressListTrustedAddressArrayOutput)
 }
 
+func (i WafProfileAddressListTrustedAddressArray) ToOutput(ctx context.Context) pulumix.Output[[]WafProfileAddressListTrustedAddress] {
+	return pulumix.Output[[]WafProfileAddressListTrustedAddress]{
+		OutputState: i.ToWafProfileAddressListTrustedAddressArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WafProfileAddressListTrustedAddressOutput struct{ *pulumi.OutputState }
 
 func (WafProfileAddressListTrustedAddressOutput) ElementType() reflect.Type {
@@ -9269,6 +15158,12 @@ func (o WafProfileAddressListTrustedAddressOutput) ToWafProfileAddressListTruste
 
 func (o WafProfileAddressListTrustedAddressOutput) ToWafProfileAddressListTrustedAddressOutputWithContext(ctx context.Context) WafProfileAddressListTrustedAddressOutput {
 	return o
+}
+
+func (o WafProfileAddressListTrustedAddressOutput) ToOutput(ctx context.Context) pulumix.Output[WafProfileAddressListTrustedAddress] {
+	return pulumix.Output[WafProfileAddressListTrustedAddress]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileAddressListTrustedAddressOutput) Name() pulumi.StringPtrOutput {
@@ -9287,6 +15182,12 @@ func (o WafProfileAddressListTrustedAddressArrayOutput) ToWafProfileAddressListT
 
 func (o WafProfileAddressListTrustedAddressArrayOutput) ToWafProfileAddressListTrustedAddressArrayOutputWithContext(ctx context.Context) WafProfileAddressListTrustedAddressArrayOutput {
 	return o
+}
+
+func (o WafProfileAddressListTrustedAddressArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WafProfileAddressListTrustedAddress] {
+	return pulumix.Output[[]WafProfileAddressListTrustedAddress]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileAddressListTrustedAddressArrayOutput) Index(i pulumi.IntInput) WafProfileAddressListTrustedAddressOutput {
@@ -9352,6 +15253,12 @@ func (i WafProfileConstraintArgs) ToWafProfileConstraintOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileConstraintOutput)
 }
 
+func (i WafProfileConstraintArgs) ToOutput(ctx context.Context) pulumix.Output[WafProfileConstraint] {
+	return pulumix.Output[WafProfileConstraint]{
+		OutputState: i.ToWafProfileConstraintOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WafProfileConstraintArgs) ToWafProfileConstraintPtrOutput() WafProfileConstraintPtrOutput {
 	return i.ToWafProfileConstraintPtrOutputWithContext(context.Background())
 }
@@ -9393,6 +15300,12 @@ func (i *wafProfileConstraintPtrType) ToWafProfileConstraintPtrOutputWithContext
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileConstraintPtrOutput)
 }
 
+func (i *wafProfileConstraintPtrType) ToOutput(ctx context.Context) pulumix.Output[*WafProfileConstraint] {
+	return pulumix.Output[*WafProfileConstraint]{
+		OutputState: i.ToWafProfileConstraintPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WafProfileConstraintOutput struct{ *pulumi.OutputState }
 
 func (WafProfileConstraintOutput) ElementType() reflect.Type {
@@ -9415,6 +15328,12 @@ func (o WafProfileConstraintOutput) ToWafProfileConstraintPtrOutputWithContext(c
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WafProfileConstraint) *WafProfileConstraint {
 		return &v
 	}).(WafProfileConstraintPtrOutput)
+}
+
+func (o WafProfileConstraintOutput) ToOutput(ctx context.Context) pulumix.Output[WafProfileConstraint] {
+	return pulumix.Output[WafProfileConstraint]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileConstraintOutput) ContentLength() WafProfileConstraintContentLengthPtrOutput {
@@ -9485,6 +15404,12 @@ func (o WafProfileConstraintPtrOutput) ToWafProfileConstraintPtrOutput() WafProf
 
 func (o WafProfileConstraintPtrOutput) ToWafProfileConstraintPtrOutputWithContext(ctx context.Context) WafProfileConstraintPtrOutput {
 	return o
+}
+
+func (o WafProfileConstraintPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WafProfileConstraint] {
+	return pulumix.Output[*WafProfileConstraint]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileConstraintPtrOutput) Elem() WafProfileConstraintOutput {
@@ -9662,6 +15587,12 @@ func (i WafProfileConstraintContentLengthArgs) ToWafProfileConstraintContentLeng
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileConstraintContentLengthOutput)
 }
 
+func (i WafProfileConstraintContentLengthArgs) ToOutput(ctx context.Context) pulumix.Output[WafProfileConstraintContentLength] {
+	return pulumix.Output[WafProfileConstraintContentLength]{
+		OutputState: i.ToWafProfileConstraintContentLengthOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WafProfileConstraintContentLengthArgs) ToWafProfileConstraintContentLengthPtrOutput() WafProfileConstraintContentLengthPtrOutput {
 	return i.ToWafProfileConstraintContentLengthPtrOutputWithContext(context.Background())
 }
@@ -9703,6 +15634,12 @@ func (i *wafProfileConstraintContentLengthPtrType) ToWafProfileConstraintContent
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileConstraintContentLengthPtrOutput)
 }
 
+func (i *wafProfileConstraintContentLengthPtrType) ToOutput(ctx context.Context) pulumix.Output[*WafProfileConstraintContentLength] {
+	return pulumix.Output[*WafProfileConstraintContentLength]{
+		OutputState: i.ToWafProfileConstraintContentLengthPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WafProfileConstraintContentLengthOutput struct{ *pulumi.OutputState }
 
 func (WafProfileConstraintContentLengthOutput) ElementType() reflect.Type {
@@ -9725,6 +15662,12 @@ func (o WafProfileConstraintContentLengthOutput) ToWafProfileConstraintContentLe
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WafProfileConstraintContentLength) *WafProfileConstraintContentLength {
 		return &v
 	}).(WafProfileConstraintContentLengthPtrOutput)
+}
+
+func (o WafProfileConstraintContentLengthOutput) ToOutput(ctx context.Context) pulumix.Output[WafProfileConstraintContentLength] {
+	return pulumix.Output[WafProfileConstraintContentLength]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileConstraintContentLengthOutput) Action() pulumi.StringPtrOutput {
@@ -9759,6 +15702,12 @@ func (o WafProfileConstraintContentLengthPtrOutput) ToWafProfileConstraintConten
 
 func (o WafProfileConstraintContentLengthPtrOutput) ToWafProfileConstraintContentLengthPtrOutputWithContext(ctx context.Context) WafProfileConstraintContentLengthPtrOutput {
 	return o
+}
+
+func (o WafProfileConstraintContentLengthPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WafProfileConstraintContentLength] {
+	return pulumix.Output[*WafProfileConstraintContentLength]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileConstraintContentLengthPtrOutput) Elem() WafProfileConstraintContentLengthOutput {
@@ -9879,6 +15828,12 @@ func (i WafProfileConstraintExceptionArgs) ToWafProfileConstraintExceptionOutput
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileConstraintExceptionOutput)
 }
 
+func (i WafProfileConstraintExceptionArgs) ToOutput(ctx context.Context) pulumix.Output[WafProfileConstraintException] {
+	return pulumix.Output[WafProfileConstraintException]{
+		OutputState: i.ToWafProfileConstraintExceptionOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WafProfileConstraintExceptionArrayInput is an input type that accepts WafProfileConstraintExceptionArray and WafProfileConstraintExceptionArrayOutput values.
 // You can construct a concrete instance of `WafProfileConstraintExceptionArrayInput` via:
 //
@@ -9904,6 +15859,12 @@ func (i WafProfileConstraintExceptionArray) ToWafProfileConstraintExceptionArray
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileConstraintExceptionArrayOutput)
 }
 
+func (i WafProfileConstraintExceptionArray) ToOutput(ctx context.Context) pulumix.Output[[]WafProfileConstraintException] {
+	return pulumix.Output[[]WafProfileConstraintException]{
+		OutputState: i.ToWafProfileConstraintExceptionArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WafProfileConstraintExceptionOutput struct{ *pulumi.OutputState }
 
 func (WafProfileConstraintExceptionOutput) ElementType() reflect.Type {
@@ -9916,6 +15877,12 @@ func (o WafProfileConstraintExceptionOutput) ToWafProfileConstraintExceptionOutp
 
 func (o WafProfileConstraintExceptionOutput) ToWafProfileConstraintExceptionOutputWithContext(ctx context.Context) WafProfileConstraintExceptionOutput {
 	return o
+}
+
+func (o WafProfileConstraintExceptionOutput) ToOutput(ctx context.Context) pulumix.Output[WafProfileConstraintException] {
+	return pulumix.Output[WafProfileConstraintException]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileConstraintExceptionOutput) Address() pulumi.StringPtrOutput {
@@ -10000,6 +15967,12 @@ func (o WafProfileConstraintExceptionArrayOutput) ToWafProfileConstraintExceptio
 	return o
 }
 
+func (o WafProfileConstraintExceptionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WafProfileConstraintException] {
+	return pulumix.Output[[]WafProfileConstraintException]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o WafProfileConstraintExceptionArrayOutput) Index(i pulumi.IntInput) WafProfileConstraintExceptionOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WafProfileConstraintException {
 		return vs[0].([]WafProfileConstraintException)[vs[1].(int)]
@@ -10045,6 +16018,12 @@ func (i WafProfileConstraintHeaderLengthArgs) ToWafProfileConstraintHeaderLength
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileConstraintHeaderLengthOutput)
 }
 
+func (i WafProfileConstraintHeaderLengthArgs) ToOutput(ctx context.Context) pulumix.Output[WafProfileConstraintHeaderLength] {
+	return pulumix.Output[WafProfileConstraintHeaderLength]{
+		OutputState: i.ToWafProfileConstraintHeaderLengthOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WafProfileConstraintHeaderLengthArgs) ToWafProfileConstraintHeaderLengthPtrOutput() WafProfileConstraintHeaderLengthPtrOutput {
 	return i.ToWafProfileConstraintHeaderLengthPtrOutputWithContext(context.Background())
 }
@@ -10086,6 +16065,12 @@ func (i *wafProfileConstraintHeaderLengthPtrType) ToWafProfileConstraintHeaderLe
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileConstraintHeaderLengthPtrOutput)
 }
 
+func (i *wafProfileConstraintHeaderLengthPtrType) ToOutput(ctx context.Context) pulumix.Output[*WafProfileConstraintHeaderLength] {
+	return pulumix.Output[*WafProfileConstraintHeaderLength]{
+		OutputState: i.ToWafProfileConstraintHeaderLengthPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WafProfileConstraintHeaderLengthOutput struct{ *pulumi.OutputState }
 
 func (WafProfileConstraintHeaderLengthOutput) ElementType() reflect.Type {
@@ -10108,6 +16093,12 @@ func (o WafProfileConstraintHeaderLengthOutput) ToWafProfileConstraintHeaderLeng
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WafProfileConstraintHeaderLength) *WafProfileConstraintHeaderLength {
 		return &v
 	}).(WafProfileConstraintHeaderLengthPtrOutput)
+}
+
+func (o WafProfileConstraintHeaderLengthOutput) ToOutput(ctx context.Context) pulumix.Output[WafProfileConstraintHeaderLength] {
+	return pulumix.Output[WafProfileConstraintHeaderLength]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileConstraintHeaderLengthOutput) Action() pulumi.StringPtrOutput {
@@ -10142,6 +16133,12 @@ func (o WafProfileConstraintHeaderLengthPtrOutput) ToWafProfileConstraintHeaderL
 
 func (o WafProfileConstraintHeaderLengthPtrOutput) ToWafProfileConstraintHeaderLengthPtrOutputWithContext(ctx context.Context) WafProfileConstraintHeaderLengthPtrOutput {
 	return o
+}
+
+func (o WafProfileConstraintHeaderLengthPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WafProfileConstraintHeaderLength] {
+	return pulumix.Output[*WafProfileConstraintHeaderLength]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileConstraintHeaderLengthPtrOutput) Elem() WafProfileConstraintHeaderLengthOutput {
@@ -10236,6 +16233,12 @@ func (i WafProfileConstraintHostnameArgs) ToWafProfileConstraintHostnameOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileConstraintHostnameOutput)
 }
 
+func (i WafProfileConstraintHostnameArgs) ToOutput(ctx context.Context) pulumix.Output[WafProfileConstraintHostname] {
+	return pulumix.Output[WafProfileConstraintHostname]{
+		OutputState: i.ToWafProfileConstraintHostnameOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WafProfileConstraintHostnameArgs) ToWafProfileConstraintHostnamePtrOutput() WafProfileConstraintHostnamePtrOutput {
 	return i.ToWafProfileConstraintHostnamePtrOutputWithContext(context.Background())
 }
@@ -10277,6 +16280,12 @@ func (i *wafProfileConstraintHostnamePtrType) ToWafProfileConstraintHostnamePtrO
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileConstraintHostnamePtrOutput)
 }
 
+func (i *wafProfileConstraintHostnamePtrType) ToOutput(ctx context.Context) pulumix.Output[*WafProfileConstraintHostname] {
+	return pulumix.Output[*WafProfileConstraintHostname]{
+		OutputState: i.ToWafProfileConstraintHostnamePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WafProfileConstraintHostnameOutput struct{ *pulumi.OutputState }
 
 func (WafProfileConstraintHostnameOutput) ElementType() reflect.Type {
@@ -10299,6 +16308,12 @@ func (o WafProfileConstraintHostnameOutput) ToWafProfileConstraintHostnamePtrOut
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WafProfileConstraintHostname) *WafProfileConstraintHostname {
 		return &v
 	}).(WafProfileConstraintHostnamePtrOutput)
+}
+
+func (o WafProfileConstraintHostnameOutput) ToOutput(ctx context.Context) pulumix.Output[WafProfileConstraintHostname] {
+	return pulumix.Output[WafProfileConstraintHostname]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileConstraintHostnameOutput) Action() pulumi.StringPtrOutput {
@@ -10329,6 +16344,12 @@ func (o WafProfileConstraintHostnamePtrOutput) ToWafProfileConstraintHostnamePtr
 
 func (o WafProfileConstraintHostnamePtrOutput) ToWafProfileConstraintHostnamePtrOutputWithContext(ctx context.Context) WafProfileConstraintHostnamePtrOutput {
 	return o
+}
+
+func (o WafProfileConstraintHostnamePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WafProfileConstraintHostname] {
+	return pulumix.Output[*WafProfileConstraintHostname]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileConstraintHostnamePtrOutput) Elem() WafProfileConstraintHostnameOutput {
@@ -10416,6 +16437,12 @@ func (i WafProfileConstraintLineLengthArgs) ToWafProfileConstraintLineLengthOutp
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileConstraintLineLengthOutput)
 }
 
+func (i WafProfileConstraintLineLengthArgs) ToOutput(ctx context.Context) pulumix.Output[WafProfileConstraintLineLength] {
+	return pulumix.Output[WafProfileConstraintLineLength]{
+		OutputState: i.ToWafProfileConstraintLineLengthOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WafProfileConstraintLineLengthArgs) ToWafProfileConstraintLineLengthPtrOutput() WafProfileConstraintLineLengthPtrOutput {
 	return i.ToWafProfileConstraintLineLengthPtrOutputWithContext(context.Background())
 }
@@ -10457,6 +16484,12 @@ func (i *wafProfileConstraintLineLengthPtrType) ToWafProfileConstraintLineLength
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileConstraintLineLengthPtrOutput)
 }
 
+func (i *wafProfileConstraintLineLengthPtrType) ToOutput(ctx context.Context) pulumix.Output[*WafProfileConstraintLineLength] {
+	return pulumix.Output[*WafProfileConstraintLineLength]{
+		OutputState: i.ToWafProfileConstraintLineLengthPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WafProfileConstraintLineLengthOutput struct{ *pulumi.OutputState }
 
 func (WafProfileConstraintLineLengthOutput) ElementType() reflect.Type {
@@ -10479,6 +16512,12 @@ func (o WafProfileConstraintLineLengthOutput) ToWafProfileConstraintLineLengthPt
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WafProfileConstraintLineLength) *WafProfileConstraintLineLength {
 		return &v
 	}).(WafProfileConstraintLineLengthPtrOutput)
+}
+
+func (o WafProfileConstraintLineLengthOutput) ToOutput(ctx context.Context) pulumix.Output[WafProfileConstraintLineLength] {
+	return pulumix.Output[WafProfileConstraintLineLength]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileConstraintLineLengthOutput) Action() pulumi.StringPtrOutput {
@@ -10513,6 +16552,12 @@ func (o WafProfileConstraintLineLengthPtrOutput) ToWafProfileConstraintLineLengt
 
 func (o WafProfileConstraintLineLengthPtrOutput) ToWafProfileConstraintLineLengthPtrOutputWithContext(ctx context.Context) WafProfileConstraintLineLengthPtrOutput {
 	return o
+}
+
+func (o WafProfileConstraintLineLengthPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WafProfileConstraintLineLength] {
+	return pulumix.Output[*WafProfileConstraintLineLength]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileConstraintLineLengthPtrOutput) Elem() WafProfileConstraintLineLengthOutput {
@@ -10607,6 +16652,12 @@ func (i WafProfileConstraintMalformedArgs) ToWafProfileConstraintMalformedOutput
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileConstraintMalformedOutput)
 }
 
+func (i WafProfileConstraintMalformedArgs) ToOutput(ctx context.Context) pulumix.Output[WafProfileConstraintMalformed] {
+	return pulumix.Output[WafProfileConstraintMalformed]{
+		OutputState: i.ToWafProfileConstraintMalformedOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WafProfileConstraintMalformedArgs) ToWafProfileConstraintMalformedPtrOutput() WafProfileConstraintMalformedPtrOutput {
 	return i.ToWafProfileConstraintMalformedPtrOutputWithContext(context.Background())
 }
@@ -10648,6 +16699,12 @@ func (i *wafProfileConstraintMalformedPtrType) ToWafProfileConstraintMalformedPt
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileConstraintMalformedPtrOutput)
 }
 
+func (i *wafProfileConstraintMalformedPtrType) ToOutput(ctx context.Context) pulumix.Output[*WafProfileConstraintMalformed] {
+	return pulumix.Output[*WafProfileConstraintMalformed]{
+		OutputState: i.ToWafProfileConstraintMalformedPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WafProfileConstraintMalformedOutput struct{ *pulumi.OutputState }
 
 func (WafProfileConstraintMalformedOutput) ElementType() reflect.Type {
@@ -10670,6 +16727,12 @@ func (o WafProfileConstraintMalformedOutput) ToWafProfileConstraintMalformedPtrO
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WafProfileConstraintMalformed) *WafProfileConstraintMalformed {
 		return &v
 	}).(WafProfileConstraintMalformedPtrOutput)
+}
+
+func (o WafProfileConstraintMalformedOutput) ToOutput(ctx context.Context) pulumix.Output[WafProfileConstraintMalformed] {
+	return pulumix.Output[WafProfileConstraintMalformed]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileConstraintMalformedOutput) Action() pulumi.StringPtrOutput {
@@ -10700,6 +16763,12 @@ func (o WafProfileConstraintMalformedPtrOutput) ToWafProfileConstraintMalformedP
 
 func (o WafProfileConstraintMalformedPtrOutput) ToWafProfileConstraintMalformedPtrOutputWithContext(ctx context.Context) WafProfileConstraintMalformedPtrOutput {
 	return o
+}
+
+func (o WafProfileConstraintMalformedPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WafProfileConstraintMalformed] {
+	return pulumix.Output[*WafProfileConstraintMalformed]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileConstraintMalformedPtrOutput) Elem() WafProfileConstraintMalformedOutput {
@@ -10787,6 +16856,12 @@ func (i WafProfileConstraintMaxCookieArgs) ToWafProfileConstraintMaxCookieOutput
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileConstraintMaxCookieOutput)
 }
 
+func (i WafProfileConstraintMaxCookieArgs) ToOutput(ctx context.Context) pulumix.Output[WafProfileConstraintMaxCookie] {
+	return pulumix.Output[WafProfileConstraintMaxCookie]{
+		OutputState: i.ToWafProfileConstraintMaxCookieOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WafProfileConstraintMaxCookieArgs) ToWafProfileConstraintMaxCookiePtrOutput() WafProfileConstraintMaxCookiePtrOutput {
 	return i.ToWafProfileConstraintMaxCookiePtrOutputWithContext(context.Background())
 }
@@ -10828,6 +16903,12 @@ func (i *wafProfileConstraintMaxCookiePtrType) ToWafProfileConstraintMaxCookiePt
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileConstraintMaxCookiePtrOutput)
 }
 
+func (i *wafProfileConstraintMaxCookiePtrType) ToOutput(ctx context.Context) pulumix.Output[*WafProfileConstraintMaxCookie] {
+	return pulumix.Output[*WafProfileConstraintMaxCookie]{
+		OutputState: i.ToWafProfileConstraintMaxCookiePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WafProfileConstraintMaxCookieOutput struct{ *pulumi.OutputState }
 
 func (WafProfileConstraintMaxCookieOutput) ElementType() reflect.Type {
@@ -10850,6 +16931,12 @@ func (o WafProfileConstraintMaxCookieOutput) ToWafProfileConstraintMaxCookiePtrO
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WafProfileConstraintMaxCookie) *WafProfileConstraintMaxCookie {
 		return &v
 	}).(WafProfileConstraintMaxCookiePtrOutput)
+}
+
+func (o WafProfileConstraintMaxCookieOutput) ToOutput(ctx context.Context) pulumix.Output[WafProfileConstraintMaxCookie] {
+	return pulumix.Output[WafProfileConstraintMaxCookie]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileConstraintMaxCookieOutput) Action() pulumi.StringPtrOutput {
@@ -10884,6 +16971,12 @@ func (o WafProfileConstraintMaxCookiePtrOutput) ToWafProfileConstraintMaxCookieP
 
 func (o WafProfileConstraintMaxCookiePtrOutput) ToWafProfileConstraintMaxCookiePtrOutputWithContext(ctx context.Context) WafProfileConstraintMaxCookiePtrOutput {
 	return o
+}
+
+func (o WafProfileConstraintMaxCookiePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WafProfileConstraintMaxCookie] {
+	return pulumix.Output[*WafProfileConstraintMaxCookie]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileConstraintMaxCookiePtrOutput) Elem() WafProfileConstraintMaxCookieOutput {
@@ -10980,6 +17073,12 @@ func (i WafProfileConstraintMaxHeaderLineArgs) ToWafProfileConstraintMaxHeaderLi
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileConstraintMaxHeaderLineOutput)
 }
 
+func (i WafProfileConstraintMaxHeaderLineArgs) ToOutput(ctx context.Context) pulumix.Output[WafProfileConstraintMaxHeaderLine] {
+	return pulumix.Output[WafProfileConstraintMaxHeaderLine]{
+		OutputState: i.ToWafProfileConstraintMaxHeaderLineOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WafProfileConstraintMaxHeaderLineArgs) ToWafProfileConstraintMaxHeaderLinePtrOutput() WafProfileConstraintMaxHeaderLinePtrOutput {
 	return i.ToWafProfileConstraintMaxHeaderLinePtrOutputWithContext(context.Background())
 }
@@ -11021,6 +17120,12 @@ func (i *wafProfileConstraintMaxHeaderLinePtrType) ToWafProfileConstraintMaxHead
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileConstraintMaxHeaderLinePtrOutput)
 }
 
+func (i *wafProfileConstraintMaxHeaderLinePtrType) ToOutput(ctx context.Context) pulumix.Output[*WafProfileConstraintMaxHeaderLine] {
+	return pulumix.Output[*WafProfileConstraintMaxHeaderLine]{
+		OutputState: i.ToWafProfileConstraintMaxHeaderLinePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WafProfileConstraintMaxHeaderLineOutput struct{ *pulumi.OutputState }
 
 func (WafProfileConstraintMaxHeaderLineOutput) ElementType() reflect.Type {
@@ -11043,6 +17148,12 @@ func (o WafProfileConstraintMaxHeaderLineOutput) ToWafProfileConstraintMaxHeader
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WafProfileConstraintMaxHeaderLine) *WafProfileConstraintMaxHeaderLine {
 		return &v
 	}).(WafProfileConstraintMaxHeaderLinePtrOutput)
+}
+
+func (o WafProfileConstraintMaxHeaderLineOutput) ToOutput(ctx context.Context) pulumix.Output[WafProfileConstraintMaxHeaderLine] {
+	return pulumix.Output[WafProfileConstraintMaxHeaderLine]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileConstraintMaxHeaderLineOutput) Action() pulumi.StringPtrOutput {
@@ -11077,6 +17188,12 @@ func (o WafProfileConstraintMaxHeaderLinePtrOutput) ToWafProfileConstraintMaxHea
 
 func (o WafProfileConstraintMaxHeaderLinePtrOutput) ToWafProfileConstraintMaxHeaderLinePtrOutputWithContext(ctx context.Context) WafProfileConstraintMaxHeaderLinePtrOutput {
 	return o
+}
+
+func (o WafProfileConstraintMaxHeaderLinePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WafProfileConstraintMaxHeaderLine] {
+	return pulumix.Output[*WafProfileConstraintMaxHeaderLine]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileConstraintMaxHeaderLinePtrOutput) Elem() WafProfileConstraintMaxHeaderLineOutput {
@@ -11173,6 +17290,12 @@ func (i WafProfileConstraintMaxRangeSegmentArgs) ToWafProfileConstraintMaxRangeS
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileConstraintMaxRangeSegmentOutput)
 }
 
+func (i WafProfileConstraintMaxRangeSegmentArgs) ToOutput(ctx context.Context) pulumix.Output[WafProfileConstraintMaxRangeSegment] {
+	return pulumix.Output[WafProfileConstraintMaxRangeSegment]{
+		OutputState: i.ToWafProfileConstraintMaxRangeSegmentOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WafProfileConstraintMaxRangeSegmentArgs) ToWafProfileConstraintMaxRangeSegmentPtrOutput() WafProfileConstraintMaxRangeSegmentPtrOutput {
 	return i.ToWafProfileConstraintMaxRangeSegmentPtrOutputWithContext(context.Background())
 }
@@ -11214,6 +17337,12 @@ func (i *wafProfileConstraintMaxRangeSegmentPtrType) ToWafProfileConstraintMaxRa
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileConstraintMaxRangeSegmentPtrOutput)
 }
 
+func (i *wafProfileConstraintMaxRangeSegmentPtrType) ToOutput(ctx context.Context) pulumix.Output[*WafProfileConstraintMaxRangeSegment] {
+	return pulumix.Output[*WafProfileConstraintMaxRangeSegment]{
+		OutputState: i.ToWafProfileConstraintMaxRangeSegmentPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WafProfileConstraintMaxRangeSegmentOutput struct{ *pulumi.OutputState }
 
 func (WafProfileConstraintMaxRangeSegmentOutput) ElementType() reflect.Type {
@@ -11236,6 +17365,12 @@ func (o WafProfileConstraintMaxRangeSegmentOutput) ToWafProfileConstraintMaxRang
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WafProfileConstraintMaxRangeSegment) *WafProfileConstraintMaxRangeSegment {
 		return &v
 	}).(WafProfileConstraintMaxRangeSegmentPtrOutput)
+}
+
+func (o WafProfileConstraintMaxRangeSegmentOutput) ToOutput(ctx context.Context) pulumix.Output[WafProfileConstraintMaxRangeSegment] {
+	return pulumix.Output[WafProfileConstraintMaxRangeSegment]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileConstraintMaxRangeSegmentOutput) Action() pulumi.StringPtrOutput {
@@ -11270,6 +17405,12 @@ func (o WafProfileConstraintMaxRangeSegmentPtrOutput) ToWafProfileConstraintMaxR
 
 func (o WafProfileConstraintMaxRangeSegmentPtrOutput) ToWafProfileConstraintMaxRangeSegmentPtrOutputWithContext(ctx context.Context) WafProfileConstraintMaxRangeSegmentPtrOutput {
 	return o
+}
+
+func (o WafProfileConstraintMaxRangeSegmentPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WafProfileConstraintMaxRangeSegment] {
+	return pulumix.Output[*WafProfileConstraintMaxRangeSegment]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileConstraintMaxRangeSegmentPtrOutput) Elem() WafProfileConstraintMaxRangeSegmentOutput {
@@ -11366,6 +17507,12 @@ func (i WafProfileConstraintMaxUrlParamArgs) ToWafProfileConstraintMaxUrlParamOu
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileConstraintMaxUrlParamOutput)
 }
 
+func (i WafProfileConstraintMaxUrlParamArgs) ToOutput(ctx context.Context) pulumix.Output[WafProfileConstraintMaxUrlParam] {
+	return pulumix.Output[WafProfileConstraintMaxUrlParam]{
+		OutputState: i.ToWafProfileConstraintMaxUrlParamOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WafProfileConstraintMaxUrlParamArgs) ToWafProfileConstraintMaxUrlParamPtrOutput() WafProfileConstraintMaxUrlParamPtrOutput {
 	return i.ToWafProfileConstraintMaxUrlParamPtrOutputWithContext(context.Background())
 }
@@ -11407,6 +17554,12 @@ func (i *wafProfileConstraintMaxUrlParamPtrType) ToWafProfileConstraintMaxUrlPar
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileConstraintMaxUrlParamPtrOutput)
 }
 
+func (i *wafProfileConstraintMaxUrlParamPtrType) ToOutput(ctx context.Context) pulumix.Output[*WafProfileConstraintMaxUrlParam] {
+	return pulumix.Output[*WafProfileConstraintMaxUrlParam]{
+		OutputState: i.ToWafProfileConstraintMaxUrlParamPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WafProfileConstraintMaxUrlParamOutput struct{ *pulumi.OutputState }
 
 func (WafProfileConstraintMaxUrlParamOutput) ElementType() reflect.Type {
@@ -11429,6 +17582,12 @@ func (o WafProfileConstraintMaxUrlParamOutput) ToWafProfileConstraintMaxUrlParam
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WafProfileConstraintMaxUrlParam) *WafProfileConstraintMaxUrlParam {
 		return &v
 	}).(WafProfileConstraintMaxUrlParamPtrOutput)
+}
+
+func (o WafProfileConstraintMaxUrlParamOutput) ToOutput(ctx context.Context) pulumix.Output[WafProfileConstraintMaxUrlParam] {
+	return pulumix.Output[WafProfileConstraintMaxUrlParam]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileConstraintMaxUrlParamOutput) Action() pulumi.StringPtrOutput {
@@ -11463,6 +17622,12 @@ func (o WafProfileConstraintMaxUrlParamPtrOutput) ToWafProfileConstraintMaxUrlPa
 
 func (o WafProfileConstraintMaxUrlParamPtrOutput) ToWafProfileConstraintMaxUrlParamPtrOutputWithContext(ctx context.Context) WafProfileConstraintMaxUrlParamPtrOutput {
 	return o
+}
+
+func (o WafProfileConstraintMaxUrlParamPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WafProfileConstraintMaxUrlParam] {
+	return pulumix.Output[*WafProfileConstraintMaxUrlParam]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileConstraintMaxUrlParamPtrOutput) Elem() WafProfileConstraintMaxUrlParamOutput {
@@ -11557,6 +17722,12 @@ func (i WafProfileConstraintMethodArgs) ToWafProfileConstraintMethodOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileConstraintMethodOutput)
 }
 
+func (i WafProfileConstraintMethodArgs) ToOutput(ctx context.Context) pulumix.Output[WafProfileConstraintMethod] {
+	return pulumix.Output[WafProfileConstraintMethod]{
+		OutputState: i.ToWafProfileConstraintMethodOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WafProfileConstraintMethodArgs) ToWafProfileConstraintMethodPtrOutput() WafProfileConstraintMethodPtrOutput {
 	return i.ToWafProfileConstraintMethodPtrOutputWithContext(context.Background())
 }
@@ -11598,6 +17769,12 @@ func (i *wafProfileConstraintMethodPtrType) ToWafProfileConstraintMethodPtrOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileConstraintMethodPtrOutput)
 }
 
+func (i *wafProfileConstraintMethodPtrType) ToOutput(ctx context.Context) pulumix.Output[*WafProfileConstraintMethod] {
+	return pulumix.Output[*WafProfileConstraintMethod]{
+		OutputState: i.ToWafProfileConstraintMethodPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WafProfileConstraintMethodOutput struct{ *pulumi.OutputState }
 
 func (WafProfileConstraintMethodOutput) ElementType() reflect.Type {
@@ -11620,6 +17797,12 @@ func (o WafProfileConstraintMethodOutput) ToWafProfileConstraintMethodPtrOutputW
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WafProfileConstraintMethod) *WafProfileConstraintMethod {
 		return &v
 	}).(WafProfileConstraintMethodPtrOutput)
+}
+
+func (o WafProfileConstraintMethodOutput) ToOutput(ctx context.Context) pulumix.Output[WafProfileConstraintMethod] {
+	return pulumix.Output[WafProfileConstraintMethod]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileConstraintMethodOutput) Action() pulumi.StringPtrOutput {
@@ -11650,6 +17833,12 @@ func (o WafProfileConstraintMethodPtrOutput) ToWafProfileConstraintMethodPtrOutp
 
 func (o WafProfileConstraintMethodPtrOutput) ToWafProfileConstraintMethodPtrOutputWithContext(ctx context.Context) WafProfileConstraintMethodPtrOutput {
 	return o
+}
+
+func (o WafProfileConstraintMethodPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WafProfileConstraintMethod] {
+	return pulumix.Output[*WafProfileConstraintMethod]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileConstraintMethodPtrOutput) Elem() WafProfileConstraintMethodOutput {
@@ -11737,6 +17926,12 @@ func (i WafProfileConstraintParamLengthArgs) ToWafProfileConstraintParamLengthOu
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileConstraintParamLengthOutput)
 }
 
+func (i WafProfileConstraintParamLengthArgs) ToOutput(ctx context.Context) pulumix.Output[WafProfileConstraintParamLength] {
+	return pulumix.Output[WafProfileConstraintParamLength]{
+		OutputState: i.ToWafProfileConstraintParamLengthOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WafProfileConstraintParamLengthArgs) ToWafProfileConstraintParamLengthPtrOutput() WafProfileConstraintParamLengthPtrOutput {
 	return i.ToWafProfileConstraintParamLengthPtrOutputWithContext(context.Background())
 }
@@ -11778,6 +17973,12 @@ func (i *wafProfileConstraintParamLengthPtrType) ToWafProfileConstraintParamLeng
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileConstraintParamLengthPtrOutput)
 }
 
+func (i *wafProfileConstraintParamLengthPtrType) ToOutput(ctx context.Context) pulumix.Output[*WafProfileConstraintParamLength] {
+	return pulumix.Output[*WafProfileConstraintParamLength]{
+		OutputState: i.ToWafProfileConstraintParamLengthPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WafProfileConstraintParamLengthOutput struct{ *pulumi.OutputState }
 
 func (WafProfileConstraintParamLengthOutput) ElementType() reflect.Type {
@@ -11800,6 +18001,12 @@ func (o WafProfileConstraintParamLengthOutput) ToWafProfileConstraintParamLength
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WafProfileConstraintParamLength) *WafProfileConstraintParamLength {
 		return &v
 	}).(WafProfileConstraintParamLengthPtrOutput)
+}
+
+func (o WafProfileConstraintParamLengthOutput) ToOutput(ctx context.Context) pulumix.Output[WafProfileConstraintParamLength] {
+	return pulumix.Output[WafProfileConstraintParamLength]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileConstraintParamLengthOutput) Action() pulumi.StringPtrOutput {
@@ -11834,6 +18041,12 @@ func (o WafProfileConstraintParamLengthPtrOutput) ToWafProfileConstraintParamLen
 
 func (o WafProfileConstraintParamLengthPtrOutput) ToWafProfileConstraintParamLengthPtrOutputWithContext(ctx context.Context) WafProfileConstraintParamLengthPtrOutput {
 	return o
+}
+
+func (o WafProfileConstraintParamLengthPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WafProfileConstraintParamLength] {
+	return pulumix.Output[*WafProfileConstraintParamLength]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileConstraintParamLengthPtrOutput) Elem() WafProfileConstraintParamLengthOutput {
@@ -11930,6 +18143,12 @@ func (i WafProfileConstraintUrlParamLengthArgs) ToWafProfileConstraintUrlParamLe
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileConstraintUrlParamLengthOutput)
 }
 
+func (i WafProfileConstraintUrlParamLengthArgs) ToOutput(ctx context.Context) pulumix.Output[WafProfileConstraintUrlParamLength] {
+	return pulumix.Output[WafProfileConstraintUrlParamLength]{
+		OutputState: i.ToWafProfileConstraintUrlParamLengthOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WafProfileConstraintUrlParamLengthArgs) ToWafProfileConstraintUrlParamLengthPtrOutput() WafProfileConstraintUrlParamLengthPtrOutput {
 	return i.ToWafProfileConstraintUrlParamLengthPtrOutputWithContext(context.Background())
 }
@@ -11971,6 +18190,12 @@ func (i *wafProfileConstraintUrlParamLengthPtrType) ToWafProfileConstraintUrlPar
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileConstraintUrlParamLengthPtrOutput)
 }
 
+func (i *wafProfileConstraintUrlParamLengthPtrType) ToOutput(ctx context.Context) pulumix.Output[*WafProfileConstraintUrlParamLength] {
+	return pulumix.Output[*WafProfileConstraintUrlParamLength]{
+		OutputState: i.ToWafProfileConstraintUrlParamLengthPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WafProfileConstraintUrlParamLengthOutput struct{ *pulumi.OutputState }
 
 func (WafProfileConstraintUrlParamLengthOutput) ElementType() reflect.Type {
@@ -11993,6 +18218,12 @@ func (o WafProfileConstraintUrlParamLengthOutput) ToWafProfileConstraintUrlParam
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WafProfileConstraintUrlParamLength) *WafProfileConstraintUrlParamLength {
 		return &v
 	}).(WafProfileConstraintUrlParamLengthPtrOutput)
+}
+
+func (o WafProfileConstraintUrlParamLengthOutput) ToOutput(ctx context.Context) pulumix.Output[WafProfileConstraintUrlParamLength] {
+	return pulumix.Output[WafProfileConstraintUrlParamLength]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileConstraintUrlParamLengthOutput) Action() pulumi.StringPtrOutput {
@@ -12027,6 +18258,12 @@ func (o WafProfileConstraintUrlParamLengthPtrOutput) ToWafProfileConstraintUrlPa
 
 func (o WafProfileConstraintUrlParamLengthPtrOutput) ToWafProfileConstraintUrlParamLengthPtrOutputWithContext(ctx context.Context) WafProfileConstraintUrlParamLengthPtrOutput {
 	return o
+}
+
+func (o WafProfileConstraintUrlParamLengthPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WafProfileConstraintUrlParamLength] {
+	return pulumix.Output[*WafProfileConstraintUrlParamLength]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileConstraintUrlParamLengthPtrOutput) Elem() WafProfileConstraintUrlParamLengthOutput {
@@ -12121,6 +18358,12 @@ func (i WafProfileConstraintVersionArgs) ToWafProfileConstraintVersionOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileConstraintVersionOutput)
 }
 
+func (i WafProfileConstraintVersionArgs) ToOutput(ctx context.Context) pulumix.Output[WafProfileConstraintVersion] {
+	return pulumix.Output[WafProfileConstraintVersion]{
+		OutputState: i.ToWafProfileConstraintVersionOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WafProfileConstraintVersionArgs) ToWafProfileConstraintVersionPtrOutput() WafProfileConstraintVersionPtrOutput {
 	return i.ToWafProfileConstraintVersionPtrOutputWithContext(context.Background())
 }
@@ -12162,6 +18405,12 @@ func (i *wafProfileConstraintVersionPtrType) ToWafProfileConstraintVersionPtrOut
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileConstraintVersionPtrOutput)
 }
 
+func (i *wafProfileConstraintVersionPtrType) ToOutput(ctx context.Context) pulumix.Output[*WafProfileConstraintVersion] {
+	return pulumix.Output[*WafProfileConstraintVersion]{
+		OutputState: i.ToWafProfileConstraintVersionPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WafProfileConstraintVersionOutput struct{ *pulumi.OutputState }
 
 func (WafProfileConstraintVersionOutput) ElementType() reflect.Type {
@@ -12184,6 +18433,12 @@ func (o WafProfileConstraintVersionOutput) ToWafProfileConstraintVersionPtrOutpu
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WafProfileConstraintVersion) *WafProfileConstraintVersion {
 		return &v
 	}).(WafProfileConstraintVersionPtrOutput)
+}
+
+func (o WafProfileConstraintVersionOutput) ToOutput(ctx context.Context) pulumix.Output[WafProfileConstraintVersion] {
+	return pulumix.Output[WafProfileConstraintVersion]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileConstraintVersionOutput) Action() pulumi.StringPtrOutput {
@@ -12214,6 +18469,12 @@ func (o WafProfileConstraintVersionPtrOutput) ToWafProfileConstraintVersionPtrOu
 
 func (o WafProfileConstraintVersionPtrOutput) ToWafProfileConstraintVersionPtrOutputWithContext(ctx context.Context) WafProfileConstraintVersionPtrOutput {
 	return o
+}
+
+func (o WafProfileConstraintVersionPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WafProfileConstraintVersion] {
+	return pulumix.Output[*WafProfileConstraintVersion]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileConstraintVersionPtrOutput) Elem() WafProfileConstraintVersionOutput {
@@ -12301,6 +18562,12 @@ func (i WafProfileMethodArgs) ToWafProfileMethodOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileMethodOutput)
 }
 
+func (i WafProfileMethodArgs) ToOutput(ctx context.Context) pulumix.Output[WafProfileMethod] {
+	return pulumix.Output[WafProfileMethod]{
+		OutputState: i.ToWafProfileMethodOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WafProfileMethodArgs) ToWafProfileMethodPtrOutput() WafProfileMethodPtrOutput {
 	return i.ToWafProfileMethodPtrOutputWithContext(context.Background())
 }
@@ -12342,6 +18609,12 @@ func (i *wafProfileMethodPtrType) ToWafProfileMethodPtrOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileMethodPtrOutput)
 }
 
+func (i *wafProfileMethodPtrType) ToOutput(ctx context.Context) pulumix.Output[*WafProfileMethod] {
+	return pulumix.Output[*WafProfileMethod]{
+		OutputState: i.ToWafProfileMethodPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WafProfileMethodOutput struct{ *pulumi.OutputState }
 
 func (WafProfileMethodOutput) ElementType() reflect.Type {
@@ -12364,6 +18637,12 @@ func (o WafProfileMethodOutput) ToWafProfileMethodPtrOutputWithContext(ctx conte
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WafProfileMethod) *WafProfileMethod {
 		return &v
 	}).(WafProfileMethodPtrOutput)
+}
+
+func (o WafProfileMethodOutput) ToOutput(ctx context.Context) pulumix.Output[WafProfileMethod] {
+	return pulumix.Output[WafProfileMethod]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileMethodOutput) DefaultAllowedMethods() pulumi.StringPtrOutput {
@@ -12398,6 +18677,12 @@ func (o WafProfileMethodPtrOutput) ToWafProfileMethodPtrOutput() WafProfileMetho
 
 func (o WafProfileMethodPtrOutput) ToWafProfileMethodPtrOutputWithContext(ctx context.Context) WafProfileMethodPtrOutput {
 	return o
+}
+
+func (o WafProfileMethodPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WafProfileMethod] {
+	return pulumix.Output[*WafProfileMethod]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileMethodPtrOutput) Elem() WafProfileMethodOutput {
@@ -12494,6 +18779,12 @@ func (i WafProfileMethodMethodPolicyArgs) ToWafProfileMethodMethodPolicyOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileMethodMethodPolicyOutput)
 }
 
+func (i WafProfileMethodMethodPolicyArgs) ToOutput(ctx context.Context) pulumix.Output[WafProfileMethodMethodPolicy] {
+	return pulumix.Output[WafProfileMethodMethodPolicy]{
+		OutputState: i.ToWafProfileMethodMethodPolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WafProfileMethodMethodPolicyArrayInput is an input type that accepts WafProfileMethodMethodPolicyArray and WafProfileMethodMethodPolicyArrayOutput values.
 // You can construct a concrete instance of `WafProfileMethodMethodPolicyArrayInput` via:
 //
@@ -12519,6 +18810,12 @@ func (i WafProfileMethodMethodPolicyArray) ToWafProfileMethodMethodPolicyArrayOu
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileMethodMethodPolicyArrayOutput)
 }
 
+func (i WafProfileMethodMethodPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]WafProfileMethodMethodPolicy] {
+	return pulumix.Output[[]WafProfileMethodMethodPolicy]{
+		OutputState: i.ToWafProfileMethodMethodPolicyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WafProfileMethodMethodPolicyOutput struct{ *pulumi.OutputState }
 
 func (WafProfileMethodMethodPolicyOutput) ElementType() reflect.Type {
@@ -12531,6 +18828,12 @@ func (o WafProfileMethodMethodPolicyOutput) ToWafProfileMethodMethodPolicyOutput
 
 func (o WafProfileMethodMethodPolicyOutput) ToWafProfileMethodMethodPolicyOutputWithContext(ctx context.Context) WafProfileMethodMethodPolicyOutput {
 	return o
+}
+
+func (o WafProfileMethodMethodPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[WafProfileMethodMethodPolicy] {
+	return pulumix.Output[WafProfileMethodMethodPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileMethodMethodPolicyOutput) Address() pulumi.StringPtrOutput {
@@ -12565,6 +18868,12 @@ func (o WafProfileMethodMethodPolicyArrayOutput) ToWafProfileMethodMethodPolicyA
 
 func (o WafProfileMethodMethodPolicyArrayOutput) ToWafProfileMethodMethodPolicyArrayOutputWithContext(ctx context.Context) WafProfileMethodMethodPolicyArrayOutput {
 	return o
+}
+
+func (o WafProfileMethodMethodPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WafProfileMethodMethodPolicy] {
+	return pulumix.Output[[]WafProfileMethodMethodPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileMethodMethodPolicyArrayOutput) Index(i pulumi.IntInput) WafProfileMethodMethodPolicyOutput {
@@ -12612,6 +18921,12 @@ func (i WafProfileSignatureArgs) ToWafProfileSignatureOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileSignatureOutput)
 }
 
+func (i WafProfileSignatureArgs) ToOutput(ctx context.Context) pulumix.Output[WafProfileSignature] {
+	return pulumix.Output[WafProfileSignature]{
+		OutputState: i.ToWafProfileSignatureOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WafProfileSignatureArgs) ToWafProfileSignaturePtrOutput() WafProfileSignaturePtrOutput {
 	return i.ToWafProfileSignaturePtrOutputWithContext(context.Background())
 }
@@ -12653,6 +18968,12 @@ func (i *wafProfileSignaturePtrType) ToWafProfileSignaturePtrOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileSignaturePtrOutput)
 }
 
+func (i *wafProfileSignaturePtrType) ToOutput(ctx context.Context) pulumix.Output[*WafProfileSignature] {
+	return pulumix.Output[*WafProfileSignature]{
+		OutputState: i.ToWafProfileSignaturePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WafProfileSignatureOutput struct{ *pulumi.OutputState }
 
 func (WafProfileSignatureOutput) ElementType() reflect.Type {
@@ -12675,6 +18996,12 @@ func (o WafProfileSignatureOutput) ToWafProfileSignaturePtrOutputWithContext(ctx
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WafProfileSignature) *WafProfileSignature {
 		return &v
 	}).(WafProfileSignaturePtrOutput)
+}
+
+func (o WafProfileSignatureOutput) ToOutput(ctx context.Context) pulumix.Output[WafProfileSignature] {
+	return pulumix.Output[WafProfileSignature]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileSignatureOutput) CreditCardDetectionThreshold() pulumi.IntPtrOutput {
@@ -12709,6 +19036,12 @@ func (o WafProfileSignaturePtrOutput) ToWafProfileSignaturePtrOutput() WafProfil
 
 func (o WafProfileSignaturePtrOutput) ToWafProfileSignaturePtrOutputWithContext(ctx context.Context) WafProfileSignaturePtrOutput {
 	return o
+}
+
+func (o WafProfileSignaturePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WafProfileSignature] {
+	return pulumix.Output[*WafProfileSignature]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileSignaturePtrOutput) Elem() WafProfileSignatureOutput {
@@ -12813,6 +19146,12 @@ func (i WafProfileSignatureCustomSignatureArgs) ToWafProfileSignatureCustomSigna
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileSignatureCustomSignatureOutput)
 }
 
+func (i WafProfileSignatureCustomSignatureArgs) ToOutput(ctx context.Context) pulumix.Output[WafProfileSignatureCustomSignature] {
+	return pulumix.Output[WafProfileSignatureCustomSignature]{
+		OutputState: i.ToWafProfileSignatureCustomSignatureOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WafProfileSignatureCustomSignatureArrayInput is an input type that accepts WafProfileSignatureCustomSignatureArray and WafProfileSignatureCustomSignatureArrayOutput values.
 // You can construct a concrete instance of `WafProfileSignatureCustomSignatureArrayInput` via:
 //
@@ -12838,6 +19177,12 @@ func (i WafProfileSignatureCustomSignatureArray) ToWafProfileSignatureCustomSign
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileSignatureCustomSignatureArrayOutput)
 }
 
+func (i WafProfileSignatureCustomSignatureArray) ToOutput(ctx context.Context) pulumix.Output[[]WafProfileSignatureCustomSignature] {
+	return pulumix.Output[[]WafProfileSignatureCustomSignature]{
+		OutputState: i.ToWafProfileSignatureCustomSignatureArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WafProfileSignatureCustomSignatureOutput struct{ *pulumi.OutputState }
 
 func (WafProfileSignatureCustomSignatureOutput) ElementType() reflect.Type {
@@ -12850,6 +19195,12 @@ func (o WafProfileSignatureCustomSignatureOutput) ToWafProfileSignatureCustomSig
 
 func (o WafProfileSignatureCustomSignatureOutput) ToWafProfileSignatureCustomSignatureOutputWithContext(ctx context.Context) WafProfileSignatureCustomSignatureOutput {
 	return o
+}
+
+func (o WafProfileSignatureCustomSignatureOutput) ToOutput(ctx context.Context) pulumix.Output[WafProfileSignatureCustomSignature] {
+	return pulumix.Output[WafProfileSignatureCustomSignature]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileSignatureCustomSignatureOutput) Action() pulumi.StringPtrOutput {
@@ -12902,6 +19253,12 @@ func (o WafProfileSignatureCustomSignatureArrayOutput) ToWafProfileSignatureCust
 	return o
 }
 
+func (o WafProfileSignatureCustomSignatureArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WafProfileSignatureCustomSignature] {
+	return pulumix.Output[[]WafProfileSignatureCustomSignature]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o WafProfileSignatureCustomSignatureArrayOutput) Index(i pulumi.IntInput) WafProfileSignatureCustomSignatureOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WafProfileSignatureCustomSignature {
 		return vs[0].([]WafProfileSignatureCustomSignature)[vs[1].(int)]
@@ -12939,6 +19296,12 @@ func (i WafProfileSignatureDisabledSignatureArgs) ToWafProfileSignatureDisabledS
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileSignatureDisabledSignatureOutput)
 }
 
+func (i WafProfileSignatureDisabledSignatureArgs) ToOutput(ctx context.Context) pulumix.Output[WafProfileSignatureDisabledSignature] {
+	return pulumix.Output[WafProfileSignatureDisabledSignature]{
+		OutputState: i.ToWafProfileSignatureDisabledSignatureOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WafProfileSignatureDisabledSignatureArrayInput is an input type that accepts WafProfileSignatureDisabledSignatureArray and WafProfileSignatureDisabledSignatureArrayOutput values.
 // You can construct a concrete instance of `WafProfileSignatureDisabledSignatureArrayInput` via:
 //
@@ -12964,6 +19327,12 @@ func (i WafProfileSignatureDisabledSignatureArray) ToWafProfileSignatureDisabled
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileSignatureDisabledSignatureArrayOutput)
 }
 
+func (i WafProfileSignatureDisabledSignatureArray) ToOutput(ctx context.Context) pulumix.Output[[]WafProfileSignatureDisabledSignature] {
+	return pulumix.Output[[]WafProfileSignatureDisabledSignature]{
+		OutputState: i.ToWafProfileSignatureDisabledSignatureArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WafProfileSignatureDisabledSignatureOutput struct{ *pulumi.OutputState }
 
 func (WafProfileSignatureDisabledSignatureOutput) ElementType() reflect.Type {
@@ -12976,6 +19345,12 @@ func (o WafProfileSignatureDisabledSignatureOutput) ToWafProfileSignatureDisable
 
 func (o WafProfileSignatureDisabledSignatureOutput) ToWafProfileSignatureDisabledSignatureOutputWithContext(ctx context.Context) WafProfileSignatureDisabledSignatureOutput {
 	return o
+}
+
+func (o WafProfileSignatureDisabledSignatureOutput) ToOutput(ctx context.Context) pulumix.Output[WafProfileSignatureDisabledSignature] {
+	return pulumix.Output[WafProfileSignatureDisabledSignature]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileSignatureDisabledSignatureOutput) Id() pulumi.IntPtrOutput {
@@ -12994,6 +19369,12 @@ func (o WafProfileSignatureDisabledSignatureArrayOutput) ToWafProfileSignatureDi
 
 func (o WafProfileSignatureDisabledSignatureArrayOutput) ToWafProfileSignatureDisabledSignatureArrayOutputWithContext(ctx context.Context) WafProfileSignatureDisabledSignatureArrayOutput {
 	return o
+}
+
+func (o WafProfileSignatureDisabledSignatureArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WafProfileSignatureDisabledSignature] {
+	return pulumix.Output[[]WafProfileSignatureDisabledSignature]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileSignatureDisabledSignatureArrayOutput) Index(i pulumi.IntInput) WafProfileSignatureDisabledSignatureOutput {
@@ -13033,6 +19414,12 @@ func (i WafProfileSignatureDisabledSubClassArgs) ToWafProfileSignatureDisabledSu
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileSignatureDisabledSubClassOutput)
 }
 
+func (i WafProfileSignatureDisabledSubClassArgs) ToOutput(ctx context.Context) pulumix.Output[WafProfileSignatureDisabledSubClass] {
+	return pulumix.Output[WafProfileSignatureDisabledSubClass]{
+		OutputState: i.ToWafProfileSignatureDisabledSubClassOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WafProfileSignatureDisabledSubClassArrayInput is an input type that accepts WafProfileSignatureDisabledSubClassArray and WafProfileSignatureDisabledSubClassArrayOutput values.
 // You can construct a concrete instance of `WafProfileSignatureDisabledSubClassArrayInput` via:
 //
@@ -13058,6 +19445,12 @@ func (i WafProfileSignatureDisabledSubClassArray) ToWafProfileSignatureDisabledS
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileSignatureDisabledSubClassArrayOutput)
 }
 
+func (i WafProfileSignatureDisabledSubClassArray) ToOutput(ctx context.Context) pulumix.Output[[]WafProfileSignatureDisabledSubClass] {
+	return pulumix.Output[[]WafProfileSignatureDisabledSubClass]{
+		OutputState: i.ToWafProfileSignatureDisabledSubClassArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WafProfileSignatureDisabledSubClassOutput struct{ *pulumi.OutputState }
 
 func (WafProfileSignatureDisabledSubClassOutput) ElementType() reflect.Type {
@@ -13070,6 +19463,12 @@ func (o WafProfileSignatureDisabledSubClassOutput) ToWafProfileSignatureDisabled
 
 func (o WafProfileSignatureDisabledSubClassOutput) ToWafProfileSignatureDisabledSubClassOutputWithContext(ctx context.Context) WafProfileSignatureDisabledSubClassOutput {
 	return o
+}
+
+func (o WafProfileSignatureDisabledSubClassOutput) ToOutput(ctx context.Context) pulumix.Output[WafProfileSignatureDisabledSubClass] {
+	return pulumix.Output[WafProfileSignatureDisabledSubClass]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileSignatureDisabledSubClassOutput) Id() pulumi.IntPtrOutput {
@@ -13088,6 +19487,12 @@ func (o WafProfileSignatureDisabledSubClassArrayOutput) ToWafProfileSignatureDis
 
 func (o WafProfileSignatureDisabledSubClassArrayOutput) ToWafProfileSignatureDisabledSubClassArrayOutputWithContext(ctx context.Context) WafProfileSignatureDisabledSubClassArrayOutput {
 	return o
+}
+
+func (o WafProfileSignatureDisabledSubClassArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WafProfileSignatureDisabledSubClass] {
+	return pulumix.Output[[]WafProfileSignatureDisabledSubClass]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileSignatureDisabledSubClassArrayOutput) Index(i pulumi.IntInput) WafProfileSignatureDisabledSubClassOutput {
@@ -13135,6 +19540,12 @@ func (i WafProfileSignatureMainClassArgs) ToWafProfileSignatureMainClassOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileSignatureMainClassOutput)
 }
 
+func (i WafProfileSignatureMainClassArgs) ToOutput(ctx context.Context) pulumix.Output[WafProfileSignatureMainClass] {
+	return pulumix.Output[WafProfileSignatureMainClass]{
+		OutputState: i.ToWafProfileSignatureMainClassOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WafProfileSignatureMainClassArrayInput is an input type that accepts WafProfileSignatureMainClassArray and WafProfileSignatureMainClassArrayOutput values.
 // You can construct a concrete instance of `WafProfileSignatureMainClassArrayInput` via:
 //
@@ -13160,6 +19571,12 @@ func (i WafProfileSignatureMainClassArray) ToWafProfileSignatureMainClassArrayOu
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileSignatureMainClassArrayOutput)
 }
 
+func (i WafProfileSignatureMainClassArray) ToOutput(ctx context.Context) pulumix.Output[[]WafProfileSignatureMainClass] {
+	return pulumix.Output[[]WafProfileSignatureMainClass]{
+		OutputState: i.ToWafProfileSignatureMainClassArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WafProfileSignatureMainClassOutput struct{ *pulumi.OutputState }
 
 func (WafProfileSignatureMainClassOutput) ElementType() reflect.Type {
@@ -13172,6 +19589,12 @@ func (o WafProfileSignatureMainClassOutput) ToWafProfileSignatureMainClassOutput
 
 func (o WafProfileSignatureMainClassOutput) ToWafProfileSignatureMainClassOutputWithContext(ctx context.Context) WafProfileSignatureMainClassOutput {
 	return o
+}
+
+func (o WafProfileSignatureMainClassOutput) ToOutput(ctx context.Context) pulumix.Output[WafProfileSignatureMainClass] {
+	return pulumix.Output[WafProfileSignatureMainClass]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileSignatureMainClassOutput) Action() pulumi.StringPtrOutput {
@@ -13206,6 +19629,12 @@ func (o WafProfileSignatureMainClassArrayOutput) ToWafProfileSignatureMainClassA
 
 func (o WafProfileSignatureMainClassArrayOutput) ToWafProfileSignatureMainClassArrayOutputWithContext(ctx context.Context) WafProfileSignatureMainClassArrayOutput {
 	return o
+}
+
+func (o WafProfileSignatureMainClassArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WafProfileSignatureMainClass] {
+	return pulumix.Output[[]WafProfileSignatureMainClass]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileSignatureMainClassArrayOutput) Index(i pulumi.IntInput) WafProfileSignatureMainClassOutput {
@@ -13255,6 +19684,12 @@ func (i WafProfileUrlAccessArgs) ToWafProfileUrlAccessOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileUrlAccessOutput)
 }
 
+func (i WafProfileUrlAccessArgs) ToOutput(ctx context.Context) pulumix.Output[WafProfileUrlAccess] {
+	return pulumix.Output[WafProfileUrlAccess]{
+		OutputState: i.ToWafProfileUrlAccessOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WafProfileUrlAccessArrayInput is an input type that accepts WafProfileUrlAccessArray and WafProfileUrlAccessArrayOutput values.
 // You can construct a concrete instance of `WafProfileUrlAccessArrayInput` via:
 //
@@ -13280,6 +19715,12 @@ func (i WafProfileUrlAccessArray) ToWafProfileUrlAccessArrayOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileUrlAccessArrayOutput)
 }
 
+func (i WafProfileUrlAccessArray) ToOutput(ctx context.Context) pulumix.Output[[]WafProfileUrlAccess] {
+	return pulumix.Output[[]WafProfileUrlAccess]{
+		OutputState: i.ToWafProfileUrlAccessArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WafProfileUrlAccessOutput struct{ *pulumi.OutputState }
 
 func (WafProfileUrlAccessOutput) ElementType() reflect.Type {
@@ -13292,6 +19733,12 @@ func (o WafProfileUrlAccessOutput) ToWafProfileUrlAccessOutput() WafProfileUrlAc
 
 func (o WafProfileUrlAccessOutput) ToWafProfileUrlAccessOutputWithContext(ctx context.Context) WafProfileUrlAccessOutput {
 	return o
+}
+
+func (o WafProfileUrlAccessOutput) ToOutput(ctx context.Context) pulumix.Output[WafProfileUrlAccess] {
+	return pulumix.Output[WafProfileUrlAccess]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileUrlAccessOutput) AccessPatterns() WafProfileUrlAccessAccessPatternArrayOutput {
@@ -13330,6 +19777,12 @@ func (o WafProfileUrlAccessArrayOutput) ToWafProfileUrlAccessArrayOutput() WafPr
 
 func (o WafProfileUrlAccessArrayOutput) ToWafProfileUrlAccessArrayOutputWithContext(ctx context.Context) WafProfileUrlAccessArrayOutput {
 	return o
+}
+
+func (o WafProfileUrlAccessArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WafProfileUrlAccess] {
+	return pulumix.Output[[]WafProfileUrlAccess]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileUrlAccessArrayOutput) Index(i pulumi.IntInput) WafProfileUrlAccessOutput {
@@ -13377,6 +19830,12 @@ func (i WafProfileUrlAccessAccessPatternArgs) ToWafProfileUrlAccessAccessPattern
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileUrlAccessAccessPatternOutput)
 }
 
+func (i WafProfileUrlAccessAccessPatternArgs) ToOutput(ctx context.Context) pulumix.Output[WafProfileUrlAccessAccessPattern] {
+	return pulumix.Output[WafProfileUrlAccessAccessPattern]{
+		OutputState: i.ToWafProfileUrlAccessAccessPatternOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WafProfileUrlAccessAccessPatternArrayInput is an input type that accepts WafProfileUrlAccessAccessPatternArray and WafProfileUrlAccessAccessPatternArrayOutput values.
 // You can construct a concrete instance of `WafProfileUrlAccessAccessPatternArrayInput` via:
 //
@@ -13402,6 +19861,12 @@ func (i WafProfileUrlAccessAccessPatternArray) ToWafProfileUrlAccessAccessPatter
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileUrlAccessAccessPatternArrayOutput)
 }
 
+func (i WafProfileUrlAccessAccessPatternArray) ToOutput(ctx context.Context) pulumix.Output[[]WafProfileUrlAccessAccessPattern] {
+	return pulumix.Output[[]WafProfileUrlAccessAccessPattern]{
+		OutputState: i.ToWafProfileUrlAccessAccessPatternArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WafProfileUrlAccessAccessPatternOutput struct{ *pulumi.OutputState }
 
 func (WafProfileUrlAccessAccessPatternOutput) ElementType() reflect.Type {
@@ -13414,6 +19879,12 @@ func (o WafProfileUrlAccessAccessPatternOutput) ToWafProfileUrlAccessAccessPatte
 
 func (o WafProfileUrlAccessAccessPatternOutput) ToWafProfileUrlAccessAccessPatternOutputWithContext(ctx context.Context) WafProfileUrlAccessAccessPatternOutput {
 	return o
+}
+
+func (o WafProfileUrlAccessAccessPatternOutput) ToOutput(ctx context.Context) pulumix.Output[WafProfileUrlAccessAccessPattern] {
+	return pulumix.Output[WafProfileUrlAccessAccessPattern]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileUrlAccessAccessPatternOutput) Id() pulumi.IntPtrOutput {
@@ -13448,6 +19919,12 @@ func (o WafProfileUrlAccessAccessPatternArrayOutput) ToWafProfileUrlAccessAccess
 
 func (o WafProfileUrlAccessAccessPatternArrayOutput) ToWafProfileUrlAccessAccessPatternArrayOutputWithContext(ctx context.Context) WafProfileUrlAccessAccessPatternArrayOutput {
 	return o
+}
+
+func (o WafProfileUrlAccessAccessPatternArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WafProfileUrlAccessAccessPattern] {
+	return pulumix.Output[[]WafProfileUrlAccessAccessPattern]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileUrlAccessAccessPatternArrayOutput) Index(i pulumi.IntInput) WafProfileUrlAccessAccessPatternOutput {
@@ -13495,6 +19972,12 @@ func (i WanoptCacheServiceDstPeerArgs) ToWanoptCacheServiceDstPeerOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptCacheServiceDstPeerOutput)
 }
 
+func (i WanoptCacheServiceDstPeerArgs) ToOutput(ctx context.Context) pulumix.Output[WanoptCacheServiceDstPeer] {
+	return pulumix.Output[WanoptCacheServiceDstPeer]{
+		OutputState: i.ToWanoptCacheServiceDstPeerOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WanoptCacheServiceDstPeerArrayInput is an input type that accepts WanoptCacheServiceDstPeerArray and WanoptCacheServiceDstPeerArrayOutput values.
 // You can construct a concrete instance of `WanoptCacheServiceDstPeerArrayInput` via:
 //
@@ -13520,6 +20003,12 @@ func (i WanoptCacheServiceDstPeerArray) ToWanoptCacheServiceDstPeerArrayOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptCacheServiceDstPeerArrayOutput)
 }
 
+func (i WanoptCacheServiceDstPeerArray) ToOutput(ctx context.Context) pulumix.Output[[]WanoptCacheServiceDstPeer] {
+	return pulumix.Output[[]WanoptCacheServiceDstPeer]{
+		OutputState: i.ToWanoptCacheServiceDstPeerArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WanoptCacheServiceDstPeerOutput struct{ *pulumi.OutputState }
 
 func (WanoptCacheServiceDstPeerOutput) ElementType() reflect.Type {
@@ -13532,6 +20021,12 @@ func (o WanoptCacheServiceDstPeerOutput) ToWanoptCacheServiceDstPeerOutput() Wan
 
 func (o WanoptCacheServiceDstPeerOutput) ToWanoptCacheServiceDstPeerOutputWithContext(ctx context.Context) WanoptCacheServiceDstPeerOutput {
 	return o
+}
+
+func (o WanoptCacheServiceDstPeerOutput) ToOutput(ctx context.Context) pulumix.Output[WanoptCacheServiceDstPeer] {
+	return pulumix.Output[WanoptCacheServiceDstPeer]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WanoptCacheServiceDstPeerOutput) AuthType() pulumi.IntPtrOutput {
@@ -13566,6 +20061,12 @@ func (o WanoptCacheServiceDstPeerArrayOutput) ToWanoptCacheServiceDstPeerArrayOu
 
 func (o WanoptCacheServiceDstPeerArrayOutput) ToWanoptCacheServiceDstPeerArrayOutputWithContext(ctx context.Context) WanoptCacheServiceDstPeerArrayOutput {
 	return o
+}
+
+func (o WanoptCacheServiceDstPeerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WanoptCacheServiceDstPeer] {
+	return pulumix.Output[[]WanoptCacheServiceDstPeer]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WanoptCacheServiceDstPeerArrayOutput) Index(i pulumi.IntInput) WanoptCacheServiceDstPeerOutput {
@@ -13613,6 +20114,12 @@ func (i WanoptCacheServiceSrcPeerArgs) ToWanoptCacheServiceSrcPeerOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptCacheServiceSrcPeerOutput)
 }
 
+func (i WanoptCacheServiceSrcPeerArgs) ToOutput(ctx context.Context) pulumix.Output[WanoptCacheServiceSrcPeer] {
+	return pulumix.Output[WanoptCacheServiceSrcPeer]{
+		OutputState: i.ToWanoptCacheServiceSrcPeerOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WanoptCacheServiceSrcPeerArrayInput is an input type that accepts WanoptCacheServiceSrcPeerArray and WanoptCacheServiceSrcPeerArrayOutput values.
 // You can construct a concrete instance of `WanoptCacheServiceSrcPeerArrayInput` via:
 //
@@ -13638,6 +20145,12 @@ func (i WanoptCacheServiceSrcPeerArray) ToWanoptCacheServiceSrcPeerArrayOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptCacheServiceSrcPeerArrayOutput)
 }
 
+func (i WanoptCacheServiceSrcPeerArray) ToOutput(ctx context.Context) pulumix.Output[[]WanoptCacheServiceSrcPeer] {
+	return pulumix.Output[[]WanoptCacheServiceSrcPeer]{
+		OutputState: i.ToWanoptCacheServiceSrcPeerArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WanoptCacheServiceSrcPeerOutput struct{ *pulumi.OutputState }
 
 func (WanoptCacheServiceSrcPeerOutput) ElementType() reflect.Type {
@@ -13650,6 +20163,12 @@ func (o WanoptCacheServiceSrcPeerOutput) ToWanoptCacheServiceSrcPeerOutput() Wan
 
 func (o WanoptCacheServiceSrcPeerOutput) ToWanoptCacheServiceSrcPeerOutputWithContext(ctx context.Context) WanoptCacheServiceSrcPeerOutput {
 	return o
+}
+
+func (o WanoptCacheServiceSrcPeerOutput) ToOutput(ctx context.Context) pulumix.Output[WanoptCacheServiceSrcPeer] {
+	return pulumix.Output[WanoptCacheServiceSrcPeer]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WanoptCacheServiceSrcPeerOutput) AuthType() pulumi.IntPtrOutput {
@@ -13684,6 +20203,12 @@ func (o WanoptCacheServiceSrcPeerArrayOutput) ToWanoptCacheServiceSrcPeerArrayOu
 
 func (o WanoptCacheServiceSrcPeerArrayOutput) ToWanoptCacheServiceSrcPeerArrayOutputWithContext(ctx context.Context) WanoptCacheServiceSrcPeerArrayOutput {
 	return o
+}
+
+func (o WanoptCacheServiceSrcPeerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WanoptCacheServiceSrcPeer] {
+	return pulumix.Output[[]WanoptCacheServiceSrcPeer]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WanoptCacheServiceSrcPeerArrayOutput) Index(i pulumi.IntInput) WanoptCacheServiceSrcPeerOutput {
@@ -13723,6 +20248,12 @@ func (i WanoptContentDeliveryNetworkRuleHostDomainNameSuffixArgs) ToWanoptConten
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptContentDeliveryNetworkRuleHostDomainNameSuffixOutput)
 }
 
+func (i WanoptContentDeliveryNetworkRuleHostDomainNameSuffixArgs) ToOutput(ctx context.Context) pulumix.Output[WanoptContentDeliveryNetworkRuleHostDomainNameSuffix] {
+	return pulumix.Output[WanoptContentDeliveryNetworkRuleHostDomainNameSuffix]{
+		OutputState: i.ToWanoptContentDeliveryNetworkRuleHostDomainNameSuffixOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WanoptContentDeliveryNetworkRuleHostDomainNameSuffixArrayInput is an input type that accepts WanoptContentDeliveryNetworkRuleHostDomainNameSuffixArray and WanoptContentDeliveryNetworkRuleHostDomainNameSuffixArrayOutput values.
 // You can construct a concrete instance of `WanoptContentDeliveryNetworkRuleHostDomainNameSuffixArrayInput` via:
 //
@@ -13748,6 +20279,12 @@ func (i WanoptContentDeliveryNetworkRuleHostDomainNameSuffixArray) ToWanoptConte
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptContentDeliveryNetworkRuleHostDomainNameSuffixArrayOutput)
 }
 
+func (i WanoptContentDeliveryNetworkRuleHostDomainNameSuffixArray) ToOutput(ctx context.Context) pulumix.Output[[]WanoptContentDeliveryNetworkRuleHostDomainNameSuffix] {
+	return pulumix.Output[[]WanoptContentDeliveryNetworkRuleHostDomainNameSuffix]{
+		OutputState: i.ToWanoptContentDeliveryNetworkRuleHostDomainNameSuffixArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WanoptContentDeliveryNetworkRuleHostDomainNameSuffixOutput struct{ *pulumi.OutputState }
 
 func (WanoptContentDeliveryNetworkRuleHostDomainNameSuffixOutput) ElementType() reflect.Type {
@@ -13760,6 +20297,12 @@ func (o WanoptContentDeliveryNetworkRuleHostDomainNameSuffixOutput) ToWanoptCont
 
 func (o WanoptContentDeliveryNetworkRuleHostDomainNameSuffixOutput) ToWanoptContentDeliveryNetworkRuleHostDomainNameSuffixOutputWithContext(ctx context.Context) WanoptContentDeliveryNetworkRuleHostDomainNameSuffixOutput {
 	return o
+}
+
+func (o WanoptContentDeliveryNetworkRuleHostDomainNameSuffixOutput) ToOutput(ctx context.Context) pulumix.Output[WanoptContentDeliveryNetworkRuleHostDomainNameSuffix] {
+	return pulumix.Output[WanoptContentDeliveryNetworkRuleHostDomainNameSuffix]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WanoptContentDeliveryNetworkRuleHostDomainNameSuffixOutput) Name() pulumi.StringPtrOutput {
@@ -13778,6 +20321,12 @@ func (o WanoptContentDeliveryNetworkRuleHostDomainNameSuffixArrayOutput) ToWanop
 
 func (o WanoptContentDeliveryNetworkRuleHostDomainNameSuffixArrayOutput) ToWanoptContentDeliveryNetworkRuleHostDomainNameSuffixArrayOutputWithContext(ctx context.Context) WanoptContentDeliveryNetworkRuleHostDomainNameSuffixArrayOutput {
 	return o
+}
+
+func (o WanoptContentDeliveryNetworkRuleHostDomainNameSuffixArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WanoptContentDeliveryNetworkRuleHostDomainNameSuffix] {
+	return pulumix.Output[[]WanoptContentDeliveryNetworkRuleHostDomainNameSuffix]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WanoptContentDeliveryNetworkRuleHostDomainNameSuffixArrayOutput) Index(i pulumi.IntInput) WanoptContentDeliveryNetworkRuleHostDomainNameSuffixOutput {
@@ -13827,6 +20376,12 @@ func (i WanoptContentDeliveryNetworkRuleRuleArgs) ToWanoptContentDeliveryNetwork
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptContentDeliveryNetworkRuleRuleOutput)
 }
 
+func (i WanoptContentDeliveryNetworkRuleRuleArgs) ToOutput(ctx context.Context) pulumix.Output[WanoptContentDeliveryNetworkRuleRule] {
+	return pulumix.Output[WanoptContentDeliveryNetworkRuleRule]{
+		OutputState: i.ToWanoptContentDeliveryNetworkRuleRuleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WanoptContentDeliveryNetworkRuleRuleArrayInput is an input type that accepts WanoptContentDeliveryNetworkRuleRuleArray and WanoptContentDeliveryNetworkRuleRuleArrayOutput values.
 // You can construct a concrete instance of `WanoptContentDeliveryNetworkRuleRuleArrayInput` via:
 //
@@ -13852,6 +20407,12 @@ func (i WanoptContentDeliveryNetworkRuleRuleArray) ToWanoptContentDeliveryNetwor
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptContentDeliveryNetworkRuleRuleArrayOutput)
 }
 
+func (i WanoptContentDeliveryNetworkRuleRuleArray) ToOutput(ctx context.Context) pulumix.Output[[]WanoptContentDeliveryNetworkRuleRule] {
+	return pulumix.Output[[]WanoptContentDeliveryNetworkRuleRule]{
+		OutputState: i.ToWanoptContentDeliveryNetworkRuleRuleArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WanoptContentDeliveryNetworkRuleRuleOutput struct{ *pulumi.OutputState }
 
 func (WanoptContentDeliveryNetworkRuleRuleOutput) ElementType() reflect.Type {
@@ -13864,6 +20425,12 @@ func (o WanoptContentDeliveryNetworkRuleRuleOutput) ToWanoptContentDeliveryNetwo
 
 func (o WanoptContentDeliveryNetworkRuleRuleOutput) ToWanoptContentDeliveryNetworkRuleRuleOutputWithContext(ctx context.Context) WanoptContentDeliveryNetworkRuleRuleOutput {
 	return o
+}
+
+func (o WanoptContentDeliveryNetworkRuleRuleOutput) ToOutput(ctx context.Context) pulumix.Output[WanoptContentDeliveryNetworkRuleRule] {
+	return pulumix.Output[WanoptContentDeliveryNetworkRuleRule]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WanoptContentDeliveryNetworkRuleRuleOutput) ContentId() WanoptContentDeliveryNetworkRuleRuleContentIdPtrOutput {
@@ -13908,6 +20475,12 @@ func (o WanoptContentDeliveryNetworkRuleRuleArrayOutput) ToWanoptContentDelivery
 
 func (o WanoptContentDeliveryNetworkRuleRuleArrayOutput) ToWanoptContentDeliveryNetworkRuleRuleArrayOutputWithContext(ctx context.Context) WanoptContentDeliveryNetworkRuleRuleArrayOutput {
 	return o
+}
+
+func (o WanoptContentDeliveryNetworkRuleRuleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WanoptContentDeliveryNetworkRuleRule] {
+	return pulumix.Output[[]WanoptContentDeliveryNetworkRuleRule]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WanoptContentDeliveryNetworkRuleRuleArrayOutput) Index(i pulumi.IntInput) WanoptContentDeliveryNetworkRuleRuleOutput {
@@ -13961,6 +20534,12 @@ func (i WanoptContentDeliveryNetworkRuleRuleContentIdArgs) ToWanoptContentDelive
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptContentDeliveryNetworkRuleRuleContentIdOutput)
 }
 
+func (i WanoptContentDeliveryNetworkRuleRuleContentIdArgs) ToOutput(ctx context.Context) pulumix.Output[WanoptContentDeliveryNetworkRuleRuleContentId] {
+	return pulumix.Output[WanoptContentDeliveryNetworkRuleRuleContentId]{
+		OutputState: i.ToWanoptContentDeliveryNetworkRuleRuleContentIdOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WanoptContentDeliveryNetworkRuleRuleContentIdArgs) ToWanoptContentDeliveryNetworkRuleRuleContentIdPtrOutput() WanoptContentDeliveryNetworkRuleRuleContentIdPtrOutput {
 	return i.ToWanoptContentDeliveryNetworkRuleRuleContentIdPtrOutputWithContext(context.Background())
 }
@@ -14002,6 +20581,12 @@ func (i *wanoptContentDeliveryNetworkRuleRuleContentIdPtrType) ToWanoptContentDe
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptContentDeliveryNetworkRuleRuleContentIdPtrOutput)
 }
 
+func (i *wanoptContentDeliveryNetworkRuleRuleContentIdPtrType) ToOutput(ctx context.Context) pulumix.Output[*WanoptContentDeliveryNetworkRuleRuleContentId] {
+	return pulumix.Output[*WanoptContentDeliveryNetworkRuleRuleContentId]{
+		OutputState: i.ToWanoptContentDeliveryNetworkRuleRuleContentIdPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WanoptContentDeliveryNetworkRuleRuleContentIdOutput struct{ *pulumi.OutputState }
 
 func (WanoptContentDeliveryNetworkRuleRuleContentIdOutput) ElementType() reflect.Type {
@@ -14024,6 +20609,12 @@ func (o WanoptContentDeliveryNetworkRuleRuleContentIdOutput) ToWanoptContentDeli
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WanoptContentDeliveryNetworkRuleRuleContentId) *WanoptContentDeliveryNetworkRuleRuleContentId {
 		return &v
 	}).(WanoptContentDeliveryNetworkRuleRuleContentIdPtrOutput)
+}
+
+func (o WanoptContentDeliveryNetworkRuleRuleContentIdOutput) ToOutput(ctx context.Context) pulumix.Output[WanoptContentDeliveryNetworkRuleRuleContentId] {
+	return pulumix.Output[WanoptContentDeliveryNetworkRuleRuleContentId]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WanoptContentDeliveryNetworkRuleRuleContentIdOutput) EndDirection() pulumi.StringPtrOutput {
@@ -14070,6 +20661,12 @@ func (o WanoptContentDeliveryNetworkRuleRuleContentIdPtrOutput) ToWanoptContentD
 
 func (o WanoptContentDeliveryNetworkRuleRuleContentIdPtrOutput) ToWanoptContentDeliveryNetworkRuleRuleContentIdPtrOutputWithContext(ctx context.Context) WanoptContentDeliveryNetworkRuleRuleContentIdPtrOutput {
 	return o
+}
+
+func (o WanoptContentDeliveryNetworkRuleRuleContentIdPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WanoptContentDeliveryNetworkRuleRuleContentId] {
+	return pulumix.Output[*WanoptContentDeliveryNetworkRuleRuleContentId]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WanoptContentDeliveryNetworkRuleRuleContentIdPtrOutput) Elem() WanoptContentDeliveryNetworkRuleRuleContentIdOutput {
@@ -14189,6 +20786,12 @@ func (i WanoptContentDeliveryNetworkRuleRuleMatchEntryArgs) ToWanoptContentDeliv
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptContentDeliveryNetworkRuleRuleMatchEntryOutput)
 }
 
+func (i WanoptContentDeliveryNetworkRuleRuleMatchEntryArgs) ToOutput(ctx context.Context) pulumix.Output[WanoptContentDeliveryNetworkRuleRuleMatchEntry] {
+	return pulumix.Output[WanoptContentDeliveryNetworkRuleRuleMatchEntry]{
+		OutputState: i.ToWanoptContentDeliveryNetworkRuleRuleMatchEntryOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WanoptContentDeliveryNetworkRuleRuleMatchEntryArrayInput is an input type that accepts WanoptContentDeliveryNetworkRuleRuleMatchEntryArray and WanoptContentDeliveryNetworkRuleRuleMatchEntryArrayOutput values.
 // You can construct a concrete instance of `WanoptContentDeliveryNetworkRuleRuleMatchEntryArrayInput` via:
 //
@@ -14214,6 +20817,12 @@ func (i WanoptContentDeliveryNetworkRuleRuleMatchEntryArray) ToWanoptContentDeli
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptContentDeliveryNetworkRuleRuleMatchEntryArrayOutput)
 }
 
+func (i WanoptContentDeliveryNetworkRuleRuleMatchEntryArray) ToOutput(ctx context.Context) pulumix.Output[[]WanoptContentDeliveryNetworkRuleRuleMatchEntry] {
+	return pulumix.Output[[]WanoptContentDeliveryNetworkRuleRuleMatchEntry]{
+		OutputState: i.ToWanoptContentDeliveryNetworkRuleRuleMatchEntryArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WanoptContentDeliveryNetworkRuleRuleMatchEntryOutput struct{ *pulumi.OutputState }
 
 func (WanoptContentDeliveryNetworkRuleRuleMatchEntryOutput) ElementType() reflect.Type {
@@ -14226,6 +20835,12 @@ func (o WanoptContentDeliveryNetworkRuleRuleMatchEntryOutput) ToWanoptContentDel
 
 func (o WanoptContentDeliveryNetworkRuleRuleMatchEntryOutput) ToWanoptContentDeliveryNetworkRuleRuleMatchEntryOutputWithContext(ctx context.Context) WanoptContentDeliveryNetworkRuleRuleMatchEntryOutput {
 	return o
+}
+
+func (o WanoptContentDeliveryNetworkRuleRuleMatchEntryOutput) ToOutput(ctx context.Context) pulumix.Output[WanoptContentDeliveryNetworkRuleRuleMatchEntry] {
+	return pulumix.Output[WanoptContentDeliveryNetworkRuleRuleMatchEntry]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WanoptContentDeliveryNetworkRuleRuleMatchEntryOutput) Id() pulumi.IntPtrOutput {
@@ -14254,6 +20869,12 @@ func (o WanoptContentDeliveryNetworkRuleRuleMatchEntryArrayOutput) ToWanoptConte
 
 func (o WanoptContentDeliveryNetworkRuleRuleMatchEntryArrayOutput) ToWanoptContentDeliveryNetworkRuleRuleMatchEntryArrayOutputWithContext(ctx context.Context) WanoptContentDeliveryNetworkRuleRuleMatchEntryArrayOutput {
 	return o
+}
+
+func (o WanoptContentDeliveryNetworkRuleRuleMatchEntryArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WanoptContentDeliveryNetworkRuleRuleMatchEntry] {
+	return pulumix.Output[[]WanoptContentDeliveryNetworkRuleRuleMatchEntry]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WanoptContentDeliveryNetworkRuleRuleMatchEntryArrayOutput) Index(i pulumi.IntInput) WanoptContentDeliveryNetworkRuleRuleMatchEntryOutput {
@@ -14293,6 +20914,12 @@ func (i WanoptContentDeliveryNetworkRuleRuleMatchEntryPatternArgs) ToWanoptConte
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptContentDeliveryNetworkRuleRuleMatchEntryPatternOutput)
 }
 
+func (i WanoptContentDeliveryNetworkRuleRuleMatchEntryPatternArgs) ToOutput(ctx context.Context) pulumix.Output[WanoptContentDeliveryNetworkRuleRuleMatchEntryPattern] {
+	return pulumix.Output[WanoptContentDeliveryNetworkRuleRuleMatchEntryPattern]{
+		OutputState: i.ToWanoptContentDeliveryNetworkRuleRuleMatchEntryPatternOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WanoptContentDeliveryNetworkRuleRuleMatchEntryPatternArrayInput is an input type that accepts WanoptContentDeliveryNetworkRuleRuleMatchEntryPatternArray and WanoptContentDeliveryNetworkRuleRuleMatchEntryPatternArrayOutput values.
 // You can construct a concrete instance of `WanoptContentDeliveryNetworkRuleRuleMatchEntryPatternArrayInput` via:
 //
@@ -14318,6 +20945,12 @@ func (i WanoptContentDeliveryNetworkRuleRuleMatchEntryPatternArray) ToWanoptCont
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptContentDeliveryNetworkRuleRuleMatchEntryPatternArrayOutput)
 }
 
+func (i WanoptContentDeliveryNetworkRuleRuleMatchEntryPatternArray) ToOutput(ctx context.Context) pulumix.Output[[]WanoptContentDeliveryNetworkRuleRuleMatchEntryPattern] {
+	return pulumix.Output[[]WanoptContentDeliveryNetworkRuleRuleMatchEntryPattern]{
+		OutputState: i.ToWanoptContentDeliveryNetworkRuleRuleMatchEntryPatternArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WanoptContentDeliveryNetworkRuleRuleMatchEntryPatternOutput struct{ *pulumi.OutputState }
 
 func (WanoptContentDeliveryNetworkRuleRuleMatchEntryPatternOutput) ElementType() reflect.Type {
@@ -14330,6 +20963,12 @@ func (o WanoptContentDeliveryNetworkRuleRuleMatchEntryPatternOutput) ToWanoptCon
 
 func (o WanoptContentDeliveryNetworkRuleRuleMatchEntryPatternOutput) ToWanoptContentDeliveryNetworkRuleRuleMatchEntryPatternOutputWithContext(ctx context.Context) WanoptContentDeliveryNetworkRuleRuleMatchEntryPatternOutput {
 	return o
+}
+
+func (o WanoptContentDeliveryNetworkRuleRuleMatchEntryPatternOutput) ToOutput(ctx context.Context) pulumix.Output[WanoptContentDeliveryNetworkRuleRuleMatchEntryPattern] {
+	return pulumix.Output[WanoptContentDeliveryNetworkRuleRuleMatchEntryPattern]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WanoptContentDeliveryNetworkRuleRuleMatchEntryPatternOutput) String() pulumi.StringPtrOutput {
@@ -14348,6 +20987,12 @@ func (o WanoptContentDeliveryNetworkRuleRuleMatchEntryPatternArrayOutput) ToWano
 
 func (o WanoptContentDeliveryNetworkRuleRuleMatchEntryPatternArrayOutput) ToWanoptContentDeliveryNetworkRuleRuleMatchEntryPatternArrayOutputWithContext(ctx context.Context) WanoptContentDeliveryNetworkRuleRuleMatchEntryPatternArrayOutput {
 	return o
+}
+
+func (o WanoptContentDeliveryNetworkRuleRuleMatchEntryPatternArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WanoptContentDeliveryNetworkRuleRuleMatchEntryPattern] {
+	return pulumix.Output[[]WanoptContentDeliveryNetworkRuleRuleMatchEntryPattern]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WanoptContentDeliveryNetworkRuleRuleMatchEntryPatternArrayOutput) Index(i pulumi.IntInput) WanoptContentDeliveryNetworkRuleRuleMatchEntryPatternOutput {
@@ -14391,6 +21036,12 @@ func (i WanoptContentDeliveryNetworkRuleRuleSkipEntryArgs) ToWanoptContentDelive
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptContentDeliveryNetworkRuleRuleSkipEntryOutput)
 }
 
+func (i WanoptContentDeliveryNetworkRuleRuleSkipEntryArgs) ToOutput(ctx context.Context) pulumix.Output[WanoptContentDeliveryNetworkRuleRuleSkipEntry] {
+	return pulumix.Output[WanoptContentDeliveryNetworkRuleRuleSkipEntry]{
+		OutputState: i.ToWanoptContentDeliveryNetworkRuleRuleSkipEntryOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WanoptContentDeliveryNetworkRuleRuleSkipEntryArrayInput is an input type that accepts WanoptContentDeliveryNetworkRuleRuleSkipEntryArray and WanoptContentDeliveryNetworkRuleRuleSkipEntryArrayOutput values.
 // You can construct a concrete instance of `WanoptContentDeliveryNetworkRuleRuleSkipEntryArrayInput` via:
 //
@@ -14416,6 +21067,12 @@ func (i WanoptContentDeliveryNetworkRuleRuleSkipEntryArray) ToWanoptContentDeliv
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptContentDeliveryNetworkRuleRuleSkipEntryArrayOutput)
 }
 
+func (i WanoptContentDeliveryNetworkRuleRuleSkipEntryArray) ToOutput(ctx context.Context) pulumix.Output[[]WanoptContentDeliveryNetworkRuleRuleSkipEntry] {
+	return pulumix.Output[[]WanoptContentDeliveryNetworkRuleRuleSkipEntry]{
+		OutputState: i.ToWanoptContentDeliveryNetworkRuleRuleSkipEntryArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WanoptContentDeliveryNetworkRuleRuleSkipEntryOutput struct{ *pulumi.OutputState }
 
 func (WanoptContentDeliveryNetworkRuleRuleSkipEntryOutput) ElementType() reflect.Type {
@@ -14428,6 +21085,12 @@ func (o WanoptContentDeliveryNetworkRuleRuleSkipEntryOutput) ToWanoptContentDeli
 
 func (o WanoptContentDeliveryNetworkRuleRuleSkipEntryOutput) ToWanoptContentDeliveryNetworkRuleRuleSkipEntryOutputWithContext(ctx context.Context) WanoptContentDeliveryNetworkRuleRuleSkipEntryOutput {
 	return o
+}
+
+func (o WanoptContentDeliveryNetworkRuleRuleSkipEntryOutput) ToOutput(ctx context.Context) pulumix.Output[WanoptContentDeliveryNetworkRuleRuleSkipEntry] {
+	return pulumix.Output[WanoptContentDeliveryNetworkRuleRuleSkipEntry]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WanoptContentDeliveryNetworkRuleRuleSkipEntryOutput) Id() pulumi.IntPtrOutput {
@@ -14456,6 +21119,12 @@ func (o WanoptContentDeliveryNetworkRuleRuleSkipEntryArrayOutput) ToWanoptConten
 
 func (o WanoptContentDeliveryNetworkRuleRuleSkipEntryArrayOutput) ToWanoptContentDeliveryNetworkRuleRuleSkipEntryArrayOutputWithContext(ctx context.Context) WanoptContentDeliveryNetworkRuleRuleSkipEntryArrayOutput {
 	return o
+}
+
+func (o WanoptContentDeliveryNetworkRuleRuleSkipEntryArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WanoptContentDeliveryNetworkRuleRuleSkipEntry] {
+	return pulumix.Output[[]WanoptContentDeliveryNetworkRuleRuleSkipEntry]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WanoptContentDeliveryNetworkRuleRuleSkipEntryArrayOutput) Index(i pulumi.IntInput) WanoptContentDeliveryNetworkRuleRuleSkipEntryOutput {
@@ -14495,6 +21164,12 @@ func (i WanoptContentDeliveryNetworkRuleRuleSkipEntryPatternArgs) ToWanoptConten
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptContentDeliveryNetworkRuleRuleSkipEntryPatternOutput)
 }
 
+func (i WanoptContentDeliveryNetworkRuleRuleSkipEntryPatternArgs) ToOutput(ctx context.Context) pulumix.Output[WanoptContentDeliveryNetworkRuleRuleSkipEntryPattern] {
+	return pulumix.Output[WanoptContentDeliveryNetworkRuleRuleSkipEntryPattern]{
+		OutputState: i.ToWanoptContentDeliveryNetworkRuleRuleSkipEntryPatternOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WanoptContentDeliveryNetworkRuleRuleSkipEntryPatternArrayInput is an input type that accepts WanoptContentDeliveryNetworkRuleRuleSkipEntryPatternArray and WanoptContentDeliveryNetworkRuleRuleSkipEntryPatternArrayOutput values.
 // You can construct a concrete instance of `WanoptContentDeliveryNetworkRuleRuleSkipEntryPatternArrayInput` via:
 //
@@ -14520,6 +21195,12 @@ func (i WanoptContentDeliveryNetworkRuleRuleSkipEntryPatternArray) ToWanoptConte
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptContentDeliveryNetworkRuleRuleSkipEntryPatternArrayOutput)
 }
 
+func (i WanoptContentDeliveryNetworkRuleRuleSkipEntryPatternArray) ToOutput(ctx context.Context) pulumix.Output[[]WanoptContentDeliveryNetworkRuleRuleSkipEntryPattern] {
+	return pulumix.Output[[]WanoptContentDeliveryNetworkRuleRuleSkipEntryPattern]{
+		OutputState: i.ToWanoptContentDeliveryNetworkRuleRuleSkipEntryPatternArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WanoptContentDeliveryNetworkRuleRuleSkipEntryPatternOutput struct{ *pulumi.OutputState }
 
 func (WanoptContentDeliveryNetworkRuleRuleSkipEntryPatternOutput) ElementType() reflect.Type {
@@ -14532,6 +21213,12 @@ func (o WanoptContentDeliveryNetworkRuleRuleSkipEntryPatternOutput) ToWanoptCont
 
 func (o WanoptContentDeliveryNetworkRuleRuleSkipEntryPatternOutput) ToWanoptContentDeliveryNetworkRuleRuleSkipEntryPatternOutputWithContext(ctx context.Context) WanoptContentDeliveryNetworkRuleRuleSkipEntryPatternOutput {
 	return o
+}
+
+func (o WanoptContentDeliveryNetworkRuleRuleSkipEntryPatternOutput) ToOutput(ctx context.Context) pulumix.Output[WanoptContentDeliveryNetworkRuleRuleSkipEntryPattern] {
+	return pulumix.Output[WanoptContentDeliveryNetworkRuleRuleSkipEntryPattern]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WanoptContentDeliveryNetworkRuleRuleSkipEntryPatternOutput) String() pulumi.StringPtrOutput {
@@ -14550,6 +21237,12 @@ func (o WanoptContentDeliveryNetworkRuleRuleSkipEntryPatternArrayOutput) ToWanop
 
 func (o WanoptContentDeliveryNetworkRuleRuleSkipEntryPatternArrayOutput) ToWanoptContentDeliveryNetworkRuleRuleSkipEntryPatternArrayOutputWithContext(ctx context.Context) WanoptContentDeliveryNetworkRuleRuleSkipEntryPatternArrayOutput {
 	return o
+}
+
+func (o WanoptContentDeliveryNetworkRuleRuleSkipEntryPatternArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WanoptContentDeliveryNetworkRuleRuleSkipEntryPattern] {
+	return pulumix.Output[[]WanoptContentDeliveryNetworkRuleRuleSkipEntryPattern]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WanoptContentDeliveryNetworkRuleRuleSkipEntryPatternArrayOutput) Index(i pulumi.IntInput) WanoptContentDeliveryNetworkRuleRuleSkipEntryPatternOutput {
@@ -14603,6 +21296,12 @@ func (i WanoptProfileCifsArgs) ToWanoptProfileCifsOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptProfileCifsOutput)
 }
 
+func (i WanoptProfileCifsArgs) ToOutput(ctx context.Context) pulumix.Output[WanoptProfileCifs] {
+	return pulumix.Output[WanoptProfileCifs]{
+		OutputState: i.ToWanoptProfileCifsOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WanoptProfileCifsArgs) ToWanoptProfileCifsPtrOutput() WanoptProfileCifsPtrOutput {
 	return i.ToWanoptProfileCifsPtrOutputWithContext(context.Background())
 }
@@ -14644,6 +21343,12 @@ func (i *wanoptProfileCifsPtrType) ToWanoptProfileCifsPtrOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptProfileCifsPtrOutput)
 }
 
+func (i *wanoptProfileCifsPtrType) ToOutput(ctx context.Context) pulumix.Output[*WanoptProfileCifs] {
+	return pulumix.Output[*WanoptProfileCifs]{
+		OutputState: i.ToWanoptProfileCifsPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WanoptProfileCifsOutput struct{ *pulumi.OutputState }
 
 func (WanoptProfileCifsOutput) ElementType() reflect.Type {
@@ -14666,6 +21371,12 @@ func (o WanoptProfileCifsOutput) ToWanoptProfileCifsPtrOutputWithContext(ctx con
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WanoptProfileCifs) *WanoptProfileCifs {
 		return &v
 	}).(WanoptProfileCifsPtrOutput)
+}
+
+func (o WanoptProfileCifsOutput) ToOutput(ctx context.Context) pulumix.Output[WanoptProfileCifs] {
+	return pulumix.Output[WanoptProfileCifs]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WanoptProfileCifsOutput) ByteCaching() pulumi.StringPtrOutput {
@@ -14712,6 +21423,12 @@ func (o WanoptProfileCifsPtrOutput) ToWanoptProfileCifsPtrOutput() WanoptProfile
 
 func (o WanoptProfileCifsPtrOutput) ToWanoptProfileCifsPtrOutputWithContext(ctx context.Context) WanoptProfileCifsPtrOutput {
 	return o
+}
+
+func (o WanoptProfileCifsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WanoptProfileCifs] {
+	return pulumix.Output[*WanoptProfileCifs]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WanoptProfileCifsPtrOutput) Elem() WanoptProfileCifsOutput {
@@ -14843,6 +21560,12 @@ func (i WanoptProfileFtpArgs) ToWanoptProfileFtpOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptProfileFtpOutput)
 }
 
+func (i WanoptProfileFtpArgs) ToOutput(ctx context.Context) pulumix.Output[WanoptProfileFtp] {
+	return pulumix.Output[WanoptProfileFtp]{
+		OutputState: i.ToWanoptProfileFtpOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WanoptProfileFtpArgs) ToWanoptProfileFtpPtrOutput() WanoptProfileFtpPtrOutput {
 	return i.ToWanoptProfileFtpPtrOutputWithContext(context.Background())
 }
@@ -14884,6 +21607,12 @@ func (i *wanoptProfileFtpPtrType) ToWanoptProfileFtpPtrOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptProfileFtpPtrOutput)
 }
 
+func (i *wanoptProfileFtpPtrType) ToOutput(ctx context.Context) pulumix.Output[*WanoptProfileFtp] {
+	return pulumix.Output[*WanoptProfileFtp]{
+		OutputState: i.ToWanoptProfileFtpPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WanoptProfileFtpOutput struct{ *pulumi.OutputState }
 
 func (WanoptProfileFtpOutput) ElementType() reflect.Type {
@@ -14906,6 +21635,12 @@ func (o WanoptProfileFtpOutput) ToWanoptProfileFtpPtrOutputWithContext(ctx conte
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WanoptProfileFtp) *WanoptProfileFtp {
 		return &v
 	}).(WanoptProfileFtpPtrOutput)
+}
+
+func (o WanoptProfileFtpOutput) ToOutput(ctx context.Context) pulumix.Output[WanoptProfileFtp] {
+	return pulumix.Output[WanoptProfileFtp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WanoptProfileFtpOutput) ByteCaching() pulumi.StringPtrOutput {
@@ -14956,6 +21691,12 @@ func (o WanoptProfileFtpPtrOutput) ToWanoptProfileFtpPtrOutput() WanoptProfileFt
 
 func (o WanoptProfileFtpPtrOutput) ToWanoptProfileFtpPtrOutputWithContext(ctx context.Context) WanoptProfileFtpPtrOutput {
 	return o
+}
+
+func (o WanoptProfileFtpPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WanoptProfileFtp] {
+	return pulumix.Output[*WanoptProfileFtp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WanoptProfileFtpPtrOutput) Elem() WanoptProfileFtpOutput {
@@ -15102,6 +21843,12 @@ func (i WanoptProfileHttpArgs) ToWanoptProfileHttpOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptProfileHttpOutput)
 }
 
+func (i WanoptProfileHttpArgs) ToOutput(ctx context.Context) pulumix.Output[WanoptProfileHttp] {
+	return pulumix.Output[WanoptProfileHttp]{
+		OutputState: i.ToWanoptProfileHttpOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WanoptProfileHttpArgs) ToWanoptProfileHttpPtrOutput() WanoptProfileHttpPtrOutput {
 	return i.ToWanoptProfileHttpPtrOutputWithContext(context.Background())
 }
@@ -15143,6 +21890,12 @@ func (i *wanoptProfileHttpPtrType) ToWanoptProfileHttpPtrOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptProfileHttpPtrOutput)
 }
 
+func (i *wanoptProfileHttpPtrType) ToOutput(ctx context.Context) pulumix.Output[*WanoptProfileHttp] {
+	return pulumix.Output[*WanoptProfileHttp]{
+		OutputState: i.ToWanoptProfileHttpPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WanoptProfileHttpOutput struct{ *pulumi.OutputState }
 
 func (WanoptProfileHttpOutput) ElementType() reflect.Type {
@@ -15165,6 +21918,12 @@ func (o WanoptProfileHttpOutput) ToWanoptProfileHttpPtrOutputWithContext(ctx con
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WanoptProfileHttp) *WanoptProfileHttp {
 		return &v
 	}).(WanoptProfileHttpPtrOutput)
+}
+
+func (o WanoptProfileHttpOutput) ToOutput(ctx context.Context) pulumix.Output[WanoptProfileHttp] {
+	return pulumix.Output[WanoptProfileHttp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WanoptProfileHttpOutput) ByteCaching() pulumi.StringPtrOutput {
@@ -15227,6 +21986,12 @@ func (o WanoptProfileHttpPtrOutput) ToWanoptProfileHttpPtrOutput() WanoptProfile
 
 func (o WanoptProfileHttpPtrOutput) ToWanoptProfileHttpPtrOutputWithContext(ctx context.Context) WanoptProfileHttpPtrOutput {
 	return o
+}
+
+func (o WanoptProfileHttpPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WanoptProfileHttp] {
+	return pulumix.Output[*WanoptProfileHttp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WanoptProfileHttpPtrOutput) Elem() WanoptProfileHttpOutput {
@@ -15388,6 +22153,12 @@ func (i WanoptProfileMapiArgs) ToWanoptProfileMapiOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptProfileMapiOutput)
 }
 
+func (i WanoptProfileMapiArgs) ToOutput(ctx context.Context) pulumix.Output[WanoptProfileMapi] {
+	return pulumix.Output[WanoptProfileMapi]{
+		OutputState: i.ToWanoptProfileMapiOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WanoptProfileMapiArgs) ToWanoptProfileMapiPtrOutput() WanoptProfileMapiPtrOutput {
 	return i.ToWanoptProfileMapiPtrOutputWithContext(context.Background())
 }
@@ -15429,6 +22200,12 @@ func (i *wanoptProfileMapiPtrType) ToWanoptProfileMapiPtrOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptProfileMapiPtrOutput)
 }
 
+func (i *wanoptProfileMapiPtrType) ToOutput(ctx context.Context) pulumix.Output[*WanoptProfileMapi] {
+	return pulumix.Output[*WanoptProfileMapi]{
+		OutputState: i.ToWanoptProfileMapiPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WanoptProfileMapiOutput struct{ *pulumi.OutputState }
 
 func (WanoptProfileMapiOutput) ElementType() reflect.Type {
@@ -15451,6 +22228,12 @@ func (o WanoptProfileMapiOutput) ToWanoptProfileMapiPtrOutputWithContext(ctx con
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WanoptProfileMapi) *WanoptProfileMapi {
 		return &v
 	}).(WanoptProfileMapiPtrOutput)
+}
+
+func (o WanoptProfileMapiOutput) ToOutput(ctx context.Context) pulumix.Output[WanoptProfileMapi] {
+	return pulumix.Output[WanoptProfileMapi]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WanoptProfileMapiOutput) ByteCaching() pulumi.StringPtrOutput {
@@ -15489,6 +22272,12 @@ func (o WanoptProfileMapiPtrOutput) ToWanoptProfileMapiPtrOutput() WanoptProfile
 
 func (o WanoptProfileMapiPtrOutput) ToWanoptProfileMapiPtrOutputWithContext(ctx context.Context) WanoptProfileMapiPtrOutput {
 	return o
+}
+
+func (o WanoptProfileMapiPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WanoptProfileMapi] {
+	return pulumix.Output[*WanoptProfileMapi]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WanoptProfileMapiPtrOutput) Elem() WanoptProfileMapiOutput {
@@ -15602,6 +22391,12 @@ func (i WanoptProfileTcpArgs) ToWanoptProfileTcpOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptProfileTcpOutput)
 }
 
+func (i WanoptProfileTcpArgs) ToOutput(ctx context.Context) pulumix.Output[WanoptProfileTcp] {
+	return pulumix.Output[WanoptProfileTcp]{
+		OutputState: i.ToWanoptProfileTcpOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WanoptProfileTcpArgs) ToWanoptProfileTcpPtrOutput() WanoptProfileTcpPtrOutput {
 	return i.ToWanoptProfileTcpPtrOutputWithContext(context.Background())
 }
@@ -15643,6 +22438,12 @@ func (i *wanoptProfileTcpPtrType) ToWanoptProfileTcpPtrOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptProfileTcpPtrOutput)
 }
 
+func (i *wanoptProfileTcpPtrType) ToOutput(ctx context.Context) pulumix.Output[*WanoptProfileTcp] {
+	return pulumix.Output[*WanoptProfileTcp]{
+		OutputState: i.ToWanoptProfileTcpPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WanoptProfileTcpOutput struct{ *pulumi.OutputState }
 
 func (WanoptProfileTcpOutput) ElementType() reflect.Type {
@@ -15665,6 +22466,12 @@ func (o WanoptProfileTcpOutput) ToWanoptProfileTcpPtrOutputWithContext(ctx conte
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WanoptProfileTcp) *WanoptProfileTcp {
 		return &v
 	}).(WanoptProfileTcpPtrOutput)
+}
+
+func (o WanoptProfileTcpOutput) ToOutput(ctx context.Context) pulumix.Output[WanoptProfileTcp] {
+	return pulumix.Output[WanoptProfileTcp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WanoptProfileTcpOutput) ByteCaching() pulumi.StringPtrOutput {
@@ -15715,6 +22522,12 @@ func (o WanoptProfileTcpPtrOutput) ToWanoptProfileTcpPtrOutput() WanoptProfileTc
 
 func (o WanoptProfileTcpPtrOutput) ToWanoptProfileTcpPtrOutputWithContext(ctx context.Context) WanoptProfileTcpPtrOutput {
 	return o
+}
+
+func (o WanoptProfileTcpPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WanoptProfileTcp] {
+	return pulumix.Output[*WanoptProfileTcp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WanoptProfileTcpPtrOutput) Elem() WanoptProfileTcpOutput {
@@ -15853,6 +22666,12 @@ func (i WebProxyExplicitPacPolicyArgs) ToWebProxyExplicitPacPolicyOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyExplicitPacPolicyOutput)
 }
 
+func (i WebProxyExplicitPacPolicyArgs) ToOutput(ctx context.Context) pulumix.Output[WebProxyExplicitPacPolicy] {
+	return pulumix.Output[WebProxyExplicitPacPolicy]{
+		OutputState: i.ToWebProxyExplicitPacPolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WebProxyExplicitPacPolicyArrayInput is an input type that accepts WebProxyExplicitPacPolicyArray and WebProxyExplicitPacPolicyArrayOutput values.
 // You can construct a concrete instance of `WebProxyExplicitPacPolicyArrayInput` via:
 //
@@ -15878,6 +22697,12 @@ func (i WebProxyExplicitPacPolicyArray) ToWebProxyExplicitPacPolicyArrayOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyExplicitPacPolicyArrayOutput)
 }
 
+func (i WebProxyExplicitPacPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]WebProxyExplicitPacPolicy] {
+	return pulumix.Output[[]WebProxyExplicitPacPolicy]{
+		OutputState: i.ToWebProxyExplicitPacPolicyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WebProxyExplicitPacPolicyOutput struct{ *pulumi.OutputState }
 
 func (WebProxyExplicitPacPolicyOutput) ElementType() reflect.Type {
@@ -15890,6 +22715,12 @@ func (o WebProxyExplicitPacPolicyOutput) ToWebProxyExplicitPacPolicyOutput() Web
 
 func (o WebProxyExplicitPacPolicyOutput) ToWebProxyExplicitPacPolicyOutputWithContext(ctx context.Context) WebProxyExplicitPacPolicyOutput {
 	return o
+}
+
+func (o WebProxyExplicitPacPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[WebProxyExplicitPacPolicy] {
+	return pulumix.Output[WebProxyExplicitPacPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebProxyExplicitPacPolicyOutput) Comments() pulumi.StringPtrOutput {
@@ -15938,6 +22769,12 @@ func (o WebProxyExplicitPacPolicyArrayOutput) ToWebProxyExplicitPacPolicyArrayOu
 	return o
 }
 
+func (o WebProxyExplicitPacPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WebProxyExplicitPacPolicy] {
+	return pulumix.Output[[]WebProxyExplicitPacPolicy]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o WebProxyExplicitPacPolicyArrayOutput) Index(i pulumi.IntInput) WebProxyExplicitPacPolicyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WebProxyExplicitPacPolicy {
 		return vs[0].([]WebProxyExplicitPacPolicy)[vs[1].(int)]
@@ -15975,6 +22812,12 @@ func (i WebProxyExplicitPacPolicyDstaddrArgs) ToWebProxyExplicitPacPolicyDstaddr
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyExplicitPacPolicyDstaddrOutput)
 }
 
+func (i WebProxyExplicitPacPolicyDstaddrArgs) ToOutput(ctx context.Context) pulumix.Output[WebProxyExplicitPacPolicyDstaddr] {
+	return pulumix.Output[WebProxyExplicitPacPolicyDstaddr]{
+		OutputState: i.ToWebProxyExplicitPacPolicyDstaddrOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WebProxyExplicitPacPolicyDstaddrArrayInput is an input type that accepts WebProxyExplicitPacPolicyDstaddrArray and WebProxyExplicitPacPolicyDstaddrArrayOutput values.
 // You can construct a concrete instance of `WebProxyExplicitPacPolicyDstaddrArrayInput` via:
 //
@@ -16000,6 +22843,12 @@ func (i WebProxyExplicitPacPolicyDstaddrArray) ToWebProxyExplicitPacPolicyDstadd
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyExplicitPacPolicyDstaddrArrayOutput)
 }
 
+func (i WebProxyExplicitPacPolicyDstaddrArray) ToOutput(ctx context.Context) pulumix.Output[[]WebProxyExplicitPacPolicyDstaddr] {
+	return pulumix.Output[[]WebProxyExplicitPacPolicyDstaddr]{
+		OutputState: i.ToWebProxyExplicitPacPolicyDstaddrArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WebProxyExplicitPacPolicyDstaddrOutput struct{ *pulumi.OutputState }
 
 func (WebProxyExplicitPacPolicyDstaddrOutput) ElementType() reflect.Type {
@@ -16012,6 +22861,12 @@ func (o WebProxyExplicitPacPolicyDstaddrOutput) ToWebProxyExplicitPacPolicyDstad
 
 func (o WebProxyExplicitPacPolicyDstaddrOutput) ToWebProxyExplicitPacPolicyDstaddrOutputWithContext(ctx context.Context) WebProxyExplicitPacPolicyDstaddrOutput {
 	return o
+}
+
+func (o WebProxyExplicitPacPolicyDstaddrOutput) ToOutput(ctx context.Context) pulumix.Output[WebProxyExplicitPacPolicyDstaddr] {
+	return pulumix.Output[WebProxyExplicitPacPolicyDstaddr]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebProxyExplicitPacPolicyDstaddrOutput) Name() pulumi.StringPtrOutput {
@@ -16030,6 +22885,12 @@ func (o WebProxyExplicitPacPolicyDstaddrArrayOutput) ToWebProxyExplicitPacPolicy
 
 func (o WebProxyExplicitPacPolicyDstaddrArrayOutput) ToWebProxyExplicitPacPolicyDstaddrArrayOutputWithContext(ctx context.Context) WebProxyExplicitPacPolicyDstaddrArrayOutput {
 	return o
+}
+
+func (o WebProxyExplicitPacPolicyDstaddrArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WebProxyExplicitPacPolicyDstaddr] {
+	return pulumix.Output[[]WebProxyExplicitPacPolicyDstaddr]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebProxyExplicitPacPolicyDstaddrArrayOutput) Index(i pulumi.IntInput) WebProxyExplicitPacPolicyDstaddrOutput {
@@ -16069,6 +22930,12 @@ func (i WebProxyExplicitPacPolicySrcaddr6Args) ToWebProxyExplicitPacPolicySrcadd
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyExplicitPacPolicySrcaddr6Output)
 }
 
+func (i WebProxyExplicitPacPolicySrcaddr6Args) ToOutput(ctx context.Context) pulumix.Output[WebProxyExplicitPacPolicySrcaddr6] {
+	return pulumix.Output[WebProxyExplicitPacPolicySrcaddr6]{
+		OutputState: i.ToWebProxyExplicitPacPolicySrcaddr6OutputWithContext(ctx).OutputState,
+	}
+}
+
 // WebProxyExplicitPacPolicySrcaddr6ArrayInput is an input type that accepts WebProxyExplicitPacPolicySrcaddr6Array and WebProxyExplicitPacPolicySrcaddr6ArrayOutput values.
 // You can construct a concrete instance of `WebProxyExplicitPacPolicySrcaddr6ArrayInput` via:
 //
@@ -16094,6 +22961,12 @@ func (i WebProxyExplicitPacPolicySrcaddr6Array) ToWebProxyExplicitPacPolicySrcad
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyExplicitPacPolicySrcaddr6ArrayOutput)
 }
 
+func (i WebProxyExplicitPacPolicySrcaddr6Array) ToOutput(ctx context.Context) pulumix.Output[[]WebProxyExplicitPacPolicySrcaddr6] {
+	return pulumix.Output[[]WebProxyExplicitPacPolicySrcaddr6]{
+		OutputState: i.ToWebProxyExplicitPacPolicySrcaddr6ArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WebProxyExplicitPacPolicySrcaddr6Output struct{ *pulumi.OutputState }
 
 func (WebProxyExplicitPacPolicySrcaddr6Output) ElementType() reflect.Type {
@@ -16106,6 +22979,12 @@ func (o WebProxyExplicitPacPolicySrcaddr6Output) ToWebProxyExplicitPacPolicySrca
 
 func (o WebProxyExplicitPacPolicySrcaddr6Output) ToWebProxyExplicitPacPolicySrcaddr6OutputWithContext(ctx context.Context) WebProxyExplicitPacPolicySrcaddr6Output {
 	return o
+}
+
+func (o WebProxyExplicitPacPolicySrcaddr6Output) ToOutput(ctx context.Context) pulumix.Output[WebProxyExplicitPacPolicySrcaddr6] {
+	return pulumix.Output[WebProxyExplicitPacPolicySrcaddr6]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebProxyExplicitPacPolicySrcaddr6Output) Name() pulumi.StringPtrOutput {
@@ -16124,6 +23003,12 @@ func (o WebProxyExplicitPacPolicySrcaddr6ArrayOutput) ToWebProxyExplicitPacPolic
 
 func (o WebProxyExplicitPacPolicySrcaddr6ArrayOutput) ToWebProxyExplicitPacPolicySrcaddr6ArrayOutputWithContext(ctx context.Context) WebProxyExplicitPacPolicySrcaddr6ArrayOutput {
 	return o
+}
+
+func (o WebProxyExplicitPacPolicySrcaddr6ArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WebProxyExplicitPacPolicySrcaddr6] {
+	return pulumix.Output[[]WebProxyExplicitPacPolicySrcaddr6]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebProxyExplicitPacPolicySrcaddr6ArrayOutput) Index(i pulumi.IntInput) WebProxyExplicitPacPolicySrcaddr6Output {
@@ -16163,6 +23048,12 @@ func (i WebProxyExplicitPacPolicySrcaddrArgs) ToWebProxyExplicitPacPolicySrcaddr
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyExplicitPacPolicySrcaddrOutput)
 }
 
+func (i WebProxyExplicitPacPolicySrcaddrArgs) ToOutput(ctx context.Context) pulumix.Output[WebProxyExplicitPacPolicySrcaddr] {
+	return pulumix.Output[WebProxyExplicitPacPolicySrcaddr]{
+		OutputState: i.ToWebProxyExplicitPacPolicySrcaddrOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WebProxyExplicitPacPolicySrcaddrArrayInput is an input type that accepts WebProxyExplicitPacPolicySrcaddrArray and WebProxyExplicitPacPolicySrcaddrArrayOutput values.
 // You can construct a concrete instance of `WebProxyExplicitPacPolicySrcaddrArrayInput` via:
 //
@@ -16188,6 +23079,12 @@ func (i WebProxyExplicitPacPolicySrcaddrArray) ToWebProxyExplicitPacPolicySrcadd
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyExplicitPacPolicySrcaddrArrayOutput)
 }
 
+func (i WebProxyExplicitPacPolicySrcaddrArray) ToOutput(ctx context.Context) pulumix.Output[[]WebProxyExplicitPacPolicySrcaddr] {
+	return pulumix.Output[[]WebProxyExplicitPacPolicySrcaddr]{
+		OutputState: i.ToWebProxyExplicitPacPolicySrcaddrArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WebProxyExplicitPacPolicySrcaddrOutput struct{ *pulumi.OutputState }
 
 func (WebProxyExplicitPacPolicySrcaddrOutput) ElementType() reflect.Type {
@@ -16200,6 +23097,12 @@ func (o WebProxyExplicitPacPolicySrcaddrOutput) ToWebProxyExplicitPacPolicySrcad
 
 func (o WebProxyExplicitPacPolicySrcaddrOutput) ToWebProxyExplicitPacPolicySrcaddrOutputWithContext(ctx context.Context) WebProxyExplicitPacPolicySrcaddrOutput {
 	return o
+}
+
+func (o WebProxyExplicitPacPolicySrcaddrOutput) ToOutput(ctx context.Context) pulumix.Output[WebProxyExplicitPacPolicySrcaddr] {
+	return pulumix.Output[WebProxyExplicitPacPolicySrcaddr]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebProxyExplicitPacPolicySrcaddrOutput) Name() pulumi.StringPtrOutput {
@@ -16218,6 +23121,12 @@ func (o WebProxyExplicitPacPolicySrcaddrArrayOutput) ToWebProxyExplicitPacPolicy
 
 func (o WebProxyExplicitPacPolicySrcaddrArrayOutput) ToWebProxyExplicitPacPolicySrcaddrArrayOutputWithContext(ctx context.Context) WebProxyExplicitPacPolicySrcaddrArrayOutput {
 	return o
+}
+
+func (o WebProxyExplicitPacPolicySrcaddrArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WebProxyExplicitPacPolicySrcaddr] {
+	return pulumix.Output[[]WebProxyExplicitPacPolicySrcaddr]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebProxyExplicitPacPolicySrcaddrArrayOutput) Index(i pulumi.IntInput) WebProxyExplicitPacPolicySrcaddrOutput {
@@ -16257,6 +23166,12 @@ func (i WebProxyExplicitSecureWebProxyCertArgs) ToWebProxyExplicitSecureWebProxy
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyExplicitSecureWebProxyCertOutput)
 }
 
+func (i WebProxyExplicitSecureWebProxyCertArgs) ToOutput(ctx context.Context) pulumix.Output[WebProxyExplicitSecureWebProxyCert] {
+	return pulumix.Output[WebProxyExplicitSecureWebProxyCert]{
+		OutputState: i.ToWebProxyExplicitSecureWebProxyCertOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WebProxyExplicitSecureWebProxyCertArrayInput is an input type that accepts WebProxyExplicitSecureWebProxyCertArray and WebProxyExplicitSecureWebProxyCertArrayOutput values.
 // You can construct a concrete instance of `WebProxyExplicitSecureWebProxyCertArrayInput` via:
 //
@@ -16282,6 +23197,12 @@ func (i WebProxyExplicitSecureWebProxyCertArray) ToWebProxyExplicitSecureWebProx
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyExplicitSecureWebProxyCertArrayOutput)
 }
 
+func (i WebProxyExplicitSecureWebProxyCertArray) ToOutput(ctx context.Context) pulumix.Output[[]WebProxyExplicitSecureWebProxyCert] {
+	return pulumix.Output[[]WebProxyExplicitSecureWebProxyCert]{
+		OutputState: i.ToWebProxyExplicitSecureWebProxyCertArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WebProxyExplicitSecureWebProxyCertOutput struct{ *pulumi.OutputState }
 
 func (WebProxyExplicitSecureWebProxyCertOutput) ElementType() reflect.Type {
@@ -16294,6 +23215,12 @@ func (o WebProxyExplicitSecureWebProxyCertOutput) ToWebProxyExplicitSecureWebPro
 
 func (o WebProxyExplicitSecureWebProxyCertOutput) ToWebProxyExplicitSecureWebProxyCertOutputWithContext(ctx context.Context) WebProxyExplicitSecureWebProxyCertOutput {
 	return o
+}
+
+func (o WebProxyExplicitSecureWebProxyCertOutput) ToOutput(ctx context.Context) pulumix.Output[WebProxyExplicitSecureWebProxyCert] {
+	return pulumix.Output[WebProxyExplicitSecureWebProxyCert]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebProxyExplicitSecureWebProxyCertOutput) Name() pulumi.StringPtrOutput {
@@ -16312,6 +23239,12 @@ func (o WebProxyExplicitSecureWebProxyCertArrayOutput) ToWebProxyExplicitSecureW
 
 func (o WebProxyExplicitSecureWebProxyCertArrayOutput) ToWebProxyExplicitSecureWebProxyCertArrayOutputWithContext(ctx context.Context) WebProxyExplicitSecureWebProxyCertArrayOutput {
 	return o
+}
+
+func (o WebProxyExplicitSecureWebProxyCertArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WebProxyExplicitSecureWebProxyCert] {
+	return pulumix.Output[[]WebProxyExplicitSecureWebProxyCert]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebProxyExplicitSecureWebProxyCertArrayOutput) Index(i pulumi.IntInput) WebProxyExplicitSecureWebProxyCertOutput {
@@ -16353,6 +23286,12 @@ func (i WebProxyForwardServerGroupServerListArgs) ToWebProxyForwardServerGroupSe
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyForwardServerGroupServerListOutput)
 }
 
+func (i WebProxyForwardServerGroupServerListArgs) ToOutput(ctx context.Context) pulumix.Output[WebProxyForwardServerGroupServerList] {
+	return pulumix.Output[WebProxyForwardServerGroupServerList]{
+		OutputState: i.ToWebProxyForwardServerGroupServerListOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WebProxyForwardServerGroupServerListArrayInput is an input type that accepts WebProxyForwardServerGroupServerListArray and WebProxyForwardServerGroupServerListArrayOutput values.
 // You can construct a concrete instance of `WebProxyForwardServerGroupServerListArrayInput` via:
 //
@@ -16378,6 +23317,12 @@ func (i WebProxyForwardServerGroupServerListArray) ToWebProxyForwardServerGroupS
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyForwardServerGroupServerListArrayOutput)
 }
 
+func (i WebProxyForwardServerGroupServerListArray) ToOutput(ctx context.Context) pulumix.Output[[]WebProxyForwardServerGroupServerList] {
+	return pulumix.Output[[]WebProxyForwardServerGroupServerList]{
+		OutputState: i.ToWebProxyForwardServerGroupServerListArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WebProxyForwardServerGroupServerListOutput struct{ *pulumi.OutputState }
 
 func (WebProxyForwardServerGroupServerListOutput) ElementType() reflect.Type {
@@ -16390,6 +23335,12 @@ func (o WebProxyForwardServerGroupServerListOutput) ToWebProxyForwardServerGroup
 
 func (o WebProxyForwardServerGroupServerListOutput) ToWebProxyForwardServerGroupServerListOutputWithContext(ctx context.Context) WebProxyForwardServerGroupServerListOutput {
 	return o
+}
+
+func (o WebProxyForwardServerGroupServerListOutput) ToOutput(ctx context.Context) pulumix.Output[WebProxyForwardServerGroupServerList] {
+	return pulumix.Output[WebProxyForwardServerGroupServerList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebProxyForwardServerGroupServerListOutput) Name() pulumi.StringPtrOutput {
@@ -16412,6 +23363,12 @@ func (o WebProxyForwardServerGroupServerListArrayOutput) ToWebProxyForwardServer
 
 func (o WebProxyForwardServerGroupServerListArrayOutput) ToWebProxyForwardServerGroupServerListArrayOutputWithContext(ctx context.Context) WebProxyForwardServerGroupServerListArrayOutput {
 	return o
+}
+
+func (o WebProxyForwardServerGroupServerListArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WebProxyForwardServerGroupServerList] {
+	return pulumix.Output[[]WebProxyForwardServerGroupServerList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebProxyForwardServerGroupServerListArrayOutput) Index(i pulumi.IntInput) WebProxyForwardServerGroupServerListOutput {
@@ -16451,6 +23408,12 @@ func (i WebProxyGlobalLearnClientIpSrcaddr6Args) ToWebProxyGlobalLearnClientIpSr
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyGlobalLearnClientIpSrcaddr6Output)
 }
 
+func (i WebProxyGlobalLearnClientIpSrcaddr6Args) ToOutput(ctx context.Context) pulumix.Output[WebProxyGlobalLearnClientIpSrcaddr6] {
+	return pulumix.Output[WebProxyGlobalLearnClientIpSrcaddr6]{
+		OutputState: i.ToWebProxyGlobalLearnClientIpSrcaddr6OutputWithContext(ctx).OutputState,
+	}
+}
+
 // WebProxyGlobalLearnClientIpSrcaddr6ArrayInput is an input type that accepts WebProxyGlobalLearnClientIpSrcaddr6Array and WebProxyGlobalLearnClientIpSrcaddr6ArrayOutput values.
 // You can construct a concrete instance of `WebProxyGlobalLearnClientIpSrcaddr6ArrayInput` via:
 //
@@ -16476,6 +23439,12 @@ func (i WebProxyGlobalLearnClientIpSrcaddr6Array) ToWebProxyGlobalLearnClientIpS
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyGlobalLearnClientIpSrcaddr6ArrayOutput)
 }
 
+func (i WebProxyGlobalLearnClientIpSrcaddr6Array) ToOutput(ctx context.Context) pulumix.Output[[]WebProxyGlobalLearnClientIpSrcaddr6] {
+	return pulumix.Output[[]WebProxyGlobalLearnClientIpSrcaddr6]{
+		OutputState: i.ToWebProxyGlobalLearnClientIpSrcaddr6ArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WebProxyGlobalLearnClientIpSrcaddr6Output struct{ *pulumi.OutputState }
 
 func (WebProxyGlobalLearnClientIpSrcaddr6Output) ElementType() reflect.Type {
@@ -16488,6 +23457,12 @@ func (o WebProxyGlobalLearnClientIpSrcaddr6Output) ToWebProxyGlobalLearnClientIp
 
 func (o WebProxyGlobalLearnClientIpSrcaddr6Output) ToWebProxyGlobalLearnClientIpSrcaddr6OutputWithContext(ctx context.Context) WebProxyGlobalLearnClientIpSrcaddr6Output {
 	return o
+}
+
+func (o WebProxyGlobalLearnClientIpSrcaddr6Output) ToOutput(ctx context.Context) pulumix.Output[WebProxyGlobalLearnClientIpSrcaddr6] {
+	return pulumix.Output[WebProxyGlobalLearnClientIpSrcaddr6]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebProxyGlobalLearnClientIpSrcaddr6Output) Name() pulumi.StringPtrOutput {
@@ -16506,6 +23481,12 @@ func (o WebProxyGlobalLearnClientIpSrcaddr6ArrayOutput) ToWebProxyGlobalLearnCli
 
 func (o WebProxyGlobalLearnClientIpSrcaddr6ArrayOutput) ToWebProxyGlobalLearnClientIpSrcaddr6ArrayOutputWithContext(ctx context.Context) WebProxyGlobalLearnClientIpSrcaddr6ArrayOutput {
 	return o
+}
+
+func (o WebProxyGlobalLearnClientIpSrcaddr6ArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WebProxyGlobalLearnClientIpSrcaddr6] {
+	return pulumix.Output[[]WebProxyGlobalLearnClientIpSrcaddr6]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebProxyGlobalLearnClientIpSrcaddr6ArrayOutput) Index(i pulumi.IntInput) WebProxyGlobalLearnClientIpSrcaddr6Output {
@@ -16545,6 +23526,12 @@ func (i WebProxyGlobalLearnClientIpSrcaddrArgs) ToWebProxyGlobalLearnClientIpSrc
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyGlobalLearnClientIpSrcaddrOutput)
 }
 
+func (i WebProxyGlobalLearnClientIpSrcaddrArgs) ToOutput(ctx context.Context) pulumix.Output[WebProxyGlobalLearnClientIpSrcaddr] {
+	return pulumix.Output[WebProxyGlobalLearnClientIpSrcaddr]{
+		OutputState: i.ToWebProxyGlobalLearnClientIpSrcaddrOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WebProxyGlobalLearnClientIpSrcaddrArrayInput is an input type that accepts WebProxyGlobalLearnClientIpSrcaddrArray and WebProxyGlobalLearnClientIpSrcaddrArrayOutput values.
 // You can construct a concrete instance of `WebProxyGlobalLearnClientIpSrcaddrArrayInput` via:
 //
@@ -16570,6 +23557,12 @@ func (i WebProxyGlobalLearnClientIpSrcaddrArray) ToWebProxyGlobalLearnClientIpSr
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyGlobalLearnClientIpSrcaddrArrayOutput)
 }
 
+func (i WebProxyGlobalLearnClientIpSrcaddrArray) ToOutput(ctx context.Context) pulumix.Output[[]WebProxyGlobalLearnClientIpSrcaddr] {
+	return pulumix.Output[[]WebProxyGlobalLearnClientIpSrcaddr]{
+		OutputState: i.ToWebProxyGlobalLearnClientIpSrcaddrArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WebProxyGlobalLearnClientIpSrcaddrOutput struct{ *pulumi.OutputState }
 
 func (WebProxyGlobalLearnClientIpSrcaddrOutput) ElementType() reflect.Type {
@@ -16582,6 +23575,12 @@ func (o WebProxyGlobalLearnClientIpSrcaddrOutput) ToWebProxyGlobalLearnClientIpS
 
 func (o WebProxyGlobalLearnClientIpSrcaddrOutput) ToWebProxyGlobalLearnClientIpSrcaddrOutputWithContext(ctx context.Context) WebProxyGlobalLearnClientIpSrcaddrOutput {
 	return o
+}
+
+func (o WebProxyGlobalLearnClientIpSrcaddrOutput) ToOutput(ctx context.Context) pulumix.Output[WebProxyGlobalLearnClientIpSrcaddr] {
+	return pulumix.Output[WebProxyGlobalLearnClientIpSrcaddr]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebProxyGlobalLearnClientIpSrcaddrOutput) Name() pulumi.StringPtrOutput {
@@ -16600,6 +23599,12 @@ func (o WebProxyGlobalLearnClientIpSrcaddrArrayOutput) ToWebProxyGlobalLearnClie
 
 func (o WebProxyGlobalLearnClientIpSrcaddrArrayOutput) ToWebProxyGlobalLearnClientIpSrcaddrArrayOutputWithContext(ctx context.Context) WebProxyGlobalLearnClientIpSrcaddrArrayOutput {
 	return o
+}
+
+func (o WebProxyGlobalLearnClientIpSrcaddrArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WebProxyGlobalLearnClientIpSrcaddr] {
+	return pulumix.Output[[]WebProxyGlobalLearnClientIpSrcaddr]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebProxyGlobalLearnClientIpSrcaddrArrayOutput) Index(i pulumi.IntInput) WebProxyGlobalLearnClientIpSrcaddrOutput {
@@ -16655,6 +23660,12 @@ func (i WebProxyProfileHeaderArgs) ToWebProxyProfileHeaderOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyProfileHeaderOutput)
 }
 
+func (i WebProxyProfileHeaderArgs) ToOutput(ctx context.Context) pulumix.Output[WebProxyProfileHeader] {
+	return pulumix.Output[WebProxyProfileHeader]{
+		OutputState: i.ToWebProxyProfileHeaderOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WebProxyProfileHeaderArrayInput is an input type that accepts WebProxyProfileHeaderArray and WebProxyProfileHeaderArrayOutput values.
 // You can construct a concrete instance of `WebProxyProfileHeaderArrayInput` via:
 //
@@ -16680,6 +23691,12 @@ func (i WebProxyProfileHeaderArray) ToWebProxyProfileHeaderArrayOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyProfileHeaderArrayOutput)
 }
 
+func (i WebProxyProfileHeaderArray) ToOutput(ctx context.Context) pulumix.Output[[]WebProxyProfileHeader] {
+	return pulumix.Output[[]WebProxyProfileHeader]{
+		OutputState: i.ToWebProxyProfileHeaderArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WebProxyProfileHeaderOutput struct{ *pulumi.OutputState }
 
 func (WebProxyProfileHeaderOutput) ElementType() reflect.Type {
@@ -16692,6 +23709,12 @@ func (o WebProxyProfileHeaderOutput) ToWebProxyProfileHeaderOutput() WebProxyPro
 
 func (o WebProxyProfileHeaderOutput) ToWebProxyProfileHeaderOutputWithContext(ctx context.Context) WebProxyProfileHeaderOutput {
 	return o
+}
+
+func (o WebProxyProfileHeaderOutput) ToOutput(ctx context.Context) pulumix.Output[WebProxyProfileHeader] {
+	return pulumix.Output[WebProxyProfileHeader]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebProxyProfileHeaderOutput) Action() pulumi.StringPtrOutput {
@@ -16744,6 +23767,12 @@ func (o WebProxyProfileHeaderArrayOutput) ToWebProxyProfileHeaderArrayOutputWith
 	return o
 }
 
+func (o WebProxyProfileHeaderArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WebProxyProfileHeader] {
+	return pulumix.Output[[]WebProxyProfileHeader]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o WebProxyProfileHeaderArrayOutput) Index(i pulumi.IntInput) WebProxyProfileHeaderOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WebProxyProfileHeader {
 		return vs[0].([]WebProxyProfileHeader)[vs[1].(int)]
@@ -16781,6 +23810,12 @@ func (i WebProxyProfileHeaderDstaddr6Args) ToWebProxyProfileHeaderDstaddr6Output
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyProfileHeaderDstaddr6Output)
 }
 
+func (i WebProxyProfileHeaderDstaddr6Args) ToOutput(ctx context.Context) pulumix.Output[WebProxyProfileHeaderDstaddr6] {
+	return pulumix.Output[WebProxyProfileHeaderDstaddr6]{
+		OutputState: i.ToWebProxyProfileHeaderDstaddr6OutputWithContext(ctx).OutputState,
+	}
+}
+
 // WebProxyProfileHeaderDstaddr6ArrayInput is an input type that accepts WebProxyProfileHeaderDstaddr6Array and WebProxyProfileHeaderDstaddr6ArrayOutput values.
 // You can construct a concrete instance of `WebProxyProfileHeaderDstaddr6ArrayInput` via:
 //
@@ -16806,6 +23841,12 @@ func (i WebProxyProfileHeaderDstaddr6Array) ToWebProxyProfileHeaderDstaddr6Array
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyProfileHeaderDstaddr6ArrayOutput)
 }
 
+func (i WebProxyProfileHeaderDstaddr6Array) ToOutput(ctx context.Context) pulumix.Output[[]WebProxyProfileHeaderDstaddr6] {
+	return pulumix.Output[[]WebProxyProfileHeaderDstaddr6]{
+		OutputState: i.ToWebProxyProfileHeaderDstaddr6ArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WebProxyProfileHeaderDstaddr6Output struct{ *pulumi.OutputState }
 
 func (WebProxyProfileHeaderDstaddr6Output) ElementType() reflect.Type {
@@ -16818,6 +23859,12 @@ func (o WebProxyProfileHeaderDstaddr6Output) ToWebProxyProfileHeaderDstaddr6Outp
 
 func (o WebProxyProfileHeaderDstaddr6Output) ToWebProxyProfileHeaderDstaddr6OutputWithContext(ctx context.Context) WebProxyProfileHeaderDstaddr6Output {
 	return o
+}
+
+func (o WebProxyProfileHeaderDstaddr6Output) ToOutput(ctx context.Context) pulumix.Output[WebProxyProfileHeaderDstaddr6] {
+	return pulumix.Output[WebProxyProfileHeaderDstaddr6]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebProxyProfileHeaderDstaddr6Output) Name() pulumi.StringPtrOutput {
@@ -16836,6 +23883,12 @@ func (o WebProxyProfileHeaderDstaddr6ArrayOutput) ToWebProxyProfileHeaderDstaddr
 
 func (o WebProxyProfileHeaderDstaddr6ArrayOutput) ToWebProxyProfileHeaderDstaddr6ArrayOutputWithContext(ctx context.Context) WebProxyProfileHeaderDstaddr6ArrayOutput {
 	return o
+}
+
+func (o WebProxyProfileHeaderDstaddr6ArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WebProxyProfileHeaderDstaddr6] {
+	return pulumix.Output[[]WebProxyProfileHeaderDstaddr6]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebProxyProfileHeaderDstaddr6ArrayOutput) Index(i pulumi.IntInput) WebProxyProfileHeaderDstaddr6Output {
@@ -16875,6 +23928,12 @@ func (i WebProxyProfileHeaderDstaddrArgs) ToWebProxyProfileHeaderDstaddrOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyProfileHeaderDstaddrOutput)
 }
 
+func (i WebProxyProfileHeaderDstaddrArgs) ToOutput(ctx context.Context) pulumix.Output[WebProxyProfileHeaderDstaddr] {
+	return pulumix.Output[WebProxyProfileHeaderDstaddr]{
+		OutputState: i.ToWebProxyProfileHeaderDstaddrOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WebProxyProfileHeaderDstaddrArrayInput is an input type that accepts WebProxyProfileHeaderDstaddrArray and WebProxyProfileHeaderDstaddrArrayOutput values.
 // You can construct a concrete instance of `WebProxyProfileHeaderDstaddrArrayInput` via:
 //
@@ -16900,6 +23959,12 @@ func (i WebProxyProfileHeaderDstaddrArray) ToWebProxyProfileHeaderDstaddrArrayOu
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyProfileHeaderDstaddrArrayOutput)
 }
 
+func (i WebProxyProfileHeaderDstaddrArray) ToOutput(ctx context.Context) pulumix.Output[[]WebProxyProfileHeaderDstaddr] {
+	return pulumix.Output[[]WebProxyProfileHeaderDstaddr]{
+		OutputState: i.ToWebProxyProfileHeaderDstaddrArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WebProxyProfileHeaderDstaddrOutput struct{ *pulumi.OutputState }
 
 func (WebProxyProfileHeaderDstaddrOutput) ElementType() reflect.Type {
@@ -16912,6 +23977,12 @@ func (o WebProxyProfileHeaderDstaddrOutput) ToWebProxyProfileHeaderDstaddrOutput
 
 func (o WebProxyProfileHeaderDstaddrOutput) ToWebProxyProfileHeaderDstaddrOutputWithContext(ctx context.Context) WebProxyProfileHeaderDstaddrOutput {
 	return o
+}
+
+func (o WebProxyProfileHeaderDstaddrOutput) ToOutput(ctx context.Context) pulumix.Output[WebProxyProfileHeaderDstaddr] {
+	return pulumix.Output[WebProxyProfileHeaderDstaddr]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebProxyProfileHeaderDstaddrOutput) Name() pulumi.StringPtrOutput {
@@ -16930,6 +24001,12 @@ func (o WebProxyProfileHeaderDstaddrArrayOutput) ToWebProxyProfileHeaderDstaddrA
 
 func (o WebProxyProfileHeaderDstaddrArrayOutput) ToWebProxyProfileHeaderDstaddrArrayOutputWithContext(ctx context.Context) WebProxyProfileHeaderDstaddrArrayOutput {
 	return o
+}
+
+func (o WebProxyProfileHeaderDstaddrArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WebProxyProfileHeaderDstaddr] {
+	return pulumix.Output[[]WebProxyProfileHeaderDstaddr]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebProxyProfileHeaderDstaddrArrayOutput) Index(i pulumi.IntInput) WebProxyProfileHeaderDstaddrOutput {
@@ -16979,6 +24056,12 @@ func (i WebfilterContentEntryArgs) ToWebfilterContentEntryOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterContentEntryOutput)
 }
 
+func (i WebfilterContentEntryArgs) ToOutput(ctx context.Context) pulumix.Output[WebfilterContentEntry] {
+	return pulumix.Output[WebfilterContentEntry]{
+		OutputState: i.ToWebfilterContentEntryOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WebfilterContentEntryArrayInput is an input type that accepts WebfilterContentEntryArray and WebfilterContentEntryArrayOutput values.
 // You can construct a concrete instance of `WebfilterContentEntryArrayInput` via:
 //
@@ -17004,6 +24087,12 @@ func (i WebfilterContentEntryArray) ToWebfilterContentEntryArrayOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterContentEntryArrayOutput)
 }
 
+func (i WebfilterContentEntryArray) ToOutput(ctx context.Context) pulumix.Output[[]WebfilterContentEntry] {
+	return pulumix.Output[[]WebfilterContentEntry]{
+		OutputState: i.ToWebfilterContentEntryArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WebfilterContentEntryOutput struct{ *pulumi.OutputState }
 
 func (WebfilterContentEntryOutput) ElementType() reflect.Type {
@@ -17016,6 +24105,12 @@ func (o WebfilterContentEntryOutput) ToWebfilterContentEntryOutput() WebfilterCo
 
 func (o WebfilterContentEntryOutput) ToWebfilterContentEntryOutputWithContext(ctx context.Context) WebfilterContentEntryOutput {
 	return o
+}
+
+func (o WebfilterContentEntryOutput) ToOutput(ctx context.Context) pulumix.Output[WebfilterContentEntry] {
+	return pulumix.Output[WebfilterContentEntry]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterContentEntryOutput) Action() pulumi.StringPtrOutput {
@@ -17054,6 +24149,12 @@ func (o WebfilterContentEntryArrayOutput) ToWebfilterContentEntryArrayOutput() W
 
 func (o WebfilterContentEntryArrayOutput) ToWebfilterContentEntryArrayOutputWithContext(ctx context.Context) WebfilterContentEntryArrayOutput {
 	return o
+}
+
+func (o WebfilterContentEntryArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WebfilterContentEntry] {
+	return pulumix.Output[[]WebfilterContentEntry]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterContentEntryArrayOutput) Index(i pulumi.IntInput) WebfilterContentEntryOutput {
@@ -17097,6 +24198,12 @@ func (i WebfilterContentHeaderEntryArgs) ToWebfilterContentHeaderEntryOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterContentHeaderEntryOutput)
 }
 
+func (i WebfilterContentHeaderEntryArgs) ToOutput(ctx context.Context) pulumix.Output[WebfilterContentHeaderEntry] {
+	return pulumix.Output[WebfilterContentHeaderEntry]{
+		OutputState: i.ToWebfilterContentHeaderEntryOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WebfilterContentHeaderEntryArrayInput is an input type that accepts WebfilterContentHeaderEntryArray and WebfilterContentHeaderEntryArrayOutput values.
 // You can construct a concrete instance of `WebfilterContentHeaderEntryArrayInput` via:
 //
@@ -17122,6 +24229,12 @@ func (i WebfilterContentHeaderEntryArray) ToWebfilterContentHeaderEntryArrayOutp
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterContentHeaderEntryArrayOutput)
 }
 
+func (i WebfilterContentHeaderEntryArray) ToOutput(ctx context.Context) pulumix.Output[[]WebfilterContentHeaderEntry] {
+	return pulumix.Output[[]WebfilterContentHeaderEntry]{
+		OutputState: i.ToWebfilterContentHeaderEntryArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WebfilterContentHeaderEntryOutput struct{ *pulumi.OutputState }
 
 func (WebfilterContentHeaderEntryOutput) ElementType() reflect.Type {
@@ -17134,6 +24247,12 @@ func (o WebfilterContentHeaderEntryOutput) ToWebfilterContentHeaderEntryOutput()
 
 func (o WebfilterContentHeaderEntryOutput) ToWebfilterContentHeaderEntryOutputWithContext(ctx context.Context) WebfilterContentHeaderEntryOutput {
 	return o
+}
+
+func (o WebfilterContentHeaderEntryOutput) ToOutput(ctx context.Context) pulumix.Output[WebfilterContentHeaderEntry] {
+	return pulumix.Output[WebfilterContentHeaderEntry]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterContentHeaderEntryOutput) Action() pulumi.StringPtrOutput {
@@ -17160,6 +24279,12 @@ func (o WebfilterContentHeaderEntryArrayOutput) ToWebfilterContentHeaderEntryArr
 
 func (o WebfilterContentHeaderEntryArrayOutput) ToWebfilterContentHeaderEntryArrayOutputWithContext(ctx context.Context) WebfilterContentHeaderEntryArrayOutput {
 	return o
+}
+
+func (o WebfilterContentHeaderEntryArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WebfilterContentHeaderEntry] {
+	return pulumix.Output[[]WebfilterContentHeaderEntry]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterContentHeaderEntryArrayOutput) Index(i pulumi.IntInput) WebfilterContentHeaderEntryOutput {
@@ -17219,6 +24344,12 @@ func (i WebfilterProfileAntiphishArgs) ToWebfilterProfileAntiphishOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfileAntiphishOutput)
 }
 
+func (i WebfilterProfileAntiphishArgs) ToOutput(ctx context.Context) pulumix.Output[WebfilterProfileAntiphish] {
+	return pulumix.Output[WebfilterProfileAntiphish]{
+		OutputState: i.ToWebfilterProfileAntiphishOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WebfilterProfileAntiphishArgs) ToWebfilterProfileAntiphishPtrOutput() WebfilterProfileAntiphishPtrOutput {
 	return i.ToWebfilterProfileAntiphishPtrOutputWithContext(context.Background())
 }
@@ -17260,6 +24391,12 @@ func (i *webfilterProfileAntiphishPtrType) ToWebfilterProfileAntiphishPtrOutputW
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfileAntiphishPtrOutput)
 }
 
+func (i *webfilterProfileAntiphishPtrType) ToOutput(ctx context.Context) pulumix.Output[*WebfilterProfileAntiphish] {
+	return pulumix.Output[*WebfilterProfileAntiphish]{
+		OutputState: i.ToWebfilterProfileAntiphishPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WebfilterProfileAntiphishOutput struct{ *pulumi.OutputState }
 
 func (WebfilterProfileAntiphishOutput) ElementType() reflect.Type {
@@ -17282,6 +24419,12 @@ func (o WebfilterProfileAntiphishOutput) ToWebfilterProfileAntiphishPtrOutputWit
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebfilterProfileAntiphish) *WebfilterProfileAntiphish {
 		return &v
 	}).(WebfilterProfileAntiphishPtrOutput)
+}
+
+func (o WebfilterProfileAntiphishOutput) ToOutput(ctx context.Context) pulumix.Output[WebfilterProfileAntiphish] {
+	return pulumix.Output[WebfilterProfileAntiphish]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterProfileAntiphishOutput) Authentication() pulumi.StringPtrOutput {
@@ -17342,6 +24485,12 @@ func (o WebfilterProfileAntiphishPtrOutput) ToWebfilterProfileAntiphishPtrOutput
 
 func (o WebfilterProfileAntiphishPtrOutput) ToWebfilterProfileAntiphishPtrOutputWithContext(ctx context.Context) WebfilterProfileAntiphishPtrOutput {
 	return o
+}
+
+func (o WebfilterProfileAntiphishPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WebfilterProfileAntiphish] {
+	return pulumix.Output[*WebfilterProfileAntiphish]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterProfileAntiphishPtrOutput) Elem() WebfilterProfileAntiphishOutput {
@@ -17488,6 +24637,12 @@ func (i WebfilterProfileAntiphishCustomPatternArgs) ToWebfilterProfileAntiphishC
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfileAntiphishCustomPatternOutput)
 }
 
+func (i WebfilterProfileAntiphishCustomPatternArgs) ToOutput(ctx context.Context) pulumix.Output[WebfilterProfileAntiphishCustomPattern] {
+	return pulumix.Output[WebfilterProfileAntiphishCustomPattern]{
+		OutputState: i.ToWebfilterProfileAntiphishCustomPatternOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WebfilterProfileAntiphishCustomPatternArrayInput is an input type that accepts WebfilterProfileAntiphishCustomPatternArray and WebfilterProfileAntiphishCustomPatternArrayOutput values.
 // You can construct a concrete instance of `WebfilterProfileAntiphishCustomPatternArrayInput` via:
 //
@@ -17513,6 +24668,12 @@ func (i WebfilterProfileAntiphishCustomPatternArray) ToWebfilterProfileAntiphish
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfileAntiphishCustomPatternArrayOutput)
 }
 
+func (i WebfilterProfileAntiphishCustomPatternArray) ToOutput(ctx context.Context) pulumix.Output[[]WebfilterProfileAntiphishCustomPattern] {
+	return pulumix.Output[[]WebfilterProfileAntiphishCustomPattern]{
+		OutputState: i.ToWebfilterProfileAntiphishCustomPatternArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WebfilterProfileAntiphishCustomPatternOutput struct{ *pulumi.OutputState }
 
 func (WebfilterProfileAntiphishCustomPatternOutput) ElementType() reflect.Type {
@@ -17525,6 +24686,12 @@ func (o WebfilterProfileAntiphishCustomPatternOutput) ToWebfilterProfileAntiphis
 
 func (o WebfilterProfileAntiphishCustomPatternOutput) ToWebfilterProfileAntiphishCustomPatternOutputWithContext(ctx context.Context) WebfilterProfileAntiphishCustomPatternOutput {
 	return o
+}
+
+func (o WebfilterProfileAntiphishCustomPatternOutput) ToOutput(ctx context.Context) pulumix.Output[WebfilterProfileAntiphishCustomPattern] {
+	return pulumix.Output[WebfilterProfileAntiphishCustomPattern]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterProfileAntiphishCustomPatternOutput) Category() pulumi.StringPtrOutput {
@@ -17551,6 +24718,12 @@ func (o WebfilterProfileAntiphishCustomPatternArrayOutput) ToWebfilterProfileAnt
 
 func (o WebfilterProfileAntiphishCustomPatternArrayOutput) ToWebfilterProfileAntiphishCustomPatternArrayOutputWithContext(ctx context.Context) WebfilterProfileAntiphishCustomPatternArrayOutput {
 	return o
+}
+
+func (o WebfilterProfileAntiphishCustomPatternArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WebfilterProfileAntiphishCustomPattern] {
+	return pulumix.Output[[]WebfilterProfileAntiphishCustomPattern]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterProfileAntiphishCustomPatternArrayOutput) Index(i pulumi.IntInput) WebfilterProfileAntiphishCustomPatternOutput {
@@ -17594,6 +24767,12 @@ func (i WebfilterProfileAntiphishInspectionEntryArgs) ToWebfilterProfileAntiphis
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfileAntiphishInspectionEntryOutput)
 }
 
+func (i WebfilterProfileAntiphishInspectionEntryArgs) ToOutput(ctx context.Context) pulumix.Output[WebfilterProfileAntiphishInspectionEntry] {
+	return pulumix.Output[WebfilterProfileAntiphishInspectionEntry]{
+		OutputState: i.ToWebfilterProfileAntiphishInspectionEntryOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WebfilterProfileAntiphishInspectionEntryArrayInput is an input type that accepts WebfilterProfileAntiphishInspectionEntryArray and WebfilterProfileAntiphishInspectionEntryArrayOutput values.
 // You can construct a concrete instance of `WebfilterProfileAntiphishInspectionEntryArrayInput` via:
 //
@@ -17619,6 +24798,12 @@ func (i WebfilterProfileAntiphishInspectionEntryArray) ToWebfilterProfileAntiphi
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfileAntiphishInspectionEntryArrayOutput)
 }
 
+func (i WebfilterProfileAntiphishInspectionEntryArray) ToOutput(ctx context.Context) pulumix.Output[[]WebfilterProfileAntiphishInspectionEntry] {
+	return pulumix.Output[[]WebfilterProfileAntiphishInspectionEntry]{
+		OutputState: i.ToWebfilterProfileAntiphishInspectionEntryArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WebfilterProfileAntiphishInspectionEntryOutput struct{ *pulumi.OutputState }
 
 func (WebfilterProfileAntiphishInspectionEntryOutput) ElementType() reflect.Type {
@@ -17631,6 +24816,12 @@ func (o WebfilterProfileAntiphishInspectionEntryOutput) ToWebfilterProfileAntiph
 
 func (o WebfilterProfileAntiphishInspectionEntryOutput) ToWebfilterProfileAntiphishInspectionEntryOutputWithContext(ctx context.Context) WebfilterProfileAntiphishInspectionEntryOutput {
 	return o
+}
+
+func (o WebfilterProfileAntiphishInspectionEntryOutput) ToOutput(ctx context.Context) pulumix.Output[WebfilterProfileAntiphishInspectionEntry] {
+	return pulumix.Output[WebfilterProfileAntiphishInspectionEntry]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterProfileAntiphishInspectionEntryOutput) Action() pulumi.StringPtrOutput {
@@ -17657,6 +24848,12 @@ func (o WebfilterProfileAntiphishInspectionEntryArrayOutput) ToWebfilterProfileA
 
 func (o WebfilterProfileAntiphishInspectionEntryArrayOutput) ToWebfilterProfileAntiphishInspectionEntryArrayOutputWithContext(ctx context.Context) WebfilterProfileAntiphishInspectionEntryArrayOutput {
 	return o
+}
+
+func (o WebfilterProfileAntiphishInspectionEntryArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WebfilterProfileAntiphishInspectionEntry] {
+	return pulumix.Output[[]WebfilterProfileAntiphishInspectionEntry]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterProfileAntiphishInspectionEntryArrayOutput) Index(i pulumi.IntInput) WebfilterProfileAntiphishInspectionEntryOutput {
@@ -17702,6 +24899,12 @@ func (i WebfilterProfileFileFilterArgs) ToWebfilterProfileFileFilterOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfileFileFilterOutput)
 }
 
+func (i WebfilterProfileFileFilterArgs) ToOutput(ctx context.Context) pulumix.Output[WebfilterProfileFileFilter] {
+	return pulumix.Output[WebfilterProfileFileFilter]{
+		OutputState: i.ToWebfilterProfileFileFilterOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WebfilterProfileFileFilterArgs) ToWebfilterProfileFileFilterPtrOutput() WebfilterProfileFileFilterPtrOutput {
 	return i.ToWebfilterProfileFileFilterPtrOutputWithContext(context.Background())
 }
@@ -17743,6 +24946,12 @@ func (i *webfilterProfileFileFilterPtrType) ToWebfilterProfileFileFilterPtrOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfileFileFilterPtrOutput)
 }
 
+func (i *webfilterProfileFileFilterPtrType) ToOutput(ctx context.Context) pulumix.Output[*WebfilterProfileFileFilter] {
+	return pulumix.Output[*WebfilterProfileFileFilter]{
+		OutputState: i.ToWebfilterProfileFileFilterPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WebfilterProfileFileFilterOutput struct{ *pulumi.OutputState }
 
 func (WebfilterProfileFileFilterOutput) ElementType() reflect.Type {
@@ -17765,6 +24974,12 @@ func (o WebfilterProfileFileFilterOutput) ToWebfilterProfileFileFilterPtrOutputW
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebfilterProfileFileFilter) *WebfilterProfileFileFilter {
 		return &v
 	}).(WebfilterProfileFileFilterPtrOutput)
+}
+
+func (o WebfilterProfileFileFilterOutput) ToOutput(ctx context.Context) pulumix.Output[WebfilterProfileFileFilter] {
+	return pulumix.Output[WebfilterProfileFileFilter]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterProfileFileFilterOutput) Entries() WebfilterProfileFileFilterEntryArrayOutput {
@@ -17795,6 +25010,12 @@ func (o WebfilterProfileFileFilterPtrOutput) ToWebfilterProfileFileFilterPtrOutp
 
 func (o WebfilterProfileFileFilterPtrOutput) ToWebfilterProfileFileFilterPtrOutputWithContext(ctx context.Context) WebfilterProfileFileFilterPtrOutput {
 	return o
+}
+
+func (o WebfilterProfileFileFilterPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WebfilterProfileFileFilter] {
+	return pulumix.Output[*WebfilterProfileFileFilter]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterProfileFileFilterPtrOutput) Elem() WebfilterProfileFileFilterOutput {
@@ -17886,6 +25107,12 @@ func (i WebfilterProfileFileFilterEntryArgs) ToWebfilterProfileFileFilterEntryOu
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfileFileFilterEntryOutput)
 }
 
+func (i WebfilterProfileFileFilterEntryArgs) ToOutput(ctx context.Context) pulumix.Output[WebfilterProfileFileFilterEntry] {
+	return pulumix.Output[WebfilterProfileFileFilterEntry]{
+		OutputState: i.ToWebfilterProfileFileFilterEntryOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WebfilterProfileFileFilterEntryArrayInput is an input type that accepts WebfilterProfileFileFilterEntryArray and WebfilterProfileFileFilterEntryArrayOutput values.
 // You can construct a concrete instance of `WebfilterProfileFileFilterEntryArrayInput` via:
 //
@@ -17911,6 +25138,12 @@ func (i WebfilterProfileFileFilterEntryArray) ToWebfilterProfileFileFilterEntryA
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfileFileFilterEntryArrayOutput)
 }
 
+func (i WebfilterProfileFileFilterEntryArray) ToOutput(ctx context.Context) pulumix.Output[[]WebfilterProfileFileFilterEntry] {
+	return pulumix.Output[[]WebfilterProfileFileFilterEntry]{
+		OutputState: i.ToWebfilterProfileFileFilterEntryArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WebfilterProfileFileFilterEntryOutput struct{ *pulumi.OutputState }
 
 func (WebfilterProfileFileFilterEntryOutput) ElementType() reflect.Type {
@@ -17923,6 +25156,12 @@ func (o WebfilterProfileFileFilterEntryOutput) ToWebfilterProfileFileFilterEntry
 
 func (o WebfilterProfileFileFilterEntryOutput) ToWebfilterProfileFileFilterEntryOutputWithContext(ctx context.Context) WebfilterProfileFileFilterEntryOutput {
 	return o
+}
+
+func (o WebfilterProfileFileFilterEntryOutput) ToOutput(ctx context.Context) pulumix.Output[WebfilterProfileFileFilterEntry] {
+	return pulumix.Output[WebfilterProfileFileFilterEntry]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterProfileFileFilterEntryOutput) Action() pulumi.StringPtrOutput {
@@ -17967,6 +25206,12 @@ func (o WebfilterProfileFileFilterEntryArrayOutput) ToWebfilterProfileFileFilter
 	return o
 }
 
+func (o WebfilterProfileFileFilterEntryArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WebfilterProfileFileFilterEntry] {
+	return pulumix.Output[[]WebfilterProfileFileFilterEntry]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o WebfilterProfileFileFilterEntryArrayOutput) Index(i pulumi.IntInput) WebfilterProfileFileFilterEntryOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WebfilterProfileFileFilterEntry {
 		return vs[0].([]WebfilterProfileFileFilterEntry)[vs[1].(int)]
@@ -18004,6 +25249,12 @@ func (i WebfilterProfileFileFilterEntryFileTypeArgs) ToWebfilterProfileFileFilte
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfileFileFilterEntryFileTypeOutput)
 }
 
+func (i WebfilterProfileFileFilterEntryFileTypeArgs) ToOutput(ctx context.Context) pulumix.Output[WebfilterProfileFileFilterEntryFileType] {
+	return pulumix.Output[WebfilterProfileFileFilterEntryFileType]{
+		OutputState: i.ToWebfilterProfileFileFilterEntryFileTypeOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WebfilterProfileFileFilterEntryFileTypeArrayInput is an input type that accepts WebfilterProfileFileFilterEntryFileTypeArray and WebfilterProfileFileFilterEntryFileTypeArrayOutput values.
 // You can construct a concrete instance of `WebfilterProfileFileFilterEntryFileTypeArrayInput` via:
 //
@@ -18029,6 +25280,12 @@ func (i WebfilterProfileFileFilterEntryFileTypeArray) ToWebfilterProfileFileFilt
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfileFileFilterEntryFileTypeArrayOutput)
 }
 
+func (i WebfilterProfileFileFilterEntryFileTypeArray) ToOutput(ctx context.Context) pulumix.Output[[]WebfilterProfileFileFilterEntryFileType] {
+	return pulumix.Output[[]WebfilterProfileFileFilterEntryFileType]{
+		OutputState: i.ToWebfilterProfileFileFilterEntryFileTypeArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WebfilterProfileFileFilterEntryFileTypeOutput struct{ *pulumi.OutputState }
 
 func (WebfilterProfileFileFilterEntryFileTypeOutput) ElementType() reflect.Type {
@@ -18041,6 +25298,12 @@ func (o WebfilterProfileFileFilterEntryFileTypeOutput) ToWebfilterProfileFileFil
 
 func (o WebfilterProfileFileFilterEntryFileTypeOutput) ToWebfilterProfileFileFilterEntryFileTypeOutputWithContext(ctx context.Context) WebfilterProfileFileFilterEntryFileTypeOutput {
 	return o
+}
+
+func (o WebfilterProfileFileFilterEntryFileTypeOutput) ToOutput(ctx context.Context) pulumix.Output[WebfilterProfileFileFilterEntryFileType] {
+	return pulumix.Output[WebfilterProfileFileFilterEntryFileType]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterProfileFileFilterEntryFileTypeOutput) Name() pulumi.StringPtrOutput {
@@ -18059,6 +25322,12 @@ func (o WebfilterProfileFileFilterEntryFileTypeArrayOutput) ToWebfilterProfileFi
 
 func (o WebfilterProfileFileFilterEntryFileTypeArrayOutput) ToWebfilterProfileFileFilterEntryFileTypeArrayOutputWithContext(ctx context.Context) WebfilterProfileFileFilterEntryFileTypeArrayOutput {
 	return o
+}
+
+func (o WebfilterProfileFileFilterEntryFileTypeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WebfilterProfileFileFilterEntryFileType] {
+	return pulumix.Output[[]WebfilterProfileFileFilterEntryFileType]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterProfileFileFilterEntryFileTypeArrayOutput) Index(i pulumi.IntInput) WebfilterProfileFileFilterEntryFileTypeOutput {
@@ -18116,6 +25385,12 @@ func (i WebfilterProfileFtgdWfArgs) ToWebfilterProfileFtgdWfOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfileFtgdWfOutput)
 }
 
+func (i WebfilterProfileFtgdWfArgs) ToOutput(ctx context.Context) pulumix.Output[WebfilterProfileFtgdWf] {
+	return pulumix.Output[WebfilterProfileFtgdWf]{
+		OutputState: i.ToWebfilterProfileFtgdWfOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WebfilterProfileFtgdWfArgs) ToWebfilterProfileFtgdWfPtrOutput() WebfilterProfileFtgdWfPtrOutput {
 	return i.ToWebfilterProfileFtgdWfPtrOutputWithContext(context.Background())
 }
@@ -18157,6 +25432,12 @@ func (i *webfilterProfileFtgdWfPtrType) ToWebfilterProfileFtgdWfPtrOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfileFtgdWfPtrOutput)
 }
 
+func (i *webfilterProfileFtgdWfPtrType) ToOutput(ctx context.Context) pulumix.Output[*WebfilterProfileFtgdWf] {
+	return pulumix.Output[*WebfilterProfileFtgdWf]{
+		OutputState: i.ToWebfilterProfileFtgdWfPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WebfilterProfileFtgdWfOutput struct{ *pulumi.OutputState }
 
 func (WebfilterProfileFtgdWfOutput) ElementType() reflect.Type {
@@ -18179,6 +25460,12 @@ func (o WebfilterProfileFtgdWfOutput) ToWebfilterProfileFtgdWfPtrOutputWithConte
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebfilterProfileFtgdWf) *WebfilterProfileFtgdWf {
 		return &v
 	}).(WebfilterProfileFtgdWfPtrOutput)
+}
+
+func (o WebfilterProfileFtgdWfOutput) ToOutput(ctx context.Context) pulumix.Output[WebfilterProfileFtgdWf] {
+	return pulumix.Output[WebfilterProfileFtgdWf]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterProfileFtgdWfOutput) ExemptQuota() pulumi.StringPtrOutput {
@@ -18233,6 +25520,12 @@ func (o WebfilterProfileFtgdWfPtrOutput) ToWebfilterProfileFtgdWfPtrOutput() Web
 
 func (o WebfilterProfileFtgdWfPtrOutput) ToWebfilterProfileFtgdWfPtrOutputWithContext(ctx context.Context) WebfilterProfileFtgdWfPtrOutput {
 	return o
+}
+
+func (o WebfilterProfileFtgdWfPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WebfilterProfileFtgdWf] {
+	return pulumix.Output[*WebfilterProfileFtgdWf]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterProfileFtgdWfPtrOutput) Elem() WebfilterProfileFtgdWfOutput {
@@ -18382,6 +25675,12 @@ func (i WebfilterProfileFtgdWfFilterArgs) ToWebfilterProfileFtgdWfFilterOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfileFtgdWfFilterOutput)
 }
 
+func (i WebfilterProfileFtgdWfFilterArgs) ToOutput(ctx context.Context) pulumix.Output[WebfilterProfileFtgdWfFilter] {
+	return pulumix.Output[WebfilterProfileFtgdWfFilter]{
+		OutputState: i.ToWebfilterProfileFtgdWfFilterOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WebfilterProfileFtgdWfFilterArrayInput is an input type that accepts WebfilterProfileFtgdWfFilterArray and WebfilterProfileFtgdWfFilterArrayOutput values.
 // You can construct a concrete instance of `WebfilterProfileFtgdWfFilterArrayInput` via:
 //
@@ -18407,6 +25706,12 @@ func (i WebfilterProfileFtgdWfFilterArray) ToWebfilterProfileFtgdWfFilterArrayOu
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfileFtgdWfFilterArrayOutput)
 }
 
+func (i WebfilterProfileFtgdWfFilterArray) ToOutput(ctx context.Context) pulumix.Output[[]WebfilterProfileFtgdWfFilter] {
+	return pulumix.Output[[]WebfilterProfileFtgdWfFilter]{
+		OutputState: i.ToWebfilterProfileFtgdWfFilterArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WebfilterProfileFtgdWfFilterOutput struct{ *pulumi.OutputState }
 
 func (WebfilterProfileFtgdWfFilterOutput) ElementType() reflect.Type {
@@ -18419,6 +25724,12 @@ func (o WebfilterProfileFtgdWfFilterOutput) ToWebfilterProfileFtgdWfFilterOutput
 
 func (o WebfilterProfileFtgdWfFilterOutput) ToWebfilterProfileFtgdWfFilterOutputWithContext(ctx context.Context) WebfilterProfileFtgdWfFilterOutput {
 	return o
+}
+
+func (o WebfilterProfileFtgdWfFilterOutput) ToOutput(ctx context.Context) pulumix.Output[WebfilterProfileFtgdWfFilter] {
+	return pulumix.Output[WebfilterProfileFtgdWfFilter]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterProfileFtgdWfFilterOutput) Action() pulumi.StringPtrOutput {
@@ -18471,6 +25782,12 @@ func (o WebfilterProfileFtgdWfFilterArrayOutput) ToWebfilterProfileFtgdWfFilterA
 	return o
 }
 
+func (o WebfilterProfileFtgdWfFilterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WebfilterProfileFtgdWfFilter] {
+	return pulumix.Output[[]WebfilterProfileFtgdWfFilter]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o WebfilterProfileFtgdWfFilterArrayOutput) Index(i pulumi.IntInput) WebfilterProfileFtgdWfFilterOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WebfilterProfileFtgdWfFilter {
 		return vs[0].([]WebfilterProfileFtgdWfFilter)[vs[1].(int)]
@@ -18508,6 +25825,12 @@ func (i WebfilterProfileFtgdWfFilterAuthUsrGrpArgs) ToWebfilterProfileFtgdWfFilt
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfileFtgdWfFilterAuthUsrGrpOutput)
 }
 
+func (i WebfilterProfileFtgdWfFilterAuthUsrGrpArgs) ToOutput(ctx context.Context) pulumix.Output[WebfilterProfileFtgdWfFilterAuthUsrGrp] {
+	return pulumix.Output[WebfilterProfileFtgdWfFilterAuthUsrGrp]{
+		OutputState: i.ToWebfilterProfileFtgdWfFilterAuthUsrGrpOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WebfilterProfileFtgdWfFilterAuthUsrGrpArrayInput is an input type that accepts WebfilterProfileFtgdWfFilterAuthUsrGrpArray and WebfilterProfileFtgdWfFilterAuthUsrGrpArrayOutput values.
 // You can construct a concrete instance of `WebfilterProfileFtgdWfFilterAuthUsrGrpArrayInput` via:
 //
@@ -18533,6 +25856,12 @@ func (i WebfilterProfileFtgdWfFilterAuthUsrGrpArray) ToWebfilterProfileFtgdWfFil
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfileFtgdWfFilterAuthUsrGrpArrayOutput)
 }
 
+func (i WebfilterProfileFtgdWfFilterAuthUsrGrpArray) ToOutput(ctx context.Context) pulumix.Output[[]WebfilterProfileFtgdWfFilterAuthUsrGrp] {
+	return pulumix.Output[[]WebfilterProfileFtgdWfFilterAuthUsrGrp]{
+		OutputState: i.ToWebfilterProfileFtgdWfFilterAuthUsrGrpArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WebfilterProfileFtgdWfFilterAuthUsrGrpOutput struct{ *pulumi.OutputState }
 
 func (WebfilterProfileFtgdWfFilterAuthUsrGrpOutput) ElementType() reflect.Type {
@@ -18545,6 +25874,12 @@ func (o WebfilterProfileFtgdWfFilterAuthUsrGrpOutput) ToWebfilterProfileFtgdWfFi
 
 func (o WebfilterProfileFtgdWfFilterAuthUsrGrpOutput) ToWebfilterProfileFtgdWfFilterAuthUsrGrpOutputWithContext(ctx context.Context) WebfilterProfileFtgdWfFilterAuthUsrGrpOutput {
 	return o
+}
+
+func (o WebfilterProfileFtgdWfFilterAuthUsrGrpOutput) ToOutput(ctx context.Context) pulumix.Output[WebfilterProfileFtgdWfFilterAuthUsrGrp] {
+	return pulumix.Output[WebfilterProfileFtgdWfFilterAuthUsrGrp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterProfileFtgdWfFilterAuthUsrGrpOutput) Name() pulumi.StringPtrOutput {
@@ -18563,6 +25898,12 @@ func (o WebfilterProfileFtgdWfFilterAuthUsrGrpArrayOutput) ToWebfilterProfileFtg
 
 func (o WebfilterProfileFtgdWfFilterAuthUsrGrpArrayOutput) ToWebfilterProfileFtgdWfFilterAuthUsrGrpArrayOutputWithContext(ctx context.Context) WebfilterProfileFtgdWfFilterAuthUsrGrpArrayOutput {
 	return o
+}
+
+func (o WebfilterProfileFtgdWfFilterAuthUsrGrpArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WebfilterProfileFtgdWfFilterAuthUsrGrp] {
+	return pulumix.Output[[]WebfilterProfileFtgdWfFilterAuthUsrGrp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterProfileFtgdWfFilterAuthUsrGrpArrayOutput) Index(i pulumi.IntInput) WebfilterProfileFtgdWfFilterAuthUsrGrpOutput {
@@ -18614,6 +25955,12 @@ func (i WebfilterProfileFtgdWfQuotaArgs) ToWebfilterProfileFtgdWfQuotaOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfileFtgdWfQuotaOutput)
 }
 
+func (i WebfilterProfileFtgdWfQuotaArgs) ToOutput(ctx context.Context) pulumix.Output[WebfilterProfileFtgdWfQuota] {
+	return pulumix.Output[WebfilterProfileFtgdWfQuota]{
+		OutputState: i.ToWebfilterProfileFtgdWfQuotaOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WebfilterProfileFtgdWfQuotaArrayInput is an input type that accepts WebfilterProfileFtgdWfQuotaArray and WebfilterProfileFtgdWfQuotaArrayOutput values.
 // You can construct a concrete instance of `WebfilterProfileFtgdWfQuotaArrayInput` via:
 //
@@ -18639,6 +25986,12 @@ func (i WebfilterProfileFtgdWfQuotaArray) ToWebfilterProfileFtgdWfQuotaArrayOutp
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfileFtgdWfQuotaArrayOutput)
 }
 
+func (i WebfilterProfileFtgdWfQuotaArray) ToOutput(ctx context.Context) pulumix.Output[[]WebfilterProfileFtgdWfQuota] {
+	return pulumix.Output[[]WebfilterProfileFtgdWfQuota]{
+		OutputState: i.ToWebfilterProfileFtgdWfQuotaArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WebfilterProfileFtgdWfQuotaOutput struct{ *pulumi.OutputState }
 
 func (WebfilterProfileFtgdWfQuotaOutput) ElementType() reflect.Type {
@@ -18651,6 +26004,12 @@ func (o WebfilterProfileFtgdWfQuotaOutput) ToWebfilterProfileFtgdWfQuotaOutput()
 
 func (o WebfilterProfileFtgdWfQuotaOutput) ToWebfilterProfileFtgdWfQuotaOutputWithContext(ctx context.Context) WebfilterProfileFtgdWfQuotaOutput {
 	return o
+}
+
+func (o WebfilterProfileFtgdWfQuotaOutput) ToOutput(ctx context.Context) pulumix.Output[WebfilterProfileFtgdWfQuota] {
+	return pulumix.Output[WebfilterProfileFtgdWfQuota]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterProfileFtgdWfQuotaOutput) Category() pulumi.StringPtrOutput {
@@ -18693,6 +26052,12 @@ func (o WebfilterProfileFtgdWfQuotaArrayOutput) ToWebfilterProfileFtgdWfQuotaArr
 
 func (o WebfilterProfileFtgdWfQuotaArrayOutput) ToWebfilterProfileFtgdWfQuotaArrayOutputWithContext(ctx context.Context) WebfilterProfileFtgdWfQuotaArrayOutput {
 	return o
+}
+
+func (o WebfilterProfileFtgdWfQuotaArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WebfilterProfileFtgdWfQuota] {
+	return pulumix.Output[[]WebfilterProfileFtgdWfQuota]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterProfileFtgdWfQuotaArrayOutput) Index(i pulumi.IntInput) WebfilterProfileFtgdWfQuotaOutput {
@@ -18746,6 +26111,12 @@ func (i WebfilterProfileOverrideArgs) ToWebfilterProfileOverrideOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfileOverrideOutput)
 }
 
+func (i WebfilterProfileOverrideArgs) ToOutput(ctx context.Context) pulumix.Output[WebfilterProfileOverride] {
+	return pulumix.Output[WebfilterProfileOverride]{
+		OutputState: i.ToWebfilterProfileOverrideOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WebfilterProfileOverrideArgs) ToWebfilterProfileOverridePtrOutput() WebfilterProfileOverridePtrOutput {
 	return i.ToWebfilterProfileOverridePtrOutputWithContext(context.Background())
 }
@@ -18787,6 +26158,12 @@ func (i *webfilterProfileOverridePtrType) ToWebfilterProfileOverridePtrOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfileOverridePtrOutput)
 }
 
+func (i *webfilterProfileOverridePtrType) ToOutput(ctx context.Context) pulumix.Output[*WebfilterProfileOverride] {
+	return pulumix.Output[*WebfilterProfileOverride]{
+		OutputState: i.ToWebfilterProfileOverridePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WebfilterProfileOverrideOutput struct{ *pulumi.OutputState }
 
 func (WebfilterProfileOverrideOutput) ElementType() reflect.Type {
@@ -18809,6 +26186,12 @@ func (o WebfilterProfileOverrideOutput) ToWebfilterProfileOverridePtrOutputWithC
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebfilterProfileOverride) *WebfilterProfileOverride {
 		return &v
 	}).(WebfilterProfileOverridePtrOutput)
+}
+
+func (o WebfilterProfileOverrideOutput) ToOutput(ctx context.Context) pulumix.Output[WebfilterProfileOverride] {
+	return pulumix.Output[WebfilterProfileOverride]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterProfileOverrideOutput) OvrdCookie() pulumi.StringPtrOutput {
@@ -18855,6 +26238,12 @@ func (o WebfilterProfileOverridePtrOutput) ToWebfilterProfileOverridePtrOutput()
 
 func (o WebfilterProfileOverridePtrOutput) ToWebfilterProfileOverridePtrOutputWithContext(ctx context.Context) WebfilterProfileOverridePtrOutput {
 	return o
+}
+
+func (o WebfilterProfileOverridePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WebfilterProfileOverride] {
+	return pulumix.Output[*WebfilterProfileOverride]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterProfileOverridePtrOutput) Elem() WebfilterProfileOverrideOutput {
@@ -18970,6 +26359,12 @@ func (i WebfilterProfileOverrideOvrdUserGroupArgs) ToWebfilterProfileOverrideOvr
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfileOverrideOvrdUserGroupOutput)
 }
 
+func (i WebfilterProfileOverrideOvrdUserGroupArgs) ToOutput(ctx context.Context) pulumix.Output[WebfilterProfileOverrideOvrdUserGroup] {
+	return pulumix.Output[WebfilterProfileOverrideOvrdUserGroup]{
+		OutputState: i.ToWebfilterProfileOverrideOvrdUserGroupOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WebfilterProfileOverrideOvrdUserGroupArrayInput is an input type that accepts WebfilterProfileOverrideOvrdUserGroupArray and WebfilterProfileOverrideOvrdUserGroupArrayOutput values.
 // You can construct a concrete instance of `WebfilterProfileOverrideOvrdUserGroupArrayInput` via:
 //
@@ -18995,6 +26390,12 @@ func (i WebfilterProfileOverrideOvrdUserGroupArray) ToWebfilterProfileOverrideOv
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfileOverrideOvrdUserGroupArrayOutput)
 }
 
+func (i WebfilterProfileOverrideOvrdUserGroupArray) ToOutput(ctx context.Context) pulumix.Output[[]WebfilterProfileOverrideOvrdUserGroup] {
+	return pulumix.Output[[]WebfilterProfileOverrideOvrdUserGroup]{
+		OutputState: i.ToWebfilterProfileOverrideOvrdUserGroupArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WebfilterProfileOverrideOvrdUserGroupOutput struct{ *pulumi.OutputState }
 
 func (WebfilterProfileOverrideOvrdUserGroupOutput) ElementType() reflect.Type {
@@ -19007,6 +26408,12 @@ func (o WebfilterProfileOverrideOvrdUserGroupOutput) ToWebfilterProfileOverrideO
 
 func (o WebfilterProfileOverrideOvrdUserGroupOutput) ToWebfilterProfileOverrideOvrdUserGroupOutputWithContext(ctx context.Context) WebfilterProfileOverrideOvrdUserGroupOutput {
 	return o
+}
+
+func (o WebfilterProfileOverrideOvrdUserGroupOutput) ToOutput(ctx context.Context) pulumix.Output[WebfilterProfileOverrideOvrdUserGroup] {
+	return pulumix.Output[WebfilterProfileOverrideOvrdUserGroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterProfileOverrideOvrdUserGroupOutput) Name() pulumi.StringPtrOutput {
@@ -19025,6 +26432,12 @@ func (o WebfilterProfileOverrideOvrdUserGroupArrayOutput) ToWebfilterProfileOver
 
 func (o WebfilterProfileOverrideOvrdUserGroupArrayOutput) ToWebfilterProfileOverrideOvrdUserGroupArrayOutputWithContext(ctx context.Context) WebfilterProfileOverrideOvrdUserGroupArrayOutput {
 	return o
+}
+
+func (o WebfilterProfileOverrideOvrdUserGroupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WebfilterProfileOverrideOvrdUserGroup] {
+	return pulumix.Output[[]WebfilterProfileOverrideOvrdUserGroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterProfileOverrideOvrdUserGroupArrayOutput) Index(i pulumi.IntInput) WebfilterProfileOverrideOvrdUserGroupOutput {
@@ -19064,6 +26477,12 @@ func (i WebfilterProfileOverrideProfileArgs) ToWebfilterProfileOverrideProfileOu
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfileOverrideProfileOutput)
 }
 
+func (i WebfilterProfileOverrideProfileArgs) ToOutput(ctx context.Context) pulumix.Output[WebfilterProfileOverrideProfile] {
+	return pulumix.Output[WebfilterProfileOverrideProfile]{
+		OutputState: i.ToWebfilterProfileOverrideProfileOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WebfilterProfileOverrideProfileArrayInput is an input type that accepts WebfilterProfileOverrideProfileArray and WebfilterProfileOverrideProfileArrayOutput values.
 // You can construct a concrete instance of `WebfilterProfileOverrideProfileArrayInput` via:
 //
@@ -19089,6 +26508,12 @@ func (i WebfilterProfileOverrideProfileArray) ToWebfilterProfileOverrideProfileA
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfileOverrideProfileArrayOutput)
 }
 
+func (i WebfilterProfileOverrideProfileArray) ToOutput(ctx context.Context) pulumix.Output[[]WebfilterProfileOverrideProfile] {
+	return pulumix.Output[[]WebfilterProfileOverrideProfile]{
+		OutputState: i.ToWebfilterProfileOverrideProfileArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WebfilterProfileOverrideProfileOutput struct{ *pulumi.OutputState }
 
 func (WebfilterProfileOverrideProfileOutput) ElementType() reflect.Type {
@@ -19101,6 +26526,12 @@ func (o WebfilterProfileOverrideProfileOutput) ToWebfilterProfileOverrideProfile
 
 func (o WebfilterProfileOverrideProfileOutput) ToWebfilterProfileOverrideProfileOutputWithContext(ctx context.Context) WebfilterProfileOverrideProfileOutput {
 	return o
+}
+
+func (o WebfilterProfileOverrideProfileOutput) ToOutput(ctx context.Context) pulumix.Output[WebfilterProfileOverrideProfile] {
+	return pulumix.Output[WebfilterProfileOverrideProfile]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterProfileOverrideProfileOutput) Name() pulumi.StringPtrOutput {
@@ -19119,6 +26550,12 @@ func (o WebfilterProfileOverrideProfileArrayOutput) ToWebfilterProfileOverridePr
 
 func (o WebfilterProfileOverrideProfileArrayOutput) ToWebfilterProfileOverrideProfileArrayOutputWithContext(ctx context.Context) WebfilterProfileOverrideProfileArrayOutput {
 	return o
+}
+
+func (o WebfilterProfileOverrideProfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WebfilterProfileOverrideProfile] {
+	return pulumix.Output[[]WebfilterProfileOverrideProfile]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterProfileOverrideProfileArrayOutput) Index(i pulumi.IntInput) WebfilterProfileOverrideProfileOutput {
@@ -19182,6 +26619,12 @@ func (i WebfilterProfileWebArgs) ToWebfilterProfileWebOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfileWebOutput)
 }
 
+func (i WebfilterProfileWebArgs) ToOutput(ctx context.Context) pulumix.Output[WebfilterProfileWeb] {
+	return pulumix.Output[WebfilterProfileWeb]{
+		OutputState: i.ToWebfilterProfileWebOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WebfilterProfileWebArgs) ToWebfilterProfileWebPtrOutput() WebfilterProfileWebPtrOutput {
 	return i.ToWebfilterProfileWebPtrOutputWithContext(context.Background())
 }
@@ -19223,6 +26666,12 @@ func (i *webfilterProfileWebPtrType) ToWebfilterProfileWebPtrOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfileWebPtrOutput)
 }
 
+func (i *webfilterProfileWebPtrType) ToOutput(ctx context.Context) pulumix.Output[*WebfilterProfileWeb] {
+	return pulumix.Output[*WebfilterProfileWeb]{
+		OutputState: i.ToWebfilterProfileWebPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WebfilterProfileWebOutput struct{ *pulumi.OutputState }
 
 func (WebfilterProfileWebOutput) ElementType() reflect.Type {
@@ -19245,6 +26694,12 @@ func (o WebfilterProfileWebOutput) ToWebfilterProfileWebPtrOutputWithContext(ctx
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebfilterProfileWeb) *WebfilterProfileWeb {
 		return &v
 	}).(WebfilterProfileWebPtrOutput)
+}
+
+func (o WebfilterProfileWebOutput) ToOutput(ctx context.Context) pulumix.Output[WebfilterProfileWeb] {
+	return pulumix.Output[WebfilterProfileWeb]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterProfileWebOutput) Allowlist() pulumi.StringPtrOutput {
@@ -19311,6 +26766,12 @@ func (o WebfilterProfileWebPtrOutput) ToWebfilterProfileWebPtrOutput() Webfilter
 
 func (o WebfilterProfileWebPtrOutput) ToWebfilterProfileWebPtrOutputWithContext(ctx context.Context) WebfilterProfileWebPtrOutput {
 	return o
+}
+
+func (o WebfilterProfileWebPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WebfilterProfileWeb] {
+	return pulumix.Output[*WebfilterProfileWeb]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterProfileWebPtrOutput) Elem() WebfilterProfileWebOutput {
@@ -19471,6 +26932,12 @@ func (i WebfilterProfileWebKeywordMatchArgs) ToWebfilterProfileWebKeywordMatchOu
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfileWebKeywordMatchOutput)
 }
 
+func (i WebfilterProfileWebKeywordMatchArgs) ToOutput(ctx context.Context) pulumix.Output[WebfilterProfileWebKeywordMatch] {
+	return pulumix.Output[WebfilterProfileWebKeywordMatch]{
+		OutputState: i.ToWebfilterProfileWebKeywordMatchOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WebfilterProfileWebKeywordMatchArrayInput is an input type that accepts WebfilterProfileWebKeywordMatchArray and WebfilterProfileWebKeywordMatchArrayOutput values.
 // You can construct a concrete instance of `WebfilterProfileWebKeywordMatchArrayInput` via:
 //
@@ -19496,6 +26963,12 @@ func (i WebfilterProfileWebKeywordMatchArray) ToWebfilterProfileWebKeywordMatchA
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfileWebKeywordMatchArrayOutput)
 }
 
+func (i WebfilterProfileWebKeywordMatchArray) ToOutput(ctx context.Context) pulumix.Output[[]WebfilterProfileWebKeywordMatch] {
+	return pulumix.Output[[]WebfilterProfileWebKeywordMatch]{
+		OutputState: i.ToWebfilterProfileWebKeywordMatchArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WebfilterProfileWebKeywordMatchOutput struct{ *pulumi.OutputState }
 
 func (WebfilterProfileWebKeywordMatchOutput) ElementType() reflect.Type {
@@ -19508,6 +26981,12 @@ func (o WebfilterProfileWebKeywordMatchOutput) ToWebfilterProfileWebKeywordMatch
 
 func (o WebfilterProfileWebKeywordMatchOutput) ToWebfilterProfileWebKeywordMatchOutputWithContext(ctx context.Context) WebfilterProfileWebKeywordMatchOutput {
 	return o
+}
+
+func (o WebfilterProfileWebKeywordMatchOutput) ToOutput(ctx context.Context) pulumix.Output[WebfilterProfileWebKeywordMatch] {
+	return pulumix.Output[WebfilterProfileWebKeywordMatch]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterProfileWebKeywordMatchOutput) Pattern() pulumi.StringPtrOutput {
@@ -19526,6 +27005,12 @@ func (o WebfilterProfileWebKeywordMatchArrayOutput) ToWebfilterProfileWebKeyword
 
 func (o WebfilterProfileWebKeywordMatchArrayOutput) ToWebfilterProfileWebKeywordMatchArrayOutputWithContext(ctx context.Context) WebfilterProfileWebKeywordMatchArrayOutput {
 	return o
+}
+
+func (o WebfilterProfileWebKeywordMatchArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WebfilterProfileWebKeywordMatch] {
+	return pulumix.Output[[]WebfilterProfileWebKeywordMatch]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterProfileWebKeywordMatchArrayOutput) Index(i pulumi.IntInput) WebfilterProfileWebKeywordMatchOutput {
@@ -19565,6 +27050,12 @@ func (i WebfilterProfileWispServerArgs) ToWebfilterProfileWispServerOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfileWispServerOutput)
 }
 
+func (i WebfilterProfileWispServerArgs) ToOutput(ctx context.Context) pulumix.Output[WebfilterProfileWispServer] {
+	return pulumix.Output[WebfilterProfileWispServer]{
+		OutputState: i.ToWebfilterProfileWispServerOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WebfilterProfileWispServerArrayInput is an input type that accepts WebfilterProfileWispServerArray and WebfilterProfileWispServerArrayOutput values.
 // You can construct a concrete instance of `WebfilterProfileWispServerArrayInput` via:
 //
@@ -19590,6 +27081,12 @@ func (i WebfilterProfileWispServerArray) ToWebfilterProfileWispServerArrayOutput
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfileWispServerArrayOutput)
 }
 
+func (i WebfilterProfileWispServerArray) ToOutput(ctx context.Context) pulumix.Output[[]WebfilterProfileWispServer] {
+	return pulumix.Output[[]WebfilterProfileWispServer]{
+		OutputState: i.ToWebfilterProfileWispServerArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WebfilterProfileWispServerOutput struct{ *pulumi.OutputState }
 
 func (WebfilterProfileWispServerOutput) ElementType() reflect.Type {
@@ -19602,6 +27099,12 @@ func (o WebfilterProfileWispServerOutput) ToWebfilterProfileWispServerOutput() W
 
 func (o WebfilterProfileWispServerOutput) ToWebfilterProfileWispServerOutputWithContext(ctx context.Context) WebfilterProfileWispServerOutput {
 	return o
+}
+
+func (o WebfilterProfileWispServerOutput) ToOutput(ctx context.Context) pulumix.Output[WebfilterProfileWispServer] {
+	return pulumix.Output[WebfilterProfileWispServer]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterProfileWispServerOutput) Name() pulumi.StringPtrOutput {
@@ -19620,6 +27123,12 @@ func (o WebfilterProfileWispServerArrayOutput) ToWebfilterProfileWispServerArray
 
 func (o WebfilterProfileWispServerArrayOutput) ToWebfilterProfileWispServerArrayOutputWithContext(ctx context.Context) WebfilterProfileWispServerArrayOutput {
 	return o
+}
+
+func (o WebfilterProfileWispServerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WebfilterProfileWispServer] {
+	return pulumix.Output[[]WebfilterProfileWispServer]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterProfileWispServerArrayOutput) Index(i pulumi.IntInput) WebfilterProfileWispServerOutput {
@@ -19663,6 +27172,12 @@ func (i WebfilterProfileYoutubeChannelFilterArgs) ToWebfilterProfileYoutubeChann
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfileYoutubeChannelFilterOutput)
 }
 
+func (i WebfilterProfileYoutubeChannelFilterArgs) ToOutput(ctx context.Context) pulumix.Output[WebfilterProfileYoutubeChannelFilter] {
+	return pulumix.Output[WebfilterProfileYoutubeChannelFilter]{
+		OutputState: i.ToWebfilterProfileYoutubeChannelFilterOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WebfilterProfileYoutubeChannelFilterArrayInput is an input type that accepts WebfilterProfileYoutubeChannelFilterArray and WebfilterProfileYoutubeChannelFilterArrayOutput values.
 // You can construct a concrete instance of `WebfilterProfileYoutubeChannelFilterArrayInput` via:
 //
@@ -19688,6 +27203,12 @@ func (i WebfilterProfileYoutubeChannelFilterArray) ToWebfilterProfileYoutubeChan
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfileYoutubeChannelFilterArrayOutput)
 }
 
+func (i WebfilterProfileYoutubeChannelFilterArray) ToOutput(ctx context.Context) pulumix.Output[[]WebfilterProfileYoutubeChannelFilter] {
+	return pulumix.Output[[]WebfilterProfileYoutubeChannelFilter]{
+		OutputState: i.ToWebfilterProfileYoutubeChannelFilterArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WebfilterProfileYoutubeChannelFilterOutput struct{ *pulumi.OutputState }
 
 func (WebfilterProfileYoutubeChannelFilterOutput) ElementType() reflect.Type {
@@ -19700,6 +27221,12 @@ func (o WebfilterProfileYoutubeChannelFilterOutput) ToWebfilterProfileYoutubeCha
 
 func (o WebfilterProfileYoutubeChannelFilterOutput) ToWebfilterProfileYoutubeChannelFilterOutputWithContext(ctx context.Context) WebfilterProfileYoutubeChannelFilterOutput {
 	return o
+}
+
+func (o WebfilterProfileYoutubeChannelFilterOutput) ToOutput(ctx context.Context) pulumix.Output[WebfilterProfileYoutubeChannelFilter] {
+	return pulumix.Output[WebfilterProfileYoutubeChannelFilter]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterProfileYoutubeChannelFilterOutput) ChannelId() pulumi.StringPtrOutput {
@@ -19726,6 +27253,12 @@ func (o WebfilterProfileYoutubeChannelFilterArrayOutput) ToWebfilterProfileYoutu
 
 func (o WebfilterProfileYoutubeChannelFilterArrayOutput) ToWebfilterProfileYoutubeChannelFilterArrayOutputWithContext(ctx context.Context) WebfilterProfileYoutubeChannelFilterArrayOutput {
 	return o
+}
+
+func (o WebfilterProfileYoutubeChannelFilterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WebfilterProfileYoutubeChannelFilter] {
+	return pulumix.Output[[]WebfilterProfileYoutubeChannelFilter]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterProfileYoutubeChannelFilterArrayOutput) Index(i pulumi.IntInput) WebfilterProfileYoutubeChannelFilterOutput {
@@ -19783,6 +27316,12 @@ func (i WebfilterUrlfilterEntryArgs) ToWebfilterUrlfilterEntryOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterUrlfilterEntryOutput)
 }
 
+func (i WebfilterUrlfilterEntryArgs) ToOutput(ctx context.Context) pulumix.Output[WebfilterUrlfilterEntry] {
+	return pulumix.Output[WebfilterUrlfilterEntry]{
+		OutputState: i.ToWebfilterUrlfilterEntryOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WebfilterUrlfilterEntryArrayInput is an input type that accepts WebfilterUrlfilterEntryArray and WebfilterUrlfilterEntryArrayOutput values.
 // You can construct a concrete instance of `WebfilterUrlfilterEntryArrayInput` via:
 //
@@ -19808,6 +27347,12 @@ func (i WebfilterUrlfilterEntryArray) ToWebfilterUrlfilterEntryArrayOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterUrlfilterEntryArrayOutput)
 }
 
+func (i WebfilterUrlfilterEntryArray) ToOutput(ctx context.Context) pulumix.Output[[]WebfilterUrlfilterEntry] {
+	return pulumix.Output[[]WebfilterUrlfilterEntry]{
+		OutputState: i.ToWebfilterUrlfilterEntryArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WebfilterUrlfilterEntryOutput struct{ *pulumi.OutputState }
 
 func (WebfilterUrlfilterEntryOutput) ElementType() reflect.Type {
@@ -19820,6 +27365,12 @@ func (o WebfilterUrlfilterEntryOutput) ToWebfilterUrlfilterEntryOutput() Webfilt
 
 func (o WebfilterUrlfilterEntryOutput) ToWebfilterUrlfilterEntryOutputWithContext(ctx context.Context) WebfilterUrlfilterEntryOutput {
 	return o
+}
+
+func (o WebfilterUrlfilterEntryOutput) ToOutput(ctx context.Context) pulumix.Output[WebfilterUrlfilterEntry] {
+	return pulumix.Output[WebfilterUrlfilterEntry]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterUrlfilterEntryOutput) Action() pulumi.StringPtrOutput {
@@ -19876,6 +27427,12 @@ func (o WebfilterUrlfilterEntryArrayOutput) ToWebfilterUrlfilterEntryArrayOutput
 	return o
 }
 
+func (o WebfilterUrlfilterEntryArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WebfilterUrlfilterEntry] {
+	return pulumix.Output[[]WebfilterUrlfilterEntry]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o WebfilterUrlfilterEntryArrayOutput) Index(i pulumi.IntInput) WebfilterUrlfilterEntryOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WebfilterUrlfilterEntry {
 		return vs[0].([]WebfilterUrlfilterEntry)[vs[1].(int)]
@@ -19927,6 +27484,12 @@ func (i WirelessControllerAccessControlListLayer3Ipv4RuleArgs) ToWirelessControl
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerAccessControlListLayer3Ipv4RuleOutput)
 }
 
+func (i WirelessControllerAccessControlListLayer3Ipv4RuleArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerAccessControlListLayer3Ipv4Rule] {
+	return pulumix.Output[WirelessControllerAccessControlListLayer3Ipv4Rule]{
+		OutputState: i.ToWirelessControllerAccessControlListLayer3Ipv4RuleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerAccessControlListLayer3Ipv4RuleArrayInput is an input type that accepts WirelessControllerAccessControlListLayer3Ipv4RuleArray and WirelessControllerAccessControlListLayer3Ipv4RuleArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerAccessControlListLayer3Ipv4RuleArrayInput` via:
 //
@@ -19952,6 +27515,12 @@ func (i WirelessControllerAccessControlListLayer3Ipv4RuleArray) ToWirelessContro
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerAccessControlListLayer3Ipv4RuleArrayOutput)
 }
 
+func (i WirelessControllerAccessControlListLayer3Ipv4RuleArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerAccessControlListLayer3Ipv4Rule] {
+	return pulumix.Output[[]WirelessControllerAccessControlListLayer3Ipv4Rule]{
+		OutputState: i.ToWirelessControllerAccessControlListLayer3Ipv4RuleArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerAccessControlListLayer3Ipv4RuleOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerAccessControlListLayer3Ipv4RuleOutput) ElementType() reflect.Type {
@@ -19964,6 +27533,12 @@ func (o WirelessControllerAccessControlListLayer3Ipv4RuleOutput) ToWirelessContr
 
 func (o WirelessControllerAccessControlListLayer3Ipv4RuleOutput) ToWirelessControllerAccessControlListLayer3Ipv4RuleOutputWithContext(ctx context.Context) WirelessControllerAccessControlListLayer3Ipv4RuleOutput {
 	return o
+}
+
+func (o WirelessControllerAccessControlListLayer3Ipv4RuleOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerAccessControlListLayer3Ipv4Rule] {
+	return pulumix.Output[WirelessControllerAccessControlListLayer3Ipv4Rule]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerAccessControlListLayer3Ipv4RuleOutput) Action() pulumi.StringPtrOutput {
@@ -20010,6 +27585,12 @@ func (o WirelessControllerAccessControlListLayer3Ipv4RuleArrayOutput) ToWireless
 
 func (o WirelessControllerAccessControlListLayer3Ipv4RuleArrayOutput) ToWirelessControllerAccessControlListLayer3Ipv4RuleArrayOutputWithContext(ctx context.Context) WirelessControllerAccessControlListLayer3Ipv4RuleArrayOutput {
 	return o
+}
+
+func (o WirelessControllerAccessControlListLayer3Ipv4RuleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerAccessControlListLayer3Ipv4Rule] {
+	return pulumix.Output[[]WirelessControllerAccessControlListLayer3Ipv4Rule]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerAccessControlListLayer3Ipv4RuleArrayOutput) Index(i pulumi.IntInput) WirelessControllerAccessControlListLayer3Ipv4RuleOutput {
@@ -20063,6 +27644,12 @@ func (i WirelessControllerAccessControlListLayer3Ipv6RuleArgs) ToWirelessControl
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerAccessControlListLayer3Ipv6RuleOutput)
 }
 
+func (i WirelessControllerAccessControlListLayer3Ipv6RuleArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerAccessControlListLayer3Ipv6Rule] {
+	return pulumix.Output[WirelessControllerAccessControlListLayer3Ipv6Rule]{
+		OutputState: i.ToWirelessControllerAccessControlListLayer3Ipv6RuleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerAccessControlListLayer3Ipv6RuleArrayInput is an input type that accepts WirelessControllerAccessControlListLayer3Ipv6RuleArray and WirelessControllerAccessControlListLayer3Ipv6RuleArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerAccessControlListLayer3Ipv6RuleArrayInput` via:
 //
@@ -20088,6 +27675,12 @@ func (i WirelessControllerAccessControlListLayer3Ipv6RuleArray) ToWirelessContro
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerAccessControlListLayer3Ipv6RuleArrayOutput)
 }
 
+func (i WirelessControllerAccessControlListLayer3Ipv6RuleArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerAccessControlListLayer3Ipv6Rule] {
+	return pulumix.Output[[]WirelessControllerAccessControlListLayer3Ipv6Rule]{
+		OutputState: i.ToWirelessControllerAccessControlListLayer3Ipv6RuleArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerAccessControlListLayer3Ipv6RuleOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerAccessControlListLayer3Ipv6RuleOutput) ElementType() reflect.Type {
@@ -20100,6 +27693,12 @@ func (o WirelessControllerAccessControlListLayer3Ipv6RuleOutput) ToWirelessContr
 
 func (o WirelessControllerAccessControlListLayer3Ipv6RuleOutput) ToWirelessControllerAccessControlListLayer3Ipv6RuleOutputWithContext(ctx context.Context) WirelessControllerAccessControlListLayer3Ipv6RuleOutput {
 	return o
+}
+
+func (o WirelessControllerAccessControlListLayer3Ipv6RuleOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerAccessControlListLayer3Ipv6Rule] {
+	return pulumix.Output[WirelessControllerAccessControlListLayer3Ipv6Rule]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerAccessControlListLayer3Ipv6RuleOutput) Action() pulumi.StringPtrOutput {
@@ -20148,6 +27747,12 @@ func (o WirelessControllerAccessControlListLayer3Ipv6RuleArrayOutput) ToWireless
 	return o
 }
 
+func (o WirelessControllerAccessControlListLayer3Ipv6RuleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerAccessControlListLayer3Ipv6Rule] {
+	return pulumix.Output[[]WirelessControllerAccessControlListLayer3Ipv6Rule]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o WirelessControllerAccessControlListLayer3Ipv6RuleArrayOutput) Index(i pulumi.IntInput) WirelessControllerAccessControlListLayer3Ipv6RuleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WirelessControllerAccessControlListLayer3Ipv6Rule {
 		return vs[0].([]WirelessControllerAccessControlListLayer3Ipv6Rule)[vs[1].(int)]
@@ -20185,6 +27790,12 @@ func (i WirelessControllerAddrgrpAddressArgs) ToWirelessControllerAddrgrpAddress
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerAddrgrpAddressOutput)
 }
 
+func (i WirelessControllerAddrgrpAddressArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerAddrgrpAddress] {
+	return pulumix.Output[WirelessControllerAddrgrpAddress]{
+		OutputState: i.ToWirelessControllerAddrgrpAddressOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerAddrgrpAddressArrayInput is an input type that accepts WirelessControllerAddrgrpAddressArray and WirelessControllerAddrgrpAddressArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerAddrgrpAddressArrayInput` via:
 //
@@ -20210,6 +27821,12 @@ func (i WirelessControllerAddrgrpAddressArray) ToWirelessControllerAddrgrpAddres
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerAddrgrpAddressArrayOutput)
 }
 
+func (i WirelessControllerAddrgrpAddressArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerAddrgrpAddress] {
+	return pulumix.Output[[]WirelessControllerAddrgrpAddress]{
+		OutputState: i.ToWirelessControllerAddrgrpAddressArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerAddrgrpAddressOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerAddrgrpAddressOutput) ElementType() reflect.Type {
@@ -20222,6 +27839,12 @@ func (o WirelessControllerAddrgrpAddressOutput) ToWirelessControllerAddrgrpAddre
 
 func (o WirelessControllerAddrgrpAddressOutput) ToWirelessControllerAddrgrpAddressOutputWithContext(ctx context.Context) WirelessControllerAddrgrpAddressOutput {
 	return o
+}
+
+func (o WirelessControllerAddrgrpAddressOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerAddrgrpAddress] {
+	return pulumix.Output[WirelessControllerAddrgrpAddress]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerAddrgrpAddressOutput) Id() pulumi.StringPtrOutput {
@@ -20240,6 +27863,12 @@ func (o WirelessControllerAddrgrpAddressArrayOutput) ToWirelessControllerAddrgrp
 
 func (o WirelessControllerAddrgrpAddressArrayOutput) ToWirelessControllerAddrgrpAddressArrayOutputWithContext(ctx context.Context) WirelessControllerAddrgrpAddressArrayOutput {
 	return o
+}
+
+func (o WirelessControllerAddrgrpAddressArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerAddrgrpAddress] {
+	return pulumix.Output[[]WirelessControllerAddrgrpAddress]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerAddrgrpAddressArrayOutput) Index(i pulumi.IntInput) WirelessControllerAddrgrpAddressOutput {
@@ -20287,6 +27916,12 @@ func (i WirelessControllerApcfgProfileCommandListArgs) ToWirelessControllerApcfg
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerApcfgProfileCommandListOutput)
 }
 
+func (i WirelessControllerApcfgProfileCommandListArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerApcfgProfileCommandList] {
+	return pulumix.Output[WirelessControllerApcfgProfileCommandList]{
+		OutputState: i.ToWirelessControllerApcfgProfileCommandListOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerApcfgProfileCommandListArrayInput is an input type that accepts WirelessControllerApcfgProfileCommandListArray and WirelessControllerApcfgProfileCommandListArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerApcfgProfileCommandListArrayInput` via:
 //
@@ -20312,6 +27947,12 @@ func (i WirelessControllerApcfgProfileCommandListArray) ToWirelessControllerApcf
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerApcfgProfileCommandListArrayOutput)
 }
 
+func (i WirelessControllerApcfgProfileCommandListArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerApcfgProfileCommandList] {
+	return pulumix.Output[[]WirelessControllerApcfgProfileCommandList]{
+		OutputState: i.ToWirelessControllerApcfgProfileCommandListArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerApcfgProfileCommandListOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerApcfgProfileCommandListOutput) ElementType() reflect.Type {
@@ -20324,6 +27965,12 @@ func (o WirelessControllerApcfgProfileCommandListOutput) ToWirelessControllerApc
 
 func (o WirelessControllerApcfgProfileCommandListOutput) ToWirelessControllerApcfgProfileCommandListOutputWithContext(ctx context.Context) WirelessControllerApcfgProfileCommandListOutput {
 	return o
+}
+
+func (o WirelessControllerApcfgProfileCommandListOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerApcfgProfileCommandList] {
+	return pulumix.Output[WirelessControllerApcfgProfileCommandList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerApcfgProfileCommandListOutput) Id() pulumi.IntPtrOutput {
@@ -20358,6 +28005,12 @@ func (o WirelessControllerApcfgProfileCommandListArrayOutput) ToWirelessControll
 
 func (o WirelessControllerApcfgProfileCommandListArrayOutput) ToWirelessControllerApcfgProfileCommandListArrayOutputWithContext(ctx context.Context) WirelessControllerApcfgProfileCommandListArrayOutput {
 	return o
+}
+
+func (o WirelessControllerApcfgProfileCommandListArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerApcfgProfileCommandList] {
+	return pulumix.Output[[]WirelessControllerApcfgProfileCommandList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerApcfgProfileCommandListArrayOutput) Index(i pulumi.IntInput) WirelessControllerApcfgProfileCommandListOutput {
@@ -20397,6 +28050,12 @@ func (i WirelessControllerArrpProfileDarrpOptimizeScheduleArgs) ToWirelessContro
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerArrpProfileDarrpOptimizeScheduleOutput)
 }
 
+func (i WirelessControllerArrpProfileDarrpOptimizeScheduleArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerArrpProfileDarrpOptimizeSchedule] {
+	return pulumix.Output[WirelessControllerArrpProfileDarrpOptimizeSchedule]{
+		OutputState: i.ToWirelessControllerArrpProfileDarrpOptimizeScheduleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerArrpProfileDarrpOptimizeScheduleArrayInput is an input type that accepts WirelessControllerArrpProfileDarrpOptimizeScheduleArray and WirelessControllerArrpProfileDarrpOptimizeScheduleArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerArrpProfileDarrpOptimizeScheduleArrayInput` via:
 //
@@ -20422,6 +28081,12 @@ func (i WirelessControllerArrpProfileDarrpOptimizeScheduleArray) ToWirelessContr
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerArrpProfileDarrpOptimizeScheduleArrayOutput)
 }
 
+func (i WirelessControllerArrpProfileDarrpOptimizeScheduleArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerArrpProfileDarrpOptimizeSchedule] {
+	return pulumix.Output[[]WirelessControllerArrpProfileDarrpOptimizeSchedule]{
+		OutputState: i.ToWirelessControllerArrpProfileDarrpOptimizeScheduleArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerArrpProfileDarrpOptimizeScheduleOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerArrpProfileDarrpOptimizeScheduleOutput) ElementType() reflect.Type {
@@ -20434,6 +28099,12 @@ func (o WirelessControllerArrpProfileDarrpOptimizeScheduleOutput) ToWirelessCont
 
 func (o WirelessControllerArrpProfileDarrpOptimizeScheduleOutput) ToWirelessControllerArrpProfileDarrpOptimizeScheduleOutputWithContext(ctx context.Context) WirelessControllerArrpProfileDarrpOptimizeScheduleOutput {
 	return o
+}
+
+func (o WirelessControllerArrpProfileDarrpOptimizeScheduleOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerArrpProfileDarrpOptimizeSchedule] {
+	return pulumix.Output[WirelessControllerArrpProfileDarrpOptimizeSchedule]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerArrpProfileDarrpOptimizeScheduleOutput) Name() pulumi.StringPtrOutput {
@@ -20452,6 +28123,12 @@ func (o WirelessControllerArrpProfileDarrpOptimizeScheduleArrayOutput) ToWireles
 
 func (o WirelessControllerArrpProfileDarrpOptimizeScheduleArrayOutput) ToWirelessControllerArrpProfileDarrpOptimizeScheduleArrayOutputWithContext(ctx context.Context) WirelessControllerArrpProfileDarrpOptimizeScheduleArrayOutput {
 	return o
+}
+
+func (o WirelessControllerArrpProfileDarrpOptimizeScheduleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerArrpProfileDarrpOptimizeSchedule] {
+	return pulumix.Output[[]WirelessControllerArrpProfileDarrpOptimizeSchedule]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerArrpProfileDarrpOptimizeScheduleArrayOutput) Index(i pulumi.IntInput) WirelessControllerArrpProfileDarrpOptimizeScheduleOutput {
@@ -20499,6 +28176,12 @@ func (i WirelessControllerBonjourProfilePolicyListArgs) ToWirelessControllerBonj
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerBonjourProfilePolicyListOutput)
 }
 
+func (i WirelessControllerBonjourProfilePolicyListArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerBonjourProfilePolicyList] {
+	return pulumix.Output[WirelessControllerBonjourProfilePolicyList]{
+		OutputState: i.ToWirelessControllerBonjourProfilePolicyListOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerBonjourProfilePolicyListArrayInput is an input type that accepts WirelessControllerBonjourProfilePolicyListArray and WirelessControllerBonjourProfilePolicyListArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerBonjourProfilePolicyListArrayInput` via:
 //
@@ -20524,6 +28207,12 @@ func (i WirelessControllerBonjourProfilePolicyListArray) ToWirelessControllerBon
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerBonjourProfilePolicyListArrayOutput)
 }
 
+func (i WirelessControllerBonjourProfilePolicyListArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerBonjourProfilePolicyList] {
+	return pulumix.Output[[]WirelessControllerBonjourProfilePolicyList]{
+		OutputState: i.ToWirelessControllerBonjourProfilePolicyListArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerBonjourProfilePolicyListOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerBonjourProfilePolicyListOutput) ElementType() reflect.Type {
@@ -20536,6 +28225,12 @@ func (o WirelessControllerBonjourProfilePolicyListOutput) ToWirelessControllerBo
 
 func (o WirelessControllerBonjourProfilePolicyListOutput) ToWirelessControllerBonjourProfilePolicyListOutputWithContext(ctx context.Context) WirelessControllerBonjourProfilePolicyListOutput {
 	return o
+}
+
+func (o WirelessControllerBonjourProfilePolicyListOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerBonjourProfilePolicyList] {
+	return pulumix.Output[WirelessControllerBonjourProfilePolicyList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerBonjourProfilePolicyListOutput) Description() pulumi.StringPtrOutput {
@@ -20570,6 +28265,12 @@ func (o WirelessControllerBonjourProfilePolicyListArrayOutput) ToWirelessControl
 
 func (o WirelessControllerBonjourProfilePolicyListArrayOutput) ToWirelessControllerBonjourProfilePolicyListArrayOutputWithContext(ctx context.Context) WirelessControllerBonjourProfilePolicyListArrayOutput {
 	return o
+}
+
+func (o WirelessControllerBonjourProfilePolicyListArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerBonjourProfilePolicyList] {
+	return pulumix.Output[[]WirelessControllerBonjourProfilePolicyList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerBonjourProfilePolicyListArrayOutput) Index(i pulumi.IntInput) WirelessControllerBonjourProfilePolicyListOutput {
@@ -20613,6 +28314,12 @@ func (i WirelessControllerHotspot20Anqp3GppCellularMccMncListArgs) ToWirelessCon
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20Anqp3GppCellularMccMncListOutput)
 }
 
+func (i WirelessControllerHotspot20Anqp3GppCellularMccMncListArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerHotspot20Anqp3GppCellularMccMncList] {
+	return pulumix.Output[WirelessControllerHotspot20Anqp3GppCellularMccMncList]{
+		OutputState: i.ToWirelessControllerHotspot20Anqp3GppCellularMccMncListOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerHotspot20Anqp3GppCellularMccMncListArrayInput is an input type that accepts WirelessControllerHotspot20Anqp3GppCellularMccMncListArray and WirelessControllerHotspot20Anqp3GppCellularMccMncListArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20Anqp3GppCellularMccMncListArrayInput` via:
 //
@@ -20638,6 +28345,12 @@ func (i WirelessControllerHotspot20Anqp3GppCellularMccMncListArray) ToWirelessCo
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20Anqp3GppCellularMccMncListArrayOutput)
 }
 
+func (i WirelessControllerHotspot20Anqp3GppCellularMccMncListArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerHotspot20Anqp3GppCellularMccMncList] {
+	return pulumix.Output[[]WirelessControllerHotspot20Anqp3GppCellularMccMncList]{
+		OutputState: i.ToWirelessControllerHotspot20Anqp3GppCellularMccMncListArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerHotspot20Anqp3GppCellularMccMncListOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20Anqp3GppCellularMccMncListOutput) ElementType() reflect.Type {
@@ -20650,6 +28363,12 @@ func (o WirelessControllerHotspot20Anqp3GppCellularMccMncListOutput) ToWirelessC
 
 func (o WirelessControllerHotspot20Anqp3GppCellularMccMncListOutput) ToWirelessControllerHotspot20Anqp3GppCellularMccMncListOutputWithContext(ctx context.Context) WirelessControllerHotspot20Anqp3GppCellularMccMncListOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20Anqp3GppCellularMccMncListOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerHotspot20Anqp3GppCellularMccMncList] {
+	return pulumix.Output[WirelessControllerHotspot20Anqp3GppCellularMccMncList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20Anqp3GppCellularMccMncListOutput) Id() pulumi.IntPtrOutput {
@@ -20676,6 +28395,12 @@ func (o WirelessControllerHotspot20Anqp3GppCellularMccMncListArrayOutput) ToWire
 
 func (o WirelessControllerHotspot20Anqp3GppCellularMccMncListArrayOutput) ToWirelessControllerHotspot20Anqp3GppCellularMccMncListArrayOutputWithContext(ctx context.Context) WirelessControllerHotspot20Anqp3GppCellularMccMncListArrayOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20Anqp3GppCellularMccMncListArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerHotspot20Anqp3GppCellularMccMncList] {
+	return pulumix.Output[[]WirelessControllerHotspot20Anqp3GppCellularMccMncList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20Anqp3GppCellularMccMncListArrayOutput) Index(i pulumi.IntInput) WirelessControllerHotspot20Anqp3GppCellularMccMncListOutput {
@@ -20721,6 +28446,12 @@ func (i WirelessControllerHotspot20AnqpNaiRealmNaiListArgs) ToWirelessController
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20AnqpNaiRealmNaiListOutput)
 }
 
+func (i WirelessControllerHotspot20AnqpNaiRealmNaiListArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerHotspot20AnqpNaiRealmNaiList] {
+	return pulumix.Output[WirelessControllerHotspot20AnqpNaiRealmNaiList]{
+		OutputState: i.ToWirelessControllerHotspot20AnqpNaiRealmNaiListOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerHotspot20AnqpNaiRealmNaiListArrayInput is an input type that accepts WirelessControllerHotspot20AnqpNaiRealmNaiListArray and WirelessControllerHotspot20AnqpNaiRealmNaiListArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20AnqpNaiRealmNaiListArrayInput` via:
 //
@@ -20746,6 +28477,12 @@ func (i WirelessControllerHotspot20AnqpNaiRealmNaiListArray) ToWirelessControlle
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20AnqpNaiRealmNaiListArrayOutput)
 }
 
+func (i WirelessControllerHotspot20AnqpNaiRealmNaiListArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerHotspot20AnqpNaiRealmNaiList] {
+	return pulumix.Output[[]WirelessControllerHotspot20AnqpNaiRealmNaiList]{
+		OutputState: i.ToWirelessControllerHotspot20AnqpNaiRealmNaiListArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerHotspot20AnqpNaiRealmNaiListOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20AnqpNaiRealmNaiListOutput) ElementType() reflect.Type {
@@ -20758,6 +28495,12 @@ func (o WirelessControllerHotspot20AnqpNaiRealmNaiListOutput) ToWirelessControll
 
 func (o WirelessControllerHotspot20AnqpNaiRealmNaiListOutput) ToWirelessControllerHotspot20AnqpNaiRealmNaiListOutputWithContext(ctx context.Context) WirelessControllerHotspot20AnqpNaiRealmNaiListOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20AnqpNaiRealmNaiListOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerHotspot20AnqpNaiRealmNaiList] {
+	return pulumix.Output[WirelessControllerHotspot20AnqpNaiRealmNaiList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20AnqpNaiRealmNaiListOutput) EapMethods() WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodArrayOutput {
@@ -20790,6 +28533,12 @@ func (o WirelessControllerHotspot20AnqpNaiRealmNaiListArrayOutput) ToWirelessCon
 
 func (o WirelessControllerHotspot20AnqpNaiRealmNaiListArrayOutput) ToWirelessControllerHotspot20AnqpNaiRealmNaiListArrayOutputWithContext(ctx context.Context) WirelessControllerHotspot20AnqpNaiRealmNaiListArrayOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20AnqpNaiRealmNaiListArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerHotspot20AnqpNaiRealmNaiList] {
+	return pulumix.Output[[]WirelessControllerHotspot20AnqpNaiRealmNaiList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20AnqpNaiRealmNaiListArrayOutput) Index(i pulumi.IntInput) WirelessControllerHotspot20AnqpNaiRealmNaiListOutput {
@@ -20833,6 +28582,12 @@ func (i WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodArgs) ToWirelessC
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodOutput)
 }
 
+func (i WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethod] {
+	return pulumix.Output[WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethod]{
+		OutputState: i.ToWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodArrayInput is an input type that accepts WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodArray and WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodArrayInput` via:
 //
@@ -20858,6 +28613,12 @@ func (i WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodArray) ToWireless
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodArrayOutput)
 }
 
+func (i WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethod] {
+	return pulumix.Output[[]WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethod]{
+		OutputState: i.ToWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodOutput) ElementType() reflect.Type {
@@ -20870,6 +28631,12 @@ func (o WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodOutput) ToWireles
 
 func (o WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodOutput) ToWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodOutputWithContext(ctx context.Context) WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethod] {
+	return pulumix.Output[WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethod]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodOutput) AuthParams() WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParamArrayOutput {
@@ -20898,6 +28665,12 @@ func (o WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodArrayOutput) ToWi
 
 func (o WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodArrayOutput) ToWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodArrayOutputWithContext(ctx context.Context) WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodArrayOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethod] {
+	return pulumix.Output[[]WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethod]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodArrayOutput) Index(i pulumi.IntInput) WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodOutput {
@@ -20941,6 +28714,12 @@ func (i WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParamArgs) To
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParamOutput)
 }
 
+func (i WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParamArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParam] {
+	return pulumix.Output[WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParam]{
+		OutputState: i.ToWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParamOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParamArrayInput is an input type that accepts WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParamArray and WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParamArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParamArrayInput` via:
 //
@@ -20966,6 +28745,12 @@ func (i WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParamArray) T
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParamArrayOutput)
 }
 
+func (i WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParamArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParam] {
+	return pulumix.Output[[]WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParam]{
+		OutputState: i.ToWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParamArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParamOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParamOutput) ElementType() reflect.Type {
@@ -20978,6 +28763,12 @@ func (o WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParamOutput) 
 
 func (o WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParamOutput) ToWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParamOutputWithContext(ctx context.Context) WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParamOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParamOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParam] {
+	return pulumix.Output[WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParam]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParamOutput) Id() pulumi.StringPtrOutput {
@@ -21004,6 +28795,12 @@ func (o WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParamArrayOut
 
 func (o WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParamArrayOutput) ToWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParamArrayOutputWithContext(ctx context.Context) WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParamArrayOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParamArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParam] {
+	return pulumix.Output[[]WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParam]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParamArrayOutput) Index(i pulumi.IntInput) WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParamOutput {
@@ -21047,6 +28844,12 @@ func (i WirelessControllerHotspot20AnqpRoamingConsortiumOiListArgs) ToWirelessCo
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20AnqpRoamingConsortiumOiListOutput)
 }
 
+func (i WirelessControllerHotspot20AnqpRoamingConsortiumOiListArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerHotspot20AnqpRoamingConsortiumOiList] {
+	return pulumix.Output[WirelessControllerHotspot20AnqpRoamingConsortiumOiList]{
+		OutputState: i.ToWirelessControllerHotspot20AnqpRoamingConsortiumOiListOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerHotspot20AnqpRoamingConsortiumOiListArrayInput is an input type that accepts WirelessControllerHotspot20AnqpRoamingConsortiumOiListArray and WirelessControllerHotspot20AnqpRoamingConsortiumOiListArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20AnqpRoamingConsortiumOiListArrayInput` via:
 //
@@ -21072,6 +28875,12 @@ func (i WirelessControllerHotspot20AnqpRoamingConsortiumOiListArray) ToWirelessC
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20AnqpRoamingConsortiumOiListArrayOutput)
 }
 
+func (i WirelessControllerHotspot20AnqpRoamingConsortiumOiListArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerHotspot20AnqpRoamingConsortiumOiList] {
+	return pulumix.Output[[]WirelessControllerHotspot20AnqpRoamingConsortiumOiList]{
+		OutputState: i.ToWirelessControllerHotspot20AnqpRoamingConsortiumOiListArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerHotspot20AnqpRoamingConsortiumOiListOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20AnqpRoamingConsortiumOiListOutput) ElementType() reflect.Type {
@@ -21084,6 +28893,12 @@ func (o WirelessControllerHotspot20AnqpRoamingConsortiumOiListOutput) ToWireless
 
 func (o WirelessControllerHotspot20AnqpRoamingConsortiumOiListOutput) ToWirelessControllerHotspot20AnqpRoamingConsortiumOiListOutputWithContext(ctx context.Context) WirelessControllerHotspot20AnqpRoamingConsortiumOiListOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20AnqpRoamingConsortiumOiListOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerHotspot20AnqpRoamingConsortiumOiList] {
+	return pulumix.Output[WirelessControllerHotspot20AnqpRoamingConsortiumOiList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20AnqpRoamingConsortiumOiListOutput) Comment() pulumi.StringPtrOutput {
@@ -21110,6 +28925,12 @@ func (o WirelessControllerHotspot20AnqpRoamingConsortiumOiListArrayOutput) ToWir
 
 func (o WirelessControllerHotspot20AnqpRoamingConsortiumOiListArrayOutput) ToWirelessControllerHotspot20AnqpRoamingConsortiumOiListArrayOutputWithContext(ctx context.Context) WirelessControllerHotspot20AnqpRoamingConsortiumOiListArrayOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20AnqpRoamingConsortiumOiListArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerHotspot20AnqpRoamingConsortiumOiList] {
+	return pulumix.Output[[]WirelessControllerHotspot20AnqpRoamingConsortiumOiList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20AnqpRoamingConsortiumOiListArrayOutput) Index(i pulumi.IntInput) WirelessControllerHotspot20AnqpRoamingConsortiumOiListOutput {
@@ -21153,6 +28974,12 @@ func (i WirelessControllerHotspot20AnqpVenueNameValueListArgs) ToWirelessControl
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20AnqpVenueNameValueListOutput)
 }
 
+func (i WirelessControllerHotspot20AnqpVenueNameValueListArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerHotspot20AnqpVenueNameValueList] {
+	return pulumix.Output[WirelessControllerHotspot20AnqpVenueNameValueList]{
+		OutputState: i.ToWirelessControllerHotspot20AnqpVenueNameValueListOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerHotspot20AnqpVenueNameValueListArrayInput is an input type that accepts WirelessControllerHotspot20AnqpVenueNameValueListArray and WirelessControllerHotspot20AnqpVenueNameValueListArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20AnqpVenueNameValueListArrayInput` via:
 //
@@ -21178,6 +29005,12 @@ func (i WirelessControllerHotspot20AnqpVenueNameValueListArray) ToWirelessContro
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20AnqpVenueNameValueListArrayOutput)
 }
 
+func (i WirelessControllerHotspot20AnqpVenueNameValueListArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerHotspot20AnqpVenueNameValueList] {
+	return pulumix.Output[[]WirelessControllerHotspot20AnqpVenueNameValueList]{
+		OutputState: i.ToWirelessControllerHotspot20AnqpVenueNameValueListArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerHotspot20AnqpVenueNameValueListOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20AnqpVenueNameValueListOutput) ElementType() reflect.Type {
@@ -21190,6 +29023,12 @@ func (o WirelessControllerHotspot20AnqpVenueNameValueListOutput) ToWirelessContr
 
 func (o WirelessControllerHotspot20AnqpVenueNameValueListOutput) ToWirelessControllerHotspot20AnqpVenueNameValueListOutputWithContext(ctx context.Context) WirelessControllerHotspot20AnqpVenueNameValueListOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20AnqpVenueNameValueListOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerHotspot20AnqpVenueNameValueList] {
+	return pulumix.Output[WirelessControllerHotspot20AnqpVenueNameValueList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20AnqpVenueNameValueListOutput) Index() pulumi.IntPtrOutput {
@@ -21216,6 +29055,12 @@ func (o WirelessControllerHotspot20AnqpVenueNameValueListArrayOutput) ToWireless
 
 func (o WirelessControllerHotspot20AnqpVenueNameValueListArrayOutput) ToWirelessControllerHotspot20AnqpVenueNameValueListArrayOutputWithContext(ctx context.Context) WirelessControllerHotspot20AnqpVenueNameValueListArrayOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20AnqpVenueNameValueListArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerHotspot20AnqpVenueNameValueList] {
+	return pulumix.Output[[]WirelessControllerHotspot20AnqpVenueNameValueList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20AnqpVenueNameValueListArrayOutput) Index(i pulumi.IntInput) WirelessControllerHotspot20AnqpVenueNameValueListOutput {
@@ -21259,6 +29104,12 @@ func (i WirelessControllerHotspot20AnqpVenueUrlValueListArgs) ToWirelessControll
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20AnqpVenueUrlValueListOutput)
 }
 
+func (i WirelessControllerHotspot20AnqpVenueUrlValueListArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerHotspot20AnqpVenueUrlValueList] {
+	return pulumix.Output[WirelessControllerHotspot20AnqpVenueUrlValueList]{
+		OutputState: i.ToWirelessControllerHotspot20AnqpVenueUrlValueListOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerHotspot20AnqpVenueUrlValueListArrayInput is an input type that accepts WirelessControllerHotspot20AnqpVenueUrlValueListArray and WirelessControllerHotspot20AnqpVenueUrlValueListArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20AnqpVenueUrlValueListArrayInput` via:
 //
@@ -21284,6 +29135,12 @@ func (i WirelessControllerHotspot20AnqpVenueUrlValueListArray) ToWirelessControl
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20AnqpVenueUrlValueListArrayOutput)
 }
 
+func (i WirelessControllerHotspot20AnqpVenueUrlValueListArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerHotspot20AnqpVenueUrlValueList] {
+	return pulumix.Output[[]WirelessControllerHotspot20AnqpVenueUrlValueList]{
+		OutputState: i.ToWirelessControllerHotspot20AnqpVenueUrlValueListArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerHotspot20AnqpVenueUrlValueListOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20AnqpVenueUrlValueListOutput) ElementType() reflect.Type {
@@ -21296,6 +29153,12 @@ func (o WirelessControllerHotspot20AnqpVenueUrlValueListOutput) ToWirelessContro
 
 func (o WirelessControllerHotspot20AnqpVenueUrlValueListOutput) ToWirelessControllerHotspot20AnqpVenueUrlValueListOutputWithContext(ctx context.Context) WirelessControllerHotspot20AnqpVenueUrlValueListOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20AnqpVenueUrlValueListOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerHotspot20AnqpVenueUrlValueList] {
+	return pulumix.Output[WirelessControllerHotspot20AnqpVenueUrlValueList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20AnqpVenueUrlValueListOutput) Index() pulumi.IntPtrOutput {
@@ -21322,6 +29185,12 @@ func (o WirelessControllerHotspot20AnqpVenueUrlValueListArrayOutput) ToWirelessC
 
 func (o WirelessControllerHotspot20AnqpVenueUrlValueListArrayOutput) ToWirelessControllerHotspot20AnqpVenueUrlValueListArrayOutputWithContext(ctx context.Context) WirelessControllerHotspot20AnqpVenueUrlValueListArrayOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20AnqpVenueUrlValueListArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerHotspot20AnqpVenueUrlValueList] {
+	return pulumix.Output[[]WirelessControllerHotspot20AnqpVenueUrlValueList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20AnqpVenueUrlValueListArrayOutput) Index(i pulumi.IntInput) WirelessControllerHotspot20AnqpVenueUrlValueListOutput {
@@ -21369,6 +29238,12 @@ func (i WirelessControllerHotspot20H2QpAdviceOfChargeAocListArgs) ToWirelessCont
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20H2QpAdviceOfChargeAocListOutput)
 }
 
+func (i WirelessControllerHotspot20H2QpAdviceOfChargeAocListArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerHotspot20H2QpAdviceOfChargeAocList] {
+	return pulumix.Output[WirelessControllerHotspot20H2QpAdviceOfChargeAocList]{
+		OutputState: i.ToWirelessControllerHotspot20H2QpAdviceOfChargeAocListOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerHotspot20H2QpAdviceOfChargeAocListArrayInput is an input type that accepts WirelessControllerHotspot20H2QpAdviceOfChargeAocListArray and WirelessControllerHotspot20H2QpAdviceOfChargeAocListArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20H2QpAdviceOfChargeAocListArrayInput` via:
 //
@@ -21394,6 +29269,12 @@ func (i WirelessControllerHotspot20H2QpAdviceOfChargeAocListArray) ToWirelessCon
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20H2QpAdviceOfChargeAocListArrayOutput)
 }
 
+func (i WirelessControllerHotspot20H2QpAdviceOfChargeAocListArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerHotspot20H2QpAdviceOfChargeAocList] {
+	return pulumix.Output[[]WirelessControllerHotspot20H2QpAdviceOfChargeAocList]{
+		OutputState: i.ToWirelessControllerHotspot20H2QpAdviceOfChargeAocListArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerHotspot20H2QpAdviceOfChargeAocListOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20H2QpAdviceOfChargeAocListOutput) ElementType() reflect.Type {
@@ -21406,6 +29287,12 @@ func (o WirelessControllerHotspot20H2QpAdviceOfChargeAocListOutput) ToWirelessCo
 
 func (o WirelessControllerHotspot20H2QpAdviceOfChargeAocListOutput) ToWirelessControllerHotspot20H2QpAdviceOfChargeAocListOutputWithContext(ctx context.Context) WirelessControllerHotspot20H2QpAdviceOfChargeAocListOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20H2QpAdviceOfChargeAocListOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerHotspot20H2QpAdviceOfChargeAocList] {
+	return pulumix.Output[WirelessControllerHotspot20H2QpAdviceOfChargeAocList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20H2QpAdviceOfChargeAocListOutput) NaiRealm() pulumi.StringPtrOutput {
@@ -21442,6 +29329,12 @@ func (o WirelessControllerHotspot20H2QpAdviceOfChargeAocListArrayOutput) ToWirel
 
 func (o WirelessControllerHotspot20H2QpAdviceOfChargeAocListArrayOutput) ToWirelessControllerHotspot20H2QpAdviceOfChargeAocListArrayOutputWithContext(ctx context.Context) WirelessControllerHotspot20H2QpAdviceOfChargeAocListArrayOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20H2QpAdviceOfChargeAocListArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerHotspot20H2QpAdviceOfChargeAocList] {
+	return pulumix.Output[[]WirelessControllerHotspot20H2QpAdviceOfChargeAocList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20H2QpAdviceOfChargeAocListArrayOutput) Index(i pulumi.IntInput) WirelessControllerHotspot20H2QpAdviceOfChargeAocListOutput {
@@ -21487,6 +29380,12 @@ func (i WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfoArgs) ToWire
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfoOutput)
 }
 
+func (i WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfoArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfo] {
+	return pulumix.Output[WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfo]{
+		OutputState: i.ToWirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfoOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfoArrayInput is an input type that accepts WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfoArray and WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfoArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfoArrayInput` via:
 //
@@ -21512,6 +29411,12 @@ func (i WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfoArray) ToWir
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfoArrayOutput)
 }
 
+func (i WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfoArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfo] {
+	return pulumix.Output[[]WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfo]{
+		OutputState: i.ToWirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfoArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfoOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfoOutput) ElementType() reflect.Type {
@@ -21524,6 +29429,12 @@ func (o WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfoOutput) ToWi
 
 func (o WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfoOutput) ToWirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfoOutputWithContext(ctx context.Context) WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfoOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfoOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfo] {
+	return pulumix.Output[WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfo]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfoOutput) Currency() pulumi.StringPtrOutput {
@@ -21554,6 +29465,12 @@ func (o WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfoArrayOutput)
 
 func (o WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfoArrayOutput) ToWirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfoArrayOutputWithContext(ctx context.Context) WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfoArrayOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfoArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfo] {
+	return pulumix.Output[[]WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfo]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfoArrayOutput) Index(i pulumi.IntInput) WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfoOutput {
@@ -21597,6 +29514,12 @@ func (i WirelessControllerHotspot20H2QpOperatorNameValueListArgs) ToWirelessCont
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20H2QpOperatorNameValueListOutput)
 }
 
+func (i WirelessControllerHotspot20H2QpOperatorNameValueListArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerHotspot20H2QpOperatorNameValueList] {
+	return pulumix.Output[WirelessControllerHotspot20H2QpOperatorNameValueList]{
+		OutputState: i.ToWirelessControllerHotspot20H2QpOperatorNameValueListOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerHotspot20H2QpOperatorNameValueListArrayInput is an input type that accepts WirelessControllerHotspot20H2QpOperatorNameValueListArray and WirelessControllerHotspot20H2QpOperatorNameValueListArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20H2QpOperatorNameValueListArrayInput` via:
 //
@@ -21622,6 +29545,12 @@ func (i WirelessControllerHotspot20H2QpOperatorNameValueListArray) ToWirelessCon
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20H2QpOperatorNameValueListArrayOutput)
 }
 
+func (i WirelessControllerHotspot20H2QpOperatorNameValueListArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerHotspot20H2QpOperatorNameValueList] {
+	return pulumix.Output[[]WirelessControllerHotspot20H2QpOperatorNameValueList]{
+		OutputState: i.ToWirelessControllerHotspot20H2QpOperatorNameValueListArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerHotspot20H2QpOperatorNameValueListOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20H2QpOperatorNameValueListOutput) ElementType() reflect.Type {
@@ -21634,6 +29563,12 @@ func (o WirelessControllerHotspot20H2QpOperatorNameValueListOutput) ToWirelessCo
 
 func (o WirelessControllerHotspot20H2QpOperatorNameValueListOutput) ToWirelessControllerHotspot20H2QpOperatorNameValueListOutputWithContext(ctx context.Context) WirelessControllerHotspot20H2QpOperatorNameValueListOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20H2QpOperatorNameValueListOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerHotspot20H2QpOperatorNameValueList] {
+	return pulumix.Output[WirelessControllerHotspot20H2QpOperatorNameValueList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20H2QpOperatorNameValueListOutput) Index() pulumi.IntPtrOutput {
@@ -21660,6 +29595,12 @@ func (o WirelessControllerHotspot20H2QpOperatorNameValueListArrayOutput) ToWirel
 
 func (o WirelessControllerHotspot20H2QpOperatorNameValueListArrayOutput) ToWirelessControllerHotspot20H2QpOperatorNameValueListArrayOutputWithContext(ctx context.Context) WirelessControllerHotspot20H2QpOperatorNameValueListArrayOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20H2QpOperatorNameValueListArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerHotspot20H2QpOperatorNameValueList] {
+	return pulumix.Output[[]WirelessControllerHotspot20H2QpOperatorNameValueList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20H2QpOperatorNameValueListArrayOutput) Index(i pulumi.IntInput) WirelessControllerHotspot20H2QpOperatorNameValueListOutput {
@@ -21703,6 +29644,12 @@ func (i WirelessControllerHotspot20H2QpOsuProviderFriendlyNameArgs) ToWirelessCo
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20H2QpOsuProviderFriendlyNameOutput)
 }
 
+func (i WirelessControllerHotspot20H2QpOsuProviderFriendlyNameArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerHotspot20H2QpOsuProviderFriendlyName] {
+	return pulumix.Output[WirelessControllerHotspot20H2QpOsuProviderFriendlyName]{
+		OutputState: i.ToWirelessControllerHotspot20H2QpOsuProviderFriendlyNameOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerHotspot20H2QpOsuProviderFriendlyNameArrayInput is an input type that accepts WirelessControllerHotspot20H2QpOsuProviderFriendlyNameArray and WirelessControllerHotspot20H2QpOsuProviderFriendlyNameArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20H2QpOsuProviderFriendlyNameArrayInput` via:
 //
@@ -21728,6 +29675,12 @@ func (i WirelessControllerHotspot20H2QpOsuProviderFriendlyNameArray) ToWirelessC
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20H2QpOsuProviderFriendlyNameArrayOutput)
 }
 
+func (i WirelessControllerHotspot20H2QpOsuProviderFriendlyNameArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerHotspot20H2QpOsuProviderFriendlyName] {
+	return pulumix.Output[[]WirelessControllerHotspot20H2QpOsuProviderFriendlyName]{
+		OutputState: i.ToWirelessControllerHotspot20H2QpOsuProviderFriendlyNameArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerHotspot20H2QpOsuProviderFriendlyNameOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20H2QpOsuProviderFriendlyNameOutput) ElementType() reflect.Type {
@@ -21740,6 +29693,12 @@ func (o WirelessControllerHotspot20H2QpOsuProviderFriendlyNameOutput) ToWireless
 
 func (o WirelessControllerHotspot20H2QpOsuProviderFriendlyNameOutput) ToWirelessControllerHotspot20H2QpOsuProviderFriendlyNameOutputWithContext(ctx context.Context) WirelessControllerHotspot20H2QpOsuProviderFriendlyNameOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20H2QpOsuProviderFriendlyNameOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerHotspot20H2QpOsuProviderFriendlyName] {
+	return pulumix.Output[WirelessControllerHotspot20H2QpOsuProviderFriendlyName]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20H2QpOsuProviderFriendlyNameOutput) FriendlyName() pulumi.StringPtrOutput {
@@ -21766,6 +29725,12 @@ func (o WirelessControllerHotspot20H2QpOsuProviderFriendlyNameArrayOutput) ToWir
 
 func (o WirelessControllerHotspot20H2QpOsuProviderFriendlyNameArrayOutput) ToWirelessControllerHotspot20H2QpOsuProviderFriendlyNameArrayOutputWithContext(ctx context.Context) WirelessControllerHotspot20H2QpOsuProviderFriendlyNameArrayOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20H2QpOsuProviderFriendlyNameArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerHotspot20H2QpOsuProviderFriendlyName] {
+	return pulumix.Output[[]WirelessControllerHotspot20H2QpOsuProviderFriendlyName]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20H2QpOsuProviderFriendlyNameArrayOutput) Index(i pulumi.IntInput) WirelessControllerHotspot20H2QpOsuProviderFriendlyNameOutput {
@@ -21807,6 +29772,12 @@ func (i WirelessControllerHotspot20H2QpOsuProviderNaiNaiListArgs) ToWirelessCont
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20H2QpOsuProviderNaiNaiListOutput)
 }
 
+func (i WirelessControllerHotspot20H2QpOsuProviderNaiNaiListArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerHotspot20H2QpOsuProviderNaiNaiList] {
+	return pulumix.Output[WirelessControllerHotspot20H2QpOsuProviderNaiNaiList]{
+		OutputState: i.ToWirelessControllerHotspot20H2QpOsuProviderNaiNaiListOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerHotspot20H2QpOsuProviderNaiNaiListArrayInput is an input type that accepts WirelessControllerHotspot20H2QpOsuProviderNaiNaiListArray and WirelessControllerHotspot20H2QpOsuProviderNaiNaiListArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20H2QpOsuProviderNaiNaiListArrayInput` via:
 //
@@ -21832,6 +29803,12 @@ func (i WirelessControllerHotspot20H2QpOsuProviderNaiNaiListArray) ToWirelessCon
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20H2QpOsuProviderNaiNaiListArrayOutput)
 }
 
+func (i WirelessControllerHotspot20H2QpOsuProviderNaiNaiListArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerHotspot20H2QpOsuProviderNaiNaiList] {
+	return pulumix.Output[[]WirelessControllerHotspot20H2QpOsuProviderNaiNaiList]{
+		OutputState: i.ToWirelessControllerHotspot20H2QpOsuProviderNaiNaiListArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerHotspot20H2QpOsuProviderNaiNaiListOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20H2QpOsuProviderNaiNaiListOutput) ElementType() reflect.Type {
@@ -21844,6 +29821,12 @@ func (o WirelessControllerHotspot20H2QpOsuProviderNaiNaiListOutput) ToWirelessCo
 
 func (o WirelessControllerHotspot20H2QpOsuProviderNaiNaiListOutput) ToWirelessControllerHotspot20H2QpOsuProviderNaiNaiListOutputWithContext(ctx context.Context) WirelessControllerHotspot20H2QpOsuProviderNaiNaiListOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20H2QpOsuProviderNaiNaiListOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerHotspot20H2QpOsuProviderNaiNaiList] {
+	return pulumix.Output[WirelessControllerHotspot20H2QpOsuProviderNaiNaiList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20H2QpOsuProviderNaiNaiListOutput) Name() pulumi.StringPtrOutput {
@@ -21866,6 +29849,12 @@ func (o WirelessControllerHotspot20H2QpOsuProviderNaiNaiListArrayOutput) ToWirel
 
 func (o WirelessControllerHotspot20H2QpOsuProviderNaiNaiListArrayOutput) ToWirelessControllerHotspot20H2QpOsuProviderNaiNaiListArrayOutputWithContext(ctx context.Context) WirelessControllerHotspot20H2QpOsuProviderNaiNaiListArrayOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20H2QpOsuProviderNaiNaiListArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerHotspot20H2QpOsuProviderNaiNaiList] {
+	return pulumix.Output[[]WirelessControllerHotspot20H2QpOsuProviderNaiNaiList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20H2QpOsuProviderNaiNaiListArrayOutput) Index(i pulumi.IntInput) WirelessControllerHotspot20H2QpOsuProviderNaiNaiListOutput {
@@ -21909,6 +29898,12 @@ func (i WirelessControllerHotspot20H2QpOsuProviderServiceDescriptionArgs) ToWire
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20H2QpOsuProviderServiceDescriptionOutput)
 }
 
+func (i WirelessControllerHotspot20H2QpOsuProviderServiceDescriptionArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerHotspot20H2QpOsuProviderServiceDescription] {
+	return pulumix.Output[WirelessControllerHotspot20H2QpOsuProviderServiceDescription]{
+		OutputState: i.ToWirelessControllerHotspot20H2QpOsuProviderServiceDescriptionOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerHotspot20H2QpOsuProviderServiceDescriptionArrayInput is an input type that accepts WirelessControllerHotspot20H2QpOsuProviderServiceDescriptionArray and WirelessControllerHotspot20H2QpOsuProviderServiceDescriptionArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20H2QpOsuProviderServiceDescriptionArrayInput` via:
 //
@@ -21934,6 +29929,12 @@ func (i WirelessControllerHotspot20H2QpOsuProviderServiceDescriptionArray) ToWir
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20H2QpOsuProviderServiceDescriptionArrayOutput)
 }
 
+func (i WirelessControllerHotspot20H2QpOsuProviderServiceDescriptionArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerHotspot20H2QpOsuProviderServiceDescription] {
+	return pulumix.Output[[]WirelessControllerHotspot20H2QpOsuProviderServiceDescription]{
+		OutputState: i.ToWirelessControllerHotspot20H2QpOsuProviderServiceDescriptionArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerHotspot20H2QpOsuProviderServiceDescriptionOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20H2QpOsuProviderServiceDescriptionOutput) ElementType() reflect.Type {
@@ -21946,6 +29947,12 @@ func (o WirelessControllerHotspot20H2QpOsuProviderServiceDescriptionOutput) ToWi
 
 func (o WirelessControllerHotspot20H2QpOsuProviderServiceDescriptionOutput) ToWirelessControllerHotspot20H2QpOsuProviderServiceDescriptionOutputWithContext(ctx context.Context) WirelessControllerHotspot20H2QpOsuProviderServiceDescriptionOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20H2QpOsuProviderServiceDescriptionOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerHotspot20H2QpOsuProviderServiceDescription] {
+	return pulumix.Output[WirelessControllerHotspot20H2QpOsuProviderServiceDescription]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20H2QpOsuProviderServiceDescriptionOutput) Lang() pulumi.StringPtrOutput {
@@ -21974,6 +29981,12 @@ func (o WirelessControllerHotspot20H2QpOsuProviderServiceDescriptionArrayOutput)
 
 func (o WirelessControllerHotspot20H2QpOsuProviderServiceDescriptionArrayOutput) ToWirelessControllerHotspot20H2QpOsuProviderServiceDescriptionArrayOutputWithContext(ctx context.Context) WirelessControllerHotspot20H2QpOsuProviderServiceDescriptionArrayOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20H2QpOsuProviderServiceDescriptionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerHotspot20H2QpOsuProviderServiceDescription] {
+	return pulumix.Output[[]WirelessControllerHotspot20H2QpOsuProviderServiceDescription]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20H2QpOsuProviderServiceDescriptionArrayOutput) Index(i pulumi.IntInput) WirelessControllerHotspot20H2QpOsuProviderServiceDescriptionOutput {
@@ -22013,6 +30026,12 @@ func (i WirelessControllerHotspot20HsProfileOsuProviderArgs) ToWirelessControlle
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20HsProfileOsuProviderOutput)
 }
 
+func (i WirelessControllerHotspot20HsProfileOsuProviderArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerHotspot20HsProfileOsuProvider] {
+	return pulumix.Output[WirelessControllerHotspot20HsProfileOsuProvider]{
+		OutputState: i.ToWirelessControllerHotspot20HsProfileOsuProviderOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerHotspot20HsProfileOsuProviderArrayInput is an input type that accepts WirelessControllerHotspot20HsProfileOsuProviderArray and WirelessControllerHotspot20HsProfileOsuProviderArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20HsProfileOsuProviderArrayInput` via:
 //
@@ -22038,6 +30057,12 @@ func (i WirelessControllerHotspot20HsProfileOsuProviderArray) ToWirelessControll
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20HsProfileOsuProviderArrayOutput)
 }
 
+func (i WirelessControllerHotspot20HsProfileOsuProviderArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerHotspot20HsProfileOsuProvider] {
+	return pulumix.Output[[]WirelessControllerHotspot20HsProfileOsuProvider]{
+		OutputState: i.ToWirelessControllerHotspot20HsProfileOsuProviderArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerHotspot20HsProfileOsuProviderOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20HsProfileOsuProviderOutput) ElementType() reflect.Type {
@@ -22050,6 +30075,12 @@ func (o WirelessControllerHotspot20HsProfileOsuProviderOutput) ToWirelessControl
 
 func (o WirelessControllerHotspot20HsProfileOsuProviderOutput) ToWirelessControllerHotspot20HsProfileOsuProviderOutputWithContext(ctx context.Context) WirelessControllerHotspot20HsProfileOsuProviderOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20HsProfileOsuProviderOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerHotspot20HsProfileOsuProvider] {
+	return pulumix.Output[WirelessControllerHotspot20HsProfileOsuProvider]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20HsProfileOsuProviderOutput) Name() pulumi.StringPtrOutput {
@@ -22068,6 +30099,12 @@ func (o WirelessControllerHotspot20HsProfileOsuProviderArrayOutput) ToWirelessCo
 
 func (o WirelessControllerHotspot20HsProfileOsuProviderArrayOutput) ToWirelessControllerHotspot20HsProfileOsuProviderArrayOutputWithContext(ctx context.Context) WirelessControllerHotspot20HsProfileOsuProviderArrayOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20HsProfileOsuProviderArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerHotspot20HsProfileOsuProvider] {
+	return pulumix.Output[[]WirelessControllerHotspot20HsProfileOsuProvider]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20HsProfileOsuProviderArrayOutput) Index(i pulumi.IntInput) WirelessControllerHotspot20HsProfileOsuProviderOutput {
@@ -22117,6 +30154,12 @@ func (i WirelessControllerHotspot20IconIconListArgs) ToWirelessControllerHotspot
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20IconIconListOutput)
 }
 
+func (i WirelessControllerHotspot20IconIconListArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerHotspot20IconIconList] {
+	return pulumix.Output[WirelessControllerHotspot20IconIconList]{
+		OutputState: i.ToWirelessControllerHotspot20IconIconListOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerHotspot20IconIconListArrayInput is an input type that accepts WirelessControllerHotspot20IconIconListArray and WirelessControllerHotspot20IconIconListArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20IconIconListArrayInput` via:
 //
@@ -22142,6 +30185,12 @@ func (i WirelessControllerHotspot20IconIconListArray) ToWirelessControllerHotspo
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20IconIconListArrayOutput)
 }
 
+func (i WirelessControllerHotspot20IconIconListArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerHotspot20IconIconList] {
+	return pulumix.Output[[]WirelessControllerHotspot20IconIconList]{
+		OutputState: i.ToWirelessControllerHotspot20IconIconListArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerHotspot20IconIconListOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20IconIconListOutput) ElementType() reflect.Type {
@@ -22154,6 +30203,12 @@ func (o WirelessControllerHotspot20IconIconListOutput) ToWirelessControllerHotsp
 
 func (o WirelessControllerHotspot20IconIconListOutput) ToWirelessControllerHotspot20IconIconListOutputWithContext(ctx context.Context) WirelessControllerHotspot20IconIconListOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20IconIconListOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerHotspot20IconIconList] {
+	return pulumix.Output[WirelessControllerHotspot20IconIconList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20IconIconListOutput) File() pulumi.StringPtrOutput {
@@ -22192,6 +30247,12 @@ func (o WirelessControllerHotspot20IconIconListArrayOutput) ToWirelessController
 
 func (o WirelessControllerHotspot20IconIconListArrayOutput) ToWirelessControllerHotspot20IconIconListArrayOutputWithContext(ctx context.Context) WirelessControllerHotspot20IconIconListArrayOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20IconIconListArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerHotspot20IconIconList] {
+	return pulumix.Output[[]WirelessControllerHotspot20IconIconList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20IconIconListArrayOutput) Index(i pulumi.IntInput) WirelessControllerHotspot20IconIconListOutput {
@@ -22235,6 +30296,12 @@ func (i WirelessControllerHotspot20QosMapDscpExceptArgs) ToWirelessControllerHot
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20QosMapDscpExceptOutput)
 }
 
+func (i WirelessControllerHotspot20QosMapDscpExceptArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerHotspot20QosMapDscpExcept] {
+	return pulumix.Output[WirelessControllerHotspot20QosMapDscpExcept]{
+		OutputState: i.ToWirelessControllerHotspot20QosMapDscpExceptOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerHotspot20QosMapDscpExceptArrayInput is an input type that accepts WirelessControllerHotspot20QosMapDscpExceptArray and WirelessControllerHotspot20QosMapDscpExceptArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20QosMapDscpExceptArrayInput` via:
 //
@@ -22260,6 +30327,12 @@ func (i WirelessControllerHotspot20QosMapDscpExceptArray) ToWirelessControllerHo
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20QosMapDscpExceptArrayOutput)
 }
 
+func (i WirelessControllerHotspot20QosMapDscpExceptArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerHotspot20QosMapDscpExcept] {
+	return pulumix.Output[[]WirelessControllerHotspot20QosMapDscpExcept]{
+		OutputState: i.ToWirelessControllerHotspot20QosMapDscpExceptArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerHotspot20QosMapDscpExceptOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20QosMapDscpExceptOutput) ElementType() reflect.Type {
@@ -22272,6 +30345,12 @@ func (o WirelessControllerHotspot20QosMapDscpExceptOutput) ToWirelessControllerH
 
 func (o WirelessControllerHotspot20QosMapDscpExceptOutput) ToWirelessControllerHotspot20QosMapDscpExceptOutputWithContext(ctx context.Context) WirelessControllerHotspot20QosMapDscpExceptOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20QosMapDscpExceptOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerHotspot20QosMapDscpExcept] {
+	return pulumix.Output[WirelessControllerHotspot20QosMapDscpExcept]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20QosMapDscpExceptOutput) Dscp() pulumi.IntPtrOutput {
@@ -22298,6 +30377,12 @@ func (o WirelessControllerHotspot20QosMapDscpExceptArrayOutput) ToWirelessContro
 
 func (o WirelessControllerHotspot20QosMapDscpExceptArrayOutput) ToWirelessControllerHotspot20QosMapDscpExceptArrayOutputWithContext(ctx context.Context) WirelessControllerHotspot20QosMapDscpExceptArrayOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20QosMapDscpExceptArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerHotspot20QosMapDscpExcept] {
+	return pulumix.Output[[]WirelessControllerHotspot20QosMapDscpExcept]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20QosMapDscpExceptArrayOutput) Index(i pulumi.IntInput) WirelessControllerHotspot20QosMapDscpExceptOutput {
@@ -22343,6 +30428,12 @@ func (i WirelessControllerHotspot20QosMapDscpRangeArgs) ToWirelessControllerHots
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20QosMapDscpRangeOutput)
 }
 
+func (i WirelessControllerHotspot20QosMapDscpRangeArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerHotspot20QosMapDscpRange] {
+	return pulumix.Output[WirelessControllerHotspot20QosMapDscpRange]{
+		OutputState: i.ToWirelessControllerHotspot20QosMapDscpRangeOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerHotspot20QosMapDscpRangeArrayInput is an input type that accepts WirelessControllerHotspot20QosMapDscpRangeArray and WirelessControllerHotspot20QosMapDscpRangeArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20QosMapDscpRangeArrayInput` via:
 //
@@ -22368,6 +30459,12 @@ func (i WirelessControllerHotspot20QosMapDscpRangeArray) ToWirelessControllerHot
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20QosMapDscpRangeArrayOutput)
 }
 
+func (i WirelessControllerHotspot20QosMapDscpRangeArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerHotspot20QosMapDscpRange] {
+	return pulumix.Output[[]WirelessControllerHotspot20QosMapDscpRange]{
+		OutputState: i.ToWirelessControllerHotspot20QosMapDscpRangeArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerHotspot20QosMapDscpRangeOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20QosMapDscpRangeOutput) ElementType() reflect.Type {
@@ -22380,6 +30477,12 @@ func (o WirelessControllerHotspot20QosMapDscpRangeOutput) ToWirelessControllerHo
 
 func (o WirelessControllerHotspot20QosMapDscpRangeOutput) ToWirelessControllerHotspot20QosMapDscpRangeOutputWithContext(ctx context.Context) WirelessControllerHotspot20QosMapDscpRangeOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20QosMapDscpRangeOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerHotspot20QosMapDscpRange] {
+	return pulumix.Output[WirelessControllerHotspot20QosMapDscpRange]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20QosMapDscpRangeOutput) High() pulumi.IntPtrOutput {
@@ -22410,6 +30513,12 @@ func (o WirelessControllerHotspot20QosMapDscpRangeArrayOutput) ToWirelessControl
 
 func (o WirelessControllerHotspot20QosMapDscpRangeArrayOutput) ToWirelessControllerHotspot20QosMapDscpRangeArrayOutputWithContext(ctx context.Context) WirelessControllerHotspot20QosMapDscpRangeArrayOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20QosMapDscpRangeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerHotspot20QosMapDscpRange] {
+	return pulumix.Output[[]WirelessControllerHotspot20QosMapDscpRange]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20QosMapDscpRangeArrayOutput) Index(i pulumi.IntInput) WirelessControllerHotspot20QosMapDscpRangeOutput {
@@ -22455,6 +30564,12 @@ func (i WirelessControllerInterControllerInterControllerPeerArgs) ToWirelessCont
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerInterControllerInterControllerPeerOutput)
 }
 
+func (i WirelessControllerInterControllerInterControllerPeerArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerInterControllerInterControllerPeer] {
+	return pulumix.Output[WirelessControllerInterControllerInterControllerPeer]{
+		OutputState: i.ToWirelessControllerInterControllerInterControllerPeerOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerInterControllerInterControllerPeerArrayInput is an input type that accepts WirelessControllerInterControllerInterControllerPeerArray and WirelessControllerInterControllerInterControllerPeerArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerInterControllerInterControllerPeerArrayInput` via:
 //
@@ -22480,6 +30595,12 @@ func (i WirelessControllerInterControllerInterControllerPeerArray) ToWirelessCon
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerInterControllerInterControllerPeerArrayOutput)
 }
 
+func (i WirelessControllerInterControllerInterControllerPeerArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerInterControllerInterControllerPeer] {
+	return pulumix.Output[[]WirelessControllerInterControllerInterControllerPeer]{
+		OutputState: i.ToWirelessControllerInterControllerInterControllerPeerArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerInterControllerInterControllerPeerOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerInterControllerInterControllerPeerOutput) ElementType() reflect.Type {
@@ -22492,6 +30613,12 @@ func (o WirelessControllerInterControllerInterControllerPeerOutput) ToWirelessCo
 
 func (o WirelessControllerInterControllerInterControllerPeerOutput) ToWirelessControllerInterControllerInterControllerPeerOutputWithContext(ctx context.Context) WirelessControllerInterControllerInterControllerPeerOutput {
 	return o
+}
+
+func (o WirelessControllerInterControllerInterControllerPeerOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerInterControllerInterControllerPeer] {
+	return pulumix.Output[WirelessControllerInterControllerInterControllerPeer]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerInterControllerInterControllerPeerOutput) Id() pulumi.IntPtrOutput {
@@ -22522,6 +30649,12 @@ func (o WirelessControllerInterControllerInterControllerPeerArrayOutput) ToWirel
 
 func (o WirelessControllerInterControllerInterControllerPeerArrayOutput) ToWirelessControllerInterControllerInterControllerPeerArrayOutputWithContext(ctx context.Context) WirelessControllerInterControllerInterControllerPeerArrayOutput {
 	return o
+}
+
+func (o WirelessControllerInterControllerInterControllerPeerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerInterControllerInterControllerPeer] {
+	return pulumix.Output[[]WirelessControllerInterControllerInterControllerPeer]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerInterControllerInterControllerPeerArrayOutput) Index(i pulumi.IntInput) WirelessControllerInterControllerInterControllerPeerOutput {
@@ -22567,6 +30700,12 @@ func (i WirelessControllerMpskProfileMpskGroupArgs) ToWirelessControllerMpskProf
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerMpskProfileMpskGroupOutput)
 }
 
+func (i WirelessControllerMpskProfileMpskGroupArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerMpskProfileMpskGroup] {
+	return pulumix.Output[WirelessControllerMpskProfileMpskGroup]{
+		OutputState: i.ToWirelessControllerMpskProfileMpskGroupOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerMpskProfileMpskGroupArrayInput is an input type that accepts WirelessControllerMpskProfileMpskGroupArray and WirelessControllerMpskProfileMpskGroupArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerMpskProfileMpskGroupArrayInput` via:
 //
@@ -22592,6 +30731,12 @@ func (i WirelessControllerMpskProfileMpskGroupArray) ToWirelessControllerMpskPro
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerMpskProfileMpskGroupArrayOutput)
 }
 
+func (i WirelessControllerMpskProfileMpskGroupArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerMpskProfileMpskGroup] {
+	return pulumix.Output[[]WirelessControllerMpskProfileMpskGroup]{
+		OutputState: i.ToWirelessControllerMpskProfileMpskGroupArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerMpskProfileMpskGroupOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerMpskProfileMpskGroupOutput) ElementType() reflect.Type {
@@ -22604,6 +30749,12 @@ func (o WirelessControllerMpskProfileMpskGroupOutput) ToWirelessControllerMpskPr
 
 func (o WirelessControllerMpskProfileMpskGroupOutput) ToWirelessControllerMpskProfileMpskGroupOutputWithContext(ctx context.Context) WirelessControllerMpskProfileMpskGroupOutput {
 	return o
+}
+
+func (o WirelessControllerMpskProfileMpskGroupOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerMpskProfileMpskGroup] {
+	return pulumix.Output[WirelessControllerMpskProfileMpskGroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerMpskProfileMpskGroupOutput) MpskKeys() WirelessControllerMpskProfileMpskGroupMpskKeyArrayOutput {
@@ -22636,6 +30787,12 @@ func (o WirelessControllerMpskProfileMpskGroupArrayOutput) ToWirelessControllerM
 
 func (o WirelessControllerMpskProfileMpskGroupArrayOutput) ToWirelessControllerMpskProfileMpskGroupArrayOutputWithContext(ctx context.Context) WirelessControllerMpskProfileMpskGroupArrayOutput {
 	return o
+}
+
+func (o WirelessControllerMpskProfileMpskGroupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerMpskProfileMpskGroup] {
+	return pulumix.Output[[]WirelessControllerMpskProfileMpskGroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerMpskProfileMpskGroupArrayOutput) Index(i pulumi.IntInput) WirelessControllerMpskProfileMpskGroupOutput {
@@ -22687,6 +30844,12 @@ func (i WirelessControllerMpskProfileMpskGroupMpskKeyArgs) ToWirelessControllerM
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerMpskProfileMpskGroupMpskKeyOutput)
 }
 
+func (i WirelessControllerMpskProfileMpskGroupMpskKeyArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerMpskProfileMpskGroupMpskKey] {
+	return pulumix.Output[WirelessControllerMpskProfileMpskGroupMpskKey]{
+		OutputState: i.ToWirelessControllerMpskProfileMpskGroupMpskKeyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerMpskProfileMpskGroupMpskKeyArrayInput is an input type that accepts WirelessControllerMpskProfileMpskGroupMpskKeyArray and WirelessControllerMpskProfileMpskGroupMpskKeyArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerMpskProfileMpskGroupMpskKeyArrayInput` via:
 //
@@ -22712,6 +30875,12 @@ func (i WirelessControllerMpskProfileMpskGroupMpskKeyArray) ToWirelessController
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerMpskProfileMpskGroupMpskKeyArrayOutput)
 }
 
+func (i WirelessControllerMpskProfileMpskGroupMpskKeyArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerMpskProfileMpskGroupMpskKey] {
+	return pulumix.Output[[]WirelessControllerMpskProfileMpskGroupMpskKey]{
+		OutputState: i.ToWirelessControllerMpskProfileMpskGroupMpskKeyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerMpskProfileMpskGroupMpskKeyOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerMpskProfileMpskGroupMpskKeyOutput) ElementType() reflect.Type {
@@ -22724,6 +30893,12 @@ func (o WirelessControllerMpskProfileMpskGroupMpskKeyOutput) ToWirelessControlle
 
 func (o WirelessControllerMpskProfileMpskGroupMpskKeyOutput) ToWirelessControllerMpskProfileMpskGroupMpskKeyOutputWithContext(ctx context.Context) WirelessControllerMpskProfileMpskGroupMpskKeyOutput {
 	return o
+}
+
+func (o WirelessControllerMpskProfileMpskGroupMpskKeyOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerMpskProfileMpskGroupMpskKey] {
+	return pulumix.Output[WirelessControllerMpskProfileMpskGroupMpskKey]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerMpskProfileMpskGroupMpskKeyOutput) Comment() pulumi.StringPtrOutput {
@@ -22770,6 +30945,12 @@ func (o WirelessControllerMpskProfileMpskGroupMpskKeyArrayOutput) ToWirelessCont
 	return o
 }
 
+func (o WirelessControllerMpskProfileMpskGroupMpskKeyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerMpskProfileMpskGroupMpskKey] {
+	return pulumix.Output[[]WirelessControllerMpskProfileMpskGroupMpskKey]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o WirelessControllerMpskProfileMpskGroupMpskKeyArrayOutput) Index(i pulumi.IntInput) WirelessControllerMpskProfileMpskGroupMpskKeyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WirelessControllerMpskProfileMpskGroupMpskKey {
 		return vs[0].([]WirelessControllerMpskProfileMpskGroupMpskKey)[vs[1].(int)]
@@ -22807,6 +30988,12 @@ func (i WirelessControllerMpskProfileMpskGroupMpskKeyMpskScheduleArgs) ToWireles
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerMpskProfileMpskGroupMpskKeyMpskScheduleOutput)
 }
 
+func (i WirelessControllerMpskProfileMpskGroupMpskKeyMpskScheduleArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerMpskProfileMpskGroupMpskKeyMpskSchedule] {
+	return pulumix.Output[WirelessControllerMpskProfileMpskGroupMpskKeyMpskSchedule]{
+		OutputState: i.ToWirelessControllerMpskProfileMpskGroupMpskKeyMpskScheduleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerMpskProfileMpskGroupMpskKeyMpskScheduleArrayInput is an input type that accepts WirelessControllerMpskProfileMpskGroupMpskKeyMpskScheduleArray and WirelessControllerMpskProfileMpskGroupMpskKeyMpskScheduleArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerMpskProfileMpskGroupMpskKeyMpskScheduleArrayInput` via:
 //
@@ -22832,6 +31019,12 @@ func (i WirelessControllerMpskProfileMpskGroupMpskKeyMpskScheduleArray) ToWirele
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerMpskProfileMpskGroupMpskKeyMpskScheduleArrayOutput)
 }
 
+func (i WirelessControllerMpskProfileMpskGroupMpskKeyMpskScheduleArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerMpskProfileMpskGroupMpskKeyMpskSchedule] {
+	return pulumix.Output[[]WirelessControllerMpskProfileMpskGroupMpskKeyMpskSchedule]{
+		OutputState: i.ToWirelessControllerMpskProfileMpskGroupMpskKeyMpskScheduleArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerMpskProfileMpskGroupMpskKeyMpskScheduleOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerMpskProfileMpskGroupMpskKeyMpskScheduleOutput) ElementType() reflect.Type {
@@ -22844,6 +31037,12 @@ func (o WirelessControllerMpskProfileMpskGroupMpskKeyMpskScheduleOutput) ToWirel
 
 func (o WirelessControllerMpskProfileMpskGroupMpskKeyMpskScheduleOutput) ToWirelessControllerMpskProfileMpskGroupMpskKeyMpskScheduleOutputWithContext(ctx context.Context) WirelessControllerMpskProfileMpskGroupMpskKeyMpskScheduleOutput {
 	return o
+}
+
+func (o WirelessControllerMpskProfileMpskGroupMpskKeyMpskScheduleOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerMpskProfileMpskGroupMpskKeyMpskSchedule] {
+	return pulumix.Output[WirelessControllerMpskProfileMpskGroupMpskKeyMpskSchedule]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerMpskProfileMpskGroupMpskKeyMpskScheduleOutput) Name() pulumi.StringPtrOutput {
@@ -22862,6 +31061,12 @@ func (o WirelessControllerMpskProfileMpskGroupMpskKeyMpskScheduleArrayOutput) To
 
 func (o WirelessControllerMpskProfileMpskGroupMpskKeyMpskScheduleArrayOutput) ToWirelessControllerMpskProfileMpskGroupMpskKeyMpskScheduleArrayOutputWithContext(ctx context.Context) WirelessControllerMpskProfileMpskGroupMpskKeyMpskScheduleArrayOutput {
 	return o
+}
+
+func (o WirelessControllerMpskProfileMpskGroupMpskKeyMpskScheduleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerMpskProfileMpskGroupMpskKeyMpskSchedule] {
+	return pulumix.Output[[]WirelessControllerMpskProfileMpskGroupMpskKeyMpskSchedule]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerMpskProfileMpskGroupMpskKeyMpskScheduleArrayOutput) Index(i pulumi.IntInput) WirelessControllerMpskProfileMpskGroupMpskKeyMpskScheduleOutput {
@@ -22901,6 +31106,12 @@ func (i WirelessControllerQosProfileDscpWmmBeArgs) ToWirelessControllerQosProfil
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerQosProfileDscpWmmBeOutput)
 }
 
+func (i WirelessControllerQosProfileDscpWmmBeArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerQosProfileDscpWmmBe] {
+	return pulumix.Output[WirelessControllerQosProfileDscpWmmBe]{
+		OutputState: i.ToWirelessControllerQosProfileDscpWmmBeOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerQosProfileDscpWmmBeArrayInput is an input type that accepts WirelessControllerQosProfileDscpWmmBeArray and WirelessControllerQosProfileDscpWmmBeArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerQosProfileDscpWmmBeArrayInput` via:
 //
@@ -22926,6 +31137,12 @@ func (i WirelessControllerQosProfileDscpWmmBeArray) ToWirelessControllerQosProfi
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerQosProfileDscpWmmBeArrayOutput)
 }
 
+func (i WirelessControllerQosProfileDscpWmmBeArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerQosProfileDscpWmmBe] {
+	return pulumix.Output[[]WirelessControllerQosProfileDscpWmmBe]{
+		OutputState: i.ToWirelessControllerQosProfileDscpWmmBeArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerQosProfileDscpWmmBeOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerQosProfileDscpWmmBeOutput) ElementType() reflect.Type {
@@ -22938,6 +31155,12 @@ func (o WirelessControllerQosProfileDscpWmmBeOutput) ToWirelessControllerQosProf
 
 func (o WirelessControllerQosProfileDscpWmmBeOutput) ToWirelessControllerQosProfileDscpWmmBeOutputWithContext(ctx context.Context) WirelessControllerQosProfileDscpWmmBeOutput {
 	return o
+}
+
+func (o WirelessControllerQosProfileDscpWmmBeOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerQosProfileDscpWmmBe] {
+	return pulumix.Output[WirelessControllerQosProfileDscpWmmBe]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerQosProfileDscpWmmBeOutput) Id() pulumi.IntPtrOutput {
@@ -22956,6 +31179,12 @@ func (o WirelessControllerQosProfileDscpWmmBeArrayOutput) ToWirelessControllerQo
 
 func (o WirelessControllerQosProfileDscpWmmBeArrayOutput) ToWirelessControllerQosProfileDscpWmmBeArrayOutputWithContext(ctx context.Context) WirelessControllerQosProfileDscpWmmBeArrayOutput {
 	return o
+}
+
+func (o WirelessControllerQosProfileDscpWmmBeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerQosProfileDscpWmmBe] {
+	return pulumix.Output[[]WirelessControllerQosProfileDscpWmmBe]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerQosProfileDscpWmmBeArrayOutput) Index(i pulumi.IntInput) WirelessControllerQosProfileDscpWmmBeOutput {
@@ -22995,6 +31224,12 @@ func (i WirelessControllerQosProfileDscpWmmBkArgs) ToWirelessControllerQosProfil
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerQosProfileDscpWmmBkOutput)
 }
 
+func (i WirelessControllerQosProfileDscpWmmBkArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerQosProfileDscpWmmBk] {
+	return pulumix.Output[WirelessControllerQosProfileDscpWmmBk]{
+		OutputState: i.ToWirelessControllerQosProfileDscpWmmBkOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerQosProfileDscpWmmBkArrayInput is an input type that accepts WirelessControllerQosProfileDscpWmmBkArray and WirelessControllerQosProfileDscpWmmBkArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerQosProfileDscpWmmBkArrayInput` via:
 //
@@ -23020,6 +31255,12 @@ func (i WirelessControllerQosProfileDscpWmmBkArray) ToWirelessControllerQosProfi
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerQosProfileDscpWmmBkArrayOutput)
 }
 
+func (i WirelessControllerQosProfileDscpWmmBkArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerQosProfileDscpWmmBk] {
+	return pulumix.Output[[]WirelessControllerQosProfileDscpWmmBk]{
+		OutputState: i.ToWirelessControllerQosProfileDscpWmmBkArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerQosProfileDscpWmmBkOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerQosProfileDscpWmmBkOutput) ElementType() reflect.Type {
@@ -23032,6 +31273,12 @@ func (o WirelessControllerQosProfileDscpWmmBkOutput) ToWirelessControllerQosProf
 
 func (o WirelessControllerQosProfileDscpWmmBkOutput) ToWirelessControllerQosProfileDscpWmmBkOutputWithContext(ctx context.Context) WirelessControllerQosProfileDscpWmmBkOutput {
 	return o
+}
+
+func (o WirelessControllerQosProfileDscpWmmBkOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerQosProfileDscpWmmBk] {
+	return pulumix.Output[WirelessControllerQosProfileDscpWmmBk]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerQosProfileDscpWmmBkOutput) Id() pulumi.IntPtrOutput {
@@ -23050,6 +31297,12 @@ func (o WirelessControllerQosProfileDscpWmmBkArrayOutput) ToWirelessControllerQo
 
 func (o WirelessControllerQosProfileDscpWmmBkArrayOutput) ToWirelessControllerQosProfileDscpWmmBkArrayOutputWithContext(ctx context.Context) WirelessControllerQosProfileDscpWmmBkArrayOutput {
 	return o
+}
+
+func (o WirelessControllerQosProfileDscpWmmBkArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerQosProfileDscpWmmBk] {
+	return pulumix.Output[[]WirelessControllerQosProfileDscpWmmBk]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerQosProfileDscpWmmBkArrayOutput) Index(i pulumi.IntInput) WirelessControllerQosProfileDscpWmmBkOutput {
@@ -23089,6 +31342,12 @@ func (i WirelessControllerQosProfileDscpWmmViArgs) ToWirelessControllerQosProfil
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerQosProfileDscpWmmViOutput)
 }
 
+func (i WirelessControllerQosProfileDscpWmmViArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerQosProfileDscpWmmVi] {
+	return pulumix.Output[WirelessControllerQosProfileDscpWmmVi]{
+		OutputState: i.ToWirelessControllerQosProfileDscpWmmViOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerQosProfileDscpWmmViArrayInput is an input type that accepts WirelessControllerQosProfileDscpWmmViArray and WirelessControllerQosProfileDscpWmmViArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerQosProfileDscpWmmViArrayInput` via:
 //
@@ -23114,6 +31373,12 @@ func (i WirelessControllerQosProfileDscpWmmViArray) ToWirelessControllerQosProfi
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerQosProfileDscpWmmViArrayOutput)
 }
 
+func (i WirelessControllerQosProfileDscpWmmViArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerQosProfileDscpWmmVi] {
+	return pulumix.Output[[]WirelessControllerQosProfileDscpWmmVi]{
+		OutputState: i.ToWirelessControllerQosProfileDscpWmmViArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerQosProfileDscpWmmViOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerQosProfileDscpWmmViOutput) ElementType() reflect.Type {
@@ -23126,6 +31391,12 @@ func (o WirelessControllerQosProfileDscpWmmViOutput) ToWirelessControllerQosProf
 
 func (o WirelessControllerQosProfileDscpWmmViOutput) ToWirelessControllerQosProfileDscpWmmViOutputWithContext(ctx context.Context) WirelessControllerQosProfileDscpWmmViOutput {
 	return o
+}
+
+func (o WirelessControllerQosProfileDscpWmmViOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerQosProfileDscpWmmVi] {
+	return pulumix.Output[WirelessControllerQosProfileDscpWmmVi]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerQosProfileDscpWmmViOutput) Id() pulumi.IntPtrOutput {
@@ -23144,6 +31415,12 @@ func (o WirelessControllerQosProfileDscpWmmViArrayOutput) ToWirelessControllerQo
 
 func (o WirelessControllerQosProfileDscpWmmViArrayOutput) ToWirelessControllerQosProfileDscpWmmViArrayOutputWithContext(ctx context.Context) WirelessControllerQosProfileDscpWmmViArrayOutput {
 	return o
+}
+
+func (o WirelessControllerQosProfileDscpWmmViArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerQosProfileDscpWmmVi] {
+	return pulumix.Output[[]WirelessControllerQosProfileDscpWmmVi]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerQosProfileDscpWmmViArrayOutput) Index(i pulumi.IntInput) WirelessControllerQosProfileDscpWmmViOutput {
@@ -23183,6 +31460,12 @@ func (i WirelessControllerQosProfileDscpWmmVoArgs) ToWirelessControllerQosProfil
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerQosProfileDscpWmmVoOutput)
 }
 
+func (i WirelessControllerQosProfileDscpWmmVoArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerQosProfileDscpWmmVo] {
+	return pulumix.Output[WirelessControllerQosProfileDscpWmmVo]{
+		OutputState: i.ToWirelessControllerQosProfileDscpWmmVoOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerQosProfileDscpWmmVoArrayInput is an input type that accepts WirelessControllerQosProfileDscpWmmVoArray and WirelessControllerQosProfileDscpWmmVoArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerQosProfileDscpWmmVoArrayInput` via:
 //
@@ -23208,6 +31491,12 @@ func (i WirelessControllerQosProfileDscpWmmVoArray) ToWirelessControllerQosProfi
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerQosProfileDscpWmmVoArrayOutput)
 }
 
+func (i WirelessControllerQosProfileDscpWmmVoArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerQosProfileDscpWmmVo] {
+	return pulumix.Output[[]WirelessControllerQosProfileDscpWmmVo]{
+		OutputState: i.ToWirelessControllerQosProfileDscpWmmVoArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerQosProfileDscpWmmVoOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerQosProfileDscpWmmVoOutput) ElementType() reflect.Type {
@@ -23220,6 +31509,12 @@ func (o WirelessControllerQosProfileDscpWmmVoOutput) ToWirelessControllerQosProf
 
 func (o WirelessControllerQosProfileDscpWmmVoOutput) ToWirelessControllerQosProfileDscpWmmVoOutputWithContext(ctx context.Context) WirelessControllerQosProfileDscpWmmVoOutput {
 	return o
+}
+
+func (o WirelessControllerQosProfileDscpWmmVoOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerQosProfileDscpWmmVo] {
+	return pulumix.Output[WirelessControllerQosProfileDscpWmmVo]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerQosProfileDscpWmmVoOutput) Id() pulumi.IntPtrOutput {
@@ -23238,6 +31533,12 @@ func (o WirelessControllerQosProfileDscpWmmVoArrayOutput) ToWirelessControllerQo
 
 func (o WirelessControllerQosProfileDscpWmmVoArrayOutput) ToWirelessControllerQosProfileDscpWmmVoArrayOutputWithContext(ctx context.Context) WirelessControllerQosProfileDscpWmmVoArrayOutput {
 	return o
+}
+
+func (o WirelessControllerQosProfileDscpWmmVoArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerQosProfileDscpWmmVo] {
+	return pulumix.Output[[]WirelessControllerQosProfileDscpWmmVo]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerQosProfileDscpWmmVoArrayOutput) Index(i pulumi.IntInput) WirelessControllerQosProfileDscpWmmVoOutput {
@@ -23277,6 +31578,12 @@ func (i WirelessControllerSettingDarrpOptimizeScheduleArgs) ToWirelessController
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerSettingDarrpOptimizeScheduleOutput)
 }
 
+func (i WirelessControllerSettingDarrpOptimizeScheduleArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerSettingDarrpOptimizeSchedule] {
+	return pulumix.Output[WirelessControllerSettingDarrpOptimizeSchedule]{
+		OutputState: i.ToWirelessControllerSettingDarrpOptimizeScheduleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerSettingDarrpOptimizeScheduleArrayInput is an input type that accepts WirelessControllerSettingDarrpOptimizeScheduleArray and WirelessControllerSettingDarrpOptimizeScheduleArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerSettingDarrpOptimizeScheduleArrayInput` via:
 //
@@ -23302,6 +31609,12 @@ func (i WirelessControllerSettingDarrpOptimizeScheduleArray) ToWirelessControlle
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerSettingDarrpOptimizeScheduleArrayOutput)
 }
 
+func (i WirelessControllerSettingDarrpOptimizeScheduleArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerSettingDarrpOptimizeSchedule] {
+	return pulumix.Output[[]WirelessControllerSettingDarrpOptimizeSchedule]{
+		OutputState: i.ToWirelessControllerSettingDarrpOptimizeScheduleArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerSettingDarrpOptimizeScheduleOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerSettingDarrpOptimizeScheduleOutput) ElementType() reflect.Type {
@@ -23314,6 +31627,12 @@ func (o WirelessControllerSettingDarrpOptimizeScheduleOutput) ToWirelessControll
 
 func (o WirelessControllerSettingDarrpOptimizeScheduleOutput) ToWirelessControllerSettingDarrpOptimizeScheduleOutputWithContext(ctx context.Context) WirelessControllerSettingDarrpOptimizeScheduleOutput {
 	return o
+}
+
+func (o WirelessControllerSettingDarrpOptimizeScheduleOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerSettingDarrpOptimizeSchedule] {
+	return pulumix.Output[WirelessControllerSettingDarrpOptimizeSchedule]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerSettingDarrpOptimizeScheduleOutput) Name() pulumi.StringPtrOutput {
@@ -23332,6 +31651,12 @@ func (o WirelessControllerSettingDarrpOptimizeScheduleArrayOutput) ToWirelessCon
 
 func (o WirelessControllerSettingDarrpOptimizeScheduleArrayOutput) ToWirelessControllerSettingDarrpOptimizeScheduleArrayOutputWithContext(ctx context.Context) WirelessControllerSettingDarrpOptimizeScheduleArrayOutput {
 	return o
+}
+
+func (o WirelessControllerSettingDarrpOptimizeScheduleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerSettingDarrpOptimizeSchedule] {
+	return pulumix.Output[[]WirelessControllerSettingDarrpOptimizeSchedule]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerSettingDarrpOptimizeScheduleArrayOutput) Index(i pulumi.IntInput) WirelessControllerSettingDarrpOptimizeScheduleOutput {
@@ -23375,6 +31700,12 @@ func (i WirelessControllerSettingOffendingSsidArgs) ToWirelessControllerSettingO
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerSettingOffendingSsidOutput)
 }
 
+func (i WirelessControllerSettingOffendingSsidArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerSettingOffendingSsid] {
+	return pulumix.Output[WirelessControllerSettingOffendingSsid]{
+		OutputState: i.ToWirelessControllerSettingOffendingSsidOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerSettingOffendingSsidArrayInput is an input type that accepts WirelessControllerSettingOffendingSsidArray and WirelessControllerSettingOffendingSsidArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerSettingOffendingSsidArrayInput` via:
 //
@@ -23400,6 +31731,12 @@ func (i WirelessControllerSettingOffendingSsidArray) ToWirelessControllerSetting
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerSettingOffendingSsidArrayOutput)
 }
 
+func (i WirelessControllerSettingOffendingSsidArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerSettingOffendingSsid] {
+	return pulumix.Output[[]WirelessControllerSettingOffendingSsid]{
+		OutputState: i.ToWirelessControllerSettingOffendingSsidArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerSettingOffendingSsidOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerSettingOffendingSsidOutput) ElementType() reflect.Type {
@@ -23412,6 +31749,12 @@ func (o WirelessControllerSettingOffendingSsidOutput) ToWirelessControllerSettin
 
 func (o WirelessControllerSettingOffendingSsidOutput) ToWirelessControllerSettingOffendingSsidOutputWithContext(ctx context.Context) WirelessControllerSettingOffendingSsidOutput {
 	return o
+}
+
+func (o WirelessControllerSettingOffendingSsidOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerSettingOffendingSsid] {
+	return pulumix.Output[WirelessControllerSettingOffendingSsid]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerSettingOffendingSsidOutput) Action() pulumi.StringPtrOutput {
@@ -23438,6 +31781,12 @@ func (o WirelessControllerSettingOffendingSsidArrayOutput) ToWirelessControllerS
 
 func (o WirelessControllerSettingOffendingSsidArrayOutput) ToWirelessControllerSettingOffendingSsidArrayOutputWithContext(ctx context.Context) WirelessControllerSettingOffendingSsidArrayOutput {
 	return o
+}
+
+func (o WirelessControllerSettingOffendingSsidArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerSettingOffendingSsid] {
+	return pulumix.Output[[]WirelessControllerSettingOffendingSsid]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerSettingOffendingSsidArrayOutput) Index(i pulumi.IntInput) WirelessControllerSettingOffendingSsidOutput {
@@ -23491,6 +31840,12 @@ func (i WirelessControllerSnmpCommunityArgs) ToWirelessControllerSnmpCommunityOu
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerSnmpCommunityOutput)
 }
 
+func (i WirelessControllerSnmpCommunityArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerSnmpCommunity] {
+	return pulumix.Output[WirelessControllerSnmpCommunity]{
+		OutputState: i.ToWirelessControllerSnmpCommunityOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerSnmpCommunityArrayInput is an input type that accepts WirelessControllerSnmpCommunityArray and WirelessControllerSnmpCommunityArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerSnmpCommunityArrayInput` via:
 //
@@ -23516,6 +31871,12 @@ func (i WirelessControllerSnmpCommunityArray) ToWirelessControllerSnmpCommunityA
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerSnmpCommunityArrayOutput)
 }
 
+func (i WirelessControllerSnmpCommunityArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerSnmpCommunity] {
+	return pulumix.Output[[]WirelessControllerSnmpCommunity]{
+		OutputState: i.ToWirelessControllerSnmpCommunityArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerSnmpCommunityOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerSnmpCommunityOutput) ElementType() reflect.Type {
@@ -23528,6 +31889,12 @@ func (o WirelessControllerSnmpCommunityOutput) ToWirelessControllerSnmpCommunity
 
 func (o WirelessControllerSnmpCommunityOutput) ToWirelessControllerSnmpCommunityOutputWithContext(ctx context.Context) WirelessControllerSnmpCommunityOutput {
 	return o
+}
+
+func (o WirelessControllerSnmpCommunityOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerSnmpCommunity] {
+	return pulumix.Output[WirelessControllerSnmpCommunity]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerSnmpCommunityOutput) Hosts() WirelessControllerSnmpCommunityHostArrayOutput {
@@ -23576,6 +31943,12 @@ func (o WirelessControllerSnmpCommunityArrayOutput) ToWirelessControllerSnmpComm
 	return o
 }
 
+func (o WirelessControllerSnmpCommunityArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerSnmpCommunity] {
+	return pulumix.Output[[]WirelessControllerSnmpCommunity]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o WirelessControllerSnmpCommunityArrayOutput) Index(i pulumi.IntInput) WirelessControllerSnmpCommunityOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WirelessControllerSnmpCommunity {
 		return vs[0].([]WirelessControllerSnmpCommunity)[vs[1].(int)]
@@ -23615,6 +31988,12 @@ func (i WirelessControllerSnmpCommunityHostArgs) ToWirelessControllerSnmpCommuni
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerSnmpCommunityHostOutput)
 }
 
+func (i WirelessControllerSnmpCommunityHostArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerSnmpCommunityHost] {
+	return pulumix.Output[WirelessControllerSnmpCommunityHost]{
+		OutputState: i.ToWirelessControllerSnmpCommunityHostOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerSnmpCommunityHostArrayInput is an input type that accepts WirelessControllerSnmpCommunityHostArray and WirelessControllerSnmpCommunityHostArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerSnmpCommunityHostArrayInput` via:
 //
@@ -23640,6 +32019,12 @@ func (i WirelessControllerSnmpCommunityHostArray) ToWirelessControllerSnmpCommun
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerSnmpCommunityHostArrayOutput)
 }
 
+func (i WirelessControllerSnmpCommunityHostArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerSnmpCommunityHost] {
+	return pulumix.Output[[]WirelessControllerSnmpCommunityHost]{
+		OutputState: i.ToWirelessControllerSnmpCommunityHostArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerSnmpCommunityHostOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerSnmpCommunityHostOutput) ElementType() reflect.Type {
@@ -23652,6 +32037,12 @@ func (o WirelessControllerSnmpCommunityHostOutput) ToWirelessControllerSnmpCommu
 
 func (o WirelessControllerSnmpCommunityHostOutput) ToWirelessControllerSnmpCommunityHostOutputWithContext(ctx context.Context) WirelessControllerSnmpCommunityHostOutput {
 	return o
+}
+
+func (o WirelessControllerSnmpCommunityHostOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerSnmpCommunityHost] {
+	return pulumix.Output[WirelessControllerSnmpCommunityHost]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerSnmpCommunityHostOutput) Id() pulumi.IntPtrOutput {
@@ -23674,6 +32065,12 @@ func (o WirelessControllerSnmpCommunityHostArrayOutput) ToWirelessControllerSnmp
 
 func (o WirelessControllerSnmpCommunityHostArrayOutput) ToWirelessControllerSnmpCommunityHostArrayOutputWithContext(ctx context.Context) WirelessControllerSnmpCommunityHostArrayOutput {
 	return o
+}
+
+func (o WirelessControllerSnmpCommunityHostArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerSnmpCommunityHost] {
+	return pulumix.Output[[]WirelessControllerSnmpCommunityHost]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerSnmpCommunityHostArrayOutput) Index(i pulumi.IntInput) WirelessControllerSnmpCommunityHostOutput {
@@ -23731,6 +32128,12 @@ func (i WirelessControllerSnmpUserArgs) ToWirelessControllerSnmpUserOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerSnmpUserOutput)
 }
 
+func (i WirelessControllerSnmpUserArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerSnmpUser] {
+	return pulumix.Output[WirelessControllerSnmpUser]{
+		OutputState: i.ToWirelessControllerSnmpUserOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerSnmpUserArrayInput is an input type that accepts WirelessControllerSnmpUserArray and WirelessControllerSnmpUserArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerSnmpUserArrayInput` via:
 //
@@ -23756,6 +32159,12 @@ func (i WirelessControllerSnmpUserArray) ToWirelessControllerSnmpUserArrayOutput
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerSnmpUserArrayOutput)
 }
 
+func (i WirelessControllerSnmpUserArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerSnmpUser] {
+	return pulumix.Output[[]WirelessControllerSnmpUser]{
+		OutputState: i.ToWirelessControllerSnmpUserArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerSnmpUserOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerSnmpUserOutput) ElementType() reflect.Type {
@@ -23768,6 +32177,12 @@ func (o WirelessControllerSnmpUserOutput) ToWirelessControllerSnmpUserOutput() W
 
 func (o WirelessControllerSnmpUserOutput) ToWirelessControllerSnmpUserOutputWithContext(ctx context.Context) WirelessControllerSnmpUserOutput {
 	return o
+}
+
+func (o WirelessControllerSnmpUserOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerSnmpUser] {
+	return pulumix.Output[WirelessControllerSnmpUser]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerSnmpUserOutput) AuthProto() pulumi.StringPtrOutput {
@@ -23824,6 +32239,12 @@ func (o WirelessControllerSnmpUserArrayOutput) ToWirelessControllerSnmpUserArray
 	return o
 }
 
+func (o WirelessControllerSnmpUserArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerSnmpUser] {
+	return pulumix.Output[[]WirelessControllerSnmpUser]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o WirelessControllerSnmpUserArrayOutput) Index(i pulumi.IntInput) WirelessControllerSnmpUserOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WirelessControllerSnmpUser {
 		return vs[0].([]WirelessControllerSnmpUser)[vs[1].(int)]
@@ -23861,6 +32282,12 @@ func (i WirelessControllerTimersDarrpTimeArgs) ToWirelessControllerTimersDarrpTi
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerTimersDarrpTimeOutput)
 }
 
+func (i WirelessControllerTimersDarrpTimeArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerTimersDarrpTime] {
+	return pulumix.Output[WirelessControllerTimersDarrpTime]{
+		OutputState: i.ToWirelessControllerTimersDarrpTimeOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerTimersDarrpTimeArrayInput is an input type that accepts WirelessControllerTimersDarrpTimeArray and WirelessControllerTimersDarrpTimeArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerTimersDarrpTimeArrayInput` via:
 //
@@ -23886,6 +32313,12 @@ func (i WirelessControllerTimersDarrpTimeArray) ToWirelessControllerTimersDarrpT
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerTimersDarrpTimeArrayOutput)
 }
 
+func (i WirelessControllerTimersDarrpTimeArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerTimersDarrpTime] {
+	return pulumix.Output[[]WirelessControllerTimersDarrpTime]{
+		OutputState: i.ToWirelessControllerTimersDarrpTimeArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerTimersDarrpTimeOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerTimersDarrpTimeOutput) ElementType() reflect.Type {
@@ -23898,6 +32331,12 @@ func (o WirelessControllerTimersDarrpTimeOutput) ToWirelessControllerTimersDarrp
 
 func (o WirelessControllerTimersDarrpTimeOutput) ToWirelessControllerTimersDarrpTimeOutputWithContext(ctx context.Context) WirelessControllerTimersDarrpTimeOutput {
 	return o
+}
+
+func (o WirelessControllerTimersDarrpTimeOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerTimersDarrpTime] {
+	return pulumix.Output[WirelessControllerTimersDarrpTime]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerTimersDarrpTimeOutput) Time() pulumi.StringPtrOutput {
@@ -23916,6 +32355,12 @@ func (o WirelessControllerTimersDarrpTimeArrayOutput) ToWirelessControllerTimers
 
 func (o WirelessControllerTimersDarrpTimeArrayOutput) ToWirelessControllerTimersDarrpTimeArrayOutputWithContext(ctx context.Context) WirelessControllerTimersDarrpTimeArrayOutput {
 	return o
+}
+
+func (o WirelessControllerTimersDarrpTimeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerTimersDarrpTime] {
+	return pulumix.Output[[]WirelessControllerTimersDarrpTime]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerTimersDarrpTimeArrayOutput) Index(i pulumi.IntInput) WirelessControllerTimersDarrpTimeOutput {
@@ -23955,6 +32400,12 @@ func (i WirelessControllerVapGroupVapArgs) ToWirelessControllerVapGroupVapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerVapGroupVapOutput)
 }
 
+func (i WirelessControllerVapGroupVapArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerVapGroupVap] {
+	return pulumix.Output[WirelessControllerVapGroupVap]{
+		OutputState: i.ToWirelessControllerVapGroupVapOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerVapGroupVapArrayInput is an input type that accepts WirelessControllerVapGroupVapArray and WirelessControllerVapGroupVapArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerVapGroupVapArrayInput` via:
 //
@@ -23980,6 +32431,12 @@ func (i WirelessControllerVapGroupVapArray) ToWirelessControllerVapGroupVapArray
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerVapGroupVapArrayOutput)
 }
 
+func (i WirelessControllerVapGroupVapArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerVapGroupVap] {
+	return pulumix.Output[[]WirelessControllerVapGroupVap]{
+		OutputState: i.ToWirelessControllerVapGroupVapArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerVapGroupVapOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerVapGroupVapOutput) ElementType() reflect.Type {
@@ -23992,6 +32449,12 @@ func (o WirelessControllerVapGroupVapOutput) ToWirelessControllerVapGroupVapOutp
 
 func (o WirelessControllerVapGroupVapOutput) ToWirelessControllerVapGroupVapOutputWithContext(ctx context.Context) WirelessControllerVapGroupVapOutput {
 	return o
+}
+
+func (o WirelessControllerVapGroupVapOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerVapGroupVap] {
+	return pulumix.Output[WirelessControllerVapGroupVap]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerVapGroupVapOutput) Name() pulumi.StringPtrOutput {
@@ -24010,6 +32473,12 @@ func (o WirelessControllerVapGroupVapArrayOutput) ToWirelessControllerVapGroupVa
 
 func (o WirelessControllerVapGroupVapArrayOutput) ToWirelessControllerVapGroupVapArrayOutputWithContext(ctx context.Context) WirelessControllerVapGroupVapArrayOutput {
 	return o
+}
+
+func (o WirelessControllerVapGroupVapArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerVapGroupVap] {
+	return pulumix.Output[[]WirelessControllerVapGroupVap]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerVapGroupVapArrayOutput) Index(i pulumi.IntInput) WirelessControllerVapGroupVapOutput {
@@ -24053,6 +32522,12 @@ func (i WirelessControllerVapMacFilterListArgs) ToWirelessControllerVapMacFilter
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerVapMacFilterListOutput)
 }
 
+func (i WirelessControllerVapMacFilterListArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerVapMacFilterList] {
+	return pulumix.Output[WirelessControllerVapMacFilterList]{
+		OutputState: i.ToWirelessControllerVapMacFilterListOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerVapMacFilterListArrayInput is an input type that accepts WirelessControllerVapMacFilterListArray and WirelessControllerVapMacFilterListArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerVapMacFilterListArrayInput` via:
 //
@@ -24078,6 +32553,12 @@ func (i WirelessControllerVapMacFilterListArray) ToWirelessControllerVapMacFilte
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerVapMacFilterListArrayOutput)
 }
 
+func (i WirelessControllerVapMacFilterListArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerVapMacFilterList] {
+	return pulumix.Output[[]WirelessControllerVapMacFilterList]{
+		OutputState: i.ToWirelessControllerVapMacFilterListArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerVapMacFilterListOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerVapMacFilterListOutput) ElementType() reflect.Type {
@@ -24090,6 +32571,12 @@ func (o WirelessControllerVapMacFilterListOutput) ToWirelessControllerVapMacFilt
 
 func (o WirelessControllerVapMacFilterListOutput) ToWirelessControllerVapMacFilterListOutputWithContext(ctx context.Context) WirelessControllerVapMacFilterListOutput {
 	return o
+}
+
+func (o WirelessControllerVapMacFilterListOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerVapMacFilterList] {
+	return pulumix.Output[WirelessControllerVapMacFilterList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerVapMacFilterListOutput) Id() pulumi.IntPtrOutput {
@@ -24116,6 +32603,12 @@ func (o WirelessControllerVapMacFilterListArrayOutput) ToWirelessControllerVapMa
 
 func (o WirelessControllerVapMacFilterListArrayOutput) ToWirelessControllerVapMacFilterListArrayOutputWithContext(ctx context.Context) WirelessControllerVapMacFilterListArrayOutput {
 	return o
+}
+
+func (o WirelessControllerVapMacFilterListArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerVapMacFilterList] {
+	return pulumix.Output[[]WirelessControllerVapMacFilterList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerVapMacFilterListArrayOutput) Index(i pulumi.IntInput) WirelessControllerVapMacFilterListOutput {
@@ -24163,6 +32656,12 @@ func (i WirelessControllerVapMpskKeyArgs) ToWirelessControllerVapMpskKeyOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerVapMpskKeyOutput)
 }
 
+func (i WirelessControllerVapMpskKeyArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerVapMpskKey] {
+	return pulumix.Output[WirelessControllerVapMpskKey]{
+		OutputState: i.ToWirelessControllerVapMpskKeyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerVapMpskKeyArrayInput is an input type that accepts WirelessControllerVapMpskKeyArray and WirelessControllerVapMpskKeyArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerVapMpskKeyArrayInput` via:
 //
@@ -24188,6 +32687,12 @@ func (i WirelessControllerVapMpskKeyArray) ToWirelessControllerVapMpskKeyArrayOu
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerVapMpskKeyArrayOutput)
 }
 
+func (i WirelessControllerVapMpskKeyArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerVapMpskKey] {
+	return pulumix.Output[[]WirelessControllerVapMpskKey]{
+		OutputState: i.ToWirelessControllerVapMpskKeyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerVapMpskKeyOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerVapMpskKeyOutput) ElementType() reflect.Type {
@@ -24200,6 +32705,12 @@ func (o WirelessControllerVapMpskKeyOutput) ToWirelessControllerVapMpskKeyOutput
 
 func (o WirelessControllerVapMpskKeyOutput) ToWirelessControllerVapMpskKeyOutputWithContext(ctx context.Context) WirelessControllerVapMpskKeyOutput {
 	return o
+}
+
+func (o WirelessControllerVapMpskKeyOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerVapMpskKey] {
+	return pulumix.Output[WirelessControllerVapMpskKey]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerVapMpskKeyOutput) Comment() pulumi.StringPtrOutput {
@@ -24236,6 +32747,12 @@ func (o WirelessControllerVapMpskKeyArrayOutput) ToWirelessControllerVapMpskKeyA
 
 func (o WirelessControllerVapMpskKeyArrayOutput) ToWirelessControllerVapMpskKeyArrayOutputWithContext(ctx context.Context) WirelessControllerVapMpskKeyArrayOutput {
 	return o
+}
+
+func (o WirelessControllerVapMpskKeyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerVapMpskKey] {
+	return pulumix.Output[[]WirelessControllerVapMpskKey]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerVapMpskKeyArrayOutput) Index(i pulumi.IntInput) WirelessControllerVapMpskKeyOutput {
@@ -24275,6 +32792,12 @@ func (i WirelessControllerVapMpskKeyMpskScheduleArgs) ToWirelessControllerVapMps
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerVapMpskKeyMpskScheduleOutput)
 }
 
+func (i WirelessControllerVapMpskKeyMpskScheduleArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerVapMpskKeyMpskSchedule] {
+	return pulumix.Output[WirelessControllerVapMpskKeyMpskSchedule]{
+		OutputState: i.ToWirelessControllerVapMpskKeyMpskScheduleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerVapMpskKeyMpskScheduleArrayInput is an input type that accepts WirelessControllerVapMpskKeyMpskScheduleArray and WirelessControllerVapMpskKeyMpskScheduleArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerVapMpskKeyMpskScheduleArrayInput` via:
 //
@@ -24300,6 +32823,12 @@ func (i WirelessControllerVapMpskKeyMpskScheduleArray) ToWirelessControllerVapMp
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerVapMpskKeyMpskScheduleArrayOutput)
 }
 
+func (i WirelessControllerVapMpskKeyMpskScheduleArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerVapMpskKeyMpskSchedule] {
+	return pulumix.Output[[]WirelessControllerVapMpskKeyMpskSchedule]{
+		OutputState: i.ToWirelessControllerVapMpskKeyMpskScheduleArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerVapMpskKeyMpskScheduleOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerVapMpskKeyMpskScheduleOutput) ElementType() reflect.Type {
@@ -24312,6 +32841,12 @@ func (o WirelessControllerVapMpskKeyMpskScheduleOutput) ToWirelessControllerVapM
 
 func (o WirelessControllerVapMpskKeyMpskScheduleOutput) ToWirelessControllerVapMpskKeyMpskScheduleOutputWithContext(ctx context.Context) WirelessControllerVapMpskKeyMpskScheduleOutput {
 	return o
+}
+
+func (o WirelessControllerVapMpskKeyMpskScheduleOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerVapMpskKeyMpskSchedule] {
+	return pulumix.Output[WirelessControllerVapMpskKeyMpskSchedule]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerVapMpskKeyMpskScheduleOutput) Name() pulumi.StringPtrOutput {
@@ -24330,6 +32865,12 @@ func (o WirelessControllerVapMpskKeyMpskScheduleArrayOutput) ToWirelessControlle
 
 func (o WirelessControllerVapMpskKeyMpskScheduleArrayOutput) ToWirelessControllerVapMpskKeyMpskScheduleArrayOutputWithContext(ctx context.Context) WirelessControllerVapMpskKeyMpskScheduleArrayOutput {
 	return o
+}
+
+func (o WirelessControllerVapMpskKeyMpskScheduleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerVapMpskKeyMpskSchedule] {
+	return pulumix.Output[[]WirelessControllerVapMpskKeyMpskSchedule]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerVapMpskKeyMpskScheduleArrayOutput) Index(i pulumi.IntInput) WirelessControllerVapMpskKeyMpskScheduleOutput {
@@ -24375,6 +32916,12 @@ func (i WirelessControllerVapPortalMessageOverridesArgs) ToWirelessControllerVap
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerVapPortalMessageOverridesOutput)
 }
 
+func (i WirelessControllerVapPortalMessageOverridesArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerVapPortalMessageOverrides] {
+	return pulumix.Output[WirelessControllerVapPortalMessageOverrides]{
+		OutputState: i.ToWirelessControllerVapPortalMessageOverridesOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WirelessControllerVapPortalMessageOverridesArgs) ToWirelessControllerVapPortalMessageOverridesPtrOutput() WirelessControllerVapPortalMessageOverridesPtrOutput {
 	return i.ToWirelessControllerVapPortalMessageOverridesPtrOutputWithContext(context.Background())
 }
@@ -24416,6 +32963,12 @@ func (i *wirelessControllerVapPortalMessageOverridesPtrType) ToWirelessControlle
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerVapPortalMessageOverridesPtrOutput)
 }
 
+func (i *wirelessControllerVapPortalMessageOverridesPtrType) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerVapPortalMessageOverrides] {
+	return pulumix.Output[*WirelessControllerVapPortalMessageOverrides]{
+		OutputState: i.ToWirelessControllerVapPortalMessageOverridesPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerVapPortalMessageOverridesOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerVapPortalMessageOverridesOutput) ElementType() reflect.Type {
@@ -24438,6 +32991,12 @@ func (o WirelessControllerVapPortalMessageOverridesOutput) ToWirelessControllerV
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WirelessControllerVapPortalMessageOverrides) *WirelessControllerVapPortalMessageOverrides {
 		return &v
 	}).(WirelessControllerVapPortalMessageOverridesPtrOutput)
+}
+
+func (o WirelessControllerVapPortalMessageOverridesOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerVapPortalMessageOverrides] {
+	return pulumix.Output[WirelessControllerVapPortalMessageOverrides]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerVapPortalMessageOverridesOutput) AuthDisclaimerPage() pulumi.StringPtrOutput {
@@ -24468,6 +33027,12 @@ func (o WirelessControllerVapPortalMessageOverridesPtrOutput) ToWirelessControll
 
 func (o WirelessControllerVapPortalMessageOverridesPtrOutput) ToWirelessControllerVapPortalMessageOverridesPtrOutputWithContext(ctx context.Context) WirelessControllerVapPortalMessageOverridesPtrOutput {
 	return o
+}
+
+func (o WirelessControllerVapPortalMessageOverridesPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerVapPortalMessageOverrides] {
+	return pulumix.Output[*WirelessControllerVapPortalMessageOverrides]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerVapPortalMessageOverridesPtrOutput) Elem() WirelessControllerVapPortalMessageOverridesOutput {
@@ -24547,6 +33112,12 @@ func (i WirelessControllerVapRadiusMacAuthUsergroupArgs) ToWirelessControllerVap
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerVapRadiusMacAuthUsergroupOutput)
 }
 
+func (i WirelessControllerVapRadiusMacAuthUsergroupArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerVapRadiusMacAuthUsergroup] {
+	return pulumix.Output[WirelessControllerVapRadiusMacAuthUsergroup]{
+		OutputState: i.ToWirelessControllerVapRadiusMacAuthUsergroupOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerVapRadiusMacAuthUsergroupArrayInput is an input type that accepts WirelessControllerVapRadiusMacAuthUsergroupArray and WirelessControllerVapRadiusMacAuthUsergroupArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerVapRadiusMacAuthUsergroupArrayInput` via:
 //
@@ -24572,6 +33143,12 @@ func (i WirelessControllerVapRadiusMacAuthUsergroupArray) ToWirelessControllerVa
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerVapRadiusMacAuthUsergroupArrayOutput)
 }
 
+func (i WirelessControllerVapRadiusMacAuthUsergroupArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerVapRadiusMacAuthUsergroup] {
+	return pulumix.Output[[]WirelessControllerVapRadiusMacAuthUsergroup]{
+		OutputState: i.ToWirelessControllerVapRadiusMacAuthUsergroupArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerVapRadiusMacAuthUsergroupOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerVapRadiusMacAuthUsergroupOutput) ElementType() reflect.Type {
@@ -24584,6 +33161,12 @@ func (o WirelessControllerVapRadiusMacAuthUsergroupOutput) ToWirelessControllerV
 
 func (o WirelessControllerVapRadiusMacAuthUsergroupOutput) ToWirelessControllerVapRadiusMacAuthUsergroupOutputWithContext(ctx context.Context) WirelessControllerVapRadiusMacAuthUsergroupOutput {
 	return o
+}
+
+func (o WirelessControllerVapRadiusMacAuthUsergroupOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerVapRadiusMacAuthUsergroup] {
+	return pulumix.Output[WirelessControllerVapRadiusMacAuthUsergroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerVapRadiusMacAuthUsergroupOutput) Name() pulumi.StringPtrOutput {
@@ -24602,6 +33185,12 @@ func (o WirelessControllerVapRadiusMacAuthUsergroupArrayOutput) ToWirelessContro
 
 func (o WirelessControllerVapRadiusMacAuthUsergroupArrayOutput) ToWirelessControllerVapRadiusMacAuthUsergroupArrayOutputWithContext(ctx context.Context) WirelessControllerVapRadiusMacAuthUsergroupArrayOutput {
 	return o
+}
+
+func (o WirelessControllerVapRadiusMacAuthUsergroupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerVapRadiusMacAuthUsergroup] {
+	return pulumix.Output[[]WirelessControllerVapRadiusMacAuthUsergroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerVapRadiusMacAuthUsergroupArrayOutput) Index(i pulumi.IntInput) WirelessControllerVapRadiusMacAuthUsergroupOutput {
@@ -24641,6 +33230,12 @@ func (i WirelessControllerVapSelectedUsergroupArgs) ToWirelessControllerVapSelec
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerVapSelectedUsergroupOutput)
 }
 
+func (i WirelessControllerVapSelectedUsergroupArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerVapSelectedUsergroup] {
+	return pulumix.Output[WirelessControllerVapSelectedUsergroup]{
+		OutputState: i.ToWirelessControllerVapSelectedUsergroupOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerVapSelectedUsergroupArrayInput is an input type that accepts WirelessControllerVapSelectedUsergroupArray and WirelessControllerVapSelectedUsergroupArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerVapSelectedUsergroupArrayInput` via:
 //
@@ -24666,6 +33261,12 @@ func (i WirelessControllerVapSelectedUsergroupArray) ToWirelessControllerVapSele
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerVapSelectedUsergroupArrayOutput)
 }
 
+func (i WirelessControllerVapSelectedUsergroupArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerVapSelectedUsergroup] {
+	return pulumix.Output[[]WirelessControllerVapSelectedUsergroup]{
+		OutputState: i.ToWirelessControllerVapSelectedUsergroupArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerVapSelectedUsergroupOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerVapSelectedUsergroupOutput) ElementType() reflect.Type {
@@ -24678,6 +33279,12 @@ func (o WirelessControllerVapSelectedUsergroupOutput) ToWirelessControllerVapSel
 
 func (o WirelessControllerVapSelectedUsergroupOutput) ToWirelessControllerVapSelectedUsergroupOutputWithContext(ctx context.Context) WirelessControllerVapSelectedUsergroupOutput {
 	return o
+}
+
+func (o WirelessControllerVapSelectedUsergroupOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerVapSelectedUsergroup] {
+	return pulumix.Output[WirelessControllerVapSelectedUsergroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerVapSelectedUsergroupOutput) Name() pulumi.StringPtrOutput {
@@ -24696,6 +33303,12 @@ func (o WirelessControllerVapSelectedUsergroupArrayOutput) ToWirelessControllerV
 
 func (o WirelessControllerVapSelectedUsergroupArrayOutput) ToWirelessControllerVapSelectedUsergroupArrayOutputWithContext(ctx context.Context) WirelessControllerVapSelectedUsergroupArrayOutput {
 	return o
+}
+
+func (o WirelessControllerVapSelectedUsergroupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerVapSelectedUsergroup] {
+	return pulumix.Output[[]WirelessControllerVapSelectedUsergroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerVapSelectedUsergroupArrayOutput) Index(i pulumi.IntInput) WirelessControllerVapSelectedUsergroupOutput {
@@ -24735,6 +33348,12 @@ func (i WirelessControllerVapUsergroupArgs) ToWirelessControllerVapUsergroupOutp
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerVapUsergroupOutput)
 }
 
+func (i WirelessControllerVapUsergroupArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerVapUsergroup] {
+	return pulumix.Output[WirelessControllerVapUsergroup]{
+		OutputState: i.ToWirelessControllerVapUsergroupOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerVapUsergroupArrayInput is an input type that accepts WirelessControllerVapUsergroupArray and WirelessControllerVapUsergroupArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerVapUsergroupArrayInput` via:
 //
@@ -24760,6 +33379,12 @@ func (i WirelessControllerVapUsergroupArray) ToWirelessControllerVapUsergroupArr
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerVapUsergroupArrayOutput)
 }
 
+func (i WirelessControllerVapUsergroupArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerVapUsergroup] {
+	return pulumix.Output[[]WirelessControllerVapUsergroup]{
+		OutputState: i.ToWirelessControllerVapUsergroupArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerVapUsergroupOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerVapUsergroupOutput) ElementType() reflect.Type {
@@ -24772,6 +33397,12 @@ func (o WirelessControllerVapUsergroupOutput) ToWirelessControllerVapUsergroupOu
 
 func (o WirelessControllerVapUsergroupOutput) ToWirelessControllerVapUsergroupOutputWithContext(ctx context.Context) WirelessControllerVapUsergroupOutput {
 	return o
+}
+
+func (o WirelessControllerVapUsergroupOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerVapUsergroup] {
+	return pulumix.Output[WirelessControllerVapUsergroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerVapUsergroupOutput) Name() pulumi.StringPtrOutput {
@@ -24790,6 +33421,12 @@ func (o WirelessControllerVapUsergroupArrayOutput) ToWirelessControllerVapUsergr
 
 func (o WirelessControllerVapUsergroupArrayOutput) ToWirelessControllerVapUsergroupArrayOutputWithContext(ctx context.Context) WirelessControllerVapUsergroupArrayOutput {
 	return o
+}
+
+func (o WirelessControllerVapUsergroupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerVapUsergroup] {
+	return pulumix.Output[[]WirelessControllerVapUsergroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerVapUsergroupArrayOutput) Index(i pulumi.IntInput) WirelessControllerVapUsergroupOutput {
@@ -24831,6 +33468,12 @@ func (i WirelessControllerVapVlanNameArgs) ToWirelessControllerVapVlanNameOutput
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerVapVlanNameOutput)
 }
 
+func (i WirelessControllerVapVlanNameArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerVapVlanName] {
+	return pulumix.Output[WirelessControllerVapVlanName]{
+		OutputState: i.ToWirelessControllerVapVlanNameOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerVapVlanNameArrayInput is an input type that accepts WirelessControllerVapVlanNameArray and WirelessControllerVapVlanNameArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerVapVlanNameArrayInput` via:
 //
@@ -24856,6 +33499,12 @@ func (i WirelessControllerVapVlanNameArray) ToWirelessControllerVapVlanNameArray
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerVapVlanNameArrayOutput)
 }
 
+func (i WirelessControllerVapVlanNameArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerVapVlanName] {
+	return pulumix.Output[[]WirelessControllerVapVlanName]{
+		OutputState: i.ToWirelessControllerVapVlanNameArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerVapVlanNameOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerVapVlanNameOutput) ElementType() reflect.Type {
@@ -24868,6 +33517,12 @@ func (o WirelessControllerVapVlanNameOutput) ToWirelessControllerVapVlanNameOutp
 
 func (o WirelessControllerVapVlanNameOutput) ToWirelessControllerVapVlanNameOutputWithContext(ctx context.Context) WirelessControllerVapVlanNameOutput {
 	return o
+}
+
+func (o WirelessControllerVapVlanNameOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerVapVlanName] {
+	return pulumix.Output[WirelessControllerVapVlanName]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerVapVlanNameOutput) Name() pulumi.StringPtrOutput {
@@ -24890,6 +33545,12 @@ func (o WirelessControllerVapVlanNameArrayOutput) ToWirelessControllerVapVlanNam
 
 func (o WirelessControllerVapVlanNameArrayOutput) ToWirelessControllerVapVlanNameArrayOutputWithContext(ctx context.Context) WirelessControllerVapVlanNameArrayOutput {
 	return o
+}
+
+func (o WirelessControllerVapVlanNameArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerVapVlanName] {
+	return pulumix.Output[[]WirelessControllerVapVlanName]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerVapVlanNameArrayOutput) Index(i pulumi.IntInput) WirelessControllerVapVlanNameOutput {
@@ -24931,6 +33592,12 @@ func (i WirelessControllerVapVlanPoolArgs) ToWirelessControllerVapVlanPoolOutput
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerVapVlanPoolOutput)
 }
 
+func (i WirelessControllerVapVlanPoolArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerVapVlanPool] {
+	return pulumix.Output[WirelessControllerVapVlanPool]{
+		OutputState: i.ToWirelessControllerVapVlanPoolOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerVapVlanPoolArrayInput is an input type that accepts WirelessControllerVapVlanPoolArray and WirelessControllerVapVlanPoolArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerVapVlanPoolArrayInput` via:
 //
@@ -24956,6 +33623,12 @@ func (i WirelessControllerVapVlanPoolArray) ToWirelessControllerVapVlanPoolArray
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerVapVlanPoolArrayOutput)
 }
 
+func (i WirelessControllerVapVlanPoolArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerVapVlanPool] {
+	return pulumix.Output[[]WirelessControllerVapVlanPool]{
+		OutputState: i.ToWirelessControllerVapVlanPoolArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerVapVlanPoolOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerVapVlanPoolOutput) ElementType() reflect.Type {
@@ -24968,6 +33641,12 @@ func (o WirelessControllerVapVlanPoolOutput) ToWirelessControllerVapVlanPoolOutp
 
 func (o WirelessControllerVapVlanPoolOutput) ToWirelessControllerVapVlanPoolOutputWithContext(ctx context.Context) WirelessControllerVapVlanPoolOutput {
 	return o
+}
+
+func (o WirelessControllerVapVlanPoolOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerVapVlanPool] {
+	return pulumix.Output[WirelessControllerVapVlanPool]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerVapVlanPoolOutput) Id() pulumi.IntPtrOutput {
@@ -24990,6 +33669,12 @@ func (o WirelessControllerVapVlanPoolArrayOutput) ToWirelessControllerVapVlanPoo
 
 func (o WirelessControllerVapVlanPoolArrayOutput) ToWirelessControllerVapVlanPoolArrayOutputWithContext(ctx context.Context) WirelessControllerVapVlanPoolArrayOutput {
 	return o
+}
+
+func (o WirelessControllerVapVlanPoolArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerVapVlanPool] {
+	return pulumix.Output[[]WirelessControllerVapVlanPool]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerVapVlanPoolArrayOutput) Index(i pulumi.IntInput) WirelessControllerVapVlanPoolOutput {
@@ -25029,6 +33714,12 @@ func (i WirelessControllerWidsProfileApBgscanDisableScheduleArgs) ToWirelessCont
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWidsProfileApBgscanDisableScheduleOutput)
 }
 
+func (i WirelessControllerWidsProfileApBgscanDisableScheduleArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWidsProfileApBgscanDisableSchedule] {
+	return pulumix.Output[WirelessControllerWidsProfileApBgscanDisableSchedule]{
+		OutputState: i.ToWirelessControllerWidsProfileApBgscanDisableScheduleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerWidsProfileApBgscanDisableScheduleArrayInput is an input type that accepts WirelessControllerWidsProfileApBgscanDisableScheduleArray and WirelessControllerWidsProfileApBgscanDisableScheduleArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerWidsProfileApBgscanDisableScheduleArrayInput` via:
 //
@@ -25054,6 +33745,12 @@ func (i WirelessControllerWidsProfileApBgscanDisableScheduleArray) ToWirelessCon
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWidsProfileApBgscanDisableScheduleArrayOutput)
 }
 
+func (i WirelessControllerWidsProfileApBgscanDisableScheduleArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWidsProfileApBgscanDisableSchedule] {
+	return pulumix.Output[[]WirelessControllerWidsProfileApBgscanDisableSchedule]{
+		OutputState: i.ToWirelessControllerWidsProfileApBgscanDisableScheduleArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWidsProfileApBgscanDisableScheduleOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWidsProfileApBgscanDisableScheduleOutput) ElementType() reflect.Type {
@@ -25066,6 +33763,12 @@ func (o WirelessControllerWidsProfileApBgscanDisableScheduleOutput) ToWirelessCo
 
 func (o WirelessControllerWidsProfileApBgscanDisableScheduleOutput) ToWirelessControllerWidsProfileApBgscanDisableScheduleOutputWithContext(ctx context.Context) WirelessControllerWidsProfileApBgscanDisableScheduleOutput {
 	return o
+}
+
+func (o WirelessControllerWidsProfileApBgscanDisableScheduleOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWidsProfileApBgscanDisableSchedule] {
+	return pulumix.Output[WirelessControllerWidsProfileApBgscanDisableSchedule]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWidsProfileApBgscanDisableScheduleOutput) Name() pulumi.StringPtrOutput {
@@ -25086,10 +33789,252 @@ func (o WirelessControllerWidsProfileApBgscanDisableScheduleArrayOutput) ToWirel
 	return o
 }
 
+func (o WirelessControllerWidsProfileApBgscanDisableScheduleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWidsProfileApBgscanDisableSchedule] {
+	return pulumix.Output[[]WirelessControllerWidsProfileApBgscanDisableSchedule]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o WirelessControllerWidsProfileApBgscanDisableScheduleArrayOutput) Index(i pulumi.IntInput) WirelessControllerWidsProfileApBgscanDisableScheduleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WirelessControllerWidsProfileApBgscanDisableSchedule {
 		return vs[0].([]WirelessControllerWidsProfileApBgscanDisableSchedule)[vs[1].(int)]
 	}).(WirelessControllerWidsProfileApBgscanDisableScheduleOutput)
+}
+
+type WirelessControllerWidsProfileApScanChannelList2g5g struct {
+	Chan *string `pulumi:"chan"`
+}
+
+// WirelessControllerWidsProfileApScanChannelList2g5gInput is an input type that accepts WirelessControllerWidsProfileApScanChannelList2g5gArgs and WirelessControllerWidsProfileApScanChannelList2g5gOutput values.
+// You can construct a concrete instance of `WirelessControllerWidsProfileApScanChannelList2g5gInput` via:
+//
+//	WirelessControllerWidsProfileApScanChannelList2g5gArgs{...}
+type WirelessControllerWidsProfileApScanChannelList2g5gInput interface {
+	pulumi.Input
+
+	ToWirelessControllerWidsProfileApScanChannelList2g5gOutput() WirelessControllerWidsProfileApScanChannelList2g5gOutput
+	ToWirelessControllerWidsProfileApScanChannelList2g5gOutputWithContext(context.Context) WirelessControllerWidsProfileApScanChannelList2g5gOutput
+}
+
+type WirelessControllerWidsProfileApScanChannelList2g5gArgs struct {
+	Chan pulumi.StringPtrInput `pulumi:"chan"`
+}
+
+func (WirelessControllerWidsProfileApScanChannelList2g5gArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*WirelessControllerWidsProfileApScanChannelList2g5g)(nil)).Elem()
+}
+
+func (i WirelessControllerWidsProfileApScanChannelList2g5gArgs) ToWirelessControllerWidsProfileApScanChannelList2g5gOutput() WirelessControllerWidsProfileApScanChannelList2g5gOutput {
+	return i.ToWirelessControllerWidsProfileApScanChannelList2g5gOutputWithContext(context.Background())
+}
+
+func (i WirelessControllerWidsProfileApScanChannelList2g5gArgs) ToWirelessControllerWidsProfileApScanChannelList2g5gOutputWithContext(ctx context.Context) WirelessControllerWidsProfileApScanChannelList2g5gOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWidsProfileApScanChannelList2g5gOutput)
+}
+
+func (i WirelessControllerWidsProfileApScanChannelList2g5gArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWidsProfileApScanChannelList2g5g] {
+	return pulumix.Output[WirelessControllerWidsProfileApScanChannelList2g5g]{
+		OutputState: i.ToWirelessControllerWidsProfileApScanChannelList2g5gOutputWithContext(ctx).OutputState,
+	}
+}
+
+// WirelessControllerWidsProfileApScanChannelList2g5gArrayInput is an input type that accepts WirelessControllerWidsProfileApScanChannelList2g5gArray and WirelessControllerWidsProfileApScanChannelList2g5gArrayOutput values.
+// You can construct a concrete instance of `WirelessControllerWidsProfileApScanChannelList2g5gArrayInput` via:
+//
+//	WirelessControllerWidsProfileApScanChannelList2g5gArray{ WirelessControllerWidsProfileApScanChannelList2g5gArgs{...} }
+type WirelessControllerWidsProfileApScanChannelList2g5gArrayInput interface {
+	pulumi.Input
+
+	ToWirelessControllerWidsProfileApScanChannelList2g5gArrayOutput() WirelessControllerWidsProfileApScanChannelList2g5gArrayOutput
+	ToWirelessControllerWidsProfileApScanChannelList2g5gArrayOutputWithContext(context.Context) WirelessControllerWidsProfileApScanChannelList2g5gArrayOutput
+}
+
+type WirelessControllerWidsProfileApScanChannelList2g5gArray []WirelessControllerWidsProfileApScanChannelList2g5gInput
+
+func (WirelessControllerWidsProfileApScanChannelList2g5gArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]WirelessControllerWidsProfileApScanChannelList2g5g)(nil)).Elem()
+}
+
+func (i WirelessControllerWidsProfileApScanChannelList2g5gArray) ToWirelessControllerWidsProfileApScanChannelList2g5gArrayOutput() WirelessControllerWidsProfileApScanChannelList2g5gArrayOutput {
+	return i.ToWirelessControllerWidsProfileApScanChannelList2g5gArrayOutputWithContext(context.Background())
+}
+
+func (i WirelessControllerWidsProfileApScanChannelList2g5gArray) ToWirelessControllerWidsProfileApScanChannelList2g5gArrayOutputWithContext(ctx context.Context) WirelessControllerWidsProfileApScanChannelList2g5gArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWidsProfileApScanChannelList2g5gArrayOutput)
+}
+
+func (i WirelessControllerWidsProfileApScanChannelList2g5gArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWidsProfileApScanChannelList2g5g] {
+	return pulumix.Output[[]WirelessControllerWidsProfileApScanChannelList2g5g]{
+		OutputState: i.ToWirelessControllerWidsProfileApScanChannelList2g5gArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type WirelessControllerWidsProfileApScanChannelList2g5gOutput struct{ *pulumi.OutputState }
+
+func (WirelessControllerWidsProfileApScanChannelList2g5gOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WirelessControllerWidsProfileApScanChannelList2g5g)(nil)).Elem()
+}
+
+func (o WirelessControllerWidsProfileApScanChannelList2g5gOutput) ToWirelessControllerWidsProfileApScanChannelList2g5gOutput() WirelessControllerWidsProfileApScanChannelList2g5gOutput {
+	return o
+}
+
+func (o WirelessControllerWidsProfileApScanChannelList2g5gOutput) ToWirelessControllerWidsProfileApScanChannelList2g5gOutputWithContext(ctx context.Context) WirelessControllerWidsProfileApScanChannelList2g5gOutput {
+	return o
+}
+
+func (o WirelessControllerWidsProfileApScanChannelList2g5gOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWidsProfileApScanChannelList2g5g] {
+	return pulumix.Output[WirelessControllerWidsProfileApScanChannelList2g5g]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o WirelessControllerWidsProfileApScanChannelList2g5gOutput) Chan() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WirelessControllerWidsProfileApScanChannelList2g5g) *string { return v.Chan }).(pulumi.StringPtrOutput)
+}
+
+type WirelessControllerWidsProfileApScanChannelList2g5gArrayOutput struct{ *pulumi.OutputState }
+
+func (WirelessControllerWidsProfileApScanChannelList2g5gArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]WirelessControllerWidsProfileApScanChannelList2g5g)(nil)).Elem()
+}
+
+func (o WirelessControllerWidsProfileApScanChannelList2g5gArrayOutput) ToWirelessControllerWidsProfileApScanChannelList2g5gArrayOutput() WirelessControllerWidsProfileApScanChannelList2g5gArrayOutput {
+	return o
+}
+
+func (o WirelessControllerWidsProfileApScanChannelList2g5gArrayOutput) ToWirelessControllerWidsProfileApScanChannelList2g5gArrayOutputWithContext(ctx context.Context) WirelessControllerWidsProfileApScanChannelList2g5gArrayOutput {
+	return o
+}
+
+func (o WirelessControllerWidsProfileApScanChannelList2g5gArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWidsProfileApScanChannelList2g5g] {
+	return pulumix.Output[[]WirelessControllerWidsProfileApScanChannelList2g5g]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o WirelessControllerWidsProfileApScanChannelList2g5gArrayOutput) Index(i pulumi.IntInput) WirelessControllerWidsProfileApScanChannelList2g5gOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WirelessControllerWidsProfileApScanChannelList2g5g {
+		return vs[0].([]WirelessControllerWidsProfileApScanChannelList2g5g)[vs[1].(int)]
+	}).(WirelessControllerWidsProfileApScanChannelList2g5gOutput)
+}
+
+type WirelessControllerWidsProfileApScanChannelList6g struct {
+	Chan *string `pulumi:"chan"`
+}
+
+// WirelessControllerWidsProfileApScanChannelList6gInput is an input type that accepts WirelessControllerWidsProfileApScanChannelList6gArgs and WirelessControllerWidsProfileApScanChannelList6gOutput values.
+// You can construct a concrete instance of `WirelessControllerWidsProfileApScanChannelList6gInput` via:
+//
+//	WirelessControllerWidsProfileApScanChannelList6gArgs{...}
+type WirelessControllerWidsProfileApScanChannelList6gInput interface {
+	pulumi.Input
+
+	ToWirelessControllerWidsProfileApScanChannelList6gOutput() WirelessControllerWidsProfileApScanChannelList6gOutput
+	ToWirelessControllerWidsProfileApScanChannelList6gOutputWithContext(context.Context) WirelessControllerWidsProfileApScanChannelList6gOutput
+}
+
+type WirelessControllerWidsProfileApScanChannelList6gArgs struct {
+	Chan pulumi.StringPtrInput `pulumi:"chan"`
+}
+
+func (WirelessControllerWidsProfileApScanChannelList6gArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*WirelessControllerWidsProfileApScanChannelList6g)(nil)).Elem()
+}
+
+func (i WirelessControllerWidsProfileApScanChannelList6gArgs) ToWirelessControllerWidsProfileApScanChannelList6gOutput() WirelessControllerWidsProfileApScanChannelList6gOutput {
+	return i.ToWirelessControllerWidsProfileApScanChannelList6gOutputWithContext(context.Background())
+}
+
+func (i WirelessControllerWidsProfileApScanChannelList6gArgs) ToWirelessControllerWidsProfileApScanChannelList6gOutputWithContext(ctx context.Context) WirelessControllerWidsProfileApScanChannelList6gOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWidsProfileApScanChannelList6gOutput)
+}
+
+func (i WirelessControllerWidsProfileApScanChannelList6gArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWidsProfileApScanChannelList6g] {
+	return pulumix.Output[WirelessControllerWidsProfileApScanChannelList6g]{
+		OutputState: i.ToWirelessControllerWidsProfileApScanChannelList6gOutputWithContext(ctx).OutputState,
+	}
+}
+
+// WirelessControllerWidsProfileApScanChannelList6gArrayInput is an input type that accepts WirelessControllerWidsProfileApScanChannelList6gArray and WirelessControllerWidsProfileApScanChannelList6gArrayOutput values.
+// You can construct a concrete instance of `WirelessControllerWidsProfileApScanChannelList6gArrayInput` via:
+//
+//	WirelessControllerWidsProfileApScanChannelList6gArray{ WirelessControllerWidsProfileApScanChannelList6gArgs{...} }
+type WirelessControllerWidsProfileApScanChannelList6gArrayInput interface {
+	pulumi.Input
+
+	ToWirelessControllerWidsProfileApScanChannelList6gArrayOutput() WirelessControllerWidsProfileApScanChannelList6gArrayOutput
+	ToWirelessControllerWidsProfileApScanChannelList6gArrayOutputWithContext(context.Context) WirelessControllerWidsProfileApScanChannelList6gArrayOutput
+}
+
+type WirelessControllerWidsProfileApScanChannelList6gArray []WirelessControllerWidsProfileApScanChannelList6gInput
+
+func (WirelessControllerWidsProfileApScanChannelList6gArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]WirelessControllerWidsProfileApScanChannelList6g)(nil)).Elem()
+}
+
+func (i WirelessControllerWidsProfileApScanChannelList6gArray) ToWirelessControllerWidsProfileApScanChannelList6gArrayOutput() WirelessControllerWidsProfileApScanChannelList6gArrayOutput {
+	return i.ToWirelessControllerWidsProfileApScanChannelList6gArrayOutputWithContext(context.Background())
+}
+
+func (i WirelessControllerWidsProfileApScanChannelList6gArray) ToWirelessControllerWidsProfileApScanChannelList6gArrayOutputWithContext(ctx context.Context) WirelessControllerWidsProfileApScanChannelList6gArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWidsProfileApScanChannelList6gArrayOutput)
+}
+
+func (i WirelessControllerWidsProfileApScanChannelList6gArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWidsProfileApScanChannelList6g] {
+	return pulumix.Output[[]WirelessControllerWidsProfileApScanChannelList6g]{
+		OutputState: i.ToWirelessControllerWidsProfileApScanChannelList6gArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+type WirelessControllerWidsProfileApScanChannelList6gOutput struct{ *pulumi.OutputState }
+
+func (WirelessControllerWidsProfileApScanChannelList6gOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WirelessControllerWidsProfileApScanChannelList6g)(nil)).Elem()
+}
+
+func (o WirelessControllerWidsProfileApScanChannelList6gOutput) ToWirelessControllerWidsProfileApScanChannelList6gOutput() WirelessControllerWidsProfileApScanChannelList6gOutput {
+	return o
+}
+
+func (o WirelessControllerWidsProfileApScanChannelList6gOutput) ToWirelessControllerWidsProfileApScanChannelList6gOutputWithContext(ctx context.Context) WirelessControllerWidsProfileApScanChannelList6gOutput {
+	return o
+}
+
+func (o WirelessControllerWidsProfileApScanChannelList6gOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWidsProfileApScanChannelList6g] {
+	return pulumix.Output[WirelessControllerWidsProfileApScanChannelList6g]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o WirelessControllerWidsProfileApScanChannelList6gOutput) Chan() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WirelessControllerWidsProfileApScanChannelList6g) *string { return v.Chan }).(pulumi.StringPtrOutput)
+}
+
+type WirelessControllerWidsProfileApScanChannelList6gArrayOutput struct{ *pulumi.OutputState }
+
+func (WirelessControllerWidsProfileApScanChannelList6gArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]WirelessControllerWidsProfileApScanChannelList6g)(nil)).Elem()
+}
+
+func (o WirelessControllerWidsProfileApScanChannelList6gArrayOutput) ToWirelessControllerWidsProfileApScanChannelList6gArrayOutput() WirelessControllerWidsProfileApScanChannelList6gArrayOutput {
+	return o
+}
+
+func (o WirelessControllerWidsProfileApScanChannelList6gArrayOutput) ToWirelessControllerWidsProfileApScanChannelList6gArrayOutputWithContext(ctx context.Context) WirelessControllerWidsProfileApScanChannelList6gArrayOutput {
+	return o
+}
+
+func (o WirelessControllerWidsProfileApScanChannelList6gArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWidsProfileApScanChannelList6g] {
+	return pulumix.Output[[]WirelessControllerWidsProfileApScanChannelList6g]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o WirelessControllerWidsProfileApScanChannelList6gArrayOutput) Index(i pulumi.IntInput) WirelessControllerWidsProfileApScanChannelList6gOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WirelessControllerWidsProfileApScanChannelList6g {
+		return vs[0].([]WirelessControllerWidsProfileApScanChannelList6g)[vs[1].(int)]
+	}).(WirelessControllerWidsProfileApScanChannelList6gOutput)
 }
 
 type WirelessControllerWtpGroupWtp struct {
@@ -25123,6 +34068,12 @@ func (i WirelessControllerWtpGroupWtpArgs) ToWirelessControllerWtpGroupWtpOutput
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpGroupWtpOutput)
 }
 
+func (i WirelessControllerWtpGroupWtpArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpGroupWtp] {
+	return pulumix.Output[WirelessControllerWtpGroupWtp]{
+		OutputState: i.ToWirelessControllerWtpGroupWtpOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerWtpGroupWtpArrayInput is an input type that accepts WirelessControllerWtpGroupWtpArray and WirelessControllerWtpGroupWtpArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerWtpGroupWtpArrayInput` via:
 //
@@ -25148,6 +34099,12 @@ func (i WirelessControllerWtpGroupWtpArray) ToWirelessControllerWtpGroupWtpArray
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpGroupWtpArrayOutput)
 }
 
+func (i WirelessControllerWtpGroupWtpArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpGroupWtp] {
+	return pulumix.Output[[]WirelessControllerWtpGroupWtp]{
+		OutputState: i.ToWirelessControllerWtpGroupWtpArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWtpGroupWtpOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpGroupWtpOutput) ElementType() reflect.Type {
@@ -25160,6 +34117,12 @@ func (o WirelessControllerWtpGroupWtpOutput) ToWirelessControllerWtpGroupWtpOutp
 
 func (o WirelessControllerWtpGroupWtpOutput) ToWirelessControllerWtpGroupWtpOutputWithContext(ctx context.Context) WirelessControllerWtpGroupWtpOutput {
 	return o
+}
+
+func (o WirelessControllerWtpGroupWtpOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpGroupWtp] {
+	return pulumix.Output[WirelessControllerWtpGroupWtp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpGroupWtpOutput) WtpId() pulumi.StringPtrOutput {
@@ -25178,6 +34141,12 @@ func (o WirelessControllerWtpGroupWtpArrayOutput) ToWirelessControllerWtpGroupWt
 
 func (o WirelessControllerWtpGroupWtpArrayOutput) ToWirelessControllerWtpGroupWtpArrayOutputWithContext(ctx context.Context) WirelessControllerWtpGroupWtpArrayOutput {
 	return o
+}
+
+func (o WirelessControllerWtpGroupWtpArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpGroupWtp] {
+	return pulumix.Output[[]WirelessControllerWtpGroupWtp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpGroupWtpArrayOutput) Index(i pulumi.IntInput) WirelessControllerWtpGroupWtpOutput {
@@ -25255,6 +34224,12 @@ func (i WirelessControllerWtpLanArgs) ToWirelessControllerWtpLanOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpLanOutput)
 }
 
+func (i WirelessControllerWtpLanArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpLan] {
+	return pulumix.Output[WirelessControllerWtpLan]{
+		OutputState: i.ToWirelessControllerWtpLanOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WirelessControllerWtpLanArgs) ToWirelessControllerWtpLanPtrOutput() WirelessControllerWtpLanPtrOutput {
 	return i.ToWirelessControllerWtpLanPtrOutputWithContext(context.Background())
 }
@@ -25296,6 +34271,12 @@ func (i *wirelessControllerWtpLanPtrType) ToWirelessControllerWtpLanPtrOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpLanPtrOutput)
 }
 
+func (i *wirelessControllerWtpLanPtrType) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerWtpLan] {
+	return pulumix.Output[*WirelessControllerWtpLan]{
+		OutputState: i.ToWirelessControllerWtpLanPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWtpLanOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpLanOutput) ElementType() reflect.Type {
@@ -25318,6 +34299,12 @@ func (o WirelessControllerWtpLanOutput) ToWirelessControllerWtpLanPtrOutputWithC
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WirelessControllerWtpLan) *WirelessControllerWtpLan {
 		return &v
 	}).(WirelessControllerWtpLanPtrOutput)
+}
+
+func (o WirelessControllerWtpLanOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpLan] {
+	return pulumix.Output[WirelessControllerWtpLan]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpLanOutput) Port1Mode() pulumi.StringPtrOutput {
@@ -25412,6 +34399,12 @@ func (o WirelessControllerWtpLanPtrOutput) ToWirelessControllerWtpLanPtrOutput()
 
 func (o WirelessControllerWtpLanPtrOutput) ToWirelessControllerWtpLanPtrOutputWithContext(ctx context.Context) WirelessControllerWtpLanPtrOutput {
 	return o
+}
+
+func (o WirelessControllerWtpLanPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerWtpLan] {
+	return pulumix.Output[*WirelessControllerWtpLan]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpLanPtrOutput) Elem() WirelessControllerWtpLanOutput {
@@ -25637,6 +34630,12 @@ func (i WirelessControllerWtpProfileDenyMacListArgs) ToWirelessControllerWtpProf
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileDenyMacListOutput)
 }
 
+func (i WirelessControllerWtpProfileDenyMacListArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfileDenyMacList] {
+	return pulumix.Output[WirelessControllerWtpProfileDenyMacList]{
+		OutputState: i.ToWirelessControllerWtpProfileDenyMacListOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerWtpProfileDenyMacListArrayInput is an input type that accepts WirelessControllerWtpProfileDenyMacListArray and WirelessControllerWtpProfileDenyMacListArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerWtpProfileDenyMacListArrayInput` via:
 //
@@ -25662,6 +34661,12 @@ func (i WirelessControllerWtpProfileDenyMacListArray) ToWirelessControllerWtpPro
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileDenyMacListArrayOutput)
 }
 
+func (i WirelessControllerWtpProfileDenyMacListArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpProfileDenyMacList] {
+	return pulumix.Output[[]WirelessControllerWtpProfileDenyMacList]{
+		OutputState: i.ToWirelessControllerWtpProfileDenyMacListArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWtpProfileDenyMacListOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpProfileDenyMacListOutput) ElementType() reflect.Type {
@@ -25674,6 +34679,12 @@ func (o WirelessControllerWtpProfileDenyMacListOutput) ToWirelessControllerWtpPr
 
 func (o WirelessControllerWtpProfileDenyMacListOutput) ToWirelessControllerWtpProfileDenyMacListOutputWithContext(ctx context.Context) WirelessControllerWtpProfileDenyMacListOutput {
 	return o
+}
+
+func (o WirelessControllerWtpProfileDenyMacListOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfileDenyMacList] {
+	return pulumix.Output[WirelessControllerWtpProfileDenyMacList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfileDenyMacListOutput) Id() pulumi.IntPtrOutput {
@@ -25696,6 +34707,12 @@ func (o WirelessControllerWtpProfileDenyMacListArrayOutput) ToWirelessController
 
 func (o WirelessControllerWtpProfileDenyMacListArrayOutput) ToWirelessControllerWtpProfileDenyMacListArrayOutputWithContext(ctx context.Context) WirelessControllerWtpProfileDenyMacListArrayOutput {
 	return o
+}
+
+func (o WirelessControllerWtpProfileDenyMacListArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpProfileDenyMacList] {
+	return pulumix.Output[[]WirelessControllerWtpProfileDenyMacList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfileDenyMacListArrayOutput) Index(i pulumi.IntInput) WirelessControllerWtpProfileDenyMacListOutput {
@@ -25755,6 +34772,12 @@ func (i WirelessControllerWtpProfileEslSesDongleArgs) ToWirelessControllerWtpPro
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileEslSesDongleOutput)
 }
 
+func (i WirelessControllerWtpProfileEslSesDongleArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfileEslSesDongle] {
+	return pulumix.Output[WirelessControllerWtpProfileEslSesDongle]{
+		OutputState: i.ToWirelessControllerWtpProfileEslSesDongleOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WirelessControllerWtpProfileEslSesDongleArgs) ToWirelessControllerWtpProfileEslSesDonglePtrOutput() WirelessControllerWtpProfileEslSesDonglePtrOutput {
 	return i.ToWirelessControllerWtpProfileEslSesDonglePtrOutputWithContext(context.Background())
 }
@@ -25796,6 +34819,12 @@ func (i *wirelessControllerWtpProfileEslSesDonglePtrType) ToWirelessControllerWt
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileEslSesDonglePtrOutput)
 }
 
+func (i *wirelessControllerWtpProfileEslSesDonglePtrType) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerWtpProfileEslSesDongle] {
+	return pulumix.Output[*WirelessControllerWtpProfileEslSesDongle]{
+		OutputState: i.ToWirelessControllerWtpProfileEslSesDonglePtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWtpProfileEslSesDongleOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpProfileEslSesDongleOutput) ElementType() reflect.Type {
@@ -25818,6 +34847,12 @@ func (o WirelessControllerWtpProfileEslSesDongleOutput) ToWirelessControllerWtpP
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WirelessControllerWtpProfileEslSesDongle) *WirelessControllerWtpProfileEslSesDongle {
 		return &v
 	}).(WirelessControllerWtpProfileEslSesDonglePtrOutput)
+}
+
+func (o WirelessControllerWtpProfileEslSesDongleOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfileEslSesDongle] {
+	return pulumix.Output[WirelessControllerWtpProfileEslSesDongle]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfileEslSesDongleOutput) ApcAddrType() pulumi.StringPtrOutput {
@@ -25876,6 +34911,12 @@ func (o WirelessControllerWtpProfileEslSesDonglePtrOutput) ToWirelessControllerW
 
 func (o WirelessControllerWtpProfileEslSesDonglePtrOutput) ToWirelessControllerWtpProfileEslSesDonglePtrOutputWithContext(ctx context.Context) WirelessControllerWtpProfileEslSesDonglePtrOutput {
 	return o
+}
+
+func (o WirelessControllerWtpProfileEslSesDonglePtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerWtpProfileEslSesDongle] {
+	return pulumix.Output[*WirelessControllerWtpProfileEslSesDongle]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfileEslSesDonglePtrOutput) Elem() WirelessControllerWtpProfileEslSesDongleOutput {
@@ -26056,6 +35097,12 @@ func (i WirelessControllerWtpProfileLanArgs) ToWirelessControllerWtpProfileLanOu
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileLanOutput)
 }
 
+func (i WirelessControllerWtpProfileLanArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfileLan] {
+	return pulumix.Output[WirelessControllerWtpProfileLan]{
+		OutputState: i.ToWirelessControllerWtpProfileLanOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WirelessControllerWtpProfileLanArgs) ToWirelessControllerWtpProfileLanPtrOutput() WirelessControllerWtpProfileLanPtrOutput {
 	return i.ToWirelessControllerWtpProfileLanPtrOutputWithContext(context.Background())
 }
@@ -26097,6 +35144,12 @@ func (i *wirelessControllerWtpProfileLanPtrType) ToWirelessControllerWtpProfileL
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileLanPtrOutput)
 }
 
+func (i *wirelessControllerWtpProfileLanPtrType) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerWtpProfileLan] {
+	return pulumix.Output[*WirelessControllerWtpProfileLan]{
+		OutputState: i.ToWirelessControllerWtpProfileLanPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWtpProfileLanOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpProfileLanOutput) ElementType() reflect.Type {
@@ -26119,6 +35172,12 @@ func (o WirelessControllerWtpProfileLanOutput) ToWirelessControllerWtpProfileLan
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WirelessControllerWtpProfileLan) *WirelessControllerWtpProfileLan {
 		return &v
 	}).(WirelessControllerWtpProfileLanPtrOutput)
+}
+
+func (o WirelessControllerWtpProfileLanOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfileLan] {
+	return pulumix.Output[WirelessControllerWtpProfileLan]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfileLanOutput) Port1Mode() pulumi.StringPtrOutput {
@@ -26213,6 +35272,12 @@ func (o WirelessControllerWtpProfileLanPtrOutput) ToWirelessControllerWtpProfile
 
 func (o WirelessControllerWtpProfileLanPtrOutput) ToWirelessControllerWtpProfileLanPtrOutputWithContext(ctx context.Context) WirelessControllerWtpProfileLanPtrOutput {
 	return o
+}
+
+func (o WirelessControllerWtpProfileLanPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerWtpProfileLan] {
+	return pulumix.Output[*WirelessControllerWtpProfileLan]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfileLanPtrOutput) Elem() WirelessControllerWtpProfileLanOutput {
@@ -26406,30 +35471,43 @@ func (o WirelessControllerWtpProfileLanPtrOutput) PortSsid() pulumi.StringPtrOut
 }
 
 type WirelessControllerWtpProfileLbs struct {
-	Aeroscout                   *string `pulumi:"aeroscout"`
-	AeroscoutApMac              *string `pulumi:"aeroscoutApMac"`
-	AeroscoutMmuReport          *string `pulumi:"aeroscoutMmuReport"`
-	AeroscoutMu                 *string `pulumi:"aeroscoutMu"`
-	AeroscoutMuFactor           *int    `pulumi:"aeroscoutMuFactor"`
-	AeroscoutMuTimeout          *int    `pulumi:"aeroscoutMuTimeout"`
-	AeroscoutServerIp           *string `pulumi:"aeroscoutServerIp"`
-	AeroscoutServerPort         *int    `pulumi:"aeroscoutServerPort"`
-	EkahauBlinkMode             *string `pulumi:"ekahauBlinkMode"`
-	EkahauTag                   *string `pulumi:"ekahauTag"`
-	ErcServerIp                 *string `pulumi:"ercServerIp"`
-	ErcServerPort               *int    `pulumi:"ercServerPort"`
-	Fortipresence               *string `pulumi:"fortipresence"`
-	FortipresenceBle            *string `pulumi:"fortipresenceBle"`
-	FortipresenceFrequency      *int    `pulumi:"fortipresenceFrequency"`
-	FortipresencePort           *int    `pulumi:"fortipresencePort"`
-	FortipresenceProject        *string `pulumi:"fortipresenceProject"`
-	FortipresenceRogue          *string `pulumi:"fortipresenceRogue"`
-	FortipresenceSecret         *string `pulumi:"fortipresenceSecret"`
-	FortipresenceServer         *string `pulumi:"fortipresenceServer"`
-	FortipresenceServerAddrType *string `pulumi:"fortipresenceServerAddrType"`
-	FortipresenceServerFqdn     *string `pulumi:"fortipresenceServerFqdn"`
-	FortipresenceUnassoc        *string `pulumi:"fortipresenceUnassoc"`
-	StationLocate               *string `pulumi:"stationLocate"`
+	Aeroscout                    *string `pulumi:"aeroscout"`
+	AeroscoutApMac               *string `pulumi:"aeroscoutApMac"`
+	AeroscoutMmuReport           *string `pulumi:"aeroscoutMmuReport"`
+	AeroscoutMu                  *string `pulumi:"aeroscoutMu"`
+	AeroscoutMuFactor            *int    `pulumi:"aeroscoutMuFactor"`
+	AeroscoutMuTimeout           *int    `pulumi:"aeroscoutMuTimeout"`
+	AeroscoutServerIp            *string `pulumi:"aeroscoutServerIp"`
+	AeroscoutServerPort          *int    `pulumi:"aeroscoutServerPort"`
+	EkahauBlinkMode              *string `pulumi:"ekahauBlinkMode"`
+	EkahauTag                    *string `pulumi:"ekahauTag"`
+	ErcServerIp                  *string `pulumi:"ercServerIp"`
+	ErcServerPort                *int    `pulumi:"ercServerPort"`
+	Fortipresence                *string `pulumi:"fortipresence"`
+	FortipresenceBle             *string `pulumi:"fortipresenceBle"`
+	FortipresenceFrequency       *int    `pulumi:"fortipresenceFrequency"`
+	FortipresencePort            *int    `pulumi:"fortipresencePort"`
+	FortipresenceProject         *string `pulumi:"fortipresenceProject"`
+	FortipresenceRogue           *string `pulumi:"fortipresenceRogue"`
+	FortipresenceSecret          *string `pulumi:"fortipresenceSecret"`
+	FortipresenceServer          *string `pulumi:"fortipresenceServer"`
+	FortipresenceServerAddrType  *string `pulumi:"fortipresenceServerAddrType"`
+	FortipresenceServerFqdn      *string `pulumi:"fortipresenceServerFqdn"`
+	FortipresenceUnassoc         *string `pulumi:"fortipresenceUnassoc"`
+	Polestar                     *string `pulumi:"polestar"`
+	PolestarAccumulationInterval *int    `pulumi:"polestarAccumulationInterval"`
+	PolestarAssetAddrgrpList     *string `pulumi:"polestarAssetAddrgrpList"`
+	PolestarAssetUuidList1       *string `pulumi:"polestarAssetUuidList1"`
+	PolestarAssetUuidList2       *string `pulumi:"polestarAssetUuidList2"`
+	PolestarAssetUuidList3       *string `pulumi:"polestarAssetUuidList3"`
+	PolestarAssetUuidList4       *string `pulumi:"polestarAssetUuidList4"`
+	PolestarProtocol             *string `pulumi:"polestarProtocol"`
+	PolestarReportingInterval    *int    `pulumi:"polestarReportingInterval"`
+	PolestarServerFqdn           *string `pulumi:"polestarServerFqdn"`
+	PolestarServerPath           *string `pulumi:"polestarServerPath"`
+	PolestarServerPort           *int    `pulumi:"polestarServerPort"`
+	PolestarServerToken          *string `pulumi:"polestarServerToken"`
+	StationLocate                *string `pulumi:"stationLocate"`
 }
 
 // WirelessControllerWtpProfileLbsInput is an input type that accepts WirelessControllerWtpProfileLbsArgs and WirelessControllerWtpProfileLbsOutput values.
@@ -26444,30 +35522,43 @@ type WirelessControllerWtpProfileLbsInput interface {
 }
 
 type WirelessControllerWtpProfileLbsArgs struct {
-	Aeroscout                   pulumi.StringPtrInput `pulumi:"aeroscout"`
-	AeroscoutApMac              pulumi.StringPtrInput `pulumi:"aeroscoutApMac"`
-	AeroscoutMmuReport          pulumi.StringPtrInput `pulumi:"aeroscoutMmuReport"`
-	AeroscoutMu                 pulumi.StringPtrInput `pulumi:"aeroscoutMu"`
-	AeroscoutMuFactor           pulumi.IntPtrInput    `pulumi:"aeroscoutMuFactor"`
-	AeroscoutMuTimeout          pulumi.IntPtrInput    `pulumi:"aeroscoutMuTimeout"`
-	AeroscoutServerIp           pulumi.StringPtrInput `pulumi:"aeroscoutServerIp"`
-	AeroscoutServerPort         pulumi.IntPtrInput    `pulumi:"aeroscoutServerPort"`
-	EkahauBlinkMode             pulumi.StringPtrInput `pulumi:"ekahauBlinkMode"`
-	EkahauTag                   pulumi.StringPtrInput `pulumi:"ekahauTag"`
-	ErcServerIp                 pulumi.StringPtrInput `pulumi:"ercServerIp"`
-	ErcServerPort               pulumi.IntPtrInput    `pulumi:"ercServerPort"`
-	Fortipresence               pulumi.StringPtrInput `pulumi:"fortipresence"`
-	FortipresenceBle            pulumi.StringPtrInput `pulumi:"fortipresenceBle"`
-	FortipresenceFrequency      pulumi.IntPtrInput    `pulumi:"fortipresenceFrequency"`
-	FortipresencePort           pulumi.IntPtrInput    `pulumi:"fortipresencePort"`
-	FortipresenceProject        pulumi.StringPtrInput `pulumi:"fortipresenceProject"`
-	FortipresenceRogue          pulumi.StringPtrInput `pulumi:"fortipresenceRogue"`
-	FortipresenceSecret         pulumi.StringPtrInput `pulumi:"fortipresenceSecret"`
-	FortipresenceServer         pulumi.StringPtrInput `pulumi:"fortipresenceServer"`
-	FortipresenceServerAddrType pulumi.StringPtrInput `pulumi:"fortipresenceServerAddrType"`
-	FortipresenceServerFqdn     pulumi.StringPtrInput `pulumi:"fortipresenceServerFqdn"`
-	FortipresenceUnassoc        pulumi.StringPtrInput `pulumi:"fortipresenceUnassoc"`
-	StationLocate               pulumi.StringPtrInput `pulumi:"stationLocate"`
+	Aeroscout                    pulumi.StringPtrInput `pulumi:"aeroscout"`
+	AeroscoutApMac               pulumi.StringPtrInput `pulumi:"aeroscoutApMac"`
+	AeroscoutMmuReport           pulumi.StringPtrInput `pulumi:"aeroscoutMmuReport"`
+	AeroscoutMu                  pulumi.StringPtrInput `pulumi:"aeroscoutMu"`
+	AeroscoutMuFactor            pulumi.IntPtrInput    `pulumi:"aeroscoutMuFactor"`
+	AeroscoutMuTimeout           pulumi.IntPtrInput    `pulumi:"aeroscoutMuTimeout"`
+	AeroscoutServerIp            pulumi.StringPtrInput `pulumi:"aeroscoutServerIp"`
+	AeroscoutServerPort          pulumi.IntPtrInput    `pulumi:"aeroscoutServerPort"`
+	EkahauBlinkMode              pulumi.StringPtrInput `pulumi:"ekahauBlinkMode"`
+	EkahauTag                    pulumi.StringPtrInput `pulumi:"ekahauTag"`
+	ErcServerIp                  pulumi.StringPtrInput `pulumi:"ercServerIp"`
+	ErcServerPort                pulumi.IntPtrInput    `pulumi:"ercServerPort"`
+	Fortipresence                pulumi.StringPtrInput `pulumi:"fortipresence"`
+	FortipresenceBle             pulumi.StringPtrInput `pulumi:"fortipresenceBle"`
+	FortipresenceFrequency       pulumi.IntPtrInput    `pulumi:"fortipresenceFrequency"`
+	FortipresencePort            pulumi.IntPtrInput    `pulumi:"fortipresencePort"`
+	FortipresenceProject         pulumi.StringPtrInput `pulumi:"fortipresenceProject"`
+	FortipresenceRogue           pulumi.StringPtrInput `pulumi:"fortipresenceRogue"`
+	FortipresenceSecret          pulumi.StringPtrInput `pulumi:"fortipresenceSecret"`
+	FortipresenceServer          pulumi.StringPtrInput `pulumi:"fortipresenceServer"`
+	FortipresenceServerAddrType  pulumi.StringPtrInput `pulumi:"fortipresenceServerAddrType"`
+	FortipresenceServerFqdn      pulumi.StringPtrInput `pulumi:"fortipresenceServerFqdn"`
+	FortipresenceUnassoc         pulumi.StringPtrInput `pulumi:"fortipresenceUnassoc"`
+	Polestar                     pulumi.StringPtrInput `pulumi:"polestar"`
+	PolestarAccumulationInterval pulumi.IntPtrInput    `pulumi:"polestarAccumulationInterval"`
+	PolestarAssetAddrgrpList     pulumi.StringPtrInput `pulumi:"polestarAssetAddrgrpList"`
+	PolestarAssetUuidList1       pulumi.StringPtrInput `pulumi:"polestarAssetUuidList1"`
+	PolestarAssetUuidList2       pulumi.StringPtrInput `pulumi:"polestarAssetUuidList2"`
+	PolestarAssetUuidList3       pulumi.StringPtrInput `pulumi:"polestarAssetUuidList3"`
+	PolestarAssetUuidList4       pulumi.StringPtrInput `pulumi:"polestarAssetUuidList4"`
+	PolestarProtocol             pulumi.StringPtrInput `pulumi:"polestarProtocol"`
+	PolestarReportingInterval    pulumi.IntPtrInput    `pulumi:"polestarReportingInterval"`
+	PolestarServerFqdn           pulumi.StringPtrInput `pulumi:"polestarServerFqdn"`
+	PolestarServerPath           pulumi.StringPtrInput `pulumi:"polestarServerPath"`
+	PolestarServerPort           pulumi.IntPtrInput    `pulumi:"polestarServerPort"`
+	PolestarServerToken          pulumi.StringPtrInput `pulumi:"polestarServerToken"`
+	StationLocate                pulumi.StringPtrInput `pulumi:"stationLocate"`
 }
 
 func (WirelessControllerWtpProfileLbsArgs) ElementType() reflect.Type {
@@ -26480,6 +35571,12 @@ func (i WirelessControllerWtpProfileLbsArgs) ToWirelessControllerWtpProfileLbsOu
 
 func (i WirelessControllerWtpProfileLbsArgs) ToWirelessControllerWtpProfileLbsOutputWithContext(ctx context.Context) WirelessControllerWtpProfileLbsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileLbsOutput)
+}
+
+func (i WirelessControllerWtpProfileLbsArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfileLbs] {
+	return pulumix.Output[WirelessControllerWtpProfileLbs]{
+		OutputState: i.ToWirelessControllerWtpProfileLbsOutputWithContext(ctx).OutputState,
+	}
 }
 
 func (i WirelessControllerWtpProfileLbsArgs) ToWirelessControllerWtpProfileLbsPtrOutput() WirelessControllerWtpProfileLbsPtrOutput {
@@ -26523,6 +35620,12 @@ func (i *wirelessControllerWtpProfileLbsPtrType) ToWirelessControllerWtpProfileL
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileLbsPtrOutput)
 }
 
+func (i *wirelessControllerWtpProfileLbsPtrType) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerWtpProfileLbs] {
+	return pulumix.Output[*WirelessControllerWtpProfileLbs]{
+		OutputState: i.ToWirelessControllerWtpProfileLbsPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWtpProfileLbsOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpProfileLbsOutput) ElementType() reflect.Type {
@@ -26545,6 +35648,12 @@ func (o WirelessControllerWtpProfileLbsOutput) ToWirelessControllerWtpProfileLbs
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WirelessControllerWtpProfileLbs) *WirelessControllerWtpProfileLbs {
 		return &v
 	}).(WirelessControllerWtpProfileLbsPtrOutput)
+}
+
+func (o WirelessControllerWtpProfileLbsOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfileLbs] {
+	return pulumix.Output[WirelessControllerWtpProfileLbs]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfileLbsOutput) Aeroscout() pulumi.StringPtrOutput {
@@ -26639,6 +35748,58 @@ func (o WirelessControllerWtpProfileLbsOutput) FortipresenceUnassoc() pulumi.Str
 	return o.ApplyT(func(v WirelessControllerWtpProfileLbs) *string { return v.FortipresenceUnassoc }).(pulumi.StringPtrOutput)
 }
 
+func (o WirelessControllerWtpProfileLbsOutput) Polestar() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WirelessControllerWtpProfileLbs) *string { return v.Polestar }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerWtpProfileLbsOutput) PolestarAccumulationInterval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v WirelessControllerWtpProfileLbs) *int { return v.PolestarAccumulationInterval }).(pulumi.IntPtrOutput)
+}
+
+func (o WirelessControllerWtpProfileLbsOutput) PolestarAssetAddrgrpList() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WirelessControllerWtpProfileLbs) *string { return v.PolestarAssetAddrgrpList }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerWtpProfileLbsOutput) PolestarAssetUuidList1() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WirelessControllerWtpProfileLbs) *string { return v.PolestarAssetUuidList1 }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerWtpProfileLbsOutput) PolestarAssetUuidList2() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WirelessControllerWtpProfileLbs) *string { return v.PolestarAssetUuidList2 }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerWtpProfileLbsOutput) PolestarAssetUuidList3() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WirelessControllerWtpProfileLbs) *string { return v.PolestarAssetUuidList3 }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerWtpProfileLbsOutput) PolestarAssetUuidList4() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WirelessControllerWtpProfileLbs) *string { return v.PolestarAssetUuidList4 }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerWtpProfileLbsOutput) PolestarProtocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WirelessControllerWtpProfileLbs) *string { return v.PolestarProtocol }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerWtpProfileLbsOutput) PolestarReportingInterval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v WirelessControllerWtpProfileLbs) *int { return v.PolestarReportingInterval }).(pulumi.IntPtrOutput)
+}
+
+func (o WirelessControllerWtpProfileLbsOutput) PolestarServerFqdn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WirelessControllerWtpProfileLbs) *string { return v.PolestarServerFqdn }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerWtpProfileLbsOutput) PolestarServerPath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WirelessControllerWtpProfileLbs) *string { return v.PolestarServerPath }).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerWtpProfileLbsOutput) PolestarServerPort() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v WirelessControllerWtpProfileLbs) *int { return v.PolestarServerPort }).(pulumi.IntPtrOutput)
+}
+
+func (o WirelessControllerWtpProfileLbsOutput) PolestarServerToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WirelessControllerWtpProfileLbs) *string { return v.PolestarServerToken }).(pulumi.StringPtrOutput)
+}
+
 func (o WirelessControllerWtpProfileLbsOutput) StationLocate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WirelessControllerWtpProfileLbs) *string { return v.StationLocate }).(pulumi.StringPtrOutput)
 }
@@ -26655,6 +35816,12 @@ func (o WirelessControllerWtpProfileLbsPtrOutput) ToWirelessControllerWtpProfile
 
 func (o WirelessControllerWtpProfileLbsPtrOutput) ToWirelessControllerWtpProfileLbsPtrOutputWithContext(ctx context.Context) WirelessControllerWtpProfileLbsPtrOutput {
 	return o
+}
+
+func (o WirelessControllerWtpProfileLbsPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerWtpProfileLbs] {
+	return pulumix.Output[*WirelessControllerWtpProfileLbs]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfileLbsPtrOutput) Elem() WirelessControllerWtpProfileLbsOutput {
@@ -26874,6 +36041,123 @@ func (o WirelessControllerWtpProfileLbsPtrOutput) FortipresenceUnassoc() pulumi.
 	}).(pulumi.StringPtrOutput)
 }
 
+func (o WirelessControllerWtpProfileLbsPtrOutput) Polestar() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfileLbs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Polestar
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerWtpProfileLbsPtrOutput) PolestarAccumulationInterval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfileLbs) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PolestarAccumulationInterval
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o WirelessControllerWtpProfileLbsPtrOutput) PolestarAssetAddrgrpList() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfileLbs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PolestarAssetAddrgrpList
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerWtpProfileLbsPtrOutput) PolestarAssetUuidList1() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfileLbs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PolestarAssetUuidList1
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerWtpProfileLbsPtrOutput) PolestarAssetUuidList2() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfileLbs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PolestarAssetUuidList2
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerWtpProfileLbsPtrOutput) PolestarAssetUuidList3() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfileLbs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PolestarAssetUuidList3
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerWtpProfileLbsPtrOutput) PolestarAssetUuidList4() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfileLbs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PolestarAssetUuidList4
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerWtpProfileLbsPtrOutput) PolestarProtocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfileLbs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PolestarProtocol
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerWtpProfileLbsPtrOutput) PolestarReportingInterval() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfileLbs) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PolestarReportingInterval
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o WirelessControllerWtpProfileLbsPtrOutput) PolestarServerFqdn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfileLbs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PolestarServerFqdn
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerWtpProfileLbsPtrOutput) PolestarServerPath() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfileLbs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PolestarServerPath
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o WirelessControllerWtpProfileLbsPtrOutput) PolestarServerPort() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfileLbs) *int {
+		if v == nil {
+			return nil
+		}
+		return v.PolestarServerPort
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o WirelessControllerWtpProfileLbsPtrOutput) PolestarServerToken() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfileLbs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.PolestarServerToken
+	}).(pulumi.StringPtrOutput)
+}
+
 func (o WirelessControllerWtpProfileLbsPtrOutput) StationLocate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WirelessControllerWtpProfileLbs) *string {
 		if v == nil {
@@ -26914,6 +36198,12 @@ func (i WirelessControllerWtpProfileLedScheduleArgs) ToWirelessControllerWtpProf
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileLedScheduleOutput)
 }
 
+func (i WirelessControllerWtpProfileLedScheduleArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfileLedSchedule] {
+	return pulumix.Output[WirelessControllerWtpProfileLedSchedule]{
+		OutputState: i.ToWirelessControllerWtpProfileLedScheduleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerWtpProfileLedScheduleArrayInput is an input type that accepts WirelessControllerWtpProfileLedScheduleArray and WirelessControllerWtpProfileLedScheduleArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerWtpProfileLedScheduleArrayInput` via:
 //
@@ -26939,6 +36229,12 @@ func (i WirelessControllerWtpProfileLedScheduleArray) ToWirelessControllerWtpPro
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileLedScheduleArrayOutput)
 }
 
+func (i WirelessControllerWtpProfileLedScheduleArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpProfileLedSchedule] {
+	return pulumix.Output[[]WirelessControllerWtpProfileLedSchedule]{
+		OutputState: i.ToWirelessControllerWtpProfileLedScheduleArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWtpProfileLedScheduleOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpProfileLedScheduleOutput) ElementType() reflect.Type {
@@ -26951,6 +36247,12 @@ func (o WirelessControllerWtpProfileLedScheduleOutput) ToWirelessControllerWtpPr
 
 func (o WirelessControllerWtpProfileLedScheduleOutput) ToWirelessControllerWtpProfileLedScheduleOutputWithContext(ctx context.Context) WirelessControllerWtpProfileLedScheduleOutput {
 	return o
+}
+
+func (o WirelessControllerWtpProfileLedScheduleOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfileLedSchedule] {
+	return pulumix.Output[WirelessControllerWtpProfileLedSchedule]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfileLedScheduleOutput) Name() pulumi.StringPtrOutput {
@@ -26969,6 +36271,12 @@ func (o WirelessControllerWtpProfileLedScheduleArrayOutput) ToWirelessController
 
 func (o WirelessControllerWtpProfileLedScheduleArrayOutput) ToWirelessControllerWtpProfileLedScheduleArrayOutputWithContext(ctx context.Context) WirelessControllerWtpProfileLedScheduleArrayOutput {
 	return o
+}
+
+func (o WirelessControllerWtpProfileLedScheduleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpProfileLedSchedule] {
+	return pulumix.Output[[]WirelessControllerWtpProfileLedSchedule]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfileLedScheduleArrayOutput) Index(i pulumi.IntInput) WirelessControllerWtpProfileLedScheduleOutput {
@@ -27012,6 +36320,12 @@ func (i WirelessControllerWtpProfilePlatformArgs) ToWirelessControllerWtpProfile
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfilePlatformOutput)
 }
 
+func (i WirelessControllerWtpProfilePlatformArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfilePlatform] {
+	return pulumix.Output[WirelessControllerWtpProfilePlatform]{
+		OutputState: i.ToWirelessControllerWtpProfilePlatformOutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WirelessControllerWtpProfilePlatformArgs) ToWirelessControllerWtpProfilePlatformPtrOutput() WirelessControllerWtpProfilePlatformPtrOutput {
 	return i.ToWirelessControllerWtpProfilePlatformPtrOutputWithContext(context.Background())
 }
@@ -27053,6 +36367,12 @@ func (i *wirelessControllerWtpProfilePlatformPtrType) ToWirelessControllerWtpPro
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfilePlatformPtrOutput)
 }
 
+func (i *wirelessControllerWtpProfilePlatformPtrType) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerWtpProfilePlatform] {
+	return pulumix.Output[*WirelessControllerWtpProfilePlatform]{
+		OutputState: i.ToWirelessControllerWtpProfilePlatformPtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWtpProfilePlatformOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpProfilePlatformOutput) ElementType() reflect.Type {
@@ -27075,6 +36395,12 @@ func (o WirelessControllerWtpProfilePlatformOutput) ToWirelessControllerWtpProfi
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WirelessControllerWtpProfilePlatform) *WirelessControllerWtpProfilePlatform {
 		return &v
 	}).(WirelessControllerWtpProfilePlatformPtrOutput)
+}
+
+func (o WirelessControllerWtpProfilePlatformOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfilePlatform] {
+	return pulumix.Output[WirelessControllerWtpProfilePlatform]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfilePlatformOutput) Ddscan() pulumi.StringPtrOutput {
@@ -27101,6 +36427,12 @@ func (o WirelessControllerWtpProfilePlatformPtrOutput) ToWirelessControllerWtpPr
 
 func (o WirelessControllerWtpProfilePlatformPtrOutput) ToWirelessControllerWtpProfilePlatformPtrOutputWithContext(ctx context.Context) WirelessControllerWtpProfilePlatformPtrOutput {
 	return o
+}
+
+func (o WirelessControllerWtpProfilePlatformPtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerWtpProfilePlatform] {
+	return pulumix.Output[*WirelessControllerWtpProfilePlatform]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfilePlatformPtrOutput) Elem() WirelessControllerWtpProfilePlatformOutput {
@@ -27180,6 +36512,7 @@ type WirelessControllerWtpProfileRadio1 struct {
 	IperfServerPort           *int                                        `pulumi:"iperfServerPort"`
 	MaxClients                *int                                        `pulumi:"maxClients"`
 	MaxDistance               *int                                        `pulumi:"maxDistance"`
+	MimoMode                  *string                                     `pulumi:"mimoMode"`
 	Mode                      *string                                     `pulumi:"mode"`
 	N80211d                   *string                                     `pulumi:"n80211d"`
 	OptionalAntenna           *string                                     `pulumi:"optionalAntenna"`
@@ -27267,6 +36600,7 @@ type WirelessControllerWtpProfileRadio1Args struct {
 	IperfServerPort           pulumi.IntPtrInput                                  `pulumi:"iperfServerPort"`
 	MaxClients                pulumi.IntPtrInput                                  `pulumi:"maxClients"`
 	MaxDistance               pulumi.IntPtrInput                                  `pulumi:"maxDistance"`
+	MimoMode                  pulumi.StringPtrInput                               `pulumi:"mimoMode"`
 	Mode                      pulumi.StringPtrInput                               `pulumi:"mode"`
 	N80211d                   pulumi.StringPtrInput                               `pulumi:"n80211d"`
 	OptionalAntenna           pulumi.StringPtrInput                               `pulumi:"optionalAntenna"`
@@ -27315,6 +36649,12 @@ func (i WirelessControllerWtpProfileRadio1Args) ToWirelessControllerWtpProfileRa
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileRadio1Output)
 }
 
+func (i WirelessControllerWtpProfileRadio1Args) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfileRadio1] {
+	return pulumix.Output[WirelessControllerWtpProfileRadio1]{
+		OutputState: i.ToWirelessControllerWtpProfileRadio1OutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WirelessControllerWtpProfileRadio1Args) ToWirelessControllerWtpProfileRadio1PtrOutput() WirelessControllerWtpProfileRadio1PtrOutput {
 	return i.ToWirelessControllerWtpProfileRadio1PtrOutputWithContext(context.Background())
 }
@@ -27356,6 +36696,12 @@ func (i *wirelessControllerWtpProfileRadio1PtrType) ToWirelessControllerWtpProfi
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileRadio1PtrOutput)
 }
 
+func (i *wirelessControllerWtpProfileRadio1PtrType) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerWtpProfileRadio1] {
+	return pulumix.Output[*WirelessControllerWtpProfileRadio1]{
+		OutputState: i.ToWirelessControllerWtpProfileRadio1PtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWtpProfileRadio1Output struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpProfileRadio1Output) ElementType() reflect.Type {
@@ -27378,6 +36724,12 @@ func (o WirelessControllerWtpProfileRadio1Output) ToWirelessControllerWtpProfile
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WirelessControllerWtpProfileRadio1) *WirelessControllerWtpProfileRadio1 {
 		return &v
 	}).(WirelessControllerWtpProfileRadio1PtrOutput)
+}
+
+func (o WirelessControllerWtpProfileRadio1Output) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfileRadio1] {
+	return pulumix.Output[WirelessControllerWtpProfileRadio1]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfileRadio1Output) AirtimeFairness() pulumi.StringPtrOutput {
@@ -27538,6 +36890,10 @@ func (o WirelessControllerWtpProfileRadio1Output) MaxDistance() pulumi.IntPtrOut
 	return o.ApplyT(func(v WirelessControllerWtpProfileRadio1) *int { return v.MaxDistance }).(pulumi.IntPtrOutput)
 }
 
+func (o WirelessControllerWtpProfileRadio1Output) MimoMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WirelessControllerWtpProfileRadio1) *string { return v.MimoMode }).(pulumi.StringPtrOutput)
+}
+
 func (o WirelessControllerWtpProfileRadio1Output) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WirelessControllerWtpProfileRadio1) *string { return v.Mode }).(pulumi.StringPtrOutput)
 }
@@ -27686,6 +37042,12 @@ func (o WirelessControllerWtpProfileRadio1PtrOutput) ToWirelessControllerWtpProf
 
 func (o WirelessControllerWtpProfileRadio1PtrOutput) ToWirelessControllerWtpProfileRadio1PtrOutputWithContext(ctx context.Context) WirelessControllerWtpProfileRadio1PtrOutput {
 	return o
+}
+
+func (o WirelessControllerWtpProfileRadio1PtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerWtpProfileRadio1] {
+	return pulumix.Output[*WirelessControllerWtpProfileRadio1]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfileRadio1PtrOutput) Elem() WirelessControllerWtpProfileRadio1Output {
@@ -28049,6 +37411,15 @@ func (o WirelessControllerWtpProfileRadio1PtrOutput) MaxDistance() pulumi.IntPtr
 	}).(pulumi.IntPtrOutput)
 }
 
+func (o WirelessControllerWtpProfileRadio1PtrOutput) MimoMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfileRadio1) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MimoMode
+	}).(pulumi.StringPtrOutput)
+}
+
 func (o WirelessControllerWtpProfileRadio1PtrOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WirelessControllerWtpProfileRadio1) *string {
 		if v == nil {
@@ -28386,6 +37757,12 @@ func (i WirelessControllerWtpProfileRadio1ChannelArgs) ToWirelessControllerWtpPr
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileRadio1ChannelOutput)
 }
 
+func (i WirelessControllerWtpProfileRadio1ChannelArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfileRadio1Channel] {
+	return pulumix.Output[WirelessControllerWtpProfileRadio1Channel]{
+		OutputState: i.ToWirelessControllerWtpProfileRadio1ChannelOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerWtpProfileRadio1ChannelArrayInput is an input type that accepts WirelessControllerWtpProfileRadio1ChannelArray and WirelessControllerWtpProfileRadio1ChannelArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerWtpProfileRadio1ChannelArrayInput` via:
 //
@@ -28411,6 +37788,12 @@ func (i WirelessControllerWtpProfileRadio1ChannelArray) ToWirelessControllerWtpP
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileRadio1ChannelArrayOutput)
 }
 
+func (i WirelessControllerWtpProfileRadio1ChannelArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpProfileRadio1Channel] {
+	return pulumix.Output[[]WirelessControllerWtpProfileRadio1Channel]{
+		OutputState: i.ToWirelessControllerWtpProfileRadio1ChannelArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWtpProfileRadio1ChannelOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpProfileRadio1ChannelOutput) ElementType() reflect.Type {
@@ -28423,6 +37806,12 @@ func (o WirelessControllerWtpProfileRadio1ChannelOutput) ToWirelessControllerWtp
 
 func (o WirelessControllerWtpProfileRadio1ChannelOutput) ToWirelessControllerWtpProfileRadio1ChannelOutputWithContext(ctx context.Context) WirelessControllerWtpProfileRadio1ChannelOutput {
 	return o
+}
+
+func (o WirelessControllerWtpProfileRadio1ChannelOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfileRadio1Channel] {
+	return pulumix.Output[WirelessControllerWtpProfileRadio1Channel]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfileRadio1ChannelOutput) Chan() pulumi.StringPtrOutput {
@@ -28441,6 +37830,12 @@ func (o WirelessControllerWtpProfileRadio1ChannelArrayOutput) ToWirelessControll
 
 func (o WirelessControllerWtpProfileRadio1ChannelArrayOutput) ToWirelessControllerWtpProfileRadio1ChannelArrayOutputWithContext(ctx context.Context) WirelessControllerWtpProfileRadio1ChannelArrayOutput {
 	return o
+}
+
+func (o WirelessControllerWtpProfileRadio1ChannelArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpProfileRadio1Channel] {
+	return pulumix.Output[[]WirelessControllerWtpProfileRadio1Channel]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfileRadio1ChannelArrayOutput) Index(i pulumi.IntInput) WirelessControllerWtpProfileRadio1ChannelOutput {
@@ -28480,6 +37875,12 @@ func (i WirelessControllerWtpProfileRadio1VapArgs) ToWirelessControllerWtpProfil
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileRadio1VapOutput)
 }
 
+func (i WirelessControllerWtpProfileRadio1VapArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfileRadio1Vap] {
+	return pulumix.Output[WirelessControllerWtpProfileRadio1Vap]{
+		OutputState: i.ToWirelessControllerWtpProfileRadio1VapOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerWtpProfileRadio1VapArrayInput is an input type that accepts WirelessControllerWtpProfileRadio1VapArray and WirelessControllerWtpProfileRadio1VapArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerWtpProfileRadio1VapArrayInput` via:
 //
@@ -28505,6 +37906,12 @@ func (i WirelessControllerWtpProfileRadio1VapArray) ToWirelessControllerWtpProfi
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileRadio1VapArrayOutput)
 }
 
+func (i WirelessControllerWtpProfileRadio1VapArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpProfileRadio1Vap] {
+	return pulumix.Output[[]WirelessControllerWtpProfileRadio1Vap]{
+		OutputState: i.ToWirelessControllerWtpProfileRadio1VapArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWtpProfileRadio1VapOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpProfileRadio1VapOutput) ElementType() reflect.Type {
@@ -28517,6 +37924,12 @@ func (o WirelessControllerWtpProfileRadio1VapOutput) ToWirelessControllerWtpProf
 
 func (o WirelessControllerWtpProfileRadio1VapOutput) ToWirelessControllerWtpProfileRadio1VapOutputWithContext(ctx context.Context) WirelessControllerWtpProfileRadio1VapOutput {
 	return o
+}
+
+func (o WirelessControllerWtpProfileRadio1VapOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfileRadio1Vap] {
+	return pulumix.Output[WirelessControllerWtpProfileRadio1Vap]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfileRadio1VapOutput) Name() pulumi.StringPtrOutput {
@@ -28535,6 +37948,12 @@ func (o WirelessControllerWtpProfileRadio1VapArrayOutput) ToWirelessControllerWt
 
 func (o WirelessControllerWtpProfileRadio1VapArrayOutput) ToWirelessControllerWtpProfileRadio1VapArrayOutputWithContext(ctx context.Context) WirelessControllerWtpProfileRadio1VapArrayOutput {
 	return o
+}
+
+func (o WirelessControllerWtpProfileRadio1VapArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpProfileRadio1Vap] {
+	return pulumix.Output[[]WirelessControllerWtpProfileRadio1Vap]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfileRadio1VapArrayOutput) Index(i pulumi.IntInput) WirelessControllerWtpProfileRadio1VapOutput {
@@ -28583,6 +38002,7 @@ type WirelessControllerWtpProfileRadio2 struct {
 	IperfServerPort           *int                                        `pulumi:"iperfServerPort"`
 	MaxClients                *int                                        `pulumi:"maxClients"`
 	MaxDistance               *int                                        `pulumi:"maxDistance"`
+	MimoMode                  *string                                     `pulumi:"mimoMode"`
 	Mode                      *string                                     `pulumi:"mode"`
 	N80211d                   *string                                     `pulumi:"n80211d"`
 	OptionalAntenna           *string                                     `pulumi:"optionalAntenna"`
@@ -28670,6 +38090,7 @@ type WirelessControllerWtpProfileRadio2Args struct {
 	IperfServerPort           pulumi.IntPtrInput                                  `pulumi:"iperfServerPort"`
 	MaxClients                pulumi.IntPtrInput                                  `pulumi:"maxClients"`
 	MaxDistance               pulumi.IntPtrInput                                  `pulumi:"maxDistance"`
+	MimoMode                  pulumi.StringPtrInput                               `pulumi:"mimoMode"`
 	Mode                      pulumi.StringPtrInput                               `pulumi:"mode"`
 	N80211d                   pulumi.StringPtrInput                               `pulumi:"n80211d"`
 	OptionalAntenna           pulumi.StringPtrInput                               `pulumi:"optionalAntenna"`
@@ -28718,6 +38139,12 @@ func (i WirelessControllerWtpProfileRadio2Args) ToWirelessControllerWtpProfileRa
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileRadio2Output)
 }
 
+func (i WirelessControllerWtpProfileRadio2Args) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfileRadio2] {
+	return pulumix.Output[WirelessControllerWtpProfileRadio2]{
+		OutputState: i.ToWirelessControllerWtpProfileRadio2OutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WirelessControllerWtpProfileRadio2Args) ToWirelessControllerWtpProfileRadio2PtrOutput() WirelessControllerWtpProfileRadio2PtrOutput {
 	return i.ToWirelessControllerWtpProfileRadio2PtrOutputWithContext(context.Background())
 }
@@ -28759,6 +38186,12 @@ func (i *wirelessControllerWtpProfileRadio2PtrType) ToWirelessControllerWtpProfi
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileRadio2PtrOutput)
 }
 
+func (i *wirelessControllerWtpProfileRadio2PtrType) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerWtpProfileRadio2] {
+	return pulumix.Output[*WirelessControllerWtpProfileRadio2]{
+		OutputState: i.ToWirelessControllerWtpProfileRadio2PtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWtpProfileRadio2Output struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpProfileRadio2Output) ElementType() reflect.Type {
@@ -28781,6 +38214,12 @@ func (o WirelessControllerWtpProfileRadio2Output) ToWirelessControllerWtpProfile
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WirelessControllerWtpProfileRadio2) *WirelessControllerWtpProfileRadio2 {
 		return &v
 	}).(WirelessControllerWtpProfileRadio2PtrOutput)
+}
+
+func (o WirelessControllerWtpProfileRadio2Output) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfileRadio2] {
+	return pulumix.Output[WirelessControllerWtpProfileRadio2]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfileRadio2Output) AirtimeFairness() pulumi.StringPtrOutput {
@@ -28941,6 +38380,10 @@ func (o WirelessControllerWtpProfileRadio2Output) MaxDistance() pulumi.IntPtrOut
 	return o.ApplyT(func(v WirelessControllerWtpProfileRadio2) *int { return v.MaxDistance }).(pulumi.IntPtrOutput)
 }
 
+func (o WirelessControllerWtpProfileRadio2Output) MimoMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WirelessControllerWtpProfileRadio2) *string { return v.MimoMode }).(pulumi.StringPtrOutput)
+}
+
 func (o WirelessControllerWtpProfileRadio2Output) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WirelessControllerWtpProfileRadio2) *string { return v.Mode }).(pulumi.StringPtrOutput)
 }
@@ -29089,6 +38532,12 @@ func (o WirelessControllerWtpProfileRadio2PtrOutput) ToWirelessControllerWtpProf
 
 func (o WirelessControllerWtpProfileRadio2PtrOutput) ToWirelessControllerWtpProfileRadio2PtrOutputWithContext(ctx context.Context) WirelessControllerWtpProfileRadio2PtrOutput {
 	return o
+}
+
+func (o WirelessControllerWtpProfileRadio2PtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerWtpProfileRadio2] {
+	return pulumix.Output[*WirelessControllerWtpProfileRadio2]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfileRadio2PtrOutput) Elem() WirelessControllerWtpProfileRadio2Output {
@@ -29452,6 +38901,15 @@ func (o WirelessControllerWtpProfileRadio2PtrOutput) MaxDistance() pulumi.IntPtr
 	}).(pulumi.IntPtrOutput)
 }
 
+func (o WirelessControllerWtpProfileRadio2PtrOutput) MimoMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfileRadio2) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MimoMode
+	}).(pulumi.StringPtrOutput)
+}
+
 func (o WirelessControllerWtpProfileRadio2PtrOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WirelessControllerWtpProfileRadio2) *string {
 		if v == nil {
@@ -29789,6 +39247,12 @@ func (i WirelessControllerWtpProfileRadio2ChannelArgs) ToWirelessControllerWtpPr
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileRadio2ChannelOutput)
 }
 
+func (i WirelessControllerWtpProfileRadio2ChannelArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfileRadio2Channel] {
+	return pulumix.Output[WirelessControllerWtpProfileRadio2Channel]{
+		OutputState: i.ToWirelessControllerWtpProfileRadio2ChannelOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerWtpProfileRadio2ChannelArrayInput is an input type that accepts WirelessControllerWtpProfileRadio2ChannelArray and WirelessControllerWtpProfileRadio2ChannelArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerWtpProfileRadio2ChannelArrayInput` via:
 //
@@ -29814,6 +39278,12 @@ func (i WirelessControllerWtpProfileRadio2ChannelArray) ToWirelessControllerWtpP
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileRadio2ChannelArrayOutput)
 }
 
+func (i WirelessControllerWtpProfileRadio2ChannelArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpProfileRadio2Channel] {
+	return pulumix.Output[[]WirelessControllerWtpProfileRadio2Channel]{
+		OutputState: i.ToWirelessControllerWtpProfileRadio2ChannelArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWtpProfileRadio2ChannelOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpProfileRadio2ChannelOutput) ElementType() reflect.Type {
@@ -29826,6 +39296,12 @@ func (o WirelessControllerWtpProfileRadio2ChannelOutput) ToWirelessControllerWtp
 
 func (o WirelessControllerWtpProfileRadio2ChannelOutput) ToWirelessControllerWtpProfileRadio2ChannelOutputWithContext(ctx context.Context) WirelessControllerWtpProfileRadio2ChannelOutput {
 	return o
+}
+
+func (o WirelessControllerWtpProfileRadio2ChannelOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfileRadio2Channel] {
+	return pulumix.Output[WirelessControllerWtpProfileRadio2Channel]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfileRadio2ChannelOutput) Chan() pulumi.StringPtrOutput {
@@ -29844,6 +39320,12 @@ func (o WirelessControllerWtpProfileRadio2ChannelArrayOutput) ToWirelessControll
 
 func (o WirelessControllerWtpProfileRadio2ChannelArrayOutput) ToWirelessControllerWtpProfileRadio2ChannelArrayOutputWithContext(ctx context.Context) WirelessControllerWtpProfileRadio2ChannelArrayOutput {
 	return o
+}
+
+func (o WirelessControllerWtpProfileRadio2ChannelArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpProfileRadio2Channel] {
+	return pulumix.Output[[]WirelessControllerWtpProfileRadio2Channel]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfileRadio2ChannelArrayOutput) Index(i pulumi.IntInput) WirelessControllerWtpProfileRadio2ChannelOutput {
@@ -29883,6 +39365,12 @@ func (i WirelessControllerWtpProfileRadio2VapArgs) ToWirelessControllerWtpProfil
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileRadio2VapOutput)
 }
 
+func (i WirelessControllerWtpProfileRadio2VapArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfileRadio2Vap] {
+	return pulumix.Output[WirelessControllerWtpProfileRadio2Vap]{
+		OutputState: i.ToWirelessControllerWtpProfileRadio2VapOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerWtpProfileRadio2VapArrayInput is an input type that accepts WirelessControllerWtpProfileRadio2VapArray and WirelessControllerWtpProfileRadio2VapArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerWtpProfileRadio2VapArrayInput` via:
 //
@@ -29908,6 +39396,12 @@ func (i WirelessControllerWtpProfileRadio2VapArray) ToWirelessControllerWtpProfi
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileRadio2VapArrayOutput)
 }
 
+func (i WirelessControllerWtpProfileRadio2VapArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpProfileRadio2Vap] {
+	return pulumix.Output[[]WirelessControllerWtpProfileRadio2Vap]{
+		OutputState: i.ToWirelessControllerWtpProfileRadio2VapArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWtpProfileRadio2VapOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpProfileRadio2VapOutput) ElementType() reflect.Type {
@@ -29920,6 +39414,12 @@ func (o WirelessControllerWtpProfileRadio2VapOutput) ToWirelessControllerWtpProf
 
 func (o WirelessControllerWtpProfileRadio2VapOutput) ToWirelessControllerWtpProfileRadio2VapOutputWithContext(ctx context.Context) WirelessControllerWtpProfileRadio2VapOutput {
 	return o
+}
+
+func (o WirelessControllerWtpProfileRadio2VapOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfileRadio2Vap] {
+	return pulumix.Output[WirelessControllerWtpProfileRadio2Vap]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfileRadio2VapOutput) Name() pulumi.StringPtrOutput {
@@ -29938,6 +39438,12 @@ func (o WirelessControllerWtpProfileRadio2VapArrayOutput) ToWirelessControllerWt
 
 func (o WirelessControllerWtpProfileRadio2VapArrayOutput) ToWirelessControllerWtpProfileRadio2VapArrayOutputWithContext(ctx context.Context) WirelessControllerWtpProfileRadio2VapArrayOutput {
 	return o
+}
+
+func (o WirelessControllerWtpProfileRadio2VapArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpProfileRadio2Vap] {
+	return pulumix.Output[[]WirelessControllerWtpProfileRadio2Vap]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfileRadio2VapArrayOutput) Index(i pulumi.IntInput) WirelessControllerWtpProfileRadio2VapOutput {
@@ -29986,6 +39492,7 @@ type WirelessControllerWtpProfileRadio3 struct {
 	IperfServerPort           *int                                        `pulumi:"iperfServerPort"`
 	MaxClients                *int                                        `pulumi:"maxClients"`
 	MaxDistance               *int                                        `pulumi:"maxDistance"`
+	MimoMode                  *string                                     `pulumi:"mimoMode"`
 	Mode                      *string                                     `pulumi:"mode"`
 	N80211d                   *string                                     `pulumi:"n80211d"`
 	OptionalAntenna           *string                                     `pulumi:"optionalAntenna"`
@@ -30072,6 +39579,7 @@ type WirelessControllerWtpProfileRadio3Args struct {
 	IperfServerPort           pulumi.IntPtrInput                                  `pulumi:"iperfServerPort"`
 	MaxClients                pulumi.IntPtrInput                                  `pulumi:"maxClients"`
 	MaxDistance               pulumi.IntPtrInput                                  `pulumi:"maxDistance"`
+	MimoMode                  pulumi.StringPtrInput                               `pulumi:"mimoMode"`
 	Mode                      pulumi.StringPtrInput                               `pulumi:"mode"`
 	N80211d                   pulumi.StringPtrInput                               `pulumi:"n80211d"`
 	OptionalAntenna           pulumi.StringPtrInput                               `pulumi:"optionalAntenna"`
@@ -30119,6 +39627,12 @@ func (i WirelessControllerWtpProfileRadio3Args) ToWirelessControllerWtpProfileRa
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileRadio3Output)
 }
 
+func (i WirelessControllerWtpProfileRadio3Args) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfileRadio3] {
+	return pulumix.Output[WirelessControllerWtpProfileRadio3]{
+		OutputState: i.ToWirelessControllerWtpProfileRadio3OutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WirelessControllerWtpProfileRadio3Args) ToWirelessControllerWtpProfileRadio3PtrOutput() WirelessControllerWtpProfileRadio3PtrOutput {
 	return i.ToWirelessControllerWtpProfileRadio3PtrOutputWithContext(context.Background())
 }
@@ -30160,6 +39674,12 @@ func (i *wirelessControllerWtpProfileRadio3PtrType) ToWirelessControllerWtpProfi
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileRadio3PtrOutput)
 }
 
+func (i *wirelessControllerWtpProfileRadio3PtrType) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerWtpProfileRadio3] {
+	return pulumix.Output[*WirelessControllerWtpProfileRadio3]{
+		OutputState: i.ToWirelessControllerWtpProfileRadio3PtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWtpProfileRadio3Output struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpProfileRadio3Output) ElementType() reflect.Type {
@@ -30182,6 +39702,12 @@ func (o WirelessControllerWtpProfileRadio3Output) ToWirelessControllerWtpProfile
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WirelessControllerWtpProfileRadio3) *WirelessControllerWtpProfileRadio3 {
 		return &v
 	}).(WirelessControllerWtpProfileRadio3PtrOutput)
+}
+
+func (o WirelessControllerWtpProfileRadio3Output) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfileRadio3] {
+	return pulumix.Output[WirelessControllerWtpProfileRadio3]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfileRadio3Output) AirtimeFairness() pulumi.StringPtrOutput {
@@ -30342,6 +39868,10 @@ func (o WirelessControllerWtpProfileRadio3Output) MaxDistance() pulumi.IntPtrOut
 	return o.ApplyT(func(v WirelessControllerWtpProfileRadio3) *int { return v.MaxDistance }).(pulumi.IntPtrOutput)
 }
 
+func (o WirelessControllerWtpProfileRadio3Output) MimoMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WirelessControllerWtpProfileRadio3) *string { return v.MimoMode }).(pulumi.StringPtrOutput)
+}
+
 func (o WirelessControllerWtpProfileRadio3Output) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WirelessControllerWtpProfileRadio3) *string { return v.Mode }).(pulumi.StringPtrOutput)
 }
@@ -30486,6 +40016,12 @@ func (o WirelessControllerWtpProfileRadio3PtrOutput) ToWirelessControllerWtpProf
 
 func (o WirelessControllerWtpProfileRadio3PtrOutput) ToWirelessControllerWtpProfileRadio3PtrOutputWithContext(ctx context.Context) WirelessControllerWtpProfileRadio3PtrOutput {
 	return o
+}
+
+func (o WirelessControllerWtpProfileRadio3PtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerWtpProfileRadio3] {
+	return pulumix.Output[*WirelessControllerWtpProfileRadio3]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfileRadio3PtrOutput) Elem() WirelessControllerWtpProfileRadio3Output {
@@ -30849,6 +40385,15 @@ func (o WirelessControllerWtpProfileRadio3PtrOutput) MaxDistance() pulumi.IntPtr
 	}).(pulumi.IntPtrOutput)
 }
 
+func (o WirelessControllerWtpProfileRadio3PtrOutput) MimoMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfileRadio3) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MimoMode
+	}).(pulumi.StringPtrOutput)
+}
+
 func (o WirelessControllerWtpProfileRadio3PtrOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WirelessControllerWtpProfileRadio3) *string {
 		if v == nil {
@@ -31177,6 +40722,12 @@ func (i WirelessControllerWtpProfileRadio3ChannelArgs) ToWirelessControllerWtpPr
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileRadio3ChannelOutput)
 }
 
+func (i WirelessControllerWtpProfileRadio3ChannelArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfileRadio3Channel] {
+	return pulumix.Output[WirelessControllerWtpProfileRadio3Channel]{
+		OutputState: i.ToWirelessControllerWtpProfileRadio3ChannelOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerWtpProfileRadio3ChannelArrayInput is an input type that accepts WirelessControllerWtpProfileRadio3ChannelArray and WirelessControllerWtpProfileRadio3ChannelArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerWtpProfileRadio3ChannelArrayInput` via:
 //
@@ -31202,6 +40753,12 @@ func (i WirelessControllerWtpProfileRadio3ChannelArray) ToWirelessControllerWtpP
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileRadio3ChannelArrayOutput)
 }
 
+func (i WirelessControllerWtpProfileRadio3ChannelArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpProfileRadio3Channel] {
+	return pulumix.Output[[]WirelessControllerWtpProfileRadio3Channel]{
+		OutputState: i.ToWirelessControllerWtpProfileRadio3ChannelArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWtpProfileRadio3ChannelOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpProfileRadio3ChannelOutput) ElementType() reflect.Type {
@@ -31214,6 +40771,12 @@ func (o WirelessControllerWtpProfileRadio3ChannelOutput) ToWirelessControllerWtp
 
 func (o WirelessControllerWtpProfileRadio3ChannelOutput) ToWirelessControllerWtpProfileRadio3ChannelOutputWithContext(ctx context.Context) WirelessControllerWtpProfileRadio3ChannelOutput {
 	return o
+}
+
+func (o WirelessControllerWtpProfileRadio3ChannelOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfileRadio3Channel] {
+	return pulumix.Output[WirelessControllerWtpProfileRadio3Channel]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfileRadio3ChannelOutput) Chan() pulumi.StringPtrOutput {
@@ -31232,6 +40795,12 @@ func (o WirelessControllerWtpProfileRadio3ChannelArrayOutput) ToWirelessControll
 
 func (o WirelessControllerWtpProfileRadio3ChannelArrayOutput) ToWirelessControllerWtpProfileRadio3ChannelArrayOutputWithContext(ctx context.Context) WirelessControllerWtpProfileRadio3ChannelArrayOutput {
 	return o
+}
+
+func (o WirelessControllerWtpProfileRadio3ChannelArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpProfileRadio3Channel] {
+	return pulumix.Output[[]WirelessControllerWtpProfileRadio3Channel]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfileRadio3ChannelArrayOutput) Index(i pulumi.IntInput) WirelessControllerWtpProfileRadio3ChannelOutput {
@@ -31271,6 +40840,12 @@ func (i WirelessControllerWtpProfileRadio3VapArgs) ToWirelessControllerWtpProfil
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileRadio3VapOutput)
 }
 
+func (i WirelessControllerWtpProfileRadio3VapArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfileRadio3Vap] {
+	return pulumix.Output[WirelessControllerWtpProfileRadio3Vap]{
+		OutputState: i.ToWirelessControllerWtpProfileRadio3VapOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerWtpProfileRadio3VapArrayInput is an input type that accepts WirelessControllerWtpProfileRadio3VapArray and WirelessControllerWtpProfileRadio3VapArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerWtpProfileRadio3VapArrayInput` via:
 //
@@ -31296,6 +40871,12 @@ func (i WirelessControllerWtpProfileRadio3VapArray) ToWirelessControllerWtpProfi
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileRadio3VapArrayOutput)
 }
 
+func (i WirelessControllerWtpProfileRadio3VapArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpProfileRadio3Vap] {
+	return pulumix.Output[[]WirelessControllerWtpProfileRadio3Vap]{
+		OutputState: i.ToWirelessControllerWtpProfileRadio3VapArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWtpProfileRadio3VapOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpProfileRadio3VapOutput) ElementType() reflect.Type {
@@ -31308,6 +40889,12 @@ func (o WirelessControllerWtpProfileRadio3VapOutput) ToWirelessControllerWtpProf
 
 func (o WirelessControllerWtpProfileRadio3VapOutput) ToWirelessControllerWtpProfileRadio3VapOutputWithContext(ctx context.Context) WirelessControllerWtpProfileRadio3VapOutput {
 	return o
+}
+
+func (o WirelessControllerWtpProfileRadio3VapOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfileRadio3Vap] {
+	return pulumix.Output[WirelessControllerWtpProfileRadio3Vap]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfileRadio3VapOutput) Name() pulumi.StringPtrOutput {
@@ -31326,6 +40913,12 @@ func (o WirelessControllerWtpProfileRadio3VapArrayOutput) ToWirelessControllerWt
 
 func (o WirelessControllerWtpProfileRadio3VapArrayOutput) ToWirelessControllerWtpProfileRadio3VapArrayOutputWithContext(ctx context.Context) WirelessControllerWtpProfileRadio3VapArrayOutput {
 	return o
+}
+
+func (o WirelessControllerWtpProfileRadio3VapArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpProfileRadio3Vap] {
+	return pulumix.Output[[]WirelessControllerWtpProfileRadio3Vap]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfileRadio3VapArrayOutput) Index(i pulumi.IntInput) WirelessControllerWtpProfileRadio3VapOutput {
@@ -31374,6 +40967,7 @@ type WirelessControllerWtpProfileRadio4 struct {
 	IperfServerPort           *int                                        `pulumi:"iperfServerPort"`
 	MaxClients                *int                                        `pulumi:"maxClients"`
 	MaxDistance               *int                                        `pulumi:"maxDistance"`
+	MimoMode                  *string                                     `pulumi:"mimoMode"`
 	Mode                      *string                                     `pulumi:"mode"`
 	N80211d                   *string                                     `pulumi:"n80211d"`
 	OptionalAntenna           *string                                     `pulumi:"optionalAntenna"`
@@ -31460,6 +41054,7 @@ type WirelessControllerWtpProfileRadio4Args struct {
 	IperfServerPort           pulumi.IntPtrInput                                  `pulumi:"iperfServerPort"`
 	MaxClients                pulumi.IntPtrInput                                  `pulumi:"maxClients"`
 	MaxDistance               pulumi.IntPtrInput                                  `pulumi:"maxDistance"`
+	MimoMode                  pulumi.StringPtrInput                               `pulumi:"mimoMode"`
 	Mode                      pulumi.StringPtrInput                               `pulumi:"mode"`
 	N80211d                   pulumi.StringPtrInput                               `pulumi:"n80211d"`
 	OptionalAntenna           pulumi.StringPtrInput                               `pulumi:"optionalAntenna"`
@@ -31507,6 +41102,12 @@ func (i WirelessControllerWtpProfileRadio4Args) ToWirelessControllerWtpProfileRa
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileRadio4Output)
 }
 
+func (i WirelessControllerWtpProfileRadio4Args) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfileRadio4] {
+	return pulumix.Output[WirelessControllerWtpProfileRadio4]{
+		OutputState: i.ToWirelessControllerWtpProfileRadio4OutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WirelessControllerWtpProfileRadio4Args) ToWirelessControllerWtpProfileRadio4PtrOutput() WirelessControllerWtpProfileRadio4PtrOutput {
 	return i.ToWirelessControllerWtpProfileRadio4PtrOutputWithContext(context.Background())
 }
@@ -31548,6 +41149,12 @@ func (i *wirelessControllerWtpProfileRadio4PtrType) ToWirelessControllerWtpProfi
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileRadio4PtrOutput)
 }
 
+func (i *wirelessControllerWtpProfileRadio4PtrType) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerWtpProfileRadio4] {
+	return pulumix.Output[*WirelessControllerWtpProfileRadio4]{
+		OutputState: i.ToWirelessControllerWtpProfileRadio4PtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWtpProfileRadio4Output struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpProfileRadio4Output) ElementType() reflect.Type {
@@ -31570,6 +41177,12 @@ func (o WirelessControllerWtpProfileRadio4Output) ToWirelessControllerWtpProfile
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WirelessControllerWtpProfileRadio4) *WirelessControllerWtpProfileRadio4 {
 		return &v
 	}).(WirelessControllerWtpProfileRadio4PtrOutput)
+}
+
+func (o WirelessControllerWtpProfileRadio4Output) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfileRadio4] {
+	return pulumix.Output[WirelessControllerWtpProfileRadio4]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfileRadio4Output) AirtimeFairness() pulumi.StringPtrOutput {
@@ -31730,6 +41343,10 @@ func (o WirelessControllerWtpProfileRadio4Output) MaxDistance() pulumi.IntPtrOut
 	return o.ApplyT(func(v WirelessControllerWtpProfileRadio4) *int { return v.MaxDistance }).(pulumi.IntPtrOutput)
 }
 
+func (o WirelessControllerWtpProfileRadio4Output) MimoMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v WirelessControllerWtpProfileRadio4) *string { return v.MimoMode }).(pulumi.StringPtrOutput)
+}
+
 func (o WirelessControllerWtpProfileRadio4Output) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v WirelessControllerWtpProfileRadio4) *string { return v.Mode }).(pulumi.StringPtrOutput)
 }
@@ -31874,6 +41491,12 @@ func (o WirelessControllerWtpProfileRadio4PtrOutput) ToWirelessControllerWtpProf
 
 func (o WirelessControllerWtpProfileRadio4PtrOutput) ToWirelessControllerWtpProfileRadio4PtrOutputWithContext(ctx context.Context) WirelessControllerWtpProfileRadio4PtrOutput {
 	return o
+}
+
+func (o WirelessControllerWtpProfileRadio4PtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerWtpProfileRadio4] {
+	return pulumix.Output[*WirelessControllerWtpProfileRadio4]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfileRadio4PtrOutput) Elem() WirelessControllerWtpProfileRadio4Output {
@@ -32237,6 +41860,15 @@ func (o WirelessControllerWtpProfileRadio4PtrOutput) MaxDistance() pulumi.IntPtr
 	}).(pulumi.IntPtrOutput)
 }
 
+func (o WirelessControllerWtpProfileRadio4PtrOutput) MimoMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *WirelessControllerWtpProfileRadio4) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MimoMode
+	}).(pulumi.StringPtrOutput)
+}
+
 func (o WirelessControllerWtpProfileRadio4PtrOutput) Mode() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WirelessControllerWtpProfileRadio4) *string {
 		if v == nil {
@@ -32565,6 +42197,12 @@ func (i WirelessControllerWtpProfileRadio4ChannelArgs) ToWirelessControllerWtpPr
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileRadio4ChannelOutput)
 }
 
+func (i WirelessControllerWtpProfileRadio4ChannelArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfileRadio4Channel] {
+	return pulumix.Output[WirelessControllerWtpProfileRadio4Channel]{
+		OutputState: i.ToWirelessControllerWtpProfileRadio4ChannelOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerWtpProfileRadio4ChannelArrayInput is an input type that accepts WirelessControllerWtpProfileRadio4ChannelArray and WirelessControllerWtpProfileRadio4ChannelArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerWtpProfileRadio4ChannelArrayInput` via:
 //
@@ -32590,6 +42228,12 @@ func (i WirelessControllerWtpProfileRadio4ChannelArray) ToWirelessControllerWtpP
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileRadio4ChannelArrayOutput)
 }
 
+func (i WirelessControllerWtpProfileRadio4ChannelArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpProfileRadio4Channel] {
+	return pulumix.Output[[]WirelessControllerWtpProfileRadio4Channel]{
+		OutputState: i.ToWirelessControllerWtpProfileRadio4ChannelArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWtpProfileRadio4ChannelOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpProfileRadio4ChannelOutput) ElementType() reflect.Type {
@@ -32602,6 +42246,12 @@ func (o WirelessControllerWtpProfileRadio4ChannelOutput) ToWirelessControllerWtp
 
 func (o WirelessControllerWtpProfileRadio4ChannelOutput) ToWirelessControllerWtpProfileRadio4ChannelOutputWithContext(ctx context.Context) WirelessControllerWtpProfileRadio4ChannelOutput {
 	return o
+}
+
+func (o WirelessControllerWtpProfileRadio4ChannelOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfileRadio4Channel] {
+	return pulumix.Output[WirelessControllerWtpProfileRadio4Channel]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfileRadio4ChannelOutput) Chan() pulumi.StringPtrOutput {
@@ -32620,6 +42270,12 @@ func (o WirelessControllerWtpProfileRadio4ChannelArrayOutput) ToWirelessControll
 
 func (o WirelessControllerWtpProfileRadio4ChannelArrayOutput) ToWirelessControllerWtpProfileRadio4ChannelArrayOutputWithContext(ctx context.Context) WirelessControllerWtpProfileRadio4ChannelArrayOutput {
 	return o
+}
+
+func (o WirelessControllerWtpProfileRadio4ChannelArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpProfileRadio4Channel] {
+	return pulumix.Output[[]WirelessControllerWtpProfileRadio4Channel]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfileRadio4ChannelArrayOutput) Index(i pulumi.IntInput) WirelessControllerWtpProfileRadio4ChannelOutput {
@@ -32659,6 +42315,12 @@ func (i WirelessControllerWtpProfileRadio4VapArgs) ToWirelessControllerWtpProfil
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileRadio4VapOutput)
 }
 
+func (i WirelessControllerWtpProfileRadio4VapArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfileRadio4Vap] {
+	return pulumix.Output[WirelessControllerWtpProfileRadio4Vap]{
+		OutputState: i.ToWirelessControllerWtpProfileRadio4VapOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerWtpProfileRadio4VapArrayInput is an input type that accepts WirelessControllerWtpProfileRadio4VapArray and WirelessControllerWtpProfileRadio4VapArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerWtpProfileRadio4VapArrayInput` via:
 //
@@ -32684,6 +42346,12 @@ func (i WirelessControllerWtpProfileRadio4VapArray) ToWirelessControllerWtpProfi
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileRadio4VapArrayOutput)
 }
 
+func (i WirelessControllerWtpProfileRadio4VapArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpProfileRadio4Vap] {
+	return pulumix.Output[[]WirelessControllerWtpProfileRadio4Vap]{
+		OutputState: i.ToWirelessControllerWtpProfileRadio4VapArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWtpProfileRadio4VapOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpProfileRadio4VapOutput) ElementType() reflect.Type {
@@ -32696,6 +42364,12 @@ func (o WirelessControllerWtpProfileRadio4VapOutput) ToWirelessControllerWtpProf
 
 func (o WirelessControllerWtpProfileRadio4VapOutput) ToWirelessControllerWtpProfileRadio4VapOutputWithContext(ctx context.Context) WirelessControllerWtpProfileRadio4VapOutput {
 	return o
+}
+
+func (o WirelessControllerWtpProfileRadio4VapOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfileRadio4Vap] {
+	return pulumix.Output[WirelessControllerWtpProfileRadio4Vap]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfileRadio4VapOutput) Name() pulumi.StringPtrOutput {
@@ -32714,6 +42388,12 @@ func (o WirelessControllerWtpProfileRadio4VapArrayOutput) ToWirelessControllerWt
 
 func (o WirelessControllerWtpProfileRadio4VapArrayOutput) ToWirelessControllerWtpProfileRadio4VapArrayOutputWithContext(ctx context.Context) WirelessControllerWtpProfileRadio4VapArrayOutput {
 	return o
+}
+
+func (o WirelessControllerWtpProfileRadio4VapArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpProfileRadio4Vap] {
+	return pulumix.Output[[]WirelessControllerWtpProfileRadio4Vap]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfileRadio4VapArrayOutput) Index(i pulumi.IntInput) WirelessControllerWtpProfileRadio4VapOutput {
@@ -32755,6 +42435,12 @@ func (i WirelessControllerWtpProfileSplitTunnelingAclArgs) ToWirelessControllerW
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileSplitTunnelingAclOutput)
 }
 
+func (i WirelessControllerWtpProfileSplitTunnelingAclArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfileSplitTunnelingAcl] {
+	return pulumix.Output[WirelessControllerWtpProfileSplitTunnelingAcl]{
+		OutputState: i.ToWirelessControllerWtpProfileSplitTunnelingAclOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerWtpProfileSplitTunnelingAclArrayInput is an input type that accepts WirelessControllerWtpProfileSplitTunnelingAclArray and WirelessControllerWtpProfileSplitTunnelingAclArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerWtpProfileSplitTunnelingAclArrayInput` via:
 //
@@ -32780,6 +42466,12 @@ func (i WirelessControllerWtpProfileSplitTunnelingAclArray) ToWirelessController
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileSplitTunnelingAclArrayOutput)
 }
 
+func (i WirelessControllerWtpProfileSplitTunnelingAclArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpProfileSplitTunnelingAcl] {
+	return pulumix.Output[[]WirelessControllerWtpProfileSplitTunnelingAcl]{
+		OutputState: i.ToWirelessControllerWtpProfileSplitTunnelingAclArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWtpProfileSplitTunnelingAclOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpProfileSplitTunnelingAclOutput) ElementType() reflect.Type {
@@ -32792,6 +42484,12 @@ func (o WirelessControllerWtpProfileSplitTunnelingAclOutput) ToWirelessControlle
 
 func (o WirelessControllerWtpProfileSplitTunnelingAclOutput) ToWirelessControllerWtpProfileSplitTunnelingAclOutputWithContext(ctx context.Context) WirelessControllerWtpProfileSplitTunnelingAclOutput {
 	return o
+}
+
+func (o WirelessControllerWtpProfileSplitTunnelingAclOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpProfileSplitTunnelingAcl] {
+	return pulumix.Output[WirelessControllerWtpProfileSplitTunnelingAcl]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfileSplitTunnelingAclOutput) DestIp() pulumi.StringPtrOutput {
@@ -32814,6 +42512,12 @@ func (o WirelessControllerWtpProfileSplitTunnelingAclArrayOutput) ToWirelessCont
 
 func (o WirelessControllerWtpProfileSplitTunnelingAclArrayOutput) ToWirelessControllerWtpProfileSplitTunnelingAclArrayOutputWithContext(ctx context.Context) WirelessControllerWtpProfileSplitTunnelingAclArrayOutput {
 	return o
+}
+
+func (o WirelessControllerWtpProfileSplitTunnelingAclArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpProfileSplitTunnelingAcl] {
+	return pulumix.Output[[]WirelessControllerWtpProfileSplitTunnelingAcl]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpProfileSplitTunnelingAclArrayOutput) Index(i pulumi.IntInput) WirelessControllerWtpProfileSplitTunnelingAclOutput {
@@ -32889,6 +42593,12 @@ func (i WirelessControllerWtpRadio1Args) ToWirelessControllerWtpRadio1OutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpRadio1Output)
 }
 
+func (i WirelessControllerWtpRadio1Args) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpRadio1] {
+	return pulumix.Output[WirelessControllerWtpRadio1]{
+		OutputState: i.ToWirelessControllerWtpRadio1OutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WirelessControllerWtpRadio1Args) ToWirelessControllerWtpRadio1PtrOutput() WirelessControllerWtpRadio1PtrOutput {
 	return i.ToWirelessControllerWtpRadio1PtrOutputWithContext(context.Background())
 }
@@ -32930,6 +42640,12 @@ func (i *wirelessControllerWtpRadio1PtrType) ToWirelessControllerWtpRadio1PtrOut
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpRadio1PtrOutput)
 }
 
+func (i *wirelessControllerWtpRadio1PtrType) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerWtpRadio1] {
+	return pulumix.Output[*WirelessControllerWtpRadio1]{
+		OutputState: i.ToWirelessControllerWtpRadio1PtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWtpRadio1Output struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpRadio1Output) ElementType() reflect.Type {
@@ -32952,6 +42668,12 @@ func (o WirelessControllerWtpRadio1Output) ToWirelessControllerWtpRadio1PtrOutpu
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WirelessControllerWtpRadio1) *WirelessControllerWtpRadio1 {
 		return &v
 	}).(WirelessControllerWtpRadio1PtrOutput)
+}
+
+func (o WirelessControllerWtpRadio1Output) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpRadio1] {
+	return pulumix.Output[WirelessControllerWtpRadio1]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpRadio1Output) AutoPowerHigh() pulumi.IntPtrOutput {
@@ -33042,6 +42764,12 @@ func (o WirelessControllerWtpRadio1PtrOutput) ToWirelessControllerWtpRadio1PtrOu
 
 func (o WirelessControllerWtpRadio1PtrOutput) ToWirelessControllerWtpRadio1PtrOutputWithContext(ctx context.Context) WirelessControllerWtpRadio1PtrOutput {
 	return o
+}
+
+func (o WirelessControllerWtpRadio1PtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerWtpRadio1] {
+	return pulumix.Output[*WirelessControllerWtpRadio1]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpRadio1PtrOutput) Elem() WirelessControllerWtpRadio1Output {
@@ -33256,6 +42984,12 @@ func (i WirelessControllerWtpRadio1ChannelArgs) ToWirelessControllerWtpRadio1Cha
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpRadio1ChannelOutput)
 }
 
+func (i WirelessControllerWtpRadio1ChannelArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpRadio1Channel] {
+	return pulumix.Output[WirelessControllerWtpRadio1Channel]{
+		OutputState: i.ToWirelessControllerWtpRadio1ChannelOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerWtpRadio1ChannelArrayInput is an input type that accepts WirelessControllerWtpRadio1ChannelArray and WirelessControllerWtpRadio1ChannelArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerWtpRadio1ChannelArrayInput` via:
 //
@@ -33281,6 +43015,12 @@ func (i WirelessControllerWtpRadio1ChannelArray) ToWirelessControllerWtpRadio1Ch
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpRadio1ChannelArrayOutput)
 }
 
+func (i WirelessControllerWtpRadio1ChannelArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpRadio1Channel] {
+	return pulumix.Output[[]WirelessControllerWtpRadio1Channel]{
+		OutputState: i.ToWirelessControllerWtpRadio1ChannelArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWtpRadio1ChannelOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpRadio1ChannelOutput) ElementType() reflect.Type {
@@ -33293,6 +43033,12 @@ func (o WirelessControllerWtpRadio1ChannelOutput) ToWirelessControllerWtpRadio1C
 
 func (o WirelessControllerWtpRadio1ChannelOutput) ToWirelessControllerWtpRadio1ChannelOutputWithContext(ctx context.Context) WirelessControllerWtpRadio1ChannelOutput {
 	return o
+}
+
+func (o WirelessControllerWtpRadio1ChannelOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpRadio1Channel] {
+	return pulumix.Output[WirelessControllerWtpRadio1Channel]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpRadio1ChannelOutput) Chan() pulumi.StringPtrOutput {
@@ -33311,6 +43057,12 @@ func (o WirelessControllerWtpRadio1ChannelArrayOutput) ToWirelessControllerWtpRa
 
 func (o WirelessControllerWtpRadio1ChannelArrayOutput) ToWirelessControllerWtpRadio1ChannelArrayOutputWithContext(ctx context.Context) WirelessControllerWtpRadio1ChannelArrayOutput {
 	return o
+}
+
+func (o WirelessControllerWtpRadio1ChannelArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpRadio1Channel] {
+	return pulumix.Output[[]WirelessControllerWtpRadio1Channel]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpRadio1ChannelArrayOutput) Index(i pulumi.IntInput) WirelessControllerWtpRadio1ChannelOutput {
@@ -33350,6 +43102,12 @@ func (i WirelessControllerWtpRadio1VapArgs) ToWirelessControllerWtpRadio1VapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpRadio1VapOutput)
 }
 
+func (i WirelessControllerWtpRadio1VapArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpRadio1Vap] {
+	return pulumix.Output[WirelessControllerWtpRadio1Vap]{
+		OutputState: i.ToWirelessControllerWtpRadio1VapOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerWtpRadio1VapArrayInput is an input type that accepts WirelessControllerWtpRadio1VapArray and WirelessControllerWtpRadio1VapArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerWtpRadio1VapArrayInput` via:
 //
@@ -33375,6 +43133,12 @@ func (i WirelessControllerWtpRadio1VapArray) ToWirelessControllerWtpRadio1VapArr
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpRadio1VapArrayOutput)
 }
 
+func (i WirelessControllerWtpRadio1VapArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpRadio1Vap] {
+	return pulumix.Output[[]WirelessControllerWtpRadio1Vap]{
+		OutputState: i.ToWirelessControllerWtpRadio1VapArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWtpRadio1VapOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpRadio1VapOutput) ElementType() reflect.Type {
@@ -33387,6 +43151,12 @@ func (o WirelessControllerWtpRadio1VapOutput) ToWirelessControllerWtpRadio1VapOu
 
 func (o WirelessControllerWtpRadio1VapOutput) ToWirelessControllerWtpRadio1VapOutputWithContext(ctx context.Context) WirelessControllerWtpRadio1VapOutput {
 	return o
+}
+
+func (o WirelessControllerWtpRadio1VapOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpRadio1Vap] {
+	return pulumix.Output[WirelessControllerWtpRadio1Vap]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpRadio1VapOutput) Name() pulumi.StringPtrOutput {
@@ -33405,6 +43175,12 @@ func (o WirelessControllerWtpRadio1VapArrayOutput) ToWirelessControllerWtpRadio1
 
 func (o WirelessControllerWtpRadio1VapArrayOutput) ToWirelessControllerWtpRadio1VapArrayOutputWithContext(ctx context.Context) WirelessControllerWtpRadio1VapArrayOutput {
 	return o
+}
+
+func (o WirelessControllerWtpRadio1VapArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpRadio1Vap] {
+	return pulumix.Output[[]WirelessControllerWtpRadio1Vap]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpRadio1VapArrayOutput) Index(i pulumi.IntInput) WirelessControllerWtpRadio1VapOutput {
@@ -33480,6 +43256,12 @@ func (i WirelessControllerWtpRadio2Args) ToWirelessControllerWtpRadio2OutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpRadio2Output)
 }
 
+func (i WirelessControllerWtpRadio2Args) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpRadio2] {
+	return pulumix.Output[WirelessControllerWtpRadio2]{
+		OutputState: i.ToWirelessControllerWtpRadio2OutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WirelessControllerWtpRadio2Args) ToWirelessControllerWtpRadio2PtrOutput() WirelessControllerWtpRadio2PtrOutput {
 	return i.ToWirelessControllerWtpRadio2PtrOutputWithContext(context.Background())
 }
@@ -33521,6 +43303,12 @@ func (i *wirelessControllerWtpRadio2PtrType) ToWirelessControllerWtpRadio2PtrOut
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpRadio2PtrOutput)
 }
 
+func (i *wirelessControllerWtpRadio2PtrType) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerWtpRadio2] {
+	return pulumix.Output[*WirelessControllerWtpRadio2]{
+		OutputState: i.ToWirelessControllerWtpRadio2PtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWtpRadio2Output struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpRadio2Output) ElementType() reflect.Type {
@@ -33543,6 +43331,12 @@ func (o WirelessControllerWtpRadio2Output) ToWirelessControllerWtpRadio2PtrOutpu
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WirelessControllerWtpRadio2) *WirelessControllerWtpRadio2 {
 		return &v
 	}).(WirelessControllerWtpRadio2PtrOutput)
+}
+
+func (o WirelessControllerWtpRadio2Output) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpRadio2] {
+	return pulumix.Output[WirelessControllerWtpRadio2]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpRadio2Output) AutoPowerHigh() pulumi.IntPtrOutput {
@@ -33633,6 +43427,12 @@ func (o WirelessControllerWtpRadio2PtrOutput) ToWirelessControllerWtpRadio2PtrOu
 
 func (o WirelessControllerWtpRadio2PtrOutput) ToWirelessControllerWtpRadio2PtrOutputWithContext(ctx context.Context) WirelessControllerWtpRadio2PtrOutput {
 	return o
+}
+
+func (o WirelessControllerWtpRadio2PtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerWtpRadio2] {
+	return pulumix.Output[*WirelessControllerWtpRadio2]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpRadio2PtrOutput) Elem() WirelessControllerWtpRadio2Output {
@@ -33847,6 +43647,12 @@ func (i WirelessControllerWtpRadio2ChannelArgs) ToWirelessControllerWtpRadio2Cha
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpRadio2ChannelOutput)
 }
 
+func (i WirelessControllerWtpRadio2ChannelArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpRadio2Channel] {
+	return pulumix.Output[WirelessControllerWtpRadio2Channel]{
+		OutputState: i.ToWirelessControllerWtpRadio2ChannelOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerWtpRadio2ChannelArrayInput is an input type that accepts WirelessControllerWtpRadio2ChannelArray and WirelessControllerWtpRadio2ChannelArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerWtpRadio2ChannelArrayInput` via:
 //
@@ -33872,6 +43678,12 @@ func (i WirelessControllerWtpRadio2ChannelArray) ToWirelessControllerWtpRadio2Ch
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpRadio2ChannelArrayOutput)
 }
 
+func (i WirelessControllerWtpRadio2ChannelArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpRadio2Channel] {
+	return pulumix.Output[[]WirelessControllerWtpRadio2Channel]{
+		OutputState: i.ToWirelessControllerWtpRadio2ChannelArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWtpRadio2ChannelOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpRadio2ChannelOutput) ElementType() reflect.Type {
@@ -33884,6 +43696,12 @@ func (o WirelessControllerWtpRadio2ChannelOutput) ToWirelessControllerWtpRadio2C
 
 func (o WirelessControllerWtpRadio2ChannelOutput) ToWirelessControllerWtpRadio2ChannelOutputWithContext(ctx context.Context) WirelessControllerWtpRadio2ChannelOutput {
 	return o
+}
+
+func (o WirelessControllerWtpRadio2ChannelOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpRadio2Channel] {
+	return pulumix.Output[WirelessControllerWtpRadio2Channel]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpRadio2ChannelOutput) Chan() pulumi.StringPtrOutput {
@@ -33902,6 +43720,12 @@ func (o WirelessControllerWtpRadio2ChannelArrayOutput) ToWirelessControllerWtpRa
 
 func (o WirelessControllerWtpRadio2ChannelArrayOutput) ToWirelessControllerWtpRadio2ChannelArrayOutputWithContext(ctx context.Context) WirelessControllerWtpRadio2ChannelArrayOutput {
 	return o
+}
+
+func (o WirelessControllerWtpRadio2ChannelArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpRadio2Channel] {
+	return pulumix.Output[[]WirelessControllerWtpRadio2Channel]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpRadio2ChannelArrayOutput) Index(i pulumi.IntInput) WirelessControllerWtpRadio2ChannelOutput {
@@ -33941,6 +43765,12 @@ func (i WirelessControllerWtpRadio2VapArgs) ToWirelessControllerWtpRadio2VapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpRadio2VapOutput)
 }
 
+func (i WirelessControllerWtpRadio2VapArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpRadio2Vap] {
+	return pulumix.Output[WirelessControllerWtpRadio2Vap]{
+		OutputState: i.ToWirelessControllerWtpRadio2VapOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerWtpRadio2VapArrayInput is an input type that accepts WirelessControllerWtpRadio2VapArray and WirelessControllerWtpRadio2VapArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerWtpRadio2VapArrayInput` via:
 //
@@ -33966,6 +43796,12 @@ func (i WirelessControllerWtpRadio2VapArray) ToWirelessControllerWtpRadio2VapArr
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpRadio2VapArrayOutput)
 }
 
+func (i WirelessControllerWtpRadio2VapArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpRadio2Vap] {
+	return pulumix.Output[[]WirelessControllerWtpRadio2Vap]{
+		OutputState: i.ToWirelessControllerWtpRadio2VapArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWtpRadio2VapOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpRadio2VapOutput) ElementType() reflect.Type {
@@ -33978,6 +43814,12 @@ func (o WirelessControllerWtpRadio2VapOutput) ToWirelessControllerWtpRadio2VapOu
 
 func (o WirelessControllerWtpRadio2VapOutput) ToWirelessControllerWtpRadio2VapOutputWithContext(ctx context.Context) WirelessControllerWtpRadio2VapOutput {
 	return o
+}
+
+func (o WirelessControllerWtpRadio2VapOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpRadio2Vap] {
+	return pulumix.Output[WirelessControllerWtpRadio2Vap]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpRadio2VapOutput) Name() pulumi.StringPtrOutput {
@@ -33996,6 +43838,12 @@ func (o WirelessControllerWtpRadio2VapArrayOutput) ToWirelessControllerWtpRadio2
 
 func (o WirelessControllerWtpRadio2VapArrayOutput) ToWirelessControllerWtpRadio2VapArrayOutputWithContext(ctx context.Context) WirelessControllerWtpRadio2VapArrayOutput {
 	return o
+}
+
+func (o WirelessControllerWtpRadio2VapArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpRadio2Vap] {
+	return pulumix.Output[[]WirelessControllerWtpRadio2Vap]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpRadio2VapArrayOutput) Index(i pulumi.IntInput) WirelessControllerWtpRadio2VapOutput {
@@ -34069,6 +43917,12 @@ func (i WirelessControllerWtpRadio3Args) ToWirelessControllerWtpRadio3OutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpRadio3Output)
 }
 
+func (i WirelessControllerWtpRadio3Args) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpRadio3] {
+	return pulumix.Output[WirelessControllerWtpRadio3]{
+		OutputState: i.ToWirelessControllerWtpRadio3OutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WirelessControllerWtpRadio3Args) ToWirelessControllerWtpRadio3PtrOutput() WirelessControllerWtpRadio3PtrOutput {
 	return i.ToWirelessControllerWtpRadio3PtrOutputWithContext(context.Background())
 }
@@ -34110,6 +43964,12 @@ func (i *wirelessControllerWtpRadio3PtrType) ToWirelessControllerWtpRadio3PtrOut
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpRadio3PtrOutput)
 }
 
+func (i *wirelessControllerWtpRadio3PtrType) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerWtpRadio3] {
+	return pulumix.Output[*WirelessControllerWtpRadio3]{
+		OutputState: i.ToWirelessControllerWtpRadio3PtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWtpRadio3Output struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpRadio3Output) ElementType() reflect.Type {
@@ -34132,6 +43992,12 @@ func (o WirelessControllerWtpRadio3Output) ToWirelessControllerWtpRadio3PtrOutpu
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WirelessControllerWtpRadio3) *WirelessControllerWtpRadio3 {
 		return &v
 	}).(WirelessControllerWtpRadio3PtrOutput)
+}
+
+func (o WirelessControllerWtpRadio3Output) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpRadio3] {
+	return pulumix.Output[WirelessControllerWtpRadio3]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpRadio3Output) AutoPowerHigh() pulumi.IntPtrOutput {
@@ -34218,6 +44084,12 @@ func (o WirelessControllerWtpRadio3PtrOutput) ToWirelessControllerWtpRadio3PtrOu
 
 func (o WirelessControllerWtpRadio3PtrOutput) ToWirelessControllerWtpRadio3PtrOutputWithContext(ctx context.Context) WirelessControllerWtpRadio3PtrOutput {
 	return o
+}
+
+func (o WirelessControllerWtpRadio3PtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerWtpRadio3] {
+	return pulumix.Output[*WirelessControllerWtpRadio3]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpRadio3PtrOutput) Elem() WirelessControllerWtpRadio3Output {
@@ -34423,6 +44295,12 @@ func (i WirelessControllerWtpRadio3ChannelArgs) ToWirelessControllerWtpRadio3Cha
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpRadio3ChannelOutput)
 }
 
+func (i WirelessControllerWtpRadio3ChannelArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpRadio3Channel] {
+	return pulumix.Output[WirelessControllerWtpRadio3Channel]{
+		OutputState: i.ToWirelessControllerWtpRadio3ChannelOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerWtpRadio3ChannelArrayInput is an input type that accepts WirelessControllerWtpRadio3ChannelArray and WirelessControllerWtpRadio3ChannelArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerWtpRadio3ChannelArrayInput` via:
 //
@@ -34448,6 +44326,12 @@ func (i WirelessControllerWtpRadio3ChannelArray) ToWirelessControllerWtpRadio3Ch
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpRadio3ChannelArrayOutput)
 }
 
+func (i WirelessControllerWtpRadio3ChannelArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpRadio3Channel] {
+	return pulumix.Output[[]WirelessControllerWtpRadio3Channel]{
+		OutputState: i.ToWirelessControllerWtpRadio3ChannelArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWtpRadio3ChannelOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpRadio3ChannelOutput) ElementType() reflect.Type {
@@ -34460,6 +44344,12 @@ func (o WirelessControllerWtpRadio3ChannelOutput) ToWirelessControllerWtpRadio3C
 
 func (o WirelessControllerWtpRadio3ChannelOutput) ToWirelessControllerWtpRadio3ChannelOutputWithContext(ctx context.Context) WirelessControllerWtpRadio3ChannelOutput {
 	return o
+}
+
+func (o WirelessControllerWtpRadio3ChannelOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpRadio3Channel] {
+	return pulumix.Output[WirelessControllerWtpRadio3Channel]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpRadio3ChannelOutput) Chan() pulumi.StringPtrOutput {
@@ -34478,6 +44368,12 @@ func (o WirelessControllerWtpRadio3ChannelArrayOutput) ToWirelessControllerWtpRa
 
 func (o WirelessControllerWtpRadio3ChannelArrayOutput) ToWirelessControllerWtpRadio3ChannelArrayOutputWithContext(ctx context.Context) WirelessControllerWtpRadio3ChannelArrayOutput {
 	return o
+}
+
+func (o WirelessControllerWtpRadio3ChannelArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpRadio3Channel] {
+	return pulumix.Output[[]WirelessControllerWtpRadio3Channel]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpRadio3ChannelArrayOutput) Index(i pulumi.IntInput) WirelessControllerWtpRadio3ChannelOutput {
@@ -34517,6 +44413,12 @@ func (i WirelessControllerWtpRadio3VapArgs) ToWirelessControllerWtpRadio3VapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpRadio3VapOutput)
 }
 
+func (i WirelessControllerWtpRadio3VapArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpRadio3Vap] {
+	return pulumix.Output[WirelessControllerWtpRadio3Vap]{
+		OutputState: i.ToWirelessControllerWtpRadio3VapOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerWtpRadio3VapArrayInput is an input type that accepts WirelessControllerWtpRadio3VapArray and WirelessControllerWtpRadio3VapArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerWtpRadio3VapArrayInput` via:
 //
@@ -34542,6 +44444,12 @@ func (i WirelessControllerWtpRadio3VapArray) ToWirelessControllerWtpRadio3VapArr
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpRadio3VapArrayOutput)
 }
 
+func (i WirelessControllerWtpRadio3VapArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpRadio3Vap] {
+	return pulumix.Output[[]WirelessControllerWtpRadio3Vap]{
+		OutputState: i.ToWirelessControllerWtpRadio3VapArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWtpRadio3VapOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpRadio3VapOutput) ElementType() reflect.Type {
@@ -34554,6 +44462,12 @@ func (o WirelessControllerWtpRadio3VapOutput) ToWirelessControllerWtpRadio3VapOu
 
 func (o WirelessControllerWtpRadio3VapOutput) ToWirelessControllerWtpRadio3VapOutputWithContext(ctx context.Context) WirelessControllerWtpRadio3VapOutput {
 	return o
+}
+
+func (o WirelessControllerWtpRadio3VapOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpRadio3Vap] {
+	return pulumix.Output[WirelessControllerWtpRadio3Vap]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpRadio3VapOutput) Name() pulumi.StringPtrOutput {
@@ -34572,6 +44486,12 @@ func (o WirelessControllerWtpRadio3VapArrayOutput) ToWirelessControllerWtpRadio3
 
 func (o WirelessControllerWtpRadio3VapArrayOutput) ToWirelessControllerWtpRadio3VapArrayOutputWithContext(ctx context.Context) WirelessControllerWtpRadio3VapArrayOutput {
 	return o
+}
+
+func (o WirelessControllerWtpRadio3VapArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpRadio3Vap] {
+	return pulumix.Output[[]WirelessControllerWtpRadio3Vap]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpRadio3VapArrayOutput) Index(i pulumi.IntInput) WirelessControllerWtpRadio3VapOutput {
@@ -34645,6 +44565,12 @@ func (i WirelessControllerWtpRadio4Args) ToWirelessControllerWtpRadio4OutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpRadio4Output)
 }
 
+func (i WirelessControllerWtpRadio4Args) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpRadio4] {
+	return pulumix.Output[WirelessControllerWtpRadio4]{
+		OutputState: i.ToWirelessControllerWtpRadio4OutputWithContext(ctx).OutputState,
+	}
+}
+
 func (i WirelessControllerWtpRadio4Args) ToWirelessControllerWtpRadio4PtrOutput() WirelessControllerWtpRadio4PtrOutput {
 	return i.ToWirelessControllerWtpRadio4PtrOutputWithContext(context.Background())
 }
@@ -34686,6 +44612,12 @@ func (i *wirelessControllerWtpRadio4PtrType) ToWirelessControllerWtpRadio4PtrOut
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpRadio4PtrOutput)
 }
 
+func (i *wirelessControllerWtpRadio4PtrType) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerWtpRadio4] {
+	return pulumix.Output[*WirelessControllerWtpRadio4]{
+		OutputState: i.ToWirelessControllerWtpRadio4PtrOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWtpRadio4Output struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpRadio4Output) ElementType() reflect.Type {
@@ -34708,6 +44640,12 @@ func (o WirelessControllerWtpRadio4Output) ToWirelessControllerWtpRadio4PtrOutpu
 	return o.ApplyTWithContext(ctx, func(_ context.Context, v WirelessControllerWtpRadio4) *WirelessControllerWtpRadio4 {
 		return &v
 	}).(WirelessControllerWtpRadio4PtrOutput)
+}
+
+func (o WirelessControllerWtpRadio4Output) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpRadio4] {
+	return pulumix.Output[WirelessControllerWtpRadio4]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpRadio4Output) AutoPowerHigh() pulumi.IntPtrOutput {
@@ -34794,6 +44732,12 @@ func (o WirelessControllerWtpRadio4PtrOutput) ToWirelessControllerWtpRadio4PtrOu
 
 func (o WirelessControllerWtpRadio4PtrOutput) ToWirelessControllerWtpRadio4PtrOutputWithContext(ctx context.Context) WirelessControllerWtpRadio4PtrOutput {
 	return o
+}
+
+func (o WirelessControllerWtpRadio4PtrOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerWtpRadio4] {
+	return pulumix.Output[*WirelessControllerWtpRadio4]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpRadio4PtrOutput) Elem() WirelessControllerWtpRadio4Output {
@@ -34999,6 +44943,12 @@ func (i WirelessControllerWtpRadio4ChannelArgs) ToWirelessControllerWtpRadio4Cha
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpRadio4ChannelOutput)
 }
 
+func (i WirelessControllerWtpRadio4ChannelArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpRadio4Channel] {
+	return pulumix.Output[WirelessControllerWtpRadio4Channel]{
+		OutputState: i.ToWirelessControllerWtpRadio4ChannelOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerWtpRadio4ChannelArrayInput is an input type that accepts WirelessControllerWtpRadio4ChannelArray and WirelessControllerWtpRadio4ChannelArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerWtpRadio4ChannelArrayInput` via:
 //
@@ -35024,6 +44974,12 @@ func (i WirelessControllerWtpRadio4ChannelArray) ToWirelessControllerWtpRadio4Ch
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpRadio4ChannelArrayOutput)
 }
 
+func (i WirelessControllerWtpRadio4ChannelArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpRadio4Channel] {
+	return pulumix.Output[[]WirelessControllerWtpRadio4Channel]{
+		OutputState: i.ToWirelessControllerWtpRadio4ChannelArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWtpRadio4ChannelOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpRadio4ChannelOutput) ElementType() reflect.Type {
@@ -35036,6 +44992,12 @@ func (o WirelessControllerWtpRadio4ChannelOutput) ToWirelessControllerWtpRadio4C
 
 func (o WirelessControllerWtpRadio4ChannelOutput) ToWirelessControllerWtpRadio4ChannelOutputWithContext(ctx context.Context) WirelessControllerWtpRadio4ChannelOutput {
 	return o
+}
+
+func (o WirelessControllerWtpRadio4ChannelOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpRadio4Channel] {
+	return pulumix.Output[WirelessControllerWtpRadio4Channel]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpRadio4ChannelOutput) Chan() pulumi.StringPtrOutput {
@@ -35054,6 +45016,12 @@ func (o WirelessControllerWtpRadio4ChannelArrayOutput) ToWirelessControllerWtpRa
 
 func (o WirelessControllerWtpRadio4ChannelArrayOutput) ToWirelessControllerWtpRadio4ChannelArrayOutputWithContext(ctx context.Context) WirelessControllerWtpRadio4ChannelArrayOutput {
 	return o
+}
+
+func (o WirelessControllerWtpRadio4ChannelArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpRadio4Channel] {
+	return pulumix.Output[[]WirelessControllerWtpRadio4Channel]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpRadio4ChannelArrayOutput) Index(i pulumi.IntInput) WirelessControllerWtpRadio4ChannelOutput {
@@ -35093,6 +45061,12 @@ func (i WirelessControllerWtpRadio4VapArgs) ToWirelessControllerWtpRadio4VapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpRadio4VapOutput)
 }
 
+func (i WirelessControllerWtpRadio4VapArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpRadio4Vap] {
+	return pulumix.Output[WirelessControllerWtpRadio4Vap]{
+		OutputState: i.ToWirelessControllerWtpRadio4VapOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerWtpRadio4VapArrayInput is an input type that accepts WirelessControllerWtpRadio4VapArray and WirelessControllerWtpRadio4VapArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerWtpRadio4VapArrayInput` via:
 //
@@ -35118,6 +45092,12 @@ func (i WirelessControllerWtpRadio4VapArray) ToWirelessControllerWtpRadio4VapArr
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpRadio4VapArrayOutput)
 }
 
+func (i WirelessControllerWtpRadio4VapArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpRadio4Vap] {
+	return pulumix.Output[[]WirelessControllerWtpRadio4Vap]{
+		OutputState: i.ToWirelessControllerWtpRadio4VapArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWtpRadio4VapOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpRadio4VapOutput) ElementType() reflect.Type {
@@ -35130,6 +45110,12 @@ func (o WirelessControllerWtpRadio4VapOutput) ToWirelessControllerWtpRadio4VapOu
 
 func (o WirelessControllerWtpRadio4VapOutput) ToWirelessControllerWtpRadio4VapOutputWithContext(ctx context.Context) WirelessControllerWtpRadio4VapOutput {
 	return o
+}
+
+func (o WirelessControllerWtpRadio4VapOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpRadio4Vap] {
+	return pulumix.Output[WirelessControllerWtpRadio4Vap]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpRadio4VapOutput) Name() pulumi.StringPtrOutput {
@@ -35148,6 +45134,12 @@ func (o WirelessControllerWtpRadio4VapArrayOutput) ToWirelessControllerWtpRadio4
 
 func (o WirelessControllerWtpRadio4VapArrayOutput) ToWirelessControllerWtpRadio4VapArrayOutputWithContext(ctx context.Context) WirelessControllerWtpRadio4VapArrayOutput {
 	return o
+}
+
+func (o WirelessControllerWtpRadio4VapArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpRadio4Vap] {
+	return pulumix.Output[[]WirelessControllerWtpRadio4Vap]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpRadio4VapArrayOutput) Index(i pulumi.IntInput) WirelessControllerWtpRadio4VapOutput {
@@ -35189,6 +45181,12 @@ func (i WirelessControllerWtpSplitTunnelingAclArgs) ToWirelessControllerWtpSplit
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpSplitTunnelingAclOutput)
 }
 
+func (i WirelessControllerWtpSplitTunnelingAclArgs) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpSplitTunnelingAcl] {
+	return pulumix.Output[WirelessControllerWtpSplitTunnelingAcl]{
+		OutputState: i.ToWirelessControllerWtpSplitTunnelingAclOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerWtpSplitTunnelingAclArrayInput is an input type that accepts WirelessControllerWtpSplitTunnelingAclArray and WirelessControllerWtpSplitTunnelingAclArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerWtpSplitTunnelingAclArrayInput` via:
 //
@@ -35214,6 +45212,12 @@ func (i WirelessControllerWtpSplitTunnelingAclArray) ToWirelessControllerWtpSpli
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpSplitTunnelingAclArrayOutput)
 }
 
+func (i WirelessControllerWtpSplitTunnelingAclArray) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpSplitTunnelingAcl] {
+	return pulumix.Output[[]WirelessControllerWtpSplitTunnelingAcl]{
+		OutputState: i.ToWirelessControllerWtpSplitTunnelingAclArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWtpSplitTunnelingAclOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpSplitTunnelingAclOutput) ElementType() reflect.Type {
@@ -35226,6 +45230,12 @@ func (o WirelessControllerWtpSplitTunnelingAclOutput) ToWirelessControllerWtpSpl
 
 func (o WirelessControllerWtpSplitTunnelingAclOutput) ToWirelessControllerWtpSplitTunnelingAclOutputWithContext(ctx context.Context) WirelessControllerWtpSplitTunnelingAclOutput {
 	return o
+}
+
+func (o WirelessControllerWtpSplitTunnelingAclOutput) ToOutput(ctx context.Context) pulumix.Output[WirelessControllerWtpSplitTunnelingAcl] {
+	return pulumix.Output[WirelessControllerWtpSplitTunnelingAcl]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpSplitTunnelingAclOutput) DestIp() pulumi.StringPtrOutput {
@@ -35250,6 +45260,12 @@ func (o WirelessControllerWtpSplitTunnelingAclArrayOutput) ToWirelessControllerW
 	return o
 }
 
+func (o WirelessControllerWtpSplitTunnelingAclArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]WirelessControllerWtpSplitTunnelingAcl] {
+	return pulumix.Output[[]WirelessControllerWtpSplitTunnelingAcl]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o WirelessControllerWtpSplitTunnelingAclArrayOutput) Index(i pulumi.IntInput) WirelessControllerWtpSplitTunnelingAclOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WirelessControllerWtpSplitTunnelingAcl {
 		return vs[0].([]WirelessControllerWtpSplitTunnelingAcl)[vs[1].(int)]
@@ -35257,6 +45273,66 @@ func (o WirelessControllerWtpSplitTunnelingAclArrayOutput) Index(i pulumi.IntInp
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVirtualWanLinkServiceSrcInput)(nil)).Elem(), SystemVirtualWanLinkServiceSrcArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVirtualWanLinkServiceSrcArrayInput)(nil)).Elem(), SystemVirtualWanLinkServiceSrcArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVirtualWanLinkServiceUserInput)(nil)).Elem(), SystemVirtualWanLinkServiceUserArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVirtualWanLinkServiceUserArrayInput)(nil)).Elem(), SystemVirtualWanLinkServiceUserArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVirtualWanLinkZoneInput)(nil)).Elem(), SystemVirtualWanLinkZoneArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVirtualWanLinkZoneArrayInput)(nil)).Elem(), SystemVirtualWanLinkZoneArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVirtualWirePairMemberInput)(nil)).Elem(), SystemVirtualWirePairMemberArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVirtualWirePairMemberArrayInput)(nil)).Elem(), SystemVirtualWirePairMemberArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVxlanRemoteIp6Input)(nil)).Elem(), SystemVxlanRemoteIp6Args{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVxlanRemoteIp6ArrayInput)(nil)).Elem(), SystemVxlanRemoteIp6Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVxlanRemoteIpInput)(nil)).Elem(), SystemVxlanRemoteIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVxlanRemoteIpArrayInput)(nil)).Elem(), SystemVxlanRemoteIpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemZoneInterfaceInput)(nil)).Elem(), SystemZoneInterfaceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemZoneInterfaceArrayInput)(nil)).Elem(), SystemZoneInterfaceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemZoneTaggingInput)(nil)).Elem(), SystemZoneTaggingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemZoneTaggingArrayInput)(nil)).Elem(), SystemZoneTaggingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemZoneTaggingTagInput)(nil)).Elem(), SystemZoneTaggingTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemZoneTaggingTagArrayInput)(nil)).Elem(), SystemZoneTaggingTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserDeviceAccessListDeviceListInput)(nil)).Elem(), UserDeviceAccessListDeviceListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserDeviceAccessListDeviceListArrayInput)(nil)).Elem(), UserDeviceAccessListDeviceListArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserDeviceGroupMemberInput)(nil)).Elem(), UserDeviceGroupMemberArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserDeviceGroupMemberArrayInput)(nil)).Elem(), UserDeviceGroupMemberArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserDeviceGroupTaggingInput)(nil)).Elem(), UserDeviceGroupTaggingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserDeviceGroupTaggingArrayInput)(nil)).Elem(), UserDeviceGroupTaggingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserDeviceGroupTaggingTagInput)(nil)).Elem(), UserDeviceGroupTaggingTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserDeviceGroupTaggingTagArrayInput)(nil)).Elem(), UserDeviceGroupTaggingTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserDeviceTaggingInput)(nil)).Elem(), UserDeviceTaggingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserDeviceTaggingArrayInput)(nil)).Elem(), UserDeviceTaggingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserDeviceTaggingTagInput)(nil)).Elem(), UserDeviceTaggingTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserDeviceTaggingTagArrayInput)(nil)).Elem(), UserDeviceTaggingTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserDomainControllerExtraServerInput)(nil)).Elem(), UserDomainControllerExtraServerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserDomainControllerExtraServerArrayInput)(nil)).Elem(), UserDomainControllerExtraServerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserExchangeKdcIpInput)(nil)).Elem(), UserExchangeKdcIpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserExchangeKdcIpArrayInput)(nil)).Elem(), UserExchangeKdcIpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserFssoPollingAdgrpInput)(nil)).Elem(), UserFssoPollingAdgrpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserFssoPollingAdgrpArrayInput)(nil)).Elem(), UserFssoPollingAdgrpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserGroupGuestInput)(nil)).Elem(), UserGroupGuestArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserGroupGuestArrayInput)(nil)).Elem(), UserGroupGuestArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserGroupMatchInput)(nil)).Elem(), UserGroupMatchArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserGroupMatchArrayInput)(nil)).Elem(), UserGroupMatchArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserGroupMemberInput)(nil)).Elem(), UserGroupMemberArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserGroupMemberArrayInput)(nil)).Elem(), UserGroupMemberArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserNacPolicySeverityInput)(nil)).Elem(), UserNacPolicySeverityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserNacPolicySeverityArrayInput)(nil)).Elem(), UserNacPolicySeverityArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserNacPolicySwitchGroupInput)(nil)).Elem(), UserNacPolicySwitchGroupArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserNacPolicySwitchGroupArrayInput)(nil)).Elem(), UserNacPolicySwitchGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserNacPolicySwitchScopeInput)(nil)).Elem(), UserNacPolicySwitchScopeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserNacPolicySwitchScopeArrayInput)(nil)).Elem(), UserNacPolicySwitchScopeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserPeergrpMemberInput)(nil)).Elem(), UserPeergrpMemberArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserPeergrpMemberArrayInput)(nil)).Elem(), UserPeergrpMemberArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserQuarantineTargetInput)(nil)).Elem(), UserQuarantineTargetArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserQuarantineTargetArrayInput)(nil)).Elem(), UserQuarantineTargetArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserQuarantineTargetMacInput)(nil)).Elem(), UserQuarantineTargetMacArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserQuarantineTargetMacArrayInput)(nil)).Elem(), UserQuarantineTargetMacArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserRadiusAccountingServerInput)(nil)).Elem(), UserRadiusAccountingServerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserRadiusAccountingServerArrayInput)(nil)).Elem(), UserRadiusAccountingServerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserRadiusClassInput)(nil)).Elem(), UserRadiusClassArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserRadiusClassArrayInput)(nil)).Elem(), UserRadiusClassArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserSecurityExemptListRuleInput)(nil)).Elem(), UserSecurityExemptListRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserSecurityExemptListRuleArrayInput)(nil)).Elem(), UserSecurityExemptListRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UserSecurityExemptListRuleDeviceInput)(nil)).Elem(), UserSecurityExemptListRuleDeviceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UserSecurityExemptListRuleDeviceArrayInput)(nil)).Elem(), UserSecurityExemptListRuleDeviceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*UserSecurityExemptListRuleDstaddrInput)(nil)).Elem(), UserSecurityExemptListRuleDstaddrArgs{})
@@ -35273,6 +45349,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*VideofilterProfileFortiguardCategoryFilterArrayInput)(nil)).Elem(), VideofilterProfileFortiguardCategoryFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VideofilterYoutubeChannelFilterEntryInput)(nil)).Elem(), VideofilterYoutubeChannelFilterEntryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VideofilterYoutubeChannelFilterEntryArrayInput)(nil)).Elem(), VideofilterYoutubeChannelFilterEntryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VirtualPatchProfileExemptionInput)(nil)).Elem(), VirtualPatchProfileExemptionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VirtualPatchProfileExemptionArrayInput)(nil)).Elem(), VirtualPatchProfileExemptionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VirtualPatchProfileExemptionDeviceInput)(nil)).Elem(), VirtualPatchProfileExemptionDeviceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VirtualPatchProfileExemptionDeviceArrayInput)(nil)).Elem(), VirtualPatchProfileExemptionDeviceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VirtualPatchProfileExemptionRuleInput)(nil)).Elem(), VirtualPatchProfileExemptionRuleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VirtualPatchProfileExemptionRuleArrayInput)(nil)).Elem(), VirtualPatchProfileExemptionRuleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VoipProfileMsrpInput)(nil)).Elem(), VoipProfileMsrpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VoipProfileMsrpPtrInput)(nil)).Elem(), VoipProfileMsrpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VoipProfileSccpInput)(nil)).Elem(), VoipProfileSccpArgs{})
@@ -35293,10 +45375,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecPhase1InterfaceBackupGatewayArrayInput)(nil)).Elem(), VpnIpsecPhase1InterfaceBackupGatewayArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecPhase1InterfaceCertificateInput)(nil)).Elem(), VpnIpsecPhase1InterfaceCertificateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecPhase1InterfaceCertificateArrayInput)(nil)).Elem(), VpnIpsecPhase1InterfaceCertificateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecPhase1InterfaceInternalDomainListInput)(nil)).Elem(), VpnIpsecPhase1InterfaceInternalDomainListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecPhase1InterfaceInternalDomainListArrayInput)(nil)).Elem(), VpnIpsecPhase1InterfaceInternalDomainListArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecPhase1InterfaceIpv4ExcludeRangeInput)(nil)).Elem(), VpnIpsecPhase1InterfaceIpv4ExcludeRangeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayInput)(nil)).Elem(), VpnIpsecPhase1InterfaceIpv4ExcludeRangeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecPhase1InterfaceIpv6ExcludeRangeInput)(nil)).Elem(), VpnIpsecPhase1InterfaceIpv6ExcludeRangeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecPhase1InterfaceIpv6ExcludeRangeArrayInput)(nil)).Elem(), VpnIpsecPhase1InterfaceIpv6ExcludeRangeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecPhase1InternalDomainListInput)(nil)).Elem(), VpnIpsecPhase1InternalDomainListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecPhase1InternalDomainListArrayInput)(nil)).Elem(), VpnIpsecPhase1InternalDomainListArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecPhase1Ipv4ExcludeRangeInput)(nil)).Elem(), VpnIpsecPhase1Ipv4ExcludeRangeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecPhase1Ipv4ExcludeRangeArrayInput)(nil)).Elem(), VpnIpsecPhase1Ipv4ExcludeRangeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecPhase1Ipv6ExcludeRangeInput)(nil)).Elem(), VpnIpsecPhase1Ipv6ExcludeRangeArgs{})
@@ -35617,6 +45703,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerVapVlanPoolArrayInput)(nil)).Elem(), WirelessControllerVapVlanPoolArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerWidsProfileApBgscanDisableScheduleInput)(nil)).Elem(), WirelessControllerWidsProfileApBgscanDisableScheduleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerWidsProfileApBgscanDisableScheduleArrayInput)(nil)).Elem(), WirelessControllerWidsProfileApBgscanDisableScheduleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerWidsProfileApScanChannelList2g5gInput)(nil)).Elem(), WirelessControllerWidsProfileApScanChannelList2g5gArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerWidsProfileApScanChannelList2g5gArrayInput)(nil)).Elem(), WirelessControllerWidsProfileApScanChannelList2g5gArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerWidsProfileApScanChannelList6gInput)(nil)).Elem(), WirelessControllerWidsProfileApScanChannelList6gArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerWidsProfileApScanChannelList6gArrayInput)(nil)).Elem(), WirelessControllerWidsProfileApScanChannelList6gArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerWtpGroupWtpInput)(nil)).Elem(), WirelessControllerWtpGroupWtpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerWtpGroupWtpArrayInput)(nil)).Elem(), WirelessControllerWtpGroupWtpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerWtpLanInput)(nil)).Elem(), WirelessControllerWtpLanArgs{})
@@ -35685,6 +45775,66 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerWtpRadio4VapArrayInput)(nil)).Elem(), WirelessControllerWtpRadio4VapArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerWtpSplitTunnelingAclInput)(nil)).Elem(), WirelessControllerWtpSplitTunnelingAclArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerWtpSplitTunnelingAclArrayInput)(nil)).Elem(), WirelessControllerWtpSplitTunnelingAclArray{})
+	pulumi.RegisterOutputType(SystemVirtualWanLinkServiceSrcOutput{})
+	pulumi.RegisterOutputType(SystemVirtualWanLinkServiceSrcArrayOutput{})
+	pulumi.RegisterOutputType(SystemVirtualWanLinkServiceUserOutput{})
+	pulumi.RegisterOutputType(SystemVirtualWanLinkServiceUserArrayOutput{})
+	pulumi.RegisterOutputType(SystemVirtualWanLinkZoneOutput{})
+	pulumi.RegisterOutputType(SystemVirtualWanLinkZoneArrayOutput{})
+	pulumi.RegisterOutputType(SystemVirtualWirePairMemberOutput{})
+	pulumi.RegisterOutputType(SystemVirtualWirePairMemberArrayOutput{})
+	pulumi.RegisterOutputType(SystemVxlanRemoteIp6Output{})
+	pulumi.RegisterOutputType(SystemVxlanRemoteIp6ArrayOutput{})
+	pulumi.RegisterOutputType(SystemVxlanRemoteIpOutput{})
+	pulumi.RegisterOutputType(SystemVxlanRemoteIpArrayOutput{})
+	pulumi.RegisterOutputType(SystemZoneInterfaceOutput{})
+	pulumi.RegisterOutputType(SystemZoneInterfaceArrayOutput{})
+	pulumi.RegisterOutputType(SystemZoneTaggingOutput{})
+	pulumi.RegisterOutputType(SystemZoneTaggingArrayOutput{})
+	pulumi.RegisterOutputType(SystemZoneTaggingTagOutput{})
+	pulumi.RegisterOutputType(SystemZoneTaggingTagArrayOutput{})
+	pulumi.RegisterOutputType(UserDeviceAccessListDeviceListOutput{})
+	pulumi.RegisterOutputType(UserDeviceAccessListDeviceListArrayOutput{})
+	pulumi.RegisterOutputType(UserDeviceGroupMemberOutput{})
+	pulumi.RegisterOutputType(UserDeviceGroupMemberArrayOutput{})
+	pulumi.RegisterOutputType(UserDeviceGroupTaggingOutput{})
+	pulumi.RegisterOutputType(UserDeviceGroupTaggingArrayOutput{})
+	pulumi.RegisterOutputType(UserDeviceGroupTaggingTagOutput{})
+	pulumi.RegisterOutputType(UserDeviceGroupTaggingTagArrayOutput{})
+	pulumi.RegisterOutputType(UserDeviceTaggingOutput{})
+	pulumi.RegisterOutputType(UserDeviceTaggingArrayOutput{})
+	pulumi.RegisterOutputType(UserDeviceTaggingTagOutput{})
+	pulumi.RegisterOutputType(UserDeviceTaggingTagArrayOutput{})
+	pulumi.RegisterOutputType(UserDomainControllerExtraServerOutput{})
+	pulumi.RegisterOutputType(UserDomainControllerExtraServerArrayOutput{})
+	pulumi.RegisterOutputType(UserExchangeKdcIpOutput{})
+	pulumi.RegisterOutputType(UserExchangeKdcIpArrayOutput{})
+	pulumi.RegisterOutputType(UserFssoPollingAdgrpOutput{})
+	pulumi.RegisterOutputType(UserFssoPollingAdgrpArrayOutput{})
+	pulumi.RegisterOutputType(UserGroupGuestOutput{})
+	pulumi.RegisterOutputType(UserGroupGuestArrayOutput{})
+	pulumi.RegisterOutputType(UserGroupMatchOutput{})
+	pulumi.RegisterOutputType(UserGroupMatchArrayOutput{})
+	pulumi.RegisterOutputType(UserGroupMemberOutput{})
+	pulumi.RegisterOutputType(UserGroupMemberArrayOutput{})
+	pulumi.RegisterOutputType(UserNacPolicySeverityOutput{})
+	pulumi.RegisterOutputType(UserNacPolicySeverityArrayOutput{})
+	pulumi.RegisterOutputType(UserNacPolicySwitchGroupOutput{})
+	pulumi.RegisterOutputType(UserNacPolicySwitchGroupArrayOutput{})
+	pulumi.RegisterOutputType(UserNacPolicySwitchScopeOutput{})
+	pulumi.RegisterOutputType(UserNacPolicySwitchScopeArrayOutput{})
+	pulumi.RegisterOutputType(UserPeergrpMemberOutput{})
+	pulumi.RegisterOutputType(UserPeergrpMemberArrayOutput{})
+	pulumi.RegisterOutputType(UserQuarantineTargetOutput{})
+	pulumi.RegisterOutputType(UserQuarantineTargetArrayOutput{})
+	pulumi.RegisterOutputType(UserQuarantineTargetMacOutput{})
+	pulumi.RegisterOutputType(UserQuarantineTargetMacArrayOutput{})
+	pulumi.RegisterOutputType(UserRadiusAccountingServerOutput{})
+	pulumi.RegisterOutputType(UserRadiusAccountingServerArrayOutput{})
+	pulumi.RegisterOutputType(UserRadiusClassOutput{})
+	pulumi.RegisterOutputType(UserRadiusClassArrayOutput{})
+	pulumi.RegisterOutputType(UserSecurityExemptListRuleOutput{})
+	pulumi.RegisterOutputType(UserSecurityExemptListRuleArrayOutput{})
 	pulumi.RegisterOutputType(UserSecurityExemptListRuleDeviceOutput{})
 	pulumi.RegisterOutputType(UserSecurityExemptListRuleDeviceArrayOutput{})
 	pulumi.RegisterOutputType(UserSecurityExemptListRuleDstaddrOutput{})
@@ -35701,6 +45851,12 @@ func init() {
 	pulumi.RegisterOutputType(VideofilterProfileFortiguardCategoryFilterArrayOutput{})
 	pulumi.RegisterOutputType(VideofilterYoutubeChannelFilterEntryOutput{})
 	pulumi.RegisterOutputType(VideofilterYoutubeChannelFilterEntryArrayOutput{})
+	pulumi.RegisterOutputType(VirtualPatchProfileExemptionOutput{})
+	pulumi.RegisterOutputType(VirtualPatchProfileExemptionArrayOutput{})
+	pulumi.RegisterOutputType(VirtualPatchProfileExemptionDeviceOutput{})
+	pulumi.RegisterOutputType(VirtualPatchProfileExemptionDeviceArrayOutput{})
+	pulumi.RegisterOutputType(VirtualPatchProfileExemptionRuleOutput{})
+	pulumi.RegisterOutputType(VirtualPatchProfileExemptionRuleArrayOutput{})
 	pulumi.RegisterOutputType(VoipProfileMsrpOutput{})
 	pulumi.RegisterOutputType(VoipProfileMsrpPtrOutput{})
 	pulumi.RegisterOutputType(VoipProfileSccpOutput{})
@@ -35721,10 +45877,14 @@ func init() {
 	pulumi.RegisterOutputType(VpnIpsecPhase1InterfaceBackupGatewayArrayOutput{})
 	pulumi.RegisterOutputType(VpnIpsecPhase1InterfaceCertificateOutput{})
 	pulumi.RegisterOutputType(VpnIpsecPhase1InterfaceCertificateArrayOutput{})
+	pulumi.RegisterOutputType(VpnIpsecPhase1InterfaceInternalDomainListOutput{})
+	pulumi.RegisterOutputType(VpnIpsecPhase1InterfaceInternalDomainListArrayOutput{})
 	pulumi.RegisterOutputType(VpnIpsecPhase1InterfaceIpv4ExcludeRangeOutput{})
 	pulumi.RegisterOutputType(VpnIpsecPhase1InterfaceIpv4ExcludeRangeArrayOutput{})
 	pulumi.RegisterOutputType(VpnIpsecPhase1InterfaceIpv6ExcludeRangeOutput{})
 	pulumi.RegisterOutputType(VpnIpsecPhase1InterfaceIpv6ExcludeRangeArrayOutput{})
+	pulumi.RegisterOutputType(VpnIpsecPhase1InternalDomainListOutput{})
+	pulumi.RegisterOutputType(VpnIpsecPhase1InternalDomainListArrayOutput{})
 	pulumi.RegisterOutputType(VpnIpsecPhase1Ipv4ExcludeRangeOutput{})
 	pulumi.RegisterOutputType(VpnIpsecPhase1Ipv4ExcludeRangeArrayOutput{})
 	pulumi.RegisterOutputType(VpnIpsecPhase1Ipv6ExcludeRangeOutput{})
@@ -36045,6 +46205,10 @@ func init() {
 	pulumi.RegisterOutputType(WirelessControllerVapVlanPoolArrayOutput{})
 	pulumi.RegisterOutputType(WirelessControllerWidsProfileApBgscanDisableScheduleOutput{})
 	pulumi.RegisterOutputType(WirelessControllerWidsProfileApBgscanDisableScheduleArrayOutput{})
+	pulumi.RegisterOutputType(WirelessControllerWidsProfileApScanChannelList2g5gOutput{})
+	pulumi.RegisterOutputType(WirelessControllerWidsProfileApScanChannelList2g5gArrayOutput{})
+	pulumi.RegisterOutputType(WirelessControllerWidsProfileApScanChannelList6gOutput{})
+	pulumi.RegisterOutputType(WirelessControllerWidsProfileApScanChannelList6gArrayOutput{})
 	pulumi.RegisterOutputType(WirelessControllerWtpGroupWtpOutput{})
 	pulumi.RegisterOutputType(WirelessControllerWtpGroupWtpArrayOutput{})
 	pulumi.RegisterOutputType(WirelessControllerWtpLanOutput{})

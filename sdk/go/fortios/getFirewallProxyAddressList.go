@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetFirewallProxyAddressList(ctx *pulumi.Context, args *GetFirewallProxyAddressListArgs, opts ...pulumi.InvokeOption) (*GetFirewallProxyAddressListResult, error) {
@@ -72,6 +73,12 @@ func (o GetFirewallProxyAddressListResultOutput) ToGetFirewallProxyAddressListRe
 
 func (o GetFirewallProxyAddressListResultOutput) ToGetFirewallProxyAddressListResultOutputWithContext(ctx context.Context) GetFirewallProxyAddressListResultOutput {
 	return o
+}
+
+func (o GetFirewallProxyAddressListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetFirewallProxyAddressListResult] {
+	return pulumix.Output[GetFirewallProxyAddressListResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetFirewallProxyAddressListResultOutput) Filter() pulumi.StringPtrOutput {

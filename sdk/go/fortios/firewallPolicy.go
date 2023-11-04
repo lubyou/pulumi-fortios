@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallPolicy struct {
@@ -29,6 +30,7 @@ type FirewallPolicy struct {
 	BlockNotification               pulumi.StringOutput                                     `pulumi:"blockNotification"`
 	CaptivePortalExempt             pulumi.StringOutput                                     `pulumi:"captivePortalExempt"`
 	CapturePacket                   pulumi.StringOutput                                     `pulumi:"capturePacket"`
+	CasbProfile                     pulumi.StringPtrOutput                                  `pulumi:"casbProfile"`
 	CifsProfile                     pulumi.StringPtrOutput                                  `pulumi:"cifsProfile"`
 	Comments                        pulumi.StringPtrOutput                                  `pulumi:"comments"`
 	CustomLogFields                 FirewallPolicyCustomLogFieldArrayOutput                 `pulumi:"customLogFields"`
@@ -184,6 +186,7 @@ type FirewallPolicy struct {
 	Uuid                            pulumi.StringOutput                                     `pulumi:"uuid"`
 	Vdomparam                       pulumi.StringPtrOutput                                  `pulumi:"vdomparam"`
 	VideofilterProfile              pulumi.StringPtrOutput                                  `pulumi:"videofilterProfile"`
+	VirtualPatchProfile             pulumi.StringPtrOutput                                  `pulumi:"virtualPatchProfile"`
 	VlanCosFwd                      pulumi.IntOutput                                        `pulumi:"vlanCosFwd"`
 	VlanCosRev                      pulumi.IntOutput                                        `pulumi:"vlanCosRev"`
 	VlanFilter                      pulumi.StringPtrOutput                                  `pulumi:"vlanFilter"`
@@ -261,6 +264,7 @@ type firewallPolicyState struct {
 	BlockNotification               *string                                        `pulumi:"blockNotification"`
 	CaptivePortalExempt             *string                                        `pulumi:"captivePortalExempt"`
 	CapturePacket                   *string                                        `pulumi:"capturePacket"`
+	CasbProfile                     *string                                        `pulumi:"casbProfile"`
 	CifsProfile                     *string                                        `pulumi:"cifsProfile"`
 	Comments                        *string                                        `pulumi:"comments"`
 	CustomLogFields                 []FirewallPolicyCustomLogField                 `pulumi:"customLogFields"`
@@ -416,6 +420,7 @@ type firewallPolicyState struct {
 	Uuid                            *string                                        `pulumi:"uuid"`
 	Vdomparam                       *string                                        `pulumi:"vdomparam"`
 	VideofilterProfile              *string                                        `pulumi:"videofilterProfile"`
+	VirtualPatchProfile             *string                                        `pulumi:"virtualPatchProfile"`
 	VlanCosFwd                      *int                                           `pulumi:"vlanCosFwd"`
 	VlanCosRev                      *int                                           `pulumi:"vlanCosRev"`
 	VlanFilter                      *string                                        `pulumi:"vlanFilter"`
@@ -458,6 +463,7 @@ type FirewallPolicyState struct {
 	BlockNotification               pulumi.StringPtrInput
 	CaptivePortalExempt             pulumi.StringPtrInput
 	CapturePacket                   pulumi.StringPtrInput
+	CasbProfile                     pulumi.StringPtrInput
 	CifsProfile                     pulumi.StringPtrInput
 	Comments                        pulumi.StringPtrInput
 	CustomLogFields                 FirewallPolicyCustomLogFieldArrayInput
@@ -613,6 +619,7 @@ type FirewallPolicyState struct {
 	Uuid                            pulumi.StringPtrInput
 	Vdomparam                       pulumi.StringPtrInput
 	VideofilterProfile              pulumi.StringPtrInput
+	VirtualPatchProfile             pulumi.StringPtrInput
 	VlanCosFwd                      pulumi.IntPtrInput
 	VlanCosRev                      pulumi.IntPtrInput
 	VlanFilter                      pulumi.StringPtrInput
@@ -659,6 +666,7 @@ type firewallPolicyArgs struct {
 	BlockNotification               *string                                        `pulumi:"blockNotification"`
 	CaptivePortalExempt             *string                                        `pulumi:"captivePortalExempt"`
 	CapturePacket                   *string                                        `pulumi:"capturePacket"`
+	CasbProfile                     *string                                        `pulumi:"casbProfile"`
 	CifsProfile                     *string                                        `pulumi:"cifsProfile"`
 	Comments                        *string                                        `pulumi:"comments"`
 	CustomLogFields                 []FirewallPolicyCustomLogField                 `pulumi:"customLogFields"`
@@ -814,6 +822,7 @@ type firewallPolicyArgs struct {
 	Uuid                            *string                                        `pulumi:"uuid"`
 	Vdomparam                       *string                                        `pulumi:"vdomparam"`
 	VideofilterProfile              *string                                        `pulumi:"videofilterProfile"`
+	VirtualPatchProfile             *string                                        `pulumi:"virtualPatchProfile"`
 	VlanCosFwd                      *int                                           `pulumi:"vlanCosFwd"`
 	VlanCosRev                      *int                                           `pulumi:"vlanCosRev"`
 	VlanFilter                      *string                                        `pulumi:"vlanFilter"`
@@ -857,6 +866,7 @@ type FirewallPolicyArgs struct {
 	BlockNotification               pulumi.StringPtrInput
 	CaptivePortalExempt             pulumi.StringPtrInput
 	CapturePacket                   pulumi.StringPtrInput
+	CasbProfile                     pulumi.StringPtrInput
 	CifsProfile                     pulumi.StringPtrInput
 	Comments                        pulumi.StringPtrInput
 	CustomLogFields                 FirewallPolicyCustomLogFieldArrayInput
@@ -1012,6 +1022,7 @@ type FirewallPolicyArgs struct {
 	Uuid                            pulumi.StringPtrInput
 	Vdomparam                       pulumi.StringPtrInput
 	VideofilterProfile              pulumi.StringPtrInput
+	VirtualPatchProfile             pulumi.StringPtrInput
 	VlanCosFwd                      pulumi.IntPtrInput
 	VlanCosRev                      pulumi.IntPtrInput
 	VlanFilter                      pulumi.StringPtrInput
@@ -1062,6 +1073,12 @@ func (i *FirewallPolicy) ToFirewallPolicyOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallPolicyOutput)
 }
 
+func (i *FirewallPolicy) ToOutput(ctx context.Context) pulumix.Output[*FirewallPolicy] {
+	return pulumix.Output[*FirewallPolicy]{
+		OutputState: i.ToFirewallPolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallPolicyArrayInput is an input type that accepts FirewallPolicyArray and FirewallPolicyArrayOutput values.
 // You can construct a concrete instance of `FirewallPolicyArrayInput` via:
 //
@@ -1085,6 +1102,12 @@ func (i FirewallPolicyArray) ToFirewallPolicyArrayOutput() FirewallPolicyArrayOu
 
 func (i FirewallPolicyArray) ToFirewallPolicyArrayOutputWithContext(ctx context.Context) FirewallPolicyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallPolicyArrayOutput)
+}
+
+func (i FirewallPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallPolicy] {
+	return pulumix.Output[[]*FirewallPolicy]{
+		OutputState: i.ToFirewallPolicyArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallPolicyMapInput is an input type that accepts FirewallPolicyMap and FirewallPolicyMapOutput values.
@@ -1112,6 +1135,12 @@ func (i FirewallPolicyMap) ToFirewallPolicyMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallPolicyMapOutput)
 }
 
+func (i FirewallPolicyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallPolicy] {
+	return pulumix.Output[map[string]*FirewallPolicy]{
+		OutputState: i.ToFirewallPolicyMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallPolicyOutput struct{ *pulumi.OutputState }
 
 func (FirewallPolicyOutput) ElementType() reflect.Type {
@@ -1124,6 +1153,12 @@ func (o FirewallPolicyOutput) ToFirewallPolicyOutput() FirewallPolicyOutput {
 
 func (o FirewallPolicyOutput) ToFirewallPolicyOutputWithContext(ctx context.Context) FirewallPolicyOutput {
 	return o
+}
+
+func (o FirewallPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallPolicy] {
+	return pulumix.Output[*FirewallPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallPolicyOutput) Action() pulumi.StringOutput {
@@ -1180,6 +1215,10 @@ func (o FirewallPolicyOutput) CaptivePortalExempt() pulumi.StringOutput {
 
 func (o FirewallPolicyOutput) CapturePacket() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallPolicy) pulumi.StringOutput { return v.CapturePacket }).(pulumi.StringOutput)
+}
+
+func (o FirewallPolicyOutput) CasbProfile() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallPolicy) pulumi.StringPtrOutput { return v.CasbProfile }).(pulumi.StringPtrOutput)
 }
 
 func (o FirewallPolicyOutput) CifsProfile() pulumi.StringPtrOutput {
@@ -1832,6 +1871,10 @@ func (o FirewallPolicyOutput) VideofilterProfile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FirewallPolicy) pulumi.StringPtrOutput { return v.VideofilterProfile }).(pulumi.StringPtrOutput)
 }
 
+func (o FirewallPolicyOutput) VirtualPatchProfile() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallPolicy) pulumi.StringPtrOutput { return v.VirtualPatchProfile }).(pulumi.StringPtrOutput)
+}
+
 func (o FirewallPolicyOutput) VlanCosFwd() pulumi.IntOutput {
 	return o.ApplyT(func(v *FirewallPolicy) pulumi.IntOutput { return v.VlanCosFwd }).(pulumi.IntOutput)
 }
@@ -1946,6 +1989,12 @@ func (o FirewallPolicyArrayOutput) ToFirewallPolicyArrayOutputWithContext(ctx co
 	return o
 }
 
+func (o FirewallPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallPolicy] {
+	return pulumix.Output[[]*FirewallPolicy]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallPolicyArrayOutput) Index(i pulumi.IntInput) FirewallPolicyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallPolicy {
 		return vs[0].([]*FirewallPolicy)[vs[1].(int)]
@@ -1964,6 +2013,12 @@ func (o FirewallPolicyMapOutput) ToFirewallPolicyMapOutput() FirewallPolicyMapOu
 
 func (o FirewallPolicyMapOutput) ToFirewallPolicyMapOutputWithContext(ctx context.Context) FirewallPolicyMapOutput {
 	return o
+}
+
+func (o FirewallPolicyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallPolicy] {
+	return pulumix.Output[map[string]*FirewallPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallPolicyMapOutput) MapIndex(k pulumi.StringInput) FirewallPolicyOutput {

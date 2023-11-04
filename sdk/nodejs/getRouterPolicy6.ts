@@ -33,6 +33,7 @@ export interface GetRouterPolicy6Result {
     readonly dstNegate: string;
     readonly dstaddrs: outputs.GetRouterPolicy6Dstaddr[];
     readonly endPort: number;
+    readonly endSourcePort: number;
     readonly gateway: string;
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -49,6 +50,7 @@ export interface GetRouterPolicy6Result {
     readonly srcNegate: string;
     readonly srcaddrs: outputs.GetRouterPolicy6Srcaddr[];
     readonly startPort: number;
+    readonly startSourcePort: number;
     readonly status: string;
     readonly tos: string;
     readonly tosMask: string;

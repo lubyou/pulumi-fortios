@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemAlias struct {
@@ -100,6 +101,12 @@ func (i *SystemAlias) ToSystemAliasOutputWithContext(ctx context.Context) System
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAliasOutput)
 }
 
+func (i *SystemAlias) ToOutput(ctx context.Context) pulumix.Output[*SystemAlias] {
+	return pulumix.Output[*SystemAlias]{
+		OutputState: i.ToSystemAliasOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemAliasArrayInput is an input type that accepts SystemAliasArray and SystemAliasArrayOutput values.
 // You can construct a concrete instance of `SystemAliasArrayInput` via:
 //
@@ -123,6 +130,12 @@ func (i SystemAliasArray) ToSystemAliasArrayOutput() SystemAliasArrayOutput {
 
 func (i SystemAliasArray) ToSystemAliasArrayOutputWithContext(ctx context.Context) SystemAliasArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAliasArrayOutput)
+}
+
+func (i SystemAliasArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemAlias] {
+	return pulumix.Output[[]*SystemAlias]{
+		OutputState: i.ToSystemAliasArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemAliasMapInput is an input type that accepts SystemAliasMap and SystemAliasMapOutput values.
@@ -150,6 +163,12 @@ func (i SystemAliasMap) ToSystemAliasMapOutputWithContext(ctx context.Context) S
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAliasMapOutput)
 }
 
+func (i SystemAliasMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemAlias] {
+	return pulumix.Output[map[string]*SystemAlias]{
+		OutputState: i.ToSystemAliasMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemAliasOutput struct{ *pulumi.OutputState }
 
 func (SystemAliasOutput) ElementType() reflect.Type {
@@ -162,6 +181,12 @@ func (o SystemAliasOutput) ToSystemAliasOutput() SystemAliasOutput {
 
 func (o SystemAliasOutput) ToSystemAliasOutputWithContext(ctx context.Context) SystemAliasOutput {
 	return o
+}
+
+func (o SystemAliasOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemAlias] {
+	return pulumix.Output[*SystemAlias]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemAliasOutput) Command() pulumi.StringPtrOutput {
@@ -190,6 +215,12 @@ func (o SystemAliasArrayOutput) ToSystemAliasArrayOutputWithContext(ctx context.
 	return o
 }
 
+func (o SystemAliasArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemAlias] {
+	return pulumix.Output[[]*SystemAlias]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemAliasArrayOutput) Index(i pulumi.IntInput) SystemAliasOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemAlias {
 		return vs[0].([]*SystemAlias)[vs[1].(int)]
@@ -208,6 +239,12 @@ func (o SystemAliasMapOutput) ToSystemAliasMapOutput() SystemAliasMapOutput {
 
 func (o SystemAliasMapOutput) ToSystemAliasMapOutputWithContext(ctx context.Context) SystemAliasMapOutput {
 	return o
+}
+
+func (o SystemAliasMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemAlias] {
+	return pulumix.Output[map[string]*SystemAlias]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemAliasMapOutput) MapIndex(k pulumi.StringInput) SystemAliasOutput {

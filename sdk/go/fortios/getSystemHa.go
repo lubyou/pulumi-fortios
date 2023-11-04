@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemHa(ctx *pulumi.Context, args *LookupSystemHaArgs, opts ...pulumi.InvokeOption) (*LookupSystemHaResult, error) {
@@ -106,6 +107,7 @@ type LookupSystemHaResult struct {
 	UnicastStatus                 string                         `pulumi:"unicastStatus"`
 	UninterruptiblePrimaryWait    int                            `pulumi:"uninterruptiblePrimaryWait"`
 	UninterruptibleUpgrade        string                         `pulumi:"uninterruptibleUpgrade"`
+	UpgradeMode                   string                         `pulumi:"upgradeMode"`
 	Vcluster2                     string                         `pulumi:"vcluster2"`
 	VclusterId                    int                            `pulumi:"vclusterId"`
 	VclusterStatus                string                         `pulumi:"vclusterStatus"`
@@ -150,6 +152,12 @@ func (o LookupSystemHaResultOutput) ToLookupSystemHaResultOutput() LookupSystemH
 
 func (o LookupSystemHaResultOutput) ToLookupSystemHaResultOutputWithContext(ctx context.Context) LookupSystemHaResultOutput {
 	return o
+}
+
+func (o LookupSystemHaResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemHaResult] {
+	return pulumix.Output[LookupSystemHaResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupSystemHaResultOutput) Arps() pulumi.IntOutput {
@@ -459,6 +467,10 @@ func (o LookupSystemHaResultOutput) UninterruptiblePrimaryWait() pulumi.IntOutpu
 
 func (o LookupSystemHaResultOutput) UninterruptibleUpgrade() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemHaResult) string { return v.UninterruptibleUpgrade }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemHaResultOutput) UpgradeMode() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemHaResult) string { return v.UpgradeMode }).(pulumi.StringOutput)
 }
 
 func (o LookupSystemHaResultOutput) Vcluster2() pulumi.StringOutput {

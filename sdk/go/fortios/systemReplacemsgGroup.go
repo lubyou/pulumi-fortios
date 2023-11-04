@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemReplacemsgGroup struct {
@@ -214,6 +215,12 @@ func (i *SystemReplacemsgGroup) ToSystemReplacemsgGroupOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgGroupOutput)
 }
 
+func (i *SystemReplacemsgGroup) ToOutput(ctx context.Context) pulumix.Output[*SystemReplacemsgGroup] {
+	return pulumix.Output[*SystemReplacemsgGroup]{
+		OutputState: i.ToSystemReplacemsgGroupOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemReplacemsgGroupArrayInput is an input type that accepts SystemReplacemsgGroupArray and SystemReplacemsgGroupArrayOutput values.
 // You can construct a concrete instance of `SystemReplacemsgGroupArrayInput` via:
 //
@@ -237,6 +244,12 @@ func (i SystemReplacemsgGroupArray) ToSystemReplacemsgGroupArrayOutput() SystemR
 
 func (i SystemReplacemsgGroupArray) ToSystemReplacemsgGroupArrayOutputWithContext(ctx context.Context) SystemReplacemsgGroupArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgGroupArrayOutput)
+}
+
+func (i SystemReplacemsgGroupArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemReplacemsgGroup] {
+	return pulumix.Output[[]*SystemReplacemsgGroup]{
+		OutputState: i.ToSystemReplacemsgGroupArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemReplacemsgGroupMapInput is an input type that accepts SystemReplacemsgGroupMap and SystemReplacemsgGroupMapOutput values.
@@ -264,6 +277,12 @@ func (i SystemReplacemsgGroupMap) ToSystemReplacemsgGroupMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgGroupMapOutput)
 }
 
+func (i SystemReplacemsgGroupMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemReplacemsgGroup] {
+	return pulumix.Output[map[string]*SystemReplacemsgGroup]{
+		OutputState: i.ToSystemReplacemsgGroupMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemReplacemsgGroupOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgGroupOutput) ElementType() reflect.Type {
@@ -276,6 +295,12 @@ func (o SystemReplacemsgGroupOutput) ToSystemReplacemsgGroupOutput() SystemRepla
 
 func (o SystemReplacemsgGroupOutput) ToSystemReplacemsgGroupOutputWithContext(ctx context.Context) SystemReplacemsgGroupOutput {
 	return o
+}
+
+func (o SystemReplacemsgGroupOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemReplacemsgGroup] {
+	return pulumix.Output[*SystemReplacemsgGroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemReplacemsgGroupOutput) Admins() SystemReplacemsgGroupAdminArrayOutput {
@@ -394,6 +419,12 @@ func (o SystemReplacemsgGroupArrayOutput) ToSystemReplacemsgGroupArrayOutputWith
 	return o
 }
 
+func (o SystemReplacemsgGroupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemReplacemsgGroup] {
+	return pulumix.Output[[]*SystemReplacemsgGroup]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemReplacemsgGroupArrayOutput) Index(i pulumi.IntInput) SystemReplacemsgGroupOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemReplacemsgGroup {
 		return vs[0].([]*SystemReplacemsgGroup)[vs[1].(int)]
@@ -412,6 +443,12 @@ func (o SystemReplacemsgGroupMapOutput) ToSystemReplacemsgGroupMapOutput() Syste
 
 func (o SystemReplacemsgGroupMapOutput) ToSystemReplacemsgGroupMapOutputWithContext(ctx context.Context) SystemReplacemsgGroupMapOutput {
 	return o
+}
+
+func (o SystemReplacemsgGroupMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemReplacemsgGroup] {
+	return pulumix.Output[map[string]*SystemReplacemsgGroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemReplacemsgGroupMapOutput) MapIndex(k pulumi.StringInput) SystemReplacemsgGroupOutput {

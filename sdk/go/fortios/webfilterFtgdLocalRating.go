@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WebfilterFtgdLocalRating struct {
@@ -114,6 +115,12 @@ func (i *WebfilterFtgdLocalRating) ToWebfilterFtgdLocalRatingOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterFtgdLocalRatingOutput)
 }
 
+func (i *WebfilterFtgdLocalRating) ToOutput(ctx context.Context) pulumix.Output[*WebfilterFtgdLocalRating] {
+	return pulumix.Output[*WebfilterFtgdLocalRating]{
+		OutputState: i.ToWebfilterFtgdLocalRatingOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WebfilterFtgdLocalRatingArrayInput is an input type that accepts WebfilterFtgdLocalRatingArray and WebfilterFtgdLocalRatingArrayOutput values.
 // You can construct a concrete instance of `WebfilterFtgdLocalRatingArrayInput` via:
 //
@@ -137,6 +144,12 @@ func (i WebfilterFtgdLocalRatingArray) ToWebfilterFtgdLocalRatingArrayOutput() W
 
 func (i WebfilterFtgdLocalRatingArray) ToWebfilterFtgdLocalRatingArrayOutputWithContext(ctx context.Context) WebfilterFtgdLocalRatingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterFtgdLocalRatingArrayOutput)
+}
+
+func (i WebfilterFtgdLocalRatingArray) ToOutput(ctx context.Context) pulumix.Output[[]*WebfilterFtgdLocalRating] {
+	return pulumix.Output[[]*WebfilterFtgdLocalRating]{
+		OutputState: i.ToWebfilterFtgdLocalRatingArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // WebfilterFtgdLocalRatingMapInput is an input type that accepts WebfilterFtgdLocalRatingMap and WebfilterFtgdLocalRatingMapOutput values.
@@ -164,6 +177,12 @@ func (i WebfilterFtgdLocalRatingMap) ToWebfilterFtgdLocalRatingMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterFtgdLocalRatingMapOutput)
 }
 
+func (i WebfilterFtgdLocalRatingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WebfilterFtgdLocalRating] {
+	return pulumix.Output[map[string]*WebfilterFtgdLocalRating]{
+		OutputState: i.ToWebfilterFtgdLocalRatingMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WebfilterFtgdLocalRatingOutput struct{ *pulumi.OutputState }
 
 func (WebfilterFtgdLocalRatingOutput) ElementType() reflect.Type {
@@ -176,6 +195,12 @@ func (o WebfilterFtgdLocalRatingOutput) ToWebfilterFtgdLocalRatingOutput() Webfi
 
 func (o WebfilterFtgdLocalRatingOutput) ToWebfilterFtgdLocalRatingOutputWithContext(ctx context.Context) WebfilterFtgdLocalRatingOutput {
 	return o
+}
+
+func (o WebfilterFtgdLocalRatingOutput) ToOutput(ctx context.Context) pulumix.Output[*WebfilterFtgdLocalRating] {
+	return pulumix.Output[*WebfilterFtgdLocalRating]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterFtgdLocalRatingOutput) Comment() pulumi.StringPtrOutput {
@@ -212,6 +237,12 @@ func (o WebfilterFtgdLocalRatingArrayOutput) ToWebfilterFtgdLocalRatingArrayOutp
 	return o
 }
 
+func (o WebfilterFtgdLocalRatingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WebfilterFtgdLocalRating] {
+	return pulumix.Output[[]*WebfilterFtgdLocalRating]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o WebfilterFtgdLocalRatingArrayOutput) Index(i pulumi.IntInput) WebfilterFtgdLocalRatingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WebfilterFtgdLocalRating {
 		return vs[0].([]*WebfilterFtgdLocalRating)[vs[1].(int)]
@@ -230,6 +261,12 @@ func (o WebfilterFtgdLocalRatingMapOutput) ToWebfilterFtgdLocalRatingMapOutput()
 
 func (o WebfilterFtgdLocalRatingMapOutput) ToWebfilterFtgdLocalRatingMapOutputWithContext(ctx context.Context) WebfilterFtgdLocalRatingMapOutput {
 	return o
+}
+
+func (o WebfilterFtgdLocalRatingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WebfilterFtgdLocalRating] {
+	return pulumix.Output[map[string]*WebfilterFtgdLocalRating]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterFtgdLocalRatingMapOutput) MapIndex(k pulumi.StringInput) WebfilterFtgdLocalRatingOutput {

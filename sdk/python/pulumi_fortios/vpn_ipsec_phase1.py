@@ -77,6 +77,7 @@ class VpnIpsecPhase1Args:
                  ike_version: Optional[pulumi.Input[str]] = None,
                  inbound_dscp_copy: Optional[pulumi.Input[str]] = None,
                  include_local_lan: Optional[pulumi.Input[str]] = None,
+                 internal_domain_lists: Optional[pulumi.Input[Sequence[pulumi.Input['VpnIpsecPhase1InternalDomainListArgs']]]] = None,
                  ip_delay_interval: Optional[pulumi.Input[int]] = None,
                  ipv4_dns_server1: Optional[pulumi.Input[str]] = None,
                  ipv4_dns_server2: Optional[pulumi.Input[str]] = None,
@@ -264,6 +265,8 @@ class VpnIpsecPhase1Args:
             pulumi.set(__self__, "inbound_dscp_copy", inbound_dscp_copy)
         if include_local_lan is not None:
             pulumi.set(__self__, "include_local_lan", include_local_lan)
+        if internal_domain_lists is not None:
+            pulumi.set(__self__, "internal_domain_lists", internal_domain_lists)
         if ip_delay_interval is not None:
             pulumi.set(__self__, "ip_delay_interval", ip_delay_interval)
         if ipv4_dns_server1 is not None:
@@ -945,6 +948,15 @@ class VpnIpsecPhase1Args:
         pulumi.set(self, "include_local_lan", value)
 
     @property
+    @pulumi.getter(name="internalDomainLists")
+    def internal_domain_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VpnIpsecPhase1InternalDomainListArgs']]]]:
+        return pulumi.get(self, "internal_domain_lists")
+
+    @internal_domain_lists.setter
+    def internal_domain_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VpnIpsecPhase1InternalDomainListArgs']]]]):
+        pulumi.set(self, "internal_domain_lists", value)
+
+    @property
     @pulumi.getter(name="ipDelayInterval")
     def ip_delay_interval(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "ip_delay_interval")
@@ -1592,6 +1604,7 @@ class _VpnIpsecPhase1State:
                  inbound_dscp_copy: Optional[pulumi.Input[str]] = None,
                  include_local_lan: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
+                 internal_domain_lists: Optional[pulumi.Input[Sequence[pulumi.Input['VpnIpsecPhase1InternalDomainListArgs']]]] = None,
                  ip_delay_interval: Optional[pulumi.Input[int]] = None,
                  ipv4_dns_server1: Optional[pulumi.Input[str]] = None,
                  ipv4_dns_server2: Optional[pulumi.Input[str]] = None,
@@ -1780,6 +1793,8 @@ class _VpnIpsecPhase1State:
             pulumi.set(__self__, "include_local_lan", include_local_lan)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
+        if internal_domain_lists is not None:
+            pulumi.set(__self__, "internal_domain_lists", internal_domain_lists)
         if ip_delay_interval is not None:
             pulumi.set(__self__, "ip_delay_interval", ip_delay_interval)
         if ipv4_dns_server1 is not None:
@@ -2445,6 +2460,15 @@ class _VpnIpsecPhase1State:
     @interface.setter
     def interface(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "interface", value)
+
+    @property
+    @pulumi.getter(name="internalDomainLists")
+    def internal_domain_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VpnIpsecPhase1InternalDomainListArgs']]]]:
+        return pulumi.get(self, "internal_domain_lists")
+
+    @internal_domain_lists.setter
+    def internal_domain_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VpnIpsecPhase1InternalDomainListArgs']]]]):
+        pulumi.set(self, "internal_domain_lists", value)
 
     @property
     @pulumi.getter(name="ipDelayInterval")
@@ -3114,6 +3138,7 @@ class VpnIpsecPhase1(pulumi.CustomResource):
                  inbound_dscp_copy: Optional[pulumi.Input[str]] = None,
                  include_local_lan: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
+                 internal_domain_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnIpsecPhase1InternalDomainListArgs']]]]] = None,
                  ip_delay_interval: Optional[pulumi.Input[int]] = None,
                  ipv4_dns_server1: Optional[pulumi.Input[str]] = None,
                  ipv4_dns_server2: Optional[pulumi.Input[str]] = None,
@@ -3269,6 +3294,7 @@ class VpnIpsecPhase1(pulumi.CustomResource):
                  inbound_dscp_copy: Optional[pulumi.Input[str]] = None,
                  include_local_lan: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
+                 internal_domain_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnIpsecPhase1InternalDomainListArgs']]]]] = None,
                  ip_delay_interval: Optional[pulumi.Input[int]] = None,
                  ipv4_dns_server1: Optional[pulumi.Input[str]] = None,
                  ipv4_dns_server2: Optional[pulumi.Input[str]] = None,
@@ -3406,6 +3432,7 @@ class VpnIpsecPhase1(pulumi.CustomResource):
             if interface is None and not opts.urn:
                 raise TypeError("Missing required property 'interface'")
             __props__.__dict__["interface"] = interface
+            __props__.__dict__["internal_domain_lists"] = internal_domain_lists
             __props__.__dict__["ip_delay_interval"] = ip_delay_interval
             __props__.__dict__["ipv4_dns_server1"] = ipv4_dns_server1
             __props__.__dict__["ipv4_dns_server2"] = ipv4_dns_server2
@@ -3548,6 +3575,7 @@ class VpnIpsecPhase1(pulumi.CustomResource):
             inbound_dscp_copy: Optional[pulumi.Input[str]] = None,
             include_local_lan: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
+            internal_domain_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnIpsecPhase1InternalDomainListArgs']]]]] = None,
             ip_delay_interval: Optional[pulumi.Input[int]] = None,
             ipv4_dns_server1: Optional[pulumi.Input[str]] = None,
             ipv4_dns_server2: Optional[pulumi.Input[str]] = None,
@@ -3686,6 +3714,7 @@ class VpnIpsecPhase1(pulumi.CustomResource):
         __props__.__dict__["inbound_dscp_copy"] = inbound_dscp_copy
         __props__.__dict__["include_local_lan"] = include_local_lan
         __props__.__dict__["interface"] = interface
+        __props__.__dict__["internal_domain_lists"] = internal_domain_lists
         __props__.__dict__["ip_delay_interval"] = ip_delay_interval
         __props__.__dict__["ipv4_dns_server1"] = ipv4_dns_server1
         __props__.__dict__["ipv4_dns_server2"] = ipv4_dns_server2
@@ -4049,6 +4078,11 @@ class VpnIpsecPhase1(pulumi.CustomResource):
     @pulumi.getter
     def interface(self) -> pulumi.Output[str]:
         return pulumi.get(self, "interface")
+
+    @property
+    @pulumi.getter(name="internalDomainLists")
+    def internal_domain_lists(self) -> pulumi.Output[Optional[Sequence['outputs.VpnIpsecPhase1InternalDomainList']]]:
+        return pulumi.get(self, "internal_domain_lists")
 
     @property
     @pulumi.getter(name="ipDelayInterval")

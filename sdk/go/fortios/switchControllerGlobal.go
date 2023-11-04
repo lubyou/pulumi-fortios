@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerGlobal struct {
@@ -41,6 +42,7 @@ type SwitchControllerGlobal struct {
 	UpdateUserDevice                 pulumi.StringOutput                               `pulumi:"updateUserDevice"`
 	Vdomparam                        pulumi.StringPtrOutput                            `pulumi:"vdomparam"`
 	VlanAllMode                      pulumi.StringOutput                               `pulumi:"vlanAllMode"`
+	VlanIdentity                     pulumi.StringOutput                               `pulumi:"vlanIdentity"`
 	VlanOptimization                 pulumi.StringOutput                               `pulumi:"vlanOptimization"`
 }
 
@@ -101,6 +103,7 @@ type switchControllerGlobalState struct {
 	UpdateUserDevice                 *string                                  `pulumi:"updateUserDevice"`
 	Vdomparam                        *string                                  `pulumi:"vdomparam"`
 	VlanAllMode                      *string                                  `pulumi:"vlanAllMode"`
+	VlanIdentity                     *string                                  `pulumi:"vlanIdentity"`
 	VlanOptimization                 *string                                  `pulumi:"vlanOptimization"`
 }
 
@@ -132,6 +135,7 @@ type SwitchControllerGlobalState struct {
 	UpdateUserDevice                 pulumi.StringPtrInput
 	Vdomparam                        pulumi.StringPtrInput
 	VlanAllMode                      pulumi.StringPtrInput
+	VlanIdentity                     pulumi.StringPtrInput
 	VlanOptimization                 pulumi.StringPtrInput
 }
 
@@ -167,6 +171,7 @@ type switchControllerGlobalArgs struct {
 	UpdateUserDevice                 *string                                  `pulumi:"updateUserDevice"`
 	Vdomparam                        *string                                  `pulumi:"vdomparam"`
 	VlanAllMode                      *string                                  `pulumi:"vlanAllMode"`
+	VlanIdentity                     *string                                  `pulumi:"vlanIdentity"`
 	VlanOptimization                 *string                                  `pulumi:"vlanOptimization"`
 }
 
@@ -199,6 +204,7 @@ type SwitchControllerGlobalArgs struct {
 	UpdateUserDevice                 pulumi.StringPtrInput
 	Vdomparam                        pulumi.StringPtrInput
 	VlanAllMode                      pulumi.StringPtrInput
+	VlanIdentity                     pulumi.StringPtrInput
 	VlanOptimization                 pulumi.StringPtrInput
 }
 
@@ -223,6 +229,12 @@ func (i *SwitchControllerGlobal) ToSwitchControllerGlobalOutput() SwitchControll
 
 func (i *SwitchControllerGlobal) ToSwitchControllerGlobalOutputWithContext(ctx context.Context) SwitchControllerGlobalOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerGlobalOutput)
+}
+
+func (i *SwitchControllerGlobal) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerGlobal] {
+	return pulumix.Output[*SwitchControllerGlobal]{
+		OutputState: i.ToSwitchControllerGlobalOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SwitchControllerGlobalArrayInput is an input type that accepts SwitchControllerGlobalArray and SwitchControllerGlobalArrayOutput values.
@@ -250,6 +262,12 @@ func (i SwitchControllerGlobalArray) ToSwitchControllerGlobalArrayOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerGlobalArrayOutput)
 }
 
+func (i SwitchControllerGlobalArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerGlobal] {
+	return pulumix.Output[[]*SwitchControllerGlobal]{
+		OutputState: i.ToSwitchControllerGlobalArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SwitchControllerGlobalMapInput is an input type that accepts SwitchControllerGlobalMap and SwitchControllerGlobalMapOutput values.
 // You can construct a concrete instance of `SwitchControllerGlobalMapInput` via:
 //
@@ -275,6 +293,12 @@ func (i SwitchControllerGlobalMap) ToSwitchControllerGlobalMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerGlobalMapOutput)
 }
 
+func (i SwitchControllerGlobalMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerGlobal] {
+	return pulumix.Output[map[string]*SwitchControllerGlobal]{
+		OutputState: i.ToSwitchControllerGlobalMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SwitchControllerGlobalOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerGlobalOutput) ElementType() reflect.Type {
@@ -287,6 +311,12 @@ func (o SwitchControllerGlobalOutput) ToSwitchControllerGlobalOutput() SwitchCon
 
 func (o SwitchControllerGlobalOutput) ToSwitchControllerGlobalOutputWithContext(ctx context.Context) SwitchControllerGlobalOutput {
 	return o
+}
+
+func (o SwitchControllerGlobalOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerGlobal] {
+	return pulumix.Output[*SwitchControllerGlobal]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerGlobalOutput) AllowMultipleInterfaces() pulumi.StringOutput {
@@ -401,6 +431,10 @@ func (o SwitchControllerGlobalOutput) VlanAllMode() pulumi.StringOutput {
 	return o.ApplyT(func(v *SwitchControllerGlobal) pulumi.StringOutput { return v.VlanAllMode }).(pulumi.StringOutput)
 }
 
+func (o SwitchControllerGlobalOutput) VlanIdentity() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerGlobal) pulumi.StringOutput { return v.VlanIdentity }).(pulumi.StringOutput)
+}
+
 func (o SwitchControllerGlobalOutput) VlanOptimization() pulumi.StringOutput {
 	return o.ApplyT(func(v *SwitchControllerGlobal) pulumi.StringOutput { return v.VlanOptimization }).(pulumi.StringOutput)
 }
@@ -417,6 +451,12 @@ func (o SwitchControllerGlobalArrayOutput) ToSwitchControllerGlobalArrayOutput()
 
 func (o SwitchControllerGlobalArrayOutput) ToSwitchControllerGlobalArrayOutputWithContext(ctx context.Context) SwitchControllerGlobalArrayOutput {
 	return o
+}
+
+func (o SwitchControllerGlobalArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerGlobal] {
+	return pulumix.Output[[]*SwitchControllerGlobal]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerGlobalArrayOutput) Index(i pulumi.IntInput) SwitchControllerGlobalOutput {
@@ -437,6 +477,12 @@ func (o SwitchControllerGlobalMapOutput) ToSwitchControllerGlobalMapOutput() Swi
 
 func (o SwitchControllerGlobalMapOutput) ToSwitchControllerGlobalMapOutputWithContext(ctx context.Context) SwitchControllerGlobalMapOutput {
 	return o
+}
+
+func (o SwitchControllerGlobalMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerGlobal] {
+	return pulumix.Output[map[string]*SwitchControllerGlobal]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerGlobalMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerGlobalOutput {

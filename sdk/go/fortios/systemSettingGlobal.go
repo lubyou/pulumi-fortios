@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemSettingGlobal struct {
@@ -119,6 +120,12 @@ func (i *SystemSettingGlobal) ToSystemSettingGlobalOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSettingGlobalOutput)
 }
 
+func (i *SystemSettingGlobal) ToOutput(ctx context.Context) pulumix.Output[*SystemSettingGlobal] {
+	return pulumix.Output[*SystemSettingGlobal]{
+		OutputState: i.ToSystemSettingGlobalOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemSettingGlobalArrayInput is an input type that accepts SystemSettingGlobalArray and SystemSettingGlobalArrayOutput values.
 // You can construct a concrete instance of `SystemSettingGlobalArrayInput` via:
 //
@@ -142,6 +149,12 @@ func (i SystemSettingGlobalArray) ToSystemSettingGlobalArrayOutput() SystemSetti
 
 func (i SystemSettingGlobalArray) ToSystemSettingGlobalArrayOutputWithContext(ctx context.Context) SystemSettingGlobalArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSettingGlobalArrayOutput)
+}
+
+func (i SystemSettingGlobalArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSettingGlobal] {
+	return pulumix.Output[[]*SystemSettingGlobal]{
+		OutputState: i.ToSystemSettingGlobalArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemSettingGlobalMapInput is an input type that accepts SystemSettingGlobalMap and SystemSettingGlobalMapOutput values.
@@ -169,6 +182,12 @@ func (i SystemSettingGlobalMap) ToSystemSettingGlobalMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSettingGlobalMapOutput)
 }
 
+func (i SystemSettingGlobalMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSettingGlobal] {
+	return pulumix.Output[map[string]*SystemSettingGlobal]{
+		OutputState: i.ToSystemSettingGlobalMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemSettingGlobalOutput struct{ *pulumi.OutputState }
 
 func (SystemSettingGlobalOutput) ElementType() reflect.Type {
@@ -181,6 +200,12 @@ func (o SystemSettingGlobalOutput) ToSystemSettingGlobalOutput() SystemSettingGl
 
 func (o SystemSettingGlobalOutput) ToSystemSettingGlobalOutputWithContext(ctx context.Context) SystemSettingGlobalOutput {
 	return o
+}
+
+func (o SystemSettingGlobalOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemSettingGlobal] {
+	return pulumix.Output[*SystemSettingGlobal]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemSettingGlobalOutput) AdminScp() pulumi.StringOutput {
@@ -221,6 +246,12 @@ func (o SystemSettingGlobalArrayOutput) ToSystemSettingGlobalArrayOutputWithCont
 	return o
 }
 
+func (o SystemSettingGlobalArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSettingGlobal] {
+	return pulumix.Output[[]*SystemSettingGlobal]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemSettingGlobalArrayOutput) Index(i pulumi.IntInput) SystemSettingGlobalOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSettingGlobal {
 		return vs[0].([]*SystemSettingGlobal)[vs[1].(int)]
@@ -239,6 +270,12 @@ func (o SystemSettingGlobalMapOutput) ToSystemSettingGlobalMapOutput() SystemSet
 
 func (o SystemSettingGlobalMapOutput) ToSystemSettingGlobalMapOutputWithContext(ctx context.Context) SystemSettingGlobalMapOutput {
 	return o
+}
+
+func (o SystemSettingGlobalMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSettingGlobal] {
+	return pulumix.Output[map[string]*SystemSettingGlobal]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemSettingGlobalMapOutput) MapIndex(k pulumi.StringInput) SystemSettingGlobalOutput {

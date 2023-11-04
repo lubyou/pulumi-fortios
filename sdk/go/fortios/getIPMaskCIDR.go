@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetIPMaskCIDR(ctx *pulumi.Context, args *GetIPMaskCIDRArgs, opts ...pulumi.InvokeOption) (*GetIPMaskCIDRResult, error) {
@@ -73,6 +74,12 @@ func (o GetIPMaskCIDRResultOutput) ToGetIPMaskCIDRResultOutput() GetIPMaskCIDRRe
 
 func (o GetIPMaskCIDRResultOutput) ToGetIPMaskCIDRResultOutputWithContext(ctx context.Context) GetIPMaskCIDRResultOutput {
 	return o
+}
+
+func (o GetIPMaskCIDRResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetIPMaskCIDRResult] {
+	return pulumix.Output[GetIPMaskCIDRResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetIPMaskCIDRResultOutput) Cidr() pulumi.StringOutput {

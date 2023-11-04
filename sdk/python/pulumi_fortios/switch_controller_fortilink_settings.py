@@ -16,6 +16,7 @@ __all__ = ['SwitchControllerFortilinkSettingsArgs', 'SwitchControllerFortilinkSe
 @pulumi.input_type
 class SwitchControllerFortilinkSettingsArgs:
     def __init__(__self__, *,
+                 access_vlan_mode: Optional[pulumi.Input[str]] = None,
                  fortilink: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  inactive_timer: Optional[pulumi.Input[int]] = None,
@@ -26,6 +27,8 @@ class SwitchControllerFortilinkSettingsArgs:
         """
         The set of arguments for constructing a SwitchControllerFortilinkSettings resource.
         """
+        if access_vlan_mode is not None:
+            pulumi.set(__self__, "access_vlan_mode", access_vlan_mode)
         if fortilink is not None:
             pulumi.set(__self__, "fortilink", fortilink)
         if get_all_tables is not None:
@@ -40,6 +43,15 @@ class SwitchControllerFortilinkSettingsArgs:
             pulumi.set(__self__, "name", name)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="accessVlanMode")
+    def access_vlan_mode(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "access_vlan_mode")
+
+    @access_vlan_mode.setter
+    def access_vlan_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "access_vlan_mode", value)
 
     @property
     @pulumi.getter
@@ -108,6 +120,7 @@ class SwitchControllerFortilinkSettingsArgs:
 @pulumi.input_type
 class _SwitchControllerFortilinkSettingsState:
     def __init__(__self__, *,
+                 access_vlan_mode: Optional[pulumi.Input[str]] = None,
                  fortilink: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  inactive_timer: Optional[pulumi.Input[int]] = None,
@@ -118,6 +131,8 @@ class _SwitchControllerFortilinkSettingsState:
         """
         Input properties used for looking up and filtering SwitchControllerFortilinkSettings resources.
         """
+        if access_vlan_mode is not None:
+            pulumi.set(__self__, "access_vlan_mode", access_vlan_mode)
         if fortilink is not None:
             pulumi.set(__self__, "fortilink", fortilink)
         if get_all_tables is not None:
@@ -132,6 +147,15 @@ class _SwitchControllerFortilinkSettingsState:
             pulumi.set(__self__, "name", name)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="accessVlanMode")
+    def access_vlan_mode(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "access_vlan_mode")
+
+    @access_vlan_mode.setter
+    def access_vlan_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "access_vlan_mode", value)
 
     @property
     @pulumi.getter
@@ -202,6 +226,7 @@ class SwitchControllerFortilinkSettings(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 access_vlan_mode: Optional[pulumi.Input[str]] = None,
                  fortilink: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  inactive_timer: Optional[pulumi.Input[int]] = None,
@@ -238,6 +263,7 @@ class SwitchControllerFortilinkSettings(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 access_vlan_mode: Optional[pulumi.Input[str]] = None,
                  fortilink: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  inactive_timer: Optional[pulumi.Input[int]] = None,
@@ -254,6 +280,7 @@ class SwitchControllerFortilinkSettings(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SwitchControllerFortilinkSettingsArgs.__new__(SwitchControllerFortilinkSettingsArgs)
 
+            __props__.__dict__["access_vlan_mode"] = access_vlan_mode
             __props__.__dict__["fortilink"] = fortilink
             __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["inactive_timer"] = inactive_timer
@@ -271,6 +298,7 @@ class SwitchControllerFortilinkSettings(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            access_vlan_mode: Optional[pulumi.Input[str]] = None,
             fortilink: Optional[pulumi.Input[str]] = None,
             get_all_tables: Optional[pulumi.Input[str]] = None,
             inactive_timer: Optional[pulumi.Input[int]] = None,
@@ -290,6 +318,7 @@ class SwitchControllerFortilinkSettings(pulumi.CustomResource):
 
         __props__ = _SwitchControllerFortilinkSettingsState.__new__(_SwitchControllerFortilinkSettingsState)
 
+        __props__.__dict__["access_vlan_mode"] = access_vlan_mode
         __props__.__dict__["fortilink"] = fortilink
         __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["inactive_timer"] = inactive_timer
@@ -298,6 +327,11 @@ class SwitchControllerFortilinkSettings(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["vdomparam"] = vdomparam
         return SwitchControllerFortilinkSettings(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="accessVlanMode")
+    def access_vlan_mode(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "access_vlan_mode")
 
     @property
     @pulumi.getter

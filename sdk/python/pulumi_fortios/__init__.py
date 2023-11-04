@@ -20,6 +20,9 @@ from .authentication_rule import *
 from .authentication_scheme import *
 from .authentication_setting import *
 from .automation_setting import *
+from .casb_profile import *
+from .casb_saas_application import *
+from .casb_user_activity import *
 from .certificate_ca import *
 from .certificate_crl import *
 from .certificate_local import *
@@ -133,6 +136,10 @@ from .firewall_policy import *
 from .firewall_policy46 import *
 from .firewall_policy6 import *
 from .firewall_policy64 import *
+from .firewall_policy_move import *
+from .firewall_policy_oldv_seq import *
+from .firewall_policy_oldv_sort import *
+from .firewall_policy_sort import *
 from .firewall_profile_group import *
 from .firewall_profile_protocol_options import *
 from .firewall_proxy_address import *
@@ -146,8 +153,8 @@ from .firewall_schedule_onetime import *
 from .firewall_schedule_recurring import *
 from .firewall_security_policy import *
 from .firewall_security_policy1 import *
-from .firewall_security_policy_seq import *
-from .firewall_security_policy_sort import *
+from .firewall_securitypolicy_move import *
+from .firewall_securitypolicy_sort import *
 from .firewall_service_category import *
 from .firewall_service_custom import *
 from .firewall_service_group import *
@@ -547,6 +554,8 @@ from .routerospf6_ospf6_interface import *
 from .routerospf_neighbor import *
 from .routerospf_network import *
 from .routerospf_ospf_interface import *
+from .rule_otdt import *
+from .rule_otvp import *
 from .sctp_filter_profile import *
 from .spamfilter_bwl import *
 from .spamfilter_bword import *
@@ -580,7 +589,9 @@ from .switch_controller_nac_device import *
 from .switch_controller_nac_settings import *
 from .switch_controller_network_monitor_settings import *
 from .switch_controller_port_policy import *
+from .switch_controller_ptp_interface_policy import *
 from .switch_controller_ptp_policy import *
+from .switch_controller_ptp_profile import *
 from .switch_controller_ptp_settings import *
 from .switch_controller_qos_dot1_p_map import *
 from .switch_controller_qos_ip_dscp_map import *
@@ -743,6 +754,7 @@ from .system_snmp_sysinfo import *
 from .system_snmp_user import *
 from .system_speed_test_schedule import *
 from .system_speed_test_server import *
+from .system_speed_test_setting import *
 from .system_sso_admin import *
 from .system_sso_forticloud_admin import *
 from .system_sso_fortigate_cloud_admin import *
@@ -796,6 +808,7 @@ from .user_tacacs import *
 from .videofilter_profile import *
 from .videofilter_youtube_channel_filter import *
 from .videofilter_youtube_key import *
+from .virtual_patch_profile import *
 from .voip_profile import *
 from .vpn_certificate_ca import *
 from .vpn_certificate_crl import *
@@ -839,6 +852,7 @@ from .wanopt_settings import *
 from .wanopt_webcache import *
 from .web_proxy_debug_url import *
 from .web_proxy_explicit import *
+from .web_proxy_fast_fallback import *
 from .web_proxy_forward_server import *
 from .web_proxy_forward_server_group import *
 from .web_proxy_global import *
@@ -1033,6 +1047,30 @@ _utilities.register(
   "fqn": "pulumi_fortios",
   "classes": {
    "fortios:index/automationSetting:AutomationSetting": "AutomationSetting"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/casbProfile",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/casbProfile:CasbProfile": "CasbProfile"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/casbSaasApplication",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/casbSaasApplication:CasbSaasApplication": "CasbSaasApplication"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/casbUserActivity",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/casbUserActivity:CasbUserActivity": "CasbUserActivity"
   }
  },
  {
@@ -1941,6 +1979,38 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "index/firewallPolicyMove",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/firewallPolicyMove:FirewallPolicyMove": "FirewallPolicyMove"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/firewallPolicyOldvSeq",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/firewallPolicyOldvSeq:FirewallPolicyOldvSeq": "FirewallPolicyOldvSeq"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/firewallPolicyOldvSort",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/firewallPolicyOldvSort:FirewallPolicyOldvSort": "FirewallPolicyOldvSort"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/firewallPolicySort",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/firewallPolicySort:FirewallPolicySort": "FirewallPolicySort"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "index/firewallProfileGroup",
   "fqn": "pulumi_fortios",
   "classes": {
@@ -2045,18 +2115,18 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
-  "mod": "index/firewallSecurityPolicySeq",
+  "mod": "index/firewallSecuritypolicyMove",
   "fqn": "pulumi_fortios",
   "classes": {
-   "fortios:index/firewallSecurityPolicySeq:FirewallSecurityPolicySeq": "FirewallSecurityPolicySeq"
+   "fortios:index/firewallSecuritypolicyMove:FirewallSecuritypolicyMove": "FirewallSecuritypolicyMove"
   }
  },
  {
   "pkg": "fortios",
-  "mod": "index/firewallSecurityPolicySort",
+  "mod": "index/firewallSecuritypolicySort",
   "fqn": "pulumi_fortios",
   "classes": {
-   "fortios:index/firewallSecurityPolicySort:FirewallSecurityPolicySort": "FirewallSecurityPolicySort"
+   "fortios:index/firewallSecuritypolicySort:FirewallSecuritypolicySort": "FirewallSecuritypolicySort"
   }
  },
  {
@@ -3397,6 +3467,22 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "index/ruleOtdt",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/ruleOtdt:RuleOtdt": "RuleOtdt"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/ruleOtvp",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/ruleOtvp:RuleOtvp": "RuleOtvp"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "index/sctpFilterProfile",
   "fqn": "pulumi_fortios",
   "classes": {
@@ -3661,10 +3747,26 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "index/switchControllerPtpInterfacePolicy",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/switchControllerPtpInterfacePolicy:SwitchControllerPtpInterfacePolicy": "SwitchControllerPtpInterfacePolicy"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "index/switchControllerPtpPolicy",
   "fqn": "pulumi_fortios",
   "classes": {
    "fortios:index/switchControllerPtpPolicy:SwitchControllerPtpPolicy": "SwitchControllerPtpPolicy"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/switchControllerPtpProfile",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/switchControllerPtpProfile:SwitchControllerPtpProfile": "SwitchControllerPtpProfile"
   }
  },
  {
@@ -4965,6 +5067,14 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "index/systemSpeedTestSetting",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/systemSpeedTestSetting:SystemSpeedTestSetting": "SystemSpeedTestSetting"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "index/systemSsoAdmin",
   "fqn": "pulumi_fortios",
   "classes": {
@@ -5405,6 +5515,14 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "index/virtualPatchProfile",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/virtualPatchProfile:VirtualPatchProfile": "VirtualPatchProfile"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "index/voipProfile",
   "fqn": "pulumi_fortios",
   "classes": {
@@ -5729,6 +5847,14 @@ _utilities.register(
   "fqn": "pulumi_fortios",
   "classes": {
    "fortios:index/webProxyExplicit:WebProxyExplicit": "WebProxyExplicit"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/webProxyFastFallback",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/webProxyFastFallback:WebProxyFastFallback": "WebProxyFastFallback"
   }
  },
  {

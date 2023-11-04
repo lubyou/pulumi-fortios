@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemCsf(ctx *pulumi.Context, args *LookupSystemCsfArgs, opts ...pulumi.InvokeOption) (*LookupSystemCsfResult, error) {
@@ -94,6 +95,12 @@ func (o LookupSystemCsfResultOutput) ToLookupSystemCsfResultOutput() LookupSyste
 
 func (o LookupSystemCsfResultOutput) ToLookupSystemCsfResultOutputWithContext(ctx context.Context) LookupSystemCsfResultOutput {
 	return o
+}
+
+func (o LookupSystemCsfResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemCsfResult] {
+	return pulumix.Output[LookupSystemCsfResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupSystemCsfResultOutput) AcceptAuthByCert() pulumi.StringOutput {

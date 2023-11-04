@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerTrafficPolicy struct {
@@ -140,6 +141,12 @@ func (i *SwitchControllerTrafficPolicy) ToSwitchControllerTrafficPolicyOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerTrafficPolicyOutput)
 }
 
+func (i *SwitchControllerTrafficPolicy) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerTrafficPolicy] {
+	return pulumix.Output[*SwitchControllerTrafficPolicy]{
+		OutputState: i.ToSwitchControllerTrafficPolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SwitchControllerTrafficPolicyArrayInput is an input type that accepts SwitchControllerTrafficPolicyArray and SwitchControllerTrafficPolicyArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerTrafficPolicyArrayInput` via:
 //
@@ -163,6 +170,12 @@ func (i SwitchControllerTrafficPolicyArray) ToSwitchControllerTrafficPolicyArray
 
 func (i SwitchControllerTrafficPolicyArray) ToSwitchControllerTrafficPolicyArrayOutputWithContext(ctx context.Context) SwitchControllerTrafficPolicyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerTrafficPolicyArrayOutput)
+}
+
+func (i SwitchControllerTrafficPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerTrafficPolicy] {
+	return pulumix.Output[[]*SwitchControllerTrafficPolicy]{
+		OutputState: i.ToSwitchControllerTrafficPolicyArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SwitchControllerTrafficPolicyMapInput is an input type that accepts SwitchControllerTrafficPolicyMap and SwitchControllerTrafficPolicyMapOutput values.
@@ -190,6 +203,12 @@ func (i SwitchControllerTrafficPolicyMap) ToSwitchControllerTrafficPolicyMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerTrafficPolicyMapOutput)
 }
 
+func (i SwitchControllerTrafficPolicyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerTrafficPolicy] {
+	return pulumix.Output[map[string]*SwitchControllerTrafficPolicy]{
+		OutputState: i.ToSwitchControllerTrafficPolicyMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SwitchControllerTrafficPolicyOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerTrafficPolicyOutput) ElementType() reflect.Type {
@@ -202,6 +221,12 @@ func (o SwitchControllerTrafficPolicyOutput) ToSwitchControllerTrafficPolicyOutp
 
 func (o SwitchControllerTrafficPolicyOutput) ToSwitchControllerTrafficPolicyOutputWithContext(ctx context.Context) SwitchControllerTrafficPolicyOutput {
 	return o
+}
+
+func (o SwitchControllerTrafficPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerTrafficPolicy] {
+	return pulumix.Output[*SwitchControllerTrafficPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerTrafficPolicyOutput) Cos() pulumi.IntOutput {
@@ -262,6 +287,12 @@ func (o SwitchControllerTrafficPolicyArrayOutput) ToSwitchControllerTrafficPolic
 	return o
 }
 
+func (o SwitchControllerTrafficPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerTrafficPolicy] {
+	return pulumix.Output[[]*SwitchControllerTrafficPolicy]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SwitchControllerTrafficPolicyArrayOutput) Index(i pulumi.IntInput) SwitchControllerTrafficPolicyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerTrafficPolicy {
 		return vs[0].([]*SwitchControllerTrafficPolicy)[vs[1].(int)]
@@ -280,6 +311,12 @@ func (o SwitchControllerTrafficPolicyMapOutput) ToSwitchControllerTrafficPolicyM
 
 func (o SwitchControllerTrafficPolicyMapOutput) ToSwitchControllerTrafficPolicyMapOutputWithContext(ctx context.Context) SwitchControllerTrafficPolicyMapOutput {
 	return o
+}
+
+func (o SwitchControllerTrafficPolicyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerTrafficPolicy] {
+	return pulumix.Output[map[string]*SwitchControllerTrafficPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerTrafficPolicyMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerTrafficPolicyOutput {

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WanoptWebcache struct {
@@ -175,6 +176,12 @@ func (i *WanoptWebcache) ToWanoptWebcacheOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptWebcacheOutput)
 }
 
+func (i *WanoptWebcache) ToOutput(ctx context.Context) pulumix.Output[*WanoptWebcache] {
+	return pulumix.Output[*WanoptWebcache]{
+		OutputState: i.ToWanoptWebcacheOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WanoptWebcacheArrayInput is an input type that accepts WanoptWebcacheArray and WanoptWebcacheArrayOutput values.
 // You can construct a concrete instance of `WanoptWebcacheArrayInput` via:
 //
@@ -198,6 +205,12 @@ func (i WanoptWebcacheArray) ToWanoptWebcacheArrayOutput() WanoptWebcacheArrayOu
 
 func (i WanoptWebcacheArray) ToWanoptWebcacheArrayOutputWithContext(ctx context.Context) WanoptWebcacheArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptWebcacheArrayOutput)
+}
+
+func (i WanoptWebcacheArray) ToOutput(ctx context.Context) pulumix.Output[[]*WanoptWebcache] {
+	return pulumix.Output[[]*WanoptWebcache]{
+		OutputState: i.ToWanoptWebcacheArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // WanoptWebcacheMapInput is an input type that accepts WanoptWebcacheMap and WanoptWebcacheMapOutput values.
@@ -225,6 +238,12 @@ func (i WanoptWebcacheMap) ToWanoptWebcacheMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptWebcacheMapOutput)
 }
 
+func (i WanoptWebcacheMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WanoptWebcache] {
+	return pulumix.Output[map[string]*WanoptWebcache]{
+		OutputState: i.ToWanoptWebcacheMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WanoptWebcacheOutput struct{ *pulumi.OutputState }
 
 func (WanoptWebcacheOutput) ElementType() reflect.Type {
@@ -237,6 +256,12 @@ func (o WanoptWebcacheOutput) ToWanoptWebcacheOutput() WanoptWebcacheOutput {
 
 func (o WanoptWebcacheOutput) ToWanoptWebcacheOutputWithContext(ctx context.Context) WanoptWebcacheOutput {
 	return o
+}
+
+func (o WanoptWebcacheOutput) ToOutput(ctx context.Context) pulumix.Output[*WanoptWebcache] {
+	return pulumix.Output[*WanoptWebcache]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WanoptWebcacheOutput) AlwaysRevalidate() pulumi.StringOutput {
@@ -325,6 +350,12 @@ func (o WanoptWebcacheArrayOutput) ToWanoptWebcacheArrayOutputWithContext(ctx co
 	return o
 }
 
+func (o WanoptWebcacheArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WanoptWebcache] {
+	return pulumix.Output[[]*WanoptWebcache]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o WanoptWebcacheArrayOutput) Index(i pulumi.IntInput) WanoptWebcacheOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WanoptWebcache {
 		return vs[0].([]*WanoptWebcache)[vs[1].(int)]
@@ -343,6 +374,12 @@ func (o WanoptWebcacheMapOutput) ToWanoptWebcacheMapOutput() WanoptWebcacheMapOu
 
 func (o WanoptWebcacheMapOutput) ToWanoptWebcacheMapOutputWithContext(ctx context.Context) WanoptWebcacheMapOutput {
 	return o
+}
+
+func (o WanoptWebcacheMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WanoptWebcache] {
+	return pulumix.Output[map[string]*WanoptWebcache]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WanoptWebcacheMapOutput) MapIndex(k pulumi.StringInput) WanoptWebcacheOutput {

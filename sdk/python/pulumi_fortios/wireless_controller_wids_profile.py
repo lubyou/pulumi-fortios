@@ -28,6 +28,8 @@ class WirelessControllerWidsProfileArgs:
                  ap_bgscan_report_intv: Optional[pulumi.Input[int]] = None,
                  ap_fgscan_report_intv: Optional[pulumi.Input[int]] = None,
                  ap_scan: Optional[pulumi.Input[str]] = None,
+                 ap_scan_channel_list2g5gs: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerWidsProfileApScanChannelList2g5gArgs']]]] = None,
+                 ap_scan_channel_list6gs: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerWidsProfileApScanChannelList6gArgs']]]] = None,
                  ap_scan_passive: Optional[pulumi.Input[str]] = None,
                  ap_scan_threshold: Optional[pulumi.Input[str]] = None,
                  asleap_attack: Optional[pulumi.Input[str]] = None,
@@ -97,6 +99,10 @@ class WirelessControllerWidsProfileArgs:
             pulumi.set(__self__, "ap_fgscan_report_intv", ap_fgscan_report_intv)
         if ap_scan is not None:
             pulumi.set(__self__, "ap_scan", ap_scan)
+        if ap_scan_channel_list2g5gs is not None:
+            pulumi.set(__self__, "ap_scan_channel_list2g5gs", ap_scan_channel_list2g5gs)
+        if ap_scan_channel_list6gs is not None:
+            pulumi.set(__self__, "ap_scan_channel_list6gs", ap_scan_channel_list6gs)
         if ap_scan_passive is not None:
             pulumi.set(__self__, "ap_scan_passive", ap_scan_passive)
         if ap_scan_threshold is not None:
@@ -289,6 +295,24 @@ class WirelessControllerWidsProfileArgs:
     @ap_scan.setter
     def ap_scan(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ap_scan", value)
+
+    @property
+    @pulumi.getter(name="apScanChannelList2g5gs")
+    def ap_scan_channel_list2g5gs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerWidsProfileApScanChannelList2g5gArgs']]]]:
+        return pulumi.get(self, "ap_scan_channel_list2g5gs")
+
+    @ap_scan_channel_list2g5gs.setter
+    def ap_scan_channel_list2g5gs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerWidsProfileApScanChannelList2g5gArgs']]]]):
+        pulumi.set(self, "ap_scan_channel_list2g5gs", value)
+
+    @property
+    @pulumi.getter(name="apScanChannelList6gs")
+    def ap_scan_channel_list6gs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerWidsProfileApScanChannelList6gArgs']]]]:
+        return pulumi.get(self, "ap_scan_channel_list6gs")
+
+    @ap_scan_channel_list6gs.setter
+    def ap_scan_channel_list6gs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerWidsProfileApScanChannelList6gArgs']]]]):
+        pulumi.set(self, "ap_scan_channel_list6gs", value)
 
     @property
     @pulumi.getter(name="apScanPassive")
@@ -684,6 +708,8 @@ class _WirelessControllerWidsProfileState:
                  ap_bgscan_report_intv: Optional[pulumi.Input[int]] = None,
                  ap_fgscan_report_intv: Optional[pulumi.Input[int]] = None,
                  ap_scan: Optional[pulumi.Input[str]] = None,
+                 ap_scan_channel_list2g5gs: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerWidsProfileApScanChannelList2g5gArgs']]]] = None,
+                 ap_scan_channel_list6gs: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerWidsProfileApScanChannelList6gArgs']]]] = None,
                  ap_scan_passive: Optional[pulumi.Input[str]] = None,
                  ap_scan_threshold: Optional[pulumi.Input[str]] = None,
                  asleap_attack: Optional[pulumi.Input[str]] = None,
@@ -753,6 +779,10 @@ class _WirelessControllerWidsProfileState:
             pulumi.set(__self__, "ap_fgscan_report_intv", ap_fgscan_report_intv)
         if ap_scan is not None:
             pulumi.set(__self__, "ap_scan", ap_scan)
+        if ap_scan_channel_list2g5gs is not None:
+            pulumi.set(__self__, "ap_scan_channel_list2g5gs", ap_scan_channel_list2g5gs)
+        if ap_scan_channel_list6gs is not None:
+            pulumi.set(__self__, "ap_scan_channel_list6gs", ap_scan_channel_list6gs)
         if ap_scan_passive is not None:
             pulumi.set(__self__, "ap_scan_passive", ap_scan_passive)
         if ap_scan_threshold is not None:
@@ -945,6 +975,24 @@ class _WirelessControllerWidsProfileState:
     @ap_scan.setter
     def ap_scan(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ap_scan", value)
+
+    @property
+    @pulumi.getter(name="apScanChannelList2g5gs")
+    def ap_scan_channel_list2g5gs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerWidsProfileApScanChannelList2g5gArgs']]]]:
+        return pulumi.get(self, "ap_scan_channel_list2g5gs")
+
+    @ap_scan_channel_list2g5gs.setter
+    def ap_scan_channel_list2g5gs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerWidsProfileApScanChannelList2g5gArgs']]]]):
+        pulumi.set(self, "ap_scan_channel_list2g5gs", value)
+
+    @property
+    @pulumi.getter(name="apScanChannelList6gs")
+    def ap_scan_channel_list6gs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerWidsProfileApScanChannelList6gArgs']]]]:
+        return pulumi.get(self, "ap_scan_channel_list6gs")
+
+    @ap_scan_channel_list6gs.setter
+    def ap_scan_channel_list6gs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerWidsProfileApScanChannelList6gArgs']]]]):
+        pulumi.set(self, "ap_scan_channel_list6gs", value)
 
     @property
     @pulumi.getter(name="apScanPassive")
@@ -1342,6 +1390,8 @@ class WirelessControllerWidsProfile(pulumi.CustomResource):
                  ap_bgscan_report_intv: Optional[pulumi.Input[int]] = None,
                  ap_fgscan_report_intv: Optional[pulumi.Input[int]] = None,
                  ap_scan: Optional[pulumi.Input[str]] = None,
+                 ap_scan_channel_list2g5gs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerWidsProfileApScanChannelList2g5gArgs']]]]] = None,
+                 ap_scan_channel_list6gs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerWidsProfileApScanChannelList6gArgs']]]]] = None,
                  ap_scan_passive: Optional[pulumi.Input[str]] = None,
                  ap_scan_threshold: Optional[pulumi.Input[str]] = None,
                  asleap_attack: Optional[pulumi.Input[str]] = None,
@@ -1425,6 +1475,8 @@ class WirelessControllerWidsProfile(pulumi.CustomResource):
                  ap_bgscan_report_intv: Optional[pulumi.Input[int]] = None,
                  ap_fgscan_report_intv: Optional[pulumi.Input[int]] = None,
                  ap_scan: Optional[pulumi.Input[str]] = None,
+                 ap_scan_channel_list2g5gs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerWidsProfileApScanChannelList2g5gArgs']]]]] = None,
+                 ap_scan_channel_list6gs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerWidsProfileApScanChannelList6gArgs']]]]] = None,
                  ap_scan_passive: Optional[pulumi.Input[str]] = None,
                  ap_scan_threshold: Optional[pulumi.Input[str]] = None,
                  asleap_attack: Optional[pulumi.Input[str]] = None,
@@ -1488,6 +1540,8 @@ class WirelessControllerWidsProfile(pulumi.CustomResource):
             __props__.__dict__["ap_bgscan_report_intv"] = ap_bgscan_report_intv
             __props__.__dict__["ap_fgscan_report_intv"] = ap_fgscan_report_intv
             __props__.__dict__["ap_scan"] = ap_scan
+            __props__.__dict__["ap_scan_channel_list2g5gs"] = ap_scan_channel_list2g5gs
+            __props__.__dict__["ap_scan_channel_list6gs"] = ap_scan_channel_list6gs
             __props__.__dict__["ap_scan_passive"] = ap_scan_passive
             __props__.__dict__["ap_scan_threshold"] = ap_scan_threshold
             __props__.__dict__["asleap_attack"] = asleap_attack
@@ -1552,6 +1606,8 @@ class WirelessControllerWidsProfile(pulumi.CustomResource):
             ap_bgscan_report_intv: Optional[pulumi.Input[int]] = None,
             ap_fgscan_report_intv: Optional[pulumi.Input[int]] = None,
             ap_scan: Optional[pulumi.Input[str]] = None,
+            ap_scan_channel_list2g5gs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerWidsProfileApScanChannelList2g5gArgs']]]]] = None,
+            ap_scan_channel_list6gs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerWidsProfileApScanChannelList6gArgs']]]]] = None,
             ap_scan_passive: Optional[pulumi.Input[str]] = None,
             ap_scan_threshold: Optional[pulumi.Input[str]] = None,
             asleap_attack: Optional[pulumi.Input[str]] = None,
@@ -1618,6 +1674,8 @@ class WirelessControllerWidsProfile(pulumi.CustomResource):
         __props__.__dict__["ap_bgscan_report_intv"] = ap_bgscan_report_intv
         __props__.__dict__["ap_fgscan_report_intv"] = ap_fgscan_report_intv
         __props__.__dict__["ap_scan"] = ap_scan
+        __props__.__dict__["ap_scan_channel_list2g5gs"] = ap_scan_channel_list2g5gs
+        __props__.__dict__["ap_scan_channel_list6gs"] = ap_scan_channel_list6gs
         __props__.__dict__["ap_scan_passive"] = ap_scan_passive
         __props__.__dict__["ap_scan_threshold"] = ap_scan_threshold
         __props__.__dict__["asleap_attack"] = asleap_attack
@@ -1721,6 +1779,16 @@ class WirelessControllerWidsProfile(pulumi.CustomResource):
     @pulumi.getter(name="apScan")
     def ap_scan(self) -> pulumi.Output[str]:
         return pulumi.get(self, "ap_scan")
+
+    @property
+    @pulumi.getter(name="apScanChannelList2g5gs")
+    def ap_scan_channel_list2g5gs(self) -> pulumi.Output[Optional[Sequence['outputs.WirelessControllerWidsProfileApScanChannelList2g5g']]]:
+        return pulumi.get(self, "ap_scan_channel_list2g5gs")
+
+    @property
+    @pulumi.getter(name="apScanChannelList6gs")
+    def ap_scan_channel_list6gs(self) -> pulumi.Output[Optional[Sequence['outputs.WirelessControllerWidsProfileApScanChannelList6g']]]:
+        return pulumi.get(self, "ap_scan_channel_list6gs")
 
     @property
     @pulumi.getter(name="apScanPassive")

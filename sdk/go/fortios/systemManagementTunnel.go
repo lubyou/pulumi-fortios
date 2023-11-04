@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemManagementTunnel struct {
@@ -125,6 +126,12 @@ func (i *SystemManagementTunnel) ToSystemManagementTunnelOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(SystemManagementTunnelOutput)
 }
 
+func (i *SystemManagementTunnel) ToOutput(ctx context.Context) pulumix.Output[*SystemManagementTunnel] {
+	return pulumix.Output[*SystemManagementTunnel]{
+		OutputState: i.ToSystemManagementTunnelOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemManagementTunnelArrayInput is an input type that accepts SystemManagementTunnelArray and SystemManagementTunnelArrayOutput values.
 // You can construct a concrete instance of `SystemManagementTunnelArrayInput` via:
 //
@@ -148,6 +155,12 @@ func (i SystemManagementTunnelArray) ToSystemManagementTunnelArrayOutput() Syste
 
 func (i SystemManagementTunnelArray) ToSystemManagementTunnelArrayOutputWithContext(ctx context.Context) SystemManagementTunnelArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemManagementTunnelArrayOutput)
+}
+
+func (i SystemManagementTunnelArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemManagementTunnel] {
+	return pulumix.Output[[]*SystemManagementTunnel]{
+		OutputState: i.ToSystemManagementTunnelArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemManagementTunnelMapInput is an input type that accepts SystemManagementTunnelMap and SystemManagementTunnelMapOutput values.
@@ -175,6 +188,12 @@ func (i SystemManagementTunnelMap) ToSystemManagementTunnelMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(SystemManagementTunnelMapOutput)
 }
 
+func (i SystemManagementTunnelMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemManagementTunnel] {
+	return pulumix.Output[map[string]*SystemManagementTunnel]{
+		OutputState: i.ToSystemManagementTunnelMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemManagementTunnelOutput struct{ *pulumi.OutputState }
 
 func (SystemManagementTunnelOutput) ElementType() reflect.Type {
@@ -187,6 +206,12 @@ func (o SystemManagementTunnelOutput) ToSystemManagementTunnelOutput() SystemMan
 
 func (o SystemManagementTunnelOutput) ToSystemManagementTunnelOutputWithContext(ctx context.Context) SystemManagementTunnelOutput {
 	return o
+}
+
+func (o SystemManagementTunnelOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemManagementTunnel] {
+	return pulumix.Output[*SystemManagementTunnel]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemManagementTunnelOutput) AllowCollectStatistics() pulumi.StringOutput {
@@ -235,6 +260,12 @@ func (o SystemManagementTunnelArrayOutput) ToSystemManagementTunnelArrayOutputWi
 	return o
 }
 
+func (o SystemManagementTunnelArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemManagementTunnel] {
+	return pulumix.Output[[]*SystemManagementTunnel]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemManagementTunnelArrayOutput) Index(i pulumi.IntInput) SystemManagementTunnelOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemManagementTunnel {
 		return vs[0].([]*SystemManagementTunnel)[vs[1].(int)]
@@ -253,6 +284,12 @@ func (o SystemManagementTunnelMapOutput) ToSystemManagementTunnelMapOutput() Sys
 
 func (o SystemManagementTunnelMapOutput) ToSystemManagementTunnelMapOutputWithContext(ctx context.Context) SystemManagementTunnelMapOutput {
 	return o
+}
+
+func (o SystemManagementTunnelMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemManagementTunnel] {
+	return pulumix.Output[map[string]*SystemManagementTunnel]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemManagementTunnelMapOutput) MapIndex(k pulumi.StringInput) SystemManagementTunnelOutput {

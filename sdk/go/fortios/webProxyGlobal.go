@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WebProxyGlobal struct {
@@ -209,6 +210,12 @@ func (i *WebProxyGlobal) ToWebProxyGlobalOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyGlobalOutput)
 }
 
+func (i *WebProxyGlobal) ToOutput(ctx context.Context) pulumix.Output[*WebProxyGlobal] {
+	return pulumix.Output[*WebProxyGlobal]{
+		OutputState: i.ToWebProxyGlobalOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WebProxyGlobalArrayInput is an input type that accepts WebProxyGlobalArray and WebProxyGlobalArrayOutput values.
 // You can construct a concrete instance of `WebProxyGlobalArrayInput` via:
 //
@@ -232,6 +239,12 @@ func (i WebProxyGlobalArray) ToWebProxyGlobalArrayOutput() WebProxyGlobalArrayOu
 
 func (i WebProxyGlobalArray) ToWebProxyGlobalArrayOutputWithContext(ctx context.Context) WebProxyGlobalArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyGlobalArrayOutput)
+}
+
+func (i WebProxyGlobalArray) ToOutput(ctx context.Context) pulumix.Output[[]*WebProxyGlobal] {
+	return pulumix.Output[[]*WebProxyGlobal]{
+		OutputState: i.ToWebProxyGlobalArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // WebProxyGlobalMapInput is an input type that accepts WebProxyGlobalMap and WebProxyGlobalMapOutput values.
@@ -259,6 +272,12 @@ func (i WebProxyGlobalMap) ToWebProxyGlobalMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyGlobalMapOutput)
 }
 
+func (i WebProxyGlobalMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WebProxyGlobal] {
+	return pulumix.Output[map[string]*WebProxyGlobal]{
+		OutputState: i.ToWebProxyGlobalMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WebProxyGlobalOutput struct{ *pulumi.OutputState }
 
 func (WebProxyGlobalOutput) ElementType() reflect.Type {
@@ -271,6 +290,12 @@ func (o WebProxyGlobalOutput) ToWebProxyGlobalOutput() WebProxyGlobalOutput {
 
 func (o WebProxyGlobalOutput) ToWebProxyGlobalOutputWithContext(ctx context.Context) WebProxyGlobalOutput {
 	return o
+}
+
+func (o WebProxyGlobalOutput) ToOutput(ctx context.Context) pulumix.Output[*WebProxyGlobal] {
+	return pulumix.Output[*WebProxyGlobal]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebProxyGlobalOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -385,6 +410,12 @@ func (o WebProxyGlobalArrayOutput) ToWebProxyGlobalArrayOutputWithContext(ctx co
 	return o
 }
 
+func (o WebProxyGlobalArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WebProxyGlobal] {
+	return pulumix.Output[[]*WebProxyGlobal]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o WebProxyGlobalArrayOutput) Index(i pulumi.IntInput) WebProxyGlobalOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WebProxyGlobal {
 		return vs[0].([]*WebProxyGlobal)[vs[1].(int)]
@@ -403,6 +434,12 @@ func (o WebProxyGlobalMapOutput) ToWebProxyGlobalMapOutput() WebProxyGlobalMapOu
 
 func (o WebProxyGlobalMapOutput) ToWebProxyGlobalMapOutputWithContext(ctx context.Context) WebProxyGlobalMapOutput {
 	return o
+}
+
+func (o WebProxyGlobalMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WebProxyGlobal] {
+	return pulumix.Output[map[string]*WebProxyGlobal]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebProxyGlobalMapOutput) MapIndex(k pulumi.StringInput) WebProxyGlobalOutput {

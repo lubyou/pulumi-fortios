@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemArpTable(ctx *pulumi.Context, args *LookupSystemArpTableArgs, opts ...pulumi.InvokeOption) (*LookupSystemArpTableResult, error) {
@@ -74,6 +75,12 @@ func (o LookupSystemArpTableResultOutput) ToLookupSystemArpTableResultOutput() L
 
 func (o LookupSystemArpTableResultOutput) ToLookupSystemArpTableResultOutputWithContext(ctx context.Context) LookupSystemArpTableResultOutput {
 	return o
+}
+
+func (o LookupSystemArpTableResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemArpTableResult] {
+	return pulumix.Output[LookupSystemArpTableResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupSystemArpTableResultOutput) Fosid() pulumi.IntOutput {

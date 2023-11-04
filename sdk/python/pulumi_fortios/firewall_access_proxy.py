@@ -30,6 +30,7 @@ class FirewallAccessProxyArgs:
                  log_blocked_traffic: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  svr_pool_multiplex: Optional[pulumi.Input[str]] = None,
+                 svr_pool_server_max_concurrent_request: Optional[pulumi.Input[int]] = None,
                  svr_pool_server_max_request: Optional[pulumi.Input[int]] = None,
                  svr_pool_ttl: Optional[pulumi.Input[int]] = None,
                  user_agent_detect: Optional[pulumi.Input[str]] = None,
@@ -66,6 +67,8 @@ class FirewallAccessProxyArgs:
             pulumi.set(__self__, "name", name)
         if svr_pool_multiplex is not None:
             pulumi.set(__self__, "svr_pool_multiplex", svr_pool_multiplex)
+        if svr_pool_server_max_concurrent_request is not None:
+            pulumi.set(__self__, "svr_pool_server_max_concurrent_request", svr_pool_server_max_concurrent_request)
         if svr_pool_server_max_request is not None:
             pulumi.set(__self__, "svr_pool_server_max_request", svr_pool_server_max_request)
         if svr_pool_ttl is not None:
@@ -202,6 +205,15 @@ class FirewallAccessProxyArgs:
     @svr_pool_multiplex.setter
     def svr_pool_multiplex(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "svr_pool_multiplex", value)
+
+    @property
+    @pulumi.getter(name="svrPoolServerMaxConcurrentRequest")
+    def svr_pool_server_max_concurrent_request(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "svr_pool_server_max_concurrent_request")
+
+    @svr_pool_server_max_concurrent_request.setter
+    def svr_pool_server_max_concurrent_request(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "svr_pool_server_max_concurrent_request", value)
 
     @property
     @pulumi.getter(name="svrPoolServerMaxRequest")
@@ -266,6 +278,7 @@ class _FirewallAccessProxyState:
                  log_blocked_traffic: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  svr_pool_multiplex: Optional[pulumi.Input[str]] = None,
+                 svr_pool_server_max_concurrent_request: Optional[pulumi.Input[int]] = None,
                  svr_pool_server_max_request: Optional[pulumi.Input[int]] = None,
                  svr_pool_ttl: Optional[pulumi.Input[int]] = None,
                  user_agent_detect: Optional[pulumi.Input[str]] = None,
@@ -302,6 +315,8 @@ class _FirewallAccessProxyState:
             pulumi.set(__self__, "name", name)
         if svr_pool_multiplex is not None:
             pulumi.set(__self__, "svr_pool_multiplex", svr_pool_multiplex)
+        if svr_pool_server_max_concurrent_request is not None:
+            pulumi.set(__self__, "svr_pool_server_max_concurrent_request", svr_pool_server_max_concurrent_request)
         if svr_pool_server_max_request is not None:
             pulumi.set(__self__, "svr_pool_server_max_request", svr_pool_server_max_request)
         if svr_pool_ttl is not None:
@@ -438,6 +453,15 @@ class _FirewallAccessProxyState:
     @svr_pool_multiplex.setter
     def svr_pool_multiplex(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "svr_pool_multiplex", value)
+
+    @property
+    @pulumi.getter(name="svrPoolServerMaxConcurrentRequest")
+    def svr_pool_server_max_concurrent_request(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "svr_pool_server_max_concurrent_request")
+
+    @svr_pool_server_max_concurrent_request.setter
+    def svr_pool_server_max_concurrent_request(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "svr_pool_server_max_concurrent_request", value)
 
     @property
     @pulumi.getter(name="svrPoolServerMaxRequest")
@@ -504,6 +528,7 @@ class FirewallAccessProxy(pulumi.CustomResource):
                  log_blocked_traffic: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  svr_pool_multiplex: Optional[pulumi.Input[str]] = None,
+                 svr_pool_server_max_concurrent_request: Optional[pulumi.Input[int]] = None,
                  svr_pool_server_max_request: Optional[pulumi.Input[int]] = None,
                  svr_pool_ttl: Optional[pulumi.Input[int]] = None,
                  user_agent_detect: Optional[pulumi.Input[str]] = None,
@@ -552,6 +577,7 @@ class FirewallAccessProxy(pulumi.CustomResource):
                  log_blocked_traffic: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  svr_pool_multiplex: Optional[pulumi.Input[str]] = None,
+                 svr_pool_server_max_concurrent_request: Optional[pulumi.Input[int]] = None,
                  svr_pool_server_max_request: Optional[pulumi.Input[int]] = None,
                  svr_pool_ttl: Optional[pulumi.Input[int]] = None,
                  user_agent_detect: Optional[pulumi.Input[str]] = None,
@@ -580,6 +606,7 @@ class FirewallAccessProxy(pulumi.CustomResource):
             __props__.__dict__["log_blocked_traffic"] = log_blocked_traffic
             __props__.__dict__["name"] = name
             __props__.__dict__["svr_pool_multiplex"] = svr_pool_multiplex
+            __props__.__dict__["svr_pool_server_max_concurrent_request"] = svr_pool_server_max_concurrent_request
             __props__.__dict__["svr_pool_server_max_request"] = svr_pool_server_max_request
             __props__.__dict__["svr_pool_ttl"] = svr_pool_ttl
             __props__.__dict__["user_agent_detect"] = user_agent_detect
@@ -609,6 +636,7 @@ class FirewallAccessProxy(pulumi.CustomResource):
             log_blocked_traffic: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             svr_pool_multiplex: Optional[pulumi.Input[str]] = None,
+            svr_pool_server_max_concurrent_request: Optional[pulumi.Input[int]] = None,
             svr_pool_server_max_request: Optional[pulumi.Input[int]] = None,
             svr_pool_ttl: Optional[pulumi.Input[int]] = None,
             user_agent_detect: Optional[pulumi.Input[str]] = None,
@@ -640,6 +668,7 @@ class FirewallAccessProxy(pulumi.CustomResource):
         __props__.__dict__["log_blocked_traffic"] = log_blocked_traffic
         __props__.__dict__["name"] = name
         __props__.__dict__["svr_pool_multiplex"] = svr_pool_multiplex
+        __props__.__dict__["svr_pool_server_max_concurrent_request"] = svr_pool_server_max_concurrent_request
         __props__.__dict__["svr_pool_server_max_request"] = svr_pool_server_max_request
         __props__.__dict__["svr_pool_ttl"] = svr_pool_ttl
         __props__.__dict__["user_agent_detect"] = user_agent_detect
@@ -716,6 +745,11 @@ class FirewallAccessProxy(pulumi.CustomResource):
     @pulumi.getter(name="svrPoolMultiplex")
     def svr_pool_multiplex(self) -> pulumi.Output[str]:
         return pulumi.get(self, "svr_pool_multiplex")
+
+    @property
+    @pulumi.getter(name="svrPoolServerMaxConcurrentRequest")
+    def svr_pool_server_max_concurrent_request(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "svr_pool_server_max_concurrent_request")
 
     @property
     @pulumi.getter(name="svrPoolServerMaxRequest")

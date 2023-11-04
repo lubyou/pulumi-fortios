@@ -16,6 +16,7 @@ __all__ = ['WirelessControllerWtpGroupArgs', 'WirelessControllerWtpGroup']
 @pulumi.input_type
 class WirelessControllerWtpGroupArgs:
     def __init__(__self__, *,
+                 ble_major_id: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -25,6 +26,8 @@ class WirelessControllerWtpGroupArgs:
         """
         The set of arguments for constructing a WirelessControllerWtpGroup resource.
         """
+        if ble_major_id is not None:
+            pulumi.set(__self__, "ble_major_id", ble_major_id)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if get_all_tables is not None:
@@ -37,6 +40,15 @@ class WirelessControllerWtpGroupArgs:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if wtps is not None:
             pulumi.set(__self__, "wtps", wtps)
+
+    @property
+    @pulumi.getter(name="bleMajorId")
+    def ble_major_id(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "ble_major_id")
+
+    @ble_major_id.setter
+    def ble_major_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ble_major_id", value)
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -96,6 +108,7 @@ class WirelessControllerWtpGroupArgs:
 @pulumi.input_type
 class _WirelessControllerWtpGroupState:
     def __init__(__self__, *,
+                 ble_major_id: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -105,6 +118,8 @@ class _WirelessControllerWtpGroupState:
         """
         Input properties used for looking up and filtering WirelessControllerWtpGroup resources.
         """
+        if ble_major_id is not None:
+            pulumi.set(__self__, "ble_major_id", ble_major_id)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if get_all_tables is not None:
@@ -117,6 +132,15 @@ class _WirelessControllerWtpGroupState:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if wtps is not None:
             pulumi.set(__self__, "wtps", wtps)
+
+    @property
+    @pulumi.getter(name="bleMajorId")
+    def ble_major_id(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "ble_major_id")
+
+    @ble_major_id.setter
+    def ble_major_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ble_major_id", value)
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -178,6 +202,7 @@ class WirelessControllerWtpGroup(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 ble_major_id: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -213,6 +238,7 @@ class WirelessControllerWtpGroup(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 ble_major_id: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -228,6 +254,7 @@ class WirelessControllerWtpGroup(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = WirelessControllerWtpGroupArgs.__new__(WirelessControllerWtpGroupArgs)
 
+            __props__.__dict__["ble_major_id"] = ble_major_id
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["name"] = name
@@ -244,6 +271,7 @@ class WirelessControllerWtpGroup(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            ble_major_id: Optional[pulumi.Input[int]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             get_all_tables: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -262,6 +290,7 @@ class WirelessControllerWtpGroup(pulumi.CustomResource):
 
         __props__ = _WirelessControllerWtpGroupState.__new__(_WirelessControllerWtpGroupState)
 
+        __props__.__dict__["ble_major_id"] = ble_major_id
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["name"] = name
@@ -269,6 +298,11 @@ class WirelessControllerWtpGroup(pulumi.CustomResource):
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["wtps"] = wtps
         return WirelessControllerWtpGroup(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="bleMajorId")
+    def ble_major_id(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "ble_major_id")
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")

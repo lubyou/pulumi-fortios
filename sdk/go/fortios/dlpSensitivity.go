@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type DlpSensitivity struct {
@@ -95,6 +96,12 @@ func (i *DlpSensitivity) ToDlpSensitivityOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(DlpSensitivityOutput)
 }
 
+func (i *DlpSensitivity) ToOutput(ctx context.Context) pulumix.Output[*DlpSensitivity] {
+	return pulumix.Output[*DlpSensitivity]{
+		OutputState: i.ToDlpSensitivityOutputWithContext(ctx).OutputState,
+	}
+}
+
 // DlpSensitivityArrayInput is an input type that accepts DlpSensitivityArray and DlpSensitivityArrayOutput values.
 // You can construct a concrete instance of `DlpSensitivityArrayInput` via:
 //
@@ -118,6 +125,12 @@ func (i DlpSensitivityArray) ToDlpSensitivityArrayOutput() DlpSensitivityArrayOu
 
 func (i DlpSensitivityArray) ToDlpSensitivityArrayOutputWithContext(ctx context.Context) DlpSensitivityArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DlpSensitivityArrayOutput)
+}
+
+func (i DlpSensitivityArray) ToOutput(ctx context.Context) pulumix.Output[[]*DlpSensitivity] {
+	return pulumix.Output[[]*DlpSensitivity]{
+		OutputState: i.ToDlpSensitivityArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // DlpSensitivityMapInput is an input type that accepts DlpSensitivityMap and DlpSensitivityMapOutput values.
@@ -145,6 +158,12 @@ func (i DlpSensitivityMap) ToDlpSensitivityMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(DlpSensitivityMapOutput)
 }
 
+func (i DlpSensitivityMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DlpSensitivity] {
+	return pulumix.Output[map[string]*DlpSensitivity]{
+		OutputState: i.ToDlpSensitivityMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DlpSensitivityOutput struct{ *pulumi.OutputState }
 
 func (DlpSensitivityOutput) ElementType() reflect.Type {
@@ -157,6 +176,12 @@ func (o DlpSensitivityOutput) ToDlpSensitivityOutput() DlpSensitivityOutput {
 
 func (o DlpSensitivityOutput) ToDlpSensitivityOutputWithContext(ctx context.Context) DlpSensitivityOutput {
 	return o
+}
+
+func (o DlpSensitivityOutput) ToOutput(ctx context.Context) pulumix.Output[*DlpSensitivity] {
+	return pulumix.Output[*DlpSensitivity]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DlpSensitivityOutput) Name() pulumi.StringOutput {
@@ -181,6 +206,12 @@ func (o DlpSensitivityArrayOutput) ToDlpSensitivityArrayOutputWithContext(ctx co
 	return o
 }
 
+func (o DlpSensitivityArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DlpSensitivity] {
+	return pulumix.Output[[]*DlpSensitivity]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DlpSensitivityArrayOutput) Index(i pulumi.IntInput) DlpSensitivityOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DlpSensitivity {
 		return vs[0].([]*DlpSensitivity)[vs[1].(int)]
@@ -199,6 +230,12 @@ func (o DlpSensitivityMapOutput) ToDlpSensitivityMapOutput() DlpSensitivityMapOu
 
 func (o DlpSensitivityMapOutput) ToDlpSensitivityMapOutputWithContext(ctx context.Context) DlpSensitivityMapOutput {
 	return o
+}
+
+func (o DlpSensitivityMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DlpSensitivity] {
+	return pulumix.Output[map[string]*DlpSensitivity]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DlpSensitivityMapOutput) MapIndex(k pulumi.StringInput) DlpSensitivityOutput {

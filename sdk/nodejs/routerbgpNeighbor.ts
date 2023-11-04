@@ -87,8 +87,10 @@ export class RouterbgpNeighbor extends pulumi.CustomResource {
     public readonly ebgpMultihopTtl!: pulumi.Output<number>;
     public readonly filterListIn!: pulumi.Output<string>;
     public readonly filterListIn6!: pulumi.Output<string>;
+    public readonly filterListInVpnv4!: pulumi.Output<string>;
     public readonly filterListOut!: pulumi.Output<string>;
     public readonly filterListOut6!: pulumi.Output<string>;
+    public readonly filterListOutVpnv4!: pulumi.Output<string>;
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly holdtimeTimer!: pulumi.Output<number>;
     public readonly interface!: pulumi.Output<string>;
@@ -233,8 +235,10 @@ export class RouterbgpNeighbor extends pulumi.CustomResource {
             resourceInputs["ebgpMultihopTtl"] = state ? state.ebgpMultihopTtl : undefined;
             resourceInputs["filterListIn"] = state ? state.filterListIn : undefined;
             resourceInputs["filterListIn6"] = state ? state.filterListIn6 : undefined;
+            resourceInputs["filterListInVpnv4"] = state ? state.filterListInVpnv4 : undefined;
             resourceInputs["filterListOut"] = state ? state.filterListOut : undefined;
             resourceInputs["filterListOut6"] = state ? state.filterListOut6 : undefined;
+            resourceInputs["filterListOutVpnv4"] = state ? state.filterListOutVpnv4 : undefined;
             resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["holdtimeTimer"] = state ? state.holdtimeTimer : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
@@ -370,8 +374,10 @@ export class RouterbgpNeighbor extends pulumi.CustomResource {
             resourceInputs["ebgpMultihopTtl"] = args ? args.ebgpMultihopTtl : undefined;
             resourceInputs["filterListIn"] = args ? args.filterListIn : undefined;
             resourceInputs["filterListIn6"] = args ? args.filterListIn6 : undefined;
+            resourceInputs["filterListInVpnv4"] = args ? args.filterListInVpnv4 : undefined;
             resourceInputs["filterListOut"] = args ? args.filterListOut : undefined;
             resourceInputs["filterListOut6"] = args ? args.filterListOut6 : undefined;
+            resourceInputs["filterListOutVpnv4"] = args ? args.filterListOutVpnv4 : undefined;
             resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["holdtimeTimer"] = args ? args.holdtimeTimer : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
@@ -514,8 +520,10 @@ export interface RouterbgpNeighborState {
     ebgpMultihopTtl?: pulumi.Input<number>;
     filterListIn?: pulumi.Input<string>;
     filterListIn6?: pulumi.Input<string>;
+    filterListInVpnv4?: pulumi.Input<string>;
     filterListOut?: pulumi.Input<string>;
     filterListOut6?: pulumi.Input<string>;
+    filterListOutVpnv4?: pulumi.Input<string>;
     getAllTables?: pulumi.Input<string>;
     holdtimeTimer?: pulumi.Input<number>;
     interface?: pulumi.Input<string>;
@@ -652,8 +660,10 @@ export interface RouterbgpNeighborArgs {
     ebgpMultihopTtl?: pulumi.Input<number>;
     filterListIn?: pulumi.Input<string>;
     filterListIn6?: pulumi.Input<string>;
+    filterListInVpnv4?: pulumi.Input<string>;
     filterListOut?: pulumi.Input<string>;
     filterListOut6?: pulumi.Input<string>;
+    filterListOutVpnv4?: pulumi.Input<string>;
     getAllTables?: pulumi.Input<string>;
     holdtimeTimer?: pulumi.Input<number>;
     interface?: pulumi.Input<string>;

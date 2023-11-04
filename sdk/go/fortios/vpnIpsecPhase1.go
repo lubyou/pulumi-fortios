@@ -10,137 +10,139 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type VpnIpsecPhase1 struct {
 	pulumi.CustomResourceState
 
-	AcctVerify                 pulumi.StringOutput                       `pulumi:"acctVerify"`
-	AddGwRoute                 pulumi.StringOutput                       `pulumi:"addGwRoute"`
-	AddRoute                   pulumi.StringOutput                       `pulumi:"addRoute"`
-	AssignIp                   pulumi.StringOutput                       `pulumi:"assignIp"`
-	AssignIpFrom               pulumi.StringOutput                       `pulumi:"assignIpFrom"`
-	Authmethod                 pulumi.StringOutput                       `pulumi:"authmethod"`
-	AuthmethodRemote           pulumi.StringOutput                       `pulumi:"authmethodRemote"`
-	Authpasswd                 pulumi.StringPtrOutput                    `pulumi:"authpasswd"`
-	Authusr                    pulumi.StringOutput                       `pulumi:"authusr"`
-	Authusrgrp                 pulumi.StringOutput                       `pulumi:"authusrgrp"`
-	AutoNegotiate              pulumi.StringOutput                       `pulumi:"autoNegotiate"`
-	BackupGateways             VpnIpsecPhase1BackupGatewayArrayOutput    `pulumi:"backupGateways"`
-	Banner                     pulumi.StringPtrOutput                    `pulumi:"banner"`
-	CertIdValidation           pulumi.StringOutput                       `pulumi:"certIdValidation"`
-	Certificates               VpnIpsecPhase1CertificateArrayOutput      `pulumi:"certificates"`
-	ChildlessIke               pulumi.StringOutput                       `pulumi:"childlessIke"`
-	ClientAutoNegotiate        pulumi.StringOutput                       `pulumi:"clientAutoNegotiate"`
-	ClientKeepAlive            pulumi.StringOutput                       `pulumi:"clientKeepAlive"`
-	Comments                   pulumi.StringPtrOutput                    `pulumi:"comments"`
-	Dhcp6RaLinkaddr            pulumi.StringOutput                       `pulumi:"dhcp6RaLinkaddr"`
-	DhcpRaGiaddr               pulumi.StringOutput                       `pulumi:"dhcpRaGiaddr"`
-	Dhgrp                      pulumi.StringOutput                       `pulumi:"dhgrp"`
-	DigitalSignatureAuth       pulumi.StringOutput                       `pulumi:"digitalSignatureAuth"`
-	Distance                   pulumi.IntOutput                          `pulumi:"distance"`
-	DnsMode                    pulumi.StringOutput                       `pulumi:"dnsMode"`
-	Domain                     pulumi.StringOutput                       `pulumi:"domain"`
-	Dpd                        pulumi.StringOutput                       `pulumi:"dpd"`
-	DpdRetrycount              pulumi.IntOutput                          `pulumi:"dpdRetrycount"`
-	DpdRetryinterval           pulumi.StringOutput                       `pulumi:"dpdRetryinterval"`
-	DynamicSortSubtable        pulumi.StringPtrOutput                    `pulumi:"dynamicSortSubtable"`
-	Eap                        pulumi.StringOutput                       `pulumi:"eap"`
-	EapExcludePeergrp          pulumi.StringOutput                       `pulumi:"eapExcludePeergrp"`
-	EapIdentity                pulumi.StringOutput                       `pulumi:"eapIdentity"`
-	EnforceUniqueId            pulumi.StringOutput                       `pulumi:"enforceUniqueId"`
-	Esn                        pulumi.StringOutput                       `pulumi:"esn"`
-	FecBase                    pulumi.IntOutput                          `pulumi:"fecBase"`
-	FecCodec                   pulumi.IntOutput                          `pulumi:"fecCodec"`
-	FecCodecString             pulumi.StringOutput                       `pulumi:"fecCodecString"`
-	FecEgress                  pulumi.StringOutput                       `pulumi:"fecEgress"`
-	FecHealthCheck             pulumi.StringOutput                       `pulumi:"fecHealthCheck"`
-	FecIngress                 pulumi.StringOutput                       `pulumi:"fecIngress"`
-	FecMappingProfile          pulumi.StringOutput                       `pulumi:"fecMappingProfile"`
-	FecReceiveTimeout          pulumi.IntOutput                          `pulumi:"fecReceiveTimeout"`
-	FecRedundant               pulumi.IntOutput                          `pulumi:"fecRedundant"`
-	FecSendTimeout             pulumi.IntOutput                          `pulumi:"fecSendTimeout"`
-	FgspSync                   pulumi.StringOutput                       `pulumi:"fgspSync"`
-	ForticlientEnforcement     pulumi.StringOutput                       `pulumi:"forticlientEnforcement"`
-	Fragmentation              pulumi.StringOutput                       `pulumi:"fragmentation"`
-	FragmentationMtu           pulumi.IntOutput                          `pulumi:"fragmentationMtu"`
-	GetAllTables               pulumi.StringPtrOutput                    `pulumi:"getAllTables"`
-	GroupAuthentication        pulumi.StringOutput                       `pulumi:"groupAuthentication"`
-	GroupAuthenticationSecret  pulumi.StringPtrOutput                    `pulumi:"groupAuthenticationSecret"`
-	HaSyncEspSeqno             pulumi.StringOutput                       `pulumi:"haSyncEspSeqno"`
-	IdleTimeout                pulumi.StringOutput                       `pulumi:"idleTimeout"`
-	IdleTimeoutinterval        pulumi.IntOutput                          `pulumi:"idleTimeoutinterval"`
-	IkeVersion                 pulumi.StringOutput                       `pulumi:"ikeVersion"`
-	InboundDscpCopy            pulumi.StringOutput                       `pulumi:"inboundDscpCopy"`
-	IncludeLocalLan            pulumi.StringOutput                       `pulumi:"includeLocalLan"`
-	Interface                  pulumi.StringOutput                       `pulumi:"interface"`
-	IpDelayInterval            pulumi.IntOutput                          `pulumi:"ipDelayInterval"`
-	Ipv4DnsServer1             pulumi.StringOutput                       `pulumi:"ipv4DnsServer1"`
-	Ipv4DnsServer2             pulumi.StringOutput                       `pulumi:"ipv4DnsServer2"`
-	Ipv4DnsServer3             pulumi.StringOutput                       `pulumi:"ipv4DnsServer3"`
-	Ipv4EndIp                  pulumi.StringOutput                       `pulumi:"ipv4EndIp"`
-	Ipv4ExcludeRanges          VpnIpsecPhase1Ipv4ExcludeRangeArrayOutput `pulumi:"ipv4ExcludeRanges"`
-	Ipv4Name                   pulumi.StringOutput                       `pulumi:"ipv4Name"`
-	Ipv4Netmask                pulumi.StringOutput                       `pulumi:"ipv4Netmask"`
-	Ipv4SplitExclude           pulumi.StringOutput                       `pulumi:"ipv4SplitExclude"`
-	Ipv4SplitInclude           pulumi.StringOutput                       `pulumi:"ipv4SplitInclude"`
-	Ipv4StartIp                pulumi.StringOutput                       `pulumi:"ipv4StartIp"`
-	Ipv4WinsServer1            pulumi.StringOutput                       `pulumi:"ipv4WinsServer1"`
-	Ipv4WinsServer2            pulumi.StringOutput                       `pulumi:"ipv4WinsServer2"`
-	Ipv6DnsServer1             pulumi.StringOutput                       `pulumi:"ipv6DnsServer1"`
-	Ipv6DnsServer2             pulumi.StringOutput                       `pulumi:"ipv6DnsServer2"`
-	Ipv6DnsServer3             pulumi.StringOutput                       `pulumi:"ipv6DnsServer3"`
-	Ipv6EndIp                  pulumi.StringOutput                       `pulumi:"ipv6EndIp"`
-	Ipv6ExcludeRanges          VpnIpsecPhase1Ipv6ExcludeRangeArrayOutput `pulumi:"ipv6ExcludeRanges"`
-	Ipv6Name                   pulumi.StringOutput                       `pulumi:"ipv6Name"`
-	Ipv6Prefix                 pulumi.IntOutput                          `pulumi:"ipv6Prefix"`
-	Ipv6SplitExclude           pulumi.StringOutput                       `pulumi:"ipv6SplitExclude"`
-	Ipv6SplitInclude           pulumi.StringOutput                       `pulumi:"ipv6SplitInclude"`
-	Ipv6StartIp                pulumi.StringOutput                       `pulumi:"ipv6StartIp"`
-	Keepalive                  pulumi.IntOutput                          `pulumi:"keepalive"`
-	Keylife                    pulumi.IntOutput                          `pulumi:"keylife"`
-	LocalGw                    pulumi.StringOutput                       `pulumi:"localGw"`
-	Localid                    pulumi.StringOutput                       `pulumi:"localid"`
-	LocalidType                pulumi.StringOutput                       `pulumi:"localidType"`
-	LoopbackAsymroute          pulumi.StringOutput                       `pulumi:"loopbackAsymroute"`
-	MeshSelectorType           pulumi.StringOutput                       `pulumi:"meshSelectorType"`
-	Mode                       pulumi.StringOutput                       `pulumi:"mode"`
-	ModeCfg                    pulumi.StringOutput                       `pulumi:"modeCfg"`
-	ModeCfgAllowClientSelector pulumi.StringOutput                       `pulumi:"modeCfgAllowClientSelector"`
-	Name                       pulumi.StringOutput                       `pulumi:"name"`
-	Nattraversal               pulumi.StringOutput                       `pulumi:"nattraversal"`
-	NegotiateTimeout           pulumi.IntOutput                          `pulumi:"negotiateTimeout"`
-	NetworkId                  pulumi.IntOutput                          `pulumi:"networkId"`
-	NetworkOverlay             pulumi.StringOutput                       `pulumi:"networkOverlay"`
-	NpuOffload                 pulumi.StringOutput                       `pulumi:"npuOffload"`
-	Peer                       pulumi.StringOutput                       `pulumi:"peer"`
-	Peergrp                    pulumi.StringOutput                       `pulumi:"peergrp"`
-	Peerid                     pulumi.StringOutput                       `pulumi:"peerid"`
-	Peertype                   pulumi.StringOutput                       `pulumi:"peertype"`
-	Ppk                        pulumi.StringOutput                       `pulumi:"ppk"`
-	PpkIdentity                pulumi.StringOutput                       `pulumi:"ppkIdentity"`
-	PpkSecret                  pulumi.StringPtrOutput                    `pulumi:"ppkSecret"`
-	Priority                   pulumi.IntOutput                          `pulumi:"priority"`
-	Proposal                   pulumi.StringOutput                       `pulumi:"proposal"`
-	Psksecret                  pulumi.StringOutput                       `pulumi:"psksecret"`
-	PsksecretRemote            pulumi.StringPtrOutput                    `pulumi:"psksecretRemote"`
-	Reauth                     pulumi.StringOutput                       `pulumi:"reauth"`
-	Rekey                      pulumi.StringOutput                       `pulumi:"rekey"`
-	RemoteGw                   pulumi.StringOutput                       `pulumi:"remoteGw"`
-	RemotegwDdns               pulumi.StringOutput                       `pulumi:"remotegwDdns"`
-	RsaSignatureFormat         pulumi.StringOutput                       `pulumi:"rsaSignatureFormat"`
-	RsaSignatureHashOverride   pulumi.StringOutput                       `pulumi:"rsaSignatureHashOverride"`
-	SavePassword               pulumi.StringOutput                       `pulumi:"savePassword"`
-	SendCertChain              pulumi.StringOutput                       `pulumi:"sendCertChain"`
-	SignatureHashAlg           pulumi.StringOutput                       `pulumi:"signatureHashAlg"`
-	SplitIncludeService        pulumi.StringOutput                       `pulumi:"splitIncludeService"`
-	SuiteB                     pulumi.StringOutput                       `pulumi:"suiteB"`
-	Type                       pulumi.StringOutput                       `pulumi:"type"`
-	UnitySupport               pulumi.StringOutput                       `pulumi:"unitySupport"`
-	Usrgrp                     pulumi.StringOutput                       `pulumi:"usrgrp"`
-	Vdomparam                  pulumi.StringPtrOutput                    `pulumi:"vdomparam"`
-	WizardType                 pulumi.StringOutput                       `pulumi:"wizardType"`
-	Xauthtype                  pulumi.StringOutput                       `pulumi:"xauthtype"`
+	AcctVerify                 pulumi.StringOutput                         `pulumi:"acctVerify"`
+	AddGwRoute                 pulumi.StringOutput                         `pulumi:"addGwRoute"`
+	AddRoute                   pulumi.StringOutput                         `pulumi:"addRoute"`
+	AssignIp                   pulumi.StringOutput                         `pulumi:"assignIp"`
+	AssignIpFrom               pulumi.StringOutput                         `pulumi:"assignIpFrom"`
+	Authmethod                 pulumi.StringOutput                         `pulumi:"authmethod"`
+	AuthmethodRemote           pulumi.StringOutput                         `pulumi:"authmethodRemote"`
+	Authpasswd                 pulumi.StringPtrOutput                      `pulumi:"authpasswd"`
+	Authusr                    pulumi.StringOutput                         `pulumi:"authusr"`
+	Authusrgrp                 pulumi.StringOutput                         `pulumi:"authusrgrp"`
+	AutoNegotiate              pulumi.StringOutput                         `pulumi:"autoNegotiate"`
+	BackupGateways             VpnIpsecPhase1BackupGatewayArrayOutput      `pulumi:"backupGateways"`
+	Banner                     pulumi.StringPtrOutput                      `pulumi:"banner"`
+	CertIdValidation           pulumi.StringOutput                         `pulumi:"certIdValidation"`
+	Certificates               VpnIpsecPhase1CertificateArrayOutput        `pulumi:"certificates"`
+	ChildlessIke               pulumi.StringOutput                         `pulumi:"childlessIke"`
+	ClientAutoNegotiate        pulumi.StringOutput                         `pulumi:"clientAutoNegotiate"`
+	ClientKeepAlive            pulumi.StringOutput                         `pulumi:"clientKeepAlive"`
+	Comments                   pulumi.StringPtrOutput                      `pulumi:"comments"`
+	Dhcp6RaLinkaddr            pulumi.StringOutput                         `pulumi:"dhcp6RaLinkaddr"`
+	DhcpRaGiaddr               pulumi.StringOutput                         `pulumi:"dhcpRaGiaddr"`
+	Dhgrp                      pulumi.StringOutput                         `pulumi:"dhgrp"`
+	DigitalSignatureAuth       pulumi.StringOutput                         `pulumi:"digitalSignatureAuth"`
+	Distance                   pulumi.IntOutput                            `pulumi:"distance"`
+	DnsMode                    pulumi.StringOutput                         `pulumi:"dnsMode"`
+	Domain                     pulumi.StringOutput                         `pulumi:"domain"`
+	Dpd                        pulumi.StringOutput                         `pulumi:"dpd"`
+	DpdRetrycount              pulumi.IntOutput                            `pulumi:"dpdRetrycount"`
+	DpdRetryinterval           pulumi.StringOutput                         `pulumi:"dpdRetryinterval"`
+	DynamicSortSubtable        pulumi.StringPtrOutput                      `pulumi:"dynamicSortSubtable"`
+	Eap                        pulumi.StringOutput                         `pulumi:"eap"`
+	EapExcludePeergrp          pulumi.StringOutput                         `pulumi:"eapExcludePeergrp"`
+	EapIdentity                pulumi.StringOutput                         `pulumi:"eapIdentity"`
+	EnforceUniqueId            pulumi.StringOutput                         `pulumi:"enforceUniqueId"`
+	Esn                        pulumi.StringOutput                         `pulumi:"esn"`
+	FecBase                    pulumi.IntOutput                            `pulumi:"fecBase"`
+	FecCodec                   pulumi.IntOutput                            `pulumi:"fecCodec"`
+	FecCodecString             pulumi.StringOutput                         `pulumi:"fecCodecString"`
+	FecEgress                  pulumi.StringOutput                         `pulumi:"fecEgress"`
+	FecHealthCheck             pulumi.StringOutput                         `pulumi:"fecHealthCheck"`
+	FecIngress                 pulumi.StringOutput                         `pulumi:"fecIngress"`
+	FecMappingProfile          pulumi.StringOutput                         `pulumi:"fecMappingProfile"`
+	FecReceiveTimeout          pulumi.IntOutput                            `pulumi:"fecReceiveTimeout"`
+	FecRedundant               pulumi.IntOutput                            `pulumi:"fecRedundant"`
+	FecSendTimeout             pulumi.IntOutput                            `pulumi:"fecSendTimeout"`
+	FgspSync                   pulumi.StringOutput                         `pulumi:"fgspSync"`
+	ForticlientEnforcement     pulumi.StringOutput                         `pulumi:"forticlientEnforcement"`
+	Fragmentation              pulumi.StringOutput                         `pulumi:"fragmentation"`
+	FragmentationMtu           pulumi.IntOutput                            `pulumi:"fragmentationMtu"`
+	GetAllTables               pulumi.StringPtrOutput                      `pulumi:"getAllTables"`
+	GroupAuthentication        pulumi.StringOutput                         `pulumi:"groupAuthentication"`
+	GroupAuthenticationSecret  pulumi.StringPtrOutput                      `pulumi:"groupAuthenticationSecret"`
+	HaSyncEspSeqno             pulumi.StringOutput                         `pulumi:"haSyncEspSeqno"`
+	IdleTimeout                pulumi.StringOutput                         `pulumi:"idleTimeout"`
+	IdleTimeoutinterval        pulumi.IntOutput                            `pulumi:"idleTimeoutinterval"`
+	IkeVersion                 pulumi.StringOutput                         `pulumi:"ikeVersion"`
+	InboundDscpCopy            pulumi.StringOutput                         `pulumi:"inboundDscpCopy"`
+	IncludeLocalLan            pulumi.StringOutput                         `pulumi:"includeLocalLan"`
+	Interface                  pulumi.StringOutput                         `pulumi:"interface"`
+	InternalDomainLists        VpnIpsecPhase1InternalDomainListArrayOutput `pulumi:"internalDomainLists"`
+	IpDelayInterval            pulumi.IntOutput                            `pulumi:"ipDelayInterval"`
+	Ipv4DnsServer1             pulumi.StringOutput                         `pulumi:"ipv4DnsServer1"`
+	Ipv4DnsServer2             pulumi.StringOutput                         `pulumi:"ipv4DnsServer2"`
+	Ipv4DnsServer3             pulumi.StringOutput                         `pulumi:"ipv4DnsServer3"`
+	Ipv4EndIp                  pulumi.StringOutput                         `pulumi:"ipv4EndIp"`
+	Ipv4ExcludeRanges          VpnIpsecPhase1Ipv4ExcludeRangeArrayOutput   `pulumi:"ipv4ExcludeRanges"`
+	Ipv4Name                   pulumi.StringOutput                         `pulumi:"ipv4Name"`
+	Ipv4Netmask                pulumi.StringOutput                         `pulumi:"ipv4Netmask"`
+	Ipv4SplitExclude           pulumi.StringOutput                         `pulumi:"ipv4SplitExclude"`
+	Ipv4SplitInclude           pulumi.StringOutput                         `pulumi:"ipv4SplitInclude"`
+	Ipv4StartIp                pulumi.StringOutput                         `pulumi:"ipv4StartIp"`
+	Ipv4WinsServer1            pulumi.StringOutput                         `pulumi:"ipv4WinsServer1"`
+	Ipv4WinsServer2            pulumi.StringOutput                         `pulumi:"ipv4WinsServer2"`
+	Ipv6DnsServer1             pulumi.StringOutput                         `pulumi:"ipv6DnsServer1"`
+	Ipv6DnsServer2             pulumi.StringOutput                         `pulumi:"ipv6DnsServer2"`
+	Ipv6DnsServer3             pulumi.StringOutput                         `pulumi:"ipv6DnsServer3"`
+	Ipv6EndIp                  pulumi.StringOutput                         `pulumi:"ipv6EndIp"`
+	Ipv6ExcludeRanges          VpnIpsecPhase1Ipv6ExcludeRangeArrayOutput   `pulumi:"ipv6ExcludeRanges"`
+	Ipv6Name                   pulumi.StringOutput                         `pulumi:"ipv6Name"`
+	Ipv6Prefix                 pulumi.IntOutput                            `pulumi:"ipv6Prefix"`
+	Ipv6SplitExclude           pulumi.StringOutput                         `pulumi:"ipv6SplitExclude"`
+	Ipv6SplitInclude           pulumi.StringOutput                         `pulumi:"ipv6SplitInclude"`
+	Ipv6StartIp                pulumi.StringOutput                         `pulumi:"ipv6StartIp"`
+	Keepalive                  pulumi.IntOutput                            `pulumi:"keepalive"`
+	Keylife                    pulumi.IntOutput                            `pulumi:"keylife"`
+	LocalGw                    pulumi.StringOutput                         `pulumi:"localGw"`
+	Localid                    pulumi.StringOutput                         `pulumi:"localid"`
+	LocalidType                pulumi.StringOutput                         `pulumi:"localidType"`
+	LoopbackAsymroute          pulumi.StringOutput                         `pulumi:"loopbackAsymroute"`
+	MeshSelectorType           pulumi.StringOutput                         `pulumi:"meshSelectorType"`
+	Mode                       pulumi.StringOutput                         `pulumi:"mode"`
+	ModeCfg                    pulumi.StringOutput                         `pulumi:"modeCfg"`
+	ModeCfgAllowClientSelector pulumi.StringOutput                         `pulumi:"modeCfgAllowClientSelector"`
+	Name                       pulumi.StringOutput                         `pulumi:"name"`
+	Nattraversal               pulumi.StringOutput                         `pulumi:"nattraversal"`
+	NegotiateTimeout           pulumi.IntOutput                            `pulumi:"negotiateTimeout"`
+	NetworkId                  pulumi.IntOutput                            `pulumi:"networkId"`
+	NetworkOverlay             pulumi.StringOutput                         `pulumi:"networkOverlay"`
+	NpuOffload                 pulumi.StringOutput                         `pulumi:"npuOffload"`
+	Peer                       pulumi.StringOutput                         `pulumi:"peer"`
+	Peergrp                    pulumi.StringOutput                         `pulumi:"peergrp"`
+	Peerid                     pulumi.StringOutput                         `pulumi:"peerid"`
+	Peertype                   pulumi.StringOutput                         `pulumi:"peertype"`
+	Ppk                        pulumi.StringOutput                         `pulumi:"ppk"`
+	PpkIdentity                pulumi.StringOutput                         `pulumi:"ppkIdentity"`
+	PpkSecret                  pulumi.StringPtrOutput                      `pulumi:"ppkSecret"`
+	Priority                   pulumi.IntOutput                            `pulumi:"priority"`
+	Proposal                   pulumi.StringOutput                         `pulumi:"proposal"`
+	Psksecret                  pulumi.StringOutput                         `pulumi:"psksecret"`
+	PsksecretRemote            pulumi.StringPtrOutput                      `pulumi:"psksecretRemote"`
+	Reauth                     pulumi.StringOutput                         `pulumi:"reauth"`
+	Rekey                      pulumi.StringOutput                         `pulumi:"rekey"`
+	RemoteGw                   pulumi.StringOutput                         `pulumi:"remoteGw"`
+	RemotegwDdns               pulumi.StringOutput                         `pulumi:"remotegwDdns"`
+	RsaSignatureFormat         pulumi.StringOutput                         `pulumi:"rsaSignatureFormat"`
+	RsaSignatureHashOverride   pulumi.StringOutput                         `pulumi:"rsaSignatureHashOverride"`
+	SavePassword               pulumi.StringOutput                         `pulumi:"savePassword"`
+	SendCertChain              pulumi.StringOutput                         `pulumi:"sendCertChain"`
+	SignatureHashAlg           pulumi.StringOutput                         `pulumi:"signatureHashAlg"`
+	SplitIncludeService        pulumi.StringOutput                         `pulumi:"splitIncludeService"`
+	SuiteB                     pulumi.StringOutput                         `pulumi:"suiteB"`
+	Type                       pulumi.StringOutput                         `pulumi:"type"`
+	UnitySupport               pulumi.StringOutput                         `pulumi:"unitySupport"`
+	Usrgrp                     pulumi.StringOutput                         `pulumi:"usrgrp"`
+	Vdomparam                  pulumi.StringPtrOutput                      `pulumi:"vdomparam"`
+	WizardType                 pulumi.StringOutput                         `pulumi:"wizardType"`
+	Xauthtype                  pulumi.StringOutput                         `pulumi:"xauthtype"`
 }
 
 // NewVpnIpsecPhase1 registers a new resource with the given unique name, arguments, and options.
@@ -205,132 +207,133 @@ func GetVpnIpsecPhase1(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VpnIpsecPhase1 resources.
 type vpnIpsecPhase1State struct {
-	AcctVerify                 *string                          `pulumi:"acctVerify"`
-	AddGwRoute                 *string                          `pulumi:"addGwRoute"`
-	AddRoute                   *string                          `pulumi:"addRoute"`
-	AssignIp                   *string                          `pulumi:"assignIp"`
-	AssignIpFrom               *string                          `pulumi:"assignIpFrom"`
-	Authmethod                 *string                          `pulumi:"authmethod"`
-	AuthmethodRemote           *string                          `pulumi:"authmethodRemote"`
-	Authpasswd                 *string                          `pulumi:"authpasswd"`
-	Authusr                    *string                          `pulumi:"authusr"`
-	Authusrgrp                 *string                          `pulumi:"authusrgrp"`
-	AutoNegotiate              *string                          `pulumi:"autoNegotiate"`
-	BackupGateways             []VpnIpsecPhase1BackupGateway    `pulumi:"backupGateways"`
-	Banner                     *string                          `pulumi:"banner"`
-	CertIdValidation           *string                          `pulumi:"certIdValidation"`
-	Certificates               []VpnIpsecPhase1Certificate      `pulumi:"certificates"`
-	ChildlessIke               *string                          `pulumi:"childlessIke"`
-	ClientAutoNegotiate        *string                          `pulumi:"clientAutoNegotiate"`
-	ClientKeepAlive            *string                          `pulumi:"clientKeepAlive"`
-	Comments                   *string                          `pulumi:"comments"`
-	Dhcp6RaLinkaddr            *string                          `pulumi:"dhcp6RaLinkaddr"`
-	DhcpRaGiaddr               *string                          `pulumi:"dhcpRaGiaddr"`
-	Dhgrp                      *string                          `pulumi:"dhgrp"`
-	DigitalSignatureAuth       *string                          `pulumi:"digitalSignatureAuth"`
-	Distance                   *int                             `pulumi:"distance"`
-	DnsMode                    *string                          `pulumi:"dnsMode"`
-	Domain                     *string                          `pulumi:"domain"`
-	Dpd                        *string                          `pulumi:"dpd"`
-	DpdRetrycount              *int                             `pulumi:"dpdRetrycount"`
-	DpdRetryinterval           *string                          `pulumi:"dpdRetryinterval"`
-	DynamicSortSubtable        *string                          `pulumi:"dynamicSortSubtable"`
-	Eap                        *string                          `pulumi:"eap"`
-	EapExcludePeergrp          *string                          `pulumi:"eapExcludePeergrp"`
-	EapIdentity                *string                          `pulumi:"eapIdentity"`
-	EnforceUniqueId            *string                          `pulumi:"enforceUniqueId"`
-	Esn                        *string                          `pulumi:"esn"`
-	FecBase                    *int                             `pulumi:"fecBase"`
-	FecCodec                   *int                             `pulumi:"fecCodec"`
-	FecCodecString             *string                          `pulumi:"fecCodecString"`
-	FecEgress                  *string                          `pulumi:"fecEgress"`
-	FecHealthCheck             *string                          `pulumi:"fecHealthCheck"`
-	FecIngress                 *string                          `pulumi:"fecIngress"`
-	FecMappingProfile          *string                          `pulumi:"fecMappingProfile"`
-	FecReceiveTimeout          *int                             `pulumi:"fecReceiveTimeout"`
-	FecRedundant               *int                             `pulumi:"fecRedundant"`
-	FecSendTimeout             *int                             `pulumi:"fecSendTimeout"`
-	FgspSync                   *string                          `pulumi:"fgspSync"`
-	ForticlientEnforcement     *string                          `pulumi:"forticlientEnforcement"`
-	Fragmentation              *string                          `pulumi:"fragmentation"`
-	FragmentationMtu           *int                             `pulumi:"fragmentationMtu"`
-	GetAllTables               *string                          `pulumi:"getAllTables"`
-	GroupAuthentication        *string                          `pulumi:"groupAuthentication"`
-	GroupAuthenticationSecret  *string                          `pulumi:"groupAuthenticationSecret"`
-	HaSyncEspSeqno             *string                          `pulumi:"haSyncEspSeqno"`
-	IdleTimeout                *string                          `pulumi:"idleTimeout"`
-	IdleTimeoutinterval        *int                             `pulumi:"idleTimeoutinterval"`
-	IkeVersion                 *string                          `pulumi:"ikeVersion"`
-	InboundDscpCopy            *string                          `pulumi:"inboundDscpCopy"`
-	IncludeLocalLan            *string                          `pulumi:"includeLocalLan"`
-	Interface                  *string                          `pulumi:"interface"`
-	IpDelayInterval            *int                             `pulumi:"ipDelayInterval"`
-	Ipv4DnsServer1             *string                          `pulumi:"ipv4DnsServer1"`
-	Ipv4DnsServer2             *string                          `pulumi:"ipv4DnsServer2"`
-	Ipv4DnsServer3             *string                          `pulumi:"ipv4DnsServer3"`
-	Ipv4EndIp                  *string                          `pulumi:"ipv4EndIp"`
-	Ipv4ExcludeRanges          []VpnIpsecPhase1Ipv4ExcludeRange `pulumi:"ipv4ExcludeRanges"`
-	Ipv4Name                   *string                          `pulumi:"ipv4Name"`
-	Ipv4Netmask                *string                          `pulumi:"ipv4Netmask"`
-	Ipv4SplitExclude           *string                          `pulumi:"ipv4SplitExclude"`
-	Ipv4SplitInclude           *string                          `pulumi:"ipv4SplitInclude"`
-	Ipv4StartIp                *string                          `pulumi:"ipv4StartIp"`
-	Ipv4WinsServer1            *string                          `pulumi:"ipv4WinsServer1"`
-	Ipv4WinsServer2            *string                          `pulumi:"ipv4WinsServer2"`
-	Ipv6DnsServer1             *string                          `pulumi:"ipv6DnsServer1"`
-	Ipv6DnsServer2             *string                          `pulumi:"ipv6DnsServer2"`
-	Ipv6DnsServer3             *string                          `pulumi:"ipv6DnsServer3"`
-	Ipv6EndIp                  *string                          `pulumi:"ipv6EndIp"`
-	Ipv6ExcludeRanges          []VpnIpsecPhase1Ipv6ExcludeRange `pulumi:"ipv6ExcludeRanges"`
-	Ipv6Name                   *string                          `pulumi:"ipv6Name"`
-	Ipv6Prefix                 *int                             `pulumi:"ipv6Prefix"`
-	Ipv6SplitExclude           *string                          `pulumi:"ipv6SplitExclude"`
-	Ipv6SplitInclude           *string                          `pulumi:"ipv6SplitInclude"`
-	Ipv6StartIp                *string                          `pulumi:"ipv6StartIp"`
-	Keepalive                  *int                             `pulumi:"keepalive"`
-	Keylife                    *int                             `pulumi:"keylife"`
-	LocalGw                    *string                          `pulumi:"localGw"`
-	Localid                    *string                          `pulumi:"localid"`
-	LocalidType                *string                          `pulumi:"localidType"`
-	LoopbackAsymroute          *string                          `pulumi:"loopbackAsymroute"`
-	MeshSelectorType           *string                          `pulumi:"meshSelectorType"`
-	Mode                       *string                          `pulumi:"mode"`
-	ModeCfg                    *string                          `pulumi:"modeCfg"`
-	ModeCfgAllowClientSelector *string                          `pulumi:"modeCfgAllowClientSelector"`
-	Name                       *string                          `pulumi:"name"`
-	Nattraversal               *string                          `pulumi:"nattraversal"`
-	NegotiateTimeout           *int                             `pulumi:"negotiateTimeout"`
-	NetworkId                  *int                             `pulumi:"networkId"`
-	NetworkOverlay             *string                          `pulumi:"networkOverlay"`
-	NpuOffload                 *string                          `pulumi:"npuOffload"`
-	Peer                       *string                          `pulumi:"peer"`
-	Peergrp                    *string                          `pulumi:"peergrp"`
-	Peerid                     *string                          `pulumi:"peerid"`
-	Peertype                   *string                          `pulumi:"peertype"`
-	Ppk                        *string                          `pulumi:"ppk"`
-	PpkIdentity                *string                          `pulumi:"ppkIdentity"`
-	PpkSecret                  *string                          `pulumi:"ppkSecret"`
-	Priority                   *int                             `pulumi:"priority"`
-	Proposal                   *string                          `pulumi:"proposal"`
-	Psksecret                  *string                          `pulumi:"psksecret"`
-	PsksecretRemote            *string                          `pulumi:"psksecretRemote"`
-	Reauth                     *string                          `pulumi:"reauth"`
-	Rekey                      *string                          `pulumi:"rekey"`
-	RemoteGw                   *string                          `pulumi:"remoteGw"`
-	RemotegwDdns               *string                          `pulumi:"remotegwDdns"`
-	RsaSignatureFormat         *string                          `pulumi:"rsaSignatureFormat"`
-	RsaSignatureHashOverride   *string                          `pulumi:"rsaSignatureHashOverride"`
-	SavePassword               *string                          `pulumi:"savePassword"`
-	SendCertChain              *string                          `pulumi:"sendCertChain"`
-	SignatureHashAlg           *string                          `pulumi:"signatureHashAlg"`
-	SplitIncludeService        *string                          `pulumi:"splitIncludeService"`
-	SuiteB                     *string                          `pulumi:"suiteB"`
-	Type                       *string                          `pulumi:"type"`
-	UnitySupport               *string                          `pulumi:"unitySupport"`
-	Usrgrp                     *string                          `pulumi:"usrgrp"`
-	Vdomparam                  *string                          `pulumi:"vdomparam"`
-	WizardType                 *string                          `pulumi:"wizardType"`
-	Xauthtype                  *string                          `pulumi:"xauthtype"`
+	AcctVerify                 *string                            `pulumi:"acctVerify"`
+	AddGwRoute                 *string                            `pulumi:"addGwRoute"`
+	AddRoute                   *string                            `pulumi:"addRoute"`
+	AssignIp                   *string                            `pulumi:"assignIp"`
+	AssignIpFrom               *string                            `pulumi:"assignIpFrom"`
+	Authmethod                 *string                            `pulumi:"authmethod"`
+	AuthmethodRemote           *string                            `pulumi:"authmethodRemote"`
+	Authpasswd                 *string                            `pulumi:"authpasswd"`
+	Authusr                    *string                            `pulumi:"authusr"`
+	Authusrgrp                 *string                            `pulumi:"authusrgrp"`
+	AutoNegotiate              *string                            `pulumi:"autoNegotiate"`
+	BackupGateways             []VpnIpsecPhase1BackupGateway      `pulumi:"backupGateways"`
+	Banner                     *string                            `pulumi:"banner"`
+	CertIdValidation           *string                            `pulumi:"certIdValidation"`
+	Certificates               []VpnIpsecPhase1Certificate        `pulumi:"certificates"`
+	ChildlessIke               *string                            `pulumi:"childlessIke"`
+	ClientAutoNegotiate        *string                            `pulumi:"clientAutoNegotiate"`
+	ClientKeepAlive            *string                            `pulumi:"clientKeepAlive"`
+	Comments                   *string                            `pulumi:"comments"`
+	Dhcp6RaLinkaddr            *string                            `pulumi:"dhcp6RaLinkaddr"`
+	DhcpRaGiaddr               *string                            `pulumi:"dhcpRaGiaddr"`
+	Dhgrp                      *string                            `pulumi:"dhgrp"`
+	DigitalSignatureAuth       *string                            `pulumi:"digitalSignatureAuth"`
+	Distance                   *int                               `pulumi:"distance"`
+	DnsMode                    *string                            `pulumi:"dnsMode"`
+	Domain                     *string                            `pulumi:"domain"`
+	Dpd                        *string                            `pulumi:"dpd"`
+	DpdRetrycount              *int                               `pulumi:"dpdRetrycount"`
+	DpdRetryinterval           *string                            `pulumi:"dpdRetryinterval"`
+	DynamicSortSubtable        *string                            `pulumi:"dynamicSortSubtable"`
+	Eap                        *string                            `pulumi:"eap"`
+	EapExcludePeergrp          *string                            `pulumi:"eapExcludePeergrp"`
+	EapIdentity                *string                            `pulumi:"eapIdentity"`
+	EnforceUniqueId            *string                            `pulumi:"enforceUniqueId"`
+	Esn                        *string                            `pulumi:"esn"`
+	FecBase                    *int                               `pulumi:"fecBase"`
+	FecCodec                   *int                               `pulumi:"fecCodec"`
+	FecCodecString             *string                            `pulumi:"fecCodecString"`
+	FecEgress                  *string                            `pulumi:"fecEgress"`
+	FecHealthCheck             *string                            `pulumi:"fecHealthCheck"`
+	FecIngress                 *string                            `pulumi:"fecIngress"`
+	FecMappingProfile          *string                            `pulumi:"fecMappingProfile"`
+	FecReceiveTimeout          *int                               `pulumi:"fecReceiveTimeout"`
+	FecRedundant               *int                               `pulumi:"fecRedundant"`
+	FecSendTimeout             *int                               `pulumi:"fecSendTimeout"`
+	FgspSync                   *string                            `pulumi:"fgspSync"`
+	ForticlientEnforcement     *string                            `pulumi:"forticlientEnforcement"`
+	Fragmentation              *string                            `pulumi:"fragmentation"`
+	FragmentationMtu           *int                               `pulumi:"fragmentationMtu"`
+	GetAllTables               *string                            `pulumi:"getAllTables"`
+	GroupAuthentication        *string                            `pulumi:"groupAuthentication"`
+	GroupAuthenticationSecret  *string                            `pulumi:"groupAuthenticationSecret"`
+	HaSyncEspSeqno             *string                            `pulumi:"haSyncEspSeqno"`
+	IdleTimeout                *string                            `pulumi:"idleTimeout"`
+	IdleTimeoutinterval        *int                               `pulumi:"idleTimeoutinterval"`
+	IkeVersion                 *string                            `pulumi:"ikeVersion"`
+	InboundDscpCopy            *string                            `pulumi:"inboundDscpCopy"`
+	IncludeLocalLan            *string                            `pulumi:"includeLocalLan"`
+	Interface                  *string                            `pulumi:"interface"`
+	InternalDomainLists        []VpnIpsecPhase1InternalDomainList `pulumi:"internalDomainLists"`
+	IpDelayInterval            *int                               `pulumi:"ipDelayInterval"`
+	Ipv4DnsServer1             *string                            `pulumi:"ipv4DnsServer1"`
+	Ipv4DnsServer2             *string                            `pulumi:"ipv4DnsServer2"`
+	Ipv4DnsServer3             *string                            `pulumi:"ipv4DnsServer3"`
+	Ipv4EndIp                  *string                            `pulumi:"ipv4EndIp"`
+	Ipv4ExcludeRanges          []VpnIpsecPhase1Ipv4ExcludeRange   `pulumi:"ipv4ExcludeRanges"`
+	Ipv4Name                   *string                            `pulumi:"ipv4Name"`
+	Ipv4Netmask                *string                            `pulumi:"ipv4Netmask"`
+	Ipv4SplitExclude           *string                            `pulumi:"ipv4SplitExclude"`
+	Ipv4SplitInclude           *string                            `pulumi:"ipv4SplitInclude"`
+	Ipv4StartIp                *string                            `pulumi:"ipv4StartIp"`
+	Ipv4WinsServer1            *string                            `pulumi:"ipv4WinsServer1"`
+	Ipv4WinsServer2            *string                            `pulumi:"ipv4WinsServer2"`
+	Ipv6DnsServer1             *string                            `pulumi:"ipv6DnsServer1"`
+	Ipv6DnsServer2             *string                            `pulumi:"ipv6DnsServer2"`
+	Ipv6DnsServer3             *string                            `pulumi:"ipv6DnsServer3"`
+	Ipv6EndIp                  *string                            `pulumi:"ipv6EndIp"`
+	Ipv6ExcludeRanges          []VpnIpsecPhase1Ipv6ExcludeRange   `pulumi:"ipv6ExcludeRanges"`
+	Ipv6Name                   *string                            `pulumi:"ipv6Name"`
+	Ipv6Prefix                 *int                               `pulumi:"ipv6Prefix"`
+	Ipv6SplitExclude           *string                            `pulumi:"ipv6SplitExclude"`
+	Ipv6SplitInclude           *string                            `pulumi:"ipv6SplitInclude"`
+	Ipv6StartIp                *string                            `pulumi:"ipv6StartIp"`
+	Keepalive                  *int                               `pulumi:"keepalive"`
+	Keylife                    *int                               `pulumi:"keylife"`
+	LocalGw                    *string                            `pulumi:"localGw"`
+	Localid                    *string                            `pulumi:"localid"`
+	LocalidType                *string                            `pulumi:"localidType"`
+	LoopbackAsymroute          *string                            `pulumi:"loopbackAsymroute"`
+	MeshSelectorType           *string                            `pulumi:"meshSelectorType"`
+	Mode                       *string                            `pulumi:"mode"`
+	ModeCfg                    *string                            `pulumi:"modeCfg"`
+	ModeCfgAllowClientSelector *string                            `pulumi:"modeCfgAllowClientSelector"`
+	Name                       *string                            `pulumi:"name"`
+	Nattraversal               *string                            `pulumi:"nattraversal"`
+	NegotiateTimeout           *int                               `pulumi:"negotiateTimeout"`
+	NetworkId                  *int                               `pulumi:"networkId"`
+	NetworkOverlay             *string                            `pulumi:"networkOverlay"`
+	NpuOffload                 *string                            `pulumi:"npuOffload"`
+	Peer                       *string                            `pulumi:"peer"`
+	Peergrp                    *string                            `pulumi:"peergrp"`
+	Peerid                     *string                            `pulumi:"peerid"`
+	Peertype                   *string                            `pulumi:"peertype"`
+	Ppk                        *string                            `pulumi:"ppk"`
+	PpkIdentity                *string                            `pulumi:"ppkIdentity"`
+	PpkSecret                  *string                            `pulumi:"ppkSecret"`
+	Priority                   *int                               `pulumi:"priority"`
+	Proposal                   *string                            `pulumi:"proposal"`
+	Psksecret                  *string                            `pulumi:"psksecret"`
+	PsksecretRemote            *string                            `pulumi:"psksecretRemote"`
+	Reauth                     *string                            `pulumi:"reauth"`
+	Rekey                      *string                            `pulumi:"rekey"`
+	RemoteGw                   *string                            `pulumi:"remoteGw"`
+	RemotegwDdns               *string                            `pulumi:"remotegwDdns"`
+	RsaSignatureFormat         *string                            `pulumi:"rsaSignatureFormat"`
+	RsaSignatureHashOverride   *string                            `pulumi:"rsaSignatureHashOverride"`
+	SavePassword               *string                            `pulumi:"savePassword"`
+	SendCertChain              *string                            `pulumi:"sendCertChain"`
+	SignatureHashAlg           *string                            `pulumi:"signatureHashAlg"`
+	SplitIncludeService        *string                            `pulumi:"splitIncludeService"`
+	SuiteB                     *string                            `pulumi:"suiteB"`
+	Type                       *string                            `pulumi:"type"`
+	UnitySupport               *string                            `pulumi:"unitySupport"`
+	Usrgrp                     *string                            `pulumi:"usrgrp"`
+	Vdomparam                  *string                            `pulumi:"vdomparam"`
+	WizardType                 *string                            `pulumi:"wizardType"`
+	Xauthtype                  *string                            `pulumi:"xauthtype"`
 }
 
 type VpnIpsecPhase1State struct {
@@ -393,6 +396,7 @@ type VpnIpsecPhase1State struct {
 	InboundDscpCopy            pulumi.StringPtrInput
 	IncludeLocalLan            pulumi.StringPtrInput
 	Interface                  pulumi.StringPtrInput
+	InternalDomainLists        VpnIpsecPhase1InternalDomainListArrayInput
 	IpDelayInterval            pulumi.IntPtrInput
 	Ipv4DnsServer1             pulumi.StringPtrInput
 	Ipv4DnsServer2             pulumi.StringPtrInput
@@ -467,132 +471,133 @@ func (VpnIpsecPhase1State) ElementType() reflect.Type {
 }
 
 type vpnIpsecPhase1Args struct {
-	AcctVerify                 *string                          `pulumi:"acctVerify"`
-	AddGwRoute                 *string                          `pulumi:"addGwRoute"`
-	AddRoute                   *string                          `pulumi:"addRoute"`
-	AssignIp                   *string                          `pulumi:"assignIp"`
-	AssignIpFrom               *string                          `pulumi:"assignIpFrom"`
-	Authmethod                 *string                          `pulumi:"authmethod"`
-	AuthmethodRemote           *string                          `pulumi:"authmethodRemote"`
-	Authpasswd                 *string                          `pulumi:"authpasswd"`
-	Authusr                    *string                          `pulumi:"authusr"`
-	Authusrgrp                 *string                          `pulumi:"authusrgrp"`
-	AutoNegotiate              *string                          `pulumi:"autoNegotiate"`
-	BackupGateways             []VpnIpsecPhase1BackupGateway    `pulumi:"backupGateways"`
-	Banner                     *string                          `pulumi:"banner"`
-	CertIdValidation           *string                          `pulumi:"certIdValidation"`
-	Certificates               []VpnIpsecPhase1Certificate      `pulumi:"certificates"`
-	ChildlessIke               *string                          `pulumi:"childlessIke"`
-	ClientAutoNegotiate        *string                          `pulumi:"clientAutoNegotiate"`
-	ClientKeepAlive            *string                          `pulumi:"clientKeepAlive"`
-	Comments                   *string                          `pulumi:"comments"`
-	Dhcp6RaLinkaddr            *string                          `pulumi:"dhcp6RaLinkaddr"`
-	DhcpRaGiaddr               *string                          `pulumi:"dhcpRaGiaddr"`
-	Dhgrp                      *string                          `pulumi:"dhgrp"`
-	DigitalSignatureAuth       *string                          `pulumi:"digitalSignatureAuth"`
-	Distance                   *int                             `pulumi:"distance"`
-	DnsMode                    *string                          `pulumi:"dnsMode"`
-	Domain                     *string                          `pulumi:"domain"`
-	Dpd                        *string                          `pulumi:"dpd"`
-	DpdRetrycount              *int                             `pulumi:"dpdRetrycount"`
-	DpdRetryinterval           *string                          `pulumi:"dpdRetryinterval"`
-	DynamicSortSubtable        *string                          `pulumi:"dynamicSortSubtable"`
-	Eap                        *string                          `pulumi:"eap"`
-	EapExcludePeergrp          *string                          `pulumi:"eapExcludePeergrp"`
-	EapIdentity                *string                          `pulumi:"eapIdentity"`
-	EnforceUniqueId            *string                          `pulumi:"enforceUniqueId"`
-	Esn                        *string                          `pulumi:"esn"`
-	FecBase                    *int                             `pulumi:"fecBase"`
-	FecCodec                   *int                             `pulumi:"fecCodec"`
-	FecCodecString             *string                          `pulumi:"fecCodecString"`
-	FecEgress                  *string                          `pulumi:"fecEgress"`
-	FecHealthCheck             *string                          `pulumi:"fecHealthCheck"`
-	FecIngress                 *string                          `pulumi:"fecIngress"`
-	FecMappingProfile          *string                          `pulumi:"fecMappingProfile"`
-	FecReceiveTimeout          *int                             `pulumi:"fecReceiveTimeout"`
-	FecRedundant               *int                             `pulumi:"fecRedundant"`
-	FecSendTimeout             *int                             `pulumi:"fecSendTimeout"`
-	FgspSync                   *string                          `pulumi:"fgspSync"`
-	ForticlientEnforcement     *string                          `pulumi:"forticlientEnforcement"`
-	Fragmentation              *string                          `pulumi:"fragmentation"`
-	FragmentationMtu           *int                             `pulumi:"fragmentationMtu"`
-	GetAllTables               *string                          `pulumi:"getAllTables"`
-	GroupAuthentication        *string                          `pulumi:"groupAuthentication"`
-	GroupAuthenticationSecret  *string                          `pulumi:"groupAuthenticationSecret"`
-	HaSyncEspSeqno             *string                          `pulumi:"haSyncEspSeqno"`
-	IdleTimeout                *string                          `pulumi:"idleTimeout"`
-	IdleTimeoutinterval        *int                             `pulumi:"idleTimeoutinterval"`
-	IkeVersion                 *string                          `pulumi:"ikeVersion"`
-	InboundDscpCopy            *string                          `pulumi:"inboundDscpCopy"`
-	IncludeLocalLan            *string                          `pulumi:"includeLocalLan"`
-	Interface                  string                           `pulumi:"interface"`
-	IpDelayInterval            *int                             `pulumi:"ipDelayInterval"`
-	Ipv4DnsServer1             *string                          `pulumi:"ipv4DnsServer1"`
-	Ipv4DnsServer2             *string                          `pulumi:"ipv4DnsServer2"`
-	Ipv4DnsServer3             *string                          `pulumi:"ipv4DnsServer3"`
-	Ipv4EndIp                  *string                          `pulumi:"ipv4EndIp"`
-	Ipv4ExcludeRanges          []VpnIpsecPhase1Ipv4ExcludeRange `pulumi:"ipv4ExcludeRanges"`
-	Ipv4Name                   *string                          `pulumi:"ipv4Name"`
-	Ipv4Netmask                *string                          `pulumi:"ipv4Netmask"`
-	Ipv4SplitExclude           *string                          `pulumi:"ipv4SplitExclude"`
-	Ipv4SplitInclude           *string                          `pulumi:"ipv4SplitInclude"`
-	Ipv4StartIp                *string                          `pulumi:"ipv4StartIp"`
-	Ipv4WinsServer1            *string                          `pulumi:"ipv4WinsServer1"`
-	Ipv4WinsServer2            *string                          `pulumi:"ipv4WinsServer2"`
-	Ipv6DnsServer1             *string                          `pulumi:"ipv6DnsServer1"`
-	Ipv6DnsServer2             *string                          `pulumi:"ipv6DnsServer2"`
-	Ipv6DnsServer3             *string                          `pulumi:"ipv6DnsServer3"`
-	Ipv6EndIp                  *string                          `pulumi:"ipv6EndIp"`
-	Ipv6ExcludeRanges          []VpnIpsecPhase1Ipv6ExcludeRange `pulumi:"ipv6ExcludeRanges"`
-	Ipv6Name                   *string                          `pulumi:"ipv6Name"`
-	Ipv6Prefix                 *int                             `pulumi:"ipv6Prefix"`
-	Ipv6SplitExclude           *string                          `pulumi:"ipv6SplitExclude"`
-	Ipv6SplitInclude           *string                          `pulumi:"ipv6SplitInclude"`
-	Ipv6StartIp                *string                          `pulumi:"ipv6StartIp"`
-	Keepalive                  *int                             `pulumi:"keepalive"`
-	Keylife                    *int                             `pulumi:"keylife"`
-	LocalGw                    *string                          `pulumi:"localGw"`
-	Localid                    *string                          `pulumi:"localid"`
-	LocalidType                *string                          `pulumi:"localidType"`
-	LoopbackAsymroute          *string                          `pulumi:"loopbackAsymroute"`
-	MeshSelectorType           *string                          `pulumi:"meshSelectorType"`
-	Mode                       *string                          `pulumi:"mode"`
-	ModeCfg                    *string                          `pulumi:"modeCfg"`
-	ModeCfgAllowClientSelector *string                          `pulumi:"modeCfgAllowClientSelector"`
-	Name                       *string                          `pulumi:"name"`
-	Nattraversal               *string                          `pulumi:"nattraversal"`
-	NegotiateTimeout           *int                             `pulumi:"negotiateTimeout"`
-	NetworkId                  *int                             `pulumi:"networkId"`
-	NetworkOverlay             *string                          `pulumi:"networkOverlay"`
-	NpuOffload                 *string                          `pulumi:"npuOffload"`
-	Peer                       *string                          `pulumi:"peer"`
-	Peergrp                    *string                          `pulumi:"peergrp"`
-	Peerid                     *string                          `pulumi:"peerid"`
-	Peertype                   *string                          `pulumi:"peertype"`
-	Ppk                        *string                          `pulumi:"ppk"`
-	PpkIdentity                *string                          `pulumi:"ppkIdentity"`
-	PpkSecret                  *string                          `pulumi:"ppkSecret"`
-	Priority                   *int                             `pulumi:"priority"`
-	Proposal                   string                           `pulumi:"proposal"`
-	Psksecret                  string                           `pulumi:"psksecret"`
-	PsksecretRemote            *string                          `pulumi:"psksecretRemote"`
-	Reauth                     *string                          `pulumi:"reauth"`
-	Rekey                      *string                          `pulumi:"rekey"`
-	RemoteGw                   *string                          `pulumi:"remoteGw"`
-	RemotegwDdns               *string                          `pulumi:"remotegwDdns"`
-	RsaSignatureFormat         *string                          `pulumi:"rsaSignatureFormat"`
-	RsaSignatureHashOverride   *string                          `pulumi:"rsaSignatureHashOverride"`
-	SavePassword               *string                          `pulumi:"savePassword"`
-	SendCertChain              *string                          `pulumi:"sendCertChain"`
-	SignatureHashAlg           *string                          `pulumi:"signatureHashAlg"`
-	SplitIncludeService        *string                          `pulumi:"splitIncludeService"`
-	SuiteB                     *string                          `pulumi:"suiteB"`
-	Type                       *string                          `pulumi:"type"`
-	UnitySupport               *string                          `pulumi:"unitySupport"`
-	Usrgrp                     *string                          `pulumi:"usrgrp"`
-	Vdomparam                  *string                          `pulumi:"vdomparam"`
-	WizardType                 *string                          `pulumi:"wizardType"`
-	Xauthtype                  *string                          `pulumi:"xauthtype"`
+	AcctVerify                 *string                            `pulumi:"acctVerify"`
+	AddGwRoute                 *string                            `pulumi:"addGwRoute"`
+	AddRoute                   *string                            `pulumi:"addRoute"`
+	AssignIp                   *string                            `pulumi:"assignIp"`
+	AssignIpFrom               *string                            `pulumi:"assignIpFrom"`
+	Authmethod                 *string                            `pulumi:"authmethod"`
+	AuthmethodRemote           *string                            `pulumi:"authmethodRemote"`
+	Authpasswd                 *string                            `pulumi:"authpasswd"`
+	Authusr                    *string                            `pulumi:"authusr"`
+	Authusrgrp                 *string                            `pulumi:"authusrgrp"`
+	AutoNegotiate              *string                            `pulumi:"autoNegotiate"`
+	BackupGateways             []VpnIpsecPhase1BackupGateway      `pulumi:"backupGateways"`
+	Banner                     *string                            `pulumi:"banner"`
+	CertIdValidation           *string                            `pulumi:"certIdValidation"`
+	Certificates               []VpnIpsecPhase1Certificate        `pulumi:"certificates"`
+	ChildlessIke               *string                            `pulumi:"childlessIke"`
+	ClientAutoNegotiate        *string                            `pulumi:"clientAutoNegotiate"`
+	ClientKeepAlive            *string                            `pulumi:"clientKeepAlive"`
+	Comments                   *string                            `pulumi:"comments"`
+	Dhcp6RaLinkaddr            *string                            `pulumi:"dhcp6RaLinkaddr"`
+	DhcpRaGiaddr               *string                            `pulumi:"dhcpRaGiaddr"`
+	Dhgrp                      *string                            `pulumi:"dhgrp"`
+	DigitalSignatureAuth       *string                            `pulumi:"digitalSignatureAuth"`
+	Distance                   *int                               `pulumi:"distance"`
+	DnsMode                    *string                            `pulumi:"dnsMode"`
+	Domain                     *string                            `pulumi:"domain"`
+	Dpd                        *string                            `pulumi:"dpd"`
+	DpdRetrycount              *int                               `pulumi:"dpdRetrycount"`
+	DpdRetryinterval           *string                            `pulumi:"dpdRetryinterval"`
+	DynamicSortSubtable        *string                            `pulumi:"dynamicSortSubtable"`
+	Eap                        *string                            `pulumi:"eap"`
+	EapExcludePeergrp          *string                            `pulumi:"eapExcludePeergrp"`
+	EapIdentity                *string                            `pulumi:"eapIdentity"`
+	EnforceUniqueId            *string                            `pulumi:"enforceUniqueId"`
+	Esn                        *string                            `pulumi:"esn"`
+	FecBase                    *int                               `pulumi:"fecBase"`
+	FecCodec                   *int                               `pulumi:"fecCodec"`
+	FecCodecString             *string                            `pulumi:"fecCodecString"`
+	FecEgress                  *string                            `pulumi:"fecEgress"`
+	FecHealthCheck             *string                            `pulumi:"fecHealthCheck"`
+	FecIngress                 *string                            `pulumi:"fecIngress"`
+	FecMappingProfile          *string                            `pulumi:"fecMappingProfile"`
+	FecReceiveTimeout          *int                               `pulumi:"fecReceiveTimeout"`
+	FecRedundant               *int                               `pulumi:"fecRedundant"`
+	FecSendTimeout             *int                               `pulumi:"fecSendTimeout"`
+	FgspSync                   *string                            `pulumi:"fgspSync"`
+	ForticlientEnforcement     *string                            `pulumi:"forticlientEnforcement"`
+	Fragmentation              *string                            `pulumi:"fragmentation"`
+	FragmentationMtu           *int                               `pulumi:"fragmentationMtu"`
+	GetAllTables               *string                            `pulumi:"getAllTables"`
+	GroupAuthentication        *string                            `pulumi:"groupAuthentication"`
+	GroupAuthenticationSecret  *string                            `pulumi:"groupAuthenticationSecret"`
+	HaSyncEspSeqno             *string                            `pulumi:"haSyncEspSeqno"`
+	IdleTimeout                *string                            `pulumi:"idleTimeout"`
+	IdleTimeoutinterval        *int                               `pulumi:"idleTimeoutinterval"`
+	IkeVersion                 *string                            `pulumi:"ikeVersion"`
+	InboundDscpCopy            *string                            `pulumi:"inboundDscpCopy"`
+	IncludeLocalLan            *string                            `pulumi:"includeLocalLan"`
+	Interface                  string                             `pulumi:"interface"`
+	InternalDomainLists        []VpnIpsecPhase1InternalDomainList `pulumi:"internalDomainLists"`
+	IpDelayInterval            *int                               `pulumi:"ipDelayInterval"`
+	Ipv4DnsServer1             *string                            `pulumi:"ipv4DnsServer1"`
+	Ipv4DnsServer2             *string                            `pulumi:"ipv4DnsServer2"`
+	Ipv4DnsServer3             *string                            `pulumi:"ipv4DnsServer3"`
+	Ipv4EndIp                  *string                            `pulumi:"ipv4EndIp"`
+	Ipv4ExcludeRanges          []VpnIpsecPhase1Ipv4ExcludeRange   `pulumi:"ipv4ExcludeRanges"`
+	Ipv4Name                   *string                            `pulumi:"ipv4Name"`
+	Ipv4Netmask                *string                            `pulumi:"ipv4Netmask"`
+	Ipv4SplitExclude           *string                            `pulumi:"ipv4SplitExclude"`
+	Ipv4SplitInclude           *string                            `pulumi:"ipv4SplitInclude"`
+	Ipv4StartIp                *string                            `pulumi:"ipv4StartIp"`
+	Ipv4WinsServer1            *string                            `pulumi:"ipv4WinsServer1"`
+	Ipv4WinsServer2            *string                            `pulumi:"ipv4WinsServer2"`
+	Ipv6DnsServer1             *string                            `pulumi:"ipv6DnsServer1"`
+	Ipv6DnsServer2             *string                            `pulumi:"ipv6DnsServer2"`
+	Ipv6DnsServer3             *string                            `pulumi:"ipv6DnsServer3"`
+	Ipv6EndIp                  *string                            `pulumi:"ipv6EndIp"`
+	Ipv6ExcludeRanges          []VpnIpsecPhase1Ipv6ExcludeRange   `pulumi:"ipv6ExcludeRanges"`
+	Ipv6Name                   *string                            `pulumi:"ipv6Name"`
+	Ipv6Prefix                 *int                               `pulumi:"ipv6Prefix"`
+	Ipv6SplitExclude           *string                            `pulumi:"ipv6SplitExclude"`
+	Ipv6SplitInclude           *string                            `pulumi:"ipv6SplitInclude"`
+	Ipv6StartIp                *string                            `pulumi:"ipv6StartIp"`
+	Keepalive                  *int                               `pulumi:"keepalive"`
+	Keylife                    *int                               `pulumi:"keylife"`
+	LocalGw                    *string                            `pulumi:"localGw"`
+	Localid                    *string                            `pulumi:"localid"`
+	LocalidType                *string                            `pulumi:"localidType"`
+	LoopbackAsymroute          *string                            `pulumi:"loopbackAsymroute"`
+	MeshSelectorType           *string                            `pulumi:"meshSelectorType"`
+	Mode                       *string                            `pulumi:"mode"`
+	ModeCfg                    *string                            `pulumi:"modeCfg"`
+	ModeCfgAllowClientSelector *string                            `pulumi:"modeCfgAllowClientSelector"`
+	Name                       *string                            `pulumi:"name"`
+	Nattraversal               *string                            `pulumi:"nattraversal"`
+	NegotiateTimeout           *int                               `pulumi:"negotiateTimeout"`
+	NetworkId                  *int                               `pulumi:"networkId"`
+	NetworkOverlay             *string                            `pulumi:"networkOverlay"`
+	NpuOffload                 *string                            `pulumi:"npuOffload"`
+	Peer                       *string                            `pulumi:"peer"`
+	Peergrp                    *string                            `pulumi:"peergrp"`
+	Peerid                     *string                            `pulumi:"peerid"`
+	Peertype                   *string                            `pulumi:"peertype"`
+	Ppk                        *string                            `pulumi:"ppk"`
+	PpkIdentity                *string                            `pulumi:"ppkIdentity"`
+	PpkSecret                  *string                            `pulumi:"ppkSecret"`
+	Priority                   *int                               `pulumi:"priority"`
+	Proposal                   string                             `pulumi:"proposal"`
+	Psksecret                  string                             `pulumi:"psksecret"`
+	PsksecretRemote            *string                            `pulumi:"psksecretRemote"`
+	Reauth                     *string                            `pulumi:"reauth"`
+	Rekey                      *string                            `pulumi:"rekey"`
+	RemoteGw                   *string                            `pulumi:"remoteGw"`
+	RemotegwDdns               *string                            `pulumi:"remotegwDdns"`
+	RsaSignatureFormat         *string                            `pulumi:"rsaSignatureFormat"`
+	RsaSignatureHashOverride   *string                            `pulumi:"rsaSignatureHashOverride"`
+	SavePassword               *string                            `pulumi:"savePassword"`
+	SendCertChain              *string                            `pulumi:"sendCertChain"`
+	SignatureHashAlg           *string                            `pulumi:"signatureHashAlg"`
+	SplitIncludeService        *string                            `pulumi:"splitIncludeService"`
+	SuiteB                     *string                            `pulumi:"suiteB"`
+	Type                       *string                            `pulumi:"type"`
+	UnitySupport               *string                            `pulumi:"unitySupport"`
+	Usrgrp                     *string                            `pulumi:"usrgrp"`
+	Vdomparam                  *string                            `pulumi:"vdomparam"`
+	WizardType                 *string                            `pulumi:"wizardType"`
+	Xauthtype                  *string                            `pulumi:"xauthtype"`
 }
 
 // The set of arguments for constructing a VpnIpsecPhase1 resource.
@@ -656,6 +661,7 @@ type VpnIpsecPhase1Args struct {
 	InboundDscpCopy            pulumi.StringPtrInput
 	IncludeLocalLan            pulumi.StringPtrInput
 	Interface                  pulumi.StringInput
+	InternalDomainLists        VpnIpsecPhase1InternalDomainListArrayInput
 	IpDelayInterval            pulumi.IntPtrInput
 	Ipv4DnsServer1             pulumi.StringPtrInput
 	Ipv4DnsServer2             pulumi.StringPtrInput
@@ -748,6 +754,12 @@ func (i *VpnIpsecPhase1) ToVpnIpsecPhase1OutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1Output)
 }
 
+func (i *VpnIpsecPhase1) ToOutput(ctx context.Context) pulumix.Output[*VpnIpsecPhase1] {
+	return pulumix.Output[*VpnIpsecPhase1]{
+		OutputState: i.ToVpnIpsecPhase1OutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnIpsecPhase1ArrayInput is an input type that accepts VpnIpsecPhase1Array and VpnIpsecPhase1ArrayOutput values.
 // You can construct a concrete instance of `VpnIpsecPhase1ArrayInput` via:
 //
@@ -771,6 +783,12 @@ func (i VpnIpsecPhase1Array) ToVpnIpsecPhase1ArrayOutput() VpnIpsecPhase1ArrayOu
 
 func (i VpnIpsecPhase1Array) ToVpnIpsecPhase1ArrayOutputWithContext(ctx context.Context) VpnIpsecPhase1ArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1ArrayOutput)
+}
+
+func (i VpnIpsecPhase1Array) ToOutput(ctx context.Context) pulumix.Output[[]*VpnIpsecPhase1] {
+	return pulumix.Output[[]*VpnIpsecPhase1]{
+		OutputState: i.ToVpnIpsecPhase1ArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // VpnIpsecPhase1MapInput is an input type that accepts VpnIpsecPhase1Map and VpnIpsecPhase1MapOutput values.
@@ -798,6 +816,12 @@ func (i VpnIpsecPhase1Map) ToVpnIpsecPhase1MapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1MapOutput)
 }
 
+func (i VpnIpsecPhase1Map) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnIpsecPhase1] {
+	return pulumix.Output[map[string]*VpnIpsecPhase1]{
+		OutputState: i.ToVpnIpsecPhase1MapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnIpsecPhase1Output struct{ *pulumi.OutputState }
 
 func (VpnIpsecPhase1Output) ElementType() reflect.Type {
@@ -810,6 +834,12 @@ func (o VpnIpsecPhase1Output) ToVpnIpsecPhase1Output() VpnIpsecPhase1Output {
 
 func (o VpnIpsecPhase1Output) ToVpnIpsecPhase1OutputWithContext(ctx context.Context) VpnIpsecPhase1Output {
 	return o
+}
+
+func (o VpnIpsecPhase1Output) ToOutput(ctx context.Context) pulumix.Output[*VpnIpsecPhase1] {
+	return pulumix.Output[*VpnIpsecPhase1]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnIpsecPhase1Output) AcctVerify() pulumi.StringOutput {
@@ -1046,6 +1076,10 @@ func (o VpnIpsecPhase1Output) IncludeLocalLan() pulumi.StringOutput {
 
 func (o VpnIpsecPhase1Output) Interface() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpnIpsecPhase1) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o VpnIpsecPhase1Output) InternalDomainLists() VpnIpsecPhase1InternalDomainListArrayOutput {
+	return o.ApplyT(func(v *VpnIpsecPhase1) VpnIpsecPhase1InternalDomainListArrayOutput { return v.InternalDomainLists }).(VpnIpsecPhase1InternalDomainListArrayOutput)
 }
 
 func (o VpnIpsecPhase1Output) IpDelayInterval() pulumi.IntOutput {
@@ -1330,6 +1364,12 @@ func (o VpnIpsecPhase1ArrayOutput) ToVpnIpsecPhase1ArrayOutputWithContext(ctx co
 	return o
 }
 
+func (o VpnIpsecPhase1ArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VpnIpsecPhase1] {
+	return pulumix.Output[[]*VpnIpsecPhase1]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o VpnIpsecPhase1ArrayOutput) Index(i pulumi.IntInput) VpnIpsecPhase1Output {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnIpsecPhase1 {
 		return vs[0].([]*VpnIpsecPhase1)[vs[1].(int)]
@@ -1348,6 +1388,12 @@ func (o VpnIpsecPhase1MapOutput) ToVpnIpsecPhase1MapOutput() VpnIpsecPhase1MapOu
 
 func (o VpnIpsecPhase1MapOutput) ToVpnIpsecPhase1MapOutputWithContext(ctx context.Context) VpnIpsecPhase1MapOutput {
 	return o
+}
+
+func (o VpnIpsecPhase1MapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnIpsecPhase1] {
+	return pulumix.Output[map[string]*VpnIpsecPhase1]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnIpsecPhase1MapOutput) MapIndex(k pulumi.StringInput) VpnIpsecPhase1Output {

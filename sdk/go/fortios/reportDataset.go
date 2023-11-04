@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type ReportDataset struct {
@@ -125,6 +126,12 @@ func (i *ReportDataset) ToReportDatasetOutputWithContext(ctx context.Context) Re
 	return pulumi.ToOutputWithContext(ctx, i).(ReportDatasetOutput)
 }
 
+func (i *ReportDataset) ToOutput(ctx context.Context) pulumix.Output[*ReportDataset] {
+	return pulumix.Output[*ReportDataset]{
+		OutputState: i.ToReportDatasetOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ReportDatasetArrayInput is an input type that accepts ReportDatasetArray and ReportDatasetArrayOutput values.
 // You can construct a concrete instance of `ReportDatasetArrayInput` via:
 //
@@ -148,6 +155,12 @@ func (i ReportDatasetArray) ToReportDatasetArrayOutput() ReportDatasetArrayOutpu
 
 func (i ReportDatasetArray) ToReportDatasetArrayOutputWithContext(ctx context.Context) ReportDatasetArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ReportDatasetArrayOutput)
+}
+
+func (i ReportDatasetArray) ToOutput(ctx context.Context) pulumix.Output[[]*ReportDataset] {
+	return pulumix.Output[[]*ReportDataset]{
+		OutputState: i.ToReportDatasetArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ReportDatasetMapInput is an input type that accepts ReportDatasetMap and ReportDatasetMapOutput values.
@@ -175,6 +188,12 @@ func (i ReportDatasetMap) ToReportDatasetMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(ReportDatasetMapOutput)
 }
 
+func (i ReportDatasetMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ReportDataset] {
+	return pulumix.Output[map[string]*ReportDataset]{
+		OutputState: i.ToReportDatasetMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ReportDatasetOutput struct{ *pulumi.OutputState }
 
 func (ReportDatasetOutput) ElementType() reflect.Type {
@@ -187,6 +206,12 @@ func (o ReportDatasetOutput) ToReportDatasetOutput() ReportDatasetOutput {
 
 func (o ReportDatasetOutput) ToReportDatasetOutputWithContext(ctx context.Context) ReportDatasetOutput {
 	return o
+}
+
+func (o ReportDatasetOutput) ToOutput(ctx context.Context) pulumix.Output[*ReportDataset] {
+	return pulumix.Output[*ReportDataset]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ReportDatasetOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -235,6 +260,12 @@ func (o ReportDatasetArrayOutput) ToReportDatasetArrayOutputWithContext(ctx cont
 	return o
 }
 
+func (o ReportDatasetArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ReportDataset] {
+	return pulumix.Output[[]*ReportDataset]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ReportDatasetArrayOutput) Index(i pulumi.IntInput) ReportDatasetOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ReportDataset {
 		return vs[0].([]*ReportDataset)[vs[1].(int)]
@@ -253,6 +284,12 @@ func (o ReportDatasetMapOutput) ToReportDatasetMapOutput() ReportDatasetMapOutpu
 
 func (o ReportDatasetMapOutput) ToReportDatasetMapOutputWithContext(ctx context.Context) ReportDatasetMapOutput {
 	return o
+}
+
+func (o ReportDatasetMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ReportDataset] {
+	return pulumix.Output[map[string]*ReportDataset]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ReportDatasetMapOutput) MapIndex(k pulumi.StringInput) ReportDatasetOutput {

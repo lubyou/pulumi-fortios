@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type LogSyslogd2OverrideSetting struct {
@@ -185,6 +186,12 @@ func (i *LogSyslogd2OverrideSetting) ToLogSyslogd2OverrideSettingOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(LogSyslogd2OverrideSettingOutput)
 }
 
+func (i *LogSyslogd2OverrideSetting) ToOutput(ctx context.Context) pulumix.Output[*LogSyslogd2OverrideSetting] {
+	return pulumix.Output[*LogSyslogd2OverrideSetting]{
+		OutputState: i.ToLogSyslogd2OverrideSettingOutputWithContext(ctx).OutputState,
+	}
+}
+
 // LogSyslogd2OverrideSettingArrayInput is an input type that accepts LogSyslogd2OverrideSettingArray and LogSyslogd2OverrideSettingArrayOutput values.
 // You can construct a concrete instance of `LogSyslogd2OverrideSettingArrayInput` via:
 //
@@ -208,6 +215,12 @@ func (i LogSyslogd2OverrideSettingArray) ToLogSyslogd2OverrideSettingArrayOutput
 
 func (i LogSyslogd2OverrideSettingArray) ToLogSyslogd2OverrideSettingArrayOutputWithContext(ctx context.Context) LogSyslogd2OverrideSettingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogSyslogd2OverrideSettingArrayOutput)
+}
+
+func (i LogSyslogd2OverrideSettingArray) ToOutput(ctx context.Context) pulumix.Output[[]*LogSyslogd2OverrideSetting] {
+	return pulumix.Output[[]*LogSyslogd2OverrideSetting]{
+		OutputState: i.ToLogSyslogd2OverrideSettingArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // LogSyslogd2OverrideSettingMapInput is an input type that accepts LogSyslogd2OverrideSettingMap and LogSyslogd2OverrideSettingMapOutput values.
@@ -235,6 +248,12 @@ func (i LogSyslogd2OverrideSettingMap) ToLogSyslogd2OverrideSettingMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(LogSyslogd2OverrideSettingMapOutput)
 }
 
+func (i LogSyslogd2OverrideSettingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogSyslogd2OverrideSetting] {
+	return pulumix.Output[map[string]*LogSyslogd2OverrideSetting]{
+		OutputState: i.ToLogSyslogd2OverrideSettingMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type LogSyslogd2OverrideSettingOutput struct{ *pulumi.OutputState }
 
 func (LogSyslogd2OverrideSettingOutput) ElementType() reflect.Type {
@@ -247,6 +266,12 @@ func (o LogSyslogd2OverrideSettingOutput) ToLogSyslogd2OverrideSettingOutput() L
 
 func (o LogSyslogd2OverrideSettingOutput) ToLogSyslogd2OverrideSettingOutputWithContext(ctx context.Context) LogSyslogd2OverrideSettingOutput {
 	return o
+}
+
+func (o LogSyslogd2OverrideSettingOutput) ToOutput(ctx context.Context) pulumix.Output[*LogSyslogd2OverrideSetting] {
+	return pulumix.Output[*LogSyslogd2OverrideSetting]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LogSyslogd2OverrideSettingOutput) Certificate() pulumi.StringOutput {
@@ -345,6 +370,12 @@ func (o LogSyslogd2OverrideSettingArrayOutput) ToLogSyslogd2OverrideSettingArray
 	return o
 }
 
+func (o LogSyslogd2OverrideSettingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LogSyslogd2OverrideSetting] {
+	return pulumix.Output[[]*LogSyslogd2OverrideSetting]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LogSyslogd2OverrideSettingArrayOutput) Index(i pulumi.IntInput) LogSyslogd2OverrideSettingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogSyslogd2OverrideSetting {
 		return vs[0].([]*LogSyslogd2OverrideSetting)[vs[1].(int)]
@@ -363,6 +394,12 @@ func (o LogSyslogd2OverrideSettingMapOutput) ToLogSyslogd2OverrideSettingMapOutp
 
 func (o LogSyslogd2OverrideSettingMapOutput) ToLogSyslogd2OverrideSettingMapOutputWithContext(ctx context.Context) LogSyslogd2OverrideSettingMapOutput {
 	return o
+}
+
+func (o LogSyslogd2OverrideSettingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogSyslogd2OverrideSetting] {
+	return pulumix.Output[map[string]*LogSyslogd2OverrideSetting]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LogSyslogd2OverrideSettingMapOutput) MapIndex(k pulumi.StringInput) LogSyslogd2OverrideSettingOutput {

@@ -104,10 +104,13 @@ class SystemGlobalArgs:
                  fortiipam_integration: Optional[pulumi.Input[str]] = None,
                  fortiservice_port: Optional[pulumi.Input[int]] = None,
                  fortitoken_cloud: Optional[pulumi.Input[str]] = None,
+                 fortitoken_cloud_push_status: Optional[pulumi.Input[str]] = None,
+                 fortitoken_cloud_sync_interval: Optional[pulumi.Input[int]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  gui_allow_default_hostname: Optional[pulumi.Input[str]] = None,
                  gui_allow_incompatible_fabric_fgt: Optional[pulumi.Input[str]] = None,
                  gui_app_detection_sdwan: Optional[pulumi.Input[str]] = None,
+                 gui_auto_upgrade_setup_warning: Optional[pulumi.Input[str]] = None,
                  gui_cdn_domain_override: Optional[pulumi.Input[str]] = None,
                  gui_cdn_usage: Optional[pulumi.Input[str]] = None,
                  gui_certificates: Optional[pulumi.Input[str]] = None,
@@ -198,6 +201,12 @@ class SystemGlobalArgs:
                  proxy_re_authentication_time: Optional[pulumi.Input[int]] = None,
                  proxy_resource_mode: Optional[pulumi.Input[str]] = None,
                  proxy_worker_count: Optional[pulumi.Input[int]] = None,
+                 quic_ack_thresold: Optional[pulumi.Input[int]] = None,
+                 quic_congestion_control_algo: Optional[pulumi.Input[str]] = None,
+                 quic_max_datagram_size: Optional[pulumi.Input[int]] = None,
+                 quic_pmtud: Optional[pulumi.Input[str]] = None,
+                 quic_tls_handshake_timeout: Optional[pulumi.Input[int]] = None,
+                 quic_udp_payload_size_shaping_per_cid: Optional[pulumi.Input[str]] = None,
                  radius_port: Optional[pulumi.Input[int]] = None,
                  reboot_upon_config_restore: Optional[pulumi.Input[str]] = None,
                  refresh: Optional[pulumi.Input[int]] = None,
@@ -235,6 +244,7 @@ class SystemGlobalArgs:
                  sslvpn_kxp_hardware_acceleration: Optional[pulumi.Input[str]] = None,
                  sslvpn_max_worker_count: Optional[pulumi.Input[int]] = None,
                  sslvpn_plugin_version_check: Optional[pulumi.Input[str]] = None,
+                 sslvpn_web_mode: Optional[pulumi.Input[str]] = None,
                  strict_dirty_session_check: Optional[pulumi.Input[str]] = None,
                  strong_crypto: Optional[pulumi.Input[str]] = None,
                  switch_controller: Optional[pulumi.Input[str]] = None,
@@ -464,6 +474,10 @@ class SystemGlobalArgs:
             pulumi.set(__self__, "fortiservice_port", fortiservice_port)
         if fortitoken_cloud is not None:
             pulumi.set(__self__, "fortitoken_cloud", fortitoken_cloud)
+        if fortitoken_cloud_push_status is not None:
+            pulumi.set(__self__, "fortitoken_cloud_push_status", fortitoken_cloud_push_status)
+        if fortitoken_cloud_sync_interval is not None:
+            pulumi.set(__self__, "fortitoken_cloud_sync_interval", fortitoken_cloud_sync_interval)
         if get_all_tables is not None:
             pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gui_allow_default_hostname is not None:
@@ -472,6 +486,8 @@ class SystemGlobalArgs:
             pulumi.set(__self__, "gui_allow_incompatible_fabric_fgt", gui_allow_incompatible_fabric_fgt)
         if gui_app_detection_sdwan is not None:
             pulumi.set(__self__, "gui_app_detection_sdwan", gui_app_detection_sdwan)
+        if gui_auto_upgrade_setup_warning is not None:
+            pulumi.set(__self__, "gui_auto_upgrade_setup_warning", gui_auto_upgrade_setup_warning)
         if gui_cdn_domain_override is not None:
             pulumi.set(__self__, "gui_cdn_domain_override", gui_cdn_domain_override)
         if gui_cdn_usage is not None:
@@ -652,6 +668,18 @@ class SystemGlobalArgs:
             pulumi.set(__self__, "proxy_resource_mode", proxy_resource_mode)
         if proxy_worker_count is not None:
             pulumi.set(__self__, "proxy_worker_count", proxy_worker_count)
+        if quic_ack_thresold is not None:
+            pulumi.set(__self__, "quic_ack_thresold", quic_ack_thresold)
+        if quic_congestion_control_algo is not None:
+            pulumi.set(__self__, "quic_congestion_control_algo", quic_congestion_control_algo)
+        if quic_max_datagram_size is not None:
+            pulumi.set(__self__, "quic_max_datagram_size", quic_max_datagram_size)
+        if quic_pmtud is not None:
+            pulumi.set(__self__, "quic_pmtud", quic_pmtud)
+        if quic_tls_handshake_timeout is not None:
+            pulumi.set(__self__, "quic_tls_handshake_timeout", quic_tls_handshake_timeout)
+        if quic_udp_payload_size_shaping_per_cid is not None:
+            pulumi.set(__self__, "quic_udp_payload_size_shaping_per_cid", quic_udp_payload_size_shaping_per_cid)
         if radius_port is not None:
             pulumi.set(__self__, "radius_port", radius_port)
         if reboot_upon_config_restore is not None:
@@ -726,6 +754,8 @@ class SystemGlobalArgs:
             pulumi.set(__self__, "sslvpn_max_worker_count", sslvpn_max_worker_count)
         if sslvpn_plugin_version_check is not None:
             pulumi.set(__self__, "sslvpn_plugin_version_check", sslvpn_plugin_version_check)
+        if sslvpn_web_mode is not None:
+            pulumi.set(__self__, "sslvpn_web_mode", sslvpn_web_mode)
         if strict_dirty_session_check is not None:
             pulumi.set(__self__, "strict_dirty_session_check", strict_dirty_session_check)
         if strong_crypto is not None:
@@ -1620,6 +1650,24 @@ class SystemGlobalArgs:
         pulumi.set(self, "fortitoken_cloud", value)
 
     @property
+    @pulumi.getter(name="fortitokenCloudPushStatus")
+    def fortitoken_cloud_push_status(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "fortitoken_cloud_push_status")
+
+    @fortitoken_cloud_push_status.setter
+    def fortitoken_cloud_push_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fortitoken_cloud_push_status", value)
+
+    @property
+    @pulumi.getter(name="fortitokenCloudSyncInterval")
+    def fortitoken_cloud_sync_interval(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "fortitoken_cloud_sync_interval")
+
+    @fortitoken_cloud_sync_interval.setter
+    def fortitoken_cloud_sync_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "fortitoken_cloud_sync_interval", value)
+
+    @property
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "get_all_tables")
@@ -1654,6 +1702,15 @@ class SystemGlobalArgs:
     @gui_app_detection_sdwan.setter
     def gui_app_detection_sdwan(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gui_app_detection_sdwan", value)
+
+    @property
+    @pulumi.getter(name="guiAutoUpgradeSetupWarning")
+    def gui_auto_upgrade_setup_warning(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "gui_auto_upgrade_setup_warning")
+
+    @gui_auto_upgrade_setup_warning.setter
+    def gui_auto_upgrade_setup_warning(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_auto_upgrade_setup_warning", value)
 
     @property
     @pulumi.getter(name="guiCdnDomainOverride")
@@ -2466,6 +2523,60 @@ class SystemGlobalArgs:
         pulumi.set(self, "proxy_worker_count", value)
 
     @property
+    @pulumi.getter(name="quicAckThresold")
+    def quic_ack_thresold(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "quic_ack_thresold")
+
+    @quic_ack_thresold.setter
+    def quic_ack_thresold(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "quic_ack_thresold", value)
+
+    @property
+    @pulumi.getter(name="quicCongestionControlAlgo")
+    def quic_congestion_control_algo(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "quic_congestion_control_algo")
+
+    @quic_congestion_control_algo.setter
+    def quic_congestion_control_algo(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "quic_congestion_control_algo", value)
+
+    @property
+    @pulumi.getter(name="quicMaxDatagramSize")
+    def quic_max_datagram_size(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "quic_max_datagram_size")
+
+    @quic_max_datagram_size.setter
+    def quic_max_datagram_size(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "quic_max_datagram_size", value)
+
+    @property
+    @pulumi.getter(name="quicPmtud")
+    def quic_pmtud(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "quic_pmtud")
+
+    @quic_pmtud.setter
+    def quic_pmtud(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "quic_pmtud", value)
+
+    @property
+    @pulumi.getter(name="quicTlsHandshakeTimeout")
+    def quic_tls_handshake_timeout(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "quic_tls_handshake_timeout")
+
+    @quic_tls_handshake_timeout.setter
+    def quic_tls_handshake_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "quic_tls_handshake_timeout", value)
+
+    @property
+    @pulumi.getter(name="quicUdpPayloadSizeShapingPerCid")
+    def quic_udp_payload_size_shaping_per_cid(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "quic_udp_payload_size_shaping_per_cid")
+
+    @quic_udp_payload_size_shaping_per_cid.setter
+    def quic_udp_payload_size_shaping_per_cid(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "quic_udp_payload_size_shaping_per_cid", value)
+
+    @property
     @pulumi.getter(name="radiusPort")
     def radius_port(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "radius_port")
@@ -2797,6 +2908,15 @@ class SystemGlobalArgs:
     @sslvpn_plugin_version_check.setter
     def sslvpn_plugin_version_check(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sslvpn_plugin_version_check", value)
+
+    @property
+    @pulumi.getter(name="sslvpnWebMode")
+    def sslvpn_web_mode(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "sslvpn_web_mode")
+
+    @sslvpn_web_mode.setter
+    def sslvpn_web_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sslvpn_web_mode", value)
 
     @property
     @pulumi.getter(name="strictDirtySessionCheck")
@@ -3340,10 +3460,13 @@ class _SystemGlobalState:
                  fortiipam_integration: Optional[pulumi.Input[str]] = None,
                  fortiservice_port: Optional[pulumi.Input[int]] = None,
                  fortitoken_cloud: Optional[pulumi.Input[str]] = None,
+                 fortitoken_cloud_push_status: Optional[pulumi.Input[str]] = None,
+                 fortitoken_cloud_sync_interval: Optional[pulumi.Input[int]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  gui_allow_default_hostname: Optional[pulumi.Input[str]] = None,
                  gui_allow_incompatible_fabric_fgt: Optional[pulumi.Input[str]] = None,
                  gui_app_detection_sdwan: Optional[pulumi.Input[str]] = None,
+                 gui_auto_upgrade_setup_warning: Optional[pulumi.Input[str]] = None,
                  gui_cdn_domain_override: Optional[pulumi.Input[str]] = None,
                  gui_cdn_usage: Optional[pulumi.Input[str]] = None,
                  gui_certificates: Optional[pulumi.Input[str]] = None,
@@ -3434,6 +3557,12 @@ class _SystemGlobalState:
                  proxy_re_authentication_time: Optional[pulumi.Input[int]] = None,
                  proxy_resource_mode: Optional[pulumi.Input[str]] = None,
                  proxy_worker_count: Optional[pulumi.Input[int]] = None,
+                 quic_ack_thresold: Optional[pulumi.Input[int]] = None,
+                 quic_congestion_control_algo: Optional[pulumi.Input[str]] = None,
+                 quic_max_datagram_size: Optional[pulumi.Input[int]] = None,
+                 quic_pmtud: Optional[pulumi.Input[str]] = None,
+                 quic_tls_handshake_timeout: Optional[pulumi.Input[int]] = None,
+                 quic_udp_payload_size_shaping_per_cid: Optional[pulumi.Input[str]] = None,
                  radius_port: Optional[pulumi.Input[int]] = None,
                  reboot_upon_config_restore: Optional[pulumi.Input[str]] = None,
                  refresh: Optional[pulumi.Input[int]] = None,
@@ -3471,6 +3600,7 @@ class _SystemGlobalState:
                  sslvpn_kxp_hardware_acceleration: Optional[pulumi.Input[str]] = None,
                  sslvpn_max_worker_count: Optional[pulumi.Input[int]] = None,
                  sslvpn_plugin_version_check: Optional[pulumi.Input[str]] = None,
+                 sslvpn_web_mode: Optional[pulumi.Input[str]] = None,
                  strict_dirty_session_check: Optional[pulumi.Input[str]] = None,
                  strong_crypto: Optional[pulumi.Input[str]] = None,
                  switch_controller: Optional[pulumi.Input[str]] = None,
@@ -3700,6 +3830,10 @@ class _SystemGlobalState:
             pulumi.set(__self__, "fortiservice_port", fortiservice_port)
         if fortitoken_cloud is not None:
             pulumi.set(__self__, "fortitoken_cloud", fortitoken_cloud)
+        if fortitoken_cloud_push_status is not None:
+            pulumi.set(__self__, "fortitoken_cloud_push_status", fortitoken_cloud_push_status)
+        if fortitoken_cloud_sync_interval is not None:
+            pulumi.set(__self__, "fortitoken_cloud_sync_interval", fortitoken_cloud_sync_interval)
         if get_all_tables is not None:
             pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gui_allow_default_hostname is not None:
@@ -3708,6 +3842,8 @@ class _SystemGlobalState:
             pulumi.set(__self__, "gui_allow_incompatible_fabric_fgt", gui_allow_incompatible_fabric_fgt)
         if gui_app_detection_sdwan is not None:
             pulumi.set(__self__, "gui_app_detection_sdwan", gui_app_detection_sdwan)
+        if gui_auto_upgrade_setup_warning is not None:
+            pulumi.set(__self__, "gui_auto_upgrade_setup_warning", gui_auto_upgrade_setup_warning)
         if gui_cdn_domain_override is not None:
             pulumi.set(__self__, "gui_cdn_domain_override", gui_cdn_domain_override)
         if gui_cdn_usage is not None:
@@ -3888,6 +4024,18 @@ class _SystemGlobalState:
             pulumi.set(__self__, "proxy_resource_mode", proxy_resource_mode)
         if proxy_worker_count is not None:
             pulumi.set(__self__, "proxy_worker_count", proxy_worker_count)
+        if quic_ack_thresold is not None:
+            pulumi.set(__self__, "quic_ack_thresold", quic_ack_thresold)
+        if quic_congestion_control_algo is not None:
+            pulumi.set(__self__, "quic_congestion_control_algo", quic_congestion_control_algo)
+        if quic_max_datagram_size is not None:
+            pulumi.set(__self__, "quic_max_datagram_size", quic_max_datagram_size)
+        if quic_pmtud is not None:
+            pulumi.set(__self__, "quic_pmtud", quic_pmtud)
+        if quic_tls_handshake_timeout is not None:
+            pulumi.set(__self__, "quic_tls_handshake_timeout", quic_tls_handshake_timeout)
+        if quic_udp_payload_size_shaping_per_cid is not None:
+            pulumi.set(__self__, "quic_udp_payload_size_shaping_per_cid", quic_udp_payload_size_shaping_per_cid)
         if radius_port is not None:
             pulumi.set(__self__, "radius_port", radius_port)
         if reboot_upon_config_restore is not None:
@@ -3962,6 +4110,8 @@ class _SystemGlobalState:
             pulumi.set(__self__, "sslvpn_max_worker_count", sslvpn_max_worker_count)
         if sslvpn_plugin_version_check is not None:
             pulumi.set(__self__, "sslvpn_plugin_version_check", sslvpn_plugin_version_check)
+        if sslvpn_web_mode is not None:
+            pulumi.set(__self__, "sslvpn_web_mode", sslvpn_web_mode)
         if strict_dirty_session_check is not None:
             pulumi.set(__self__, "strict_dirty_session_check", strict_dirty_session_check)
         if strong_crypto is not None:
@@ -4856,6 +5006,24 @@ class _SystemGlobalState:
         pulumi.set(self, "fortitoken_cloud", value)
 
     @property
+    @pulumi.getter(name="fortitokenCloudPushStatus")
+    def fortitoken_cloud_push_status(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "fortitoken_cloud_push_status")
+
+    @fortitoken_cloud_push_status.setter
+    def fortitoken_cloud_push_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fortitoken_cloud_push_status", value)
+
+    @property
+    @pulumi.getter(name="fortitokenCloudSyncInterval")
+    def fortitoken_cloud_sync_interval(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "fortitoken_cloud_sync_interval")
+
+    @fortitoken_cloud_sync_interval.setter
+    def fortitoken_cloud_sync_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "fortitoken_cloud_sync_interval", value)
+
+    @property
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "get_all_tables")
@@ -4890,6 +5058,15 @@ class _SystemGlobalState:
     @gui_app_detection_sdwan.setter
     def gui_app_detection_sdwan(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gui_app_detection_sdwan", value)
+
+    @property
+    @pulumi.getter(name="guiAutoUpgradeSetupWarning")
+    def gui_auto_upgrade_setup_warning(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "gui_auto_upgrade_setup_warning")
+
+    @gui_auto_upgrade_setup_warning.setter
+    def gui_auto_upgrade_setup_warning(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_auto_upgrade_setup_warning", value)
 
     @property
     @pulumi.getter(name="guiCdnDomainOverride")
@@ -5702,6 +5879,60 @@ class _SystemGlobalState:
         pulumi.set(self, "proxy_worker_count", value)
 
     @property
+    @pulumi.getter(name="quicAckThresold")
+    def quic_ack_thresold(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "quic_ack_thresold")
+
+    @quic_ack_thresold.setter
+    def quic_ack_thresold(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "quic_ack_thresold", value)
+
+    @property
+    @pulumi.getter(name="quicCongestionControlAlgo")
+    def quic_congestion_control_algo(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "quic_congestion_control_algo")
+
+    @quic_congestion_control_algo.setter
+    def quic_congestion_control_algo(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "quic_congestion_control_algo", value)
+
+    @property
+    @pulumi.getter(name="quicMaxDatagramSize")
+    def quic_max_datagram_size(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "quic_max_datagram_size")
+
+    @quic_max_datagram_size.setter
+    def quic_max_datagram_size(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "quic_max_datagram_size", value)
+
+    @property
+    @pulumi.getter(name="quicPmtud")
+    def quic_pmtud(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "quic_pmtud")
+
+    @quic_pmtud.setter
+    def quic_pmtud(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "quic_pmtud", value)
+
+    @property
+    @pulumi.getter(name="quicTlsHandshakeTimeout")
+    def quic_tls_handshake_timeout(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "quic_tls_handshake_timeout")
+
+    @quic_tls_handshake_timeout.setter
+    def quic_tls_handshake_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "quic_tls_handshake_timeout", value)
+
+    @property
+    @pulumi.getter(name="quicUdpPayloadSizeShapingPerCid")
+    def quic_udp_payload_size_shaping_per_cid(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "quic_udp_payload_size_shaping_per_cid")
+
+    @quic_udp_payload_size_shaping_per_cid.setter
+    def quic_udp_payload_size_shaping_per_cid(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "quic_udp_payload_size_shaping_per_cid", value)
+
+    @property
     @pulumi.getter(name="radiusPort")
     def radius_port(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "radius_port")
@@ -6033,6 +6264,15 @@ class _SystemGlobalState:
     @sslvpn_plugin_version_check.setter
     def sslvpn_plugin_version_check(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sslvpn_plugin_version_check", value)
+
+    @property
+    @pulumi.getter(name="sslvpnWebMode")
+    def sslvpn_web_mode(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "sslvpn_web_mode")
+
+    @sslvpn_web_mode.setter
+    def sslvpn_web_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sslvpn_web_mode", value)
 
     @property
     @pulumi.getter(name="strictDirtySessionCheck")
@@ -6578,10 +6818,13 @@ class SystemGlobal(pulumi.CustomResource):
                  fortiipam_integration: Optional[pulumi.Input[str]] = None,
                  fortiservice_port: Optional[pulumi.Input[int]] = None,
                  fortitoken_cloud: Optional[pulumi.Input[str]] = None,
+                 fortitoken_cloud_push_status: Optional[pulumi.Input[str]] = None,
+                 fortitoken_cloud_sync_interval: Optional[pulumi.Input[int]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  gui_allow_default_hostname: Optional[pulumi.Input[str]] = None,
                  gui_allow_incompatible_fabric_fgt: Optional[pulumi.Input[str]] = None,
                  gui_app_detection_sdwan: Optional[pulumi.Input[str]] = None,
+                 gui_auto_upgrade_setup_warning: Optional[pulumi.Input[str]] = None,
                  gui_cdn_domain_override: Optional[pulumi.Input[str]] = None,
                  gui_cdn_usage: Optional[pulumi.Input[str]] = None,
                  gui_certificates: Optional[pulumi.Input[str]] = None,
@@ -6672,6 +6915,12 @@ class SystemGlobal(pulumi.CustomResource):
                  proxy_re_authentication_time: Optional[pulumi.Input[int]] = None,
                  proxy_resource_mode: Optional[pulumi.Input[str]] = None,
                  proxy_worker_count: Optional[pulumi.Input[int]] = None,
+                 quic_ack_thresold: Optional[pulumi.Input[int]] = None,
+                 quic_congestion_control_algo: Optional[pulumi.Input[str]] = None,
+                 quic_max_datagram_size: Optional[pulumi.Input[int]] = None,
+                 quic_pmtud: Optional[pulumi.Input[str]] = None,
+                 quic_tls_handshake_timeout: Optional[pulumi.Input[int]] = None,
+                 quic_udp_payload_size_shaping_per_cid: Optional[pulumi.Input[str]] = None,
                  radius_port: Optional[pulumi.Input[int]] = None,
                  reboot_upon_config_restore: Optional[pulumi.Input[str]] = None,
                  refresh: Optional[pulumi.Input[int]] = None,
@@ -6709,6 +6958,7 @@ class SystemGlobal(pulumi.CustomResource):
                  sslvpn_kxp_hardware_acceleration: Optional[pulumi.Input[str]] = None,
                  sslvpn_max_worker_count: Optional[pulumi.Input[int]] = None,
                  sslvpn_plugin_version_check: Optional[pulumi.Input[str]] = None,
+                 sslvpn_web_mode: Optional[pulumi.Input[str]] = None,
                  strict_dirty_session_check: Optional[pulumi.Input[str]] = None,
                  strong_crypto: Optional[pulumi.Input[str]] = None,
                  switch_controller: Optional[pulumi.Input[str]] = None,
@@ -6876,10 +7126,13 @@ class SystemGlobal(pulumi.CustomResource):
                  fortiipam_integration: Optional[pulumi.Input[str]] = None,
                  fortiservice_port: Optional[pulumi.Input[int]] = None,
                  fortitoken_cloud: Optional[pulumi.Input[str]] = None,
+                 fortitoken_cloud_push_status: Optional[pulumi.Input[str]] = None,
+                 fortitoken_cloud_sync_interval: Optional[pulumi.Input[int]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  gui_allow_default_hostname: Optional[pulumi.Input[str]] = None,
                  gui_allow_incompatible_fabric_fgt: Optional[pulumi.Input[str]] = None,
                  gui_app_detection_sdwan: Optional[pulumi.Input[str]] = None,
+                 gui_auto_upgrade_setup_warning: Optional[pulumi.Input[str]] = None,
                  gui_cdn_domain_override: Optional[pulumi.Input[str]] = None,
                  gui_cdn_usage: Optional[pulumi.Input[str]] = None,
                  gui_certificates: Optional[pulumi.Input[str]] = None,
@@ -6970,6 +7223,12 @@ class SystemGlobal(pulumi.CustomResource):
                  proxy_re_authentication_time: Optional[pulumi.Input[int]] = None,
                  proxy_resource_mode: Optional[pulumi.Input[str]] = None,
                  proxy_worker_count: Optional[pulumi.Input[int]] = None,
+                 quic_ack_thresold: Optional[pulumi.Input[int]] = None,
+                 quic_congestion_control_algo: Optional[pulumi.Input[str]] = None,
+                 quic_max_datagram_size: Optional[pulumi.Input[int]] = None,
+                 quic_pmtud: Optional[pulumi.Input[str]] = None,
+                 quic_tls_handshake_timeout: Optional[pulumi.Input[int]] = None,
+                 quic_udp_payload_size_shaping_per_cid: Optional[pulumi.Input[str]] = None,
                  radius_port: Optional[pulumi.Input[int]] = None,
                  reboot_upon_config_restore: Optional[pulumi.Input[str]] = None,
                  refresh: Optional[pulumi.Input[int]] = None,
@@ -7007,6 +7266,7 @@ class SystemGlobal(pulumi.CustomResource):
                  sslvpn_kxp_hardware_acceleration: Optional[pulumi.Input[str]] = None,
                  sslvpn_max_worker_count: Optional[pulumi.Input[int]] = None,
                  sslvpn_plugin_version_check: Optional[pulumi.Input[str]] = None,
+                 sslvpn_web_mode: Optional[pulumi.Input[str]] = None,
                  strict_dirty_session_check: Optional[pulumi.Input[str]] = None,
                  strong_crypto: Optional[pulumi.Input[str]] = None,
                  switch_controller: Optional[pulumi.Input[str]] = None,
@@ -7154,10 +7414,13 @@ class SystemGlobal(pulumi.CustomResource):
             __props__.__dict__["fortiipam_integration"] = fortiipam_integration
             __props__.__dict__["fortiservice_port"] = fortiservice_port
             __props__.__dict__["fortitoken_cloud"] = fortitoken_cloud
+            __props__.__dict__["fortitoken_cloud_push_status"] = fortitoken_cloud_push_status
+            __props__.__dict__["fortitoken_cloud_sync_interval"] = fortitoken_cloud_sync_interval
             __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["gui_allow_default_hostname"] = gui_allow_default_hostname
             __props__.__dict__["gui_allow_incompatible_fabric_fgt"] = gui_allow_incompatible_fabric_fgt
             __props__.__dict__["gui_app_detection_sdwan"] = gui_app_detection_sdwan
+            __props__.__dict__["gui_auto_upgrade_setup_warning"] = gui_auto_upgrade_setup_warning
             __props__.__dict__["gui_cdn_domain_override"] = gui_cdn_domain_override
             __props__.__dict__["gui_cdn_usage"] = gui_cdn_usage
             __props__.__dict__["gui_certificates"] = gui_certificates
@@ -7248,6 +7511,12 @@ class SystemGlobal(pulumi.CustomResource):
             __props__.__dict__["proxy_re_authentication_time"] = proxy_re_authentication_time
             __props__.__dict__["proxy_resource_mode"] = proxy_resource_mode
             __props__.__dict__["proxy_worker_count"] = proxy_worker_count
+            __props__.__dict__["quic_ack_thresold"] = quic_ack_thresold
+            __props__.__dict__["quic_congestion_control_algo"] = quic_congestion_control_algo
+            __props__.__dict__["quic_max_datagram_size"] = quic_max_datagram_size
+            __props__.__dict__["quic_pmtud"] = quic_pmtud
+            __props__.__dict__["quic_tls_handshake_timeout"] = quic_tls_handshake_timeout
+            __props__.__dict__["quic_udp_payload_size_shaping_per_cid"] = quic_udp_payload_size_shaping_per_cid
             __props__.__dict__["radius_port"] = radius_port
             __props__.__dict__["reboot_upon_config_restore"] = reboot_upon_config_restore
             __props__.__dict__["refresh"] = refresh
@@ -7285,6 +7554,7 @@ class SystemGlobal(pulumi.CustomResource):
             __props__.__dict__["sslvpn_kxp_hardware_acceleration"] = sslvpn_kxp_hardware_acceleration
             __props__.__dict__["sslvpn_max_worker_count"] = sslvpn_max_worker_count
             __props__.__dict__["sslvpn_plugin_version_check"] = sslvpn_plugin_version_check
+            __props__.__dict__["sslvpn_web_mode"] = sslvpn_web_mode
             __props__.__dict__["strict_dirty_session_check"] = strict_dirty_session_check
             __props__.__dict__["strong_crypto"] = strong_crypto
             __props__.__dict__["switch_controller"] = switch_controller
@@ -7433,10 +7703,13 @@ class SystemGlobal(pulumi.CustomResource):
             fortiipam_integration: Optional[pulumi.Input[str]] = None,
             fortiservice_port: Optional[pulumi.Input[int]] = None,
             fortitoken_cloud: Optional[pulumi.Input[str]] = None,
+            fortitoken_cloud_push_status: Optional[pulumi.Input[str]] = None,
+            fortitoken_cloud_sync_interval: Optional[pulumi.Input[int]] = None,
             get_all_tables: Optional[pulumi.Input[str]] = None,
             gui_allow_default_hostname: Optional[pulumi.Input[str]] = None,
             gui_allow_incompatible_fabric_fgt: Optional[pulumi.Input[str]] = None,
             gui_app_detection_sdwan: Optional[pulumi.Input[str]] = None,
+            gui_auto_upgrade_setup_warning: Optional[pulumi.Input[str]] = None,
             gui_cdn_domain_override: Optional[pulumi.Input[str]] = None,
             gui_cdn_usage: Optional[pulumi.Input[str]] = None,
             gui_certificates: Optional[pulumi.Input[str]] = None,
@@ -7527,6 +7800,12 @@ class SystemGlobal(pulumi.CustomResource):
             proxy_re_authentication_time: Optional[pulumi.Input[int]] = None,
             proxy_resource_mode: Optional[pulumi.Input[str]] = None,
             proxy_worker_count: Optional[pulumi.Input[int]] = None,
+            quic_ack_thresold: Optional[pulumi.Input[int]] = None,
+            quic_congestion_control_algo: Optional[pulumi.Input[str]] = None,
+            quic_max_datagram_size: Optional[pulumi.Input[int]] = None,
+            quic_pmtud: Optional[pulumi.Input[str]] = None,
+            quic_tls_handshake_timeout: Optional[pulumi.Input[int]] = None,
+            quic_udp_payload_size_shaping_per_cid: Optional[pulumi.Input[str]] = None,
             radius_port: Optional[pulumi.Input[int]] = None,
             reboot_upon_config_restore: Optional[pulumi.Input[str]] = None,
             refresh: Optional[pulumi.Input[int]] = None,
@@ -7564,6 +7843,7 @@ class SystemGlobal(pulumi.CustomResource):
             sslvpn_kxp_hardware_acceleration: Optional[pulumi.Input[str]] = None,
             sslvpn_max_worker_count: Optional[pulumi.Input[int]] = None,
             sslvpn_plugin_version_check: Optional[pulumi.Input[str]] = None,
+            sslvpn_web_mode: Optional[pulumi.Input[str]] = None,
             strict_dirty_session_check: Optional[pulumi.Input[str]] = None,
             strong_crypto: Optional[pulumi.Input[str]] = None,
             switch_controller: Optional[pulumi.Input[str]] = None,
@@ -7714,10 +7994,13 @@ class SystemGlobal(pulumi.CustomResource):
         __props__.__dict__["fortiipam_integration"] = fortiipam_integration
         __props__.__dict__["fortiservice_port"] = fortiservice_port
         __props__.__dict__["fortitoken_cloud"] = fortitoken_cloud
+        __props__.__dict__["fortitoken_cloud_push_status"] = fortitoken_cloud_push_status
+        __props__.__dict__["fortitoken_cloud_sync_interval"] = fortitoken_cloud_sync_interval
         __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["gui_allow_default_hostname"] = gui_allow_default_hostname
         __props__.__dict__["gui_allow_incompatible_fabric_fgt"] = gui_allow_incompatible_fabric_fgt
         __props__.__dict__["gui_app_detection_sdwan"] = gui_app_detection_sdwan
+        __props__.__dict__["gui_auto_upgrade_setup_warning"] = gui_auto_upgrade_setup_warning
         __props__.__dict__["gui_cdn_domain_override"] = gui_cdn_domain_override
         __props__.__dict__["gui_cdn_usage"] = gui_cdn_usage
         __props__.__dict__["gui_certificates"] = gui_certificates
@@ -7808,6 +8091,12 @@ class SystemGlobal(pulumi.CustomResource):
         __props__.__dict__["proxy_re_authentication_time"] = proxy_re_authentication_time
         __props__.__dict__["proxy_resource_mode"] = proxy_resource_mode
         __props__.__dict__["proxy_worker_count"] = proxy_worker_count
+        __props__.__dict__["quic_ack_thresold"] = quic_ack_thresold
+        __props__.__dict__["quic_congestion_control_algo"] = quic_congestion_control_algo
+        __props__.__dict__["quic_max_datagram_size"] = quic_max_datagram_size
+        __props__.__dict__["quic_pmtud"] = quic_pmtud
+        __props__.__dict__["quic_tls_handshake_timeout"] = quic_tls_handshake_timeout
+        __props__.__dict__["quic_udp_payload_size_shaping_per_cid"] = quic_udp_payload_size_shaping_per_cid
         __props__.__dict__["radius_port"] = radius_port
         __props__.__dict__["reboot_upon_config_restore"] = reboot_upon_config_restore
         __props__.__dict__["refresh"] = refresh
@@ -7845,6 +8134,7 @@ class SystemGlobal(pulumi.CustomResource):
         __props__.__dict__["sslvpn_kxp_hardware_acceleration"] = sslvpn_kxp_hardware_acceleration
         __props__.__dict__["sslvpn_max_worker_count"] = sslvpn_max_worker_count
         __props__.__dict__["sslvpn_plugin_version_check"] = sslvpn_plugin_version_check
+        __props__.__dict__["sslvpn_web_mode"] = sslvpn_web_mode
         __props__.__dict__["strict_dirty_session_check"] = strict_dirty_session_check
         __props__.__dict__["strong_crypto"] = strong_crypto
         __props__.__dict__["switch_controller"] = switch_controller
@@ -8338,6 +8628,16 @@ class SystemGlobal(pulumi.CustomResource):
         return pulumi.get(self, "fortitoken_cloud")
 
     @property
+    @pulumi.getter(name="fortitokenCloudPushStatus")
+    def fortitoken_cloud_push_status(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "fortitoken_cloud_push_status")
+
+    @property
+    @pulumi.getter(name="fortitokenCloudSyncInterval")
+    def fortitoken_cloud_sync_interval(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "fortitoken_cloud_sync_interval")
+
+    @property
     @pulumi.getter(name="getAllTables")
     def get_all_tables(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "get_all_tables")
@@ -8356,6 +8656,11 @@ class SystemGlobal(pulumi.CustomResource):
     @pulumi.getter(name="guiAppDetectionSdwan")
     def gui_app_detection_sdwan(self) -> pulumi.Output[str]:
         return pulumi.get(self, "gui_app_detection_sdwan")
+
+    @property
+    @pulumi.getter(name="guiAutoUpgradeSetupWarning")
+    def gui_auto_upgrade_setup_warning(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "gui_auto_upgrade_setup_warning")
 
     @property
     @pulumi.getter(name="guiCdnDomainOverride")
@@ -8808,6 +9113,36 @@ class SystemGlobal(pulumi.CustomResource):
         return pulumi.get(self, "proxy_worker_count")
 
     @property
+    @pulumi.getter(name="quicAckThresold")
+    def quic_ack_thresold(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "quic_ack_thresold")
+
+    @property
+    @pulumi.getter(name="quicCongestionControlAlgo")
+    def quic_congestion_control_algo(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "quic_congestion_control_algo")
+
+    @property
+    @pulumi.getter(name="quicMaxDatagramSize")
+    def quic_max_datagram_size(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "quic_max_datagram_size")
+
+    @property
+    @pulumi.getter(name="quicPmtud")
+    def quic_pmtud(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "quic_pmtud")
+
+    @property
+    @pulumi.getter(name="quicTlsHandshakeTimeout")
+    def quic_tls_handshake_timeout(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "quic_tls_handshake_timeout")
+
+    @property
+    @pulumi.getter(name="quicUdpPayloadSizeShapingPerCid")
+    def quic_udp_payload_size_shaping_per_cid(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "quic_udp_payload_size_shaping_per_cid")
+
+    @property
     @pulumi.getter(name="radiusPort")
     def radius_port(self) -> pulumi.Output[int]:
         return pulumi.get(self, "radius_port")
@@ -8991,6 +9326,11 @@ class SystemGlobal(pulumi.CustomResource):
     @pulumi.getter(name="sslvpnPluginVersionCheck")
     def sslvpn_plugin_version_check(self) -> pulumi.Output[str]:
         return pulumi.get(self, "sslvpn_plugin_version_check")
+
+    @property
+    @pulumi.getter(name="sslvpnWebMode")
+    def sslvpn_web_mode(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "sslvpn_web_mode")
 
     @property
     @pulumi.getter(name="strictDirtySessionCheck")

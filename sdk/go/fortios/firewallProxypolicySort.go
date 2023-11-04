@@ -10,17 +10,20 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallProxypolicySort struct {
 	pulumi.CustomResourceState
 
-	Comment       pulumi.StringPtrOutput `pulumi:"comment"`
-	ForceRecreate pulumi.StringPtrOutput `pulumi:"forceRecreate"`
-	Sortby        pulumi.StringOutput    `pulumi:"sortby"`
-	Sortdirection pulumi.StringOutput    `pulumi:"sortdirection"`
-	Status        pulumi.StringPtrOutput `pulumi:"status"`
-	Vdomparam     pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comment          pulumi.StringPtrOutput                            `pulumi:"comment"`
+	ForceRecreate    pulumi.StringOutput                               `pulumi:"forceRecreate"`
+	ManualOrders     pulumi.StringArrayOutput                          `pulumi:"manualOrders"`
+	Sortby           pulumi.StringOutput                               `pulumi:"sortby"`
+	Sortdirection    pulumi.StringOutput                               `pulumi:"sortdirection"`
+	StatePolicyLists FirewallProxypolicySortStatePolicyListArrayOutput `pulumi:"statePolicyLists"`
+	Status           pulumi.StringOutput                               `pulumi:"status"`
+	Vdomparam        pulumi.StringPtrOutput                            `pulumi:"vdomparam"`
 }
 
 // NewFirewallProxypolicySort registers a new resource with the given unique name, arguments, and options.
@@ -59,21 +62,25 @@ func GetFirewallProxypolicySort(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallProxypolicySort resources.
 type firewallProxypolicySortState struct {
-	Comment       *string `pulumi:"comment"`
-	ForceRecreate *string `pulumi:"forceRecreate"`
-	Sortby        *string `pulumi:"sortby"`
-	Sortdirection *string `pulumi:"sortdirection"`
-	Status        *string `pulumi:"status"`
-	Vdomparam     *string `pulumi:"vdomparam"`
+	Comment          *string                                  `pulumi:"comment"`
+	ForceRecreate    *string                                  `pulumi:"forceRecreate"`
+	ManualOrders     []string                                 `pulumi:"manualOrders"`
+	Sortby           *string                                  `pulumi:"sortby"`
+	Sortdirection    *string                                  `pulumi:"sortdirection"`
+	StatePolicyLists []FirewallProxypolicySortStatePolicyList `pulumi:"statePolicyLists"`
+	Status           *string                                  `pulumi:"status"`
+	Vdomparam        *string                                  `pulumi:"vdomparam"`
 }
 
 type FirewallProxypolicySortState struct {
-	Comment       pulumi.StringPtrInput
-	ForceRecreate pulumi.StringPtrInput
-	Sortby        pulumi.StringPtrInput
-	Sortdirection pulumi.StringPtrInput
-	Status        pulumi.StringPtrInput
-	Vdomparam     pulumi.StringPtrInput
+	Comment          pulumi.StringPtrInput
+	ForceRecreate    pulumi.StringPtrInput
+	ManualOrders     pulumi.StringArrayInput
+	Sortby           pulumi.StringPtrInput
+	Sortdirection    pulumi.StringPtrInput
+	StatePolicyLists FirewallProxypolicySortStatePolicyListArrayInput
+	Status           pulumi.StringPtrInput
+	Vdomparam        pulumi.StringPtrInput
 }
 
 func (FirewallProxypolicySortState) ElementType() reflect.Type {
@@ -81,18 +88,20 @@ func (FirewallProxypolicySortState) ElementType() reflect.Type {
 }
 
 type firewallProxypolicySortArgs struct {
-	Comment       *string `pulumi:"comment"`
-	ForceRecreate *string `pulumi:"forceRecreate"`
-	Sortby        string  `pulumi:"sortby"`
-	Sortdirection string  `pulumi:"sortdirection"`
-	Status        *string `pulumi:"status"`
-	Vdomparam     *string `pulumi:"vdomparam"`
+	Comment       *string  `pulumi:"comment"`
+	ForceRecreate *string  `pulumi:"forceRecreate"`
+	ManualOrders  []string `pulumi:"manualOrders"`
+	Sortby        string   `pulumi:"sortby"`
+	Sortdirection string   `pulumi:"sortdirection"`
+	Status        *string  `pulumi:"status"`
+	Vdomparam     *string  `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallProxypolicySort resource.
 type FirewallProxypolicySortArgs struct {
 	Comment       pulumi.StringPtrInput
 	ForceRecreate pulumi.StringPtrInput
+	ManualOrders  pulumi.StringArrayInput
 	Sortby        pulumi.StringInput
 	Sortdirection pulumi.StringInput
 	Status        pulumi.StringPtrInput
@@ -122,6 +131,12 @@ func (i *FirewallProxypolicySort) ToFirewallProxypolicySortOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallProxypolicySortOutput)
 }
 
+func (i *FirewallProxypolicySort) ToOutput(ctx context.Context) pulumix.Output[*FirewallProxypolicySort] {
+	return pulumix.Output[*FirewallProxypolicySort]{
+		OutputState: i.ToFirewallProxypolicySortOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallProxypolicySortArrayInput is an input type that accepts FirewallProxypolicySortArray and FirewallProxypolicySortArrayOutput values.
 // You can construct a concrete instance of `FirewallProxypolicySortArrayInput` via:
 //
@@ -145,6 +160,12 @@ func (i FirewallProxypolicySortArray) ToFirewallProxypolicySortArrayOutput() Fir
 
 func (i FirewallProxypolicySortArray) ToFirewallProxypolicySortArrayOutputWithContext(ctx context.Context) FirewallProxypolicySortArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallProxypolicySortArrayOutput)
+}
+
+func (i FirewallProxypolicySortArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallProxypolicySort] {
+	return pulumix.Output[[]*FirewallProxypolicySort]{
+		OutputState: i.ToFirewallProxypolicySortArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallProxypolicySortMapInput is an input type that accepts FirewallProxypolicySortMap and FirewallProxypolicySortMapOutput values.
@@ -172,6 +193,12 @@ func (i FirewallProxypolicySortMap) ToFirewallProxypolicySortMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallProxypolicySortMapOutput)
 }
 
+func (i FirewallProxypolicySortMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallProxypolicySort] {
+	return pulumix.Output[map[string]*FirewallProxypolicySort]{
+		OutputState: i.ToFirewallProxypolicySortMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallProxypolicySortOutput struct{ *pulumi.OutputState }
 
 func (FirewallProxypolicySortOutput) ElementType() reflect.Type {
@@ -186,12 +213,22 @@ func (o FirewallProxypolicySortOutput) ToFirewallProxypolicySortOutputWithContex
 	return o
 }
 
+func (o FirewallProxypolicySortOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallProxypolicySort] {
+	return pulumix.Output[*FirewallProxypolicySort]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallProxypolicySortOutput) Comment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FirewallProxypolicySort) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
 }
 
-func (o FirewallProxypolicySortOutput) ForceRecreate() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *FirewallProxypolicySort) pulumi.StringPtrOutput { return v.ForceRecreate }).(pulumi.StringPtrOutput)
+func (o FirewallProxypolicySortOutput) ForceRecreate() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProxypolicySort) pulumi.StringOutput { return v.ForceRecreate }).(pulumi.StringOutput)
+}
+
+func (o FirewallProxypolicySortOutput) ManualOrders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *FirewallProxypolicySort) pulumi.StringArrayOutput { return v.ManualOrders }).(pulumi.StringArrayOutput)
 }
 
 func (o FirewallProxypolicySortOutput) Sortby() pulumi.StringOutput {
@@ -202,8 +239,14 @@ func (o FirewallProxypolicySortOutput) Sortdirection() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallProxypolicySort) pulumi.StringOutput { return v.Sortdirection }).(pulumi.StringOutput)
 }
 
-func (o FirewallProxypolicySortOutput) Status() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *FirewallProxypolicySort) pulumi.StringPtrOutput { return v.Status }).(pulumi.StringPtrOutput)
+func (o FirewallProxypolicySortOutput) StatePolicyLists() FirewallProxypolicySortStatePolicyListArrayOutput {
+	return o.ApplyT(func(v *FirewallProxypolicySort) FirewallProxypolicySortStatePolicyListArrayOutput {
+		return v.StatePolicyLists
+	}).(FirewallProxypolicySortStatePolicyListArrayOutput)
+}
+
+func (o FirewallProxypolicySortOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProxypolicySort) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
 func (o FirewallProxypolicySortOutput) Vdomparam() pulumi.StringPtrOutput {
@@ -224,6 +267,12 @@ func (o FirewallProxypolicySortArrayOutput) ToFirewallProxypolicySortArrayOutput
 	return o
 }
 
+func (o FirewallProxypolicySortArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallProxypolicySort] {
+	return pulumix.Output[[]*FirewallProxypolicySort]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallProxypolicySortArrayOutput) Index(i pulumi.IntInput) FirewallProxypolicySortOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallProxypolicySort {
 		return vs[0].([]*FirewallProxypolicySort)[vs[1].(int)]
@@ -242,6 +291,12 @@ func (o FirewallProxypolicySortMapOutput) ToFirewallProxypolicySortMapOutput() F
 
 func (o FirewallProxypolicySortMapOutput) ToFirewallProxypolicySortMapOutputWithContext(ctx context.Context) FirewallProxypolicySortMapOutput {
 	return o
+}
+
+func (o FirewallProxypolicySortMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallProxypolicySort] {
+	return pulumix.Output[map[string]*FirewallProxypolicySort]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallProxypolicySortMapOutput) MapIndex(k pulumi.StringInput) FirewallProxypolicySortOutput {

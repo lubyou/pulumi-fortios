@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemVirtualSwitch struct {
@@ -140,6 +141,12 @@ func (i *SystemVirtualSwitch) ToSystemVirtualSwitchOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVirtualSwitchOutput)
 }
 
+func (i *SystemVirtualSwitch) ToOutput(ctx context.Context) pulumix.Output[*SystemVirtualSwitch] {
+	return pulumix.Output[*SystemVirtualSwitch]{
+		OutputState: i.ToSystemVirtualSwitchOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemVirtualSwitchArrayInput is an input type that accepts SystemVirtualSwitchArray and SystemVirtualSwitchArrayOutput values.
 // You can construct a concrete instance of `SystemVirtualSwitchArrayInput` via:
 //
@@ -163,6 +170,12 @@ func (i SystemVirtualSwitchArray) ToSystemVirtualSwitchArrayOutput() SystemVirtu
 
 func (i SystemVirtualSwitchArray) ToSystemVirtualSwitchArrayOutputWithContext(ctx context.Context) SystemVirtualSwitchArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVirtualSwitchArrayOutput)
+}
+
+func (i SystemVirtualSwitchArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemVirtualSwitch] {
+	return pulumix.Output[[]*SystemVirtualSwitch]{
+		OutputState: i.ToSystemVirtualSwitchArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemVirtualSwitchMapInput is an input type that accepts SystemVirtualSwitchMap and SystemVirtualSwitchMapOutput values.
@@ -190,6 +203,12 @@ func (i SystemVirtualSwitchMap) ToSystemVirtualSwitchMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVirtualSwitchMapOutput)
 }
 
+func (i SystemVirtualSwitchMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemVirtualSwitch] {
+	return pulumix.Output[map[string]*SystemVirtualSwitch]{
+		OutputState: i.ToSystemVirtualSwitchMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemVirtualSwitchOutput struct{ *pulumi.OutputState }
 
 func (SystemVirtualSwitchOutput) ElementType() reflect.Type {
@@ -202,6 +221,12 @@ func (o SystemVirtualSwitchOutput) ToSystemVirtualSwitchOutput() SystemVirtualSw
 
 func (o SystemVirtualSwitchOutput) ToSystemVirtualSwitchOutputWithContext(ctx context.Context) SystemVirtualSwitchOutput {
 	return o
+}
+
+func (o SystemVirtualSwitchOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemVirtualSwitch] {
+	return pulumix.Output[*SystemVirtualSwitch]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemVirtualSwitchOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -262,6 +287,12 @@ func (o SystemVirtualSwitchArrayOutput) ToSystemVirtualSwitchArrayOutputWithCont
 	return o
 }
 
+func (o SystemVirtualSwitchArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemVirtualSwitch] {
+	return pulumix.Output[[]*SystemVirtualSwitch]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemVirtualSwitchArrayOutput) Index(i pulumi.IntInput) SystemVirtualSwitchOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemVirtualSwitch {
 		return vs[0].([]*SystemVirtualSwitch)[vs[1].(int)]
@@ -280,6 +311,12 @@ func (o SystemVirtualSwitchMapOutput) ToSystemVirtualSwitchMapOutput() SystemVir
 
 func (o SystemVirtualSwitchMapOutput) ToSystemVirtualSwitchMapOutputWithContext(ctx context.Context) SystemVirtualSwitchMapOutput {
 	return o
+}
+
+func (o SystemVirtualSwitchMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemVirtualSwitch] {
+	return pulumix.Output[map[string]*SystemVirtualSwitch]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemVirtualSwitchMapOutput) MapIndex(k pulumi.StringInput) SystemVirtualSwitchOutput {

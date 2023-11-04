@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemSflow struct {
@@ -119,6 +120,12 @@ func (i *SystemSflow) ToSystemSflowOutputWithContext(ctx context.Context) System
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSflowOutput)
 }
 
+func (i *SystemSflow) ToOutput(ctx context.Context) pulumix.Output[*SystemSflow] {
+	return pulumix.Output[*SystemSflow]{
+		OutputState: i.ToSystemSflowOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemSflowArrayInput is an input type that accepts SystemSflowArray and SystemSflowArrayOutput values.
 // You can construct a concrete instance of `SystemSflowArrayInput` via:
 //
@@ -142,6 +149,12 @@ func (i SystemSflowArray) ToSystemSflowArrayOutput() SystemSflowArrayOutput {
 
 func (i SystemSflowArray) ToSystemSflowArrayOutputWithContext(ctx context.Context) SystemSflowArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSflowArrayOutput)
+}
+
+func (i SystemSflowArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSflow] {
+	return pulumix.Output[[]*SystemSflow]{
+		OutputState: i.ToSystemSflowArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemSflowMapInput is an input type that accepts SystemSflowMap and SystemSflowMapOutput values.
@@ -169,6 +182,12 @@ func (i SystemSflowMap) ToSystemSflowMapOutputWithContext(ctx context.Context) S
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSflowMapOutput)
 }
 
+func (i SystemSflowMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSflow] {
+	return pulumix.Output[map[string]*SystemSflow]{
+		OutputState: i.ToSystemSflowMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemSflowOutput struct{ *pulumi.OutputState }
 
 func (SystemSflowOutput) ElementType() reflect.Type {
@@ -181,6 +200,12 @@ func (o SystemSflowOutput) ToSystemSflowOutput() SystemSflowOutput {
 
 func (o SystemSflowOutput) ToSystemSflowOutputWithContext(ctx context.Context) SystemSflowOutput {
 	return o
+}
+
+func (o SystemSflowOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemSflow] {
+	return pulumix.Output[*SystemSflow]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemSflowOutput) CollectorIp() pulumi.StringOutput {
@@ -221,6 +246,12 @@ func (o SystemSflowArrayOutput) ToSystemSflowArrayOutputWithContext(ctx context.
 	return o
 }
 
+func (o SystemSflowArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSflow] {
+	return pulumix.Output[[]*SystemSflow]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemSflowArrayOutput) Index(i pulumi.IntInput) SystemSflowOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSflow {
 		return vs[0].([]*SystemSflow)[vs[1].(int)]
@@ -239,6 +270,12 @@ func (o SystemSflowMapOutput) ToSystemSflowMapOutput() SystemSflowMapOutput {
 
 func (o SystemSflowMapOutput) ToSystemSflowMapOutputWithContext(ctx context.Context) SystemSflowMapOutput {
 	return o
+}
+
+func (o SystemSflowMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSflow] {
+	return pulumix.Output[map[string]*SystemSflow]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemSflowMapOutput) MapIndex(k pulumi.StringInput) SystemSflowOutput {

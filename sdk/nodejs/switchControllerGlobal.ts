@@ -61,6 +61,7 @@ export class SwitchControllerGlobal extends pulumi.CustomResource {
     public readonly updateUserDevice!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
     public readonly vlanAllMode!: pulumi.Output<string>;
+    public readonly vlanIdentity!: pulumi.Output<string>;
     public readonly vlanOptimization!: pulumi.Output<string>;
 
     /**
@@ -103,6 +104,7 @@ export class SwitchControllerGlobal extends pulumi.CustomResource {
             resourceInputs["updateUserDevice"] = state ? state.updateUserDevice : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["vlanAllMode"] = state ? state.vlanAllMode : undefined;
+            resourceInputs["vlanIdentity"] = state ? state.vlanIdentity : undefined;
             resourceInputs["vlanOptimization"] = state ? state.vlanOptimization : undefined;
         } else {
             const args = argsOrState as SwitchControllerGlobalArgs | undefined;
@@ -133,6 +135,7 @@ export class SwitchControllerGlobal extends pulumi.CustomResource {
             resourceInputs["updateUserDevice"] = args ? args.updateUserDevice : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["vlanAllMode"] = args ? args.vlanAllMode : undefined;
+            resourceInputs["vlanIdentity"] = args ? args.vlanIdentity : undefined;
             resourceInputs["vlanOptimization"] = args ? args.vlanOptimization : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -171,6 +174,7 @@ export interface SwitchControllerGlobalState {
     updateUserDevice?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
     vlanAllMode?: pulumi.Input<string>;
+    vlanIdentity?: pulumi.Input<string>;
     vlanOptimization?: pulumi.Input<string>;
 }
 
@@ -205,5 +209,6 @@ export interface SwitchControllerGlobalArgs {
     updateUserDevice?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
     vlanAllMode?: pulumi.Input<string>;
+    vlanIdentity?: pulumi.Input<string>;
     vlanOptimization?: pulumi.Input<string>;
 }

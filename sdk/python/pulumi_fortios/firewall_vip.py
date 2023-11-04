@@ -29,6 +29,8 @@ class FirewallVipArgs:
                  fosid: Optional[pulumi.Input[int]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  gratuitous_arp_interval: Optional[pulumi.Input[int]] = None,
+                 h2_support: Optional[pulumi.Input[str]] = None,
+                 h3_support: Optional[pulumi.Input[str]] = None,
                  http_cookie_age: Optional[pulumi.Input[int]] = None,
                  http_cookie_domain: Optional[pulumi.Input[str]] = None,
                  http_cookie_domain_from_host: Optional[pulumi.Input[str]] = None,
@@ -38,6 +40,7 @@ class FirewallVipArgs:
                  http_ip_header: Optional[pulumi.Input[str]] = None,
                  http_ip_header_name: Optional[pulumi.Input[str]] = None,
                  http_multiplex: Optional[pulumi.Input[str]] = None,
+                 http_multiplex_max_concurrent_request: Optional[pulumi.Input[int]] = None,
                  http_multiplex_max_request: Optional[pulumi.Input[int]] = None,
                  http_multiplex_ttl: Optional[pulumi.Input[int]] = None,
                  http_redirect: Optional[pulumi.Input[str]] = None,
@@ -60,6 +63,7 @@ class FirewallVipArgs:
                  portforward: Optional[pulumi.Input[str]] = None,
                  portmapping_type: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
+                 quic: Optional[pulumi.Input['FirewallVipQuicArgs']] = None,
                  realservers: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallVipRealserverArgs']]]] = None,
                  server_type: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallVipServiceArgs']]]] = None,
@@ -135,6 +139,10 @@ class FirewallVipArgs:
             pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gratuitous_arp_interval is not None:
             pulumi.set(__self__, "gratuitous_arp_interval", gratuitous_arp_interval)
+        if h2_support is not None:
+            pulumi.set(__self__, "h2_support", h2_support)
+        if h3_support is not None:
+            pulumi.set(__self__, "h3_support", h3_support)
         if http_cookie_age is not None:
             pulumi.set(__self__, "http_cookie_age", http_cookie_age)
         if http_cookie_domain is not None:
@@ -153,6 +161,8 @@ class FirewallVipArgs:
             pulumi.set(__self__, "http_ip_header_name", http_ip_header_name)
         if http_multiplex is not None:
             pulumi.set(__self__, "http_multiplex", http_multiplex)
+        if http_multiplex_max_concurrent_request is not None:
+            pulumi.set(__self__, "http_multiplex_max_concurrent_request", http_multiplex_max_concurrent_request)
         if http_multiplex_max_request is not None:
             pulumi.set(__self__, "http_multiplex_max_request", http_multiplex_max_request)
         if http_multiplex_ttl is not None:
@@ -197,6 +207,8 @@ class FirewallVipArgs:
             pulumi.set(__self__, "portmapping_type", portmapping_type)
         if protocol is not None:
             pulumi.set(__self__, "protocol", protocol)
+        if quic is not None:
+            pulumi.set(__self__, "quic", quic)
         if realservers is not None:
             pulumi.set(__self__, "realservers", realservers)
         if server_type is not None:
@@ -408,6 +420,24 @@ class FirewallVipArgs:
         pulumi.set(self, "gratuitous_arp_interval", value)
 
     @property
+    @pulumi.getter(name="h2Support")
+    def h2_support(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "h2_support")
+
+    @h2_support.setter
+    def h2_support(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "h2_support", value)
+
+    @property
+    @pulumi.getter(name="h3Support")
+    def h3_support(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "h3_support")
+
+    @h3_support.setter
+    def h3_support(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "h3_support", value)
+
+    @property
     @pulumi.getter(name="httpCookieAge")
     def http_cookie_age(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "http_cookie_age")
@@ -487,6 +517,15 @@ class FirewallVipArgs:
     @http_multiplex.setter
     def http_multiplex(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "http_multiplex", value)
+
+    @property
+    @pulumi.getter(name="httpMultiplexMaxConcurrentRequest")
+    def http_multiplex_max_concurrent_request(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "http_multiplex_max_concurrent_request")
+
+    @http_multiplex_max_concurrent_request.setter
+    def http_multiplex_max_concurrent_request(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "http_multiplex_max_concurrent_request", value)
 
     @property
     @pulumi.getter(name="httpMultiplexMaxRequest")
@@ -685,6 +724,15 @@ class FirewallVipArgs:
     @protocol.setter
     def protocol(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "protocol", value)
+
+    @property
+    @pulumi.getter
+    def quic(self) -> Optional[pulumi.Input['FirewallVipQuicArgs']]:
+        return pulumi.get(self, "quic")
+
+    @quic.setter
+    def quic(self, value: Optional[pulumi.Input['FirewallVipQuicArgs']]):
+        pulumi.set(self, "quic", value)
 
     @property
     @pulumi.getter
@@ -1117,6 +1165,8 @@ class _FirewallVipState:
                  fosid: Optional[pulumi.Input[int]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  gratuitous_arp_interval: Optional[pulumi.Input[int]] = None,
+                 h2_support: Optional[pulumi.Input[str]] = None,
+                 h3_support: Optional[pulumi.Input[str]] = None,
                  http_cookie_age: Optional[pulumi.Input[int]] = None,
                  http_cookie_domain: Optional[pulumi.Input[str]] = None,
                  http_cookie_domain_from_host: Optional[pulumi.Input[str]] = None,
@@ -1126,6 +1176,7 @@ class _FirewallVipState:
                  http_ip_header: Optional[pulumi.Input[str]] = None,
                  http_ip_header_name: Optional[pulumi.Input[str]] = None,
                  http_multiplex: Optional[pulumi.Input[str]] = None,
+                 http_multiplex_max_concurrent_request: Optional[pulumi.Input[int]] = None,
                  http_multiplex_max_request: Optional[pulumi.Input[int]] = None,
                  http_multiplex_ttl: Optional[pulumi.Input[int]] = None,
                  http_redirect: Optional[pulumi.Input[str]] = None,
@@ -1148,6 +1199,7 @@ class _FirewallVipState:
                  portforward: Optional[pulumi.Input[str]] = None,
                  portmapping_type: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
+                 quic: Optional[pulumi.Input['FirewallVipQuicArgs']] = None,
                  realservers: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallVipRealserverArgs']]]] = None,
                  server_type: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallVipServiceArgs']]]] = None,
@@ -1223,6 +1275,10 @@ class _FirewallVipState:
             pulumi.set(__self__, "get_all_tables", get_all_tables)
         if gratuitous_arp_interval is not None:
             pulumi.set(__self__, "gratuitous_arp_interval", gratuitous_arp_interval)
+        if h2_support is not None:
+            pulumi.set(__self__, "h2_support", h2_support)
+        if h3_support is not None:
+            pulumi.set(__self__, "h3_support", h3_support)
         if http_cookie_age is not None:
             pulumi.set(__self__, "http_cookie_age", http_cookie_age)
         if http_cookie_domain is not None:
@@ -1241,6 +1297,8 @@ class _FirewallVipState:
             pulumi.set(__self__, "http_ip_header_name", http_ip_header_name)
         if http_multiplex is not None:
             pulumi.set(__self__, "http_multiplex", http_multiplex)
+        if http_multiplex_max_concurrent_request is not None:
+            pulumi.set(__self__, "http_multiplex_max_concurrent_request", http_multiplex_max_concurrent_request)
         if http_multiplex_max_request is not None:
             pulumi.set(__self__, "http_multiplex_max_request", http_multiplex_max_request)
         if http_multiplex_ttl is not None:
@@ -1285,6 +1343,8 @@ class _FirewallVipState:
             pulumi.set(__self__, "portmapping_type", portmapping_type)
         if protocol is not None:
             pulumi.set(__self__, "protocol", protocol)
+        if quic is not None:
+            pulumi.set(__self__, "quic", quic)
         if realservers is not None:
             pulumi.set(__self__, "realservers", realservers)
         if server_type is not None:
@@ -1496,6 +1556,24 @@ class _FirewallVipState:
         pulumi.set(self, "gratuitous_arp_interval", value)
 
     @property
+    @pulumi.getter(name="h2Support")
+    def h2_support(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "h2_support")
+
+    @h2_support.setter
+    def h2_support(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "h2_support", value)
+
+    @property
+    @pulumi.getter(name="h3Support")
+    def h3_support(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "h3_support")
+
+    @h3_support.setter
+    def h3_support(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "h3_support", value)
+
+    @property
     @pulumi.getter(name="httpCookieAge")
     def http_cookie_age(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "http_cookie_age")
@@ -1575,6 +1653,15 @@ class _FirewallVipState:
     @http_multiplex.setter
     def http_multiplex(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "http_multiplex", value)
+
+    @property
+    @pulumi.getter(name="httpMultiplexMaxConcurrentRequest")
+    def http_multiplex_max_concurrent_request(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "http_multiplex_max_concurrent_request")
+
+    @http_multiplex_max_concurrent_request.setter
+    def http_multiplex_max_concurrent_request(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "http_multiplex_max_concurrent_request", value)
 
     @property
     @pulumi.getter(name="httpMultiplexMaxRequest")
@@ -1773,6 +1860,15 @@ class _FirewallVipState:
     @protocol.setter
     def protocol(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "protocol", value)
+
+    @property
+    @pulumi.getter
+    def quic(self) -> Optional[pulumi.Input['FirewallVipQuicArgs']]:
+        return pulumi.get(self, "quic")
+
+    @quic.setter
+    def quic(self, value: Optional[pulumi.Input['FirewallVipQuicArgs']]):
+        pulumi.set(self, "quic", value)
 
     @property
     @pulumi.getter
@@ -2207,6 +2303,8 @@ class FirewallVip(pulumi.CustomResource):
                  fosid: Optional[pulumi.Input[int]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  gratuitous_arp_interval: Optional[pulumi.Input[int]] = None,
+                 h2_support: Optional[pulumi.Input[str]] = None,
+                 h3_support: Optional[pulumi.Input[str]] = None,
                  http_cookie_age: Optional[pulumi.Input[int]] = None,
                  http_cookie_domain: Optional[pulumi.Input[str]] = None,
                  http_cookie_domain_from_host: Optional[pulumi.Input[str]] = None,
@@ -2216,6 +2314,7 @@ class FirewallVip(pulumi.CustomResource):
                  http_ip_header: Optional[pulumi.Input[str]] = None,
                  http_ip_header_name: Optional[pulumi.Input[str]] = None,
                  http_multiplex: Optional[pulumi.Input[str]] = None,
+                 http_multiplex_max_concurrent_request: Optional[pulumi.Input[int]] = None,
                  http_multiplex_max_request: Optional[pulumi.Input[int]] = None,
                  http_multiplex_ttl: Optional[pulumi.Input[int]] = None,
                  http_redirect: Optional[pulumi.Input[str]] = None,
@@ -2238,6 +2337,7 @@ class FirewallVip(pulumi.CustomResource):
                  portforward: Optional[pulumi.Input[str]] = None,
                  portmapping_type: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
+                 quic: Optional[pulumi.Input[pulumi.InputType['FirewallVipQuicArgs']]] = None,
                  realservers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallVipRealserverArgs']]]]] = None,
                  server_type: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallVipServiceArgs']]]]] = None,
@@ -2326,6 +2426,8 @@ class FirewallVip(pulumi.CustomResource):
                  fosid: Optional[pulumi.Input[int]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  gratuitous_arp_interval: Optional[pulumi.Input[int]] = None,
+                 h2_support: Optional[pulumi.Input[str]] = None,
+                 h3_support: Optional[pulumi.Input[str]] = None,
                  http_cookie_age: Optional[pulumi.Input[int]] = None,
                  http_cookie_domain: Optional[pulumi.Input[str]] = None,
                  http_cookie_domain_from_host: Optional[pulumi.Input[str]] = None,
@@ -2335,6 +2437,7 @@ class FirewallVip(pulumi.CustomResource):
                  http_ip_header: Optional[pulumi.Input[str]] = None,
                  http_ip_header_name: Optional[pulumi.Input[str]] = None,
                  http_multiplex: Optional[pulumi.Input[str]] = None,
+                 http_multiplex_max_concurrent_request: Optional[pulumi.Input[int]] = None,
                  http_multiplex_max_request: Optional[pulumi.Input[int]] = None,
                  http_multiplex_ttl: Optional[pulumi.Input[int]] = None,
                  http_redirect: Optional[pulumi.Input[str]] = None,
@@ -2357,6 +2460,7 @@ class FirewallVip(pulumi.CustomResource):
                  portforward: Optional[pulumi.Input[str]] = None,
                  portmapping_type: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
+                 quic: Optional[pulumi.Input[pulumi.InputType['FirewallVipQuicArgs']]] = None,
                  realservers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallVipRealserverArgs']]]]] = None,
                  server_type: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallVipServiceArgs']]]]] = None,
@@ -2425,6 +2529,8 @@ class FirewallVip(pulumi.CustomResource):
             __props__.__dict__["fosid"] = fosid
             __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["gratuitous_arp_interval"] = gratuitous_arp_interval
+            __props__.__dict__["h2_support"] = h2_support
+            __props__.__dict__["h3_support"] = h3_support
             __props__.__dict__["http_cookie_age"] = http_cookie_age
             __props__.__dict__["http_cookie_domain"] = http_cookie_domain
             __props__.__dict__["http_cookie_domain_from_host"] = http_cookie_domain_from_host
@@ -2434,6 +2540,7 @@ class FirewallVip(pulumi.CustomResource):
             __props__.__dict__["http_ip_header"] = http_ip_header
             __props__.__dict__["http_ip_header_name"] = http_ip_header_name
             __props__.__dict__["http_multiplex"] = http_multiplex
+            __props__.__dict__["http_multiplex_max_concurrent_request"] = http_multiplex_max_concurrent_request
             __props__.__dict__["http_multiplex_max_request"] = http_multiplex_max_request
             __props__.__dict__["http_multiplex_ttl"] = http_multiplex_ttl
             __props__.__dict__["http_redirect"] = http_redirect
@@ -2456,6 +2563,7 @@ class FirewallVip(pulumi.CustomResource):
             __props__.__dict__["portforward"] = portforward
             __props__.__dict__["portmapping_type"] = portmapping_type
             __props__.__dict__["protocol"] = protocol
+            __props__.__dict__["quic"] = quic
             __props__.__dict__["realservers"] = realservers
             __props__.__dict__["server_type"] = server_type
             __props__.__dict__["services"] = services
@@ -2525,6 +2633,8 @@ class FirewallVip(pulumi.CustomResource):
             fosid: Optional[pulumi.Input[int]] = None,
             get_all_tables: Optional[pulumi.Input[str]] = None,
             gratuitous_arp_interval: Optional[pulumi.Input[int]] = None,
+            h2_support: Optional[pulumi.Input[str]] = None,
+            h3_support: Optional[pulumi.Input[str]] = None,
             http_cookie_age: Optional[pulumi.Input[int]] = None,
             http_cookie_domain: Optional[pulumi.Input[str]] = None,
             http_cookie_domain_from_host: Optional[pulumi.Input[str]] = None,
@@ -2534,6 +2644,7 @@ class FirewallVip(pulumi.CustomResource):
             http_ip_header: Optional[pulumi.Input[str]] = None,
             http_ip_header_name: Optional[pulumi.Input[str]] = None,
             http_multiplex: Optional[pulumi.Input[str]] = None,
+            http_multiplex_max_concurrent_request: Optional[pulumi.Input[int]] = None,
             http_multiplex_max_request: Optional[pulumi.Input[int]] = None,
             http_multiplex_ttl: Optional[pulumi.Input[int]] = None,
             http_redirect: Optional[pulumi.Input[str]] = None,
@@ -2556,6 +2667,7 @@ class FirewallVip(pulumi.CustomResource):
             portforward: Optional[pulumi.Input[str]] = None,
             portmapping_type: Optional[pulumi.Input[str]] = None,
             protocol: Optional[pulumi.Input[str]] = None,
+            quic: Optional[pulumi.Input[pulumi.InputType['FirewallVipQuicArgs']]] = None,
             realservers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallVipRealserverArgs']]]]] = None,
             server_type: Optional[pulumi.Input[str]] = None,
             services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallVipServiceArgs']]]]] = None,
@@ -2627,6 +2739,8 @@ class FirewallVip(pulumi.CustomResource):
         __props__.__dict__["fosid"] = fosid
         __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["gratuitous_arp_interval"] = gratuitous_arp_interval
+        __props__.__dict__["h2_support"] = h2_support
+        __props__.__dict__["h3_support"] = h3_support
         __props__.__dict__["http_cookie_age"] = http_cookie_age
         __props__.__dict__["http_cookie_domain"] = http_cookie_domain
         __props__.__dict__["http_cookie_domain_from_host"] = http_cookie_domain_from_host
@@ -2636,6 +2750,7 @@ class FirewallVip(pulumi.CustomResource):
         __props__.__dict__["http_ip_header"] = http_ip_header
         __props__.__dict__["http_ip_header_name"] = http_ip_header_name
         __props__.__dict__["http_multiplex"] = http_multiplex
+        __props__.__dict__["http_multiplex_max_concurrent_request"] = http_multiplex_max_concurrent_request
         __props__.__dict__["http_multiplex_max_request"] = http_multiplex_max_request
         __props__.__dict__["http_multiplex_ttl"] = http_multiplex_ttl
         __props__.__dict__["http_redirect"] = http_redirect
@@ -2658,6 +2773,7 @@ class FirewallVip(pulumi.CustomResource):
         __props__.__dict__["portforward"] = portforward
         __props__.__dict__["portmapping_type"] = portmapping_type
         __props__.__dict__["protocol"] = protocol
+        __props__.__dict__["quic"] = quic
         __props__.__dict__["realservers"] = realservers
         __props__.__dict__["server_type"] = server_type
         __props__.__dict__["services"] = services
@@ -2772,6 +2888,16 @@ class FirewallVip(pulumi.CustomResource):
         return pulumi.get(self, "gratuitous_arp_interval")
 
     @property
+    @pulumi.getter(name="h2Support")
+    def h2_support(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "h2_support")
+
+    @property
+    @pulumi.getter(name="h3Support")
+    def h3_support(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "h3_support")
+
+    @property
     @pulumi.getter(name="httpCookieAge")
     def http_cookie_age(self) -> pulumi.Output[int]:
         return pulumi.get(self, "http_cookie_age")
@@ -2815,6 +2941,11 @@ class FirewallVip(pulumi.CustomResource):
     @pulumi.getter(name="httpMultiplex")
     def http_multiplex(self) -> pulumi.Output[str]:
         return pulumi.get(self, "http_multiplex")
+
+    @property
+    @pulumi.getter(name="httpMultiplexMaxConcurrentRequest")
+    def http_multiplex_max_concurrent_request(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "http_multiplex_max_concurrent_request")
 
     @property
     @pulumi.getter(name="httpMultiplexMaxRequest")
@@ -2925,6 +3056,11 @@ class FirewallVip(pulumi.CustomResource):
     @pulumi.getter
     def protocol(self) -> pulumi.Output[str]:
         return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter
+    def quic(self) -> pulumi.Output['outputs.FirewallVipQuic']:
+        return pulumi.get(self, "quic")
 
     @property
     @pulumi.getter

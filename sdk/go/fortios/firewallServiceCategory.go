@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallServiceCategory struct {
@@ -105,6 +106,12 @@ func (i *FirewallServiceCategory) ToFirewallServiceCategoryOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallServiceCategoryOutput)
 }
 
+func (i *FirewallServiceCategory) ToOutput(ctx context.Context) pulumix.Output[*FirewallServiceCategory] {
+	return pulumix.Output[*FirewallServiceCategory]{
+		OutputState: i.ToFirewallServiceCategoryOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallServiceCategoryArrayInput is an input type that accepts FirewallServiceCategoryArray and FirewallServiceCategoryArrayOutput values.
 // You can construct a concrete instance of `FirewallServiceCategoryArrayInput` via:
 //
@@ -128,6 +135,12 @@ func (i FirewallServiceCategoryArray) ToFirewallServiceCategoryArrayOutput() Fir
 
 func (i FirewallServiceCategoryArray) ToFirewallServiceCategoryArrayOutputWithContext(ctx context.Context) FirewallServiceCategoryArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallServiceCategoryArrayOutput)
+}
+
+func (i FirewallServiceCategoryArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallServiceCategory] {
+	return pulumix.Output[[]*FirewallServiceCategory]{
+		OutputState: i.ToFirewallServiceCategoryArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallServiceCategoryMapInput is an input type that accepts FirewallServiceCategoryMap and FirewallServiceCategoryMapOutput values.
@@ -155,6 +168,12 @@ func (i FirewallServiceCategoryMap) ToFirewallServiceCategoryMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallServiceCategoryMapOutput)
 }
 
+func (i FirewallServiceCategoryMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallServiceCategory] {
+	return pulumix.Output[map[string]*FirewallServiceCategory]{
+		OutputState: i.ToFirewallServiceCategoryMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallServiceCategoryOutput struct{ *pulumi.OutputState }
 
 func (FirewallServiceCategoryOutput) ElementType() reflect.Type {
@@ -167,6 +186,12 @@ func (o FirewallServiceCategoryOutput) ToFirewallServiceCategoryOutput() Firewal
 
 func (o FirewallServiceCategoryOutput) ToFirewallServiceCategoryOutputWithContext(ctx context.Context) FirewallServiceCategoryOutput {
 	return o
+}
+
+func (o FirewallServiceCategoryOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallServiceCategory] {
+	return pulumix.Output[*FirewallServiceCategory]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallServiceCategoryOutput) Comment() pulumi.StringPtrOutput {
@@ -199,6 +224,12 @@ func (o FirewallServiceCategoryArrayOutput) ToFirewallServiceCategoryArrayOutput
 	return o
 }
 
+func (o FirewallServiceCategoryArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallServiceCategory] {
+	return pulumix.Output[[]*FirewallServiceCategory]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallServiceCategoryArrayOutput) Index(i pulumi.IntInput) FirewallServiceCategoryOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallServiceCategory {
 		return vs[0].([]*FirewallServiceCategory)[vs[1].(int)]
@@ -217,6 +248,12 @@ func (o FirewallServiceCategoryMapOutput) ToFirewallServiceCategoryMapOutput() F
 
 func (o FirewallServiceCategoryMapOutput) ToFirewallServiceCategoryMapOutputWithContext(ctx context.Context) FirewallServiceCategoryMapOutput {
 	return o
+}
+
+func (o FirewallServiceCategoryMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallServiceCategory] {
+	return pulumix.Output[map[string]*FirewallServiceCategory]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallServiceCategoryMapOutput) MapIndex(k pulumi.StringInput) FirewallServiceCategoryOutput {

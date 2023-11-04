@@ -43,6 +43,7 @@ class SwitchControllerGlobalArgs:
                  update_user_device: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vlan_all_mode: Optional[pulumi.Input[str]] = None,
+                 vlan_identity: Optional[pulumi.Input[str]] = None,
                  vlan_optimization: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SwitchControllerGlobal resource.
@@ -101,6 +102,8 @@ class SwitchControllerGlobalArgs:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if vlan_all_mode is not None:
             pulumi.set(__self__, "vlan_all_mode", vlan_all_mode)
+        if vlan_identity is not None:
+            pulumi.set(__self__, "vlan_identity", vlan_identity)
         if vlan_optimization is not None:
             pulumi.set(__self__, "vlan_optimization", vlan_optimization)
 
@@ -348,6 +351,15 @@ class SwitchControllerGlobalArgs:
         pulumi.set(self, "vlan_all_mode", value)
 
     @property
+    @pulumi.getter(name="vlanIdentity")
+    def vlan_identity(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "vlan_identity")
+
+    @vlan_identity.setter
+    def vlan_identity(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vlan_identity", value)
+
+    @property
     @pulumi.getter(name="vlanOptimization")
     def vlan_optimization(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "vlan_optimization")
@@ -387,6 +399,7 @@ class _SwitchControllerGlobalState:
                  update_user_device: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vlan_all_mode: Optional[pulumi.Input[str]] = None,
+                 vlan_identity: Optional[pulumi.Input[str]] = None,
                  vlan_optimization: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SwitchControllerGlobal resources.
@@ -445,6 +458,8 @@ class _SwitchControllerGlobalState:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if vlan_all_mode is not None:
             pulumi.set(__self__, "vlan_all_mode", vlan_all_mode)
+        if vlan_identity is not None:
+            pulumi.set(__self__, "vlan_identity", vlan_identity)
         if vlan_optimization is not None:
             pulumi.set(__self__, "vlan_optimization", vlan_optimization)
 
@@ -692,6 +707,15 @@ class _SwitchControllerGlobalState:
         pulumi.set(self, "vlan_all_mode", value)
 
     @property
+    @pulumi.getter(name="vlanIdentity")
+    def vlan_identity(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "vlan_identity")
+
+    @vlan_identity.setter
+    def vlan_identity(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "vlan_identity", value)
+
+    @property
     @pulumi.getter(name="vlanOptimization")
     def vlan_optimization(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "vlan_optimization")
@@ -733,6 +757,7 @@ class SwitchControllerGlobal(pulumi.CustomResource):
                  update_user_device: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vlan_all_mode: Optional[pulumi.Input[str]] = None,
+                 vlan_identity: Optional[pulumi.Input[str]] = None,
                  vlan_optimization: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -790,6 +815,7 @@ class SwitchControllerGlobal(pulumi.CustomResource):
                  update_user_device: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vlan_all_mode: Optional[pulumi.Input[str]] = None,
+                 vlan_identity: Optional[pulumi.Input[str]] = None,
                  vlan_optimization: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -827,6 +853,7 @@ class SwitchControllerGlobal(pulumi.CustomResource):
             __props__.__dict__["update_user_device"] = update_user_device
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["vlan_all_mode"] = vlan_all_mode
+            __props__.__dict__["vlan_identity"] = vlan_identity
             __props__.__dict__["vlan_optimization"] = vlan_optimization
         super(SwitchControllerGlobal, __self__).__init__(
             'fortios:index/switchControllerGlobal:SwitchControllerGlobal',
@@ -865,6 +892,7 @@ class SwitchControllerGlobal(pulumi.CustomResource):
             update_user_device: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             vlan_all_mode: Optional[pulumi.Input[str]] = None,
+            vlan_identity: Optional[pulumi.Input[str]] = None,
             vlan_optimization: Optional[pulumi.Input[str]] = None) -> 'SwitchControllerGlobal':
         """
         Get an existing SwitchControllerGlobal resource's state with the given name, id, and optional extra
@@ -905,6 +933,7 @@ class SwitchControllerGlobal(pulumi.CustomResource):
         __props__.__dict__["update_user_device"] = update_user_device
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["vlan_all_mode"] = vlan_all_mode
+        __props__.__dict__["vlan_identity"] = vlan_identity
         __props__.__dict__["vlan_optimization"] = vlan_optimization
         return SwitchControllerGlobal(resource_name, opts=opts, __props__=__props__)
 
@@ -1042,6 +1071,11 @@ class SwitchControllerGlobal(pulumi.CustomResource):
     @pulumi.getter(name="vlanAllMode")
     def vlan_all_mode(self) -> pulumi.Output[str]:
         return pulumi.get(self, "vlan_all_mode")
+
+    @property
+    @pulumi.getter(name="vlanIdentity")
+    def vlan_identity(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "vlan_identity")
 
     @property
     @pulumi.getter(name="vlanOptimization")

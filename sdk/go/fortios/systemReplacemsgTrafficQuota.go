@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemReplacemsgTrafficQuota struct {
@@ -114,6 +115,12 @@ func (i *SystemReplacemsgTrafficQuota) ToSystemReplacemsgTrafficQuotaOutputWithC
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgTrafficQuotaOutput)
 }
 
+func (i *SystemReplacemsgTrafficQuota) ToOutput(ctx context.Context) pulumix.Output[*SystemReplacemsgTrafficQuota] {
+	return pulumix.Output[*SystemReplacemsgTrafficQuota]{
+		OutputState: i.ToSystemReplacemsgTrafficQuotaOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemReplacemsgTrafficQuotaArrayInput is an input type that accepts SystemReplacemsgTrafficQuotaArray and SystemReplacemsgTrafficQuotaArrayOutput values.
 // You can construct a concrete instance of `SystemReplacemsgTrafficQuotaArrayInput` via:
 //
@@ -137,6 +144,12 @@ func (i SystemReplacemsgTrafficQuotaArray) ToSystemReplacemsgTrafficQuotaArrayOu
 
 func (i SystemReplacemsgTrafficQuotaArray) ToSystemReplacemsgTrafficQuotaArrayOutputWithContext(ctx context.Context) SystemReplacemsgTrafficQuotaArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgTrafficQuotaArrayOutput)
+}
+
+func (i SystemReplacemsgTrafficQuotaArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemReplacemsgTrafficQuota] {
+	return pulumix.Output[[]*SystemReplacemsgTrafficQuota]{
+		OutputState: i.ToSystemReplacemsgTrafficQuotaArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemReplacemsgTrafficQuotaMapInput is an input type that accepts SystemReplacemsgTrafficQuotaMap and SystemReplacemsgTrafficQuotaMapOutput values.
@@ -164,6 +177,12 @@ func (i SystemReplacemsgTrafficQuotaMap) ToSystemReplacemsgTrafficQuotaMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgTrafficQuotaMapOutput)
 }
 
+func (i SystemReplacemsgTrafficQuotaMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemReplacemsgTrafficQuota] {
+	return pulumix.Output[map[string]*SystemReplacemsgTrafficQuota]{
+		OutputState: i.ToSystemReplacemsgTrafficQuotaMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemReplacemsgTrafficQuotaOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgTrafficQuotaOutput) ElementType() reflect.Type {
@@ -176,6 +195,12 @@ func (o SystemReplacemsgTrafficQuotaOutput) ToSystemReplacemsgTrafficQuotaOutput
 
 func (o SystemReplacemsgTrafficQuotaOutput) ToSystemReplacemsgTrafficQuotaOutputWithContext(ctx context.Context) SystemReplacemsgTrafficQuotaOutput {
 	return o
+}
+
+func (o SystemReplacemsgTrafficQuotaOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemReplacemsgTrafficQuota] {
+	return pulumix.Output[*SystemReplacemsgTrafficQuota]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemReplacemsgTrafficQuotaOutput) Buffer() pulumi.StringPtrOutput {
@@ -212,6 +237,12 @@ func (o SystemReplacemsgTrafficQuotaArrayOutput) ToSystemReplacemsgTrafficQuotaA
 	return o
 }
 
+func (o SystemReplacemsgTrafficQuotaArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemReplacemsgTrafficQuota] {
+	return pulumix.Output[[]*SystemReplacemsgTrafficQuota]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemReplacemsgTrafficQuotaArrayOutput) Index(i pulumi.IntInput) SystemReplacemsgTrafficQuotaOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemReplacemsgTrafficQuota {
 		return vs[0].([]*SystemReplacemsgTrafficQuota)[vs[1].(int)]
@@ -230,6 +261,12 @@ func (o SystemReplacemsgTrafficQuotaMapOutput) ToSystemReplacemsgTrafficQuotaMap
 
 func (o SystemReplacemsgTrafficQuotaMapOutput) ToSystemReplacemsgTrafficQuotaMapOutputWithContext(ctx context.Context) SystemReplacemsgTrafficQuotaMapOutput {
 	return o
+}
+
+func (o SystemReplacemsgTrafficQuotaMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemReplacemsgTrafficQuota] {
+	return pulumix.Output[map[string]*SystemReplacemsgTrafficQuota]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemReplacemsgTrafficQuotaMapOutput) MapIndex(k pulumi.StringInput) SystemReplacemsgTrafficQuotaOutput {

@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type VpnL2Tp struct {
@@ -139,6 +140,12 @@ func (i *VpnL2Tp) ToVpnL2TpOutputWithContext(ctx context.Context) VpnL2TpOutput 
 	return pulumi.ToOutputWithContext(ctx, i).(VpnL2TpOutput)
 }
 
+func (i *VpnL2Tp) ToOutput(ctx context.Context) pulumix.Output[*VpnL2Tp] {
+	return pulumix.Output[*VpnL2Tp]{
+		OutputState: i.ToVpnL2TpOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnL2TpArrayInput is an input type that accepts VpnL2TpArray and VpnL2TpArrayOutput values.
 // You can construct a concrete instance of `VpnL2TpArrayInput` via:
 //
@@ -162,6 +169,12 @@ func (i VpnL2TpArray) ToVpnL2TpArrayOutput() VpnL2TpArrayOutput {
 
 func (i VpnL2TpArray) ToVpnL2TpArrayOutputWithContext(ctx context.Context) VpnL2TpArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnL2TpArrayOutput)
+}
+
+func (i VpnL2TpArray) ToOutput(ctx context.Context) pulumix.Output[[]*VpnL2Tp] {
+	return pulumix.Output[[]*VpnL2Tp]{
+		OutputState: i.ToVpnL2TpArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // VpnL2TpMapInput is an input type that accepts VpnL2TpMap and VpnL2TpMapOutput values.
@@ -189,6 +202,12 @@ func (i VpnL2TpMap) ToVpnL2TpMapOutputWithContext(ctx context.Context) VpnL2TpMa
 	return pulumi.ToOutputWithContext(ctx, i).(VpnL2TpMapOutput)
 }
 
+func (i VpnL2TpMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnL2Tp] {
+	return pulumix.Output[map[string]*VpnL2Tp]{
+		OutputState: i.ToVpnL2TpMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnL2TpOutput struct{ *pulumi.OutputState }
 
 func (VpnL2TpOutput) ElementType() reflect.Type {
@@ -201,6 +220,12 @@ func (o VpnL2TpOutput) ToVpnL2TpOutput() VpnL2TpOutput {
 
 func (o VpnL2TpOutput) ToVpnL2TpOutputWithContext(ctx context.Context) VpnL2TpOutput {
 	return o
+}
+
+func (o VpnL2TpOutput) ToOutput(ctx context.Context) pulumix.Output[*VpnL2Tp] {
+	return pulumix.Output[*VpnL2Tp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnL2TpOutput) Compress() pulumi.StringOutput {
@@ -257,6 +282,12 @@ func (o VpnL2TpArrayOutput) ToVpnL2TpArrayOutputWithContext(ctx context.Context)
 	return o
 }
 
+func (o VpnL2TpArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VpnL2Tp] {
+	return pulumix.Output[[]*VpnL2Tp]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o VpnL2TpArrayOutput) Index(i pulumi.IntInput) VpnL2TpOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnL2Tp {
 		return vs[0].([]*VpnL2Tp)[vs[1].(int)]
@@ -275,6 +306,12 @@ func (o VpnL2TpMapOutput) ToVpnL2TpMapOutput() VpnL2TpMapOutput {
 
 func (o VpnL2TpMapOutput) ToVpnL2TpMapOutputWithContext(ctx context.Context) VpnL2TpMapOutput {
 	return o
+}
+
+func (o VpnL2TpMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnL2Tp] {
+	return pulumix.Output[map[string]*VpnL2Tp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnL2TpMapOutput) MapIndex(k pulumi.StringInput) VpnL2TpOutput {

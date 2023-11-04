@@ -20,6 +20,8 @@ class WirelessControllerWtpArgs:
                  admin: Optional[pulumi.Input[str]] = None,
                  allowaccess: Optional[pulumi.Input[str]] = None,
                  apcfg_profile: Optional[pulumi.Input[str]] = None,
+                 ble_major_id: Optional[pulumi.Input[int]] = None,
+                 ble_minor_id: Optional[pulumi.Input[int]] = None,
                  bonjour_profile: Optional[pulumi.Input[str]] = None,
                  coordinate_latitude: Optional[pulumi.Input[str]] = None,
                  coordinate_longitude: Optional[pulumi.Input[str]] = None,
@@ -71,6 +73,10 @@ class WirelessControllerWtpArgs:
             pulumi.set(__self__, "allowaccess", allowaccess)
         if apcfg_profile is not None:
             pulumi.set(__self__, "apcfg_profile", apcfg_profile)
+        if ble_major_id is not None:
+            pulumi.set(__self__, "ble_major_id", ble_major_id)
+        if ble_minor_id is not None:
+            pulumi.set(__self__, "ble_minor_id", ble_minor_id)
         if bonjour_profile is not None:
             pulumi.set(__self__, "bonjour_profile", bonjour_profile)
         if coordinate_latitude is not None:
@@ -189,6 +195,24 @@ class WirelessControllerWtpArgs:
     @apcfg_profile.setter
     def apcfg_profile(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "apcfg_profile", value)
+
+    @property
+    @pulumi.getter(name="bleMajorId")
+    def ble_major_id(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "ble_major_id")
+
+    @ble_major_id.setter
+    def ble_major_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ble_major_id", value)
+
+    @property
+    @pulumi.getter(name="bleMinorId")
+    def ble_minor_id(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "ble_minor_id")
+
+    @ble_minor_id.setter
+    def ble_minor_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ble_minor_id", value)
 
     @property
     @pulumi.getter(name="bonjourProfile")
@@ -566,6 +590,8 @@ class _WirelessControllerWtpState:
                  admin: Optional[pulumi.Input[str]] = None,
                  allowaccess: Optional[pulumi.Input[str]] = None,
                  apcfg_profile: Optional[pulumi.Input[str]] = None,
+                 ble_major_id: Optional[pulumi.Input[int]] = None,
+                 ble_minor_id: Optional[pulumi.Input[int]] = None,
                  bonjour_profile: Optional[pulumi.Input[str]] = None,
                  coordinate_latitude: Optional[pulumi.Input[str]] = None,
                  coordinate_longitude: Optional[pulumi.Input[str]] = None,
@@ -617,6 +643,10 @@ class _WirelessControllerWtpState:
             pulumi.set(__self__, "allowaccess", allowaccess)
         if apcfg_profile is not None:
             pulumi.set(__self__, "apcfg_profile", apcfg_profile)
+        if ble_major_id is not None:
+            pulumi.set(__self__, "ble_major_id", ble_major_id)
+        if ble_minor_id is not None:
+            pulumi.set(__self__, "ble_minor_id", ble_minor_id)
         if bonjour_profile is not None:
             pulumi.set(__self__, "bonjour_profile", bonjour_profile)
         if coordinate_latitude is not None:
@@ -728,6 +758,24 @@ class _WirelessControllerWtpState:
     @apcfg_profile.setter
     def apcfg_profile(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "apcfg_profile", value)
+
+    @property
+    @pulumi.getter(name="bleMajorId")
+    def ble_major_id(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "ble_major_id")
+
+    @ble_major_id.setter
+    def ble_major_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ble_major_id", value)
+
+    @property
+    @pulumi.getter(name="bleMinorId")
+    def ble_minor_id(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "ble_minor_id")
+
+    @ble_minor_id.setter
+    def ble_minor_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ble_minor_id", value)
 
     @property
     @pulumi.getter(name="bonjourProfile")
@@ -1116,6 +1164,8 @@ class WirelessControllerWtp(pulumi.CustomResource):
                  admin: Optional[pulumi.Input[str]] = None,
                  allowaccess: Optional[pulumi.Input[str]] = None,
                  apcfg_profile: Optional[pulumi.Input[str]] = None,
+                 ble_major_id: Optional[pulumi.Input[int]] = None,
+                 ble_minor_id: Optional[pulumi.Input[int]] = None,
                  bonjour_profile: Optional[pulumi.Input[str]] = None,
                  coordinate_latitude: Optional[pulumi.Input[str]] = None,
                  coordinate_longitude: Optional[pulumi.Input[str]] = None,
@@ -1190,6 +1240,8 @@ class WirelessControllerWtp(pulumi.CustomResource):
                  admin: Optional[pulumi.Input[str]] = None,
                  allowaccess: Optional[pulumi.Input[str]] = None,
                  apcfg_profile: Optional[pulumi.Input[str]] = None,
+                 ble_major_id: Optional[pulumi.Input[int]] = None,
+                 ble_minor_id: Optional[pulumi.Input[int]] = None,
                  bonjour_profile: Optional[pulumi.Input[str]] = None,
                  coordinate_latitude: Optional[pulumi.Input[str]] = None,
                  coordinate_longitude: Optional[pulumi.Input[str]] = None,
@@ -1244,6 +1296,8 @@ class WirelessControllerWtp(pulumi.CustomResource):
             __props__.__dict__["admin"] = admin
             __props__.__dict__["allowaccess"] = allowaccess
             __props__.__dict__["apcfg_profile"] = apcfg_profile
+            __props__.__dict__["ble_major_id"] = ble_major_id
+            __props__.__dict__["ble_minor_id"] = ble_minor_id
             __props__.__dict__["bonjour_profile"] = bonjour_profile
             __props__.__dict__["coordinate_latitude"] = coordinate_latitude
             __props__.__dict__["coordinate_longitude"] = coordinate_longitude
@@ -1303,6 +1357,8 @@ class WirelessControllerWtp(pulumi.CustomResource):
             admin: Optional[pulumi.Input[str]] = None,
             allowaccess: Optional[pulumi.Input[str]] = None,
             apcfg_profile: Optional[pulumi.Input[str]] = None,
+            ble_major_id: Optional[pulumi.Input[int]] = None,
+            ble_minor_id: Optional[pulumi.Input[int]] = None,
             bonjour_profile: Optional[pulumi.Input[str]] = None,
             coordinate_latitude: Optional[pulumi.Input[str]] = None,
             coordinate_longitude: Optional[pulumi.Input[str]] = None,
@@ -1360,6 +1416,8 @@ class WirelessControllerWtp(pulumi.CustomResource):
         __props__.__dict__["admin"] = admin
         __props__.__dict__["allowaccess"] = allowaccess
         __props__.__dict__["apcfg_profile"] = apcfg_profile
+        __props__.__dict__["ble_major_id"] = ble_major_id
+        __props__.__dict__["ble_minor_id"] = ble_minor_id
         __props__.__dict__["bonjour_profile"] = bonjour_profile
         __props__.__dict__["coordinate_latitude"] = coordinate_latitude
         __props__.__dict__["coordinate_longitude"] = coordinate_longitude
@@ -1418,6 +1476,16 @@ class WirelessControllerWtp(pulumi.CustomResource):
     @pulumi.getter(name="apcfgProfile")
     def apcfg_profile(self) -> pulumi.Output[str]:
         return pulumi.get(self, "apcfg_profile")
+
+    @property
+    @pulumi.getter(name="bleMajorId")
+    def ble_major_id(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "ble_major_id")
+
+    @property
+    @pulumi.getter(name="bleMinorId")
+    def ble_minor_id(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "ble_minor_id")
 
     @property
     @pulumi.getter(name="bonjourProfile")

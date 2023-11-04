@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallInternetServiceExtension struct {
@@ -120,6 +121,12 @@ func (i *FirewallInternetServiceExtension) ToFirewallInternetServiceExtensionOut
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceExtensionOutput)
 }
 
+func (i *FirewallInternetServiceExtension) ToOutput(ctx context.Context) pulumix.Output[*FirewallInternetServiceExtension] {
+	return pulumix.Output[*FirewallInternetServiceExtension]{
+		OutputState: i.ToFirewallInternetServiceExtensionOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallInternetServiceExtensionArrayInput is an input type that accepts FirewallInternetServiceExtensionArray and FirewallInternetServiceExtensionArrayOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceExtensionArrayInput` via:
 //
@@ -143,6 +150,12 @@ func (i FirewallInternetServiceExtensionArray) ToFirewallInternetServiceExtensio
 
 func (i FirewallInternetServiceExtensionArray) ToFirewallInternetServiceExtensionArrayOutputWithContext(ctx context.Context) FirewallInternetServiceExtensionArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceExtensionArrayOutput)
+}
+
+func (i FirewallInternetServiceExtensionArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallInternetServiceExtension] {
+	return pulumix.Output[[]*FirewallInternetServiceExtension]{
+		OutputState: i.ToFirewallInternetServiceExtensionArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallInternetServiceExtensionMapInput is an input type that accepts FirewallInternetServiceExtensionMap and FirewallInternetServiceExtensionMapOutput values.
@@ -170,6 +183,12 @@ func (i FirewallInternetServiceExtensionMap) ToFirewallInternetServiceExtensionM
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceExtensionMapOutput)
 }
 
+func (i FirewallInternetServiceExtensionMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallInternetServiceExtension] {
+	return pulumix.Output[map[string]*FirewallInternetServiceExtension]{
+		OutputState: i.ToFirewallInternetServiceExtensionMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallInternetServiceExtensionOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceExtensionOutput) ElementType() reflect.Type {
@@ -182,6 +201,12 @@ func (o FirewallInternetServiceExtensionOutput) ToFirewallInternetServiceExtensi
 
 func (o FirewallInternetServiceExtensionOutput) ToFirewallInternetServiceExtensionOutputWithContext(ctx context.Context) FirewallInternetServiceExtensionOutput {
 	return o
+}
+
+func (o FirewallInternetServiceExtensionOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallInternetServiceExtension] {
+	return pulumix.Output[*FirewallInternetServiceExtension]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallInternetServiceExtensionOutput) Comment() pulumi.StringPtrOutput {
@@ -230,6 +255,12 @@ func (o FirewallInternetServiceExtensionArrayOutput) ToFirewallInternetServiceEx
 	return o
 }
 
+func (o FirewallInternetServiceExtensionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallInternetServiceExtension] {
+	return pulumix.Output[[]*FirewallInternetServiceExtension]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallInternetServiceExtensionArrayOutput) Index(i pulumi.IntInput) FirewallInternetServiceExtensionOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallInternetServiceExtension {
 		return vs[0].([]*FirewallInternetServiceExtension)[vs[1].(int)]
@@ -248,6 +279,12 @@ func (o FirewallInternetServiceExtensionMapOutput) ToFirewallInternetServiceExte
 
 func (o FirewallInternetServiceExtensionMapOutput) ToFirewallInternetServiceExtensionMapOutputWithContext(ctx context.Context) FirewallInternetServiceExtensionMapOutput {
 	return o
+}
+
+func (o FirewallInternetServiceExtensionMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallInternetServiceExtension] {
+	return pulumix.Output[map[string]*FirewallInternetServiceExtension]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallInternetServiceExtensionMapOutput) MapIndex(k pulumi.StringInput) FirewallInternetServiceExtensionOutput {

@@ -47,6 +47,8 @@ export class FirewallVip extends pulumi.CustomResource {
     public readonly fosid!: pulumi.Output<number>;
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly gratuitousArpInterval!: pulumi.Output<number>;
+    public readonly h2Support!: pulumi.Output<string>;
+    public readonly h3Support!: pulumi.Output<string>;
     public readonly httpCookieAge!: pulumi.Output<number>;
     public readonly httpCookieDomain!: pulumi.Output<string>;
     public readonly httpCookieDomainFromHost!: pulumi.Output<string>;
@@ -56,6 +58,7 @@ export class FirewallVip extends pulumi.CustomResource {
     public readonly httpIpHeader!: pulumi.Output<string>;
     public readonly httpIpHeaderName!: pulumi.Output<string>;
     public readonly httpMultiplex!: pulumi.Output<string>;
+    public readonly httpMultiplexMaxConcurrentRequest!: pulumi.Output<number>;
     public readonly httpMultiplexMaxRequest!: pulumi.Output<number>;
     public readonly httpMultiplexTtl!: pulumi.Output<number>;
     public readonly httpRedirect!: pulumi.Output<string>;
@@ -78,6 +81,7 @@ export class FirewallVip extends pulumi.CustomResource {
     public readonly portforward!: pulumi.Output<string>;
     public readonly portmappingType!: pulumi.Output<string>;
     public readonly protocol!: pulumi.Output<string>;
+    public readonly quic!: pulumi.Output<outputs.FirewallVipQuic>;
     public readonly realservers!: pulumi.Output<outputs.FirewallVipRealserver[] | undefined>;
     public readonly serverType!: pulumi.Output<string>;
     public readonly services!: pulumi.Output<outputs.FirewallVipService[] | undefined>;
@@ -151,6 +155,8 @@ export class FirewallVip extends pulumi.CustomResource {
             resourceInputs["fosid"] = state ? state.fosid : undefined;
             resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["gratuitousArpInterval"] = state ? state.gratuitousArpInterval : undefined;
+            resourceInputs["h2Support"] = state ? state.h2Support : undefined;
+            resourceInputs["h3Support"] = state ? state.h3Support : undefined;
             resourceInputs["httpCookieAge"] = state ? state.httpCookieAge : undefined;
             resourceInputs["httpCookieDomain"] = state ? state.httpCookieDomain : undefined;
             resourceInputs["httpCookieDomainFromHost"] = state ? state.httpCookieDomainFromHost : undefined;
@@ -160,6 +166,7 @@ export class FirewallVip extends pulumi.CustomResource {
             resourceInputs["httpIpHeader"] = state ? state.httpIpHeader : undefined;
             resourceInputs["httpIpHeaderName"] = state ? state.httpIpHeaderName : undefined;
             resourceInputs["httpMultiplex"] = state ? state.httpMultiplex : undefined;
+            resourceInputs["httpMultiplexMaxConcurrentRequest"] = state ? state.httpMultiplexMaxConcurrentRequest : undefined;
             resourceInputs["httpMultiplexMaxRequest"] = state ? state.httpMultiplexMaxRequest : undefined;
             resourceInputs["httpMultiplexTtl"] = state ? state.httpMultiplexTtl : undefined;
             resourceInputs["httpRedirect"] = state ? state.httpRedirect : undefined;
@@ -182,6 +189,7 @@ export class FirewallVip extends pulumi.CustomResource {
             resourceInputs["portforward"] = state ? state.portforward : undefined;
             resourceInputs["portmappingType"] = state ? state.portmappingType : undefined;
             resourceInputs["protocol"] = state ? state.protocol : undefined;
+            resourceInputs["quic"] = state ? state.quic : undefined;
             resourceInputs["realservers"] = state ? state.realservers : undefined;
             resourceInputs["serverType"] = state ? state.serverType : undefined;
             resourceInputs["services"] = state ? state.services : undefined;
@@ -243,6 +251,8 @@ export class FirewallVip extends pulumi.CustomResource {
             resourceInputs["fosid"] = args ? args.fosid : undefined;
             resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["gratuitousArpInterval"] = args ? args.gratuitousArpInterval : undefined;
+            resourceInputs["h2Support"] = args ? args.h2Support : undefined;
+            resourceInputs["h3Support"] = args ? args.h3Support : undefined;
             resourceInputs["httpCookieAge"] = args ? args.httpCookieAge : undefined;
             resourceInputs["httpCookieDomain"] = args ? args.httpCookieDomain : undefined;
             resourceInputs["httpCookieDomainFromHost"] = args ? args.httpCookieDomainFromHost : undefined;
@@ -252,6 +262,7 @@ export class FirewallVip extends pulumi.CustomResource {
             resourceInputs["httpIpHeader"] = args ? args.httpIpHeader : undefined;
             resourceInputs["httpIpHeaderName"] = args ? args.httpIpHeaderName : undefined;
             resourceInputs["httpMultiplex"] = args ? args.httpMultiplex : undefined;
+            resourceInputs["httpMultiplexMaxConcurrentRequest"] = args ? args.httpMultiplexMaxConcurrentRequest : undefined;
             resourceInputs["httpMultiplexMaxRequest"] = args ? args.httpMultiplexMaxRequest : undefined;
             resourceInputs["httpMultiplexTtl"] = args ? args.httpMultiplexTtl : undefined;
             resourceInputs["httpRedirect"] = args ? args.httpRedirect : undefined;
@@ -274,6 +285,7 @@ export class FirewallVip extends pulumi.CustomResource {
             resourceInputs["portforward"] = args ? args.portforward : undefined;
             resourceInputs["portmappingType"] = args ? args.portmappingType : undefined;
             resourceInputs["protocol"] = args ? args.protocol : undefined;
+            resourceInputs["quic"] = args ? args.quic : undefined;
             resourceInputs["realservers"] = args ? args.realservers : undefined;
             resourceInputs["serverType"] = args ? args.serverType : undefined;
             resourceInputs["services"] = args ? args.services : undefined;
@@ -343,6 +355,8 @@ export interface FirewallVipState {
     fosid?: pulumi.Input<number>;
     getAllTables?: pulumi.Input<string>;
     gratuitousArpInterval?: pulumi.Input<number>;
+    h2Support?: pulumi.Input<string>;
+    h3Support?: pulumi.Input<string>;
     httpCookieAge?: pulumi.Input<number>;
     httpCookieDomain?: pulumi.Input<string>;
     httpCookieDomainFromHost?: pulumi.Input<string>;
@@ -352,6 +366,7 @@ export interface FirewallVipState {
     httpIpHeader?: pulumi.Input<string>;
     httpIpHeaderName?: pulumi.Input<string>;
     httpMultiplex?: pulumi.Input<string>;
+    httpMultiplexMaxConcurrentRequest?: pulumi.Input<number>;
     httpMultiplexMaxRequest?: pulumi.Input<number>;
     httpMultiplexTtl?: pulumi.Input<number>;
     httpRedirect?: pulumi.Input<string>;
@@ -374,6 +389,7 @@ export interface FirewallVipState {
     portforward?: pulumi.Input<string>;
     portmappingType?: pulumi.Input<string>;
     protocol?: pulumi.Input<string>;
+    quic?: pulumi.Input<inputs.FirewallVipQuic>;
     realservers?: pulumi.Input<pulumi.Input<inputs.FirewallVipRealserver>[]>;
     serverType?: pulumi.Input<string>;
     services?: pulumi.Input<pulumi.Input<inputs.FirewallVipService>[]>;
@@ -439,6 +455,8 @@ export interface FirewallVipArgs {
     fosid?: pulumi.Input<number>;
     getAllTables?: pulumi.Input<string>;
     gratuitousArpInterval?: pulumi.Input<number>;
+    h2Support?: pulumi.Input<string>;
+    h3Support?: pulumi.Input<string>;
     httpCookieAge?: pulumi.Input<number>;
     httpCookieDomain?: pulumi.Input<string>;
     httpCookieDomainFromHost?: pulumi.Input<string>;
@@ -448,6 +466,7 @@ export interface FirewallVipArgs {
     httpIpHeader?: pulumi.Input<string>;
     httpIpHeaderName?: pulumi.Input<string>;
     httpMultiplex?: pulumi.Input<string>;
+    httpMultiplexMaxConcurrentRequest?: pulumi.Input<number>;
     httpMultiplexMaxRequest?: pulumi.Input<number>;
     httpMultiplexTtl?: pulumi.Input<number>;
     httpRedirect?: pulumi.Input<string>;
@@ -470,6 +489,7 @@ export interface FirewallVipArgs {
     portforward?: pulumi.Input<string>;
     portmappingType?: pulumi.Input<string>;
     protocol?: pulumi.Input<string>;
+    quic?: pulumi.Input<inputs.FirewallVipQuic>;
     realservers?: pulumi.Input<pulumi.Input<inputs.FirewallVipRealserver>[]>;
     serverType?: pulumi.Input<string>;
     services?: pulumi.Input<pulumi.Input<inputs.FirewallVipService>[]>;

@@ -46,6 +46,8 @@ export class WirelessControllerWidsProfile extends pulumi.CustomResource {
     public readonly apBgscanReportIntv!: pulumi.Output<number>;
     public readonly apFgscanReportIntv!: pulumi.Output<number>;
     public readonly apScan!: pulumi.Output<string>;
+    public readonly apScanChannelList2g5gs!: pulumi.Output<outputs.WirelessControllerWidsProfileApScanChannelList2g5g[] | undefined>;
+    public readonly apScanChannelList6gs!: pulumi.Output<outputs.WirelessControllerWidsProfileApScanChannelList6g[] | undefined>;
     public readonly apScanPassive!: pulumi.Output<string>;
     public readonly apScanThreshold!: pulumi.Output<string>;
     public readonly asleapAttack!: pulumi.Output<string>;
@@ -114,6 +116,8 @@ export class WirelessControllerWidsProfile extends pulumi.CustomResource {
             resourceInputs["apBgscanReportIntv"] = state ? state.apBgscanReportIntv : undefined;
             resourceInputs["apFgscanReportIntv"] = state ? state.apFgscanReportIntv : undefined;
             resourceInputs["apScan"] = state ? state.apScan : undefined;
+            resourceInputs["apScanChannelList2g5gs"] = state ? state.apScanChannelList2g5gs : undefined;
+            resourceInputs["apScanChannelList6gs"] = state ? state.apScanChannelList6gs : undefined;
             resourceInputs["apScanPassive"] = state ? state.apScanPassive : undefined;
             resourceInputs["apScanThreshold"] = state ? state.apScanThreshold : undefined;
             resourceInputs["asleapAttack"] = state ? state.asleapAttack : undefined;
@@ -170,6 +174,8 @@ export class WirelessControllerWidsProfile extends pulumi.CustomResource {
             resourceInputs["apBgscanReportIntv"] = args ? args.apBgscanReportIntv : undefined;
             resourceInputs["apFgscanReportIntv"] = args ? args.apFgscanReportIntv : undefined;
             resourceInputs["apScan"] = args ? args.apScan : undefined;
+            resourceInputs["apScanChannelList2g5gs"] = args ? args.apScanChannelList2g5gs : undefined;
+            resourceInputs["apScanChannelList6gs"] = args ? args.apScanChannelList6gs : undefined;
             resourceInputs["apScanPassive"] = args ? args.apScanPassive : undefined;
             resourceInputs["apScanThreshold"] = args ? args.apScanThreshold : undefined;
             resourceInputs["asleapAttack"] = args ? args.asleapAttack : undefined;
@@ -234,6 +240,8 @@ export interface WirelessControllerWidsProfileState {
     apBgscanReportIntv?: pulumi.Input<number>;
     apFgscanReportIntv?: pulumi.Input<number>;
     apScan?: pulumi.Input<string>;
+    apScanChannelList2g5gs?: pulumi.Input<pulumi.Input<inputs.WirelessControllerWidsProfileApScanChannelList2g5g>[]>;
+    apScanChannelList6gs?: pulumi.Input<pulumi.Input<inputs.WirelessControllerWidsProfileApScanChannelList6g>[]>;
     apScanPassive?: pulumi.Input<string>;
     apScanThreshold?: pulumi.Input<string>;
     asleapAttack?: pulumi.Input<string>;
@@ -294,6 +302,8 @@ export interface WirelessControllerWidsProfileArgs {
     apBgscanReportIntv?: pulumi.Input<number>;
     apFgscanReportIntv?: pulumi.Input<number>;
     apScan?: pulumi.Input<string>;
+    apScanChannelList2g5gs?: pulumi.Input<pulumi.Input<inputs.WirelessControllerWidsProfileApScanChannelList2g5g>[]>;
+    apScanChannelList6gs?: pulumi.Input<pulumi.Input<inputs.WirelessControllerWidsProfileApScanChannelList6g>[]>;
     apScanPassive?: pulumi.Input<string>;
     apScanThreshold?: pulumi.Input<string>;
     asleapAttack?: pulumi.Input<string>;

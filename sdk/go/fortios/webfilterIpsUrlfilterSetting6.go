@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WebfilterIpsUrlfilterSetting6 struct {
@@ -110,6 +111,12 @@ func (i *WebfilterIpsUrlfilterSetting6) ToWebfilterIpsUrlfilterSetting6OutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterIpsUrlfilterSetting6Output)
 }
 
+func (i *WebfilterIpsUrlfilterSetting6) ToOutput(ctx context.Context) pulumix.Output[*WebfilterIpsUrlfilterSetting6] {
+	return pulumix.Output[*WebfilterIpsUrlfilterSetting6]{
+		OutputState: i.ToWebfilterIpsUrlfilterSetting6OutputWithContext(ctx).OutputState,
+	}
+}
+
 // WebfilterIpsUrlfilterSetting6ArrayInput is an input type that accepts WebfilterIpsUrlfilterSetting6Array and WebfilterIpsUrlfilterSetting6ArrayOutput values.
 // You can construct a concrete instance of `WebfilterIpsUrlfilterSetting6ArrayInput` via:
 //
@@ -133,6 +140,12 @@ func (i WebfilterIpsUrlfilterSetting6Array) ToWebfilterIpsUrlfilterSetting6Array
 
 func (i WebfilterIpsUrlfilterSetting6Array) ToWebfilterIpsUrlfilterSetting6ArrayOutputWithContext(ctx context.Context) WebfilterIpsUrlfilterSetting6ArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterIpsUrlfilterSetting6ArrayOutput)
+}
+
+func (i WebfilterIpsUrlfilterSetting6Array) ToOutput(ctx context.Context) pulumix.Output[[]*WebfilterIpsUrlfilterSetting6] {
+	return pulumix.Output[[]*WebfilterIpsUrlfilterSetting6]{
+		OutputState: i.ToWebfilterIpsUrlfilterSetting6ArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // WebfilterIpsUrlfilterSetting6MapInput is an input type that accepts WebfilterIpsUrlfilterSetting6Map and WebfilterIpsUrlfilterSetting6MapOutput values.
@@ -160,6 +173,12 @@ func (i WebfilterIpsUrlfilterSetting6Map) ToWebfilterIpsUrlfilterSetting6MapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterIpsUrlfilterSetting6MapOutput)
 }
 
+func (i WebfilterIpsUrlfilterSetting6Map) ToOutput(ctx context.Context) pulumix.Output[map[string]*WebfilterIpsUrlfilterSetting6] {
+	return pulumix.Output[map[string]*WebfilterIpsUrlfilterSetting6]{
+		OutputState: i.ToWebfilterIpsUrlfilterSetting6MapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WebfilterIpsUrlfilterSetting6Output struct{ *pulumi.OutputState }
 
 func (WebfilterIpsUrlfilterSetting6Output) ElementType() reflect.Type {
@@ -172,6 +191,12 @@ func (o WebfilterIpsUrlfilterSetting6Output) ToWebfilterIpsUrlfilterSetting6Outp
 
 func (o WebfilterIpsUrlfilterSetting6Output) ToWebfilterIpsUrlfilterSetting6OutputWithContext(ctx context.Context) WebfilterIpsUrlfilterSetting6Output {
 	return o
+}
+
+func (o WebfilterIpsUrlfilterSetting6Output) ToOutput(ctx context.Context) pulumix.Output[*WebfilterIpsUrlfilterSetting6] {
+	return pulumix.Output[*WebfilterIpsUrlfilterSetting6]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterIpsUrlfilterSetting6Output) Device() pulumi.StringOutput {
@@ -208,6 +233,12 @@ func (o WebfilterIpsUrlfilterSetting6ArrayOutput) ToWebfilterIpsUrlfilterSetting
 	return o
 }
 
+func (o WebfilterIpsUrlfilterSetting6ArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WebfilterIpsUrlfilterSetting6] {
+	return pulumix.Output[[]*WebfilterIpsUrlfilterSetting6]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o WebfilterIpsUrlfilterSetting6ArrayOutput) Index(i pulumi.IntInput) WebfilterIpsUrlfilterSetting6Output {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WebfilterIpsUrlfilterSetting6 {
 		return vs[0].([]*WebfilterIpsUrlfilterSetting6)[vs[1].(int)]
@@ -226,6 +257,12 @@ func (o WebfilterIpsUrlfilterSetting6MapOutput) ToWebfilterIpsUrlfilterSetting6M
 
 func (o WebfilterIpsUrlfilterSetting6MapOutput) ToWebfilterIpsUrlfilterSetting6MapOutputWithContext(ctx context.Context) WebfilterIpsUrlfilterSetting6MapOutput {
 	return o
+}
+
+func (o WebfilterIpsUrlfilterSetting6MapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WebfilterIpsUrlfilterSetting6] {
+	return pulumix.Output[map[string]*WebfilterIpsUrlfilterSetting6]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebfilterIpsUrlfilterSetting6MapOutput) MapIndex(k pulumi.StringInput) WebfilterIpsUrlfilterSetting6Output {

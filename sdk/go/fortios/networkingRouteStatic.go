@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type NetworkingRouteStatic struct {
@@ -142,6 +143,12 @@ func (i *NetworkingRouteStatic) ToNetworkingRouteStaticOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkingRouteStaticOutput)
 }
 
+func (i *NetworkingRouteStatic) ToOutput(ctx context.Context) pulumix.Output[*NetworkingRouteStatic] {
+	return pulumix.Output[*NetworkingRouteStatic]{
+		OutputState: i.ToNetworkingRouteStaticOutputWithContext(ctx).OutputState,
+	}
+}
+
 // NetworkingRouteStaticArrayInput is an input type that accepts NetworkingRouteStaticArray and NetworkingRouteStaticArrayOutput values.
 // You can construct a concrete instance of `NetworkingRouteStaticArrayInput` via:
 //
@@ -165,6 +172,12 @@ func (i NetworkingRouteStaticArray) ToNetworkingRouteStaticArrayOutput() Network
 
 func (i NetworkingRouteStaticArray) ToNetworkingRouteStaticArrayOutputWithContext(ctx context.Context) NetworkingRouteStaticArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkingRouteStaticArrayOutput)
+}
+
+func (i NetworkingRouteStaticArray) ToOutput(ctx context.Context) pulumix.Output[[]*NetworkingRouteStatic] {
+	return pulumix.Output[[]*NetworkingRouteStatic]{
+		OutputState: i.ToNetworkingRouteStaticArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // NetworkingRouteStaticMapInput is an input type that accepts NetworkingRouteStaticMap and NetworkingRouteStaticMapOutput values.
@@ -192,6 +205,12 @@ func (i NetworkingRouteStaticMap) ToNetworkingRouteStaticMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkingRouteStaticMapOutput)
 }
 
+func (i NetworkingRouteStaticMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*NetworkingRouteStatic] {
+	return pulumix.Output[map[string]*NetworkingRouteStatic]{
+		OutputState: i.ToNetworkingRouteStaticMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type NetworkingRouteStaticOutput struct{ *pulumi.OutputState }
 
 func (NetworkingRouteStaticOutput) ElementType() reflect.Type {
@@ -204,6 +223,12 @@ func (o NetworkingRouteStaticOutput) ToNetworkingRouteStaticOutput() NetworkingR
 
 func (o NetworkingRouteStaticOutput) ToNetworkingRouteStaticOutputWithContext(ctx context.Context) NetworkingRouteStaticOutput {
 	return o
+}
+
+func (o NetworkingRouteStaticOutput) ToOutput(ctx context.Context) pulumix.Output[*NetworkingRouteStatic] {
+	return pulumix.Output[*NetworkingRouteStatic]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o NetworkingRouteStaticOutput) Blackhole() pulumi.StringOutput {
@@ -260,6 +285,12 @@ func (o NetworkingRouteStaticArrayOutput) ToNetworkingRouteStaticArrayOutputWith
 	return o
 }
 
+func (o NetworkingRouteStaticArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*NetworkingRouteStatic] {
+	return pulumix.Output[[]*NetworkingRouteStatic]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o NetworkingRouteStaticArrayOutput) Index(i pulumi.IntInput) NetworkingRouteStaticOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *NetworkingRouteStatic {
 		return vs[0].([]*NetworkingRouteStatic)[vs[1].(int)]
@@ -278,6 +309,12 @@ func (o NetworkingRouteStaticMapOutput) ToNetworkingRouteStaticMapOutput() Netwo
 
 func (o NetworkingRouteStaticMapOutput) ToNetworkingRouteStaticMapOutputWithContext(ctx context.Context) NetworkingRouteStaticMapOutput {
 	return o
+}
+
+func (o NetworkingRouteStaticMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*NetworkingRouteStatic] {
+	return pulumix.Output[map[string]*NetworkingRouteStatic]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o NetworkingRouteStaticMapOutput) MapIndex(k pulumi.StringInput) NetworkingRouteStaticOutput {

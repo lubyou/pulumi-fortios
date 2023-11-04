@@ -53,6 +53,7 @@ export class UserSetting extends pulumi.CustomResource {
     public readonly authTimeout!: pulumi.Output<number>;
     public readonly authTimeoutType!: pulumi.Output<string>;
     public readonly authType!: pulumi.Output<string>;
+    public readonly defaultUserPasswordPolicy!: pulumi.Output<string>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly perPolicyDisclaimer!: pulumi.Output<string>;
@@ -91,6 +92,7 @@ export class UserSetting extends pulumi.CustomResource {
             resourceInputs["authTimeout"] = state ? state.authTimeout : undefined;
             resourceInputs["authTimeoutType"] = state ? state.authTimeoutType : undefined;
             resourceInputs["authType"] = state ? state.authType : undefined;
+            resourceInputs["defaultUserPasswordPolicy"] = state ? state.defaultUserPasswordPolicy : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["perPolicyDisclaimer"] = state ? state.perPolicyDisclaimer : undefined;
@@ -117,6 +119,7 @@ export class UserSetting extends pulumi.CustomResource {
             resourceInputs["authTimeout"] = args ? args.authTimeout : undefined;
             resourceInputs["authTimeoutType"] = args ? args.authTimeoutType : undefined;
             resourceInputs["authType"] = args ? args.authType : undefined;
+            resourceInputs["defaultUserPasswordPolicy"] = args ? args.defaultUserPasswordPolicy : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["perPolicyDisclaimer"] = args ? args.perPolicyDisclaimer : undefined;
@@ -151,6 +154,7 @@ export interface UserSettingState {
     authTimeout?: pulumi.Input<number>;
     authTimeoutType?: pulumi.Input<string>;
     authType?: pulumi.Input<string>;
+    defaultUserPasswordPolicy?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     getAllTables?: pulumi.Input<string>;
     perPolicyDisclaimer?: pulumi.Input<string>;
@@ -181,6 +185,7 @@ export interface UserSettingArgs {
     authTimeout?: pulumi.Input<number>;
     authTimeoutType?: pulumi.Input<string>;
     authType?: pulumi.Input<string>;
+    defaultUserPasswordPolicy?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     getAllTables?: pulumi.Input<string>;
     perPolicyDisclaimer?: pulumi.Input<string>;

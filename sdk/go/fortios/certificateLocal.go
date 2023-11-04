@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type CertificateLocal struct {
@@ -31,6 +32,14 @@ type CertificateLocal struct {
 	Comments                  pulumi.StringOutput    `pulumi:"comments"`
 	Csr                       pulumi.StringOutput    `pulumi:"csr"`
 	EnrollProtocol            pulumi.StringOutput    `pulumi:"enrollProtocol"`
+	EstCaId                   pulumi.StringOutput    `pulumi:"estCaId"`
+	EstClientCert             pulumi.StringOutput    `pulumi:"estClientCert"`
+	EstHttpPassword           pulumi.StringOutput    `pulumi:"estHttpPassword"`
+	EstHttpUsername           pulumi.StringOutput    `pulumi:"estHttpUsername"`
+	EstServer                 pulumi.StringOutput    `pulumi:"estServer"`
+	EstServerCert             pulumi.StringOutput    `pulumi:"estServerCert"`
+	EstSrpPassword            pulumi.StringOutput    `pulumi:"estSrpPassword"`
+	EstSrpUsername            pulumi.StringOutput    `pulumi:"estSrpUsername"`
 	IkeLocalid                pulumi.StringOutput    `pulumi:"ikeLocalid"`
 	IkeLocalidType            pulumi.StringOutput    `pulumi:"ikeLocalidType"`
 	LastUpdated               pulumi.IntOutput       `pulumi:"lastUpdated"`
@@ -112,6 +121,14 @@ type certificateLocalState struct {
 	Comments                  *string `pulumi:"comments"`
 	Csr                       *string `pulumi:"csr"`
 	EnrollProtocol            *string `pulumi:"enrollProtocol"`
+	EstCaId                   *string `pulumi:"estCaId"`
+	EstClientCert             *string `pulumi:"estClientCert"`
+	EstHttpPassword           *string `pulumi:"estHttpPassword"`
+	EstHttpUsername           *string `pulumi:"estHttpUsername"`
+	EstServer                 *string `pulumi:"estServer"`
+	EstServerCert             *string `pulumi:"estServerCert"`
+	EstSrpPassword            *string `pulumi:"estSrpPassword"`
+	EstSrpUsername            *string `pulumi:"estSrpUsername"`
 	IkeLocalid                *string `pulumi:"ikeLocalid"`
 	IkeLocalidType            *string `pulumi:"ikeLocalidType"`
 	LastUpdated               *int    `pulumi:"lastUpdated"`
@@ -146,6 +163,14 @@ type CertificateLocalState struct {
 	Comments                  pulumi.StringPtrInput
 	Csr                       pulumi.StringPtrInput
 	EnrollProtocol            pulumi.StringPtrInput
+	EstCaId                   pulumi.StringPtrInput
+	EstClientCert             pulumi.StringPtrInput
+	EstHttpPassword           pulumi.StringPtrInput
+	EstHttpUsername           pulumi.StringPtrInput
+	EstServer                 pulumi.StringPtrInput
+	EstServerCert             pulumi.StringPtrInput
+	EstSrpPassword            pulumi.StringPtrInput
+	EstSrpUsername            pulumi.StringPtrInput
 	IkeLocalid                pulumi.StringPtrInput
 	IkeLocalidType            pulumi.StringPtrInput
 	LastUpdated               pulumi.IntPtrInput
@@ -184,6 +209,14 @@ type certificateLocalArgs struct {
 	Comments                  *string `pulumi:"comments"`
 	Csr                       *string `pulumi:"csr"`
 	EnrollProtocol            *string `pulumi:"enrollProtocol"`
+	EstCaId                   *string `pulumi:"estCaId"`
+	EstClientCert             *string `pulumi:"estClientCert"`
+	EstHttpPassword           *string `pulumi:"estHttpPassword"`
+	EstHttpUsername           *string `pulumi:"estHttpUsername"`
+	EstServer                 *string `pulumi:"estServer"`
+	EstServerCert             *string `pulumi:"estServerCert"`
+	EstSrpPassword            *string `pulumi:"estSrpPassword"`
+	EstSrpUsername            *string `pulumi:"estSrpUsername"`
 	IkeLocalid                *string `pulumi:"ikeLocalid"`
 	IkeLocalidType            *string `pulumi:"ikeLocalidType"`
 	LastUpdated               *int    `pulumi:"lastUpdated"`
@@ -219,6 +252,14 @@ type CertificateLocalArgs struct {
 	Comments                  pulumi.StringPtrInput
 	Csr                       pulumi.StringPtrInput
 	EnrollProtocol            pulumi.StringPtrInput
+	EstCaId                   pulumi.StringPtrInput
+	EstClientCert             pulumi.StringPtrInput
+	EstHttpPassword           pulumi.StringPtrInput
+	EstHttpUsername           pulumi.StringPtrInput
+	EstServer                 pulumi.StringPtrInput
+	EstServerCert             pulumi.StringPtrInput
+	EstSrpPassword            pulumi.StringPtrInput
+	EstSrpUsername            pulumi.StringPtrInput
 	IkeLocalid                pulumi.StringPtrInput
 	IkeLocalidType            pulumi.StringPtrInput
 	LastUpdated               pulumi.IntPtrInput
@@ -259,6 +300,12 @@ func (i *CertificateLocal) ToCertificateLocalOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(CertificateLocalOutput)
 }
 
+func (i *CertificateLocal) ToOutput(ctx context.Context) pulumix.Output[*CertificateLocal] {
+	return pulumix.Output[*CertificateLocal]{
+		OutputState: i.ToCertificateLocalOutputWithContext(ctx).OutputState,
+	}
+}
+
 // CertificateLocalArrayInput is an input type that accepts CertificateLocalArray and CertificateLocalArrayOutput values.
 // You can construct a concrete instance of `CertificateLocalArrayInput` via:
 //
@@ -282,6 +329,12 @@ func (i CertificateLocalArray) ToCertificateLocalArrayOutput() CertificateLocalA
 
 func (i CertificateLocalArray) ToCertificateLocalArrayOutputWithContext(ctx context.Context) CertificateLocalArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CertificateLocalArrayOutput)
+}
+
+func (i CertificateLocalArray) ToOutput(ctx context.Context) pulumix.Output[[]*CertificateLocal] {
+	return pulumix.Output[[]*CertificateLocal]{
+		OutputState: i.ToCertificateLocalArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // CertificateLocalMapInput is an input type that accepts CertificateLocalMap and CertificateLocalMapOutput values.
@@ -309,6 +362,12 @@ func (i CertificateLocalMap) ToCertificateLocalMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(CertificateLocalMapOutput)
 }
 
+func (i CertificateLocalMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*CertificateLocal] {
+	return pulumix.Output[map[string]*CertificateLocal]{
+		OutputState: i.ToCertificateLocalMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type CertificateLocalOutput struct{ *pulumi.OutputState }
 
 func (CertificateLocalOutput) ElementType() reflect.Type {
@@ -321,6 +380,12 @@ func (o CertificateLocalOutput) ToCertificateLocalOutput() CertificateLocalOutpu
 
 func (o CertificateLocalOutput) ToCertificateLocalOutputWithContext(ctx context.Context) CertificateLocalOutput {
 	return o
+}
+
+func (o CertificateLocalOutput) ToOutput(ctx context.Context) pulumix.Output[*CertificateLocal] {
+	return pulumix.Output[*CertificateLocal]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o CertificateLocalOutput) AcmeCaUrl() pulumi.StringOutput {
@@ -385,6 +450,38 @@ func (o CertificateLocalOutput) Csr() pulumi.StringOutput {
 
 func (o CertificateLocalOutput) EnrollProtocol() pulumi.StringOutput {
 	return o.ApplyT(func(v *CertificateLocal) pulumi.StringOutput { return v.EnrollProtocol }).(pulumi.StringOutput)
+}
+
+func (o CertificateLocalOutput) EstCaId() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.StringOutput { return v.EstCaId }).(pulumi.StringOutput)
+}
+
+func (o CertificateLocalOutput) EstClientCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.StringOutput { return v.EstClientCert }).(pulumi.StringOutput)
+}
+
+func (o CertificateLocalOutput) EstHttpPassword() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.StringOutput { return v.EstHttpPassword }).(pulumi.StringOutput)
+}
+
+func (o CertificateLocalOutput) EstHttpUsername() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.StringOutput { return v.EstHttpUsername }).(pulumi.StringOutput)
+}
+
+func (o CertificateLocalOutput) EstServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.StringOutput { return v.EstServer }).(pulumi.StringOutput)
+}
+
+func (o CertificateLocalOutput) EstServerCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.StringOutput { return v.EstServerCert }).(pulumi.StringOutput)
+}
+
+func (o CertificateLocalOutput) EstSrpPassword() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.StringOutput { return v.EstSrpPassword }).(pulumi.StringOutput)
+}
+
+func (o CertificateLocalOutput) EstSrpUsername() pulumi.StringOutput {
+	return o.ApplyT(func(v *CertificateLocal) pulumi.StringOutput { return v.EstSrpUsername }).(pulumi.StringOutput)
 }
 
 func (o CertificateLocalOutput) IkeLocalid() pulumi.StringOutput {
@@ -461,6 +558,12 @@ func (o CertificateLocalArrayOutput) ToCertificateLocalArrayOutputWithContext(ct
 	return o
 }
 
+func (o CertificateLocalArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*CertificateLocal] {
+	return pulumix.Output[[]*CertificateLocal]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o CertificateLocalArrayOutput) Index(i pulumi.IntInput) CertificateLocalOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CertificateLocal {
 		return vs[0].([]*CertificateLocal)[vs[1].(int)]
@@ -479,6 +582,12 @@ func (o CertificateLocalMapOutput) ToCertificateLocalMapOutput() CertificateLoca
 
 func (o CertificateLocalMapOutput) ToCertificateLocalMapOutputWithContext(ctx context.Context) CertificateLocalMapOutput {
 	return o
+}
+
+func (o CertificateLocalMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*CertificateLocal] {
+	return pulumix.Output[map[string]*CertificateLocal]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o CertificateLocalMapOutput) MapIndex(k pulumi.StringInput) CertificateLocalOutput {

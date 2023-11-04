@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupUserSaml(ctx *pulumi.Context, args *LookupUserSamlArgs, opts ...pulumi.InvokeOption) (*LookupUserSamlResult, error) {
@@ -45,6 +46,7 @@ type LookupUserSamlResult struct {
 	IdpSingleSignOnUrl string  `pulumi:"idpSingleSignOnUrl"`
 	LimitRelaystate    string  `pulumi:"limitRelaystate"`
 	Name               string  `pulumi:"name"`
+	Reauth             string  `pulumi:"reauth"`
 	SingleLogoutUrl    string  `pulumi:"singleLogoutUrl"`
 	SingleSignOnUrl    string  `pulumi:"singleSignOnUrl"`
 	UserClaimType      string  `pulumi:"userClaimType"`
@@ -88,6 +90,12 @@ func (o LookupUserSamlResultOutput) ToLookupUserSamlResultOutput() LookupUserSam
 
 func (o LookupUserSamlResultOutput) ToLookupUserSamlResultOutputWithContext(ctx context.Context) LookupUserSamlResultOutput {
 	return o
+}
+
+func (o LookupUserSamlResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupUserSamlResult] {
+	return pulumix.Output[LookupUserSamlResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupUserSamlResultOutput) AdfsClaim() pulumi.StringOutput {
@@ -149,6 +157,10 @@ func (o LookupUserSamlResultOutput) LimitRelaystate() pulumi.StringOutput {
 
 func (o LookupUserSamlResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupUserSamlResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupUserSamlResultOutput) Reauth() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupUserSamlResult) string { return v.Reauth }).(pulumi.StringOutput)
 }
 
 func (o LookupUserSamlResultOutput) SingleLogoutUrl() pulumi.StringOutput {

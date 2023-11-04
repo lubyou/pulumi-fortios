@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallProxyAddrgrp struct {
@@ -144,6 +145,12 @@ func (i *FirewallProxyAddrgrp) ToFirewallProxyAddrgrpOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallProxyAddrgrpOutput)
 }
 
+func (i *FirewallProxyAddrgrp) ToOutput(ctx context.Context) pulumix.Output[*FirewallProxyAddrgrp] {
+	return pulumix.Output[*FirewallProxyAddrgrp]{
+		OutputState: i.ToFirewallProxyAddrgrpOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallProxyAddrgrpArrayInput is an input type that accepts FirewallProxyAddrgrpArray and FirewallProxyAddrgrpArrayOutput values.
 // You can construct a concrete instance of `FirewallProxyAddrgrpArrayInput` via:
 //
@@ -167,6 +174,12 @@ func (i FirewallProxyAddrgrpArray) ToFirewallProxyAddrgrpArrayOutput() FirewallP
 
 func (i FirewallProxyAddrgrpArray) ToFirewallProxyAddrgrpArrayOutputWithContext(ctx context.Context) FirewallProxyAddrgrpArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallProxyAddrgrpArrayOutput)
+}
+
+func (i FirewallProxyAddrgrpArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallProxyAddrgrp] {
+	return pulumix.Output[[]*FirewallProxyAddrgrp]{
+		OutputState: i.ToFirewallProxyAddrgrpArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallProxyAddrgrpMapInput is an input type that accepts FirewallProxyAddrgrpMap and FirewallProxyAddrgrpMapOutput values.
@@ -194,6 +207,12 @@ func (i FirewallProxyAddrgrpMap) ToFirewallProxyAddrgrpMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallProxyAddrgrpMapOutput)
 }
 
+func (i FirewallProxyAddrgrpMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallProxyAddrgrp] {
+	return pulumix.Output[map[string]*FirewallProxyAddrgrp]{
+		OutputState: i.ToFirewallProxyAddrgrpMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallProxyAddrgrpOutput struct{ *pulumi.OutputState }
 
 func (FirewallProxyAddrgrpOutput) ElementType() reflect.Type {
@@ -206,6 +225,12 @@ func (o FirewallProxyAddrgrpOutput) ToFirewallProxyAddrgrpOutput() FirewallProxy
 
 func (o FirewallProxyAddrgrpOutput) ToFirewallProxyAddrgrpOutputWithContext(ctx context.Context) FirewallProxyAddrgrpOutput {
 	return o
+}
+
+func (o FirewallProxyAddrgrpOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallProxyAddrgrp] {
+	return pulumix.Output[*FirewallProxyAddrgrp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallProxyAddrgrpOutput) Color() pulumi.IntOutput {
@@ -266,6 +291,12 @@ func (o FirewallProxyAddrgrpArrayOutput) ToFirewallProxyAddrgrpArrayOutputWithCo
 	return o
 }
 
+func (o FirewallProxyAddrgrpArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallProxyAddrgrp] {
+	return pulumix.Output[[]*FirewallProxyAddrgrp]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallProxyAddrgrpArrayOutput) Index(i pulumi.IntInput) FirewallProxyAddrgrpOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallProxyAddrgrp {
 		return vs[0].([]*FirewallProxyAddrgrp)[vs[1].(int)]
@@ -284,6 +315,12 @@ func (o FirewallProxyAddrgrpMapOutput) ToFirewallProxyAddrgrpMapOutput() Firewal
 
 func (o FirewallProxyAddrgrpMapOutput) ToFirewallProxyAddrgrpMapOutputWithContext(ctx context.Context) FirewallProxyAddrgrpMapOutput {
 	return o
+}
+
+func (o FirewallProxyAddrgrpMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallProxyAddrgrp] {
+	return pulumix.Output[map[string]*FirewallProxyAddrgrp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallProxyAddrgrpMapOutput) MapIndex(k pulumi.StringInput) FirewallProxyAddrgrpOutput {

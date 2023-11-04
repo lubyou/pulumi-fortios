@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type VpnSslWebUserGroupBookmark struct {
@@ -110,6 +111,12 @@ func (i *VpnSslWebUserGroupBookmark) ToVpnSslWebUserGroupBookmarkOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebUserGroupBookmarkOutput)
 }
 
+func (i *VpnSslWebUserGroupBookmark) ToOutput(ctx context.Context) pulumix.Output[*VpnSslWebUserGroupBookmark] {
+	return pulumix.Output[*VpnSslWebUserGroupBookmark]{
+		OutputState: i.ToVpnSslWebUserGroupBookmarkOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnSslWebUserGroupBookmarkArrayInput is an input type that accepts VpnSslWebUserGroupBookmarkArray and VpnSslWebUserGroupBookmarkArrayOutput values.
 // You can construct a concrete instance of `VpnSslWebUserGroupBookmarkArrayInput` via:
 //
@@ -133,6 +140,12 @@ func (i VpnSslWebUserGroupBookmarkArray) ToVpnSslWebUserGroupBookmarkArrayOutput
 
 func (i VpnSslWebUserGroupBookmarkArray) ToVpnSslWebUserGroupBookmarkArrayOutputWithContext(ctx context.Context) VpnSslWebUserGroupBookmarkArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebUserGroupBookmarkArrayOutput)
+}
+
+func (i VpnSslWebUserGroupBookmarkArray) ToOutput(ctx context.Context) pulumix.Output[[]*VpnSslWebUserGroupBookmark] {
+	return pulumix.Output[[]*VpnSslWebUserGroupBookmark]{
+		OutputState: i.ToVpnSslWebUserGroupBookmarkArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // VpnSslWebUserGroupBookmarkMapInput is an input type that accepts VpnSslWebUserGroupBookmarkMap and VpnSslWebUserGroupBookmarkMapOutput values.
@@ -160,6 +173,12 @@ func (i VpnSslWebUserGroupBookmarkMap) ToVpnSslWebUserGroupBookmarkMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebUserGroupBookmarkMapOutput)
 }
 
+func (i VpnSslWebUserGroupBookmarkMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnSslWebUserGroupBookmark] {
+	return pulumix.Output[map[string]*VpnSslWebUserGroupBookmark]{
+		OutputState: i.ToVpnSslWebUserGroupBookmarkMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnSslWebUserGroupBookmarkOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebUserGroupBookmarkOutput) ElementType() reflect.Type {
@@ -172,6 +191,12 @@ func (o VpnSslWebUserGroupBookmarkOutput) ToVpnSslWebUserGroupBookmarkOutput() V
 
 func (o VpnSslWebUserGroupBookmarkOutput) ToVpnSslWebUserGroupBookmarkOutputWithContext(ctx context.Context) VpnSslWebUserGroupBookmarkOutput {
 	return o
+}
+
+func (o VpnSslWebUserGroupBookmarkOutput) ToOutput(ctx context.Context) pulumix.Output[*VpnSslWebUserGroupBookmark] {
+	return pulumix.Output[*VpnSslWebUserGroupBookmark]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebUserGroupBookmarkOutput) Bookmarks() VpnSslWebUserGroupBookmarkBookmarkArrayOutput {
@@ -208,6 +233,12 @@ func (o VpnSslWebUserGroupBookmarkArrayOutput) ToVpnSslWebUserGroupBookmarkArray
 	return o
 }
 
+func (o VpnSslWebUserGroupBookmarkArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VpnSslWebUserGroupBookmark] {
+	return pulumix.Output[[]*VpnSslWebUserGroupBookmark]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o VpnSslWebUserGroupBookmarkArrayOutput) Index(i pulumi.IntInput) VpnSslWebUserGroupBookmarkOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnSslWebUserGroupBookmark {
 		return vs[0].([]*VpnSslWebUserGroupBookmark)[vs[1].(int)]
@@ -226,6 +257,12 @@ func (o VpnSslWebUserGroupBookmarkMapOutput) ToVpnSslWebUserGroupBookmarkMapOutp
 
 func (o VpnSslWebUserGroupBookmarkMapOutput) ToVpnSslWebUserGroupBookmarkMapOutputWithContext(ctx context.Context) VpnSslWebUserGroupBookmarkMapOutput {
 	return o
+}
+
+func (o VpnSslWebUserGroupBookmarkMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnSslWebUserGroupBookmark] {
+	return pulumix.Output[map[string]*VpnSslWebUserGroupBookmark]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebUserGroupBookmarkMapOutput) MapIndex(k pulumi.StringInput) VpnSslWebUserGroupBookmarkOutput {

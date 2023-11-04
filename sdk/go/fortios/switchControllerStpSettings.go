@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerStpSettings struct {
@@ -130,6 +131,12 @@ func (i *SwitchControllerStpSettings) ToSwitchControllerStpSettingsOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerStpSettingsOutput)
 }
 
+func (i *SwitchControllerStpSettings) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerStpSettings] {
+	return pulumix.Output[*SwitchControllerStpSettings]{
+		OutputState: i.ToSwitchControllerStpSettingsOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SwitchControllerStpSettingsArrayInput is an input type that accepts SwitchControllerStpSettingsArray and SwitchControllerStpSettingsArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerStpSettingsArrayInput` via:
 //
@@ -153,6 +160,12 @@ func (i SwitchControllerStpSettingsArray) ToSwitchControllerStpSettingsArrayOutp
 
 func (i SwitchControllerStpSettingsArray) ToSwitchControllerStpSettingsArrayOutputWithContext(ctx context.Context) SwitchControllerStpSettingsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerStpSettingsArrayOutput)
+}
+
+func (i SwitchControllerStpSettingsArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerStpSettings] {
+	return pulumix.Output[[]*SwitchControllerStpSettings]{
+		OutputState: i.ToSwitchControllerStpSettingsArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SwitchControllerStpSettingsMapInput is an input type that accepts SwitchControllerStpSettingsMap and SwitchControllerStpSettingsMapOutput values.
@@ -180,6 +193,12 @@ func (i SwitchControllerStpSettingsMap) ToSwitchControllerStpSettingsMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerStpSettingsMapOutput)
 }
 
+func (i SwitchControllerStpSettingsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerStpSettings] {
+	return pulumix.Output[map[string]*SwitchControllerStpSettings]{
+		OutputState: i.ToSwitchControllerStpSettingsMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SwitchControllerStpSettingsOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerStpSettingsOutput) ElementType() reflect.Type {
@@ -192,6 +211,12 @@ func (o SwitchControllerStpSettingsOutput) ToSwitchControllerStpSettingsOutput()
 
 func (o SwitchControllerStpSettingsOutput) ToSwitchControllerStpSettingsOutputWithContext(ctx context.Context) SwitchControllerStpSettingsOutput {
 	return o
+}
+
+func (o SwitchControllerStpSettingsOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerStpSettings] {
+	return pulumix.Output[*SwitchControllerStpSettings]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerStpSettingsOutput) ForwardTime() pulumi.IntOutput {
@@ -244,6 +269,12 @@ func (o SwitchControllerStpSettingsArrayOutput) ToSwitchControllerStpSettingsArr
 	return o
 }
 
+func (o SwitchControllerStpSettingsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerStpSettings] {
+	return pulumix.Output[[]*SwitchControllerStpSettings]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SwitchControllerStpSettingsArrayOutput) Index(i pulumi.IntInput) SwitchControllerStpSettingsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerStpSettings {
 		return vs[0].([]*SwitchControllerStpSettings)[vs[1].(int)]
@@ -262,6 +293,12 @@ func (o SwitchControllerStpSettingsMapOutput) ToSwitchControllerStpSettingsMapOu
 
 func (o SwitchControllerStpSettingsMapOutput) ToSwitchControllerStpSettingsMapOutputWithContext(ctx context.Context) SwitchControllerStpSettingsMapOutput {
 	return o
+}
+
+func (o SwitchControllerStpSettingsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerStpSettings] {
+	return pulumix.Output[map[string]*SwitchControllerStpSettings]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerStpSettingsMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerStpSettingsOutput {

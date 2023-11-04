@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupRouterbgpNeighbor(ctx *pulumi.Context, args *LookupRouterbgpNeighborArgs, opts ...pulumi.InvokeOption) (*LookupRouterbgpNeighborResult, error) {
@@ -81,8 +82,10 @@ type LookupRouterbgpNeighborResult struct {
 	EbgpMultihopTtl                int                                         `pulumi:"ebgpMultihopTtl"`
 	FilterListIn                   string                                      `pulumi:"filterListIn"`
 	FilterListIn6                  string                                      `pulumi:"filterListIn6"`
+	FilterListInVpnv4              string                                      `pulumi:"filterListInVpnv4"`
 	FilterListOut                  string                                      `pulumi:"filterListOut"`
 	FilterListOut6                 string                                      `pulumi:"filterListOut6"`
+	FilterListOutVpnv4             string                                      `pulumi:"filterListOutVpnv4"`
 	HoldtimeTimer                  int                                         `pulumi:"holdtimeTimer"`
 	// The provider-assigned unique ID for this managed resource.
 	Id                            string  `pulumi:"id"`
@@ -199,6 +202,12 @@ func (o LookupRouterbgpNeighborResultOutput) ToLookupRouterbgpNeighborResultOutp
 
 func (o LookupRouterbgpNeighborResultOutput) ToLookupRouterbgpNeighborResultOutputWithContext(ctx context.Context) LookupRouterbgpNeighborResultOutput {
 	return o
+}
+
+func (o LookupRouterbgpNeighborResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupRouterbgpNeighborResult] {
+	return pulumix.Output[LookupRouterbgpNeighborResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupRouterbgpNeighborResultOutput) Activate() pulumi.StringOutput {
@@ -413,12 +422,20 @@ func (o LookupRouterbgpNeighborResultOutput) FilterListIn6() pulumi.StringOutput
 	return o.ApplyT(func(v LookupRouterbgpNeighborResult) string { return v.FilterListIn6 }).(pulumi.StringOutput)
 }
 
+func (o LookupRouterbgpNeighborResultOutput) FilterListInVpnv4() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterbgpNeighborResult) string { return v.FilterListInVpnv4 }).(pulumi.StringOutput)
+}
+
 func (o LookupRouterbgpNeighborResultOutput) FilterListOut() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterbgpNeighborResult) string { return v.FilterListOut }).(pulumi.StringOutput)
 }
 
 func (o LookupRouterbgpNeighborResultOutput) FilterListOut6() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterbgpNeighborResult) string { return v.FilterListOut6 }).(pulumi.StringOutput)
+}
+
+func (o LookupRouterbgpNeighborResultOutput) FilterListOutVpnv4() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterbgpNeighborResult) string { return v.FilterListOutVpnv4 }).(pulumi.StringOutput)
 }
 
 func (o LookupRouterbgpNeighborResultOutput) HoldtimeTimer() pulumi.IntOutput {

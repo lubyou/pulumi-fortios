@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemPasswordPolicyGuestAdmin struct {
@@ -150,6 +151,12 @@ func (i *SystemPasswordPolicyGuestAdmin) ToSystemPasswordPolicyGuestAdminOutputW
 	return pulumi.ToOutputWithContext(ctx, i).(SystemPasswordPolicyGuestAdminOutput)
 }
 
+func (i *SystemPasswordPolicyGuestAdmin) ToOutput(ctx context.Context) pulumix.Output[*SystemPasswordPolicyGuestAdmin] {
+	return pulumix.Output[*SystemPasswordPolicyGuestAdmin]{
+		OutputState: i.ToSystemPasswordPolicyGuestAdminOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemPasswordPolicyGuestAdminArrayInput is an input type that accepts SystemPasswordPolicyGuestAdminArray and SystemPasswordPolicyGuestAdminArrayOutput values.
 // You can construct a concrete instance of `SystemPasswordPolicyGuestAdminArrayInput` via:
 //
@@ -173,6 +180,12 @@ func (i SystemPasswordPolicyGuestAdminArray) ToSystemPasswordPolicyGuestAdminArr
 
 func (i SystemPasswordPolicyGuestAdminArray) ToSystemPasswordPolicyGuestAdminArrayOutputWithContext(ctx context.Context) SystemPasswordPolicyGuestAdminArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemPasswordPolicyGuestAdminArrayOutput)
+}
+
+func (i SystemPasswordPolicyGuestAdminArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemPasswordPolicyGuestAdmin] {
+	return pulumix.Output[[]*SystemPasswordPolicyGuestAdmin]{
+		OutputState: i.ToSystemPasswordPolicyGuestAdminArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemPasswordPolicyGuestAdminMapInput is an input type that accepts SystemPasswordPolicyGuestAdminMap and SystemPasswordPolicyGuestAdminMapOutput values.
@@ -200,6 +213,12 @@ func (i SystemPasswordPolicyGuestAdminMap) ToSystemPasswordPolicyGuestAdminMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(SystemPasswordPolicyGuestAdminMapOutput)
 }
 
+func (i SystemPasswordPolicyGuestAdminMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemPasswordPolicyGuestAdmin] {
+	return pulumix.Output[map[string]*SystemPasswordPolicyGuestAdmin]{
+		OutputState: i.ToSystemPasswordPolicyGuestAdminMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemPasswordPolicyGuestAdminOutput struct{ *pulumi.OutputState }
 
 func (SystemPasswordPolicyGuestAdminOutput) ElementType() reflect.Type {
@@ -212,6 +231,12 @@ func (o SystemPasswordPolicyGuestAdminOutput) ToSystemPasswordPolicyGuestAdminOu
 
 func (o SystemPasswordPolicyGuestAdminOutput) ToSystemPasswordPolicyGuestAdminOutputWithContext(ctx context.Context) SystemPasswordPolicyGuestAdminOutput {
 	return o
+}
+
+func (o SystemPasswordPolicyGuestAdminOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemPasswordPolicyGuestAdmin] {
+	return pulumix.Output[*SystemPasswordPolicyGuestAdmin]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemPasswordPolicyGuestAdminOutput) ApplyTo() pulumi.StringOutput {
@@ -280,6 +305,12 @@ func (o SystemPasswordPolicyGuestAdminArrayOutput) ToSystemPasswordPolicyGuestAd
 	return o
 }
 
+func (o SystemPasswordPolicyGuestAdminArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemPasswordPolicyGuestAdmin] {
+	return pulumix.Output[[]*SystemPasswordPolicyGuestAdmin]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemPasswordPolicyGuestAdminArrayOutput) Index(i pulumi.IntInput) SystemPasswordPolicyGuestAdminOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemPasswordPolicyGuestAdmin {
 		return vs[0].([]*SystemPasswordPolicyGuestAdmin)[vs[1].(int)]
@@ -298,6 +329,12 @@ func (o SystemPasswordPolicyGuestAdminMapOutput) ToSystemPasswordPolicyGuestAdmi
 
 func (o SystemPasswordPolicyGuestAdminMapOutput) ToSystemPasswordPolicyGuestAdminMapOutputWithContext(ctx context.Context) SystemPasswordPolicyGuestAdminMapOutput {
 	return o
+}
+
+func (o SystemPasswordPolicyGuestAdminMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemPasswordPolicyGuestAdmin] {
+	return pulumix.Output[map[string]*SystemPasswordPolicyGuestAdmin]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemPasswordPolicyGuestAdminMapOutput) MapIndex(k pulumi.StringInput) SystemPasswordPolicyGuestAdminOutput {

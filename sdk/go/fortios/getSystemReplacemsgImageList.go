@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetSystemReplacemsgImageList(ctx *pulumi.Context, args *GetSystemReplacemsgImageListArgs, opts ...pulumi.InvokeOption) (*GetSystemReplacemsgImageListResult, error) {
@@ -72,6 +73,12 @@ func (o GetSystemReplacemsgImageListResultOutput) ToGetSystemReplacemsgImageList
 
 func (o GetSystemReplacemsgImageListResultOutput) ToGetSystemReplacemsgImageListResultOutputWithContext(ctx context.Context) GetSystemReplacemsgImageListResultOutput {
 	return o
+}
+
+func (o GetSystemReplacemsgImageListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSystemReplacemsgImageListResult] {
+	return pulumix.Output[GetSystemReplacemsgImageListResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetSystemReplacemsgImageListResultOutput) Filter() pulumi.StringPtrOutput {

@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemReplacemsgMail struct {
@@ -114,6 +115,12 @@ func (i *SystemReplacemsgMail) ToSystemReplacemsgMailOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgMailOutput)
 }
 
+func (i *SystemReplacemsgMail) ToOutput(ctx context.Context) pulumix.Output[*SystemReplacemsgMail] {
+	return pulumix.Output[*SystemReplacemsgMail]{
+		OutputState: i.ToSystemReplacemsgMailOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemReplacemsgMailArrayInput is an input type that accepts SystemReplacemsgMailArray and SystemReplacemsgMailArrayOutput values.
 // You can construct a concrete instance of `SystemReplacemsgMailArrayInput` via:
 //
@@ -137,6 +144,12 @@ func (i SystemReplacemsgMailArray) ToSystemReplacemsgMailArrayOutput() SystemRep
 
 func (i SystemReplacemsgMailArray) ToSystemReplacemsgMailArrayOutputWithContext(ctx context.Context) SystemReplacemsgMailArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgMailArrayOutput)
+}
+
+func (i SystemReplacemsgMailArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemReplacemsgMail] {
+	return pulumix.Output[[]*SystemReplacemsgMail]{
+		OutputState: i.ToSystemReplacemsgMailArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemReplacemsgMailMapInput is an input type that accepts SystemReplacemsgMailMap and SystemReplacemsgMailMapOutput values.
@@ -164,6 +177,12 @@ func (i SystemReplacemsgMailMap) ToSystemReplacemsgMailMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgMailMapOutput)
 }
 
+func (i SystemReplacemsgMailMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemReplacemsgMail] {
+	return pulumix.Output[map[string]*SystemReplacemsgMail]{
+		OutputState: i.ToSystemReplacemsgMailMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemReplacemsgMailOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgMailOutput) ElementType() reflect.Type {
@@ -176,6 +195,12 @@ func (o SystemReplacemsgMailOutput) ToSystemReplacemsgMailOutput() SystemReplace
 
 func (o SystemReplacemsgMailOutput) ToSystemReplacemsgMailOutputWithContext(ctx context.Context) SystemReplacemsgMailOutput {
 	return o
+}
+
+func (o SystemReplacemsgMailOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemReplacemsgMail] {
+	return pulumix.Output[*SystemReplacemsgMail]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemReplacemsgMailOutput) Buffer() pulumi.StringPtrOutput {
@@ -212,6 +237,12 @@ func (o SystemReplacemsgMailArrayOutput) ToSystemReplacemsgMailArrayOutputWithCo
 	return o
 }
 
+func (o SystemReplacemsgMailArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemReplacemsgMail] {
+	return pulumix.Output[[]*SystemReplacemsgMail]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemReplacemsgMailArrayOutput) Index(i pulumi.IntInput) SystemReplacemsgMailOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemReplacemsgMail {
 		return vs[0].([]*SystemReplacemsgMail)[vs[1].(int)]
@@ -230,6 +261,12 @@ func (o SystemReplacemsgMailMapOutput) ToSystemReplacemsgMailMapOutput() SystemR
 
 func (o SystemReplacemsgMailMapOutput) ToSystemReplacemsgMailMapOutputWithContext(ctx context.Context) SystemReplacemsgMailMapOutput {
 	return o
+}
+
+func (o SystemReplacemsgMailMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemReplacemsgMail] {
+	return pulumix.Output[map[string]*SystemReplacemsgMail]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemReplacemsgMailMapOutput) MapIndex(k pulumi.StringInput) SystemReplacemsgMailOutput {

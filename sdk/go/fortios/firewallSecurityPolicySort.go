@@ -10,23 +10,25 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
-type FirewallSecurityPolicySort struct {
+type FirewallSecuritypolicySort struct {
 	pulumi.CustomResourceState
 
 	Comment          pulumi.StringPtrOutput                               `pulumi:"comment"`
-	ForceRecreate    pulumi.StringPtrOutput                               `pulumi:"forceRecreate"`
+	ForceRecreate    pulumi.StringOutput                                  `pulumi:"forceRecreate"`
+	ManualOrders     pulumi.StringArrayOutput                             `pulumi:"manualOrders"`
 	Sortby           pulumi.StringOutput                                  `pulumi:"sortby"`
 	Sortdirection    pulumi.StringOutput                                  `pulumi:"sortdirection"`
-	StatePolicyLists FirewallSecurityPolicySortStatePolicyListArrayOutput `pulumi:"statePolicyLists"`
-	Status           pulumi.StringPtrOutput                               `pulumi:"status"`
+	StatePolicyLists FirewallSecuritypolicySortStatePolicyListArrayOutput `pulumi:"statePolicyLists"`
+	Status           pulumi.StringOutput                                  `pulumi:"status"`
 	Vdomparam        pulumi.StringPtrOutput                               `pulumi:"vdomparam"`
 }
 
-// NewFirewallSecurityPolicySort registers a new resource with the given unique name, arguments, and options.
-func NewFirewallSecurityPolicySort(ctx *pulumi.Context,
-	name string, args *FirewallSecurityPolicySortArgs, opts ...pulumi.ResourceOption) (*FirewallSecurityPolicySort, error) {
+// NewFirewallSecuritypolicySort registers a new resource with the given unique name, arguments, and options.
+func NewFirewallSecuritypolicySort(ctx *pulumi.Context,
+	name string, args *FirewallSecuritypolicySortArgs, opts ...pulumi.ResourceOption) (*FirewallSecuritypolicySort, error) {
 	if args == nil {
 		return nil, errors.New("missing one or more required arguments")
 	}
@@ -38,232 +40,276 @@ func NewFirewallSecurityPolicySort(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'Sortdirection'")
 	}
 	opts = internal.PkgResourceDefaultOpts(opts)
-	var resource FirewallSecurityPolicySort
-	err := ctx.RegisterResource("fortios:index/firewallSecurityPolicySort:FirewallSecurityPolicySort", name, args, &resource, opts...)
+	var resource FirewallSecuritypolicySort
+	err := ctx.RegisterResource("fortios:index/firewallSecuritypolicySort:FirewallSecuritypolicySort", name, args, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// GetFirewallSecurityPolicySort gets an existing FirewallSecurityPolicySort resource's state with the given name, ID, and optional
+// GetFirewallSecuritypolicySort gets an existing FirewallSecuritypolicySort resource's state with the given name, ID, and optional
 // state properties that are used to uniquely qualify the lookup (nil if not required).
-func GetFirewallSecurityPolicySort(ctx *pulumi.Context,
-	name string, id pulumi.IDInput, state *FirewallSecurityPolicySortState, opts ...pulumi.ResourceOption) (*FirewallSecurityPolicySort, error) {
-	var resource FirewallSecurityPolicySort
-	err := ctx.ReadResource("fortios:index/firewallSecurityPolicySort:FirewallSecurityPolicySort", name, id, state, &resource, opts...)
+func GetFirewallSecuritypolicySort(ctx *pulumi.Context,
+	name string, id pulumi.IDInput, state *FirewallSecuritypolicySortState, opts ...pulumi.ResourceOption) (*FirewallSecuritypolicySort, error) {
+	var resource FirewallSecuritypolicySort
+	err := ctx.ReadResource("fortios:index/firewallSecuritypolicySort:FirewallSecuritypolicySort", name, id, state, &resource, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return &resource, nil
 }
 
-// Input properties used for looking up and filtering FirewallSecurityPolicySort resources.
-type firewallSecurityPolicySortState struct {
+// Input properties used for looking up and filtering FirewallSecuritypolicySort resources.
+type firewallSecuritypolicySortState struct {
 	Comment          *string                                     `pulumi:"comment"`
 	ForceRecreate    *string                                     `pulumi:"forceRecreate"`
+	ManualOrders     []string                                    `pulumi:"manualOrders"`
 	Sortby           *string                                     `pulumi:"sortby"`
 	Sortdirection    *string                                     `pulumi:"sortdirection"`
-	StatePolicyLists []FirewallSecurityPolicySortStatePolicyList `pulumi:"statePolicyLists"`
+	StatePolicyLists []FirewallSecuritypolicySortStatePolicyList `pulumi:"statePolicyLists"`
 	Status           *string                                     `pulumi:"status"`
 	Vdomparam        *string                                     `pulumi:"vdomparam"`
 }
 
-type FirewallSecurityPolicySortState struct {
+type FirewallSecuritypolicySortState struct {
 	Comment          pulumi.StringPtrInput
 	ForceRecreate    pulumi.StringPtrInput
+	ManualOrders     pulumi.StringArrayInput
 	Sortby           pulumi.StringPtrInput
 	Sortdirection    pulumi.StringPtrInput
-	StatePolicyLists FirewallSecurityPolicySortStatePolicyListArrayInput
+	StatePolicyLists FirewallSecuritypolicySortStatePolicyListArrayInput
 	Status           pulumi.StringPtrInput
 	Vdomparam        pulumi.StringPtrInput
 }
 
-func (FirewallSecurityPolicySortState) ElementType() reflect.Type {
-	return reflect.TypeOf((*firewallSecurityPolicySortState)(nil)).Elem()
+func (FirewallSecuritypolicySortState) ElementType() reflect.Type {
+	return reflect.TypeOf((*firewallSecuritypolicySortState)(nil)).Elem()
 }
 
-type firewallSecurityPolicySortArgs struct {
-	Comment       *string `pulumi:"comment"`
-	ForceRecreate *string `pulumi:"forceRecreate"`
-	Sortby        string  `pulumi:"sortby"`
-	Sortdirection string  `pulumi:"sortdirection"`
-	Status        *string `pulumi:"status"`
-	Vdomparam     *string `pulumi:"vdomparam"`
+type firewallSecuritypolicySortArgs struct {
+	Comment       *string  `pulumi:"comment"`
+	ForceRecreate *string  `pulumi:"forceRecreate"`
+	ManualOrders  []string `pulumi:"manualOrders"`
+	Sortby        string   `pulumi:"sortby"`
+	Sortdirection string   `pulumi:"sortdirection"`
+	Status        *string  `pulumi:"status"`
+	Vdomparam     *string  `pulumi:"vdomparam"`
 }
 
-// The set of arguments for constructing a FirewallSecurityPolicySort resource.
-type FirewallSecurityPolicySortArgs struct {
+// The set of arguments for constructing a FirewallSecuritypolicySort resource.
+type FirewallSecuritypolicySortArgs struct {
 	Comment       pulumi.StringPtrInput
 	ForceRecreate pulumi.StringPtrInput
+	ManualOrders  pulumi.StringArrayInput
 	Sortby        pulumi.StringInput
 	Sortdirection pulumi.StringInput
 	Status        pulumi.StringPtrInput
 	Vdomparam     pulumi.StringPtrInput
 }
 
-func (FirewallSecurityPolicySortArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*firewallSecurityPolicySortArgs)(nil)).Elem()
+func (FirewallSecuritypolicySortArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*firewallSecuritypolicySortArgs)(nil)).Elem()
 }
 
-type FirewallSecurityPolicySortInput interface {
+type FirewallSecuritypolicySortInput interface {
 	pulumi.Input
 
-	ToFirewallSecurityPolicySortOutput() FirewallSecurityPolicySortOutput
-	ToFirewallSecurityPolicySortOutputWithContext(ctx context.Context) FirewallSecurityPolicySortOutput
+	ToFirewallSecuritypolicySortOutput() FirewallSecuritypolicySortOutput
+	ToFirewallSecuritypolicySortOutputWithContext(ctx context.Context) FirewallSecuritypolicySortOutput
 }
 
-func (*FirewallSecurityPolicySort) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallSecurityPolicySort)(nil)).Elem()
+func (*FirewallSecuritypolicySort) ElementType() reflect.Type {
+	return reflect.TypeOf((**FirewallSecuritypolicySort)(nil)).Elem()
 }
 
-func (i *FirewallSecurityPolicySort) ToFirewallSecurityPolicySortOutput() FirewallSecurityPolicySortOutput {
-	return i.ToFirewallSecurityPolicySortOutputWithContext(context.Background())
+func (i *FirewallSecuritypolicySort) ToFirewallSecuritypolicySortOutput() FirewallSecuritypolicySortOutput {
+	return i.ToFirewallSecuritypolicySortOutputWithContext(context.Background())
 }
 
-func (i *FirewallSecurityPolicySort) ToFirewallSecurityPolicySortOutputWithContext(ctx context.Context) FirewallSecurityPolicySortOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallSecurityPolicySortOutput)
+func (i *FirewallSecuritypolicySort) ToFirewallSecuritypolicySortOutputWithContext(ctx context.Context) FirewallSecuritypolicySortOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FirewallSecuritypolicySortOutput)
 }
 
-// FirewallSecurityPolicySortArrayInput is an input type that accepts FirewallSecurityPolicySortArray and FirewallSecurityPolicySortArrayOutput values.
-// You can construct a concrete instance of `FirewallSecurityPolicySortArrayInput` via:
+func (i *FirewallSecuritypolicySort) ToOutput(ctx context.Context) pulumix.Output[*FirewallSecuritypolicySort] {
+	return pulumix.Output[*FirewallSecuritypolicySort]{
+		OutputState: i.ToFirewallSecuritypolicySortOutputWithContext(ctx).OutputState,
+	}
+}
+
+// FirewallSecuritypolicySortArrayInput is an input type that accepts FirewallSecuritypolicySortArray and FirewallSecuritypolicySortArrayOutput values.
+// You can construct a concrete instance of `FirewallSecuritypolicySortArrayInput` via:
 //
-//	FirewallSecurityPolicySortArray{ FirewallSecurityPolicySortArgs{...} }
-type FirewallSecurityPolicySortArrayInput interface {
+//	FirewallSecuritypolicySortArray{ FirewallSecuritypolicySortArgs{...} }
+type FirewallSecuritypolicySortArrayInput interface {
 	pulumi.Input
 
-	ToFirewallSecurityPolicySortArrayOutput() FirewallSecurityPolicySortArrayOutput
-	ToFirewallSecurityPolicySortArrayOutputWithContext(context.Context) FirewallSecurityPolicySortArrayOutput
+	ToFirewallSecuritypolicySortArrayOutput() FirewallSecuritypolicySortArrayOutput
+	ToFirewallSecuritypolicySortArrayOutputWithContext(context.Context) FirewallSecuritypolicySortArrayOutput
 }
 
-type FirewallSecurityPolicySortArray []FirewallSecurityPolicySortInput
+type FirewallSecuritypolicySortArray []FirewallSecuritypolicySortInput
 
-func (FirewallSecurityPolicySortArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*FirewallSecurityPolicySort)(nil)).Elem()
+func (FirewallSecuritypolicySortArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*FirewallSecuritypolicySort)(nil)).Elem()
 }
 
-func (i FirewallSecurityPolicySortArray) ToFirewallSecurityPolicySortArrayOutput() FirewallSecurityPolicySortArrayOutput {
-	return i.ToFirewallSecurityPolicySortArrayOutputWithContext(context.Background())
+func (i FirewallSecuritypolicySortArray) ToFirewallSecuritypolicySortArrayOutput() FirewallSecuritypolicySortArrayOutput {
+	return i.ToFirewallSecuritypolicySortArrayOutputWithContext(context.Background())
 }
 
-func (i FirewallSecurityPolicySortArray) ToFirewallSecurityPolicySortArrayOutputWithContext(ctx context.Context) FirewallSecurityPolicySortArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallSecurityPolicySortArrayOutput)
+func (i FirewallSecuritypolicySortArray) ToFirewallSecuritypolicySortArrayOutputWithContext(ctx context.Context) FirewallSecuritypolicySortArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FirewallSecuritypolicySortArrayOutput)
 }
 
-// FirewallSecurityPolicySortMapInput is an input type that accepts FirewallSecurityPolicySortMap and FirewallSecurityPolicySortMapOutput values.
-// You can construct a concrete instance of `FirewallSecurityPolicySortMapInput` via:
+func (i FirewallSecuritypolicySortArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallSecuritypolicySort] {
+	return pulumix.Output[[]*FirewallSecuritypolicySort]{
+		OutputState: i.ToFirewallSecuritypolicySortArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
+// FirewallSecuritypolicySortMapInput is an input type that accepts FirewallSecuritypolicySortMap and FirewallSecuritypolicySortMapOutput values.
+// You can construct a concrete instance of `FirewallSecuritypolicySortMapInput` via:
 //
-//	FirewallSecurityPolicySortMap{ "key": FirewallSecurityPolicySortArgs{...} }
-type FirewallSecurityPolicySortMapInput interface {
+//	FirewallSecuritypolicySortMap{ "key": FirewallSecuritypolicySortArgs{...} }
+type FirewallSecuritypolicySortMapInput interface {
 	pulumi.Input
 
-	ToFirewallSecurityPolicySortMapOutput() FirewallSecurityPolicySortMapOutput
-	ToFirewallSecurityPolicySortMapOutputWithContext(context.Context) FirewallSecurityPolicySortMapOutput
+	ToFirewallSecuritypolicySortMapOutput() FirewallSecuritypolicySortMapOutput
+	ToFirewallSecuritypolicySortMapOutputWithContext(context.Context) FirewallSecuritypolicySortMapOutput
 }
 
-type FirewallSecurityPolicySortMap map[string]FirewallSecurityPolicySortInput
+type FirewallSecuritypolicySortMap map[string]FirewallSecuritypolicySortInput
 
-func (FirewallSecurityPolicySortMap) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*FirewallSecurityPolicySort)(nil)).Elem()
+func (FirewallSecuritypolicySortMap) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*FirewallSecuritypolicySort)(nil)).Elem()
 }
 
-func (i FirewallSecurityPolicySortMap) ToFirewallSecurityPolicySortMapOutput() FirewallSecurityPolicySortMapOutput {
-	return i.ToFirewallSecurityPolicySortMapOutputWithContext(context.Background())
+func (i FirewallSecuritypolicySortMap) ToFirewallSecuritypolicySortMapOutput() FirewallSecuritypolicySortMapOutput {
+	return i.ToFirewallSecuritypolicySortMapOutputWithContext(context.Background())
 }
 
-func (i FirewallSecurityPolicySortMap) ToFirewallSecurityPolicySortMapOutputWithContext(ctx context.Context) FirewallSecurityPolicySortMapOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallSecurityPolicySortMapOutput)
+func (i FirewallSecuritypolicySortMap) ToFirewallSecuritypolicySortMapOutputWithContext(ctx context.Context) FirewallSecuritypolicySortMapOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FirewallSecuritypolicySortMapOutput)
 }
 
-type FirewallSecurityPolicySortOutput struct{ *pulumi.OutputState }
-
-func (FirewallSecurityPolicySortOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallSecurityPolicySort)(nil)).Elem()
+func (i FirewallSecuritypolicySortMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallSecuritypolicySort] {
+	return pulumix.Output[map[string]*FirewallSecuritypolicySort]{
+		OutputState: i.ToFirewallSecuritypolicySortMapOutputWithContext(ctx).OutputState,
+	}
 }
 
-func (o FirewallSecurityPolicySortOutput) ToFirewallSecurityPolicySortOutput() FirewallSecurityPolicySortOutput {
+type FirewallSecuritypolicySortOutput struct{ *pulumi.OutputState }
+
+func (FirewallSecuritypolicySortOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**FirewallSecuritypolicySort)(nil)).Elem()
+}
+
+func (o FirewallSecuritypolicySortOutput) ToFirewallSecuritypolicySortOutput() FirewallSecuritypolicySortOutput {
 	return o
 }
 
-func (o FirewallSecurityPolicySortOutput) ToFirewallSecurityPolicySortOutputWithContext(ctx context.Context) FirewallSecurityPolicySortOutput {
+func (o FirewallSecuritypolicySortOutput) ToFirewallSecuritypolicySortOutputWithContext(ctx context.Context) FirewallSecuritypolicySortOutput {
 	return o
 }
 
-func (o FirewallSecurityPolicySortOutput) Comment() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *FirewallSecurityPolicySort) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
+func (o FirewallSecuritypolicySortOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallSecuritypolicySort] {
+	return pulumix.Output[*FirewallSecuritypolicySort]{
+		OutputState: o.OutputState,
+	}
 }
 
-func (o FirewallSecurityPolicySortOutput) ForceRecreate() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *FirewallSecurityPolicySort) pulumi.StringPtrOutput { return v.ForceRecreate }).(pulumi.StringPtrOutput)
+func (o FirewallSecuritypolicySortOutput) Comment() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallSecuritypolicySort) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
 }
 
-func (o FirewallSecurityPolicySortOutput) Sortby() pulumi.StringOutput {
-	return o.ApplyT(func(v *FirewallSecurityPolicySort) pulumi.StringOutput { return v.Sortby }).(pulumi.StringOutput)
+func (o FirewallSecuritypolicySortOutput) ForceRecreate() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecuritypolicySort) pulumi.StringOutput { return v.ForceRecreate }).(pulumi.StringOutput)
 }
 
-func (o FirewallSecurityPolicySortOutput) Sortdirection() pulumi.StringOutput {
-	return o.ApplyT(func(v *FirewallSecurityPolicySort) pulumi.StringOutput { return v.Sortdirection }).(pulumi.StringOutput)
+func (o FirewallSecuritypolicySortOutput) ManualOrders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *FirewallSecuritypolicySort) pulumi.StringArrayOutput { return v.ManualOrders }).(pulumi.StringArrayOutput)
 }
 
-func (o FirewallSecurityPolicySortOutput) StatePolicyLists() FirewallSecurityPolicySortStatePolicyListArrayOutput {
-	return o.ApplyT(func(v *FirewallSecurityPolicySort) FirewallSecurityPolicySortStatePolicyListArrayOutput {
+func (o FirewallSecuritypolicySortOutput) Sortby() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecuritypolicySort) pulumi.StringOutput { return v.Sortby }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecuritypolicySortOutput) Sortdirection() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecuritypolicySort) pulumi.StringOutput { return v.Sortdirection }).(pulumi.StringOutput)
+}
+
+func (o FirewallSecuritypolicySortOutput) StatePolicyLists() FirewallSecuritypolicySortStatePolicyListArrayOutput {
+	return o.ApplyT(func(v *FirewallSecuritypolicySort) FirewallSecuritypolicySortStatePolicyListArrayOutput {
 		return v.StatePolicyLists
-	}).(FirewallSecurityPolicySortStatePolicyListArrayOutput)
+	}).(FirewallSecuritypolicySortStatePolicyListArrayOutput)
 }
 
-func (o FirewallSecurityPolicySortOutput) Status() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *FirewallSecurityPolicySort) pulumi.StringPtrOutput { return v.Status }).(pulumi.StringPtrOutput)
+func (o FirewallSecuritypolicySortOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallSecuritypolicySort) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
-func (o FirewallSecurityPolicySortOutput) Vdomparam() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *FirewallSecurityPolicySort) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
+func (o FirewallSecuritypolicySortOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FirewallSecuritypolicySort) pulumi.StringPtrOutput { return v.Vdomparam }).(pulumi.StringPtrOutput)
 }
 
-type FirewallSecurityPolicySortArrayOutput struct{ *pulumi.OutputState }
+type FirewallSecuritypolicySortArrayOutput struct{ *pulumi.OutputState }
 
-func (FirewallSecurityPolicySortArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]*FirewallSecurityPolicySort)(nil)).Elem()
+func (FirewallSecuritypolicySortArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]*FirewallSecuritypolicySort)(nil)).Elem()
 }
 
-func (o FirewallSecurityPolicySortArrayOutput) ToFirewallSecurityPolicySortArrayOutput() FirewallSecurityPolicySortArrayOutput {
+func (o FirewallSecuritypolicySortArrayOutput) ToFirewallSecuritypolicySortArrayOutput() FirewallSecuritypolicySortArrayOutput {
 	return o
 }
 
-func (o FirewallSecurityPolicySortArrayOutput) ToFirewallSecurityPolicySortArrayOutputWithContext(ctx context.Context) FirewallSecurityPolicySortArrayOutput {
+func (o FirewallSecuritypolicySortArrayOutput) ToFirewallSecuritypolicySortArrayOutputWithContext(ctx context.Context) FirewallSecuritypolicySortArrayOutput {
 	return o
 }
 
-func (o FirewallSecurityPolicySortArrayOutput) Index(i pulumi.IntInput) FirewallSecurityPolicySortOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallSecurityPolicySort {
-		return vs[0].([]*FirewallSecurityPolicySort)[vs[1].(int)]
-	}).(FirewallSecurityPolicySortOutput)
+func (o FirewallSecuritypolicySortArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallSecuritypolicySort] {
+	return pulumix.Output[[]*FirewallSecuritypolicySort]{
+		OutputState: o.OutputState,
+	}
 }
 
-type FirewallSecurityPolicySortMapOutput struct{ *pulumi.OutputState }
-
-func (FirewallSecurityPolicySortMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]*FirewallSecurityPolicySort)(nil)).Elem()
+func (o FirewallSecuritypolicySortArrayOutput) Index(i pulumi.IntInput) FirewallSecuritypolicySortOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallSecuritypolicySort {
+		return vs[0].([]*FirewallSecuritypolicySort)[vs[1].(int)]
+	}).(FirewallSecuritypolicySortOutput)
 }
 
-func (o FirewallSecurityPolicySortMapOutput) ToFirewallSecurityPolicySortMapOutput() FirewallSecurityPolicySortMapOutput {
+type FirewallSecuritypolicySortMapOutput struct{ *pulumi.OutputState }
+
+func (FirewallSecuritypolicySortMapOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*map[string]*FirewallSecuritypolicySort)(nil)).Elem()
+}
+
+func (o FirewallSecuritypolicySortMapOutput) ToFirewallSecuritypolicySortMapOutput() FirewallSecuritypolicySortMapOutput {
 	return o
 }
 
-func (o FirewallSecurityPolicySortMapOutput) ToFirewallSecurityPolicySortMapOutputWithContext(ctx context.Context) FirewallSecurityPolicySortMapOutput {
+func (o FirewallSecuritypolicySortMapOutput) ToFirewallSecuritypolicySortMapOutputWithContext(ctx context.Context) FirewallSecuritypolicySortMapOutput {
 	return o
 }
 
-func (o FirewallSecurityPolicySortMapOutput) MapIndex(k pulumi.StringInput) FirewallSecurityPolicySortOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallSecurityPolicySort {
-		return vs[0].(map[string]*FirewallSecurityPolicySort)[vs[1].(string)]
-	}).(FirewallSecurityPolicySortOutput)
+func (o FirewallSecuritypolicySortMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallSecuritypolicySort] {
+	return pulumix.Output[map[string]*FirewallSecuritypolicySort]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o FirewallSecuritypolicySortMapOutput) MapIndex(k pulumi.StringInput) FirewallSecuritypolicySortOutput {
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallSecuritypolicySort {
+		return vs[0].(map[string]*FirewallSecuritypolicySort)[vs[1].(string)]
+	}).(FirewallSecuritypolicySortOutput)
 }
 
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*FirewallSecurityPolicySortInput)(nil)).Elem(), &FirewallSecurityPolicySort{})
-	pulumi.RegisterInputType(reflect.TypeOf((*FirewallSecurityPolicySortArrayInput)(nil)).Elem(), FirewallSecurityPolicySortArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*FirewallSecurityPolicySortMapInput)(nil)).Elem(), FirewallSecurityPolicySortMap{})
-	pulumi.RegisterOutputType(FirewallSecurityPolicySortOutput{})
-	pulumi.RegisterOutputType(FirewallSecurityPolicySortArrayOutput{})
-	pulumi.RegisterOutputType(FirewallSecurityPolicySortMapOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallSecuritypolicySortInput)(nil)).Elem(), &FirewallSecuritypolicySort{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallSecuritypolicySortArrayInput)(nil)).Elem(), FirewallSecuritypolicySortArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallSecuritypolicySortMapInput)(nil)).Elem(), FirewallSecuritypolicySortMap{})
+	pulumi.RegisterOutputType(FirewallSecuritypolicySortOutput{})
+	pulumi.RegisterOutputType(FirewallSecuritypolicySortArrayOutput{})
+	pulumi.RegisterOutputType(FirewallSecuritypolicySortMapOutput{})
 }

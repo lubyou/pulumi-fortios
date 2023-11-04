@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WirelessControllerQosProfile struct {
@@ -215,6 +216,12 @@ func (i *WirelessControllerQosProfile) ToWirelessControllerQosProfileOutputWithC
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerQosProfileOutput)
 }
 
+func (i *WirelessControllerQosProfile) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerQosProfile] {
+	return pulumix.Output[*WirelessControllerQosProfile]{
+		OutputState: i.ToWirelessControllerQosProfileOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerQosProfileArrayInput is an input type that accepts WirelessControllerQosProfileArray and WirelessControllerQosProfileArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerQosProfileArrayInput` via:
 //
@@ -238,6 +245,12 @@ func (i WirelessControllerQosProfileArray) ToWirelessControllerQosProfileArrayOu
 
 func (i WirelessControllerQosProfileArray) ToWirelessControllerQosProfileArrayOutputWithContext(ctx context.Context) WirelessControllerQosProfileArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerQosProfileArrayOutput)
+}
+
+func (i WirelessControllerQosProfileArray) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerQosProfile] {
+	return pulumix.Output[[]*WirelessControllerQosProfile]{
+		OutputState: i.ToWirelessControllerQosProfileArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // WirelessControllerQosProfileMapInput is an input type that accepts WirelessControllerQosProfileMap and WirelessControllerQosProfileMapOutput values.
@@ -265,6 +278,12 @@ func (i WirelessControllerQosProfileMap) ToWirelessControllerQosProfileMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerQosProfileMapOutput)
 }
 
+func (i WirelessControllerQosProfileMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerQosProfile] {
+	return pulumix.Output[map[string]*WirelessControllerQosProfile]{
+		OutputState: i.ToWirelessControllerQosProfileMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerQosProfileOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerQosProfileOutput) ElementType() reflect.Type {
@@ -277,6 +296,12 @@ func (o WirelessControllerQosProfileOutput) ToWirelessControllerQosProfileOutput
 
 func (o WirelessControllerQosProfileOutput) ToWirelessControllerQosProfileOutputWithContext(ctx context.Context) WirelessControllerQosProfileOutput {
 	return o
+}
+
+func (o WirelessControllerQosProfileOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerQosProfile] {
+	return pulumix.Output[*WirelessControllerQosProfile]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerQosProfileOutput) BandwidthAdmissionControl() pulumi.StringOutput {
@@ -405,6 +430,12 @@ func (o WirelessControllerQosProfileArrayOutput) ToWirelessControllerQosProfileA
 	return o
 }
 
+func (o WirelessControllerQosProfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerQosProfile] {
+	return pulumix.Output[[]*WirelessControllerQosProfile]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o WirelessControllerQosProfileArrayOutput) Index(i pulumi.IntInput) WirelessControllerQosProfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerQosProfile {
 		return vs[0].([]*WirelessControllerQosProfile)[vs[1].(int)]
@@ -423,6 +454,12 @@ func (o WirelessControllerQosProfileMapOutput) ToWirelessControllerQosProfileMap
 
 func (o WirelessControllerQosProfileMapOutput) ToWirelessControllerQosProfileMapOutputWithContext(ctx context.Context) WirelessControllerQosProfileMapOutput {
 	return o
+}
+
+func (o WirelessControllerQosProfileMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerQosProfile] {
+	return pulumix.Output[map[string]*WirelessControllerQosProfile]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerQosProfileMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerQosProfileOutput {

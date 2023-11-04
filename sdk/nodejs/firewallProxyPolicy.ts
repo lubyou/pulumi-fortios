@@ -40,9 +40,11 @@ export class FirewallProxyPolicy extends pulumi.CustomResource {
     public readonly applicationList!: pulumi.Output<string>;
     public readonly avProfile!: pulumi.Output<string>;
     public readonly blockNotification!: pulumi.Output<string>;
+    public readonly casbProfile!: pulumi.Output<string>;
     public readonly cifsProfile!: pulumi.Output<string>;
     public readonly comments!: pulumi.Output<string | undefined>;
     public readonly decryptedTrafficMirror!: pulumi.Output<string>;
+    public readonly detectHttpsInHttpRequest!: pulumi.Output<string>;
     public readonly deviceOwnership!: pulumi.Output<string>;
     public readonly disclaimer!: pulumi.Output<string>;
     public readonly dlpProfile!: pulumi.Output<string>;
@@ -107,6 +109,7 @@ export class FirewallProxyPolicy extends pulumi.CustomResource {
     public readonly uuid!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
     public readonly videofilterProfile!: pulumi.Output<string>;
+    public readonly virtualPatchProfile!: pulumi.Output<string>;
     public readonly voipProfile!: pulumi.Output<string>;
     public readonly wafProfile!: pulumi.Output<string>;
     public readonly webcache!: pulumi.Output<string>;
@@ -136,9 +139,11 @@ export class FirewallProxyPolicy extends pulumi.CustomResource {
             resourceInputs["applicationList"] = state ? state.applicationList : undefined;
             resourceInputs["avProfile"] = state ? state.avProfile : undefined;
             resourceInputs["blockNotification"] = state ? state.blockNotification : undefined;
+            resourceInputs["casbProfile"] = state ? state.casbProfile : undefined;
             resourceInputs["cifsProfile"] = state ? state.cifsProfile : undefined;
             resourceInputs["comments"] = state ? state.comments : undefined;
             resourceInputs["decryptedTrafficMirror"] = state ? state.decryptedTrafficMirror : undefined;
+            resourceInputs["detectHttpsInHttpRequest"] = state ? state.detectHttpsInHttpRequest : undefined;
             resourceInputs["deviceOwnership"] = state ? state.deviceOwnership : undefined;
             resourceInputs["disclaimer"] = state ? state.disclaimer : undefined;
             resourceInputs["dlpProfile"] = state ? state.dlpProfile : undefined;
@@ -203,6 +208,7 @@ export class FirewallProxyPolicy extends pulumi.CustomResource {
             resourceInputs["uuid"] = state ? state.uuid : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["videofilterProfile"] = state ? state.videofilterProfile : undefined;
+            resourceInputs["virtualPatchProfile"] = state ? state.virtualPatchProfile : undefined;
             resourceInputs["voipProfile"] = state ? state.voipProfile : undefined;
             resourceInputs["wafProfile"] = state ? state.wafProfile : undefined;
             resourceInputs["webcache"] = state ? state.webcache : undefined;
@@ -229,9 +235,11 @@ export class FirewallProxyPolicy extends pulumi.CustomResource {
             resourceInputs["applicationList"] = args ? args.applicationList : undefined;
             resourceInputs["avProfile"] = args ? args.avProfile : undefined;
             resourceInputs["blockNotification"] = args ? args.blockNotification : undefined;
+            resourceInputs["casbProfile"] = args ? args.casbProfile : undefined;
             resourceInputs["cifsProfile"] = args ? args.cifsProfile : undefined;
             resourceInputs["comments"] = args ? args.comments : undefined;
             resourceInputs["decryptedTrafficMirror"] = args ? args.decryptedTrafficMirror : undefined;
+            resourceInputs["detectHttpsInHttpRequest"] = args ? args.detectHttpsInHttpRequest : undefined;
             resourceInputs["deviceOwnership"] = args ? args.deviceOwnership : undefined;
             resourceInputs["disclaimer"] = args ? args.disclaimer : undefined;
             resourceInputs["dlpProfile"] = args ? args.dlpProfile : undefined;
@@ -296,6 +304,7 @@ export class FirewallProxyPolicy extends pulumi.CustomResource {
             resourceInputs["uuid"] = args ? args.uuid : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["videofilterProfile"] = args ? args.videofilterProfile : undefined;
+            resourceInputs["virtualPatchProfile"] = args ? args.virtualPatchProfile : undefined;
             resourceInputs["voipProfile"] = args ? args.voipProfile : undefined;
             resourceInputs["wafProfile"] = args ? args.wafProfile : undefined;
             resourceInputs["webcache"] = args ? args.webcache : undefined;
@@ -321,9 +330,11 @@ export interface FirewallProxyPolicyState {
     applicationList?: pulumi.Input<string>;
     avProfile?: pulumi.Input<string>;
     blockNotification?: pulumi.Input<string>;
+    casbProfile?: pulumi.Input<string>;
     cifsProfile?: pulumi.Input<string>;
     comments?: pulumi.Input<string>;
     decryptedTrafficMirror?: pulumi.Input<string>;
+    detectHttpsInHttpRequest?: pulumi.Input<string>;
     deviceOwnership?: pulumi.Input<string>;
     disclaimer?: pulumi.Input<string>;
     dlpProfile?: pulumi.Input<string>;
@@ -388,6 +399,7 @@ export interface FirewallProxyPolicyState {
     uuid?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
     videofilterProfile?: pulumi.Input<string>;
+    virtualPatchProfile?: pulumi.Input<string>;
     voipProfile?: pulumi.Input<string>;
     wafProfile?: pulumi.Input<string>;
     webcache?: pulumi.Input<string>;
@@ -409,9 +421,11 @@ export interface FirewallProxyPolicyArgs {
     applicationList?: pulumi.Input<string>;
     avProfile?: pulumi.Input<string>;
     blockNotification?: pulumi.Input<string>;
+    casbProfile?: pulumi.Input<string>;
     cifsProfile?: pulumi.Input<string>;
     comments?: pulumi.Input<string>;
     decryptedTrafficMirror?: pulumi.Input<string>;
+    detectHttpsInHttpRequest?: pulumi.Input<string>;
     deviceOwnership?: pulumi.Input<string>;
     disclaimer?: pulumi.Input<string>;
     dlpProfile?: pulumi.Input<string>;
@@ -476,6 +490,7 @@ export interface FirewallProxyPolicyArgs {
     uuid?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
     videofilterProfile?: pulumi.Input<string>;
+    virtualPatchProfile?: pulumi.Input<string>;
     voipProfile?: pulumi.Input<string>;
     wafProfile?: pulumi.Input<string>;
     webcache?: pulumi.Input<string>;

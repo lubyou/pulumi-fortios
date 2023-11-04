@@ -21,6 +21,7 @@ class SystemSpeedTestScheduleArgs:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
+                 mode: Optional[pulumi.Input[str]] = None,
                  schedules: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSpeedTestScheduleScheduleArgs']]]] = None,
                  server_name: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -44,6 +45,8 @@ class SystemSpeedTestScheduleArgs:
             pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
         if schedules is not None:
             pulumi.set(__self__, "schedules", schedules)
         if server_name is not None:
@@ -109,6 +112,15 @@ class SystemSpeedTestScheduleArgs:
     @interface.setter
     def interface(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "interface", value)
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "mode")
+
+    @mode.setter
+    def mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mode", value)
 
     @property
     @pulumi.getter
@@ -209,6 +221,7 @@ class _SystemSpeedTestScheduleState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
+                 mode: Optional[pulumi.Input[str]] = None,
                  schedules: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSpeedTestScheduleScheduleArgs']]]] = None,
                  server_name: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -232,6 +245,8 @@ class _SystemSpeedTestScheduleState:
             pulumi.set(__self__, "get_all_tables", get_all_tables)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
         if schedules is not None:
             pulumi.set(__self__, "schedules", schedules)
         if server_name is not None:
@@ -297,6 +312,15 @@ class _SystemSpeedTestScheduleState:
     @interface.setter
     def interface(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "interface", value)
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "mode")
+
+    @mode.setter
+    def mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mode", value)
 
     @property
     @pulumi.getter
@@ -399,6 +423,7 @@ class SystemSpeedTestSchedule(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
+                 mode: Optional[pulumi.Input[str]] = None,
                  schedules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSpeedTestScheduleScheduleArgs']]]]] = None,
                  server_name: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -443,6 +468,7 @@ class SystemSpeedTestSchedule(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
+                 mode: Optional[pulumi.Input[str]] = None,
                  schedules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSpeedTestScheduleScheduleArgs']]]]] = None,
                  server_name: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -467,6 +493,7 @@ class SystemSpeedTestSchedule(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["interface"] = interface
+            __props__.__dict__["mode"] = mode
             __props__.__dict__["schedules"] = schedules
             __props__.__dict__["server_name"] = server_name
             __props__.__dict__["status"] = status
@@ -492,6 +519,7 @@ class SystemSpeedTestSchedule(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             get_all_tables: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
+            mode: Optional[pulumi.Input[str]] = None,
             schedules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSpeedTestScheduleScheduleArgs']]]]] = None,
             server_name: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
@@ -519,6 +547,7 @@ class SystemSpeedTestSchedule(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["interface"] = interface
+        __props__.__dict__["mode"] = mode
         __props__.__dict__["schedules"] = schedules
         __props__.__dict__["server_name"] = server_name
         __props__.__dict__["status"] = status
@@ -555,6 +584,11 @@ class SystemSpeedTestSchedule(pulumi.CustomResource):
     @pulumi.getter
     def interface(self) -> pulumi.Output[str]:
         return pulumi.get(self, "interface")
+
+    @property
+    @pulumi.getter
+    def mode(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "mode")
 
     @property
     @pulumi.getter

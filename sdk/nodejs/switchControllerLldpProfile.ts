@@ -35,6 +35,12 @@ export class SwitchControllerLldpProfile extends pulumi.CustomResource {
     }
 
     public readonly autoIsl!: pulumi.Output<string>;
+    public readonly autoIslAuth!: pulumi.Output<string>;
+    public readonly autoIslAuthEncrypt!: pulumi.Output<string>;
+    public readonly autoIslAuthIdentity!: pulumi.Output<string>;
+    public readonly autoIslAuthMacsecProfile!: pulumi.Output<string>;
+    public readonly autoIslAuthReauth!: pulumi.Output<number>;
+    public readonly autoIslAuthUser!: pulumi.Output<string>;
     public readonly autoIslHelloTimer!: pulumi.Output<number>;
     public readonly autoIslPortGroup!: pulumi.Output<number>;
     public readonly autoIslReceiveTimeout!: pulumi.Output<number>;
@@ -64,6 +70,12 @@ export class SwitchControllerLldpProfile extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as SwitchControllerLldpProfileState | undefined;
             resourceInputs["autoIsl"] = state ? state.autoIsl : undefined;
+            resourceInputs["autoIslAuth"] = state ? state.autoIslAuth : undefined;
+            resourceInputs["autoIslAuthEncrypt"] = state ? state.autoIslAuthEncrypt : undefined;
+            resourceInputs["autoIslAuthIdentity"] = state ? state.autoIslAuthIdentity : undefined;
+            resourceInputs["autoIslAuthMacsecProfile"] = state ? state.autoIslAuthMacsecProfile : undefined;
+            resourceInputs["autoIslAuthReauth"] = state ? state.autoIslAuthReauth : undefined;
+            resourceInputs["autoIslAuthUser"] = state ? state.autoIslAuthUser : undefined;
             resourceInputs["autoIslHelloTimer"] = state ? state.autoIslHelloTimer : undefined;
             resourceInputs["autoIslPortGroup"] = state ? state.autoIslPortGroup : undefined;
             resourceInputs["autoIslReceiveTimeout"] = state ? state.autoIslReceiveTimeout : undefined;
@@ -81,6 +93,12 @@ export class SwitchControllerLldpProfile extends pulumi.CustomResource {
         } else {
             const args = argsOrState as SwitchControllerLldpProfileArgs | undefined;
             resourceInputs["autoIsl"] = args ? args.autoIsl : undefined;
+            resourceInputs["autoIslAuth"] = args ? args.autoIslAuth : undefined;
+            resourceInputs["autoIslAuthEncrypt"] = args ? args.autoIslAuthEncrypt : undefined;
+            resourceInputs["autoIslAuthIdentity"] = args ? args.autoIslAuthIdentity : undefined;
+            resourceInputs["autoIslAuthMacsecProfile"] = args ? args.autoIslAuthMacsecProfile : undefined;
+            resourceInputs["autoIslAuthReauth"] = args ? args.autoIslAuthReauth : undefined;
+            resourceInputs["autoIslAuthUser"] = args ? args.autoIslAuthUser : undefined;
             resourceInputs["autoIslHelloTimer"] = args ? args.autoIslHelloTimer : undefined;
             resourceInputs["autoIslPortGroup"] = args ? args.autoIslPortGroup : undefined;
             resourceInputs["autoIslReceiveTimeout"] = args ? args.autoIslReceiveTimeout : undefined;
@@ -106,6 +124,12 @@ export class SwitchControllerLldpProfile extends pulumi.CustomResource {
  */
 export interface SwitchControllerLldpProfileState {
     autoIsl?: pulumi.Input<string>;
+    autoIslAuth?: pulumi.Input<string>;
+    autoIslAuthEncrypt?: pulumi.Input<string>;
+    autoIslAuthIdentity?: pulumi.Input<string>;
+    autoIslAuthMacsecProfile?: pulumi.Input<string>;
+    autoIslAuthReauth?: pulumi.Input<number>;
+    autoIslAuthUser?: pulumi.Input<string>;
     autoIslHelloTimer?: pulumi.Input<number>;
     autoIslPortGroup?: pulumi.Input<number>;
     autoIslReceiveTimeout?: pulumi.Input<number>;
@@ -127,6 +151,12 @@ export interface SwitchControllerLldpProfileState {
  */
 export interface SwitchControllerLldpProfileArgs {
     autoIsl?: pulumi.Input<string>;
+    autoIslAuth?: pulumi.Input<string>;
+    autoIslAuthEncrypt?: pulumi.Input<string>;
+    autoIslAuthIdentity?: pulumi.Input<string>;
+    autoIslAuthMacsecProfile?: pulumi.Input<string>;
+    autoIslAuthReauth?: pulumi.Input<number>;
+    autoIslAuthUser?: pulumi.Input<string>;
     autoIslHelloTimer?: pulumi.Input<number>;
     autoIslPortGroup?: pulumi.Input<number>;
     autoIslReceiveTimeout?: pulumi.Input<number>;

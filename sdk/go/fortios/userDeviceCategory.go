@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type UserDeviceCategory struct {
@@ -105,6 +106,12 @@ func (i *UserDeviceCategory) ToUserDeviceCategoryOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(UserDeviceCategoryOutput)
 }
 
+func (i *UserDeviceCategory) ToOutput(ctx context.Context) pulumix.Output[*UserDeviceCategory] {
+	return pulumix.Output[*UserDeviceCategory]{
+		OutputState: i.ToUserDeviceCategoryOutputWithContext(ctx).OutputState,
+	}
+}
+
 // UserDeviceCategoryArrayInput is an input type that accepts UserDeviceCategoryArray and UserDeviceCategoryArrayOutput values.
 // You can construct a concrete instance of `UserDeviceCategoryArrayInput` via:
 //
@@ -128,6 +135,12 @@ func (i UserDeviceCategoryArray) ToUserDeviceCategoryArrayOutput() UserDeviceCat
 
 func (i UserDeviceCategoryArray) ToUserDeviceCategoryArrayOutputWithContext(ctx context.Context) UserDeviceCategoryArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserDeviceCategoryArrayOutput)
+}
+
+func (i UserDeviceCategoryArray) ToOutput(ctx context.Context) pulumix.Output[[]*UserDeviceCategory] {
+	return pulumix.Output[[]*UserDeviceCategory]{
+		OutputState: i.ToUserDeviceCategoryArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // UserDeviceCategoryMapInput is an input type that accepts UserDeviceCategoryMap and UserDeviceCategoryMapOutput values.
@@ -155,6 +168,12 @@ func (i UserDeviceCategoryMap) ToUserDeviceCategoryMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(UserDeviceCategoryMapOutput)
 }
 
+func (i UserDeviceCategoryMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserDeviceCategory] {
+	return pulumix.Output[map[string]*UserDeviceCategory]{
+		OutputState: i.ToUserDeviceCategoryMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type UserDeviceCategoryOutput struct{ *pulumi.OutputState }
 
 func (UserDeviceCategoryOutput) ElementType() reflect.Type {
@@ -167,6 +186,12 @@ func (o UserDeviceCategoryOutput) ToUserDeviceCategoryOutput() UserDeviceCategor
 
 func (o UserDeviceCategoryOutput) ToUserDeviceCategoryOutputWithContext(ctx context.Context) UserDeviceCategoryOutput {
 	return o
+}
+
+func (o UserDeviceCategoryOutput) ToOutput(ctx context.Context) pulumix.Output[*UserDeviceCategory] {
+	return pulumix.Output[*UserDeviceCategory]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserDeviceCategoryOutput) Comment() pulumi.StringPtrOutput {
@@ -199,6 +224,12 @@ func (o UserDeviceCategoryArrayOutput) ToUserDeviceCategoryArrayOutputWithContex
 	return o
 }
 
+func (o UserDeviceCategoryArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*UserDeviceCategory] {
+	return pulumix.Output[[]*UserDeviceCategory]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o UserDeviceCategoryArrayOutput) Index(i pulumi.IntInput) UserDeviceCategoryOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserDeviceCategory {
 		return vs[0].([]*UserDeviceCategory)[vs[1].(int)]
@@ -217,6 +248,12 @@ func (o UserDeviceCategoryMapOutput) ToUserDeviceCategoryMapOutput() UserDeviceC
 
 func (o UserDeviceCategoryMapOutput) ToUserDeviceCategoryMapOutputWithContext(ctx context.Context) UserDeviceCategoryMapOutput {
 	return o
+}
+
+func (o UserDeviceCategoryMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserDeviceCategory] {
+	return pulumix.Output[map[string]*UserDeviceCategory]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserDeviceCategoryMapOutput) MapIndex(k pulumi.StringInput) UserDeviceCategoryOutput {

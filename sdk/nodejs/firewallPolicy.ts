@@ -48,6 +48,7 @@ export class FirewallPolicy extends pulumi.CustomResource {
     public readonly blockNotification!: pulumi.Output<string>;
     public readonly captivePortalExempt!: pulumi.Output<string>;
     public readonly capturePacket!: pulumi.Output<string>;
+    public readonly casbProfile!: pulumi.Output<string | undefined>;
     public readonly cifsProfile!: pulumi.Output<string | undefined>;
     public readonly comments!: pulumi.Output<string | undefined>;
     public readonly customLogFields!: pulumi.Output<outputs.FirewallPolicyCustomLogField[] | undefined>;
@@ -203,6 +204,7 @@ export class FirewallPolicy extends pulumi.CustomResource {
     public readonly uuid!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
     public readonly videofilterProfile!: pulumi.Output<string | undefined>;
+    public readonly virtualPatchProfile!: pulumi.Output<string | undefined>;
     public readonly vlanCosFwd!: pulumi.Output<number>;
     public readonly vlanCosRev!: pulumi.Output<number>;
     public readonly vlanFilter!: pulumi.Output<string | undefined>;
@@ -256,6 +258,7 @@ export class FirewallPolicy extends pulumi.CustomResource {
             resourceInputs["blockNotification"] = state ? state.blockNotification : undefined;
             resourceInputs["captivePortalExempt"] = state ? state.captivePortalExempt : undefined;
             resourceInputs["capturePacket"] = state ? state.capturePacket : undefined;
+            resourceInputs["casbProfile"] = state ? state.casbProfile : undefined;
             resourceInputs["cifsProfile"] = state ? state.cifsProfile : undefined;
             resourceInputs["comments"] = state ? state.comments : undefined;
             resourceInputs["customLogFields"] = state ? state.customLogFields : undefined;
@@ -411,6 +414,7 @@ export class FirewallPolicy extends pulumi.CustomResource {
             resourceInputs["uuid"] = state ? state.uuid : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["videofilterProfile"] = state ? state.videofilterProfile : undefined;
+            resourceInputs["virtualPatchProfile"] = state ? state.virtualPatchProfile : undefined;
             resourceInputs["vlanCosFwd"] = state ? state.vlanCosFwd : undefined;
             resourceInputs["vlanCosRev"] = state ? state.vlanCosRev : undefined;
             resourceInputs["vlanFilter"] = state ? state.vlanFilter : undefined;
@@ -458,6 +462,7 @@ export class FirewallPolicy extends pulumi.CustomResource {
             resourceInputs["blockNotification"] = args ? args.blockNotification : undefined;
             resourceInputs["captivePortalExempt"] = args ? args.captivePortalExempt : undefined;
             resourceInputs["capturePacket"] = args ? args.capturePacket : undefined;
+            resourceInputs["casbProfile"] = args ? args.casbProfile : undefined;
             resourceInputs["cifsProfile"] = args ? args.cifsProfile : undefined;
             resourceInputs["comments"] = args ? args.comments : undefined;
             resourceInputs["customLogFields"] = args ? args.customLogFields : undefined;
@@ -613,6 +618,7 @@ export class FirewallPolicy extends pulumi.CustomResource {
             resourceInputs["uuid"] = args ? args.uuid : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["videofilterProfile"] = args ? args.videofilterProfile : undefined;
+            resourceInputs["virtualPatchProfile"] = args ? args.virtualPatchProfile : undefined;
             resourceInputs["vlanCosFwd"] = args ? args.vlanCosFwd : undefined;
             resourceInputs["vlanCosRev"] = args ? args.vlanCosRev : undefined;
             resourceInputs["vlanFilter"] = args ? args.vlanFilter : undefined;
@@ -662,6 +668,7 @@ export interface FirewallPolicyState {
     blockNotification?: pulumi.Input<string>;
     captivePortalExempt?: pulumi.Input<string>;
     capturePacket?: pulumi.Input<string>;
+    casbProfile?: pulumi.Input<string>;
     cifsProfile?: pulumi.Input<string>;
     comments?: pulumi.Input<string>;
     customLogFields?: pulumi.Input<pulumi.Input<inputs.FirewallPolicyCustomLogField>[]>;
@@ -817,6 +824,7 @@ export interface FirewallPolicyState {
     uuid?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
     videofilterProfile?: pulumi.Input<string>;
+    virtualPatchProfile?: pulumi.Input<string>;
     vlanCosFwd?: pulumi.Input<number>;
     vlanCosRev?: pulumi.Input<number>;
     vlanFilter?: pulumi.Input<string>;
@@ -862,6 +870,7 @@ export interface FirewallPolicyArgs {
     blockNotification?: pulumi.Input<string>;
     captivePortalExempt?: pulumi.Input<string>;
     capturePacket?: pulumi.Input<string>;
+    casbProfile?: pulumi.Input<string>;
     cifsProfile?: pulumi.Input<string>;
     comments?: pulumi.Input<string>;
     customLogFields?: pulumi.Input<pulumi.Input<inputs.FirewallPolicyCustomLogField>[]>;
@@ -1017,6 +1026,7 @@ export interface FirewallPolicyArgs {
     uuid?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
     videofilterProfile?: pulumi.Input<string>;
+    virtualPatchProfile?: pulumi.Input<string>;
     vlanCosFwd?: pulumi.Input<number>;
     vlanCosRev?: pulumi.Input<number>;
     vlanFilter?: pulumi.Input<string>;

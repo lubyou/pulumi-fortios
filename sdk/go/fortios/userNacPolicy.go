@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type UserNacPolicy struct {
@@ -225,6 +226,12 @@ func (i *UserNacPolicy) ToUserNacPolicyOutputWithContext(ctx context.Context) Us
 	return pulumi.ToOutputWithContext(ctx, i).(UserNacPolicyOutput)
 }
 
+func (i *UserNacPolicy) ToOutput(ctx context.Context) pulumix.Output[*UserNacPolicy] {
+	return pulumix.Output[*UserNacPolicy]{
+		OutputState: i.ToUserNacPolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // UserNacPolicyArrayInput is an input type that accepts UserNacPolicyArray and UserNacPolicyArrayOutput values.
 // You can construct a concrete instance of `UserNacPolicyArrayInput` via:
 //
@@ -248,6 +255,12 @@ func (i UserNacPolicyArray) ToUserNacPolicyArrayOutput() UserNacPolicyArrayOutpu
 
 func (i UserNacPolicyArray) ToUserNacPolicyArrayOutputWithContext(ctx context.Context) UserNacPolicyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserNacPolicyArrayOutput)
+}
+
+func (i UserNacPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]*UserNacPolicy] {
+	return pulumix.Output[[]*UserNacPolicy]{
+		OutputState: i.ToUserNacPolicyArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // UserNacPolicyMapInput is an input type that accepts UserNacPolicyMap and UserNacPolicyMapOutput values.
@@ -275,6 +288,12 @@ func (i UserNacPolicyMap) ToUserNacPolicyMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(UserNacPolicyMapOutput)
 }
 
+func (i UserNacPolicyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserNacPolicy] {
+	return pulumix.Output[map[string]*UserNacPolicy]{
+		OutputState: i.ToUserNacPolicyMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type UserNacPolicyOutput struct{ *pulumi.OutputState }
 
 func (UserNacPolicyOutput) ElementType() reflect.Type {
@@ -287,6 +306,12 @@ func (o UserNacPolicyOutput) ToUserNacPolicyOutput() UserNacPolicyOutput {
 
 func (o UserNacPolicyOutput) ToUserNacPolicyOutputWithContext(ctx context.Context) UserNacPolicyOutput {
 	return o
+}
+
+func (o UserNacPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[*UserNacPolicy] {
+	return pulumix.Output[*UserNacPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserNacPolicyOutput) Category() pulumi.StringOutput {
@@ -415,6 +440,12 @@ func (o UserNacPolicyArrayOutput) ToUserNacPolicyArrayOutputWithContext(ctx cont
 	return o
 }
 
+func (o UserNacPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*UserNacPolicy] {
+	return pulumix.Output[[]*UserNacPolicy]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o UserNacPolicyArrayOutput) Index(i pulumi.IntInput) UserNacPolicyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserNacPolicy {
 		return vs[0].([]*UserNacPolicy)[vs[1].(int)]
@@ -433,6 +464,12 @@ func (o UserNacPolicyMapOutput) ToUserNacPolicyMapOutput() UserNacPolicyMapOutpu
 
 func (o UserNacPolicyMapOutput) ToUserNacPolicyMapOutputWithContext(ctx context.Context) UserNacPolicyMapOutput {
 	return o
+}
+
+func (o UserNacPolicyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserNacPolicy] {
+	return pulumix.Output[map[string]*UserNacPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserNacPolicyMapOutput) MapIndex(k pulumi.StringInput) UserNacPolicyOutput {

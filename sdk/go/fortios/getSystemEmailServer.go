@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemEmailServer(ctx *pulumi.Context, args *LookupSystemEmailServerArgs, opts ...pulumi.InvokeOption) (*LookupSystemEmailServerResult, error) {
@@ -82,6 +83,12 @@ func (o LookupSystemEmailServerResultOutput) ToLookupSystemEmailServerResultOutp
 
 func (o LookupSystemEmailServerResultOutput) ToLookupSystemEmailServerResultOutputWithContext(ctx context.Context) LookupSystemEmailServerResultOutput {
 	return o
+}
+
+func (o LookupSystemEmailServerResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemEmailServerResult] {
+	return pulumix.Output[LookupSystemEmailServerResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupSystemEmailServerResultOutput) Authenticate() pulumi.StringOutput {

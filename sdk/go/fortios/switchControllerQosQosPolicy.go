@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerQosQosPolicy struct {
@@ -119,6 +120,12 @@ func (i *SwitchControllerQosQosPolicy) ToSwitchControllerQosQosPolicyOutputWithC
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerQosQosPolicyOutput)
 }
 
+func (i *SwitchControllerQosQosPolicy) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerQosQosPolicy] {
+	return pulumix.Output[*SwitchControllerQosQosPolicy]{
+		OutputState: i.ToSwitchControllerQosQosPolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SwitchControllerQosQosPolicyArrayInput is an input type that accepts SwitchControllerQosQosPolicyArray and SwitchControllerQosQosPolicyArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerQosQosPolicyArrayInput` via:
 //
@@ -142,6 +149,12 @@ func (i SwitchControllerQosQosPolicyArray) ToSwitchControllerQosQosPolicyArrayOu
 
 func (i SwitchControllerQosQosPolicyArray) ToSwitchControllerQosQosPolicyArrayOutputWithContext(ctx context.Context) SwitchControllerQosQosPolicyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerQosQosPolicyArrayOutput)
+}
+
+func (i SwitchControllerQosQosPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerQosQosPolicy] {
+	return pulumix.Output[[]*SwitchControllerQosQosPolicy]{
+		OutputState: i.ToSwitchControllerQosQosPolicyArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SwitchControllerQosQosPolicyMapInput is an input type that accepts SwitchControllerQosQosPolicyMap and SwitchControllerQosQosPolicyMapOutput values.
@@ -169,6 +182,12 @@ func (i SwitchControllerQosQosPolicyMap) ToSwitchControllerQosQosPolicyMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerQosQosPolicyMapOutput)
 }
 
+func (i SwitchControllerQosQosPolicyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerQosQosPolicy] {
+	return pulumix.Output[map[string]*SwitchControllerQosQosPolicy]{
+		OutputState: i.ToSwitchControllerQosQosPolicyMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SwitchControllerQosQosPolicyOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerQosQosPolicyOutput) ElementType() reflect.Type {
@@ -181,6 +200,12 @@ func (o SwitchControllerQosQosPolicyOutput) ToSwitchControllerQosQosPolicyOutput
 
 func (o SwitchControllerQosQosPolicyOutput) ToSwitchControllerQosQosPolicyOutputWithContext(ctx context.Context) SwitchControllerQosQosPolicyOutput {
 	return o
+}
+
+func (o SwitchControllerQosQosPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerQosQosPolicy] {
+	return pulumix.Output[*SwitchControllerQosQosPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerQosQosPolicyOutput) DefaultCos() pulumi.IntOutput {
@@ -221,6 +246,12 @@ func (o SwitchControllerQosQosPolicyArrayOutput) ToSwitchControllerQosQosPolicyA
 	return o
 }
 
+func (o SwitchControllerQosQosPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerQosQosPolicy] {
+	return pulumix.Output[[]*SwitchControllerQosQosPolicy]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SwitchControllerQosQosPolicyArrayOutput) Index(i pulumi.IntInput) SwitchControllerQosQosPolicyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerQosQosPolicy {
 		return vs[0].([]*SwitchControllerQosQosPolicy)[vs[1].(int)]
@@ -239,6 +270,12 @@ func (o SwitchControllerQosQosPolicyMapOutput) ToSwitchControllerQosQosPolicyMap
 
 func (o SwitchControllerQosQosPolicyMapOutput) ToSwitchControllerQosQosPolicyMapOutputWithContext(ctx context.Context) SwitchControllerQosQosPolicyMapOutput {
 	return o
+}
+
+func (o SwitchControllerQosQosPolicyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerQosQosPolicy] {
+	return pulumix.Output[map[string]*SwitchControllerQosQosPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerQosQosPolicyMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerQosQosPolicyOutput {

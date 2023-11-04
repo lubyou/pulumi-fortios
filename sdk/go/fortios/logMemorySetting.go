@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type LogMemorySetting struct {
@@ -100,6 +101,12 @@ func (i *LogMemorySetting) ToLogMemorySettingOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(LogMemorySettingOutput)
 }
 
+func (i *LogMemorySetting) ToOutput(ctx context.Context) pulumix.Output[*LogMemorySetting] {
+	return pulumix.Output[*LogMemorySetting]{
+		OutputState: i.ToLogMemorySettingOutputWithContext(ctx).OutputState,
+	}
+}
+
 // LogMemorySettingArrayInput is an input type that accepts LogMemorySettingArray and LogMemorySettingArrayOutput values.
 // You can construct a concrete instance of `LogMemorySettingArrayInput` via:
 //
@@ -123,6 +130,12 @@ func (i LogMemorySettingArray) ToLogMemorySettingArrayOutput() LogMemorySettingA
 
 func (i LogMemorySettingArray) ToLogMemorySettingArrayOutputWithContext(ctx context.Context) LogMemorySettingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogMemorySettingArrayOutput)
+}
+
+func (i LogMemorySettingArray) ToOutput(ctx context.Context) pulumix.Output[[]*LogMemorySetting] {
+	return pulumix.Output[[]*LogMemorySetting]{
+		OutputState: i.ToLogMemorySettingArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // LogMemorySettingMapInput is an input type that accepts LogMemorySettingMap and LogMemorySettingMapOutput values.
@@ -150,6 +163,12 @@ func (i LogMemorySettingMap) ToLogMemorySettingMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(LogMemorySettingMapOutput)
 }
 
+func (i LogMemorySettingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogMemorySetting] {
+	return pulumix.Output[map[string]*LogMemorySetting]{
+		OutputState: i.ToLogMemorySettingMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type LogMemorySettingOutput struct{ *pulumi.OutputState }
 
 func (LogMemorySettingOutput) ElementType() reflect.Type {
@@ -162,6 +181,12 @@ func (o LogMemorySettingOutput) ToLogMemorySettingOutput() LogMemorySettingOutpu
 
 func (o LogMemorySettingOutput) ToLogMemorySettingOutputWithContext(ctx context.Context) LogMemorySettingOutput {
 	return o
+}
+
+func (o LogMemorySettingOutput) ToOutput(ctx context.Context) pulumix.Output[*LogMemorySetting] {
+	return pulumix.Output[*LogMemorySetting]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LogMemorySettingOutput) Diskfull() pulumi.StringOutput {
@@ -190,6 +215,12 @@ func (o LogMemorySettingArrayOutput) ToLogMemorySettingArrayOutputWithContext(ct
 	return o
 }
 
+func (o LogMemorySettingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LogMemorySetting] {
+	return pulumix.Output[[]*LogMemorySetting]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LogMemorySettingArrayOutput) Index(i pulumi.IntInput) LogMemorySettingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogMemorySetting {
 		return vs[0].([]*LogMemorySetting)[vs[1].(int)]
@@ -208,6 +239,12 @@ func (o LogMemorySettingMapOutput) ToLogMemorySettingMapOutput() LogMemorySettin
 
 func (o LogMemorySettingMapOutput) ToLogMemorySettingMapOutputWithContext(ctx context.Context) LogMemorySettingMapOutput {
 	return o
+}
+
+func (o LogMemorySettingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogMemorySetting] {
+	return pulumix.Output[map[string]*LogMemorySetting]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LogMemorySettingMapOutput) MapIndex(k pulumi.StringInput) LogMemorySettingOutput {

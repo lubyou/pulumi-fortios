@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type AntivirusExemptList struct {
@@ -115,6 +116,12 @@ func (i *AntivirusExemptList) ToAntivirusExemptListOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(AntivirusExemptListOutput)
 }
 
+func (i *AntivirusExemptList) ToOutput(ctx context.Context) pulumix.Output[*AntivirusExemptList] {
+	return pulumix.Output[*AntivirusExemptList]{
+		OutputState: i.ToAntivirusExemptListOutputWithContext(ctx).OutputState,
+	}
+}
+
 // AntivirusExemptListArrayInput is an input type that accepts AntivirusExemptListArray and AntivirusExemptListArrayOutput values.
 // You can construct a concrete instance of `AntivirusExemptListArrayInput` via:
 //
@@ -138,6 +145,12 @@ func (i AntivirusExemptListArray) ToAntivirusExemptListArrayOutput() AntivirusEx
 
 func (i AntivirusExemptListArray) ToAntivirusExemptListArrayOutputWithContext(ctx context.Context) AntivirusExemptListArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AntivirusExemptListArrayOutput)
+}
+
+func (i AntivirusExemptListArray) ToOutput(ctx context.Context) pulumix.Output[[]*AntivirusExemptList] {
+	return pulumix.Output[[]*AntivirusExemptList]{
+		OutputState: i.ToAntivirusExemptListArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // AntivirusExemptListMapInput is an input type that accepts AntivirusExemptListMap and AntivirusExemptListMapOutput values.
@@ -165,6 +178,12 @@ func (i AntivirusExemptListMap) ToAntivirusExemptListMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(AntivirusExemptListMapOutput)
 }
 
+func (i AntivirusExemptListMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AntivirusExemptList] {
+	return pulumix.Output[map[string]*AntivirusExemptList]{
+		OutputState: i.ToAntivirusExemptListMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AntivirusExemptListOutput struct{ *pulumi.OutputState }
 
 func (AntivirusExemptListOutput) ElementType() reflect.Type {
@@ -177,6 +196,12 @@ func (o AntivirusExemptListOutput) ToAntivirusExemptListOutput() AntivirusExempt
 
 func (o AntivirusExemptListOutput) ToAntivirusExemptListOutputWithContext(ctx context.Context) AntivirusExemptListOutput {
 	return o
+}
+
+func (o AntivirusExemptListOutput) ToOutput(ctx context.Context) pulumix.Output[*AntivirusExemptList] {
+	return pulumix.Output[*AntivirusExemptList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AntivirusExemptListOutput) Comment() pulumi.StringPtrOutput {
@@ -217,6 +242,12 @@ func (o AntivirusExemptListArrayOutput) ToAntivirusExemptListArrayOutputWithCont
 	return o
 }
 
+func (o AntivirusExemptListArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AntivirusExemptList] {
+	return pulumix.Output[[]*AntivirusExemptList]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o AntivirusExemptListArrayOutput) Index(i pulumi.IntInput) AntivirusExemptListOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AntivirusExemptList {
 		return vs[0].([]*AntivirusExemptList)[vs[1].(int)]
@@ -235,6 +266,12 @@ func (o AntivirusExemptListMapOutput) ToAntivirusExemptListMapOutput() Antivirus
 
 func (o AntivirusExemptListMapOutput) ToAntivirusExemptListMapOutputWithContext(ctx context.Context) AntivirusExemptListMapOutput {
 	return o
+}
+
+func (o AntivirusExemptListMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AntivirusExemptList] {
+	return pulumix.Output[map[string]*AntivirusExemptList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AntivirusExemptListMapOutput) MapIndex(k pulumi.StringInput) AntivirusExemptListOutput {

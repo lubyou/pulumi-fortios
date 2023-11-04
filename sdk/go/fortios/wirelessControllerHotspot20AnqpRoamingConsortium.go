@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WirelessControllerHotspot20AnqpRoamingConsortium struct {
@@ -110,6 +111,12 @@ func (i *WirelessControllerHotspot20AnqpRoamingConsortium) ToWirelessControllerH
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20AnqpRoamingConsortiumOutput)
 }
 
+func (i *WirelessControllerHotspot20AnqpRoamingConsortium) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerHotspot20AnqpRoamingConsortium] {
+	return pulumix.Output[*WirelessControllerHotspot20AnqpRoamingConsortium]{
+		OutputState: i.ToWirelessControllerHotspot20AnqpRoamingConsortiumOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerHotspot20AnqpRoamingConsortiumArrayInput is an input type that accepts WirelessControllerHotspot20AnqpRoamingConsortiumArray and WirelessControllerHotspot20AnqpRoamingConsortiumArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20AnqpRoamingConsortiumArrayInput` via:
 //
@@ -133,6 +140,12 @@ func (i WirelessControllerHotspot20AnqpRoamingConsortiumArray) ToWirelessControl
 
 func (i WirelessControllerHotspot20AnqpRoamingConsortiumArray) ToWirelessControllerHotspot20AnqpRoamingConsortiumArrayOutputWithContext(ctx context.Context) WirelessControllerHotspot20AnqpRoamingConsortiumArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20AnqpRoamingConsortiumArrayOutput)
+}
+
+func (i WirelessControllerHotspot20AnqpRoamingConsortiumArray) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerHotspot20AnqpRoamingConsortium] {
+	return pulumix.Output[[]*WirelessControllerHotspot20AnqpRoamingConsortium]{
+		OutputState: i.ToWirelessControllerHotspot20AnqpRoamingConsortiumArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // WirelessControllerHotspot20AnqpRoamingConsortiumMapInput is an input type that accepts WirelessControllerHotspot20AnqpRoamingConsortiumMap and WirelessControllerHotspot20AnqpRoamingConsortiumMapOutput values.
@@ -160,6 +173,12 @@ func (i WirelessControllerHotspot20AnqpRoamingConsortiumMap) ToWirelessControlle
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20AnqpRoamingConsortiumMapOutput)
 }
 
+func (i WirelessControllerHotspot20AnqpRoamingConsortiumMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerHotspot20AnqpRoamingConsortium] {
+	return pulumix.Output[map[string]*WirelessControllerHotspot20AnqpRoamingConsortium]{
+		OutputState: i.ToWirelessControllerHotspot20AnqpRoamingConsortiumMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerHotspot20AnqpRoamingConsortiumOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20AnqpRoamingConsortiumOutput) ElementType() reflect.Type {
@@ -172,6 +191,12 @@ func (o WirelessControllerHotspot20AnqpRoamingConsortiumOutput) ToWirelessContro
 
 func (o WirelessControllerHotspot20AnqpRoamingConsortiumOutput) ToWirelessControllerHotspot20AnqpRoamingConsortiumOutputWithContext(ctx context.Context) WirelessControllerHotspot20AnqpRoamingConsortiumOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20AnqpRoamingConsortiumOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerHotspot20AnqpRoamingConsortium] {
+	return pulumix.Output[*WirelessControllerHotspot20AnqpRoamingConsortium]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20AnqpRoamingConsortiumOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -214,6 +239,12 @@ func (o WirelessControllerHotspot20AnqpRoamingConsortiumArrayOutput) ToWirelessC
 	return o
 }
 
+func (o WirelessControllerHotspot20AnqpRoamingConsortiumArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerHotspot20AnqpRoamingConsortium] {
+	return pulumix.Output[[]*WirelessControllerHotspot20AnqpRoamingConsortium]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o WirelessControllerHotspot20AnqpRoamingConsortiumArrayOutput) Index(i pulumi.IntInput) WirelessControllerHotspot20AnqpRoamingConsortiumOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerHotspot20AnqpRoamingConsortium {
 		return vs[0].([]*WirelessControllerHotspot20AnqpRoamingConsortium)[vs[1].(int)]
@@ -232,6 +263,12 @@ func (o WirelessControllerHotspot20AnqpRoamingConsortiumMapOutput) ToWirelessCon
 
 func (o WirelessControllerHotspot20AnqpRoamingConsortiumMapOutput) ToWirelessControllerHotspot20AnqpRoamingConsortiumMapOutputWithContext(ctx context.Context) WirelessControllerHotspot20AnqpRoamingConsortiumMapOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20AnqpRoamingConsortiumMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerHotspot20AnqpRoamingConsortium] {
+	return pulumix.Output[map[string]*WirelessControllerHotspot20AnqpRoamingConsortium]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20AnqpRoamingConsortiumMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerHotspot20AnqpRoamingConsortiumOutput {

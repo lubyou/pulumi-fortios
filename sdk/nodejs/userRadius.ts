@@ -34,12 +34,15 @@ export class UserRadius extends pulumi.CustomResource {
         return obj['__pulumiType'] === UserRadius.__pulumiType;
     }
 
+    public readonly accountKeyCertField!: pulumi.Output<string>;
+    public readonly accountKeyProcessing!: pulumi.Output<string>;
     public readonly accountingServers!: pulumi.Output<outputs.UserRadiusAccountingServer[] | undefined>;
     public readonly acctAllServers!: pulumi.Output<string>;
     public readonly acctInterimInterval!: pulumi.Output<number>;
     public readonly allUsergroup!: pulumi.Output<string>;
     public readonly authType!: pulumi.Output<string>;
     public readonly caCert!: pulumi.Output<string>;
+    public readonly callStationIdType!: pulumi.Output<string>;
     public readonly classes!: pulumi.Output<outputs.UserRadiusClass[] | undefined>;
     public readonly clientCert!: pulumi.Output<string>;
     public readonly delimiter!: pulumi.Output<string>;
@@ -106,12 +109,15 @@ export class UserRadius extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserRadiusState | undefined;
+            resourceInputs["accountKeyCertField"] = state ? state.accountKeyCertField : undefined;
+            resourceInputs["accountKeyProcessing"] = state ? state.accountKeyProcessing : undefined;
             resourceInputs["accountingServers"] = state ? state.accountingServers : undefined;
             resourceInputs["acctAllServers"] = state ? state.acctAllServers : undefined;
             resourceInputs["acctInterimInterval"] = state ? state.acctInterimInterval : undefined;
             resourceInputs["allUsergroup"] = state ? state.allUsergroup : undefined;
             resourceInputs["authType"] = state ? state.authType : undefined;
             resourceInputs["caCert"] = state ? state.caCert : undefined;
+            resourceInputs["callStationIdType"] = state ? state.callStationIdType : undefined;
             resourceInputs["classes"] = state ? state.classes : undefined;
             resourceInputs["clientCert"] = state ? state.clientCert : undefined;
             resourceInputs["delimiter"] = state ? state.delimiter : undefined;
@@ -166,12 +172,15 @@ export class UserRadius extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as UserRadiusArgs | undefined;
+            resourceInputs["accountKeyCertField"] = args ? args.accountKeyCertField : undefined;
+            resourceInputs["accountKeyProcessing"] = args ? args.accountKeyProcessing : undefined;
             resourceInputs["accountingServers"] = args ? args.accountingServers : undefined;
             resourceInputs["acctAllServers"] = args ? args.acctAllServers : undefined;
             resourceInputs["acctInterimInterval"] = args ? args.acctInterimInterval : undefined;
             resourceInputs["allUsergroup"] = args ? args.allUsergroup : undefined;
             resourceInputs["authType"] = args ? args.authType : undefined;
             resourceInputs["caCert"] = args ? args.caCert : undefined;
+            resourceInputs["callStationIdType"] = args ? args.callStationIdType : undefined;
             resourceInputs["classes"] = args ? args.classes : undefined;
             resourceInputs["clientCert"] = args ? args.clientCert : undefined;
             resourceInputs["delimiter"] = args ? args.delimiter : undefined;
@@ -236,12 +245,15 @@ export class UserRadius extends pulumi.CustomResource {
  * Input properties used for looking up and filtering UserRadius resources.
  */
 export interface UserRadiusState {
+    accountKeyCertField?: pulumi.Input<string>;
+    accountKeyProcessing?: pulumi.Input<string>;
     accountingServers?: pulumi.Input<pulumi.Input<inputs.UserRadiusAccountingServer>[]>;
     acctAllServers?: pulumi.Input<string>;
     acctInterimInterval?: pulumi.Input<number>;
     allUsergroup?: pulumi.Input<string>;
     authType?: pulumi.Input<string>;
     caCert?: pulumi.Input<string>;
+    callStationIdType?: pulumi.Input<string>;
     classes?: pulumi.Input<pulumi.Input<inputs.UserRadiusClass>[]>;
     clientCert?: pulumi.Input<string>;
     delimiter?: pulumi.Input<string>;
@@ -300,12 +312,15 @@ export interface UserRadiusState {
  * The set of arguments for constructing a UserRadius resource.
  */
 export interface UserRadiusArgs {
+    accountKeyCertField?: pulumi.Input<string>;
+    accountKeyProcessing?: pulumi.Input<string>;
     accountingServers?: pulumi.Input<pulumi.Input<inputs.UserRadiusAccountingServer>[]>;
     acctAllServers?: pulumi.Input<string>;
     acctInterimInterval?: pulumi.Input<number>;
     allUsergroup?: pulumi.Input<string>;
     authType?: pulumi.Input<string>;
     caCert?: pulumi.Input<string>;
+    callStationIdType?: pulumi.Input<string>;
     classes?: pulumi.Input<pulumi.Input<inputs.UserRadiusClass>[]>;
     clientCert?: pulumi.Input<string>;
     delimiter?: pulumi.Input<string>;

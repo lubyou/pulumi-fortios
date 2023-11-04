@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallAccessProxyVirtualHost struct {
@@ -115,6 +116,12 @@ func (i *FirewallAccessProxyVirtualHost) ToFirewallAccessProxyVirtualHostOutputW
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallAccessProxyVirtualHostOutput)
 }
 
+func (i *FirewallAccessProxyVirtualHost) ToOutput(ctx context.Context) pulumix.Output[*FirewallAccessProxyVirtualHost] {
+	return pulumix.Output[*FirewallAccessProxyVirtualHost]{
+		OutputState: i.ToFirewallAccessProxyVirtualHostOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallAccessProxyVirtualHostArrayInput is an input type that accepts FirewallAccessProxyVirtualHostArray and FirewallAccessProxyVirtualHostArrayOutput values.
 // You can construct a concrete instance of `FirewallAccessProxyVirtualHostArrayInput` via:
 //
@@ -138,6 +145,12 @@ func (i FirewallAccessProxyVirtualHostArray) ToFirewallAccessProxyVirtualHostArr
 
 func (i FirewallAccessProxyVirtualHostArray) ToFirewallAccessProxyVirtualHostArrayOutputWithContext(ctx context.Context) FirewallAccessProxyVirtualHostArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallAccessProxyVirtualHostArrayOutput)
+}
+
+func (i FirewallAccessProxyVirtualHostArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallAccessProxyVirtualHost] {
+	return pulumix.Output[[]*FirewallAccessProxyVirtualHost]{
+		OutputState: i.ToFirewallAccessProxyVirtualHostArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallAccessProxyVirtualHostMapInput is an input type that accepts FirewallAccessProxyVirtualHostMap and FirewallAccessProxyVirtualHostMapOutput values.
@@ -165,6 +178,12 @@ func (i FirewallAccessProxyVirtualHostMap) ToFirewallAccessProxyVirtualHostMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallAccessProxyVirtualHostMapOutput)
 }
 
+func (i FirewallAccessProxyVirtualHostMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallAccessProxyVirtualHost] {
+	return pulumix.Output[map[string]*FirewallAccessProxyVirtualHost]{
+		OutputState: i.ToFirewallAccessProxyVirtualHostMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallAccessProxyVirtualHostOutput struct{ *pulumi.OutputState }
 
 func (FirewallAccessProxyVirtualHostOutput) ElementType() reflect.Type {
@@ -177,6 +196,12 @@ func (o FirewallAccessProxyVirtualHostOutput) ToFirewallAccessProxyVirtualHostOu
 
 func (o FirewallAccessProxyVirtualHostOutput) ToFirewallAccessProxyVirtualHostOutputWithContext(ctx context.Context) FirewallAccessProxyVirtualHostOutput {
 	return o
+}
+
+func (o FirewallAccessProxyVirtualHostOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallAccessProxyVirtualHost] {
+	return pulumix.Output[*FirewallAccessProxyVirtualHost]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallAccessProxyVirtualHostOutput) Host() pulumi.StringOutput {
@@ -217,6 +242,12 @@ func (o FirewallAccessProxyVirtualHostArrayOutput) ToFirewallAccessProxyVirtualH
 	return o
 }
 
+func (o FirewallAccessProxyVirtualHostArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallAccessProxyVirtualHost] {
+	return pulumix.Output[[]*FirewallAccessProxyVirtualHost]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallAccessProxyVirtualHostArrayOutput) Index(i pulumi.IntInput) FirewallAccessProxyVirtualHostOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallAccessProxyVirtualHost {
 		return vs[0].([]*FirewallAccessProxyVirtualHost)[vs[1].(int)]
@@ -235,6 +266,12 @@ func (o FirewallAccessProxyVirtualHostMapOutput) ToFirewallAccessProxyVirtualHos
 
 func (o FirewallAccessProxyVirtualHostMapOutput) ToFirewallAccessProxyVirtualHostMapOutputWithContext(ctx context.Context) FirewallAccessProxyVirtualHostMapOutput {
 	return o
+}
+
+func (o FirewallAccessProxyVirtualHostMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallAccessProxyVirtualHost] {
+	return pulumix.Output[map[string]*FirewallAccessProxyVirtualHost]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallAccessProxyVirtualHostMapOutput) MapIndex(k pulumi.StringInput) FirewallAccessProxyVirtualHostOutput {

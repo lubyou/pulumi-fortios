@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallScheduleGroup struct {
@@ -124,6 +125,12 @@ func (i *FirewallScheduleGroup) ToFirewallScheduleGroupOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallScheduleGroupOutput)
 }
 
+func (i *FirewallScheduleGroup) ToOutput(ctx context.Context) pulumix.Output[*FirewallScheduleGroup] {
+	return pulumix.Output[*FirewallScheduleGroup]{
+		OutputState: i.ToFirewallScheduleGroupOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallScheduleGroupArrayInput is an input type that accepts FirewallScheduleGroupArray and FirewallScheduleGroupArrayOutput values.
 // You can construct a concrete instance of `FirewallScheduleGroupArrayInput` via:
 //
@@ -147,6 +154,12 @@ func (i FirewallScheduleGroupArray) ToFirewallScheduleGroupArrayOutput() Firewal
 
 func (i FirewallScheduleGroupArray) ToFirewallScheduleGroupArrayOutputWithContext(ctx context.Context) FirewallScheduleGroupArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallScheduleGroupArrayOutput)
+}
+
+func (i FirewallScheduleGroupArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallScheduleGroup] {
+	return pulumix.Output[[]*FirewallScheduleGroup]{
+		OutputState: i.ToFirewallScheduleGroupArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallScheduleGroupMapInput is an input type that accepts FirewallScheduleGroupMap and FirewallScheduleGroupMapOutput values.
@@ -174,6 +187,12 @@ func (i FirewallScheduleGroupMap) ToFirewallScheduleGroupMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallScheduleGroupMapOutput)
 }
 
+func (i FirewallScheduleGroupMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallScheduleGroup] {
+	return pulumix.Output[map[string]*FirewallScheduleGroup]{
+		OutputState: i.ToFirewallScheduleGroupMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallScheduleGroupOutput struct{ *pulumi.OutputState }
 
 func (FirewallScheduleGroupOutput) ElementType() reflect.Type {
@@ -186,6 +205,12 @@ func (o FirewallScheduleGroupOutput) ToFirewallScheduleGroupOutput() FirewallSch
 
 func (o FirewallScheduleGroupOutput) ToFirewallScheduleGroupOutputWithContext(ctx context.Context) FirewallScheduleGroupOutput {
 	return o
+}
+
+func (o FirewallScheduleGroupOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallScheduleGroup] {
+	return pulumix.Output[*FirewallScheduleGroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallScheduleGroupOutput) Color() pulumi.IntOutput {
@@ -230,6 +255,12 @@ func (o FirewallScheduleGroupArrayOutput) ToFirewallScheduleGroupArrayOutputWith
 	return o
 }
 
+func (o FirewallScheduleGroupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallScheduleGroup] {
+	return pulumix.Output[[]*FirewallScheduleGroup]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallScheduleGroupArrayOutput) Index(i pulumi.IntInput) FirewallScheduleGroupOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallScheduleGroup {
 		return vs[0].([]*FirewallScheduleGroup)[vs[1].(int)]
@@ -248,6 +279,12 @@ func (o FirewallScheduleGroupMapOutput) ToFirewallScheduleGroupMapOutput() Firew
 
 func (o FirewallScheduleGroupMapOutput) ToFirewallScheduleGroupMapOutputWithContext(ctx context.Context) FirewallScheduleGroupMapOutput {
 	return o
+}
+
+func (o FirewallScheduleGroupMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallScheduleGroup] {
+	return pulumix.Output[map[string]*FirewallScheduleGroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallScheduleGroupMapOutput) MapIndex(k pulumi.StringInput) FirewallScheduleGroupOutput {

@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemGreTunnel struct {
@@ -187,6 +188,12 @@ func (i *SystemGreTunnel) ToSystemGreTunnelOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SystemGreTunnelOutput)
 }
 
+func (i *SystemGreTunnel) ToOutput(ctx context.Context) pulumix.Output[*SystemGreTunnel] {
+	return pulumix.Output[*SystemGreTunnel]{
+		OutputState: i.ToSystemGreTunnelOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemGreTunnelArrayInput is an input type that accepts SystemGreTunnelArray and SystemGreTunnelArrayOutput values.
 // You can construct a concrete instance of `SystemGreTunnelArrayInput` via:
 //
@@ -210,6 +217,12 @@ func (i SystemGreTunnelArray) ToSystemGreTunnelArrayOutput() SystemGreTunnelArra
 
 func (i SystemGreTunnelArray) ToSystemGreTunnelArrayOutputWithContext(ctx context.Context) SystemGreTunnelArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemGreTunnelArrayOutput)
+}
+
+func (i SystemGreTunnelArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemGreTunnel] {
+	return pulumix.Output[[]*SystemGreTunnel]{
+		OutputState: i.ToSystemGreTunnelArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemGreTunnelMapInput is an input type that accepts SystemGreTunnelMap and SystemGreTunnelMapOutput values.
@@ -237,6 +250,12 @@ func (i SystemGreTunnelMap) ToSystemGreTunnelMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemGreTunnelMapOutput)
 }
 
+func (i SystemGreTunnelMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemGreTunnel] {
+	return pulumix.Output[map[string]*SystemGreTunnel]{
+		OutputState: i.ToSystemGreTunnelMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemGreTunnelOutput struct{ *pulumi.OutputState }
 
 func (SystemGreTunnelOutput) ElementType() reflect.Type {
@@ -249,6 +268,12 @@ func (o SystemGreTunnelOutput) ToSystemGreTunnelOutput() SystemGreTunnelOutput {
 
 func (o SystemGreTunnelOutput) ToSystemGreTunnelOutputWithContext(ctx context.Context) SystemGreTunnelOutput {
 	return o
+}
+
+func (o SystemGreTunnelOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemGreTunnel] {
+	return pulumix.Output[*SystemGreTunnel]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemGreTunnelOutput) ChecksumReception() pulumi.StringOutput {
@@ -341,6 +366,12 @@ func (o SystemGreTunnelArrayOutput) ToSystemGreTunnelArrayOutputWithContext(ctx 
 	return o
 }
 
+func (o SystemGreTunnelArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemGreTunnel] {
+	return pulumix.Output[[]*SystemGreTunnel]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemGreTunnelArrayOutput) Index(i pulumi.IntInput) SystemGreTunnelOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemGreTunnel {
 		return vs[0].([]*SystemGreTunnel)[vs[1].(int)]
@@ -359,6 +390,12 @@ func (o SystemGreTunnelMapOutput) ToSystemGreTunnelMapOutput() SystemGreTunnelMa
 
 func (o SystemGreTunnelMapOutput) ToSystemGreTunnelMapOutputWithContext(ctx context.Context) SystemGreTunnelMapOutput {
 	return o
+}
+
+func (o SystemGreTunnelMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemGreTunnel] {
+	return pulumix.Output[map[string]*SystemGreTunnel]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemGreTunnelMapOutput) MapIndex(k pulumi.StringInput) SystemGreTunnelOutput {

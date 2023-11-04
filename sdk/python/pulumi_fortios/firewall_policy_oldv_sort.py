@@ -11,10 +11,10 @@ from . import _utilities
 from . import outputs
 from ._inputs import *
 
-__all__ = ['FirewallSecurityPolicySortArgs', 'FirewallSecurityPolicySort']
+__all__ = ['FirewallPolicyOldvSortArgs', 'FirewallPolicyOldvSort']
 
 @pulumi.input_type
-class FirewallSecurityPolicySortArgs:
+class FirewallPolicyOldvSortArgs:
     def __init__(__self__, *,
                  sortby: pulumi.Input[str],
                  sortdirection: pulumi.Input[str],
@@ -23,7 +23,7 @@ class FirewallSecurityPolicySortArgs:
                  status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
-        The set of arguments for constructing a FirewallSecurityPolicySort resource.
+        The set of arguments for constructing a FirewallPolicyOldvSort resource.
         """
         pulumi.set(__self__, "sortby", sortby)
         pulumi.set(__self__, "sortdirection", sortdirection)
@@ -92,17 +92,17 @@ class FirewallSecurityPolicySortArgs:
 
 
 @pulumi.input_type
-class _FirewallSecurityPolicySortState:
+class _FirewallPolicyOldvSortState:
     def __init__(__self__, *,
                  comment: Optional[pulumi.Input[str]] = None,
                  force_recreate: Optional[pulumi.Input[str]] = None,
                  sortby: Optional[pulumi.Input[str]] = None,
                  sortdirection: Optional[pulumi.Input[str]] = None,
-                 state_policy_lists: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicySortStatePolicyListArgs']]]] = None,
+                 state_policy_lists: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyOldvSortStatePolicyListArgs']]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
-        Input properties used for looking up and filtering FirewallSecurityPolicySort resources.
+        Input properties used for looking up and filtering FirewallPolicyOldvSort resources.
         """
         if comment is not None:
             pulumi.set(__self__, "comment", comment)
@@ -157,11 +157,11 @@ class _FirewallSecurityPolicySortState:
 
     @property
     @pulumi.getter(name="statePolicyLists")
-    def state_policy_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicySortStatePolicyListArgs']]]]:
+    def state_policy_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyOldvSortStatePolicyListArgs']]]]:
         return pulumi.get(self, "state_policy_lists")
 
     @state_policy_lists.setter
-    def state_policy_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicySortStatePolicyListArgs']]]]):
+    def state_policy_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyOldvSortStatePolicyListArgs']]]]):
         pulumi.set(self, "state_policy_lists", value)
 
     @property
@@ -183,7 +183,7 @@ class _FirewallSecurityPolicySortState:
         pulumi.set(self, "vdomparam", value)
 
 
-class FirewallSecurityPolicySort(pulumi.CustomResource):
+class FirewallPolicyOldvSort(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
@@ -196,7 +196,7 @@ class FirewallSecurityPolicySort(pulumi.CustomResource):
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a FirewallSecurityPolicySort resource with the given unique name, props, and options.
+        Create a FirewallPolicyOldvSort resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
@@ -204,17 +204,17 @@ class FirewallSecurityPolicySort(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: FirewallSecurityPolicySortArgs,
+                 args: FirewallPolicyOldvSortArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a FirewallSecurityPolicySort resource with the given unique name, props, and options.
+        Create a FirewallPolicyOldvSort resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
-        :param FirewallSecurityPolicySortArgs args: The arguments to use to populate this resource's properties.
+        :param FirewallPolicyOldvSortArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
         """
         ...
     def __init__(__self__, resource_name: str, *args, **kwargs):
-        resource_args, opts = _utilities.get_resource_args_opts(FirewallSecurityPolicySortArgs, pulumi.ResourceOptions, *args, **kwargs)
+        resource_args, opts = _utilities.get_resource_args_opts(FirewallPolicyOldvSortArgs, pulumi.ResourceOptions, *args, **kwargs)
         if resource_args is not None:
             __self__._internal_init(resource_name, opts, **resource_args.__dict__)
         else:
@@ -236,7 +236,7 @@ class FirewallSecurityPolicySort(pulumi.CustomResource):
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
-            __props__ = FirewallSecurityPolicySortArgs.__new__(FirewallSecurityPolicySortArgs)
+            __props__ = FirewallPolicyOldvSortArgs.__new__(FirewallPolicyOldvSortArgs)
 
             __props__.__dict__["comment"] = comment
             __props__.__dict__["force_recreate"] = force_recreate
@@ -249,8 +249,8 @@ class FirewallSecurityPolicySort(pulumi.CustomResource):
             __props__.__dict__["status"] = status
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["state_policy_lists"] = None
-        super(FirewallSecurityPolicySort, __self__).__init__(
-            'fortios:index/firewallSecurityPolicySort:FirewallSecurityPolicySort',
+        super(FirewallPolicyOldvSort, __self__).__init__(
+            'fortios:index/firewallPolicyOldvSort:FirewallPolicyOldvSort',
             resource_name,
             __props__,
             opts)
@@ -263,11 +263,11 @@ class FirewallSecurityPolicySort(pulumi.CustomResource):
             force_recreate: Optional[pulumi.Input[str]] = None,
             sortby: Optional[pulumi.Input[str]] = None,
             sortdirection: Optional[pulumi.Input[str]] = None,
-            state_policy_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicySortStatePolicyListArgs']]]]] = None,
+            state_policy_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyOldvSortStatePolicyListArgs']]]]] = None,
             status: Optional[pulumi.Input[str]] = None,
-            vdomparam: Optional[pulumi.Input[str]] = None) -> 'FirewallSecurityPolicySort':
+            vdomparam: Optional[pulumi.Input[str]] = None) -> 'FirewallPolicyOldvSort':
         """
-        Get an existing FirewallSecurityPolicySort resource's state with the given name, id, and optional extra
+        Get an existing FirewallPolicyOldvSort resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
 
         :param str resource_name: The unique name of the resulting resource.
@@ -276,7 +276,7 @@ class FirewallSecurityPolicySort(pulumi.CustomResource):
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
-        __props__ = _FirewallSecurityPolicySortState.__new__(_FirewallSecurityPolicySortState)
+        __props__ = _FirewallPolicyOldvSortState.__new__(_FirewallPolicyOldvSortState)
 
         __props__.__dict__["comment"] = comment
         __props__.__dict__["force_recreate"] = force_recreate
@@ -285,7 +285,7 @@ class FirewallSecurityPolicySort(pulumi.CustomResource):
         __props__.__dict__["state_policy_lists"] = state_policy_lists
         __props__.__dict__["status"] = status
         __props__.__dict__["vdomparam"] = vdomparam
-        return FirewallSecurityPolicySort(resource_name, opts=opts, __props__=__props__)
+        return FirewallPolicyOldvSort(resource_name, opts=opts, __props__=__props__)
 
     @property
     @pulumi.getter
@@ -294,7 +294,7 @@ class FirewallSecurityPolicySort(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="forceRecreate")
-    def force_recreate(self) -> pulumi.Output[Optional[str]]:
+    def force_recreate(self) -> pulumi.Output[str]:
         return pulumi.get(self, "force_recreate")
 
     @property
@@ -309,12 +309,12 @@ class FirewallSecurityPolicySort(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="statePolicyLists")
-    def state_policy_lists(self) -> pulumi.Output[Sequence['outputs.FirewallSecurityPolicySortStatePolicyList']]:
+    def state_policy_lists(self) -> pulumi.Output[Sequence['outputs.FirewallPolicyOldvSortStatePolicyList']]:
         return pulumi.get(self, "state_policy_lists")
 
     @property
     @pulumi.getter
-    def status(self) -> pulumi.Output[Optional[str]]:
+    def status(self) -> pulumi.Output[str]:
         return pulumi.get(self, "status")
 
     @property

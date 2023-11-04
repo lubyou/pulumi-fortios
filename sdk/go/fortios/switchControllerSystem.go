@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerSystem struct {
@@ -150,6 +151,12 @@ func (i *SwitchControllerSystem) ToSwitchControllerSystemOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSystemOutput)
 }
 
+func (i *SwitchControllerSystem) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerSystem] {
+	return pulumix.Output[*SwitchControllerSystem]{
+		OutputState: i.ToSwitchControllerSystemOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SwitchControllerSystemArrayInput is an input type that accepts SwitchControllerSystemArray and SwitchControllerSystemArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerSystemArrayInput` via:
 //
@@ -173,6 +180,12 @@ func (i SwitchControllerSystemArray) ToSwitchControllerSystemArrayOutput() Switc
 
 func (i SwitchControllerSystemArray) ToSwitchControllerSystemArrayOutputWithContext(ctx context.Context) SwitchControllerSystemArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSystemArrayOutput)
+}
+
+func (i SwitchControllerSystemArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerSystem] {
+	return pulumix.Output[[]*SwitchControllerSystem]{
+		OutputState: i.ToSwitchControllerSystemArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SwitchControllerSystemMapInput is an input type that accepts SwitchControllerSystemMap and SwitchControllerSystemMapOutput values.
@@ -200,6 +213,12 @@ func (i SwitchControllerSystemMap) ToSwitchControllerSystemMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSystemMapOutput)
 }
 
+func (i SwitchControllerSystemMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerSystem] {
+	return pulumix.Output[map[string]*SwitchControllerSystem]{
+		OutputState: i.ToSwitchControllerSystemMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SwitchControllerSystemOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSystemOutput) ElementType() reflect.Type {
@@ -212,6 +231,12 @@ func (o SwitchControllerSystemOutput) ToSwitchControllerSystemOutput() SwitchCon
 
 func (o SwitchControllerSystemOutput) ToSwitchControllerSystemOutputWithContext(ctx context.Context) SwitchControllerSystemOutput {
 	return o
+}
+
+func (o SwitchControllerSystemOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerSystem] {
+	return pulumix.Output[*SwitchControllerSystem]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerSystemOutput) CaputpEchoInterval() pulumi.IntOutput {
@@ -280,6 +305,12 @@ func (o SwitchControllerSystemArrayOutput) ToSwitchControllerSystemArrayOutputWi
 	return o
 }
 
+func (o SwitchControllerSystemArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerSystem] {
+	return pulumix.Output[[]*SwitchControllerSystem]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SwitchControllerSystemArrayOutput) Index(i pulumi.IntInput) SwitchControllerSystemOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerSystem {
 		return vs[0].([]*SwitchControllerSystem)[vs[1].(int)]
@@ -298,6 +329,12 @@ func (o SwitchControllerSystemMapOutput) ToSwitchControllerSystemMapOutput() Swi
 
 func (o SwitchControllerSystemMapOutput) ToSwitchControllerSystemMapOutputWithContext(ctx context.Context) SwitchControllerSystemMapOutput {
 	return o
+}
+
+func (o SwitchControllerSystemMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerSystem] {
+	return pulumix.Output[map[string]*SwitchControllerSystem]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerSystemMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerSystemOutput {

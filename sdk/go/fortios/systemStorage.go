@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemStorage struct {
@@ -135,6 +136,12 @@ func (i *SystemStorage) ToSystemStorageOutputWithContext(ctx context.Context) Sy
 	return pulumi.ToOutputWithContext(ctx, i).(SystemStorageOutput)
 }
 
+func (i *SystemStorage) ToOutput(ctx context.Context) pulumix.Output[*SystemStorage] {
+	return pulumix.Output[*SystemStorage]{
+		OutputState: i.ToSystemStorageOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemStorageArrayInput is an input type that accepts SystemStorageArray and SystemStorageArrayOutput values.
 // You can construct a concrete instance of `SystemStorageArrayInput` via:
 //
@@ -158,6 +165,12 @@ func (i SystemStorageArray) ToSystemStorageArrayOutput() SystemStorageArrayOutpu
 
 func (i SystemStorageArray) ToSystemStorageArrayOutputWithContext(ctx context.Context) SystemStorageArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemStorageArrayOutput)
+}
+
+func (i SystemStorageArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemStorage] {
+	return pulumix.Output[[]*SystemStorage]{
+		OutputState: i.ToSystemStorageArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemStorageMapInput is an input type that accepts SystemStorageMap and SystemStorageMapOutput values.
@@ -185,6 +198,12 @@ func (i SystemStorageMap) ToSystemStorageMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemStorageMapOutput)
 }
 
+func (i SystemStorageMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemStorage] {
+	return pulumix.Output[map[string]*SystemStorage]{
+		OutputState: i.ToSystemStorageMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemStorageOutput struct{ *pulumi.OutputState }
 
 func (SystemStorageOutput) ElementType() reflect.Type {
@@ -197,6 +216,12 @@ func (o SystemStorageOutput) ToSystemStorageOutput() SystemStorageOutput {
 
 func (o SystemStorageOutput) ToSystemStorageOutputWithContext(ctx context.Context) SystemStorageOutput {
 	return o
+}
+
+func (o SystemStorageOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemStorage] {
+	return pulumix.Output[*SystemStorage]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemStorageOutput) Device() pulumi.StringOutput {
@@ -253,6 +278,12 @@ func (o SystemStorageArrayOutput) ToSystemStorageArrayOutputWithContext(ctx cont
 	return o
 }
 
+func (o SystemStorageArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemStorage] {
+	return pulumix.Output[[]*SystemStorage]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemStorageArrayOutput) Index(i pulumi.IntInput) SystemStorageOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemStorage {
 		return vs[0].([]*SystemStorage)[vs[1].(int)]
@@ -271,6 +302,12 @@ func (o SystemStorageMapOutput) ToSystemStorageMapOutput() SystemStorageMapOutpu
 
 func (o SystemStorageMapOutput) ToSystemStorageMapOutputWithContext(ctx context.Context) SystemStorageMapOutput {
 	return o
+}
+
+func (o SystemStorageMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemStorage] {
+	return pulumix.Output[map[string]*SystemStorage]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemStorageMapOutput) MapIndex(k pulumi.StringInput) SystemStorageOutput {

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type RouterospfNeighbor struct {
@@ -115,6 +116,12 @@ func (i *RouterospfNeighbor) ToRouterospfNeighborOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(RouterospfNeighborOutput)
 }
 
+func (i *RouterospfNeighbor) ToOutput(ctx context.Context) pulumix.Output[*RouterospfNeighbor] {
+	return pulumix.Output[*RouterospfNeighbor]{
+		OutputState: i.ToRouterospfNeighborOutputWithContext(ctx).OutputState,
+	}
+}
+
 // RouterospfNeighborArrayInput is an input type that accepts RouterospfNeighborArray and RouterospfNeighborArrayOutput values.
 // You can construct a concrete instance of `RouterospfNeighborArrayInput` via:
 //
@@ -138,6 +145,12 @@ func (i RouterospfNeighborArray) ToRouterospfNeighborArrayOutput() RouterospfNei
 
 func (i RouterospfNeighborArray) ToRouterospfNeighborArrayOutputWithContext(ctx context.Context) RouterospfNeighborArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterospfNeighborArrayOutput)
+}
+
+func (i RouterospfNeighborArray) ToOutput(ctx context.Context) pulumix.Output[[]*RouterospfNeighbor] {
+	return pulumix.Output[[]*RouterospfNeighbor]{
+		OutputState: i.ToRouterospfNeighborArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // RouterospfNeighborMapInput is an input type that accepts RouterospfNeighborMap and RouterospfNeighborMapOutput values.
@@ -165,6 +178,12 @@ func (i RouterospfNeighborMap) ToRouterospfNeighborMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(RouterospfNeighborMapOutput)
 }
 
+func (i RouterospfNeighborMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RouterospfNeighbor] {
+	return pulumix.Output[map[string]*RouterospfNeighbor]{
+		OutputState: i.ToRouterospfNeighborMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RouterospfNeighborOutput struct{ *pulumi.OutputState }
 
 func (RouterospfNeighborOutput) ElementType() reflect.Type {
@@ -177,6 +196,12 @@ func (o RouterospfNeighborOutput) ToRouterospfNeighborOutput() RouterospfNeighbo
 
 func (o RouterospfNeighborOutput) ToRouterospfNeighborOutputWithContext(ctx context.Context) RouterospfNeighborOutput {
 	return o
+}
+
+func (o RouterospfNeighborOutput) ToOutput(ctx context.Context) pulumix.Output[*RouterospfNeighbor] {
+	return pulumix.Output[*RouterospfNeighbor]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RouterospfNeighborOutput) Cost() pulumi.IntOutput {
@@ -217,6 +242,12 @@ func (o RouterospfNeighborArrayOutput) ToRouterospfNeighborArrayOutputWithContex
 	return o
 }
 
+func (o RouterospfNeighborArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RouterospfNeighbor] {
+	return pulumix.Output[[]*RouterospfNeighbor]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o RouterospfNeighborArrayOutput) Index(i pulumi.IntInput) RouterospfNeighborOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RouterospfNeighbor {
 		return vs[0].([]*RouterospfNeighbor)[vs[1].(int)]
@@ -235,6 +266,12 @@ func (o RouterospfNeighborMapOutput) ToRouterospfNeighborMapOutput() RouterospfN
 
 func (o RouterospfNeighborMapOutput) ToRouterospfNeighborMapOutputWithContext(ctx context.Context) RouterospfNeighborMapOutput {
 	return o
+}
+
+func (o RouterospfNeighborMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RouterospfNeighbor] {
+	return pulumix.Output[map[string]*RouterospfNeighbor]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RouterospfNeighborMapOutput) MapIndex(k pulumi.StringInput) RouterospfNeighborOutput {

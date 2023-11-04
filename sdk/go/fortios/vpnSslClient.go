@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type VpnSslClient struct {
@@ -175,6 +176,12 @@ func (i *VpnSslClient) ToVpnSslClientOutputWithContext(ctx context.Context) VpnS
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslClientOutput)
 }
 
+func (i *VpnSslClient) ToOutput(ctx context.Context) pulumix.Output[*VpnSslClient] {
+	return pulumix.Output[*VpnSslClient]{
+		OutputState: i.ToVpnSslClientOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnSslClientArrayInput is an input type that accepts VpnSslClientArray and VpnSslClientArrayOutput values.
 // You can construct a concrete instance of `VpnSslClientArrayInput` via:
 //
@@ -198,6 +205,12 @@ func (i VpnSslClientArray) ToVpnSslClientArrayOutput() VpnSslClientArrayOutput {
 
 func (i VpnSslClientArray) ToVpnSslClientArrayOutputWithContext(ctx context.Context) VpnSslClientArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslClientArrayOutput)
+}
+
+func (i VpnSslClientArray) ToOutput(ctx context.Context) pulumix.Output[[]*VpnSslClient] {
+	return pulumix.Output[[]*VpnSslClient]{
+		OutputState: i.ToVpnSslClientArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // VpnSslClientMapInput is an input type that accepts VpnSslClientMap and VpnSslClientMapOutput values.
@@ -225,6 +238,12 @@ func (i VpnSslClientMap) ToVpnSslClientMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslClientMapOutput)
 }
 
+func (i VpnSslClientMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnSslClient] {
+	return pulumix.Output[map[string]*VpnSslClient]{
+		OutputState: i.ToVpnSslClientMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnSslClientOutput struct{ *pulumi.OutputState }
 
 func (VpnSslClientOutput) ElementType() reflect.Type {
@@ -237,6 +256,12 @@ func (o VpnSslClientOutput) ToVpnSslClientOutput() VpnSslClientOutput {
 
 func (o VpnSslClientOutput) ToVpnSslClientOutputWithContext(ctx context.Context) VpnSslClientOutput {
 	return o
+}
+
+func (o VpnSslClientOutput) ToOutput(ctx context.Context) pulumix.Output[*VpnSslClient] {
+	return pulumix.Output[*VpnSslClient]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslClientOutput) Certificate() pulumi.StringOutput {
@@ -325,6 +350,12 @@ func (o VpnSslClientArrayOutput) ToVpnSslClientArrayOutputWithContext(ctx contex
 	return o
 }
 
+func (o VpnSslClientArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VpnSslClient] {
+	return pulumix.Output[[]*VpnSslClient]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o VpnSslClientArrayOutput) Index(i pulumi.IntInput) VpnSslClientOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnSslClient {
 		return vs[0].([]*VpnSslClient)[vs[1].(int)]
@@ -343,6 +374,12 @@ func (o VpnSslClientMapOutput) ToVpnSslClientMapOutput() VpnSslClientMapOutput {
 
 func (o VpnSslClientMapOutput) ToVpnSslClientMapOutputWithContext(ctx context.Context) VpnSslClientMapOutput {
 	return o
+}
+
+func (o VpnSslClientMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnSslClient] {
+	return pulumix.Output[map[string]*VpnSslClient]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslClientMapOutput) MapIndex(k pulumi.StringInput) VpnSslClientOutput {

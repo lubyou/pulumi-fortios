@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FortimanagerFirewallObjectAddress struct {
@@ -135,6 +136,12 @@ func (i *FortimanagerFirewallObjectAddress) ToFortimanagerFirewallObjectAddressO
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerFirewallObjectAddressOutput)
 }
 
+func (i *FortimanagerFirewallObjectAddress) ToOutput(ctx context.Context) pulumix.Output[*FortimanagerFirewallObjectAddress] {
+	return pulumix.Output[*FortimanagerFirewallObjectAddress]{
+		OutputState: i.ToFortimanagerFirewallObjectAddressOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FortimanagerFirewallObjectAddressArrayInput is an input type that accepts FortimanagerFirewallObjectAddressArray and FortimanagerFirewallObjectAddressArrayOutput values.
 // You can construct a concrete instance of `FortimanagerFirewallObjectAddressArrayInput` via:
 //
@@ -158,6 +165,12 @@ func (i FortimanagerFirewallObjectAddressArray) ToFortimanagerFirewallObjectAddr
 
 func (i FortimanagerFirewallObjectAddressArray) ToFortimanagerFirewallObjectAddressArrayOutputWithContext(ctx context.Context) FortimanagerFirewallObjectAddressArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerFirewallObjectAddressArrayOutput)
+}
+
+func (i FortimanagerFirewallObjectAddressArray) ToOutput(ctx context.Context) pulumix.Output[[]*FortimanagerFirewallObjectAddress] {
+	return pulumix.Output[[]*FortimanagerFirewallObjectAddress]{
+		OutputState: i.ToFortimanagerFirewallObjectAddressArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FortimanagerFirewallObjectAddressMapInput is an input type that accepts FortimanagerFirewallObjectAddressMap and FortimanagerFirewallObjectAddressMapOutput values.
@@ -185,6 +198,12 @@ func (i FortimanagerFirewallObjectAddressMap) ToFortimanagerFirewallObjectAddres
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerFirewallObjectAddressMapOutput)
 }
 
+func (i FortimanagerFirewallObjectAddressMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FortimanagerFirewallObjectAddress] {
+	return pulumix.Output[map[string]*FortimanagerFirewallObjectAddress]{
+		OutputState: i.ToFortimanagerFirewallObjectAddressMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FortimanagerFirewallObjectAddressOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerFirewallObjectAddressOutput) ElementType() reflect.Type {
@@ -197,6 +216,12 @@ func (o FortimanagerFirewallObjectAddressOutput) ToFortimanagerFirewallObjectAdd
 
 func (o FortimanagerFirewallObjectAddressOutput) ToFortimanagerFirewallObjectAddressOutputWithContext(ctx context.Context) FortimanagerFirewallObjectAddressOutput {
 	return o
+}
+
+func (o FortimanagerFirewallObjectAddressOutput) ToOutput(ctx context.Context) pulumix.Output[*FortimanagerFirewallObjectAddress] {
+	return pulumix.Output[*FortimanagerFirewallObjectAddress]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FortimanagerFirewallObjectAddressOutput) Adom() pulumi.StringPtrOutput {
@@ -253,6 +278,12 @@ func (o FortimanagerFirewallObjectAddressArrayOutput) ToFortimanagerFirewallObje
 	return o
 }
 
+func (o FortimanagerFirewallObjectAddressArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FortimanagerFirewallObjectAddress] {
+	return pulumix.Output[[]*FortimanagerFirewallObjectAddress]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FortimanagerFirewallObjectAddressArrayOutput) Index(i pulumi.IntInput) FortimanagerFirewallObjectAddressOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FortimanagerFirewallObjectAddress {
 		return vs[0].([]*FortimanagerFirewallObjectAddress)[vs[1].(int)]
@@ -271,6 +302,12 @@ func (o FortimanagerFirewallObjectAddressMapOutput) ToFortimanagerFirewallObject
 
 func (o FortimanagerFirewallObjectAddressMapOutput) ToFortimanagerFirewallObjectAddressMapOutputWithContext(ctx context.Context) FortimanagerFirewallObjectAddressMapOutput {
 	return o
+}
+
+func (o FortimanagerFirewallObjectAddressMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FortimanagerFirewallObjectAddress] {
+	return pulumix.Output[map[string]*FortimanagerFirewallObjectAddress]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FortimanagerFirewallObjectAddressMapOutput) MapIndex(k pulumi.StringInput) FortimanagerFirewallObjectAddressOutput {

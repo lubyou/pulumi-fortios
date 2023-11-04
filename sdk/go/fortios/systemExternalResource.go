@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemExternalResource struct {
@@ -184,6 +185,12 @@ func (i *SystemExternalResource) ToSystemExternalResourceOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(SystemExternalResourceOutput)
 }
 
+func (i *SystemExternalResource) ToOutput(ctx context.Context) pulumix.Output[*SystemExternalResource] {
+	return pulumix.Output[*SystemExternalResource]{
+		OutputState: i.ToSystemExternalResourceOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemExternalResourceArrayInput is an input type that accepts SystemExternalResourceArray and SystemExternalResourceArrayOutput values.
 // You can construct a concrete instance of `SystemExternalResourceArrayInput` via:
 //
@@ -207,6 +214,12 @@ func (i SystemExternalResourceArray) ToSystemExternalResourceArrayOutput() Syste
 
 func (i SystemExternalResourceArray) ToSystemExternalResourceArrayOutputWithContext(ctx context.Context) SystemExternalResourceArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemExternalResourceArrayOutput)
+}
+
+func (i SystemExternalResourceArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemExternalResource] {
+	return pulumix.Output[[]*SystemExternalResource]{
+		OutputState: i.ToSystemExternalResourceArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemExternalResourceMapInput is an input type that accepts SystemExternalResourceMap and SystemExternalResourceMapOutput values.
@@ -234,6 +247,12 @@ func (i SystemExternalResourceMap) ToSystemExternalResourceMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(SystemExternalResourceMapOutput)
 }
 
+func (i SystemExternalResourceMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemExternalResource] {
+	return pulumix.Output[map[string]*SystemExternalResource]{
+		OutputState: i.ToSystemExternalResourceMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemExternalResourceOutput struct{ *pulumi.OutputState }
 
 func (SystemExternalResourceOutput) ElementType() reflect.Type {
@@ -246,6 +265,12 @@ func (o SystemExternalResourceOutput) ToSystemExternalResourceOutput() SystemExt
 
 func (o SystemExternalResourceOutput) ToSystemExternalResourceOutputWithContext(ctx context.Context) SystemExternalResourceOutput {
 	return o
+}
+
+func (o SystemExternalResourceOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemExternalResource] {
+	return pulumix.Output[*SystemExternalResource]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemExternalResourceOutput) Category() pulumi.IntOutput {
@@ -330,6 +355,12 @@ func (o SystemExternalResourceArrayOutput) ToSystemExternalResourceArrayOutputWi
 	return o
 }
 
+func (o SystemExternalResourceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemExternalResource] {
+	return pulumix.Output[[]*SystemExternalResource]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemExternalResourceArrayOutput) Index(i pulumi.IntInput) SystemExternalResourceOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemExternalResource {
 		return vs[0].([]*SystemExternalResource)[vs[1].(int)]
@@ -348,6 +379,12 @@ func (o SystemExternalResourceMapOutput) ToSystemExternalResourceMapOutput() Sys
 
 func (o SystemExternalResourceMapOutput) ToSystemExternalResourceMapOutputWithContext(ctx context.Context) SystemExternalResourceMapOutput {
 	return o
+}
+
+func (o SystemExternalResourceMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemExternalResource] {
+	return pulumix.Output[map[string]*SystemExternalResource]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemExternalResourceMapOutput) MapIndex(k pulumi.StringInput) SystemExternalResourceOutput {

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type LogThreatWeight struct {
@@ -155,6 +156,12 @@ func (i *LogThreatWeight) ToLogThreatWeightOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(LogThreatWeightOutput)
 }
 
+func (i *LogThreatWeight) ToOutput(ctx context.Context) pulumix.Output[*LogThreatWeight] {
+	return pulumix.Output[*LogThreatWeight]{
+		OutputState: i.ToLogThreatWeightOutputWithContext(ctx).OutputState,
+	}
+}
+
 // LogThreatWeightArrayInput is an input type that accepts LogThreatWeightArray and LogThreatWeightArrayOutput values.
 // You can construct a concrete instance of `LogThreatWeightArrayInput` via:
 //
@@ -178,6 +185,12 @@ func (i LogThreatWeightArray) ToLogThreatWeightArrayOutput() LogThreatWeightArra
 
 func (i LogThreatWeightArray) ToLogThreatWeightArrayOutputWithContext(ctx context.Context) LogThreatWeightArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogThreatWeightArrayOutput)
+}
+
+func (i LogThreatWeightArray) ToOutput(ctx context.Context) pulumix.Output[[]*LogThreatWeight] {
+	return pulumix.Output[[]*LogThreatWeight]{
+		OutputState: i.ToLogThreatWeightArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // LogThreatWeightMapInput is an input type that accepts LogThreatWeightMap and LogThreatWeightMapOutput values.
@@ -205,6 +218,12 @@ func (i LogThreatWeightMap) ToLogThreatWeightMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(LogThreatWeightMapOutput)
 }
 
+func (i LogThreatWeightMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogThreatWeight] {
+	return pulumix.Output[map[string]*LogThreatWeight]{
+		OutputState: i.ToLogThreatWeightMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type LogThreatWeightOutput struct{ *pulumi.OutputState }
 
 func (LogThreatWeightOutput) ElementType() reflect.Type {
@@ -217,6 +236,12 @@ func (o LogThreatWeightOutput) ToLogThreatWeightOutput() LogThreatWeightOutput {
 
 func (o LogThreatWeightOutput) ToLogThreatWeightOutputWithContext(ctx context.Context) LogThreatWeightOutput {
 	return o
+}
+
+func (o LogThreatWeightOutput) ToOutput(ctx context.Context) pulumix.Output[*LogThreatWeight] {
+	return pulumix.Output[*LogThreatWeight]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LogThreatWeightOutput) Applications() LogThreatWeightApplicationArrayOutput {
@@ -289,6 +314,12 @@ func (o LogThreatWeightArrayOutput) ToLogThreatWeightArrayOutputWithContext(ctx 
 	return o
 }
 
+func (o LogThreatWeightArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LogThreatWeight] {
+	return pulumix.Output[[]*LogThreatWeight]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LogThreatWeightArrayOutput) Index(i pulumi.IntInput) LogThreatWeightOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogThreatWeight {
 		return vs[0].([]*LogThreatWeight)[vs[1].(int)]
@@ -307,6 +338,12 @@ func (o LogThreatWeightMapOutput) ToLogThreatWeightMapOutput() LogThreatWeightMa
 
 func (o LogThreatWeightMapOutput) ToLogThreatWeightMapOutputWithContext(ctx context.Context) LogThreatWeightMapOutput {
 	return o
+}
+
+func (o LogThreatWeightMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogThreatWeight] {
+	return pulumix.Output[map[string]*LogThreatWeight]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LogThreatWeightMapOutput) MapIndex(k pulumi.StringInput) LogThreatWeightOutput {

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallSshHostKey struct {
@@ -142,6 +143,12 @@ func (i *FirewallSshHostKey) ToFirewallSshHostKeyOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSshHostKeyOutput)
 }
 
+func (i *FirewallSshHostKey) ToOutput(ctx context.Context) pulumix.Output[*FirewallSshHostKey] {
+	return pulumix.Output[*FirewallSshHostKey]{
+		OutputState: i.ToFirewallSshHostKeyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallSshHostKeyArrayInput is an input type that accepts FirewallSshHostKeyArray and FirewallSshHostKeyArrayOutput values.
 // You can construct a concrete instance of `FirewallSshHostKeyArrayInput` via:
 //
@@ -165,6 +172,12 @@ func (i FirewallSshHostKeyArray) ToFirewallSshHostKeyArrayOutput() FirewallSshHo
 
 func (i FirewallSshHostKeyArray) ToFirewallSshHostKeyArrayOutputWithContext(ctx context.Context) FirewallSshHostKeyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSshHostKeyArrayOutput)
+}
+
+func (i FirewallSshHostKeyArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallSshHostKey] {
+	return pulumix.Output[[]*FirewallSshHostKey]{
+		OutputState: i.ToFirewallSshHostKeyArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallSshHostKeyMapInput is an input type that accepts FirewallSshHostKeyMap and FirewallSshHostKeyMapOutput values.
@@ -192,6 +205,12 @@ func (i FirewallSshHostKeyMap) ToFirewallSshHostKeyMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSshHostKeyMapOutput)
 }
 
+func (i FirewallSshHostKeyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallSshHostKey] {
+	return pulumix.Output[map[string]*FirewallSshHostKey]{
+		OutputState: i.ToFirewallSshHostKeyMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallSshHostKeyOutput struct{ *pulumi.OutputState }
 
 func (FirewallSshHostKeyOutput) ElementType() reflect.Type {
@@ -204,6 +223,12 @@ func (o FirewallSshHostKeyOutput) ToFirewallSshHostKeyOutput() FirewallSshHostKe
 
 func (o FirewallSshHostKeyOutput) ToFirewallSshHostKeyOutputWithContext(ctx context.Context) FirewallSshHostKeyOutput {
 	return o
+}
+
+func (o FirewallSshHostKeyOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallSshHostKey] {
+	return pulumix.Output[*FirewallSshHostKey]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallSshHostKeyOutput) Hostname() pulumi.StringOutput {
@@ -260,6 +285,12 @@ func (o FirewallSshHostKeyArrayOutput) ToFirewallSshHostKeyArrayOutputWithContex
 	return o
 }
 
+func (o FirewallSshHostKeyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallSshHostKey] {
+	return pulumix.Output[[]*FirewallSshHostKey]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallSshHostKeyArrayOutput) Index(i pulumi.IntInput) FirewallSshHostKeyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallSshHostKey {
 		return vs[0].([]*FirewallSshHostKey)[vs[1].(int)]
@@ -278,6 +309,12 @@ func (o FirewallSshHostKeyMapOutput) ToFirewallSshHostKeyMapOutput() FirewallSsh
 
 func (o FirewallSshHostKeyMapOutput) ToFirewallSshHostKeyMapOutputWithContext(ctx context.Context) FirewallSshHostKeyMapOutput {
 	return o
+}
+
+func (o FirewallSshHostKeyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallSshHostKey] {
+	return pulumix.Output[map[string]*FirewallSshHostKey]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallSshHostKeyMapOutput) MapIndex(k pulumi.StringInput) FirewallSshHostKeyOutput {

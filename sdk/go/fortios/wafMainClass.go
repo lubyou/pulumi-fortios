@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WafMainClass struct {
@@ -100,6 +101,12 @@ func (i *WafMainClass) ToWafMainClassOutputWithContext(ctx context.Context) WafM
 	return pulumi.ToOutputWithContext(ctx, i).(WafMainClassOutput)
 }
 
+func (i *WafMainClass) ToOutput(ctx context.Context) pulumix.Output[*WafMainClass] {
+	return pulumix.Output[*WafMainClass]{
+		OutputState: i.ToWafMainClassOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WafMainClassArrayInput is an input type that accepts WafMainClassArray and WafMainClassArrayOutput values.
 // You can construct a concrete instance of `WafMainClassArrayInput` via:
 //
@@ -123,6 +130,12 @@ func (i WafMainClassArray) ToWafMainClassArrayOutput() WafMainClassArrayOutput {
 
 func (i WafMainClassArray) ToWafMainClassArrayOutputWithContext(ctx context.Context) WafMainClassArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WafMainClassArrayOutput)
+}
+
+func (i WafMainClassArray) ToOutput(ctx context.Context) pulumix.Output[[]*WafMainClass] {
+	return pulumix.Output[[]*WafMainClass]{
+		OutputState: i.ToWafMainClassArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // WafMainClassMapInput is an input type that accepts WafMainClassMap and WafMainClassMapOutput values.
@@ -150,6 +163,12 @@ func (i WafMainClassMap) ToWafMainClassMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(WafMainClassMapOutput)
 }
 
+func (i WafMainClassMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WafMainClass] {
+	return pulumix.Output[map[string]*WafMainClass]{
+		OutputState: i.ToWafMainClassMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WafMainClassOutput struct{ *pulumi.OutputState }
 
 func (WafMainClassOutput) ElementType() reflect.Type {
@@ -162,6 +181,12 @@ func (o WafMainClassOutput) ToWafMainClassOutput() WafMainClassOutput {
 
 func (o WafMainClassOutput) ToWafMainClassOutputWithContext(ctx context.Context) WafMainClassOutput {
 	return o
+}
+
+func (o WafMainClassOutput) ToOutput(ctx context.Context) pulumix.Output[*WafMainClass] {
+	return pulumix.Output[*WafMainClass]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafMainClassOutput) Fosid() pulumi.IntOutput {
@@ -190,6 +215,12 @@ func (o WafMainClassArrayOutput) ToWafMainClassArrayOutputWithContext(ctx contex
 	return o
 }
 
+func (o WafMainClassArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WafMainClass] {
+	return pulumix.Output[[]*WafMainClass]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o WafMainClassArrayOutput) Index(i pulumi.IntInput) WafMainClassOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WafMainClass {
 		return vs[0].([]*WafMainClass)[vs[1].(int)]
@@ -208,6 +239,12 @@ func (o WafMainClassMapOutput) ToWafMainClassMapOutput() WafMainClassMapOutput {
 
 func (o WafMainClassMapOutput) ToWafMainClassMapOutputWithContext(ctx context.Context) WafMainClassMapOutput {
 	return o
+}
+
+func (o WafMainClassMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WafMainClass] {
+	return pulumix.Output[map[string]*WafMainClass]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafMainClassMapOutput) MapIndex(k pulumi.StringInput) WafMainClassOutput {

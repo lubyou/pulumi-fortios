@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type RouterIsis struct {
@@ -316,6 +317,12 @@ func (i *RouterIsis) ToRouterIsisOutputWithContext(ctx context.Context) RouterIs
 	return pulumi.ToOutputWithContext(ctx, i).(RouterIsisOutput)
 }
 
+func (i *RouterIsis) ToOutput(ctx context.Context) pulumix.Output[*RouterIsis] {
+	return pulumix.Output[*RouterIsis]{
+		OutputState: i.ToRouterIsisOutputWithContext(ctx).OutputState,
+	}
+}
+
 // RouterIsisArrayInput is an input type that accepts RouterIsisArray and RouterIsisArrayOutput values.
 // You can construct a concrete instance of `RouterIsisArrayInput` via:
 //
@@ -339,6 +346,12 @@ func (i RouterIsisArray) ToRouterIsisArrayOutput() RouterIsisArrayOutput {
 
 func (i RouterIsisArray) ToRouterIsisArrayOutputWithContext(ctx context.Context) RouterIsisArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterIsisArrayOutput)
+}
+
+func (i RouterIsisArray) ToOutput(ctx context.Context) pulumix.Output[[]*RouterIsis] {
+	return pulumix.Output[[]*RouterIsis]{
+		OutputState: i.ToRouterIsisArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // RouterIsisMapInput is an input type that accepts RouterIsisMap and RouterIsisMapOutput values.
@@ -366,6 +379,12 @@ func (i RouterIsisMap) ToRouterIsisMapOutputWithContext(ctx context.Context) Rou
 	return pulumi.ToOutputWithContext(ctx, i).(RouterIsisMapOutput)
 }
 
+func (i RouterIsisMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RouterIsis] {
+	return pulumix.Output[map[string]*RouterIsis]{
+		OutputState: i.ToRouterIsisMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RouterIsisOutput struct{ *pulumi.OutputState }
 
 func (RouterIsisOutput) ElementType() reflect.Type {
@@ -378,6 +397,12 @@ func (o RouterIsisOutput) ToRouterIsisOutput() RouterIsisOutput {
 
 func (o RouterIsisOutput) ToRouterIsisOutputWithContext(ctx context.Context) RouterIsisOutput {
 	return o
+}
+
+func (o RouterIsisOutput) ToOutput(ctx context.Context) pulumix.Output[*RouterIsis] {
+	return pulumix.Output[*RouterIsis]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RouterIsisOutput) AdjacencyCheck() pulumi.StringOutput {
@@ -570,6 +595,12 @@ func (o RouterIsisArrayOutput) ToRouterIsisArrayOutputWithContext(ctx context.Co
 	return o
 }
 
+func (o RouterIsisArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RouterIsis] {
+	return pulumix.Output[[]*RouterIsis]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o RouterIsisArrayOutput) Index(i pulumi.IntInput) RouterIsisOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RouterIsis {
 		return vs[0].([]*RouterIsis)[vs[1].(int)]
@@ -588,6 +619,12 @@ func (o RouterIsisMapOutput) ToRouterIsisMapOutput() RouterIsisMapOutput {
 
 func (o RouterIsisMapOutput) ToRouterIsisMapOutputWithContext(ctx context.Context) RouterIsisMapOutput {
 	return o
+}
+
+func (o RouterIsisMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RouterIsis] {
+	return pulumix.Output[map[string]*RouterIsis]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RouterIsisMapOutput) MapIndex(k pulumi.StringInput) RouterIsisOutput {

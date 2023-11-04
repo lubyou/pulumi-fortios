@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerQosIpDscpMap struct {
@@ -115,6 +116,12 @@ func (i *SwitchControllerQosIpDscpMap) ToSwitchControllerQosIpDscpMapOutputWithC
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerQosIpDscpMapOutput)
 }
 
+func (i *SwitchControllerQosIpDscpMap) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerQosIpDscpMap] {
+	return pulumix.Output[*SwitchControllerQosIpDscpMap]{
+		OutputState: i.ToSwitchControllerQosIpDscpMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SwitchControllerQosIpDscpMapArrayInput is an input type that accepts SwitchControllerQosIpDscpMapArray and SwitchControllerQosIpDscpMapArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerQosIpDscpMapArrayInput` via:
 //
@@ -138,6 +145,12 @@ func (i SwitchControllerQosIpDscpMapArray) ToSwitchControllerQosIpDscpMapArrayOu
 
 func (i SwitchControllerQosIpDscpMapArray) ToSwitchControllerQosIpDscpMapArrayOutputWithContext(ctx context.Context) SwitchControllerQosIpDscpMapArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerQosIpDscpMapArrayOutput)
+}
+
+func (i SwitchControllerQosIpDscpMapArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerQosIpDscpMap] {
+	return pulumix.Output[[]*SwitchControllerQosIpDscpMap]{
+		OutputState: i.ToSwitchControllerQosIpDscpMapArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SwitchControllerQosIpDscpMapMapInput is an input type that accepts SwitchControllerQosIpDscpMapMap and SwitchControllerQosIpDscpMapMapOutput values.
@@ -165,6 +178,12 @@ func (i SwitchControllerQosIpDscpMapMap) ToSwitchControllerQosIpDscpMapMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerQosIpDscpMapMapOutput)
 }
 
+func (i SwitchControllerQosIpDscpMapMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerQosIpDscpMap] {
+	return pulumix.Output[map[string]*SwitchControllerQosIpDscpMap]{
+		OutputState: i.ToSwitchControllerQosIpDscpMapMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SwitchControllerQosIpDscpMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerQosIpDscpMapOutput) ElementType() reflect.Type {
@@ -177,6 +196,12 @@ func (o SwitchControllerQosIpDscpMapOutput) ToSwitchControllerQosIpDscpMapOutput
 
 func (o SwitchControllerQosIpDscpMapOutput) ToSwitchControllerQosIpDscpMapOutputWithContext(ctx context.Context) SwitchControllerQosIpDscpMapOutput {
 	return o
+}
+
+func (o SwitchControllerQosIpDscpMapOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerQosIpDscpMap] {
+	return pulumix.Output[*SwitchControllerQosIpDscpMap]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerQosIpDscpMapOutput) Description() pulumi.StringOutput {
@@ -217,6 +242,12 @@ func (o SwitchControllerQosIpDscpMapArrayOutput) ToSwitchControllerQosIpDscpMapA
 	return o
 }
 
+func (o SwitchControllerQosIpDscpMapArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerQosIpDscpMap] {
+	return pulumix.Output[[]*SwitchControllerQosIpDscpMap]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SwitchControllerQosIpDscpMapArrayOutput) Index(i pulumi.IntInput) SwitchControllerQosIpDscpMapOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerQosIpDscpMap {
 		return vs[0].([]*SwitchControllerQosIpDscpMap)[vs[1].(int)]
@@ -235,6 +266,12 @@ func (o SwitchControllerQosIpDscpMapMapOutput) ToSwitchControllerQosIpDscpMapMap
 
 func (o SwitchControllerQosIpDscpMapMapOutput) ToSwitchControllerQosIpDscpMapMapOutputWithContext(ctx context.Context) SwitchControllerQosIpDscpMapMapOutput {
 	return o
+}
+
+func (o SwitchControllerQosIpDscpMapMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerQosIpDscpMap] {
+	return pulumix.Output[map[string]*SwitchControllerQosIpDscpMap]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerQosIpDscpMapMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerQosIpDscpMapOutput {

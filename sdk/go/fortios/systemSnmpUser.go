@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemSnmpUser struct {
@@ -211,6 +212,12 @@ func (i *SystemSnmpUser) ToSystemSnmpUserOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSnmpUserOutput)
 }
 
+func (i *SystemSnmpUser) ToOutput(ctx context.Context) pulumix.Output[*SystemSnmpUser] {
+	return pulumix.Output[*SystemSnmpUser]{
+		OutputState: i.ToSystemSnmpUserOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemSnmpUserArrayInput is an input type that accepts SystemSnmpUserArray and SystemSnmpUserArrayOutput values.
 // You can construct a concrete instance of `SystemSnmpUserArrayInput` via:
 //
@@ -234,6 +241,12 @@ func (i SystemSnmpUserArray) ToSystemSnmpUserArrayOutput() SystemSnmpUserArrayOu
 
 func (i SystemSnmpUserArray) ToSystemSnmpUserArrayOutputWithContext(ctx context.Context) SystemSnmpUserArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSnmpUserArrayOutput)
+}
+
+func (i SystemSnmpUserArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSnmpUser] {
+	return pulumix.Output[[]*SystemSnmpUser]{
+		OutputState: i.ToSystemSnmpUserArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemSnmpUserMapInput is an input type that accepts SystemSnmpUserMap and SystemSnmpUserMapOutput values.
@@ -261,6 +274,12 @@ func (i SystemSnmpUserMap) ToSystemSnmpUserMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSnmpUserMapOutput)
 }
 
+func (i SystemSnmpUserMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSnmpUser] {
+	return pulumix.Output[map[string]*SystemSnmpUser]{
+		OutputState: i.ToSystemSnmpUserMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemSnmpUserOutput struct{ *pulumi.OutputState }
 
 func (SystemSnmpUserOutput) ElementType() reflect.Type {
@@ -273,6 +292,12 @@ func (o SystemSnmpUserOutput) ToSystemSnmpUserOutput() SystemSnmpUserOutput {
 
 func (o SystemSnmpUserOutput) ToSystemSnmpUserOutputWithContext(ctx context.Context) SystemSnmpUserOutput {
 	return o
+}
+
+func (o SystemSnmpUserOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemSnmpUser] {
+	return pulumix.Output[*SystemSnmpUser]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemSnmpUserOutput) AuthProto() pulumi.StringOutput {
@@ -381,6 +406,12 @@ func (o SystemSnmpUserArrayOutput) ToSystemSnmpUserArrayOutputWithContext(ctx co
 	return o
 }
 
+func (o SystemSnmpUserArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSnmpUser] {
+	return pulumix.Output[[]*SystemSnmpUser]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemSnmpUserArrayOutput) Index(i pulumi.IntInput) SystemSnmpUserOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSnmpUser {
 		return vs[0].([]*SystemSnmpUser)[vs[1].(int)]
@@ -399,6 +430,12 @@ func (o SystemSnmpUserMapOutput) ToSystemSnmpUserMapOutput() SystemSnmpUserMapOu
 
 func (o SystemSnmpUserMapOutput) ToSystemSnmpUserMapOutputWithContext(ctx context.Context) SystemSnmpUserMapOutput {
 	return o
+}
+
+func (o SystemSnmpUserMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSnmpUser] {
+	return pulumix.Output[map[string]*SystemSnmpUser]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemSnmpUserMapOutput) MapIndex(k pulumi.StringInput) SystemSnmpUserOutput {

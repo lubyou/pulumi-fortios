@@ -94,6 +94,7 @@ class SystemHaArgs:
                  unicast_status: Optional[pulumi.Input[str]] = None,
                  uninterruptible_primary_wait: Optional[pulumi.Input[int]] = None,
                  uninterruptible_upgrade: Optional[pulumi.Input[str]] = None,
+                 upgrade_mode: Optional[pulumi.Input[str]] = None,
                  vcluster2: Optional[pulumi.Input[str]] = None,
                  vcluster_id: Optional[pulumi.Input[int]] = None,
                  vcluster_status: Optional[pulumi.Input[str]] = None,
@@ -260,6 +261,8 @@ class SystemHaArgs:
             pulumi.set(__self__, "uninterruptible_primary_wait", uninterruptible_primary_wait)
         if uninterruptible_upgrade is not None:
             pulumi.set(__self__, "uninterruptible_upgrade", uninterruptible_upgrade)
+        if upgrade_mode is not None:
+            pulumi.set(__self__, "upgrade_mode", upgrade_mode)
         if vcluster2 is not None:
             pulumi.set(__self__, "vcluster2", vcluster2)
         if vcluster_id is not None:
@@ -978,6 +981,15 @@ class SystemHaArgs:
         pulumi.set(self, "uninterruptible_upgrade", value)
 
     @property
+    @pulumi.getter(name="upgradeMode")
+    def upgrade_mode(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "upgrade_mode")
+
+    @upgrade_mode.setter
+    def upgrade_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "upgrade_mode", value)
+
+    @property
     @pulumi.getter
     def vcluster2(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "vcluster2")
@@ -1122,6 +1134,7 @@ class _SystemHaState:
                  unicast_status: Optional[pulumi.Input[str]] = None,
                  uninterruptible_primary_wait: Optional[pulumi.Input[int]] = None,
                  uninterruptible_upgrade: Optional[pulumi.Input[str]] = None,
+                 upgrade_mode: Optional[pulumi.Input[str]] = None,
                  vcluster2: Optional[pulumi.Input[str]] = None,
                  vcluster_id: Optional[pulumi.Input[int]] = None,
                  vcluster_status: Optional[pulumi.Input[str]] = None,
@@ -1288,6 +1301,8 @@ class _SystemHaState:
             pulumi.set(__self__, "uninterruptible_primary_wait", uninterruptible_primary_wait)
         if uninterruptible_upgrade is not None:
             pulumi.set(__self__, "uninterruptible_upgrade", uninterruptible_upgrade)
+        if upgrade_mode is not None:
+            pulumi.set(__self__, "upgrade_mode", upgrade_mode)
         if vcluster2 is not None:
             pulumi.set(__self__, "vcluster2", vcluster2)
         if vcluster_id is not None:
@@ -2006,6 +2021,15 @@ class _SystemHaState:
         pulumi.set(self, "uninterruptible_upgrade", value)
 
     @property
+    @pulumi.getter(name="upgradeMode")
+    def upgrade_mode(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "upgrade_mode")
+
+    @upgrade_mode.setter
+    def upgrade_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "upgrade_mode", value)
+
+    @property
     @pulumi.getter
     def vcluster2(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "vcluster2")
@@ -2152,6 +2176,7 @@ class SystemHa(pulumi.CustomResource):
                  unicast_status: Optional[pulumi.Input[str]] = None,
                  uninterruptible_primary_wait: Optional[pulumi.Input[int]] = None,
                  uninterruptible_upgrade: Optional[pulumi.Input[str]] = None,
+                 upgrade_mode: Optional[pulumi.Input[str]] = None,
                  vcluster2: Optional[pulumi.Input[str]] = None,
                  vcluster_id: Optional[pulumi.Input[int]] = None,
                  vcluster_status: Optional[pulumi.Input[str]] = None,
@@ -2266,6 +2291,7 @@ class SystemHa(pulumi.CustomResource):
                  unicast_status: Optional[pulumi.Input[str]] = None,
                  uninterruptible_primary_wait: Optional[pulumi.Input[int]] = None,
                  uninterruptible_upgrade: Optional[pulumi.Input[str]] = None,
+                 upgrade_mode: Optional[pulumi.Input[str]] = None,
                  vcluster2: Optional[pulumi.Input[str]] = None,
                  vcluster_id: Optional[pulumi.Input[int]] = None,
                  vcluster_status: Optional[pulumi.Input[str]] = None,
@@ -2360,6 +2386,7 @@ class SystemHa(pulumi.CustomResource):
             __props__.__dict__["unicast_status"] = unicast_status
             __props__.__dict__["uninterruptible_primary_wait"] = uninterruptible_primary_wait
             __props__.__dict__["uninterruptible_upgrade"] = uninterruptible_upgrade
+            __props__.__dict__["upgrade_mode"] = upgrade_mode
             __props__.__dict__["vcluster2"] = vcluster2
             __props__.__dict__["vcluster_id"] = vcluster_id
             __props__.__dict__["vcluster_status"] = vcluster_status
@@ -2457,6 +2484,7 @@ class SystemHa(pulumi.CustomResource):
             unicast_status: Optional[pulumi.Input[str]] = None,
             uninterruptible_primary_wait: Optional[pulumi.Input[int]] = None,
             uninterruptible_upgrade: Optional[pulumi.Input[str]] = None,
+            upgrade_mode: Optional[pulumi.Input[str]] = None,
             vcluster2: Optional[pulumi.Input[str]] = None,
             vcluster_id: Optional[pulumi.Input[int]] = None,
             vcluster_status: Optional[pulumi.Input[str]] = None,
@@ -2554,6 +2582,7 @@ class SystemHa(pulumi.CustomResource):
         __props__.__dict__["unicast_status"] = unicast_status
         __props__.__dict__["uninterruptible_primary_wait"] = uninterruptible_primary_wait
         __props__.__dict__["uninterruptible_upgrade"] = uninterruptible_upgrade
+        __props__.__dict__["upgrade_mode"] = upgrade_mode
         __props__.__dict__["vcluster2"] = vcluster2
         __props__.__dict__["vcluster_id"] = vcluster_id
         __props__.__dict__["vcluster_status"] = vcluster_status
@@ -2952,6 +2981,11 @@ class SystemHa(pulumi.CustomResource):
     @pulumi.getter(name="uninterruptibleUpgrade")
     def uninterruptible_upgrade(self) -> pulumi.Output[str]:
         return pulumi.get(self, "uninterruptible_upgrade")
+
+    @property
+    @pulumi.getter(name="upgradeMode")
+    def upgrade_mode(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "upgrade_mode")
 
     @property
     @pulumi.getter

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemResourceLimits(ctx *pulumi.Context, args *LookupSystemResourceLimitsArgs, opts ...pulumi.InvokeOption) (*LookupSystemResourceLimitsResult, error) {
@@ -86,6 +87,12 @@ func (o LookupSystemResourceLimitsResultOutput) ToLookupSystemResourceLimitsResu
 
 func (o LookupSystemResourceLimitsResultOutput) ToLookupSystemResourceLimitsResultOutputWithContext(ctx context.Context) LookupSystemResourceLimitsResultOutput {
 	return o
+}
+
+func (o LookupSystemResourceLimitsResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemResourceLimitsResult] {
+	return pulumix.Output[LookupSystemResourceLimitsResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupSystemResourceLimitsResultOutput) CustomService() pulumi.IntOutput {

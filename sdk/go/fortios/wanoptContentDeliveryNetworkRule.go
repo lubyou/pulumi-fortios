@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WanoptContentDeliveryNetworkRule struct {
@@ -155,6 +156,12 @@ func (i *WanoptContentDeliveryNetworkRule) ToWanoptContentDeliveryNetworkRuleOut
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptContentDeliveryNetworkRuleOutput)
 }
 
+func (i *WanoptContentDeliveryNetworkRule) ToOutput(ctx context.Context) pulumix.Output[*WanoptContentDeliveryNetworkRule] {
+	return pulumix.Output[*WanoptContentDeliveryNetworkRule]{
+		OutputState: i.ToWanoptContentDeliveryNetworkRuleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WanoptContentDeliveryNetworkRuleArrayInput is an input type that accepts WanoptContentDeliveryNetworkRuleArray and WanoptContentDeliveryNetworkRuleArrayOutput values.
 // You can construct a concrete instance of `WanoptContentDeliveryNetworkRuleArrayInput` via:
 //
@@ -178,6 +185,12 @@ func (i WanoptContentDeliveryNetworkRuleArray) ToWanoptContentDeliveryNetworkRul
 
 func (i WanoptContentDeliveryNetworkRuleArray) ToWanoptContentDeliveryNetworkRuleArrayOutputWithContext(ctx context.Context) WanoptContentDeliveryNetworkRuleArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptContentDeliveryNetworkRuleArrayOutput)
+}
+
+func (i WanoptContentDeliveryNetworkRuleArray) ToOutput(ctx context.Context) pulumix.Output[[]*WanoptContentDeliveryNetworkRule] {
+	return pulumix.Output[[]*WanoptContentDeliveryNetworkRule]{
+		OutputState: i.ToWanoptContentDeliveryNetworkRuleArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // WanoptContentDeliveryNetworkRuleMapInput is an input type that accepts WanoptContentDeliveryNetworkRuleMap and WanoptContentDeliveryNetworkRuleMapOutput values.
@@ -205,6 +218,12 @@ func (i WanoptContentDeliveryNetworkRuleMap) ToWanoptContentDeliveryNetworkRuleM
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptContentDeliveryNetworkRuleMapOutput)
 }
 
+func (i WanoptContentDeliveryNetworkRuleMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WanoptContentDeliveryNetworkRule] {
+	return pulumix.Output[map[string]*WanoptContentDeliveryNetworkRule]{
+		OutputState: i.ToWanoptContentDeliveryNetworkRuleMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WanoptContentDeliveryNetworkRuleOutput struct{ *pulumi.OutputState }
 
 func (WanoptContentDeliveryNetworkRuleOutput) ElementType() reflect.Type {
@@ -217,6 +236,12 @@ func (o WanoptContentDeliveryNetworkRuleOutput) ToWanoptContentDeliveryNetworkRu
 
 func (o WanoptContentDeliveryNetworkRuleOutput) ToWanoptContentDeliveryNetworkRuleOutputWithContext(ctx context.Context) WanoptContentDeliveryNetworkRuleOutput {
 	return o
+}
+
+func (o WanoptContentDeliveryNetworkRuleOutput) ToOutput(ctx context.Context) pulumix.Output[*WanoptContentDeliveryNetworkRule] {
+	return pulumix.Output[*WanoptContentDeliveryNetworkRule]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WanoptContentDeliveryNetworkRuleOutput) Category() pulumi.StringOutput {
@@ -293,6 +318,12 @@ func (o WanoptContentDeliveryNetworkRuleArrayOutput) ToWanoptContentDeliveryNetw
 	return o
 }
 
+func (o WanoptContentDeliveryNetworkRuleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WanoptContentDeliveryNetworkRule] {
+	return pulumix.Output[[]*WanoptContentDeliveryNetworkRule]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o WanoptContentDeliveryNetworkRuleArrayOutput) Index(i pulumi.IntInput) WanoptContentDeliveryNetworkRuleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WanoptContentDeliveryNetworkRule {
 		return vs[0].([]*WanoptContentDeliveryNetworkRule)[vs[1].(int)]
@@ -311,6 +342,12 @@ func (o WanoptContentDeliveryNetworkRuleMapOutput) ToWanoptContentDeliveryNetwor
 
 func (o WanoptContentDeliveryNetworkRuleMapOutput) ToWanoptContentDeliveryNetworkRuleMapOutputWithContext(ctx context.Context) WanoptContentDeliveryNetworkRuleMapOutput {
 	return o
+}
+
+func (o WanoptContentDeliveryNetworkRuleMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WanoptContentDeliveryNetworkRule] {
+	return pulumix.Output[map[string]*WanoptContentDeliveryNetworkRule]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WanoptContentDeliveryNetworkRuleMapOutput) MapIndex(k pulumi.StringInput) WanoptContentDeliveryNetworkRuleOutput {

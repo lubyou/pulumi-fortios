@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemDnsDatabase(ctx *pulumi.Context, args *LookupSystemDnsDatabaseArgs, opts ...pulumi.InvokeOption) (*LookupSystemDnsDatabaseResult, error) {
@@ -35,6 +36,7 @@ type LookupSystemDnsDatabaseResult struct {
 	DnsEntries    []GetSystemDnsDatabaseDnsEntry `pulumi:"dnsEntries"`
 	Domain        string                         `pulumi:"domain"`
 	Forwarder     string                         `pulumi:"forwarder"`
+	Forwarder6    string                         `pulumi:"forwarder6"`
 	// The provider-assigned unique ID for this managed resource.
 	Id          string  `pulumi:"id"`
 	IpMaster    string  `pulumi:"ipMaster"`
@@ -43,6 +45,7 @@ type LookupSystemDnsDatabaseResult struct {
 	PrimaryName string  `pulumi:"primaryName"`
 	RrMax       int     `pulumi:"rrMax"`
 	SourceIp    string  `pulumi:"sourceIp"`
+	SourceIp6   string  `pulumi:"sourceIp6"`
 	Status      string  `pulumi:"status"`
 	Ttl         int     `pulumi:"ttl"`
 	Type        string  `pulumi:"type"`
@@ -88,6 +91,12 @@ func (o LookupSystemDnsDatabaseResultOutput) ToLookupSystemDnsDatabaseResultOutp
 	return o
 }
 
+func (o LookupSystemDnsDatabaseResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemDnsDatabaseResult] {
+	return pulumix.Output[LookupSystemDnsDatabaseResult]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LookupSystemDnsDatabaseResultOutput) AllowTransfer() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDnsDatabaseResult) string { return v.AllowTransfer }).(pulumi.StringOutput)
 }
@@ -110,6 +119,10 @@ func (o LookupSystemDnsDatabaseResultOutput) Domain() pulumi.StringOutput {
 
 func (o LookupSystemDnsDatabaseResultOutput) Forwarder() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDnsDatabaseResult) string { return v.Forwarder }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemDnsDatabaseResultOutput) Forwarder6() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemDnsDatabaseResult) string { return v.Forwarder6 }).(pulumi.StringOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.
@@ -139,6 +152,10 @@ func (o LookupSystemDnsDatabaseResultOutput) RrMax() pulumi.IntOutput {
 
 func (o LookupSystemDnsDatabaseResultOutput) SourceIp() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDnsDatabaseResult) string { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemDnsDatabaseResultOutput) SourceIp6() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemDnsDatabaseResult) string { return v.SourceIp6 }).(pulumi.StringOutput)
 }
 
 func (o LookupSystemDnsDatabaseResultOutput) Status() pulumi.StringOutput {

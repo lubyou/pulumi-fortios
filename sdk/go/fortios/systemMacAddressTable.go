@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemMacAddressTable struct {
@@ -112,6 +113,12 @@ func (i *SystemMacAddressTable) ToSystemMacAddressTableOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(SystemMacAddressTableOutput)
 }
 
+func (i *SystemMacAddressTable) ToOutput(ctx context.Context) pulumix.Output[*SystemMacAddressTable] {
+	return pulumix.Output[*SystemMacAddressTable]{
+		OutputState: i.ToSystemMacAddressTableOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemMacAddressTableArrayInput is an input type that accepts SystemMacAddressTableArray and SystemMacAddressTableArrayOutput values.
 // You can construct a concrete instance of `SystemMacAddressTableArrayInput` via:
 //
@@ -135,6 +142,12 @@ func (i SystemMacAddressTableArray) ToSystemMacAddressTableArrayOutput() SystemM
 
 func (i SystemMacAddressTableArray) ToSystemMacAddressTableArrayOutputWithContext(ctx context.Context) SystemMacAddressTableArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemMacAddressTableArrayOutput)
+}
+
+func (i SystemMacAddressTableArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemMacAddressTable] {
+	return pulumix.Output[[]*SystemMacAddressTable]{
+		OutputState: i.ToSystemMacAddressTableArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemMacAddressTableMapInput is an input type that accepts SystemMacAddressTableMap and SystemMacAddressTableMapOutput values.
@@ -162,6 +175,12 @@ func (i SystemMacAddressTableMap) ToSystemMacAddressTableMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(SystemMacAddressTableMapOutput)
 }
 
+func (i SystemMacAddressTableMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemMacAddressTable] {
+	return pulumix.Output[map[string]*SystemMacAddressTable]{
+		OutputState: i.ToSystemMacAddressTableMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemMacAddressTableOutput struct{ *pulumi.OutputState }
 
 func (SystemMacAddressTableOutput) ElementType() reflect.Type {
@@ -174,6 +193,12 @@ func (o SystemMacAddressTableOutput) ToSystemMacAddressTableOutput() SystemMacAd
 
 func (o SystemMacAddressTableOutput) ToSystemMacAddressTableOutputWithContext(ctx context.Context) SystemMacAddressTableOutput {
 	return o
+}
+
+func (o SystemMacAddressTableOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemMacAddressTable] {
+	return pulumix.Output[*SystemMacAddressTable]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemMacAddressTableOutput) Interface() pulumi.StringOutput {
@@ -206,6 +231,12 @@ func (o SystemMacAddressTableArrayOutput) ToSystemMacAddressTableArrayOutputWith
 	return o
 }
 
+func (o SystemMacAddressTableArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemMacAddressTable] {
+	return pulumix.Output[[]*SystemMacAddressTable]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemMacAddressTableArrayOutput) Index(i pulumi.IntInput) SystemMacAddressTableOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemMacAddressTable {
 		return vs[0].([]*SystemMacAddressTable)[vs[1].(int)]
@@ -224,6 +255,12 @@ func (o SystemMacAddressTableMapOutput) ToSystemMacAddressTableMapOutput() Syste
 
 func (o SystemMacAddressTableMapOutput) ToSystemMacAddressTableMapOutputWithContext(ctx context.Context) SystemMacAddressTableMapOutput {
 	return o
+}
+
+func (o SystemMacAddressTableMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemMacAddressTable] {
+	return pulumix.Output[map[string]*SystemMacAddressTable]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemMacAddressTableMapOutput) MapIndex(k pulumi.StringInput) SystemMacAddressTableOutput {

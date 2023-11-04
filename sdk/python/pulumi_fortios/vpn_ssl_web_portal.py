@@ -23,6 +23,7 @@ class VpnSslWebPortalArgs:
                  clipboard: Optional[pulumi.Input[str]] = None,
                  custom_lang: Optional[pulumi.Input[str]] = None,
                  customize_forticlient_download_url: Optional[pulumi.Input[str]] = None,
+                 default_protocol: Optional[pulumi.Input[str]] = None,
                  default_window_height: Optional[pulumi.Input[int]] = None,
                  default_window_width: Optional[pulumi.Input[int]] = None,
                  dhcp6_ra_linkaddr: Optional[pulumi.Input[str]] = None,
@@ -37,6 +38,7 @@ class VpnSslWebPortalArgs:
                  dns_suffix: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  exclusive_routing: Optional[pulumi.Input[str]] = None,
+                 focus_bookmark: Optional[pulumi.Input[str]] = None,
                  forticlient_download: Optional[pulumi.Input[str]] = None,
                  forticlient_download_method: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
@@ -112,6 +114,8 @@ class VpnSslWebPortalArgs:
             pulumi.set(__self__, "custom_lang", custom_lang)
         if customize_forticlient_download_url is not None:
             pulumi.set(__self__, "customize_forticlient_download_url", customize_forticlient_download_url)
+        if default_protocol is not None:
+            pulumi.set(__self__, "default_protocol", default_protocol)
         if default_window_height is not None:
             pulumi.set(__self__, "default_window_height", default_window_height)
         if default_window_width is not None:
@@ -140,6 +144,8 @@ class VpnSslWebPortalArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if exclusive_routing is not None:
             pulumi.set(__self__, "exclusive_routing", exclusive_routing)
+        if focus_bookmark is not None:
+            pulumi.set(__self__, "focus_bookmark", focus_bookmark)
         if forticlient_download is not None:
             pulumi.set(__self__, "forticlient_download", forticlient_download)
         if forticlient_download_method is not None:
@@ -321,6 +327,15 @@ class VpnSslWebPortalArgs:
         pulumi.set(self, "customize_forticlient_download_url", value)
 
     @property
+    @pulumi.getter(name="defaultProtocol")
+    def default_protocol(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "default_protocol")
+
+    @default_protocol.setter
+    def default_protocol(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "default_protocol", value)
+
+    @property
     @pulumi.getter(name="defaultWindowHeight")
     def default_window_height(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "default_window_height")
@@ -445,6 +460,15 @@ class VpnSslWebPortalArgs:
     @exclusive_routing.setter
     def exclusive_routing(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "exclusive_routing", value)
+
+    @property
+    @pulumi.getter(name="focusBookmark")
+    def focus_bookmark(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "focus_bookmark")
+
+    @focus_bookmark.setter
+    def focus_bookmark(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "focus_bookmark", value)
 
     @property
     @pulumi.getter(name="forticlientDownload")
@@ -979,6 +1003,7 @@ class _VpnSslWebPortalState:
                  clipboard: Optional[pulumi.Input[str]] = None,
                  custom_lang: Optional[pulumi.Input[str]] = None,
                  customize_forticlient_download_url: Optional[pulumi.Input[str]] = None,
+                 default_protocol: Optional[pulumi.Input[str]] = None,
                  default_window_height: Optional[pulumi.Input[int]] = None,
                  default_window_width: Optional[pulumi.Input[int]] = None,
                  dhcp6_ra_linkaddr: Optional[pulumi.Input[str]] = None,
@@ -993,6 +1018,7 @@ class _VpnSslWebPortalState:
                  dns_suffix: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  exclusive_routing: Optional[pulumi.Input[str]] = None,
+                 focus_bookmark: Optional[pulumi.Input[str]] = None,
                  forticlient_download: Optional[pulumi.Input[str]] = None,
                  forticlient_download_method: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
@@ -1068,6 +1094,8 @@ class _VpnSslWebPortalState:
             pulumi.set(__self__, "custom_lang", custom_lang)
         if customize_forticlient_download_url is not None:
             pulumi.set(__self__, "customize_forticlient_download_url", customize_forticlient_download_url)
+        if default_protocol is not None:
+            pulumi.set(__self__, "default_protocol", default_protocol)
         if default_window_height is not None:
             pulumi.set(__self__, "default_window_height", default_window_height)
         if default_window_width is not None:
@@ -1096,6 +1124,8 @@ class _VpnSslWebPortalState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if exclusive_routing is not None:
             pulumi.set(__self__, "exclusive_routing", exclusive_routing)
+        if focus_bookmark is not None:
+            pulumi.set(__self__, "focus_bookmark", focus_bookmark)
         if forticlient_download is not None:
             pulumi.set(__self__, "forticlient_download", forticlient_download)
         if forticlient_download_method is not None:
@@ -1277,6 +1307,15 @@ class _VpnSslWebPortalState:
         pulumi.set(self, "customize_forticlient_download_url", value)
 
     @property
+    @pulumi.getter(name="defaultProtocol")
+    def default_protocol(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "default_protocol")
+
+    @default_protocol.setter
+    def default_protocol(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "default_protocol", value)
+
+    @property
     @pulumi.getter(name="defaultWindowHeight")
     def default_window_height(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "default_window_height")
@@ -1401,6 +1440,15 @@ class _VpnSslWebPortalState:
     @exclusive_routing.setter
     def exclusive_routing(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "exclusive_routing", value)
+
+    @property
+    @pulumi.getter(name="focusBookmark")
+    def focus_bookmark(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "focus_bookmark")
+
+    @focus_bookmark.setter
+    def focus_bookmark(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "focus_bookmark", value)
 
     @property
     @pulumi.getter(name="forticlientDownload")
@@ -1937,6 +1985,7 @@ class VpnSslWebPortal(pulumi.CustomResource):
                  clipboard: Optional[pulumi.Input[str]] = None,
                  custom_lang: Optional[pulumi.Input[str]] = None,
                  customize_forticlient_download_url: Optional[pulumi.Input[str]] = None,
+                 default_protocol: Optional[pulumi.Input[str]] = None,
                  default_window_height: Optional[pulumi.Input[int]] = None,
                  default_window_width: Optional[pulumi.Input[int]] = None,
                  dhcp6_ra_linkaddr: Optional[pulumi.Input[str]] = None,
@@ -1951,6 +2000,7 @@ class VpnSslWebPortal(pulumi.CustomResource):
                  dns_suffix: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  exclusive_routing: Optional[pulumi.Input[str]] = None,
+                 focus_bookmark: Optional[pulumi.Input[str]] = None,
                  forticlient_download: Optional[pulumi.Input[str]] = None,
                  forticlient_download_method: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
@@ -2045,6 +2095,7 @@ class VpnSslWebPortal(pulumi.CustomResource):
                  clipboard: Optional[pulumi.Input[str]] = None,
                  custom_lang: Optional[pulumi.Input[str]] = None,
                  customize_forticlient_download_url: Optional[pulumi.Input[str]] = None,
+                 default_protocol: Optional[pulumi.Input[str]] = None,
                  default_window_height: Optional[pulumi.Input[int]] = None,
                  default_window_width: Optional[pulumi.Input[int]] = None,
                  dhcp6_ra_linkaddr: Optional[pulumi.Input[str]] = None,
@@ -2059,6 +2110,7 @@ class VpnSslWebPortal(pulumi.CustomResource):
                  dns_suffix: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  exclusive_routing: Optional[pulumi.Input[str]] = None,
+                 focus_bookmark: Optional[pulumi.Input[str]] = None,
                  forticlient_download: Optional[pulumi.Input[str]] = None,
                  forticlient_download_method: Optional[pulumi.Input[str]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
@@ -2133,6 +2185,7 @@ class VpnSslWebPortal(pulumi.CustomResource):
             __props__.__dict__["clipboard"] = clipboard
             __props__.__dict__["custom_lang"] = custom_lang
             __props__.__dict__["customize_forticlient_download_url"] = customize_forticlient_download_url
+            __props__.__dict__["default_protocol"] = default_protocol
             __props__.__dict__["default_window_height"] = default_window_height
             __props__.__dict__["default_window_width"] = default_window_width
             __props__.__dict__["dhcp6_ra_linkaddr"] = dhcp6_ra_linkaddr
@@ -2147,6 +2200,7 @@ class VpnSslWebPortal(pulumi.CustomResource):
             __props__.__dict__["dns_suffix"] = dns_suffix
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["exclusive_routing"] = exclusive_routing
+            __props__.__dict__["focus_bookmark"] = focus_bookmark
             __props__.__dict__["forticlient_download"] = forticlient_download
             __props__.__dict__["forticlient_download_method"] = forticlient_download_method
             __props__.__dict__["get_all_tables"] = get_all_tables
@@ -2222,6 +2276,7 @@ class VpnSslWebPortal(pulumi.CustomResource):
             clipboard: Optional[pulumi.Input[str]] = None,
             custom_lang: Optional[pulumi.Input[str]] = None,
             customize_forticlient_download_url: Optional[pulumi.Input[str]] = None,
+            default_protocol: Optional[pulumi.Input[str]] = None,
             default_window_height: Optional[pulumi.Input[int]] = None,
             default_window_width: Optional[pulumi.Input[int]] = None,
             dhcp6_ra_linkaddr: Optional[pulumi.Input[str]] = None,
@@ -2236,6 +2291,7 @@ class VpnSslWebPortal(pulumi.CustomResource):
             dns_suffix: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             exclusive_routing: Optional[pulumi.Input[str]] = None,
+            focus_bookmark: Optional[pulumi.Input[str]] = None,
             forticlient_download: Optional[pulumi.Input[str]] = None,
             forticlient_download_method: Optional[pulumi.Input[str]] = None,
             get_all_tables: Optional[pulumi.Input[str]] = None,
@@ -2313,6 +2369,7 @@ class VpnSslWebPortal(pulumi.CustomResource):
         __props__.__dict__["clipboard"] = clipboard
         __props__.__dict__["custom_lang"] = custom_lang
         __props__.__dict__["customize_forticlient_download_url"] = customize_forticlient_download_url
+        __props__.__dict__["default_protocol"] = default_protocol
         __props__.__dict__["default_window_height"] = default_window_height
         __props__.__dict__["default_window_width"] = default_window_width
         __props__.__dict__["dhcp6_ra_linkaddr"] = dhcp6_ra_linkaddr
@@ -2327,6 +2384,7 @@ class VpnSslWebPortal(pulumi.CustomResource):
         __props__.__dict__["dns_suffix"] = dns_suffix
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["exclusive_routing"] = exclusive_routing
+        __props__.__dict__["focus_bookmark"] = focus_bookmark
         __props__.__dict__["forticlient_download"] = forticlient_download
         __props__.__dict__["forticlient_download_method"] = forticlient_download_method
         __props__.__dict__["get_all_tables"] = get_all_tables
@@ -2423,6 +2481,11 @@ class VpnSslWebPortal(pulumi.CustomResource):
         return pulumi.get(self, "customize_forticlient_download_url")
 
     @property
+    @pulumi.getter(name="defaultProtocol")
+    def default_protocol(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "default_protocol")
+
+    @property
     @pulumi.getter(name="defaultWindowHeight")
     def default_window_height(self) -> pulumi.Output[int]:
         return pulumi.get(self, "default_window_height")
@@ -2491,6 +2554,11 @@ class VpnSslWebPortal(pulumi.CustomResource):
     @pulumi.getter(name="exclusiveRouting")
     def exclusive_routing(self) -> pulumi.Output[str]:
         return pulumi.get(self, "exclusive_routing")
+
+    @property
+    @pulumi.getter(name="focusBookmark")
+    def focus_bookmark(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "focus_bookmark")
 
     @property
     @pulumi.getter(name="forticlientDownload")

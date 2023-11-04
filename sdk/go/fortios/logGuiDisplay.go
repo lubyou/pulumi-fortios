@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type LogGuiDisplay struct {
@@ -105,6 +106,12 @@ func (i *LogGuiDisplay) ToLogGuiDisplayOutputWithContext(ctx context.Context) Lo
 	return pulumi.ToOutputWithContext(ctx, i).(LogGuiDisplayOutput)
 }
 
+func (i *LogGuiDisplay) ToOutput(ctx context.Context) pulumix.Output[*LogGuiDisplay] {
+	return pulumix.Output[*LogGuiDisplay]{
+		OutputState: i.ToLogGuiDisplayOutputWithContext(ctx).OutputState,
+	}
+}
+
 // LogGuiDisplayArrayInput is an input type that accepts LogGuiDisplayArray and LogGuiDisplayArrayOutput values.
 // You can construct a concrete instance of `LogGuiDisplayArrayInput` via:
 //
@@ -128,6 +135,12 @@ func (i LogGuiDisplayArray) ToLogGuiDisplayArrayOutput() LogGuiDisplayArrayOutpu
 
 func (i LogGuiDisplayArray) ToLogGuiDisplayArrayOutputWithContext(ctx context.Context) LogGuiDisplayArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogGuiDisplayArrayOutput)
+}
+
+func (i LogGuiDisplayArray) ToOutput(ctx context.Context) pulumix.Output[[]*LogGuiDisplay] {
+	return pulumix.Output[[]*LogGuiDisplay]{
+		OutputState: i.ToLogGuiDisplayArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // LogGuiDisplayMapInput is an input type that accepts LogGuiDisplayMap and LogGuiDisplayMapOutput values.
@@ -155,6 +168,12 @@ func (i LogGuiDisplayMap) ToLogGuiDisplayMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(LogGuiDisplayMapOutput)
 }
 
+func (i LogGuiDisplayMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogGuiDisplay] {
+	return pulumix.Output[map[string]*LogGuiDisplay]{
+		OutputState: i.ToLogGuiDisplayMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type LogGuiDisplayOutput struct{ *pulumi.OutputState }
 
 func (LogGuiDisplayOutput) ElementType() reflect.Type {
@@ -167,6 +186,12 @@ func (o LogGuiDisplayOutput) ToLogGuiDisplayOutput() LogGuiDisplayOutput {
 
 func (o LogGuiDisplayOutput) ToLogGuiDisplayOutputWithContext(ctx context.Context) LogGuiDisplayOutput {
 	return o
+}
+
+func (o LogGuiDisplayOutput) ToOutput(ctx context.Context) pulumix.Output[*LogGuiDisplay] {
+	return pulumix.Output[*LogGuiDisplay]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LogGuiDisplayOutput) FortiviewUnscannedApps() pulumi.StringOutput {
@@ -199,6 +224,12 @@ func (o LogGuiDisplayArrayOutput) ToLogGuiDisplayArrayOutputWithContext(ctx cont
 	return o
 }
 
+func (o LogGuiDisplayArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LogGuiDisplay] {
+	return pulumix.Output[[]*LogGuiDisplay]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LogGuiDisplayArrayOutput) Index(i pulumi.IntInput) LogGuiDisplayOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogGuiDisplay {
 		return vs[0].([]*LogGuiDisplay)[vs[1].(int)]
@@ -217,6 +248,12 @@ func (o LogGuiDisplayMapOutput) ToLogGuiDisplayMapOutput() LogGuiDisplayMapOutpu
 
 func (o LogGuiDisplayMapOutput) ToLogGuiDisplayMapOutputWithContext(ctx context.Context) LogGuiDisplayMapOutput {
 	return o
+}
+
+func (o LogGuiDisplayMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogGuiDisplay] {
+	return pulumix.Output[map[string]*LogGuiDisplay]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LogGuiDisplayMapOutput) MapIndex(k pulumi.StringInput) LogGuiDisplayOutput {

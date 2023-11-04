@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallInternetServiceGroup struct {
@@ -120,6 +121,12 @@ func (i *FirewallInternetServiceGroup) ToFirewallInternetServiceGroupOutputWithC
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceGroupOutput)
 }
 
+func (i *FirewallInternetServiceGroup) ToOutput(ctx context.Context) pulumix.Output[*FirewallInternetServiceGroup] {
+	return pulumix.Output[*FirewallInternetServiceGroup]{
+		OutputState: i.ToFirewallInternetServiceGroupOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallInternetServiceGroupArrayInput is an input type that accepts FirewallInternetServiceGroupArray and FirewallInternetServiceGroupArrayOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceGroupArrayInput` via:
 //
@@ -143,6 +150,12 @@ func (i FirewallInternetServiceGroupArray) ToFirewallInternetServiceGroupArrayOu
 
 func (i FirewallInternetServiceGroupArray) ToFirewallInternetServiceGroupArrayOutputWithContext(ctx context.Context) FirewallInternetServiceGroupArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceGroupArrayOutput)
+}
+
+func (i FirewallInternetServiceGroupArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallInternetServiceGroup] {
+	return pulumix.Output[[]*FirewallInternetServiceGroup]{
+		OutputState: i.ToFirewallInternetServiceGroupArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallInternetServiceGroupMapInput is an input type that accepts FirewallInternetServiceGroupMap and FirewallInternetServiceGroupMapOutput values.
@@ -170,6 +183,12 @@ func (i FirewallInternetServiceGroupMap) ToFirewallInternetServiceGroupMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceGroupMapOutput)
 }
 
+func (i FirewallInternetServiceGroupMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallInternetServiceGroup] {
+	return pulumix.Output[map[string]*FirewallInternetServiceGroup]{
+		OutputState: i.ToFirewallInternetServiceGroupMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallInternetServiceGroupOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceGroupOutput) ElementType() reflect.Type {
@@ -182,6 +201,12 @@ func (o FirewallInternetServiceGroupOutput) ToFirewallInternetServiceGroupOutput
 
 func (o FirewallInternetServiceGroupOutput) ToFirewallInternetServiceGroupOutputWithContext(ctx context.Context) FirewallInternetServiceGroupOutput {
 	return o
+}
+
+func (o FirewallInternetServiceGroupOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallInternetServiceGroup] {
+	return pulumix.Output[*FirewallInternetServiceGroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallInternetServiceGroupOutput) Comment() pulumi.StringPtrOutput {
@@ -226,6 +251,12 @@ func (o FirewallInternetServiceGroupArrayOutput) ToFirewallInternetServiceGroupA
 	return o
 }
 
+func (o FirewallInternetServiceGroupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallInternetServiceGroup] {
+	return pulumix.Output[[]*FirewallInternetServiceGroup]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallInternetServiceGroupArrayOutput) Index(i pulumi.IntInput) FirewallInternetServiceGroupOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallInternetServiceGroup {
 		return vs[0].([]*FirewallInternetServiceGroup)[vs[1].(int)]
@@ -244,6 +275,12 @@ func (o FirewallInternetServiceGroupMapOutput) ToFirewallInternetServiceGroupMap
 
 func (o FirewallInternetServiceGroupMapOutput) ToFirewallInternetServiceGroupMapOutputWithContext(ctx context.Context) FirewallInternetServiceGroupMapOutput {
 	return o
+}
+
+func (o FirewallInternetServiceGroupMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallInternetServiceGroup] {
+	return pulumix.Output[map[string]*FirewallInternetServiceGroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallInternetServiceGroupMapOutput) MapIndex(k pulumi.StringInput) FirewallInternetServiceGroupOutput {

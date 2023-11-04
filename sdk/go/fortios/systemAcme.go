@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemAcme struct {
@@ -125,6 +126,12 @@ func (i *SystemAcme) ToSystemAcmeOutputWithContext(ctx context.Context) SystemAc
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAcmeOutput)
 }
 
+func (i *SystemAcme) ToOutput(ctx context.Context) pulumix.Output[*SystemAcme] {
+	return pulumix.Output[*SystemAcme]{
+		OutputState: i.ToSystemAcmeOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemAcmeArrayInput is an input type that accepts SystemAcmeArray and SystemAcmeArrayOutput values.
 // You can construct a concrete instance of `SystemAcmeArrayInput` via:
 //
@@ -148,6 +155,12 @@ func (i SystemAcmeArray) ToSystemAcmeArrayOutput() SystemAcmeArrayOutput {
 
 func (i SystemAcmeArray) ToSystemAcmeArrayOutputWithContext(ctx context.Context) SystemAcmeArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAcmeArrayOutput)
+}
+
+func (i SystemAcmeArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemAcme] {
+	return pulumix.Output[[]*SystemAcme]{
+		OutputState: i.ToSystemAcmeArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemAcmeMapInput is an input type that accepts SystemAcmeMap and SystemAcmeMapOutput values.
@@ -175,6 +188,12 @@ func (i SystemAcmeMap) ToSystemAcmeMapOutputWithContext(ctx context.Context) Sys
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAcmeMapOutput)
 }
 
+func (i SystemAcmeMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemAcme] {
+	return pulumix.Output[map[string]*SystemAcme]{
+		OutputState: i.ToSystemAcmeMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemAcmeOutput struct{ *pulumi.OutputState }
 
 func (SystemAcmeOutput) ElementType() reflect.Type {
@@ -187,6 +206,12 @@ func (o SystemAcmeOutput) ToSystemAcmeOutput() SystemAcmeOutput {
 
 func (o SystemAcmeOutput) ToSystemAcmeOutputWithContext(ctx context.Context) SystemAcmeOutput {
 	return o
+}
+
+func (o SystemAcmeOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemAcme] {
+	return pulumix.Output[*SystemAcme]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemAcmeOutput) Accounts() SystemAcmeAccountArrayOutput {
@@ -235,6 +260,12 @@ func (o SystemAcmeArrayOutput) ToSystemAcmeArrayOutputWithContext(ctx context.Co
 	return o
 }
 
+func (o SystemAcmeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemAcme] {
+	return pulumix.Output[[]*SystemAcme]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemAcmeArrayOutput) Index(i pulumi.IntInput) SystemAcmeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemAcme {
 		return vs[0].([]*SystemAcme)[vs[1].(int)]
@@ -253,6 +284,12 @@ func (o SystemAcmeMapOutput) ToSystemAcmeMapOutput() SystemAcmeMapOutput {
 
 func (o SystemAcmeMapOutput) ToSystemAcmeMapOutputWithContext(ctx context.Context) SystemAcmeMapOutput {
 	return o
+}
+
+func (o SystemAcmeMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemAcme] {
+	return pulumix.Output[map[string]*SystemAcme]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemAcmeMapOutput) MapIndex(k pulumi.StringInput) SystemAcmeOutput {

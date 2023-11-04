@@ -40,6 +40,7 @@ export class FirewallSecurityPolicy extends pulumi.CustomResource {
     public readonly applicationList!: pulumi.Output<string>;
     public readonly applications!: pulumi.Output<outputs.FirewallSecurityPolicyApplication[] | undefined>;
     public readonly avProfile!: pulumi.Output<string>;
+    public readonly casbProfile!: pulumi.Output<string>;
     public readonly cifsProfile!: pulumi.Output<string>;
     public readonly comments!: pulumi.Output<string | undefined>;
     public readonly dlpProfile!: pulumi.Output<string>;
@@ -117,6 +118,7 @@ export class FirewallSecurityPolicy extends pulumi.CustomResource {
     public readonly uuid!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
     public readonly videofilterProfile!: pulumi.Output<string>;
+    public readonly virtualPatchProfile!: pulumi.Output<string>;
     public readonly voipProfile!: pulumi.Output<string>;
     public readonly webfilterProfile!: pulumi.Output<string>;
 
@@ -139,6 +141,7 @@ export class FirewallSecurityPolicy extends pulumi.CustomResource {
             resourceInputs["applicationList"] = state ? state.applicationList : undefined;
             resourceInputs["applications"] = state ? state.applications : undefined;
             resourceInputs["avProfile"] = state ? state.avProfile : undefined;
+            resourceInputs["casbProfile"] = state ? state.casbProfile : undefined;
             resourceInputs["cifsProfile"] = state ? state.cifsProfile : undefined;
             resourceInputs["comments"] = state ? state.comments : undefined;
             resourceInputs["dlpProfile"] = state ? state.dlpProfile : undefined;
@@ -216,6 +219,7 @@ export class FirewallSecurityPolicy extends pulumi.CustomResource {
             resourceInputs["uuid"] = state ? state.uuid : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["videofilterProfile"] = state ? state.videofilterProfile : undefined;
+            resourceInputs["virtualPatchProfile"] = state ? state.virtualPatchProfile : undefined;
             resourceInputs["voipProfile"] = state ? state.voipProfile : undefined;
             resourceInputs["webfilterProfile"] = state ? state.webfilterProfile : undefined;
         } else {
@@ -226,6 +230,7 @@ export class FirewallSecurityPolicy extends pulumi.CustomResource {
             resourceInputs["applicationList"] = args ? args.applicationList : undefined;
             resourceInputs["applications"] = args ? args.applications : undefined;
             resourceInputs["avProfile"] = args ? args.avProfile : undefined;
+            resourceInputs["casbProfile"] = args ? args.casbProfile : undefined;
             resourceInputs["cifsProfile"] = args ? args.cifsProfile : undefined;
             resourceInputs["comments"] = args ? args.comments : undefined;
             resourceInputs["dlpProfile"] = args ? args.dlpProfile : undefined;
@@ -303,6 +308,7 @@ export class FirewallSecurityPolicy extends pulumi.CustomResource {
             resourceInputs["uuid"] = args ? args.uuid : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["videofilterProfile"] = args ? args.videofilterProfile : undefined;
+            resourceInputs["virtualPatchProfile"] = args ? args.virtualPatchProfile : undefined;
             resourceInputs["voipProfile"] = args ? args.voipProfile : undefined;
             resourceInputs["webfilterProfile"] = args ? args.webfilterProfile : undefined;
         }
@@ -321,6 +327,7 @@ export interface FirewallSecurityPolicyState {
     applicationList?: pulumi.Input<string>;
     applications?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyApplication>[]>;
     avProfile?: pulumi.Input<string>;
+    casbProfile?: pulumi.Input<string>;
     cifsProfile?: pulumi.Input<string>;
     comments?: pulumi.Input<string>;
     dlpProfile?: pulumi.Input<string>;
@@ -398,6 +405,7 @@ export interface FirewallSecurityPolicyState {
     uuid?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
     videofilterProfile?: pulumi.Input<string>;
+    virtualPatchProfile?: pulumi.Input<string>;
     voipProfile?: pulumi.Input<string>;
     webfilterProfile?: pulumi.Input<string>;
 }
@@ -412,6 +420,7 @@ export interface FirewallSecurityPolicyArgs {
     applicationList?: pulumi.Input<string>;
     applications?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicyApplication>[]>;
     avProfile?: pulumi.Input<string>;
+    casbProfile?: pulumi.Input<string>;
     cifsProfile?: pulumi.Input<string>;
     comments?: pulumi.Input<string>;
     dlpProfile?: pulumi.Input<string>;
@@ -489,6 +498,7 @@ export interface FirewallSecurityPolicyArgs {
     uuid?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
     videofilterProfile?: pulumi.Input<string>;
+    virtualPatchProfile?: pulumi.Input<string>;
     voipProfile?: pulumi.Input<string>;
     webfilterProfile?: pulumi.Input<string>;
 }

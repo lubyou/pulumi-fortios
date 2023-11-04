@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallInternetServiceIpblReason struct {
@@ -100,6 +101,12 @@ func (i *FirewallInternetServiceIpblReason) ToFirewallInternetServiceIpblReasonO
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceIpblReasonOutput)
 }
 
+func (i *FirewallInternetServiceIpblReason) ToOutput(ctx context.Context) pulumix.Output[*FirewallInternetServiceIpblReason] {
+	return pulumix.Output[*FirewallInternetServiceIpblReason]{
+		OutputState: i.ToFirewallInternetServiceIpblReasonOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallInternetServiceIpblReasonArrayInput is an input type that accepts FirewallInternetServiceIpblReasonArray and FirewallInternetServiceIpblReasonArrayOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceIpblReasonArrayInput` via:
 //
@@ -123,6 +130,12 @@ func (i FirewallInternetServiceIpblReasonArray) ToFirewallInternetServiceIpblRea
 
 func (i FirewallInternetServiceIpblReasonArray) ToFirewallInternetServiceIpblReasonArrayOutputWithContext(ctx context.Context) FirewallInternetServiceIpblReasonArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceIpblReasonArrayOutput)
+}
+
+func (i FirewallInternetServiceIpblReasonArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallInternetServiceIpblReason] {
+	return pulumix.Output[[]*FirewallInternetServiceIpblReason]{
+		OutputState: i.ToFirewallInternetServiceIpblReasonArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallInternetServiceIpblReasonMapInput is an input type that accepts FirewallInternetServiceIpblReasonMap and FirewallInternetServiceIpblReasonMapOutput values.
@@ -150,6 +163,12 @@ func (i FirewallInternetServiceIpblReasonMap) ToFirewallInternetServiceIpblReaso
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceIpblReasonMapOutput)
 }
 
+func (i FirewallInternetServiceIpblReasonMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallInternetServiceIpblReason] {
+	return pulumix.Output[map[string]*FirewallInternetServiceIpblReason]{
+		OutputState: i.ToFirewallInternetServiceIpblReasonMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallInternetServiceIpblReasonOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceIpblReasonOutput) ElementType() reflect.Type {
@@ -162,6 +181,12 @@ func (o FirewallInternetServiceIpblReasonOutput) ToFirewallInternetServiceIpblRe
 
 func (o FirewallInternetServiceIpblReasonOutput) ToFirewallInternetServiceIpblReasonOutputWithContext(ctx context.Context) FirewallInternetServiceIpblReasonOutput {
 	return o
+}
+
+func (o FirewallInternetServiceIpblReasonOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallInternetServiceIpblReason] {
+	return pulumix.Output[*FirewallInternetServiceIpblReason]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallInternetServiceIpblReasonOutput) Fosid() pulumi.IntOutput {
@@ -190,6 +215,12 @@ func (o FirewallInternetServiceIpblReasonArrayOutput) ToFirewallInternetServiceI
 	return o
 }
 
+func (o FirewallInternetServiceIpblReasonArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallInternetServiceIpblReason] {
+	return pulumix.Output[[]*FirewallInternetServiceIpblReason]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallInternetServiceIpblReasonArrayOutput) Index(i pulumi.IntInput) FirewallInternetServiceIpblReasonOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallInternetServiceIpblReason {
 		return vs[0].([]*FirewallInternetServiceIpblReason)[vs[1].(int)]
@@ -208,6 +239,12 @@ func (o FirewallInternetServiceIpblReasonMapOutput) ToFirewallInternetServiceIpb
 
 func (o FirewallInternetServiceIpblReasonMapOutput) ToFirewallInternetServiceIpblReasonMapOutputWithContext(ctx context.Context) FirewallInternetServiceIpblReasonMapOutput {
 	return o
+}
+
+func (o FirewallInternetServiceIpblReasonMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallInternetServiceIpblReason] {
+	return pulumix.Output[map[string]*FirewallInternetServiceIpblReason]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallInternetServiceIpblReasonMapOutput) MapIndex(k pulumi.StringInput) FirewallInternetServiceIpblReasonOutput {

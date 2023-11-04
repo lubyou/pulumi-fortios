@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemIps struct {
@@ -100,6 +101,12 @@ func (i *SystemIps) ToSystemIpsOutputWithContext(ctx context.Context) SystemIpsO
 	return pulumi.ToOutputWithContext(ctx, i).(SystemIpsOutput)
 }
 
+func (i *SystemIps) ToOutput(ctx context.Context) pulumix.Output[*SystemIps] {
+	return pulumix.Output[*SystemIps]{
+		OutputState: i.ToSystemIpsOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemIpsArrayInput is an input type that accepts SystemIpsArray and SystemIpsArrayOutput values.
 // You can construct a concrete instance of `SystemIpsArrayInput` via:
 //
@@ -123,6 +130,12 @@ func (i SystemIpsArray) ToSystemIpsArrayOutput() SystemIpsArrayOutput {
 
 func (i SystemIpsArray) ToSystemIpsArrayOutputWithContext(ctx context.Context) SystemIpsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemIpsArrayOutput)
+}
+
+func (i SystemIpsArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemIps] {
+	return pulumix.Output[[]*SystemIps]{
+		OutputState: i.ToSystemIpsArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemIpsMapInput is an input type that accepts SystemIpsMap and SystemIpsMapOutput values.
@@ -150,6 +163,12 @@ func (i SystemIpsMap) ToSystemIpsMapOutputWithContext(ctx context.Context) Syste
 	return pulumi.ToOutputWithContext(ctx, i).(SystemIpsMapOutput)
 }
 
+func (i SystemIpsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemIps] {
+	return pulumix.Output[map[string]*SystemIps]{
+		OutputState: i.ToSystemIpsMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemIpsOutput struct{ *pulumi.OutputState }
 
 func (SystemIpsOutput) ElementType() reflect.Type {
@@ -162,6 +181,12 @@ func (o SystemIpsOutput) ToSystemIpsOutput() SystemIpsOutput {
 
 func (o SystemIpsOutput) ToSystemIpsOutputWithContext(ctx context.Context) SystemIpsOutput {
 	return o
+}
+
+func (o SystemIpsOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemIps] {
+	return pulumix.Output[*SystemIps]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemIpsOutput) OverrideSignatureHoldById() pulumi.StringOutput {
@@ -190,6 +215,12 @@ func (o SystemIpsArrayOutput) ToSystemIpsArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
+func (o SystemIpsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemIps] {
+	return pulumix.Output[[]*SystemIps]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemIpsArrayOutput) Index(i pulumi.IntInput) SystemIpsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemIps {
 		return vs[0].([]*SystemIps)[vs[1].(int)]
@@ -208,6 +239,12 @@ func (o SystemIpsMapOutput) ToSystemIpsMapOutput() SystemIpsMapOutput {
 
 func (o SystemIpsMapOutput) ToSystemIpsMapOutputWithContext(ctx context.Context) SystemIpsMapOutput {
 	return o
+}
+
+func (o SystemIpsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemIps] {
+	return pulumix.Output[map[string]*SystemIps]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemIpsMapOutput) MapIndex(k pulumi.StringInput) SystemIpsOutput {

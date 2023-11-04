@@ -54,9 +54,14 @@ class SwitchControllerManagedSwitchArgs:
                  poe_pre_standard_detection: Optional[pulumi.Input[str]] = None,
                  ports: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerManagedSwitchPortArgs']]]] = None,
                  pre_provisioned: Optional[pulumi.Input[int]] = None,
+                 ptp_profile: Optional[pulumi.Input[str]] = None,
+                 ptp_status: Optional[pulumi.Input[str]] = None,
                  qos_drop_policy: Optional[pulumi.Input[str]] = None,
                  qos_red_probability: Optional[pulumi.Input[int]] = None,
                  remote_logs: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerManagedSwitchRemoteLogArgs']]]] = None,
+                 route_offload: Optional[pulumi.Input[str]] = None,
+                 route_offload_mclag: Optional[pulumi.Input[str]] = None,
+                 route_offload_routers: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerManagedSwitchRouteOffloadRouterArgs']]]] = None,
                  sn: Optional[pulumi.Input[str]] = None,
                  snmp_communities: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerManagedSwitchSnmpCommunityArgs']]]] = None,
                  snmp_sysinfo: Optional[pulumi.Input['SwitchControllerManagedSwitchSnmpSysinfoArgs']] = None,
@@ -153,12 +158,22 @@ class SwitchControllerManagedSwitchArgs:
             pulumi.set(__self__, "ports", ports)
         if pre_provisioned is not None:
             pulumi.set(__self__, "pre_provisioned", pre_provisioned)
+        if ptp_profile is not None:
+            pulumi.set(__self__, "ptp_profile", ptp_profile)
+        if ptp_status is not None:
+            pulumi.set(__self__, "ptp_status", ptp_status)
         if qos_drop_policy is not None:
             pulumi.set(__self__, "qos_drop_policy", qos_drop_policy)
         if qos_red_probability is not None:
             pulumi.set(__self__, "qos_red_probability", qos_red_probability)
         if remote_logs is not None:
             pulumi.set(__self__, "remote_logs", remote_logs)
+        if route_offload is not None:
+            pulumi.set(__self__, "route_offload", route_offload)
+        if route_offload_mclag is not None:
+            pulumi.set(__self__, "route_offload_mclag", route_offload_mclag)
+        if route_offload_routers is not None:
+            pulumi.set(__self__, "route_offload_routers", route_offload_routers)
         if sn is not None:
             pulumi.set(__self__, "sn", sn)
         if snmp_communities is not None:
@@ -541,6 +556,24 @@ class SwitchControllerManagedSwitchArgs:
         pulumi.set(self, "pre_provisioned", value)
 
     @property
+    @pulumi.getter(name="ptpProfile")
+    def ptp_profile(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ptp_profile")
+
+    @ptp_profile.setter
+    def ptp_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ptp_profile", value)
+
+    @property
+    @pulumi.getter(name="ptpStatus")
+    def ptp_status(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ptp_status")
+
+    @ptp_status.setter
+    def ptp_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ptp_status", value)
+
+    @property
     @pulumi.getter(name="qosDropPolicy")
     def qos_drop_policy(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "qos_drop_policy")
@@ -566,6 +599,33 @@ class SwitchControllerManagedSwitchArgs:
     @remote_logs.setter
     def remote_logs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerManagedSwitchRemoteLogArgs']]]]):
         pulumi.set(self, "remote_logs", value)
+
+    @property
+    @pulumi.getter(name="routeOffload")
+    def route_offload(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "route_offload")
+
+    @route_offload.setter
+    def route_offload(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "route_offload", value)
+
+    @property
+    @pulumi.getter(name="routeOffloadMclag")
+    def route_offload_mclag(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "route_offload_mclag")
+
+    @route_offload_mclag.setter
+    def route_offload_mclag(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "route_offload_mclag", value)
+
+    @property
+    @pulumi.getter(name="routeOffloadRouters")
+    def route_offload_routers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerManagedSwitchRouteOffloadRouterArgs']]]]:
+        return pulumi.get(self, "route_offload_routers")
+
+    @route_offload_routers.setter
+    def route_offload_routers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerManagedSwitchRouteOffloadRouterArgs']]]]):
+        pulumi.set(self, "route_offload_routers", value)
 
     @property
     @pulumi.getter
@@ -779,9 +839,14 @@ class _SwitchControllerManagedSwitchState:
                  poe_pre_standard_detection: Optional[pulumi.Input[str]] = None,
                  ports: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerManagedSwitchPortArgs']]]] = None,
                  pre_provisioned: Optional[pulumi.Input[int]] = None,
+                 ptp_profile: Optional[pulumi.Input[str]] = None,
+                 ptp_status: Optional[pulumi.Input[str]] = None,
                  qos_drop_policy: Optional[pulumi.Input[str]] = None,
                  qos_red_probability: Optional[pulumi.Input[int]] = None,
                  remote_logs: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerManagedSwitchRemoteLogArgs']]]] = None,
+                 route_offload: Optional[pulumi.Input[str]] = None,
+                 route_offload_mclag: Optional[pulumi.Input[str]] = None,
+                 route_offload_routers: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerManagedSwitchRouteOffloadRouterArgs']]]] = None,
                  sn: Optional[pulumi.Input[str]] = None,
                  snmp_communities: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerManagedSwitchSnmpCommunityArgs']]]] = None,
                  snmp_sysinfo: Optional[pulumi.Input['SwitchControllerManagedSwitchSnmpSysinfoArgs']] = None,
@@ -879,12 +944,22 @@ class _SwitchControllerManagedSwitchState:
             pulumi.set(__self__, "ports", ports)
         if pre_provisioned is not None:
             pulumi.set(__self__, "pre_provisioned", pre_provisioned)
+        if ptp_profile is not None:
+            pulumi.set(__self__, "ptp_profile", ptp_profile)
+        if ptp_status is not None:
+            pulumi.set(__self__, "ptp_status", ptp_status)
         if qos_drop_policy is not None:
             pulumi.set(__self__, "qos_drop_policy", qos_drop_policy)
         if qos_red_probability is not None:
             pulumi.set(__self__, "qos_red_probability", qos_red_probability)
         if remote_logs is not None:
             pulumi.set(__self__, "remote_logs", remote_logs)
+        if route_offload is not None:
+            pulumi.set(__self__, "route_offload", route_offload)
+        if route_offload_mclag is not None:
+            pulumi.set(__self__, "route_offload_mclag", route_offload_mclag)
+        if route_offload_routers is not None:
+            pulumi.set(__self__, "route_offload_routers", route_offload_routers)
         if sn is not None:
             pulumi.set(__self__, "sn", sn)
         if snmp_communities is not None:
@@ -1260,6 +1335,24 @@ class _SwitchControllerManagedSwitchState:
         pulumi.set(self, "pre_provisioned", value)
 
     @property
+    @pulumi.getter(name="ptpProfile")
+    def ptp_profile(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ptp_profile")
+
+    @ptp_profile.setter
+    def ptp_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ptp_profile", value)
+
+    @property
+    @pulumi.getter(name="ptpStatus")
+    def ptp_status(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ptp_status")
+
+    @ptp_status.setter
+    def ptp_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ptp_status", value)
+
+    @property
     @pulumi.getter(name="qosDropPolicy")
     def qos_drop_policy(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "qos_drop_policy")
@@ -1285,6 +1378,33 @@ class _SwitchControllerManagedSwitchState:
     @remote_logs.setter
     def remote_logs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerManagedSwitchRemoteLogArgs']]]]):
         pulumi.set(self, "remote_logs", value)
+
+    @property
+    @pulumi.getter(name="routeOffload")
+    def route_offload(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "route_offload")
+
+    @route_offload.setter
+    def route_offload(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "route_offload", value)
+
+    @property
+    @pulumi.getter(name="routeOffloadMclag")
+    def route_offload_mclag(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "route_offload_mclag")
+
+    @route_offload_mclag.setter
+    def route_offload_mclag(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "route_offload_mclag", value)
+
+    @property
+    @pulumi.getter(name="routeOffloadRouters")
+    def route_offload_routers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerManagedSwitchRouteOffloadRouterArgs']]]]:
+        return pulumi.get(self, "route_offload_routers")
+
+    @route_offload_routers.setter
+    def route_offload_routers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerManagedSwitchRouteOffloadRouterArgs']]]]):
+        pulumi.set(self, "route_offload_routers", value)
 
     @property
     @pulumi.getter
@@ -1509,9 +1629,14 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
                  poe_pre_standard_detection: Optional[pulumi.Input[str]] = None,
                  ports: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchPortArgs']]]]] = None,
                  pre_provisioned: Optional[pulumi.Input[int]] = None,
+                 ptp_profile: Optional[pulumi.Input[str]] = None,
+                 ptp_status: Optional[pulumi.Input[str]] = None,
                  qos_drop_policy: Optional[pulumi.Input[str]] = None,
                  qos_red_probability: Optional[pulumi.Input[int]] = None,
                  remote_logs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchRemoteLogArgs']]]]] = None,
+                 route_offload: Optional[pulumi.Input[str]] = None,
+                 route_offload_mclag: Optional[pulumi.Input[str]] = None,
+                 route_offload_routers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchRouteOffloadRouterArgs']]]]] = None,
                  sn: Optional[pulumi.Input[str]] = None,
                  snmp_communities: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchSnmpCommunityArgs']]]]] = None,
                  snmp_sysinfo: Optional[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchSnmpSysinfoArgs']]] = None,
@@ -1598,9 +1723,14 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
                  poe_pre_standard_detection: Optional[pulumi.Input[str]] = None,
                  ports: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchPortArgs']]]]] = None,
                  pre_provisioned: Optional[pulumi.Input[int]] = None,
+                 ptp_profile: Optional[pulumi.Input[str]] = None,
+                 ptp_status: Optional[pulumi.Input[str]] = None,
                  qos_drop_policy: Optional[pulumi.Input[str]] = None,
                  qos_red_probability: Optional[pulumi.Input[int]] = None,
                  remote_logs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchRemoteLogArgs']]]]] = None,
+                 route_offload: Optional[pulumi.Input[str]] = None,
+                 route_offload_mclag: Optional[pulumi.Input[str]] = None,
+                 route_offload_routers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchRouteOffloadRouterArgs']]]]] = None,
                  sn: Optional[pulumi.Input[str]] = None,
                  snmp_communities: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchSnmpCommunityArgs']]]]] = None,
                  snmp_sysinfo: Optional[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchSnmpSysinfoArgs']]] = None,
@@ -1669,9 +1799,14 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
             __props__.__dict__["poe_pre_standard_detection"] = poe_pre_standard_detection
             __props__.__dict__["ports"] = ports
             __props__.__dict__["pre_provisioned"] = pre_provisioned
+            __props__.__dict__["ptp_profile"] = ptp_profile
+            __props__.__dict__["ptp_status"] = ptp_status
             __props__.__dict__["qos_drop_policy"] = qos_drop_policy
             __props__.__dict__["qos_red_probability"] = qos_red_probability
             __props__.__dict__["remote_logs"] = remote_logs
+            __props__.__dict__["route_offload"] = route_offload
+            __props__.__dict__["route_offload_mclag"] = route_offload_mclag
+            __props__.__dict__["route_offload_routers"] = route_offload_routers
             __props__.__dict__["sn"] = sn
             __props__.__dict__["snmp_communities"] = snmp_communities
             __props__.__dict__["snmp_sysinfo"] = snmp_sysinfo
@@ -1741,9 +1876,14 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
             poe_pre_standard_detection: Optional[pulumi.Input[str]] = None,
             ports: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchPortArgs']]]]] = None,
             pre_provisioned: Optional[pulumi.Input[int]] = None,
+            ptp_profile: Optional[pulumi.Input[str]] = None,
+            ptp_status: Optional[pulumi.Input[str]] = None,
             qos_drop_policy: Optional[pulumi.Input[str]] = None,
             qos_red_probability: Optional[pulumi.Input[int]] = None,
             remote_logs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchRemoteLogArgs']]]]] = None,
+            route_offload: Optional[pulumi.Input[str]] = None,
+            route_offload_mclag: Optional[pulumi.Input[str]] = None,
+            route_offload_routers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchRouteOffloadRouterArgs']]]]] = None,
             sn: Optional[pulumi.Input[str]] = None,
             snmp_communities: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchSnmpCommunityArgs']]]]] = None,
             snmp_sysinfo: Optional[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchSnmpSysinfoArgs']]] = None,
@@ -1813,9 +1953,14 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
         __props__.__dict__["poe_pre_standard_detection"] = poe_pre_standard_detection
         __props__.__dict__["ports"] = ports
         __props__.__dict__["pre_provisioned"] = pre_provisioned
+        __props__.__dict__["ptp_profile"] = ptp_profile
+        __props__.__dict__["ptp_status"] = ptp_status
         __props__.__dict__["qos_drop_policy"] = qos_drop_policy
         __props__.__dict__["qos_red_probability"] = qos_red_probability
         __props__.__dict__["remote_logs"] = remote_logs
+        __props__.__dict__["route_offload"] = route_offload
+        __props__.__dict__["route_offload_mclag"] = route_offload_mclag
+        __props__.__dict__["route_offload_routers"] = route_offload_routers
         __props__.__dict__["sn"] = sn
         __props__.__dict__["snmp_communities"] = snmp_communities
         __props__.__dict__["snmp_sysinfo"] = snmp_sysinfo
@@ -2024,6 +2169,16 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
         return pulumi.get(self, "pre_provisioned")
 
     @property
+    @pulumi.getter(name="ptpProfile")
+    def ptp_profile(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "ptp_profile")
+
+    @property
+    @pulumi.getter(name="ptpStatus")
+    def ptp_status(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "ptp_status")
+
+    @property
     @pulumi.getter(name="qosDropPolicy")
     def qos_drop_policy(self) -> pulumi.Output[str]:
         return pulumi.get(self, "qos_drop_policy")
@@ -2037,6 +2192,21 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
     @pulumi.getter(name="remoteLogs")
     def remote_logs(self) -> pulumi.Output[Optional[Sequence['outputs.SwitchControllerManagedSwitchRemoteLog']]]:
         return pulumi.get(self, "remote_logs")
+
+    @property
+    @pulumi.getter(name="routeOffload")
+    def route_offload(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "route_offload")
+
+    @property
+    @pulumi.getter(name="routeOffloadMclag")
+    def route_offload_mclag(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "route_offload_mclag")
+
+    @property
+    @pulumi.getter(name="routeOffloadRouters")
+    def route_offload_routers(self) -> pulumi.Output[Optional[Sequence['outputs.SwitchControllerManagedSwitchRouteOffloadRouter']]]:
+        return pulumi.get(self, "route_offload_routers")
 
     @property
     @pulumi.getter

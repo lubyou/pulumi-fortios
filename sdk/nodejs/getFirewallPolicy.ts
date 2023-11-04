@@ -41,6 +41,7 @@ export interface GetFirewallPolicyResult {
     readonly blockNotification: string;
     readonly captivePortalExempt: string;
     readonly capturePacket: string;
+    readonly casbProfile: string;
     readonly cifsProfile: string;
     readonly comments: string;
     readonly customLogFields: outputs.GetFirewallPolicyCustomLogField[];
@@ -198,6 +199,7 @@ export interface GetFirewallPolicyResult {
     readonly uuid: string;
     readonly vdomparam?: string;
     readonly videofilterProfile: string;
+    readonly virtualPatchProfile: string;
     readonly vlanCosFwd: number;
     readonly vlanCosRev: number;
     readonly vlanFilter: string;

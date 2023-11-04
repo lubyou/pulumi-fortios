@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemFabricVpn struct {
@@ -170,6 +171,12 @@ func (i *SystemFabricVpn) ToSystemFabricVpnOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFabricVpnOutput)
 }
 
+func (i *SystemFabricVpn) ToOutput(ctx context.Context) pulumix.Output[*SystemFabricVpn] {
+	return pulumix.Output[*SystemFabricVpn]{
+		OutputState: i.ToSystemFabricVpnOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemFabricVpnArrayInput is an input type that accepts SystemFabricVpnArray and SystemFabricVpnArrayOutput values.
 // You can construct a concrete instance of `SystemFabricVpnArrayInput` via:
 //
@@ -193,6 +200,12 @@ func (i SystemFabricVpnArray) ToSystemFabricVpnArrayOutput() SystemFabricVpnArra
 
 func (i SystemFabricVpnArray) ToSystemFabricVpnArrayOutputWithContext(ctx context.Context) SystemFabricVpnArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFabricVpnArrayOutput)
+}
+
+func (i SystemFabricVpnArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemFabricVpn] {
+	return pulumix.Output[[]*SystemFabricVpn]{
+		OutputState: i.ToSystemFabricVpnArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemFabricVpnMapInput is an input type that accepts SystemFabricVpnMap and SystemFabricVpnMapOutput values.
@@ -220,6 +233,12 @@ func (i SystemFabricVpnMap) ToSystemFabricVpnMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFabricVpnMapOutput)
 }
 
+func (i SystemFabricVpnMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemFabricVpn] {
+	return pulumix.Output[map[string]*SystemFabricVpn]{
+		OutputState: i.ToSystemFabricVpnMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemFabricVpnOutput struct{ *pulumi.OutputState }
 
 func (SystemFabricVpnOutput) ElementType() reflect.Type {
@@ -232,6 +251,12 @@ func (o SystemFabricVpnOutput) ToSystemFabricVpnOutput() SystemFabricVpnOutput {
 
 func (o SystemFabricVpnOutput) ToSystemFabricVpnOutputWithContext(ctx context.Context) SystemFabricVpnOutput {
 	return o
+}
+
+func (o SystemFabricVpnOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemFabricVpn] {
+	return pulumix.Output[*SystemFabricVpn]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemFabricVpnOutput) AdvertisedSubnets() SystemFabricVpnAdvertisedSubnetArrayOutput {
@@ -316,6 +341,12 @@ func (o SystemFabricVpnArrayOutput) ToSystemFabricVpnArrayOutputWithContext(ctx 
 	return o
 }
 
+func (o SystemFabricVpnArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemFabricVpn] {
+	return pulumix.Output[[]*SystemFabricVpn]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemFabricVpnArrayOutput) Index(i pulumi.IntInput) SystemFabricVpnOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemFabricVpn {
 		return vs[0].([]*SystemFabricVpn)[vs[1].(int)]
@@ -334,6 +365,12 @@ func (o SystemFabricVpnMapOutput) ToSystemFabricVpnMapOutput() SystemFabricVpnMa
 
 func (o SystemFabricVpnMapOutput) ToSystemFabricVpnMapOutputWithContext(ctx context.Context) SystemFabricVpnMapOutput {
 	return o
+}
+
+func (o SystemFabricVpnMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemFabricVpn] {
+	return pulumix.Output[map[string]*SystemFabricVpn]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemFabricVpnMapOutput) MapIndex(k pulumi.StringInput) SystemFabricVpnOutput {

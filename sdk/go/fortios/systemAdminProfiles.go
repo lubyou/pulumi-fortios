@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemAdminProfiles struct {
@@ -160,6 +161,12 @@ func (i *SystemAdminProfiles) ToSystemAdminProfilesOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAdminProfilesOutput)
 }
 
+func (i *SystemAdminProfiles) ToOutput(ctx context.Context) pulumix.Output[*SystemAdminProfiles] {
+	return pulumix.Output[*SystemAdminProfiles]{
+		OutputState: i.ToSystemAdminProfilesOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemAdminProfilesArrayInput is an input type that accepts SystemAdminProfilesArray and SystemAdminProfilesArrayOutput values.
 // You can construct a concrete instance of `SystemAdminProfilesArrayInput` via:
 //
@@ -183,6 +190,12 @@ func (i SystemAdminProfilesArray) ToSystemAdminProfilesArrayOutput() SystemAdmin
 
 func (i SystemAdminProfilesArray) ToSystemAdminProfilesArrayOutputWithContext(ctx context.Context) SystemAdminProfilesArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAdminProfilesArrayOutput)
+}
+
+func (i SystemAdminProfilesArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemAdminProfiles] {
+	return pulumix.Output[[]*SystemAdminProfiles]{
+		OutputState: i.ToSystemAdminProfilesArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemAdminProfilesMapInput is an input type that accepts SystemAdminProfilesMap and SystemAdminProfilesMapOutput values.
@@ -210,6 +223,12 @@ func (i SystemAdminProfilesMap) ToSystemAdminProfilesMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAdminProfilesMapOutput)
 }
 
+func (i SystemAdminProfilesMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemAdminProfiles] {
+	return pulumix.Output[map[string]*SystemAdminProfiles]{
+		OutputState: i.ToSystemAdminProfilesMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemAdminProfilesOutput struct{ *pulumi.OutputState }
 
 func (SystemAdminProfilesOutput) ElementType() reflect.Type {
@@ -222,6 +241,12 @@ func (o SystemAdminProfilesOutput) ToSystemAdminProfilesOutput() SystemAdminProf
 
 func (o SystemAdminProfilesOutput) ToSystemAdminProfilesOutputWithContext(ctx context.Context) SystemAdminProfilesOutput {
 	return o
+}
+
+func (o SystemAdminProfilesOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemAdminProfiles] {
+	return pulumix.Output[*SystemAdminProfiles]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemAdminProfilesOutput) AdmintimeoutOverride() pulumi.StringOutput {
@@ -298,6 +323,12 @@ func (o SystemAdminProfilesArrayOutput) ToSystemAdminProfilesArrayOutputWithCont
 	return o
 }
 
+func (o SystemAdminProfilesArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemAdminProfiles] {
+	return pulumix.Output[[]*SystemAdminProfiles]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemAdminProfilesArrayOutput) Index(i pulumi.IntInput) SystemAdminProfilesOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemAdminProfiles {
 		return vs[0].([]*SystemAdminProfiles)[vs[1].(int)]
@@ -316,6 +347,12 @@ func (o SystemAdminProfilesMapOutput) ToSystemAdminProfilesMapOutput() SystemAdm
 
 func (o SystemAdminProfilesMapOutput) ToSystemAdminProfilesMapOutputWithContext(ctx context.Context) SystemAdminProfilesMapOutput {
 	return o
+}
+
+func (o SystemAdminProfilesMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemAdminProfiles] {
+	return pulumix.Output[map[string]*SystemAdminProfiles]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemAdminProfilesMapOutput) MapIndex(k pulumi.StringInput) SystemAdminProfilesOutput {

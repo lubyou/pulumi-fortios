@@ -113,9 +113,12 @@ export interface GetSystemGlobalResult {
     readonly fortiipamIntegration: string;
     readonly fortiservicePort: number;
     readonly fortitokenCloud: string;
+    readonly fortitokenCloudPushStatus: string;
+    readonly fortitokenCloudSyncInterval: number;
     readonly guiAllowDefaultHostname: string;
     readonly guiAllowIncompatibleFabricFgt: string;
     readonly guiAppDetectionSdwan: string;
+    readonly guiAutoUpgradeSetupWarning: string;
     readonly guiCdnDomainOverride: string;
     readonly guiCdnUsage: string;
     readonly guiCertificates: string;
@@ -210,6 +213,12 @@ export interface GetSystemGlobalResult {
     readonly proxyReAuthenticationTime: number;
     readonly proxyResourceMode: string;
     readonly proxyWorkerCount: number;
+    readonly quicAckThresold: number;
+    readonly quicCongestionControlAlgo: string;
+    readonly quicMaxDatagramSize: number;
+    readonly quicPmtud: string;
+    readonly quicTlsHandshakeTimeout: number;
+    readonly quicUdpPayloadSizeShapingPerCid: string;
     readonly radiusPort: number;
     readonly rebootUponConfigRestore: string;
     readonly refresh: number;
@@ -247,6 +256,7 @@ export interface GetSystemGlobalResult {
     readonly sslvpnKxpHardwareAcceleration: string;
     readonly sslvpnMaxWorkerCount: number;
     readonly sslvpnPluginVersionCheck: string;
+    readonly sslvpnWebMode: string;
     readonly strictDirtySessionCheck: string;
     readonly strongCrypto: string;
     readonly switchController: string;

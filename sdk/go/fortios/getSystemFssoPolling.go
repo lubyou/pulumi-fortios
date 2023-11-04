@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemFssoPolling(ctx *pulumi.Context, args *LookupSystemFssoPollingArgs, opts ...pulumi.InvokeOption) (*LookupSystemFssoPollingResult, error) {
@@ -72,6 +73,12 @@ func (o LookupSystemFssoPollingResultOutput) ToLookupSystemFssoPollingResultOutp
 
 func (o LookupSystemFssoPollingResultOutput) ToLookupSystemFssoPollingResultOutputWithContext(ctx context.Context) LookupSystemFssoPollingResultOutput {
 	return o
+}
+
+func (o LookupSystemFssoPollingResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemFssoPollingResult] {
+	return pulumix.Output[LookupSystemFssoPollingResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupSystemFssoPollingResultOutput) AuthPassword() pulumi.StringOutput {

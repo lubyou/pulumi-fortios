@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerMacSyncSettings struct {
@@ -95,6 +96,12 @@ func (i *SwitchControllerMacSyncSettings) ToSwitchControllerMacSyncSettingsOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerMacSyncSettingsOutput)
 }
 
+func (i *SwitchControllerMacSyncSettings) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerMacSyncSettings] {
+	return pulumix.Output[*SwitchControllerMacSyncSettings]{
+		OutputState: i.ToSwitchControllerMacSyncSettingsOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SwitchControllerMacSyncSettingsArrayInput is an input type that accepts SwitchControllerMacSyncSettingsArray and SwitchControllerMacSyncSettingsArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerMacSyncSettingsArrayInput` via:
 //
@@ -118,6 +125,12 @@ func (i SwitchControllerMacSyncSettingsArray) ToSwitchControllerMacSyncSettingsA
 
 func (i SwitchControllerMacSyncSettingsArray) ToSwitchControllerMacSyncSettingsArrayOutputWithContext(ctx context.Context) SwitchControllerMacSyncSettingsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerMacSyncSettingsArrayOutput)
+}
+
+func (i SwitchControllerMacSyncSettingsArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerMacSyncSettings] {
+	return pulumix.Output[[]*SwitchControllerMacSyncSettings]{
+		OutputState: i.ToSwitchControllerMacSyncSettingsArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SwitchControllerMacSyncSettingsMapInput is an input type that accepts SwitchControllerMacSyncSettingsMap and SwitchControllerMacSyncSettingsMapOutput values.
@@ -145,6 +158,12 @@ func (i SwitchControllerMacSyncSettingsMap) ToSwitchControllerMacSyncSettingsMap
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerMacSyncSettingsMapOutput)
 }
 
+func (i SwitchControllerMacSyncSettingsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerMacSyncSettings] {
+	return pulumix.Output[map[string]*SwitchControllerMacSyncSettings]{
+		OutputState: i.ToSwitchControllerMacSyncSettingsMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SwitchControllerMacSyncSettingsOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerMacSyncSettingsOutput) ElementType() reflect.Type {
@@ -157,6 +176,12 @@ func (o SwitchControllerMacSyncSettingsOutput) ToSwitchControllerMacSyncSettings
 
 func (o SwitchControllerMacSyncSettingsOutput) ToSwitchControllerMacSyncSettingsOutputWithContext(ctx context.Context) SwitchControllerMacSyncSettingsOutput {
 	return o
+}
+
+func (o SwitchControllerMacSyncSettingsOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerMacSyncSettings] {
+	return pulumix.Output[*SwitchControllerMacSyncSettings]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerMacSyncSettingsOutput) MacSyncInterval() pulumi.IntOutput {
@@ -181,6 +206,12 @@ func (o SwitchControllerMacSyncSettingsArrayOutput) ToSwitchControllerMacSyncSet
 	return o
 }
 
+func (o SwitchControllerMacSyncSettingsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerMacSyncSettings] {
+	return pulumix.Output[[]*SwitchControllerMacSyncSettings]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SwitchControllerMacSyncSettingsArrayOutput) Index(i pulumi.IntInput) SwitchControllerMacSyncSettingsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerMacSyncSettings {
 		return vs[0].([]*SwitchControllerMacSyncSettings)[vs[1].(int)]
@@ -199,6 +230,12 @@ func (o SwitchControllerMacSyncSettingsMapOutput) ToSwitchControllerMacSyncSetti
 
 func (o SwitchControllerMacSyncSettingsMapOutput) ToSwitchControllerMacSyncSettingsMapOutputWithContext(ctx context.Context) SwitchControllerMacSyncSettingsMapOutput {
 	return o
+}
+
+func (o SwitchControllerMacSyncSettingsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerMacSyncSettings] {
+	return pulumix.Output[map[string]*SwitchControllerMacSyncSettings]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerMacSyncSettingsMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerMacSyncSettingsOutput {

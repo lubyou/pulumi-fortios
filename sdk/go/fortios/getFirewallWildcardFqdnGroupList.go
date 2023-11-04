@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetFirewallWildcardFqdnGroupList(ctx *pulumi.Context, args *GetFirewallWildcardFqdnGroupListArgs, opts ...pulumi.InvokeOption) (*GetFirewallWildcardFqdnGroupListResult, error) {
@@ -72,6 +73,12 @@ func (o GetFirewallWildcardFqdnGroupListResultOutput) ToGetFirewallWildcardFqdnG
 
 func (o GetFirewallWildcardFqdnGroupListResultOutput) ToGetFirewallWildcardFqdnGroupListResultOutputWithContext(ctx context.Context) GetFirewallWildcardFqdnGroupListResultOutput {
 	return o
+}
+
+func (o GetFirewallWildcardFqdnGroupListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetFirewallWildcardFqdnGroupListResult] {
+	return pulumix.Output[GetFirewallWildcardFqdnGroupListResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetFirewallWildcardFqdnGroupListResultOutput) Filter() pulumi.StringPtrOutput {

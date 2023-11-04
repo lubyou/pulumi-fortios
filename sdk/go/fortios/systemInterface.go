@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemInterface struct {
@@ -56,12 +57,14 @@ type SystemInterface struct {
 	DhcpClasslessRouteAddition            pulumi.StringOutput                              `pulumi:"dhcpClasslessRouteAddition"`
 	DhcpClientIdentifier                  pulumi.StringOutput                              `pulumi:"dhcpClientIdentifier"`
 	DhcpRelayAgentOption                  pulumi.StringOutput                              `pulumi:"dhcpRelayAgentOption"`
+	DhcpRelayCircuitId                    pulumi.StringOutput                              `pulumi:"dhcpRelayCircuitId"`
 	DhcpRelayInterface                    pulumi.StringOutput                              `pulumi:"dhcpRelayInterface"`
 	DhcpRelayInterfaceSelectMethod        pulumi.StringOutput                              `pulumi:"dhcpRelayInterfaceSelectMethod"`
 	DhcpRelayIp                           pulumi.StringOutput                              `pulumi:"dhcpRelayIp"`
 	DhcpRelayLinkSelection                pulumi.StringOutput                              `pulumi:"dhcpRelayLinkSelection"`
 	DhcpRelayRequestAllServer             pulumi.StringOutput                              `pulumi:"dhcpRelayRequestAllServer"`
 	DhcpRelayService                      pulumi.StringOutput                              `pulumi:"dhcpRelayService"`
+	DhcpRelaySourceIp                     pulumi.StringOutput                              `pulumi:"dhcpRelaySourceIp"`
 	DhcpRelayType                         pulumi.StringOutput                              `pulumi:"dhcpRelayType"`
 	DhcpRenewTime                         pulumi.IntOutput                                 `pulumi:"dhcpRenewTime"`
 	DhcpSmartRelay                        pulumi.StringOutput                              `pulumi:"dhcpSmartRelay"`
@@ -214,6 +217,9 @@ type SystemInterface struct {
 	SwitchControllerMgmtVlan              pulumi.IntOutput                                 `pulumi:"switchControllerMgmtVlan"`
 	SwitchControllerNac                   pulumi.StringOutput                              `pulumi:"switchControllerNac"`
 	SwitchControllerNetflowCollect        pulumi.StringOutput                              `pulumi:"switchControllerNetflowCollect"`
+	SwitchControllerOffload               pulumi.StringOutput                              `pulumi:"switchControllerOffload"`
+	SwitchControllerOffloadGw             pulumi.StringOutput                              `pulumi:"switchControllerOffloadGw"`
+	SwitchControllerOffloadIp             pulumi.StringOutput                              `pulumi:"switchControllerOffloadIp"`
 	SwitchControllerRspanMode             pulumi.StringOutput                              `pulumi:"switchControllerRspanMode"`
 	SwitchControllerSourceIp              pulumi.StringOutput                              `pulumi:"switchControllerSourceIp"`
 	SwitchControllerTrafficPolicy         pulumi.StringOutput                              `pulumi:"switchControllerTrafficPolicy"`
@@ -333,12 +339,14 @@ type systemInterfaceState struct {
 	DhcpClasslessRouteAddition            *string                                 `pulumi:"dhcpClasslessRouteAddition"`
 	DhcpClientIdentifier                  *string                                 `pulumi:"dhcpClientIdentifier"`
 	DhcpRelayAgentOption                  *string                                 `pulumi:"dhcpRelayAgentOption"`
+	DhcpRelayCircuitId                    *string                                 `pulumi:"dhcpRelayCircuitId"`
 	DhcpRelayInterface                    *string                                 `pulumi:"dhcpRelayInterface"`
 	DhcpRelayInterfaceSelectMethod        *string                                 `pulumi:"dhcpRelayInterfaceSelectMethod"`
 	DhcpRelayIp                           *string                                 `pulumi:"dhcpRelayIp"`
 	DhcpRelayLinkSelection                *string                                 `pulumi:"dhcpRelayLinkSelection"`
 	DhcpRelayRequestAllServer             *string                                 `pulumi:"dhcpRelayRequestAllServer"`
 	DhcpRelayService                      *string                                 `pulumi:"dhcpRelayService"`
+	DhcpRelaySourceIp                     *string                                 `pulumi:"dhcpRelaySourceIp"`
 	DhcpRelayType                         *string                                 `pulumi:"dhcpRelayType"`
 	DhcpRenewTime                         *int                                    `pulumi:"dhcpRenewTime"`
 	DhcpSmartRelay                        *string                                 `pulumi:"dhcpSmartRelay"`
@@ -491,6 +499,9 @@ type systemInterfaceState struct {
 	SwitchControllerMgmtVlan              *int                                    `pulumi:"switchControllerMgmtVlan"`
 	SwitchControllerNac                   *string                                 `pulumi:"switchControllerNac"`
 	SwitchControllerNetflowCollect        *string                                 `pulumi:"switchControllerNetflowCollect"`
+	SwitchControllerOffload               *string                                 `pulumi:"switchControllerOffload"`
+	SwitchControllerOffloadGw             *string                                 `pulumi:"switchControllerOffloadGw"`
+	SwitchControllerOffloadIp             *string                                 `pulumi:"switchControllerOffloadIp"`
 	SwitchControllerRspanMode             *string                                 `pulumi:"switchControllerRspanMode"`
 	SwitchControllerSourceIp              *string                                 `pulumi:"switchControllerSourceIp"`
 	SwitchControllerTrafficPolicy         *string                                 `pulumi:"switchControllerTrafficPolicy"`
@@ -563,12 +574,14 @@ type SystemInterfaceState struct {
 	DhcpClasslessRouteAddition            pulumi.StringPtrInput
 	DhcpClientIdentifier                  pulumi.StringPtrInput
 	DhcpRelayAgentOption                  pulumi.StringPtrInput
+	DhcpRelayCircuitId                    pulumi.StringPtrInput
 	DhcpRelayInterface                    pulumi.StringPtrInput
 	DhcpRelayInterfaceSelectMethod        pulumi.StringPtrInput
 	DhcpRelayIp                           pulumi.StringPtrInput
 	DhcpRelayLinkSelection                pulumi.StringPtrInput
 	DhcpRelayRequestAllServer             pulumi.StringPtrInput
 	DhcpRelayService                      pulumi.StringPtrInput
+	DhcpRelaySourceIp                     pulumi.StringPtrInput
 	DhcpRelayType                         pulumi.StringPtrInput
 	DhcpRenewTime                         pulumi.IntPtrInput
 	DhcpSmartRelay                        pulumi.StringPtrInput
@@ -721,6 +734,9 @@ type SystemInterfaceState struct {
 	SwitchControllerMgmtVlan              pulumi.IntPtrInput
 	SwitchControllerNac                   pulumi.StringPtrInput
 	SwitchControllerNetflowCollect        pulumi.StringPtrInput
+	SwitchControllerOffload               pulumi.StringPtrInput
+	SwitchControllerOffloadGw             pulumi.StringPtrInput
+	SwitchControllerOffloadIp             pulumi.StringPtrInput
 	SwitchControllerRspanMode             pulumi.StringPtrInput
 	SwitchControllerSourceIp              pulumi.StringPtrInput
 	SwitchControllerTrafficPolicy         pulumi.StringPtrInput
@@ -797,12 +813,14 @@ type systemInterfaceArgs struct {
 	DhcpClasslessRouteAddition            *string                                 `pulumi:"dhcpClasslessRouteAddition"`
 	DhcpClientIdentifier                  *string                                 `pulumi:"dhcpClientIdentifier"`
 	DhcpRelayAgentOption                  *string                                 `pulumi:"dhcpRelayAgentOption"`
+	DhcpRelayCircuitId                    *string                                 `pulumi:"dhcpRelayCircuitId"`
 	DhcpRelayInterface                    *string                                 `pulumi:"dhcpRelayInterface"`
 	DhcpRelayInterfaceSelectMethod        *string                                 `pulumi:"dhcpRelayInterfaceSelectMethod"`
 	DhcpRelayIp                           *string                                 `pulumi:"dhcpRelayIp"`
 	DhcpRelayLinkSelection                *string                                 `pulumi:"dhcpRelayLinkSelection"`
 	DhcpRelayRequestAllServer             *string                                 `pulumi:"dhcpRelayRequestAllServer"`
 	DhcpRelayService                      *string                                 `pulumi:"dhcpRelayService"`
+	DhcpRelaySourceIp                     *string                                 `pulumi:"dhcpRelaySourceIp"`
 	DhcpRelayType                         *string                                 `pulumi:"dhcpRelayType"`
 	DhcpRenewTime                         *int                                    `pulumi:"dhcpRenewTime"`
 	DhcpSmartRelay                        *string                                 `pulumi:"dhcpSmartRelay"`
@@ -955,6 +973,9 @@ type systemInterfaceArgs struct {
 	SwitchControllerMgmtVlan              *int                                    `pulumi:"switchControllerMgmtVlan"`
 	SwitchControllerNac                   *string                                 `pulumi:"switchControllerNac"`
 	SwitchControllerNetflowCollect        *string                                 `pulumi:"switchControllerNetflowCollect"`
+	SwitchControllerOffload               *string                                 `pulumi:"switchControllerOffload"`
+	SwitchControllerOffloadGw             *string                                 `pulumi:"switchControllerOffloadGw"`
+	SwitchControllerOffloadIp             *string                                 `pulumi:"switchControllerOffloadIp"`
 	SwitchControllerRspanMode             *string                                 `pulumi:"switchControllerRspanMode"`
 	SwitchControllerSourceIp              *string                                 `pulumi:"switchControllerSourceIp"`
 	SwitchControllerTrafficPolicy         *string                                 `pulumi:"switchControllerTrafficPolicy"`
@@ -1028,12 +1049,14 @@ type SystemInterfaceArgs struct {
 	DhcpClasslessRouteAddition            pulumi.StringPtrInput
 	DhcpClientIdentifier                  pulumi.StringPtrInput
 	DhcpRelayAgentOption                  pulumi.StringPtrInput
+	DhcpRelayCircuitId                    pulumi.StringPtrInput
 	DhcpRelayInterface                    pulumi.StringPtrInput
 	DhcpRelayInterfaceSelectMethod        pulumi.StringPtrInput
 	DhcpRelayIp                           pulumi.StringPtrInput
 	DhcpRelayLinkSelection                pulumi.StringPtrInput
 	DhcpRelayRequestAllServer             pulumi.StringPtrInput
 	DhcpRelayService                      pulumi.StringPtrInput
+	DhcpRelaySourceIp                     pulumi.StringPtrInput
 	DhcpRelayType                         pulumi.StringPtrInput
 	DhcpRenewTime                         pulumi.IntPtrInput
 	DhcpSmartRelay                        pulumi.StringPtrInput
@@ -1186,6 +1209,9 @@ type SystemInterfaceArgs struct {
 	SwitchControllerMgmtVlan              pulumi.IntPtrInput
 	SwitchControllerNac                   pulumi.StringPtrInput
 	SwitchControllerNetflowCollect        pulumi.StringPtrInput
+	SwitchControllerOffload               pulumi.StringPtrInput
+	SwitchControllerOffloadGw             pulumi.StringPtrInput
+	SwitchControllerOffloadIp             pulumi.StringPtrInput
 	SwitchControllerRspanMode             pulumi.StringPtrInput
 	SwitchControllerSourceIp              pulumi.StringPtrInput
 	SwitchControllerTrafficPolicy         pulumi.StringPtrInput
@@ -1239,6 +1265,12 @@ func (i *SystemInterface) ToSystemInterfaceOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SystemInterfaceOutput)
 }
 
+func (i *SystemInterface) ToOutput(ctx context.Context) pulumix.Output[*SystemInterface] {
+	return pulumix.Output[*SystemInterface]{
+		OutputState: i.ToSystemInterfaceOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemInterfaceArrayInput is an input type that accepts SystemInterfaceArray and SystemInterfaceArrayOutput values.
 // You can construct a concrete instance of `SystemInterfaceArrayInput` via:
 //
@@ -1262,6 +1294,12 @@ func (i SystemInterfaceArray) ToSystemInterfaceArrayOutput() SystemInterfaceArra
 
 func (i SystemInterfaceArray) ToSystemInterfaceArrayOutputWithContext(ctx context.Context) SystemInterfaceArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemInterfaceArrayOutput)
+}
+
+func (i SystemInterfaceArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemInterface] {
+	return pulumix.Output[[]*SystemInterface]{
+		OutputState: i.ToSystemInterfaceArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemInterfaceMapInput is an input type that accepts SystemInterfaceMap and SystemInterfaceMapOutput values.
@@ -1289,6 +1327,12 @@ func (i SystemInterfaceMap) ToSystemInterfaceMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemInterfaceMapOutput)
 }
 
+func (i SystemInterfaceMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemInterface] {
+	return pulumix.Output[map[string]*SystemInterface]{
+		OutputState: i.ToSystemInterfaceMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemInterfaceOutput struct{ *pulumi.OutputState }
 
 func (SystemInterfaceOutput) ElementType() reflect.Type {
@@ -1301,6 +1345,12 @@ func (o SystemInterfaceOutput) ToSystemInterfaceOutput() SystemInterfaceOutput {
 
 func (o SystemInterfaceOutput) ToSystemInterfaceOutputWithContext(ctx context.Context) SystemInterfaceOutput {
 	return o
+}
+
+func (o SystemInterfaceOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemInterface] {
+	return pulumix.Output[*SystemInterface]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemInterfaceOutput) AcName() pulumi.StringOutput {
@@ -1467,6 +1517,10 @@ func (o SystemInterfaceOutput) DhcpRelayAgentOption() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemInterface) pulumi.StringOutput { return v.DhcpRelayAgentOption }).(pulumi.StringOutput)
 }
 
+func (o SystemInterfaceOutput) DhcpRelayCircuitId() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemInterface) pulumi.StringOutput { return v.DhcpRelayCircuitId }).(pulumi.StringOutput)
+}
+
 func (o SystemInterfaceOutput) DhcpRelayInterface() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemInterface) pulumi.StringOutput { return v.DhcpRelayInterface }).(pulumi.StringOutput)
 }
@@ -1489,6 +1543,10 @@ func (o SystemInterfaceOutput) DhcpRelayRequestAllServer() pulumi.StringOutput {
 
 func (o SystemInterfaceOutput) DhcpRelayService() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemInterface) pulumi.StringOutput { return v.DhcpRelayService }).(pulumi.StringOutput)
+}
+
+func (o SystemInterfaceOutput) DhcpRelaySourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemInterface) pulumi.StringOutput { return v.DhcpRelaySourceIp }).(pulumi.StringOutput)
 }
 
 func (o SystemInterfaceOutput) DhcpRelayType() pulumi.StringOutput {
@@ -2101,6 +2159,18 @@ func (o SystemInterfaceOutput) SwitchControllerNetflowCollect() pulumi.StringOut
 	return o.ApplyT(func(v *SystemInterface) pulumi.StringOutput { return v.SwitchControllerNetflowCollect }).(pulumi.StringOutput)
 }
 
+func (o SystemInterfaceOutput) SwitchControllerOffload() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemInterface) pulumi.StringOutput { return v.SwitchControllerOffload }).(pulumi.StringOutput)
+}
+
+func (o SystemInterfaceOutput) SwitchControllerOffloadGw() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemInterface) pulumi.StringOutput { return v.SwitchControllerOffloadGw }).(pulumi.StringOutput)
+}
+
+func (o SystemInterfaceOutput) SwitchControllerOffloadIp() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemInterface) pulumi.StringOutput { return v.SwitchControllerOffloadIp }).(pulumi.StringOutput)
+}
+
 func (o SystemInterfaceOutput) SwitchControllerRspanMode() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemInterface) pulumi.StringOutput { return v.SwitchControllerRspanMode }).(pulumi.StringOutput)
 }
@@ -2227,6 +2297,12 @@ func (o SystemInterfaceArrayOutput) ToSystemInterfaceArrayOutputWithContext(ctx 
 	return o
 }
 
+func (o SystemInterfaceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemInterface] {
+	return pulumix.Output[[]*SystemInterface]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemInterfaceArrayOutput) Index(i pulumi.IntInput) SystemInterfaceOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemInterface {
 		return vs[0].([]*SystemInterface)[vs[1].(int)]
@@ -2245,6 +2321,12 @@ func (o SystemInterfaceMapOutput) ToSystemInterfaceMapOutput() SystemInterfaceMa
 
 func (o SystemInterfaceMapOutput) ToSystemInterfaceMapOutputWithContext(ctx context.Context) SystemInterfaceMapOutput {
 	return o
+}
+
+func (o SystemInterfaceMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemInterface] {
+	return pulumix.Output[map[string]*SystemInterface]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemInterfaceMapOutput) MapIndex(k pulumi.StringInput) SystemInterfaceOutput {

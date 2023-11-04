@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerNetworkMonitorSettings struct {
@@ -95,6 +96,12 @@ func (i *SwitchControllerNetworkMonitorSettings) ToSwitchControllerNetworkMonito
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerNetworkMonitorSettingsOutput)
 }
 
+func (i *SwitchControllerNetworkMonitorSettings) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerNetworkMonitorSettings] {
+	return pulumix.Output[*SwitchControllerNetworkMonitorSettings]{
+		OutputState: i.ToSwitchControllerNetworkMonitorSettingsOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SwitchControllerNetworkMonitorSettingsArrayInput is an input type that accepts SwitchControllerNetworkMonitorSettingsArray and SwitchControllerNetworkMonitorSettingsArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerNetworkMonitorSettingsArrayInput` via:
 //
@@ -118,6 +125,12 @@ func (i SwitchControllerNetworkMonitorSettingsArray) ToSwitchControllerNetworkMo
 
 func (i SwitchControllerNetworkMonitorSettingsArray) ToSwitchControllerNetworkMonitorSettingsArrayOutputWithContext(ctx context.Context) SwitchControllerNetworkMonitorSettingsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerNetworkMonitorSettingsArrayOutput)
+}
+
+func (i SwitchControllerNetworkMonitorSettingsArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerNetworkMonitorSettings] {
+	return pulumix.Output[[]*SwitchControllerNetworkMonitorSettings]{
+		OutputState: i.ToSwitchControllerNetworkMonitorSettingsArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SwitchControllerNetworkMonitorSettingsMapInput is an input type that accepts SwitchControllerNetworkMonitorSettingsMap and SwitchControllerNetworkMonitorSettingsMapOutput values.
@@ -145,6 +158,12 @@ func (i SwitchControllerNetworkMonitorSettingsMap) ToSwitchControllerNetworkMoni
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerNetworkMonitorSettingsMapOutput)
 }
 
+func (i SwitchControllerNetworkMonitorSettingsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerNetworkMonitorSettings] {
+	return pulumix.Output[map[string]*SwitchControllerNetworkMonitorSettings]{
+		OutputState: i.ToSwitchControllerNetworkMonitorSettingsMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SwitchControllerNetworkMonitorSettingsOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerNetworkMonitorSettingsOutput) ElementType() reflect.Type {
@@ -157,6 +176,12 @@ func (o SwitchControllerNetworkMonitorSettingsOutput) ToSwitchControllerNetworkM
 
 func (o SwitchControllerNetworkMonitorSettingsOutput) ToSwitchControllerNetworkMonitorSettingsOutputWithContext(ctx context.Context) SwitchControllerNetworkMonitorSettingsOutput {
 	return o
+}
+
+func (o SwitchControllerNetworkMonitorSettingsOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerNetworkMonitorSettings] {
+	return pulumix.Output[*SwitchControllerNetworkMonitorSettings]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerNetworkMonitorSettingsOutput) NetworkMonitoring() pulumi.StringOutput {
@@ -181,6 +206,12 @@ func (o SwitchControllerNetworkMonitorSettingsArrayOutput) ToSwitchControllerNet
 	return o
 }
 
+func (o SwitchControllerNetworkMonitorSettingsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerNetworkMonitorSettings] {
+	return pulumix.Output[[]*SwitchControllerNetworkMonitorSettings]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SwitchControllerNetworkMonitorSettingsArrayOutput) Index(i pulumi.IntInput) SwitchControllerNetworkMonitorSettingsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerNetworkMonitorSettings {
 		return vs[0].([]*SwitchControllerNetworkMonitorSettings)[vs[1].(int)]
@@ -199,6 +230,12 @@ func (o SwitchControllerNetworkMonitorSettingsMapOutput) ToSwitchControllerNetwo
 
 func (o SwitchControllerNetworkMonitorSettingsMapOutput) ToSwitchControllerNetworkMonitorSettingsMapOutputWithContext(ctx context.Context) SwitchControllerNetworkMonitorSettingsMapOutput {
 	return o
+}
+
+func (o SwitchControllerNetworkMonitorSettingsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerNetworkMonitorSettings] {
+	return pulumix.Output[map[string]*SwitchControllerNetworkMonitorSettings]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerNetworkMonitorSettingsMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerNetworkMonitorSettingsOutput {

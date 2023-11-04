@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FtpProxyExplicit struct {
@@ -140,6 +141,12 @@ func (i *FtpProxyExplicit) ToFtpProxyExplicitOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(FtpProxyExplicitOutput)
 }
 
+func (i *FtpProxyExplicit) ToOutput(ctx context.Context) pulumix.Output[*FtpProxyExplicit] {
+	return pulumix.Output[*FtpProxyExplicit]{
+		OutputState: i.ToFtpProxyExplicitOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FtpProxyExplicitArrayInput is an input type that accepts FtpProxyExplicitArray and FtpProxyExplicitArrayOutput values.
 // You can construct a concrete instance of `FtpProxyExplicitArrayInput` via:
 //
@@ -163,6 +170,12 @@ func (i FtpProxyExplicitArray) ToFtpProxyExplicitArrayOutput() FtpProxyExplicitA
 
 func (i FtpProxyExplicitArray) ToFtpProxyExplicitArrayOutputWithContext(ctx context.Context) FtpProxyExplicitArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FtpProxyExplicitArrayOutput)
+}
+
+func (i FtpProxyExplicitArray) ToOutput(ctx context.Context) pulumix.Output[[]*FtpProxyExplicit] {
+	return pulumix.Output[[]*FtpProxyExplicit]{
+		OutputState: i.ToFtpProxyExplicitArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FtpProxyExplicitMapInput is an input type that accepts FtpProxyExplicitMap and FtpProxyExplicitMapOutput values.
@@ -190,6 +203,12 @@ func (i FtpProxyExplicitMap) ToFtpProxyExplicitMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(FtpProxyExplicitMapOutput)
 }
 
+func (i FtpProxyExplicitMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FtpProxyExplicit] {
+	return pulumix.Output[map[string]*FtpProxyExplicit]{
+		OutputState: i.ToFtpProxyExplicitMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FtpProxyExplicitOutput struct{ *pulumi.OutputState }
 
 func (FtpProxyExplicitOutput) ElementType() reflect.Type {
@@ -202,6 +221,12 @@ func (o FtpProxyExplicitOutput) ToFtpProxyExplicitOutput() FtpProxyExplicitOutpu
 
 func (o FtpProxyExplicitOutput) ToFtpProxyExplicitOutputWithContext(ctx context.Context) FtpProxyExplicitOutput {
 	return o
+}
+
+func (o FtpProxyExplicitOutput) ToOutput(ctx context.Context) pulumix.Output[*FtpProxyExplicit] {
+	return pulumix.Output[*FtpProxyExplicit]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FtpProxyExplicitOutput) IncomingIp() pulumi.StringOutput {
@@ -262,6 +287,12 @@ func (o FtpProxyExplicitArrayOutput) ToFtpProxyExplicitArrayOutputWithContext(ct
 	return o
 }
 
+func (o FtpProxyExplicitArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FtpProxyExplicit] {
+	return pulumix.Output[[]*FtpProxyExplicit]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FtpProxyExplicitArrayOutput) Index(i pulumi.IntInput) FtpProxyExplicitOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FtpProxyExplicit {
 		return vs[0].([]*FtpProxyExplicit)[vs[1].(int)]
@@ -280,6 +311,12 @@ func (o FtpProxyExplicitMapOutput) ToFtpProxyExplicitMapOutput() FtpProxyExplici
 
 func (o FtpProxyExplicitMapOutput) ToFtpProxyExplicitMapOutputWithContext(ctx context.Context) FtpProxyExplicitMapOutput {
 	return o
+}
+
+func (o FtpProxyExplicitMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FtpProxyExplicit] {
+	return pulumix.Output[map[string]*FtpProxyExplicit]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FtpProxyExplicitMapOutput) MapIndex(k pulumi.StringInput) FtpProxyExplicitOutput {

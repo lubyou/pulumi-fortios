@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WebProxyWisp struct {
@@ -132,6 +133,12 @@ func (i *WebProxyWisp) ToWebProxyWispOutputWithContext(ctx context.Context) WebP
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyWispOutput)
 }
 
+func (i *WebProxyWisp) ToOutput(ctx context.Context) pulumix.Output[*WebProxyWisp] {
+	return pulumix.Output[*WebProxyWisp]{
+		OutputState: i.ToWebProxyWispOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WebProxyWispArrayInput is an input type that accepts WebProxyWispArray and WebProxyWispArrayOutput values.
 // You can construct a concrete instance of `WebProxyWispArrayInput` via:
 //
@@ -155,6 +162,12 @@ func (i WebProxyWispArray) ToWebProxyWispArrayOutput() WebProxyWispArrayOutput {
 
 func (i WebProxyWispArray) ToWebProxyWispArrayOutputWithContext(ctx context.Context) WebProxyWispArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyWispArrayOutput)
+}
+
+func (i WebProxyWispArray) ToOutput(ctx context.Context) pulumix.Output[[]*WebProxyWisp] {
+	return pulumix.Output[[]*WebProxyWisp]{
+		OutputState: i.ToWebProxyWispArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // WebProxyWispMapInput is an input type that accepts WebProxyWispMap and WebProxyWispMapOutput values.
@@ -182,6 +195,12 @@ func (i WebProxyWispMap) ToWebProxyWispMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyWispMapOutput)
 }
 
+func (i WebProxyWispMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WebProxyWisp] {
+	return pulumix.Output[map[string]*WebProxyWisp]{
+		OutputState: i.ToWebProxyWispMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WebProxyWispOutput struct{ *pulumi.OutputState }
 
 func (WebProxyWispOutput) ElementType() reflect.Type {
@@ -194,6 +213,12 @@ func (o WebProxyWispOutput) ToWebProxyWispOutput() WebProxyWispOutput {
 
 func (o WebProxyWispOutput) ToWebProxyWispOutputWithContext(ctx context.Context) WebProxyWispOutput {
 	return o
+}
+
+func (o WebProxyWispOutput) ToOutput(ctx context.Context) pulumix.Output[*WebProxyWisp] {
+	return pulumix.Output[*WebProxyWisp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebProxyWispOutput) Comment() pulumi.StringPtrOutput {
@@ -242,6 +267,12 @@ func (o WebProxyWispArrayOutput) ToWebProxyWispArrayOutputWithContext(ctx contex
 	return o
 }
 
+func (o WebProxyWispArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WebProxyWisp] {
+	return pulumix.Output[[]*WebProxyWisp]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o WebProxyWispArrayOutput) Index(i pulumi.IntInput) WebProxyWispOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WebProxyWisp {
 		return vs[0].([]*WebProxyWisp)[vs[1].(int)]
@@ -260,6 +291,12 @@ func (o WebProxyWispMapOutput) ToWebProxyWispMapOutput() WebProxyWispMapOutput {
 
 func (o WebProxyWispMapOutput) ToWebProxyWispMapOutputWithContext(ctx context.Context) WebProxyWispMapOutput {
 	return o
+}
+
+func (o WebProxyWispMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WebProxyWisp] {
+	return pulumix.Output[map[string]*WebProxyWisp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WebProxyWispMapOutput) MapIndex(k pulumi.StringInput) WebProxyWispOutput {

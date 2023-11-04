@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemAccprofile struct {
@@ -215,6 +216,12 @@ func (i *SystemAccprofile) ToSystemAccprofileOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAccprofileOutput)
 }
 
+func (i *SystemAccprofile) ToOutput(ctx context.Context) pulumix.Output[*SystemAccprofile] {
+	return pulumix.Output[*SystemAccprofile]{
+		OutputState: i.ToSystemAccprofileOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemAccprofileArrayInput is an input type that accepts SystemAccprofileArray and SystemAccprofileArrayOutput values.
 // You can construct a concrete instance of `SystemAccprofileArrayInput` via:
 //
@@ -238,6 +245,12 @@ func (i SystemAccprofileArray) ToSystemAccprofileArrayOutput() SystemAccprofileA
 
 func (i SystemAccprofileArray) ToSystemAccprofileArrayOutputWithContext(ctx context.Context) SystemAccprofileArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAccprofileArrayOutput)
+}
+
+func (i SystemAccprofileArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemAccprofile] {
+	return pulumix.Output[[]*SystemAccprofile]{
+		OutputState: i.ToSystemAccprofileArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemAccprofileMapInput is an input type that accepts SystemAccprofileMap and SystemAccprofileMapOutput values.
@@ -265,6 +278,12 @@ func (i SystemAccprofileMap) ToSystemAccprofileMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAccprofileMapOutput)
 }
 
+func (i SystemAccprofileMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemAccprofile] {
+	return pulumix.Output[map[string]*SystemAccprofile]{
+		OutputState: i.ToSystemAccprofileMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemAccprofileOutput struct{ *pulumi.OutputState }
 
 func (SystemAccprofileOutput) ElementType() reflect.Type {
@@ -277,6 +296,12 @@ func (o SystemAccprofileOutput) ToSystemAccprofileOutput() SystemAccprofileOutpu
 
 func (o SystemAccprofileOutput) ToSystemAccprofileOutputWithContext(ctx context.Context) SystemAccprofileOutput {
 	return o
+}
+
+func (o SystemAccprofileOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemAccprofile] {
+	return pulumix.Output[*SystemAccprofile]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemAccprofileOutput) Admintimeout() pulumi.IntOutput {
@@ -397,6 +422,12 @@ func (o SystemAccprofileArrayOutput) ToSystemAccprofileArrayOutputWithContext(ct
 	return o
 }
 
+func (o SystemAccprofileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemAccprofile] {
+	return pulumix.Output[[]*SystemAccprofile]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemAccprofileArrayOutput) Index(i pulumi.IntInput) SystemAccprofileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemAccprofile {
 		return vs[0].([]*SystemAccprofile)[vs[1].(int)]
@@ -415,6 +446,12 @@ func (o SystemAccprofileMapOutput) ToSystemAccprofileMapOutput() SystemAccprofil
 
 func (o SystemAccprofileMapOutput) ToSystemAccprofileMapOutputWithContext(ctx context.Context) SystemAccprofileMapOutput {
 	return o
+}
+
+func (o SystemAccprofileMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemAccprofile] {
+	return pulumix.Output[map[string]*SystemAccprofile]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemAccprofileMapOutput) MapIndex(k pulumi.StringInput) SystemAccprofileOutput {

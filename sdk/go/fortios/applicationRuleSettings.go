@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type ApplicationRuleSettings struct {
@@ -95,6 +96,12 @@ func (i *ApplicationRuleSettings) ToApplicationRuleSettingsOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(ApplicationRuleSettingsOutput)
 }
 
+func (i *ApplicationRuleSettings) ToOutput(ctx context.Context) pulumix.Output[*ApplicationRuleSettings] {
+	return pulumix.Output[*ApplicationRuleSettings]{
+		OutputState: i.ToApplicationRuleSettingsOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ApplicationRuleSettingsArrayInput is an input type that accepts ApplicationRuleSettingsArray and ApplicationRuleSettingsArrayOutput values.
 // You can construct a concrete instance of `ApplicationRuleSettingsArrayInput` via:
 //
@@ -118,6 +125,12 @@ func (i ApplicationRuleSettingsArray) ToApplicationRuleSettingsArrayOutput() App
 
 func (i ApplicationRuleSettingsArray) ToApplicationRuleSettingsArrayOutputWithContext(ctx context.Context) ApplicationRuleSettingsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ApplicationRuleSettingsArrayOutput)
+}
+
+func (i ApplicationRuleSettingsArray) ToOutput(ctx context.Context) pulumix.Output[[]*ApplicationRuleSettings] {
+	return pulumix.Output[[]*ApplicationRuleSettings]{
+		OutputState: i.ToApplicationRuleSettingsArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ApplicationRuleSettingsMapInput is an input type that accepts ApplicationRuleSettingsMap and ApplicationRuleSettingsMapOutput values.
@@ -145,6 +158,12 @@ func (i ApplicationRuleSettingsMap) ToApplicationRuleSettingsMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(ApplicationRuleSettingsMapOutput)
 }
 
+func (i ApplicationRuleSettingsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ApplicationRuleSettings] {
+	return pulumix.Output[map[string]*ApplicationRuleSettings]{
+		OutputState: i.ToApplicationRuleSettingsMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ApplicationRuleSettingsOutput struct{ *pulumi.OutputState }
 
 func (ApplicationRuleSettingsOutput) ElementType() reflect.Type {
@@ -157,6 +176,12 @@ func (o ApplicationRuleSettingsOutput) ToApplicationRuleSettingsOutput() Applica
 
 func (o ApplicationRuleSettingsOutput) ToApplicationRuleSettingsOutputWithContext(ctx context.Context) ApplicationRuleSettingsOutput {
 	return o
+}
+
+func (o ApplicationRuleSettingsOutput) ToOutput(ctx context.Context) pulumix.Output[*ApplicationRuleSettings] {
+	return pulumix.Output[*ApplicationRuleSettings]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ApplicationRuleSettingsOutput) Fosid() pulumi.IntOutput {
@@ -181,6 +206,12 @@ func (o ApplicationRuleSettingsArrayOutput) ToApplicationRuleSettingsArrayOutput
 	return o
 }
 
+func (o ApplicationRuleSettingsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ApplicationRuleSettings] {
+	return pulumix.Output[[]*ApplicationRuleSettings]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ApplicationRuleSettingsArrayOutput) Index(i pulumi.IntInput) ApplicationRuleSettingsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ApplicationRuleSettings {
 		return vs[0].([]*ApplicationRuleSettings)[vs[1].(int)]
@@ -199,6 +230,12 @@ func (o ApplicationRuleSettingsMapOutput) ToApplicationRuleSettingsMapOutput() A
 
 func (o ApplicationRuleSettingsMapOutput) ToApplicationRuleSettingsMapOutputWithContext(ctx context.Context) ApplicationRuleSettingsMapOutput {
 	return o
+}
+
+func (o ApplicationRuleSettingsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ApplicationRuleSettings] {
+	return pulumix.Output[map[string]*ApplicationRuleSettings]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ApplicationRuleSettingsMapOutput) MapIndex(k pulumi.StringInput) ApplicationRuleSettingsOutput {

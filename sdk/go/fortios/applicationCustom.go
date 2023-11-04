@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type ApplicationCustom struct {
@@ -144,6 +145,12 @@ func (i *ApplicationCustom) ToApplicationCustomOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(ApplicationCustomOutput)
 }
 
+func (i *ApplicationCustom) ToOutput(ctx context.Context) pulumix.Output[*ApplicationCustom] {
+	return pulumix.Output[*ApplicationCustom]{
+		OutputState: i.ToApplicationCustomOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ApplicationCustomArrayInput is an input type that accepts ApplicationCustomArray and ApplicationCustomArrayOutput values.
 // You can construct a concrete instance of `ApplicationCustomArrayInput` via:
 //
@@ -167,6 +174,12 @@ func (i ApplicationCustomArray) ToApplicationCustomArrayOutput() ApplicationCust
 
 func (i ApplicationCustomArray) ToApplicationCustomArrayOutputWithContext(ctx context.Context) ApplicationCustomArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ApplicationCustomArrayOutput)
+}
+
+func (i ApplicationCustomArray) ToOutput(ctx context.Context) pulumix.Output[[]*ApplicationCustom] {
+	return pulumix.Output[[]*ApplicationCustom]{
+		OutputState: i.ToApplicationCustomArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ApplicationCustomMapInput is an input type that accepts ApplicationCustomMap and ApplicationCustomMapOutput values.
@@ -194,6 +207,12 @@ func (i ApplicationCustomMap) ToApplicationCustomMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(ApplicationCustomMapOutput)
 }
 
+func (i ApplicationCustomMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ApplicationCustom] {
+	return pulumix.Output[map[string]*ApplicationCustom]{
+		OutputState: i.ToApplicationCustomMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ApplicationCustomOutput struct{ *pulumi.OutputState }
 
 func (ApplicationCustomOutput) ElementType() reflect.Type {
@@ -206,6 +225,12 @@ func (o ApplicationCustomOutput) ToApplicationCustomOutput() ApplicationCustomOu
 
 func (o ApplicationCustomOutput) ToApplicationCustomOutputWithContext(ctx context.Context) ApplicationCustomOutput {
 	return o
+}
+
+func (o ApplicationCustomOutput) ToOutput(ctx context.Context) pulumix.Output[*ApplicationCustom] {
+	return pulumix.Output[*ApplicationCustom]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ApplicationCustomOutput) Behavior() pulumi.StringOutput {
@@ -266,6 +291,12 @@ func (o ApplicationCustomArrayOutput) ToApplicationCustomArrayOutputWithContext(
 	return o
 }
 
+func (o ApplicationCustomArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ApplicationCustom] {
+	return pulumix.Output[[]*ApplicationCustom]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ApplicationCustomArrayOutput) Index(i pulumi.IntInput) ApplicationCustomOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ApplicationCustom {
 		return vs[0].([]*ApplicationCustom)[vs[1].(int)]
@@ -284,6 +315,12 @@ func (o ApplicationCustomMapOutput) ToApplicationCustomMapOutput() ApplicationCu
 
 func (o ApplicationCustomMapOutput) ToApplicationCustomMapOutputWithContext(ctx context.Context) ApplicationCustomMapOutput {
 	return o
+}
+
+func (o ApplicationCustomMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ApplicationCustom] {
+	return pulumix.Output[map[string]*ApplicationCustom]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ApplicationCustomMapOutput) MapIndex(k pulumi.StringInput) ApplicationCustomOutput {

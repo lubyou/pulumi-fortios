@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type LogFortiguardSetting struct {
@@ -160,6 +161,12 @@ func (i *LogFortiguardSetting) ToLogFortiguardSettingOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortiguardSettingOutput)
 }
 
+func (i *LogFortiguardSetting) ToOutput(ctx context.Context) pulumix.Output[*LogFortiguardSetting] {
+	return pulumix.Output[*LogFortiguardSetting]{
+		OutputState: i.ToLogFortiguardSettingOutputWithContext(ctx).OutputState,
+	}
+}
+
 // LogFortiguardSettingArrayInput is an input type that accepts LogFortiguardSettingArray and LogFortiguardSettingArrayOutput values.
 // You can construct a concrete instance of `LogFortiguardSettingArrayInput` via:
 //
@@ -183,6 +190,12 @@ func (i LogFortiguardSettingArray) ToLogFortiguardSettingArrayOutput() LogFortig
 
 func (i LogFortiguardSettingArray) ToLogFortiguardSettingArrayOutputWithContext(ctx context.Context) LogFortiguardSettingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortiguardSettingArrayOutput)
+}
+
+func (i LogFortiguardSettingArray) ToOutput(ctx context.Context) pulumix.Output[[]*LogFortiguardSetting] {
+	return pulumix.Output[[]*LogFortiguardSetting]{
+		OutputState: i.ToLogFortiguardSettingArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // LogFortiguardSettingMapInput is an input type that accepts LogFortiguardSettingMap and LogFortiguardSettingMapOutput values.
@@ -210,6 +223,12 @@ func (i LogFortiguardSettingMap) ToLogFortiguardSettingMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortiguardSettingMapOutput)
 }
 
+func (i LogFortiguardSettingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogFortiguardSetting] {
+	return pulumix.Output[map[string]*LogFortiguardSetting]{
+		OutputState: i.ToLogFortiguardSettingMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type LogFortiguardSettingOutput struct{ *pulumi.OutputState }
 
 func (LogFortiguardSettingOutput) ElementType() reflect.Type {
@@ -222,6 +241,12 @@ func (o LogFortiguardSettingOutput) ToLogFortiguardSettingOutput() LogFortiguard
 
 func (o LogFortiguardSettingOutput) ToLogFortiguardSettingOutputWithContext(ctx context.Context) LogFortiguardSettingOutput {
 	return o
+}
+
+func (o LogFortiguardSettingOutput) ToOutput(ctx context.Context) pulumix.Output[*LogFortiguardSetting] {
+	return pulumix.Output[*LogFortiguardSetting]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LogFortiguardSettingOutput) AccessConfig() pulumi.StringOutput {
@@ -298,6 +323,12 @@ func (o LogFortiguardSettingArrayOutput) ToLogFortiguardSettingArrayOutputWithCo
 	return o
 }
 
+func (o LogFortiguardSettingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LogFortiguardSetting] {
+	return pulumix.Output[[]*LogFortiguardSetting]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LogFortiguardSettingArrayOutput) Index(i pulumi.IntInput) LogFortiguardSettingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogFortiguardSetting {
 		return vs[0].([]*LogFortiguardSetting)[vs[1].(int)]
@@ -316,6 +347,12 @@ func (o LogFortiguardSettingMapOutput) ToLogFortiguardSettingMapOutput() LogFort
 
 func (o LogFortiguardSettingMapOutput) ToLogFortiguardSettingMapOutputWithContext(ctx context.Context) LogFortiguardSettingMapOutput {
 	return o
+}
+
+func (o LogFortiguardSettingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogFortiguardSetting] {
+	return pulumix.Output[map[string]*LogFortiguardSetting]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LogFortiguardSettingMapOutput) MapIndex(k pulumi.StringInput) LogFortiguardSettingOutput {

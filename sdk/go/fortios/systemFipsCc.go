@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemFipsCc struct {
@@ -110,6 +111,12 @@ func (i *SystemFipsCc) ToSystemFipsCcOutputWithContext(ctx context.Context) Syst
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFipsCcOutput)
 }
 
+func (i *SystemFipsCc) ToOutput(ctx context.Context) pulumix.Output[*SystemFipsCc] {
+	return pulumix.Output[*SystemFipsCc]{
+		OutputState: i.ToSystemFipsCcOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemFipsCcArrayInput is an input type that accepts SystemFipsCcArray and SystemFipsCcArrayOutput values.
 // You can construct a concrete instance of `SystemFipsCcArrayInput` via:
 //
@@ -133,6 +140,12 @@ func (i SystemFipsCcArray) ToSystemFipsCcArrayOutput() SystemFipsCcArrayOutput {
 
 func (i SystemFipsCcArray) ToSystemFipsCcArrayOutputWithContext(ctx context.Context) SystemFipsCcArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFipsCcArrayOutput)
+}
+
+func (i SystemFipsCcArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemFipsCc] {
+	return pulumix.Output[[]*SystemFipsCc]{
+		OutputState: i.ToSystemFipsCcArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemFipsCcMapInput is an input type that accepts SystemFipsCcMap and SystemFipsCcMapOutput values.
@@ -160,6 +173,12 @@ func (i SystemFipsCcMap) ToSystemFipsCcMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFipsCcMapOutput)
 }
 
+func (i SystemFipsCcMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemFipsCc] {
+	return pulumix.Output[map[string]*SystemFipsCc]{
+		OutputState: i.ToSystemFipsCcMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemFipsCcOutput struct{ *pulumi.OutputState }
 
 func (SystemFipsCcOutput) ElementType() reflect.Type {
@@ -172,6 +191,12 @@ func (o SystemFipsCcOutput) ToSystemFipsCcOutput() SystemFipsCcOutput {
 
 func (o SystemFipsCcOutput) ToSystemFipsCcOutputWithContext(ctx context.Context) SystemFipsCcOutput {
 	return o
+}
+
+func (o SystemFipsCcOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemFipsCc] {
+	return pulumix.Output[*SystemFipsCc]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemFipsCcOutput) EntropyToken() pulumi.StringOutput {
@@ -208,6 +233,12 @@ func (o SystemFipsCcArrayOutput) ToSystemFipsCcArrayOutputWithContext(ctx contex
 	return o
 }
 
+func (o SystemFipsCcArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemFipsCc] {
+	return pulumix.Output[[]*SystemFipsCc]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemFipsCcArrayOutput) Index(i pulumi.IntInput) SystemFipsCcOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemFipsCc {
 		return vs[0].([]*SystemFipsCc)[vs[1].(int)]
@@ -226,6 +257,12 @@ func (o SystemFipsCcMapOutput) ToSystemFipsCcMapOutput() SystemFipsCcMapOutput {
 
 func (o SystemFipsCcMapOutput) ToSystemFipsCcMapOutputWithContext(ctx context.Context) SystemFipsCcMapOutput {
 	return o
+}
+
+func (o SystemFipsCcMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemFipsCc] {
+	return pulumix.Output[map[string]*SystemFipsCc]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemFipsCcMapOutput) MapIndex(k pulumi.StringInput) SystemFipsCcOutput {

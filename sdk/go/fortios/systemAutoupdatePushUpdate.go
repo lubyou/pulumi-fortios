@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemAutoupdatePushUpdate struct {
@@ -123,6 +124,12 @@ func (i *SystemAutoupdatePushUpdate) ToSystemAutoupdatePushUpdateOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutoupdatePushUpdateOutput)
 }
 
+func (i *SystemAutoupdatePushUpdate) ToOutput(ctx context.Context) pulumix.Output[*SystemAutoupdatePushUpdate] {
+	return pulumix.Output[*SystemAutoupdatePushUpdate]{
+		OutputState: i.ToSystemAutoupdatePushUpdateOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemAutoupdatePushUpdateArrayInput is an input type that accepts SystemAutoupdatePushUpdateArray and SystemAutoupdatePushUpdateArrayOutput values.
 // You can construct a concrete instance of `SystemAutoupdatePushUpdateArrayInput` via:
 //
@@ -146,6 +153,12 @@ func (i SystemAutoupdatePushUpdateArray) ToSystemAutoupdatePushUpdateArrayOutput
 
 func (i SystemAutoupdatePushUpdateArray) ToSystemAutoupdatePushUpdateArrayOutputWithContext(ctx context.Context) SystemAutoupdatePushUpdateArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutoupdatePushUpdateArrayOutput)
+}
+
+func (i SystemAutoupdatePushUpdateArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemAutoupdatePushUpdate] {
+	return pulumix.Output[[]*SystemAutoupdatePushUpdate]{
+		OutputState: i.ToSystemAutoupdatePushUpdateArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemAutoupdatePushUpdateMapInput is an input type that accepts SystemAutoupdatePushUpdateMap and SystemAutoupdatePushUpdateMapOutput values.
@@ -173,6 +186,12 @@ func (i SystemAutoupdatePushUpdateMap) ToSystemAutoupdatePushUpdateMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutoupdatePushUpdateMapOutput)
 }
 
+func (i SystemAutoupdatePushUpdateMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemAutoupdatePushUpdate] {
+	return pulumix.Output[map[string]*SystemAutoupdatePushUpdate]{
+		OutputState: i.ToSystemAutoupdatePushUpdateMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemAutoupdatePushUpdateOutput struct{ *pulumi.OutputState }
 
 func (SystemAutoupdatePushUpdateOutput) ElementType() reflect.Type {
@@ -185,6 +204,12 @@ func (o SystemAutoupdatePushUpdateOutput) ToSystemAutoupdatePushUpdateOutput() S
 
 func (o SystemAutoupdatePushUpdateOutput) ToSystemAutoupdatePushUpdateOutputWithContext(ctx context.Context) SystemAutoupdatePushUpdateOutput {
 	return o
+}
+
+func (o SystemAutoupdatePushUpdateOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemAutoupdatePushUpdate] {
+	return pulumix.Output[*SystemAutoupdatePushUpdate]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemAutoupdatePushUpdateOutput) Address() pulumi.StringOutput {
@@ -221,6 +246,12 @@ func (o SystemAutoupdatePushUpdateArrayOutput) ToSystemAutoupdatePushUpdateArray
 	return o
 }
 
+func (o SystemAutoupdatePushUpdateArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemAutoupdatePushUpdate] {
+	return pulumix.Output[[]*SystemAutoupdatePushUpdate]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemAutoupdatePushUpdateArrayOutput) Index(i pulumi.IntInput) SystemAutoupdatePushUpdateOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemAutoupdatePushUpdate {
 		return vs[0].([]*SystemAutoupdatePushUpdate)[vs[1].(int)]
@@ -239,6 +270,12 @@ func (o SystemAutoupdatePushUpdateMapOutput) ToSystemAutoupdatePushUpdateMapOutp
 
 func (o SystemAutoupdatePushUpdateMapOutput) ToSystemAutoupdatePushUpdateMapOutputWithContext(ctx context.Context) SystemAutoupdatePushUpdateMapOutput {
 	return o
+}
+
+func (o SystemAutoupdatePushUpdateMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemAutoupdatePushUpdate] {
+	return pulumix.Output[map[string]*SystemAutoupdatePushUpdate]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemAutoupdatePushUpdateMapOutput) MapIndex(k pulumi.StringInput) SystemAutoupdatePushUpdateOutput {

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type ReportStyle struct {
@@ -220,6 +221,12 @@ func (i *ReportStyle) ToReportStyleOutputWithContext(ctx context.Context) Report
 	return pulumi.ToOutputWithContext(ctx, i).(ReportStyleOutput)
 }
 
+func (i *ReportStyle) ToOutput(ctx context.Context) pulumix.Output[*ReportStyle] {
+	return pulumix.Output[*ReportStyle]{
+		OutputState: i.ToReportStyleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ReportStyleArrayInput is an input type that accepts ReportStyleArray and ReportStyleArrayOutput values.
 // You can construct a concrete instance of `ReportStyleArrayInput` via:
 //
@@ -243,6 +250,12 @@ func (i ReportStyleArray) ToReportStyleArrayOutput() ReportStyleArrayOutput {
 
 func (i ReportStyleArray) ToReportStyleArrayOutputWithContext(ctx context.Context) ReportStyleArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ReportStyleArrayOutput)
+}
+
+func (i ReportStyleArray) ToOutput(ctx context.Context) pulumix.Output[[]*ReportStyle] {
+	return pulumix.Output[[]*ReportStyle]{
+		OutputState: i.ToReportStyleArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ReportStyleMapInput is an input type that accepts ReportStyleMap and ReportStyleMapOutput values.
@@ -270,6 +283,12 @@ func (i ReportStyleMap) ToReportStyleMapOutputWithContext(ctx context.Context) R
 	return pulumi.ToOutputWithContext(ctx, i).(ReportStyleMapOutput)
 }
 
+func (i ReportStyleMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ReportStyle] {
+	return pulumix.Output[map[string]*ReportStyle]{
+		OutputState: i.ToReportStyleMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ReportStyleOutput struct{ *pulumi.OutputState }
 
 func (ReportStyleOutput) ElementType() reflect.Type {
@@ -282,6 +301,12 @@ func (o ReportStyleOutput) ToReportStyleOutput() ReportStyleOutput {
 
 func (o ReportStyleOutput) ToReportStyleOutputWithContext(ctx context.Context) ReportStyleOutput {
 	return o
+}
+
+func (o ReportStyleOutput) ToOutput(ctx context.Context) pulumix.Output[*ReportStyle] {
+	return pulumix.Output[*ReportStyle]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ReportStyleOutput) Align() pulumi.StringOutput {
@@ -406,6 +431,12 @@ func (o ReportStyleArrayOutput) ToReportStyleArrayOutputWithContext(ctx context.
 	return o
 }
 
+func (o ReportStyleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ReportStyle] {
+	return pulumix.Output[[]*ReportStyle]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ReportStyleArrayOutput) Index(i pulumi.IntInput) ReportStyleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ReportStyle {
 		return vs[0].([]*ReportStyle)[vs[1].(int)]
@@ -424,6 +455,12 @@ func (o ReportStyleMapOutput) ToReportStyleMapOutput() ReportStyleMapOutput {
 
 func (o ReportStyleMapOutput) ToReportStyleMapOutputWithContext(ctx context.Context) ReportStyleMapOutput {
 	return o
+}
+
+func (o ReportStyleMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ReportStyle] {
+	return pulumix.Output[map[string]*ReportStyle]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ReportStyleMapOutput) MapIndex(k pulumi.StringInput) ReportStyleOutput {

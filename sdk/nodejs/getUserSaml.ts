@@ -43,6 +43,7 @@ export interface GetUserSamlResult {
     readonly idpSingleSignOnUrl: string;
     readonly limitRelaystate: string;
     readonly name: string;
+    readonly reauth: string;
     readonly singleLogoutUrl: string;
     readonly singleSignOnUrl: string;
     readonly userClaimType: string;

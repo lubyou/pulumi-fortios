@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallProfileGroup struct {
@@ -16,6 +17,7 @@ type FirewallProfileGroup struct {
 
 	ApplicationList        pulumi.StringOutput    `pulumi:"applicationList"`
 	AvProfile              pulumi.StringOutput    `pulumi:"avProfile"`
+	CasbProfile            pulumi.StringOutput    `pulumi:"casbProfile"`
 	CifsProfile            pulumi.StringOutput    `pulumi:"cifsProfile"`
 	DlpProfile             pulumi.StringOutput    `pulumi:"dlpProfile"`
 	DlpSensor              pulumi.StringOutput    `pulumi:"dlpSensor"`
@@ -33,6 +35,7 @@ type FirewallProfileGroup struct {
 	SslSshProfile          pulumi.StringOutput    `pulumi:"sslSshProfile"`
 	Vdomparam              pulumi.StringPtrOutput `pulumi:"vdomparam"`
 	VideofilterProfile     pulumi.StringOutput    `pulumi:"videofilterProfile"`
+	VirtualPatchProfile    pulumi.StringOutput    `pulumi:"virtualPatchProfile"`
 	VoipProfile            pulumi.StringOutput    `pulumi:"voipProfile"`
 	WafProfile             pulumi.StringOutput    `pulumi:"wafProfile"`
 	WebfilterProfile       pulumi.StringOutput    `pulumi:"webfilterProfile"`
@@ -70,6 +73,7 @@ func GetFirewallProfileGroup(ctx *pulumi.Context,
 type firewallProfileGroupState struct {
 	ApplicationList        *string `pulumi:"applicationList"`
 	AvProfile              *string `pulumi:"avProfile"`
+	CasbProfile            *string `pulumi:"casbProfile"`
 	CifsProfile            *string `pulumi:"cifsProfile"`
 	DlpProfile             *string `pulumi:"dlpProfile"`
 	DlpSensor              *string `pulumi:"dlpSensor"`
@@ -87,6 +91,7 @@ type firewallProfileGroupState struct {
 	SslSshProfile          *string `pulumi:"sslSshProfile"`
 	Vdomparam              *string `pulumi:"vdomparam"`
 	VideofilterProfile     *string `pulumi:"videofilterProfile"`
+	VirtualPatchProfile    *string `pulumi:"virtualPatchProfile"`
 	VoipProfile            *string `pulumi:"voipProfile"`
 	WafProfile             *string `pulumi:"wafProfile"`
 	WebfilterProfile       *string `pulumi:"webfilterProfile"`
@@ -95,6 +100,7 @@ type firewallProfileGroupState struct {
 type FirewallProfileGroupState struct {
 	ApplicationList        pulumi.StringPtrInput
 	AvProfile              pulumi.StringPtrInput
+	CasbProfile            pulumi.StringPtrInput
 	CifsProfile            pulumi.StringPtrInput
 	DlpProfile             pulumi.StringPtrInput
 	DlpSensor              pulumi.StringPtrInput
@@ -112,6 +118,7 @@ type FirewallProfileGroupState struct {
 	SslSshProfile          pulumi.StringPtrInput
 	Vdomparam              pulumi.StringPtrInput
 	VideofilterProfile     pulumi.StringPtrInput
+	VirtualPatchProfile    pulumi.StringPtrInput
 	VoipProfile            pulumi.StringPtrInput
 	WafProfile             pulumi.StringPtrInput
 	WebfilterProfile       pulumi.StringPtrInput
@@ -124,6 +131,7 @@ func (FirewallProfileGroupState) ElementType() reflect.Type {
 type firewallProfileGroupArgs struct {
 	ApplicationList        *string `pulumi:"applicationList"`
 	AvProfile              *string `pulumi:"avProfile"`
+	CasbProfile            *string `pulumi:"casbProfile"`
 	CifsProfile            *string `pulumi:"cifsProfile"`
 	DlpProfile             *string `pulumi:"dlpProfile"`
 	DlpSensor              *string `pulumi:"dlpSensor"`
@@ -141,6 +149,7 @@ type firewallProfileGroupArgs struct {
 	SslSshProfile          *string `pulumi:"sslSshProfile"`
 	Vdomparam              *string `pulumi:"vdomparam"`
 	VideofilterProfile     *string `pulumi:"videofilterProfile"`
+	VirtualPatchProfile    *string `pulumi:"virtualPatchProfile"`
 	VoipProfile            *string `pulumi:"voipProfile"`
 	WafProfile             *string `pulumi:"wafProfile"`
 	WebfilterProfile       *string `pulumi:"webfilterProfile"`
@@ -150,6 +159,7 @@ type firewallProfileGroupArgs struct {
 type FirewallProfileGroupArgs struct {
 	ApplicationList        pulumi.StringPtrInput
 	AvProfile              pulumi.StringPtrInput
+	CasbProfile            pulumi.StringPtrInput
 	CifsProfile            pulumi.StringPtrInput
 	DlpProfile             pulumi.StringPtrInput
 	DlpSensor              pulumi.StringPtrInput
@@ -167,6 +177,7 @@ type FirewallProfileGroupArgs struct {
 	SslSshProfile          pulumi.StringPtrInput
 	Vdomparam              pulumi.StringPtrInput
 	VideofilterProfile     pulumi.StringPtrInput
+	VirtualPatchProfile    pulumi.StringPtrInput
 	VoipProfile            pulumi.StringPtrInput
 	WafProfile             pulumi.StringPtrInput
 	WebfilterProfile       pulumi.StringPtrInput
@@ -195,6 +206,12 @@ func (i *FirewallProfileGroup) ToFirewallProfileGroupOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallProfileGroupOutput)
 }
 
+func (i *FirewallProfileGroup) ToOutput(ctx context.Context) pulumix.Output[*FirewallProfileGroup] {
+	return pulumix.Output[*FirewallProfileGroup]{
+		OutputState: i.ToFirewallProfileGroupOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallProfileGroupArrayInput is an input type that accepts FirewallProfileGroupArray and FirewallProfileGroupArrayOutput values.
 // You can construct a concrete instance of `FirewallProfileGroupArrayInput` via:
 //
@@ -218,6 +235,12 @@ func (i FirewallProfileGroupArray) ToFirewallProfileGroupArrayOutput() FirewallP
 
 func (i FirewallProfileGroupArray) ToFirewallProfileGroupArrayOutputWithContext(ctx context.Context) FirewallProfileGroupArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallProfileGroupArrayOutput)
+}
+
+func (i FirewallProfileGroupArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallProfileGroup] {
+	return pulumix.Output[[]*FirewallProfileGroup]{
+		OutputState: i.ToFirewallProfileGroupArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallProfileGroupMapInput is an input type that accepts FirewallProfileGroupMap and FirewallProfileGroupMapOutput values.
@@ -245,6 +268,12 @@ func (i FirewallProfileGroupMap) ToFirewallProfileGroupMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallProfileGroupMapOutput)
 }
 
+func (i FirewallProfileGroupMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallProfileGroup] {
+	return pulumix.Output[map[string]*FirewallProfileGroup]{
+		OutputState: i.ToFirewallProfileGroupMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallProfileGroupOutput struct{ *pulumi.OutputState }
 
 func (FirewallProfileGroupOutput) ElementType() reflect.Type {
@@ -259,12 +288,22 @@ func (o FirewallProfileGroupOutput) ToFirewallProfileGroupOutputWithContext(ctx 
 	return o
 }
 
+func (o FirewallProfileGroupOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallProfileGroup] {
+	return pulumix.Output[*FirewallProfileGroup]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallProfileGroupOutput) ApplicationList() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallProfileGroup) pulumi.StringOutput { return v.ApplicationList }).(pulumi.StringOutput)
 }
 
 func (o FirewallProfileGroupOutput) AvProfile() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallProfileGroup) pulumi.StringOutput { return v.AvProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallProfileGroupOutput) CasbProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProfileGroup) pulumi.StringOutput { return v.CasbProfile }).(pulumi.StringOutput)
 }
 
 func (o FirewallProfileGroupOutput) CifsProfile() pulumi.StringOutput {
@@ -335,6 +374,10 @@ func (o FirewallProfileGroupOutput) VideofilterProfile() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallProfileGroup) pulumi.StringOutput { return v.VideofilterProfile }).(pulumi.StringOutput)
 }
 
+func (o FirewallProfileGroupOutput) VirtualPatchProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProfileGroup) pulumi.StringOutput { return v.VirtualPatchProfile }).(pulumi.StringOutput)
+}
+
 func (o FirewallProfileGroupOutput) VoipProfile() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallProfileGroup) pulumi.StringOutput { return v.VoipProfile }).(pulumi.StringOutput)
 }
@@ -361,6 +404,12 @@ func (o FirewallProfileGroupArrayOutput) ToFirewallProfileGroupArrayOutputWithCo
 	return o
 }
 
+func (o FirewallProfileGroupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallProfileGroup] {
+	return pulumix.Output[[]*FirewallProfileGroup]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallProfileGroupArrayOutput) Index(i pulumi.IntInput) FirewallProfileGroupOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallProfileGroup {
 		return vs[0].([]*FirewallProfileGroup)[vs[1].(int)]
@@ -379,6 +428,12 @@ func (o FirewallProfileGroupMapOutput) ToFirewallProfileGroupMapOutput() Firewal
 
 func (o FirewallProfileGroupMapOutput) ToFirewallProfileGroupMapOutputWithContext(ctx context.Context) FirewallProfileGroupMapOutput {
 	return o
+}
+
+func (o FirewallProfileGroupMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallProfileGroup] {
+	return pulumix.Output[map[string]*FirewallProfileGroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallProfileGroupMapOutput) MapIndex(k pulumi.StringInput) FirewallProfileGroupOutput {

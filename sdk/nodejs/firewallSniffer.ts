@@ -39,6 +39,8 @@ export class FirewallSniffer extends pulumi.CustomResource {
     public readonly applicationListStatus!: pulumi.Output<string>;
     public readonly avProfile!: pulumi.Output<string>;
     public readonly avProfileStatus!: pulumi.Output<string>;
+    public readonly casbProfile!: pulumi.Output<string>;
+    public readonly casbProfileStatus!: pulumi.Output<string>;
     public readonly dlpProfile!: pulumi.Output<string>;
     public readonly dlpProfileStatus!: pulumi.Output<string>;
     public readonly dlpSensor!: pulumi.Output<string>;
@@ -91,6 +93,8 @@ export class FirewallSniffer extends pulumi.CustomResource {
             resourceInputs["applicationListStatus"] = state ? state.applicationListStatus : undefined;
             resourceInputs["avProfile"] = state ? state.avProfile : undefined;
             resourceInputs["avProfileStatus"] = state ? state.avProfileStatus : undefined;
+            resourceInputs["casbProfile"] = state ? state.casbProfile : undefined;
+            resourceInputs["casbProfileStatus"] = state ? state.casbProfileStatus : undefined;
             resourceInputs["dlpProfile"] = state ? state.dlpProfile : undefined;
             resourceInputs["dlpProfileStatus"] = state ? state.dlpProfileStatus : undefined;
             resourceInputs["dlpSensor"] = state ? state.dlpSensor : undefined;
@@ -134,6 +138,8 @@ export class FirewallSniffer extends pulumi.CustomResource {
             resourceInputs["applicationListStatus"] = args ? args.applicationListStatus : undefined;
             resourceInputs["avProfile"] = args ? args.avProfile : undefined;
             resourceInputs["avProfileStatus"] = args ? args.avProfileStatus : undefined;
+            resourceInputs["casbProfile"] = args ? args.casbProfile : undefined;
+            resourceInputs["casbProfileStatus"] = args ? args.casbProfileStatus : undefined;
             resourceInputs["dlpProfile"] = args ? args.dlpProfile : undefined;
             resourceInputs["dlpProfileStatus"] = args ? args.dlpProfileStatus : undefined;
             resourceInputs["dlpSensor"] = args ? args.dlpSensor : undefined;
@@ -182,6 +188,8 @@ export interface FirewallSnifferState {
     applicationListStatus?: pulumi.Input<string>;
     avProfile?: pulumi.Input<string>;
     avProfileStatus?: pulumi.Input<string>;
+    casbProfile?: pulumi.Input<string>;
+    casbProfileStatus?: pulumi.Input<string>;
     dlpProfile?: pulumi.Input<string>;
     dlpProfileStatus?: pulumi.Input<string>;
     dlpSensor?: pulumi.Input<string>;
@@ -226,6 +234,8 @@ export interface FirewallSnifferArgs {
     applicationListStatus?: pulumi.Input<string>;
     avProfile?: pulumi.Input<string>;
     avProfileStatus?: pulumi.Input<string>;
+    casbProfile?: pulumi.Input<string>;
+    casbProfileStatus?: pulumi.Input<string>;
     dlpProfile?: pulumi.Input<string>;
     dlpProfileStatus?: pulumi.Input<string>;
     dlpSensor?: pulumi.Input<string>;

@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemReplacemsgFortiguardWf struct {
@@ -114,6 +115,12 @@ func (i *SystemReplacemsgFortiguardWf) ToSystemReplacemsgFortiguardWfOutputWithC
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgFortiguardWfOutput)
 }
 
+func (i *SystemReplacemsgFortiguardWf) ToOutput(ctx context.Context) pulumix.Output[*SystemReplacemsgFortiguardWf] {
+	return pulumix.Output[*SystemReplacemsgFortiguardWf]{
+		OutputState: i.ToSystemReplacemsgFortiguardWfOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemReplacemsgFortiguardWfArrayInput is an input type that accepts SystemReplacemsgFortiguardWfArray and SystemReplacemsgFortiguardWfArrayOutput values.
 // You can construct a concrete instance of `SystemReplacemsgFortiguardWfArrayInput` via:
 //
@@ -137,6 +144,12 @@ func (i SystemReplacemsgFortiguardWfArray) ToSystemReplacemsgFortiguardWfArrayOu
 
 func (i SystemReplacemsgFortiguardWfArray) ToSystemReplacemsgFortiguardWfArrayOutputWithContext(ctx context.Context) SystemReplacemsgFortiguardWfArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgFortiguardWfArrayOutput)
+}
+
+func (i SystemReplacemsgFortiguardWfArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemReplacemsgFortiguardWf] {
+	return pulumix.Output[[]*SystemReplacemsgFortiguardWf]{
+		OutputState: i.ToSystemReplacemsgFortiguardWfArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemReplacemsgFortiguardWfMapInput is an input type that accepts SystemReplacemsgFortiguardWfMap and SystemReplacemsgFortiguardWfMapOutput values.
@@ -164,6 +177,12 @@ func (i SystemReplacemsgFortiguardWfMap) ToSystemReplacemsgFortiguardWfMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgFortiguardWfMapOutput)
 }
 
+func (i SystemReplacemsgFortiguardWfMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemReplacemsgFortiguardWf] {
+	return pulumix.Output[map[string]*SystemReplacemsgFortiguardWf]{
+		OutputState: i.ToSystemReplacemsgFortiguardWfMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemReplacemsgFortiguardWfOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgFortiguardWfOutput) ElementType() reflect.Type {
@@ -176,6 +195,12 @@ func (o SystemReplacemsgFortiguardWfOutput) ToSystemReplacemsgFortiguardWfOutput
 
 func (o SystemReplacemsgFortiguardWfOutput) ToSystemReplacemsgFortiguardWfOutputWithContext(ctx context.Context) SystemReplacemsgFortiguardWfOutput {
 	return o
+}
+
+func (o SystemReplacemsgFortiguardWfOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemReplacemsgFortiguardWf] {
+	return pulumix.Output[*SystemReplacemsgFortiguardWf]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemReplacemsgFortiguardWfOutput) Buffer() pulumi.StringPtrOutput {
@@ -212,6 +237,12 @@ func (o SystemReplacemsgFortiguardWfArrayOutput) ToSystemReplacemsgFortiguardWfA
 	return o
 }
 
+func (o SystemReplacemsgFortiguardWfArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemReplacemsgFortiguardWf] {
+	return pulumix.Output[[]*SystemReplacemsgFortiguardWf]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemReplacemsgFortiguardWfArrayOutput) Index(i pulumi.IntInput) SystemReplacemsgFortiguardWfOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemReplacemsgFortiguardWf {
 		return vs[0].([]*SystemReplacemsgFortiguardWf)[vs[1].(int)]
@@ -230,6 +261,12 @@ func (o SystemReplacemsgFortiguardWfMapOutput) ToSystemReplacemsgFortiguardWfMap
 
 func (o SystemReplacemsgFortiguardWfMapOutput) ToSystemReplacemsgFortiguardWfMapOutputWithContext(ctx context.Context) SystemReplacemsgFortiguardWfMapOutput {
 	return o
+}
+
+func (o SystemReplacemsgFortiguardWfMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemReplacemsgFortiguardWf] {
+	return pulumix.Output[map[string]*SystemReplacemsgFortiguardWf]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemReplacemsgFortiguardWfMapOutput) MapIndex(k pulumi.StringInput) SystemReplacemsgFortiguardWfOutput {

@@ -34,6 +34,7 @@ export class FirewallProfileGroup extends pulumi.CustomResource {
 
     public readonly applicationList!: pulumi.Output<string>;
     public readonly avProfile!: pulumi.Output<string>;
+    public readonly casbProfile!: pulumi.Output<string>;
     public readonly cifsProfile!: pulumi.Output<string>;
     public readonly dlpProfile!: pulumi.Output<string>;
     public readonly dlpSensor!: pulumi.Output<string>;
@@ -51,6 +52,7 @@ export class FirewallProfileGroup extends pulumi.CustomResource {
     public readonly sslSshProfile!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
     public readonly videofilterProfile!: pulumi.Output<string>;
+    public readonly virtualPatchProfile!: pulumi.Output<string>;
     public readonly voipProfile!: pulumi.Output<string>;
     public readonly wafProfile!: pulumi.Output<string>;
     public readonly webfilterProfile!: pulumi.Output<string>;
@@ -70,6 +72,7 @@ export class FirewallProfileGroup extends pulumi.CustomResource {
             const state = argsOrState as FirewallProfileGroupState | undefined;
             resourceInputs["applicationList"] = state ? state.applicationList : undefined;
             resourceInputs["avProfile"] = state ? state.avProfile : undefined;
+            resourceInputs["casbProfile"] = state ? state.casbProfile : undefined;
             resourceInputs["cifsProfile"] = state ? state.cifsProfile : undefined;
             resourceInputs["dlpProfile"] = state ? state.dlpProfile : undefined;
             resourceInputs["dlpSensor"] = state ? state.dlpSensor : undefined;
@@ -87,6 +90,7 @@ export class FirewallProfileGroup extends pulumi.CustomResource {
             resourceInputs["sslSshProfile"] = state ? state.sslSshProfile : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["videofilterProfile"] = state ? state.videofilterProfile : undefined;
+            resourceInputs["virtualPatchProfile"] = state ? state.virtualPatchProfile : undefined;
             resourceInputs["voipProfile"] = state ? state.voipProfile : undefined;
             resourceInputs["wafProfile"] = state ? state.wafProfile : undefined;
             resourceInputs["webfilterProfile"] = state ? state.webfilterProfile : undefined;
@@ -94,6 +98,7 @@ export class FirewallProfileGroup extends pulumi.CustomResource {
             const args = argsOrState as FirewallProfileGroupArgs | undefined;
             resourceInputs["applicationList"] = args ? args.applicationList : undefined;
             resourceInputs["avProfile"] = args ? args.avProfile : undefined;
+            resourceInputs["casbProfile"] = args ? args.casbProfile : undefined;
             resourceInputs["cifsProfile"] = args ? args.cifsProfile : undefined;
             resourceInputs["dlpProfile"] = args ? args.dlpProfile : undefined;
             resourceInputs["dlpSensor"] = args ? args.dlpSensor : undefined;
@@ -111,6 +116,7 @@ export class FirewallProfileGroup extends pulumi.CustomResource {
             resourceInputs["sslSshProfile"] = args ? args.sslSshProfile : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["videofilterProfile"] = args ? args.videofilterProfile : undefined;
+            resourceInputs["virtualPatchProfile"] = args ? args.virtualPatchProfile : undefined;
             resourceInputs["voipProfile"] = args ? args.voipProfile : undefined;
             resourceInputs["wafProfile"] = args ? args.wafProfile : undefined;
             resourceInputs["webfilterProfile"] = args ? args.webfilterProfile : undefined;
@@ -126,6 +132,7 @@ export class FirewallProfileGroup extends pulumi.CustomResource {
 export interface FirewallProfileGroupState {
     applicationList?: pulumi.Input<string>;
     avProfile?: pulumi.Input<string>;
+    casbProfile?: pulumi.Input<string>;
     cifsProfile?: pulumi.Input<string>;
     dlpProfile?: pulumi.Input<string>;
     dlpSensor?: pulumi.Input<string>;
@@ -143,6 +150,7 @@ export interface FirewallProfileGroupState {
     sslSshProfile?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
     videofilterProfile?: pulumi.Input<string>;
+    virtualPatchProfile?: pulumi.Input<string>;
     voipProfile?: pulumi.Input<string>;
     wafProfile?: pulumi.Input<string>;
     webfilterProfile?: pulumi.Input<string>;
@@ -154,6 +162,7 @@ export interface FirewallProfileGroupState {
 export interface FirewallProfileGroupArgs {
     applicationList?: pulumi.Input<string>;
     avProfile?: pulumi.Input<string>;
+    casbProfile?: pulumi.Input<string>;
     cifsProfile?: pulumi.Input<string>;
     dlpProfile?: pulumi.Input<string>;
     dlpSensor?: pulumi.Input<string>;
@@ -171,6 +180,7 @@ export interface FirewallProfileGroupArgs {
     sslSshProfile?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
     videofilterProfile?: pulumi.Input<string>;
+    virtualPatchProfile?: pulumi.Input<string>;
     voipProfile?: pulumi.Input<string>;
     wafProfile?: pulumi.Input<string>;
     webfilterProfile?: pulumi.Input<string>;

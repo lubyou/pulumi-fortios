@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type NetworkingInterfacePort struct {
@@ -189,6 +190,12 @@ func (i *NetworkingInterfacePort) ToNetworkingInterfacePortOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkingInterfacePortOutput)
 }
 
+func (i *NetworkingInterfacePort) ToOutput(ctx context.Context) pulumix.Output[*NetworkingInterfacePort] {
+	return pulumix.Output[*NetworkingInterfacePort]{
+		OutputState: i.ToNetworkingInterfacePortOutputWithContext(ctx).OutputState,
+	}
+}
+
 // NetworkingInterfacePortArrayInput is an input type that accepts NetworkingInterfacePortArray and NetworkingInterfacePortArrayOutput values.
 // You can construct a concrete instance of `NetworkingInterfacePortArrayInput` via:
 //
@@ -212,6 +219,12 @@ func (i NetworkingInterfacePortArray) ToNetworkingInterfacePortArrayOutput() Net
 
 func (i NetworkingInterfacePortArray) ToNetworkingInterfacePortArrayOutputWithContext(ctx context.Context) NetworkingInterfacePortArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkingInterfacePortArrayOutput)
+}
+
+func (i NetworkingInterfacePortArray) ToOutput(ctx context.Context) pulumix.Output[[]*NetworkingInterfacePort] {
+	return pulumix.Output[[]*NetworkingInterfacePort]{
+		OutputState: i.ToNetworkingInterfacePortArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // NetworkingInterfacePortMapInput is an input type that accepts NetworkingInterfacePortMap and NetworkingInterfacePortMapOutput values.
@@ -239,6 +252,12 @@ func (i NetworkingInterfacePortMap) ToNetworkingInterfacePortMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkingInterfacePortMapOutput)
 }
 
+func (i NetworkingInterfacePortMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*NetworkingInterfacePort] {
+	return pulumix.Output[map[string]*NetworkingInterfacePort]{
+		OutputState: i.ToNetworkingInterfacePortMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type NetworkingInterfacePortOutput struct{ *pulumi.OutputState }
 
 func (NetworkingInterfacePortOutput) ElementType() reflect.Type {
@@ -251,6 +270,12 @@ func (o NetworkingInterfacePortOutput) ToNetworkingInterfacePortOutput() Network
 
 func (o NetworkingInterfacePortOutput) ToNetworkingInterfacePortOutputWithContext(ctx context.Context) NetworkingInterfacePortOutput {
 	return o
+}
+
+func (o NetworkingInterfacePortOutput) ToOutput(ctx context.Context) pulumix.Output[*NetworkingInterfacePort] {
+	return pulumix.Output[*NetworkingInterfacePort]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o NetworkingInterfacePortOutput) Alias() pulumi.StringOutput {
@@ -347,6 +372,12 @@ func (o NetworkingInterfacePortArrayOutput) ToNetworkingInterfacePortArrayOutput
 	return o
 }
 
+func (o NetworkingInterfacePortArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*NetworkingInterfacePort] {
+	return pulumix.Output[[]*NetworkingInterfacePort]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o NetworkingInterfacePortArrayOutput) Index(i pulumi.IntInput) NetworkingInterfacePortOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *NetworkingInterfacePort {
 		return vs[0].([]*NetworkingInterfacePort)[vs[1].(int)]
@@ -365,6 +396,12 @@ func (o NetworkingInterfacePortMapOutput) ToNetworkingInterfacePortMapOutput() N
 
 func (o NetworkingInterfacePortMapOutput) ToNetworkingInterfacePortMapOutputWithContext(ctx context.Context) NetworkingInterfacePortMapOutput {
 	return o
+}
+
+func (o NetworkingInterfacePortMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*NetworkingInterfacePort] {
+	return pulumix.Output[map[string]*NetworkingInterfacePort]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o NetworkingInterfacePortMapOutput) MapIndex(k pulumi.StringInput) NetworkingInterfacePortOutput {

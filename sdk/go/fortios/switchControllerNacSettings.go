@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerNacSettings struct {
@@ -125,6 +126,12 @@ func (i *SwitchControllerNacSettings) ToSwitchControllerNacSettingsOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerNacSettingsOutput)
 }
 
+func (i *SwitchControllerNacSettings) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerNacSettings] {
+	return pulumix.Output[*SwitchControllerNacSettings]{
+		OutputState: i.ToSwitchControllerNacSettingsOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SwitchControllerNacSettingsArrayInput is an input type that accepts SwitchControllerNacSettingsArray and SwitchControllerNacSettingsArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerNacSettingsArrayInput` via:
 //
@@ -148,6 +155,12 @@ func (i SwitchControllerNacSettingsArray) ToSwitchControllerNacSettingsArrayOutp
 
 func (i SwitchControllerNacSettingsArray) ToSwitchControllerNacSettingsArrayOutputWithContext(ctx context.Context) SwitchControllerNacSettingsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerNacSettingsArrayOutput)
+}
+
+func (i SwitchControllerNacSettingsArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerNacSettings] {
+	return pulumix.Output[[]*SwitchControllerNacSettings]{
+		OutputState: i.ToSwitchControllerNacSettingsArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SwitchControllerNacSettingsMapInput is an input type that accepts SwitchControllerNacSettingsMap and SwitchControllerNacSettingsMapOutput values.
@@ -175,6 +188,12 @@ func (i SwitchControllerNacSettingsMap) ToSwitchControllerNacSettingsMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerNacSettingsMapOutput)
 }
 
+func (i SwitchControllerNacSettingsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerNacSettings] {
+	return pulumix.Output[map[string]*SwitchControllerNacSettings]{
+		OutputState: i.ToSwitchControllerNacSettingsMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SwitchControllerNacSettingsOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerNacSettingsOutput) ElementType() reflect.Type {
@@ -187,6 +206,12 @@ func (o SwitchControllerNacSettingsOutput) ToSwitchControllerNacSettingsOutput()
 
 func (o SwitchControllerNacSettingsOutput) ToSwitchControllerNacSettingsOutputWithContext(ctx context.Context) SwitchControllerNacSettingsOutput {
 	return o
+}
+
+func (o SwitchControllerNacSettingsOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerNacSettings] {
+	return pulumix.Output[*SwitchControllerNacSettings]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerNacSettingsOutput) AutoAuth() pulumi.StringOutput {
@@ -235,6 +260,12 @@ func (o SwitchControllerNacSettingsArrayOutput) ToSwitchControllerNacSettingsArr
 	return o
 }
 
+func (o SwitchControllerNacSettingsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerNacSettings] {
+	return pulumix.Output[[]*SwitchControllerNacSettings]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SwitchControllerNacSettingsArrayOutput) Index(i pulumi.IntInput) SwitchControllerNacSettingsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerNacSettings {
 		return vs[0].([]*SwitchControllerNacSettings)[vs[1].(int)]
@@ -253,6 +284,12 @@ func (o SwitchControllerNacSettingsMapOutput) ToSwitchControllerNacSettingsMapOu
 
 func (o SwitchControllerNacSettingsMapOutput) ToSwitchControllerNacSettingsMapOutputWithContext(ctx context.Context) SwitchControllerNacSettingsMapOutput {
 	return o
+}
+
+func (o SwitchControllerNacSettingsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerNacSettings] {
+	return pulumix.Output[map[string]*SwitchControllerNacSettings]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerNacSettingsMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerNacSettingsOutput {

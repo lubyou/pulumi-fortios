@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FortimanagerSystemGlobal struct {
@@ -110,6 +111,12 @@ func (i *FortimanagerSystemGlobal) ToFortimanagerSystemGlobalOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemGlobalOutput)
 }
 
+func (i *FortimanagerSystemGlobal) ToOutput(ctx context.Context) pulumix.Output[*FortimanagerSystemGlobal] {
+	return pulumix.Output[*FortimanagerSystemGlobal]{
+		OutputState: i.ToFortimanagerSystemGlobalOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FortimanagerSystemGlobalArrayInput is an input type that accepts FortimanagerSystemGlobalArray and FortimanagerSystemGlobalArrayOutput values.
 // You can construct a concrete instance of `FortimanagerSystemGlobalArrayInput` via:
 //
@@ -133,6 +140,12 @@ func (i FortimanagerSystemGlobalArray) ToFortimanagerSystemGlobalArrayOutput() F
 
 func (i FortimanagerSystemGlobalArray) ToFortimanagerSystemGlobalArrayOutputWithContext(ctx context.Context) FortimanagerSystemGlobalArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemGlobalArrayOutput)
+}
+
+func (i FortimanagerSystemGlobalArray) ToOutput(ctx context.Context) pulumix.Output[[]*FortimanagerSystemGlobal] {
+	return pulumix.Output[[]*FortimanagerSystemGlobal]{
+		OutputState: i.ToFortimanagerSystemGlobalArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FortimanagerSystemGlobalMapInput is an input type that accepts FortimanagerSystemGlobalMap and FortimanagerSystemGlobalMapOutput values.
@@ -160,6 +173,12 @@ func (i FortimanagerSystemGlobalMap) ToFortimanagerSystemGlobalMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemGlobalMapOutput)
 }
 
+func (i FortimanagerSystemGlobalMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FortimanagerSystemGlobal] {
+	return pulumix.Output[map[string]*FortimanagerSystemGlobal]{
+		OutputState: i.ToFortimanagerSystemGlobalMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FortimanagerSystemGlobalOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerSystemGlobalOutput) ElementType() reflect.Type {
@@ -172,6 +191,12 @@ func (o FortimanagerSystemGlobalOutput) ToFortimanagerSystemGlobalOutput() Forti
 
 func (o FortimanagerSystemGlobalOutput) ToFortimanagerSystemGlobalOutputWithContext(ctx context.Context) FortimanagerSystemGlobalOutput {
 	return o
+}
+
+func (o FortimanagerSystemGlobalOutput) ToOutput(ctx context.Context) pulumix.Output[*FortimanagerSystemGlobal] {
+	return pulumix.Output[*FortimanagerSystemGlobal]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FortimanagerSystemGlobalOutput) AdomMode() pulumi.StringPtrOutput {
@@ -208,6 +233,12 @@ func (o FortimanagerSystemGlobalArrayOutput) ToFortimanagerSystemGlobalArrayOutp
 	return o
 }
 
+func (o FortimanagerSystemGlobalArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FortimanagerSystemGlobal] {
+	return pulumix.Output[[]*FortimanagerSystemGlobal]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FortimanagerSystemGlobalArrayOutput) Index(i pulumi.IntInput) FortimanagerSystemGlobalOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FortimanagerSystemGlobal {
 		return vs[0].([]*FortimanagerSystemGlobal)[vs[1].(int)]
@@ -226,6 +257,12 @@ func (o FortimanagerSystemGlobalMapOutput) ToFortimanagerSystemGlobalMapOutput()
 
 func (o FortimanagerSystemGlobalMapOutput) ToFortimanagerSystemGlobalMapOutputWithContext(ctx context.Context) FortimanagerSystemGlobalMapOutput {
 	return o
+}
+
+func (o FortimanagerSystemGlobalMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FortimanagerSystemGlobal] {
+	return pulumix.Output[map[string]*FortimanagerSystemGlobal]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FortimanagerSystemGlobalMapOutput) MapIndex(k pulumi.StringInput) FortimanagerSystemGlobalOutput {

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type VpnSslWebPortal struct {
@@ -21,6 +22,7 @@ type VpnSslWebPortal struct {
 	Clipboard                          pulumi.StringOutput                                        `pulumi:"clipboard"`
 	CustomLang                         pulumi.StringOutput                                        `pulumi:"customLang"`
 	CustomizeForticlientDownloadUrl    pulumi.StringOutput                                        `pulumi:"customizeForticlientDownloadUrl"`
+	DefaultProtocol                    pulumi.StringOutput                                        `pulumi:"defaultProtocol"`
 	DefaultWindowHeight                pulumi.IntOutput                                           `pulumi:"defaultWindowHeight"`
 	DefaultWindowWidth                 pulumi.IntOutput                                           `pulumi:"defaultWindowWidth"`
 	Dhcp6RaLinkaddr                    pulumi.StringOutput                                        `pulumi:"dhcp6RaLinkaddr"`
@@ -35,6 +37,7 @@ type VpnSslWebPortal struct {
 	DnsSuffix                          pulumi.StringPtrOutput                                     `pulumi:"dnsSuffix"`
 	DynamicSortSubtable                pulumi.StringPtrOutput                                     `pulumi:"dynamicSortSubtable"`
 	ExclusiveRouting                   pulumi.StringOutput                                        `pulumi:"exclusiveRouting"`
+	FocusBookmark                      pulumi.StringOutput                                        `pulumi:"focusBookmark"`
 	ForticlientDownload                pulumi.StringOutput                                        `pulumi:"forticlientDownload"`
 	ForticlientDownloadMethod          pulumi.StringOutput                                        `pulumi:"forticlientDownloadMethod"`
 	GetAllTables                       pulumi.StringPtrOutput                                     `pulumi:"getAllTables"`
@@ -132,6 +135,7 @@ type vpnSslWebPortalState struct {
 	Clipboard                          *string                                           `pulumi:"clipboard"`
 	CustomLang                         *string                                           `pulumi:"customLang"`
 	CustomizeForticlientDownloadUrl    *string                                           `pulumi:"customizeForticlientDownloadUrl"`
+	DefaultProtocol                    *string                                           `pulumi:"defaultProtocol"`
 	DefaultWindowHeight                *int                                              `pulumi:"defaultWindowHeight"`
 	DefaultWindowWidth                 *int                                              `pulumi:"defaultWindowWidth"`
 	Dhcp6RaLinkaddr                    *string                                           `pulumi:"dhcp6RaLinkaddr"`
@@ -146,6 +150,7 @@ type vpnSslWebPortalState struct {
 	DnsSuffix                          *string                                           `pulumi:"dnsSuffix"`
 	DynamicSortSubtable                *string                                           `pulumi:"dynamicSortSubtable"`
 	ExclusiveRouting                   *string                                           `pulumi:"exclusiveRouting"`
+	FocusBookmark                      *string                                           `pulumi:"focusBookmark"`
 	ForticlientDownload                *string                                           `pulumi:"forticlientDownload"`
 	ForticlientDownloadMethod          *string                                           `pulumi:"forticlientDownloadMethod"`
 	GetAllTables                       *string                                           `pulumi:"getAllTables"`
@@ -214,6 +219,7 @@ type VpnSslWebPortalState struct {
 	Clipboard                          pulumi.StringPtrInput
 	CustomLang                         pulumi.StringPtrInput
 	CustomizeForticlientDownloadUrl    pulumi.StringPtrInput
+	DefaultProtocol                    pulumi.StringPtrInput
 	DefaultWindowHeight                pulumi.IntPtrInput
 	DefaultWindowWidth                 pulumi.IntPtrInput
 	Dhcp6RaLinkaddr                    pulumi.StringPtrInput
@@ -228,6 +234,7 @@ type VpnSslWebPortalState struct {
 	DnsSuffix                          pulumi.StringPtrInput
 	DynamicSortSubtable                pulumi.StringPtrInput
 	ExclusiveRouting                   pulumi.StringPtrInput
+	FocusBookmark                      pulumi.StringPtrInput
 	ForticlientDownload                pulumi.StringPtrInput
 	ForticlientDownloadMethod          pulumi.StringPtrInput
 	GetAllTables                       pulumi.StringPtrInput
@@ -300,6 +307,7 @@ type vpnSslWebPortalArgs struct {
 	Clipboard                          *string                                           `pulumi:"clipboard"`
 	CustomLang                         *string                                           `pulumi:"customLang"`
 	CustomizeForticlientDownloadUrl    *string                                           `pulumi:"customizeForticlientDownloadUrl"`
+	DefaultProtocol                    *string                                           `pulumi:"defaultProtocol"`
 	DefaultWindowHeight                *int                                              `pulumi:"defaultWindowHeight"`
 	DefaultWindowWidth                 *int                                              `pulumi:"defaultWindowWidth"`
 	Dhcp6RaLinkaddr                    *string                                           `pulumi:"dhcp6RaLinkaddr"`
@@ -314,6 +322,7 @@ type vpnSslWebPortalArgs struct {
 	DnsSuffix                          *string                                           `pulumi:"dnsSuffix"`
 	DynamicSortSubtable                *string                                           `pulumi:"dynamicSortSubtable"`
 	ExclusiveRouting                   *string                                           `pulumi:"exclusiveRouting"`
+	FocusBookmark                      *string                                           `pulumi:"focusBookmark"`
 	ForticlientDownload                *string                                           `pulumi:"forticlientDownload"`
 	ForticlientDownloadMethod          *string                                           `pulumi:"forticlientDownloadMethod"`
 	GetAllTables                       *string                                           `pulumi:"getAllTables"`
@@ -383,6 +392,7 @@ type VpnSslWebPortalArgs struct {
 	Clipboard                          pulumi.StringPtrInput
 	CustomLang                         pulumi.StringPtrInput
 	CustomizeForticlientDownloadUrl    pulumi.StringPtrInput
+	DefaultProtocol                    pulumi.StringPtrInput
 	DefaultWindowHeight                pulumi.IntPtrInput
 	DefaultWindowWidth                 pulumi.IntPtrInput
 	Dhcp6RaLinkaddr                    pulumi.StringPtrInput
@@ -397,6 +407,7 @@ type VpnSslWebPortalArgs struct {
 	DnsSuffix                          pulumi.StringPtrInput
 	DynamicSortSubtable                pulumi.StringPtrInput
 	ExclusiveRouting                   pulumi.StringPtrInput
+	FocusBookmark                      pulumi.StringPtrInput
 	ForticlientDownload                pulumi.StringPtrInput
 	ForticlientDownloadMethod          pulumi.StringPtrInput
 	GetAllTables                       pulumi.StringPtrInput
@@ -480,6 +491,12 @@ func (i *VpnSslWebPortal) ToVpnSslWebPortalOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalOutput)
 }
 
+func (i *VpnSslWebPortal) ToOutput(ctx context.Context) pulumix.Output[*VpnSslWebPortal] {
+	return pulumix.Output[*VpnSslWebPortal]{
+		OutputState: i.ToVpnSslWebPortalOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnSslWebPortalArrayInput is an input type that accepts VpnSslWebPortalArray and VpnSslWebPortalArrayOutput values.
 // You can construct a concrete instance of `VpnSslWebPortalArrayInput` via:
 //
@@ -503,6 +520,12 @@ func (i VpnSslWebPortalArray) ToVpnSslWebPortalArrayOutput() VpnSslWebPortalArra
 
 func (i VpnSslWebPortalArray) ToVpnSslWebPortalArrayOutputWithContext(ctx context.Context) VpnSslWebPortalArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalArrayOutput)
+}
+
+func (i VpnSslWebPortalArray) ToOutput(ctx context.Context) pulumix.Output[[]*VpnSslWebPortal] {
+	return pulumix.Output[[]*VpnSslWebPortal]{
+		OutputState: i.ToVpnSslWebPortalArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // VpnSslWebPortalMapInput is an input type that accepts VpnSslWebPortalMap and VpnSslWebPortalMapOutput values.
@@ -530,6 +553,12 @@ func (i VpnSslWebPortalMap) ToVpnSslWebPortalMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalMapOutput)
 }
 
+func (i VpnSslWebPortalMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnSslWebPortal] {
+	return pulumix.Output[map[string]*VpnSslWebPortal]{
+		OutputState: i.ToVpnSslWebPortalMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnSslWebPortalOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebPortalOutput) ElementType() reflect.Type {
@@ -542,6 +571,12 @@ func (o VpnSslWebPortalOutput) ToVpnSslWebPortalOutput() VpnSslWebPortalOutput {
 
 func (o VpnSslWebPortalOutput) ToVpnSslWebPortalOutputWithContext(ctx context.Context) VpnSslWebPortalOutput {
 	return o
+}
+
+func (o VpnSslWebPortalOutput) ToOutput(ctx context.Context) pulumix.Output[*VpnSslWebPortal] {
+	return pulumix.Output[*VpnSslWebPortal]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebPortalOutput) AllowUserAccess() pulumi.StringOutput {
@@ -570,6 +605,10 @@ func (o VpnSslWebPortalOutput) CustomLang() pulumi.StringOutput {
 
 func (o VpnSslWebPortalOutput) CustomizeForticlientDownloadUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.CustomizeForticlientDownloadUrl }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) DefaultProtocol() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.DefaultProtocol }).(pulumi.StringOutput)
 }
 
 func (o VpnSslWebPortalOutput) DefaultWindowHeight() pulumi.IntOutput {
@@ -626,6 +665,10 @@ func (o VpnSslWebPortalOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
 
 func (o VpnSslWebPortalOutput) ExclusiveRouting() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.ExclusiveRouting }).(pulumi.StringOutput)
+}
+
+func (o VpnSslWebPortalOutput) FocusBookmark() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnSslWebPortal) pulumi.StringOutput { return v.FocusBookmark }).(pulumi.StringOutput)
 }
 
 func (o VpnSslWebPortalOutput) ForticlientDownload() pulumi.StringOutput {
@@ -878,6 +921,12 @@ func (o VpnSslWebPortalArrayOutput) ToVpnSslWebPortalArrayOutputWithContext(ctx 
 	return o
 }
 
+func (o VpnSslWebPortalArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VpnSslWebPortal] {
+	return pulumix.Output[[]*VpnSslWebPortal]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o VpnSslWebPortalArrayOutput) Index(i pulumi.IntInput) VpnSslWebPortalOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnSslWebPortal {
 		return vs[0].([]*VpnSslWebPortal)[vs[1].(int)]
@@ -896,6 +945,12 @@ func (o VpnSslWebPortalMapOutput) ToVpnSslWebPortalMapOutput() VpnSslWebPortalMa
 
 func (o VpnSslWebPortalMapOutput) ToVpnSslWebPortalMapOutputWithContext(ctx context.Context) VpnSslWebPortalMapOutput {
 	return o
+}
+
+func (o VpnSslWebPortalMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnSslWebPortal] {
+	return pulumix.Output[map[string]*VpnSslWebPortal]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnSslWebPortalMapOutput) MapIndex(k pulumi.StringInput) VpnSslWebPortalOutput {

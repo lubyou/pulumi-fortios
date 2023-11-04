@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type RouterbgpNeighbor struct {
@@ -68,8 +69,10 @@ type RouterbgpNeighbor struct {
 	EbgpMultihopTtl                pulumi.IntOutput                                  `pulumi:"ebgpMultihopTtl"`
 	FilterListIn                   pulumi.StringOutput                               `pulumi:"filterListIn"`
 	FilterListIn6                  pulumi.StringOutput                               `pulumi:"filterListIn6"`
+	FilterListInVpnv4              pulumi.StringOutput                               `pulumi:"filterListInVpnv4"`
 	FilterListOut                  pulumi.StringOutput                               `pulumi:"filterListOut"`
 	FilterListOut6                 pulumi.StringOutput                               `pulumi:"filterListOut6"`
+	FilterListOutVpnv4             pulumi.StringOutput                               `pulumi:"filterListOutVpnv4"`
 	GetAllTables                   pulumi.StringPtrOutput                            `pulumi:"getAllTables"`
 	HoldtimeTimer                  pulumi.IntOutput                                  `pulumi:"holdtimeTimer"`
 	Interface                      pulumi.StringOutput                               `pulumi:"interface"`
@@ -242,8 +245,10 @@ type routerbgpNeighborState struct {
 	EbgpMultihopTtl                *int                                     `pulumi:"ebgpMultihopTtl"`
 	FilterListIn                   *string                                  `pulumi:"filterListIn"`
 	FilterListIn6                  *string                                  `pulumi:"filterListIn6"`
+	FilterListInVpnv4              *string                                  `pulumi:"filterListInVpnv4"`
 	FilterListOut                  *string                                  `pulumi:"filterListOut"`
 	FilterListOut6                 *string                                  `pulumi:"filterListOut6"`
+	FilterListOutVpnv4             *string                                  `pulumi:"filterListOutVpnv4"`
 	GetAllTables                   *string                                  `pulumi:"getAllTables"`
 	HoldtimeTimer                  *int                                     `pulumi:"holdtimeTimer"`
 	Interface                      *string                                  `pulumi:"interface"`
@@ -377,8 +382,10 @@ type RouterbgpNeighborState struct {
 	EbgpMultihopTtl                pulumi.IntPtrInput
 	FilterListIn                   pulumi.StringPtrInput
 	FilterListIn6                  pulumi.StringPtrInput
+	FilterListInVpnv4              pulumi.StringPtrInput
 	FilterListOut                  pulumi.StringPtrInput
 	FilterListOut6                 pulumi.StringPtrInput
+	FilterListOutVpnv4             pulumi.StringPtrInput
 	GetAllTables                   pulumi.StringPtrInput
 	HoldtimeTimer                  pulumi.IntPtrInput
 	Interface                      pulumi.StringPtrInput
@@ -516,8 +523,10 @@ type routerbgpNeighborArgs struct {
 	EbgpMultihopTtl                *int                                     `pulumi:"ebgpMultihopTtl"`
 	FilterListIn                   *string                                  `pulumi:"filterListIn"`
 	FilterListIn6                  *string                                  `pulumi:"filterListIn6"`
+	FilterListInVpnv4              *string                                  `pulumi:"filterListInVpnv4"`
 	FilterListOut                  *string                                  `pulumi:"filterListOut"`
 	FilterListOut6                 *string                                  `pulumi:"filterListOut6"`
+	FilterListOutVpnv4             *string                                  `pulumi:"filterListOutVpnv4"`
 	GetAllTables                   *string                                  `pulumi:"getAllTables"`
 	HoldtimeTimer                  *int                                     `pulumi:"holdtimeTimer"`
 	Interface                      *string                                  `pulumi:"interface"`
@@ -652,8 +661,10 @@ type RouterbgpNeighborArgs struct {
 	EbgpMultihopTtl                pulumi.IntPtrInput
 	FilterListIn                   pulumi.StringPtrInput
 	FilterListIn6                  pulumi.StringPtrInput
+	FilterListInVpnv4              pulumi.StringPtrInput
 	FilterListOut                  pulumi.StringPtrInput
 	FilterListOut6                 pulumi.StringPtrInput
+	FilterListOutVpnv4             pulumi.StringPtrInput
 	GetAllTables                   pulumi.StringPtrInput
 	HoldtimeTimer                  pulumi.IntPtrInput
 	Interface                      pulumi.StringPtrInput
@@ -756,6 +767,12 @@ func (i *RouterbgpNeighbor) ToRouterbgpNeighborOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(RouterbgpNeighborOutput)
 }
 
+func (i *RouterbgpNeighbor) ToOutput(ctx context.Context) pulumix.Output[*RouterbgpNeighbor] {
+	return pulumix.Output[*RouterbgpNeighbor]{
+		OutputState: i.ToRouterbgpNeighborOutputWithContext(ctx).OutputState,
+	}
+}
+
 // RouterbgpNeighborArrayInput is an input type that accepts RouterbgpNeighborArray and RouterbgpNeighborArrayOutput values.
 // You can construct a concrete instance of `RouterbgpNeighborArrayInput` via:
 //
@@ -779,6 +796,12 @@ func (i RouterbgpNeighborArray) ToRouterbgpNeighborArrayOutput() RouterbgpNeighb
 
 func (i RouterbgpNeighborArray) ToRouterbgpNeighborArrayOutputWithContext(ctx context.Context) RouterbgpNeighborArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterbgpNeighborArrayOutput)
+}
+
+func (i RouterbgpNeighborArray) ToOutput(ctx context.Context) pulumix.Output[[]*RouterbgpNeighbor] {
+	return pulumix.Output[[]*RouterbgpNeighbor]{
+		OutputState: i.ToRouterbgpNeighborArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // RouterbgpNeighborMapInput is an input type that accepts RouterbgpNeighborMap and RouterbgpNeighborMapOutput values.
@@ -806,6 +829,12 @@ func (i RouterbgpNeighborMap) ToRouterbgpNeighborMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(RouterbgpNeighborMapOutput)
 }
 
+func (i RouterbgpNeighborMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RouterbgpNeighbor] {
+	return pulumix.Output[map[string]*RouterbgpNeighbor]{
+		OutputState: i.ToRouterbgpNeighborMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RouterbgpNeighborOutput struct{ *pulumi.OutputState }
 
 func (RouterbgpNeighborOutput) ElementType() reflect.Type {
@@ -818,6 +847,12 @@ func (o RouterbgpNeighborOutput) ToRouterbgpNeighborOutput() RouterbgpNeighborOu
 
 func (o RouterbgpNeighborOutput) ToRouterbgpNeighborOutputWithContext(ctx context.Context) RouterbgpNeighborOutput {
 	return o
+}
+
+func (o RouterbgpNeighborOutput) ToOutput(ctx context.Context) pulumix.Output[*RouterbgpNeighbor] {
+	return pulumix.Output[*RouterbgpNeighbor]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RouterbgpNeighborOutput) Activate() pulumi.StringOutput {
@@ -1036,12 +1071,20 @@ func (o RouterbgpNeighborOutput) FilterListIn6() pulumi.StringOutput {
 	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.FilterListIn6 }).(pulumi.StringOutput)
 }
 
+func (o RouterbgpNeighborOutput) FilterListInVpnv4() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.FilterListInVpnv4 }).(pulumi.StringOutput)
+}
+
 func (o RouterbgpNeighborOutput) FilterListOut() pulumi.StringOutput {
 	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.FilterListOut }).(pulumi.StringOutput)
 }
 
 func (o RouterbgpNeighborOutput) FilterListOut6() pulumi.StringOutput {
 	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.FilterListOut6 }).(pulumi.StringOutput)
+}
+
+func (o RouterbgpNeighborOutput) FilterListOutVpnv4() pulumi.StringOutput {
+	return o.ApplyT(func(v *RouterbgpNeighbor) pulumi.StringOutput { return v.FilterListOutVpnv4 }).(pulumi.StringOutput)
 }
 
 func (o RouterbgpNeighborOutput) GetAllTables() pulumi.StringPtrOutput {
@@ -1366,6 +1409,12 @@ func (o RouterbgpNeighborArrayOutput) ToRouterbgpNeighborArrayOutputWithContext(
 	return o
 }
 
+func (o RouterbgpNeighborArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RouterbgpNeighbor] {
+	return pulumix.Output[[]*RouterbgpNeighbor]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o RouterbgpNeighborArrayOutput) Index(i pulumi.IntInput) RouterbgpNeighborOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RouterbgpNeighbor {
 		return vs[0].([]*RouterbgpNeighbor)[vs[1].(int)]
@@ -1384,6 +1433,12 @@ func (o RouterbgpNeighborMapOutput) ToRouterbgpNeighborMapOutput() RouterbgpNeig
 
 func (o RouterbgpNeighborMapOutput) ToRouterbgpNeighborMapOutputWithContext(ctx context.Context) RouterbgpNeighborMapOutput {
 	return o
+}
+
+func (o RouterbgpNeighborMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RouterbgpNeighbor] {
+	return pulumix.Output[map[string]*RouterbgpNeighbor]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RouterbgpNeighborMapOutput) MapIndex(k pulumi.StringInput) RouterbgpNeighborOutput {

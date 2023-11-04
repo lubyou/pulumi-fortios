@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemAffinityPacketRedistribution struct {
@@ -128,6 +129,12 @@ func (i *SystemAffinityPacketRedistribution) ToSystemAffinityPacketRedistributio
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAffinityPacketRedistributionOutput)
 }
 
+func (i *SystemAffinityPacketRedistribution) ToOutput(ctx context.Context) pulumix.Output[*SystemAffinityPacketRedistribution] {
+	return pulumix.Output[*SystemAffinityPacketRedistribution]{
+		OutputState: i.ToSystemAffinityPacketRedistributionOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemAffinityPacketRedistributionArrayInput is an input type that accepts SystemAffinityPacketRedistributionArray and SystemAffinityPacketRedistributionArrayOutput values.
 // You can construct a concrete instance of `SystemAffinityPacketRedistributionArrayInput` via:
 //
@@ -151,6 +158,12 @@ func (i SystemAffinityPacketRedistributionArray) ToSystemAffinityPacketRedistrib
 
 func (i SystemAffinityPacketRedistributionArray) ToSystemAffinityPacketRedistributionArrayOutputWithContext(ctx context.Context) SystemAffinityPacketRedistributionArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAffinityPacketRedistributionArrayOutput)
+}
+
+func (i SystemAffinityPacketRedistributionArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemAffinityPacketRedistribution] {
+	return pulumix.Output[[]*SystemAffinityPacketRedistribution]{
+		OutputState: i.ToSystemAffinityPacketRedistributionArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemAffinityPacketRedistributionMapInput is an input type that accepts SystemAffinityPacketRedistributionMap and SystemAffinityPacketRedistributionMapOutput values.
@@ -178,6 +191,12 @@ func (i SystemAffinityPacketRedistributionMap) ToSystemAffinityPacketRedistribut
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAffinityPacketRedistributionMapOutput)
 }
 
+func (i SystemAffinityPacketRedistributionMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemAffinityPacketRedistribution] {
+	return pulumix.Output[map[string]*SystemAffinityPacketRedistribution]{
+		OutputState: i.ToSystemAffinityPacketRedistributionMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemAffinityPacketRedistributionOutput struct{ *pulumi.OutputState }
 
 func (SystemAffinityPacketRedistributionOutput) ElementType() reflect.Type {
@@ -190,6 +209,12 @@ func (o SystemAffinityPacketRedistributionOutput) ToSystemAffinityPacketRedistri
 
 func (o SystemAffinityPacketRedistributionOutput) ToSystemAffinityPacketRedistributionOutputWithContext(ctx context.Context) SystemAffinityPacketRedistributionOutput {
 	return o
+}
+
+func (o SystemAffinityPacketRedistributionOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemAffinityPacketRedistribution] {
+	return pulumix.Output[*SystemAffinityPacketRedistribution]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemAffinityPacketRedistributionOutput) AffinityCpumask() pulumi.StringOutput {
@@ -230,6 +255,12 @@ func (o SystemAffinityPacketRedistributionArrayOutput) ToSystemAffinityPacketRed
 	return o
 }
 
+func (o SystemAffinityPacketRedistributionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemAffinityPacketRedistribution] {
+	return pulumix.Output[[]*SystemAffinityPacketRedistribution]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemAffinityPacketRedistributionArrayOutput) Index(i pulumi.IntInput) SystemAffinityPacketRedistributionOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemAffinityPacketRedistribution {
 		return vs[0].([]*SystemAffinityPacketRedistribution)[vs[1].(int)]
@@ -248,6 +279,12 @@ func (o SystemAffinityPacketRedistributionMapOutput) ToSystemAffinityPacketRedis
 
 func (o SystemAffinityPacketRedistributionMapOutput) ToSystemAffinityPacketRedistributionMapOutputWithContext(ctx context.Context) SystemAffinityPacketRedistributionMapOutput {
 	return o
+}
+
+func (o SystemAffinityPacketRedistributionMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemAffinityPacketRedistribution] {
+	return pulumix.Output[map[string]*SystemAffinityPacketRedistribution]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemAffinityPacketRedistributionMapOutput) MapIndex(k pulumi.StringInput) SystemAffinityPacketRedistributionOutput {

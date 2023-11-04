@@ -46,6 +46,7 @@ export class UserSaml extends pulumi.CustomResource {
     public readonly idpSingleSignOnUrl!: pulumi.Output<string>;
     public readonly limitRelaystate!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
+    public readonly reauth!: pulumi.Output<string>;
     public readonly singleLogoutUrl!: pulumi.Output<string>;
     public readonly singleSignOnUrl!: pulumi.Output<string>;
     public readonly userClaimType!: pulumi.Output<string>;
@@ -79,6 +80,7 @@ export class UserSaml extends pulumi.CustomResource {
             resourceInputs["idpSingleSignOnUrl"] = state ? state.idpSingleSignOnUrl : undefined;
             resourceInputs["limitRelaystate"] = state ? state.limitRelaystate : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["reauth"] = state ? state.reauth : undefined;
             resourceInputs["singleLogoutUrl"] = state ? state.singleLogoutUrl : undefined;
             resourceInputs["singleSignOnUrl"] = state ? state.singleSignOnUrl : undefined;
             resourceInputs["userClaimType"] = state ? state.userClaimType : undefined;
@@ -115,6 +117,7 @@ export class UserSaml extends pulumi.CustomResource {
             resourceInputs["idpSingleSignOnUrl"] = args ? args.idpSingleSignOnUrl : undefined;
             resourceInputs["limitRelaystate"] = args ? args.limitRelaystate : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["reauth"] = args ? args.reauth : undefined;
             resourceInputs["singleLogoutUrl"] = args ? args.singleLogoutUrl : undefined;
             resourceInputs["singleSignOnUrl"] = args ? args.singleSignOnUrl : undefined;
             resourceInputs["userClaimType"] = args ? args.userClaimType : undefined;
@@ -144,6 +147,7 @@ export interface UserSamlState {
     idpSingleSignOnUrl?: pulumi.Input<string>;
     limitRelaystate?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
+    reauth?: pulumi.Input<string>;
     singleLogoutUrl?: pulumi.Input<string>;
     singleSignOnUrl?: pulumi.Input<string>;
     userClaimType?: pulumi.Input<string>;
@@ -169,6 +173,7 @@ export interface UserSamlArgs {
     idpSingleSignOnUrl: pulumi.Input<string>;
     limitRelaystate?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
+    reauth?: pulumi.Input<string>;
     singleLogoutUrl?: pulumi.Input<string>;
     singleSignOnUrl: pulumi.Input<string>;
     userClaimType?: pulumi.Input<string>;

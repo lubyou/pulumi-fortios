@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemDnsServer(ctx *pulumi.Context, args *LookupSystemDnsServerArgs, opts ...pulumi.InvokeOption) (*LookupSystemDnsServerResult, error) {
@@ -31,6 +32,8 @@ type LookupSystemDnsServerArgs struct {
 type LookupSystemDnsServerResult struct {
 	DnsfilterProfile string `pulumi:"dnsfilterProfile"`
 	Doh              string `pulumi:"doh"`
+	Doh3             string `pulumi:"doh3"`
+	Doq              string `pulumi:"doq"`
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
 	Mode      string  `pulumi:"mode"`
@@ -76,12 +79,26 @@ func (o LookupSystemDnsServerResultOutput) ToLookupSystemDnsServerResultOutputWi
 	return o
 }
 
+func (o LookupSystemDnsServerResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemDnsServerResult] {
+	return pulumix.Output[LookupSystemDnsServerResult]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LookupSystemDnsServerResultOutput) DnsfilterProfile() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDnsServerResult) string { return v.DnsfilterProfile }).(pulumi.StringOutput)
 }
 
 func (o LookupSystemDnsServerResultOutput) Doh() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemDnsServerResult) string { return v.Doh }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemDnsServerResultOutput) Doh3() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemDnsServerResult) string { return v.Doh3 }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemDnsServerResultOutput) Doq() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemDnsServerResult) string { return v.Doq }).(pulumi.StringOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

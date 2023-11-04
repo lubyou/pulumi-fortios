@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type EndpointControlFctemsOverride struct {
@@ -210,6 +211,12 @@ func (i *EndpointControlFctemsOverride) ToEndpointControlFctemsOverrideOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlFctemsOverrideOutput)
 }
 
+func (i *EndpointControlFctemsOverride) ToOutput(ctx context.Context) pulumix.Output[*EndpointControlFctemsOverride] {
+	return pulumix.Output[*EndpointControlFctemsOverride]{
+		OutputState: i.ToEndpointControlFctemsOverrideOutputWithContext(ctx).OutputState,
+	}
+}
+
 // EndpointControlFctemsOverrideArrayInput is an input type that accepts EndpointControlFctemsOverrideArray and EndpointControlFctemsOverrideArrayOutput values.
 // You can construct a concrete instance of `EndpointControlFctemsOverrideArrayInput` via:
 //
@@ -233,6 +240,12 @@ func (i EndpointControlFctemsOverrideArray) ToEndpointControlFctemsOverrideArray
 
 func (i EndpointControlFctemsOverrideArray) ToEndpointControlFctemsOverrideArrayOutputWithContext(ctx context.Context) EndpointControlFctemsOverrideArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlFctemsOverrideArrayOutput)
+}
+
+func (i EndpointControlFctemsOverrideArray) ToOutput(ctx context.Context) pulumix.Output[[]*EndpointControlFctemsOverride] {
+	return pulumix.Output[[]*EndpointControlFctemsOverride]{
+		OutputState: i.ToEndpointControlFctemsOverrideArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // EndpointControlFctemsOverrideMapInput is an input type that accepts EndpointControlFctemsOverrideMap and EndpointControlFctemsOverrideMapOutput values.
@@ -260,6 +273,12 @@ func (i EndpointControlFctemsOverrideMap) ToEndpointControlFctemsOverrideMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlFctemsOverrideMapOutput)
 }
 
+func (i EndpointControlFctemsOverrideMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*EndpointControlFctemsOverride] {
+	return pulumix.Output[map[string]*EndpointControlFctemsOverride]{
+		OutputState: i.ToEndpointControlFctemsOverrideMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type EndpointControlFctemsOverrideOutput struct{ *pulumi.OutputState }
 
 func (EndpointControlFctemsOverrideOutput) ElementType() reflect.Type {
@@ -272,6 +291,12 @@ func (o EndpointControlFctemsOverrideOutput) ToEndpointControlFctemsOverrideOutp
 
 func (o EndpointControlFctemsOverrideOutput) ToEndpointControlFctemsOverrideOutputWithContext(ctx context.Context) EndpointControlFctemsOverrideOutput {
 	return o
+}
+
+func (o EndpointControlFctemsOverrideOutput) ToOutput(ctx context.Context) pulumix.Output[*EndpointControlFctemsOverride] {
+	return pulumix.Output[*EndpointControlFctemsOverride]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o EndpointControlFctemsOverrideOutput) CallTimeout() pulumi.IntOutput {
@@ -388,6 +413,12 @@ func (o EndpointControlFctemsOverrideArrayOutput) ToEndpointControlFctemsOverrid
 	return o
 }
 
+func (o EndpointControlFctemsOverrideArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*EndpointControlFctemsOverride] {
+	return pulumix.Output[[]*EndpointControlFctemsOverride]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o EndpointControlFctemsOverrideArrayOutput) Index(i pulumi.IntInput) EndpointControlFctemsOverrideOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *EndpointControlFctemsOverride {
 		return vs[0].([]*EndpointControlFctemsOverride)[vs[1].(int)]
@@ -406,6 +437,12 @@ func (o EndpointControlFctemsOverrideMapOutput) ToEndpointControlFctemsOverrideM
 
 func (o EndpointControlFctemsOverrideMapOutput) ToEndpointControlFctemsOverrideMapOutputWithContext(ctx context.Context) EndpointControlFctemsOverrideMapOutput {
 	return o
+}
+
+func (o EndpointControlFctemsOverrideMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*EndpointControlFctemsOverride] {
+	return pulumix.Output[map[string]*EndpointControlFctemsOverride]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o EndpointControlFctemsOverrideMapOutput) MapIndex(k pulumi.StringInput) EndpointControlFctemsOverrideOutput {

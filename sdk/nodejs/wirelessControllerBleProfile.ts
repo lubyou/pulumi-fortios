@@ -44,6 +44,12 @@ export class WirelessControllerBleProfile extends pulumi.CustomResource {
     public readonly majorId!: pulumi.Output<number>;
     public readonly minorId!: pulumi.Output<number>;
     public readonly name!: pulumi.Output<string>;
+    public readonly scanInterval!: pulumi.Output<number>;
+    public readonly scanPeriod!: pulumi.Output<number>;
+    public readonly scanThreshold!: pulumi.Output<string>;
+    public readonly scanTime!: pulumi.Output<number>;
+    public readonly scanType!: pulumi.Output<string>;
+    public readonly scanWindow!: pulumi.Output<number>;
     public readonly txpower!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
@@ -72,6 +78,12 @@ export class WirelessControllerBleProfile extends pulumi.CustomResource {
             resourceInputs["majorId"] = state ? state.majorId : undefined;
             resourceInputs["minorId"] = state ? state.minorId : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["scanInterval"] = state ? state.scanInterval : undefined;
+            resourceInputs["scanPeriod"] = state ? state.scanPeriod : undefined;
+            resourceInputs["scanThreshold"] = state ? state.scanThreshold : undefined;
+            resourceInputs["scanTime"] = state ? state.scanTime : undefined;
+            resourceInputs["scanType"] = state ? state.scanType : undefined;
+            resourceInputs["scanWindow"] = state ? state.scanWindow : undefined;
             resourceInputs["txpower"] = state ? state.txpower : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
@@ -88,6 +100,12 @@ export class WirelessControllerBleProfile extends pulumi.CustomResource {
             resourceInputs["majorId"] = args ? args.majorId : undefined;
             resourceInputs["minorId"] = args ? args.minorId : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["scanInterval"] = args ? args.scanInterval : undefined;
+            resourceInputs["scanPeriod"] = args ? args.scanPeriod : undefined;
+            resourceInputs["scanThreshold"] = args ? args.scanThreshold : undefined;
+            resourceInputs["scanTime"] = args ? args.scanTime : undefined;
+            resourceInputs["scanType"] = args ? args.scanType : undefined;
+            resourceInputs["scanWindow"] = args ? args.scanWindow : undefined;
             resourceInputs["txpower"] = args ? args.txpower : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
@@ -112,6 +130,12 @@ export interface WirelessControllerBleProfileState {
     majorId?: pulumi.Input<number>;
     minorId?: pulumi.Input<number>;
     name?: pulumi.Input<string>;
+    scanInterval?: pulumi.Input<number>;
+    scanPeriod?: pulumi.Input<number>;
+    scanThreshold?: pulumi.Input<string>;
+    scanTime?: pulumi.Input<number>;
+    scanType?: pulumi.Input<string>;
+    scanWindow?: pulumi.Input<number>;
     txpower?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }
@@ -132,6 +156,12 @@ export interface WirelessControllerBleProfileArgs {
     majorId?: pulumi.Input<number>;
     minorId?: pulumi.Input<number>;
     name?: pulumi.Input<string>;
+    scanInterval?: pulumi.Input<number>;
+    scanPeriod?: pulumi.Input<number>;
+    scanThreshold?: pulumi.Input<string>;
+    scanTime?: pulumi.Input<number>;
+    scanType?: pulumi.Input<string>;
+    scanWindow?: pulumi.Input<number>;
     txpower?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type EmailfilterBwl struct {
@@ -120,6 +121,12 @@ func (i *EmailfilterBwl) ToEmailfilterBwlOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterBwlOutput)
 }
 
+func (i *EmailfilterBwl) ToOutput(ctx context.Context) pulumix.Output[*EmailfilterBwl] {
+	return pulumix.Output[*EmailfilterBwl]{
+		OutputState: i.ToEmailfilterBwlOutputWithContext(ctx).OutputState,
+	}
+}
+
 // EmailfilterBwlArrayInput is an input type that accepts EmailfilterBwlArray and EmailfilterBwlArrayOutput values.
 // You can construct a concrete instance of `EmailfilterBwlArrayInput` via:
 //
@@ -143,6 +150,12 @@ func (i EmailfilterBwlArray) ToEmailfilterBwlArrayOutput() EmailfilterBwlArrayOu
 
 func (i EmailfilterBwlArray) ToEmailfilterBwlArrayOutputWithContext(ctx context.Context) EmailfilterBwlArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterBwlArrayOutput)
+}
+
+func (i EmailfilterBwlArray) ToOutput(ctx context.Context) pulumix.Output[[]*EmailfilterBwl] {
+	return pulumix.Output[[]*EmailfilterBwl]{
+		OutputState: i.ToEmailfilterBwlArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // EmailfilterBwlMapInput is an input type that accepts EmailfilterBwlMap and EmailfilterBwlMapOutput values.
@@ -170,6 +183,12 @@ func (i EmailfilterBwlMap) ToEmailfilterBwlMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterBwlMapOutput)
 }
 
+func (i EmailfilterBwlMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*EmailfilterBwl] {
+	return pulumix.Output[map[string]*EmailfilterBwl]{
+		OutputState: i.ToEmailfilterBwlMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type EmailfilterBwlOutput struct{ *pulumi.OutputState }
 
 func (EmailfilterBwlOutput) ElementType() reflect.Type {
@@ -182,6 +201,12 @@ func (o EmailfilterBwlOutput) ToEmailfilterBwlOutput() EmailfilterBwlOutput {
 
 func (o EmailfilterBwlOutput) ToEmailfilterBwlOutputWithContext(ctx context.Context) EmailfilterBwlOutput {
 	return o
+}
+
+func (o EmailfilterBwlOutput) ToOutput(ctx context.Context) pulumix.Output[*EmailfilterBwl] {
+	return pulumix.Output[*EmailfilterBwl]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o EmailfilterBwlOutput) Comment() pulumi.StringPtrOutput {
@@ -226,6 +251,12 @@ func (o EmailfilterBwlArrayOutput) ToEmailfilterBwlArrayOutputWithContext(ctx co
 	return o
 }
 
+func (o EmailfilterBwlArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*EmailfilterBwl] {
+	return pulumix.Output[[]*EmailfilterBwl]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o EmailfilterBwlArrayOutput) Index(i pulumi.IntInput) EmailfilterBwlOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *EmailfilterBwl {
 		return vs[0].([]*EmailfilterBwl)[vs[1].(int)]
@@ -244,6 +275,12 @@ func (o EmailfilterBwlMapOutput) ToEmailfilterBwlMapOutput() EmailfilterBwlMapOu
 
 func (o EmailfilterBwlMapOutput) ToEmailfilterBwlMapOutputWithContext(ctx context.Context) EmailfilterBwlMapOutput {
 	return o
+}
+
+func (o EmailfilterBwlMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*EmailfilterBwl] {
+	return pulumix.Output[map[string]*EmailfilterBwl]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o EmailfilterBwlMapOutput) MapIndex(k pulumi.StringInput) EmailfilterBwlOutput {

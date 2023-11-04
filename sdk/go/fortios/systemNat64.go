@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemNat64 struct {
@@ -139,6 +140,12 @@ func (i *SystemNat64) ToSystemNat64OutputWithContext(ctx context.Context) System
 	return pulumi.ToOutputWithContext(ctx, i).(SystemNat64Output)
 }
 
+func (i *SystemNat64) ToOutput(ctx context.Context) pulumix.Output[*SystemNat64] {
+	return pulumix.Output[*SystemNat64]{
+		OutputState: i.ToSystemNat64OutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemNat64ArrayInput is an input type that accepts SystemNat64Array and SystemNat64ArrayOutput values.
 // You can construct a concrete instance of `SystemNat64ArrayInput` via:
 //
@@ -162,6 +169,12 @@ func (i SystemNat64Array) ToSystemNat64ArrayOutput() SystemNat64ArrayOutput {
 
 func (i SystemNat64Array) ToSystemNat64ArrayOutputWithContext(ctx context.Context) SystemNat64ArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemNat64ArrayOutput)
+}
+
+func (i SystemNat64Array) ToOutput(ctx context.Context) pulumix.Output[[]*SystemNat64] {
+	return pulumix.Output[[]*SystemNat64]{
+		OutputState: i.ToSystemNat64ArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemNat64MapInput is an input type that accepts SystemNat64Map and SystemNat64MapOutput values.
@@ -189,6 +202,12 @@ func (i SystemNat64Map) ToSystemNat64MapOutputWithContext(ctx context.Context) S
 	return pulumi.ToOutputWithContext(ctx, i).(SystemNat64MapOutput)
 }
 
+func (i SystemNat64Map) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemNat64] {
+	return pulumix.Output[map[string]*SystemNat64]{
+		OutputState: i.ToSystemNat64MapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemNat64Output struct{ *pulumi.OutputState }
 
 func (SystemNat64Output) ElementType() reflect.Type {
@@ -201,6 +220,12 @@ func (o SystemNat64Output) ToSystemNat64Output() SystemNat64Output {
 
 func (o SystemNat64Output) ToSystemNat64OutputWithContext(ctx context.Context) SystemNat64Output {
 	return o
+}
+
+func (o SystemNat64Output) ToOutput(ctx context.Context) pulumix.Output[*SystemNat64] {
+	return pulumix.Output[*SystemNat64]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemNat64Output) AlwaysSynthesizeAaaaRecord() pulumi.StringOutput {
@@ -257,6 +282,12 @@ func (o SystemNat64ArrayOutput) ToSystemNat64ArrayOutputWithContext(ctx context.
 	return o
 }
 
+func (o SystemNat64ArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemNat64] {
+	return pulumix.Output[[]*SystemNat64]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemNat64ArrayOutput) Index(i pulumi.IntInput) SystemNat64Output {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemNat64 {
 		return vs[0].([]*SystemNat64)[vs[1].(int)]
@@ -275,6 +306,12 @@ func (o SystemNat64MapOutput) ToSystemNat64MapOutput() SystemNat64MapOutput {
 
 func (o SystemNat64MapOutput) ToSystemNat64MapOutputWithContext(ctx context.Context) SystemNat64MapOutput {
 	return o
+}
+
+func (o SystemNat64MapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemNat64] {
+	return pulumix.Output[map[string]*SystemNat64]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemNat64MapOutput) MapIndex(k pulumi.StringInput) SystemNat64Output {

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetSystemTosBasedPriorityList(ctx *pulumi.Context, args *GetSystemTosBasedPriorityListArgs, opts ...pulumi.InvokeOption) (*GetSystemTosBasedPriorityListResult, error) {
@@ -72,6 +73,12 @@ func (o GetSystemTosBasedPriorityListResultOutput) ToGetSystemTosBasedPriorityLi
 
 func (o GetSystemTosBasedPriorityListResultOutput) ToGetSystemTosBasedPriorityListResultOutputWithContext(ctx context.Context) GetSystemTosBasedPriorityListResultOutput {
 	return o
+}
+
+func (o GetSystemTosBasedPriorityListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSystemTosBasedPriorityListResult] {
+	return pulumix.Output[GetSystemTosBasedPriorityListResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetSystemTosBasedPriorityListResultOutput) Filter() pulumi.StringPtrOutput {

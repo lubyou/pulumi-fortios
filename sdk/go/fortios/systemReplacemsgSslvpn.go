@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemReplacemsgSslvpn struct {
@@ -114,6 +115,12 @@ func (i *SystemReplacemsgSslvpn) ToSystemReplacemsgSslvpnOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgSslvpnOutput)
 }
 
+func (i *SystemReplacemsgSslvpn) ToOutput(ctx context.Context) pulumix.Output[*SystemReplacemsgSslvpn] {
+	return pulumix.Output[*SystemReplacemsgSslvpn]{
+		OutputState: i.ToSystemReplacemsgSslvpnOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemReplacemsgSslvpnArrayInput is an input type that accepts SystemReplacemsgSslvpnArray and SystemReplacemsgSslvpnArrayOutput values.
 // You can construct a concrete instance of `SystemReplacemsgSslvpnArrayInput` via:
 //
@@ -137,6 +144,12 @@ func (i SystemReplacemsgSslvpnArray) ToSystemReplacemsgSslvpnArrayOutput() Syste
 
 func (i SystemReplacemsgSslvpnArray) ToSystemReplacemsgSslvpnArrayOutputWithContext(ctx context.Context) SystemReplacemsgSslvpnArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgSslvpnArrayOutput)
+}
+
+func (i SystemReplacemsgSslvpnArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemReplacemsgSslvpn] {
+	return pulumix.Output[[]*SystemReplacemsgSslvpn]{
+		OutputState: i.ToSystemReplacemsgSslvpnArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemReplacemsgSslvpnMapInput is an input type that accepts SystemReplacemsgSslvpnMap and SystemReplacemsgSslvpnMapOutput values.
@@ -164,6 +177,12 @@ func (i SystemReplacemsgSslvpnMap) ToSystemReplacemsgSslvpnMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgSslvpnMapOutput)
 }
 
+func (i SystemReplacemsgSslvpnMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemReplacemsgSslvpn] {
+	return pulumix.Output[map[string]*SystemReplacemsgSslvpn]{
+		OutputState: i.ToSystemReplacemsgSslvpnMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemReplacemsgSslvpnOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgSslvpnOutput) ElementType() reflect.Type {
@@ -176,6 +195,12 @@ func (o SystemReplacemsgSslvpnOutput) ToSystemReplacemsgSslvpnOutput() SystemRep
 
 func (o SystemReplacemsgSslvpnOutput) ToSystemReplacemsgSslvpnOutputWithContext(ctx context.Context) SystemReplacemsgSslvpnOutput {
 	return o
+}
+
+func (o SystemReplacemsgSslvpnOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemReplacemsgSslvpn] {
+	return pulumix.Output[*SystemReplacemsgSslvpn]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemReplacemsgSslvpnOutput) Buffer() pulumi.StringPtrOutput {
@@ -212,6 +237,12 @@ func (o SystemReplacemsgSslvpnArrayOutput) ToSystemReplacemsgSslvpnArrayOutputWi
 	return o
 }
 
+func (o SystemReplacemsgSslvpnArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemReplacemsgSslvpn] {
+	return pulumix.Output[[]*SystemReplacemsgSslvpn]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemReplacemsgSslvpnArrayOutput) Index(i pulumi.IntInput) SystemReplacemsgSslvpnOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemReplacemsgSslvpn {
 		return vs[0].([]*SystemReplacemsgSslvpn)[vs[1].(int)]
@@ -230,6 +261,12 @@ func (o SystemReplacemsgSslvpnMapOutput) ToSystemReplacemsgSslvpnMapOutput() Sys
 
 func (o SystemReplacemsgSslvpnMapOutput) ToSystemReplacemsgSslvpnMapOutputWithContext(ctx context.Context) SystemReplacemsgSslvpnMapOutput {
 	return o
+}
+
+func (o SystemReplacemsgSslvpnMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemReplacemsgSslvpn] {
+	return pulumix.Output[map[string]*SystemReplacemsgSslvpn]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemReplacemsgSslvpnMapOutput) MapIndex(k pulumi.StringInput) SystemReplacemsgSslvpnOutput {

@@ -28,6 +28,7 @@ export interface GetSystemFtmPushResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    readonly proxy: string;
     readonly server: string;
     readonly serverCert: string;
     readonly serverIp: string;

@@ -67,12 +67,14 @@ export interface GetSystemInterfaceResult {
     readonly dhcpClasslessRouteAddition: string;
     readonly dhcpClientIdentifier: string;
     readonly dhcpRelayAgentOption: string;
+    readonly dhcpRelayCircuitId: string;
     readonly dhcpRelayInterface: string;
     readonly dhcpRelayInterfaceSelectMethod: string;
     readonly dhcpRelayIp: string;
     readonly dhcpRelayLinkSelection: string;
     readonly dhcpRelayRequestAllServer: string;
     readonly dhcpRelayService: string;
+    readonly dhcpRelaySourceIp: string;
     readonly dhcpRelayType: string;
     readonly dhcpRenewTime: number;
     readonly dhcpSmartRelay: string;
@@ -227,6 +229,9 @@ export interface GetSystemInterfaceResult {
     readonly switchControllerMgmtVlan: number;
     readonly switchControllerNac: string;
     readonly switchControllerNetflowCollect: string;
+    readonly switchControllerOffload: string;
+    readonly switchControllerOffloadGw: string;
+    readonly switchControllerOffloadIp: string;
     readonly switchControllerRspanMode: string;
     readonly switchControllerSourceIp: string;
     readonly switchControllerTrafficPolicy: string;

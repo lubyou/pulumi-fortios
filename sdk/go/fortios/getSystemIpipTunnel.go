@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemIpipTunnel(ctx *pulumi.Context, args *LookupSystemIpipTunnelArgs, opts ...pulumi.InvokeOption) (*LookupSystemIpipTunnelResult, error) {
@@ -76,6 +77,12 @@ func (o LookupSystemIpipTunnelResultOutput) ToLookupSystemIpipTunnelResultOutput
 
 func (o LookupSystemIpipTunnelResultOutput) ToLookupSystemIpipTunnelResultOutputWithContext(ctx context.Context) LookupSystemIpipTunnelResultOutput {
 	return o
+}
+
+func (o LookupSystemIpipTunnelResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemIpipTunnelResult] {
+	return pulumix.Output[LookupSystemIpipTunnelResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupSystemIpipTunnelResultOutput) AutoAsicOffload() pulumi.StringOutput {

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerDynamicPortPolicy struct {
@@ -120,6 +121,12 @@ func (i *SwitchControllerDynamicPortPolicy) ToSwitchControllerDynamicPortPolicyO
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerDynamicPortPolicyOutput)
 }
 
+func (i *SwitchControllerDynamicPortPolicy) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerDynamicPortPolicy] {
+	return pulumix.Output[*SwitchControllerDynamicPortPolicy]{
+		OutputState: i.ToSwitchControllerDynamicPortPolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SwitchControllerDynamicPortPolicyArrayInput is an input type that accepts SwitchControllerDynamicPortPolicyArray and SwitchControllerDynamicPortPolicyArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerDynamicPortPolicyArrayInput` via:
 //
@@ -143,6 +150,12 @@ func (i SwitchControllerDynamicPortPolicyArray) ToSwitchControllerDynamicPortPol
 
 func (i SwitchControllerDynamicPortPolicyArray) ToSwitchControllerDynamicPortPolicyArrayOutputWithContext(ctx context.Context) SwitchControllerDynamicPortPolicyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerDynamicPortPolicyArrayOutput)
+}
+
+func (i SwitchControllerDynamicPortPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerDynamicPortPolicy] {
+	return pulumix.Output[[]*SwitchControllerDynamicPortPolicy]{
+		OutputState: i.ToSwitchControllerDynamicPortPolicyArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SwitchControllerDynamicPortPolicyMapInput is an input type that accepts SwitchControllerDynamicPortPolicyMap and SwitchControllerDynamicPortPolicyMapOutput values.
@@ -170,6 +183,12 @@ func (i SwitchControllerDynamicPortPolicyMap) ToSwitchControllerDynamicPortPolic
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerDynamicPortPolicyMapOutput)
 }
 
+func (i SwitchControllerDynamicPortPolicyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerDynamicPortPolicy] {
+	return pulumix.Output[map[string]*SwitchControllerDynamicPortPolicy]{
+		OutputState: i.ToSwitchControllerDynamicPortPolicyMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SwitchControllerDynamicPortPolicyOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerDynamicPortPolicyOutput) ElementType() reflect.Type {
@@ -182,6 +201,12 @@ func (o SwitchControllerDynamicPortPolicyOutput) ToSwitchControllerDynamicPortPo
 
 func (o SwitchControllerDynamicPortPolicyOutput) ToSwitchControllerDynamicPortPolicyOutputWithContext(ctx context.Context) SwitchControllerDynamicPortPolicyOutput {
 	return o
+}
+
+func (o SwitchControllerDynamicPortPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerDynamicPortPolicy] {
+	return pulumix.Output[*SwitchControllerDynamicPortPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerDynamicPortPolicyOutput) Description() pulumi.StringOutput {
@@ -228,6 +253,12 @@ func (o SwitchControllerDynamicPortPolicyArrayOutput) ToSwitchControllerDynamicP
 	return o
 }
 
+func (o SwitchControllerDynamicPortPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerDynamicPortPolicy] {
+	return pulumix.Output[[]*SwitchControllerDynamicPortPolicy]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SwitchControllerDynamicPortPolicyArrayOutput) Index(i pulumi.IntInput) SwitchControllerDynamicPortPolicyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerDynamicPortPolicy {
 		return vs[0].([]*SwitchControllerDynamicPortPolicy)[vs[1].(int)]
@@ -246,6 +277,12 @@ func (o SwitchControllerDynamicPortPolicyMapOutput) ToSwitchControllerDynamicPor
 
 func (o SwitchControllerDynamicPortPolicyMapOutput) ToSwitchControllerDynamicPortPolicyMapOutputWithContext(ctx context.Context) SwitchControllerDynamicPortPolicyMapOutput {
 	return o
+}
+
+func (o SwitchControllerDynamicPortPolicyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerDynamicPortPolicy] {
+	return pulumix.Output[map[string]*SwitchControllerDynamicPortPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerDynamicPortPolicyMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerDynamicPortPolicyOutput {

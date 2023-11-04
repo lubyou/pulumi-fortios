@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallCountry struct {
@@ -115,6 +116,12 @@ func (i *FirewallCountry) ToFirewallCountryOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallCountryOutput)
 }
 
+func (i *FirewallCountry) ToOutput(ctx context.Context) pulumix.Output[*FirewallCountry] {
+	return pulumix.Output[*FirewallCountry]{
+		OutputState: i.ToFirewallCountryOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallCountryArrayInput is an input type that accepts FirewallCountryArray and FirewallCountryArrayOutput values.
 // You can construct a concrete instance of `FirewallCountryArrayInput` via:
 //
@@ -138,6 +145,12 @@ func (i FirewallCountryArray) ToFirewallCountryArrayOutput() FirewallCountryArra
 
 func (i FirewallCountryArray) ToFirewallCountryArrayOutputWithContext(ctx context.Context) FirewallCountryArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallCountryArrayOutput)
+}
+
+func (i FirewallCountryArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallCountry] {
+	return pulumix.Output[[]*FirewallCountry]{
+		OutputState: i.ToFirewallCountryArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallCountryMapInput is an input type that accepts FirewallCountryMap and FirewallCountryMapOutput values.
@@ -165,6 +178,12 @@ func (i FirewallCountryMap) ToFirewallCountryMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallCountryMapOutput)
 }
 
+func (i FirewallCountryMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallCountry] {
+	return pulumix.Output[map[string]*FirewallCountry]{
+		OutputState: i.ToFirewallCountryMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallCountryOutput struct{ *pulumi.OutputState }
 
 func (FirewallCountryOutput) ElementType() reflect.Type {
@@ -177,6 +196,12 @@ func (o FirewallCountryOutput) ToFirewallCountryOutput() FirewallCountryOutput {
 
 func (o FirewallCountryOutput) ToFirewallCountryOutputWithContext(ctx context.Context) FirewallCountryOutput {
 	return o
+}
+
+func (o FirewallCountryOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallCountry] {
+	return pulumix.Output[*FirewallCountry]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallCountryOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -217,6 +242,12 @@ func (o FirewallCountryArrayOutput) ToFirewallCountryArrayOutputWithContext(ctx 
 	return o
 }
 
+func (o FirewallCountryArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallCountry] {
+	return pulumix.Output[[]*FirewallCountry]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallCountryArrayOutput) Index(i pulumi.IntInput) FirewallCountryOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallCountry {
 		return vs[0].([]*FirewallCountry)[vs[1].(int)]
@@ -235,6 +266,12 @@ func (o FirewallCountryMapOutput) ToFirewallCountryMapOutput() FirewallCountryMa
 
 func (o FirewallCountryMapOutput) ToFirewallCountryMapOutputWithContext(ctx context.Context) FirewallCountryMapOutput {
 	return o
+}
+
+func (o FirewallCountryMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallCountry] {
+	return pulumix.Output[map[string]*FirewallCountry]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallCountryMapOutput) MapIndex(k pulumi.StringInput) FirewallCountryOutput {

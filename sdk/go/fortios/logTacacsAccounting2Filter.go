@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type LogTacacsAccounting2Filter struct {
@@ -105,6 +106,12 @@ func (i *LogTacacsAccounting2Filter) ToLogTacacsAccounting2FilterOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(LogTacacsAccounting2FilterOutput)
 }
 
+func (i *LogTacacsAccounting2Filter) ToOutput(ctx context.Context) pulumix.Output[*LogTacacsAccounting2Filter] {
+	return pulumix.Output[*LogTacacsAccounting2Filter]{
+		OutputState: i.ToLogTacacsAccounting2FilterOutputWithContext(ctx).OutputState,
+	}
+}
+
 // LogTacacsAccounting2FilterArrayInput is an input type that accepts LogTacacsAccounting2FilterArray and LogTacacsAccounting2FilterArrayOutput values.
 // You can construct a concrete instance of `LogTacacsAccounting2FilterArrayInput` via:
 //
@@ -128,6 +135,12 @@ func (i LogTacacsAccounting2FilterArray) ToLogTacacsAccounting2FilterArrayOutput
 
 func (i LogTacacsAccounting2FilterArray) ToLogTacacsAccounting2FilterArrayOutputWithContext(ctx context.Context) LogTacacsAccounting2FilterArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogTacacsAccounting2FilterArrayOutput)
+}
+
+func (i LogTacacsAccounting2FilterArray) ToOutput(ctx context.Context) pulumix.Output[[]*LogTacacsAccounting2Filter] {
+	return pulumix.Output[[]*LogTacacsAccounting2Filter]{
+		OutputState: i.ToLogTacacsAccounting2FilterArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // LogTacacsAccounting2FilterMapInput is an input type that accepts LogTacacsAccounting2FilterMap and LogTacacsAccounting2FilterMapOutput values.
@@ -155,6 +168,12 @@ func (i LogTacacsAccounting2FilterMap) ToLogTacacsAccounting2FilterMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(LogTacacsAccounting2FilterMapOutput)
 }
 
+func (i LogTacacsAccounting2FilterMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogTacacsAccounting2Filter] {
+	return pulumix.Output[map[string]*LogTacacsAccounting2Filter]{
+		OutputState: i.ToLogTacacsAccounting2FilterMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type LogTacacsAccounting2FilterOutput struct{ *pulumi.OutputState }
 
 func (LogTacacsAccounting2FilterOutput) ElementType() reflect.Type {
@@ -167,6 +186,12 @@ func (o LogTacacsAccounting2FilterOutput) ToLogTacacsAccounting2FilterOutput() L
 
 func (o LogTacacsAccounting2FilterOutput) ToLogTacacsAccounting2FilterOutputWithContext(ctx context.Context) LogTacacsAccounting2FilterOutput {
 	return o
+}
+
+func (o LogTacacsAccounting2FilterOutput) ToOutput(ctx context.Context) pulumix.Output[*LogTacacsAccounting2Filter] {
+	return pulumix.Output[*LogTacacsAccounting2Filter]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LogTacacsAccounting2FilterOutput) CliCmdAudit() pulumi.StringOutput {
@@ -199,6 +224,12 @@ func (o LogTacacsAccounting2FilterArrayOutput) ToLogTacacsAccounting2FilterArray
 	return o
 }
 
+func (o LogTacacsAccounting2FilterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LogTacacsAccounting2Filter] {
+	return pulumix.Output[[]*LogTacacsAccounting2Filter]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LogTacacsAccounting2FilterArrayOutput) Index(i pulumi.IntInput) LogTacacsAccounting2FilterOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogTacacsAccounting2Filter {
 		return vs[0].([]*LogTacacsAccounting2Filter)[vs[1].(int)]
@@ -217,6 +248,12 @@ func (o LogTacacsAccounting2FilterMapOutput) ToLogTacacsAccounting2FilterMapOutp
 
 func (o LogTacacsAccounting2FilterMapOutput) ToLogTacacsAccounting2FilterMapOutputWithContext(ctx context.Context) LogTacacsAccounting2FilterMapOutput {
 	return o
+}
+
+func (o LogTacacsAccounting2FilterMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogTacacsAccounting2Filter] {
+	return pulumix.Output[map[string]*LogTacacsAccounting2Filter]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LogTacacsAccounting2FilterMapOutput) MapIndex(k pulumi.StringInput) LogTacacsAccounting2FilterOutput {

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemEvpn struct {
@@ -130,6 +131,12 @@ func (i *SystemEvpn) ToSystemEvpnOutputWithContext(ctx context.Context) SystemEv
 	return pulumi.ToOutputWithContext(ctx, i).(SystemEvpnOutput)
 }
 
+func (i *SystemEvpn) ToOutput(ctx context.Context) pulumix.Output[*SystemEvpn] {
+	return pulumix.Output[*SystemEvpn]{
+		OutputState: i.ToSystemEvpnOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemEvpnArrayInput is an input type that accepts SystemEvpnArray and SystemEvpnArrayOutput values.
 // You can construct a concrete instance of `SystemEvpnArrayInput` via:
 //
@@ -153,6 +160,12 @@ func (i SystemEvpnArray) ToSystemEvpnArrayOutput() SystemEvpnArrayOutput {
 
 func (i SystemEvpnArray) ToSystemEvpnArrayOutputWithContext(ctx context.Context) SystemEvpnArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemEvpnArrayOutput)
+}
+
+func (i SystemEvpnArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemEvpn] {
+	return pulumix.Output[[]*SystemEvpn]{
+		OutputState: i.ToSystemEvpnArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemEvpnMapInput is an input type that accepts SystemEvpnMap and SystemEvpnMapOutput values.
@@ -180,6 +193,12 @@ func (i SystemEvpnMap) ToSystemEvpnMapOutputWithContext(ctx context.Context) Sys
 	return pulumi.ToOutputWithContext(ctx, i).(SystemEvpnMapOutput)
 }
 
+func (i SystemEvpnMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemEvpn] {
+	return pulumix.Output[map[string]*SystemEvpn]{
+		OutputState: i.ToSystemEvpnMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemEvpnOutput struct{ *pulumi.OutputState }
 
 func (SystemEvpnOutput) ElementType() reflect.Type {
@@ -192,6 +211,12 @@ func (o SystemEvpnOutput) ToSystemEvpnOutput() SystemEvpnOutput {
 
 func (o SystemEvpnOutput) ToSystemEvpnOutputWithContext(ctx context.Context) SystemEvpnOutput {
 	return o
+}
+
+func (o SystemEvpnOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemEvpn] {
+	return pulumix.Output[*SystemEvpn]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemEvpnOutput) ArpSuppression() pulumi.StringOutput {
@@ -244,6 +269,12 @@ func (o SystemEvpnArrayOutput) ToSystemEvpnArrayOutputWithContext(ctx context.Co
 	return o
 }
 
+func (o SystemEvpnArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemEvpn] {
+	return pulumix.Output[[]*SystemEvpn]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemEvpnArrayOutput) Index(i pulumi.IntInput) SystemEvpnOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemEvpn {
 		return vs[0].([]*SystemEvpn)[vs[1].(int)]
@@ -262,6 +293,12 @@ func (o SystemEvpnMapOutput) ToSystemEvpnMapOutput() SystemEvpnMapOutput {
 
 func (o SystemEvpnMapOutput) ToSystemEvpnMapOutputWithContext(ctx context.Context) SystemEvpnMapOutput {
 	return o
+}
+
+func (o SystemEvpnMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemEvpn] {
+	return pulumix.Output[map[string]*SystemEvpn]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemEvpnMapOutput) MapIndex(k pulumi.StringInput) SystemEvpnOutput {

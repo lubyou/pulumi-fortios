@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemDhcpServer(ctx *pulumi.Context, args *LookupSystemDhcpServerArgs, opts ...pulumi.InvokeOption) (*LookupSystemDhcpServerResult, error) {
@@ -122,6 +123,12 @@ func (o LookupSystemDhcpServerResultOutput) ToLookupSystemDhcpServerResultOutput
 
 func (o LookupSystemDhcpServerResultOutput) ToLookupSystemDhcpServerResultOutputWithContext(ctx context.Context) LookupSystemDhcpServerResultOutput {
 	return o
+}
+
+func (o LookupSystemDhcpServerResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemDhcpServerResult] {
+	return pulumix.Output[LookupSystemDhcpServerResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupSystemDhcpServerResultOutput) AutoConfiguration() pulumi.StringOutput {

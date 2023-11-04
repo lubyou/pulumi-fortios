@@ -26,6 +26,12 @@ class WirelessControllerBleProfileArgs:
                  major_id: Optional[pulumi.Input[int]] = None,
                  minor_id: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 scan_interval: Optional[pulumi.Input[int]] = None,
+                 scan_period: Optional[pulumi.Input[int]] = None,
+                 scan_threshold: Optional[pulumi.Input[str]] = None,
+                 scan_time: Optional[pulumi.Input[int]] = None,
+                 scan_type: Optional[pulumi.Input[str]] = None,
+                 scan_window: Optional[pulumi.Input[int]] = None,
                  txpower: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
@@ -55,6 +61,18 @@ class WirelessControllerBleProfileArgs:
             pulumi.set(__self__, "minor_id", minor_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if scan_interval is not None:
+            pulumi.set(__self__, "scan_interval", scan_interval)
+        if scan_period is not None:
+            pulumi.set(__self__, "scan_period", scan_period)
+        if scan_threshold is not None:
+            pulumi.set(__self__, "scan_threshold", scan_threshold)
+        if scan_time is not None:
+            pulumi.set(__self__, "scan_time", scan_time)
+        if scan_type is not None:
+            pulumi.set(__self__, "scan_type", scan_type)
+        if scan_window is not None:
+            pulumi.set(__self__, "scan_window", scan_window)
         if txpower is not None:
             pulumi.set(__self__, "txpower", txpower)
         if vdomparam is not None:
@@ -167,6 +185,60 @@ class WirelessControllerBleProfileArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="scanInterval")
+    def scan_interval(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "scan_interval")
+
+    @scan_interval.setter
+    def scan_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "scan_interval", value)
+
+    @property
+    @pulumi.getter(name="scanPeriod")
+    def scan_period(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "scan_period")
+
+    @scan_period.setter
+    def scan_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "scan_period", value)
+
+    @property
+    @pulumi.getter(name="scanThreshold")
+    def scan_threshold(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "scan_threshold")
+
+    @scan_threshold.setter
+    def scan_threshold(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "scan_threshold", value)
+
+    @property
+    @pulumi.getter(name="scanTime")
+    def scan_time(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "scan_time")
+
+    @scan_time.setter
+    def scan_time(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "scan_time", value)
+
+    @property
+    @pulumi.getter(name="scanType")
+    def scan_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "scan_type")
+
+    @scan_type.setter
+    def scan_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "scan_type", value)
+
+    @property
+    @pulumi.getter(name="scanWindow")
+    def scan_window(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "scan_window")
+
+    @scan_window.setter
+    def scan_window(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "scan_window", value)
 
     @property
     @pulumi.getter
@@ -202,6 +274,12 @@ class _WirelessControllerBleProfileState:
                  major_id: Optional[pulumi.Input[int]] = None,
                  minor_id: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 scan_interval: Optional[pulumi.Input[int]] = None,
+                 scan_period: Optional[pulumi.Input[int]] = None,
+                 scan_threshold: Optional[pulumi.Input[str]] = None,
+                 scan_time: Optional[pulumi.Input[int]] = None,
+                 scan_type: Optional[pulumi.Input[str]] = None,
+                 scan_window: Optional[pulumi.Input[int]] = None,
                  txpower: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
@@ -231,6 +309,18 @@ class _WirelessControllerBleProfileState:
             pulumi.set(__self__, "minor_id", minor_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if scan_interval is not None:
+            pulumi.set(__self__, "scan_interval", scan_interval)
+        if scan_period is not None:
+            pulumi.set(__self__, "scan_period", scan_period)
+        if scan_threshold is not None:
+            pulumi.set(__self__, "scan_threshold", scan_threshold)
+        if scan_time is not None:
+            pulumi.set(__self__, "scan_time", scan_time)
+        if scan_type is not None:
+            pulumi.set(__self__, "scan_type", scan_type)
+        if scan_window is not None:
+            pulumi.set(__self__, "scan_window", scan_window)
         if txpower is not None:
             pulumi.set(__self__, "txpower", txpower)
         if vdomparam is not None:
@@ -343,6 +433,60 @@ class _WirelessControllerBleProfileState:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="scanInterval")
+    def scan_interval(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "scan_interval")
+
+    @scan_interval.setter
+    def scan_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "scan_interval", value)
+
+    @property
+    @pulumi.getter(name="scanPeriod")
+    def scan_period(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "scan_period")
+
+    @scan_period.setter
+    def scan_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "scan_period", value)
+
+    @property
+    @pulumi.getter(name="scanThreshold")
+    def scan_threshold(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "scan_threshold")
+
+    @scan_threshold.setter
+    def scan_threshold(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "scan_threshold", value)
+
+    @property
+    @pulumi.getter(name="scanTime")
+    def scan_time(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "scan_time")
+
+    @scan_time.setter
+    def scan_time(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "scan_time", value)
+
+    @property
+    @pulumi.getter(name="scanType")
+    def scan_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "scan_type")
+
+    @scan_type.setter
+    def scan_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "scan_type", value)
+
+    @property
+    @pulumi.getter(name="scanWindow")
+    def scan_window(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "scan_window")
+
+    @scan_window.setter
+    def scan_window(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "scan_window", value)
 
     @property
     @pulumi.getter
@@ -380,6 +524,12 @@ class WirelessControllerBleProfile(pulumi.CustomResource):
                  major_id: Optional[pulumi.Input[int]] = None,
                  minor_id: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 scan_interval: Optional[pulumi.Input[int]] = None,
+                 scan_period: Optional[pulumi.Input[int]] = None,
+                 scan_threshold: Optional[pulumi.Input[str]] = None,
+                 scan_time: Optional[pulumi.Input[int]] = None,
+                 scan_type: Optional[pulumi.Input[str]] = None,
+                 scan_window: Optional[pulumi.Input[int]] = None,
                  txpower: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -423,6 +573,12 @@ class WirelessControllerBleProfile(pulumi.CustomResource):
                  major_id: Optional[pulumi.Input[int]] = None,
                  minor_id: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 scan_interval: Optional[pulumi.Input[int]] = None,
+                 scan_period: Optional[pulumi.Input[int]] = None,
+                 scan_threshold: Optional[pulumi.Input[str]] = None,
+                 scan_time: Optional[pulumi.Input[int]] = None,
+                 scan_type: Optional[pulumi.Input[str]] = None,
+                 scan_window: Optional[pulumi.Input[int]] = None,
                  txpower: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -446,6 +602,12 @@ class WirelessControllerBleProfile(pulumi.CustomResource):
             __props__.__dict__["major_id"] = major_id
             __props__.__dict__["minor_id"] = minor_id
             __props__.__dict__["name"] = name
+            __props__.__dict__["scan_interval"] = scan_interval
+            __props__.__dict__["scan_period"] = scan_period
+            __props__.__dict__["scan_threshold"] = scan_threshold
+            __props__.__dict__["scan_time"] = scan_time
+            __props__.__dict__["scan_type"] = scan_type
+            __props__.__dict__["scan_window"] = scan_window
             __props__.__dict__["txpower"] = txpower
             __props__.__dict__["vdomparam"] = vdomparam
         super(WirelessControllerBleProfile, __self__).__init__(
@@ -470,6 +632,12 @@ class WirelessControllerBleProfile(pulumi.CustomResource):
             major_id: Optional[pulumi.Input[int]] = None,
             minor_id: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            scan_interval: Optional[pulumi.Input[int]] = None,
+            scan_period: Optional[pulumi.Input[int]] = None,
+            scan_threshold: Optional[pulumi.Input[str]] = None,
+            scan_time: Optional[pulumi.Input[int]] = None,
+            scan_type: Optional[pulumi.Input[str]] = None,
+            scan_window: Optional[pulumi.Input[int]] = None,
             txpower: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'WirelessControllerBleProfile':
         """
@@ -496,6 +664,12 @@ class WirelessControllerBleProfile(pulumi.CustomResource):
         __props__.__dict__["major_id"] = major_id
         __props__.__dict__["minor_id"] = minor_id
         __props__.__dict__["name"] = name
+        __props__.__dict__["scan_interval"] = scan_interval
+        __props__.__dict__["scan_period"] = scan_period
+        __props__.__dict__["scan_threshold"] = scan_threshold
+        __props__.__dict__["scan_time"] = scan_time
+        __props__.__dict__["scan_type"] = scan_type
+        __props__.__dict__["scan_window"] = scan_window
         __props__.__dict__["txpower"] = txpower
         __props__.__dict__["vdomparam"] = vdomparam
         return WirelessControllerBleProfile(resource_name, opts=opts, __props__=__props__)
@@ -559,6 +733,36 @@ class WirelessControllerBleProfile(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="scanInterval")
+    def scan_interval(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "scan_interval")
+
+    @property
+    @pulumi.getter(name="scanPeriod")
+    def scan_period(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "scan_period")
+
+    @property
+    @pulumi.getter(name="scanThreshold")
+    def scan_threshold(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "scan_threshold")
+
+    @property
+    @pulumi.getter(name="scanTime")
+    def scan_time(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "scan_time")
+
+    @property
+    @pulumi.getter(name="scanType")
+    def scan_type(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "scan_type")
+
+    @property
+    @pulumi.getter(name="scanWindow")
+    def scan_window(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "scan_window")
 
     @property
     @pulumi.getter

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemAlias(ctx *pulumi.Context, args *LookupSystemAliasArgs, opts ...pulumi.InvokeOption) (*LookupSystemAliasResult, error) {
@@ -72,6 +73,12 @@ func (o LookupSystemAliasResultOutput) ToLookupSystemAliasResultOutput() LookupS
 
 func (o LookupSystemAliasResultOutput) ToLookupSystemAliasResultOutputWithContext(ctx context.Context) LookupSystemAliasResultOutput {
 	return o
+}
+
+func (o LookupSystemAliasResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemAliasResult] {
+	return pulumix.Output[LookupSystemAliasResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupSystemAliasResultOutput) Command() pulumi.StringOutput {

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemReplacemsgGroup(ctx *pulumi.Context, args *LookupSystemReplacemsgGroupArgs, opts ...pulumi.InvokeOption) (*LookupSystemReplacemsgGroupResult, error) {
@@ -92,6 +93,12 @@ func (o LookupSystemReplacemsgGroupResultOutput) ToLookupSystemReplacemsgGroupRe
 
 func (o LookupSystemReplacemsgGroupResultOutput) ToLookupSystemReplacemsgGroupResultOutputWithContext(ctx context.Context) LookupSystemReplacemsgGroupResultOutput {
 	return o
+}
+
+func (o LookupSystemReplacemsgGroupResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemReplacemsgGroupResult] {
+	return pulumix.Output[LookupSystemReplacemsgGroupResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupSystemReplacemsgGroupResultOutput) Admins() GetSystemReplacemsgGroupAdminArrayOutput {

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerSnmpSysinfo struct {
@@ -115,6 +116,12 @@ func (i *SwitchControllerSnmpSysinfo) ToSwitchControllerSnmpSysinfoOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSnmpSysinfoOutput)
 }
 
+func (i *SwitchControllerSnmpSysinfo) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerSnmpSysinfo] {
+	return pulumix.Output[*SwitchControllerSnmpSysinfo]{
+		OutputState: i.ToSwitchControllerSnmpSysinfoOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SwitchControllerSnmpSysinfoArrayInput is an input type that accepts SwitchControllerSnmpSysinfoArray and SwitchControllerSnmpSysinfoArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerSnmpSysinfoArrayInput` via:
 //
@@ -138,6 +145,12 @@ func (i SwitchControllerSnmpSysinfoArray) ToSwitchControllerSnmpSysinfoArrayOutp
 
 func (i SwitchControllerSnmpSysinfoArray) ToSwitchControllerSnmpSysinfoArrayOutputWithContext(ctx context.Context) SwitchControllerSnmpSysinfoArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSnmpSysinfoArrayOutput)
+}
+
+func (i SwitchControllerSnmpSysinfoArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerSnmpSysinfo] {
+	return pulumix.Output[[]*SwitchControllerSnmpSysinfo]{
+		OutputState: i.ToSwitchControllerSnmpSysinfoArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SwitchControllerSnmpSysinfoMapInput is an input type that accepts SwitchControllerSnmpSysinfoMap and SwitchControllerSnmpSysinfoMapOutput values.
@@ -165,6 +178,12 @@ func (i SwitchControllerSnmpSysinfoMap) ToSwitchControllerSnmpSysinfoMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSnmpSysinfoMapOutput)
 }
 
+func (i SwitchControllerSnmpSysinfoMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerSnmpSysinfo] {
+	return pulumix.Output[map[string]*SwitchControllerSnmpSysinfo]{
+		OutputState: i.ToSwitchControllerSnmpSysinfoMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SwitchControllerSnmpSysinfoOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSnmpSysinfoOutput) ElementType() reflect.Type {
@@ -177,6 +196,12 @@ func (o SwitchControllerSnmpSysinfoOutput) ToSwitchControllerSnmpSysinfoOutput()
 
 func (o SwitchControllerSnmpSysinfoOutput) ToSwitchControllerSnmpSysinfoOutputWithContext(ctx context.Context) SwitchControllerSnmpSysinfoOutput {
 	return o
+}
+
+func (o SwitchControllerSnmpSysinfoOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerSnmpSysinfo] {
+	return pulumix.Output[*SwitchControllerSnmpSysinfo]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerSnmpSysinfoOutput) ContactInfo() pulumi.StringOutput {
@@ -217,6 +242,12 @@ func (o SwitchControllerSnmpSysinfoArrayOutput) ToSwitchControllerSnmpSysinfoArr
 	return o
 }
 
+func (o SwitchControllerSnmpSysinfoArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerSnmpSysinfo] {
+	return pulumix.Output[[]*SwitchControllerSnmpSysinfo]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SwitchControllerSnmpSysinfoArrayOutput) Index(i pulumi.IntInput) SwitchControllerSnmpSysinfoOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerSnmpSysinfo {
 		return vs[0].([]*SwitchControllerSnmpSysinfo)[vs[1].(int)]
@@ -235,6 +266,12 @@ func (o SwitchControllerSnmpSysinfoMapOutput) ToSwitchControllerSnmpSysinfoMapOu
 
 func (o SwitchControllerSnmpSysinfoMapOutput) ToSwitchControllerSnmpSysinfoMapOutputWithContext(ctx context.Context) SwitchControllerSnmpSysinfoMapOutput {
 	return o
+}
+
+func (o SwitchControllerSnmpSysinfoMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerSnmpSysinfo] {
+	return pulumix.Output[map[string]*SwitchControllerSnmpSysinfo]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerSnmpSysinfoMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerSnmpSysinfoOutput {

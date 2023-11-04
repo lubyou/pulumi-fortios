@@ -22,7 +22,7 @@ class GetFirewallPolicyResult:
     """
     A collection of values returned by GetFirewallPolicy.
     """
-    def __init__(__self__, action=None, anti_replay=None, app_categories=None, app_groups=None, application_list=None, applications=None, auth_cert=None, auth_path=None, auth_redirect_addr=None, auto_asic_offload=None, av_profile=None, block_notification=None, captive_portal_exempt=None, capture_packet=None, cifs_profile=None, comments=None, custom_log_fields=None, decrypted_traffic_mirror=None, delay_tcp_npu_session=None, devices=None, diffserv_copy=None, diffserv_forward=None, diffserv_reverse=None, diffservcode_forward=None, diffservcode_rev=None, disclaimer=None, dlp_profile=None, dlp_sensor=None, dnsfilter_profile=None, dsri=None, dstaddr6_negate=None, dstaddr6s=None, dstaddr_negate=None, dstaddrs=None, dstintfs=None, dynamic_shaping=None, email_collect=None, emailfilter_profile=None, fec=None, file_filter_profile=None, firewall_session_dirty=None, fixedport=None, fsso=None, fsso_agent_for_ntlm=None, fsso_groups=None, geoip_anycast=None, geoip_match=None, global_label=None, groups=None, http_policy_redirect=None, icap_profile=None, id=None, identity_based_route=None, inbound=None, inspection_mode=None, internet_service=None, internet_service6=None, internet_service6_custom_groups=None, internet_service6_customs=None, internet_service6_groups=None, internet_service6_names=None, internet_service6_negate=None, internet_service6_src=None, internet_service6_src_custom_groups=None, internet_service6_src_customs=None, internet_service6_src_groups=None, internet_service6_src_names=None, internet_service6_src_negate=None, internet_service_custom_groups=None, internet_service_customs=None, internet_service_groups=None, internet_service_ids=None, internet_service_names=None, internet_service_negate=None, internet_service_src=None, internet_service_src_custom_groups=None, internet_service_src_customs=None, internet_service_src_groups=None, internet_service_src_ids=None, internet_service_src_names=None, internet_service_src_negate=None, ippool=None, ips_sensor=None, ips_voip_filter=None, label=None, learning_mode=None, logtraffic=None, logtraffic_start=None, match_vip=None, match_vip_only=None, name=None, nat=None, nat46=None, nat64=None, natinbound=None, natip=None, natoutbound=None, network_service_dynamics=None, network_service_src_dynamics=None, np_acceleration=None, ntlm=None, ntlm_enabled_browsers=None, ntlm_guest=None, outbound=None, passive_wan_health_measurement=None, pcp_inbound=None, pcp_outbound=None, pcp_poolnames=None, per_ip_shaper=None, permit_any_host=None, permit_stun_host=None, policy_expiry=None, policy_expiry_date=None, policy_expiry_date_utc=None, policyid=None, poolname6s=None, poolnames=None, profile_group=None, profile_protocol_options=None, profile_type=None, radius_mac_auth_bypass=None, redirect_url=None, replacemsg_override_group=None, reputation_direction=None, reputation_direction6=None, reputation_minimum=None, reputation_minimum6=None, rsso=None, rtp_addrs=None, rtp_nat=None, scan_botnet_connections=None, schedule=None, schedule_timeout=None, sctp_filter_profile=None, send_deny_packet=None, service_negate=None, services=None, session_ttl=None, sgt_check=None, sgts=None, spamfilter_profile=None, src_vendor_macs=None, srcaddr6_negate=None, srcaddr6s=None, srcaddr_negate=None, srcaddrs=None, srcintfs=None, ssh_filter_profile=None, ssh_policy_redirect=None, ssl_mirror=None, ssl_mirror_intfs=None, ssl_ssh_profile=None, status=None, tcp_mss_receiver=None, tcp_mss_sender=None, tcp_session_without_syn=None, timeout_send_rst=None, tos=None, tos_mask=None, tos_negate=None, traffic_shaper=None, traffic_shaper_reverse=None, url_categories=None, users=None, utm_status=None, uuid=None, vdomparam=None, videofilter_profile=None, vlan_cos_fwd=None, vlan_cos_rev=None, vlan_filter=None, voip_profile=None, vpntunnel=None, waf_profile=None, wanopt=None, wanopt_detection=None, wanopt_passive_opt=None, wanopt_peer=None, wanopt_profile=None, wccp=None, webcache=None, webcache_https=None, webfilter_profile=None, webproxy_forward_server=None, webproxy_profile=None, wsso=None, ztna_device_ownership=None, ztna_ems_tag_secondaries=None, ztna_ems_tags=None, ztna_geo_tags=None, ztna_policy_redirect=None, ztna_status=None, ztna_tags_match_logic=None):
+    def __init__(__self__, action=None, anti_replay=None, app_categories=None, app_groups=None, application_list=None, applications=None, auth_cert=None, auth_path=None, auth_redirect_addr=None, auto_asic_offload=None, av_profile=None, block_notification=None, captive_portal_exempt=None, capture_packet=None, casb_profile=None, cifs_profile=None, comments=None, custom_log_fields=None, decrypted_traffic_mirror=None, delay_tcp_npu_session=None, devices=None, diffserv_copy=None, diffserv_forward=None, diffserv_reverse=None, diffservcode_forward=None, diffservcode_rev=None, disclaimer=None, dlp_profile=None, dlp_sensor=None, dnsfilter_profile=None, dsri=None, dstaddr6_negate=None, dstaddr6s=None, dstaddr_negate=None, dstaddrs=None, dstintfs=None, dynamic_shaping=None, email_collect=None, emailfilter_profile=None, fec=None, file_filter_profile=None, firewall_session_dirty=None, fixedport=None, fsso=None, fsso_agent_for_ntlm=None, fsso_groups=None, geoip_anycast=None, geoip_match=None, global_label=None, groups=None, http_policy_redirect=None, icap_profile=None, id=None, identity_based_route=None, inbound=None, inspection_mode=None, internet_service=None, internet_service6=None, internet_service6_custom_groups=None, internet_service6_customs=None, internet_service6_groups=None, internet_service6_names=None, internet_service6_negate=None, internet_service6_src=None, internet_service6_src_custom_groups=None, internet_service6_src_customs=None, internet_service6_src_groups=None, internet_service6_src_names=None, internet_service6_src_negate=None, internet_service_custom_groups=None, internet_service_customs=None, internet_service_groups=None, internet_service_ids=None, internet_service_names=None, internet_service_negate=None, internet_service_src=None, internet_service_src_custom_groups=None, internet_service_src_customs=None, internet_service_src_groups=None, internet_service_src_ids=None, internet_service_src_names=None, internet_service_src_negate=None, ippool=None, ips_sensor=None, ips_voip_filter=None, label=None, learning_mode=None, logtraffic=None, logtraffic_start=None, match_vip=None, match_vip_only=None, name=None, nat=None, nat46=None, nat64=None, natinbound=None, natip=None, natoutbound=None, network_service_dynamics=None, network_service_src_dynamics=None, np_acceleration=None, ntlm=None, ntlm_enabled_browsers=None, ntlm_guest=None, outbound=None, passive_wan_health_measurement=None, pcp_inbound=None, pcp_outbound=None, pcp_poolnames=None, per_ip_shaper=None, permit_any_host=None, permit_stun_host=None, policy_expiry=None, policy_expiry_date=None, policy_expiry_date_utc=None, policyid=None, poolname6s=None, poolnames=None, profile_group=None, profile_protocol_options=None, profile_type=None, radius_mac_auth_bypass=None, redirect_url=None, replacemsg_override_group=None, reputation_direction=None, reputation_direction6=None, reputation_minimum=None, reputation_minimum6=None, rsso=None, rtp_addrs=None, rtp_nat=None, scan_botnet_connections=None, schedule=None, schedule_timeout=None, sctp_filter_profile=None, send_deny_packet=None, service_negate=None, services=None, session_ttl=None, sgt_check=None, sgts=None, spamfilter_profile=None, src_vendor_macs=None, srcaddr6_negate=None, srcaddr6s=None, srcaddr_negate=None, srcaddrs=None, srcintfs=None, ssh_filter_profile=None, ssh_policy_redirect=None, ssl_mirror=None, ssl_mirror_intfs=None, ssl_ssh_profile=None, status=None, tcp_mss_receiver=None, tcp_mss_sender=None, tcp_session_without_syn=None, timeout_send_rst=None, tos=None, tos_mask=None, tos_negate=None, traffic_shaper=None, traffic_shaper_reverse=None, url_categories=None, users=None, utm_status=None, uuid=None, vdomparam=None, videofilter_profile=None, virtual_patch_profile=None, vlan_cos_fwd=None, vlan_cos_rev=None, vlan_filter=None, voip_profile=None, vpntunnel=None, waf_profile=None, wanopt=None, wanopt_detection=None, wanopt_passive_opt=None, wanopt_peer=None, wanopt_profile=None, wccp=None, webcache=None, webcache_https=None, webfilter_profile=None, webproxy_forward_server=None, webproxy_profile=None, wsso=None, ztna_device_ownership=None, ztna_ems_tag_secondaries=None, ztna_ems_tags=None, ztna_geo_tags=None, ztna_policy_redirect=None, ztna_status=None, ztna_tags_match_logic=None):
         if action and not isinstance(action, str):
             raise TypeError("Expected argument 'action' to be a str")
         pulumi.set(__self__, "action", action)
@@ -65,6 +65,9 @@ class GetFirewallPolicyResult:
         if capture_packet and not isinstance(capture_packet, str):
             raise TypeError("Expected argument 'capture_packet' to be a str")
         pulumi.set(__self__, "capture_packet", capture_packet)
+        if casb_profile and not isinstance(casb_profile, str):
+            raise TypeError("Expected argument 'casb_profile' to be a str")
+        pulumi.set(__self__, "casb_profile", casb_profile)
         if cifs_profile and not isinstance(cifs_profile, str):
             raise TypeError("Expected argument 'cifs_profile' to be a str")
         pulumi.set(__self__, "cifs_profile", cifs_profile)
@@ -527,6 +530,9 @@ class GetFirewallPolicyResult:
         if videofilter_profile and not isinstance(videofilter_profile, str):
             raise TypeError("Expected argument 'videofilter_profile' to be a str")
         pulumi.set(__self__, "videofilter_profile", videofilter_profile)
+        if virtual_patch_profile and not isinstance(virtual_patch_profile, str):
+            raise TypeError("Expected argument 'virtual_patch_profile' to be a str")
+        pulumi.set(__self__, "virtual_patch_profile", virtual_patch_profile)
         if vlan_cos_fwd and not isinstance(vlan_cos_fwd, int):
             raise TypeError("Expected argument 'vlan_cos_fwd' to be a int")
         pulumi.set(__self__, "vlan_cos_fwd", vlan_cos_fwd)
@@ -672,6 +678,11 @@ class GetFirewallPolicyResult:
     @pulumi.getter(name="capturePacket")
     def capture_packet(self) -> str:
         return pulumi.get(self, "capture_packet")
+
+    @property
+    @pulumi.getter(name="casbProfile")
+    def casb_profile(self) -> str:
+        return pulumi.get(self, "casb_profile")
 
     @property
     @pulumi.getter(name="cifsProfile")
@@ -1447,6 +1458,11 @@ class GetFirewallPolicyResult:
         return pulumi.get(self, "videofilter_profile")
 
     @property
+    @pulumi.getter(name="virtualPatchProfile")
+    def virtual_patch_profile(self) -> str:
+        return pulumi.get(self, "virtual_patch_profile")
+
+    @property
     @pulumi.getter(name="vlanCosFwd")
     def vlan_cos_fwd(self) -> int:
         return pulumi.get(self, "vlan_cos_fwd")
@@ -1592,6 +1608,7 @@ class AwaitableGetFirewallPolicyResult(GetFirewallPolicyResult):
             block_notification=self.block_notification,
             captive_portal_exempt=self.captive_portal_exempt,
             capture_packet=self.capture_packet,
+            casb_profile=self.casb_profile,
             cifs_profile=self.cifs_profile,
             comments=self.comments,
             custom_log_fields=self.custom_log_fields,
@@ -1746,6 +1763,7 @@ class AwaitableGetFirewallPolicyResult(GetFirewallPolicyResult):
             uuid=self.uuid,
             vdomparam=self.vdomparam,
             videofilter_profile=self.videofilter_profile,
+            virtual_patch_profile=self.virtual_patch_profile,
             vlan_cos_fwd=self.vlan_cos_fwd,
             vlan_cos_rev=self.vlan_cos_rev,
             vlan_filter=self.vlan_filter,
@@ -1800,6 +1818,7 @@ def get_firewall_policy(policyid: Optional[int] = None,
         block_notification=pulumi.get(__ret__, 'block_notification'),
         captive_portal_exempt=pulumi.get(__ret__, 'captive_portal_exempt'),
         capture_packet=pulumi.get(__ret__, 'capture_packet'),
+        casb_profile=pulumi.get(__ret__, 'casb_profile'),
         cifs_profile=pulumi.get(__ret__, 'cifs_profile'),
         comments=pulumi.get(__ret__, 'comments'),
         custom_log_fields=pulumi.get(__ret__, 'custom_log_fields'),
@@ -1954,6 +1973,7 @@ def get_firewall_policy(policyid: Optional[int] = None,
         uuid=pulumi.get(__ret__, 'uuid'),
         vdomparam=pulumi.get(__ret__, 'vdomparam'),
         videofilter_profile=pulumi.get(__ret__, 'videofilter_profile'),
+        virtual_patch_profile=pulumi.get(__ret__, 'virtual_patch_profile'),
         vlan_cos_fwd=pulumi.get(__ret__, 'vlan_cos_fwd'),
         vlan_cos_rev=pulumi.get(__ret__, 'vlan_cos_rev'),
         vlan_filter=pulumi.get(__ret__, 'vlan_filter'),

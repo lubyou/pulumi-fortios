@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemSpeedTestSchedule struct {
@@ -19,6 +20,7 @@ type SystemSpeedTestSchedule struct {
 	DynamicSortSubtable       pulumi.StringPtrOutput                     `pulumi:"dynamicSortSubtable"`
 	GetAllTables              pulumi.StringPtrOutput                     `pulumi:"getAllTables"`
 	Interface                 pulumi.StringOutput                        `pulumi:"interface"`
+	Mode                      pulumi.StringOutput                        `pulumi:"mode"`
 	Schedules                 SystemSpeedTestScheduleScheduleArrayOutput `pulumi:"schedules"`
 	ServerName                pulumi.StringOutput                        `pulumi:"serverName"`
 	Status                    pulumi.StringOutput                        `pulumi:"status"`
@@ -66,6 +68,7 @@ type systemSpeedTestScheduleState struct {
 	DynamicSortSubtable       *string                           `pulumi:"dynamicSortSubtable"`
 	GetAllTables              *string                           `pulumi:"getAllTables"`
 	Interface                 *string                           `pulumi:"interface"`
+	Mode                      *string                           `pulumi:"mode"`
 	Schedules                 []SystemSpeedTestScheduleSchedule `pulumi:"schedules"`
 	ServerName                *string                           `pulumi:"serverName"`
 	Status                    *string                           `pulumi:"status"`
@@ -84,6 +87,7 @@ type SystemSpeedTestScheduleState struct {
 	DynamicSortSubtable       pulumi.StringPtrInput
 	GetAllTables              pulumi.StringPtrInput
 	Interface                 pulumi.StringPtrInput
+	Mode                      pulumi.StringPtrInput
 	Schedules                 SystemSpeedTestScheduleScheduleArrayInput
 	ServerName                pulumi.StringPtrInput
 	Status                    pulumi.StringPtrInput
@@ -106,6 +110,7 @@ type systemSpeedTestScheduleArgs struct {
 	DynamicSortSubtable       *string                           `pulumi:"dynamicSortSubtable"`
 	GetAllTables              *string                           `pulumi:"getAllTables"`
 	Interface                 *string                           `pulumi:"interface"`
+	Mode                      *string                           `pulumi:"mode"`
 	Schedules                 []SystemSpeedTestScheduleSchedule `pulumi:"schedules"`
 	ServerName                *string                           `pulumi:"serverName"`
 	Status                    *string                           `pulumi:"status"`
@@ -125,6 +130,7 @@ type SystemSpeedTestScheduleArgs struct {
 	DynamicSortSubtable       pulumi.StringPtrInput
 	GetAllTables              pulumi.StringPtrInput
 	Interface                 pulumi.StringPtrInput
+	Mode                      pulumi.StringPtrInput
 	Schedules                 SystemSpeedTestScheduleScheduleArrayInput
 	ServerName                pulumi.StringPtrInput
 	Status                    pulumi.StringPtrInput
@@ -160,6 +166,12 @@ func (i *SystemSpeedTestSchedule) ToSystemSpeedTestScheduleOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSpeedTestScheduleOutput)
 }
 
+func (i *SystemSpeedTestSchedule) ToOutput(ctx context.Context) pulumix.Output[*SystemSpeedTestSchedule] {
+	return pulumix.Output[*SystemSpeedTestSchedule]{
+		OutputState: i.ToSystemSpeedTestScheduleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemSpeedTestScheduleArrayInput is an input type that accepts SystemSpeedTestScheduleArray and SystemSpeedTestScheduleArrayOutput values.
 // You can construct a concrete instance of `SystemSpeedTestScheduleArrayInput` via:
 //
@@ -183,6 +195,12 @@ func (i SystemSpeedTestScheduleArray) ToSystemSpeedTestScheduleArrayOutput() Sys
 
 func (i SystemSpeedTestScheduleArray) ToSystemSpeedTestScheduleArrayOutputWithContext(ctx context.Context) SystemSpeedTestScheduleArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSpeedTestScheduleArrayOutput)
+}
+
+func (i SystemSpeedTestScheduleArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSpeedTestSchedule] {
+	return pulumix.Output[[]*SystemSpeedTestSchedule]{
+		OutputState: i.ToSystemSpeedTestScheduleArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemSpeedTestScheduleMapInput is an input type that accepts SystemSpeedTestScheduleMap and SystemSpeedTestScheduleMapOutput values.
@@ -210,6 +228,12 @@ func (i SystemSpeedTestScheduleMap) ToSystemSpeedTestScheduleMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSpeedTestScheduleMapOutput)
 }
 
+func (i SystemSpeedTestScheduleMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSpeedTestSchedule] {
+	return pulumix.Output[map[string]*SystemSpeedTestSchedule]{
+		OutputState: i.ToSystemSpeedTestScheduleMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemSpeedTestScheduleOutput struct{ *pulumi.OutputState }
 
 func (SystemSpeedTestScheduleOutput) ElementType() reflect.Type {
@@ -222,6 +246,12 @@ func (o SystemSpeedTestScheduleOutput) ToSystemSpeedTestScheduleOutput() SystemS
 
 func (o SystemSpeedTestScheduleOutput) ToSystemSpeedTestScheduleOutputWithContext(ctx context.Context) SystemSpeedTestScheduleOutput {
 	return o
+}
+
+func (o SystemSpeedTestScheduleOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemSpeedTestSchedule] {
+	return pulumix.Output[*SystemSpeedTestSchedule]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemSpeedTestScheduleOutput) Diffserv() pulumi.StringOutput {
@@ -242,6 +272,10 @@ func (o SystemSpeedTestScheduleOutput) GetAllTables() pulumi.StringPtrOutput {
 
 func (o SystemSpeedTestScheduleOutput) Interface() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemSpeedTestSchedule) pulumi.StringOutput { return v.Interface }).(pulumi.StringOutput)
+}
+
+func (o SystemSpeedTestScheduleOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemSpeedTestSchedule) pulumi.StringOutput { return v.Mode }).(pulumi.StringOutput)
 }
 
 func (o SystemSpeedTestScheduleOutput) Schedules() SystemSpeedTestScheduleScheduleArrayOutput {
@@ -298,6 +332,12 @@ func (o SystemSpeedTestScheduleArrayOutput) ToSystemSpeedTestScheduleArrayOutput
 	return o
 }
 
+func (o SystemSpeedTestScheduleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSpeedTestSchedule] {
+	return pulumix.Output[[]*SystemSpeedTestSchedule]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemSpeedTestScheduleArrayOutput) Index(i pulumi.IntInput) SystemSpeedTestScheduleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSpeedTestSchedule {
 		return vs[0].([]*SystemSpeedTestSchedule)[vs[1].(int)]
@@ -316,6 +356,12 @@ func (o SystemSpeedTestScheduleMapOutput) ToSystemSpeedTestScheduleMapOutput() S
 
 func (o SystemSpeedTestScheduleMapOutput) ToSystemSpeedTestScheduleMapOutputWithContext(ctx context.Context) SystemSpeedTestScheduleMapOutput {
 	return o
+}
+
+func (o SystemSpeedTestScheduleMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSpeedTestSchedule] {
+	return pulumix.Output[map[string]*SystemSpeedTestSchedule]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemSpeedTestScheduleMapOutput) MapIndex(k pulumi.StringInput) SystemSpeedTestScheduleOutput {

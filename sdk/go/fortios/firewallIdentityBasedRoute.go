@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallIdentityBasedRoute struct {
@@ -115,6 +116,12 @@ func (i *FirewallIdentityBasedRoute) ToFirewallIdentityBasedRouteOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallIdentityBasedRouteOutput)
 }
 
+func (i *FirewallIdentityBasedRoute) ToOutput(ctx context.Context) pulumix.Output[*FirewallIdentityBasedRoute] {
+	return pulumix.Output[*FirewallIdentityBasedRoute]{
+		OutputState: i.ToFirewallIdentityBasedRouteOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallIdentityBasedRouteArrayInput is an input type that accepts FirewallIdentityBasedRouteArray and FirewallIdentityBasedRouteArrayOutput values.
 // You can construct a concrete instance of `FirewallIdentityBasedRouteArrayInput` via:
 //
@@ -138,6 +145,12 @@ func (i FirewallIdentityBasedRouteArray) ToFirewallIdentityBasedRouteArrayOutput
 
 func (i FirewallIdentityBasedRouteArray) ToFirewallIdentityBasedRouteArrayOutputWithContext(ctx context.Context) FirewallIdentityBasedRouteArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallIdentityBasedRouteArrayOutput)
+}
+
+func (i FirewallIdentityBasedRouteArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallIdentityBasedRoute] {
+	return pulumix.Output[[]*FirewallIdentityBasedRoute]{
+		OutputState: i.ToFirewallIdentityBasedRouteArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallIdentityBasedRouteMapInput is an input type that accepts FirewallIdentityBasedRouteMap and FirewallIdentityBasedRouteMapOutput values.
@@ -165,6 +178,12 @@ func (i FirewallIdentityBasedRouteMap) ToFirewallIdentityBasedRouteMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallIdentityBasedRouteMapOutput)
 }
 
+func (i FirewallIdentityBasedRouteMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallIdentityBasedRoute] {
+	return pulumix.Output[map[string]*FirewallIdentityBasedRoute]{
+		OutputState: i.ToFirewallIdentityBasedRouteMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallIdentityBasedRouteOutput struct{ *pulumi.OutputState }
 
 func (FirewallIdentityBasedRouteOutput) ElementType() reflect.Type {
@@ -177,6 +196,12 @@ func (o FirewallIdentityBasedRouteOutput) ToFirewallIdentityBasedRouteOutput() F
 
 func (o FirewallIdentityBasedRouteOutput) ToFirewallIdentityBasedRouteOutputWithContext(ctx context.Context) FirewallIdentityBasedRouteOutput {
 	return o
+}
+
+func (o FirewallIdentityBasedRouteOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallIdentityBasedRoute] {
+	return pulumix.Output[*FirewallIdentityBasedRoute]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallIdentityBasedRouteOutput) Comments() pulumi.StringOutput {
@@ -217,6 +242,12 @@ func (o FirewallIdentityBasedRouteArrayOutput) ToFirewallIdentityBasedRouteArray
 	return o
 }
 
+func (o FirewallIdentityBasedRouteArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallIdentityBasedRoute] {
+	return pulumix.Output[[]*FirewallIdentityBasedRoute]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallIdentityBasedRouteArrayOutput) Index(i pulumi.IntInput) FirewallIdentityBasedRouteOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallIdentityBasedRoute {
 		return vs[0].([]*FirewallIdentityBasedRoute)[vs[1].(int)]
@@ -235,6 +266,12 @@ func (o FirewallIdentityBasedRouteMapOutput) ToFirewallIdentityBasedRouteMapOutp
 
 func (o FirewallIdentityBasedRouteMapOutput) ToFirewallIdentityBasedRouteMapOutputWithContext(ctx context.Context) FirewallIdentityBasedRouteMapOutput {
 	return o
+}
+
+func (o FirewallIdentityBasedRouteMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallIdentityBasedRoute] {
+	return pulumix.Output[map[string]*FirewallIdentityBasedRoute]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallIdentityBasedRouteMapOutput) MapIndex(k pulumi.StringInput) FirewallIdentityBasedRouteOutput {

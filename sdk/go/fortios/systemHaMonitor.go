@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemHaMonitor struct {
@@ -105,6 +106,12 @@ func (i *SystemHaMonitor) ToSystemHaMonitorOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SystemHaMonitorOutput)
 }
 
+func (i *SystemHaMonitor) ToOutput(ctx context.Context) pulumix.Output[*SystemHaMonitor] {
+	return pulumix.Output[*SystemHaMonitor]{
+		OutputState: i.ToSystemHaMonitorOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemHaMonitorArrayInput is an input type that accepts SystemHaMonitorArray and SystemHaMonitorArrayOutput values.
 // You can construct a concrete instance of `SystemHaMonitorArrayInput` via:
 //
@@ -128,6 +135,12 @@ func (i SystemHaMonitorArray) ToSystemHaMonitorArrayOutput() SystemHaMonitorArra
 
 func (i SystemHaMonitorArray) ToSystemHaMonitorArrayOutputWithContext(ctx context.Context) SystemHaMonitorArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemHaMonitorArrayOutput)
+}
+
+func (i SystemHaMonitorArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemHaMonitor] {
+	return pulumix.Output[[]*SystemHaMonitor]{
+		OutputState: i.ToSystemHaMonitorArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemHaMonitorMapInput is an input type that accepts SystemHaMonitorMap and SystemHaMonitorMapOutput values.
@@ -155,6 +168,12 @@ func (i SystemHaMonitorMap) ToSystemHaMonitorMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemHaMonitorMapOutput)
 }
 
+func (i SystemHaMonitorMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemHaMonitor] {
+	return pulumix.Output[map[string]*SystemHaMonitor]{
+		OutputState: i.ToSystemHaMonitorMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemHaMonitorOutput struct{ *pulumi.OutputState }
 
 func (SystemHaMonitorOutput) ElementType() reflect.Type {
@@ -167,6 +186,12 @@ func (o SystemHaMonitorOutput) ToSystemHaMonitorOutput() SystemHaMonitorOutput {
 
 func (o SystemHaMonitorOutput) ToSystemHaMonitorOutputWithContext(ctx context.Context) SystemHaMonitorOutput {
 	return o
+}
+
+func (o SystemHaMonitorOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemHaMonitor] {
+	return pulumix.Output[*SystemHaMonitor]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemHaMonitorOutput) MonitorVlan() pulumi.StringOutput {
@@ -199,6 +224,12 @@ func (o SystemHaMonitorArrayOutput) ToSystemHaMonitorArrayOutputWithContext(ctx 
 	return o
 }
 
+func (o SystemHaMonitorArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemHaMonitor] {
+	return pulumix.Output[[]*SystemHaMonitor]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemHaMonitorArrayOutput) Index(i pulumi.IntInput) SystemHaMonitorOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemHaMonitor {
 		return vs[0].([]*SystemHaMonitor)[vs[1].(int)]
@@ -217,6 +248,12 @@ func (o SystemHaMonitorMapOutput) ToSystemHaMonitorMapOutput() SystemHaMonitorMa
 
 func (o SystemHaMonitorMapOutput) ToSystemHaMonitorMapOutputWithContext(ctx context.Context) SystemHaMonitorMapOutput {
 	return o
+}
+
+func (o SystemHaMonitorMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemHaMonitor] {
+	return pulumix.Output[map[string]*SystemHaMonitor]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemHaMonitorMapOutput) MapIndex(k pulumi.StringInput) SystemHaMonitorOutput {

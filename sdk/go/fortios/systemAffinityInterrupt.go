@@ -10,15 +10,17 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemAffinityInterrupt struct {
 	pulumi.CustomResourceState
 
-	AffinityCpumask pulumi.StringOutput    `pulumi:"affinityCpumask"`
-	Fosid           pulumi.IntOutput       `pulumi:"fosid"`
-	Interrupt       pulumi.StringOutput    `pulumi:"interrupt"`
-	Vdomparam       pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	AffinityCpumask        pulumi.StringOutput    `pulumi:"affinityCpumask"`
+	DefaultAffinityCpumask pulumi.StringOutput    `pulumi:"defaultAffinityCpumask"`
+	Fosid                  pulumi.IntOutput       `pulumi:"fosid"`
+	Interrupt              pulumi.StringOutput    `pulumi:"interrupt"`
+	Vdomparam              pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
 
 // NewSystemAffinityInterrupt registers a new resource with the given unique name, arguments, and options.
@@ -60,17 +62,19 @@ func GetSystemAffinityInterrupt(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemAffinityInterrupt resources.
 type systemAffinityInterruptState struct {
-	AffinityCpumask *string `pulumi:"affinityCpumask"`
-	Fosid           *int    `pulumi:"fosid"`
-	Interrupt       *string `pulumi:"interrupt"`
-	Vdomparam       *string `pulumi:"vdomparam"`
+	AffinityCpumask        *string `pulumi:"affinityCpumask"`
+	DefaultAffinityCpumask *string `pulumi:"defaultAffinityCpumask"`
+	Fosid                  *int    `pulumi:"fosid"`
+	Interrupt              *string `pulumi:"interrupt"`
+	Vdomparam              *string `pulumi:"vdomparam"`
 }
 
 type SystemAffinityInterruptState struct {
-	AffinityCpumask pulumi.StringPtrInput
-	Fosid           pulumi.IntPtrInput
-	Interrupt       pulumi.StringPtrInput
-	Vdomparam       pulumi.StringPtrInput
+	AffinityCpumask        pulumi.StringPtrInput
+	DefaultAffinityCpumask pulumi.StringPtrInput
+	Fosid                  pulumi.IntPtrInput
+	Interrupt              pulumi.StringPtrInput
+	Vdomparam              pulumi.StringPtrInput
 }
 
 func (SystemAffinityInterruptState) ElementType() reflect.Type {
@@ -78,18 +82,20 @@ func (SystemAffinityInterruptState) ElementType() reflect.Type {
 }
 
 type systemAffinityInterruptArgs struct {
-	AffinityCpumask string  `pulumi:"affinityCpumask"`
-	Fosid           int     `pulumi:"fosid"`
-	Interrupt       string  `pulumi:"interrupt"`
-	Vdomparam       *string `pulumi:"vdomparam"`
+	AffinityCpumask        string  `pulumi:"affinityCpumask"`
+	DefaultAffinityCpumask *string `pulumi:"defaultAffinityCpumask"`
+	Fosid                  int     `pulumi:"fosid"`
+	Interrupt              string  `pulumi:"interrupt"`
+	Vdomparam              *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemAffinityInterrupt resource.
 type SystemAffinityInterruptArgs struct {
-	AffinityCpumask pulumi.StringInput
-	Fosid           pulumi.IntInput
-	Interrupt       pulumi.StringInput
-	Vdomparam       pulumi.StringPtrInput
+	AffinityCpumask        pulumi.StringInput
+	DefaultAffinityCpumask pulumi.StringPtrInput
+	Fosid                  pulumi.IntInput
+	Interrupt              pulumi.StringInput
+	Vdomparam              pulumi.StringPtrInput
 }
 
 func (SystemAffinityInterruptArgs) ElementType() reflect.Type {
@@ -113,6 +119,12 @@ func (i *SystemAffinityInterrupt) ToSystemAffinityInterruptOutput() SystemAffini
 
 func (i *SystemAffinityInterrupt) ToSystemAffinityInterruptOutputWithContext(ctx context.Context) SystemAffinityInterruptOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAffinityInterruptOutput)
+}
+
+func (i *SystemAffinityInterrupt) ToOutput(ctx context.Context) pulumix.Output[*SystemAffinityInterrupt] {
+	return pulumix.Output[*SystemAffinityInterrupt]{
+		OutputState: i.ToSystemAffinityInterruptOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemAffinityInterruptArrayInput is an input type that accepts SystemAffinityInterruptArray and SystemAffinityInterruptArrayOutput values.
@@ -140,6 +152,12 @@ func (i SystemAffinityInterruptArray) ToSystemAffinityInterruptArrayOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAffinityInterruptArrayOutput)
 }
 
+func (i SystemAffinityInterruptArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemAffinityInterrupt] {
+	return pulumix.Output[[]*SystemAffinityInterrupt]{
+		OutputState: i.ToSystemAffinityInterruptArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemAffinityInterruptMapInput is an input type that accepts SystemAffinityInterruptMap and SystemAffinityInterruptMapOutput values.
 // You can construct a concrete instance of `SystemAffinityInterruptMapInput` via:
 //
@@ -165,6 +183,12 @@ func (i SystemAffinityInterruptMap) ToSystemAffinityInterruptMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAffinityInterruptMapOutput)
 }
 
+func (i SystemAffinityInterruptMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemAffinityInterrupt] {
+	return pulumix.Output[map[string]*SystemAffinityInterrupt]{
+		OutputState: i.ToSystemAffinityInterruptMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemAffinityInterruptOutput struct{ *pulumi.OutputState }
 
 func (SystemAffinityInterruptOutput) ElementType() reflect.Type {
@@ -179,8 +203,18 @@ func (o SystemAffinityInterruptOutput) ToSystemAffinityInterruptOutputWithContex
 	return o
 }
 
+func (o SystemAffinityInterruptOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemAffinityInterrupt] {
+	return pulumix.Output[*SystemAffinityInterrupt]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemAffinityInterruptOutput) AffinityCpumask() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemAffinityInterrupt) pulumi.StringOutput { return v.AffinityCpumask }).(pulumi.StringOutput)
+}
+
+func (o SystemAffinityInterruptOutput) DefaultAffinityCpumask() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemAffinityInterrupt) pulumi.StringOutput { return v.DefaultAffinityCpumask }).(pulumi.StringOutput)
 }
 
 func (o SystemAffinityInterruptOutput) Fosid() pulumi.IntOutput {
@@ -209,6 +243,12 @@ func (o SystemAffinityInterruptArrayOutput) ToSystemAffinityInterruptArrayOutput
 	return o
 }
 
+func (o SystemAffinityInterruptArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemAffinityInterrupt] {
+	return pulumix.Output[[]*SystemAffinityInterrupt]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemAffinityInterruptArrayOutput) Index(i pulumi.IntInput) SystemAffinityInterruptOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemAffinityInterrupt {
 		return vs[0].([]*SystemAffinityInterrupt)[vs[1].(int)]
@@ -227,6 +267,12 @@ func (o SystemAffinityInterruptMapOutput) ToSystemAffinityInterruptMapOutput() S
 
 func (o SystemAffinityInterruptMapOutput) ToSystemAffinityInterruptMapOutputWithContext(ctx context.Context) SystemAffinityInterruptMapOutput {
 	return o
+}
+
+func (o SystemAffinityInterruptMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemAffinityInterrupt] {
+	return pulumix.Output[map[string]*SystemAffinityInterrupt]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemAffinityInterruptMapOutput) MapIndex(k pulumi.StringInput) SystemAffinityInterruptOutput {

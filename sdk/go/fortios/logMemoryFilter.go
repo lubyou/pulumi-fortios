@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type LogMemoryFilter struct {
@@ -270,6 +271,12 @@ func (i *LogMemoryFilter) ToLogMemoryFilterOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(LogMemoryFilterOutput)
 }
 
+func (i *LogMemoryFilter) ToOutput(ctx context.Context) pulumix.Output[*LogMemoryFilter] {
+	return pulumix.Output[*LogMemoryFilter]{
+		OutputState: i.ToLogMemoryFilterOutputWithContext(ctx).OutputState,
+	}
+}
+
 // LogMemoryFilterArrayInput is an input type that accepts LogMemoryFilterArray and LogMemoryFilterArrayOutput values.
 // You can construct a concrete instance of `LogMemoryFilterArrayInput` via:
 //
@@ -293,6 +300,12 @@ func (i LogMemoryFilterArray) ToLogMemoryFilterArrayOutput() LogMemoryFilterArra
 
 func (i LogMemoryFilterArray) ToLogMemoryFilterArrayOutputWithContext(ctx context.Context) LogMemoryFilterArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogMemoryFilterArrayOutput)
+}
+
+func (i LogMemoryFilterArray) ToOutput(ctx context.Context) pulumix.Output[[]*LogMemoryFilter] {
+	return pulumix.Output[[]*LogMemoryFilter]{
+		OutputState: i.ToLogMemoryFilterArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // LogMemoryFilterMapInput is an input type that accepts LogMemoryFilterMap and LogMemoryFilterMapOutput values.
@@ -320,6 +333,12 @@ func (i LogMemoryFilterMap) ToLogMemoryFilterMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(LogMemoryFilterMapOutput)
 }
 
+func (i LogMemoryFilterMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogMemoryFilter] {
+	return pulumix.Output[map[string]*LogMemoryFilter]{
+		OutputState: i.ToLogMemoryFilterMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type LogMemoryFilterOutput struct{ *pulumi.OutputState }
 
 func (LogMemoryFilterOutput) ElementType() reflect.Type {
@@ -332,6 +351,12 @@ func (o LogMemoryFilterOutput) ToLogMemoryFilterOutput() LogMemoryFilterOutput {
 
 func (o LogMemoryFilterOutput) ToLogMemoryFilterOutputWithContext(ctx context.Context) LogMemoryFilterOutput {
 	return o
+}
+
+func (o LogMemoryFilterOutput) ToOutput(ctx context.Context) pulumix.Output[*LogMemoryFilter] {
+	return pulumix.Output[*LogMemoryFilter]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LogMemoryFilterOutput) Admin() pulumi.StringOutput {
@@ -496,6 +521,12 @@ func (o LogMemoryFilterArrayOutput) ToLogMemoryFilterArrayOutputWithContext(ctx 
 	return o
 }
 
+func (o LogMemoryFilterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LogMemoryFilter] {
+	return pulumix.Output[[]*LogMemoryFilter]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LogMemoryFilterArrayOutput) Index(i pulumi.IntInput) LogMemoryFilterOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogMemoryFilter {
 		return vs[0].([]*LogMemoryFilter)[vs[1].(int)]
@@ -514,6 +545,12 @@ func (o LogMemoryFilterMapOutput) ToLogMemoryFilterMapOutput() LogMemoryFilterMa
 
 func (o LogMemoryFilterMapOutput) ToLogMemoryFilterMapOutputWithContext(ctx context.Context) LogMemoryFilterMapOutput {
 	return o
+}
+
+func (o LogMemoryFilterMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogMemoryFilter] {
+	return pulumix.Output[map[string]*LogMemoryFilter]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LogMemoryFilterMapOutput) MapIndex(k pulumi.StringInput) LogMemoryFilterOutput {

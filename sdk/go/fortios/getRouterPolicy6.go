@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupRouterPolicy6(ctx *pulumi.Context, args *LookupRouterPolicy6Args, opts ...pulumi.InvokeOption) (*LookupRouterPolicy6Result, error) {
@@ -29,13 +30,14 @@ type LookupRouterPolicy6Args struct {
 
 // A collection of values returned by GetRouterPolicy6.
 type LookupRouterPolicy6Result struct {
-	Action    string                    `pulumi:"action"`
-	Comments  string                    `pulumi:"comments"`
-	Dst       string                    `pulumi:"dst"`
-	DstNegate string                    `pulumi:"dstNegate"`
-	Dstaddrs  []GetRouterPolicy6Dstaddr `pulumi:"dstaddrs"`
-	EndPort   int                       `pulumi:"endPort"`
-	Gateway   string                    `pulumi:"gateway"`
+	Action        string                    `pulumi:"action"`
+	Comments      string                    `pulumi:"comments"`
+	Dst           string                    `pulumi:"dst"`
+	DstNegate     string                    `pulumi:"dstNegate"`
+	Dstaddrs      []GetRouterPolicy6Dstaddr `pulumi:"dstaddrs"`
+	EndPort       int                       `pulumi:"endPort"`
+	EndSourcePort int                       `pulumi:"endSourcePort"`
+	Gateway       string                    `pulumi:"gateway"`
 	// The provider-assigned unique ID for this managed resource.
 	Id                     string                                  `pulumi:"id"`
 	InputDevice            string                                  `pulumi:"inputDevice"`
@@ -49,6 +51,7 @@ type LookupRouterPolicy6Result struct {
 	SrcNegate              string                                  `pulumi:"srcNegate"`
 	Srcaddrs               []GetRouterPolicy6Srcaddr               `pulumi:"srcaddrs"`
 	StartPort              int                                     `pulumi:"startPort"`
+	StartSourcePort        int                                     `pulumi:"startSourcePort"`
 	Status                 string                                  `pulumi:"status"`
 	Tos                    string                                  `pulumi:"tos"`
 	TosMask                string                                  `pulumi:"tosMask"`
@@ -93,6 +96,12 @@ func (o LookupRouterPolicy6ResultOutput) ToLookupRouterPolicy6ResultOutputWithCo
 	return o
 }
 
+func (o LookupRouterPolicy6ResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupRouterPolicy6Result] {
+	return pulumix.Output[LookupRouterPolicy6Result]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LookupRouterPolicy6ResultOutput) Action() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupRouterPolicy6Result) string { return v.Action }).(pulumi.StringOutput)
 }
@@ -115,6 +124,10 @@ func (o LookupRouterPolicy6ResultOutput) Dstaddrs() GetRouterPolicy6DstaddrArray
 
 func (o LookupRouterPolicy6ResultOutput) EndPort() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupRouterPolicy6Result) int { return v.EndPort }).(pulumi.IntOutput)
+}
+
+func (o LookupRouterPolicy6ResultOutput) EndSourcePort() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupRouterPolicy6Result) int { return v.EndSourcePort }).(pulumi.IntOutput)
 }
 
 func (o LookupRouterPolicy6ResultOutput) Gateway() pulumi.StringOutput {
@@ -170,6 +183,10 @@ func (o LookupRouterPolicy6ResultOutput) Srcaddrs() GetRouterPolicy6SrcaddrArray
 
 func (o LookupRouterPolicy6ResultOutput) StartPort() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupRouterPolicy6Result) int { return v.StartPort }).(pulumi.IntOutput)
+}
+
+func (o LookupRouterPolicy6ResultOutput) StartSourcePort() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupRouterPolicy6Result) int { return v.StartSourcePort }).(pulumi.IntOutput)
 }
 
 func (o LookupRouterPolicy6ResultOutput) Status() pulumi.StringOutput {

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WirelessControllerBleProfile struct {
@@ -26,6 +27,12 @@ type WirelessControllerBleProfile struct {
 	MajorId               pulumi.IntOutput       `pulumi:"majorId"`
 	MinorId               pulumi.IntOutput       `pulumi:"minorId"`
 	Name                  pulumi.StringOutput    `pulumi:"name"`
+	ScanInterval          pulumi.IntOutput       `pulumi:"scanInterval"`
+	ScanPeriod            pulumi.IntOutput       `pulumi:"scanPeriod"`
+	ScanThreshold         pulumi.StringOutput    `pulumi:"scanThreshold"`
+	ScanTime              pulumi.IntOutput       `pulumi:"scanTime"`
+	ScanType              pulumi.StringOutput    `pulumi:"scanType"`
+	ScanWindow            pulumi.IntOutput       `pulumi:"scanWindow"`
 	Txpower               pulumi.StringOutput    `pulumi:"txpower"`
 	Vdomparam             pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
@@ -72,6 +79,12 @@ type wirelessControllerBleProfileState struct {
 	MajorId               *int    `pulumi:"majorId"`
 	MinorId               *int    `pulumi:"minorId"`
 	Name                  *string `pulumi:"name"`
+	ScanInterval          *int    `pulumi:"scanInterval"`
+	ScanPeriod            *int    `pulumi:"scanPeriod"`
+	ScanThreshold         *string `pulumi:"scanThreshold"`
+	ScanTime              *int    `pulumi:"scanTime"`
+	ScanType              *string `pulumi:"scanType"`
+	ScanWindow            *int    `pulumi:"scanWindow"`
 	Txpower               *string `pulumi:"txpower"`
 	Vdomparam             *string `pulumi:"vdomparam"`
 }
@@ -89,6 +102,12 @@ type WirelessControllerBleProfileState struct {
 	MajorId               pulumi.IntPtrInput
 	MinorId               pulumi.IntPtrInput
 	Name                  pulumi.StringPtrInput
+	ScanInterval          pulumi.IntPtrInput
+	ScanPeriod            pulumi.IntPtrInput
+	ScanThreshold         pulumi.StringPtrInput
+	ScanTime              pulumi.IntPtrInput
+	ScanType              pulumi.StringPtrInput
+	ScanWindow            pulumi.IntPtrInput
 	Txpower               pulumi.StringPtrInput
 	Vdomparam             pulumi.StringPtrInput
 }
@@ -110,6 +129,12 @@ type wirelessControllerBleProfileArgs struct {
 	MajorId               *int    `pulumi:"majorId"`
 	MinorId               *int    `pulumi:"minorId"`
 	Name                  *string `pulumi:"name"`
+	ScanInterval          *int    `pulumi:"scanInterval"`
+	ScanPeriod            *int    `pulumi:"scanPeriod"`
+	ScanThreshold         *string `pulumi:"scanThreshold"`
+	ScanTime              *int    `pulumi:"scanTime"`
+	ScanType              *string `pulumi:"scanType"`
+	ScanWindow            *int    `pulumi:"scanWindow"`
 	Txpower               *string `pulumi:"txpower"`
 	Vdomparam             *string `pulumi:"vdomparam"`
 }
@@ -128,6 +153,12 @@ type WirelessControllerBleProfileArgs struct {
 	MajorId               pulumi.IntPtrInput
 	MinorId               pulumi.IntPtrInput
 	Name                  pulumi.StringPtrInput
+	ScanInterval          pulumi.IntPtrInput
+	ScanPeriod            pulumi.IntPtrInput
+	ScanThreshold         pulumi.StringPtrInput
+	ScanTime              pulumi.IntPtrInput
+	ScanType              pulumi.StringPtrInput
+	ScanWindow            pulumi.IntPtrInput
 	Txpower               pulumi.StringPtrInput
 	Vdomparam             pulumi.StringPtrInput
 }
@@ -155,6 +186,12 @@ func (i *WirelessControllerBleProfile) ToWirelessControllerBleProfileOutputWithC
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerBleProfileOutput)
 }
 
+func (i *WirelessControllerBleProfile) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerBleProfile] {
+	return pulumix.Output[*WirelessControllerBleProfile]{
+		OutputState: i.ToWirelessControllerBleProfileOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerBleProfileArrayInput is an input type that accepts WirelessControllerBleProfileArray and WirelessControllerBleProfileArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerBleProfileArrayInput` via:
 //
@@ -178,6 +215,12 @@ func (i WirelessControllerBleProfileArray) ToWirelessControllerBleProfileArrayOu
 
 func (i WirelessControllerBleProfileArray) ToWirelessControllerBleProfileArrayOutputWithContext(ctx context.Context) WirelessControllerBleProfileArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerBleProfileArrayOutput)
+}
+
+func (i WirelessControllerBleProfileArray) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerBleProfile] {
+	return pulumix.Output[[]*WirelessControllerBleProfile]{
+		OutputState: i.ToWirelessControllerBleProfileArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // WirelessControllerBleProfileMapInput is an input type that accepts WirelessControllerBleProfileMap and WirelessControllerBleProfileMapOutput values.
@@ -205,6 +248,12 @@ func (i WirelessControllerBleProfileMap) ToWirelessControllerBleProfileMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerBleProfileMapOutput)
 }
 
+func (i WirelessControllerBleProfileMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerBleProfile] {
+	return pulumix.Output[map[string]*WirelessControllerBleProfile]{
+		OutputState: i.ToWirelessControllerBleProfileMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerBleProfileOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerBleProfileOutput) ElementType() reflect.Type {
@@ -217,6 +266,12 @@ func (o WirelessControllerBleProfileOutput) ToWirelessControllerBleProfileOutput
 
 func (o WirelessControllerBleProfileOutput) ToWirelessControllerBleProfileOutputWithContext(ctx context.Context) WirelessControllerBleProfileOutput {
 	return o
+}
+
+func (o WirelessControllerBleProfileOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerBleProfile] {
+	return pulumix.Output[*WirelessControllerBleProfile]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerBleProfileOutput) Advertising() pulumi.StringOutput {
@@ -267,6 +322,30 @@ func (o WirelessControllerBleProfileOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *WirelessControllerBleProfile) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+func (o WirelessControllerBleProfileOutput) ScanInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerBleProfile) pulumi.IntOutput { return v.ScanInterval }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerBleProfileOutput) ScanPeriod() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerBleProfile) pulumi.IntOutput { return v.ScanPeriod }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerBleProfileOutput) ScanThreshold() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerBleProfile) pulumi.StringOutput { return v.ScanThreshold }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerBleProfileOutput) ScanTime() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerBleProfile) pulumi.IntOutput { return v.ScanTime }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerBleProfileOutput) ScanType() pulumi.StringOutput {
+	return o.ApplyT(func(v *WirelessControllerBleProfile) pulumi.StringOutput { return v.ScanType }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerBleProfileOutput) ScanWindow() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerBleProfile) pulumi.IntOutput { return v.ScanWindow }).(pulumi.IntOutput)
+}
+
 func (o WirelessControllerBleProfileOutput) Txpower() pulumi.StringOutput {
 	return o.ApplyT(func(v *WirelessControllerBleProfile) pulumi.StringOutput { return v.Txpower }).(pulumi.StringOutput)
 }
@@ -289,6 +368,12 @@ func (o WirelessControllerBleProfileArrayOutput) ToWirelessControllerBleProfileA
 	return o
 }
 
+func (o WirelessControllerBleProfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerBleProfile] {
+	return pulumix.Output[[]*WirelessControllerBleProfile]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o WirelessControllerBleProfileArrayOutput) Index(i pulumi.IntInput) WirelessControllerBleProfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerBleProfile {
 		return vs[0].([]*WirelessControllerBleProfile)[vs[1].(int)]
@@ -307,6 +392,12 @@ func (o WirelessControllerBleProfileMapOutput) ToWirelessControllerBleProfileMap
 
 func (o WirelessControllerBleProfileMapOutput) ToWirelessControllerBleProfileMapOutputWithContext(ctx context.Context) WirelessControllerBleProfileMapOutput {
 	return o
+}
+
+func (o WirelessControllerBleProfileMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerBleProfile] {
+	return pulumix.Output[map[string]*WirelessControllerBleProfile]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerBleProfileMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerBleProfileOutput {

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemAlarm struct {
@@ -115,6 +116,12 @@ func (i *SystemAlarm) ToSystemAlarmOutputWithContext(ctx context.Context) System
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAlarmOutput)
 }
 
+func (i *SystemAlarm) ToOutput(ctx context.Context) pulumix.Output[*SystemAlarm] {
+	return pulumix.Output[*SystemAlarm]{
+		OutputState: i.ToSystemAlarmOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemAlarmArrayInput is an input type that accepts SystemAlarmArray and SystemAlarmArrayOutput values.
 // You can construct a concrete instance of `SystemAlarmArrayInput` via:
 //
@@ -138,6 +145,12 @@ func (i SystemAlarmArray) ToSystemAlarmArrayOutput() SystemAlarmArrayOutput {
 
 func (i SystemAlarmArray) ToSystemAlarmArrayOutputWithContext(ctx context.Context) SystemAlarmArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAlarmArrayOutput)
+}
+
+func (i SystemAlarmArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemAlarm] {
+	return pulumix.Output[[]*SystemAlarm]{
+		OutputState: i.ToSystemAlarmArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemAlarmMapInput is an input type that accepts SystemAlarmMap and SystemAlarmMapOutput values.
@@ -165,6 +178,12 @@ func (i SystemAlarmMap) ToSystemAlarmMapOutputWithContext(ctx context.Context) S
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAlarmMapOutput)
 }
 
+func (i SystemAlarmMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemAlarm] {
+	return pulumix.Output[map[string]*SystemAlarm]{
+		OutputState: i.ToSystemAlarmMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemAlarmOutput struct{ *pulumi.OutputState }
 
 func (SystemAlarmOutput) ElementType() reflect.Type {
@@ -177,6 +196,12 @@ func (o SystemAlarmOutput) ToSystemAlarmOutput() SystemAlarmOutput {
 
 func (o SystemAlarmOutput) ToSystemAlarmOutputWithContext(ctx context.Context) SystemAlarmOutput {
 	return o
+}
+
+func (o SystemAlarmOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemAlarm] {
+	return pulumix.Output[*SystemAlarm]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemAlarmOutput) Audible() pulumi.StringOutput {
@@ -217,6 +242,12 @@ func (o SystemAlarmArrayOutput) ToSystemAlarmArrayOutputWithContext(ctx context.
 	return o
 }
 
+func (o SystemAlarmArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemAlarm] {
+	return pulumix.Output[[]*SystemAlarm]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemAlarmArrayOutput) Index(i pulumi.IntInput) SystemAlarmOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemAlarm {
 		return vs[0].([]*SystemAlarm)[vs[1].(int)]
@@ -235,6 +266,12 @@ func (o SystemAlarmMapOutput) ToSystemAlarmMapOutput() SystemAlarmMapOutput {
 
 func (o SystemAlarmMapOutput) ToSystemAlarmMapOutputWithContext(ctx context.Context) SystemAlarmMapOutput {
 	return o
+}
+
+func (o SystemAlarmMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemAlarm] {
+	return pulumix.Output[map[string]*SystemAlarm]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemAlarmMapOutput) MapIndex(k pulumi.StringInput) SystemAlarmOutput {

@@ -25,9 +25,11 @@ class FirewallProxyPolicyArgs:
                  application_list: Optional[pulumi.Input[str]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
                  block_notification: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
                  cifs_profile: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  decrypted_traffic_mirror: Optional[pulumi.Input[str]] = None,
+                 detect_https_in_http_request: Optional[pulumi.Input[str]] = None,
                  device_ownership: Optional[pulumi.Input[str]] = None,
                  disclaimer: Optional[pulumi.Input[str]] = None,
                  dlp_profile: Optional[pulumi.Input[str]] = None,
@@ -89,6 +91,7 @@ class FirewallProxyPolicyArgs:
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  videofilter_profile: Optional[pulumi.Input[str]] = None,
+                 virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  voip_profile: Optional[pulumi.Input[str]] = None,
                  waf_profile: Optional[pulumi.Input[str]] = None,
                  webcache: Optional[pulumi.Input[str]] = None,
@@ -116,12 +119,16 @@ class FirewallProxyPolicyArgs:
             pulumi.set(__self__, "av_profile", av_profile)
         if block_notification is not None:
             pulumi.set(__self__, "block_notification", block_notification)
+        if casb_profile is not None:
+            pulumi.set(__self__, "casb_profile", casb_profile)
         if cifs_profile is not None:
             pulumi.set(__self__, "cifs_profile", cifs_profile)
         if comments is not None:
             pulumi.set(__self__, "comments", comments)
         if decrypted_traffic_mirror is not None:
             pulumi.set(__self__, "decrypted_traffic_mirror", decrypted_traffic_mirror)
+        if detect_https_in_http_request is not None:
+            pulumi.set(__self__, "detect_https_in_http_request", detect_https_in_http_request)
         if device_ownership is not None:
             pulumi.set(__self__, "device_ownership", device_ownership)
         if disclaimer is not None:
@@ -244,6 +251,8 @@ class FirewallProxyPolicyArgs:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if videofilter_profile is not None:
             pulumi.set(__self__, "videofilter_profile", videofilter_profile)
+        if virtual_patch_profile is not None:
+            pulumi.set(__self__, "virtual_patch_profile", virtual_patch_profile)
         if voip_profile is not None:
             pulumi.set(__self__, "voip_profile", voip_profile)
         if waf_profile is not None:
@@ -345,6 +354,15 @@ class FirewallProxyPolicyArgs:
         pulumi.set(self, "block_notification", value)
 
     @property
+    @pulumi.getter(name="casbProfile")
+    def casb_profile(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "casb_profile")
+
+    @casb_profile.setter
+    def casb_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "casb_profile", value)
+
+    @property
     @pulumi.getter(name="cifsProfile")
     def cifs_profile(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "cifs_profile")
@@ -370,6 +388,15 @@ class FirewallProxyPolicyArgs:
     @decrypted_traffic_mirror.setter
     def decrypted_traffic_mirror(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "decrypted_traffic_mirror", value)
+
+    @property
+    @pulumi.getter(name="detectHttpsInHttpRequest")
+    def detect_https_in_http_request(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "detect_https_in_http_request")
+
+    @detect_https_in_http_request.setter
+    def detect_https_in_http_request(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "detect_https_in_http_request", value)
 
     @property
     @pulumi.getter(name="deviceOwnership")
@@ -921,6 +948,15 @@ class FirewallProxyPolicyArgs:
         pulumi.set(self, "videofilter_profile", value)
 
     @property
+    @pulumi.getter(name="virtualPatchProfile")
+    def virtual_patch_profile(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "virtual_patch_profile")
+
+    @virtual_patch_profile.setter
+    def virtual_patch_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "virtual_patch_profile", value)
+
+    @property
     @pulumi.getter(name="voipProfile")
     def voip_profile(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "voip_profile")
@@ -1011,9 +1047,11 @@ class _FirewallProxyPolicyState:
                  application_list: Optional[pulumi.Input[str]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
                  block_notification: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
                  cifs_profile: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  decrypted_traffic_mirror: Optional[pulumi.Input[str]] = None,
+                 detect_https_in_http_request: Optional[pulumi.Input[str]] = None,
                  device_ownership: Optional[pulumi.Input[str]] = None,
                  disclaimer: Optional[pulumi.Input[str]] = None,
                  dlp_profile: Optional[pulumi.Input[str]] = None,
@@ -1078,6 +1116,7 @@ class _FirewallProxyPolicyState:
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  videofilter_profile: Optional[pulumi.Input[str]] = None,
+                 virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  voip_profile: Optional[pulumi.Input[str]] = None,
                  waf_profile: Optional[pulumi.Input[str]] = None,
                  webcache: Optional[pulumi.Input[str]] = None,
@@ -1102,12 +1141,16 @@ class _FirewallProxyPolicyState:
             pulumi.set(__self__, "av_profile", av_profile)
         if block_notification is not None:
             pulumi.set(__self__, "block_notification", block_notification)
+        if casb_profile is not None:
+            pulumi.set(__self__, "casb_profile", casb_profile)
         if cifs_profile is not None:
             pulumi.set(__self__, "cifs_profile", cifs_profile)
         if comments is not None:
             pulumi.set(__self__, "comments", comments)
         if decrypted_traffic_mirror is not None:
             pulumi.set(__self__, "decrypted_traffic_mirror", decrypted_traffic_mirror)
+        if detect_https_in_http_request is not None:
+            pulumi.set(__self__, "detect_https_in_http_request", detect_https_in_http_request)
         if device_ownership is not None:
             pulumi.set(__self__, "device_ownership", device_ownership)
         if disclaimer is not None:
@@ -1236,6 +1279,8 @@ class _FirewallProxyPolicyState:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if videofilter_profile is not None:
             pulumi.set(__self__, "videofilter_profile", videofilter_profile)
+        if virtual_patch_profile is not None:
+            pulumi.set(__self__, "virtual_patch_profile", virtual_patch_profile)
         if voip_profile is not None:
             pulumi.set(__self__, "voip_profile", voip_profile)
         if waf_profile is not None:
@@ -1310,6 +1355,15 @@ class _FirewallProxyPolicyState:
         pulumi.set(self, "block_notification", value)
 
     @property
+    @pulumi.getter(name="casbProfile")
+    def casb_profile(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "casb_profile")
+
+    @casb_profile.setter
+    def casb_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "casb_profile", value)
+
+    @property
     @pulumi.getter(name="cifsProfile")
     def cifs_profile(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "cifs_profile")
@@ -1335,6 +1389,15 @@ class _FirewallProxyPolicyState:
     @decrypted_traffic_mirror.setter
     def decrypted_traffic_mirror(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "decrypted_traffic_mirror", value)
+
+    @property
+    @pulumi.getter(name="detectHttpsInHttpRequest")
+    def detect_https_in_http_request(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "detect_https_in_http_request")
+
+    @detect_https_in_http_request.setter
+    def detect_https_in_http_request(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "detect_https_in_http_request", value)
 
     @property
     @pulumi.getter(name="deviceOwnership")
@@ -1913,6 +1976,15 @@ class _FirewallProxyPolicyState:
         pulumi.set(self, "videofilter_profile", value)
 
     @property
+    @pulumi.getter(name="virtualPatchProfile")
+    def virtual_patch_profile(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "virtual_patch_profile")
+
+    @virtual_patch_profile.setter
+    def virtual_patch_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "virtual_patch_profile", value)
+
+    @property
     @pulumi.getter(name="voipProfile")
     def voip_profile(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "voip_profile")
@@ -2005,9 +2077,11 @@ class FirewallProxyPolicy(pulumi.CustomResource):
                  application_list: Optional[pulumi.Input[str]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
                  block_notification: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
                  cifs_profile: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  decrypted_traffic_mirror: Optional[pulumi.Input[str]] = None,
+                 detect_https_in_http_request: Optional[pulumi.Input[str]] = None,
                  device_ownership: Optional[pulumi.Input[str]] = None,
                  disclaimer: Optional[pulumi.Input[str]] = None,
                  dlp_profile: Optional[pulumi.Input[str]] = None,
@@ -2072,6 +2146,7 @@ class FirewallProxyPolicy(pulumi.CustomResource):
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  videofilter_profile: Optional[pulumi.Input[str]] = None,
+                 virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  voip_profile: Optional[pulumi.Input[str]] = None,
                  waf_profile: Optional[pulumi.Input[str]] = None,
                  webcache: Optional[pulumi.Input[str]] = None,
@@ -2116,9 +2191,11 @@ class FirewallProxyPolicy(pulumi.CustomResource):
                  application_list: Optional[pulumi.Input[str]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
                  block_notification: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
                  cifs_profile: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  decrypted_traffic_mirror: Optional[pulumi.Input[str]] = None,
+                 detect_https_in_http_request: Optional[pulumi.Input[str]] = None,
                  device_ownership: Optional[pulumi.Input[str]] = None,
                  disclaimer: Optional[pulumi.Input[str]] = None,
                  dlp_profile: Optional[pulumi.Input[str]] = None,
@@ -2183,6 +2260,7 @@ class FirewallProxyPolicy(pulumi.CustomResource):
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  videofilter_profile: Optional[pulumi.Input[str]] = None,
+                 virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  voip_profile: Optional[pulumi.Input[str]] = None,
                  waf_profile: Optional[pulumi.Input[str]] = None,
                  webcache: Optional[pulumi.Input[str]] = None,
@@ -2207,9 +2285,11 @@ class FirewallProxyPolicy(pulumi.CustomResource):
             __props__.__dict__["application_list"] = application_list
             __props__.__dict__["av_profile"] = av_profile
             __props__.__dict__["block_notification"] = block_notification
+            __props__.__dict__["casb_profile"] = casb_profile
             __props__.__dict__["cifs_profile"] = cifs_profile
             __props__.__dict__["comments"] = comments
             __props__.__dict__["decrypted_traffic_mirror"] = decrypted_traffic_mirror
+            __props__.__dict__["detect_https_in_http_request"] = detect_https_in_http_request
             __props__.__dict__["device_ownership"] = device_ownership
             __props__.__dict__["disclaimer"] = disclaimer
             __props__.__dict__["dlp_profile"] = dlp_profile
@@ -2280,6 +2360,7 @@ class FirewallProxyPolicy(pulumi.CustomResource):
             __props__.__dict__["uuid"] = uuid
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["videofilter_profile"] = videofilter_profile
+            __props__.__dict__["virtual_patch_profile"] = virtual_patch_profile
             __props__.__dict__["voip_profile"] = voip_profile
             __props__.__dict__["waf_profile"] = waf_profile
             __props__.__dict__["webcache"] = webcache
@@ -2305,9 +2386,11 @@ class FirewallProxyPolicy(pulumi.CustomResource):
             application_list: Optional[pulumi.Input[str]] = None,
             av_profile: Optional[pulumi.Input[str]] = None,
             block_notification: Optional[pulumi.Input[str]] = None,
+            casb_profile: Optional[pulumi.Input[str]] = None,
             cifs_profile: Optional[pulumi.Input[str]] = None,
             comments: Optional[pulumi.Input[str]] = None,
             decrypted_traffic_mirror: Optional[pulumi.Input[str]] = None,
+            detect_https_in_http_request: Optional[pulumi.Input[str]] = None,
             device_ownership: Optional[pulumi.Input[str]] = None,
             disclaimer: Optional[pulumi.Input[str]] = None,
             dlp_profile: Optional[pulumi.Input[str]] = None,
@@ -2372,6 +2455,7 @@ class FirewallProxyPolicy(pulumi.CustomResource):
             uuid: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             videofilter_profile: Optional[pulumi.Input[str]] = None,
+            virtual_patch_profile: Optional[pulumi.Input[str]] = None,
             voip_profile: Optional[pulumi.Input[str]] = None,
             waf_profile: Optional[pulumi.Input[str]] = None,
             webcache: Optional[pulumi.Input[str]] = None,
@@ -2399,9 +2483,11 @@ class FirewallProxyPolicy(pulumi.CustomResource):
         __props__.__dict__["application_list"] = application_list
         __props__.__dict__["av_profile"] = av_profile
         __props__.__dict__["block_notification"] = block_notification
+        __props__.__dict__["casb_profile"] = casb_profile
         __props__.__dict__["cifs_profile"] = cifs_profile
         __props__.__dict__["comments"] = comments
         __props__.__dict__["decrypted_traffic_mirror"] = decrypted_traffic_mirror
+        __props__.__dict__["detect_https_in_http_request"] = detect_https_in_http_request
         __props__.__dict__["device_ownership"] = device_ownership
         __props__.__dict__["disclaimer"] = disclaimer
         __props__.__dict__["dlp_profile"] = dlp_profile
@@ -2466,6 +2552,7 @@ class FirewallProxyPolicy(pulumi.CustomResource):
         __props__.__dict__["uuid"] = uuid
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["videofilter_profile"] = videofilter_profile
+        __props__.__dict__["virtual_patch_profile"] = virtual_patch_profile
         __props__.__dict__["voip_profile"] = voip_profile
         __props__.__dict__["waf_profile"] = waf_profile
         __props__.__dict__["webcache"] = webcache
@@ -2508,6 +2595,11 @@ class FirewallProxyPolicy(pulumi.CustomResource):
         return pulumi.get(self, "block_notification")
 
     @property
+    @pulumi.getter(name="casbProfile")
+    def casb_profile(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "casb_profile")
+
+    @property
     @pulumi.getter(name="cifsProfile")
     def cifs_profile(self) -> pulumi.Output[str]:
         return pulumi.get(self, "cifs_profile")
@@ -2521,6 +2613,11 @@ class FirewallProxyPolicy(pulumi.CustomResource):
     @pulumi.getter(name="decryptedTrafficMirror")
     def decrypted_traffic_mirror(self) -> pulumi.Output[str]:
         return pulumi.get(self, "decrypted_traffic_mirror")
+
+    @property
+    @pulumi.getter(name="detectHttpsInHttpRequest")
+    def detect_https_in_http_request(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "detect_https_in_http_request")
 
     @property
     @pulumi.getter(name="deviceOwnership")
@@ -2841,6 +2938,11 @@ class FirewallProxyPolicy(pulumi.CustomResource):
     @pulumi.getter(name="videofilterProfile")
     def videofilter_profile(self) -> pulumi.Output[str]:
         return pulumi.get(self, "videofilter_profile")
+
+    @property
+    @pulumi.getter(name="virtualPatchProfile")
+    def virtual_patch_profile(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "virtual_patch_profile")
 
     @property
     @pulumi.getter(name="voipProfile")

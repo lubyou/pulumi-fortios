@@ -39,6 +39,7 @@ export class SystemSpeedTestSchedule extends pulumi.CustomResource {
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly interface!: pulumi.Output<string>;
+    public readonly mode!: pulumi.Output<string>;
     public readonly schedules!: pulumi.Output<outputs.SystemSpeedTestScheduleSchedule[] | undefined>;
     public readonly serverName!: pulumi.Output<string>;
     public readonly status!: pulumi.Output<string>;
@@ -68,6 +69,7 @@ export class SystemSpeedTestSchedule extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["mode"] = state ? state.mode : undefined;
             resourceInputs["schedules"] = state ? state.schedules : undefined;
             resourceInputs["serverName"] = state ? state.serverName : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
@@ -85,6 +87,7 @@ export class SystemSpeedTestSchedule extends pulumi.CustomResource {
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["mode"] = args ? args.mode : undefined;
             resourceInputs["schedules"] = args ? args.schedules : undefined;
             resourceInputs["serverName"] = args ? args.serverName : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
@@ -110,6 +113,7 @@ export interface SystemSpeedTestScheduleState {
     dynamicSortSubtable?: pulumi.Input<string>;
     getAllTables?: pulumi.Input<string>;
     interface?: pulumi.Input<string>;
+    mode?: pulumi.Input<string>;
     schedules?: pulumi.Input<pulumi.Input<inputs.SystemSpeedTestScheduleSchedule>[]>;
     serverName?: pulumi.Input<string>;
     status?: pulumi.Input<string>;
@@ -131,6 +135,7 @@ export interface SystemSpeedTestScheduleArgs {
     dynamicSortSubtable?: pulumi.Input<string>;
     getAllTables?: pulumi.Input<string>;
     interface?: pulumi.Input<string>;
+    mode?: pulumi.Input<string>;
     schedules?: pulumi.Input<pulumi.Input<inputs.SystemSpeedTestScheduleSchedule>[]>;
     serverName?: pulumi.Input<string>;
     status?: pulumi.Input<string>;

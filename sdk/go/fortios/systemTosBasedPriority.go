@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemTosBasedPriority struct {
@@ -105,6 +106,12 @@ func (i *SystemTosBasedPriority) ToSystemTosBasedPriorityOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(SystemTosBasedPriorityOutput)
 }
 
+func (i *SystemTosBasedPriority) ToOutput(ctx context.Context) pulumix.Output[*SystemTosBasedPriority] {
+	return pulumix.Output[*SystemTosBasedPriority]{
+		OutputState: i.ToSystemTosBasedPriorityOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemTosBasedPriorityArrayInput is an input type that accepts SystemTosBasedPriorityArray and SystemTosBasedPriorityArrayOutput values.
 // You can construct a concrete instance of `SystemTosBasedPriorityArrayInput` via:
 //
@@ -128,6 +135,12 @@ func (i SystemTosBasedPriorityArray) ToSystemTosBasedPriorityArrayOutput() Syste
 
 func (i SystemTosBasedPriorityArray) ToSystemTosBasedPriorityArrayOutputWithContext(ctx context.Context) SystemTosBasedPriorityArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemTosBasedPriorityArrayOutput)
+}
+
+func (i SystemTosBasedPriorityArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemTosBasedPriority] {
+	return pulumix.Output[[]*SystemTosBasedPriority]{
+		OutputState: i.ToSystemTosBasedPriorityArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemTosBasedPriorityMapInput is an input type that accepts SystemTosBasedPriorityMap and SystemTosBasedPriorityMapOutput values.
@@ -155,6 +168,12 @@ func (i SystemTosBasedPriorityMap) ToSystemTosBasedPriorityMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(SystemTosBasedPriorityMapOutput)
 }
 
+func (i SystemTosBasedPriorityMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemTosBasedPriority] {
+	return pulumix.Output[map[string]*SystemTosBasedPriority]{
+		OutputState: i.ToSystemTosBasedPriorityMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemTosBasedPriorityOutput struct{ *pulumi.OutputState }
 
 func (SystemTosBasedPriorityOutput) ElementType() reflect.Type {
@@ -167,6 +186,12 @@ func (o SystemTosBasedPriorityOutput) ToSystemTosBasedPriorityOutput() SystemTos
 
 func (o SystemTosBasedPriorityOutput) ToSystemTosBasedPriorityOutputWithContext(ctx context.Context) SystemTosBasedPriorityOutput {
 	return o
+}
+
+func (o SystemTosBasedPriorityOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemTosBasedPriority] {
+	return pulumix.Output[*SystemTosBasedPriority]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemTosBasedPriorityOutput) Fosid() pulumi.IntOutput {
@@ -199,6 +224,12 @@ func (o SystemTosBasedPriorityArrayOutput) ToSystemTosBasedPriorityArrayOutputWi
 	return o
 }
 
+func (o SystemTosBasedPriorityArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemTosBasedPriority] {
+	return pulumix.Output[[]*SystemTosBasedPriority]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemTosBasedPriorityArrayOutput) Index(i pulumi.IntInput) SystemTosBasedPriorityOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemTosBasedPriority {
 		return vs[0].([]*SystemTosBasedPriority)[vs[1].(int)]
@@ -217,6 +248,12 @@ func (o SystemTosBasedPriorityMapOutput) ToSystemTosBasedPriorityMapOutput() Sys
 
 func (o SystemTosBasedPriorityMapOutput) ToSystemTosBasedPriorityMapOutputWithContext(ctx context.Context) SystemTosBasedPriorityMapOutput {
 	return o
+}
+
+func (o SystemTosBasedPriorityMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemTosBasedPriority] {
+	return pulumix.Output[map[string]*SystemTosBasedPriority]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemTosBasedPriorityMapOutput) MapIndex(k pulumi.StringInput) SystemTosBasedPriorityOutput {

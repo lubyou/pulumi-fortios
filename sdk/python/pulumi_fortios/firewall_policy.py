@@ -32,6 +32,7 @@ class FirewallPolicyArgs:
                  block_notification: Optional[pulumi.Input[str]] = None,
                  captive_portal_exempt: Optional[pulumi.Input[str]] = None,
                  capture_packet: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
                  cifs_profile: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  custom_log_fields: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyCustomLogFieldArgs']]]] = None,
@@ -185,6 +186,7 @@ class FirewallPolicyArgs:
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  videofilter_profile: Optional[pulumi.Input[str]] = None,
+                 virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  vlan_cos_fwd: Optional[pulumi.Input[int]] = None,
                  vlan_cos_rev: Optional[pulumi.Input[int]] = None,
                  vlan_filter: Optional[pulumi.Input[str]] = None,
@@ -243,6 +245,8 @@ class FirewallPolicyArgs:
             pulumi.set(__self__, "captive_portal_exempt", captive_portal_exempt)
         if capture_packet is not None:
             pulumi.set(__self__, "capture_packet", capture_packet)
+        if casb_profile is not None:
+            pulumi.set(__self__, "casb_profile", casb_profile)
         if cifs_profile is not None:
             pulumi.set(__self__, "cifs_profile", cifs_profile)
         if comments is not None:
@@ -549,6 +553,8 @@ class FirewallPolicyArgs:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if videofilter_profile is not None:
             pulumi.set(__self__, "videofilter_profile", videofilter_profile)
+        if virtual_patch_profile is not None:
+            pulumi.set(__self__, "virtual_patch_profile", virtual_patch_profile)
         if vlan_cos_fwd is not None:
             pulumi.set(__self__, "vlan_cos_fwd", vlan_cos_fwd)
         if vlan_cos_rev is not None:
@@ -743,6 +749,15 @@ class FirewallPolicyArgs:
     @capture_packet.setter
     def capture_packet(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "capture_packet", value)
+
+    @property
+    @pulumi.getter(name="casbProfile")
+    def casb_profile(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "casb_profile")
+
+    @casb_profile.setter
+    def casb_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "casb_profile", value)
 
     @property
     @pulumi.getter(name="cifsProfile")
@@ -2122,6 +2137,15 @@ class FirewallPolicyArgs:
         pulumi.set(self, "videofilter_profile", value)
 
     @property
+    @pulumi.getter(name="virtualPatchProfile")
+    def virtual_patch_profile(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "virtual_patch_profile")
+
+    @virtual_patch_profile.setter
+    def virtual_patch_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "virtual_patch_profile", value)
+
+    @property
     @pulumi.getter(name="vlanCosFwd")
     def vlan_cos_fwd(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "vlan_cos_fwd")
@@ -2364,6 +2388,7 @@ class _FirewallPolicyState:
                  block_notification: Optional[pulumi.Input[str]] = None,
                  captive_portal_exempt: Optional[pulumi.Input[str]] = None,
                  capture_packet: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
                  cifs_profile: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  custom_log_fields: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyCustomLogFieldArgs']]]] = None,
@@ -2519,6 +2544,7 @@ class _FirewallPolicyState:
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  videofilter_profile: Optional[pulumi.Input[str]] = None,
+                 virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  vlan_cos_fwd: Optional[pulumi.Input[int]] = None,
                  vlan_cos_rev: Optional[pulumi.Input[int]] = None,
                  vlan_filter: Optional[pulumi.Input[str]] = None,
@@ -2575,6 +2601,8 @@ class _FirewallPolicyState:
             pulumi.set(__self__, "captive_portal_exempt", captive_portal_exempt)
         if capture_packet is not None:
             pulumi.set(__self__, "capture_packet", capture_packet)
+        if casb_profile is not None:
+            pulumi.set(__self__, "casb_profile", casb_profile)
         if cifs_profile is not None:
             pulumi.set(__self__, "cifs_profile", cifs_profile)
         if comments is not None:
@@ -2885,6 +2913,8 @@ class _FirewallPolicyState:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if videofilter_profile is not None:
             pulumi.set(__self__, "videofilter_profile", videofilter_profile)
+        if virtual_patch_profile is not None:
+            pulumi.set(__self__, "virtual_patch_profile", virtual_patch_profile)
         if vlan_cos_fwd is not None:
             pulumi.set(__self__, "vlan_cos_fwd", vlan_cos_fwd)
         if vlan_cos_rev is not None:
@@ -3061,6 +3091,15 @@ class _FirewallPolicyState:
     @capture_packet.setter
     def capture_packet(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "capture_packet", value)
+
+    @property
+    @pulumi.getter(name="casbProfile")
+    def casb_profile(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "casb_profile")
+
+    @casb_profile.setter
+    def casb_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "casb_profile", value)
 
     @property
     @pulumi.getter(name="cifsProfile")
@@ -4458,6 +4497,15 @@ class _FirewallPolicyState:
         pulumi.set(self, "videofilter_profile", value)
 
     @property
+    @pulumi.getter(name="virtualPatchProfile")
+    def virtual_patch_profile(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "virtual_patch_profile")
+
+    @virtual_patch_profile.setter
+    def virtual_patch_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "virtual_patch_profile", value)
+
+    @property
     @pulumi.getter(name="vlanCosFwd")
     def vlan_cos_fwd(self) -> Optional[pulumi.Input[int]]:
         return pulumi.get(self, "vlan_cos_fwd")
@@ -4702,6 +4750,7 @@ class FirewallPolicy(pulumi.CustomResource):
                  block_notification: Optional[pulumi.Input[str]] = None,
                  captive_portal_exempt: Optional[pulumi.Input[str]] = None,
                  capture_packet: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
                  cifs_profile: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  custom_log_fields: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyCustomLogFieldArgs']]]]] = None,
@@ -4857,6 +4906,7 @@ class FirewallPolicy(pulumi.CustomResource):
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  videofilter_profile: Optional[pulumi.Input[str]] = None,
+                 virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  vlan_cos_fwd: Optional[pulumi.Input[int]] = None,
                  vlan_cos_rev: Optional[pulumi.Input[int]] = None,
                  vlan_filter: Optional[pulumi.Input[str]] = None,
@@ -4925,6 +4975,7 @@ class FirewallPolicy(pulumi.CustomResource):
                  block_notification: Optional[pulumi.Input[str]] = None,
                  captive_portal_exempt: Optional[pulumi.Input[str]] = None,
                  capture_packet: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
                  cifs_profile: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  custom_log_fields: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyCustomLogFieldArgs']]]]] = None,
@@ -5080,6 +5131,7 @@ class FirewallPolicy(pulumi.CustomResource):
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  videofilter_profile: Optional[pulumi.Input[str]] = None,
+                 virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  vlan_cos_fwd: Optional[pulumi.Input[int]] = None,
                  vlan_cos_rev: Optional[pulumi.Input[int]] = None,
                  vlan_filter: Optional[pulumi.Input[str]] = None,
@@ -5128,6 +5180,7 @@ class FirewallPolicy(pulumi.CustomResource):
             __props__.__dict__["block_notification"] = block_notification
             __props__.__dict__["captive_portal_exempt"] = captive_portal_exempt
             __props__.__dict__["capture_packet"] = capture_packet
+            __props__.__dict__["casb_profile"] = casb_profile
             __props__.__dict__["cifs_profile"] = cifs_profile
             __props__.__dict__["comments"] = comments
             __props__.__dict__["custom_log_fields"] = custom_log_fields
@@ -5287,6 +5340,7 @@ class FirewallPolicy(pulumi.CustomResource):
             __props__.__dict__["uuid"] = uuid
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["videofilter_profile"] = videofilter_profile
+            __props__.__dict__["virtual_patch_profile"] = virtual_patch_profile
             __props__.__dict__["vlan_cos_fwd"] = vlan_cos_fwd
             __props__.__dict__["vlan_cos_rev"] = vlan_cos_rev
             __props__.__dict__["vlan_filter"] = vlan_filter
@@ -5336,6 +5390,7 @@ class FirewallPolicy(pulumi.CustomResource):
             block_notification: Optional[pulumi.Input[str]] = None,
             captive_portal_exempt: Optional[pulumi.Input[str]] = None,
             capture_packet: Optional[pulumi.Input[str]] = None,
+            casb_profile: Optional[pulumi.Input[str]] = None,
             cifs_profile: Optional[pulumi.Input[str]] = None,
             comments: Optional[pulumi.Input[str]] = None,
             custom_log_fields: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyCustomLogFieldArgs']]]]] = None,
@@ -5491,6 +5546,7 @@ class FirewallPolicy(pulumi.CustomResource):
             uuid: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             videofilter_profile: Optional[pulumi.Input[str]] = None,
+            virtual_patch_profile: Optional[pulumi.Input[str]] = None,
             vlan_cos_fwd: Optional[pulumi.Input[int]] = None,
             vlan_cos_rev: Optional[pulumi.Input[int]] = None,
             vlan_filter: Optional[pulumi.Input[str]] = None,
@@ -5542,6 +5598,7 @@ class FirewallPolicy(pulumi.CustomResource):
         __props__.__dict__["block_notification"] = block_notification
         __props__.__dict__["captive_portal_exempt"] = captive_portal_exempt
         __props__.__dict__["capture_packet"] = capture_packet
+        __props__.__dict__["casb_profile"] = casb_profile
         __props__.__dict__["cifs_profile"] = cifs_profile
         __props__.__dict__["comments"] = comments
         __props__.__dict__["custom_log_fields"] = custom_log_fields
@@ -5697,6 +5754,7 @@ class FirewallPolicy(pulumi.CustomResource):
         __props__.__dict__["uuid"] = uuid
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["videofilter_profile"] = videofilter_profile
+        __props__.__dict__["virtual_patch_profile"] = virtual_patch_profile
         __props__.__dict__["vlan_cos_fwd"] = vlan_cos_fwd
         __props__.__dict__["vlan_cos_rev"] = vlan_cos_rev
         __props__.__dict__["vlan_filter"] = vlan_filter
@@ -5793,6 +5851,11 @@ class FirewallPolicy(pulumi.CustomResource):
     @pulumi.getter(name="capturePacket")
     def capture_packet(self) -> pulumi.Output[str]:
         return pulumi.get(self, "capture_packet")
+
+    @property
+    @pulumi.getter(name="casbProfile")
+    def casb_profile(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "casb_profile")
 
     @property
     @pulumi.getter(name="cifsProfile")
@@ -6568,6 +6631,11 @@ class FirewallPolicy(pulumi.CustomResource):
     @pulumi.getter(name="videofilterProfile")
     def videofilter_profile(self) -> pulumi.Output[Optional[str]]:
         return pulumi.get(self, "videofilter_profile")
+
+    @property
+    @pulumi.getter(name="virtualPatchProfile")
+    def virtual_patch_profile(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "virtual_patch_profile")
 
     @property
     @pulumi.getter(name="vlanCosFwd")

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type LogFortiguardFilter struct {
@@ -185,6 +186,12 @@ func (i *LogFortiguardFilter) ToLogFortiguardFilterOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortiguardFilterOutput)
 }
 
+func (i *LogFortiguardFilter) ToOutput(ctx context.Context) pulumix.Output[*LogFortiguardFilter] {
+	return pulumix.Output[*LogFortiguardFilter]{
+		OutputState: i.ToLogFortiguardFilterOutputWithContext(ctx).OutputState,
+	}
+}
+
 // LogFortiguardFilterArrayInput is an input type that accepts LogFortiguardFilterArray and LogFortiguardFilterArrayOutput values.
 // You can construct a concrete instance of `LogFortiguardFilterArrayInput` via:
 //
@@ -208,6 +215,12 @@ func (i LogFortiguardFilterArray) ToLogFortiguardFilterArrayOutput() LogFortigua
 
 func (i LogFortiguardFilterArray) ToLogFortiguardFilterArrayOutputWithContext(ctx context.Context) LogFortiguardFilterArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortiguardFilterArrayOutput)
+}
+
+func (i LogFortiguardFilterArray) ToOutput(ctx context.Context) pulumix.Output[[]*LogFortiguardFilter] {
+	return pulumix.Output[[]*LogFortiguardFilter]{
+		OutputState: i.ToLogFortiguardFilterArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // LogFortiguardFilterMapInput is an input type that accepts LogFortiguardFilterMap and LogFortiguardFilterMapOutput values.
@@ -235,6 +248,12 @@ func (i LogFortiguardFilterMap) ToLogFortiguardFilterMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortiguardFilterMapOutput)
 }
 
+func (i LogFortiguardFilterMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogFortiguardFilter] {
+	return pulumix.Output[map[string]*LogFortiguardFilter]{
+		OutputState: i.ToLogFortiguardFilterMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type LogFortiguardFilterOutput struct{ *pulumi.OutputState }
 
 func (LogFortiguardFilterOutput) ElementType() reflect.Type {
@@ -247,6 +266,12 @@ func (o LogFortiguardFilterOutput) ToLogFortiguardFilterOutput() LogFortiguardFi
 
 func (o LogFortiguardFilterOutput) ToLogFortiguardFilterOutputWithContext(ctx context.Context) LogFortiguardFilterOutput {
 	return o
+}
+
+func (o LogFortiguardFilterOutput) ToOutput(ctx context.Context) pulumix.Output[*LogFortiguardFilter] {
+	return pulumix.Output[*LogFortiguardFilter]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LogFortiguardFilterOutput) Anomaly() pulumi.StringOutput {
@@ -343,6 +368,12 @@ func (o LogFortiguardFilterArrayOutput) ToLogFortiguardFilterArrayOutputWithCont
 	return o
 }
 
+func (o LogFortiguardFilterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LogFortiguardFilter] {
+	return pulumix.Output[[]*LogFortiguardFilter]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LogFortiguardFilterArrayOutput) Index(i pulumi.IntInput) LogFortiguardFilterOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogFortiguardFilter {
 		return vs[0].([]*LogFortiguardFilter)[vs[1].(int)]
@@ -361,6 +392,12 @@ func (o LogFortiguardFilterMapOutput) ToLogFortiguardFilterMapOutput() LogFortig
 
 func (o LogFortiguardFilterMapOutput) ToLogFortiguardFilterMapOutputWithContext(ctx context.Context) LogFortiguardFilterMapOutput {
 	return o
+}
+
+func (o LogFortiguardFilterMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogFortiguardFilter] {
+	return pulumix.Output[map[string]*LogFortiguardFilter]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LogFortiguardFilterMapOutput) MapIndex(k pulumi.StringInput) LogFortiguardFilterOutput {

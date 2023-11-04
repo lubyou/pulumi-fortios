@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetFirewallInternetServiceDefinitionList(ctx *pulumi.Context, args *GetFirewallInternetServiceDefinitionListArgs, opts ...pulumi.InvokeOption) (*GetFirewallInternetServiceDefinitionListResult, error) {
@@ -72,6 +73,12 @@ func (o GetFirewallInternetServiceDefinitionListResultOutput) ToGetFirewallInter
 
 func (o GetFirewallInternetServiceDefinitionListResultOutput) ToGetFirewallInternetServiceDefinitionListResultOutputWithContext(ctx context.Context) GetFirewallInternetServiceDefinitionListResultOutput {
 	return o
+}
+
+func (o GetFirewallInternetServiceDefinitionListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetFirewallInternetServiceDefinitionListResult] {
+	return pulumix.Output[GetFirewallInternetServiceDefinitionListResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetFirewallInternetServiceDefinitionListResultOutput) Filter() pulumi.StringPtrOutput {

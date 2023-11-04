@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FortimanagerSystemAdom struct {
@@ -135,6 +136,12 @@ func (i *FortimanagerSystemAdom) ToFortimanagerSystemAdomOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemAdomOutput)
 }
 
+func (i *FortimanagerSystemAdom) ToOutput(ctx context.Context) pulumix.Output[*FortimanagerSystemAdom] {
+	return pulumix.Output[*FortimanagerSystemAdom]{
+		OutputState: i.ToFortimanagerSystemAdomOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FortimanagerSystemAdomArrayInput is an input type that accepts FortimanagerSystemAdomArray and FortimanagerSystemAdomArrayOutput values.
 // You can construct a concrete instance of `FortimanagerSystemAdomArrayInput` via:
 //
@@ -158,6 +165,12 @@ func (i FortimanagerSystemAdomArray) ToFortimanagerSystemAdomArrayOutput() Forti
 
 func (i FortimanagerSystemAdomArray) ToFortimanagerSystemAdomArrayOutputWithContext(ctx context.Context) FortimanagerSystemAdomArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemAdomArrayOutput)
+}
+
+func (i FortimanagerSystemAdomArray) ToOutput(ctx context.Context) pulumix.Output[[]*FortimanagerSystemAdom] {
+	return pulumix.Output[[]*FortimanagerSystemAdom]{
+		OutputState: i.ToFortimanagerSystemAdomArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FortimanagerSystemAdomMapInput is an input type that accepts FortimanagerSystemAdomMap and FortimanagerSystemAdomMapOutput values.
@@ -185,6 +198,12 @@ func (i FortimanagerSystemAdomMap) ToFortimanagerSystemAdomMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemAdomMapOutput)
 }
 
+func (i FortimanagerSystemAdomMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FortimanagerSystemAdom] {
+	return pulumix.Output[map[string]*FortimanagerSystemAdom]{
+		OutputState: i.ToFortimanagerSystemAdomMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FortimanagerSystemAdomOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerSystemAdomOutput) ElementType() reflect.Type {
@@ -197,6 +216,12 @@ func (o FortimanagerSystemAdomOutput) ToFortimanagerSystemAdomOutput() Fortimana
 
 func (o FortimanagerSystemAdomOutput) ToFortimanagerSystemAdomOutputWithContext(ctx context.Context) FortimanagerSystemAdomOutput {
 	return o
+}
+
+func (o FortimanagerSystemAdomOutput) ToOutput(ctx context.Context) pulumix.Output[*FortimanagerSystemAdom] {
+	return pulumix.Output[*FortimanagerSystemAdom]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FortimanagerSystemAdomOutput) ActionWhenConflictsOccurDuringPolicyCheck() pulumi.StringPtrOutput {
@@ -257,6 +282,12 @@ func (o FortimanagerSystemAdomArrayOutput) ToFortimanagerSystemAdomArrayOutputWi
 	return o
 }
 
+func (o FortimanagerSystemAdomArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FortimanagerSystemAdom] {
+	return pulumix.Output[[]*FortimanagerSystemAdom]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FortimanagerSystemAdomArrayOutput) Index(i pulumi.IntInput) FortimanagerSystemAdomOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FortimanagerSystemAdom {
 		return vs[0].([]*FortimanagerSystemAdom)[vs[1].(int)]
@@ -275,6 +306,12 @@ func (o FortimanagerSystemAdomMapOutput) ToFortimanagerSystemAdomMapOutput() For
 
 func (o FortimanagerSystemAdomMapOutput) ToFortimanagerSystemAdomMapOutputWithContext(ctx context.Context) FortimanagerSystemAdomMapOutput {
 	return o
+}
+
+func (o FortimanagerSystemAdomMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FortimanagerSystemAdom] {
+	return pulumix.Output[map[string]*FortimanagerSystemAdom]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FortimanagerSystemAdomMapOutput) MapIndex(k pulumi.StringInput) FortimanagerSystemAdomOutput {

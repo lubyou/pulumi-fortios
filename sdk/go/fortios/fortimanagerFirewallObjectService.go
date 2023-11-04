@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FortimanagerFirewallObjectService struct {
@@ -155,6 +156,12 @@ func (i *FortimanagerFirewallObjectService) ToFortimanagerFirewallObjectServiceO
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerFirewallObjectServiceOutput)
 }
 
+func (i *FortimanagerFirewallObjectService) ToOutput(ctx context.Context) pulumix.Output[*FortimanagerFirewallObjectService] {
+	return pulumix.Output[*FortimanagerFirewallObjectService]{
+		OutputState: i.ToFortimanagerFirewallObjectServiceOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FortimanagerFirewallObjectServiceArrayInput is an input type that accepts FortimanagerFirewallObjectServiceArray and FortimanagerFirewallObjectServiceArrayOutput values.
 // You can construct a concrete instance of `FortimanagerFirewallObjectServiceArrayInput` via:
 //
@@ -178,6 +185,12 @@ func (i FortimanagerFirewallObjectServiceArray) ToFortimanagerFirewallObjectServ
 
 func (i FortimanagerFirewallObjectServiceArray) ToFortimanagerFirewallObjectServiceArrayOutputWithContext(ctx context.Context) FortimanagerFirewallObjectServiceArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerFirewallObjectServiceArrayOutput)
+}
+
+func (i FortimanagerFirewallObjectServiceArray) ToOutput(ctx context.Context) pulumix.Output[[]*FortimanagerFirewallObjectService] {
+	return pulumix.Output[[]*FortimanagerFirewallObjectService]{
+		OutputState: i.ToFortimanagerFirewallObjectServiceArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FortimanagerFirewallObjectServiceMapInput is an input type that accepts FortimanagerFirewallObjectServiceMap and FortimanagerFirewallObjectServiceMapOutput values.
@@ -205,6 +218,12 @@ func (i FortimanagerFirewallObjectServiceMap) ToFortimanagerFirewallObjectServic
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerFirewallObjectServiceMapOutput)
 }
 
+func (i FortimanagerFirewallObjectServiceMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FortimanagerFirewallObjectService] {
+	return pulumix.Output[map[string]*FortimanagerFirewallObjectService]{
+		OutputState: i.ToFortimanagerFirewallObjectServiceMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FortimanagerFirewallObjectServiceOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerFirewallObjectServiceOutput) ElementType() reflect.Type {
@@ -217,6 +236,12 @@ func (o FortimanagerFirewallObjectServiceOutput) ToFortimanagerFirewallObjectSer
 
 func (o FortimanagerFirewallObjectServiceOutput) ToFortimanagerFirewallObjectServiceOutputWithContext(ctx context.Context) FortimanagerFirewallObjectServiceOutput {
 	return o
+}
+
+func (o FortimanagerFirewallObjectServiceOutput) ToOutput(ctx context.Context) pulumix.Output[*FortimanagerFirewallObjectService] {
+	return pulumix.Output[*FortimanagerFirewallObjectService]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FortimanagerFirewallObjectServiceOutput) Adom() pulumi.StringPtrOutput {
@@ -289,6 +314,12 @@ func (o FortimanagerFirewallObjectServiceArrayOutput) ToFortimanagerFirewallObje
 	return o
 }
 
+func (o FortimanagerFirewallObjectServiceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FortimanagerFirewallObjectService] {
+	return pulumix.Output[[]*FortimanagerFirewallObjectService]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FortimanagerFirewallObjectServiceArrayOutput) Index(i pulumi.IntInput) FortimanagerFirewallObjectServiceOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FortimanagerFirewallObjectService {
 		return vs[0].([]*FortimanagerFirewallObjectService)[vs[1].(int)]
@@ -307,6 +338,12 @@ func (o FortimanagerFirewallObjectServiceMapOutput) ToFortimanagerFirewallObject
 
 func (o FortimanagerFirewallObjectServiceMapOutput) ToFortimanagerFirewallObjectServiceMapOutputWithContext(ctx context.Context) FortimanagerFirewallObjectServiceMapOutput {
 	return o
+}
+
+func (o FortimanagerFirewallObjectServiceMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FortimanagerFirewallObjectService] {
+	return pulumix.Output[map[string]*FortimanagerFirewallObjectService]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FortimanagerFirewallObjectServiceMapOutput) MapIndex(k pulumi.StringInput) FortimanagerFirewallObjectServiceOutput {

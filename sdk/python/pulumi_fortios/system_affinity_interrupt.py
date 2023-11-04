@@ -17,6 +17,7 @@ class SystemAffinityInterruptArgs:
                  affinity_cpumask: pulumi.Input[str],
                  fosid: pulumi.Input[int],
                  interrupt: pulumi.Input[str],
+                 default_affinity_cpumask: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SystemAffinityInterrupt resource.
@@ -24,6 +25,8 @@ class SystemAffinityInterruptArgs:
         pulumi.set(__self__, "affinity_cpumask", affinity_cpumask)
         pulumi.set(__self__, "fosid", fosid)
         pulumi.set(__self__, "interrupt", interrupt)
+        if default_affinity_cpumask is not None:
+            pulumi.set(__self__, "default_affinity_cpumask", default_affinity_cpumask)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -55,6 +58,15 @@ class SystemAffinityInterruptArgs:
         pulumi.set(self, "interrupt", value)
 
     @property
+    @pulumi.getter(name="defaultAffinityCpumask")
+    def default_affinity_cpumask(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "default_affinity_cpumask")
+
+    @default_affinity_cpumask.setter
+    def default_affinity_cpumask(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "default_affinity_cpumask", value)
+
+    @property
     @pulumi.getter
     def vdomparam(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "vdomparam")
@@ -68,6 +80,7 @@ class SystemAffinityInterruptArgs:
 class _SystemAffinityInterruptState:
     def __init__(__self__, *,
                  affinity_cpumask: Optional[pulumi.Input[str]] = None,
+                 default_affinity_cpumask: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
                  interrupt: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -76,6 +89,8 @@ class _SystemAffinityInterruptState:
         """
         if affinity_cpumask is not None:
             pulumi.set(__self__, "affinity_cpumask", affinity_cpumask)
+        if default_affinity_cpumask is not None:
+            pulumi.set(__self__, "default_affinity_cpumask", default_affinity_cpumask)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
         if interrupt is not None:
@@ -91,6 +106,15 @@ class _SystemAffinityInterruptState:
     @affinity_cpumask.setter
     def affinity_cpumask(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "affinity_cpumask", value)
+
+    @property
+    @pulumi.getter(name="defaultAffinityCpumask")
+    def default_affinity_cpumask(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "default_affinity_cpumask")
+
+    @default_affinity_cpumask.setter
+    def default_affinity_cpumask(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "default_affinity_cpumask", value)
 
     @property
     @pulumi.getter
@@ -126,6 +150,7 @@ class SystemAffinityInterrupt(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  affinity_cpumask: Optional[pulumi.Input[str]] = None,
+                 default_affinity_cpumask: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
                  interrupt: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -159,6 +184,7 @@ class SystemAffinityInterrupt(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  affinity_cpumask: Optional[pulumi.Input[str]] = None,
+                 default_affinity_cpumask: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
                  interrupt: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -174,6 +200,7 @@ class SystemAffinityInterrupt(pulumi.CustomResource):
             if affinity_cpumask is None and not opts.urn:
                 raise TypeError("Missing required property 'affinity_cpumask'")
             __props__.__dict__["affinity_cpumask"] = affinity_cpumask
+            __props__.__dict__["default_affinity_cpumask"] = default_affinity_cpumask
             if fosid is None and not opts.urn:
                 raise TypeError("Missing required property 'fosid'")
             __props__.__dict__["fosid"] = fosid
@@ -192,6 +219,7 @@ class SystemAffinityInterrupt(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             affinity_cpumask: Optional[pulumi.Input[str]] = None,
+            default_affinity_cpumask: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
             interrupt: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'SystemAffinityInterrupt':
@@ -208,6 +236,7 @@ class SystemAffinityInterrupt(pulumi.CustomResource):
         __props__ = _SystemAffinityInterruptState.__new__(_SystemAffinityInterruptState)
 
         __props__.__dict__["affinity_cpumask"] = affinity_cpumask
+        __props__.__dict__["default_affinity_cpumask"] = default_affinity_cpumask
         __props__.__dict__["fosid"] = fosid
         __props__.__dict__["interrupt"] = interrupt
         __props__.__dict__["vdomparam"] = vdomparam
@@ -217,6 +246,11 @@ class SystemAffinityInterrupt(pulumi.CustomResource):
     @pulumi.getter(name="affinityCpumask")
     def affinity_cpumask(self) -> pulumi.Output[str]:
         return pulumi.get(self, "affinity_cpumask")
+
+    @property
+    @pulumi.getter(name="defaultAffinityCpumask")
+    def default_affinity_cpumask(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "default_affinity_cpumask")
 
     @property
     @pulumi.getter

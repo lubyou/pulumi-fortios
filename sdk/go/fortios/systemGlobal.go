@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemGlobal struct {
@@ -102,10 +103,13 @@ type SystemGlobal struct {
 	FortiipamIntegration                  pulumi.StringOutput                                `pulumi:"fortiipamIntegration"`
 	FortiservicePort                      pulumi.IntOutput                                   `pulumi:"fortiservicePort"`
 	FortitokenCloud                       pulumi.StringOutput                                `pulumi:"fortitokenCloud"`
+	FortitokenCloudPushStatus             pulumi.StringOutput                                `pulumi:"fortitokenCloudPushStatus"`
+	FortitokenCloudSyncInterval           pulumi.IntOutput                                   `pulumi:"fortitokenCloudSyncInterval"`
 	GetAllTables                          pulumi.StringPtrOutput                             `pulumi:"getAllTables"`
 	GuiAllowDefaultHostname               pulumi.StringOutput                                `pulumi:"guiAllowDefaultHostname"`
 	GuiAllowIncompatibleFabricFgt         pulumi.StringOutput                                `pulumi:"guiAllowIncompatibleFabricFgt"`
 	GuiAppDetectionSdwan                  pulumi.StringOutput                                `pulumi:"guiAppDetectionSdwan"`
+	GuiAutoUpgradeSetupWarning            pulumi.StringOutput                                `pulumi:"guiAutoUpgradeSetupWarning"`
 	GuiCdnDomainOverride                  pulumi.StringOutput                                `pulumi:"guiCdnDomainOverride"`
 	GuiCdnUsage                           pulumi.StringOutput                                `pulumi:"guiCdnUsage"`
 	GuiCertificates                       pulumi.StringOutput                                `pulumi:"guiCertificates"`
@@ -196,6 +200,12 @@ type SystemGlobal struct {
 	ProxyReAuthenticationTime             pulumi.IntOutput                                   `pulumi:"proxyReAuthenticationTime"`
 	ProxyResourceMode                     pulumi.StringOutput                                `pulumi:"proxyResourceMode"`
 	ProxyWorkerCount                      pulumi.IntOutput                                   `pulumi:"proxyWorkerCount"`
+	QuicAckThresold                       pulumi.IntOutput                                   `pulumi:"quicAckThresold"`
+	QuicCongestionControlAlgo             pulumi.StringOutput                                `pulumi:"quicCongestionControlAlgo"`
+	QuicMaxDatagramSize                   pulumi.IntOutput                                   `pulumi:"quicMaxDatagramSize"`
+	QuicPmtud                             pulumi.StringOutput                                `pulumi:"quicPmtud"`
+	QuicTlsHandshakeTimeout               pulumi.IntOutput                                   `pulumi:"quicTlsHandshakeTimeout"`
+	QuicUdpPayloadSizeShapingPerCid       pulumi.StringOutput                                `pulumi:"quicUdpPayloadSizeShapingPerCid"`
 	RadiusPort                            pulumi.IntOutput                                   `pulumi:"radiusPort"`
 	RebootUponConfigRestore               pulumi.StringOutput                                `pulumi:"rebootUponConfigRestore"`
 	Refresh                               pulumi.IntOutput                                   `pulumi:"refresh"`
@@ -233,6 +243,7 @@ type SystemGlobal struct {
 	SslvpnKxpHardwareAcceleration         pulumi.StringOutput                                `pulumi:"sslvpnKxpHardwareAcceleration"`
 	SslvpnMaxWorkerCount                  pulumi.IntOutput                                   `pulumi:"sslvpnMaxWorkerCount"`
 	SslvpnPluginVersionCheck              pulumi.StringOutput                                `pulumi:"sslvpnPluginVersionCheck"`
+	SslvpnWebMode                         pulumi.StringOutput                                `pulumi:"sslvpnWebMode"`
 	StrictDirtySessionCheck               pulumi.StringOutput                                `pulumi:"strictDirtySessionCheck"`
 	StrongCrypto                          pulumi.StringOutput                                `pulumi:"strongCrypto"`
 	SwitchController                      pulumi.StringOutput                                `pulumi:"switchController"`
@@ -403,10 +414,13 @@ type systemGlobalState struct {
 	FortiipamIntegration                  *string                                   `pulumi:"fortiipamIntegration"`
 	FortiservicePort                      *int                                      `pulumi:"fortiservicePort"`
 	FortitokenCloud                       *string                                   `pulumi:"fortitokenCloud"`
+	FortitokenCloudPushStatus             *string                                   `pulumi:"fortitokenCloudPushStatus"`
+	FortitokenCloudSyncInterval           *int                                      `pulumi:"fortitokenCloudSyncInterval"`
 	GetAllTables                          *string                                   `pulumi:"getAllTables"`
 	GuiAllowDefaultHostname               *string                                   `pulumi:"guiAllowDefaultHostname"`
 	GuiAllowIncompatibleFabricFgt         *string                                   `pulumi:"guiAllowIncompatibleFabricFgt"`
 	GuiAppDetectionSdwan                  *string                                   `pulumi:"guiAppDetectionSdwan"`
+	GuiAutoUpgradeSetupWarning            *string                                   `pulumi:"guiAutoUpgradeSetupWarning"`
 	GuiCdnDomainOverride                  *string                                   `pulumi:"guiCdnDomainOverride"`
 	GuiCdnUsage                           *string                                   `pulumi:"guiCdnUsage"`
 	GuiCertificates                       *string                                   `pulumi:"guiCertificates"`
@@ -497,6 +511,12 @@ type systemGlobalState struct {
 	ProxyReAuthenticationTime             *int                                      `pulumi:"proxyReAuthenticationTime"`
 	ProxyResourceMode                     *string                                   `pulumi:"proxyResourceMode"`
 	ProxyWorkerCount                      *int                                      `pulumi:"proxyWorkerCount"`
+	QuicAckThresold                       *int                                      `pulumi:"quicAckThresold"`
+	QuicCongestionControlAlgo             *string                                   `pulumi:"quicCongestionControlAlgo"`
+	QuicMaxDatagramSize                   *int                                      `pulumi:"quicMaxDatagramSize"`
+	QuicPmtud                             *string                                   `pulumi:"quicPmtud"`
+	QuicTlsHandshakeTimeout               *int                                      `pulumi:"quicTlsHandshakeTimeout"`
+	QuicUdpPayloadSizeShapingPerCid       *string                                   `pulumi:"quicUdpPayloadSizeShapingPerCid"`
 	RadiusPort                            *int                                      `pulumi:"radiusPort"`
 	RebootUponConfigRestore               *string                                   `pulumi:"rebootUponConfigRestore"`
 	Refresh                               *int                                      `pulumi:"refresh"`
@@ -534,6 +554,7 @@ type systemGlobalState struct {
 	SslvpnKxpHardwareAcceleration         *string                                   `pulumi:"sslvpnKxpHardwareAcceleration"`
 	SslvpnMaxWorkerCount                  *int                                      `pulumi:"sslvpnMaxWorkerCount"`
 	SslvpnPluginVersionCheck              *string                                   `pulumi:"sslvpnPluginVersionCheck"`
+	SslvpnWebMode                         *string                                   `pulumi:"sslvpnWebMode"`
 	StrictDirtySessionCheck               *string                                   `pulumi:"strictDirtySessionCheck"`
 	StrongCrypto                          *string                                   `pulumi:"strongCrypto"`
 	SwitchController                      *string                                   `pulumi:"switchController"`
@@ -675,10 +696,13 @@ type SystemGlobalState struct {
 	FortiipamIntegration                  pulumi.StringPtrInput
 	FortiservicePort                      pulumi.IntPtrInput
 	FortitokenCloud                       pulumi.StringPtrInput
+	FortitokenCloudPushStatus             pulumi.StringPtrInput
+	FortitokenCloudSyncInterval           pulumi.IntPtrInput
 	GetAllTables                          pulumi.StringPtrInput
 	GuiAllowDefaultHostname               pulumi.StringPtrInput
 	GuiAllowIncompatibleFabricFgt         pulumi.StringPtrInput
 	GuiAppDetectionSdwan                  pulumi.StringPtrInput
+	GuiAutoUpgradeSetupWarning            pulumi.StringPtrInput
 	GuiCdnDomainOverride                  pulumi.StringPtrInput
 	GuiCdnUsage                           pulumi.StringPtrInput
 	GuiCertificates                       pulumi.StringPtrInput
@@ -769,6 +793,12 @@ type SystemGlobalState struct {
 	ProxyReAuthenticationTime             pulumi.IntPtrInput
 	ProxyResourceMode                     pulumi.StringPtrInput
 	ProxyWorkerCount                      pulumi.IntPtrInput
+	QuicAckThresold                       pulumi.IntPtrInput
+	QuicCongestionControlAlgo             pulumi.StringPtrInput
+	QuicMaxDatagramSize                   pulumi.IntPtrInput
+	QuicPmtud                             pulumi.StringPtrInput
+	QuicTlsHandshakeTimeout               pulumi.IntPtrInput
+	QuicUdpPayloadSizeShapingPerCid       pulumi.StringPtrInput
 	RadiusPort                            pulumi.IntPtrInput
 	RebootUponConfigRestore               pulumi.StringPtrInput
 	Refresh                               pulumi.IntPtrInput
@@ -806,6 +836,7 @@ type SystemGlobalState struct {
 	SslvpnKxpHardwareAcceleration         pulumi.StringPtrInput
 	SslvpnMaxWorkerCount                  pulumi.IntPtrInput
 	SslvpnPluginVersionCheck              pulumi.StringPtrInput
+	SslvpnWebMode                         pulumi.StringPtrInput
 	StrictDirtySessionCheck               pulumi.StringPtrInput
 	StrongCrypto                          pulumi.StringPtrInput
 	SwitchController                      pulumi.StringPtrInput
@@ -951,10 +982,13 @@ type systemGlobalArgs struct {
 	FortiipamIntegration                  *string                                   `pulumi:"fortiipamIntegration"`
 	FortiservicePort                      *int                                      `pulumi:"fortiservicePort"`
 	FortitokenCloud                       *string                                   `pulumi:"fortitokenCloud"`
+	FortitokenCloudPushStatus             *string                                   `pulumi:"fortitokenCloudPushStatus"`
+	FortitokenCloudSyncInterval           *int                                      `pulumi:"fortitokenCloudSyncInterval"`
 	GetAllTables                          *string                                   `pulumi:"getAllTables"`
 	GuiAllowDefaultHostname               *string                                   `pulumi:"guiAllowDefaultHostname"`
 	GuiAllowIncompatibleFabricFgt         *string                                   `pulumi:"guiAllowIncompatibleFabricFgt"`
 	GuiAppDetectionSdwan                  *string                                   `pulumi:"guiAppDetectionSdwan"`
+	GuiAutoUpgradeSetupWarning            *string                                   `pulumi:"guiAutoUpgradeSetupWarning"`
 	GuiCdnDomainOverride                  *string                                   `pulumi:"guiCdnDomainOverride"`
 	GuiCdnUsage                           *string                                   `pulumi:"guiCdnUsage"`
 	GuiCertificates                       *string                                   `pulumi:"guiCertificates"`
@@ -1045,6 +1079,12 @@ type systemGlobalArgs struct {
 	ProxyReAuthenticationTime             *int                                      `pulumi:"proxyReAuthenticationTime"`
 	ProxyResourceMode                     *string                                   `pulumi:"proxyResourceMode"`
 	ProxyWorkerCount                      *int                                      `pulumi:"proxyWorkerCount"`
+	QuicAckThresold                       *int                                      `pulumi:"quicAckThresold"`
+	QuicCongestionControlAlgo             *string                                   `pulumi:"quicCongestionControlAlgo"`
+	QuicMaxDatagramSize                   *int                                      `pulumi:"quicMaxDatagramSize"`
+	QuicPmtud                             *string                                   `pulumi:"quicPmtud"`
+	QuicTlsHandshakeTimeout               *int                                      `pulumi:"quicTlsHandshakeTimeout"`
+	QuicUdpPayloadSizeShapingPerCid       *string                                   `pulumi:"quicUdpPayloadSizeShapingPerCid"`
 	RadiusPort                            *int                                      `pulumi:"radiusPort"`
 	RebootUponConfigRestore               *string                                   `pulumi:"rebootUponConfigRestore"`
 	Refresh                               *int                                      `pulumi:"refresh"`
@@ -1082,6 +1122,7 @@ type systemGlobalArgs struct {
 	SslvpnKxpHardwareAcceleration         *string                                   `pulumi:"sslvpnKxpHardwareAcceleration"`
 	SslvpnMaxWorkerCount                  *int                                      `pulumi:"sslvpnMaxWorkerCount"`
 	SslvpnPluginVersionCheck              *string                                   `pulumi:"sslvpnPluginVersionCheck"`
+	SslvpnWebMode                         *string                                   `pulumi:"sslvpnWebMode"`
 	StrictDirtySessionCheck               *string                                   `pulumi:"strictDirtySessionCheck"`
 	StrongCrypto                          *string                                   `pulumi:"strongCrypto"`
 	SwitchController                      *string                                   `pulumi:"switchController"`
@@ -1224,10 +1265,13 @@ type SystemGlobalArgs struct {
 	FortiipamIntegration                  pulumi.StringPtrInput
 	FortiservicePort                      pulumi.IntPtrInput
 	FortitokenCloud                       pulumi.StringPtrInput
+	FortitokenCloudPushStatus             pulumi.StringPtrInput
+	FortitokenCloudSyncInterval           pulumi.IntPtrInput
 	GetAllTables                          pulumi.StringPtrInput
 	GuiAllowDefaultHostname               pulumi.StringPtrInput
 	GuiAllowIncompatibleFabricFgt         pulumi.StringPtrInput
 	GuiAppDetectionSdwan                  pulumi.StringPtrInput
+	GuiAutoUpgradeSetupWarning            pulumi.StringPtrInput
 	GuiCdnDomainOverride                  pulumi.StringPtrInput
 	GuiCdnUsage                           pulumi.StringPtrInput
 	GuiCertificates                       pulumi.StringPtrInput
@@ -1318,6 +1362,12 @@ type SystemGlobalArgs struct {
 	ProxyReAuthenticationTime             pulumi.IntPtrInput
 	ProxyResourceMode                     pulumi.StringPtrInput
 	ProxyWorkerCount                      pulumi.IntPtrInput
+	QuicAckThresold                       pulumi.IntPtrInput
+	QuicCongestionControlAlgo             pulumi.StringPtrInput
+	QuicMaxDatagramSize                   pulumi.IntPtrInput
+	QuicPmtud                             pulumi.StringPtrInput
+	QuicTlsHandshakeTimeout               pulumi.IntPtrInput
+	QuicUdpPayloadSizeShapingPerCid       pulumi.StringPtrInput
 	RadiusPort                            pulumi.IntPtrInput
 	RebootUponConfigRestore               pulumi.StringPtrInput
 	Refresh                               pulumi.IntPtrInput
@@ -1355,6 +1405,7 @@ type SystemGlobalArgs struct {
 	SslvpnKxpHardwareAcceleration         pulumi.StringPtrInput
 	SslvpnMaxWorkerCount                  pulumi.IntPtrInput
 	SslvpnPluginVersionCheck              pulumi.StringPtrInput
+	SslvpnWebMode                         pulumi.StringPtrInput
 	StrictDirtySessionCheck               pulumi.StringPtrInput
 	StrongCrypto                          pulumi.StringPtrInput
 	SwitchController                      pulumi.StringPtrInput
@@ -1430,6 +1481,12 @@ func (i *SystemGlobal) ToSystemGlobalOutputWithContext(ctx context.Context) Syst
 	return pulumi.ToOutputWithContext(ctx, i).(SystemGlobalOutput)
 }
 
+func (i *SystemGlobal) ToOutput(ctx context.Context) pulumix.Output[*SystemGlobal] {
+	return pulumix.Output[*SystemGlobal]{
+		OutputState: i.ToSystemGlobalOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemGlobalArrayInput is an input type that accepts SystemGlobalArray and SystemGlobalArrayOutput values.
 // You can construct a concrete instance of `SystemGlobalArrayInput` via:
 //
@@ -1453,6 +1510,12 @@ func (i SystemGlobalArray) ToSystemGlobalArrayOutput() SystemGlobalArrayOutput {
 
 func (i SystemGlobalArray) ToSystemGlobalArrayOutputWithContext(ctx context.Context) SystemGlobalArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemGlobalArrayOutput)
+}
+
+func (i SystemGlobalArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemGlobal] {
+	return pulumix.Output[[]*SystemGlobal]{
+		OutputState: i.ToSystemGlobalArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemGlobalMapInput is an input type that accepts SystemGlobalMap and SystemGlobalMapOutput values.
@@ -1480,6 +1543,12 @@ func (i SystemGlobalMap) ToSystemGlobalMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(SystemGlobalMapOutput)
 }
 
+func (i SystemGlobalMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemGlobal] {
+	return pulumix.Output[map[string]*SystemGlobal]{
+		OutputState: i.ToSystemGlobalMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemGlobalOutput struct{ *pulumi.OutputState }
 
 func (SystemGlobalOutput) ElementType() reflect.Type {
@@ -1492,6 +1561,12 @@ func (o SystemGlobalOutput) ToSystemGlobalOutput() SystemGlobalOutput {
 
 func (o SystemGlobalOutput) ToSystemGlobalOutputWithContext(ctx context.Context) SystemGlobalOutput {
 	return o
+}
+
+func (o SystemGlobalOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemGlobal] {
+	return pulumix.Output[*SystemGlobal]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemGlobalOutput) AdminConcurrent() pulumi.StringOutput {
@@ -1846,6 +1921,14 @@ func (o SystemGlobalOutput) FortitokenCloud() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.FortitokenCloud }).(pulumi.StringOutput)
 }
 
+func (o SystemGlobalOutput) FortitokenCloudPushStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.FortitokenCloudPushStatus }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) FortitokenCloudSyncInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.FortitokenCloudSyncInterval }).(pulumi.IntOutput)
+}
+
 func (o SystemGlobalOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SystemGlobal) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -1860,6 +1943,10 @@ func (o SystemGlobalOutput) GuiAllowIncompatibleFabricFgt() pulumi.StringOutput 
 
 func (o SystemGlobalOutput) GuiAppDetectionSdwan() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.GuiAppDetectionSdwan }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) GuiAutoUpgradeSetupWarning() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.GuiAutoUpgradeSetupWarning }).(pulumi.StringOutput)
 }
 
 func (o SystemGlobalOutput) GuiCdnDomainOverride() pulumi.StringOutput {
@@ -2224,6 +2311,30 @@ func (o SystemGlobalOutput) ProxyWorkerCount() pulumi.IntOutput {
 	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.ProxyWorkerCount }).(pulumi.IntOutput)
 }
 
+func (o SystemGlobalOutput) QuicAckThresold() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.QuicAckThresold }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) QuicCongestionControlAlgo() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.QuicCongestionControlAlgo }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) QuicMaxDatagramSize() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.QuicMaxDatagramSize }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) QuicPmtud() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.QuicPmtud }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) QuicTlsHandshakeTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.QuicTlsHandshakeTimeout }).(pulumi.IntOutput)
+}
+
+func (o SystemGlobalOutput) QuicUdpPayloadSizeShapingPerCid() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.QuicUdpPayloadSizeShapingPerCid }).(pulumi.StringOutput)
+}
+
 func (o SystemGlobalOutput) RadiusPort() pulumi.IntOutput {
 	return o.ApplyT(func(v *SystemGlobal) pulumi.IntOutput { return v.RadiusPort }).(pulumi.IntOutput)
 }
@@ -2370,6 +2481,10 @@ func (o SystemGlobalOutput) SslvpnMaxWorkerCount() pulumi.IntOutput {
 
 func (o SystemGlobalOutput) SslvpnPluginVersionCheck() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.SslvpnPluginVersionCheck }).(pulumi.StringOutput)
+}
+
+func (o SystemGlobalOutput) SslvpnWebMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemGlobal) pulumi.StringOutput { return v.SslvpnWebMode }).(pulumi.StringOutput)
 }
 
 func (o SystemGlobalOutput) StrictDirtySessionCheck() pulumi.StringOutput {
@@ -2586,6 +2701,12 @@ func (o SystemGlobalArrayOutput) ToSystemGlobalArrayOutputWithContext(ctx contex
 	return o
 }
 
+func (o SystemGlobalArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemGlobal] {
+	return pulumix.Output[[]*SystemGlobal]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemGlobalArrayOutput) Index(i pulumi.IntInput) SystemGlobalOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemGlobal {
 		return vs[0].([]*SystemGlobal)[vs[1].(int)]
@@ -2604,6 +2725,12 @@ func (o SystemGlobalMapOutput) ToSystemGlobalMapOutput() SystemGlobalMapOutput {
 
 func (o SystemGlobalMapOutput) ToSystemGlobalMapOutputWithContext(ctx context.Context) SystemGlobalMapOutput {
 	return o
+}
+
+func (o SystemGlobalMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemGlobal] {
+	return pulumix.Output[map[string]*SystemGlobal]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemGlobalMapOutput) MapIndex(k pulumi.StringInput) SystemGlobalOutput {

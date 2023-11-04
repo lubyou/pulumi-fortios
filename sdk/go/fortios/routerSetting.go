@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type RouterSetting struct {
@@ -220,6 +221,12 @@ func (i *RouterSetting) ToRouterSettingOutputWithContext(ctx context.Context) Ro
 	return pulumi.ToOutputWithContext(ctx, i).(RouterSettingOutput)
 }
 
+func (i *RouterSetting) ToOutput(ctx context.Context) pulumix.Output[*RouterSetting] {
+	return pulumix.Output[*RouterSetting]{
+		OutputState: i.ToRouterSettingOutputWithContext(ctx).OutputState,
+	}
+}
+
 // RouterSettingArrayInput is an input type that accepts RouterSettingArray and RouterSettingArrayOutput values.
 // You can construct a concrete instance of `RouterSettingArrayInput` via:
 //
@@ -243,6 +250,12 @@ func (i RouterSettingArray) ToRouterSettingArrayOutput() RouterSettingArrayOutpu
 
 func (i RouterSettingArray) ToRouterSettingArrayOutputWithContext(ctx context.Context) RouterSettingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterSettingArrayOutput)
+}
+
+func (i RouterSettingArray) ToOutput(ctx context.Context) pulumix.Output[[]*RouterSetting] {
+	return pulumix.Output[[]*RouterSetting]{
+		OutputState: i.ToRouterSettingArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // RouterSettingMapInput is an input type that accepts RouterSettingMap and RouterSettingMapOutput values.
@@ -270,6 +283,12 @@ func (i RouterSettingMap) ToRouterSettingMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(RouterSettingMapOutput)
 }
 
+func (i RouterSettingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RouterSetting] {
+	return pulumix.Output[map[string]*RouterSetting]{
+		OutputState: i.ToRouterSettingMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RouterSettingOutput struct{ *pulumi.OutputState }
 
 func (RouterSettingOutput) ElementType() reflect.Type {
@@ -282,6 +301,12 @@ func (o RouterSettingOutput) ToRouterSettingOutput() RouterSettingOutput {
 
 func (o RouterSettingOutput) ToRouterSettingOutputWithContext(ctx context.Context) RouterSettingOutput {
 	return o
+}
+
+func (o RouterSettingOutput) ToOutput(ctx context.Context) pulumix.Output[*RouterSetting] {
+	return pulumix.Output[*RouterSetting]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RouterSettingOutput) BgpDebugFlags() pulumi.StringOutput {
@@ -406,6 +431,12 @@ func (o RouterSettingArrayOutput) ToRouterSettingArrayOutputWithContext(ctx cont
 	return o
 }
 
+func (o RouterSettingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RouterSetting] {
+	return pulumix.Output[[]*RouterSetting]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o RouterSettingArrayOutput) Index(i pulumi.IntInput) RouterSettingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RouterSetting {
 		return vs[0].([]*RouterSetting)[vs[1].(int)]
@@ -424,6 +455,12 @@ func (o RouterSettingMapOutput) ToRouterSettingMapOutput() RouterSettingMapOutpu
 
 func (o RouterSettingMapOutput) ToRouterSettingMapOutputWithContext(ctx context.Context) RouterSettingMapOutput {
 	return o
+}
+
+func (o RouterSettingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RouterSetting] {
+	return pulumix.Output[map[string]*RouterSetting]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RouterSettingMapOutput) MapIndex(k pulumi.StringInput) RouterSettingOutput {

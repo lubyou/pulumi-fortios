@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallSslServer struct {
@@ -170,6 +171,12 @@ func (i *FirewallSslServer) ToFirewallSslServerOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSslServerOutput)
 }
 
+func (i *FirewallSslServer) ToOutput(ctx context.Context) pulumix.Output[*FirewallSslServer] {
+	return pulumix.Output[*FirewallSslServer]{
+		OutputState: i.ToFirewallSslServerOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallSslServerArrayInput is an input type that accepts FirewallSslServerArray and FirewallSslServerArrayOutput values.
 // You can construct a concrete instance of `FirewallSslServerArrayInput` via:
 //
@@ -193,6 +200,12 @@ func (i FirewallSslServerArray) ToFirewallSslServerArrayOutput() FirewallSslServ
 
 func (i FirewallSslServerArray) ToFirewallSslServerArrayOutputWithContext(ctx context.Context) FirewallSslServerArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSslServerArrayOutput)
+}
+
+func (i FirewallSslServerArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallSslServer] {
+	return pulumix.Output[[]*FirewallSslServer]{
+		OutputState: i.ToFirewallSslServerArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallSslServerMapInput is an input type that accepts FirewallSslServerMap and FirewallSslServerMapOutput values.
@@ -220,6 +233,12 @@ func (i FirewallSslServerMap) ToFirewallSslServerMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSslServerMapOutput)
 }
 
+func (i FirewallSslServerMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallSslServer] {
+	return pulumix.Output[map[string]*FirewallSslServer]{
+		OutputState: i.ToFirewallSslServerMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallSslServerOutput struct{ *pulumi.OutputState }
 
 func (FirewallSslServerOutput) ElementType() reflect.Type {
@@ -232,6 +251,12 @@ func (o FirewallSslServerOutput) ToFirewallSslServerOutput() FirewallSslServerOu
 
 func (o FirewallSslServerOutput) ToFirewallSslServerOutputWithContext(ctx context.Context) FirewallSslServerOutput {
 	return o
+}
+
+func (o FirewallSslServerOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallSslServer] {
+	return pulumix.Output[*FirewallSslServer]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallSslServerOutput) AddHeaderXForwardedProto() pulumi.StringOutput {
@@ -308,6 +333,12 @@ func (o FirewallSslServerArrayOutput) ToFirewallSslServerArrayOutputWithContext(
 	return o
 }
 
+func (o FirewallSslServerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallSslServer] {
+	return pulumix.Output[[]*FirewallSslServer]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallSslServerArrayOutput) Index(i pulumi.IntInput) FirewallSslServerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallSslServer {
 		return vs[0].([]*FirewallSslServer)[vs[1].(int)]
@@ -326,6 +357,12 @@ func (o FirewallSslServerMapOutput) ToFirewallSslServerMapOutput() FirewallSslSe
 
 func (o FirewallSslServerMapOutput) ToFirewallSslServerMapOutputWithContext(ctx context.Context) FirewallSslServerMapOutput {
 	return o
+}
+
+func (o FirewallSslServerMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallSslServer] {
+	return pulumix.Output[map[string]*FirewallSslServer]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallSslServerMapOutput) MapIndex(k pulumi.StringInput) FirewallSslServerOutput {

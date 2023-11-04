@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallIpv6EhFilter struct {
@@ -130,6 +131,12 @@ func (i *FirewallIpv6EhFilter) ToFirewallIpv6EhFilterOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallIpv6EhFilterOutput)
 }
 
+func (i *FirewallIpv6EhFilter) ToOutput(ctx context.Context) pulumix.Output[*FirewallIpv6EhFilter] {
+	return pulumix.Output[*FirewallIpv6EhFilter]{
+		OutputState: i.ToFirewallIpv6EhFilterOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallIpv6EhFilterArrayInput is an input type that accepts FirewallIpv6EhFilterArray and FirewallIpv6EhFilterArrayOutput values.
 // You can construct a concrete instance of `FirewallIpv6EhFilterArrayInput` via:
 //
@@ -153,6 +160,12 @@ func (i FirewallIpv6EhFilterArray) ToFirewallIpv6EhFilterArrayOutput() FirewallI
 
 func (i FirewallIpv6EhFilterArray) ToFirewallIpv6EhFilterArrayOutputWithContext(ctx context.Context) FirewallIpv6EhFilterArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallIpv6EhFilterArrayOutput)
+}
+
+func (i FirewallIpv6EhFilterArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallIpv6EhFilter] {
+	return pulumix.Output[[]*FirewallIpv6EhFilter]{
+		OutputState: i.ToFirewallIpv6EhFilterArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallIpv6EhFilterMapInput is an input type that accepts FirewallIpv6EhFilterMap and FirewallIpv6EhFilterMapOutput values.
@@ -180,6 +193,12 @@ func (i FirewallIpv6EhFilterMap) ToFirewallIpv6EhFilterMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallIpv6EhFilterMapOutput)
 }
 
+func (i FirewallIpv6EhFilterMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallIpv6EhFilter] {
+	return pulumix.Output[map[string]*FirewallIpv6EhFilter]{
+		OutputState: i.ToFirewallIpv6EhFilterMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallIpv6EhFilterOutput struct{ *pulumi.OutputState }
 
 func (FirewallIpv6EhFilterOutput) ElementType() reflect.Type {
@@ -192,6 +211,12 @@ func (o FirewallIpv6EhFilterOutput) ToFirewallIpv6EhFilterOutput() FirewallIpv6E
 
 func (o FirewallIpv6EhFilterOutput) ToFirewallIpv6EhFilterOutputWithContext(ctx context.Context) FirewallIpv6EhFilterOutput {
 	return o
+}
+
+func (o FirewallIpv6EhFilterOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallIpv6EhFilter] {
+	return pulumix.Output[*FirewallIpv6EhFilter]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallIpv6EhFilterOutput) Auth() pulumi.StringOutput {
@@ -244,6 +269,12 @@ func (o FirewallIpv6EhFilterArrayOutput) ToFirewallIpv6EhFilterArrayOutputWithCo
 	return o
 }
 
+func (o FirewallIpv6EhFilterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallIpv6EhFilter] {
+	return pulumix.Output[[]*FirewallIpv6EhFilter]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallIpv6EhFilterArrayOutput) Index(i pulumi.IntInput) FirewallIpv6EhFilterOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallIpv6EhFilter {
 		return vs[0].([]*FirewallIpv6EhFilter)[vs[1].(int)]
@@ -262,6 +293,12 @@ func (o FirewallIpv6EhFilterMapOutput) ToFirewallIpv6EhFilterMapOutput() Firewal
 
 func (o FirewallIpv6EhFilterMapOutput) ToFirewallIpv6EhFilterMapOutputWithContext(ctx context.Context) FirewallIpv6EhFilterMapOutput {
 	return o
+}
+
+func (o FirewallIpv6EhFilterMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallIpv6EhFilter] {
+	return pulumix.Output[map[string]*FirewallIpv6EhFilter]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallIpv6EhFilterMapOutput) MapIndex(k pulumi.StringInput) FirewallIpv6EhFilterOutput {

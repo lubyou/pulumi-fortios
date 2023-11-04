@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallIpmacbindingTable struct {
@@ -119,6 +120,12 @@ func (i *FirewallIpmacbindingTable) ToFirewallIpmacbindingTableOutputWithContext
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallIpmacbindingTableOutput)
 }
 
+func (i *FirewallIpmacbindingTable) ToOutput(ctx context.Context) pulumix.Output[*FirewallIpmacbindingTable] {
+	return pulumix.Output[*FirewallIpmacbindingTable]{
+		OutputState: i.ToFirewallIpmacbindingTableOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallIpmacbindingTableArrayInput is an input type that accepts FirewallIpmacbindingTableArray and FirewallIpmacbindingTableArrayOutput values.
 // You can construct a concrete instance of `FirewallIpmacbindingTableArrayInput` via:
 //
@@ -142,6 +149,12 @@ func (i FirewallIpmacbindingTableArray) ToFirewallIpmacbindingTableArrayOutput()
 
 func (i FirewallIpmacbindingTableArray) ToFirewallIpmacbindingTableArrayOutputWithContext(ctx context.Context) FirewallIpmacbindingTableArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallIpmacbindingTableArrayOutput)
+}
+
+func (i FirewallIpmacbindingTableArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallIpmacbindingTable] {
+	return pulumix.Output[[]*FirewallIpmacbindingTable]{
+		OutputState: i.ToFirewallIpmacbindingTableArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallIpmacbindingTableMapInput is an input type that accepts FirewallIpmacbindingTableMap and FirewallIpmacbindingTableMapOutput values.
@@ -169,6 +182,12 @@ func (i FirewallIpmacbindingTableMap) ToFirewallIpmacbindingTableMapOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallIpmacbindingTableMapOutput)
 }
 
+func (i FirewallIpmacbindingTableMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallIpmacbindingTable] {
+	return pulumix.Output[map[string]*FirewallIpmacbindingTable]{
+		OutputState: i.ToFirewallIpmacbindingTableMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallIpmacbindingTableOutput struct{ *pulumi.OutputState }
 
 func (FirewallIpmacbindingTableOutput) ElementType() reflect.Type {
@@ -181,6 +200,12 @@ func (o FirewallIpmacbindingTableOutput) ToFirewallIpmacbindingTableOutput() Fir
 
 func (o FirewallIpmacbindingTableOutput) ToFirewallIpmacbindingTableOutputWithContext(ctx context.Context) FirewallIpmacbindingTableOutput {
 	return o
+}
+
+func (o FirewallIpmacbindingTableOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallIpmacbindingTable] {
+	return pulumix.Output[*FirewallIpmacbindingTable]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallIpmacbindingTableOutput) Ip() pulumi.StringOutput {
@@ -221,6 +246,12 @@ func (o FirewallIpmacbindingTableArrayOutput) ToFirewallIpmacbindingTableArrayOu
 	return o
 }
 
+func (o FirewallIpmacbindingTableArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallIpmacbindingTable] {
+	return pulumix.Output[[]*FirewallIpmacbindingTable]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallIpmacbindingTableArrayOutput) Index(i pulumi.IntInput) FirewallIpmacbindingTableOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallIpmacbindingTable {
 		return vs[0].([]*FirewallIpmacbindingTable)[vs[1].(int)]
@@ -239,6 +270,12 @@ func (o FirewallIpmacbindingTableMapOutput) ToFirewallIpmacbindingTableMapOutput
 
 func (o FirewallIpmacbindingTableMapOutput) ToFirewallIpmacbindingTableMapOutputWithContext(ctx context.Context) FirewallIpmacbindingTableMapOutput {
 	return o
+}
+
+func (o FirewallIpmacbindingTableMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallIpmacbindingTable] {
+	return pulumix.Output[map[string]*FirewallIpmacbindingTable]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallIpmacbindingTableMapOutput) MapIndex(k pulumi.StringInput) FirewallIpmacbindingTableOutput {

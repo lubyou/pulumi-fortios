@@ -33,8 +33,16 @@ export class UserPasswordPolicy extends pulumi.CustomResource {
     }
 
     public readonly expireDays!: pulumi.Output<number>;
+    public readonly expireStatus!: pulumi.Output<string>;
     public readonly expiredPasswordRenewal!: pulumi.Output<string>;
+    public readonly minChangeCharacters!: pulumi.Output<number>;
+    public readonly minLowerCaseLetter!: pulumi.Output<number>;
+    public readonly minNonAlphanumeric!: pulumi.Output<number>;
+    public readonly minNumber!: pulumi.Output<number>;
+    public readonly minUpperCaseLetter!: pulumi.Output<number>;
+    public readonly minimumLength!: pulumi.Output<number>;
     public readonly name!: pulumi.Output<string>;
+    public readonly reusePassword!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
     public readonly warnDays!: pulumi.Output<number>;
 
@@ -52,15 +60,31 @@ export class UserPasswordPolicy extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as UserPasswordPolicyState | undefined;
             resourceInputs["expireDays"] = state ? state.expireDays : undefined;
+            resourceInputs["expireStatus"] = state ? state.expireStatus : undefined;
             resourceInputs["expiredPasswordRenewal"] = state ? state.expiredPasswordRenewal : undefined;
+            resourceInputs["minChangeCharacters"] = state ? state.minChangeCharacters : undefined;
+            resourceInputs["minLowerCaseLetter"] = state ? state.minLowerCaseLetter : undefined;
+            resourceInputs["minNonAlphanumeric"] = state ? state.minNonAlphanumeric : undefined;
+            resourceInputs["minNumber"] = state ? state.minNumber : undefined;
+            resourceInputs["minUpperCaseLetter"] = state ? state.minUpperCaseLetter : undefined;
+            resourceInputs["minimumLength"] = state ? state.minimumLength : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["reusePassword"] = state ? state.reusePassword : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
             resourceInputs["warnDays"] = state ? state.warnDays : undefined;
         } else {
             const args = argsOrState as UserPasswordPolicyArgs | undefined;
             resourceInputs["expireDays"] = args ? args.expireDays : undefined;
+            resourceInputs["expireStatus"] = args ? args.expireStatus : undefined;
             resourceInputs["expiredPasswordRenewal"] = args ? args.expiredPasswordRenewal : undefined;
+            resourceInputs["minChangeCharacters"] = args ? args.minChangeCharacters : undefined;
+            resourceInputs["minLowerCaseLetter"] = args ? args.minLowerCaseLetter : undefined;
+            resourceInputs["minNonAlphanumeric"] = args ? args.minNonAlphanumeric : undefined;
+            resourceInputs["minNumber"] = args ? args.minNumber : undefined;
+            resourceInputs["minUpperCaseLetter"] = args ? args.minUpperCaseLetter : undefined;
+            resourceInputs["minimumLength"] = args ? args.minimumLength : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["reusePassword"] = args ? args.reusePassword : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
             resourceInputs["warnDays"] = args ? args.warnDays : undefined;
         }
@@ -74,8 +98,16 @@ export class UserPasswordPolicy extends pulumi.CustomResource {
  */
 export interface UserPasswordPolicyState {
     expireDays?: pulumi.Input<number>;
+    expireStatus?: pulumi.Input<string>;
     expiredPasswordRenewal?: pulumi.Input<string>;
+    minChangeCharacters?: pulumi.Input<number>;
+    minLowerCaseLetter?: pulumi.Input<number>;
+    minNonAlphanumeric?: pulumi.Input<number>;
+    minNumber?: pulumi.Input<number>;
+    minUpperCaseLetter?: pulumi.Input<number>;
+    minimumLength?: pulumi.Input<number>;
     name?: pulumi.Input<string>;
+    reusePassword?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
     warnDays?: pulumi.Input<number>;
 }
@@ -85,8 +117,16 @@ export interface UserPasswordPolicyState {
  */
 export interface UserPasswordPolicyArgs {
     expireDays?: pulumi.Input<number>;
+    expireStatus?: pulumi.Input<string>;
     expiredPasswordRenewal?: pulumi.Input<string>;
+    minChangeCharacters?: pulumi.Input<number>;
+    minLowerCaseLetter?: pulumi.Input<number>;
+    minNonAlphanumeric?: pulumi.Input<number>;
+    minNumber?: pulumi.Input<number>;
+    minUpperCaseLetter?: pulumi.Input<number>;
+    minimumLength?: pulumi.Input<number>;
     name?: pulumi.Input<string>;
+    reusePassword?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
     warnDays?: pulumi.Input<number>;
 }

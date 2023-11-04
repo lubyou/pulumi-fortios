@@ -51,6 +51,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AuthenticationSetting{}
 	case "fortios:index/automationSetting:AutomationSetting":
 		r = &AutomationSetting{}
+	case "fortios:index/casbProfile:CasbProfile":
+		r = &CasbProfile{}
+	case "fortios:index/casbSaasApplication:CasbSaasApplication":
+		r = &CasbSaasApplication{}
+	case "fortios:index/casbUserActivity:CasbUserActivity":
+		r = &CasbUserActivity{}
 	case "fortios:index/certificateCa:CertificateCa":
 		r = &CertificateCa{}
 	case "fortios:index/certificateCrl:CertificateCrl":
@@ -277,6 +283,14 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &FirewallPolicy6{}
 	case "fortios:index/firewallPolicy:FirewallPolicy":
 		r = &FirewallPolicy{}
+	case "fortios:index/firewallPolicyMove:FirewallPolicyMove":
+		r = &FirewallPolicyMove{}
+	case "fortios:index/firewallPolicyOldvSeq:FirewallPolicyOldvSeq":
+		r = &FirewallPolicyOldvSeq{}
+	case "fortios:index/firewallPolicyOldvSort:FirewallPolicyOldvSort":
+		r = &FirewallPolicyOldvSort{}
+	case "fortios:index/firewallPolicySort:FirewallPolicySort":
+		r = &FirewallPolicySort{}
 	case "fortios:index/firewallProfileGroup:FirewallProfileGroup":
 		r = &FirewallProfileGroup{}
 	case "fortios:index/firewallProfileProtocolOptions:FirewallProfileProtocolOptions":
@@ -303,10 +317,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &FirewallSecurityPolicy1{}
 	case "fortios:index/firewallSecurityPolicy:FirewallSecurityPolicy":
 		r = &FirewallSecurityPolicy{}
-	case "fortios:index/firewallSecurityPolicySeq:FirewallSecurityPolicySeq":
-		r = &FirewallSecurityPolicySeq{}
-	case "fortios:index/firewallSecurityPolicySort:FirewallSecurityPolicySort":
-		r = &FirewallSecurityPolicySort{}
+	case "fortios:index/firewallSecuritypolicyMove:FirewallSecuritypolicyMove":
+		r = &FirewallSecuritypolicyMove{}
+	case "fortios:index/firewallSecuritypolicySort:FirewallSecuritypolicySort":
+		r = &FirewallSecuritypolicySort{}
 	case "fortios:index/firewallServiceCategory:FirewallServiceCategory":
 		r = &FirewallServiceCategory{}
 	case "fortios:index/firewallServiceCustom:FirewallServiceCustom":
@@ -641,6 +655,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &RouterospfNetwork{}
 	case "fortios:index/routerospfOspfInterface:RouterospfOspfInterface":
 		r = &RouterospfOspfInterface{}
+	case "fortios:index/ruleOtdt:RuleOtdt":
+		r = &RuleOtdt{}
+	case "fortios:index/ruleOtvp:RuleOtvp":
+		r = &RuleOtvp{}
 	case "fortios:index/sctpFilterProfile:SctpFilterProfile":
 		r = &SctpFilterProfile{}
 	case "fortios:index/spamfilterBwl:SpamfilterBwl":
@@ -707,8 +725,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &SwitchControllerNetworkMonitorSettings{}
 	case "fortios:index/switchControllerPortPolicy:SwitchControllerPortPolicy":
 		r = &SwitchControllerPortPolicy{}
+	case "fortios:index/switchControllerPtpInterfacePolicy:SwitchControllerPtpInterfacePolicy":
+		r = &SwitchControllerPtpInterfacePolicy{}
 	case "fortios:index/switchControllerPtpPolicy:SwitchControllerPtpPolicy":
 		r = &SwitchControllerPtpPolicy{}
+	case "fortios:index/switchControllerPtpProfile:SwitchControllerPtpProfile":
+		r = &SwitchControllerPtpProfile{}
 	case "fortios:index/switchControllerPtpSettings:SwitchControllerPtpSettings":
 		r = &SwitchControllerPtpSettings{}
 	case "fortios:index/switchControllerQosDot1PMap:SwitchControllerQosDot1PMap":
@@ -1033,6 +1055,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &SystemSpeedTestSchedule{}
 	case "fortios:index/systemSpeedTestServer:SystemSpeedTestServer":
 		r = &SystemSpeedTestServer{}
+	case "fortios:index/systemSpeedTestSetting:SystemSpeedTestSetting":
+		r = &SystemSpeedTestSetting{}
 	case "fortios:index/systemSsoAdmin:SystemSsoAdmin":
 		r = &SystemSsoAdmin{}
 	case "fortios:index/systemSsoForticloudAdmin:SystemSsoForticloudAdmin":
@@ -1143,6 +1167,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &VideofilterYoutubeChannelFilter{}
 	case "fortios:index/videofilterYoutubeKey:VideofilterYoutubeKey":
 		r = &VideofilterYoutubeKey{}
+	case "fortios:index/virtualPatchProfile:VirtualPatchProfile":
+		r = &VirtualPatchProfile{}
 	case "fortios:index/voipProfile:VoipProfile":
 		r = &VoipProfile{}
 	case "fortios:index/vpnCertificateCa:VpnCertificateCa":
@@ -1225,6 +1251,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &WebProxyDebugUrl{}
 	case "fortios:index/webProxyExplicit:WebProxyExplicit":
 		r = &WebProxyExplicit{}
+	case "fortios:index/webProxyFastFallback:WebProxyFastFallback":
+		r = &WebProxyFastFallback{}
 	case "fortios:index/webProxyForwardServer:WebProxyForwardServer":
 		r = &WebProxyForwardServer{}
 	case "fortios:index/webProxyForwardServerGroup:WebProxyForwardServerGroup":
@@ -1455,6 +1483,21 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fortios",
 		"index/automationSetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/casbProfile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/casbSaasApplication",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/casbUserActivity",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -2024,6 +2067,26 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
+		"index/firewallPolicyMove",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallPolicyOldvSeq",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallPolicyOldvSort",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallPolicySort",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
 		"index/firewallProfileGroup",
 		&module{version},
 	)
@@ -2089,12 +2152,12 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
-		"index/firewallSecurityPolicySeq",
+		"index/firewallSecuritypolicyMove",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
-		"index/firewallSecurityPolicySort",
+		"index/firewallSecuritypolicySort",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -2934,6 +2997,16 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
+		"index/ruleOtdt",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/ruleOtvp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
 		"index/sctpFilterProfile",
 		&module{version},
 	)
@@ -3099,7 +3172,17 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
+		"index/switchControllerPtpInterfacePolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
 		"index/switchControllerPtpPolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchControllerPtpProfile",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -3914,6 +3997,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
+		"index/systemSpeedTestSetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
 		"index/systemSsoAdmin",
 		&module{version},
 	)
@@ -4189,6 +4277,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
+		"index/virtualPatchProfile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
 		"index/voipProfile",
 		&module{version},
 	)
@@ -4390,6 +4483,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fortios",
 		"index/webProxyExplicit",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/webProxyFastFallback",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

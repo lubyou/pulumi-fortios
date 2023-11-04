@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type IcapProfile struct {
@@ -250,6 +251,12 @@ func (i *IcapProfile) ToIcapProfileOutputWithContext(ctx context.Context) IcapPr
 	return pulumi.ToOutputWithContext(ctx, i).(IcapProfileOutput)
 }
 
+func (i *IcapProfile) ToOutput(ctx context.Context) pulumix.Output[*IcapProfile] {
+	return pulumix.Output[*IcapProfile]{
+		OutputState: i.ToIcapProfileOutputWithContext(ctx).OutputState,
+	}
+}
+
 // IcapProfileArrayInput is an input type that accepts IcapProfileArray and IcapProfileArrayOutput values.
 // You can construct a concrete instance of `IcapProfileArrayInput` via:
 //
@@ -273,6 +280,12 @@ func (i IcapProfileArray) ToIcapProfileArrayOutput() IcapProfileArrayOutput {
 
 func (i IcapProfileArray) ToIcapProfileArrayOutputWithContext(ctx context.Context) IcapProfileArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IcapProfileArrayOutput)
+}
+
+func (i IcapProfileArray) ToOutput(ctx context.Context) pulumix.Output[[]*IcapProfile] {
+	return pulumix.Output[[]*IcapProfile]{
+		OutputState: i.ToIcapProfileArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // IcapProfileMapInput is an input type that accepts IcapProfileMap and IcapProfileMapOutput values.
@@ -300,6 +313,12 @@ func (i IcapProfileMap) ToIcapProfileMapOutputWithContext(ctx context.Context) I
 	return pulumi.ToOutputWithContext(ctx, i).(IcapProfileMapOutput)
 }
 
+func (i IcapProfileMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*IcapProfile] {
+	return pulumix.Output[map[string]*IcapProfile]{
+		OutputState: i.ToIcapProfileMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type IcapProfileOutput struct{ *pulumi.OutputState }
 
 func (IcapProfileOutput) ElementType() reflect.Type {
@@ -312,6 +331,12 @@ func (o IcapProfileOutput) ToIcapProfileOutput() IcapProfileOutput {
 
 func (o IcapProfileOutput) ToIcapProfileOutputWithContext(ctx context.Context) IcapProfileOutput {
 	return o
+}
+
+func (o IcapProfileOutput) ToOutput(ctx context.Context) pulumix.Output[*IcapProfile] {
+	return pulumix.Output[*IcapProfile]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o IcapProfileOutput) ChunkEncap() pulumi.StringOutput {
@@ -460,6 +485,12 @@ func (o IcapProfileArrayOutput) ToIcapProfileArrayOutputWithContext(ctx context.
 	return o
 }
 
+func (o IcapProfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*IcapProfile] {
+	return pulumix.Output[[]*IcapProfile]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o IcapProfileArrayOutput) Index(i pulumi.IntInput) IcapProfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IcapProfile {
 		return vs[0].([]*IcapProfile)[vs[1].(int)]
@@ -478,6 +509,12 @@ func (o IcapProfileMapOutput) ToIcapProfileMapOutput() IcapProfileMapOutput {
 
 func (o IcapProfileMapOutput) ToIcapProfileMapOutputWithContext(ctx context.Context) IcapProfileMapOutput {
 	return o
+}
+
+func (o IcapProfileMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*IcapProfile] {
+	return pulumix.Output[map[string]*IcapProfile]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o IcapProfileMapOutput) MapIndex(k pulumi.StringInput) IcapProfileOutput {

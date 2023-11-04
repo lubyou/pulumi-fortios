@@ -36,6 +36,8 @@ export class AuthenticationRule extends pulumi.CustomResource {
 
     public readonly activeAuthMethod!: pulumi.Output<string>;
     public readonly comments!: pulumi.Output<string | undefined>;
+    public readonly corsDepth!: pulumi.Output<number>;
+    public readonly corsStateful!: pulumi.Output<string>;
     public readonly dstaddr6s!: pulumi.Output<outputs.AuthenticationRuleDstaddr6[] | undefined>;
     public readonly dstaddrs!: pulumi.Output<outputs.AuthenticationRuleDstaddr[] | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
@@ -68,6 +70,8 @@ export class AuthenticationRule extends pulumi.CustomResource {
             const state = argsOrState as AuthenticationRuleState | undefined;
             resourceInputs["activeAuthMethod"] = state ? state.activeAuthMethod : undefined;
             resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["corsDepth"] = state ? state.corsDepth : undefined;
+            resourceInputs["corsStateful"] = state ? state.corsStateful : undefined;
             resourceInputs["dstaddr6s"] = state ? state.dstaddr6s : undefined;
             resourceInputs["dstaddrs"] = state ? state.dstaddrs : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
@@ -88,6 +92,8 @@ export class AuthenticationRule extends pulumi.CustomResource {
             const args = argsOrState as AuthenticationRuleArgs | undefined;
             resourceInputs["activeAuthMethod"] = args ? args.activeAuthMethod : undefined;
             resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["corsDepth"] = args ? args.corsDepth : undefined;
+            resourceInputs["corsStateful"] = args ? args.corsStateful : undefined;
             resourceInputs["dstaddr6s"] = args ? args.dstaddr6s : undefined;
             resourceInputs["dstaddrs"] = args ? args.dstaddrs : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
@@ -116,6 +122,8 @@ export class AuthenticationRule extends pulumi.CustomResource {
 export interface AuthenticationRuleState {
     activeAuthMethod?: pulumi.Input<string>;
     comments?: pulumi.Input<string>;
+    corsDepth?: pulumi.Input<number>;
+    corsStateful?: pulumi.Input<string>;
     dstaddr6s?: pulumi.Input<pulumi.Input<inputs.AuthenticationRuleDstaddr6>[]>;
     dstaddrs?: pulumi.Input<pulumi.Input<inputs.AuthenticationRuleDstaddr>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
@@ -140,6 +148,8 @@ export interface AuthenticationRuleState {
 export interface AuthenticationRuleArgs {
     activeAuthMethod?: pulumi.Input<string>;
     comments?: pulumi.Input<string>;
+    corsDepth?: pulumi.Input<number>;
+    corsStateful?: pulumi.Input<string>;
     dstaddr6s?: pulumi.Input<pulumi.Input<inputs.AuthenticationRuleDstaddr6>[]>;
     dstaddrs?: pulumi.Input<pulumi.Input<inputs.AuthenticationRuleDstaddr>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;

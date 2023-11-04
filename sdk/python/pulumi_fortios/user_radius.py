@@ -16,12 +16,15 @@ __all__ = ['UserRadiusArgs', 'UserRadius']
 @pulumi.input_type
 class UserRadiusArgs:
     def __init__(__self__, *,
+                 account_key_cert_field: Optional[pulumi.Input[str]] = None,
+                 account_key_processing: Optional[pulumi.Input[str]] = None,
                  accounting_servers: Optional[pulumi.Input[Sequence[pulumi.Input['UserRadiusAccountingServerArgs']]]] = None,
                  acct_all_servers: Optional[pulumi.Input[str]] = None,
                  acct_interim_interval: Optional[pulumi.Input[int]] = None,
                  all_usergroup: Optional[pulumi.Input[str]] = None,
                  auth_type: Optional[pulumi.Input[str]] = None,
                  ca_cert: Optional[pulumi.Input[str]] = None,
+                 call_station_id_type: Optional[pulumi.Input[str]] = None,
                  classes: Optional[pulumi.Input[Sequence[pulumi.Input['UserRadiusClassArgs']]]] = None,
                  client_cert: Optional[pulumi.Input[str]] = None,
                  delimiter: Optional[pulumi.Input[str]] = None,
@@ -77,6 +80,10 @@ class UserRadiusArgs:
         """
         The set of arguments for constructing a UserRadius resource.
         """
+        if account_key_cert_field is not None:
+            pulumi.set(__self__, "account_key_cert_field", account_key_cert_field)
+        if account_key_processing is not None:
+            pulumi.set(__self__, "account_key_processing", account_key_processing)
         if accounting_servers is not None:
             pulumi.set(__self__, "accounting_servers", accounting_servers)
         if acct_all_servers is not None:
@@ -89,6 +96,8 @@ class UserRadiusArgs:
             pulumi.set(__self__, "auth_type", auth_type)
         if ca_cert is not None:
             pulumi.set(__self__, "ca_cert", ca_cert)
+        if call_station_id_type is not None:
+            pulumi.set(__self__, "call_station_id_type", call_station_id_type)
         if classes is not None:
             pulumi.set(__self__, "classes", classes)
         if client_cert is not None:
@@ -195,6 +204,24 @@ class UserRadiusArgs:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
     @property
+    @pulumi.getter(name="accountKeyCertField")
+    def account_key_cert_field(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "account_key_cert_field")
+
+    @account_key_cert_field.setter
+    def account_key_cert_field(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "account_key_cert_field", value)
+
+    @property
+    @pulumi.getter(name="accountKeyProcessing")
+    def account_key_processing(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "account_key_processing")
+
+    @account_key_processing.setter
+    def account_key_processing(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "account_key_processing", value)
+
+    @property
     @pulumi.getter(name="accountingServers")
     def accounting_servers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['UserRadiusAccountingServerArgs']]]]:
         return pulumi.get(self, "accounting_servers")
@@ -247,6 +274,15 @@ class UserRadiusArgs:
     @ca_cert.setter
     def ca_cert(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ca_cert", value)
+
+    @property
+    @pulumi.getter(name="callStationIdType")
+    def call_station_id_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "call_station_id_type")
+
+    @call_station_id_type.setter
+    def call_station_id_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "call_station_id_type", value)
 
     @property
     @pulumi.getter
@@ -720,12 +756,15 @@ class UserRadiusArgs:
 @pulumi.input_type
 class _UserRadiusState:
     def __init__(__self__, *,
+                 account_key_cert_field: Optional[pulumi.Input[str]] = None,
+                 account_key_processing: Optional[pulumi.Input[str]] = None,
                  accounting_servers: Optional[pulumi.Input[Sequence[pulumi.Input['UserRadiusAccountingServerArgs']]]] = None,
                  acct_all_servers: Optional[pulumi.Input[str]] = None,
                  acct_interim_interval: Optional[pulumi.Input[int]] = None,
                  all_usergroup: Optional[pulumi.Input[str]] = None,
                  auth_type: Optional[pulumi.Input[str]] = None,
                  ca_cert: Optional[pulumi.Input[str]] = None,
+                 call_station_id_type: Optional[pulumi.Input[str]] = None,
                  classes: Optional[pulumi.Input[Sequence[pulumi.Input['UserRadiusClassArgs']]]] = None,
                  client_cert: Optional[pulumi.Input[str]] = None,
                  delimiter: Optional[pulumi.Input[str]] = None,
@@ -781,6 +820,10 @@ class _UserRadiusState:
         """
         Input properties used for looking up and filtering UserRadius resources.
         """
+        if account_key_cert_field is not None:
+            pulumi.set(__self__, "account_key_cert_field", account_key_cert_field)
+        if account_key_processing is not None:
+            pulumi.set(__self__, "account_key_processing", account_key_processing)
         if accounting_servers is not None:
             pulumi.set(__self__, "accounting_servers", accounting_servers)
         if acct_all_servers is not None:
@@ -793,6 +836,8 @@ class _UserRadiusState:
             pulumi.set(__self__, "auth_type", auth_type)
         if ca_cert is not None:
             pulumi.set(__self__, "ca_cert", ca_cert)
+        if call_station_id_type is not None:
+            pulumi.set(__self__, "call_station_id_type", call_station_id_type)
         if classes is not None:
             pulumi.set(__self__, "classes", classes)
         if client_cert is not None:
@@ -899,6 +944,24 @@ class _UserRadiusState:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
     @property
+    @pulumi.getter(name="accountKeyCertField")
+    def account_key_cert_field(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "account_key_cert_field")
+
+    @account_key_cert_field.setter
+    def account_key_cert_field(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "account_key_cert_field", value)
+
+    @property
+    @pulumi.getter(name="accountKeyProcessing")
+    def account_key_processing(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "account_key_processing")
+
+    @account_key_processing.setter
+    def account_key_processing(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "account_key_processing", value)
+
+    @property
     @pulumi.getter(name="accountingServers")
     def accounting_servers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['UserRadiusAccountingServerArgs']]]]:
         return pulumi.get(self, "accounting_servers")
@@ -951,6 +1014,15 @@ class _UserRadiusState:
     @ca_cert.setter
     def ca_cert(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ca_cert", value)
+
+    @property
+    @pulumi.getter(name="callStationIdType")
+    def call_station_id_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "call_station_id_type")
+
+    @call_station_id_type.setter
+    def call_station_id_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "call_station_id_type", value)
 
     @property
     @pulumi.getter
@@ -1426,12 +1498,15 @@ class UserRadius(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 account_key_cert_field: Optional[pulumi.Input[str]] = None,
+                 account_key_processing: Optional[pulumi.Input[str]] = None,
                  accounting_servers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserRadiusAccountingServerArgs']]]]] = None,
                  acct_all_servers: Optional[pulumi.Input[str]] = None,
                  acct_interim_interval: Optional[pulumi.Input[int]] = None,
                  all_usergroup: Optional[pulumi.Input[str]] = None,
                  auth_type: Optional[pulumi.Input[str]] = None,
                  ca_cert: Optional[pulumi.Input[str]] = None,
+                 call_station_id_type: Optional[pulumi.Input[str]] = None,
                  classes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserRadiusClassArgs']]]]] = None,
                  client_cert: Optional[pulumi.Input[str]] = None,
                  delimiter: Optional[pulumi.Input[str]] = None,
@@ -1513,12 +1588,15 @@ class UserRadius(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 account_key_cert_field: Optional[pulumi.Input[str]] = None,
+                 account_key_processing: Optional[pulumi.Input[str]] = None,
                  accounting_servers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserRadiusAccountingServerArgs']]]]] = None,
                  acct_all_servers: Optional[pulumi.Input[str]] = None,
                  acct_interim_interval: Optional[pulumi.Input[int]] = None,
                  all_usergroup: Optional[pulumi.Input[str]] = None,
                  auth_type: Optional[pulumi.Input[str]] = None,
                  ca_cert: Optional[pulumi.Input[str]] = None,
+                 call_station_id_type: Optional[pulumi.Input[str]] = None,
                  classes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserRadiusClassArgs']]]]] = None,
                  client_cert: Optional[pulumi.Input[str]] = None,
                  delimiter: Optional[pulumi.Input[str]] = None,
@@ -1580,12 +1658,15 @@ class UserRadius(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = UserRadiusArgs.__new__(UserRadiusArgs)
 
+            __props__.__dict__["account_key_cert_field"] = account_key_cert_field
+            __props__.__dict__["account_key_processing"] = account_key_processing
             __props__.__dict__["accounting_servers"] = accounting_servers
             __props__.__dict__["acct_all_servers"] = acct_all_servers
             __props__.__dict__["acct_interim_interval"] = acct_interim_interval
             __props__.__dict__["all_usergroup"] = all_usergroup
             __props__.__dict__["auth_type"] = auth_type
             __props__.__dict__["ca_cert"] = ca_cert
+            __props__.__dict__["call_station_id_type"] = call_station_id_type
             __props__.__dict__["classes"] = classes
             __props__.__dict__["client_cert"] = client_cert
             __props__.__dict__["delimiter"] = delimiter
@@ -1650,12 +1731,15 @@ class UserRadius(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            account_key_cert_field: Optional[pulumi.Input[str]] = None,
+            account_key_processing: Optional[pulumi.Input[str]] = None,
             accounting_servers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserRadiusAccountingServerArgs']]]]] = None,
             acct_all_servers: Optional[pulumi.Input[str]] = None,
             acct_interim_interval: Optional[pulumi.Input[int]] = None,
             all_usergroup: Optional[pulumi.Input[str]] = None,
             auth_type: Optional[pulumi.Input[str]] = None,
             ca_cert: Optional[pulumi.Input[str]] = None,
+            call_station_id_type: Optional[pulumi.Input[str]] = None,
             classes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserRadiusClassArgs']]]]] = None,
             client_cert: Optional[pulumi.Input[str]] = None,
             delimiter: Optional[pulumi.Input[str]] = None,
@@ -1720,12 +1804,15 @@ class UserRadius(pulumi.CustomResource):
 
         __props__ = _UserRadiusState.__new__(_UserRadiusState)
 
+        __props__.__dict__["account_key_cert_field"] = account_key_cert_field
+        __props__.__dict__["account_key_processing"] = account_key_processing
         __props__.__dict__["accounting_servers"] = accounting_servers
         __props__.__dict__["acct_all_servers"] = acct_all_servers
         __props__.__dict__["acct_interim_interval"] = acct_interim_interval
         __props__.__dict__["all_usergroup"] = all_usergroup
         __props__.__dict__["auth_type"] = auth_type
         __props__.__dict__["ca_cert"] = ca_cert
+        __props__.__dict__["call_station_id_type"] = call_station_id_type
         __props__.__dict__["classes"] = classes
         __props__.__dict__["client_cert"] = client_cert
         __props__.__dict__["delimiter"] = delimiter
@@ -1781,6 +1868,16 @@ class UserRadius(pulumi.CustomResource):
         return UserRadius(resource_name, opts=opts, __props__=__props__)
 
     @property
+    @pulumi.getter(name="accountKeyCertField")
+    def account_key_cert_field(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "account_key_cert_field")
+
+    @property
+    @pulumi.getter(name="accountKeyProcessing")
+    def account_key_processing(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "account_key_processing")
+
+    @property
     @pulumi.getter(name="accountingServers")
     def accounting_servers(self) -> pulumi.Output[Optional[Sequence['outputs.UserRadiusAccountingServer']]]:
         return pulumi.get(self, "accounting_servers")
@@ -1809,6 +1906,11 @@ class UserRadius(pulumi.CustomResource):
     @pulumi.getter(name="caCert")
     def ca_cert(self) -> pulumi.Output[str]:
         return pulumi.get(self, "ca_cert")
+
+    @property
+    @pulumi.getter(name="callStationIdType")
+    def call_station_id_type(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "call_station_id_type")
 
     @property
     @pulumi.getter

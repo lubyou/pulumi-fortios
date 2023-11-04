@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetSystemProxyArpList(ctx *pulumi.Context, args *GetSystemProxyArpListArgs, opts ...pulumi.InvokeOption) (*GetSystemProxyArpListResult, error) {
@@ -72,6 +73,12 @@ func (o GetSystemProxyArpListResultOutput) ToGetSystemProxyArpListResultOutput()
 
 func (o GetSystemProxyArpListResultOutput) ToGetSystemProxyArpListResultOutputWithContext(ctx context.Context) GetSystemProxyArpListResultOutput {
 	return o
+}
+
+func (o GetSystemProxyArpListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSystemProxyArpListResult] {
+	return pulumix.Output[GetSystemProxyArpListResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetSystemProxyArpListResultOutput) Filter() pulumi.StringPtrOutput {

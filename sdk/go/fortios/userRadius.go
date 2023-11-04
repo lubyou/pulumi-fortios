@@ -9,17 +9,21 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type UserRadius struct {
 	pulumi.CustomResourceState
 
+	AccountKeyCertField                    pulumi.StringOutput                   `pulumi:"accountKeyCertField"`
+	AccountKeyProcessing                   pulumi.StringOutput                   `pulumi:"accountKeyProcessing"`
 	AccountingServers                      UserRadiusAccountingServerArrayOutput `pulumi:"accountingServers"`
 	AcctAllServers                         pulumi.StringOutput                   `pulumi:"acctAllServers"`
 	AcctInterimInterval                    pulumi.IntOutput                      `pulumi:"acctInterimInterval"`
 	AllUsergroup                           pulumi.StringOutput                   `pulumi:"allUsergroup"`
 	AuthType                               pulumi.StringOutput                   `pulumi:"authType"`
 	CaCert                                 pulumi.StringOutput                   `pulumi:"caCert"`
+	CallStationIdType                      pulumi.StringOutput                   `pulumi:"callStationIdType"`
 	Classes                                UserRadiusClassArrayOutput            `pulumi:"classes"`
 	ClientCert                             pulumi.StringOutput                   `pulumi:"clientCert"`
 	Delimiter                              pulumi.StringOutput                   `pulumi:"delimiter"`
@@ -127,12 +131,15 @@ func GetUserRadius(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering UserRadius resources.
 type userRadiusState struct {
+	AccountKeyCertField                    *string                      `pulumi:"accountKeyCertField"`
+	AccountKeyProcessing                   *string                      `pulumi:"accountKeyProcessing"`
 	AccountingServers                      []UserRadiusAccountingServer `pulumi:"accountingServers"`
 	AcctAllServers                         *string                      `pulumi:"acctAllServers"`
 	AcctInterimInterval                    *int                         `pulumi:"acctInterimInterval"`
 	AllUsergroup                           *string                      `pulumi:"allUsergroup"`
 	AuthType                               *string                      `pulumi:"authType"`
 	CaCert                                 *string                      `pulumi:"caCert"`
+	CallStationIdType                      *string                      `pulumi:"callStationIdType"`
 	Classes                                []UserRadiusClass            `pulumi:"classes"`
 	ClientCert                             *string                      `pulumi:"clientCert"`
 	Delimiter                              *string                      `pulumi:"delimiter"`
@@ -188,12 +195,15 @@ type userRadiusState struct {
 }
 
 type UserRadiusState struct {
+	AccountKeyCertField                    pulumi.StringPtrInput
+	AccountKeyProcessing                   pulumi.StringPtrInput
 	AccountingServers                      UserRadiusAccountingServerArrayInput
 	AcctAllServers                         pulumi.StringPtrInput
 	AcctInterimInterval                    pulumi.IntPtrInput
 	AllUsergroup                           pulumi.StringPtrInput
 	AuthType                               pulumi.StringPtrInput
 	CaCert                                 pulumi.StringPtrInput
+	CallStationIdType                      pulumi.StringPtrInput
 	Classes                                UserRadiusClassArrayInput
 	ClientCert                             pulumi.StringPtrInput
 	Delimiter                              pulumi.StringPtrInput
@@ -253,12 +263,15 @@ func (UserRadiusState) ElementType() reflect.Type {
 }
 
 type userRadiusArgs struct {
+	AccountKeyCertField                    *string                      `pulumi:"accountKeyCertField"`
+	AccountKeyProcessing                   *string                      `pulumi:"accountKeyProcessing"`
 	AccountingServers                      []UserRadiusAccountingServer `pulumi:"accountingServers"`
 	AcctAllServers                         *string                      `pulumi:"acctAllServers"`
 	AcctInterimInterval                    *int                         `pulumi:"acctInterimInterval"`
 	AllUsergroup                           *string                      `pulumi:"allUsergroup"`
 	AuthType                               *string                      `pulumi:"authType"`
 	CaCert                                 *string                      `pulumi:"caCert"`
+	CallStationIdType                      *string                      `pulumi:"callStationIdType"`
 	Classes                                []UserRadiusClass            `pulumi:"classes"`
 	ClientCert                             *string                      `pulumi:"clientCert"`
 	Delimiter                              *string                      `pulumi:"delimiter"`
@@ -315,12 +328,15 @@ type userRadiusArgs struct {
 
 // The set of arguments for constructing a UserRadius resource.
 type UserRadiusArgs struct {
+	AccountKeyCertField                    pulumi.StringPtrInput
+	AccountKeyProcessing                   pulumi.StringPtrInput
 	AccountingServers                      UserRadiusAccountingServerArrayInput
 	AcctAllServers                         pulumi.StringPtrInput
 	AcctInterimInterval                    pulumi.IntPtrInput
 	AllUsergroup                           pulumi.StringPtrInput
 	AuthType                               pulumi.StringPtrInput
 	CaCert                                 pulumi.StringPtrInput
+	CallStationIdType                      pulumi.StringPtrInput
 	Classes                                UserRadiusClassArrayInput
 	ClientCert                             pulumi.StringPtrInput
 	Delimiter                              pulumi.StringPtrInput
@@ -398,6 +414,12 @@ func (i *UserRadius) ToUserRadiusOutputWithContext(ctx context.Context) UserRadi
 	return pulumi.ToOutputWithContext(ctx, i).(UserRadiusOutput)
 }
 
+func (i *UserRadius) ToOutput(ctx context.Context) pulumix.Output[*UserRadius] {
+	return pulumix.Output[*UserRadius]{
+		OutputState: i.ToUserRadiusOutputWithContext(ctx).OutputState,
+	}
+}
+
 // UserRadiusArrayInput is an input type that accepts UserRadiusArray and UserRadiusArrayOutput values.
 // You can construct a concrete instance of `UserRadiusArrayInput` via:
 //
@@ -421,6 +443,12 @@ func (i UserRadiusArray) ToUserRadiusArrayOutput() UserRadiusArrayOutput {
 
 func (i UserRadiusArray) ToUserRadiusArrayOutputWithContext(ctx context.Context) UserRadiusArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserRadiusArrayOutput)
+}
+
+func (i UserRadiusArray) ToOutput(ctx context.Context) pulumix.Output[[]*UserRadius] {
+	return pulumix.Output[[]*UserRadius]{
+		OutputState: i.ToUserRadiusArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // UserRadiusMapInput is an input type that accepts UserRadiusMap and UserRadiusMapOutput values.
@@ -448,6 +476,12 @@ func (i UserRadiusMap) ToUserRadiusMapOutputWithContext(ctx context.Context) Use
 	return pulumi.ToOutputWithContext(ctx, i).(UserRadiusMapOutput)
 }
 
+func (i UserRadiusMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserRadius] {
+	return pulumix.Output[map[string]*UserRadius]{
+		OutputState: i.ToUserRadiusMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type UserRadiusOutput struct{ *pulumi.OutputState }
 
 func (UserRadiusOutput) ElementType() reflect.Type {
@@ -460,6 +494,20 @@ func (o UserRadiusOutput) ToUserRadiusOutput() UserRadiusOutput {
 
 func (o UserRadiusOutput) ToUserRadiusOutputWithContext(ctx context.Context) UserRadiusOutput {
 	return o
+}
+
+func (o UserRadiusOutput) ToOutput(ctx context.Context) pulumix.Output[*UserRadius] {
+	return pulumix.Output[*UserRadius]{
+		OutputState: o.OutputState,
+	}
+}
+
+func (o UserRadiusOutput) AccountKeyCertField() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.AccountKeyCertField }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) AccountKeyProcessing() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.AccountKeyProcessing }).(pulumi.StringOutput)
 }
 
 func (o UserRadiusOutput) AccountingServers() UserRadiusAccountingServerArrayOutput {
@@ -484,6 +532,10 @@ func (o UserRadiusOutput) AuthType() pulumi.StringOutput {
 
 func (o UserRadiusOutput) CaCert() pulumi.StringOutput {
 	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.CaCert }).(pulumi.StringOutput)
+}
+
+func (o UserRadiusOutput) CallStationIdType() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserRadius) pulumi.StringOutput { return v.CallStationIdType }).(pulumi.StringOutput)
 }
 
 func (o UserRadiusOutput) Classes() UserRadiusClassArrayOutput {
@@ -708,6 +760,12 @@ func (o UserRadiusArrayOutput) ToUserRadiusArrayOutputWithContext(ctx context.Co
 	return o
 }
 
+func (o UserRadiusArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*UserRadius] {
+	return pulumix.Output[[]*UserRadius]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o UserRadiusArrayOutput) Index(i pulumi.IntInput) UserRadiusOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserRadius {
 		return vs[0].([]*UserRadius)[vs[1].(int)]
@@ -726,6 +784,12 @@ func (o UserRadiusMapOutput) ToUserRadiusMapOutput() UserRadiusMapOutput {
 
 func (o UserRadiusMapOutput) ToUserRadiusMapOutputWithContext(ctx context.Context) UserRadiusMapOutput {
 	return o
+}
+
+func (o UserRadiusMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserRadius] {
+	return pulumix.Output[map[string]*UserRadius]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserRadiusMapOutput) MapIndex(k pulumi.StringInput) UserRadiusOutput {

@@ -34,6 +34,7 @@ export class SwitchControllerFortilinkSettings extends pulumi.CustomResource {
         return obj['__pulumiType'] === SwitchControllerFortilinkSettings.__pulumiType;
     }
 
+    public readonly accessVlanMode!: pulumi.Output<string>;
     public readonly fortilink!: pulumi.Output<string>;
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly inactiveTimer!: pulumi.Output<number>;
@@ -55,6 +56,7 @@ export class SwitchControllerFortilinkSettings extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerFortilinkSettingsState | undefined;
+            resourceInputs["accessVlanMode"] = state ? state.accessVlanMode : undefined;
             resourceInputs["fortilink"] = state ? state.fortilink : undefined;
             resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["inactiveTimer"] = state ? state.inactiveTimer : undefined;
@@ -64,6 +66,7 @@ export class SwitchControllerFortilinkSettings extends pulumi.CustomResource {
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerFortilinkSettingsArgs | undefined;
+            resourceInputs["accessVlanMode"] = args ? args.accessVlanMode : undefined;
             resourceInputs["fortilink"] = args ? args.fortilink : undefined;
             resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["inactiveTimer"] = args ? args.inactiveTimer : undefined;
@@ -81,6 +84,7 @@ export class SwitchControllerFortilinkSettings extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SwitchControllerFortilinkSettings resources.
  */
 export interface SwitchControllerFortilinkSettingsState {
+    accessVlanMode?: pulumi.Input<string>;
     fortilink?: pulumi.Input<string>;
     getAllTables?: pulumi.Input<string>;
     inactiveTimer?: pulumi.Input<number>;
@@ -94,6 +98,7 @@ export interface SwitchControllerFortilinkSettingsState {
  * The set of arguments for constructing a SwitchControllerFortilinkSettings resource.
  */
 export interface SwitchControllerFortilinkSettingsArgs {
+    accessVlanMode?: pulumi.Input<string>;
     fortilink?: pulumi.Input<string>;
     getAllTables?: pulumi.Input<string>;
     inactiveTimer?: pulumi.Input<number>;

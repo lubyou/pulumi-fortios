@@ -37,6 +37,7 @@ export class WebProxyForwardServer extends pulumi.CustomResource {
     public readonly fqdn!: pulumi.Output<string>;
     public readonly healthcheck!: pulumi.Output<string>;
     public readonly ip!: pulumi.Output<string>;
+    public readonly ipv6!: pulumi.Output<string>;
     public readonly monitor!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
     public readonly password!: pulumi.Output<string | undefined>;
@@ -63,6 +64,7 @@ export class WebProxyForwardServer extends pulumi.CustomResource {
             resourceInputs["fqdn"] = state ? state.fqdn : undefined;
             resourceInputs["healthcheck"] = state ? state.healthcheck : undefined;
             resourceInputs["ip"] = state ? state.ip : undefined;
+            resourceInputs["ipv6"] = state ? state.ipv6 : undefined;
             resourceInputs["monitor"] = state ? state.monitor : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["password"] = state ? state.password : undefined;
@@ -77,6 +79,7 @@ export class WebProxyForwardServer extends pulumi.CustomResource {
             resourceInputs["fqdn"] = args ? args.fqdn : undefined;
             resourceInputs["healthcheck"] = args ? args.healthcheck : undefined;
             resourceInputs["ip"] = args ? args.ip : undefined;
+            resourceInputs["ipv6"] = args ? args.ipv6 : undefined;
             resourceInputs["monitor"] = args ? args.monitor : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
@@ -101,6 +104,7 @@ export interface WebProxyForwardServerState {
     fqdn?: pulumi.Input<string>;
     healthcheck?: pulumi.Input<string>;
     ip?: pulumi.Input<string>;
+    ipv6?: pulumi.Input<string>;
     monitor?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     password?: pulumi.Input<string>;
@@ -119,6 +123,7 @@ export interface WebProxyForwardServerArgs {
     fqdn?: pulumi.Input<string>;
     healthcheck?: pulumi.Input<string>;
     ip?: pulumi.Input<string>;
+    ipv6?: pulumi.Input<string>;
     monitor?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     password?: pulumi.Input<string>;

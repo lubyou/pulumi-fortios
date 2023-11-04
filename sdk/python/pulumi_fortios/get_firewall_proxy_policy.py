@@ -22,7 +22,7 @@ class GetFirewallProxyPolicyResult:
     """
     A collection of values returned by GetFirewallProxyPolicy.
     """
-    def __init__(__self__, access_proxies=None, access_proxy6s=None, action=None, application_list=None, av_profile=None, block_notification=None, cifs_profile=None, comments=None, decrypted_traffic_mirror=None, device_ownership=None, disclaimer=None, dlp_profile=None, dlp_sensor=None, dstaddr6s=None, dstaddr_negate=None, dstaddrs=None, dstintfs=None, emailfilter_profile=None, file_filter_profile=None, global_label=None, groups=None, http_tunnel_auth=None, icap_profile=None, id=None, internet_service=None, internet_service6=None, internet_service6_custom_groups=None, internet_service6_customs=None, internet_service6_groups=None, internet_service6_names=None, internet_service6_negate=None, internet_service_custom_groups=None, internet_service_customs=None, internet_service_groups=None, internet_service_ids=None, internet_service_names=None, internet_service_negate=None, ips_sensor=None, ips_voip_filter=None, label=None, logtraffic=None, logtraffic_start=None, name=None, policyid=None, poolnames=None, profile_group=None, profile_protocol_options=None, profile_type=None, proxy=None, redirect_url=None, replacemsg_override_group=None, scan_botnet_connections=None, schedule=None, sctp_filter_profile=None, service_negate=None, services=None, session_ttl=None, spamfilter_profile=None, srcaddr6s=None, srcaddr_negate=None, srcaddrs=None, srcintfs=None, ssh_filter_profile=None, ssh_policy_redirect=None, ssl_ssh_profile=None, status=None, transparent=None, users=None, utm_status=None, uuid=None, vdomparam=None, videofilter_profile=None, voip_profile=None, waf_profile=None, webcache=None, webcache_https=None, webfilter_profile=None, webproxy_forward_server=None, webproxy_profile=None, ztna_ems_tags=None, ztna_tags_match_logic=None):
+    def __init__(__self__, access_proxies=None, access_proxy6s=None, action=None, application_list=None, av_profile=None, block_notification=None, casb_profile=None, cifs_profile=None, comments=None, decrypted_traffic_mirror=None, detect_https_in_http_request=None, device_ownership=None, disclaimer=None, dlp_profile=None, dlp_sensor=None, dstaddr6s=None, dstaddr_negate=None, dstaddrs=None, dstintfs=None, emailfilter_profile=None, file_filter_profile=None, global_label=None, groups=None, http_tunnel_auth=None, icap_profile=None, id=None, internet_service=None, internet_service6=None, internet_service6_custom_groups=None, internet_service6_customs=None, internet_service6_groups=None, internet_service6_names=None, internet_service6_negate=None, internet_service_custom_groups=None, internet_service_customs=None, internet_service_groups=None, internet_service_ids=None, internet_service_names=None, internet_service_negate=None, ips_sensor=None, ips_voip_filter=None, label=None, logtraffic=None, logtraffic_start=None, name=None, policyid=None, poolnames=None, profile_group=None, profile_protocol_options=None, profile_type=None, proxy=None, redirect_url=None, replacemsg_override_group=None, scan_botnet_connections=None, schedule=None, sctp_filter_profile=None, service_negate=None, services=None, session_ttl=None, spamfilter_profile=None, srcaddr6s=None, srcaddr_negate=None, srcaddrs=None, srcintfs=None, ssh_filter_profile=None, ssh_policy_redirect=None, ssl_ssh_profile=None, status=None, transparent=None, users=None, utm_status=None, uuid=None, vdomparam=None, videofilter_profile=None, virtual_patch_profile=None, voip_profile=None, waf_profile=None, webcache=None, webcache_https=None, webfilter_profile=None, webproxy_forward_server=None, webproxy_profile=None, ztna_ems_tags=None, ztna_tags_match_logic=None):
         if access_proxies and not isinstance(access_proxies, list):
             raise TypeError("Expected argument 'access_proxies' to be a list")
         pulumi.set(__self__, "access_proxies", access_proxies)
@@ -41,6 +41,9 @@ class GetFirewallProxyPolicyResult:
         if block_notification and not isinstance(block_notification, str):
             raise TypeError("Expected argument 'block_notification' to be a str")
         pulumi.set(__self__, "block_notification", block_notification)
+        if casb_profile and not isinstance(casb_profile, str):
+            raise TypeError("Expected argument 'casb_profile' to be a str")
+        pulumi.set(__self__, "casb_profile", casb_profile)
         if cifs_profile and not isinstance(cifs_profile, str):
             raise TypeError("Expected argument 'cifs_profile' to be a str")
         pulumi.set(__self__, "cifs_profile", cifs_profile)
@@ -50,6 +53,9 @@ class GetFirewallProxyPolicyResult:
         if decrypted_traffic_mirror and not isinstance(decrypted_traffic_mirror, str):
             raise TypeError("Expected argument 'decrypted_traffic_mirror' to be a str")
         pulumi.set(__self__, "decrypted_traffic_mirror", decrypted_traffic_mirror)
+        if detect_https_in_http_request and not isinstance(detect_https_in_http_request, str):
+            raise TypeError("Expected argument 'detect_https_in_http_request' to be a str")
+        pulumi.set(__self__, "detect_https_in_http_request", detect_https_in_http_request)
         if device_ownership and not isinstance(device_ownership, str):
             raise TypeError("Expected argument 'device_ownership' to be a str")
         pulumi.set(__self__, "device_ownership", device_ownership)
@@ -239,6 +245,9 @@ class GetFirewallProxyPolicyResult:
         if videofilter_profile and not isinstance(videofilter_profile, str):
             raise TypeError("Expected argument 'videofilter_profile' to be a str")
         pulumi.set(__self__, "videofilter_profile", videofilter_profile)
+        if virtual_patch_profile and not isinstance(virtual_patch_profile, str):
+            raise TypeError("Expected argument 'virtual_patch_profile' to be a str")
+        pulumi.set(__self__, "virtual_patch_profile", virtual_patch_profile)
         if voip_profile and not isinstance(voip_profile, str):
             raise TypeError("Expected argument 'voip_profile' to be a str")
         pulumi.set(__self__, "voip_profile", voip_profile)
@@ -298,6 +307,11 @@ class GetFirewallProxyPolicyResult:
         return pulumi.get(self, "block_notification")
 
     @property
+    @pulumi.getter(name="casbProfile")
+    def casb_profile(self) -> str:
+        return pulumi.get(self, "casb_profile")
+
+    @property
     @pulumi.getter(name="cifsProfile")
     def cifs_profile(self) -> str:
         return pulumi.get(self, "cifs_profile")
@@ -311,6 +325,11 @@ class GetFirewallProxyPolicyResult:
     @pulumi.getter(name="decryptedTrafficMirror")
     def decrypted_traffic_mirror(self) -> str:
         return pulumi.get(self, "decrypted_traffic_mirror")
+
+    @property
+    @pulumi.getter(name="detectHttpsInHttpRequest")
+    def detect_https_in_http_request(self) -> str:
+        return pulumi.get(self, "detect_https_in_http_request")
 
     @property
     @pulumi.getter(name="deviceOwnership")
@@ -631,6 +650,11 @@ class GetFirewallProxyPolicyResult:
         return pulumi.get(self, "videofilter_profile")
 
     @property
+    @pulumi.getter(name="virtualPatchProfile")
+    def virtual_patch_profile(self) -> str:
+        return pulumi.get(self, "virtual_patch_profile")
+
+    @property
     @pulumi.getter(name="voipProfile")
     def voip_profile(self) -> str:
         return pulumi.get(self, "voip_profile")
@@ -688,9 +712,11 @@ class AwaitableGetFirewallProxyPolicyResult(GetFirewallProxyPolicyResult):
             application_list=self.application_list,
             av_profile=self.av_profile,
             block_notification=self.block_notification,
+            casb_profile=self.casb_profile,
             cifs_profile=self.cifs_profile,
             comments=self.comments,
             decrypted_traffic_mirror=self.decrypted_traffic_mirror,
+            detect_https_in_http_request=self.detect_https_in_http_request,
             device_ownership=self.device_ownership,
             disclaimer=self.disclaimer,
             dlp_profile=self.dlp_profile,
@@ -754,6 +780,7 @@ class AwaitableGetFirewallProxyPolicyResult(GetFirewallProxyPolicyResult):
             uuid=self.uuid,
             vdomparam=self.vdomparam,
             videofilter_profile=self.videofilter_profile,
+            virtual_patch_profile=self.virtual_patch_profile,
             voip_profile=self.voip_profile,
             waf_profile=self.waf_profile,
             webcache=self.webcache,
@@ -784,9 +811,11 @@ def get_firewall_proxy_policy(policyid: Optional[int] = None,
         application_list=pulumi.get(__ret__, 'application_list'),
         av_profile=pulumi.get(__ret__, 'av_profile'),
         block_notification=pulumi.get(__ret__, 'block_notification'),
+        casb_profile=pulumi.get(__ret__, 'casb_profile'),
         cifs_profile=pulumi.get(__ret__, 'cifs_profile'),
         comments=pulumi.get(__ret__, 'comments'),
         decrypted_traffic_mirror=pulumi.get(__ret__, 'decrypted_traffic_mirror'),
+        detect_https_in_http_request=pulumi.get(__ret__, 'detect_https_in_http_request'),
         device_ownership=pulumi.get(__ret__, 'device_ownership'),
         disclaimer=pulumi.get(__ret__, 'disclaimer'),
         dlp_profile=pulumi.get(__ret__, 'dlp_profile'),
@@ -850,6 +879,7 @@ def get_firewall_proxy_policy(policyid: Optional[int] = None,
         uuid=pulumi.get(__ret__, 'uuid'),
         vdomparam=pulumi.get(__ret__, 'vdomparam'),
         videofilter_profile=pulumi.get(__ret__, 'videofilter_profile'),
+        virtual_patch_profile=pulumi.get(__ret__, 'virtual_patch_profile'),
         voip_profile=pulumi.get(__ret__, 'voip_profile'),
         waf_profile=pulumi.get(__ret__, 'waf_profile'),
         webcache=pulumi.get(__ret__, 'webcache'),

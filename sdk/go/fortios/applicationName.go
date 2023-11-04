@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type ApplicationName struct {
@@ -174,6 +175,12 @@ func (i *ApplicationName) ToApplicationNameOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(ApplicationNameOutput)
 }
 
+func (i *ApplicationName) ToOutput(ctx context.Context) pulumix.Output[*ApplicationName] {
+	return pulumix.Output[*ApplicationName]{
+		OutputState: i.ToApplicationNameOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ApplicationNameArrayInput is an input type that accepts ApplicationNameArray and ApplicationNameArrayOutput values.
 // You can construct a concrete instance of `ApplicationNameArrayInput` via:
 //
@@ -197,6 +204,12 @@ func (i ApplicationNameArray) ToApplicationNameArrayOutput() ApplicationNameArra
 
 func (i ApplicationNameArray) ToApplicationNameArrayOutputWithContext(ctx context.Context) ApplicationNameArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ApplicationNameArrayOutput)
+}
+
+func (i ApplicationNameArray) ToOutput(ctx context.Context) pulumix.Output[[]*ApplicationName] {
+	return pulumix.Output[[]*ApplicationName]{
+		OutputState: i.ToApplicationNameArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ApplicationNameMapInput is an input type that accepts ApplicationNameMap and ApplicationNameMapOutput values.
@@ -224,6 +237,12 @@ func (i ApplicationNameMap) ToApplicationNameMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(ApplicationNameMapOutput)
 }
 
+func (i ApplicationNameMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ApplicationName] {
+	return pulumix.Output[map[string]*ApplicationName]{
+		OutputState: i.ToApplicationNameMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ApplicationNameOutput struct{ *pulumi.OutputState }
 
 func (ApplicationNameOutput) ElementType() reflect.Type {
@@ -236,6 +255,12 @@ func (o ApplicationNameOutput) ToApplicationNameOutput() ApplicationNameOutput {
 
 func (o ApplicationNameOutput) ToApplicationNameOutputWithContext(ctx context.Context) ApplicationNameOutput {
 	return o
+}
+
+func (o ApplicationNameOutput) ToOutput(ctx context.Context) pulumix.Output[*ApplicationName] {
+	return pulumix.Output[*ApplicationName]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ApplicationNameOutput) Behavior() pulumi.StringOutput {
@@ -320,6 +345,12 @@ func (o ApplicationNameArrayOutput) ToApplicationNameArrayOutputWithContext(ctx 
 	return o
 }
 
+func (o ApplicationNameArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ApplicationName] {
+	return pulumix.Output[[]*ApplicationName]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ApplicationNameArrayOutput) Index(i pulumi.IntInput) ApplicationNameOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ApplicationName {
 		return vs[0].([]*ApplicationName)[vs[1].(int)]
@@ -338,6 +369,12 @@ func (o ApplicationNameMapOutput) ToApplicationNameMapOutput() ApplicationNameMa
 
 func (o ApplicationNameMapOutput) ToApplicationNameMapOutputWithContext(ctx context.Context) ApplicationNameMapOutput {
 	return o
+}
+
+func (o ApplicationNameMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ApplicationName] {
+	return pulumix.Output[map[string]*ApplicationName]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ApplicationNameMapOutput) MapIndex(k pulumi.StringInput) ApplicationNameOutput {

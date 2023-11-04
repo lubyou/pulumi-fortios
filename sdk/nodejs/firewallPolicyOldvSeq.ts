@@ -6,9 +6,9 @@ import * as inputs from "./types/input";
 import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
-export class FirewallSecurityPolicySeq extends pulumi.CustomResource {
+export class FirewallPolicyOldvSeq extends pulumi.CustomResource {
     /**
-     * Get an existing FirewallSecurityPolicySeq resource's state with the given name, ID, and optional extra
+     * Get an existing FirewallPolicyOldvSeq resource's state with the given name, ID, and optional extra
      * properties used to qualify the lookup.
      *
      * @param name The _unique_ name of the resulting resource.
@@ -16,22 +16,22 @@ export class FirewallSecurityPolicySeq extends pulumi.CustomResource {
      * @param state Any extra arguments used during the lookup.
      * @param opts Optional settings to control the behavior of the CustomResource.
      */
-    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: FirewallSecurityPolicySeqState, opts?: pulumi.CustomResourceOptions): FirewallSecurityPolicySeq {
-        return new FirewallSecurityPolicySeq(name, <any>state, { ...opts, id: id });
+    public static get(name: string, id: pulumi.Input<pulumi.ID>, state?: FirewallPolicyOldvSeqState, opts?: pulumi.CustomResourceOptions): FirewallPolicyOldvSeq {
+        return new FirewallPolicyOldvSeq(name, <any>state, { ...opts, id: id });
     }
 
     /** @internal */
-    public static readonly __pulumiType = 'fortios:index/firewallSecurityPolicySeq:FirewallSecurityPolicySeq';
+    public static readonly __pulumiType = 'fortios:index/firewallPolicyOldvSeq:FirewallPolicyOldvSeq';
 
     /**
-     * Returns true if the given object is an instance of FirewallSecurityPolicySeq.  This is designed to work even
+     * Returns true if the given object is an instance of FirewallPolicyOldvSeq.  This is designed to work even
      * when multiple copies of the Pulumi SDK have been loaded into the same process.
      */
-    public static isInstance(obj: any): obj is FirewallSecurityPolicySeq {
+    public static isInstance(obj: any): obj is FirewallPolicyOldvSeq {
         if (obj === undefined || obj === null) {
             return false;
         }
-        return obj['__pulumiType'] === FirewallSecurityPolicySeq.__pulumiType;
+        return obj['__pulumiType'] === FirewallPolicyOldvSeq.__pulumiType;
     }
 
     public readonly alterPosition!: pulumi.Output<string>;
@@ -39,23 +39,23 @@ export class FirewallSecurityPolicySeq extends pulumi.CustomResource {
     public readonly enableStateChecking!: pulumi.Output<boolean | undefined>;
     public readonly policyDstId!: pulumi.Output<number>;
     public readonly policySrcId!: pulumi.Output<number>;
-    public /*out*/ readonly statePolicyLists!: pulumi.Output<outputs.FirewallSecurityPolicySeqStatePolicyList[]>;
+    public /*out*/ readonly statePolicyLists!: pulumi.Output<outputs.FirewallPolicyOldvSeqStatePolicyList[]>;
     public readonly statePolicySrcdstPos!: pulumi.Output<string | undefined>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
 
     /**
-     * Create a FirewallSecurityPolicySeq resource with the given unique name, arguments, and options.
+     * Create a FirewallPolicyOldvSeq resource with the given unique name, arguments, and options.
      *
      * @param name The _unique_ name of the resource.
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: FirewallSecurityPolicySeqArgs, opts?: pulumi.CustomResourceOptions)
-    constructor(name: string, argsOrState?: FirewallSecurityPolicySeqArgs | FirewallSecurityPolicySeqState, opts?: pulumi.CustomResourceOptions) {
+    constructor(name: string, args: FirewallPolicyOldvSeqArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, argsOrState?: FirewallPolicyOldvSeqArgs | FirewallPolicyOldvSeqState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
-            const state = argsOrState as FirewallSecurityPolicySeqState | undefined;
+            const state = argsOrState as FirewallPolicyOldvSeqState | undefined;
             resourceInputs["alterPosition"] = state ? state.alterPosition : undefined;
             resourceInputs["comment"] = state ? state.comment : undefined;
             resourceInputs["enableStateChecking"] = state ? state.enableStateChecking : undefined;
@@ -65,7 +65,7 @@ export class FirewallSecurityPolicySeq extends pulumi.CustomResource {
             resourceInputs["statePolicySrcdstPos"] = state ? state.statePolicySrcdstPos : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
-            const args = argsOrState as FirewallSecurityPolicySeqArgs | undefined;
+            const args = argsOrState as FirewallPolicyOldvSeqArgs | undefined;
             if ((!args || args.alterPosition === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'alterPosition'");
             }
@@ -85,28 +85,28 @@ export class FirewallSecurityPolicySeq extends pulumi.CustomResource {
             resourceInputs["statePolicyLists"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        super(FirewallSecurityPolicySeq.__pulumiType, name, resourceInputs, opts);
+        super(FirewallPolicyOldvSeq.__pulumiType, name, resourceInputs, opts);
     }
 }
 
 /**
- * Input properties used for looking up and filtering FirewallSecurityPolicySeq resources.
+ * Input properties used for looking up and filtering FirewallPolicyOldvSeq resources.
  */
-export interface FirewallSecurityPolicySeqState {
+export interface FirewallPolicyOldvSeqState {
     alterPosition?: pulumi.Input<string>;
     comment?: pulumi.Input<string>;
     enableStateChecking?: pulumi.Input<boolean>;
     policyDstId?: pulumi.Input<number>;
     policySrcId?: pulumi.Input<number>;
-    statePolicyLists?: pulumi.Input<pulumi.Input<inputs.FirewallSecurityPolicySeqStatePolicyList>[]>;
+    statePolicyLists?: pulumi.Input<pulumi.Input<inputs.FirewallPolicyOldvSeqStatePolicyList>[]>;
     statePolicySrcdstPos?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
 }
 
 /**
- * The set of arguments for constructing a FirewallSecurityPolicySeq resource.
+ * The set of arguments for constructing a FirewallPolicyOldvSeq resource.
  */
-export interface FirewallSecurityPolicySeqArgs {
+export interface FirewallPolicyOldvSeqArgs {
     alterPosition: pulumi.Input<string>;
     comment?: pulumi.Input<string>;
     enableStateChecking?: pulumi.Input<boolean>;

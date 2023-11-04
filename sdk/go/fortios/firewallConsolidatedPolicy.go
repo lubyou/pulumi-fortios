@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallConsolidatedPolicy struct {
@@ -550,6 +551,12 @@ func (i *FirewallConsolidatedPolicy) ToFirewallConsolidatedPolicyOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallConsolidatedPolicyOutput)
 }
 
+func (i *FirewallConsolidatedPolicy) ToOutput(ctx context.Context) pulumix.Output[*FirewallConsolidatedPolicy] {
+	return pulumix.Output[*FirewallConsolidatedPolicy]{
+		OutputState: i.ToFirewallConsolidatedPolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallConsolidatedPolicyArrayInput is an input type that accepts FirewallConsolidatedPolicyArray and FirewallConsolidatedPolicyArrayOutput values.
 // You can construct a concrete instance of `FirewallConsolidatedPolicyArrayInput` via:
 //
@@ -573,6 +580,12 @@ func (i FirewallConsolidatedPolicyArray) ToFirewallConsolidatedPolicyArrayOutput
 
 func (i FirewallConsolidatedPolicyArray) ToFirewallConsolidatedPolicyArrayOutputWithContext(ctx context.Context) FirewallConsolidatedPolicyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallConsolidatedPolicyArrayOutput)
+}
+
+func (i FirewallConsolidatedPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallConsolidatedPolicy] {
+	return pulumix.Output[[]*FirewallConsolidatedPolicy]{
+		OutputState: i.ToFirewallConsolidatedPolicyArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallConsolidatedPolicyMapInput is an input type that accepts FirewallConsolidatedPolicyMap and FirewallConsolidatedPolicyMapOutput values.
@@ -600,6 +613,12 @@ func (i FirewallConsolidatedPolicyMap) ToFirewallConsolidatedPolicyMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallConsolidatedPolicyMapOutput)
 }
 
+func (i FirewallConsolidatedPolicyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallConsolidatedPolicy] {
+	return pulumix.Output[map[string]*FirewallConsolidatedPolicy]{
+		OutputState: i.ToFirewallConsolidatedPolicyMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallConsolidatedPolicyOutput struct{ *pulumi.OutputState }
 
 func (FirewallConsolidatedPolicyOutput) ElementType() reflect.Type {
@@ -612,6 +631,12 @@ func (o FirewallConsolidatedPolicyOutput) ToFirewallConsolidatedPolicyOutput() F
 
 func (o FirewallConsolidatedPolicyOutput) ToFirewallConsolidatedPolicyOutputWithContext(ctx context.Context) FirewallConsolidatedPolicyOutput {
 	return o
+}
+
+func (o FirewallConsolidatedPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallConsolidatedPolicy] {
+	return pulumix.Output[*FirewallConsolidatedPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallConsolidatedPolicyOutput) Action() pulumi.StringOutput {
@@ -1032,6 +1057,12 @@ func (o FirewallConsolidatedPolicyArrayOutput) ToFirewallConsolidatedPolicyArray
 	return o
 }
 
+func (o FirewallConsolidatedPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallConsolidatedPolicy] {
+	return pulumix.Output[[]*FirewallConsolidatedPolicy]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallConsolidatedPolicyArrayOutput) Index(i pulumi.IntInput) FirewallConsolidatedPolicyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallConsolidatedPolicy {
 		return vs[0].([]*FirewallConsolidatedPolicy)[vs[1].(int)]
@@ -1050,6 +1081,12 @@ func (o FirewallConsolidatedPolicyMapOutput) ToFirewallConsolidatedPolicyMapOutp
 
 func (o FirewallConsolidatedPolicyMapOutput) ToFirewallConsolidatedPolicyMapOutputWithContext(ctx context.Context) FirewallConsolidatedPolicyMapOutput {
 	return o
+}
+
+func (o FirewallConsolidatedPolicyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallConsolidatedPolicy] {
+	return pulumix.Output[map[string]*FirewallConsolidatedPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallConsolidatedPolicyMapOutput) MapIndex(k pulumi.StringInput) FirewallConsolidatedPolicyOutput {

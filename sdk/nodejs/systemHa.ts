@@ -112,6 +112,7 @@ export class SystemHa extends pulumi.CustomResource {
     public readonly unicastStatus!: pulumi.Output<string>;
     public readonly uninterruptiblePrimaryWait!: pulumi.Output<number>;
     public readonly uninterruptibleUpgrade!: pulumi.Output<string>;
+    public readonly upgradeMode!: pulumi.Output<string>;
     public readonly vcluster2!: pulumi.Output<string>;
     public readonly vclusterId!: pulumi.Output<number>;
     public readonly vclusterStatus!: pulumi.Output<string>;
@@ -211,6 +212,7 @@ export class SystemHa extends pulumi.CustomResource {
             resourceInputs["unicastStatus"] = state ? state.unicastStatus : undefined;
             resourceInputs["uninterruptiblePrimaryWait"] = state ? state.uninterruptiblePrimaryWait : undefined;
             resourceInputs["uninterruptibleUpgrade"] = state ? state.uninterruptibleUpgrade : undefined;
+            resourceInputs["upgradeMode"] = state ? state.upgradeMode : undefined;
             resourceInputs["vcluster2"] = state ? state.vcluster2 : undefined;
             resourceInputs["vclusterId"] = state ? state.vclusterId : undefined;
             resourceInputs["vclusterStatus"] = state ? state.vclusterStatus : undefined;
@@ -298,6 +300,7 @@ export class SystemHa extends pulumi.CustomResource {
             resourceInputs["unicastStatus"] = args ? args.unicastStatus : undefined;
             resourceInputs["uninterruptiblePrimaryWait"] = args ? args.uninterruptiblePrimaryWait : undefined;
             resourceInputs["uninterruptibleUpgrade"] = args ? args.uninterruptibleUpgrade : undefined;
+            resourceInputs["upgradeMode"] = args ? args.upgradeMode : undefined;
             resourceInputs["vcluster2"] = args ? args.vcluster2 : undefined;
             resourceInputs["vclusterId"] = args ? args.vclusterId : undefined;
             resourceInputs["vclusterStatus"] = args ? args.vclusterStatus : undefined;
@@ -395,6 +398,7 @@ export interface SystemHaState {
     unicastStatus?: pulumi.Input<string>;
     uninterruptiblePrimaryWait?: pulumi.Input<number>;
     uninterruptibleUpgrade?: pulumi.Input<string>;
+    upgradeMode?: pulumi.Input<string>;
     vcluster2?: pulumi.Input<string>;
     vclusterId?: pulumi.Input<number>;
     vclusterStatus?: pulumi.Input<string>;
@@ -486,6 +490,7 @@ export interface SystemHaArgs {
     unicastStatus?: pulumi.Input<string>;
     uninterruptiblePrimaryWait?: pulumi.Input<number>;
     uninterruptibleUpgrade?: pulumi.Input<string>;
+    upgradeMode?: pulumi.Input<string>;
     vcluster2?: pulumi.Input<string>;
     vclusterId?: pulumi.Input<number>;
     vclusterStatus?: pulumi.Input<string>;

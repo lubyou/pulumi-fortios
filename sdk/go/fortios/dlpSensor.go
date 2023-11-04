@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type DlpSensor struct {
@@ -175,6 +176,12 @@ func (i *DlpSensor) ToDlpSensorOutputWithContext(ctx context.Context) DlpSensorO
 	return pulumi.ToOutputWithContext(ctx, i).(DlpSensorOutput)
 }
 
+func (i *DlpSensor) ToOutput(ctx context.Context) pulumix.Output[*DlpSensor] {
+	return pulumix.Output[*DlpSensor]{
+		OutputState: i.ToDlpSensorOutputWithContext(ctx).OutputState,
+	}
+}
+
 // DlpSensorArrayInput is an input type that accepts DlpSensorArray and DlpSensorArrayOutput values.
 // You can construct a concrete instance of `DlpSensorArrayInput` via:
 //
@@ -198,6 +205,12 @@ func (i DlpSensorArray) ToDlpSensorArrayOutput() DlpSensorArrayOutput {
 
 func (i DlpSensorArray) ToDlpSensorArrayOutputWithContext(ctx context.Context) DlpSensorArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DlpSensorArrayOutput)
+}
+
+func (i DlpSensorArray) ToOutput(ctx context.Context) pulumix.Output[[]*DlpSensor] {
+	return pulumix.Output[[]*DlpSensor]{
+		OutputState: i.ToDlpSensorArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // DlpSensorMapInput is an input type that accepts DlpSensorMap and DlpSensorMapOutput values.
@@ -225,6 +238,12 @@ func (i DlpSensorMap) ToDlpSensorMapOutputWithContext(ctx context.Context) DlpSe
 	return pulumi.ToOutputWithContext(ctx, i).(DlpSensorMapOutput)
 }
 
+func (i DlpSensorMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DlpSensor] {
+	return pulumix.Output[map[string]*DlpSensor]{
+		OutputState: i.ToDlpSensorMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DlpSensorOutput struct{ *pulumi.OutputState }
 
 func (DlpSensorOutput) ElementType() reflect.Type {
@@ -237,6 +256,12 @@ func (o DlpSensorOutput) ToDlpSensorOutput() DlpSensorOutput {
 
 func (o DlpSensorOutput) ToDlpSensorOutputWithContext(ctx context.Context) DlpSensorOutput {
 	return o
+}
+
+func (o DlpSensorOutput) ToOutput(ctx context.Context) pulumix.Output[*DlpSensor] {
+	return pulumix.Output[*DlpSensor]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DlpSensorOutput) Comment() pulumi.StringPtrOutput {
@@ -325,6 +350,12 @@ func (o DlpSensorArrayOutput) ToDlpSensorArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
+func (o DlpSensorArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DlpSensor] {
+	return pulumix.Output[[]*DlpSensor]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DlpSensorArrayOutput) Index(i pulumi.IntInput) DlpSensorOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DlpSensor {
 		return vs[0].([]*DlpSensor)[vs[1].(int)]
@@ -343,6 +374,12 @@ func (o DlpSensorMapOutput) ToDlpSensorMapOutput() DlpSensorMapOutput {
 
 func (o DlpSensorMapOutput) ToDlpSensorMapOutputWithContext(ctx context.Context) DlpSensorMapOutput {
 	return o
+}
+
+func (o DlpSensorMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DlpSensor] {
+	return pulumix.Output[map[string]*DlpSensor]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DlpSensorMapOutput) MapIndex(k pulumi.StringInput) DlpSensorOutput {

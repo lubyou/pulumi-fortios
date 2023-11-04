@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FortimanagerSystemAdmin struct {
@@ -100,6 +101,12 @@ func (i *FortimanagerSystemAdmin) ToFortimanagerSystemAdminOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemAdminOutput)
 }
 
+func (i *FortimanagerSystemAdmin) ToOutput(ctx context.Context) pulumix.Output[*FortimanagerSystemAdmin] {
+	return pulumix.Output[*FortimanagerSystemAdmin]{
+		OutputState: i.ToFortimanagerSystemAdminOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FortimanagerSystemAdminArrayInput is an input type that accepts FortimanagerSystemAdminArray and FortimanagerSystemAdminArrayOutput values.
 // You can construct a concrete instance of `FortimanagerSystemAdminArrayInput` via:
 //
@@ -123,6 +130,12 @@ func (i FortimanagerSystemAdminArray) ToFortimanagerSystemAdminArrayOutput() For
 
 func (i FortimanagerSystemAdminArray) ToFortimanagerSystemAdminArrayOutputWithContext(ctx context.Context) FortimanagerSystemAdminArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemAdminArrayOutput)
+}
+
+func (i FortimanagerSystemAdminArray) ToOutput(ctx context.Context) pulumix.Output[[]*FortimanagerSystemAdmin] {
+	return pulumix.Output[[]*FortimanagerSystemAdmin]{
+		OutputState: i.ToFortimanagerSystemAdminArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FortimanagerSystemAdminMapInput is an input type that accepts FortimanagerSystemAdminMap and FortimanagerSystemAdminMapOutput values.
@@ -150,6 +163,12 @@ func (i FortimanagerSystemAdminMap) ToFortimanagerSystemAdminMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemAdminMapOutput)
 }
 
+func (i FortimanagerSystemAdminMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FortimanagerSystemAdmin] {
+	return pulumix.Output[map[string]*FortimanagerSystemAdmin]{
+		OutputState: i.ToFortimanagerSystemAdminMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FortimanagerSystemAdminOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerSystemAdminOutput) ElementType() reflect.Type {
@@ -162,6 +181,12 @@ func (o FortimanagerSystemAdminOutput) ToFortimanagerSystemAdminOutput() Fortima
 
 func (o FortimanagerSystemAdminOutput) ToFortimanagerSystemAdminOutputWithContext(ctx context.Context) FortimanagerSystemAdminOutput {
 	return o
+}
+
+func (o FortimanagerSystemAdminOutput) ToOutput(ctx context.Context) pulumix.Output[*FortimanagerSystemAdmin] {
+	return pulumix.Output[*FortimanagerSystemAdmin]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FortimanagerSystemAdminOutput) HttpPort() pulumi.IntPtrOutput {
@@ -190,6 +215,12 @@ func (o FortimanagerSystemAdminArrayOutput) ToFortimanagerSystemAdminArrayOutput
 	return o
 }
 
+func (o FortimanagerSystemAdminArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FortimanagerSystemAdmin] {
+	return pulumix.Output[[]*FortimanagerSystemAdmin]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FortimanagerSystemAdminArrayOutput) Index(i pulumi.IntInput) FortimanagerSystemAdminOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FortimanagerSystemAdmin {
 		return vs[0].([]*FortimanagerSystemAdmin)[vs[1].(int)]
@@ -208,6 +239,12 @@ func (o FortimanagerSystemAdminMapOutput) ToFortimanagerSystemAdminMapOutput() F
 
 func (o FortimanagerSystemAdminMapOutput) ToFortimanagerSystemAdminMapOutputWithContext(ctx context.Context) FortimanagerSystemAdminMapOutput {
 	return o
+}
+
+func (o FortimanagerSystemAdminMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FortimanagerSystemAdmin] {
+	return pulumix.Output[map[string]*FortimanagerSystemAdmin]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FortimanagerSystemAdminMapOutput) MapIndex(k pulumi.StringInput) FortimanagerSystemAdminOutput {

@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type EndpointControlForticlientRegistrationSync struct {
@@ -104,6 +105,12 @@ func (i *EndpointControlForticlientRegistrationSync) ToEndpointControlForticlien
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlForticlientRegistrationSyncOutput)
 }
 
+func (i *EndpointControlForticlientRegistrationSync) ToOutput(ctx context.Context) pulumix.Output[*EndpointControlForticlientRegistrationSync] {
+	return pulumix.Output[*EndpointControlForticlientRegistrationSync]{
+		OutputState: i.ToEndpointControlForticlientRegistrationSyncOutputWithContext(ctx).OutputState,
+	}
+}
+
 // EndpointControlForticlientRegistrationSyncArrayInput is an input type that accepts EndpointControlForticlientRegistrationSyncArray and EndpointControlForticlientRegistrationSyncArrayOutput values.
 // You can construct a concrete instance of `EndpointControlForticlientRegistrationSyncArrayInput` via:
 //
@@ -127,6 +134,12 @@ func (i EndpointControlForticlientRegistrationSyncArray) ToEndpointControlFortic
 
 func (i EndpointControlForticlientRegistrationSyncArray) ToEndpointControlForticlientRegistrationSyncArrayOutputWithContext(ctx context.Context) EndpointControlForticlientRegistrationSyncArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlForticlientRegistrationSyncArrayOutput)
+}
+
+func (i EndpointControlForticlientRegistrationSyncArray) ToOutput(ctx context.Context) pulumix.Output[[]*EndpointControlForticlientRegistrationSync] {
+	return pulumix.Output[[]*EndpointControlForticlientRegistrationSync]{
+		OutputState: i.ToEndpointControlForticlientRegistrationSyncArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // EndpointControlForticlientRegistrationSyncMapInput is an input type that accepts EndpointControlForticlientRegistrationSyncMap and EndpointControlForticlientRegistrationSyncMapOutput values.
@@ -154,6 +167,12 @@ func (i EndpointControlForticlientRegistrationSyncMap) ToEndpointControlForticli
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlForticlientRegistrationSyncMapOutput)
 }
 
+func (i EndpointControlForticlientRegistrationSyncMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*EndpointControlForticlientRegistrationSync] {
+	return pulumix.Output[map[string]*EndpointControlForticlientRegistrationSync]{
+		OutputState: i.ToEndpointControlForticlientRegistrationSyncMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type EndpointControlForticlientRegistrationSyncOutput struct{ *pulumi.OutputState }
 
 func (EndpointControlForticlientRegistrationSyncOutput) ElementType() reflect.Type {
@@ -166,6 +185,12 @@ func (o EndpointControlForticlientRegistrationSyncOutput) ToEndpointControlForti
 
 func (o EndpointControlForticlientRegistrationSyncOutput) ToEndpointControlForticlientRegistrationSyncOutputWithContext(ctx context.Context) EndpointControlForticlientRegistrationSyncOutput {
 	return o
+}
+
+func (o EndpointControlForticlientRegistrationSyncOutput) ToOutput(ctx context.Context) pulumix.Output[*EndpointControlForticlientRegistrationSync] {
+	return pulumix.Output[*EndpointControlForticlientRegistrationSync]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o EndpointControlForticlientRegistrationSyncOutput) PeerIp() pulumi.StringOutput {
@@ -194,6 +219,12 @@ func (o EndpointControlForticlientRegistrationSyncArrayOutput) ToEndpointControl
 	return o
 }
 
+func (o EndpointControlForticlientRegistrationSyncArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*EndpointControlForticlientRegistrationSync] {
+	return pulumix.Output[[]*EndpointControlForticlientRegistrationSync]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o EndpointControlForticlientRegistrationSyncArrayOutput) Index(i pulumi.IntInput) EndpointControlForticlientRegistrationSyncOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *EndpointControlForticlientRegistrationSync {
 		return vs[0].([]*EndpointControlForticlientRegistrationSync)[vs[1].(int)]
@@ -212,6 +243,12 @@ func (o EndpointControlForticlientRegistrationSyncMapOutput) ToEndpointControlFo
 
 func (o EndpointControlForticlientRegistrationSyncMapOutput) ToEndpointControlForticlientRegistrationSyncMapOutputWithContext(ctx context.Context) EndpointControlForticlientRegistrationSyncMapOutput {
 	return o
+}
+
+func (o EndpointControlForticlientRegistrationSyncMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*EndpointControlForticlientRegistrationSync] {
+	return pulumix.Output[map[string]*EndpointControlForticlientRegistrationSync]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o EndpointControlForticlientRegistrationSyncMapOutput) MapIndex(k pulumi.StringInput) EndpointControlForticlientRegistrationSyncOutput {

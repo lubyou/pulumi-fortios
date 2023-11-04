@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemClusterSync(ctx *pulumi.Context, args *LookupSystemClusterSyncArgs, opts ...pulumi.InvokeOption) (*LookupSystemClusterSyncResult, error) {
@@ -84,6 +85,12 @@ func (o LookupSystemClusterSyncResultOutput) ToLookupSystemClusterSyncResultOutp
 
 func (o LookupSystemClusterSyncResultOutput) ToLookupSystemClusterSyncResultOutputWithContext(ctx context.Context) LookupSystemClusterSyncResultOutput {
 	return o
+}
+
+func (o LookupSystemClusterSyncResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemClusterSyncResult] {
+	return pulumix.Output[LookupSystemClusterSyncResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupSystemClusterSyncResultOutput) DownIntfsBeforeSessSyncs() GetSystemClusterSyncDownIntfsBeforeSessSyncArrayOutput {

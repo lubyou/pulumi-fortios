@@ -10,17 +10,20 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallCentralsnatmapSort struct {
 	pulumi.CustomResourceState
 
-	Comment       pulumi.StringPtrOutput `pulumi:"comment"`
-	ForceRecreate pulumi.StringPtrOutput `pulumi:"forceRecreate"`
-	Sortby        pulumi.StringOutput    `pulumi:"sortby"`
-	Sortdirection pulumi.StringOutput    `pulumi:"sortdirection"`
-	Status        pulumi.StringPtrOutput `pulumi:"status"`
-	Vdomparam     pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	Comment          pulumi.StringPtrOutput                               `pulumi:"comment"`
+	ForceRecreate    pulumi.StringOutput                                  `pulumi:"forceRecreate"`
+	ManualOrders     pulumi.StringArrayOutput                             `pulumi:"manualOrders"`
+	Sortby           pulumi.StringOutput                                  `pulumi:"sortby"`
+	Sortdirection    pulumi.StringOutput                                  `pulumi:"sortdirection"`
+	StatePolicyLists FirewallCentralsnatmapSortStatePolicyListArrayOutput `pulumi:"statePolicyLists"`
+	Status           pulumi.StringOutput                                  `pulumi:"status"`
+	Vdomparam        pulumi.StringPtrOutput                               `pulumi:"vdomparam"`
 }
 
 // NewFirewallCentralsnatmapSort registers a new resource with the given unique name, arguments, and options.
@@ -59,21 +62,25 @@ func GetFirewallCentralsnatmapSort(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallCentralsnatmapSort resources.
 type firewallCentralsnatmapSortState struct {
-	Comment       *string `pulumi:"comment"`
-	ForceRecreate *string `pulumi:"forceRecreate"`
-	Sortby        *string `pulumi:"sortby"`
-	Sortdirection *string `pulumi:"sortdirection"`
-	Status        *string `pulumi:"status"`
-	Vdomparam     *string `pulumi:"vdomparam"`
+	Comment          *string                                     `pulumi:"comment"`
+	ForceRecreate    *string                                     `pulumi:"forceRecreate"`
+	ManualOrders     []string                                    `pulumi:"manualOrders"`
+	Sortby           *string                                     `pulumi:"sortby"`
+	Sortdirection    *string                                     `pulumi:"sortdirection"`
+	StatePolicyLists []FirewallCentralsnatmapSortStatePolicyList `pulumi:"statePolicyLists"`
+	Status           *string                                     `pulumi:"status"`
+	Vdomparam        *string                                     `pulumi:"vdomparam"`
 }
 
 type FirewallCentralsnatmapSortState struct {
-	Comment       pulumi.StringPtrInput
-	ForceRecreate pulumi.StringPtrInput
-	Sortby        pulumi.StringPtrInput
-	Sortdirection pulumi.StringPtrInput
-	Status        pulumi.StringPtrInput
-	Vdomparam     pulumi.StringPtrInput
+	Comment          pulumi.StringPtrInput
+	ForceRecreate    pulumi.StringPtrInput
+	ManualOrders     pulumi.StringArrayInput
+	Sortby           pulumi.StringPtrInput
+	Sortdirection    pulumi.StringPtrInput
+	StatePolicyLists FirewallCentralsnatmapSortStatePolicyListArrayInput
+	Status           pulumi.StringPtrInput
+	Vdomparam        pulumi.StringPtrInput
 }
 
 func (FirewallCentralsnatmapSortState) ElementType() reflect.Type {
@@ -81,18 +88,20 @@ func (FirewallCentralsnatmapSortState) ElementType() reflect.Type {
 }
 
 type firewallCentralsnatmapSortArgs struct {
-	Comment       *string `pulumi:"comment"`
-	ForceRecreate *string `pulumi:"forceRecreate"`
-	Sortby        string  `pulumi:"sortby"`
-	Sortdirection string  `pulumi:"sortdirection"`
-	Status        *string `pulumi:"status"`
-	Vdomparam     *string `pulumi:"vdomparam"`
+	Comment       *string  `pulumi:"comment"`
+	ForceRecreate *string  `pulumi:"forceRecreate"`
+	ManualOrders  []string `pulumi:"manualOrders"`
+	Sortby        string   `pulumi:"sortby"`
+	Sortdirection string   `pulumi:"sortdirection"`
+	Status        *string  `pulumi:"status"`
+	Vdomparam     *string  `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a FirewallCentralsnatmapSort resource.
 type FirewallCentralsnatmapSortArgs struct {
 	Comment       pulumi.StringPtrInput
 	ForceRecreate pulumi.StringPtrInput
+	ManualOrders  pulumi.StringArrayInput
 	Sortby        pulumi.StringInput
 	Sortdirection pulumi.StringInput
 	Status        pulumi.StringPtrInput
@@ -122,6 +131,12 @@ func (i *FirewallCentralsnatmapSort) ToFirewallCentralsnatmapSortOutputWithConte
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallCentralsnatmapSortOutput)
 }
 
+func (i *FirewallCentralsnatmapSort) ToOutput(ctx context.Context) pulumix.Output[*FirewallCentralsnatmapSort] {
+	return pulumix.Output[*FirewallCentralsnatmapSort]{
+		OutputState: i.ToFirewallCentralsnatmapSortOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallCentralsnatmapSortArrayInput is an input type that accepts FirewallCentralsnatmapSortArray and FirewallCentralsnatmapSortArrayOutput values.
 // You can construct a concrete instance of `FirewallCentralsnatmapSortArrayInput` via:
 //
@@ -145,6 +160,12 @@ func (i FirewallCentralsnatmapSortArray) ToFirewallCentralsnatmapSortArrayOutput
 
 func (i FirewallCentralsnatmapSortArray) ToFirewallCentralsnatmapSortArrayOutputWithContext(ctx context.Context) FirewallCentralsnatmapSortArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallCentralsnatmapSortArrayOutput)
+}
+
+func (i FirewallCentralsnatmapSortArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallCentralsnatmapSort] {
+	return pulumix.Output[[]*FirewallCentralsnatmapSort]{
+		OutputState: i.ToFirewallCentralsnatmapSortArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallCentralsnatmapSortMapInput is an input type that accepts FirewallCentralsnatmapSortMap and FirewallCentralsnatmapSortMapOutput values.
@@ -172,6 +193,12 @@ func (i FirewallCentralsnatmapSortMap) ToFirewallCentralsnatmapSortMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallCentralsnatmapSortMapOutput)
 }
 
+func (i FirewallCentralsnatmapSortMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallCentralsnatmapSort] {
+	return pulumix.Output[map[string]*FirewallCentralsnatmapSort]{
+		OutputState: i.ToFirewallCentralsnatmapSortMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallCentralsnatmapSortOutput struct{ *pulumi.OutputState }
 
 func (FirewallCentralsnatmapSortOutput) ElementType() reflect.Type {
@@ -186,12 +213,22 @@ func (o FirewallCentralsnatmapSortOutput) ToFirewallCentralsnatmapSortOutputWith
 	return o
 }
 
+func (o FirewallCentralsnatmapSortOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallCentralsnatmapSort] {
+	return pulumix.Output[*FirewallCentralsnatmapSort]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallCentralsnatmapSortOutput) Comment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FirewallCentralsnatmapSort) pulumi.StringPtrOutput { return v.Comment }).(pulumi.StringPtrOutput)
 }
 
-func (o FirewallCentralsnatmapSortOutput) ForceRecreate() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *FirewallCentralsnatmapSort) pulumi.StringPtrOutput { return v.ForceRecreate }).(pulumi.StringPtrOutput)
+func (o FirewallCentralsnatmapSortOutput) ForceRecreate() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallCentralsnatmapSort) pulumi.StringOutput { return v.ForceRecreate }).(pulumi.StringOutput)
+}
+
+func (o FirewallCentralsnatmapSortOutput) ManualOrders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *FirewallCentralsnatmapSort) pulumi.StringArrayOutput { return v.ManualOrders }).(pulumi.StringArrayOutput)
 }
 
 func (o FirewallCentralsnatmapSortOutput) Sortby() pulumi.StringOutput {
@@ -202,8 +239,14 @@ func (o FirewallCentralsnatmapSortOutput) Sortdirection() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallCentralsnatmapSort) pulumi.StringOutput { return v.Sortdirection }).(pulumi.StringOutput)
 }
 
-func (o FirewallCentralsnatmapSortOutput) Status() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *FirewallCentralsnatmapSort) pulumi.StringPtrOutput { return v.Status }).(pulumi.StringPtrOutput)
+func (o FirewallCentralsnatmapSortOutput) StatePolicyLists() FirewallCentralsnatmapSortStatePolicyListArrayOutput {
+	return o.ApplyT(func(v *FirewallCentralsnatmapSort) FirewallCentralsnatmapSortStatePolicyListArrayOutput {
+		return v.StatePolicyLists
+	}).(FirewallCentralsnatmapSortStatePolicyListArrayOutput)
+}
+
+func (o FirewallCentralsnatmapSortOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallCentralsnatmapSort) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
 func (o FirewallCentralsnatmapSortOutput) Vdomparam() pulumi.StringPtrOutput {
@@ -224,6 +267,12 @@ func (o FirewallCentralsnatmapSortArrayOutput) ToFirewallCentralsnatmapSortArray
 	return o
 }
 
+func (o FirewallCentralsnatmapSortArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallCentralsnatmapSort] {
+	return pulumix.Output[[]*FirewallCentralsnatmapSort]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallCentralsnatmapSortArrayOutput) Index(i pulumi.IntInput) FirewallCentralsnatmapSortOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallCentralsnatmapSort {
 		return vs[0].([]*FirewallCentralsnatmapSort)[vs[1].(int)]
@@ -242,6 +291,12 @@ func (o FirewallCentralsnatmapSortMapOutput) ToFirewallCentralsnatmapSortMapOutp
 
 func (o FirewallCentralsnatmapSortMapOutput) ToFirewallCentralsnatmapSortMapOutputWithContext(ctx context.Context) FirewallCentralsnatmapSortMapOutput {
 	return o
+}
+
+func (o FirewallCentralsnatmapSortMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallCentralsnatmapSort] {
+	return pulumix.Output[map[string]*FirewallCentralsnatmapSort]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallCentralsnatmapSortMapOutput) MapIndex(k pulumi.StringInput) FirewallCentralsnatmapSortOutput {

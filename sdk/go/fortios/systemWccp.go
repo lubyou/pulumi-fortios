@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemWccp struct {
@@ -212,6 +213,12 @@ func (i *SystemWccp) ToSystemWccpOutputWithContext(ctx context.Context) SystemWc
 	return pulumi.ToOutputWithContext(ctx, i).(SystemWccpOutput)
 }
 
+func (i *SystemWccp) ToOutput(ctx context.Context) pulumix.Output[*SystemWccp] {
+	return pulumix.Output[*SystemWccp]{
+		OutputState: i.ToSystemWccpOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemWccpArrayInput is an input type that accepts SystemWccpArray and SystemWccpArrayOutput values.
 // You can construct a concrete instance of `SystemWccpArrayInput` via:
 //
@@ -235,6 +242,12 @@ func (i SystemWccpArray) ToSystemWccpArrayOutput() SystemWccpArrayOutput {
 
 func (i SystemWccpArray) ToSystemWccpArrayOutputWithContext(ctx context.Context) SystemWccpArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemWccpArrayOutput)
+}
+
+func (i SystemWccpArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemWccp] {
+	return pulumix.Output[[]*SystemWccp]{
+		OutputState: i.ToSystemWccpArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemWccpMapInput is an input type that accepts SystemWccpMap and SystemWccpMapOutput values.
@@ -262,6 +275,12 @@ func (i SystemWccpMap) ToSystemWccpMapOutputWithContext(ctx context.Context) Sys
 	return pulumi.ToOutputWithContext(ctx, i).(SystemWccpMapOutput)
 }
 
+func (i SystemWccpMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemWccp] {
+	return pulumix.Output[map[string]*SystemWccp]{
+		OutputState: i.ToSystemWccpMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemWccpOutput struct{ *pulumi.OutputState }
 
 func (SystemWccpOutput) ElementType() reflect.Type {
@@ -274,6 +293,12 @@ func (o SystemWccpOutput) ToSystemWccpOutput() SystemWccpOutput {
 
 func (o SystemWccpOutput) ToSystemWccpOutputWithContext(ctx context.Context) SystemWccpOutput {
 	return o
+}
+
+func (o SystemWccpOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemWccp] {
+	return pulumix.Output[*SystemWccp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemWccpOutput) AssignmentBucketFormat() pulumi.StringOutput {
@@ -386,6 +411,12 @@ func (o SystemWccpArrayOutput) ToSystemWccpArrayOutputWithContext(ctx context.Co
 	return o
 }
 
+func (o SystemWccpArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemWccp] {
+	return pulumix.Output[[]*SystemWccp]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemWccpArrayOutput) Index(i pulumi.IntInput) SystemWccpOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemWccp {
 		return vs[0].([]*SystemWccp)[vs[1].(int)]
@@ -404,6 +435,12 @@ func (o SystemWccpMapOutput) ToSystemWccpMapOutput() SystemWccpMapOutput {
 
 func (o SystemWccpMapOutput) ToSystemWccpMapOutputWithContext(ctx context.Context) SystemWccpMapOutput {
 	return o
+}
+
+func (o SystemWccpMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemWccp] {
+	return pulumix.Output[map[string]*SystemWccp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemWccpMapOutput) MapIndex(k pulumi.StringInput) SystemWccpOutput {

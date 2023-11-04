@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemIpam struct {
@@ -145,6 +146,12 @@ func (i *SystemIpam) ToSystemIpamOutputWithContext(ctx context.Context) SystemIp
 	return pulumi.ToOutputWithContext(ctx, i).(SystemIpamOutput)
 }
 
+func (i *SystemIpam) ToOutput(ctx context.Context) pulumix.Output[*SystemIpam] {
+	return pulumix.Output[*SystemIpam]{
+		OutputState: i.ToSystemIpamOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemIpamArrayInput is an input type that accepts SystemIpamArray and SystemIpamArrayOutput values.
 // You can construct a concrete instance of `SystemIpamArrayInput` via:
 //
@@ -168,6 +175,12 @@ func (i SystemIpamArray) ToSystemIpamArrayOutput() SystemIpamArrayOutput {
 
 func (i SystemIpamArray) ToSystemIpamArrayOutputWithContext(ctx context.Context) SystemIpamArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemIpamArrayOutput)
+}
+
+func (i SystemIpamArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemIpam] {
+	return pulumix.Output[[]*SystemIpam]{
+		OutputState: i.ToSystemIpamArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemIpamMapInput is an input type that accepts SystemIpamMap and SystemIpamMapOutput values.
@@ -195,6 +208,12 @@ func (i SystemIpamMap) ToSystemIpamMapOutputWithContext(ctx context.Context) Sys
 	return pulumi.ToOutputWithContext(ctx, i).(SystemIpamMapOutput)
 }
 
+func (i SystemIpamMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemIpam] {
+	return pulumix.Output[map[string]*SystemIpam]{
+		OutputState: i.ToSystemIpamMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemIpamOutput struct{ *pulumi.OutputState }
 
 func (SystemIpamOutput) ElementType() reflect.Type {
@@ -207,6 +226,12 @@ func (o SystemIpamOutput) ToSystemIpamOutput() SystemIpamOutput {
 
 func (o SystemIpamOutput) ToSystemIpamOutputWithContext(ctx context.Context) SystemIpamOutput {
 	return o
+}
+
+func (o SystemIpamOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemIpam] {
+	return pulumix.Output[*SystemIpam]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemIpamOutput) AutomaticConflictResolution() pulumi.StringOutput {
@@ -271,6 +296,12 @@ func (o SystemIpamArrayOutput) ToSystemIpamArrayOutputWithContext(ctx context.Co
 	return o
 }
 
+func (o SystemIpamArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemIpam] {
+	return pulumix.Output[[]*SystemIpam]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemIpamArrayOutput) Index(i pulumi.IntInput) SystemIpamOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemIpam {
 		return vs[0].([]*SystemIpam)[vs[1].(int)]
@@ -289,6 +320,12 @@ func (o SystemIpamMapOutput) ToSystemIpamMapOutput() SystemIpamMapOutput {
 
 func (o SystemIpamMapOutput) ToSystemIpamMapOutputWithContext(ctx context.Context) SystemIpamMapOutput {
 	return o
+}
+
+func (o SystemIpamMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemIpam] {
+	return pulumix.Output[map[string]*SystemIpam]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemIpamMapOutput) MapIndex(k pulumi.StringInput) SystemIpamOutput {

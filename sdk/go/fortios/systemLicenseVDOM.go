@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemLicenseVDOM struct {
@@ -94,6 +95,12 @@ func (i *SystemLicenseVDOM) ToSystemLicenseVDOMOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(SystemLicenseVDOMOutput)
 }
 
+func (i *SystemLicenseVDOM) ToOutput(ctx context.Context) pulumix.Output[*SystemLicenseVDOM] {
+	return pulumix.Output[*SystemLicenseVDOM]{
+		OutputState: i.ToSystemLicenseVDOMOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemLicenseVDOMArrayInput is an input type that accepts SystemLicenseVDOMArray and SystemLicenseVDOMArrayOutput values.
 // You can construct a concrete instance of `SystemLicenseVDOMArrayInput` via:
 //
@@ -117,6 +124,12 @@ func (i SystemLicenseVDOMArray) ToSystemLicenseVDOMArrayOutput() SystemLicenseVD
 
 func (i SystemLicenseVDOMArray) ToSystemLicenseVDOMArrayOutputWithContext(ctx context.Context) SystemLicenseVDOMArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemLicenseVDOMArrayOutput)
+}
+
+func (i SystemLicenseVDOMArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemLicenseVDOM] {
+	return pulumix.Output[[]*SystemLicenseVDOM]{
+		OutputState: i.ToSystemLicenseVDOMArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemLicenseVDOMMapInput is an input type that accepts SystemLicenseVDOMMap and SystemLicenseVDOMMapOutput values.
@@ -144,6 +157,12 @@ func (i SystemLicenseVDOMMap) ToSystemLicenseVDOMMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemLicenseVDOMMapOutput)
 }
 
+func (i SystemLicenseVDOMMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemLicenseVDOM] {
+	return pulumix.Output[map[string]*SystemLicenseVDOM]{
+		OutputState: i.ToSystemLicenseVDOMMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemLicenseVDOMOutput struct{ *pulumi.OutputState }
 
 func (SystemLicenseVDOMOutput) ElementType() reflect.Type {
@@ -156,6 +175,12 @@ func (o SystemLicenseVDOMOutput) ToSystemLicenseVDOMOutput() SystemLicenseVDOMOu
 
 func (o SystemLicenseVDOMOutput) ToSystemLicenseVDOMOutputWithContext(ctx context.Context) SystemLicenseVDOMOutput {
 	return o
+}
+
+func (o SystemLicenseVDOMOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemLicenseVDOM] {
+	return pulumix.Output[*SystemLicenseVDOM]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemLicenseVDOMOutput) License() pulumi.StringOutput {
@@ -176,6 +201,12 @@ func (o SystemLicenseVDOMArrayOutput) ToSystemLicenseVDOMArrayOutputWithContext(
 	return o
 }
 
+func (o SystemLicenseVDOMArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemLicenseVDOM] {
+	return pulumix.Output[[]*SystemLicenseVDOM]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemLicenseVDOMArrayOutput) Index(i pulumi.IntInput) SystemLicenseVDOMOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemLicenseVDOM {
 		return vs[0].([]*SystemLicenseVDOM)[vs[1].(int)]
@@ -194,6 +225,12 @@ func (o SystemLicenseVDOMMapOutput) ToSystemLicenseVDOMMapOutput() SystemLicense
 
 func (o SystemLicenseVDOMMapOutput) ToSystemLicenseVDOMMapOutputWithContext(ctx context.Context) SystemLicenseVDOMMapOutput {
 	return o
+}
+
+func (o SystemLicenseVDOMMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemLicenseVDOM] {
+	return pulumix.Output[map[string]*SystemLicenseVDOM]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemLicenseVDOMMapOutput) MapIndex(k pulumi.StringInput) SystemLicenseVDOMOutput {

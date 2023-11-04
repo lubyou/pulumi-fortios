@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WirelessControllerSyslogProfile struct {
@@ -130,6 +131,12 @@ func (i *WirelessControllerSyslogProfile) ToWirelessControllerSyslogProfileOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerSyslogProfileOutput)
 }
 
+func (i *WirelessControllerSyslogProfile) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerSyslogProfile] {
+	return pulumix.Output[*WirelessControllerSyslogProfile]{
+		OutputState: i.ToWirelessControllerSyslogProfileOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerSyslogProfileArrayInput is an input type that accepts WirelessControllerSyslogProfileArray and WirelessControllerSyslogProfileArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerSyslogProfileArrayInput` via:
 //
@@ -153,6 +160,12 @@ func (i WirelessControllerSyslogProfileArray) ToWirelessControllerSyslogProfileA
 
 func (i WirelessControllerSyslogProfileArray) ToWirelessControllerSyslogProfileArrayOutputWithContext(ctx context.Context) WirelessControllerSyslogProfileArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerSyslogProfileArrayOutput)
+}
+
+func (i WirelessControllerSyslogProfileArray) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerSyslogProfile] {
+	return pulumix.Output[[]*WirelessControllerSyslogProfile]{
+		OutputState: i.ToWirelessControllerSyslogProfileArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // WirelessControllerSyslogProfileMapInput is an input type that accepts WirelessControllerSyslogProfileMap and WirelessControllerSyslogProfileMapOutput values.
@@ -180,6 +193,12 @@ func (i WirelessControllerSyslogProfileMap) ToWirelessControllerSyslogProfileMap
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerSyslogProfileMapOutput)
 }
 
+func (i WirelessControllerSyslogProfileMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerSyslogProfile] {
+	return pulumix.Output[map[string]*WirelessControllerSyslogProfile]{
+		OutputState: i.ToWirelessControllerSyslogProfileMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerSyslogProfileOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerSyslogProfileOutput) ElementType() reflect.Type {
@@ -192,6 +211,12 @@ func (o WirelessControllerSyslogProfileOutput) ToWirelessControllerSyslogProfile
 
 func (o WirelessControllerSyslogProfileOutput) ToWirelessControllerSyslogProfileOutputWithContext(ctx context.Context) WirelessControllerSyslogProfileOutput {
 	return o
+}
+
+func (o WirelessControllerSyslogProfileOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerSyslogProfile] {
+	return pulumix.Output[*WirelessControllerSyslogProfile]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerSyslogProfileOutput) Comment() pulumi.StringPtrOutput {
@@ -244,6 +269,12 @@ func (o WirelessControllerSyslogProfileArrayOutput) ToWirelessControllerSyslogPr
 	return o
 }
 
+func (o WirelessControllerSyslogProfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerSyslogProfile] {
+	return pulumix.Output[[]*WirelessControllerSyslogProfile]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o WirelessControllerSyslogProfileArrayOutput) Index(i pulumi.IntInput) WirelessControllerSyslogProfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerSyslogProfile {
 		return vs[0].([]*WirelessControllerSyslogProfile)[vs[1].(int)]
@@ -262,6 +293,12 @@ func (o WirelessControllerSyslogProfileMapOutput) ToWirelessControllerSyslogProf
 
 func (o WirelessControllerSyslogProfileMapOutput) ToWirelessControllerSyslogProfileMapOutputWithContext(ctx context.Context) WirelessControllerSyslogProfileMapOutput {
 	return o
+}
+
+func (o WirelessControllerSyslogProfileMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerSyslogProfile] {
+	return pulumix.Output[map[string]*WirelessControllerSyslogProfile]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerSyslogProfileMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerSyslogProfileOutput {

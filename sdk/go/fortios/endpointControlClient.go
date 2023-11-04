@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type EndpointControlClient struct {
@@ -120,6 +121,12 @@ func (i *EndpointControlClient) ToEndpointControlClientOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlClientOutput)
 }
 
+func (i *EndpointControlClient) ToOutput(ctx context.Context) pulumix.Output[*EndpointControlClient] {
+	return pulumix.Output[*EndpointControlClient]{
+		OutputState: i.ToEndpointControlClientOutputWithContext(ctx).OutputState,
+	}
+}
+
 // EndpointControlClientArrayInput is an input type that accepts EndpointControlClientArray and EndpointControlClientArrayOutput values.
 // You can construct a concrete instance of `EndpointControlClientArrayInput` via:
 //
@@ -143,6 +150,12 @@ func (i EndpointControlClientArray) ToEndpointControlClientArrayOutput() Endpoin
 
 func (i EndpointControlClientArray) ToEndpointControlClientArrayOutputWithContext(ctx context.Context) EndpointControlClientArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlClientArrayOutput)
+}
+
+func (i EndpointControlClientArray) ToOutput(ctx context.Context) pulumix.Output[[]*EndpointControlClient] {
+	return pulumix.Output[[]*EndpointControlClient]{
+		OutputState: i.ToEndpointControlClientArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // EndpointControlClientMapInput is an input type that accepts EndpointControlClientMap and EndpointControlClientMapOutput values.
@@ -170,6 +183,12 @@ func (i EndpointControlClientMap) ToEndpointControlClientMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlClientMapOutput)
 }
 
+func (i EndpointControlClientMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*EndpointControlClient] {
+	return pulumix.Output[map[string]*EndpointControlClient]{
+		OutputState: i.ToEndpointControlClientMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type EndpointControlClientOutput struct{ *pulumi.OutputState }
 
 func (EndpointControlClientOutput) ElementType() reflect.Type {
@@ -182,6 +201,12 @@ func (o EndpointControlClientOutput) ToEndpointControlClientOutput() EndpointCon
 
 func (o EndpointControlClientOutput) ToEndpointControlClientOutputWithContext(ctx context.Context) EndpointControlClientOutput {
 	return o
+}
+
+func (o EndpointControlClientOutput) ToOutput(ctx context.Context) pulumix.Output[*EndpointControlClient] {
+	return pulumix.Output[*EndpointControlClient]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o EndpointControlClientOutput) AdGroups() pulumi.StringPtrOutput {
@@ -226,6 +251,12 @@ func (o EndpointControlClientArrayOutput) ToEndpointControlClientArrayOutputWith
 	return o
 }
 
+func (o EndpointControlClientArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*EndpointControlClient] {
+	return pulumix.Output[[]*EndpointControlClient]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o EndpointControlClientArrayOutput) Index(i pulumi.IntInput) EndpointControlClientOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *EndpointControlClient {
 		return vs[0].([]*EndpointControlClient)[vs[1].(int)]
@@ -244,6 +275,12 @@ func (o EndpointControlClientMapOutput) ToEndpointControlClientMapOutput() Endpo
 
 func (o EndpointControlClientMapOutput) ToEndpointControlClientMapOutputWithContext(ctx context.Context) EndpointControlClientMapOutput {
 	return o
+}
+
+func (o EndpointControlClientMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*EndpointControlClient] {
+	return pulumix.Output[map[string]*EndpointControlClient]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o EndpointControlClientMapOutput) MapIndex(k pulumi.StringInput) EndpointControlClientOutput {

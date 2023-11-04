@@ -37,6 +37,8 @@ export class WirelessControllerWtp extends pulumi.CustomResource {
     public readonly admin!: pulumi.Output<string>;
     public readonly allowaccess!: pulumi.Output<string>;
     public readonly apcfgProfile!: pulumi.Output<string>;
+    public readonly bleMajorId!: pulumi.Output<number>;
+    public readonly bleMinorId!: pulumi.Output<number>;
     public readonly bonjourProfile!: pulumi.Output<string>;
     public readonly coordinateLatitude!: pulumi.Output<string>;
     public readonly coordinateLongitude!: pulumi.Output<string>;
@@ -96,6 +98,8 @@ export class WirelessControllerWtp extends pulumi.CustomResource {
             resourceInputs["admin"] = state ? state.admin : undefined;
             resourceInputs["allowaccess"] = state ? state.allowaccess : undefined;
             resourceInputs["apcfgProfile"] = state ? state.apcfgProfile : undefined;
+            resourceInputs["bleMajorId"] = state ? state.bleMajorId : undefined;
+            resourceInputs["bleMinorId"] = state ? state.bleMinorId : undefined;
             resourceInputs["bonjourProfile"] = state ? state.bonjourProfile : undefined;
             resourceInputs["coordinateLatitude"] = state ? state.coordinateLatitude : undefined;
             resourceInputs["coordinateLongitude"] = state ? state.coordinateLongitude : undefined;
@@ -146,6 +150,8 @@ export class WirelessControllerWtp extends pulumi.CustomResource {
             resourceInputs["admin"] = args ? args.admin : undefined;
             resourceInputs["allowaccess"] = args ? args.allowaccess : undefined;
             resourceInputs["apcfgProfile"] = args ? args.apcfgProfile : undefined;
+            resourceInputs["bleMajorId"] = args ? args.bleMajorId : undefined;
+            resourceInputs["bleMinorId"] = args ? args.bleMinorId : undefined;
             resourceInputs["bonjourProfile"] = args ? args.bonjourProfile : undefined;
             resourceInputs["coordinateLatitude"] = args ? args.coordinateLatitude : undefined;
             resourceInputs["coordinateLongitude"] = args ? args.coordinateLongitude : undefined;
@@ -203,6 +209,8 @@ export interface WirelessControllerWtpState {
     admin?: pulumi.Input<string>;
     allowaccess?: pulumi.Input<string>;
     apcfgProfile?: pulumi.Input<string>;
+    bleMajorId?: pulumi.Input<number>;
+    bleMinorId?: pulumi.Input<number>;
     bonjourProfile?: pulumi.Input<string>;
     coordinateLatitude?: pulumi.Input<string>;
     coordinateLongitude?: pulumi.Input<string>;
@@ -254,6 +262,8 @@ export interface WirelessControllerWtpArgs {
     admin?: pulumi.Input<string>;
     allowaccess?: pulumi.Input<string>;
     apcfgProfile?: pulumi.Input<string>;
+    bleMajorId?: pulumi.Input<number>;
+    bleMinorId?: pulumi.Input<number>;
     bonjourProfile?: pulumi.Input<string>;
     coordinateLatitude?: pulumi.Input<string>;
     coordinateLongitude?: pulumi.Input<string>;

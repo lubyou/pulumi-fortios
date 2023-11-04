@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemDhcpServer struct {
@@ -374,6 +375,12 @@ func (i *SystemDhcpServer) ToSystemDhcpServerOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDhcpServerOutput)
 }
 
+func (i *SystemDhcpServer) ToOutput(ctx context.Context) pulumix.Output[*SystemDhcpServer] {
+	return pulumix.Output[*SystemDhcpServer]{
+		OutputState: i.ToSystemDhcpServerOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemDhcpServerArrayInput is an input type that accepts SystemDhcpServerArray and SystemDhcpServerArrayOutput values.
 // You can construct a concrete instance of `SystemDhcpServerArrayInput` via:
 //
@@ -397,6 +404,12 @@ func (i SystemDhcpServerArray) ToSystemDhcpServerArrayOutput() SystemDhcpServerA
 
 func (i SystemDhcpServerArray) ToSystemDhcpServerArrayOutputWithContext(ctx context.Context) SystemDhcpServerArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDhcpServerArrayOutput)
+}
+
+func (i SystemDhcpServerArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemDhcpServer] {
+	return pulumix.Output[[]*SystemDhcpServer]{
+		OutputState: i.ToSystemDhcpServerArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemDhcpServerMapInput is an input type that accepts SystemDhcpServerMap and SystemDhcpServerMapOutput values.
@@ -424,6 +437,12 @@ func (i SystemDhcpServerMap) ToSystemDhcpServerMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDhcpServerMapOutput)
 }
 
+func (i SystemDhcpServerMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemDhcpServer] {
+	return pulumix.Output[map[string]*SystemDhcpServer]{
+		OutputState: i.ToSystemDhcpServerMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemDhcpServerOutput struct{ *pulumi.OutputState }
 
 func (SystemDhcpServerOutput) ElementType() reflect.Type {
@@ -436,6 +455,12 @@ func (o SystemDhcpServerOutput) ToSystemDhcpServerOutput() SystemDhcpServerOutpu
 
 func (o SystemDhcpServerOutput) ToSystemDhcpServerOutputWithContext(ctx context.Context) SystemDhcpServerOutput {
 	return o
+}
+
+func (o SystemDhcpServerOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemDhcpServer] {
+	return pulumix.Output[*SystemDhcpServer]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemDhcpServerOutput) AutoConfiguration() pulumi.StringOutput {
@@ -672,6 +697,12 @@ func (o SystemDhcpServerArrayOutput) ToSystemDhcpServerArrayOutputWithContext(ct
 	return o
 }
 
+func (o SystemDhcpServerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemDhcpServer] {
+	return pulumix.Output[[]*SystemDhcpServer]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemDhcpServerArrayOutput) Index(i pulumi.IntInput) SystemDhcpServerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemDhcpServer {
 		return vs[0].([]*SystemDhcpServer)[vs[1].(int)]
@@ -690,6 +721,12 @@ func (o SystemDhcpServerMapOutput) ToSystemDhcpServerMapOutput() SystemDhcpServe
 
 func (o SystemDhcpServerMapOutput) ToSystemDhcpServerMapOutputWithContext(ctx context.Context) SystemDhcpServerMapOutput {
 	return o
+}
+
+func (o SystemDhcpServerMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemDhcpServer] {
+	return pulumix.Output[map[string]*SystemDhcpServer]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemDhcpServerMapOutput) MapIndex(k pulumi.StringInput) SystemDhcpServerOutput {

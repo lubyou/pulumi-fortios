@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetRouterKeyChainList(ctx *pulumi.Context, args *GetRouterKeyChainListArgs, opts ...pulumi.InvokeOption) (*GetRouterKeyChainListResult, error) {
@@ -72,6 +73,12 @@ func (o GetRouterKeyChainListResultOutput) ToGetRouterKeyChainListResultOutput()
 
 func (o GetRouterKeyChainListResultOutput) ToGetRouterKeyChainListResultOutputWithContext(ctx context.Context) GetRouterKeyChainListResultOutput {
 	return o
+}
+
+func (o GetRouterKeyChainListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetRouterKeyChainListResult] {
+	return pulumix.Output[GetRouterKeyChainListResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetRouterKeyChainListResultOutput) Filter() pulumi.StringPtrOutput {

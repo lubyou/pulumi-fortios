@@ -16,6 +16,7 @@ class FirewallProfileGroupArgs:
     def __init__(__self__, *,
                  application_list: Optional[pulumi.Input[str]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
                  cifs_profile: Optional[pulumi.Input[str]] = None,
                  dlp_profile: Optional[pulumi.Input[str]] = None,
                  dlp_sensor: Optional[pulumi.Input[str]] = None,
@@ -33,6 +34,7 @@ class FirewallProfileGroupArgs:
                  ssl_ssh_profile: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  videofilter_profile: Optional[pulumi.Input[str]] = None,
+                 virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  voip_profile: Optional[pulumi.Input[str]] = None,
                  waf_profile: Optional[pulumi.Input[str]] = None,
                  webfilter_profile: Optional[pulumi.Input[str]] = None):
@@ -43,6 +45,8 @@ class FirewallProfileGroupArgs:
             pulumi.set(__self__, "application_list", application_list)
         if av_profile is not None:
             pulumi.set(__self__, "av_profile", av_profile)
+        if casb_profile is not None:
+            pulumi.set(__self__, "casb_profile", casb_profile)
         if cifs_profile is not None:
             pulumi.set(__self__, "cifs_profile", cifs_profile)
         if dlp_profile is not None:
@@ -77,6 +81,8 @@ class FirewallProfileGroupArgs:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if videofilter_profile is not None:
             pulumi.set(__self__, "videofilter_profile", videofilter_profile)
+        if virtual_patch_profile is not None:
+            pulumi.set(__self__, "virtual_patch_profile", virtual_patch_profile)
         if voip_profile is not None:
             pulumi.set(__self__, "voip_profile", voip_profile)
         if waf_profile is not None:
@@ -101,6 +107,15 @@ class FirewallProfileGroupArgs:
     @av_profile.setter
     def av_profile(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "av_profile", value)
+
+    @property
+    @pulumi.getter(name="casbProfile")
+    def casb_profile(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "casb_profile")
+
+    @casb_profile.setter
+    def casb_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "casb_profile", value)
 
     @property
     @pulumi.getter(name="cifsProfile")
@@ -254,6 +269,15 @@ class FirewallProfileGroupArgs:
     @videofilter_profile.setter
     def videofilter_profile(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "videofilter_profile", value)
+
+    @property
+    @pulumi.getter(name="virtualPatchProfile")
+    def virtual_patch_profile(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "virtual_patch_profile")
+
+    @virtual_patch_profile.setter
+    def virtual_patch_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "virtual_patch_profile", value)
 
     @property
     @pulumi.getter(name="voipProfile")
@@ -288,6 +312,7 @@ class _FirewallProfileGroupState:
     def __init__(__self__, *,
                  application_list: Optional[pulumi.Input[str]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
                  cifs_profile: Optional[pulumi.Input[str]] = None,
                  dlp_profile: Optional[pulumi.Input[str]] = None,
                  dlp_sensor: Optional[pulumi.Input[str]] = None,
@@ -305,6 +330,7 @@ class _FirewallProfileGroupState:
                  ssl_ssh_profile: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  videofilter_profile: Optional[pulumi.Input[str]] = None,
+                 virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  voip_profile: Optional[pulumi.Input[str]] = None,
                  waf_profile: Optional[pulumi.Input[str]] = None,
                  webfilter_profile: Optional[pulumi.Input[str]] = None):
@@ -315,6 +341,8 @@ class _FirewallProfileGroupState:
             pulumi.set(__self__, "application_list", application_list)
         if av_profile is not None:
             pulumi.set(__self__, "av_profile", av_profile)
+        if casb_profile is not None:
+            pulumi.set(__self__, "casb_profile", casb_profile)
         if cifs_profile is not None:
             pulumi.set(__self__, "cifs_profile", cifs_profile)
         if dlp_profile is not None:
@@ -349,6 +377,8 @@ class _FirewallProfileGroupState:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if videofilter_profile is not None:
             pulumi.set(__self__, "videofilter_profile", videofilter_profile)
+        if virtual_patch_profile is not None:
+            pulumi.set(__self__, "virtual_patch_profile", virtual_patch_profile)
         if voip_profile is not None:
             pulumi.set(__self__, "voip_profile", voip_profile)
         if waf_profile is not None:
@@ -373,6 +403,15 @@ class _FirewallProfileGroupState:
     @av_profile.setter
     def av_profile(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "av_profile", value)
+
+    @property
+    @pulumi.getter(name="casbProfile")
+    def casb_profile(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "casb_profile")
+
+    @casb_profile.setter
+    def casb_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "casb_profile", value)
 
     @property
     @pulumi.getter(name="cifsProfile")
@@ -526,6 +565,15 @@ class _FirewallProfileGroupState:
     @videofilter_profile.setter
     def videofilter_profile(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "videofilter_profile", value)
+
+    @property
+    @pulumi.getter(name="virtualPatchProfile")
+    def virtual_patch_profile(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "virtual_patch_profile")
+
+    @virtual_patch_profile.setter
+    def virtual_patch_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "virtual_patch_profile", value)
 
     @property
     @pulumi.getter(name="voipProfile")
@@ -562,6 +610,7 @@ class FirewallProfileGroup(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  application_list: Optional[pulumi.Input[str]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
                  cifs_profile: Optional[pulumi.Input[str]] = None,
                  dlp_profile: Optional[pulumi.Input[str]] = None,
                  dlp_sensor: Optional[pulumi.Input[str]] = None,
@@ -579,6 +628,7 @@ class FirewallProfileGroup(pulumi.CustomResource):
                  ssl_ssh_profile: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  videofilter_profile: Optional[pulumi.Input[str]] = None,
+                 virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  voip_profile: Optional[pulumi.Input[str]] = None,
                  waf_profile: Optional[pulumi.Input[str]] = None,
                  webfilter_profile: Optional[pulumi.Input[str]] = None,
@@ -613,6 +663,7 @@ class FirewallProfileGroup(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  application_list: Optional[pulumi.Input[str]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
                  cifs_profile: Optional[pulumi.Input[str]] = None,
                  dlp_profile: Optional[pulumi.Input[str]] = None,
                  dlp_sensor: Optional[pulumi.Input[str]] = None,
@@ -630,6 +681,7 @@ class FirewallProfileGroup(pulumi.CustomResource):
                  ssl_ssh_profile: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  videofilter_profile: Optional[pulumi.Input[str]] = None,
+                 virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  voip_profile: Optional[pulumi.Input[str]] = None,
                  waf_profile: Optional[pulumi.Input[str]] = None,
                  webfilter_profile: Optional[pulumi.Input[str]] = None,
@@ -644,6 +696,7 @@ class FirewallProfileGroup(pulumi.CustomResource):
 
             __props__.__dict__["application_list"] = application_list
             __props__.__dict__["av_profile"] = av_profile
+            __props__.__dict__["casb_profile"] = casb_profile
             __props__.__dict__["cifs_profile"] = cifs_profile
             __props__.__dict__["dlp_profile"] = dlp_profile
             __props__.__dict__["dlp_sensor"] = dlp_sensor
@@ -661,6 +714,7 @@ class FirewallProfileGroup(pulumi.CustomResource):
             __props__.__dict__["ssl_ssh_profile"] = ssl_ssh_profile
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["videofilter_profile"] = videofilter_profile
+            __props__.__dict__["virtual_patch_profile"] = virtual_patch_profile
             __props__.__dict__["voip_profile"] = voip_profile
             __props__.__dict__["waf_profile"] = waf_profile
             __props__.__dict__["webfilter_profile"] = webfilter_profile
@@ -676,6 +730,7 @@ class FirewallProfileGroup(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             application_list: Optional[pulumi.Input[str]] = None,
             av_profile: Optional[pulumi.Input[str]] = None,
+            casb_profile: Optional[pulumi.Input[str]] = None,
             cifs_profile: Optional[pulumi.Input[str]] = None,
             dlp_profile: Optional[pulumi.Input[str]] = None,
             dlp_sensor: Optional[pulumi.Input[str]] = None,
@@ -693,6 +748,7 @@ class FirewallProfileGroup(pulumi.CustomResource):
             ssl_ssh_profile: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             videofilter_profile: Optional[pulumi.Input[str]] = None,
+            virtual_patch_profile: Optional[pulumi.Input[str]] = None,
             voip_profile: Optional[pulumi.Input[str]] = None,
             waf_profile: Optional[pulumi.Input[str]] = None,
             webfilter_profile: Optional[pulumi.Input[str]] = None) -> 'FirewallProfileGroup':
@@ -710,6 +766,7 @@ class FirewallProfileGroup(pulumi.CustomResource):
 
         __props__.__dict__["application_list"] = application_list
         __props__.__dict__["av_profile"] = av_profile
+        __props__.__dict__["casb_profile"] = casb_profile
         __props__.__dict__["cifs_profile"] = cifs_profile
         __props__.__dict__["dlp_profile"] = dlp_profile
         __props__.__dict__["dlp_sensor"] = dlp_sensor
@@ -727,6 +784,7 @@ class FirewallProfileGroup(pulumi.CustomResource):
         __props__.__dict__["ssl_ssh_profile"] = ssl_ssh_profile
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["videofilter_profile"] = videofilter_profile
+        __props__.__dict__["virtual_patch_profile"] = virtual_patch_profile
         __props__.__dict__["voip_profile"] = voip_profile
         __props__.__dict__["waf_profile"] = waf_profile
         __props__.__dict__["webfilter_profile"] = webfilter_profile
@@ -741,6 +799,11 @@ class FirewallProfileGroup(pulumi.CustomResource):
     @pulumi.getter(name="avProfile")
     def av_profile(self) -> pulumi.Output[str]:
         return pulumi.get(self, "av_profile")
+
+    @property
+    @pulumi.getter(name="casbProfile")
+    def casb_profile(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "casb_profile")
 
     @property
     @pulumi.getter(name="cifsProfile")
@@ -826,6 +889,11 @@ class FirewallProfileGroup(pulumi.CustomResource):
     @pulumi.getter(name="videofilterProfile")
     def videofilter_profile(self) -> pulumi.Output[str]:
         return pulumi.get(self, "videofilter_profile")
+
+    @property
+    @pulumi.getter(name="virtualPatchProfile")
+    def virtual_patch_profile(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "virtual_patch_profile")
 
     @property
     @pulumi.getter(name="voipProfile")

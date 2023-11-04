@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemInterface(ctx *pulumi.Context, args *LookupSystemInterfaceArgs, opts ...pulumi.InvokeOption) (*LookupSystemInterfaceResult, error) {
@@ -69,12 +70,14 @@ type LookupSystemInterfaceResult struct {
 	DhcpClasslessRouteAddition     string                                     `pulumi:"dhcpClasslessRouteAddition"`
 	DhcpClientIdentifier           string                                     `pulumi:"dhcpClientIdentifier"`
 	DhcpRelayAgentOption           string                                     `pulumi:"dhcpRelayAgentOption"`
+	DhcpRelayCircuitId             string                                     `pulumi:"dhcpRelayCircuitId"`
 	DhcpRelayInterface             string                                     `pulumi:"dhcpRelayInterface"`
 	DhcpRelayInterfaceSelectMethod string                                     `pulumi:"dhcpRelayInterfaceSelectMethod"`
 	DhcpRelayIp                    string                                     `pulumi:"dhcpRelayIp"`
 	DhcpRelayLinkSelection         string                                     `pulumi:"dhcpRelayLinkSelection"`
 	DhcpRelayRequestAllServer      string                                     `pulumi:"dhcpRelayRequestAllServer"`
 	DhcpRelayService               string                                     `pulumi:"dhcpRelayService"`
+	DhcpRelaySourceIp              string                                     `pulumi:"dhcpRelaySourceIp"`
 	DhcpRelayType                  string                                     `pulumi:"dhcpRelayType"`
 	DhcpRenewTime                  int                                        `pulumi:"dhcpRenewTime"`
 	DhcpSmartRelay                 string                                     `pulumi:"dhcpSmartRelay"`
@@ -227,6 +230,9 @@ type LookupSystemInterfaceResult struct {
 	SwitchControllerMgmtVlan              int                               `pulumi:"switchControllerMgmtVlan"`
 	SwitchControllerNac                   string                            `pulumi:"switchControllerNac"`
 	SwitchControllerNetflowCollect        string                            `pulumi:"switchControllerNetflowCollect"`
+	SwitchControllerOffload               string                            `pulumi:"switchControllerOffload"`
+	SwitchControllerOffloadGw             string                            `pulumi:"switchControllerOffloadGw"`
+	SwitchControllerOffloadIp             string                            `pulumi:"switchControllerOffloadIp"`
 	SwitchControllerRspanMode             string                            `pulumi:"switchControllerRspanMode"`
 	SwitchControllerSourceIp              string                            `pulumi:"switchControllerSourceIp"`
 	SwitchControllerTrafficPolicy         string                            `pulumi:"switchControllerTrafficPolicy"`
@@ -293,6 +299,12 @@ func (o LookupSystemInterfaceResultOutput) ToLookupSystemInterfaceResultOutput()
 
 func (o LookupSystemInterfaceResultOutput) ToLookupSystemInterfaceResultOutputWithContext(ctx context.Context) LookupSystemInterfaceResultOutput {
 	return o
+}
+
+func (o LookupSystemInterfaceResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemInterfaceResult] {
+	return pulumix.Output[LookupSystemInterfaceResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupSystemInterfaceResultOutput) AcName() pulumi.StringOutput {
@@ -455,6 +467,10 @@ func (o LookupSystemInterfaceResultOutput) DhcpRelayAgentOption() pulumi.StringO
 	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.DhcpRelayAgentOption }).(pulumi.StringOutput)
 }
 
+func (o LookupSystemInterfaceResultOutput) DhcpRelayCircuitId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.DhcpRelayCircuitId }).(pulumi.StringOutput)
+}
+
 func (o LookupSystemInterfaceResultOutput) DhcpRelayInterface() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.DhcpRelayInterface }).(pulumi.StringOutput)
 }
@@ -477,6 +493,10 @@ func (o LookupSystemInterfaceResultOutput) DhcpRelayRequestAllServer() pulumi.St
 
 func (o LookupSystemInterfaceResultOutput) DhcpRelayService() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.DhcpRelayService }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemInterfaceResultOutput) DhcpRelaySourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.DhcpRelaySourceIp }).(pulumi.StringOutput)
 }
 
 func (o LookupSystemInterfaceResultOutput) DhcpRelayType() pulumi.StringOutput {
@@ -1086,6 +1106,18 @@ func (o LookupSystemInterfaceResultOutput) SwitchControllerNac() pulumi.StringOu
 
 func (o LookupSystemInterfaceResultOutput) SwitchControllerNetflowCollect() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.SwitchControllerNetflowCollect }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemInterfaceResultOutput) SwitchControllerOffload() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.SwitchControllerOffload }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemInterfaceResultOutput) SwitchControllerOffloadGw() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.SwitchControllerOffloadGw }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemInterfaceResultOutput) SwitchControllerOffloadIp() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.SwitchControllerOffloadIp }).(pulumi.StringOutput)
 }
 
 func (o LookupSystemInterfaceResultOutput) SwitchControllerRspanMode() pulumi.StringOutput {

@@ -19,6 +19,7 @@ class WebProxyForwardServerArgs:
                  fqdn: Optional[pulumi.Input[str]] = None,
                  healthcheck: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
+                 ipv6: Optional[pulumi.Input[str]] = None,
                  monitor: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
@@ -39,6 +40,8 @@ class WebProxyForwardServerArgs:
             pulumi.set(__self__, "healthcheck", healthcheck)
         if ip is not None:
             pulumi.set(__self__, "ip", ip)
+        if ipv6 is not None:
+            pulumi.set(__self__, "ipv6", ipv6)
         if monitor is not None:
             pulumi.set(__self__, "monitor", monitor)
         if name is not None:
@@ -98,6 +101,15 @@ class WebProxyForwardServerArgs:
     @ip.setter
     def ip(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ip", value)
+
+    @property
+    @pulumi.getter
+    def ipv6(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ipv6")
+
+    @ipv6.setter
+    def ipv6(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipv6", value)
 
     @property
     @pulumi.getter
@@ -171,6 +183,7 @@ class _WebProxyForwardServerState:
                  fqdn: Optional[pulumi.Input[str]] = None,
                  healthcheck: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
+                 ipv6: Optional[pulumi.Input[str]] = None,
                  monitor: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
@@ -191,6 +204,8 @@ class _WebProxyForwardServerState:
             pulumi.set(__self__, "healthcheck", healthcheck)
         if ip is not None:
             pulumi.set(__self__, "ip", ip)
+        if ipv6 is not None:
+            pulumi.set(__self__, "ipv6", ipv6)
         if monitor is not None:
             pulumi.set(__self__, "monitor", monitor)
         if name is not None:
@@ -250,6 +265,15 @@ class _WebProxyForwardServerState:
     @ip.setter
     def ip(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ip", value)
+
+    @property
+    @pulumi.getter
+    def ipv6(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ipv6")
+
+    @ipv6.setter
+    def ipv6(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipv6", value)
 
     @property
     @pulumi.getter
@@ -325,6 +349,7 @@ class WebProxyForwardServer(pulumi.CustomResource):
                  fqdn: Optional[pulumi.Input[str]] = None,
                  healthcheck: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
+                 ipv6: Optional[pulumi.Input[str]] = None,
                  monitor: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
@@ -366,6 +391,7 @@ class WebProxyForwardServer(pulumi.CustomResource):
                  fqdn: Optional[pulumi.Input[str]] = None,
                  healthcheck: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
+                 ipv6: Optional[pulumi.Input[str]] = None,
                  monitor: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
@@ -387,6 +413,7 @@ class WebProxyForwardServer(pulumi.CustomResource):
             __props__.__dict__["fqdn"] = fqdn
             __props__.__dict__["healthcheck"] = healthcheck
             __props__.__dict__["ip"] = ip
+            __props__.__dict__["ipv6"] = ipv6
             __props__.__dict__["monitor"] = monitor
             __props__.__dict__["name"] = name
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
@@ -411,6 +438,7 @@ class WebProxyForwardServer(pulumi.CustomResource):
             fqdn: Optional[pulumi.Input[str]] = None,
             healthcheck: Optional[pulumi.Input[str]] = None,
             ip: Optional[pulumi.Input[str]] = None,
+            ipv6: Optional[pulumi.Input[str]] = None,
             monitor: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             password: Optional[pulumi.Input[str]] = None,
@@ -435,6 +463,7 @@ class WebProxyForwardServer(pulumi.CustomResource):
         __props__.__dict__["fqdn"] = fqdn
         __props__.__dict__["healthcheck"] = healthcheck
         __props__.__dict__["ip"] = ip
+        __props__.__dict__["ipv6"] = ipv6
         __props__.__dict__["monitor"] = monitor
         __props__.__dict__["name"] = name
         __props__.__dict__["password"] = password
@@ -468,6 +497,11 @@ class WebProxyForwardServer(pulumi.CustomResource):
     @pulumi.getter
     def ip(self) -> pulumi.Output[str]:
         return pulumi.get(self, "ip")
+
+    @property
+    @pulumi.getter
+    def ipv6(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "ipv6")
 
     @property
     @pulumi.getter

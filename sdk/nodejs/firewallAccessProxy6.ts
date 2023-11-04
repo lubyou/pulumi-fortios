@@ -48,6 +48,7 @@ export class FirewallAccessProxy6 extends pulumi.CustomResource {
     public readonly logBlockedTraffic!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
     public readonly svrPoolMultiplex!: pulumi.Output<string>;
+    public readonly svrPoolServerMaxConcurrentRequest!: pulumi.Output<number>;
     public readonly svrPoolServerMaxRequest!: pulumi.Output<number>;
     public readonly svrPoolTtl!: pulumi.Output<number>;
     public readonly userAgentDetect!: pulumi.Output<string>;
@@ -81,6 +82,7 @@ export class FirewallAccessProxy6 extends pulumi.CustomResource {
             resourceInputs["logBlockedTraffic"] = state ? state.logBlockedTraffic : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["svrPoolMultiplex"] = state ? state.svrPoolMultiplex : undefined;
+            resourceInputs["svrPoolServerMaxConcurrentRequest"] = state ? state.svrPoolServerMaxConcurrentRequest : undefined;
             resourceInputs["svrPoolServerMaxRequest"] = state ? state.svrPoolServerMaxRequest : undefined;
             resourceInputs["svrPoolTtl"] = state ? state.svrPoolTtl : undefined;
             resourceInputs["userAgentDetect"] = state ? state.userAgentDetect : undefined;
@@ -102,6 +104,7 @@ export class FirewallAccessProxy6 extends pulumi.CustomResource {
             resourceInputs["logBlockedTraffic"] = args ? args.logBlockedTraffic : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["svrPoolMultiplex"] = args ? args.svrPoolMultiplex : undefined;
+            resourceInputs["svrPoolServerMaxConcurrentRequest"] = args ? args.svrPoolServerMaxConcurrentRequest : undefined;
             resourceInputs["svrPoolServerMaxRequest"] = args ? args.svrPoolServerMaxRequest : undefined;
             resourceInputs["svrPoolTtl"] = args ? args.svrPoolTtl : undefined;
             resourceInputs["userAgentDetect"] = args ? args.userAgentDetect : undefined;
@@ -131,6 +134,7 @@ export interface FirewallAccessProxy6State {
     logBlockedTraffic?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     svrPoolMultiplex?: pulumi.Input<string>;
+    svrPoolServerMaxConcurrentRequest?: pulumi.Input<number>;
     svrPoolServerMaxRequest?: pulumi.Input<number>;
     svrPoolTtl?: pulumi.Input<number>;
     userAgentDetect?: pulumi.Input<string>;
@@ -156,6 +160,7 @@ export interface FirewallAccessProxy6Args {
     logBlockedTraffic?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     svrPoolMultiplex?: pulumi.Input<string>;
+    svrPoolServerMaxConcurrentRequest?: pulumi.Input<number>;
     svrPoolServerMaxRequest?: pulumi.Input<number>;
     svrPoolTtl?: pulumi.Input<number>;
     userAgentDetect?: pulumi.Input<string>;

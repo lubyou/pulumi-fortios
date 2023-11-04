@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemVdomException(ctx *pulumi.Context, args *LookupSystemVdomExceptionArgs, opts ...pulumi.InvokeOption) (*LookupSystemVdomExceptionResult, error) {
@@ -75,6 +76,12 @@ func (o LookupSystemVdomExceptionResultOutput) ToLookupSystemVdomExceptionResult
 
 func (o LookupSystemVdomExceptionResultOutput) ToLookupSystemVdomExceptionResultOutputWithContext(ctx context.Context) LookupSystemVdomExceptionResultOutput {
 	return o
+}
+
+func (o LookupSystemVdomExceptionResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemVdomExceptionResult] {
+	return pulumix.Output[LookupSystemVdomExceptionResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupSystemVdomExceptionResultOutput) Fosid() pulumi.IntOutput {

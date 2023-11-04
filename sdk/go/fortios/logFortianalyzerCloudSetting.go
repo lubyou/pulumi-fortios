@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type LogFortianalyzerCloudSetting struct {
@@ -210,6 +211,12 @@ func (i *LogFortianalyzerCloudSetting) ToLogFortianalyzerCloudSettingOutputWithC
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerCloudSettingOutput)
 }
 
+func (i *LogFortianalyzerCloudSetting) ToOutput(ctx context.Context) pulumix.Output[*LogFortianalyzerCloudSetting] {
+	return pulumix.Output[*LogFortianalyzerCloudSetting]{
+		OutputState: i.ToLogFortianalyzerCloudSettingOutputWithContext(ctx).OutputState,
+	}
+}
+
 // LogFortianalyzerCloudSettingArrayInput is an input type that accepts LogFortianalyzerCloudSettingArray and LogFortianalyzerCloudSettingArrayOutput values.
 // You can construct a concrete instance of `LogFortianalyzerCloudSettingArrayInput` via:
 //
@@ -233,6 +240,12 @@ func (i LogFortianalyzerCloudSettingArray) ToLogFortianalyzerCloudSettingArrayOu
 
 func (i LogFortianalyzerCloudSettingArray) ToLogFortianalyzerCloudSettingArrayOutputWithContext(ctx context.Context) LogFortianalyzerCloudSettingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerCloudSettingArrayOutput)
+}
+
+func (i LogFortianalyzerCloudSettingArray) ToOutput(ctx context.Context) pulumix.Output[[]*LogFortianalyzerCloudSetting] {
+	return pulumix.Output[[]*LogFortianalyzerCloudSetting]{
+		OutputState: i.ToLogFortianalyzerCloudSettingArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // LogFortianalyzerCloudSettingMapInput is an input type that accepts LogFortianalyzerCloudSettingMap and LogFortianalyzerCloudSettingMapOutput values.
@@ -260,6 +273,12 @@ func (i LogFortianalyzerCloudSettingMap) ToLogFortianalyzerCloudSettingMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerCloudSettingMapOutput)
 }
 
+func (i LogFortianalyzerCloudSettingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogFortianalyzerCloudSetting] {
+	return pulumix.Output[map[string]*LogFortianalyzerCloudSetting]{
+		OutputState: i.ToLogFortianalyzerCloudSettingMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type LogFortianalyzerCloudSettingOutput struct{ *pulumi.OutputState }
 
 func (LogFortianalyzerCloudSettingOutput) ElementType() reflect.Type {
@@ -272,6 +291,12 @@ func (o LogFortianalyzerCloudSettingOutput) ToLogFortianalyzerCloudSettingOutput
 
 func (o LogFortianalyzerCloudSettingOutput) ToLogFortianalyzerCloudSettingOutputWithContext(ctx context.Context) LogFortianalyzerCloudSettingOutput {
 	return o
+}
+
+func (o LogFortianalyzerCloudSettingOutput) ToOutput(ctx context.Context) pulumix.Output[*LogFortianalyzerCloudSetting] {
+	return pulumix.Output[*LogFortianalyzerCloudSetting]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LogFortianalyzerCloudSettingOutput) AccessConfig() pulumi.StringOutput {
@@ -388,6 +413,12 @@ func (o LogFortianalyzerCloudSettingArrayOutput) ToLogFortianalyzerCloudSettingA
 	return o
 }
 
+func (o LogFortianalyzerCloudSettingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LogFortianalyzerCloudSetting] {
+	return pulumix.Output[[]*LogFortianalyzerCloudSetting]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LogFortianalyzerCloudSettingArrayOutput) Index(i pulumi.IntInput) LogFortianalyzerCloudSettingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogFortianalyzerCloudSetting {
 		return vs[0].([]*LogFortianalyzerCloudSetting)[vs[1].(int)]
@@ -406,6 +437,12 @@ func (o LogFortianalyzerCloudSettingMapOutput) ToLogFortianalyzerCloudSettingMap
 
 func (o LogFortianalyzerCloudSettingMapOutput) ToLogFortianalyzerCloudSettingMapOutputWithContext(ctx context.Context) LogFortianalyzerCloudSettingMapOutput {
 	return o
+}
+
+func (o LogFortianalyzerCloudSettingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogFortianalyzerCloudSetting] {
+	return pulumix.Output[map[string]*LogFortianalyzerCloudSetting]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LogFortianalyzerCloudSettingMapOutput) MapIndex(k pulumi.StringInput) LogFortianalyzerCloudSettingOutput {

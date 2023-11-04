@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type RouterAspathList struct {
@@ -110,6 +111,12 @@ func (i *RouterAspathList) ToRouterAspathListOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(RouterAspathListOutput)
 }
 
+func (i *RouterAspathList) ToOutput(ctx context.Context) pulumix.Output[*RouterAspathList] {
+	return pulumix.Output[*RouterAspathList]{
+		OutputState: i.ToRouterAspathListOutputWithContext(ctx).OutputState,
+	}
+}
+
 // RouterAspathListArrayInput is an input type that accepts RouterAspathListArray and RouterAspathListArrayOutput values.
 // You can construct a concrete instance of `RouterAspathListArrayInput` via:
 //
@@ -133,6 +140,12 @@ func (i RouterAspathListArray) ToRouterAspathListArrayOutput() RouterAspathListA
 
 func (i RouterAspathListArray) ToRouterAspathListArrayOutputWithContext(ctx context.Context) RouterAspathListArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterAspathListArrayOutput)
+}
+
+func (i RouterAspathListArray) ToOutput(ctx context.Context) pulumix.Output[[]*RouterAspathList] {
+	return pulumix.Output[[]*RouterAspathList]{
+		OutputState: i.ToRouterAspathListArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // RouterAspathListMapInput is an input type that accepts RouterAspathListMap and RouterAspathListMapOutput values.
@@ -160,6 +173,12 @@ func (i RouterAspathListMap) ToRouterAspathListMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(RouterAspathListMapOutput)
 }
 
+func (i RouterAspathListMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RouterAspathList] {
+	return pulumix.Output[map[string]*RouterAspathList]{
+		OutputState: i.ToRouterAspathListMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RouterAspathListOutput struct{ *pulumi.OutputState }
 
 func (RouterAspathListOutput) ElementType() reflect.Type {
@@ -172,6 +191,12 @@ func (o RouterAspathListOutput) ToRouterAspathListOutput() RouterAspathListOutpu
 
 func (o RouterAspathListOutput) ToRouterAspathListOutputWithContext(ctx context.Context) RouterAspathListOutput {
 	return o
+}
+
+func (o RouterAspathListOutput) ToOutput(ctx context.Context) pulumix.Output[*RouterAspathList] {
+	return pulumix.Output[*RouterAspathList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RouterAspathListOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -208,6 +233,12 @@ func (o RouterAspathListArrayOutput) ToRouterAspathListArrayOutputWithContext(ct
 	return o
 }
 
+func (o RouterAspathListArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RouterAspathList] {
+	return pulumix.Output[[]*RouterAspathList]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o RouterAspathListArrayOutput) Index(i pulumi.IntInput) RouterAspathListOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RouterAspathList {
 		return vs[0].([]*RouterAspathList)[vs[1].(int)]
@@ -226,6 +257,12 @@ func (o RouterAspathListMapOutput) ToRouterAspathListMapOutput() RouterAspathLis
 
 func (o RouterAspathListMapOutput) ToRouterAspathListMapOutputWithContext(ctx context.Context) RouterAspathListMapOutput {
 	return o
+}
+
+func (o RouterAspathListMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RouterAspathList] {
+	return pulumix.Output[map[string]*RouterAspathList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RouterAspathListMapOutput) MapIndex(k pulumi.StringInput) RouterAspathListOutput {

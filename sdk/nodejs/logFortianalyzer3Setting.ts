@@ -36,11 +36,13 @@ export class LogFortianalyzer3Setting extends pulumi.CustomResource {
 
     public readonly __changeIp!: pulumi.Output<number>;
     public readonly accessConfig!: pulumi.Output<string>;
+    public readonly altServer!: pulumi.Output<string>;
     public readonly certificate!: pulumi.Output<string>;
     public readonly certificateVerification!: pulumi.Output<string>;
     public readonly connTimeout!: pulumi.Output<number>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly encAlgorithm!: pulumi.Output<string>;
+    public readonly fallbackToPrimary!: pulumi.Output<string>;
     public readonly fazType!: pulumi.Output<number>;
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly hmacAlgorithm!: pulumi.Output<string>;
@@ -80,11 +82,13 @@ export class LogFortianalyzer3Setting extends pulumi.CustomResource {
             const state = argsOrState as LogFortianalyzer3SettingState | undefined;
             resourceInputs["__changeIp"] = state ? state.__changeIp : undefined;
             resourceInputs["accessConfig"] = state ? state.accessConfig : undefined;
+            resourceInputs["altServer"] = state ? state.altServer : undefined;
             resourceInputs["certificate"] = state ? state.certificate : undefined;
             resourceInputs["certificateVerification"] = state ? state.certificateVerification : undefined;
             resourceInputs["connTimeout"] = state ? state.connTimeout : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["encAlgorithm"] = state ? state.encAlgorithm : undefined;
+            resourceInputs["fallbackToPrimary"] = state ? state.fallbackToPrimary : undefined;
             resourceInputs["fazType"] = state ? state.fazType : undefined;
             resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["hmacAlgorithm"] = state ? state.hmacAlgorithm : undefined;
@@ -112,11 +116,13 @@ export class LogFortianalyzer3Setting extends pulumi.CustomResource {
             const args = argsOrState as LogFortianalyzer3SettingArgs | undefined;
             resourceInputs["__changeIp"] = args ? args.__changeIp : undefined;
             resourceInputs["accessConfig"] = args ? args.accessConfig : undefined;
+            resourceInputs["altServer"] = args ? args.altServer : undefined;
             resourceInputs["certificate"] = args ? args.certificate : undefined;
             resourceInputs["certificateVerification"] = args ? args.certificateVerification : undefined;
             resourceInputs["connTimeout"] = args ? args.connTimeout : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["encAlgorithm"] = args ? args.encAlgorithm : undefined;
+            resourceInputs["fallbackToPrimary"] = args ? args.fallbackToPrimary : undefined;
             resourceInputs["fazType"] = args ? args.fazType : undefined;
             resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["hmacAlgorithm"] = args ? args.hmacAlgorithm : undefined;
@@ -152,11 +158,13 @@ export class LogFortianalyzer3Setting extends pulumi.CustomResource {
 export interface LogFortianalyzer3SettingState {
     __changeIp?: pulumi.Input<number>;
     accessConfig?: pulumi.Input<string>;
+    altServer?: pulumi.Input<string>;
     certificate?: pulumi.Input<string>;
     certificateVerification?: pulumi.Input<string>;
     connTimeout?: pulumi.Input<number>;
     dynamicSortSubtable?: pulumi.Input<string>;
     encAlgorithm?: pulumi.Input<string>;
+    fallbackToPrimary?: pulumi.Input<string>;
     fazType?: pulumi.Input<number>;
     getAllTables?: pulumi.Input<string>;
     hmacAlgorithm?: pulumi.Input<string>;
@@ -188,11 +196,13 @@ export interface LogFortianalyzer3SettingState {
 export interface LogFortianalyzer3SettingArgs {
     __changeIp?: pulumi.Input<number>;
     accessConfig?: pulumi.Input<string>;
+    altServer?: pulumi.Input<string>;
     certificate?: pulumi.Input<string>;
     certificateVerification?: pulumi.Input<string>;
     connTimeout?: pulumi.Input<number>;
     dynamicSortSubtable?: pulumi.Input<string>;
     encAlgorithm?: pulumi.Input<string>;
+    fallbackToPrimary?: pulumi.Input<string>;
     fazType?: pulumi.Input<number>;
     getAllTables?: pulumi.Input<string>;
     hmacAlgorithm?: pulumi.Input<string>;

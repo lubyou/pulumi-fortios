@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetSystemSdnConnectorList(ctx *pulumi.Context, args *GetSystemSdnConnectorListArgs, opts ...pulumi.InvokeOption) (*GetSystemSdnConnectorListResult, error) {
@@ -72,6 +73,12 @@ func (o GetSystemSdnConnectorListResultOutput) ToGetSystemSdnConnectorListResult
 
 func (o GetSystemSdnConnectorListResultOutput) ToGetSystemSdnConnectorListResultOutputWithContext(ctx context.Context) GetSystemSdnConnectorListResultOutput {
 	return o
+}
+
+func (o GetSystemSdnConnectorListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSystemSdnConnectorListResult] {
+	return pulumix.Output[GetSystemSdnConnectorListResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetSystemSdnConnectorListResultOutput) Filter() pulumi.StringPtrOutput {

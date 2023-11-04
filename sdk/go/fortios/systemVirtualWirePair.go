@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemVirtualWirePair struct {
@@ -124,6 +125,12 @@ func (i *SystemVirtualWirePair) ToSystemVirtualWirePairOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVirtualWirePairOutput)
 }
 
+func (i *SystemVirtualWirePair) ToOutput(ctx context.Context) pulumix.Output[*SystemVirtualWirePair] {
+	return pulumix.Output[*SystemVirtualWirePair]{
+		OutputState: i.ToSystemVirtualWirePairOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemVirtualWirePairArrayInput is an input type that accepts SystemVirtualWirePairArray and SystemVirtualWirePairArrayOutput values.
 // You can construct a concrete instance of `SystemVirtualWirePairArrayInput` via:
 //
@@ -147,6 +154,12 @@ func (i SystemVirtualWirePairArray) ToSystemVirtualWirePairArrayOutput() SystemV
 
 func (i SystemVirtualWirePairArray) ToSystemVirtualWirePairArrayOutputWithContext(ctx context.Context) SystemVirtualWirePairArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVirtualWirePairArrayOutput)
+}
+
+func (i SystemVirtualWirePairArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemVirtualWirePair] {
+	return pulumix.Output[[]*SystemVirtualWirePair]{
+		OutputState: i.ToSystemVirtualWirePairArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemVirtualWirePairMapInput is an input type that accepts SystemVirtualWirePairMap and SystemVirtualWirePairMapOutput values.
@@ -174,6 +187,12 @@ func (i SystemVirtualWirePairMap) ToSystemVirtualWirePairMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVirtualWirePairMapOutput)
 }
 
+func (i SystemVirtualWirePairMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemVirtualWirePair] {
+	return pulumix.Output[map[string]*SystemVirtualWirePair]{
+		OutputState: i.ToSystemVirtualWirePairMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemVirtualWirePairOutput struct{ *pulumi.OutputState }
 
 func (SystemVirtualWirePairOutput) ElementType() reflect.Type {
@@ -186,6 +205,12 @@ func (o SystemVirtualWirePairOutput) ToSystemVirtualWirePairOutput() SystemVirtu
 
 func (o SystemVirtualWirePairOutput) ToSystemVirtualWirePairOutputWithContext(ctx context.Context) SystemVirtualWirePairOutput {
 	return o
+}
+
+func (o SystemVirtualWirePairOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemVirtualWirePair] {
+	return pulumix.Output[*SystemVirtualWirePair]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemVirtualWirePairOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -230,6 +255,12 @@ func (o SystemVirtualWirePairArrayOutput) ToSystemVirtualWirePairArrayOutputWith
 	return o
 }
 
+func (o SystemVirtualWirePairArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemVirtualWirePair] {
+	return pulumix.Output[[]*SystemVirtualWirePair]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemVirtualWirePairArrayOutput) Index(i pulumi.IntInput) SystemVirtualWirePairOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemVirtualWirePair {
 		return vs[0].([]*SystemVirtualWirePair)[vs[1].(int)]
@@ -248,6 +279,12 @@ func (o SystemVirtualWirePairMapOutput) ToSystemVirtualWirePairMapOutput() Syste
 
 func (o SystemVirtualWirePairMapOutput) ToSystemVirtualWirePairMapOutputWithContext(ctx context.Context) SystemVirtualWirePairMapOutput {
 	return o
+}
+
+func (o SystemVirtualWirePairMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemVirtualWirePair] {
+	return pulumix.Output[map[string]*SystemVirtualWirePair]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemVirtualWirePairMapOutput) MapIndex(k pulumi.StringInput) SystemVirtualWirePairOutput {

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type UserFortitoken struct {
@@ -135,6 +136,12 @@ func (i *UserFortitoken) ToUserFortitokenOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(UserFortitokenOutput)
 }
 
+func (i *UserFortitoken) ToOutput(ctx context.Context) pulumix.Output[*UserFortitoken] {
+	return pulumix.Output[*UserFortitoken]{
+		OutputState: i.ToUserFortitokenOutputWithContext(ctx).OutputState,
+	}
+}
+
 // UserFortitokenArrayInput is an input type that accepts UserFortitokenArray and UserFortitokenArrayOutput values.
 // You can construct a concrete instance of `UserFortitokenArrayInput` via:
 //
@@ -158,6 +165,12 @@ func (i UserFortitokenArray) ToUserFortitokenArrayOutput() UserFortitokenArrayOu
 
 func (i UserFortitokenArray) ToUserFortitokenArrayOutputWithContext(ctx context.Context) UserFortitokenArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserFortitokenArrayOutput)
+}
+
+func (i UserFortitokenArray) ToOutput(ctx context.Context) pulumix.Output[[]*UserFortitoken] {
+	return pulumix.Output[[]*UserFortitoken]{
+		OutputState: i.ToUserFortitokenArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // UserFortitokenMapInput is an input type that accepts UserFortitokenMap and UserFortitokenMapOutput values.
@@ -185,6 +198,12 @@ func (i UserFortitokenMap) ToUserFortitokenMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(UserFortitokenMapOutput)
 }
 
+func (i UserFortitokenMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserFortitoken] {
+	return pulumix.Output[map[string]*UserFortitoken]{
+		OutputState: i.ToUserFortitokenMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type UserFortitokenOutput struct{ *pulumi.OutputState }
 
 func (UserFortitokenOutput) ElementType() reflect.Type {
@@ -197,6 +216,12 @@ func (o UserFortitokenOutput) ToUserFortitokenOutput() UserFortitokenOutput {
 
 func (o UserFortitokenOutput) ToUserFortitokenOutputWithContext(ctx context.Context) UserFortitokenOutput {
 	return o
+}
+
+func (o UserFortitokenOutput) ToOutput(ctx context.Context) pulumix.Output[*UserFortitoken] {
+	return pulumix.Output[*UserFortitoken]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserFortitokenOutput) ActivationCode() pulumi.StringOutput {
@@ -253,6 +278,12 @@ func (o UserFortitokenArrayOutput) ToUserFortitokenArrayOutputWithContext(ctx co
 	return o
 }
 
+func (o UserFortitokenArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*UserFortitoken] {
+	return pulumix.Output[[]*UserFortitoken]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o UserFortitokenArrayOutput) Index(i pulumi.IntInput) UserFortitokenOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserFortitoken {
 		return vs[0].([]*UserFortitoken)[vs[1].(int)]
@@ -271,6 +302,12 @@ func (o UserFortitokenMapOutput) ToUserFortitokenMapOutput() UserFortitokenMapOu
 
 func (o UserFortitokenMapOutput) ToUserFortitokenMapOutputWithContext(ctx context.Context) UserFortitokenMapOutput {
 	return o
+}
+
+func (o UserFortitokenMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserFortitoken] {
+	return pulumix.Output[map[string]*UserFortitoken]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserFortitokenMapOutput) MapIndex(k pulumi.StringInput) UserFortitokenOutput {

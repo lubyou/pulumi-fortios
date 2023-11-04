@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type LogEventfilter struct {
@@ -180,6 +181,12 @@ func (i *LogEventfilter) ToLogEventfilterOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(LogEventfilterOutput)
 }
 
+func (i *LogEventfilter) ToOutput(ctx context.Context) pulumix.Output[*LogEventfilter] {
+	return pulumix.Output[*LogEventfilter]{
+		OutputState: i.ToLogEventfilterOutputWithContext(ctx).OutputState,
+	}
+}
+
 // LogEventfilterArrayInput is an input type that accepts LogEventfilterArray and LogEventfilterArrayOutput values.
 // You can construct a concrete instance of `LogEventfilterArrayInput` via:
 //
@@ -203,6 +210,12 @@ func (i LogEventfilterArray) ToLogEventfilterArrayOutput() LogEventfilterArrayOu
 
 func (i LogEventfilterArray) ToLogEventfilterArrayOutputWithContext(ctx context.Context) LogEventfilterArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogEventfilterArrayOutput)
+}
+
+func (i LogEventfilterArray) ToOutput(ctx context.Context) pulumix.Output[[]*LogEventfilter] {
+	return pulumix.Output[[]*LogEventfilter]{
+		OutputState: i.ToLogEventfilterArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // LogEventfilterMapInput is an input type that accepts LogEventfilterMap and LogEventfilterMapOutput values.
@@ -230,6 +243,12 @@ func (i LogEventfilterMap) ToLogEventfilterMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(LogEventfilterMapOutput)
 }
 
+func (i LogEventfilterMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogEventfilter] {
+	return pulumix.Output[map[string]*LogEventfilter]{
+		OutputState: i.ToLogEventfilterMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type LogEventfilterOutput struct{ *pulumi.OutputState }
 
 func (LogEventfilterOutput) ElementType() reflect.Type {
@@ -242,6 +261,12 @@ func (o LogEventfilterOutput) ToLogEventfilterOutput() LogEventfilterOutput {
 
 func (o LogEventfilterOutput) ToLogEventfilterOutputWithContext(ctx context.Context) LogEventfilterOutput {
 	return o
+}
+
+func (o LogEventfilterOutput) ToOutput(ctx context.Context) pulumix.Output[*LogEventfilter] {
+	return pulumix.Output[*LogEventfilter]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LogEventfilterOutput) Cifs() pulumi.StringOutput {
@@ -334,6 +359,12 @@ func (o LogEventfilterArrayOutput) ToLogEventfilterArrayOutputWithContext(ctx co
 	return o
 }
 
+func (o LogEventfilterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LogEventfilter] {
+	return pulumix.Output[[]*LogEventfilter]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LogEventfilterArrayOutput) Index(i pulumi.IntInput) LogEventfilterOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogEventfilter {
 		return vs[0].([]*LogEventfilter)[vs[1].(int)]
@@ -352,6 +383,12 @@ func (o LogEventfilterMapOutput) ToLogEventfilterMapOutput() LogEventfilterMapOu
 
 func (o LogEventfilterMapOutput) ToLogEventfilterMapOutputWithContext(ctx context.Context) LogEventfilterMapOutput {
 	return o
+}
+
+func (o LogEventfilterMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogEventfilter] {
+	return pulumix.Output[map[string]*LogEventfilter]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LogEventfilterMapOutput) MapIndex(k pulumi.StringInput) LogEventfilterOutput {

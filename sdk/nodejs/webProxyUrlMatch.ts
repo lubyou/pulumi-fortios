@@ -34,6 +34,7 @@ export class WebProxyUrlMatch extends pulumi.CustomResource {
 
     public readonly cacheExemption!: pulumi.Output<string>;
     public readonly comment!: pulumi.Output<string | undefined>;
+    public readonly fastFallback!: pulumi.Output<string>;
     public readonly forwardServer!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
     public readonly status!: pulumi.Output<string>;
@@ -55,6 +56,7 @@ export class WebProxyUrlMatch extends pulumi.CustomResource {
             const state = argsOrState as WebProxyUrlMatchState | undefined;
             resourceInputs["cacheExemption"] = state ? state.cacheExemption : undefined;
             resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["fastFallback"] = state ? state.fastFallback : undefined;
             resourceInputs["forwardServer"] = state ? state.forwardServer : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
@@ -67,6 +69,7 @@ export class WebProxyUrlMatch extends pulumi.CustomResource {
             }
             resourceInputs["cacheExemption"] = args ? args.cacheExemption : undefined;
             resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["fastFallback"] = args ? args.fastFallback : undefined;
             resourceInputs["forwardServer"] = args ? args.forwardServer : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
@@ -84,6 +87,7 @@ export class WebProxyUrlMatch extends pulumi.CustomResource {
 export interface WebProxyUrlMatchState {
     cacheExemption?: pulumi.Input<string>;
     comment?: pulumi.Input<string>;
+    fastFallback?: pulumi.Input<string>;
     forwardServer?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     status?: pulumi.Input<string>;
@@ -97,6 +101,7 @@ export interface WebProxyUrlMatchState {
 export interface WebProxyUrlMatchArgs {
     cacheExemption?: pulumi.Input<string>;
     comment?: pulumi.Input<string>;
+    fastFallback?: pulumi.Input<string>;
     forwardServer?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     status?: pulumi.Input<string>;

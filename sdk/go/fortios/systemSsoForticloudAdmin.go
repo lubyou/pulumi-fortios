@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemSsoForticloudAdmin struct {
@@ -115,6 +116,12 @@ func (i *SystemSsoForticloudAdmin) ToSystemSsoForticloudAdminOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSsoForticloudAdminOutput)
 }
 
+func (i *SystemSsoForticloudAdmin) ToOutput(ctx context.Context) pulumix.Output[*SystemSsoForticloudAdmin] {
+	return pulumix.Output[*SystemSsoForticloudAdmin]{
+		OutputState: i.ToSystemSsoForticloudAdminOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemSsoForticloudAdminArrayInput is an input type that accepts SystemSsoForticloudAdminArray and SystemSsoForticloudAdminArrayOutput values.
 // You can construct a concrete instance of `SystemSsoForticloudAdminArrayInput` via:
 //
@@ -138,6 +145,12 @@ func (i SystemSsoForticloudAdminArray) ToSystemSsoForticloudAdminArrayOutput() S
 
 func (i SystemSsoForticloudAdminArray) ToSystemSsoForticloudAdminArrayOutputWithContext(ctx context.Context) SystemSsoForticloudAdminArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSsoForticloudAdminArrayOutput)
+}
+
+func (i SystemSsoForticloudAdminArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSsoForticloudAdmin] {
+	return pulumix.Output[[]*SystemSsoForticloudAdmin]{
+		OutputState: i.ToSystemSsoForticloudAdminArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemSsoForticloudAdminMapInput is an input type that accepts SystemSsoForticloudAdminMap and SystemSsoForticloudAdminMapOutput values.
@@ -165,6 +178,12 @@ func (i SystemSsoForticloudAdminMap) ToSystemSsoForticloudAdminMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSsoForticloudAdminMapOutput)
 }
 
+func (i SystemSsoForticloudAdminMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSsoForticloudAdmin] {
+	return pulumix.Output[map[string]*SystemSsoForticloudAdmin]{
+		OutputState: i.ToSystemSsoForticloudAdminMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemSsoForticloudAdminOutput struct{ *pulumi.OutputState }
 
 func (SystemSsoForticloudAdminOutput) ElementType() reflect.Type {
@@ -177,6 +196,12 @@ func (o SystemSsoForticloudAdminOutput) ToSystemSsoForticloudAdminOutput() Syste
 
 func (o SystemSsoForticloudAdminOutput) ToSystemSsoForticloudAdminOutputWithContext(ctx context.Context) SystemSsoForticloudAdminOutput {
 	return o
+}
+
+func (o SystemSsoForticloudAdminOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemSsoForticloudAdmin] {
+	return pulumix.Output[*SystemSsoForticloudAdmin]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemSsoForticloudAdminOutput) Accprofile() pulumi.StringOutput {
@@ -217,6 +242,12 @@ func (o SystemSsoForticloudAdminArrayOutput) ToSystemSsoForticloudAdminArrayOutp
 	return o
 }
 
+func (o SystemSsoForticloudAdminArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSsoForticloudAdmin] {
+	return pulumix.Output[[]*SystemSsoForticloudAdmin]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemSsoForticloudAdminArrayOutput) Index(i pulumi.IntInput) SystemSsoForticloudAdminOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSsoForticloudAdmin {
 		return vs[0].([]*SystemSsoForticloudAdmin)[vs[1].(int)]
@@ -235,6 +266,12 @@ func (o SystemSsoForticloudAdminMapOutput) ToSystemSsoForticloudAdminMapOutput()
 
 func (o SystemSsoForticloudAdminMapOutput) ToSystemSsoForticloudAdminMapOutputWithContext(ctx context.Context) SystemSsoForticloudAdminMapOutput {
 	return o
+}
+
+func (o SystemSsoForticloudAdminMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSsoForticloudAdmin] {
+	return pulumix.Output[map[string]*SystemSsoForticloudAdmin]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemSsoForticloudAdminMapOutput) MapIndex(k pulumi.StringInput) SystemSsoForticloudAdminOutput {

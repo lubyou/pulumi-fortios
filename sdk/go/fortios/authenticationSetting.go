@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type AuthenticationSetting struct {
@@ -205,6 +206,12 @@ func (i *AuthenticationSetting) ToAuthenticationSettingOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(AuthenticationSettingOutput)
 }
 
+func (i *AuthenticationSetting) ToOutput(ctx context.Context) pulumix.Output[*AuthenticationSetting] {
+	return pulumix.Output[*AuthenticationSetting]{
+		OutputState: i.ToAuthenticationSettingOutputWithContext(ctx).OutputState,
+	}
+}
+
 // AuthenticationSettingArrayInput is an input type that accepts AuthenticationSettingArray and AuthenticationSettingArrayOutput values.
 // You can construct a concrete instance of `AuthenticationSettingArrayInput` via:
 //
@@ -228,6 +235,12 @@ func (i AuthenticationSettingArray) ToAuthenticationSettingArrayOutput() Authent
 
 func (i AuthenticationSettingArray) ToAuthenticationSettingArrayOutputWithContext(ctx context.Context) AuthenticationSettingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthenticationSettingArrayOutput)
+}
+
+func (i AuthenticationSettingArray) ToOutput(ctx context.Context) pulumix.Output[[]*AuthenticationSetting] {
+	return pulumix.Output[[]*AuthenticationSetting]{
+		OutputState: i.ToAuthenticationSettingArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // AuthenticationSettingMapInput is an input type that accepts AuthenticationSettingMap and AuthenticationSettingMapOutput values.
@@ -255,6 +268,12 @@ func (i AuthenticationSettingMap) ToAuthenticationSettingMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(AuthenticationSettingMapOutput)
 }
 
+func (i AuthenticationSettingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthenticationSetting] {
+	return pulumix.Output[map[string]*AuthenticationSetting]{
+		OutputState: i.ToAuthenticationSettingMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AuthenticationSettingOutput struct{ *pulumi.OutputState }
 
 func (AuthenticationSettingOutput) ElementType() reflect.Type {
@@ -267,6 +286,12 @@ func (o AuthenticationSettingOutput) ToAuthenticationSettingOutput() Authenticat
 
 func (o AuthenticationSettingOutput) ToAuthenticationSettingOutputWithContext(ctx context.Context) AuthenticationSettingOutput {
 	return o
+}
+
+func (o AuthenticationSettingOutput) ToOutput(ctx context.Context) pulumix.Output[*AuthenticationSetting] {
+	return pulumix.Output[*AuthenticationSetting]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AuthenticationSettingOutput) ActiveAuthScheme() pulumi.StringOutput {
@@ -379,6 +404,12 @@ func (o AuthenticationSettingArrayOutput) ToAuthenticationSettingArrayOutputWith
 	return o
 }
 
+func (o AuthenticationSettingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AuthenticationSetting] {
+	return pulumix.Output[[]*AuthenticationSetting]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o AuthenticationSettingArrayOutput) Index(i pulumi.IntInput) AuthenticationSettingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AuthenticationSetting {
 		return vs[0].([]*AuthenticationSetting)[vs[1].(int)]
@@ -397,6 +428,12 @@ func (o AuthenticationSettingMapOutput) ToAuthenticationSettingMapOutput() Authe
 
 func (o AuthenticationSettingMapOutput) ToAuthenticationSettingMapOutputWithContext(ctx context.Context) AuthenticationSettingMapOutput {
 	return o
+}
+
+func (o AuthenticationSettingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthenticationSetting] {
+	return pulumix.Output[map[string]*AuthenticationSetting]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AuthenticationSettingMapOutput) MapIndex(k pulumi.StringInput) AuthenticationSettingOutput {

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupFirewallProxyPolicy(ctx *pulumi.Context, args *LookupFirewallProxyPolicyArgs, opts ...pulumi.InvokeOption) (*LookupFirewallProxyPolicyResult, error) {
@@ -29,29 +30,31 @@ type LookupFirewallProxyPolicyArgs struct {
 
 // A collection of values returned by GetFirewallProxyPolicy.
 type LookupFirewallProxyPolicyResult struct {
-	AccessProxies          []GetFirewallProxyPolicyAccessProxy  `pulumi:"accessProxies"`
-	AccessProxy6s          []GetFirewallProxyPolicyAccessProxy6 `pulumi:"accessProxy6s"`
-	Action                 string                               `pulumi:"action"`
-	ApplicationList        string                               `pulumi:"applicationList"`
-	AvProfile              string                               `pulumi:"avProfile"`
-	BlockNotification      string                               `pulumi:"blockNotification"`
-	CifsProfile            string                               `pulumi:"cifsProfile"`
-	Comments               string                               `pulumi:"comments"`
-	DecryptedTrafficMirror string                               `pulumi:"decryptedTrafficMirror"`
-	DeviceOwnership        string                               `pulumi:"deviceOwnership"`
-	Disclaimer             string                               `pulumi:"disclaimer"`
-	DlpProfile             string                               `pulumi:"dlpProfile"`
-	DlpSensor              string                               `pulumi:"dlpSensor"`
-	Dstaddr6s              []GetFirewallProxyPolicyDstaddr6     `pulumi:"dstaddr6s"`
-	DstaddrNegate          string                               `pulumi:"dstaddrNegate"`
-	Dstaddrs               []GetFirewallProxyPolicyDstaddr      `pulumi:"dstaddrs"`
-	Dstintfs               []GetFirewallProxyPolicyDstintf      `pulumi:"dstintfs"`
-	EmailfilterProfile     string                               `pulumi:"emailfilterProfile"`
-	FileFilterProfile      string                               `pulumi:"fileFilterProfile"`
-	GlobalLabel            string                               `pulumi:"globalLabel"`
-	Groups                 []GetFirewallProxyPolicyGroup        `pulumi:"groups"`
-	HttpTunnelAuth         string                               `pulumi:"httpTunnelAuth"`
-	IcapProfile            string                               `pulumi:"icapProfile"`
+	AccessProxies            []GetFirewallProxyPolicyAccessProxy  `pulumi:"accessProxies"`
+	AccessProxy6s            []GetFirewallProxyPolicyAccessProxy6 `pulumi:"accessProxy6s"`
+	Action                   string                               `pulumi:"action"`
+	ApplicationList          string                               `pulumi:"applicationList"`
+	AvProfile                string                               `pulumi:"avProfile"`
+	BlockNotification        string                               `pulumi:"blockNotification"`
+	CasbProfile              string                               `pulumi:"casbProfile"`
+	CifsProfile              string                               `pulumi:"cifsProfile"`
+	Comments                 string                               `pulumi:"comments"`
+	DecryptedTrafficMirror   string                               `pulumi:"decryptedTrafficMirror"`
+	DetectHttpsInHttpRequest string                               `pulumi:"detectHttpsInHttpRequest"`
+	DeviceOwnership          string                               `pulumi:"deviceOwnership"`
+	Disclaimer               string                               `pulumi:"disclaimer"`
+	DlpProfile               string                               `pulumi:"dlpProfile"`
+	DlpSensor                string                               `pulumi:"dlpSensor"`
+	Dstaddr6s                []GetFirewallProxyPolicyDstaddr6     `pulumi:"dstaddr6s"`
+	DstaddrNegate            string                               `pulumi:"dstaddrNegate"`
+	Dstaddrs                 []GetFirewallProxyPolicyDstaddr      `pulumi:"dstaddrs"`
+	Dstintfs                 []GetFirewallProxyPolicyDstintf      `pulumi:"dstintfs"`
+	EmailfilterProfile       string                               `pulumi:"emailfilterProfile"`
+	FileFilterProfile        string                               `pulumi:"fileFilterProfile"`
+	GlobalLabel              string                               `pulumi:"globalLabel"`
+	Groups                   []GetFirewallProxyPolicyGroup        `pulumi:"groups"`
+	HttpTunnelAuth           string                               `pulumi:"httpTunnelAuth"`
+	IcapProfile              string                               `pulumi:"icapProfile"`
 	// The provider-assigned unique ID for this managed resource.
 	Id                           string                                              `pulumi:"id"`
 	InternetService              string                                              `pulumi:"internetService"`
@@ -102,6 +105,7 @@ type LookupFirewallProxyPolicyResult struct {
 	Uuid                         string                                              `pulumi:"uuid"`
 	Vdomparam                    *string                                             `pulumi:"vdomparam"`
 	VideofilterProfile           string                                              `pulumi:"videofilterProfile"`
+	VirtualPatchProfile          string                                              `pulumi:"virtualPatchProfile"`
 	VoipProfile                  string                                              `pulumi:"voipProfile"`
 	WafProfile                   string                                              `pulumi:"wafProfile"`
 	Webcache                     string                                              `pulumi:"webcache"`
@@ -151,6 +155,12 @@ func (o LookupFirewallProxyPolicyResultOutput) ToLookupFirewallProxyPolicyResult
 	return o
 }
 
+func (o LookupFirewallProxyPolicyResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupFirewallProxyPolicyResult] {
+	return pulumix.Output[LookupFirewallProxyPolicyResult]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LookupFirewallProxyPolicyResultOutput) AccessProxies() GetFirewallProxyPolicyAccessProxyArrayOutput {
 	return o.ApplyT(func(v LookupFirewallProxyPolicyResult) []GetFirewallProxyPolicyAccessProxy { return v.AccessProxies }).(GetFirewallProxyPolicyAccessProxyArrayOutput)
 }
@@ -175,6 +185,10 @@ func (o LookupFirewallProxyPolicyResultOutput) BlockNotification() pulumi.String
 	return o.ApplyT(func(v LookupFirewallProxyPolicyResult) string { return v.BlockNotification }).(pulumi.StringOutput)
 }
 
+func (o LookupFirewallProxyPolicyResultOutput) CasbProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallProxyPolicyResult) string { return v.CasbProfile }).(pulumi.StringOutput)
+}
+
 func (o LookupFirewallProxyPolicyResultOutput) CifsProfile() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallProxyPolicyResult) string { return v.CifsProfile }).(pulumi.StringOutput)
 }
@@ -185,6 +199,10 @@ func (o LookupFirewallProxyPolicyResultOutput) Comments() pulumi.StringOutput {
 
 func (o LookupFirewallProxyPolicyResultOutput) DecryptedTrafficMirror() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallProxyPolicyResult) string { return v.DecryptedTrafficMirror }).(pulumi.StringOutput)
+}
+
+func (o LookupFirewallProxyPolicyResultOutput) DetectHttpsInHttpRequest() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallProxyPolicyResult) string { return v.DetectHttpsInHttpRequest }).(pulumi.StringOutput)
 }
 
 func (o LookupFirewallProxyPolicyResultOutput) DeviceOwnership() pulumi.StringOutput {
@@ -456,6 +474,10 @@ func (o LookupFirewallProxyPolicyResultOutput) Vdomparam() pulumi.StringPtrOutpu
 
 func (o LookupFirewallProxyPolicyResultOutput) VideofilterProfile() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallProxyPolicyResult) string { return v.VideofilterProfile }).(pulumi.StringOutput)
+}
+
+func (o LookupFirewallProxyPolicyResultOutput) VirtualPatchProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallProxyPolicyResult) string { return v.VirtualPatchProfile }).(pulumi.StringOutput)
 }
 
 func (o LookupFirewallProxyPolicyResultOutput) VoipProfile() pulumi.StringOutput {

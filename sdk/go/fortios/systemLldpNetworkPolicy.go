@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemLldpNetworkPolicy struct {
@@ -145,6 +146,12 @@ func (i *SystemLldpNetworkPolicy) ToSystemLldpNetworkPolicyOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(SystemLldpNetworkPolicyOutput)
 }
 
+func (i *SystemLldpNetworkPolicy) ToOutput(ctx context.Context) pulumix.Output[*SystemLldpNetworkPolicy] {
+	return pulumix.Output[*SystemLldpNetworkPolicy]{
+		OutputState: i.ToSystemLldpNetworkPolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemLldpNetworkPolicyArrayInput is an input type that accepts SystemLldpNetworkPolicyArray and SystemLldpNetworkPolicyArrayOutput values.
 // You can construct a concrete instance of `SystemLldpNetworkPolicyArrayInput` via:
 //
@@ -168,6 +175,12 @@ func (i SystemLldpNetworkPolicyArray) ToSystemLldpNetworkPolicyArrayOutput() Sys
 
 func (i SystemLldpNetworkPolicyArray) ToSystemLldpNetworkPolicyArrayOutputWithContext(ctx context.Context) SystemLldpNetworkPolicyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemLldpNetworkPolicyArrayOutput)
+}
+
+func (i SystemLldpNetworkPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemLldpNetworkPolicy] {
+	return pulumix.Output[[]*SystemLldpNetworkPolicy]{
+		OutputState: i.ToSystemLldpNetworkPolicyArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemLldpNetworkPolicyMapInput is an input type that accepts SystemLldpNetworkPolicyMap and SystemLldpNetworkPolicyMapOutput values.
@@ -195,6 +208,12 @@ func (i SystemLldpNetworkPolicyMap) ToSystemLldpNetworkPolicyMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemLldpNetworkPolicyMapOutput)
 }
 
+func (i SystemLldpNetworkPolicyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemLldpNetworkPolicy] {
+	return pulumix.Output[map[string]*SystemLldpNetworkPolicy]{
+		OutputState: i.ToSystemLldpNetworkPolicyMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemLldpNetworkPolicyOutput struct{ *pulumi.OutputState }
 
 func (SystemLldpNetworkPolicyOutput) ElementType() reflect.Type {
@@ -207,6 +226,12 @@ func (o SystemLldpNetworkPolicyOutput) ToSystemLldpNetworkPolicyOutput() SystemL
 
 func (o SystemLldpNetworkPolicyOutput) ToSystemLldpNetworkPolicyOutputWithContext(ctx context.Context) SystemLldpNetworkPolicyOutput {
 	return o
+}
+
+func (o SystemLldpNetworkPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemLldpNetworkPolicy] {
+	return pulumix.Output[*SystemLldpNetworkPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemLldpNetworkPolicyOutput) Comment() pulumi.StringPtrOutput {
@@ -275,6 +300,12 @@ func (o SystemLldpNetworkPolicyArrayOutput) ToSystemLldpNetworkPolicyArrayOutput
 	return o
 }
 
+func (o SystemLldpNetworkPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemLldpNetworkPolicy] {
+	return pulumix.Output[[]*SystemLldpNetworkPolicy]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemLldpNetworkPolicyArrayOutput) Index(i pulumi.IntInput) SystemLldpNetworkPolicyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemLldpNetworkPolicy {
 		return vs[0].([]*SystemLldpNetworkPolicy)[vs[1].(int)]
@@ -293,6 +324,12 @@ func (o SystemLldpNetworkPolicyMapOutput) ToSystemLldpNetworkPolicyMapOutput() S
 
 func (o SystemLldpNetworkPolicyMapOutput) ToSystemLldpNetworkPolicyMapOutputWithContext(ctx context.Context) SystemLldpNetworkPolicyMapOutput {
 	return o
+}
+
+func (o SystemLldpNetworkPolicyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemLldpNetworkPolicy] {
+	return pulumix.Output[map[string]*SystemLldpNetworkPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemLldpNetworkPolicyMapOutput) MapIndex(k pulumi.StringInput) SystemLldpNetworkPolicyOutput {

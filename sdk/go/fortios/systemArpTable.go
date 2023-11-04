@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemArpTable struct {
@@ -123,6 +124,12 @@ func (i *SystemArpTable) ToSystemArpTableOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SystemArpTableOutput)
 }
 
+func (i *SystemArpTable) ToOutput(ctx context.Context) pulumix.Output[*SystemArpTable] {
+	return pulumix.Output[*SystemArpTable]{
+		OutputState: i.ToSystemArpTableOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemArpTableArrayInput is an input type that accepts SystemArpTableArray and SystemArpTableArrayOutput values.
 // You can construct a concrete instance of `SystemArpTableArrayInput` via:
 //
@@ -146,6 +153,12 @@ func (i SystemArpTableArray) ToSystemArpTableArrayOutput() SystemArpTableArrayOu
 
 func (i SystemArpTableArray) ToSystemArpTableArrayOutputWithContext(ctx context.Context) SystemArpTableArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemArpTableArrayOutput)
+}
+
+func (i SystemArpTableArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemArpTable] {
+	return pulumix.Output[[]*SystemArpTable]{
+		OutputState: i.ToSystemArpTableArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemArpTableMapInput is an input type that accepts SystemArpTableMap and SystemArpTableMapOutput values.
@@ -173,6 +186,12 @@ func (i SystemArpTableMap) ToSystemArpTableMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(SystemArpTableMapOutput)
 }
 
+func (i SystemArpTableMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemArpTable] {
+	return pulumix.Output[map[string]*SystemArpTable]{
+		OutputState: i.ToSystemArpTableMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemArpTableOutput struct{ *pulumi.OutputState }
 
 func (SystemArpTableOutput) ElementType() reflect.Type {
@@ -185,6 +204,12 @@ func (o SystemArpTableOutput) ToSystemArpTableOutput() SystemArpTableOutput {
 
 func (o SystemArpTableOutput) ToSystemArpTableOutputWithContext(ctx context.Context) SystemArpTableOutput {
 	return o
+}
+
+func (o SystemArpTableOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemArpTable] {
+	return pulumix.Output[*SystemArpTable]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemArpTableOutput) Fosid() pulumi.IntOutput {
@@ -221,6 +246,12 @@ func (o SystemArpTableArrayOutput) ToSystemArpTableArrayOutputWithContext(ctx co
 	return o
 }
 
+func (o SystemArpTableArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemArpTable] {
+	return pulumix.Output[[]*SystemArpTable]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemArpTableArrayOutput) Index(i pulumi.IntInput) SystemArpTableOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemArpTable {
 		return vs[0].([]*SystemArpTable)[vs[1].(int)]
@@ -239,6 +270,12 @@ func (o SystemArpTableMapOutput) ToSystemArpTableMapOutput() SystemArpTableMapOu
 
 func (o SystemArpTableMapOutput) ToSystemArpTableMapOutputWithContext(ctx context.Context) SystemArpTableMapOutput {
 	return o
+}
+
+func (o SystemArpTableMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemArpTable] {
+	return pulumix.Output[map[string]*SystemArpTable]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemArpTableMapOutput) MapIndex(k pulumi.StringInput) SystemArpTableOutput {

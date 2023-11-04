@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WirelessControllerHotspot20H2QpTermsAndConditions struct {
@@ -110,6 +111,12 @@ func (i *WirelessControllerHotspot20H2QpTermsAndConditions) ToWirelessController
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20H2QpTermsAndConditionsOutput)
 }
 
+func (i *WirelessControllerHotspot20H2QpTermsAndConditions) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerHotspot20H2QpTermsAndConditions] {
+	return pulumix.Output[*WirelessControllerHotspot20H2QpTermsAndConditions]{
+		OutputState: i.ToWirelessControllerHotspot20H2QpTermsAndConditionsOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerHotspot20H2QpTermsAndConditionsArrayInput is an input type that accepts WirelessControllerHotspot20H2QpTermsAndConditionsArray and WirelessControllerHotspot20H2QpTermsAndConditionsArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerHotspot20H2QpTermsAndConditionsArrayInput` via:
 //
@@ -133,6 +140,12 @@ func (i WirelessControllerHotspot20H2QpTermsAndConditionsArray) ToWirelessContro
 
 func (i WirelessControllerHotspot20H2QpTermsAndConditionsArray) ToWirelessControllerHotspot20H2QpTermsAndConditionsArrayOutputWithContext(ctx context.Context) WirelessControllerHotspot20H2QpTermsAndConditionsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20H2QpTermsAndConditionsArrayOutput)
+}
+
+func (i WirelessControllerHotspot20H2QpTermsAndConditionsArray) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerHotspot20H2QpTermsAndConditions] {
+	return pulumix.Output[[]*WirelessControllerHotspot20H2QpTermsAndConditions]{
+		OutputState: i.ToWirelessControllerHotspot20H2QpTermsAndConditionsArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // WirelessControllerHotspot20H2QpTermsAndConditionsMapInput is an input type that accepts WirelessControllerHotspot20H2QpTermsAndConditionsMap and WirelessControllerHotspot20H2QpTermsAndConditionsMapOutput values.
@@ -160,6 +173,12 @@ func (i WirelessControllerHotspot20H2QpTermsAndConditionsMap) ToWirelessControll
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20H2QpTermsAndConditionsMapOutput)
 }
 
+func (i WirelessControllerHotspot20H2QpTermsAndConditionsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerHotspot20H2QpTermsAndConditions] {
+	return pulumix.Output[map[string]*WirelessControllerHotspot20H2QpTermsAndConditions]{
+		OutputState: i.ToWirelessControllerHotspot20H2QpTermsAndConditionsMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerHotspot20H2QpTermsAndConditionsOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20H2QpTermsAndConditionsOutput) ElementType() reflect.Type {
@@ -172,6 +191,12 @@ func (o WirelessControllerHotspot20H2QpTermsAndConditionsOutput) ToWirelessContr
 
 func (o WirelessControllerHotspot20H2QpTermsAndConditionsOutput) ToWirelessControllerHotspot20H2QpTermsAndConditionsOutputWithContext(ctx context.Context) WirelessControllerHotspot20H2QpTermsAndConditionsOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20H2QpTermsAndConditionsOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerHotspot20H2QpTermsAndConditions] {
+	return pulumix.Output[*WirelessControllerHotspot20H2QpTermsAndConditions]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20H2QpTermsAndConditionsOutput) Filename() pulumi.StringOutput {
@@ -208,6 +233,12 @@ func (o WirelessControllerHotspot20H2QpTermsAndConditionsArrayOutput) ToWireless
 	return o
 }
 
+func (o WirelessControllerHotspot20H2QpTermsAndConditionsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerHotspot20H2QpTermsAndConditions] {
+	return pulumix.Output[[]*WirelessControllerHotspot20H2QpTermsAndConditions]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o WirelessControllerHotspot20H2QpTermsAndConditionsArrayOutput) Index(i pulumi.IntInput) WirelessControllerHotspot20H2QpTermsAndConditionsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerHotspot20H2QpTermsAndConditions {
 		return vs[0].([]*WirelessControllerHotspot20H2QpTermsAndConditions)[vs[1].(int)]
@@ -226,6 +257,12 @@ func (o WirelessControllerHotspot20H2QpTermsAndConditionsMapOutput) ToWirelessCo
 
 func (o WirelessControllerHotspot20H2QpTermsAndConditionsMapOutput) ToWirelessControllerHotspot20H2QpTermsAndConditionsMapOutputWithContext(ctx context.Context) WirelessControllerHotspot20H2QpTermsAndConditionsMapOutput {
 	return o
+}
+
+func (o WirelessControllerHotspot20H2QpTermsAndConditionsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerHotspot20H2QpTermsAndConditions] {
+	return pulumix.Output[map[string]*WirelessControllerHotspot20H2QpTermsAndConditions]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerHotspot20H2QpTermsAndConditionsMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerHotspot20H2QpTermsAndConditionsOutput {

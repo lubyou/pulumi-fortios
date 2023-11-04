@@ -41,6 +41,7 @@ export class RouterPolicy6 extends pulumi.CustomResource {
     public readonly dstaddrs!: pulumi.Output<outputs.RouterPolicy6Dstaddr[] | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly endPort!: pulumi.Output<number>;
+    public readonly endSourcePort!: pulumi.Output<number>;
     public readonly gateway!: pulumi.Output<string>;
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly inputDevice!: pulumi.Output<string>;
@@ -54,6 +55,7 @@ export class RouterPolicy6 extends pulumi.CustomResource {
     public readonly srcNegate!: pulumi.Output<string>;
     public readonly srcaddrs!: pulumi.Output<outputs.RouterPolicy6Srcaddr[] | undefined>;
     public readonly startPort!: pulumi.Output<number>;
+    public readonly startSourcePort!: pulumi.Output<number>;
     public readonly status!: pulumi.Output<string>;
     public readonly tos!: pulumi.Output<string>;
     public readonly tosMask!: pulumi.Output<string>;
@@ -79,6 +81,7 @@ export class RouterPolicy6 extends pulumi.CustomResource {
             resourceInputs["dstaddrs"] = state ? state.dstaddrs : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["endPort"] = state ? state.endPort : undefined;
+            resourceInputs["endSourcePort"] = state ? state.endSourcePort : undefined;
             resourceInputs["gateway"] = state ? state.gateway : undefined;
             resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["inputDevice"] = state ? state.inputDevice : undefined;
@@ -92,6 +95,7 @@ export class RouterPolicy6 extends pulumi.CustomResource {
             resourceInputs["srcNegate"] = state ? state.srcNegate : undefined;
             resourceInputs["srcaddrs"] = state ? state.srcaddrs : undefined;
             resourceInputs["startPort"] = state ? state.startPort : undefined;
+            resourceInputs["startSourcePort"] = state ? state.startSourcePort : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["tos"] = state ? state.tos : undefined;
             resourceInputs["tosMask"] = state ? state.tosMask : undefined;
@@ -108,6 +112,7 @@ export class RouterPolicy6 extends pulumi.CustomResource {
             resourceInputs["dstaddrs"] = args ? args.dstaddrs : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["endPort"] = args ? args.endPort : undefined;
+            resourceInputs["endSourcePort"] = args ? args.endSourcePort : undefined;
             resourceInputs["gateway"] = args ? args.gateway : undefined;
             resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["inputDevice"] = args ? args.inputDevice : undefined;
@@ -121,6 +126,7 @@ export class RouterPolicy6 extends pulumi.CustomResource {
             resourceInputs["srcNegate"] = args ? args.srcNegate : undefined;
             resourceInputs["srcaddrs"] = args ? args.srcaddrs : undefined;
             resourceInputs["startPort"] = args ? args.startPort : undefined;
+            resourceInputs["startSourcePort"] = args ? args.startSourcePort : undefined;
             resourceInputs["status"] = args ? args.status : undefined;
             resourceInputs["tos"] = args ? args.tos : undefined;
             resourceInputs["tosMask"] = args ? args.tosMask : undefined;
@@ -142,6 +148,7 @@ export interface RouterPolicy6State {
     dstaddrs?: pulumi.Input<pulumi.Input<inputs.RouterPolicy6Dstaddr>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
     endPort?: pulumi.Input<number>;
+    endSourcePort?: pulumi.Input<number>;
     gateway?: pulumi.Input<string>;
     getAllTables?: pulumi.Input<string>;
     inputDevice?: pulumi.Input<string>;
@@ -155,6 +162,7 @@ export interface RouterPolicy6State {
     srcNegate?: pulumi.Input<string>;
     srcaddrs?: pulumi.Input<pulumi.Input<inputs.RouterPolicy6Srcaddr>[]>;
     startPort?: pulumi.Input<number>;
+    startSourcePort?: pulumi.Input<number>;
     status?: pulumi.Input<string>;
     tos?: pulumi.Input<string>;
     tosMask?: pulumi.Input<string>;
@@ -172,6 +180,7 @@ export interface RouterPolicy6Args {
     dstaddrs?: pulumi.Input<pulumi.Input<inputs.RouterPolicy6Dstaddr>[]>;
     dynamicSortSubtable?: pulumi.Input<string>;
     endPort?: pulumi.Input<number>;
+    endSourcePort?: pulumi.Input<number>;
     gateway?: pulumi.Input<string>;
     getAllTables?: pulumi.Input<string>;
     inputDevice: pulumi.Input<string>;
@@ -185,6 +194,7 @@ export interface RouterPolicy6Args {
     srcNegate?: pulumi.Input<string>;
     srcaddrs?: pulumi.Input<pulumi.Input<inputs.RouterPolicy6Srcaddr>[]>;
     startPort?: pulumi.Input<number>;
+    startSourcePort?: pulumi.Input<number>;
     status?: pulumi.Input<string>;
     tos?: pulumi.Input<string>;
     tosMask?: pulumi.Input<string>;

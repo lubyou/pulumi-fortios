@@ -24,6 +24,8 @@ class FirewallInterfacePolicy6Args:
                  application_list_status: Optional[pulumi.Input[str]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
                  av_profile_status: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
+                 casb_profile_status: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  dlp_profile: Optional[pulumi.Input[str]] = None,
                  dlp_profile_status: Optional[pulumi.Input[str]] = None,
@@ -63,6 +65,10 @@ class FirewallInterfacePolicy6Args:
             pulumi.set(__self__, "av_profile", av_profile)
         if av_profile_status is not None:
             pulumi.set(__self__, "av_profile_status", av_profile_status)
+        if casb_profile is not None:
+            pulumi.set(__self__, "casb_profile", casb_profile)
+        if casb_profile_status is not None:
+            pulumi.set(__self__, "casb_profile_status", casb_profile_status)
         if comments is not None:
             pulumi.set(__self__, "comments", comments)
         if dlp_profile is not None:
@@ -181,6 +187,24 @@ class FirewallInterfacePolicy6Args:
     @av_profile_status.setter
     def av_profile_status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "av_profile_status", value)
+
+    @property
+    @pulumi.getter(name="casbProfile")
+    def casb_profile(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "casb_profile")
+
+    @casb_profile.setter
+    def casb_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "casb_profile", value)
+
+    @property
+    @pulumi.getter(name="casbProfileStatus")
+    def casb_profile_status(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "casb_profile_status")
+
+    @casb_profile_status.setter
+    def casb_profile_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "casb_profile_status", value)
 
     @property
     @pulumi.getter
@@ -398,6 +422,8 @@ class _FirewallInterfacePolicy6State:
                  application_list_status: Optional[pulumi.Input[str]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
                  av_profile_status: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
+                 casb_profile_status: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  dlp_profile: Optional[pulumi.Input[str]] = None,
                  dlp_profile_status: Optional[pulumi.Input[str]] = None,
@@ -437,6 +463,10 @@ class _FirewallInterfacePolicy6State:
             pulumi.set(__self__, "av_profile", av_profile)
         if av_profile_status is not None:
             pulumi.set(__self__, "av_profile_status", av_profile_status)
+        if casb_profile is not None:
+            pulumi.set(__self__, "casb_profile", casb_profile)
+        if casb_profile_status is not None:
+            pulumi.set(__self__, "casb_profile_status", casb_profile_status)
         if comments is not None:
             pulumi.set(__self__, "comments", comments)
         if dlp_profile is not None:
@@ -534,6 +564,24 @@ class _FirewallInterfacePolicy6State:
     @av_profile_status.setter
     def av_profile_status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "av_profile_status", value)
+
+    @property
+    @pulumi.getter(name="casbProfile")
+    def casb_profile(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "casb_profile")
+
+    @casb_profile.setter
+    def casb_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "casb_profile", value)
+
+    @property
+    @pulumi.getter(name="casbProfileStatus")
+    def casb_profile_status(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "casb_profile_status")
+
+    @casb_profile_status.setter
+    def casb_profile_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "casb_profile_status", value)
 
     @property
     @pulumi.getter
@@ -780,6 +828,8 @@ class FirewallInterfacePolicy6(pulumi.CustomResource):
                  application_list_status: Optional[pulumi.Input[str]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
                  av_profile_status: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
+                 casb_profile_status: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  dlp_profile: Optional[pulumi.Input[str]] = None,
                  dlp_profile_status: Optional[pulumi.Input[str]] = None,
@@ -840,6 +890,8 @@ class FirewallInterfacePolicy6(pulumi.CustomResource):
                  application_list_status: Optional[pulumi.Input[str]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
                  av_profile_status: Optional[pulumi.Input[str]] = None,
+                 casb_profile: Optional[pulumi.Input[str]] = None,
+                 casb_profile_status: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  dlp_profile: Optional[pulumi.Input[str]] = None,
                  dlp_profile_status: Optional[pulumi.Input[str]] = None,
@@ -880,6 +932,8 @@ class FirewallInterfacePolicy6(pulumi.CustomResource):
             __props__.__dict__["application_list_status"] = application_list_status
             __props__.__dict__["av_profile"] = av_profile
             __props__.__dict__["av_profile_status"] = av_profile_status
+            __props__.__dict__["casb_profile"] = casb_profile
+            __props__.__dict__["casb_profile_status"] = casb_profile_status
             __props__.__dict__["comments"] = comments
             __props__.__dict__["dlp_profile"] = dlp_profile
             __props__.__dict__["dlp_profile_status"] = dlp_profile_status
@@ -927,6 +981,8 @@ class FirewallInterfacePolicy6(pulumi.CustomResource):
             application_list_status: Optional[pulumi.Input[str]] = None,
             av_profile: Optional[pulumi.Input[str]] = None,
             av_profile_status: Optional[pulumi.Input[str]] = None,
+            casb_profile: Optional[pulumi.Input[str]] = None,
+            casb_profile_status: Optional[pulumi.Input[str]] = None,
             comments: Optional[pulumi.Input[str]] = None,
             dlp_profile: Optional[pulumi.Input[str]] = None,
             dlp_profile_status: Optional[pulumi.Input[str]] = None,
@@ -970,6 +1026,8 @@ class FirewallInterfacePolicy6(pulumi.CustomResource):
         __props__.__dict__["application_list_status"] = application_list_status
         __props__.__dict__["av_profile"] = av_profile
         __props__.__dict__["av_profile_status"] = av_profile_status
+        __props__.__dict__["casb_profile"] = casb_profile
+        __props__.__dict__["casb_profile_status"] = casb_profile_status
         __props__.__dict__["comments"] = comments
         __props__.__dict__["dlp_profile"] = dlp_profile
         __props__.__dict__["dlp_profile_status"] = dlp_profile_status
@@ -1022,6 +1080,16 @@ class FirewallInterfacePolicy6(pulumi.CustomResource):
     @pulumi.getter(name="avProfileStatus")
     def av_profile_status(self) -> pulumi.Output[str]:
         return pulumi.get(self, "av_profile_status")
+
+    @property
+    @pulumi.getter(name="casbProfile")
+    def casb_profile(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "casb_profile")
+
+    @property
+    @pulumi.getter(name="casbProfileStatus")
+    def casb_profile_status(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "casb_profile_status")
 
     @property
     @pulumi.getter

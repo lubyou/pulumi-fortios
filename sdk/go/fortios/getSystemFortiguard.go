@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemFortiguard(ctx *pulumi.Context, args *LookupSystemFortiguardArgs, opts ...pulumi.InvokeOption) (*LookupSystemFortiguardResult, error) {
@@ -131,6 +132,12 @@ func (o LookupSystemFortiguardResultOutput) ToLookupSystemFortiguardResultOutput
 
 func (o LookupSystemFortiguardResultOutput) ToLookupSystemFortiguardResultOutputWithContext(ctx context.Context) LookupSystemFortiguardResultOutput {
 	return o
+}
+
+func (o LookupSystemFortiguardResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemFortiguardResult] {
+	return pulumix.Output[LookupSystemFortiguardResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupSystemFortiguardResultOutput) AntispamCache() pulumi.StringOutput {

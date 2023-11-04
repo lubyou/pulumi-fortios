@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemGlobal(ctx *pulumi.Context, args *LookupSystemGlobalArgs, opts ...pulumi.InvokeOption) (*LookupSystemGlobalResult, error) {
@@ -115,9 +116,12 @@ type LookupSystemGlobalResult struct {
 	FortiipamIntegration                  string `pulumi:"fortiipamIntegration"`
 	FortiservicePort                      int    `pulumi:"fortiservicePort"`
 	FortitokenCloud                       string `pulumi:"fortitokenCloud"`
+	FortitokenCloudPushStatus             string `pulumi:"fortitokenCloudPushStatus"`
+	FortitokenCloudSyncInterval           int    `pulumi:"fortitokenCloudSyncInterval"`
 	GuiAllowDefaultHostname               string `pulumi:"guiAllowDefaultHostname"`
 	GuiAllowIncompatibleFabricFgt         string `pulumi:"guiAllowIncompatibleFabricFgt"`
 	GuiAppDetectionSdwan                  string `pulumi:"guiAppDetectionSdwan"`
+	GuiAutoUpgradeSetupWarning            string `pulumi:"guiAutoUpgradeSetupWarning"`
 	GuiCdnDomainOverride                  string `pulumi:"guiCdnDomainOverride"`
 	GuiCdnUsage                           string `pulumi:"guiCdnUsage"`
 	GuiCertificates                       string `pulumi:"guiCertificates"`
@@ -210,6 +214,12 @@ type LookupSystemGlobalResult struct {
 	ProxyReAuthenticationTime         int                                          `pulumi:"proxyReAuthenticationTime"`
 	ProxyResourceMode                 string                                       `pulumi:"proxyResourceMode"`
 	ProxyWorkerCount                  int                                          `pulumi:"proxyWorkerCount"`
+	QuicAckThresold                   int                                          `pulumi:"quicAckThresold"`
+	QuicCongestionControlAlgo         string                                       `pulumi:"quicCongestionControlAlgo"`
+	QuicMaxDatagramSize               int                                          `pulumi:"quicMaxDatagramSize"`
+	QuicPmtud                         string                                       `pulumi:"quicPmtud"`
+	QuicTlsHandshakeTimeout           int                                          `pulumi:"quicTlsHandshakeTimeout"`
+	QuicUdpPayloadSizeShapingPerCid   string                                       `pulumi:"quicUdpPayloadSizeShapingPerCid"`
 	RadiusPort                        int                                          `pulumi:"radiusPort"`
 	RebootUponConfigRestore           string                                       `pulumi:"rebootUponConfigRestore"`
 	Refresh                           int                                          `pulumi:"refresh"`
@@ -247,6 +257,7 @@ type LookupSystemGlobalResult struct {
 	SslvpnKxpHardwareAcceleration     string                                       `pulumi:"sslvpnKxpHardwareAcceleration"`
 	SslvpnMaxWorkerCount              int                                          `pulumi:"sslvpnMaxWorkerCount"`
 	SslvpnPluginVersionCheck          string                                       `pulumi:"sslvpnPluginVersionCheck"`
+	SslvpnWebMode                     string                                       `pulumi:"sslvpnWebMode"`
 	StrictDirtySessionCheck           string                                       `pulumi:"strictDirtySessionCheck"`
 	StrongCrypto                      string                                       `pulumi:"strongCrypto"`
 	SwitchController                  string                                       `pulumi:"switchController"`
@@ -334,6 +345,12 @@ func (o LookupSystemGlobalResultOutput) ToLookupSystemGlobalResultOutput() Looku
 
 func (o LookupSystemGlobalResultOutput) ToLookupSystemGlobalResultOutputWithContext(ctx context.Context) LookupSystemGlobalResultOutput {
 	return o
+}
+
+func (o LookupSystemGlobalResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemGlobalResult] {
+	return pulumix.Output[LookupSystemGlobalResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupSystemGlobalResultOutput) AdminConcurrent() pulumi.StringOutput {
@@ -684,6 +701,14 @@ func (o LookupSystemGlobalResultOutput) FortitokenCloud() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemGlobalResult) string { return v.FortitokenCloud }).(pulumi.StringOutput)
 }
 
+func (o LookupSystemGlobalResultOutput) FortitokenCloudPushStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemGlobalResult) string { return v.FortitokenCloudPushStatus }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemGlobalResultOutput) FortitokenCloudSyncInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemGlobalResult) int { return v.FortitokenCloudSyncInterval }).(pulumi.IntOutput)
+}
+
 func (o LookupSystemGlobalResultOutput) GuiAllowDefaultHostname() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemGlobalResult) string { return v.GuiAllowDefaultHostname }).(pulumi.StringOutput)
 }
@@ -694,6 +719,10 @@ func (o LookupSystemGlobalResultOutput) GuiAllowIncompatibleFabricFgt() pulumi.S
 
 func (o LookupSystemGlobalResultOutput) GuiAppDetectionSdwan() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemGlobalResult) string { return v.GuiAppDetectionSdwan }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemGlobalResultOutput) GuiAutoUpgradeSetupWarning() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemGlobalResult) string { return v.GuiAutoUpgradeSetupWarning }).(pulumi.StringOutput)
 }
 
 func (o LookupSystemGlobalResultOutput) GuiCdnDomainOverride() pulumi.StringOutput {
@@ -1063,6 +1092,30 @@ func (o LookupSystemGlobalResultOutput) ProxyWorkerCount() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemGlobalResult) int { return v.ProxyWorkerCount }).(pulumi.IntOutput)
 }
 
+func (o LookupSystemGlobalResultOutput) QuicAckThresold() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemGlobalResult) int { return v.QuicAckThresold }).(pulumi.IntOutput)
+}
+
+func (o LookupSystemGlobalResultOutput) QuicCongestionControlAlgo() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemGlobalResult) string { return v.QuicCongestionControlAlgo }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemGlobalResultOutput) QuicMaxDatagramSize() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemGlobalResult) int { return v.QuicMaxDatagramSize }).(pulumi.IntOutput)
+}
+
+func (o LookupSystemGlobalResultOutput) QuicPmtud() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemGlobalResult) string { return v.QuicPmtud }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemGlobalResultOutput) QuicTlsHandshakeTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemGlobalResult) int { return v.QuicTlsHandshakeTimeout }).(pulumi.IntOutput)
+}
+
+func (o LookupSystemGlobalResultOutput) QuicUdpPayloadSizeShapingPerCid() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemGlobalResult) string { return v.QuicUdpPayloadSizeShapingPerCid }).(pulumi.StringOutput)
+}
+
 func (o LookupSystemGlobalResultOutput) RadiusPort() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupSystemGlobalResult) int { return v.RadiusPort }).(pulumi.IntOutput)
 }
@@ -1209,6 +1262,10 @@ func (o LookupSystemGlobalResultOutput) SslvpnMaxWorkerCount() pulumi.IntOutput 
 
 func (o LookupSystemGlobalResultOutput) SslvpnPluginVersionCheck() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemGlobalResult) string { return v.SslvpnPluginVersionCheck }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemGlobalResultOutput) SslvpnWebMode() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemGlobalResult) string { return v.SslvpnWebMode }).(pulumi.StringOutput)
 }
 
 func (o LookupSystemGlobalResultOutput) StrictDirtySessionCheck() pulumi.StringOutput {

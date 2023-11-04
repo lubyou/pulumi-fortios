@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallProxyPolicy struct {
@@ -21,9 +22,11 @@ type FirewallProxyPolicy struct {
 	ApplicationList              pulumi.StringOutput                                       `pulumi:"applicationList"`
 	AvProfile                    pulumi.StringOutput                                       `pulumi:"avProfile"`
 	BlockNotification            pulumi.StringOutput                                       `pulumi:"blockNotification"`
+	CasbProfile                  pulumi.StringOutput                                       `pulumi:"casbProfile"`
 	CifsProfile                  pulumi.StringOutput                                       `pulumi:"cifsProfile"`
 	Comments                     pulumi.StringPtrOutput                                    `pulumi:"comments"`
 	DecryptedTrafficMirror       pulumi.StringOutput                                       `pulumi:"decryptedTrafficMirror"`
+	DetectHttpsInHttpRequest     pulumi.StringOutput                                       `pulumi:"detectHttpsInHttpRequest"`
 	DeviceOwnership              pulumi.StringOutput                                       `pulumi:"deviceOwnership"`
 	Disclaimer                   pulumi.StringOutput                                       `pulumi:"disclaimer"`
 	DlpProfile                   pulumi.StringOutput                                       `pulumi:"dlpProfile"`
@@ -88,6 +91,7 @@ type FirewallProxyPolicy struct {
 	Uuid                         pulumi.StringOutput                                       `pulumi:"uuid"`
 	Vdomparam                    pulumi.StringPtrOutput                                    `pulumi:"vdomparam"`
 	VideofilterProfile           pulumi.StringOutput                                       `pulumi:"videofilterProfile"`
+	VirtualPatchProfile          pulumi.StringOutput                                       `pulumi:"virtualPatchProfile"`
 	VoipProfile                  pulumi.StringOutput                                       `pulumi:"voipProfile"`
 	WafProfile                   pulumi.StringOutput                                       `pulumi:"wafProfile"`
 	Webcache                     pulumi.StringOutput                                       `pulumi:"webcache"`
@@ -144,9 +148,11 @@ type firewallProxyPolicyState struct {
 	ApplicationList              *string                                          `pulumi:"applicationList"`
 	AvProfile                    *string                                          `pulumi:"avProfile"`
 	BlockNotification            *string                                          `pulumi:"blockNotification"`
+	CasbProfile                  *string                                          `pulumi:"casbProfile"`
 	CifsProfile                  *string                                          `pulumi:"cifsProfile"`
 	Comments                     *string                                          `pulumi:"comments"`
 	DecryptedTrafficMirror       *string                                          `pulumi:"decryptedTrafficMirror"`
+	DetectHttpsInHttpRequest     *string                                          `pulumi:"detectHttpsInHttpRequest"`
 	DeviceOwnership              *string                                          `pulumi:"deviceOwnership"`
 	Disclaimer                   *string                                          `pulumi:"disclaimer"`
 	DlpProfile                   *string                                          `pulumi:"dlpProfile"`
@@ -211,6 +217,7 @@ type firewallProxyPolicyState struct {
 	Uuid                         *string                                          `pulumi:"uuid"`
 	Vdomparam                    *string                                          `pulumi:"vdomparam"`
 	VideofilterProfile           *string                                          `pulumi:"videofilterProfile"`
+	VirtualPatchProfile          *string                                          `pulumi:"virtualPatchProfile"`
 	VoipProfile                  *string                                          `pulumi:"voipProfile"`
 	WafProfile                   *string                                          `pulumi:"wafProfile"`
 	Webcache                     *string                                          `pulumi:"webcache"`
@@ -229,9 +236,11 @@ type FirewallProxyPolicyState struct {
 	ApplicationList              pulumi.StringPtrInput
 	AvProfile                    pulumi.StringPtrInput
 	BlockNotification            pulumi.StringPtrInput
+	CasbProfile                  pulumi.StringPtrInput
 	CifsProfile                  pulumi.StringPtrInput
 	Comments                     pulumi.StringPtrInput
 	DecryptedTrafficMirror       pulumi.StringPtrInput
+	DetectHttpsInHttpRequest     pulumi.StringPtrInput
 	DeviceOwnership              pulumi.StringPtrInput
 	Disclaimer                   pulumi.StringPtrInput
 	DlpProfile                   pulumi.StringPtrInput
@@ -296,6 +305,7 @@ type FirewallProxyPolicyState struct {
 	Uuid                         pulumi.StringPtrInput
 	Vdomparam                    pulumi.StringPtrInput
 	VideofilterProfile           pulumi.StringPtrInput
+	VirtualPatchProfile          pulumi.StringPtrInput
 	VoipProfile                  pulumi.StringPtrInput
 	WafProfile                   pulumi.StringPtrInput
 	Webcache                     pulumi.StringPtrInput
@@ -318,9 +328,11 @@ type firewallProxyPolicyArgs struct {
 	ApplicationList              *string                                          `pulumi:"applicationList"`
 	AvProfile                    *string                                          `pulumi:"avProfile"`
 	BlockNotification            *string                                          `pulumi:"blockNotification"`
+	CasbProfile                  *string                                          `pulumi:"casbProfile"`
 	CifsProfile                  *string                                          `pulumi:"cifsProfile"`
 	Comments                     *string                                          `pulumi:"comments"`
 	DecryptedTrafficMirror       *string                                          `pulumi:"decryptedTrafficMirror"`
+	DetectHttpsInHttpRequest     *string                                          `pulumi:"detectHttpsInHttpRequest"`
 	DeviceOwnership              *string                                          `pulumi:"deviceOwnership"`
 	Disclaimer                   *string                                          `pulumi:"disclaimer"`
 	DlpProfile                   *string                                          `pulumi:"dlpProfile"`
@@ -385,6 +397,7 @@ type firewallProxyPolicyArgs struct {
 	Uuid                         *string                                          `pulumi:"uuid"`
 	Vdomparam                    *string                                          `pulumi:"vdomparam"`
 	VideofilterProfile           *string                                          `pulumi:"videofilterProfile"`
+	VirtualPatchProfile          *string                                          `pulumi:"virtualPatchProfile"`
 	VoipProfile                  *string                                          `pulumi:"voipProfile"`
 	WafProfile                   *string                                          `pulumi:"wafProfile"`
 	Webcache                     *string                                          `pulumi:"webcache"`
@@ -404,9 +417,11 @@ type FirewallProxyPolicyArgs struct {
 	ApplicationList              pulumi.StringPtrInput
 	AvProfile                    pulumi.StringPtrInput
 	BlockNotification            pulumi.StringPtrInput
+	CasbProfile                  pulumi.StringPtrInput
 	CifsProfile                  pulumi.StringPtrInput
 	Comments                     pulumi.StringPtrInput
 	DecryptedTrafficMirror       pulumi.StringPtrInput
+	DetectHttpsInHttpRequest     pulumi.StringPtrInput
 	DeviceOwnership              pulumi.StringPtrInput
 	Disclaimer                   pulumi.StringPtrInput
 	DlpProfile                   pulumi.StringPtrInput
@@ -471,6 +486,7 @@ type FirewallProxyPolicyArgs struct {
 	Uuid                         pulumi.StringPtrInput
 	Vdomparam                    pulumi.StringPtrInput
 	VideofilterProfile           pulumi.StringPtrInput
+	VirtualPatchProfile          pulumi.StringPtrInput
 	VoipProfile                  pulumi.StringPtrInput
 	WafProfile                   pulumi.StringPtrInput
 	Webcache                     pulumi.StringPtrInput
@@ -505,6 +521,12 @@ func (i *FirewallProxyPolicy) ToFirewallProxyPolicyOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallProxyPolicyOutput)
 }
 
+func (i *FirewallProxyPolicy) ToOutput(ctx context.Context) pulumix.Output[*FirewallProxyPolicy] {
+	return pulumix.Output[*FirewallProxyPolicy]{
+		OutputState: i.ToFirewallProxyPolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallProxyPolicyArrayInput is an input type that accepts FirewallProxyPolicyArray and FirewallProxyPolicyArrayOutput values.
 // You can construct a concrete instance of `FirewallProxyPolicyArrayInput` via:
 //
@@ -528,6 +550,12 @@ func (i FirewallProxyPolicyArray) ToFirewallProxyPolicyArrayOutput() FirewallPro
 
 func (i FirewallProxyPolicyArray) ToFirewallProxyPolicyArrayOutputWithContext(ctx context.Context) FirewallProxyPolicyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallProxyPolicyArrayOutput)
+}
+
+func (i FirewallProxyPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallProxyPolicy] {
+	return pulumix.Output[[]*FirewallProxyPolicy]{
+		OutputState: i.ToFirewallProxyPolicyArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallProxyPolicyMapInput is an input type that accepts FirewallProxyPolicyMap and FirewallProxyPolicyMapOutput values.
@@ -555,6 +583,12 @@ func (i FirewallProxyPolicyMap) ToFirewallProxyPolicyMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallProxyPolicyMapOutput)
 }
 
+func (i FirewallProxyPolicyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallProxyPolicy] {
+	return pulumix.Output[map[string]*FirewallProxyPolicy]{
+		OutputState: i.ToFirewallProxyPolicyMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallProxyPolicyOutput struct{ *pulumi.OutputState }
 
 func (FirewallProxyPolicyOutput) ElementType() reflect.Type {
@@ -567,6 +601,12 @@ func (o FirewallProxyPolicyOutput) ToFirewallProxyPolicyOutput() FirewallProxyPo
 
 func (o FirewallProxyPolicyOutput) ToFirewallProxyPolicyOutputWithContext(ctx context.Context) FirewallProxyPolicyOutput {
 	return o
+}
+
+func (o FirewallProxyPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallProxyPolicy] {
+	return pulumix.Output[*FirewallProxyPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallProxyPolicyOutput) AccessProxies() FirewallProxyPolicyAccessProxyArrayOutput {
@@ -593,6 +633,10 @@ func (o FirewallProxyPolicyOutput) BlockNotification() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallProxyPolicy) pulumi.StringOutput { return v.BlockNotification }).(pulumi.StringOutput)
 }
 
+func (o FirewallProxyPolicyOutput) CasbProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProxyPolicy) pulumi.StringOutput { return v.CasbProfile }).(pulumi.StringOutput)
+}
+
 func (o FirewallProxyPolicyOutput) CifsProfile() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallProxyPolicy) pulumi.StringOutput { return v.CifsProfile }).(pulumi.StringOutput)
 }
@@ -603,6 +647,10 @@ func (o FirewallProxyPolicyOutput) Comments() pulumi.StringPtrOutput {
 
 func (o FirewallProxyPolicyOutput) DecryptedTrafficMirror() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallProxyPolicy) pulumi.StringOutput { return v.DecryptedTrafficMirror }).(pulumi.StringOutput)
+}
+
+func (o FirewallProxyPolicyOutput) DetectHttpsInHttpRequest() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProxyPolicy) pulumi.StringOutput { return v.DetectHttpsInHttpRequest }).(pulumi.StringOutput)
 }
 
 func (o FirewallProxyPolicyOutput) DeviceOwnership() pulumi.StringOutput {
@@ -879,6 +927,10 @@ func (o FirewallProxyPolicyOutput) VideofilterProfile() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallProxyPolicy) pulumi.StringOutput { return v.VideofilterProfile }).(pulumi.StringOutput)
 }
 
+func (o FirewallProxyPolicyOutput) VirtualPatchProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallProxyPolicy) pulumi.StringOutput { return v.VirtualPatchProfile }).(pulumi.StringOutput)
+}
+
 func (o FirewallProxyPolicyOutput) VoipProfile() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallProxyPolicy) pulumi.StringOutput { return v.VoipProfile }).(pulumi.StringOutput)
 }
@@ -929,6 +981,12 @@ func (o FirewallProxyPolicyArrayOutput) ToFirewallProxyPolicyArrayOutputWithCont
 	return o
 }
 
+func (o FirewallProxyPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallProxyPolicy] {
+	return pulumix.Output[[]*FirewallProxyPolicy]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallProxyPolicyArrayOutput) Index(i pulumi.IntInput) FirewallProxyPolicyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallProxyPolicy {
 		return vs[0].([]*FirewallProxyPolicy)[vs[1].(int)]
@@ -947,6 +1005,12 @@ func (o FirewallProxyPolicyMapOutput) ToFirewallProxyPolicyMapOutput() FirewallP
 
 func (o FirewallProxyPolicyMapOutput) ToFirewallProxyPolicyMapOutputWithContext(ctx context.Context) FirewallProxyPolicyMapOutput {
 	return o
+}
+
+func (o FirewallProxyPolicyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallProxyPolicy] {
+	return pulumix.Output[map[string]*FirewallProxyPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallProxyPolicyMapOutput) MapIndex(k pulumi.StringInput) FirewallProxyPolicyOutput {

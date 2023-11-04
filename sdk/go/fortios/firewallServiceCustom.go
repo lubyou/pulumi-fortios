@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallServiceCustom struct {
@@ -235,6 +236,12 @@ func (i *FirewallServiceCustom) ToFirewallServiceCustomOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallServiceCustomOutput)
 }
 
+func (i *FirewallServiceCustom) ToOutput(ctx context.Context) pulumix.Output[*FirewallServiceCustom] {
+	return pulumix.Output[*FirewallServiceCustom]{
+		OutputState: i.ToFirewallServiceCustomOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallServiceCustomArrayInput is an input type that accepts FirewallServiceCustomArray and FirewallServiceCustomArrayOutput values.
 // You can construct a concrete instance of `FirewallServiceCustomArrayInput` via:
 //
@@ -258,6 +265,12 @@ func (i FirewallServiceCustomArray) ToFirewallServiceCustomArrayOutput() Firewal
 
 func (i FirewallServiceCustomArray) ToFirewallServiceCustomArrayOutputWithContext(ctx context.Context) FirewallServiceCustomArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallServiceCustomArrayOutput)
+}
+
+func (i FirewallServiceCustomArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallServiceCustom] {
+	return pulumix.Output[[]*FirewallServiceCustom]{
+		OutputState: i.ToFirewallServiceCustomArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallServiceCustomMapInput is an input type that accepts FirewallServiceCustomMap and FirewallServiceCustomMapOutput values.
@@ -285,6 +298,12 @@ func (i FirewallServiceCustomMap) ToFirewallServiceCustomMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallServiceCustomMapOutput)
 }
 
+func (i FirewallServiceCustomMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallServiceCustom] {
+	return pulumix.Output[map[string]*FirewallServiceCustom]{
+		OutputState: i.ToFirewallServiceCustomMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallServiceCustomOutput struct{ *pulumi.OutputState }
 
 func (FirewallServiceCustomOutput) ElementType() reflect.Type {
@@ -297,6 +316,12 @@ func (o FirewallServiceCustomOutput) ToFirewallServiceCustomOutput() FirewallSer
 
 func (o FirewallServiceCustomOutput) ToFirewallServiceCustomOutputWithContext(ctx context.Context) FirewallServiceCustomOutput {
 	return o
+}
+
+func (o FirewallServiceCustomOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallServiceCustom] {
+	return pulumix.Output[*FirewallServiceCustom]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallServiceCustomOutput) AppCategories() FirewallServiceCustomAppCategoryArrayOutput {
@@ -433,6 +458,12 @@ func (o FirewallServiceCustomArrayOutput) ToFirewallServiceCustomArrayOutputWith
 	return o
 }
 
+func (o FirewallServiceCustomArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallServiceCustom] {
+	return pulumix.Output[[]*FirewallServiceCustom]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallServiceCustomArrayOutput) Index(i pulumi.IntInput) FirewallServiceCustomOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallServiceCustom {
 		return vs[0].([]*FirewallServiceCustom)[vs[1].(int)]
@@ -451,6 +482,12 @@ func (o FirewallServiceCustomMapOutput) ToFirewallServiceCustomMapOutput() Firew
 
 func (o FirewallServiceCustomMapOutput) ToFirewallServiceCustomMapOutputWithContext(ctx context.Context) FirewallServiceCustomMapOutput {
 	return o
+}
+
+func (o FirewallServiceCustomMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallServiceCustom] {
+	return pulumix.Output[map[string]*FirewallServiceCustom]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallServiceCustomMapOutput) MapIndex(k pulumi.StringInput) FirewallServiceCustomOutput {

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemVneTunnel struct {
@@ -152,6 +153,12 @@ func (i *SystemVneTunnel) ToSystemVneTunnelOutputWithContext(ctx context.Context
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVneTunnelOutput)
 }
 
+func (i *SystemVneTunnel) ToOutput(ctx context.Context) pulumix.Output[*SystemVneTunnel] {
+	return pulumix.Output[*SystemVneTunnel]{
+		OutputState: i.ToSystemVneTunnelOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemVneTunnelArrayInput is an input type that accepts SystemVneTunnelArray and SystemVneTunnelArrayOutput values.
 // You can construct a concrete instance of `SystemVneTunnelArrayInput` via:
 //
@@ -175,6 +182,12 @@ func (i SystemVneTunnelArray) ToSystemVneTunnelArrayOutput() SystemVneTunnelArra
 
 func (i SystemVneTunnelArray) ToSystemVneTunnelArrayOutputWithContext(ctx context.Context) SystemVneTunnelArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVneTunnelArrayOutput)
+}
+
+func (i SystemVneTunnelArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemVneTunnel] {
+	return pulumix.Output[[]*SystemVneTunnel]{
+		OutputState: i.ToSystemVneTunnelArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemVneTunnelMapInput is an input type that accepts SystemVneTunnelMap and SystemVneTunnelMapOutput values.
@@ -202,6 +215,12 @@ func (i SystemVneTunnelMap) ToSystemVneTunnelMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVneTunnelMapOutput)
 }
 
+func (i SystemVneTunnelMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemVneTunnel] {
+	return pulumix.Output[map[string]*SystemVneTunnel]{
+		OutputState: i.ToSystemVneTunnelMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemVneTunnelOutput struct{ *pulumi.OutputState }
 
 func (SystemVneTunnelOutput) ElementType() reflect.Type {
@@ -214,6 +233,12 @@ func (o SystemVneTunnelOutput) ToSystemVneTunnelOutput() SystemVneTunnelOutput {
 
 func (o SystemVneTunnelOutput) ToSystemVneTunnelOutputWithContext(ctx context.Context) SystemVneTunnelOutput {
 	return o
+}
+
+func (o SystemVneTunnelOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemVneTunnel] {
+	return pulumix.Output[*SystemVneTunnel]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemVneTunnelOutput) AutoAsicOffload() pulumi.StringOutput {
@@ -278,6 +303,12 @@ func (o SystemVneTunnelArrayOutput) ToSystemVneTunnelArrayOutputWithContext(ctx 
 	return o
 }
 
+func (o SystemVneTunnelArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemVneTunnel] {
+	return pulumix.Output[[]*SystemVneTunnel]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemVneTunnelArrayOutput) Index(i pulumi.IntInput) SystemVneTunnelOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemVneTunnel {
 		return vs[0].([]*SystemVneTunnel)[vs[1].(int)]
@@ -296,6 +327,12 @@ func (o SystemVneTunnelMapOutput) ToSystemVneTunnelMapOutput() SystemVneTunnelMa
 
 func (o SystemVneTunnelMapOutput) ToSystemVneTunnelMapOutputWithContext(ctx context.Context) SystemVneTunnelMapOutput {
 	return o
+}
+
+func (o SystemVneTunnelMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemVneTunnel] {
+	return pulumix.Output[map[string]*SystemVneTunnel]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemVneTunnelMapOutput) MapIndex(k pulumi.StringInput) SystemVneTunnelOutput {

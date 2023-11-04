@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SctpFilterProfile struct {
@@ -115,6 +116,12 @@ func (i *SctpFilterProfile) ToSctpFilterProfileOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(SctpFilterProfileOutput)
 }
 
+func (i *SctpFilterProfile) ToOutput(ctx context.Context) pulumix.Output[*SctpFilterProfile] {
+	return pulumix.Output[*SctpFilterProfile]{
+		OutputState: i.ToSctpFilterProfileOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SctpFilterProfileArrayInput is an input type that accepts SctpFilterProfileArray and SctpFilterProfileArrayOutput values.
 // You can construct a concrete instance of `SctpFilterProfileArrayInput` via:
 //
@@ -138,6 +145,12 @@ func (i SctpFilterProfileArray) ToSctpFilterProfileArrayOutput() SctpFilterProfi
 
 func (i SctpFilterProfileArray) ToSctpFilterProfileArrayOutputWithContext(ctx context.Context) SctpFilterProfileArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SctpFilterProfileArrayOutput)
+}
+
+func (i SctpFilterProfileArray) ToOutput(ctx context.Context) pulumix.Output[[]*SctpFilterProfile] {
+	return pulumix.Output[[]*SctpFilterProfile]{
+		OutputState: i.ToSctpFilterProfileArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SctpFilterProfileMapInput is an input type that accepts SctpFilterProfileMap and SctpFilterProfileMapOutput values.
@@ -165,6 +178,12 @@ func (i SctpFilterProfileMap) ToSctpFilterProfileMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SctpFilterProfileMapOutput)
 }
 
+func (i SctpFilterProfileMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SctpFilterProfile] {
+	return pulumix.Output[map[string]*SctpFilterProfile]{
+		OutputState: i.ToSctpFilterProfileMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SctpFilterProfileOutput struct{ *pulumi.OutputState }
 
 func (SctpFilterProfileOutput) ElementType() reflect.Type {
@@ -177,6 +196,12 @@ func (o SctpFilterProfileOutput) ToSctpFilterProfileOutput() SctpFilterProfileOu
 
 func (o SctpFilterProfileOutput) ToSctpFilterProfileOutputWithContext(ctx context.Context) SctpFilterProfileOutput {
 	return o
+}
+
+func (o SctpFilterProfileOutput) ToOutput(ctx context.Context) pulumix.Output[*SctpFilterProfile] {
+	return pulumix.Output[*SctpFilterProfile]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SctpFilterProfileOutput) Comment() pulumi.StringPtrOutput {
@@ -217,6 +242,12 @@ func (o SctpFilterProfileArrayOutput) ToSctpFilterProfileArrayOutputWithContext(
 	return o
 }
 
+func (o SctpFilterProfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SctpFilterProfile] {
+	return pulumix.Output[[]*SctpFilterProfile]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SctpFilterProfileArrayOutput) Index(i pulumi.IntInput) SctpFilterProfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SctpFilterProfile {
 		return vs[0].([]*SctpFilterProfile)[vs[1].(int)]
@@ -235,6 +266,12 @@ func (o SctpFilterProfileMapOutput) ToSctpFilterProfileMapOutput() SctpFilterPro
 
 func (o SctpFilterProfileMapOutput) ToSctpFilterProfileMapOutputWithContext(ctx context.Context) SctpFilterProfileMapOutput {
 	return o
+}
+
+func (o SctpFilterProfileMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SctpFilterProfile] {
+	return pulumix.Output[map[string]*SctpFilterProfile]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SctpFilterProfileMapOutput) MapIndex(k pulumi.StringInput) SctpFilterProfileOutput {

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type CertificateRemote struct {
@@ -110,6 +111,12 @@ func (i *CertificateRemote) ToCertificateRemoteOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(CertificateRemoteOutput)
 }
 
+func (i *CertificateRemote) ToOutput(ctx context.Context) pulumix.Output[*CertificateRemote] {
+	return pulumix.Output[*CertificateRemote]{
+		OutputState: i.ToCertificateRemoteOutputWithContext(ctx).OutputState,
+	}
+}
+
 // CertificateRemoteArrayInput is an input type that accepts CertificateRemoteArray and CertificateRemoteArrayOutput values.
 // You can construct a concrete instance of `CertificateRemoteArrayInput` via:
 //
@@ -133,6 +140,12 @@ func (i CertificateRemoteArray) ToCertificateRemoteArrayOutput() CertificateRemo
 
 func (i CertificateRemoteArray) ToCertificateRemoteArrayOutputWithContext(ctx context.Context) CertificateRemoteArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CertificateRemoteArrayOutput)
+}
+
+func (i CertificateRemoteArray) ToOutput(ctx context.Context) pulumix.Output[[]*CertificateRemote] {
+	return pulumix.Output[[]*CertificateRemote]{
+		OutputState: i.ToCertificateRemoteArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // CertificateRemoteMapInput is an input type that accepts CertificateRemoteMap and CertificateRemoteMapOutput values.
@@ -160,6 +173,12 @@ func (i CertificateRemoteMap) ToCertificateRemoteMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(CertificateRemoteMapOutput)
 }
 
+func (i CertificateRemoteMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*CertificateRemote] {
+	return pulumix.Output[map[string]*CertificateRemote]{
+		OutputState: i.ToCertificateRemoteMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type CertificateRemoteOutput struct{ *pulumi.OutputState }
 
 func (CertificateRemoteOutput) ElementType() reflect.Type {
@@ -172,6 +191,12 @@ func (o CertificateRemoteOutput) ToCertificateRemoteOutput() CertificateRemoteOu
 
 func (o CertificateRemoteOutput) ToCertificateRemoteOutputWithContext(ctx context.Context) CertificateRemoteOutput {
 	return o
+}
+
+func (o CertificateRemoteOutput) ToOutput(ctx context.Context) pulumix.Output[*CertificateRemote] {
+	return pulumix.Output[*CertificateRemote]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o CertificateRemoteOutput) Name() pulumi.StringOutput {
@@ -208,6 +233,12 @@ func (o CertificateRemoteArrayOutput) ToCertificateRemoteArrayOutputWithContext(
 	return o
 }
 
+func (o CertificateRemoteArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*CertificateRemote] {
+	return pulumix.Output[[]*CertificateRemote]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o CertificateRemoteArrayOutput) Index(i pulumi.IntInput) CertificateRemoteOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CertificateRemote {
 		return vs[0].([]*CertificateRemote)[vs[1].(int)]
@@ -226,6 +257,12 @@ func (o CertificateRemoteMapOutput) ToCertificateRemoteMapOutput() CertificateRe
 
 func (o CertificateRemoteMapOutput) ToCertificateRemoteMapOutputWithContext(ctx context.Context) CertificateRemoteMapOutput {
 	return o
+}
+
+func (o CertificateRemoteMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*CertificateRemote] {
+	return pulumix.Output[map[string]*CertificateRemote]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o CertificateRemoteMapOutput) MapIndex(k pulumi.StringInput) CertificateRemoteOutput {

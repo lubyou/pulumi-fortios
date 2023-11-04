@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type VpnCertificateLocal struct {
@@ -30,6 +31,14 @@ type VpnCertificateLocal struct {
 	Comments                  pulumi.StringOutput    `pulumi:"comments"`
 	Csr                       pulumi.StringOutput    `pulumi:"csr"`
 	EnrollProtocol            pulumi.StringOutput    `pulumi:"enrollProtocol"`
+	EstCaId                   pulumi.StringOutput    `pulumi:"estCaId"`
+	EstClientCert             pulumi.StringOutput    `pulumi:"estClientCert"`
+	EstHttpPassword           pulumi.StringOutput    `pulumi:"estHttpPassword"`
+	EstHttpUsername           pulumi.StringOutput    `pulumi:"estHttpUsername"`
+	EstServer                 pulumi.StringOutput    `pulumi:"estServer"`
+	EstServerCert             pulumi.StringOutput    `pulumi:"estServerCert"`
+	EstSrpPassword            pulumi.StringOutput    `pulumi:"estSrpPassword"`
+	EstSrpUsername            pulumi.StringOutput    `pulumi:"estSrpUsername"`
 	IkeLocalid                pulumi.StringOutput    `pulumi:"ikeLocalid"`
 	IkeLocalidType            pulumi.StringOutput    `pulumi:"ikeLocalidType"`
 	LastUpdated               pulumi.IntOutput       `pulumi:"lastUpdated"`
@@ -112,6 +121,14 @@ type vpnCertificateLocalState struct {
 	Comments                  *string `pulumi:"comments"`
 	Csr                       *string `pulumi:"csr"`
 	EnrollProtocol            *string `pulumi:"enrollProtocol"`
+	EstCaId                   *string `pulumi:"estCaId"`
+	EstClientCert             *string `pulumi:"estClientCert"`
+	EstHttpPassword           *string `pulumi:"estHttpPassword"`
+	EstHttpUsername           *string `pulumi:"estHttpUsername"`
+	EstServer                 *string `pulumi:"estServer"`
+	EstServerCert             *string `pulumi:"estServerCert"`
+	EstSrpPassword            *string `pulumi:"estSrpPassword"`
+	EstSrpUsername            *string `pulumi:"estSrpUsername"`
 	IkeLocalid                *string `pulumi:"ikeLocalid"`
 	IkeLocalidType            *string `pulumi:"ikeLocalidType"`
 	LastUpdated               *int    `pulumi:"lastUpdated"`
@@ -146,6 +163,14 @@ type VpnCertificateLocalState struct {
 	Comments                  pulumi.StringPtrInput
 	Csr                       pulumi.StringPtrInput
 	EnrollProtocol            pulumi.StringPtrInput
+	EstCaId                   pulumi.StringPtrInput
+	EstClientCert             pulumi.StringPtrInput
+	EstHttpPassword           pulumi.StringPtrInput
+	EstHttpUsername           pulumi.StringPtrInput
+	EstServer                 pulumi.StringPtrInput
+	EstServerCert             pulumi.StringPtrInput
+	EstSrpPassword            pulumi.StringPtrInput
+	EstSrpUsername            pulumi.StringPtrInput
 	IkeLocalid                pulumi.StringPtrInput
 	IkeLocalidType            pulumi.StringPtrInput
 	LastUpdated               pulumi.IntPtrInput
@@ -184,6 +209,14 @@ type vpnCertificateLocalArgs struct {
 	Comments                  *string `pulumi:"comments"`
 	Csr                       *string `pulumi:"csr"`
 	EnrollProtocol            *string `pulumi:"enrollProtocol"`
+	EstCaId                   *string `pulumi:"estCaId"`
+	EstClientCert             *string `pulumi:"estClientCert"`
+	EstHttpPassword           *string `pulumi:"estHttpPassword"`
+	EstHttpUsername           *string `pulumi:"estHttpUsername"`
+	EstServer                 *string `pulumi:"estServer"`
+	EstServerCert             *string `pulumi:"estServerCert"`
+	EstSrpPassword            *string `pulumi:"estSrpPassword"`
+	EstSrpUsername            *string `pulumi:"estSrpUsername"`
 	IkeLocalid                *string `pulumi:"ikeLocalid"`
 	IkeLocalidType            *string `pulumi:"ikeLocalidType"`
 	LastUpdated               *int    `pulumi:"lastUpdated"`
@@ -219,6 +252,14 @@ type VpnCertificateLocalArgs struct {
 	Comments                  pulumi.StringPtrInput
 	Csr                       pulumi.StringPtrInput
 	EnrollProtocol            pulumi.StringPtrInput
+	EstCaId                   pulumi.StringPtrInput
+	EstClientCert             pulumi.StringPtrInput
+	EstHttpPassword           pulumi.StringPtrInput
+	EstHttpUsername           pulumi.StringPtrInput
+	EstServer                 pulumi.StringPtrInput
+	EstServerCert             pulumi.StringPtrInput
+	EstSrpPassword            pulumi.StringPtrInput
+	EstSrpUsername            pulumi.StringPtrInput
 	IkeLocalid                pulumi.StringPtrInput
 	IkeLocalidType            pulumi.StringPtrInput
 	LastUpdated               pulumi.IntPtrInput
@@ -259,6 +300,12 @@ func (i *VpnCertificateLocal) ToVpnCertificateLocalOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(VpnCertificateLocalOutput)
 }
 
+func (i *VpnCertificateLocal) ToOutput(ctx context.Context) pulumix.Output[*VpnCertificateLocal] {
+	return pulumix.Output[*VpnCertificateLocal]{
+		OutputState: i.ToVpnCertificateLocalOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnCertificateLocalArrayInput is an input type that accepts VpnCertificateLocalArray and VpnCertificateLocalArrayOutput values.
 // You can construct a concrete instance of `VpnCertificateLocalArrayInput` via:
 //
@@ -282,6 +329,12 @@ func (i VpnCertificateLocalArray) ToVpnCertificateLocalArrayOutput() VpnCertific
 
 func (i VpnCertificateLocalArray) ToVpnCertificateLocalArrayOutputWithContext(ctx context.Context) VpnCertificateLocalArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnCertificateLocalArrayOutput)
+}
+
+func (i VpnCertificateLocalArray) ToOutput(ctx context.Context) pulumix.Output[[]*VpnCertificateLocal] {
+	return pulumix.Output[[]*VpnCertificateLocal]{
+		OutputState: i.ToVpnCertificateLocalArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // VpnCertificateLocalMapInput is an input type that accepts VpnCertificateLocalMap and VpnCertificateLocalMapOutput values.
@@ -309,6 +362,12 @@ func (i VpnCertificateLocalMap) ToVpnCertificateLocalMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(VpnCertificateLocalMapOutput)
 }
 
+func (i VpnCertificateLocalMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnCertificateLocal] {
+	return pulumix.Output[map[string]*VpnCertificateLocal]{
+		OutputState: i.ToVpnCertificateLocalMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnCertificateLocalOutput struct{ *pulumi.OutputState }
 
 func (VpnCertificateLocalOutput) ElementType() reflect.Type {
@@ -321,6 +380,12 @@ func (o VpnCertificateLocalOutput) ToVpnCertificateLocalOutput() VpnCertificateL
 
 func (o VpnCertificateLocalOutput) ToVpnCertificateLocalOutputWithContext(ctx context.Context) VpnCertificateLocalOutput {
 	return o
+}
+
+func (o VpnCertificateLocalOutput) ToOutput(ctx context.Context) pulumix.Output[*VpnCertificateLocal] {
+	return pulumix.Output[*VpnCertificateLocal]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnCertificateLocalOutput) AcmeCaUrl() pulumi.StringOutput {
@@ -385,6 +450,38 @@ func (o VpnCertificateLocalOutput) Csr() pulumi.StringOutput {
 
 func (o VpnCertificateLocalOutput) EnrollProtocol() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.StringOutput { return v.EnrollProtocol }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateLocalOutput) EstCaId() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.StringOutput { return v.EstCaId }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateLocalOutput) EstClientCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.StringOutput { return v.EstClientCert }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateLocalOutput) EstHttpPassword() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.StringOutput { return v.EstHttpPassword }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateLocalOutput) EstHttpUsername() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.StringOutput { return v.EstHttpUsername }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateLocalOutput) EstServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.StringOutput { return v.EstServer }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateLocalOutput) EstServerCert() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.StringOutput { return v.EstServerCert }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateLocalOutput) EstSrpPassword() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.StringOutput { return v.EstSrpPassword }).(pulumi.StringOutput)
+}
+
+func (o VpnCertificateLocalOutput) EstSrpUsername() pulumi.StringOutput {
+	return o.ApplyT(func(v *VpnCertificateLocal) pulumi.StringOutput { return v.EstSrpUsername }).(pulumi.StringOutput)
 }
 
 func (o VpnCertificateLocalOutput) IkeLocalid() pulumi.StringOutput {
@@ -461,6 +558,12 @@ func (o VpnCertificateLocalArrayOutput) ToVpnCertificateLocalArrayOutputWithCont
 	return o
 }
 
+func (o VpnCertificateLocalArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VpnCertificateLocal] {
+	return pulumix.Output[[]*VpnCertificateLocal]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o VpnCertificateLocalArrayOutput) Index(i pulumi.IntInput) VpnCertificateLocalOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnCertificateLocal {
 		return vs[0].([]*VpnCertificateLocal)[vs[1].(int)]
@@ -479,6 +582,12 @@ func (o VpnCertificateLocalMapOutput) ToVpnCertificateLocalMapOutput() VpnCertif
 
 func (o VpnCertificateLocalMapOutput) ToVpnCertificateLocalMapOutputWithContext(ctx context.Context) VpnCertificateLocalMapOutput {
 	return o
+}
+
+func (o VpnCertificateLocalMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnCertificateLocal] {
+	return pulumix.Output[map[string]*VpnCertificateLocal]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnCertificateLocalMapOutput) MapIndex(k pulumi.StringInput) VpnCertificateLocalOutput {

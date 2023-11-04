@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type CifsDomainController struct {
@@ -132,6 +133,12 @@ func (i *CifsDomainController) ToCifsDomainControllerOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(CifsDomainControllerOutput)
 }
 
+func (i *CifsDomainController) ToOutput(ctx context.Context) pulumix.Output[*CifsDomainController] {
+	return pulumix.Output[*CifsDomainController]{
+		OutputState: i.ToCifsDomainControllerOutputWithContext(ctx).OutputState,
+	}
+}
+
 // CifsDomainControllerArrayInput is an input type that accepts CifsDomainControllerArray and CifsDomainControllerArrayOutput values.
 // You can construct a concrete instance of `CifsDomainControllerArrayInput` via:
 //
@@ -155,6 +162,12 @@ func (i CifsDomainControllerArray) ToCifsDomainControllerArrayOutput() CifsDomai
 
 func (i CifsDomainControllerArray) ToCifsDomainControllerArrayOutputWithContext(ctx context.Context) CifsDomainControllerArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CifsDomainControllerArrayOutput)
+}
+
+func (i CifsDomainControllerArray) ToOutput(ctx context.Context) pulumix.Output[[]*CifsDomainController] {
+	return pulumix.Output[[]*CifsDomainController]{
+		OutputState: i.ToCifsDomainControllerArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // CifsDomainControllerMapInput is an input type that accepts CifsDomainControllerMap and CifsDomainControllerMapOutput values.
@@ -182,6 +195,12 @@ func (i CifsDomainControllerMap) ToCifsDomainControllerMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(CifsDomainControllerMapOutput)
 }
 
+func (i CifsDomainControllerMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*CifsDomainController] {
+	return pulumix.Output[map[string]*CifsDomainController]{
+		OutputState: i.ToCifsDomainControllerMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type CifsDomainControllerOutput struct{ *pulumi.OutputState }
 
 func (CifsDomainControllerOutput) ElementType() reflect.Type {
@@ -194,6 +213,12 @@ func (o CifsDomainControllerOutput) ToCifsDomainControllerOutput() CifsDomainCon
 
 func (o CifsDomainControllerOutput) ToCifsDomainControllerOutputWithContext(ctx context.Context) CifsDomainControllerOutput {
 	return o
+}
+
+func (o CifsDomainControllerOutput) ToOutput(ctx context.Context) pulumix.Output[*CifsDomainController] {
+	return pulumix.Output[*CifsDomainController]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o CifsDomainControllerOutput) DomainName() pulumi.StringOutput {
@@ -242,6 +267,12 @@ func (o CifsDomainControllerArrayOutput) ToCifsDomainControllerArrayOutputWithCo
 	return o
 }
 
+func (o CifsDomainControllerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*CifsDomainController] {
+	return pulumix.Output[[]*CifsDomainController]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o CifsDomainControllerArrayOutput) Index(i pulumi.IntInput) CifsDomainControllerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CifsDomainController {
 		return vs[0].([]*CifsDomainController)[vs[1].(int)]
@@ -260,6 +291,12 @@ func (o CifsDomainControllerMapOutput) ToCifsDomainControllerMapOutput() CifsDom
 
 func (o CifsDomainControllerMapOutput) ToCifsDomainControllerMapOutputWithContext(ctx context.Context) CifsDomainControllerMapOutput {
 	return o
+}
+
+func (o CifsDomainControllerMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*CifsDomainController] {
+	return pulumix.Output[map[string]*CifsDomainController]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o CifsDomainControllerMapOutput) MapIndex(k pulumi.StringInput) CifsDomainControllerOutput {

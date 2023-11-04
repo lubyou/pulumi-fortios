@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemVdomRadiusServer struct {
@@ -109,6 +110,12 @@ func (i *SystemVdomRadiusServer) ToSystemVdomRadiusServerOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomRadiusServerOutput)
 }
 
+func (i *SystemVdomRadiusServer) ToOutput(ctx context.Context) pulumix.Output[*SystemVdomRadiusServer] {
+	return pulumix.Output[*SystemVdomRadiusServer]{
+		OutputState: i.ToSystemVdomRadiusServerOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemVdomRadiusServerArrayInput is an input type that accepts SystemVdomRadiusServerArray and SystemVdomRadiusServerArrayOutput values.
 // You can construct a concrete instance of `SystemVdomRadiusServerArrayInput` via:
 //
@@ -132,6 +139,12 @@ func (i SystemVdomRadiusServerArray) ToSystemVdomRadiusServerArrayOutput() Syste
 
 func (i SystemVdomRadiusServerArray) ToSystemVdomRadiusServerArrayOutputWithContext(ctx context.Context) SystemVdomRadiusServerArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomRadiusServerArrayOutput)
+}
+
+func (i SystemVdomRadiusServerArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemVdomRadiusServer] {
+	return pulumix.Output[[]*SystemVdomRadiusServer]{
+		OutputState: i.ToSystemVdomRadiusServerArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemVdomRadiusServerMapInput is an input type that accepts SystemVdomRadiusServerMap and SystemVdomRadiusServerMapOutput values.
@@ -159,6 +172,12 @@ func (i SystemVdomRadiusServerMap) ToSystemVdomRadiusServerMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomRadiusServerMapOutput)
 }
 
+func (i SystemVdomRadiusServerMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemVdomRadiusServer] {
+	return pulumix.Output[map[string]*SystemVdomRadiusServer]{
+		OutputState: i.ToSystemVdomRadiusServerMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemVdomRadiusServerOutput struct{ *pulumi.OutputState }
 
 func (SystemVdomRadiusServerOutput) ElementType() reflect.Type {
@@ -171,6 +190,12 @@ func (o SystemVdomRadiusServerOutput) ToSystemVdomRadiusServerOutput() SystemVdo
 
 func (o SystemVdomRadiusServerOutput) ToSystemVdomRadiusServerOutputWithContext(ctx context.Context) SystemVdomRadiusServerOutput {
 	return o
+}
+
+func (o SystemVdomRadiusServerOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemVdomRadiusServer] {
+	return pulumix.Output[*SystemVdomRadiusServer]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemVdomRadiusServerOutput) Name() pulumi.StringOutput {
@@ -203,6 +228,12 @@ func (o SystemVdomRadiusServerArrayOutput) ToSystemVdomRadiusServerArrayOutputWi
 	return o
 }
 
+func (o SystemVdomRadiusServerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemVdomRadiusServer] {
+	return pulumix.Output[[]*SystemVdomRadiusServer]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemVdomRadiusServerArrayOutput) Index(i pulumi.IntInput) SystemVdomRadiusServerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemVdomRadiusServer {
 		return vs[0].([]*SystemVdomRadiusServer)[vs[1].(int)]
@@ -221,6 +252,12 @@ func (o SystemVdomRadiusServerMapOutput) ToSystemVdomRadiusServerMapOutput() Sys
 
 func (o SystemVdomRadiusServerMapOutput) ToSystemVdomRadiusServerMapOutputWithContext(ctx context.Context) SystemVdomRadiusServerMapOutput {
 	return o
+}
+
+func (o SystemVdomRadiusServerMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemVdomRadiusServer] {
+	return pulumix.Output[map[string]*SystemVdomRadiusServer]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemVdomRadiusServerMapOutput) MapIndex(k pulumi.StringInput) SystemVdomRadiusServerOutput {

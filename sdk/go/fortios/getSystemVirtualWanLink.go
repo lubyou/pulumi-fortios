@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemVirtualWanLink(ctx *pulumi.Context, args *LookupSystemVirtualWanLinkArgs, opts ...pulumi.InvokeOption) (*LookupSystemVirtualWanLinkResult, error) {
@@ -80,6 +81,12 @@ func (o LookupSystemVirtualWanLinkResultOutput) ToLookupSystemVirtualWanLinkResu
 
 func (o LookupSystemVirtualWanLinkResultOutput) ToLookupSystemVirtualWanLinkResultOutputWithContext(ctx context.Context) LookupSystemVirtualWanLinkResultOutput {
 	return o
+}
+
+func (o LookupSystemVirtualWanLinkResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemVirtualWanLinkResult] {
+	return pulumix.Output[LookupSystemVirtualWanLinkResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupSystemVirtualWanLinkResultOutput) FailAlertInterfaces() GetSystemVirtualWanLinkFailAlertInterfaceArrayOutput {

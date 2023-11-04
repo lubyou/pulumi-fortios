@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallScheduleOnetime struct {
@@ -137,6 +138,12 @@ func (i *FirewallScheduleOnetime) ToFirewallScheduleOnetimeOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallScheduleOnetimeOutput)
 }
 
+func (i *FirewallScheduleOnetime) ToOutput(ctx context.Context) pulumix.Output[*FirewallScheduleOnetime] {
+	return pulumix.Output[*FirewallScheduleOnetime]{
+		OutputState: i.ToFirewallScheduleOnetimeOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallScheduleOnetimeArrayInput is an input type that accepts FirewallScheduleOnetimeArray and FirewallScheduleOnetimeArrayOutput values.
 // You can construct a concrete instance of `FirewallScheduleOnetimeArrayInput` via:
 //
@@ -160,6 +167,12 @@ func (i FirewallScheduleOnetimeArray) ToFirewallScheduleOnetimeArrayOutput() Fir
 
 func (i FirewallScheduleOnetimeArray) ToFirewallScheduleOnetimeArrayOutputWithContext(ctx context.Context) FirewallScheduleOnetimeArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallScheduleOnetimeArrayOutput)
+}
+
+func (i FirewallScheduleOnetimeArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallScheduleOnetime] {
+	return pulumix.Output[[]*FirewallScheduleOnetime]{
+		OutputState: i.ToFirewallScheduleOnetimeArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallScheduleOnetimeMapInput is an input type that accepts FirewallScheduleOnetimeMap and FirewallScheduleOnetimeMapOutput values.
@@ -187,6 +200,12 @@ func (i FirewallScheduleOnetimeMap) ToFirewallScheduleOnetimeMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallScheduleOnetimeMapOutput)
 }
 
+func (i FirewallScheduleOnetimeMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallScheduleOnetime] {
+	return pulumix.Output[map[string]*FirewallScheduleOnetime]{
+		OutputState: i.ToFirewallScheduleOnetimeMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallScheduleOnetimeOutput struct{ *pulumi.OutputState }
 
 func (FirewallScheduleOnetimeOutput) ElementType() reflect.Type {
@@ -199,6 +218,12 @@ func (o FirewallScheduleOnetimeOutput) ToFirewallScheduleOnetimeOutput() Firewal
 
 func (o FirewallScheduleOnetimeOutput) ToFirewallScheduleOnetimeOutputWithContext(ctx context.Context) FirewallScheduleOnetimeOutput {
 	return o
+}
+
+func (o FirewallScheduleOnetimeOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallScheduleOnetime] {
+	return pulumix.Output[*FirewallScheduleOnetime]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallScheduleOnetimeOutput) Color() pulumi.IntOutput {
@@ -251,6 +276,12 @@ func (o FirewallScheduleOnetimeArrayOutput) ToFirewallScheduleOnetimeArrayOutput
 	return o
 }
 
+func (o FirewallScheduleOnetimeArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallScheduleOnetime] {
+	return pulumix.Output[[]*FirewallScheduleOnetime]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallScheduleOnetimeArrayOutput) Index(i pulumi.IntInput) FirewallScheduleOnetimeOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallScheduleOnetime {
 		return vs[0].([]*FirewallScheduleOnetime)[vs[1].(int)]
@@ -269,6 +300,12 @@ func (o FirewallScheduleOnetimeMapOutput) ToFirewallScheduleOnetimeMapOutput() F
 
 func (o FirewallScheduleOnetimeMapOutput) ToFirewallScheduleOnetimeMapOutputWithContext(ctx context.Context) FirewallScheduleOnetimeMapOutput {
 	return o
+}
+
+func (o FirewallScheduleOnetimeMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallScheduleOnetime] {
+	return pulumix.Output[map[string]*FirewallScheduleOnetime]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallScheduleOnetimeMapOutput) MapIndex(k pulumi.StringInput) FirewallScheduleOnetimeOutput {

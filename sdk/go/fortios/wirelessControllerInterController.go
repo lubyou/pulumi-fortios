@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WirelessControllerInterController struct {
@@ -142,6 +143,12 @@ func (i *WirelessControllerInterController) ToWirelessControllerInterControllerO
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerInterControllerOutput)
 }
 
+func (i *WirelessControllerInterController) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerInterController] {
+	return pulumix.Output[*WirelessControllerInterController]{
+		OutputState: i.ToWirelessControllerInterControllerOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerInterControllerArrayInput is an input type that accepts WirelessControllerInterControllerArray and WirelessControllerInterControllerArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerInterControllerArrayInput` via:
 //
@@ -165,6 +172,12 @@ func (i WirelessControllerInterControllerArray) ToWirelessControllerInterControl
 
 func (i WirelessControllerInterControllerArray) ToWirelessControllerInterControllerArrayOutputWithContext(ctx context.Context) WirelessControllerInterControllerArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerInterControllerArrayOutput)
+}
+
+func (i WirelessControllerInterControllerArray) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerInterController] {
+	return pulumix.Output[[]*WirelessControllerInterController]{
+		OutputState: i.ToWirelessControllerInterControllerArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // WirelessControllerInterControllerMapInput is an input type that accepts WirelessControllerInterControllerMap and WirelessControllerInterControllerMapOutput values.
@@ -192,6 +205,12 @@ func (i WirelessControllerInterControllerMap) ToWirelessControllerInterControlle
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerInterControllerMapOutput)
 }
 
+func (i WirelessControllerInterControllerMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerInterController] {
+	return pulumix.Output[map[string]*WirelessControllerInterController]{
+		OutputState: i.ToWirelessControllerInterControllerMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerInterControllerOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerInterControllerOutput) ElementType() reflect.Type {
@@ -204,6 +223,12 @@ func (o WirelessControllerInterControllerOutput) ToWirelessControllerInterContro
 
 func (o WirelessControllerInterControllerOutput) ToWirelessControllerInterControllerOutputWithContext(ctx context.Context) WirelessControllerInterControllerOutput {
 	return o
+}
+
+func (o WirelessControllerInterControllerOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerInterController] {
+	return pulumix.Output[*WirelessControllerInterController]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerInterControllerOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -262,6 +287,12 @@ func (o WirelessControllerInterControllerArrayOutput) ToWirelessControllerInterC
 	return o
 }
 
+func (o WirelessControllerInterControllerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerInterController] {
+	return pulumix.Output[[]*WirelessControllerInterController]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o WirelessControllerInterControllerArrayOutput) Index(i pulumi.IntInput) WirelessControllerInterControllerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerInterController {
 		return vs[0].([]*WirelessControllerInterController)[vs[1].(int)]
@@ -280,6 +311,12 @@ func (o WirelessControllerInterControllerMapOutput) ToWirelessControllerInterCon
 
 func (o WirelessControllerInterControllerMapOutput) ToWirelessControllerInterControllerMapOutputWithContext(ctx context.Context) WirelessControllerInterControllerMapOutput {
 	return o
+}
+
+func (o WirelessControllerInterControllerMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerInterController] {
+	return pulumix.Output[map[string]*WirelessControllerInterController]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerInterControllerMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerInterControllerOutput {

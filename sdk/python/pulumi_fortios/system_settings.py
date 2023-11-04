@@ -63,6 +63,7 @@ class SystemSettingsArgs:
                  gui_antivirus: Optional[pulumi.Input[str]] = None,
                  gui_ap_profile: Optional[pulumi.Input[str]] = None,
                  gui_application_control: Optional[pulumi.Input[str]] = None,
+                 gui_casb: Optional[pulumi.Input[str]] = None,
                  gui_default_policy_columns: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSettingsGuiDefaultPolicyColumnArgs']]]] = None,
                  gui_dhcp_advanced: Optional[pulumi.Input[str]] = None,
                  gui_dlp: Optional[pulumi.Input[str]] = None,
@@ -103,12 +104,14 @@ class SystemSettingsArgs:
                  gui_route_tag_address_creation: Optional[pulumi.Input[str]] = None,
                  gui_security_profile_group: Optional[pulumi.Input[str]] = None,
                  gui_spamfilter: Optional[pulumi.Input[str]] = None,
+                 gui_sslvpn: Optional[pulumi.Input[str]] = None,
                  gui_sslvpn_personal_bookmarks: Optional[pulumi.Input[str]] = None,
                  gui_sslvpn_realms: Optional[pulumi.Input[str]] = None,
                  gui_switch_controller: Optional[pulumi.Input[str]] = None,
                  gui_threat_weight: Optional[pulumi.Input[str]] = None,
                  gui_traffic_shaping: Optional[pulumi.Input[str]] = None,
                  gui_videofilter: Optional[pulumi.Input[str]] = None,
+                 gui_virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  gui_voip_profile: Optional[pulumi.Input[str]] = None,
                  gui_vpn: Optional[pulumi.Input[str]] = None,
                  gui_waf_profile: Optional[pulumi.Input[str]] = None,
@@ -266,6 +269,8 @@ class SystemSettingsArgs:
             pulumi.set(__self__, "gui_ap_profile", gui_ap_profile)
         if gui_application_control is not None:
             pulumi.set(__self__, "gui_application_control", gui_application_control)
+        if gui_casb is not None:
+            pulumi.set(__self__, "gui_casb", gui_casb)
         if gui_default_policy_columns is not None:
             pulumi.set(__self__, "gui_default_policy_columns", gui_default_policy_columns)
         if gui_dhcp_advanced is not None:
@@ -346,6 +351,8 @@ class SystemSettingsArgs:
             pulumi.set(__self__, "gui_security_profile_group", gui_security_profile_group)
         if gui_spamfilter is not None:
             pulumi.set(__self__, "gui_spamfilter", gui_spamfilter)
+        if gui_sslvpn is not None:
+            pulumi.set(__self__, "gui_sslvpn", gui_sslvpn)
         if gui_sslvpn_personal_bookmarks is not None:
             pulumi.set(__self__, "gui_sslvpn_personal_bookmarks", gui_sslvpn_personal_bookmarks)
         if gui_sslvpn_realms is not None:
@@ -358,6 +365,8 @@ class SystemSettingsArgs:
             pulumi.set(__self__, "gui_traffic_shaping", gui_traffic_shaping)
         if gui_videofilter is not None:
             pulumi.set(__self__, "gui_videofilter", gui_videofilter)
+        if gui_virtual_patch_profile is not None:
+            pulumi.set(__self__, "gui_virtual_patch_profile", gui_virtual_patch_profile)
         if gui_voip_profile is not None:
             pulumi.set(__self__, "gui_voip_profile", gui_voip_profile)
         if gui_vpn is not None:
@@ -903,6 +912,15 @@ class SystemSettingsArgs:
         pulumi.set(self, "gui_application_control", value)
 
     @property
+    @pulumi.getter(name="guiCasb")
+    def gui_casb(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "gui_casb")
+
+    @gui_casb.setter
+    def gui_casb(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_casb", value)
+
+    @property
     @pulumi.getter(name="guiDefaultPolicyColumns")
     def gui_default_policy_columns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SystemSettingsGuiDefaultPolicyColumnArgs']]]]:
         return pulumi.get(self, "gui_default_policy_columns")
@@ -1263,6 +1281,15 @@ class SystemSettingsArgs:
         pulumi.set(self, "gui_spamfilter", value)
 
     @property
+    @pulumi.getter(name="guiSslvpn")
+    def gui_sslvpn(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "gui_sslvpn")
+
+    @gui_sslvpn.setter
+    def gui_sslvpn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_sslvpn", value)
+
+    @property
     @pulumi.getter(name="guiSslvpnPersonalBookmarks")
     def gui_sslvpn_personal_bookmarks(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "gui_sslvpn_personal_bookmarks")
@@ -1315,6 +1342,15 @@ class SystemSettingsArgs:
     @gui_videofilter.setter
     def gui_videofilter(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gui_videofilter", value)
+
+    @property
+    @pulumi.getter(name="guiVirtualPatchProfile")
+    def gui_virtual_patch_profile(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "gui_virtual_patch_profile")
+
+    @gui_virtual_patch_profile.setter
+    def gui_virtual_patch_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_virtual_patch_profile", value)
 
     @property
     @pulumi.getter(name="guiVoipProfile")
@@ -1907,6 +1943,7 @@ class _SystemSettingsState:
                  gui_antivirus: Optional[pulumi.Input[str]] = None,
                  gui_ap_profile: Optional[pulumi.Input[str]] = None,
                  gui_application_control: Optional[pulumi.Input[str]] = None,
+                 gui_casb: Optional[pulumi.Input[str]] = None,
                  gui_default_policy_columns: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSettingsGuiDefaultPolicyColumnArgs']]]] = None,
                  gui_dhcp_advanced: Optional[pulumi.Input[str]] = None,
                  gui_dlp: Optional[pulumi.Input[str]] = None,
@@ -1947,12 +1984,14 @@ class _SystemSettingsState:
                  gui_route_tag_address_creation: Optional[pulumi.Input[str]] = None,
                  gui_security_profile_group: Optional[pulumi.Input[str]] = None,
                  gui_spamfilter: Optional[pulumi.Input[str]] = None,
+                 gui_sslvpn: Optional[pulumi.Input[str]] = None,
                  gui_sslvpn_personal_bookmarks: Optional[pulumi.Input[str]] = None,
                  gui_sslvpn_realms: Optional[pulumi.Input[str]] = None,
                  gui_switch_controller: Optional[pulumi.Input[str]] = None,
                  gui_threat_weight: Optional[pulumi.Input[str]] = None,
                  gui_traffic_shaping: Optional[pulumi.Input[str]] = None,
                  gui_videofilter: Optional[pulumi.Input[str]] = None,
+                 gui_virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  gui_voip_profile: Optional[pulumi.Input[str]] = None,
                  gui_vpn: Optional[pulumi.Input[str]] = None,
                  gui_waf_profile: Optional[pulumi.Input[str]] = None,
@@ -2110,6 +2149,8 @@ class _SystemSettingsState:
             pulumi.set(__self__, "gui_ap_profile", gui_ap_profile)
         if gui_application_control is not None:
             pulumi.set(__self__, "gui_application_control", gui_application_control)
+        if gui_casb is not None:
+            pulumi.set(__self__, "gui_casb", gui_casb)
         if gui_default_policy_columns is not None:
             pulumi.set(__self__, "gui_default_policy_columns", gui_default_policy_columns)
         if gui_dhcp_advanced is not None:
@@ -2190,6 +2231,8 @@ class _SystemSettingsState:
             pulumi.set(__self__, "gui_security_profile_group", gui_security_profile_group)
         if gui_spamfilter is not None:
             pulumi.set(__self__, "gui_spamfilter", gui_spamfilter)
+        if gui_sslvpn is not None:
+            pulumi.set(__self__, "gui_sslvpn", gui_sslvpn)
         if gui_sslvpn_personal_bookmarks is not None:
             pulumi.set(__self__, "gui_sslvpn_personal_bookmarks", gui_sslvpn_personal_bookmarks)
         if gui_sslvpn_realms is not None:
@@ -2202,6 +2245,8 @@ class _SystemSettingsState:
             pulumi.set(__self__, "gui_traffic_shaping", gui_traffic_shaping)
         if gui_videofilter is not None:
             pulumi.set(__self__, "gui_videofilter", gui_videofilter)
+        if gui_virtual_patch_profile is not None:
+            pulumi.set(__self__, "gui_virtual_patch_profile", gui_virtual_patch_profile)
         if gui_voip_profile is not None:
             pulumi.set(__self__, "gui_voip_profile", gui_voip_profile)
         if gui_vpn is not None:
@@ -2747,6 +2792,15 @@ class _SystemSettingsState:
         pulumi.set(self, "gui_application_control", value)
 
     @property
+    @pulumi.getter(name="guiCasb")
+    def gui_casb(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "gui_casb")
+
+    @gui_casb.setter
+    def gui_casb(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_casb", value)
+
+    @property
     @pulumi.getter(name="guiDefaultPolicyColumns")
     def gui_default_policy_columns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SystemSettingsGuiDefaultPolicyColumnArgs']]]]:
         return pulumi.get(self, "gui_default_policy_columns")
@@ -3107,6 +3161,15 @@ class _SystemSettingsState:
         pulumi.set(self, "gui_spamfilter", value)
 
     @property
+    @pulumi.getter(name="guiSslvpn")
+    def gui_sslvpn(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "gui_sslvpn")
+
+    @gui_sslvpn.setter
+    def gui_sslvpn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_sslvpn", value)
+
+    @property
     @pulumi.getter(name="guiSslvpnPersonalBookmarks")
     def gui_sslvpn_personal_bookmarks(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "gui_sslvpn_personal_bookmarks")
@@ -3159,6 +3222,15 @@ class _SystemSettingsState:
     @gui_videofilter.setter
     def gui_videofilter(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gui_videofilter", value)
+
+    @property
+    @pulumi.getter(name="guiVirtualPatchProfile")
+    def gui_virtual_patch_profile(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "gui_virtual_patch_profile")
+
+    @gui_virtual_patch_profile.setter
+    def gui_virtual_patch_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_virtual_patch_profile", value)
 
     @property
     @pulumi.getter(name="guiVoipProfile")
@@ -3753,6 +3825,7 @@ class SystemSettings(pulumi.CustomResource):
                  gui_antivirus: Optional[pulumi.Input[str]] = None,
                  gui_ap_profile: Optional[pulumi.Input[str]] = None,
                  gui_application_control: Optional[pulumi.Input[str]] = None,
+                 gui_casb: Optional[pulumi.Input[str]] = None,
                  gui_default_policy_columns: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSettingsGuiDefaultPolicyColumnArgs']]]]] = None,
                  gui_dhcp_advanced: Optional[pulumi.Input[str]] = None,
                  gui_dlp: Optional[pulumi.Input[str]] = None,
@@ -3793,12 +3866,14 @@ class SystemSettings(pulumi.CustomResource):
                  gui_route_tag_address_creation: Optional[pulumi.Input[str]] = None,
                  gui_security_profile_group: Optional[pulumi.Input[str]] = None,
                  gui_spamfilter: Optional[pulumi.Input[str]] = None,
+                 gui_sslvpn: Optional[pulumi.Input[str]] = None,
                  gui_sslvpn_personal_bookmarks: Optional[pulumi.Input[str]] = None,
                  gui_sslvpn_realms: Optional[pulumi.Input[str]] = None,
                  gui_switch_controller: Optional[pulumi.Input[str]] = None,
                  gui_threat_weight: Optional[pulumi.Input[str]] = None,
                  gui_traffic_shaping: Optional[pulumi.Input[str]] = None,
                  gui_videofilter: Optional[pulumi.Input[str]] = None,
+                 gui_virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  gui_voip_profile: Optional[pulumi.Input[str]] = None,
                  gui_vpn: Optional[pulumi.Input[str]] = None,
                  gui_waf_profile: Optional[pulumi.Input[str]] = None,
@@ -3935,6 +4010,7 @@ class SystemSettings(pulumi.CustomResource):
                  gui_antivirus: Optional[pulumi.Input[str]] = None,
                  gui_ap_profile: Optional[pulumi.Input[str]] = None,
                  gui_application_control: Optional[pulumi.Input[str]] = None,
+                 gui_casb: Optional[pulumi.Input[str]] = None,
                  gui_default_policy_columns: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSettingsGuiDefaultPolicyColumnArgs']]]]] = None,
                  gui_dhcp_advanced: Optional[pulumi.Input[str]] = None,
                  gui_dlp: Optional[pulumi.Input[str]] = None,
@@ -3975,12 +4051,14 @@ class SystemSettings(pulumi.CustomResource):
                  gui_route_tag_address_creation: Optional[pulumi.Input[str]] = None,
                  gui_security_profile_group: Optional[pulumi.Input[str]] = None,
                  gui_spamfilter: Optional[pulumi.Input[str]] = None,
+                 gui_sslvpn: Optional[pulumi.Input[str]] = None,
                  gui_sslvpn_personal_bookmarks: Optional[pulumi.Input[str]] = None,
                  gui_sslvpn_realms: Optional[pulumi.Input[str]] = None,
                  gui_switch_controller: Optional[pulumi.Input[str]] = None,
                  gui_threat_weight: Optional[pulumi.Input[str]] = None,
                  gui_traffic_shaping: Optional[pulumi.Input[str]] = None,
                  gui_videofilter: Optional[pulumi.Input[str]] = None,
+                 gui_virtual_patch_profile: Optional[pulumi.Input[str]] = None,
                  gui_voip_profile: Optional[pulumi.Input[str]] = None,
                  gui_vpn: Optional[pulumi.Input[str]] = None,
                  gui_waf_profile: Optional[pulumi.Input[str]] = None,
@@ -4097,6 +4175,7 @@ class SystemSettings(pulumi.CustomResource):
             __props__.__dict__["gui_antivirus"] = gui_antivirus
             __props__.__dict__["gui_ap_profile"] = gui_ap_profile
             __props__.__dict__["gui_application_control"] = gui_application_control
+            __props__.__dict__["gui_casb"] = gui_casb
             __props__.__dict__["gui_default_policy_columns"] = gui_default_policy_columns
             __props__.__dict__["gui_dhcp_advanced"] = gui_dhcp_advanced
             __props__.__dict__["gui_dlp"] = gui_dlp
@@ -4137,12 +4216,14 @@ class SystemSettings(pulumi.CustomResource):
             __props__.__dict__["gui_route_tag_address_creation"] = gui_route_tag_address_creation
             __props__.__dict__["gui_security_profile_group"] = gui_security_profile_group
             __props__.__dict__["gui_spamfilter"] = gui_spamfilter
+            __props__.__dict__["gui_sslvpn"] = gui_sslvpn
             __props__.__dict__["gui_sslvpn_personal_bookmarks"] = gui_sslvpn_personal_bookmarks
             __props__.__dict__["gui_sslvpn_realms"] = gui_sslvpn_realms
             __props__.__dict__["gui_switch_controller"] = gui_switch_controller
             __props__.__dict__["gui_threat_weight"] = gui_threat_weight
             __props__.__dict__["gui_traffic_shaping"] = gui_traffic_shaping
             __props__.__dict__["gui_videofilter"] = gui_videofilter
+            __props__.__dict__["gui_virtual_patch_profile"] = gui_virtual_patch_profile
             __props__.__dict__["gui_voip_profile"] = gui_voip_profile
             __props__.__dict__["gui_vpn"] = gui_vpn
             __props__.__dict__["gui_waf_profile"] = gui_waf_profile
@@ -4260,6 +4341,7 @@ class SystemSettings(pulumi.CustomResource):
             gui_antivirus: Optional[pulumi.Input[str]] = None,
             gui_ap_profile: Optional[pulumi.Input[str]] = None,
             gui_application_control: Optional[pulumi.Input[str]] = None,
+            gui_casb: Optional[pulumi.Input[str]] = None,
             gui_default_policy_columns: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSettingsGuiDefaultPolicyColumnArgs']]]]] = None,
             gui_dhcp_advanced: Optional[pulumi.Input[str]] = None,
             gui_dlp: Optional[pulumi.Input[str]] = None,
@@ -4300,12 +4382,14 @@ class SystemSettings(pulumi.CustomResource):
             gui_route_tag_address_creation: Optional[pulumi.Input[str]] = None,
             gui_security_profile_group: Optional[pulumi.Input[str]] = None,
             gui_spamfilter: Optional[pulumi.Input[str]] = None,
+            gui_sslvpn: Optional[pulumi.Input[str]] = None,
             gui_sslvpn_personal_bookmarks: Optional[pulumi.Input[str]] = None,
             gui_sslvpn_realms: Optional[pulumi.Input[str]] = None,
             gui_switch_controller: Optional[pulumi.Input[str]] = None,
             gui_threat_weight: Optional[pulumi.Input[str]] = None,
             gui_traffic_shaping: Optional[pulumi.Input[str]] = None,
             gui_videofilter: Optional[pulumi.Input[str]] = None,
+            gui_virtual_patch_profile: Optional[pulumi.Input[str]] = None,
             gui_voip_profile: Optional[pulumi.Input[str]] = None,
             gui_vpn: Optional[pulumi.Input[str]] = None,
             gui_waf_profile: Optional[pulumi.Input[str]] = None,
@@ -4425,6 +4509,7 @@ class SystemSettings(pulumi.CustomResource):
         __props__.__dict__["gui_antivirus"] = gui_antivirus
         __props__.__dict__["gui_ap_profile"] = gui_ap_profile
         __props__.__dict__["gui_application_control"] = gui_application_control
+        __props__.__dict__["gui_casb"] = gui_casb
         __props__.__dict__["gui_default_policy_columns"] = gui_default_policy_columns
         __props__.__dict__["gui_dhcp_advanced"] = gui_dhcp_advanced
         __props__.__dict__["gui_dlp"] = gui_dlp
@@ -4465,12 +4550,14 @@ class SystemSettings(pulumi.CustomResource):
         __props__.__dict__["gui_route_tag_address_creation"] = gui_route_tag_address_creation
         __props__.__dict__["gui_security_profile_group"] = gui_security_profile_group
         __props__.__dict__["gui_spamfilter"] = gui_spamfilter
+        __props__.__dict__["gui_sslvpn"] = gui_sslvpn
         __props__.__dict__["gui_sslvpn_personal_bookmarks"] = gui_sslvpn_personal_bookmarks
         __props__.__dict__["gui_sslvpn_realms"] = gui_sslvpn_realms
         __props__.__dict__["gui_switch_controller"] = gui_switch_controller
         __props__.__dict__["gui_threat_weight"] = gui_threat_weight
         __props__.__dict__["gui_traffic_shaping"] = gui_traffic_shaping
         __props__.__dict__["gui_videofilter"] = gui_videofilter
+        __props__.__dict__["gui_virtual_patch_profile"] = gui_virtual_patch_profile
         __props__.__dict__["gui_voip_profile"] = gui_voip_profile
         __props__.__dict__["gui_vpn"] = gui_vpn
         __props__.__dict__["gui_waf_profile"] = gui_waf_profile
@@ -4769,6 +4856,11 @@ class SystemSettings(pulumi.CustomResource):
         return pulumi.get(self, "gui_application_control")
 
     @property
+    @pulumi.getter(name="guiCasb")
+    def gui_casb(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "gui_casb")
+
+    @property
     @pulumi.getter(name="guiDefaultPolicyColumns")
     def gui_default_policy_columns(self) -> pulumi.Output[Optional[Sequence['outputs.SystemSettingsGuiDefaultPolicyColumn']]]:
         return pulumi.get(self, "gui_default_policy_columns")
@@ -4969,6 +5061,11 @@ class SystemSettings(pulumi.CustomResource):
         return pulumi.get(self, "gui_spamfilter")
 
     @property
+    @pulumi.getter(name="guiSslvpn")
+    def gui_sslvpn(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "gui_sslvpn")
+
+    @property
     @pulumi.getter(name="guiSslvpnPersonalBookmarks")
     def gui_sslvpn_personal_bookmarks(self) -> pulumi.Output[str]:
         return pulumi.get(self, "gui_sslvpn_personal_bookmarks")
@@ -4997,6 +5094,11 @@ class SystemSettings(pulumi.CustomResource):
     @pulumi.getter(name="guiVideofilter")
     def gui_videofilter(self) -> pulumi.Output[str]:
         return pulumi.get(self, "gui_videofilter")
+
+    @property
+    @pulumi.getter(name="guiVirtualPatchProfile")
+    def gui_virtual_patch_profile(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "gui_virtual_patch_profile")
 
     @property
     @pulumi.getter(name="guiVoipProfile")

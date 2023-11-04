@@ -58,12 +58,14 @@ class SystemInterfaceArgs:
                  dhcp_classless_route_addition: Optional[pulumi.Input[str]] = None,
                  dhcp_client_identifier: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_agent_option: Optional[pulumi.Input[str]] = None,
+                 dhcp_relay_circuit_id: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_interface: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_interface_select_method: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_ip: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_link_selection: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_request_all_server: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_service: Optional[pulumi.Input[str]] = None,
+                 dhcp_relay_source_ip: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_type: Optional[pulumi.Input[str]] = None,
                  dhcp_renew_time: Optional[pulumi.Input[int]] = None,
                  dhcp_smart_relay: Optional[pulumi.Input[str]] = None,
@@ -216,6 +218,9 @@ class SystemInterfaceArgs:
                  switch_controller_mgmt_vlan: Optional[pulumi.Input[int]] = None,
                  switch_controller_nac: Optional[pulumi.Input[str]] = None,
                  switch_controller_netflow_collect: Optional[pulumi.Input[str]] = None,
+                 switch_controller_offload: Optional[pulumi.Input[str]] = None,
+                 switch_controller_offload_gw: Optional[pulumi.Input[str]] = None,
+                 switch_controller_offload_ip: Optional[pulumi.Input[str]] = None,
                  switch_controller_rspan_mode: Optional[pulumi.Input[str]] = None,
                  switch_controller_source_ip: Optional[pulumi.Input[str]] = None,
                  switch_controller_traffic_policy: Optional[pulumi.Input[str]] = None,
@@ -329,6 +334,8 @@ class SystemInterfaceArgs:
             pulumi.set(__self__, "dhcp_client_identifier", dhcp_client_identifier)
         if dhcp_relay_agent_option is not None:
             pulumi.set(__self__, "dhcp_relay_agent_option", dhcp_relay_agent_option)
+        if dhcp_relay_circuit_id is not None:
+            pulumi.set(__self__, "dhcp_relay_circuit_id", dhcp_relay_circuit_id)
         if dhcp_relay_interface is not None:
             pulumi.set(__self__, "dhcp_relay_interface", dhcp_relay_interface)
         if dhcp_relay_interface_select_method is not None:
@@ -341,6 +348,8 @@ class SystemInterfaceArgs:
             pulumi.set(__self__, "dhcp_relay_request_all_server", dhcp_relay_request_all_server)
         if dhcp_relay_service is not None:
             pulumi.set(__self__, "dhcp_relay_service", dhcp_relay_service)
+        if dhcp_relay_source_ip is not None:
+            pulumi.set(__self__, "dhcp_relay_source_ip", dhcp_relay_source_ip)
         if dhcp_relay_type is not None:
             pulumi.set(__self__, "dhcp_relay_type", dhcp_relay_type)
         if dhcp_renew_time is not None:
@@ -645,6 +654,12 @@ class SystemInterfaceArgs:
             pulumi.set(__self__, "switch_controller_nac", switch_controller_nac)
         if switch_controller_netflow_collect is not None:
             pulumi.set(__self__, "switch_controller_netflow_collect", switch_controller_netflow_collect)
+        if switch_controller_offload is not None:
+            pulumi.set(__self__, "switch_controller_offload", switch_controller_offload)
+        if switch_controller_offload_gw is not None:
+            pulumi.set(__self__, "switch_controller_offload_gw", switch_controller_offload_gw)
+        if switch_controller_offload_ip is not None:
+            pulumi.set(__self__, "switch_controller_offload_ip", switch_controller_offload_ip)
         if switch_controller_rspan_mode is not None:
             pulumi.set(__self__, "switch_controller_rspan_mode", switch_controller_rspan_mode)
         if switch_controller_source_ip is not None:
@@ -1079,6 +1094,15 @@ class SystemInterfaceArgs:
         pulumi.set(self, "dhcp_relay_agent_option", value)
 
     @property
+    @pulumi.getter(name="dhcpRelayCircuitId")
+    def dhcp_relay_circuit_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "dhcp_relay_circuit_id")
+
+    @dhcp_relay_circuit_id.setter
+    def dhcp_relay_circuit_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_relay_circuit_id", value)
+
+    @property
     @pulumi.getter(name="dhcpRelayInterface")
     def dhcp_relay_interface(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "dhcp_relay_interface")
@@ -1131,6 +1155,15 @@ class SystemInterfaceArgs:
     @dhcp_relay_service.setter
     def dhcp_relay_service(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dhcp_relay_service", value)
+
+    @property
+    @pulumi.getter(name="dhcpRelaySourceIp")
+    def dhcp_relay_source_ip(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "dhcp_relay_source_ip")
+
+    @dhcp_relay_source_ip.setter
+    def dhcp_relay_source_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_relay_source_ip", value)
 
     @property
     @pulumi.getter(name="dhcpRelayType")
@@ -2501,6 +2534,33 @@ class SystemInterfaceArgs:
         pulumi.set(self, "switch_controller_netflow_collect", value)
 
     @property
+    @pulumi.getter(name="switchControllerOffload")
+    def switch_controller_offload(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "switch_controller_offload")
+
+    @switch_controller_offload.setter
+    def switch_controller_offload(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "switch_controller_offload", value)
+
+    @property
+    @pulumi.getter(name="switchControllerOffloadGw")
+    def switch_controller_offload_gw(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "switch_controller_offload_gw")
+
+    @switch_controller_offload_gw.setter
+    def switch_controller_offload_gw(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "switch_controller_offload_gw", value)
+
+    @property
+    @pulumi.getter(name="switchControllerOffloadIp")
+    def switch_controller_offload_ip(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "switch_controller_offload_ip")
+
+    @switch_controller_offload_ip.setter
+    def switch_controller_offload_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "switch_controller_offload_ip", value)
+
+    @property
     @pulumi.getter(name="switchControllerRspanMode")
     def switch_controller_rspan_mode(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "switch_controller_rspan_mode")
@@ -2788,12 +2848,14 @@ class _SystemInterfaceState:
                  dhcp_classless_route_addition: Optional[pulumi.Input[str]] = None,
                  dhcp_client_identifier: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_agent_option: Optional[pulumi.Input[str]] = None,
+                 dhcp_relay_circuit_id: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_interface: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_interface_select_method: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_ip: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_link_selection: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_request_all_server: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_service: Optional[pulumi.Input[str]] = None,
+                 dhcp_relay_source_ip: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_type: Optional[pulumi.Input[str]] = None,
                  dhcp_renew_time: Optional[pulumi.Input[int]] = None,
                  dhcp_smart_relay: Optional[pulumi.Input[str]] = None,
@@ -2946,6 +3008,9 @@ class _SystemInterfaceState:
                  switch_controller_mgmt_vlan: Optional[pulumi.Input[int]] = None,
                  switch_controller_nac: Optional[pulumi.Input[str]] = None,
                  switch_controller_netflow_collect: Optional[pulumi.Input[str]] = None,
+                 switch_controller_offload: Optional[pulumi.Input[str]] = None,
+                 switch_controller_offload_gw: Optional[pulumi.Input[str]] = None,
+                 switch_controller_offload_ip: Optional[pulumi.Input[str]] = None,
                  switch_controller_rspan_mode: Optional[pulumi.Input[str]] = None,
                  switch_controller_source_ip: Optional[pulumi.Input[str]] = None,
                  switch_controller_traffic_policy: Optional[pulumi.Input[str]] = None,
@@ -3059,6 +3124,8 @@ class _SystemInterfaceState:
             pulumi.set(__self__, "dhcp_client_identifier", dhcp_client_identifier)
         if dhcp_relay_agent_option is not None:
             pulumi.set(__self__, "dhcp_relay_agent_option", dhcp_relay_agent_option)
+        if dhcp_relay_circuit_id is not None:
+            pulumi.set(__self__, "dhcp_relay_circuit_id", dhcp_relay_circuit_id)
         if dhcp_relay_interface is not None:
             pulumi.set(__self__, "dhcp_relay_interface", dhcp_relay_interface)
         if dhcp_relay_interface_select_method is not None:
@@ -3071,6 +3138,8 @@ class _SystemInterfaceState:
             pulumi.set(__self__, "dhcp_relay_request_all_server", dhcp_relay_request_all_server)
         if dhcp_relay_service is not None:
             pulumi.set(__self__, "dhcp_relay_service", dhcp_relay_service)
+        if dhcp_relay_source_ip is not None:
+            pulumi.set(__self__, "dhcp_relay_source_ip", dhcp_relay_source_ip)
         if dhcp_relay_type is not None:
             pulumi.set(__self__, "dhcp_relay_type", dhcp_relay_type)
         if dhcp_renew_time is not None:
@@ -3375,6 +3444,12 @@ class _SystemInterfaceState:
             pulumi.set(__self__, "switch_controller_nac", switch_controller_nac)
         if switch_controller_netflow_collect is not None:
             pulumi.set(__self__, "switch_controller_netflow_collect", switch_controller_netflow_collect)
+        if switch_controller_offload is not None:
+            pulumi.set(__self__, "switch_controller_offload", switch_controller_offload)
+        if switch_controller_offload_gw is not None:
+            pulumi.set(__self__, "switch_controller_offload_gw", switch_controller_offload_gw)
+        if switch_controller_offload_ip is not None:
+            pulumi.set(__self__, "switch_controller_offload_ip", switch_controller_offload_ip)
         if switch_controller_rspan_mode is not None:
             pulumi.set(__self__, "switch_controller_rspan_mode", switch_controller_rspan_mode)
         if switch_controller_source_ip is not None:
@@ -3802,6 +3877,15 @@ class _SystemInterfaceState:
         pulumi.set(self, "dhcp_relay_agent_option", value)
 
     @property
+    @pulumi.getter(name="dhcpRelayCircuitId")
+    def dhcp_relay_circuit_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "dhcp_relay_circuit_id")
+
+    @dhcp_relay_circuit_id.setter
+    def dhcp_relay_circuit_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_relay_circuit_id", value)
+
+    @property
     @pulumi.getter(name="dhcpRelayInterface")
     def dhcp_relay_interface(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "dhcp_relay_interface")
@@ -3854,6 +3938,15 @@ class _SystemInterfaceState:
     @dhcp_relay_service.setter
     def dhcp_relay_service(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dhcp_relay_service", value)
+
+    @property
+    @pulumi.getter(name="dhcpRelaySourceIp")
+    def dhcp_relay_source_ip(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "dhcp_relay_source_ip")
+
+    @dhcp_relay_source_ip.setter
+    def dhcp_relay_source_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_relay_source_ip", value)
 
     @property
     @pulumi.getter(name="dhcpRelayType")
@@ -5224,6 +5317,33 @@ class _SystemInterfaceState:
         pulumi.set(self, "switch_controller_netflow_collect", value)
 
     @property
+    @pulumi.getter(name="switchControllerOffload")
+    def switch_controller_offload(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "switch_controller_offload")
+
+    @switch_controller_offload.setter
+    def switch_controller_offload(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "switch_controller_offload", value)
+
+    @property
+    @pulumi.getter(name="switchControllerOffloadGw")
+    def switch_controller_offload_gw(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "switch_controller_offload_gw")
+
+    @switch_controller_offload_gw.setter
+    def switch_controller_offload_gw(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "switch_controller_offload_gw", value)
+
+    @property
+    @pulumi.getter(name="switchControllerOffloadIp")
+    def switch_controller_offload_ip(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "switch_controller_offload_ip")
+
+    @switch_controller_offload_ip.setter
+    def switch_controller_offload_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "switch_controller_offload_ip", value)
+
+    @property
     @pulumi.getter(name="switchControllerRspanMode")
     def switch_controller_rspan_mode(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "switch_controller_rspan_mode")
@@ -5522,12 +5642,14 @@ class SystemInterface(pulumi.CustomResource):
                  dhcp_classless_route_addition: Optional[pulumi.Input[str]] = None,
                  dhcp_client_identifier: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_agent_option: Optional[pulumi.Input[str]] = None,
+                 dhcp_relay_circuit_id: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_interface: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_interface_select_method: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_ip: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_link_selection: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_request_all_server: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_service: Optional[pulumi.Input[str]] = None,
+                 dhcp_relay_source_ip: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_type: Optional[pulumi.Input[str]] = None,
                  dhcp_renew_time: Optional[pulumi.Input[int]] = None,
                  dhcp_smart_relay: Optional[pulumi.Input[str]] = None,
@@ -5680,6 +5802,9 @@ class SystemInterface(pulumi.CustomResource):
                  switch_controller_mgmt_vlan: Optional[pulumi.Input[int]] = None,
                  switch_controller_nac: Optional[pulumi.Input[str]] = None,
                  switch_controller_netflow_collect: Optional[pulumi.Input[str]] = None,
+                 switch_controller_offload: Optional[pulumi.Input[str]] = None,
+                 switch_controller_offload_gw: Optional[pulumi.Input[str]] = None,
+                 switch_controller_offload_ip: Optional[pulumi.Input[str]] = None,
                  switch_controller_rspan_mode: Optional[pulumi.Input[str]] = None,
                  switch_controller_source_ip: Optional[pulumi.Input[str]] = None,
                  switch_controller_traffic_policy: Optional[pulumi.Input[str]] = None,
@@ -5778,12 +5903,14 @@ class SystemInterface(pulumi.CustomResource):
                  dhcp_classless_route_addition: Optional[pulumi.Input[str]] = None,
                  dhcp_client_identifier: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_agent_option: Optional[pulumi.Input[str]] = None,
+                 dhcp_relay_circuit_id: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_interface: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_interface_select_method: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_ip: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_link_selection: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_request_all_server: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_service: Optional[pulumi.Input[str]] = None,
+                 dhcp_relay_source_ip: Optional[pulumi.Input[str]] = None,
                  dhcp_relay_type: Optional[pulumi.Input[str]] = None,
                  dhcp_renew_time: Optional[pulumi.Input[int]] = None,
                  dhcp_smart_relay: Optional[pulumi.Input[str]] = None,
@@ -5936,6 +6063,9 @@ class SystemInterface(pulumi.CustomResource):
                  switch_controller_mgmt_vlan: Optional[pulumi.Input[int]] = None,
                  switch_controller_nac: Optional[pulumi.Input[str]] = None,
                  switch_controller_netflow_collect: Optional[pulumi.Input[str]] = None,
+                 switch_controller_offload: Optional[pulumi.Input[str]] = None,
+                 switch_controller_offload_gw: Optional[pulumi.Input[str]] = None,
+                 switch_controller_offload_ip: Optional[pulumi.Input[str]] = None,
                  switch_controller_rspan_mode: Optional[pulumi.Input[str]] = None,
                  switch_controller_source_ip: Optional[pulumi.Input[str]] = None,
                  switch_controller_traffic_policy: Optional[pulumi.Input[str]] = None,
@@ -6014,12 +6144,14 @@ class SystemInterface(pulumi.CustomResource):
             __props__.__dict__["dhcp_classless_route_addition"] = dhcp_classless_route_addition
             __props__.__dict__["dhcp_client_identifier"] = dhcp_client_identifier
             __props__.__dict__["dhcp_relay_agent_option"] = dhcp_relay_agent_option
+            __props__.__dict__["dhcp_relay_circuit_id"] = dhcp_relay_circuit_id
             __props__.__dict__["dhcp_relay_interface"] = dhcp_relay_interface
             __props__.__dict__["dhcp_relay_interface_select_method"] = dhcp_relay_interface_select_method
             __props__.__dict__["dhcp_relay_ip"] = dhcp_relay_ip
             __props__.__dict__["dhcp_relay_link_selection"] = dhcp_relay_link_selection
             __props__.__dict__["dhcp_relay_request_all_server"] = dhcp_relay_request_all_server
             __props__.__dict__["dhcp_relay_service"] = dhcp_relay_service
+            __props__.__dict__["dhcp_relay_source_ip"] = dhcp_relay_source_ip
             __props__.__dict__["dhcp_relay_type"] = dhcp_relay_type
             __props__.__dict__["dhcp_renew_time"] = dhcp_renew_time
             __props__.__dict__["dhcp_smart_relay"] = dhcp_smart_relay
@@ -6172,6 +6304,9 @@ class SystemInterface(pulumi.CustomResource):
             __props__.__dict__["switch_controller_mgmt_vlan"] = switch_controller_mgmt_vlan
             __props__.__dict__["switch_controller_nac"] = switch_controller_nac
             __props__.__dict__["switch_controller_netflow_collect"] = switch_controller_netflow_collect
+            __props__.__dict__["switch_controller_offload"] = switch_controller_offload
+            __props__.__dict__["switch_controller_offload_gw"] = switch_controller_offload_gw
+            __props__.__dict__["switch_controller_offload_ip"] = switch_controller_offload_ip
             __props__.__dict__["switch_controller_rspan_mode"] = switch_controller_rspan_mode
             __props__.__dict__["switch_controller_source_ip"] = switch_controller_source_ip
             __props__.__dict__["switch_controller_traffic_policy"] = switch_controller_traffic_policy
@@ -6255,12 +6390,14 @@ class SystemInterface(pulumi.CustomResource):
             dhcp_classless_route_addition: Optional[pulumi.Input[str]] = None,
             dhcp_client_identifier: Optional[pulumi.Input[str]] = None,
             dhcp_relay_agent_option: Optional[pulumi.Input[str]] = None,
+            dhcp_relay_circuit_id: Optional[pulumi.Input[str]] = None,
             dhcp_relay_interface: Optional[pulumi.Input[str]] = None,
             dhcp_relay_interface_select_method: Optional[pulumi.Input[str]] = None,
             dhcp_relay_ip: Optional[pulumi.Input[str]] = None,
             dhcp_relay_link_selection: Optional[pulumi.Input[str]] = None,
             dhcp_relay_request_all_server: Optional[pulumi.Input[str]] = None,
             dhcp_relay_service: Optional[pulumi.Input[str]] = None,
+            dhcp_relay_source_ip: Optional[pulumi.Input[str]] = None,
             dhcp_relay_type: Optional[pulumi.Input[str]] = None,
             dhcp_renew_time: Optional[pulumi.Input[int]] = None,
             dhcp_smart_relay: Optional[pulumi.Input[str]] = None,
@@ -6413,6 +6550,9 @@ class SystemInterface(pulumi.CustomResource):
             switch_controller_mgmt_vlan: Optional[pulumi.Input[int]] = None,
             switch_controller_nac: Optional[pulumi.Input[str]] = None,
             switch_controller_netflow_collect: Optional[pulumi.Input[str]] = None,
+            switch_controller_offload: Optional[pulumi.Input[str]] = None,
+            switch_controller_offload_gw: Optional[pulumi.Input[str]] = None,
+            switch_controller_offload_ip: Optional[pulumi.Input[str]] = None,
             switch_controller_rspan_mode: Optional[pulumi.Input[str]] = None,
             switch_controller_source_ip: Optional[pulumi.Input[str]] = None,
             switch_controller_traffic_policy: Optional[pulumi.Input[str]] = None,
@@ -6494,12 +6634,14 @@ class SystemInterface(pulumi.CustomResource):
         __props__.__dict__["dhcp_classless_route_addition"] = dhcp_classless_route_addition
         __props__.__dict__["dhcp_client_identifier"] = dhcp_client_identifier
         __props__.__dict__["dhcp_relay_agent_option"] = dhcp_relay_agent_option
+        __props__.__dict__["dhcp_relay_circuit_id"] = dhcp_relay_circuit_id
         __props__.__dict__["dhcp_relay_interface"] = dhcp_relay_interface
         __props__.__dict__["dhcp_relay_interface_select_method"] = dhcp_relay_interface_select_method
         __props__.__dict__["dhcp_relay_ip"] = dhcp_relay_ip
         __props__.__dict__["dhcp_relay_link_selection"] = dhcp_relay_link_selection
         __props__.__dict__["dhcp_relay_request_all_server"] = dhcp_relay_request_all_server
         __props__.__dict__["dhcp_relay_service"] = dhcp_relay_service
+        __props__.__dict__["dhcp_relay_source_ip"] = dhcp_relay_source_ip
         __props__.__dict__["dhcp_relay_type"] = dhcp_relay_type
         __props__.__dict__["dhcp_renew_time"] = dhcp_renew_time
         __props__.__dict__["dhcp_smart_relay"] = dhcp_smart_relay
@@ -6652,6 +6794,9 @@ class SystemInterface(pulumi.CustomResource):
         __props__.__dict__["switch_controller_mgmt_vlan"] = switch_controller_mgmt_vlan
         __props__.__dict__["switch_controller_nac"] = switch_controller_nac
         __props__.__dict__["switch_controller_netflow_collect"] = switch_controller_netflow_collect
+        __props__.__dict__["switch_controller_offload"] = switch_controller_offload
+        __props__.__dict__["switch_controller_offload_gw"] = switch_controller_offload_gw
+        __props__.__dict__["switch_controller_offload_ip"] = switch_controller_offload_ip
         __props__.__dict__["switch_controller_rspan_mode"] = switch_controller_rspan_mode
         __props__.__dict__["switch_controller_source_ip"] = switch_controller_source_ip
         __props__.__dict__["switch_controller_traffic_policy"] = switch_controller_traffic_policy
@@ -6888,6 +7033,11 @@ class SystemInterface(pulumi.CustomResource):
         return pulumi.get(self, "dhcp_relay_agent_option")
 
     @property
+    @pulumi.getter(name="dhcpRelayCircuitId")
+    def dhcp_relay_circuit_id(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "dhcp_relay_circuit_id")
+
+    @property
     @pulumi.getter(name="dhcpRelayInterface")
     def dhcp_relay_interface(self) -> pulumi.Output[str]:
         return pulumi.get(self, "dhcp_relay_interface")
@@ -6916,6 +7066,11 @@ class SystemInterface(pulumi.CustomResource):
     @pulumi.getter(name="dhcpRelayService")
     def dhcp_relay_service(self) -> pulumi.Output[str]:
         return pulumi.get(self, "dhcp_relay_service")
+
+    @property
+    @pulumi.getter(name="dhcpRelaySourceIp")
+    def dhcp_relay_source_ip(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "dhcp_relay_source_ip")
 
     @property
     @pulumi.getter(name="dhcpRelayType")
@@ -7676,6 +7831,21 @@ class SystemInterface(pulumi.CustomResource):
     @pulumi.getter(name="switchControllerNetflowCollect")
     def switch_controller_netflow_collect(self) -> pulumi.Output[str]:
         return pulumi.get(self, "switch_controller_netflow_collect")
+
+    @property
+    @pulumi.getter(name="switchControllerOffload")
+    def switch_controller_offload(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "switch_controller_offload")
+
+    @property
+    @pulumi.getter(name="switchControllerOffloadGw")
+    def switch_controller_offload_gw(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "switch_controller_offload_gw")
+
+    @property
+    @pulumi.getter(name="switchControllerOffloadIp")
+    def switch_controller_offload_ip(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "switch_controller_offload_ip")
 
     @property
     @pulumi.getter(name="switchControllerRspanMode")

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallInternetServiceName struct {
@@ -120,6 +121,12 @@ func (i *FirewallInternetServiceName) ToFirewallInternetServiceNameOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceNameOutput)
 }
 
+func (i *FirewallInternetServiceName) ToOutput(ctx context.Context) pulumix.Output[*FirewallInternetServiceName] {
+	return pulumix.Output[*FirewallInternetServiceName]{
+		OutputState: i.ToFirewallInternetServiceNameOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallInternetServiceNameArrayInput is an input type that accepts FirewallInternetServiceNameArray and FirewallInternetServiceNameArrayOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceNameArrayInput` via:
 //
@@ -143,6 +150,12 @@ func (i FirewallInternetServiceNameArray) ToFirewallInternetServiceNameArrayOutp
 
 func (i FirewallInternetServiceNameArray) ToFirewallInternetServiceNameArrayOutputWithContext(ctx context.Context) FirewallInternetServiceNameArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceNameArrayOutput)
+}
+
+func (i FirewallInternetServiceNameArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallInternetServiceName] {
+	return pulumix.Output[[]*FirewallInternetServiceName]{
+		OutputState: i.ToFirewallInternetServiceNameArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallInternetServiceNameMapInput is an input type that accepts FirewallInternetServiceNameMap and FirewallInternetServiceNameMapOutput values.
@@ -170,6 +183,12 @@ func (i FirewallInternetServiceNameMap) ToFirewallInternetServiceNameMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceNameMapOutput)
 }
 
+func (i FirewallInternetServiceNameMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallInternetServiceName] {
+	return pulumix.Output[map[string]*FirewallInternetServiceName]{
+		OutputState: i.ToFirewallInternetServiceNameMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallInternetServiceNameOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceNameOutput) ElementType() reflect.Type {
@@ -182,6 +201,12 @@ func (o FirewallInternetServiceNameOutput) ToFirewallInternetServiceNameOutput()
 
 func (o FirewallInternetServiceNameOutput) ToFirewallInternetServiceNameOutputWithContext(ctx context.Context) FirewallInternetServiceNameOutput {
 	return o
+}
+
+func (o FirewallInternetServiceNameOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallInternetServiceName] {
+	return pulumix.Output[*FirewallInternetServiceName]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallInternetServiceNameOutput) CityId() pulumi.IntOutput {
@@ -226,6 +251,12 @@ func (o FirewallInternetServiceNameArrayOutput) ToFirewallInternetServiceNameArr
 	return o
 }
 
+func (o FirewallInternetServiceNameArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallInternetServiceName] {
+	return pulumix.Output[[]*FirewallInternetServiceName]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallInternetServiceNameArrayOutput) Index(i pulumi.IntInput) FirewallInternetServiceNameOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallInternetServiceName {
 		return vs[0].([]*FirewallInternetServiceName)[vs[1].(int)]
@@ -244,6 +275,12 @@ func (o FirewallInternetServiceNameMapOutput) ToFirewallInternetServiceNameMapOu
 
 func (o FirewallInternetServiceNameMapOutput) ToFirewallInternetServiceNameMapOutputWithContext(ctx context.Context) FirewallInternetServiceNameMapOutput {
 	return o
+}
+
+func (o FirewallInternetServiceNameMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallInternetServiceName] {
+	return pulumix.Output[map[string]*FirewallInternetServiceName]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallInternetServiceNameMapOutput) MapIndex(k pulumi.StringInput) FirewallInternetServiceNameOutput {

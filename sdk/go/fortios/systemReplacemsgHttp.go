@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemReplacemsgHttp struct {
@@ -114,6 +115,12 @@ func (i *SystemReplacemsgHttp) ToSystemReplacemsgHttpOutputWithContext(ctx conte
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgHttpOutput)
 }
 
+func (i *SystemReplacemsgHttp) ToOutput(ctx context.Context) pulumix.Output[*SystemReplacemsgHttp] {
+	return pulumix.Output[*SystemReplacemsgHttp]{
+		OutputState: i.ToSystemReplacemsgHttpOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemReplacemsgHttpArrayInput is an input type that accepts SystemReplacemsgHttpArray and SystemReplacemsgHttpArrayOutput values.
 // You can construct a concrete instance of `SystemReplacemsgHttpArrayInput` via:
 //
@@ -137,6 +144,12 @@ func (i SystemReplacemsgHttpArray) ToSystemReplacemsgHttpArrayOutput() SystemRep
 
 func (i SystemReplacemsgHttpArray) ToSystemReplacemsgHttpArrayOutputWithContext(ctx context.Context) SystemReplacemsgHttpArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgHttpArrayOutput)
+}
+
+func (i SystemReplacemsgHttpArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemReplacemsgHttp] {
+	return pulumix.Output[[]*SystemReplacemsgHttp]{
+		OutputState: i.ToSystemReplacemsgHttpArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemReplacemsgHttpMapInput is an input type that accepts SystemReplacemsgHttpMap and SystemReplacemsgHttpMapOutput values.
@@ -164,6 +177,12 @@ func (i SystemReplacemsgHttpMap) ToSystemReplacemsgHttpMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgHttpMapOutput)
 }
 
+func (i SystemReplacemsgHttpMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemReplacemsgHttp] {
+	return pulumix.Output[map[string]*SystemReplacemsgHttp]{
+		OutputState: i.ToSystemReplacemsgHttpMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemReplacemsgHttpOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgHttpOutput) ElementType() reflect.Type {
@@ -176,6 +195,12 @@ func (o SystemReplacemsgHttpOutput) ToSystemReplacemsgHttpOutput() SystemReplace
 
 func (o SystemReplacemsgHttpOutput) ToSystemReplacemsgHttpOutputWithContext(ctx context.Context) SystemReplacemsgHttpOutput {
 	return o
+}
+
+func (o SystemReplacemsgHttpOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemReplacemsgHttp] {
+	return pulumix.Output[*SystemReplacemsgHttp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemReplacemsgHttpOutput) Buffer() pulumi.StringPtrOutput {
@@ -212,6 +237,12 @@ func (o SystemReplacemsgHttpArrayOutput) ToSystemReplacemsgHttpArrayOutputWithCo
 	return o
 }
 
+func (o SystemReplacemsgHttpArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemReplacemsgHttp] {
+	return pulumix.Output[[]*SystemReplacemsgHttp]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemReplacemsgHttpArrayOutput) Index(i pulumi.IntInput) SystemReplacemsgHttpOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemReplacemsgHttp {
 		return vs[0].([]*SystemReplacemsgHttp)[vs[1].(int)]
@@ -230,6 +261,12 @@ func (o SystemReplacemsgHttpMapOutput) ToSystemReplacemsgHttpMapOutput() SystemR
 
 func (o SystemReplacemsgHttpMapOutput) ToSystemReplacemsgHttpMapOutputWithContext(ctx context.Context) SystemReplacemsgHttpMapOutput {
 	return o
+}
+
+func (o SystemReplacemsgHttpMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemReplacemsgHttp] {
+	return pulumix.Output[map[string]*SystemReplacemsgHttp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemReplacemsgHttpMapOutput) MapIndex(k pulumi.StringInput) SystemReplacemsgHttpOutput {

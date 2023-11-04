@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetSystemArpTableList(ctx *pulumi.Context, args *GetSystemArpTableListArgs, opts ...pulumi.InvokeOption) (*GetSystemArpTableListResult, error) {
@@ -72,6 +73,12 @@ func (o GetSystemArpTableListResultOutput) ToGetSystemArpTableListResultOutput()
 
 func (o GetSystemArpTableListResultOutput) ToGetSystemArpTableListResultOutputWithContext(ctx context.Context) GetSystemArpTableListResultOutput {
 	return o
+}
+
+func (o GetSystemArpTableListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetSystemArpTableListResult] {
+	return pulumix.Output[GetSystemArpTableListResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetSystemArpTableListResultOutput) Filter() pulumi.StringPtrOutput {

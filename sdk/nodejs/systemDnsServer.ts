@@ -34,6 +34,8 @@ export class SystemDnsServer extends pulumi.CustomResource {
 
     public readonly dnsfilterProfile!: pulumi.Output<string>;
     public readonly doh!: pulumi.Output<string>;
+    public readonly doh3!: pulumi.Output<string>;
+    public readonly doq!: pulumi.Output<string>;
     public readonly mode!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -53,6 +55,8 @@ export class SystemDnsServer extends pulumi.CustomResource {
             const state = argsOrState as SystemDnsServerState | undefined;
             resourceInputs["dnsfilterProfile"] = state ? state.dnsfilterProfile : undefined;
             resourceInputs["doh"] = state ? state.doh : undefined;
+            resourceInputs["doh3"] = state ? state.doh3 : undefined;
+            resourceInputs["doq"] = state ? state.doq : undefined;
             resourceInputs["mode"] = state ? state.mode : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
@@ -60,6 +64,8 @@ export class SystemDnsServer extends pulumi.CustomResource {
             const args = argsOrState as SystemDnsServerArgs | undefined;
             resourceInputs["dnsfilterProfile"] = args ? args.dnsfilterProfile : undefined;
             resourceInputs["doh"] = args ? args.doh : undefined;
+            resourceInputs["doh3"] = args ? args.doh3 : undefined;
+            resourceInputs["doq"] = args ? args.doq : undefined;
             resourceInputs["mode"] = args ? args.mode : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
@@ -75,6 +81,8 @@ export class SystemDnsServer extends pulumi.CustomResource {
 export interface SystemDnsServerState {
     dnsfilterProfile?: pulumi.Input<string>;
     doh?: pulumi.Input<string>;
+    doh3?: pulumi.Input<string>;
+    doq?: pulumi.Input<string>;
     mode?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;
@@ -86,6 +94,8 @@ export interface SystemDnsServerState {
 export interface SystemDnsServerArgs {
     dnsfilterProfile?: pulumi.Input<string>;
     doh?: pulumi.Input<string>;
+    doh3?: pulumi.Input<string>;
+    doq?: pulumi.Input<string>;
     mode?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     vdomparam?: pulumi.Input<string>;

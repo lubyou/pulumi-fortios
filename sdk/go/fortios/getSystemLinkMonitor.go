@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemLinkMonitor(ctx *pulumi.Context, args *LookupSystemLinkMonitorArgs, opts ...pulumi.InvokeOption) (*LookupSystemLinkMonitorResult, error) {
@@ -104,6 +105,12 @@ func (o LookupSystemLinkMonitorResultOutput) ToLookupSystemLinkMonitorResultOutp
 
 func (o LookupSystemLinkMonitorResultOutput) ToLookupSystemLinkMonitorResultOutputWithContext(ctx context.Context) LookupSystemLinkMonitorResultOutput {
 	return o
+}
+
+func (o LookupSystemLinkMonitorResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemLinkMonitorResult] {
+	return pulumix.Output[LookupSystemLinkMonitorResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupSystemLinkMonitorResultOutput) AddrMode() pulumi.StringOutput {

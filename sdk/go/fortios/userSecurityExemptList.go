@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type UserSecurityExemptList struct {
@@ -115,6 +116,12 @@ func (i *UserSecurityExemptList) ToUserSecurityExemptListOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(UserSecurityExemptListOutput)
 }
 
+func (i *UserSecurityExemptList) ToOutput(ctx context.Context) pulumix.Output[*UserSecurityExemptList] {
+	return pulumix.Output[*UserSecurityExemptList]{
+		OutputState: i.ToUserSecurityExemptListOutputWithContext(ctx).OutputState,
+	}
+}
+
 // UserSecurityExemptListArrayInput is an input type that accepts UserSecurityExemptListArray and UserSecurityExemptListArrayOutput values.
 // You can construct a concrete instance of `UserSecurityExemptListArrayInput` via:
 //
@@ -138,6 +145,12 @@ func (i UserSecurityExemptListArray) ToUserSecurityExemptListArrayOutput() UserS
 
 func (i UserSecurityExemptListArray) ToUserSecurityExemptListArrayOutputWithContext(ctx context.Context) UserSecurityExemptListArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserSecurityExemptListArrayOutput)
+}
+
+func (i UserSecurityExemptListArray) ToOutput(ctx context.Context) pulumix.Output[[]*UserSecurityExemptList] {
+	return pulumix.Output[[]*UserSecurityExemptList]{
+		OutputState: i.ToUserSecurityExemptListArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // UserSecurityExemptListMapInput is an input type that accepts UserSecurityExemptListMap and UserSecurityExemptListMapOutput values.
@@ -165,6 +178,12 @@ func (i UserSecurityExemptListMap) ToUserSecurityExemptListMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(UserSecurityExemptListMapOutput)
 }
 
+func (i UserSecurityExemptListMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserSecurityExemptList] {
+	return pulumix.Output[map[string]*UserSecurityExemptList]{
+		OutputState: i.ToUserSecurityExemptListMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type UserSecurityExemptListOutput struct{ *pulumi.OutputState }
 
 func (UserSecurityExemptListOutput) ElementType() reflect.Type {
@@ -177,6 +196,12 @@ func (o UserSecurityExemptListOutput) ToUserSecurityExemptListOutput() UserSecur
 
 func (o UserSecurityExemptListOutput) ToUserSecurityExemptListOutputWithContext(ctx context.Context) UserSecurityExemptListOutput {
 	return o
+}
+
+func (o UserSecurityExemptListOutput) ToOutput(ctx context.Context) pulumix.Output[*UserSecurityExemptList] {
+	return pulumix.Output[*UserSecurityExemptList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserSecurityExemptListOutput) Description() pulumi.StringOutput {
@@ -217,6 +242,12 @@ func (o UserSecurityExemptListArrayOutput) ToUserSecurityExemptListArrayOutputWi
 	return o
 }
 
+func (o UserSecurityExemptListArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*UserSecurityExemptList] {
+	return pulumix.Output[[]*UserSecurityExemptList]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o UserSecurityExemptListArrayOutput) Index(i pulumi.IntInput) UserSecurityExemptListOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserSecurityExemptList {
 		return vs[0].([]*UserSecurityExemptList)[vs[1].(int)]
@@ -235,6 +266,12 @@ func (o UserSecurityExemptListMapOutput) ToUserSecurityExemptListMapOutput() Use
 
 func (o UserSecurityExemptListMapOutput) ToUserSecurityExemptListMapOutputWithContext(ctx context.Context) UserSecurityExemptListMapOutput {
 	return o
+}
+
+func (o UserSecurityExemptListMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserSecurityExemptList] {
+	return pulumix.Output[map[string]*UserSecurityExemptList]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserSecurityExemptListMapOutput) MapIndex(k pulumi.StringInput) UserSecurityExemptListOutput {

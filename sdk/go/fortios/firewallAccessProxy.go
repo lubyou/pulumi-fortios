@@ -9,30 +9,32 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallAccessProxy struct {
 	pulumi.CustomResourceState
 
-	AddVhostDomainToDnsdb   pulumi.StringOutput                       `pulumi:"addVhostDomainToDnsdb"`
-	ApiGateway6s            FirewallAccessProxyApiGateway6ArrayOutput `pulumi:"apiGateway6s"`
-	ApiGateways             FirewallAccessProxyApiGatewayArrayOutput  `pulumi:"apiGateways"`
-	AuthPortal              pulumi.StringOutput                       `pulumi:"authPortal"`
-	AuthVirtualHost         pulumi.StringOutput                       `pulumi:"authVirtualHost"`
-	ClientCert              pulumi.StringOutput                       `pulumi:"clientCert"`
-	DecryptedTrafficMirror  pulumi.StringOutput                       `pulumi:"decryptedTrafficMirror"`
-	DynamicSortSubtable     pulumi.StringPtrOutput                    `pulumi:"dynamicSortSubtable"`
-	EmptyCertAction         pulumi.StringOutput                       `pulumi:"emptyCertAction"`
-	GetAllTables            pulumi.StringPtrOutput                    `pulumi:"getAllTables"`
-	HttpSupportedMaxVersion pulumi.StringOutput                       `pulumi:"httpSupportedMaxVersion"`
-	LogBlockedTraffic       pulumi.StringOutput                       `pulumi:"logBlockedTraffic"`
-	Name                    pulumi.StringOutput                       `pulumi:"name"`
-	SvrPoolMultiplex        pulumi.StringOutput                       `pulumi:"svrPoolMultiplex"`
-	SvrPoolServerMaxRequest pulumi.IntOutput                          `pulumi:"svrPoolServerMaxRequest"`
-	SvrPoolTtl              pulumi.IntOutput                          `pulumi:"svrPoolTtl"`
-	UserAgentDetect         pulumi.StringOutput                       `pulumi:"userAgentDetect"`
-	Vdomparam               pulumi.StringPtrOutput                    `pulumi:"vdomparam"`
-	Vip                     pulumi.StringOutput                       `pulumi:"vip"`
+	AddVhostDomainToDnsdb             pulumi.StringOutput                       `pulumi:"addVhostDomainToDnsdb"`
+	ApiGateway6s                      FirewallAccessProxyApiGateway6ArrayOutput `pulumi:"apiGateway6s"`
+	ApiGateways                       FirewallAccessProxyApiGatewayArrayOutput  `pulumi:"apiGateways"`
+	AuthPortal                        pulumi.StringOutput                       `pulumi:"authPortal"`
+	AuthVirtualHost                   pulumi.StringOutput                       `pulumi:"authVirtualHost"`
+	ClientCert                        pulumi.StringOutput                       `pulumi:"clientCert"`
+	DecryptedTrafficMirror            pulumi.StringOutput                       `pulumi:"decryptedTrafficMirror"`
+	DynamicSortSubtable               pulumi.StringPtrOutput                    `pulumi:"dynamicSortSubtable"`
+	EmptyCertAction                   pulumi.StringOutput                       `pulumi:"emptyCertAction"`
+	GetAllTables                      pulumi.StringPtrOutput                    `pulumi:"getAllTables"`
+	HttpSupportedMaxVersion           pulumi.StringOutput                       `pulumi:"httpSupportedMaxVersion"`
+	LogBlockedTraffic                 pulumi.StringOutput                       `pulumi:"logBlockedTraffic"`
+	Name                              pulumi.StringOutput                       `pulumi:"name"`
+	SvrPoolMultiplex                  pulumi.StringOutput                       `pulumi:"svrPoolMultiplex"`
+	SvrPoolServerMaxConcurrentRequest pulumi.IntOutput                          `pulumi:"svrPoolServerMaxConcurrentRequest"`
+	SvrPoolServerMaxRequest           pulumi.IntOutput                          `pulumi:"svrPoolServerMaxRequest"`
+	SvrPoolTtl                        pulumi.IntOutput                          `pulumi:"svrPoolTtl"`
+	UserAgentDetect                   pulumi.StringOutput                       `pulumi:"userAgentDetect"`
+	Vdomparam                         pulumi.StringPtrOutput                    `pulumi:"vdomparam"`
+	Vip                               pulumi.StringOutput                       `pulumi:"vip"`
 }
 
 // NewFirewallAccessProxy registers a new resource with the given unique name, arguments, and options.
@@ -65,47 +67,49 @@ func GetFirewallAccessProxy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallAccessProxy resources.
 type firewallAccessProxyState struct {
-	AddVhostDomainToDnsdb   *string                          `pulumi:"addVhostDomainToDnsdb"`
-	ApiGateway6s            []FirewallAccessProxyApiGateway6 `pulumi:"apiGateway6s"`
-	ApiGateways             []FirewallAccessProxyApiGateway  `pulumi:"apiGateways"`
-	AuthPortal              *string                          `pulumi:"authPortal"`
-	AuthVirtualHost         *string                          `pulumi:"authVirtualHost"`
-	ClientCert              *string                          `pulumi:"clientCert"`
-	DecryptedTrafficMirror  *string                          `pulumi:"decryptedTrafficMirror"`
-	DynamicSortSubtable     *string                          `pulumi:"dynamicSortSubtable"`
-	EmptyCertAction         *string                          `pulumi:"emptyCertAction"`
-	GetAllTables            *string                          `pulumi:"getAllTables"`
-	HttpSupportedMaxVersion *string                          `pulumi:"httpSupportedMaxVersion"`
-	LogBlockedTraffic       *string                          `pulumi:"logBlockedTraffic"`
-	Name                    *string                          `pulumi:"name"`
-	SvrPoolMultiplex        *string                          `pulumi:"svrPoolMultiplex"`
-	SvrPoolServerMaxRequest *int                             `pulumi:"svrPoolServerMaxRequest"`
-	SvrPoolTtl              *int                             `pulumi:"svrPoolTtl"`
-	UserAgentDetect         *string                          `pulumi:"userAgentDetect"`
-	Vdomparam               *string                          `pulumi:"vdomparam"`
-	Vip                     *string                          `pulumi:"vip"`
+	AddVhostDomainToDnsdb             *string                          `pulumi:"addVhostDomainToDnsdb"`
+	ApiGateway6s                      []FirewallAccessProxyApiGateway6 `pulumi:"apiGateway6s"`
+	ApiGateways                       []FirewallAccessProxyApiGateway  `pulumi:"apiGateways"`
+	AuthPortal                        *string                          `pulumi:"authPortal"`
+	AuthVirtualHost                   *string                          `pulumi:"authVirtualHost"`
+	ClientCert                        *string                          `pulumi:"clientCert"`
+	DecryptedTrafficMirror            *string                          `pulumi:"decryptedTrafficMirror"`
+	DynamicSortSubtable               *string                          `pulumi:"dynamicSortSubtable"`
+	EmptyCertAction                   *string                          `pulumi:"emptyCertAction"`
+	GetAllTables                      *string                          `pulumi:"getAllTables"`
+	HttpSupportedMaxVersion           *string                          `pulumi:"httpSupportedMaxVersion"`
+	LogBlockedTraffic                 *string                          `pulumi:"logBlockedTraffic"`
+	Name                              *string                          `pulumi:"name"`
+	SvrPoolMultiplex                  *string                          `pulumi:"svrPoolMultiplex"`
+	SvrPoolServerMaxConcurrentRequest *int                             `pulumi:"svrPoolServerMaxConcurrentRequest"`
+	SvrPoolServerMaxRequest           *int                             `pulumi:"svrPoolServerMaxRequest"`
+	SvrPoolTtl                        *int                             `pulumi:"svrPoolTtl"`
+	UserAgentDetect                   *string                          `pulumi:"userAgentDetect"`
+	Vdomparam                         *string                          `pulumi:"vdomparam"`
+	Vip                               *string                          `pulumi:"vip"`
 }
 
 type FirewallAccessProxyState struct {
-	AddVhostDomainToDnsdb   pulumi.StringPtrInput
-	ApiGateway6s            FirewallAccessProxyApiGateway6ArrayInput
-	ApiGateways             FirewallAccessProxyApiGatewayArrayInput
-	AuthPortal              pulumi.StringPtrInput
-	AuthVirtualHost         pulumi.StringPtrInput
-	ClientCert              pulumi.StringPtrInput
-	DecryptedTrafficMirror  pulumi.StringPtrInput
-	DynamicSortSubtable     pulumi.StringPtrInput
-	EmptyCertAction         pulumi.StringPtrInput
-	GetAllTables            pulumi.StringPtrInput
-	HttpSupportedMaxVersion pulumi.StringPtrInput
-	LogBlockedTraffic       pulumi.StringPtrInput
-	Name                    pulumi.StringPtrInput
-	SvrPoolMultiplex        pulumi.StringPtrInput
-	SvrPoolServerMaxRequest pulumi.IntPtrInput
-	SvrPoolTtl              pulumi.IntPtrInput
-	UserAgentDetect         pulumi.StringPtrInput
-	Vdomparam               pulumi.StringPtrInput
-	Vip                     pulumi.StringPtrInput
+	AddVhostDomainToDnsdb             pulumi.StringPtrInput
+	ApiGateway6s                      FirewallAccessProxyApiGateway6ArrayInput
+	ApiGateways                       FirewallAccessProxyApiGatewayArrayInput
+	AuthPortal                        pulumi.StringPtrInput
+	AuthVirtualHost                   pulumi.StringPtrInput
+	ClientCert                        pulumi.StringPtrInput
+	DecryptedTrafficMirror            pulumi.StringPtrInput
+	DynamicSortSubtable               pulumi.StringPtrInput
+	EmptyCertAction                   pulumi.StringPtrInput
+	GetAllTables                      pulumi.StringPtrInput
+	HttpSupportedMaxVersion           pulumi.StringPtrInput
+	LogBlockedTraffic                 pulumi.StringPtrInput
+	Name                              pulumi.StringPtrInput
+	SvrPoolMultiplex                  pulumi.StringPtrInput
+	SvrPoolServerMaxConcurrentRequest pulumi.IntPtrInput
+	SvrPoolServerMaxRequest           pulumi.IntPtrInput
+	SvrPoolTtl                        pulumi.IntPtrInput
+	UserAgentDetect                   pulumi.StringPtrInput
+	Vdomparam                         pulumi.StringPtrInput
+	Vip                               pulumi.StringPtrInput
 }
 
 func (FirewallAccessProxyState) ElementType() reflect.Type {
@@ -113,48 +117,50 @@ func (FirewallAccessProxyState) ElementType() reflect.Type {
 }
 
 type firewallAccessProxyArgs struct {
-	AddVhostDomainToDnsdb   *string                          `pulumi:"addVhostDomainToDnsdb"`
-	ApiGateway6s            []FirewallAccessProxyApiGateway6 `pulumi:"apiGateway6s"`
-	ApiGateways             []FirewallAccessProxyApiGateway  `pulumi:"apiGateways"`
-	AuthPortal              *string                          `pulumi:"authPortal"`
-	AuthVirtualHost         *string                          `pulumi:"authVirtualHost"`
-	ClientCert              *string                          `pulumi:"clientCert"`
-	DecryptedTrafficMirror  *string                          `pulumi:"decryptedTrafficMirror"`
-	DynamicSortSubtable     *string                          `pulumi:"dynamicSortSubtable"`
-	EmptyCertAction         *string                          `pulumi:"emptyCertAction"`
-	GetAllTables            *string                          `pulumi:"getAllTables"`
-	HttpSupportedMaxVersion *string                          `pulumi:"httpSupportedMaxVersion"`
-	LogBlockedTraffic       *string                          `pulumi:"logBlockedTraffic"`
-	Name                    *string                          `pulumi:"name"`
-	SvrPoolMultiplex        *string                          `pulumi:"svrPoolMultiplex"`
-	SvrPoolServerMaxRequest *int                             `pulumi:"svrPoolServerMaxRequest"`
-	SvrPoolTtl              *int                             `pulumi:"svrPoolTtl"`
-	UserAgentDetect         *string                          `pulumi:"userAgentDetect"`
-	Vdomparam               *string                          `pulumi:"vdomparam"`
-	Vip                     *string                          `pulumi:"vip"`
+	AddVhostDomainToDnsdb             *string                          `pulumi:"addVhostDomainToDnsdb"`
+	ApiGateway6s                      []FirewallAccessProxyApiGateway6 `pulumi:"apiGateway6s"`
+	ApiGateways                       []FirewallAccessProxyApiGateway  `pulumi:"apiGateways"`
+	AuthPortal                        *string                          `pulumi:"authPortal"`
+	AuthVirtualHost                   *string                          `pulumi:"authVirtualHost"`
+	ClientCert                        *string                          `pulumi:"clientCert"`
+	DecryptedTrafficMirror            *string                          `pulumi:"decryptedTrafficMirror"`
+	DynamicSortSubtable               *string                          `pulumi:"dynamicSortSubtable"`
+	EmptyCertAction                   *string                          `pulumi:"emptyCertAction"`
+	GetAllTables                      *string                          `pulumi:"getAllTables"`
+	HttpSupportedMaxVersion           *string                          `pulumi:"httpSupportedMaxVersion"`
+	LogBlockedTraffic                 *string                          `pulumi:"logBlockedTraffic"`
+	Name                              *string                          `pulumi:"name"`
+	SvrPoolMultiplex                  *string                          `pulumi:"svrPoolMultiplex"`
+	SvrPoolServerMaxConcurrentRequest *int                             `pulumi:"svrPoolServerMaxConcurrentRequest"`
+	SvrPoolServerMaxRequest           *int                             `pulumi:"svrPoolServerMaxRequest"`
+	SvrPoolTtl                        *int                             `pulumi:"svrPoolTtl"`
+	UserAgentDetect                   *string                          `pulumi:"userAgentDetect"`
+	Vdomparam                         *string                          `pulumi:"vdomparam"`
+	Vip                               *string                          `pulumi:"vip"`
 }
 
 // The set of arguments for constructing a FirewallAccessProxy resource.
 type FirewallAccessProxyArgs struct {
-	AddVhostDomainToDnsdb   pulumi.StringPtrInput
-	ApiGateway6s            FirewallAccessProxyApiGateway6ArrayInput
-	ApiGateways             FirewallAccessProxyApiGatewayArrayInput
-	AuthPortal              pulumi.StringPtrInput
-	AuthVirtualHost         pulumi.StringPtrInput
-	ClientCert              pulumi.StringPtrInput
-	DecryptedTrafficMirror  pulumi.StringPtrInput
-	DynamicSortSubtable     pulumi.StringPtrInput
-	EmptyCertAction         pulumi.StringPtrInput
-	GetAllTables            pulumi.StringPtrInput
-	HttpSupportedMaxVersion pulumi.StringPtrInput
-	LogBlockedTraffic       pulumi.StringPtrInput
-	Name                    pulumi.StringPtrInput
-	SvrPoolMultiplex        pulumi.StringPtrInput
-	SvrPoolServerMaxRequest pulumi.IntPtrInput
-	SvrPoolTtl              pulumi.IntPtrInput
-	UserAgentDetect         pulumi.StringPtrInput
-	Vdomparam               pulumi.StringPtrInput
-	Vip                     pulumi.StringPtrInput
+	AddVhostDomainToDnsdb             pulumi.StringPtrInput
+	ApiGateway6s                      FirewallAccessProxyApiGateway6ArrayInput
+	ApiGateways                       FirewallAccessProxyApiGatewayArrayInput
+	AuthPortal                        pulumi.StringPtrInput
+	AuthVirtualHost                   pulumi.StringPtrInput
+	ClientCert                        pulumi.StringPtrInput
+	DecryptedTrafficMirror            pulumi.StringPtrInput
+	DynamicSortSubtable               pulumi.StringPtrInput
+	EmptyCertAction                   pulumi.StringPtrInput
+	GetAllTables                      pulumi.StringPtrInput
+	HttpSupportedMaxVersion           pulumi.StringPtrInput
+	LogBlockedTraffic                 pulumi.StringPtrInput
+	Name                              pulumi.StringPtrInput
+	SvrPoolMultiplex                  pulumi.StringPtrInput
+	SvrPoolServerMaxConcurrentRequest pulumi.IntPtrInput
+	SvrPoolServerMaxRequest           pulumi.IntPtrInput
+	SvrPoolTtl                        pulumi.IntPtrInput
+	UserAgentDetect                   pulumi.StringPtrInput
+	Vdomparam                         pulumi.StringPtrInput
+	Vip                               pulumi.StringPtrInput
 }
 
 func (FirewallAccessProxyArgs) ElementType() reflect.Type {
@@ -178,6 +184,12 @@ func (i *FirewallAccessProxy) ToFirewallAccessProxyOutput() FirewallAccessProxyO
 
 func (i *FirewallAccessProxy) ToFirewallAccessProxyOutputWithContext(ctx context.Context) FirewallAccessProxyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallAccessProxyOutput)
+}
+
+func (i *FirewallAccessProxy) ToOutput(ctx context.Context) pulumix.Output[*FirewallAccessProxy] {
+	return pulumix.Output[*FirewallAccessProxy]{
+		OutputState: i.ToFirewallAccessProxyOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallAccessProxyArrayInput is an input type that accepts FirewallAccessProxyArray and FirewallAccessProxyArrayOutput values.
@@ -205,6 +217,12 @@ func (i FirewallAccessProxyArray) ToFirewallAccessProxyArrayOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallAccessProxyArrayOutput)
 }
 
+func (i FirewallAccessProxyArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallAccessProxy] {
+	return pulumix.Output[[]*FirewallAccessProxy]{
+		OutputState: i.ToFirewallAccessProxyArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallAccessProxyMapInput is an input type that accepts FirewallAccessProxyMap and FirewallAccessProxyMapOutput values.
 // You can construct a concrete instance of `FirewallAccessProxyMapInput` via:
 //
@@ -230,6 +248,12 @@ func (i FirewallAccessProxyMap) ToFirewallAccessProxyMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallAccessProxyMapOutput)
 }
 
+func (i FirewallAccessProxyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallAccessProxy] {
+	return pulumix.Output[map[string]*FirewallAccessProxy]{
+		OutputState: i.ToFirewallAccessProxyMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallAccessProxyOutput struct{ *pulumi.OutputState }
 
 func (FirewallAccessProxyOutput) ElementType() reflect.Type {
@@ -242,6 +266,12 @@ func (o FirewallAccessProxyOutput) ToFirewallAccessProxyOutput() FirewallAccessP
 
 func (o FirewallAccessProxyOutput) ToFirewallAccessProxyOutputWithContext(ctx context.Context) FirewallAccessProxyOutput {
 	return o
+}
+
+func (o FirewallAccessProxyOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallAccessProxy] {
+	return pulumix.Output[*FirewallAccessProxy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallAccessProxyOutput) AddVhostDomainToDnsdb() pulumi.StringOutput {
@@ -300,6 +330,10 @@ func (o FirewallAccessProxyOutput) SvrPoolMultiplex() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallAccessProxy) pulumi.StringOutput { return v.SvrPoolMultiplex }).(pulumi.StringOutput)
 }
 
+func (o FirewallAccessProxyOutput) SvrPoolServerMaxConcurrentRequest() pulumi.IntOutput {
+	return o.ApplyT(func(v *FirewallAccessProxy) pulumi.IntOutput { return v.SvrPoolServerMaxConcurrentRequest }).(pulumi.IntOutput)
+}
+
 func (o FirewallAccessProxyOutput) SvrPoolServerMaxRequest() pulumi.IntOutput {
 	return o.ApplyT(func(v *FirewallAccessProxy) pulumi.IntOutput { return v.SvrPoolServerMaxRequest }).(pulumi.IntOutput)
 }
@@ -334,6 +368,12 @@ func (o FirewallAccessProxyArrayOutput) ToFirewallAccessProxyArrayOutputWithCont
 	return o
 }
 
+func (o FirewallAccessProxyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallAccessProxy] {
+	return pulumix.Output[[]*FirewallAccessProxy]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallAccessProxyArrayOutput) Index(i pulumi.IntInput) FirewallAccessProxyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallAccessProxy {
 		return vs[0].([]*FirewallAccessProxy)[vs[1].(int)]
@@ -352,6 +392,12 @@ func (o FirewallAccessProxyMapOutput) ToFirewallAccessProxyMapOutput() FirewallA
 
 func (o FirewallAccessProxyMapOutput) ToFirewallAccessProxyMapOutputWithContext(ctx context.Context) FirewallAccessProxyMapOutput {
 	return o
+}
+
+func (o FirewallAccessProxyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallAccessProxy] {
+	return pulumix.Output[map[string]*FirewallAccessProxy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallAccessProxyMapOutput) MapIndex(k pulumi.StringInput) FirewallAccessProxyOutput {

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type CredentialStoreDomainController struct {
@@ -137,6 +138,12 @@ func (i *CredentialStoreDomainController) ToCredentialStoreDomainControllerOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(CredentialStoreDomainControllerOutput)
 }
 
+func (i *CredentialStoreDomainController) ToOutput(ctx context.Context) pulumix.Output[*CredentialStoreDomainController] {
+	return pulumix.Output[*CredentialStoreDomainController]{
+		OutputState: i.ToCredentialStoreDomainControllerOutputWithContext(ctx).OutputState,
+	}
+}
+
 // CredentialStoreDomainControllerArrayInput is an input type that accepts CredentialStoreDomainControllerArray and CredentialStoreDomainControllerArrayOutput values.
 // You can construct a concrete instance of `CredentialStoreDomainControllerArrayInput` via:
 //
@@ -160,6 +167,12 @@ func (i CredentialStoreDomainControllerArray) ToCredentialStoreDomainControllerA
 
 func (i CredentialStoreDomainControllerArray) ToCredentialStoreDomainControllerArrayOutputWithContext(ctx context.Context) CredentialStoreDomainControllerArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CredentialStoreDomainControllerArrayOutput)
+}
+
+func (i CredentialStoreDomainControllerArray) ToOutput(ctx context.Context) pulumix.Output[[]*CredentialStoreDomainController] {
+	return pulumix.Output[[]*CredentialStoreDomainController]{
+		OutputState: i.ToCredentialStoreDomainControllerArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // CredentialStoreDomainControllerMapInput is an input type that accepts CredentialStoreDomainControllerMap and CredentialStoreDomainControllerMapOutput values.
@@ -187,6 +200,12 @@ func (i CredentialStoreDomainControllerMap) ToCredentialStoreDomainControllerMap
 	return pulumi.ToOutputWithContext(ctx, i).(CredentialStoreDomainControllerMapOutput)
 }
 
+func (i CredentialStoreDomainControllerMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*CredentialStoreDomainController] {
+	return pulumix.Output[map[string]*CredentialStoreDomainController]{
+		OutputState: i.ToCredentialStoreDomainControllerMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type CredentialStoreDomainControllerOutput struct{ *pulumi.OutputState }
 
 func (CredentialStoreDomainControllerOutput) ElementType() reflect.Type {
@@ -199,6 +218,12 @@ func (o CredentialStoreDomainControllerOutput) ToCredentialStoreDomainController
 
 func (o CredentialStoreDomainControllerOutput) ToCredentialStoreDomainControllerOutputWithContext(ctx context.Context) CredentialStoreDomainControllerOutput {
 	return o
+}
+
+func (o CredentialStoreDomainControllerOutput) ToOutput(ctx context.Context) pulumix.Output[*CredentialStoreDomainController] {
+	return pulumix.Output[*CredentialStoreDomainController]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o CredentialStoreDomainControllerOutput) DomainName() pulumi.StringOutput {
@@ -251,6 +276,12 @@ func (o CredentialStoreDomainControllerArrayOutput) ToCredentialStoreDomainContr
 	return o
 }
 
+func (o CredentialStoreDomainControllerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*CredentialStoreDomainController] {
+	return pulumix.Output[[]*CredentialStoreDomainController]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o CredentialStoreDomainControllerArrayOutput) Index(i pulumi.IntInput) CredentialStoreDomainControllerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CredentialStoreDomainController {
 		return vs[0].([]*CredentialStoreDomainController)[vs[1].(int)]
@@ -269,6 +300,12 @@ func (o CredentialStoreDomainControllerMapOutput) ToCredentialStoreDomainControl
 
 func (o CredentialStoreDomainControllerMapOutput) ToCredentialStoreDomainControllerMapOutputWithContext(ctx context.Context) CredentialStoreDomainControllerMapOutput {
 	return o
+}
+
+func (o CredentialStoreDomainControllerMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*CredentialStoreDomainController] {
+	return pulumix.Output[map[string]*CredentialStoreDomainController]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o CredentialStoreDomainControllerMapOutput) MapIndex(k pulumi.StringInput) CredentialStoreDomainControllerOutput {

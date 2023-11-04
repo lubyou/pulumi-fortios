@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemHaMonitor(ctx *pulumi.Context, args *LookupSystemHaMonitorArgs, opts ...pulumi.InvokeOption) (*LookupSystemHaMonitorResult, error) {
@@ -71,6 +72,12 @@ func (o LookupSystemHaMonitorResultOutput) ToLookupSystemHaMonitorResultOutput()
 
 func (o LookupSystemHaMonitorResultOutput) ToLookupSystemHaMonitorResultOutputWithContext(ctx context.Context) LookupSystemHaMonitorResultOutput {
 	return o
+}
+
+func (o LookupSystemHaMonitorResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemHaMonitorResult] {
+	return pulumix.Output[LookupSystemHaMonitorResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 // The provider-assigned unique ID for this managed resource.

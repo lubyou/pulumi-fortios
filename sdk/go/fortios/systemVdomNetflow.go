@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemVdomNetflow struct {
@@ -120,6 +121,12 @@ func (i *SystemVdomNetflow) ToSystemVdomNetflowOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomNetflowOutput)
 }
 
+func (i *SystemVdomNetflow) ToOutput(ctx context.Context) pulumix.Output[*SystemVdomNetflow] {
+	return pulumix.Output[*SystemVdomNetflow]{
+		OutputState: i.ToSystemVdomNetflowOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemVdomNetflowArrayInput is an input type that accepts SystemVdomNetflowArray and SystemVdomNetflowArrayOutput values.
 // You can construct a concrete instance of `SystemVdomNetflowArrayInput` via:
 //
@@ -143,6 +150,12 @@ func (i SystemVdomNetflowArray) ToSystemVdomNetflowArrayOutput() SystemVdomNetfl
 
 func (i SystemVdomNetflowArray) ToSystemVdomNetflowArrayOutputWithContext(ctx context.Context) SystemVdomNetflowArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomNetflowArrayOutput)
+}
+
+func (i SystemVdomNetflowArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemVdomNetflow] {
+	return pulumix.Output[[]*SystemVdomNetflow]{
+		OutputState: i.ToSystemVdomNetflowArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemVdomNetflowMapInput is an input type that accepts SystemVdomNetflowMap and SystemVdomNetflowMapOutput values.
@@ -170,6 +183,12 @@ func (i SystemVdomNetflowMap) ToSystemVdomNetflowMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomNetflowMapOutput)
 }
 
+func (i SystemVdomNetflowMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemVdomNetflow] {
+	return pulumix.Output[map[string]*SystemVdomNetflow]{
+		OutputState: i.ToSystemVdomNetflowMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemVdomNetflowOutput struct{ *pulumi.OutputState }
 
 func (SystemVdomNetflowOutput) ElementType() reflect.Type {
@@ -182,6 +201,12 @@ func (o SystemVdomNetflowOutput) ToSystemVdomNetflowOutput() SystemVdomNetflowOu
 
 func (o SystemVdomNetflowOutput) ToSystemVdomNetflowOutputWithContext(ctx context.Context) SystemVdomNetflowOutput {
 	return o
+}
+
+func (o SystemVdomNetflowOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemVdomNetflow] {
+	return pulumix.Output[*SystemVdomNetflow]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemVdomNetflowOutput) CollectorIp() pulumi.StringOutput {
@@ -226,6 +251,12 @@ func (o SystemVdomNetflowArrayOutput) ToSystemVdomNetflowArrayOutputWithContext(
 	return o
 }
 
+func (o SystemVdomNetflowArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemVdomNetflow] {
+	return pulumix.Output[[]*SystemVdomNetflow]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemVdomNetflowArrayOutput) Index(i pulumi.IntInput) SystemVdomNetflowOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemVdomNetflow {
 		return vs[0].([]*SystemVdomNetflow)[vs[1].(int)]
@@ -244,6 +275,12 @@ func (o SystemVdomNetflowMapOutput) ToSystemVdomNetflowMapOutput() SystemVdomNet
 
 func (o SystemVdomNetflowMapOutput) ToSystemVdomNetflowMapOutputWithContext(ctx context.Context) SystemVdomNetflowMapOutput {
 	return o
+}
+
+func (o SystemVdomNetflowMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemVdomNetflow] {
+	return pulumix.Output[map[string]*SystemVdomNetflow]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemVdomNetflowMapOutput) MapIndex(k pulumi.StringInput) SystemVdomNetflowOutput {

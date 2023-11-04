@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallInterfacePolicy6 struct {
@@ -20,6 +21,8 @@ type FirewallInterfacePolicy6 struct {
 	ApplicationListStatus    pulumi.StringOutput                         `pulumi:"applicationListStatus"`
 	AvProfile                pulumi.StringOutput                         `pulumi:"avProfile"`
 	AvProfileStatus          pulumi.StringOutput                         `pulumi:"avProfileStatus"`
+	CasbProfile              pulumi.StringOutput                         `pulumi:"casbProfile"`
+	CasbProfileStatus        pulumi.StringOutput                         `pulumi:"casbProfileStatus"`
 	Comments                 pulumi.StringPtrOutput                      `pulumi:"comments"`
 	DlpProfile               pulumi.StringOutput                         `pulumi:"dlpProfile"`
 	DlpProfileStatus         pulumi.StringOutput                         `pulumi:"dlpProfileStatus"`
@@ -92,6 +95,8 @@ type firewallInterfacePolicy6State struct {
 	ApplicationListStatus    *string                            `pulumi:"applicationListStatus"`
 	AvProfile                *string                            `pulumi:"avProfile"`
 	AvProfileStatus          *string                            `pulumi:"avProfileStatus"`
+	CasbProfile              *string                            `pulumi:"casbProfile"`
+	CasbProfileStatus        *string                            `pulumi:"casbProfileStatus"`
 	Comments                 *string                            `pulumi:"comments"`
 	DlpProfile               *string                            `pulumi:"dlpProfile"`
 	DlpProfileStatus         *string                            `pulumi:"dlpProfileStatus"`
@@ -126,6 +131,8 @@ type FirewallInterfacePolicy6State struct {
 	ApplicationListStatus    pulumi.StringPtrInput
 	AvProfile                pulumi.StringPtrInput
 	AvProfileStatus          pulumi.StringPtrInput
+	CasbProfile              pulumi.StringPtrInput
+	CasbProfileStatus        pulumi.StringPtrInput
 	Comments                 pulumi.StringPtrInput
 	DlpProfile               pulumi.StringPtrInput
 	DlpProfileStatus         pulumi.StringPtrInput
@@ -164,6 +171,8 @@ type firewallInterfacePolicy6Args struct {
 	ApplicationListStatus    *string                            `pulumi:"applicationListStatus"`
 	AvProfile                *string                            `pulumi:"avProfile"`
 	AvProfileStatus          *string                            `pulumi:"avProfileStatus"`
+	CasbProfile              *string                            `pulumi:"casbProfile"`
+	CasbProfileStatus        *string                            `pulumi:"casbProfileStatus"`
 	Comments                 *string                            `pulumi:"comments"`
 	DlpProfile               *string                            `pulumi:"dlpProfile"`
 	DlpProfileStatus         *string                            `pulumi:"dlpProfileStatus"`
@@ -199,6 +208,8 @@ type FirewallInterfacePolicy6Args struct {
 	ApplicationListStatus    pulumi.StringPtrInput
 	AvProfile                pulumi.StringPtrInput
 	AvProfileStatus          pulumi.StringPtrInput
+	CasbProfile              pulumi.StringPtrInput
+	CasbProfileStatus        pulumi.StringPtrInput
 	Comments                 pulumi.StringPtrInput
 	DlpProfile               pulumi.StringPtrInput
 	DlpProfileStatus         pulumi.StringPtrInput
@@ -250,6 +261,12 @@ func (i *FirewallInterfacePolicy6) ToFirewallInterfacePolicy6OutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInterfacePolicy6Output)
 }
 
+func (i *FirewallInterfacePolicy6) ToOutput(ctx context.Context) pulumix.Output[*FirewallInterfacePolicy6] {
+	return pulumix.Output[*FirewallInterfacePolicy6]{
+		OutputState: i.ToFirewallInterfacePolicy6OutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallInterfacePolicy6ArrayInput is an input type that accepts FirewallInterfacePolicy6Array and FirewallInterfacePolicy6ArrayOutput values.
 // You can construct a concrete instance of `FirewallInterfacePolicy6ArrayInput` via:
 //
@@ -273,6 +290,12 @@ func (i FirewallInterfacePolicy6Array) ToFirewallInterfacePolicy6ArrayOutput() F
 
 func (i FirewallInterfacePolicy6Array) ToFirewallInterfacePolicy6ArrayOutputWithContext(ctx context.Context) FirewallInterfacePolicy6ArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInterfacePolicy6ArrayOutput)
+}
+
+func (i FirewallInterfacePolicy6Array) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallInterfacePolicy6] {
+	return pulumix.Output[[]*FirewallInterfacePolicy6]{
+		OutputState: i.ToFirewallInterfacePolicy6ArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallInterfacePolicy6MapInput is an input type that accepts FirewallInterfacePolicy6Map and FirewallInterfacePolicy6MapOutput values.
@@ -300,6 +323,12 @@ func (i FirewallInterfacePolicy6Map) ToFirewallInterfacePolicy6MapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInterfacePolicy6MapOutput)
 }
 
+func (i FirewallInterfacePolicy6Map) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallInterfacePolicy6] {
+	return pulumix.Output[map[string]*FirewallInterfacePolicy6]{
+		OutputState: i.ToFirewallInterfacePolicy6MapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallInterfacePolicy6Output struct{ *pulumi.OutputState }
 
 func (FirewallInterfacePolicy6Output) ElementType() reflect.Type {
@@ -312,6 +341,12 @@ func (o FirewallInterfacePolicy6Output) ToFirewallInterfacePolicy6Output() Firew
 
 func (o FirewallInterfacePolicy6Output) ToFirewallInterfacePolicy6OutputWithContext(ctx context.Context) FirewallInterfacePolicy6Output {
 	return o
+}
+
+func (o FirewallInterfacePolicy6Output) ToOutput(ctx context.Context) pulumix.Output[*FirewallInterfacePolicy6] {
+	return pulumix.Output[*FirewallInterfacePolicy6]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallInterfacePolicy6Output) AddressType() pulumi.StringOutput {
@@ -332,6 +367,14 @@ func (o FirewallInterfacePolicy6Output) AvProfile() pulumi.StringOutput {
 
 func (o FirewallInterfacePolicy6Output) AvProfileStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v *FirewallInterfacePolicy6) pulumi.StringOutput { return v.AvProfileStatus }).(pulumi.StringOutput)
+}
+
+func (o FirewallInterfacePolicy6Output) CasbProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInterfacePolicy6) pulumi.StringOutput { return v.CasbProfile }).(pulumi.StringOutput)
+}
+
+func (o FirewallInterfacePolicy6Output) CasbProfileStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v *FirewallInterfacePolicy6) pulumi.StringOutput { return v.CasbProfileStatus }).(pulumi.StringOutput)
 }
 
 func (o FirewallInterfacePolicy6Output) Comments() pulumi.StringPtrOutput {
@@ -452,6 +495,12 @@ func (o FirewallInterfacePolicy6ArrayOutput) ToFirewallInterfacePolicy6ArrayOutp
 	return o
 }
 
+func (o FirewallInterfacePolicy6ArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallInterfacePolicy6] {
+	return pulumix.Output[[]*FirewallInterfacePolicy6]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallInterfacePolicy6ArrayOutput) Index(i pulumi.IntInput) FirewallInterfacePolicy6Output {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallInterfacePolicy6 {
 		return vs[0].([]*FirewallInterfacePolicy6)[vs[1].(int)]
@@ -470,6 +519,12 @@ func (o FirewallInterfacePolicy6MapOutput) ToFirewallInterfacePolicy6MapOutput()
 
 func (o FirewallInterfacePolicy6MapOutput) ToFirewallInterfacePolicy6MapOutputWithContext(ctx context.Context) FirewallInterfacePolicy6MapOutput {
 	return o
+}
+
+func (o FirewallInterfacePolicy6MapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallInterfacePolicy6] {
+	return pulumix.Output[map[string]*FirewallInterfacePolicy6]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallInterfacePolicy6MapOutput) MapIndex(k pulumi.StringInput) FirewallInterfacePolicy6Output {

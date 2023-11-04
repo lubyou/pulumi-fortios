@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerSnmpUser struct {
@@ -141,6 +142,12 @@ func (i *SwitchControllerSnmpUser) ToSwitchControllerSnmpUserOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSnmpUserOutput)
 }
 
+func (i *SwitchControllerSnmpUser) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerSnmpUser] {
+	return pulumix.Output[*SwitchControllerSnmpUser]{
+		OutputState: i.ToSwitchControllerSnmpUserOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SwitchControllerSnmpUserArrayInput is an input type that accepts SwitchControllerSnmpUserArray and SwitchControllerSnmpUserArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerSnmpUserArrayInput` via:
 //
@@ -164,6 +171,12 @@ func (i SwitchControllerSnmpUserArray) ToSwitchControllerSnmpUserArrayOutput() S
 
 func (i SwitchControllerSnmpUserArray) ToSwitchControllerSnmpUserArrayOutputWithContext(ctx context.Context) SwitchControllerSnmpUserArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSnmpUserArrayOutput)
+}
+
+func (i SwitchControllerSnmpUserArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerSnmpUser] {
+	return pulumix.Output[[]*SwitchControllerSnmpUser]{
+		OutputState: i.ToSwitchControllerSnmpUserArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SwitchControllerSnmpUserMapInput is an input type that accepts SwitchControllerSnmpUserMap and SwitchControllerSnmpUserMapOutput values.
@@ -191,6 +204,12 @@ func (i SwitchControllerSnmpUserMap) ToSwitchControllerSnmpUserMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSnmpUserMapOutput)
 }
 
+func (i SwitchControllerSnmpUserMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerSnmpUser] {
+	return pulumix.Output[map[string]*SwitchControllerSnmpUser]{
+		OutputState: i.ToSwitchControllerSnmpUserMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SwitchControllerSnmpUserOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSnmpUserOutput) ElementType() reflect.Type {
@@ -203,6 +222,12 @@ func (o SwitchControllerSnmpUserOutput) ToSwitchControllerSnmpUserOutput() Switc
 
 func (o SwitchControllerSnmpUserOutput) ToSwitchControllerSnmpUserOutputWithContext(ctx context.Context) SwitchControllerSnmpUserOutput {
 	return o
+}
+
+func (o SwitchControllerSnmpUserOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerSnmpUser] {
+	return pulumix.Output[*SwitchControllerSnmpUser]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerSnmpUserOutput) AuthProto() pulumi.StringOutput {
@@ -255,6 +280,12 @@ func (o SwitchControllerSnmpUserArrayOutput) ToSwitchControllerSnmpUserArrayOutp
 	return o
 }
 
+func (o SwitchControllerSnmpUserArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerSnmpUser] {
+	return pulumix.Output[[]*SwitchControllerSnmpUser]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SwitchControllerSnmpUserArrayOutput) Index(i pulumi.IntInput) SwitchControllerSnmpUserOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerSnmpUser {
 		return vs[0].([]*SwitchControllerSnmpUser)[vs[1].(int)]
@@ -273,6 +304,12 @@ func (o SwitchControllerSnmpUserMapOutput) ToSwitchControllerSnmpUserMapOutput()
 
 func (o SwitchControllerSnmpUserMapOutput) ToSwitchControllerSnmpUserMapOutputWithContext(ctx context.Context) SwitchControllerSnmpUserMapOutput {
 	return o
+}
+
+func (o SwitchControllerSnmpUserMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerSnmpUser] {
+	return pulumix.Output[map[string]*SwitchControllerSnmpUser]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerSnmpUserMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerSnmpUserOutput {

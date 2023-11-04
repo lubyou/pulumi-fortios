@@ -36,6 +36,7 @@ export class CertificateCa extends pulumi.CustomResource {
     public readonly autoUpdateDaysWarning!: pulumi.Output<number>;
     public readonly ca!: pulumi.Output<string>;
     public readonly caIdentifier!: pulumi.Output<string>;
+    public readonly estUrl!: pulumi.Output<string>;
     public readonly lastUpdated!: pulumi.Output<number>;
     public readonly name!: pulumi.Output<string>;
     public readonly obsolete!: pulumi.Output<string>;
@@ -64,6 +65,7 @@ export class CertificateCa extends pulumi.CustomResource {
             resourceInputs["autoUpdateDaysWarning"] = state ? state.autoUpdateDaysWarning : undefined;
             resourceInputs["ca"] = state ? state.ca : undefined;
             resourceInputs["caIdentifier"] = state ? state.caIdentifier : undefined;
+            resourceInputs["estUrl"] = state ? state.estUrl : undefined;
             resourceInputs["lastUpdated"] = state ? state.lastUpdated : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["obsolete"] = state ? state.obsolete : undefined;
@@ -83,6 +85,7 @@ export class CertificateCa extends pulumi.CustomResource {
             resourceInputs["autoUpdateDaysWarning"] = args ? args.autoUpdateDaysWarning : undefined;
             resourceInputs["ca"] = args ? args.ca : undefined;
             resourceInputs["caIdentifier"] = args ? args.caIdentifier : undefined;
+            resourceInputs["estUrl"] = args ? args.estUrl : undefined;
             resourceInputs["lastUpdated"] = args ? args.lastUpdated : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["obsolete"] = args ? args.obsolete : undefined;
@@ -107,6 +110,7 @@ export interface CertificateCaState {
     autoUpdateDaysWarning?: pulumi.Input<number>;
     ca?: pulumi.Input<string>;
     caIdentifier?: pulumi.Input<string>;
+    estUrl?: pulumi.Input<string>;
     lastUpdated?: pulumi.Input<number>;
     name?: pulumi.Input<string>;
     obsolete?: pulumi.Input<string>;
@@ -127,6 +131,7 @@ export interface CertificateCaArgs {
     autoUpdateDaysWarning?: pulumi.Input<number>;
     ca: pulumi.Input<string>;
     caIdentifier?: pulumi.Input<string>;
+    estUrl?: pulumi.Input<string>;
     lastUpdated?: pulumi.Input<number>;
     name?: pulumi.Input<string>;
     obsolete?: pulumi.Input<string>;

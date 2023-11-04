@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemDnsDatabase struct {
@@ -22,6 +23,7 @@ type SystemDnsDatabase struct {
 	Domain              pulumi.StringOutput                  `pulumi:"domain"`
 	DynamicSortSubtable pulumi.StringPtrOutput               `pulumi:"dynamicSortSubtable"`
 	Forwarder           pulumi.StringOutput                  `pulumi:"forwarder"`
+	Forwarder6          pulumi.StringOutput                  `pulumi:"forwarder6"`
 	GetAllTables        pulumi.StringPtrOutput               `pulumi:"getAllTables"`
 	IpMaster            pulumi.StringOutput                  `pulumi:"ipMaster"`
 	IpPrimary           pulumi.StringOutput                  `pulumi:"ipPrimary"`
@@ -29,6 +31,7 @@ type SystemDnsDatabase struct {
 	PrimaryName         pulumi.StringOutput                  `pulumi:"primaryName"`
 	RrMax               pulumi.IntOutput                     `pulumi:"rrMax"`
 	SourceIp            pulumi.StringOutput                  `pulumi:"sourceIp"`
+	SourceIp6           pulumi.StringOutput                  `pulumi:"sourceIp6"`
 	Status              pulumi.StringOutput                  `pulumi:"status"`
 	Ttl                 pulumi.IntOutput                     `pulumi:"ttl"`
 	Type                pulumi.StringOutput                  `pulumi:"type"`
@@ -88,6 +91,7 @@ type systemDnsDatabaseState struct {
 	Domain              *string                     `pulumi:"domain"`
 	DynamicSortSubtable *string                     `pulumi:"dynamicSortSubtable"`
 	Forwarder           *string                     `pulumi:"forwarder"`
+	Forwarder6          *string                     `pulumi:"forwarder6"`
 	GetAllTables        *string                     `pulumi:"getAllTables"`
 	IpMaster            *string                     `pulumi:"ipMaster"`
 	IpPrimary           *string                     `pulumi:"ipPrimary"`
@@ -95,6 +99,7 @@ type systemDnsDatabaseState struct {
 	PrimaryName         *string                     `pulumi:"primaryName"`
 	RrMax               *int                        `pulumi:"rrMax"`
 	SourceIp            *string                     `pulumi:"sourceIp"`
+	SourceIp6           *string                     `pulumi:"sourceIp6"`
 	Status              *string                     `pulumi:"status"`
 	Ttl                 *int                        `pulumi:"ttl"`
 	Type                *string                     `pulumi:"type"`
@@ -110,6 +115,7 @@ type SystemDnsDatabaseState struct {
 	Domain              pulumi.StringPtrInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	Forwarder           pulumi.StringPtrInput
+	Forwarder6          pulumi.StringPtrInput
 	GetAllTables        pulumi.StringPtrInput
 	IpMaster            pulumi.StringPtrInput
 	IpPrimary           pulumi.StringPtrInput
@@ -117,6 +123,7 @@ type SystemDnsDatabaseState struct {
 	PrimaryName         pulumi.StringPtrInput
 	RrMax               pulumi.IntPtrInput
 	SourceIp            pulumi.StringPtrInput
+	SourceIp6           pulumi.StringPtrInput
 	Status              pulumi.StringPtrInput
 	Ttl                 pulumi.IntPtrInput
 	Type                pulumi.StringPtrInput
@@ -136,6 +143,7 @@ type systemDnsDatabaseArgs struct {
 	Domain              string                      `pulumi:"domain"`
 	DynamicSortSubtable *string                     `pulumi:"dynamicSortSubtable"`
 	Forwarder           *string                     `pulumi:"forwarder"`
+	Forwarder6          *string                     `pulumi:"forwarder6"`
 	GetAllTables        *string                     `pulumi:"getAllTables"`
 	IpMaster            *string                     `pulumi:"ipMaster"`
 	IpPrimary           *string                     `pulumi:"ipPrimary"`
@@ -143,6 +151,7 @@ type systemDnsDatabaseArgs struct {
 	PrimaryName         *string                     `pulumi:"primaryName"`
 	RrMax               *int                        `pulumi:"rrMax"`
 	SourceIp            *string                     `pulumi:"sourceIp"`
+	SourceIp6           *string                     `pulumi:"sourceIp6"`
 	Status              *string                     `pulumi:"status"`
 	Ttl                 int                         `pulumi:"ttl"`
 	Type                string                      `pulumi:"type"`
@@ -159,6 +168,7 @@ type SystemDnsDatabaseArgs struct {
 	Domain              pulumi.StringInput
 	DynamicSortSubtable pulumi.StringPtrInput
 	Forwarder           pulumi.StringPtrInput
+	Forwarder6          pulumi.StringPtrInput
 	GetAllTables        pulumi.StringPtrInput
 	IpMaster            pulumi.StringPtrInput
 	IpPrimary           pulumi.StringPtrInput
@@ -166,6 +176,7 @@ type SystemDnsDatabaseArgs struct {
 	PrimaryName         pulumi.StringPtrInput
 	RrMax               pulumi.IntPtrInput
 	SourceIp            pulumi.StringPtrInput
+	SourceIp6           pulumi.StringPtrInput
 	Status              pulumi.StringPtrInput
 	Ttl                 pulumi.IntInput
 	Type                pulumi.StringInput
@@ -196,6 +207,12 @@ func (i *SystemDnsDatabase) ToSystemDnsDatabaseOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDnsDatabaseOutput)
 }
 
+func (i *SystemDnsDatabase) ToOutput(ctx context.Context) pulumix.Output[*SystemDnsDatabase] {
+	return pulumix.Output[*SystemDnsDatabase]{
+		OutputState: i.ToSystemDnsDatabaseOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemDnsDatabaseArrayInput is an input type that accepts SystemDnsDatabaseArray and SystemDnsDatabaseArrayOutput values.
 // You can construct a concrete instance of `SystemDnsDatabaseArrayInput` via:
 //
@@ -219,6 +236,12 @@ func (i SystemDnsDatabaseArray) ToSystemDnsDatabaseArrayOutput() SystemDnsDataba
 
 func (i SystemDnsDatabaseArray) ToSystemDnsDatabaseArrayOutputWithContext(ctx context.Context) SystemDnsDatabaseArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDnsDatabaseArrayOutput)
+}
+
+func (i SystemDnsDatabaseArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemDnsDatabase] {
+	return pulumix.Output[[]*SystemDnsDatabase]{
+		OutputState: i.ToSystemDnsDatabaseArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemDnsDatabaseMapInput is an input type that accepts SystemDnsDatabaseMap and SystemDnsDatabaseMapOutput values.
@@ -246,6 +269,12 @@ func (i SystemDnsDatabaseMap) ToSystemDnsDatabaseMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDnsDatabaseMapOutput)
 }
 
+func (i SystemDnsDatabaseMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemDnsDatabase] {
+	return pulumix.Output[map[string]*SystemDnsDatabase]{
+		OutputState: i.ToSystemDnsDatabaseMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemDnsDatabaseOutput struct{ *pulumi.OutputState }
 
 func (SystemDnsDatabaseOutput) ElementType() reflect.Type {
@@ -258,6 +287,12 @@ func (o SystemDnsDatabaseOutput) ToSystemDnsDatabaseOutput() SystemDnsDatabaseOu
 
 func (o SystemDnsDatabaseOutput) ToSystemDnsDatabaseOutputWithContext(ctx context.Context) SystemDnsDatabaseOutput {
 	return o
+}
+
+func (o SystemDnsDatabaseOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemDnsDatabase] {
+	return pulumix.Output[*SystemDnsDatabase]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemDnsDatabaseOutput) AllowTransfer() pulumi.StringOutput {
@@ -288,6 +323,10 @@ func (o SystemDnsDatabaseOutput) Forwarder() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemDnsDatabase) pulumi.StringOutput { return v.Forwarder }).(pulumi.StringOutput)
 }
 
+func (o SystemDnsDatabaseOutput) Forwarder6() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDnsDatabase) pulumi.StringOutput { return v.Forwarder6 }).(pulumi.StringOutput)
+}
+
 func (o SystemDnsDatabaseOutput) GetAllTables() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SystemDnsDatabase) pulumi.StringPtrOutput { return v.GetAllTables }).(pulumi.StringPtrOutput)
 }
@@ -314,6 +353,10 @@ func (o SystemDnsDatabaseOutput) RrMax() pulumi.IntOutput {
 
 func (o SystemDnsDatabaseOutput) SourceIp() pulumi.StringOutput {
 	return o.ApplyT(func(v *SystemDnsDatabase) pulumi.StringOutput { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+func (o SystemDnsDatabaseOutput) SourceIp6() pulumi.StringOutput {
+	return o.ApplyT(func(v *SystemDnsDatabase) pulumi.StringOutput { return v.SourceIp6 }).(pulumi.StringOutput)
 }
 
 func (o SystemDnsDatabaseOutput) Status() pulumi.StringOutput {
@@ -350,6 +393,12 @@ func (o SystemDnsDatabaseArrayOutput) ToSystemDnsDatabaseArrayOutputWithContext(
 	return o
 }
 
+func (o SystemDnsDatabaseArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemDnsDatabase] {
+	return pulumix.Output[[]*SystemDnsDatabase]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemDnsDatabaseArrayOutput) Index(i pulumi.IntInput) SystemDnsDatabaseOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemDnsDatabase {
 		return vs[0].([]*SystemDnsDatabase)[vs[1].(int)]
@@ -368,6 +417,12 @@ func (o SystemDnsDatabaseMapOutput) ToSystemDnsDatabaseMapOutput() SystemDnsData
 
 func (o SystemDnsDatabaseMapOutput) ToSystemDnsDatabaseMapOutputWithContext(ctx context.Context) SystemDnsDatabaseMapOutput {
 	return o
+}
+
+func (o SystemDnsDatabaseMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemDnsDatabase] {
+	return pulumix.Output[map[string]*SystemDnsDatabase]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemDnsDatabaseMapOutput) MapIndex(k pulumi.StringInput) SystemDnsDatabaseOutput {

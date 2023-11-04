@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type VpnIpsecPhase2Interface struct {
@@ -327,6 +328,12 @@ func (i *VpnIpsecPhase2Interface) ToVpnIpsecPhase2InterfaceOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase2InterfaceOutput)
 }
 
+func (i *VpnIpsecPhase2Interface) ToOutput(ctx context.Context) pulumix.Output[*VpnIpsecPhase2Interface] {
+	return pulumix.Output[*VpnIpsecPhase2Interface]{
+		OutputState: i.ToVpnIpsecPhase2InterfaceOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnIpsecPhase2InterfaceArrayInput is an input type that accepts VpnIpsecPhase2InterfaceArray and VpnIpsecPhase2InterfaceArrayOutput values.
 // You can construct a concrete instance of `VpnIpsecPhase2InterfaceArrayInput` via:
 //
@@ -350,6 +357,12 @@ func (i VpnIpsecPhase2InterfaceArray) ToVpnIpsecPhase2InterfaceArrayOutput() Vpn
 
 func (i VpnIpsecPhase2InterfaceArray) ToVpnIpsecPhase2InterfaceArrayOutputWithContext(ctx context.Context) VpnIpsecPhase2InterfaceArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase2InterfaceArrayOutput)
+}
+
+func (i VpnIpsecPhase2InterfaceArray) ToOutput(ctx context.Context) pulumix.Output[[]*VpnIpsecPhase2Interface] {
+	return pulumix.Output[[]*VpnIpsecPhase2Interface]{
+		OutputState: i.ToVpnIpsecPhase2InterfaceArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // VpnIpsecPhase2InterfaceMapInput is an input type that accepts VpnIpsecPhase2InterfaceMap and VpnIpsecPhase2InterfaceMapOutput values.
@@ -377,6 +390,12 @@ func (i VpnIpsecPhase2InterfaceMap) ToVpnIpsecPhase2InterfaceMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase2InterfaceMapOutput)
 }
 
+func (i VpnIpsecPhase2InterfaceMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnIpsecPhase2Interface] {
+	return pulumix.Output[map[string]*VpnIpsecPhase2Interface]{
+		OutputState: i.ToVpnIpsecPhase2InterfaceMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnIpsecPhase2InterfaceOutput struct{ *pulumi.OutputState }
 
 func (VpnIpsecPhase2InterfaceOutput) ElementType() reflect.Type {
@@ -389,6 +408,12 @@ func (o VpnIpsecPhase2InterfaceOutput) ToVpnIpsecPhase2InterfaceOutput() VpnIpse
 
 func (o VpnIpsecPhase2InterfaceOutput) ToVpnIpsecPhase2InterfaceOutputWithContext(ctx context.Context) VpnIpsecPhase2InterfaceOutput {
 	return o
+}
+
+func (o VpnIpsecPhase2InterfaceOutput) ToOutput(ctx context.Context) pulumix.Output[*VpnIpsecPhase2Interface] {
+	return pulumix.Output[*VpnIpsecPhase2Interface]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnIpsecPhase2InterfaceOutput) AddRoute() pulumi.StringOutput {
@@ -593,6 +618,12 @@ func (o VpnIpsecPhase2InterfaceArrayOutput) ToVpnIpsecPhase2InterfaceArrayOutput
 	return o
 }
 
+func (o VpnIpsecPhase2InterfaceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VpnIpsecPhase2Interface] {
+	return pulumix.Output[[]*VpnIpsecPhase2Interface]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o VpnIpsecPhase2InterfaceArrayOutput) Index(i pulumi.IntInput) VpnIpsecPhase2InterfaceOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnIpsecPhase2Interface {
 		return vs[0].([]*VpnIpsecPhase2Interface)[vs[1].(int)]
@@ -611,6 +642,12 @@ func (o VpnIpsecPhase2InterfaceMapOutput) ToVpnIpsecPhase2InterfaceMapOutput() V
 
 func (o VpnIpsecPhase2InterfaceMapOutput) ToVpnIpsecPhase2InterfaceMapOutputWithContext(ctx context.Context) VpnIpsecPhase2InterfaceMapOutput {
 	return o
+}
+
+func (o VpnIpsecPhase2InterfaceMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnIpsecPhase2Interface] {
+	return pulumix.Output[map[string]*VpnIpsecPhase2Interface]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnIpsecPhase2InterfaceMapOutput) MapIndex(k pulumi.StringInput) VpnIpsecPhase2InterfaceOutput {

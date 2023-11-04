@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallInternetServiceCustomGroup struct {
@@ -115,6 +116,12 @@ func (i *FirewallInternetServiceCustomGroup) ToFirewallInternetServiceCustomGrou
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceCustomGroupOutput)
 }
 
+func (i *FirewallInternetServiceCustomGroup) ToOutput(ctx context.Context) pulumix.Output[*FirewallInternetServiceCustomGroup] {
+	return pulumix.Output[*FirewallInternetServiceCustomGroup]{
+		OutputState: i.ToFirewallInternetServiceCustomGroupOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallInternetServiceCustomGroupArrayInput is an input type that accepts FirewallInternetServiceCustomGroupArray and FirewallInternetServiceCustomGroupArrayOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceCustomGroupArrayInput` via:
 //
@@ -138,6 +145,12 @@ func (i FirewallInternetServiceCustomGroupArray) ToFirewallInternetServiceCustom
 
 func (i FirewallInternetServiceCustomGroupArray) ToFirewallInternetServiceCustomGroupArrayOutputWithContext(ctx context.Context) FirewallInternetServiceCustomGroupArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceCustomGroupArrayOutput)
+}
+
+func (i FirewallInternetServiceCustomGroupArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallInternetServiceCustomGroup] {
+	return pulumix.Output[[]*FirewallInternetServiceCustomGroup]{
+		OutputState: i.ToFirewallInternetServiceCustomGroupArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallInternetServiceCustomGroupMapInput is an input type that accepts FirewallInternetServiceCustomGroupMap and FirewallInternetServiceCustomGroupMapOutput values.
@@ -165,6 +178,12 @@ func (i FirewallInternetServiceCustomGroupMap) ToFirewallInternetServiceCustomGr
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceCustomGroupMapOutput)
 }
 
+func (i FirewallInternetServiceCustomGroupMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallInternetServiceCustomGroup] {
+	return pulumix.Output[map[string]*FirewallInternetServiceCustomGroup]{
+		OutputState: i.ToFirewallInternetServiceCustomGroupMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallInternetServiceCustomGroupOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceCustomGroupOutput) ElementType() reflect.Type {
@@ -177,6 +196,12 @@ func (o FirewallInternetServiceCustomGroupOutput) ToFirewallInternetServiceCusto
 
 func (o FirewallInternetServiceCustomGroupOutput) ToFirewallInternetServiceCustomGroupOutputWithContext(ctx context.Context) FirewallInternetServiceCustomGroupOutput {
 	return o
+}
+
+func (o FirewallInternetServiceCustomGroupOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallInternetServiceCustomGroup] {
+	return pulumix.Output[*FirewallInternetServiceCustomGroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallInternetServiceCustomGroupOutput) Comment() pulumi.StringPtrOutput {
@@ -219,6 +244,12 @@ func (o FirewallInternetServiceCustomGroupArrayOutput) ToFirewallInternetService
 	return o
 }
 
+func (o FirewallInternetServiceCustomGroupArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallInternetServiceCustomGroup] {
+	return pulumix.Output[[]*FirewallInternetServiceCustomGroup]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallInternetServiceCustomGroupArrayOutput) Index(i pulumi.IntInput) FirewallInternetServiceCustomGroupOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallInternetServiceCustomGroup {
 		return vs[0].([]*FirewallInternetServiceCustomGroup)[vs[1].(int)]
@@ -237,6 +268,12 @@ func (o FirewallInternetServiceCustomGroupMapOutput) ToFirewallInternetServiceCu
 
 func (o FirewallInternetServiceCustomGroupMapOutput) ToFirewallInternetServiceCustomGroupMapOutputWithContext(ctx context.Context) FirewallInternetServiceCustomGroupMapOutput {
 	return o
+}
+
+func (o FirewallInternetServiceCustomGroupMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallInternetServiceCustomGroup] {
+	return pulumix.Output[map[string]*FirewallInternetServiceCustomGroup]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallInternetServiceCustomGroupMapOutput) MapIndex(k pulumi.StringInput) FirewallInternetServiceCustomGroupOutput {

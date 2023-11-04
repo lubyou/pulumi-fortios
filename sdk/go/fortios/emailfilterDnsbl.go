@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type EmailfilterDnsbl struct {
@@ -120,6 +121,12 @@ func (i *EmailfilterDnsbl) ToEmailfilterDnsblOutputWithContext(ctx context.Conte
 	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterDnsblOutput)
 }
 
+func (i *EmailfilterDnsbl) ToOutput(ctx context.Context) pulumix.Output[*EmailfilterDnsbl] {
+	return pulumix.Output[*EmailfilterDnsbl]{
+		OutputState: i.ToEmailfilterDnsblOutputWithContext(ctx).OutputState,
+	}
+}
+
 // EmailfilterDnsblArrayInput is an input type that accepts EmailfilterDnsblArray and EmailfilterDnsblArrayOutput values.
 // You can construct a concrete instance of `EmailfilterDnsblArrayInput` via:
 //
@@ -143,6 +150,12 @@ func (i EmailfilterDnsblArray) ToEmailfilterDnsblArrayOutput() EmailfilterDnsblA
 
 func (i EmailfilterDnsblArray) ToEmailfilterDnsblArrayOutputWithContext(ctx context.Context) EmailfilterDnsblArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterDnsblArrayOutput)
+}
+
+func (i EmailfilterDnsblArray) ToOutput(ctx context.Context) pulumix.Output[[]*EmailfilterDnsbl] {
+	return pulumix.Output[[]*EmailfilterDnsbl]{
+		OutputState: i.ToEmailfilterDnsblArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // EmailfilterDnsblMapInput is an input type that accepts EmailfilterDnsblMap and EmailfilterDnsblMapOutput values.
@@ -170,6 +183,12 @@ func (i EmailfilterDnsblMap) ToEmailfilterDnsblMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterDnsblMapOutput)
 }
 
+func (i EmailfilterDnsblMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*EmailfilterDnsbl] {
+	return pulumix.Output[map[string]*EmailfilterDnsbl]{
+		OutputState: i.ToEmailfilterDnsblMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type EmailfilterDnsblOutput struct{ *pulumi.OutputState }
 
 func (EmailfilterDnsblOutput) ElementType() reflect.Type {
@@ -182,6 +201,12 @@ func (o EmailfilterDnsblOutput) ToEmailfilterDnsblOutput() EmailfilterDnsblOutpu
 
 func (o EmailfilterDnsblOutput) ToEmailfilterDnsblOutputWithContext(ctx context.Context) EmailfilterDnsblOutput {
 	return o
+}
+
+func (o EmailfilterDnsblOutput) ToOutput(ctx context.Context) pulumix.Output[*EmailfilterDnsbl] {
+	return pulumix.Output[*EmailfilterDnsbl]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o EmailfilterDnsblOutput) Comment() pulumi.StringPtrOutput {
@@ -226,6 +251,12 @@ func (o EmailfilterDnsblArrayOutput) ToEmailfilterDnsblArrayOutputWithContext(ct
 	return o
 }
 
+func (o EmailfilterDnsblArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*EmailfilterDnsbl] {
+	return pulumix.Output[[]*EmailfilterDnsbl]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o EmailfilterDnsblArrayOutput) Index(i pulumi.IntInput) EmailfilterDnsblOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *EmailfilterDnsbl {
 		return vs[0].([]*EmailfilterDnsbl)[vs[1].(int)]
@@ -244,6 +275,12 @@ func (o EmailfilterDnsblMapOutput) ToEmailfilterDnsblMapOutput() EmailfilterDnsb
 
 func (o EmailfilterDnsblMapOutput) ToEmailfilterDnsblMapOutputWithContext(ctx context.Context) EmailfilterDnsblMapOutput {
 	return o
+}
+
+func (o EmailfilterDnsblMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*EmailfilterDnsbl] {
+	return pulumix.Output[map[string]*EmailfilterDnsbl]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o EmailfilterDnsblMapOutput) MapIndex(k pulumi.StringInput) EmailfilterDnsblOutput {

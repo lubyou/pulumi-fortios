@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemFtmPush(ctx *pulumi.Context, args *LookupSystemFtmPushArgs, opts ...pulumi.InvokeOption) (*LookupSystemFtmPushResult, error) {
@@ -30,6 +31,7 @@ type LookupSystemFtmPushArgs struct {
 type LookupSystemFtmPushResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id         string  `pulumi:"id"`
+	Proxy      string  `pulumi:"proxy"`
 	Server     string  `pulumi:"server"`
 	ServerCert string  `pulumi:"serverCert"`
 	ServerIp   string  `pulumi:"serverIp"`
@@ -75,9 +77,19 @@ func (o LookupSystemFtmPushResultOutput) ToLookupSystemFtmPushResultOutputWithCo
 	return o
 }
 
+func (o LookupSystemFtmPushResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemFtmPushResult] {
+	return pulumix.Output[LookupSystemFtmPushResult]{
+		OutputState: o.OutputState,
+	}
+}
+
 // The provider-assigned unique ID for this managed resource.
 func (o LookupSystemFtmPushResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupSystemFtmPushResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemFtmPushResultOutput) Proxy() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFtmPushResult) string { return v.Proxy }).(pulumi.StringOutput)
 }
 
 func (o LookupSystemFtmPushResultOutput) Server() pulumi.StringOutput {

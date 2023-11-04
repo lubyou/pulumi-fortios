@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type LogFortianalyzerCloudFilter struct {
@@ -165,6 +166,12 @@ func (i *LogFortianalyzerCloudFilter) ToLogFortianalyzerCloudFilterOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerCloudFilterOutput)
 }
 
+func (i *LogFortianalyzerCloudFilter) ToOutput(ctx context.Context) pulumix.Output[*LogFortianalyzerCloudFilter] {
+	return pulumix.Output[*LogFortianalyzerCloudFilter]{
+		OutputState: i.ToLogFortianalyzerCloudFilterOutputWithContext(ctx).OutputState,
+	}
+}
+
 // LogFortianalyzerCloudFilterArrayInput is an input type that accepts LogFortianalyzerCloudFilterArray and LogFortianalyzerCloudFilterArrayOutput values.
 // You can construct a concrete instance of `LogFortianalyzerCloudFilterArrayInput` via:
 //
@@ -188,6 +195,12 @@ func (i LogFortianalyzerCloudFilterArray) ToLogFortianalyzerCloudFilterArrayOutp
 
 func (i LogFortianalyzerCloudFilterArray) ToLogFortianalyzerCloudFilterArrayOutputWithContext(ctx context.Context) LogFortianalyzerCloudFilterArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerCloudFilterArrayOutput)
+}
+
+func (i LogFortianalyzerCloudFilterArray) ToOutput(ctx context.Context) pulumix.Output[[]*LogFortianalyzerCloudFilter] {
+	return pulumix.Output[[]*LogFortianalyzerCloudFilter]{
+		OutputState: i.ToLogFortianalyzerCloudFilterArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // LogFortianalyzerCloudFilterMapInput is an input type that accepts LogFortianalyzerCloudFilterMap and LogFortianalyzerCloudFilterMapOutput values.
@@ -215,6 +228,12 @@ func (i LogFortianalyzerCloudFilterMap) ToLogFortianalyzerCloudFilterMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerCloudFilterMapOutput)
 }
 
+func (i LogFortianalyzerCloudFilterMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogFortianalyzerCloudFilter] {
+	return pulumix.Output[map[string]*LogFortianalyzerCloudFilter]{
+		OutputState: i.ToLogFortianalyzerCloudFilterMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type LogFortianalyzerCloudFilterOutput struct{ *pulumi.OutputState }
 
 func (LogFortianalyzerCloudFilterOutput) ElementType() reflect.Type {
@@ -227,6 +246,12 @@ func (o LogFortianalyzerCloudFilterOutput) ToLogFortianalyzerCloudFilterOutput()
 
 func (o LogFortianalyzerCloudFilterOutput) ToLogFortianalyzerCloudFilterOutputWithContext(ctx context.Context) LogFortianalyzerCloudFilterOutput {
 	return o
+}
+
+func (o LogFortianalyzerCloudFilterOutput) ToOutput(ctx context.Context) pulumix.Output[*LogFortianalyzerCloudFilter] {
+	return pulumix.Output[*LogFortianalyzerCloudFilter]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LogFortianalyzerCloudFilterOutput) Anomaly() pulumi.StringOutput {
@@ -309,6 +334,12 @@ func (o LogFortianalyzerCloudFilterArrayOutput) ToLogFortianalyzerCloudFilterArr
 	return o
 }
 
+func (o LogFortianalyzerCloudFilterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LogFortianalyzerCloudFilter] {
+	return pulumix.Output[[]*LogFortianalyzerCloudFilter]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LogFortianalyzerCloudFilterArrayOutput) Index(i pulumi.IntInput) LogFortianalyzerCloudFilterOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogFortianalyzerCloudFilter {
 		return vs[0].([]*LogFortianalyzerCloudFilter)[vs[1].(int)]
@@ -327,6 +358,12 @@ func (o LogFortianalyzerCloudFilterMapOutput) ToLogFortianalyzerCloudFilterMapOu
 
 func (o LogFortianalyzerCloudFilterMapOutput) ToLogFortianalyzerCloudFilterMapOutputWithContext(ctx context.Context) LogFortianalyzerCloudFilterMapOutput {
 	return o
+}
+
+func (o LogFortianalyzerCloudFilterMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogFortianalyzerCloudFilter] {
+	return pulumix.Output[map[string]*LogFortianalyzerCloudFilter]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LogFortianalyzerCloudFilterMapOutput) MapIndex(k pulumi.StringInput) LogFortianalyzerCloudFilterOutput {

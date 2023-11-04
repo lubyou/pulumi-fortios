@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type RouterospfOspfInterface struct {
@@ -225,6 +226,12 @@ func (i *RouterospfOspfInterface) ToRouterospfOspfInterfaceOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(RouterospfOspfInterfaceOutput)
 }
 
+func (i *RouterospfOspfInterface) ToOutput(ctx context.Context) pulumix.Output[*RouterospfOspfInterface] {
+	return pulumix.Output[*RouterospfOspfInterface]{
+		OutputState: i.ToRouterospfOspfInterfaceOutputWithContext(ctx).OutputState,
+	}
+}
+
 // RouterospfOspfInterfaceArrayInput is an input type that accepts RouterospfOspfInterfaceArray and RouterospfOspfInterfaceArrayOutput values.
 // You can construct a concrete instance of `RouterospfOspfInterfaceArrayInput` via:
 //
@@ -248,6 +255,12 @@ func (i RouterospfOspfInterfaceArray) ToRouterospfOspfInterfaceArrayOutput() Rou
 
 func (i RouterospfOspfInterfaceArray) ToRouterospfOspfInterfaceArrayOutputWithContext(ctx context.Context) RouterospfOspfInterfaceArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterospfOspfInterfaceArrayOutput)
+}
+
+func (i RouterospfOspfInterfaceArray) ToOutput(ctx context.Context) pulumix.Output[[]*RouterospfOspfInterface] {
+	return pulumix.Output[[]*RouterospfOspfInterface]{
+		OutputState: i.ToRouterospfOspfInterfaceArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // RouterospfOspfInterfaceMapInput is an input type that accepts RouterospfOspfInterfaceMap and RouterospfOspfInterfaceMapOutput values.
@@ -275,6 +288,12 @@ func (i RouterospfOspfInterfaceMap) ToRouterospfOspfInterfaceMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(RouterospfOspfInterfaceMapOutput)
 }
 
+func (i RouterospfOspfInterfaceMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RouterospfOspfInterface] {
+	return pulumix.Output[map[string]*RouterospfOspfInterface]{
+		OutputState: i.ToRouterospfOspfInterfaceMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RouterospfOspfInterfaceOutput struct{ *pulumi.OutputState }
 
 func (RouterospfOspfInterfaceOutput) ElementType() reflect.Type {
@@ -287,6 +306,12 @@ func (o RouterospfOspfInterfaceOutput) ToRouterospfOspfInterfaceOutput() Routero
 
 func (o RouterospfOspfInterfaceOutput) ToRouterospfOspfInterfaceOutputWithContext(ctx context.Context) RouterospfOspfInterfaceOutput {
 	return o
+}
+
+func (o RouterospfOspfInterfaceOutput) ToOutput(ctx context.Context) pulumix.Output[*RouterospfOspfInterface] {
+	return pulumix.Output[*RouterospfOspfInterface]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RouterospfOspfInterfaceOutput) Authentication() pulumi.StringOutput {
@@ -415,6 +440,12 @@ func (o RouterospfOspfInterfaceArrayOutput) ToRouterospfOspfInterfaceArrayOutput
 	return o
 }
 
+func (o RouterospfOspfInterfaceArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RouterospfOspfInterface] {
+	return pulumix.Output[[]*RouterospfOspfInterface]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o RouterospfOspfInterfaceArrayOutput) Index(i pulumi.IntInput) RouterospfOspfInterfaceOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RouterospfOspfInterface {
 		return vs[0].([]*RouterospfOspfInterface)[vs[1].(int)]
@@ -433,6 +464,12 @@ func (o RouterospfOspfInterfaceMapOutput) ToRouterospfOspfInterfaceMapOutput() R
 
 func (o RouterospfOspfInterfaceMapOutput) ToRouterospfOspfInterfaceMapOutputWithContext(ctx context.Context) RouterospfOspfInterfaceMapOutput {
 	return o
+}
+
+func (o RouterospfOspfInterfaceMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RouterospfOspfInterface] {
+	return pulumix.Output[map[string]*RouterospfOspfInterface]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RouterospfOspfInterfaceMapOutput) MapIndex(k pulumi.StringInput) RouterospfOspfInterfaceOutput {

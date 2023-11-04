@@ -9,26 +9,33 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerLldpProfile struct {
 	pulumi.CustomResourceState
 
-	AutoIsl               pulumi.StringOutput                                      `pulumi:"autoIsl"`
-	AutoIslHelloTimer     pulumi.IntOutput                                         `pulumi:"autoIslHelloTimer"`
-	AutoIslPortGroup      pulumi.IntOutput                                         `pulumi:"autoIslPortGroup"`
-	AutoIslReceiveTimeout pulumi.IntOutput                                         `pulumi:"autoIslReceiveTimeout"`
-	AutoMclagIcl          pulumi.StringOutput                                      `pulumi:"autoMclagIcl"`
-	CustomTlvs            SwitchControllerLldpProfileCustomTlvArrayOutput          `pulumi:"customTlvs"`
-	DynamicSortSubtable   pulumi.StringPtrOutput                                   `pulumi:"dynamicSortSubtable"`
-	GetAllTables          pulumi.StringPtrOutput                                   `pulumi:"getAllTables"`
-	MedLocationServices   SwitchControllerLldpProfileMedLocationServiceArrayOutput `pulumi:"medLocationServices"`
-	MedNetworkPolicies    SwitchControllerLldpProfileMedNetworkPolicyArrayOutput   `pulumi:"medNetworkPolicies"`
-	MedTlvs               pulumi.StringOutput                                      `pulumi:"medTlvs"`
-	N8021Tlvs             pulumi.StringOutput                                      `pulumi:"n8021Tlvs"`
-	N8023Tlvs             pulumi.StringOutput                                      `pulumi:"n8023Tlvs"`
-	Name                  pulumi.StringOutput                                      `pulumi:"name"`
-	Vdomparam             pulumi.StringPtrOutput                                   `pulumi:"vdomparam"`
+	AutoIsl                  pulumi.StringOutput                                      `pulumi:"autoIsl"`
+	AutoIslAuth              pulumi.StringOutput                                      `pulumi:"autoIslAuth"`
+	AutoIslAuthEncrypt       pulumi.StringOutput                                      `pulumi:"autoIslAuthEncrypt"`
+	AutoIslAuthIdentity      pulumi.StringOutput                                      `pulumi:"autoIslAuthIdentity"`
+	AutoIslAuthMacsecProfile pulumi.StringOutput                                      `pulumi:"autoIslAuthMacsecProfile"`
+	AutoIslAuthReauth        pulumi.IntOutput                                         `pulumi:"autoIslAuthReauth"`
+	AutoIslAuthUser          pulumi.StringOutput                                      `pulumi:"autoIslAuthUser"`
+	AutoIslHelloTimer        pulumi.IntOutput                                         `pulumi:"autoIslHelloTimer"`
+	AutoIslPortGroup         pulumi.IntOutput                                         `pulumi:"autoIslPortGroup"`
+	AutoIslReceiveTimeout    pulumi.IntOutput                                         `pulumi:"autoIslReceiveTimeout"`
+	AutoMclagIcl             pulumi.StringOutput                                      `pulumi:"autoMclagIcl"`
+	CustomTlvs               SwitchControllerLldpProfileCustomTlvArrayOutput          `pulumi:"customTlvs"`
+	DynamicSortSubtable      pulumi.StringPtrOutput                                   `pulumi:"dynamicSortSubtable"`
+	GetAllTables             pulumi.StringPtrOutput                                   `pulumi:"getAllTables"`
+	MedLocationServices      SwitchControllerLldpProfileMedLocationServiceArrayOutput `pulumi:"medLocationServices"`
+	MedNetworkPolicies       SwitchControllerLldpProfileMedNetworkPolicyArrayOutput   `pulumi:"medNetworkPolicies"`
+	MedTlvs                  pulumi.StringOutput                                      `pulumi:"medTlvs"`
+	N8021Tlvs                pulumi.StringOutput                                      `pulumi:"n8021Tlvs"`
+	N8023Tlvs                pulumi.StringOutput                                      `pulumi:"n8023Tlvs"`
+	Name                     pulumi.StringOutput                                      `pulumi:"name"`
+	Vdomparam                pulumi.StringPtrOutput                                   `pulumi:"vdomparam"`
 }
 
 // NewSwitchControllerLldpProfile registers a new resource with the given unique name, arguments, and options.
@@ -61,39 +68,51 @@ func GetSwitchControllerLldpProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerLldpProfile resources.
 type switchControllerLldpProfileState struct {
-	AutoIsl               *string                                         `pulumi:"autoIsl"`
-	AutoIslHelloTimer     *int                                            `pulumi:"autoIslHelloTimer"`
-	AutoIslPortGroup      *int                                            `pulumi:"autoIslPortGroup"`
-	AutoIslReceiveTimeout *int                                            `pulumi:"autoIslReceiveTimeout"`
-	AutoMclagIcl          *string                                         `pulumi:"autoMclagIcl"`
-	CustomTlvs            []SwitchControllerLldpProfileCustomTlv          `pulumi:"customTlvs"`
-	DynamicSortSubtable   *string                                         `pulumi:"dynamicSortSubtable"`
-	GetAllTables          *string                                         `pulumi:"getAllTables"`
-	MedLocationServices   []SwitchControllerLldpProfileMedLocationService `pulumi:"medLocationServices"`
-	MedNetworkPolicies    []SwitchControllerLldpProfileMedNetworkPolicy   `pulumi:"medNetworkPolicies"`
-	MedTlvs               *string                                         `pulumi:"medTlvs"`
-	N8021Tlvs             *string                                         `pulumi:"n8021Tlvs"`
-	N8023Tlvs             *string                                         `pulumi:"n8023Tlvs"`
-	Name                  *string                                         `pulumi:"name"`
-	Vdomparam             *string                                         `pulumi:"vdomparam"`
+	AutoIsl                  *string                                         `pulumi:"autoIsl"`
+	AutoIslAuth              *string                                         `pulumi:"autoIslAuth"`
+	AutoIslAuthEncrypt       *string                                         `pulumi:"autoIslAuthEncrypt"`
+	AutoIslAuthIdentity      *string                                         `pulumi:"autoIslAuthIdentity"`
+	AutoIslAuthMacsecProfile *string                                         `pulumi:"autoIslAuthMacsecProfile"`
+	AutoIslAuthReauth        *int                                            `pulumi:"autoIslAuthReauth"`
+	AutoIslAuthUser          *string                                         `pulumi:"autoIslAuthUser"`
+	AutoIslHelloTimer        *int                                            `pulumi:"autoIslHelloTimer"`
+	AutoIslPortGroup         *int                                            `pulumi:"autoIslPortGroup"`
+	AutoIslReceiveTimeout    *int                                            `pulumi:"autoIslReceiveTimeout"`
+	AutoMclagIcl             *string                                         `pulumi:"autoMclagIcl"`
+	CustomTlvs               []SwitchControllerLldpProfileCustomTlv          `pulumi:"customTlvs"`
+	DynamicSortSubtable      *string                                         `pulumi:"dynamicSortSubtable"`
+	GetAllTables             *string                                         `pulumi:"getAllTables"`
+	MedLocationServices      []SwitchControllerLldpProfileMedLocationService `pulumi:"medLocationServices"`
+	MedNetworkPolicies       []SwitchControllerLldpProfileMedNetworkPolicy   `pulumi:"medNetworkPolicies"`
+	MedTlvs                  *string                                         `pulumi:"medTlvs"`
+	N8021Tlvs                *string                                         `pulumi:"n8021Tlvs"`
+	N8023Tlvs                *string                                         `pulumi:"n8023Tlvs"`
+	Name                     *string                                         `pulumi:"name"`
+	Vdomparam                *string                                         `pulumi:"vdomparam"`
 }
 
 type SwitchControllerLldpProfileState struct {
-	AutoIsl               pulumi.StringPtrInput
-	AutoIslHelloTimer     pulumi.IntPtrInput
-	AutoIslPortGroup      pulumi.IntPtrInput
-	AutoIslReceiveTimeout pulumi.IntPtrInput
-	AutoMclagIcl          pulumi.StringPtrInput
-	CustomTlvs            SwitchControllerLldpProfileCustomTlvArrayInput
-	DynamicSortSubtable   pulumi.StringPtrInput
-	GetAllTables          pulumi.StringPtrInput
-	MedLocationServices   SwitchControllerLldpProfileMedLocationServiceArrayInput
-	MedNetworkPolicies    SwitchControllerLldpProfileMedNetworkPolicyArrayInput
-	MedTlvs               pulumi.StringPtrInput
-	N8021Tlvs             pulumi.StringPtrInput
-	N8023Tlvs             pulumi.StringPtrInput
-	Name                  pulumi.StringPtrInput
-	Vdomparam             pulumi.StringPtrInput
+	AutoIsl                  pulumi.StringPtrInput
+	AutoIslAuth              pulumi.StringPtrInput
+	AutoIslAuthEncrypt       pulumi.StringPtrInput
+	AutoIslAuthIdentity      pulumi.StringPtrInput
+	AutoIslAuthMacsecProfile pulumi.StringPtrInput
+	AutoIslAuthReauth        pulumi.IntPtrInput
+	AutoIslAuthUser          pulumi.StringPtrInput
+	AutoIslHelloTimer        pulumi.IntPtrInput
+	AutoIslPortGroup         pulumi.IntPtrInput
+	AutoIslReceiveTimeout    pulumi.IntPtrInput
+	AutoMclagIcl             pulumi.StringPtrInput
+	CustomTlvs               SwitchControllerLldpProfileCustomTlvArrayInput
+	DynamicSortSubtable      pulumi.StringPtrInput
+	GetAllTables             pulumi.StringPtrInput
+	MedLocationServices      SwitchControllerLldpProfileMedLocationServiceArrayInput
+	MedNetworkPolicies       SwitchControllerLldpProfileMedNetworkPolicyArrayInput
+	MedTlvs                  pulumi.StringPtrInput
+	N8021Tlvs                pulumi.StringPtrInput
+	N8023Tlvs                pulumi.StringPtrInput
+	Name                     pulumi.StringPtrInput
+	Vdomparam                pulumi.StringPtrInput
 }
 
 func (SwitchControllerLldpProfileState) ElementType() reflect.Type {
@@ -101,40 +120,52 @@ func (SwitchControllerLldpProfileState) ElementType() reflect.Type {
 }
 
 type switchControllerLldpProfileArgs struct {
-	AutoIsl               *string                                         `pulumi:"autoIsl"`
-	AutoIslHelloTimer     *int                                            `pulumi:"autoIslHelloTimer"`
-	AutoIslPortGroup      *int                                            `pulumi:"autoIslPortGroup"`
-	AutoIslReceiveTimeout *int                                            `pulumi:"autoIslReceiveTimeout"`
-	AutoMclagIcl          *string                                         `pulumi:"autoMclagIcl"`
-	CustomTlvs            []SwitchControllerLldpProfileCustomTlv          `pulumi:"customTlvs"`
-	DynamicSortSubtable   *string                                         `pulumi:"dynamicSortSubtable"`
-	GetAllTables          *string                                         `pulumi:"getAllTables"`
-	MedLocationServices   []SwitchControllerLldpProfileMedLocationService `pulumi:"medLocationServices"`
-	MedNetworkPolicies    []SwitchControllerLldpProfileMedNetworkPolicy   `pulumi:"medNetworkPolicies"`
-	MedTlvs               *string                                         `pulumi:"medTlvs"`
-	N8021Tlvs             *string                                         `pulumi:"n8021Tlvs"`
-	N8023Tlvs             *string                                         `pulumi:"n8023Tlvs"`
-	Name                  *string                                         `pulumi:"name"`
-	Vdomparam             *string                                         `pulumi:"vdomparam"`
+	AutoIsl                  *string                                         `pulumi:"autoIsl"`
+	AutoIslAuth              *string                                         `pulumi:"autoIslAuth"`
+	AutoIslAuthEncrypt       *string                                         `pulumi:"autoIslAuthEncrypt"`
+	AutoIslAuthIdentity      *string                                         `pulumi:"autoIslAuthIdentity"`
+	AutoIslAuthMacsecProfile *string                                         `pulumi:"autoIslAuthMacsecProfile"`
+	AutoIslAuthReauth        *int                                            `pulumi:"autoIslAuthReauth"`
+	AutoIslAuthUser          *string                                         `pulumi:"autoIslAuthUser"`
+	AutoIslHelloTimer        *int                                            `pulumi:"autoIslHelloTimer"`
+	AutoIslPortGroup         *int                                            `pulumi:"autoIslPortGroup"`
+	AutoIslReceiveTimeout    *int                                            `pulumi:"autoIslReceiveTimeout"`
+	AutoMclagIcl             *string                                         `pulumi:"autoMclagIcl"`
+	CustomTlvs               []SwitchControllerLldpProfileCustomTlv          `pulumi:"customTlvs"`
+	DynamicSortSubtable      *string                                         `pulumi:"dynamicSortSubtable"`
+	GetAllTables             *string                                         `pulumi:"getAllTables"`
+	MedLocationServices      []SwitchControllerLldpProfileMedLocationService `pulumi:"medLocationServices"`
+	MedNetworkPolicies       []SwitchControllerLldpProfileMedNetworkPolicy   `pulumi:"medNetworkPolicies"`
+	MedTlvs                  *string                                         `pulumi:"medTlvs"`
+	N8021Tlvs                *string                                         `pulumi:"n8021Tlvs"`
+	N8023Tlvs                *string                                         `pulumi:"n8023Tlvs"`
+	Name                     *string                                         `pulumi:"name"`
+	Vdomparam                *string                                         `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SwitchControllerLldpProfile resource.
 type SwitchControllerLldpProfileArgs struct {
-	AutoIsl               pulumi.StringPtrInput
-	AutoIslHelloTimer     pulumi.IntPtrInput
-	AutoIslPortGroup      pulumi.IntPtrInput
-	AutoIslReceiveTimeout pulumi.IntPtrInput
-	AutoMclagIcl          pulumi.StringPtrInput
-	CustomTlvs            SwitchControllerLldpProfileCustomTlvArrayInput
-	DynamicSortSubtable   pulumi.StringPtrInput
-	GetAllTables          pulumi.StringPtrInput
-	MedLocationServices   SwitchControllerLldpProfileMedLocationServiceArrayInput
-	MedNetworkPolicies    SwitchControllerLldpProfileMedNetworkPolicyArrayInput
-	MedTlvs               pulumi.StringPtrInput
-	N8021Tlvs             pulumi.StringPtrInput
-	N8023Tlvs             pulumi.StringPtrInput
-	Name                  pulumi.StringPtrInput
-	Vdomparam             pulumi.StringPtrInput
+	AutoIsl                  pulumi.StringPtrInput
+	AutoIslAuth              pulumi.StringPtrInput
+	AutoIslAuthEncrypt       pulumi.StringPtrInput
+	AutoIslAuthIdentity      pulumi.StringPtrInput
+	AutoIslAuthMacsecProfile pulumi.StringPtrInput
+	AutoIslAuthReauth        pulumi.IntPtrInput
+	AutoIslAuthUser          pulumi.StringPtrInput
+	AutoIslHelloTimer        pulumi.IntPtrInput
+	AutoIslPortGroup         pulumi.IntPtrInput
+	AutoIslReceiveTimeout    pulumi.IntPtrInput
+	AutoMclagIcl             pulumi.StringPtrInput
+	CustomTlvs               SwitchControllerLldpProfileCustomTlvArrayInput
+	DynamicSortSubtable      pulumi.StringPtrInput
+	GetAllTables             pulumi.StringPtrInput
+	MedLocationServices      SwitchControllerLldpProfileMedLocationServiceArrayInput
+	MedNetworkPolicies       SwitchControllerLldpProfileMedNetworkPolicyArrayInput
+	MedTlvs                  pulumi.StringPtrInput
+	N8021Tlvs                pulumi.StringPtrInput
+	N8023Tlvs                pulumi.StringPtrInput
+	Name                     pulumi.StringPtrInput
+	Vdomparam                pulumi.StringPtrInput
 }
 
 func (SwitchControllerLldpProfileArgs) ElementType() reflect.Type {
@@ -158,6 +189,12 @@ func (i *SwitchControllerLldpProfile) ToSwitchControllerLldpProfileOutput() Swit
 
 func (i *SwitchControllerLldpProfile) ToSwitchControllerLldpProfileOutputWithContext(ctx context.Context) SwitchControllerLldpProfileOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerLldpProfileOutput)
+}
+
+func (i *SwitchControllerLldpProfile) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerLldpProfile] {
+	return pulumix.Output[*SwitchControllerLldpProfile]{
+		OutputState: i.ToSwitchControllerLldpProfileOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SwitchControllerLldpProfileArrayInput is an input type that accepts SwitchControllerLldpProfileArray and SwitchControllerLldpProfileArrayOutput values.
@@ -185,6 +222,12 @@ func (i SwitchControllerLldpProfileArray) ToSwitchControllerLldpProfileArrayOutp
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerLldpProfileArrayOutput)
 }
 
+func (i SwitchControllerLldpProfileArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerLldpProfile] {
+	return pulumix.Output[[]*SwitchControllerLldpProfile]{
+		OutputState: i.ToSwitchControllerLldpProfileArrayOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SwitchControllerLldpProfileMapInput is an input type that accepts SwitchControllerLldpProfileMap and SwitchControllerLldpProfileMapOutput values.
 // You can construct a concrete instance of `SwitchControllerLldpProfileMapInput` via:
 //
@@ -210,6 +253,12 @@ func (i SwitchControllerLldpProfileMap) ToSwitchControllerLldpProfileMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerLldpProfileMapOutput)
 }
 
+func (i SwitchControllerLldpProfileMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerLldpProfile] {
+	return pulumix.Output[map[string]*SwitchControllerLldpProfile]{
+		OutputState: i.ToSwitchControllerLldpProfileMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SwitchControllerLldpProfileOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerLldpProfileOutput) ElementType() reflect.Type {
@@ -224,8 +273,38 @@ func (o SwitchControllerLldpProfileOutput) ToSwitchControllerLldpProfileOutputWi
 	return o
 }
 
+func (o SwitchControllerLldpProfileOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerLldpProfile] {
+	return pulumix.Output[*SwitchControllerLldpProfile]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SwitchControllerLldpProfileOutput) AutoIsl() pulumi.StringOutput {
 	return o.ApplyT(func(v *SwitchControllerLldpProfile) pulumi.StringOutput { return v.AutoIsl }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerLldpProfileOutput) AutoIslAuth() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerLldpProfile) pulumi.StringOutput { return v.AutoIslAuth }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerLldpProfileOutput) AutoIslAuthEncrypt() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerLldpProfile) pulumi.StringOutput { return v.AutoIslAuthEncrypt }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerLldpProfileOutput) AutoIslAuthIdentity() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerLldpProfile) pulumi.StringOutput { return v.AutoIslAuthIdentity }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerLldpProfileOutput) AutoIslAuthMacsecProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerLldpProfile) pulumi.StringOutput { return v.AutoIslAuthMacsecProfile }).(pulumi.StringOutput)
+}
+
+func (o SwitchControllerLldpProfileOutput) AutoIslAuthReauth() pulumi.IntOutput {
+	return o.ApplyT(func(v *SwitchControllerLldpProfile) pulumi.IntOutput { return v.AutoIslAuthReauth }).(pulumi.IntOutput)
+}
+
+func (o SwitchControllerLldpProfileOutput) AutoIslAuthUser() pulumi.StringOutput {
+	return o.ApplyT(func(v *SwitchControllerLldpProfile) pulumi.StringOutput { return v.AutoIslAuthUser }).(pulumi.StringOutput)
 }
 
 func (o SwitchControllerLldpProfileOutput) AutoIslHelloTimer() pulumi.IntOutput {
@@ -304,6 +383,12 @@ func (o SwitchControllerLldpProfileArrayOutput) ToSwitchControllerLldpProfileArr
 	return o
 }
 
+func (o SwitchControllerLldpProfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerLldpProfile] {
+	return pulumix.Output[[]*SwitchControllerLldpProfile]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SwitchControllerLldpProfileArrayOutput) Index(i pulumi.IntInput) SwitchControllerLldpProfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerLldpProfile {
 		return vs[0].([]*SwitchControllerLldpProfile)[vs[1].(int)]
@@ -322,6 +407,12 @@ func (o SwitchControllerLldpProfileMapOutput) ToSwitchControllerLldpProfileMapOu
 
 func (o SwitchControllerLldpProfileMapOutput) ToSwitchControllerLldpProfileMapOutputWithContext(ctx context.Context) SwitchControllerLldpProfileMapOutput {
 	return o
+}
+
+func (o SwitchControllerLldpProfileMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerLldpProfile] {
+	return pulumix.Output[map[string]*SwitchControllerLldpProfile]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerLldpProfileMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerLldpProfileOutput {

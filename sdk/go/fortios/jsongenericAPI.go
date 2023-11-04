@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type JSONGenericAPI struct {
@@ -125,6 +126,12 @@ func (i *JSONGenericAPI) ToJSONGenericAPIOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(JSONGenericAPIOutput)
 }
 
+func (i *JSONGenericAPI) ToOutput(ctx context.Context) pulumix.Output[*JSONGenericAPI] {
+	return pulumix.Output[*JSONGenericAPI]{
+		OutputState: i.ToJSONGenericAPIOutputWithContext(ctx).OutputState,
+	}
+}
+
 // JSONGenericAPIArrayInput is an input type that accepts JSONGenericAPIArray and JSONGenericAPIArrayOutput values.
 // You can construct a concrete instance of `JSONGenericAPIArrayInput` via:
 //
@@ -148,6 +155,12 @@ func (i JSONGenericAPIArray) ToJSONGenericAPIArrayOutput() JSONGenericAPIArrayOu
 
 func (i JSONGenericAPIArray) ToJSONGenericAPIArrayOutputWithContext(ctx context.Context) JSONGenericAPIArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(JSONGenericAPIArrayOutput)
+}
+
+func (i JSONGenericAPIArray) ToOutput(ctx context.Context) pulumix.Output[[]*JSONGenericAPI] {
+	return pulumix.Output[[]*JSONGenericAPI]{
+		OutputState: i.ToJSONGenericAPIArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // JSONGenericAPIMapInput is an input type that accepts JSONGenericAPIMap and JSONGenericAPIMapOutput values.
@@ -175,6 +188,12 @@ func (i JSONGenericAPIMap) ToJSONGenericAPIMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(JSONGenericAPIMapOutput)
 }
 
+func (i JSONGenericAPIMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*JSONGenericAPI] {
+	return pulumix.Output[map[string]*JSONGenericAPI]{
+		OutputState: i.ToJSONGenericAPIMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type JSONGenericAPIOutput struct{ *pulumi.OutputState }
 
 func (JSONGenericAPIOutput) ElementType() reflect.Type {
@@ -187,6 +206,12 @@ func (o JSONGenericAPIOutput) ToJSONGenericAPIOutput() JSONGenericAPIOutput {
 
 func (o JSONGenericAPIOutput) ToJSONGenericAPIOutputWithContext(ctx context.Context) JSONGenericAPIOutput {
 	return o
+}
+
+func (o JSONGenericAPIOutput) ToOutput(ctx context.Context) pulumix.Output[*JSONGenericAPI] {
+	return pulumix.Output[*JSONGenericAPI]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o JSONGenericAPIOutput) ForceRecreate() pulumi.StringPtrOutput {
@@ -231,6 +256,12 @@ func (o JSONGenericAPIArrayOutput) ToJSONGenericAPIArrayOutputWithContext(ctx co
 	return o
 }
 
+func (o JSONGenericAPIArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*JSONGenericAPI] {
+	return pulumix.Output[[]*JSONGenericAPI]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o JSONGenericAPIArrayOutput) Index(i pulumi.IntInput) JSONGenericAPIOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *JSONGenericAPI {
 		return vs[0].([]*JSONGenericAPI)[vs[1].(int)]
@@ -249,6 +280,12 @@ func (o JSONGenericAPIMapOutput) ToJSONGenericAPIMapOutput() JSONGenericAPIMapOu
 
 func (o JSONGenericAPIMapOutput) ToJSONGenericAPIMapOutputWithContext(ctx context.Context) JSONGenericAPIMapOutput {
 	return o
+}
+
+func (o JSONGenericAPIMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*JSONGenericAPI] {
+	return pulumix.Output[map[string]*JSONGenericAPI]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o JSONGenericAPIMapOutput) MapIndex(k pulumi.StringInput) JSONGenericAPIOutput {

@@ -40,6 +40,10 @@ export class UserPeer extends pulumi.CustomResource {
     public readonly ldapServer!: pulumi.Output<string>;
     public readonly ldapUsername!: pulumi.Output<string>;
     public readonly mandatoryCaVerify!: pulumi.Output<string>;
+    public readonly mfaMode!: pulumi.Output<string>;
+    public readonly mfaPassword!: pulumi.Output<string | undefined>;
+    public readonly mfaServer!: pulumi.Output<string>;
+    public readonly mfaUsername!: pulumi.Output<string>;
     public readonly name!: pulumi.Output<string>;
     public readonly ocspOverrideServer!: pulumi.Output<string>;
     public readonly passwd!: pulumi.Output<string | undefined>;
@@ -68,6 +72,10 @@ export class UserPeer extends pulumi.CustomResource {
             resourceInputs["ldapServer"] = state ? state.ldapServer : undefined;
             resourceInputs["ldapUsername"] = state ? state.ldapUsername : undefined;
             resourceInputs["mandatoryCaVerify"] = state ? state.mandatoryCaVerify : undefined;
+            resourceInputs["mfaMode"] = state ? state.mfaMode : undefined;
+            resourceInputs["mfaPassword"] = state ? state.mfaPassword : undefined;
+            resourceInputs["mfaServer"] = state ? state.mfaServer : undefined;
+            resourceInputs["mfaUsername"] = state ? state.mfaUsername : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["ocspOverrideServer"] = state ? state.ocspOverrideServer : undefined;
             resourceInputs["passwd"] = state ? state.passwd : undefined;
@@ -84,6 +92,10 @@ export class UserPeer extends pulumi.CustomResource {
             resourceInputs["ldapServer"] = args ? args.ldapServer : undefined;
             resourceInputs["ldapUsername"] = args ? args.ldapUsername : undefined;
             resourceInputs["mandatoryCaVerify"] = args ? args.mandatoryCaVerify : undefined;
+            resourceInputs["mfaMode"] = args ? args.mfaMode : undefined;
+            resourceInputs["mfaPassword"] = args ? args.mfaPassword : undefined;
+            resourceInputs["mfaServer"] = args ? args.mfaServer : undefined;
+            resourceInputs["mfaUsername"] = args ? args.mfaUsername : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["ocspOverrideServer"] = args ? args.ocspOverrideServer : undefined;
             resourceInputs["passwd"] = args?.passwd ? pulumi.secret(args.passwd) : undefined;
@@ -110,6 +122,10 @@ export interface UserPeerState {
     ldapServer?: pulumi.Input<string>;
     ldapUsername?: pulumi.Input<string>;
     mandatoryCaVerify?: pulumi.Input<string>;
+    mfaMode?: pulumi.Input<string>;
+    mfaPassword?: pulumi.Input<string>;
+    mfaServer?: pulumi.Input<string>;
+    mfaUsername?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     ocspOverrideServer?: pulumi.Input<string>;
     passwd?: pulumi.Input<string>;
@@ -130,6 +146,10 @@ export interface UserPeerArgs {
     ldapServer?: pulumi.Input<string>;
     ldapUsername?: pulumi.Input<string>;
     mandatoryCaVerify?: pulumi.Input<string>;
+    mfaMode?: pulumi.Input<string>;
+    mfaPassword?: pulumi.Input<string>;
+    mfaServer?: pulumi.Input<string>;
+    mfaUsername?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
     ocspOverrideServer?: pulumi.Input<string>;
     passwd?: pulumi.Input<string>;

@@ -79,8 +79,10 @@ export interface GetRouterbgpNeighborResult {
     readonly ebgpMultihopTtl: number;
     readonly filterListIn: string;
     readonly filterListIn6: string;
+    readonly filterListInVpnv4: string;
     readonly filterListOut: string;
     readonly filterListOut6: string;
+    readonly filterListOutVpnv4: string;
     readonly holdtimeTimer: number;
     /**
      * The provider-assigned unique ID for this managed resource.

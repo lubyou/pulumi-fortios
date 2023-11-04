@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemAutoupdateSchedule(ctx *pulumi.Context, args *LookupSystemAutoupdateScheduleArgs, opts ...pulumi.InvokeOption) (*LookupSystemAutoupdateScheduleResult, error) {
@@ -72,6 +73,12 @@ func (o LookupSystemAutoupdateScheduleResultOutput) ToLookupSystemAutoupdateSche
 
 func (o LookupSystemAutoupdateScheduleResultOutput) ToLookupSystemAutoupdateScheduleResultOutputWithContext(ctx context.Context) LookupSystemAutoupdateScheduleResultOutput {
 	return o
+}
+
+func (o LookupSystemAutoupdateScheduleResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemAutoupdateScheduleResult] {
+	return pulumix.Output[LookupSystemAutoupdateScheduleResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupSystemAutoupdateScheduleResultOutput) Day() pulumi.StringOutput {

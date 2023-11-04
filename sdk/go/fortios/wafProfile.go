@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WafProfile struct {
@@ -145,6 +146,12 @@ func (i *WafProfile) ToWafProfileOutputWithContext(ctx context.Context) WafProfi
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileOutput)
 }
 
+func (i *WafProfile) ToOutput(ctx context.Context) pulumix.Output[*WafProfile] {
+	return pulumix.Output[*WafProfile]{
+		OutputState: i.ToWafProfileOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WafProfileArrayInput is an input type that accepts WafProfileArray and WafProfileArrayOutput values.
 // You can construct a concrete instance of `WafProfileArrayInput` via:
 //
@@ -168,6 +175,12 @@ func (i WafProfileArray) ToWafProfileArrayOutput() WafProfileArrayOutput {
 
 func (i WafProfileArray) ToWafProfileArrayOutputWithContext(ctx context.Context) WafProfileArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileArrayOutput)
+}
+
+func (i WafProfileArray) ToOutput(ctx context.Context) pulumix.Output[[]*WafProfile] {
+	return pulumix.Output[[]*WafProfile]{
+		OutputState: i.ToWafProfileArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // WafProfileMapInput is an input type that accepts WafProfileMap and WafProfileMapOutput values.
@@ -195,6 +208,12 @@ func (i WafProfileMap) ToWafProfileMapOutputWithContext(ctx context.Context) Waf
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileMapOutput)
 }
 
+func (i WafProfileMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WafProfile] {
+	return pulumix.Output[map[string]*WafProfile]{
+		OutputState: i.ToWafProfileMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WafProfileOutput struct{ *pulumi.OutputState }
 
 func (WafProfileOutput) ElementType() reflect.Type {
@@ -207,6 +226,12 @@ func (o WafProfileOutput) ToWafProfileOutput() WafProfileOutput {
 
 func (o WafProfileOutput) ToWafProfileOutputWithContext(ctx context.Context) WafProfileOutput {
 	return o
+}
+
+func (o WafProfileOutput) ToOutput(ctx context.Context) pulumix.Output[*WafProfile] {
+	return pulumix.Output[*WafProfile]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileOutput) AddressList() WafProfileAddressListOutput {
@@ -271,6 +296,12 @@ func (o WafProfileArrayOutput) ToWafProfileArrayOutputWithContext(ctx context.Co
 	return o
 }
 
+func (o WafProfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WafProfile] {
+	return pulumix.Output[[]*WafProfile]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o WafProfileArrayOutput) Index(i pulumi.IntInput) WafProfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WafProfile {
 		return vs[0].([]*WafProfile)[vs[1].(int)]
@@ -289,6 +320,12 @@ func (o WafProfileMapOutput) ToWafProfileMapOutput() WafProfileMapOutput {
 
 func (o WafProfileMapOutput) ToWafProfileMapOutputWithContext(ctx context.Context) WafProfileMapOutput {
 	return o
+}
+
+func (o WafProfileMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WafProfile] {
+	return pulumix.Output[map[string]*WafProfile]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WafProfileMapOutput) MapIndex(k pulumi.StringInput) WafProfileOutput {

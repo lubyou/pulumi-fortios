@@ -27,6 +27,8 @@ export interface GetSystemDnsServerArgs {
 export interface GetSystemDnsServerResult {
     readonly dnsfilterProfile: string;
     readonly doh: string;
+    readonly doh3: string;
+    readonly doq: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */

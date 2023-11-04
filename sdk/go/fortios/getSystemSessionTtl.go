@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemSessionTtl(ctx *pulumi.Context, args *LookupSystemSessionTtlArgs, opts ...pulumi.InvokeOption) (*LookupSystemSessionTtlResult, error) {
@@ -70,6 +71,12 @@ func (o LookupSystemSessionTtlResultOutput) ToLookupSystemSessionTtlResultOutput
 
 func (o LookupSystemSessionTtlResultOutput) ToLookupSystemSessionTtlResultOutputWithContext(ctx context.Context) LookupSystemSessionTtlResultOutput {
 	return o
+}
+
+func (o LookupSystemSessionTtlResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemSessionTtlResult] {
+	return pulumix.Output[LookupSystemSessionTtlResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupSystemSessionTtlResultOutput) Default() pulumi.StringOutput {

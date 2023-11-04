@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type VpnPptp struct {
@@ -124,6 +125,12 @@ func (i *VpnPptp) ToVpnPptpOutputWithContext(ctx context.Context) VpnPptpOutput 
 	return pulumi.ToOutputWithContext(ctx, i).(VpnPptpOutput)
 }
 
+func (i *VpnPptp) ToOutput(ctx context.Context) pulumix.Output[*VpnPptp] {
+	return pulumix.Output[*VpnPptp]{
+		OutputState: i.ToVpnPptpOutputWithContext(ctx).OutputState,
+	}
+}
+
 // VpnPptpArrayInput is an input type that accepts VpnPptpArray and VpnPptpArrayOutput values.
 // You can construct a concrete instance of `VpnPptpArrayInput` via:
 //
@@ -147,6 +154,12 @@ func (i VpnPptpArray) ToVpnPptpArrayOutput() VpnPptpArrayOutput {
 
 func (i VpnPptpArray) ToVpnPptpArrayOutputWithContext(ctx context.Context) VpnPptpArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnPptpArrayOutput)
+}
+
+func (i VpnPptpArray) ToOutput(ctx context.Context) pulumix.Output[[]*VpnPptp] {
+	return pulumix.Output[[]*VpnPptp]{
+		OutputState: i.ToVpnPptpArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // VpnPptpMapInput is an input type that accepts VpnPptpMap and VpnPptpMapOutput values.
@@ -174,6 +187,12 @@ func (i VpnPptpMap) ToVpnPptpMapOutputWithContext(ctx context.Context) VpnPptpMa
 	return pulumi.ToOutputWithContext(ctx, i).(VpnPptpMapOutput)
 }
 
+func (i VpnPptpMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnPptp] {
+	return pulumix.Output[map[string]*VpnPptp]{
+		OutputState: i.ToVpnPptpMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type VpnPptpOutput struct{ *pulumi.OutputState }
 
 func (VpnPptpOutput) ElementType() reflect.Type {
@@ -186,6 +205,12 @@ func (o VpnPptpOutput) ToVpnPptpOutput() VpnPptpOutput {
 
 func (o VpnPptpOutput) ToVpnPptpOutputWithContext(ctx context.Context) VpnPptpOutput {
 	return o
+}
+
+func (o VpnPptpOutput) ToOutput(ctx context.Context) pulumix.Output[*VpnPptp] {
+	return pulumix.Output[*VpnPptp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnPptpOutput) Eip() pulumi.StringOutput {
@@ -230,6 +255,12 @@ func (o VpnPptpArrayOutput) ToVpnPptpArrayOutputWithContext(ctx context.Context)
 	return o
 }
 
+func (o VpnPptpArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*VpnPptp] {
+	return pulumix.Output[[]*VpnPptp]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o VpnPptpArrayOutput) Index(i pulumi.IntInput) VpnPptpOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnPptp {
 		return vs[0].([]*VpnPptp)[vs[1].(int)]
@@ -248,6 +279,12 @@ func (o VpnPptpMapOutput) ToVpnPptpMapOutput() VpnPptpMapOutput {
 
 func (o VpnPptpMapOutput) ToVpnPptpMapOutputWithContext(ctx context.Context) VpnPptpMapOutput {
 	return o
+}
+
+func (o VpnPptpMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*VpnPptp] {
+	return pulumix.Output[map[string]*VpnPptp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o VpnPptpMapOutput) MapIndex(k pulumi.StringInput) VpnPptpOutput {

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetFirewallMulticastAddressList(ctx *pulumi.Context, args *GetFirewallMulticastAddressListArgs, opts ...pulumi.InvokeOption) (*GetFirewallMulticastAddressListResult, error) {
@@ -72,6 +73,12 @@ func (o GetFirewallMulticastAddressListResultOutput) ToGetFirewallMulticastAddre
 
 func (o GetFirewallMulticastAddressListResultOutput) ToGetFirewallMulticastAddressListResultOutputWithContext(ctx context.Context) GetFirewallMulticastAddressListResultOutput {
 	return o
+}
+
+func (o GetFirewallMulticastAddressListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetFirewallMulticastAddressListResult] {
+	return pulumix.Output[GetFirewallMulticastAddressListResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetFirewallMulticastAddressListResultOutput) Filter() pulumi.StringPtrOutput {

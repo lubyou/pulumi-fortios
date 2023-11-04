@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallInternetServiceDefinition struct {
@@ -110,6 +111,12 @@ func (i *FirewallInternetServiceDefinition) ToFirewallInternetServiceDefinitionO
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceDefinitionOutput)
 }
 
+func (i *FirewallInternetServiceDefinition) ToOutput(ctx context.Context) pulumix.Output[*FirewallInternetServiceDefinition] {
+	return pulumix.Output[*FirewallInternetServiceDefinition]{
+		OutputState: i.ToFirewallInternetServiceDefinitionOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallInternetServiceDefinitionArrayInput is an input type that accepts FirewallInternetServiceDefinitionArray and FirewallInternetServiceDefinitionArrayOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceDefinitionArrayInput` via:
 //
@@ -133,6 +140,12 @@ func (i FirewallInternetServiceDefinitionArray) ToFirewallInternetServiceDefinit
 
 func (i FirewallInternetServiceDefinitionArray) ToFirewallInternetServiceDefinitionArrayOutputWithContext(ctx context.Context) FirewallInternetServiceDefinitionArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceDefinitionArrayOutput)
+}
+
+func (i FirewallInternetServiceDefinitionArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallInternetServiceDefinition] {
+	return pulumix.Output[[]*FirewallInternetServiceDefinition]{
+		OutputState: i.ToFirewallInternetServiceDefinitionArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallInternetServiceDefinitionMapInput is an input type that accepts FirewallInternetServiceDefinitionMap and FirewallInternetServiceDefinitionMapOutput values.
@@ -160,6 +173,12 @@ func (i FirewallInternetServiceDefinitionMap) ToFirewallInternetServiceDefinitio
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceDefinitionMapOutput)
 }
 
+func (i FirewallInternetServiceDefinitionMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallInternetServiceDefinition] {
+	return pulumix.Output[map[string]*FirewallInternetServiceDefinition]{
+		OutputState: i.ToFirewallInternetServiceDefinitionMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallInternetServiceDefinitionOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceDefinitionOutput) ElementType() reflect.Type {
@@ -172,6 +191,12 @@ func (o FirewallInternetServiceDefinitionOutput) ToFirewallInternetServiceDefini
 
 func (o FirewallInternetServiceDefinitionOutput) ToFirewallInternetServiceDefinitionOutputWithContext(ctx context.Context) FirewallInternetServiceDefinitionOutput {
 	return o
+}
+
+func (o FirewallInternetServiceDefinitionOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallInternetServiceDefinition] {
+	return pulumix.Output[*FirewallInternetServiceDefinition]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallInternetServiceDefinitionOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -210,6 +235,12 @@ func (o FirewallInternetServiceDefinitionArrayOutput) ToFirewallInternetServiceD
 	return o
 }
 
+func (o FirewallInternetServiceDefinitionArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallInternetServiceDefinition] {
+	return pulumix.Output[[]*FirewallInternetServiceDefinition]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallInternetServiceDefinitionArrayOutput) Index(i pulumi.IntInput) FirewallInternetServiceDefinitionOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallInternetServiceDefinition {
 		return vs[0].([]*FirewallInternetServiceDefinition)[vs[1].(int)]
@@ -228,6 +259,12 @@ func (o FirewallInternetServiceDefinitionMapOutput) ToFirewallInternetServiceDef
 
 func (o FirewallInternetServiceDefinitionMapOutput) ToFirewallInternetServiceDefinitionMapOutputWithContext(ctx context.Context) FirewallInternetServiceDefinitionMapOutput {
 	return o
+}
+
+func (o FirewallInternetServiceDefinitionMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallInternetServiceDefinition] {
+	return pulumix.Output[map[string]*FirewallInternetServiceDefinition]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallInternetServiceDefinitionMapOutput) MapIndex(k pulumi.StringInput) FirewallInternetServiceDefinitionOutput {

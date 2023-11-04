@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WirelessControllerWidsProfile struct {
@@ -26,6 +27,8 @@ type WirelessControllerWidsProfile struct {
 	ApBgscanReportIntv       pulumi.IntOutput                                                `pulumi:"apBgscanReportIntv"`
 	ApFgscanReportIntv       pulumi.IntOutput                                                `pulumi:"apFgscanReportIntv"`
 	ApScan                   pulumi.StringOutput                                             `pulumi:"apScan"`
+	ApScanChannelList2g5gs   WirelessControllerWidsProfileApScanChannelList2g5gArrayOutput   `pulumi:"apScanChannelList2g5gs"`
+	ApScanChannelList6gs     WirelessControllerWidsProfileApScanChannelList6gArrayOutput     `pulumi:"apScanChannelList6gs"`
 	ApScanPassive            pulumi.StringOutput                                             `pulumi:"apScanPassive"`
 	ApScanThreshold          pulumi.StringOutput                                             `pulumi:"apScanThreshold"`
 	AsleapAttack             pulumi.StringOutput                                             `pulumi:"asleapAttack"`
@@ -112,6 +115,8 @@ type wirelessControllerWidsProfileState struct {
 	ApBgscanReportIntv       *int                                                   `pulumi:"apBgscanReportIntv"`
 	ApFgscanReportIntv       *int                                                   `pulumi:"apFgscanReportIntv"`
 	ApScan                   *string                                                `pulumi:"apScan"`
+	ApScanChannelList2g5gs   []WirelessControllerWidsProfileApScanChannelList2g5g   `pulumi:"apScanChannelList2g5gs"`
+	ApScanChannelList6gs     []WirelessControllerWidsProfileApScanChannelList6g     `pulumi:"apScanChannelList6gs"`
 	ApScanPassive            *string                                                `pulumi:"apScanPassive"`
 	ApScanThreshold          *string                                                `pulumi:"apScanThreshold"`
 	AsleapAttack             *string                                                `pulumi:"asleapAttack"`
@@ -169,6 +174,8 @@ type WirelessControllerWidsProfileState struct {
 	ApBgscanReportIntv       pulumi.IntPtrInput
 	ApFgscanReportIntv       pulumi.IntPtrInput
 	ApScan                   pulumi.StringPtrInput
+	ApScanChannelList2g5gs   WirelessControllerWidsProfileApScanChannelList2g5gArrayInput
+	ApScanChannelList6gs     WirelessControllerWidsProfileApScanChannelList6gArrayInput
 	ApScanPassive            pulumi.StringPtrInput
 	ApScanThreshold          pulumi.StringPtrInput
 	AsleapAttack             pulumi.StringPtrInput
@@ -230,6 +237,8 @@ type wirelessControllerWidsProfileArgs struct {
 	ApBgscanReportIntv       *int                                                   `pulumi:"apBgscanReportIntv"`
 	ApFgscanReportIntv       *int                                                   `pulumi:"apFgscanReportIntv"`
 	ApScan                   *string                                                `pulumi:"apScan"`
+	ApScanChannelList2g5gs   []WirelessControllerWidsProfileApScanChannelList2g5g   `pulumi:"apScanChannelList2g5gs"`
+	ApScanChannelList6gs     []WirelessControllerWidsProfileApScanChannelList6g     `pulumi:"apScanChannelList6gs"`
 	ApScanPassive            *string                                                `pulumi:"apScanPassive"`
 	ApScanThreshold          *string                                                `pulumi:"apScanThreshold"`
 	AsleapAttack             *string                                                `pulumi:"asleapAttack"`
@@ -288,6 +297,8 @@ type WirelessControllerWidsProfileArgs struct {
 	ApBgscanReportIntv       pulumi.IntPtrInput
 	ApFgscanReportIntv       pulumi.IntPtrInput
 	ApScan                   pulumi.StringPtrInput
+	ApScanChannelList2g5gs   WirelessControllerWidsProfileApScanChannelList2g5gArrayInput
+	ApScanChannelList6gs     WirelessControllerWidsProfileApScanChannelList6gArrayInput
 	ApScanPassive            pulumi.StringPtrInput
 	ApScanThreshold          pulumi.StringPtrInput
 	AsleapAttack             pulumi.StringPtrInput
@@ -355,6 +366,12 @@ func (i *WirelessControllerWidsProfile) ToWirelessControllerWidsProfileOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWidsProfileOutput)
 }
 
+func (i *WirelessControllerWidsProfile) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerWidsProfile] {
+	return pulumix.Output[*WirelessControllerWidsProfile]{
+		OutputState: i.ToWirelessControllerWidsProfileOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerWidsProfileArrayInput is an input type that accepts WirelessControllerWidsProfileArray and WirelessControllerWidsProfileArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerWidsProfileArrayInput` via:
 //
@@ -378,6 +395,12 @@ func (i WirelessControllerWidsProfileArray) ToWirelessControllerWidsProfileArray
 
 func (i WirelessControllerWidsProfileArray) ToWirelessControllerWidsProfileArrayOutputWithContext(ctx context.Context) WirelessControllerWidsProfileArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWidsProfileArrayOutput)
+}
+
+func (i WirelessControllerWidsProfileArray) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerWidsProfile] {
+	return pulumix.Output[[]*WirelessControllerWidsProfile]{
+		OutputState: i.ToWirelessControllerWidsProfileArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // WirelessControllerWidsProfileMapInput is an input type that accepts WirelessControllerWidsProfileMap and WirelessControllerWidsProfileMapOutput values.
@@ -405,6 +428,12 @@ func (i WirelessControllerWidsProfileMap) ToWirelessControllerWidsProfileMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWidsProfileMapOutput)
 }
 
+func (i WirelessControllerWidsProfileMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerWidsProfile] {
+	return pulumix.Output[map[string]*WirelessControllerWidsProfile]{
+		OutputState: i.ToWirelessControllerWidsProfileMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWidsProfileOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWidsProfileOutput) ElementType() reflect.Type {
@@ -417,6 +446,12 @@ func (o WirelessControllerWidsProfileOutput) ToWirelessControllerWidsProfileOutp
 
 func (o WirelessControllerWidsProfileOutput) ToWirelessControllerWidsProfileOutputWithContext(ctx context.Context) WirelessControllerWidsProfileOutput {
 	return o
+}
+
+func (o WirelessControllerWidsProfileOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerWidsProfile] {
+	return pulumix.Output[*WirelessControllerWidsProfile]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWidsProfileOutput) ApAutoSuppress() pulumi.StringOutput {
@@ -467,6 +502,18 @@ func (o WirelessControllerWidsProfileOutput) ApFgscanReportIntv() pulumi.IntOutp
 
 func (o WirelessControllerWidsProfileOutput) ApScan() pulumi.StringOutput {
 	return o.ApplyT(func(v *WirelessControllerWidsProfile) pulumi.StringOutput { return v.ApScan }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) ApScanChannelList2g5gs() WirelessControllerWidsProfileApScanChannelList2g5gArrayOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) WirelessControllerWidsProfileApScanChannelList2g5gArrayOutput {
+		return v.ApScanChannelList2g5gs
+	}).(WirelessControllerWidsProfileApScanChannelList2g5gArrayOutput)
+}
+
+func (o WirelessControllerWidsProfileOutput) ApScanChannelList6gs() WirelessControllerWidsProfileApScanChannelList6gArrayOutput {
+	return o.ApplyT(func(v *WirelessControllerWidsProfile) WirelessControllerWidsProfileApScanChannelList6gArrayOutput {
+		return v.ApScanChannelList6gs
+	}).(WirelessControllerWidsProfileApScanChannelList6gArrayOutput)
 }
 
 func (o WirelessControllerWidsProfileOutput) ApScanPassive() pulumi.StringOutput {
@@ -651,6 +698,12 @@ func (o WirelessControllerWidsProfileArrayOutput) ToWirelessControllerWidsProfil
 	return o
 }
 
+func (o WirelessControllerWidsProfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerWidsProfile] {
+	return pulumix.Output[[]*WirelessControllerWidsProfile]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o WirelessControllerWidsProfileArrayOutput) Index(i pulumi.IntInput) WirelessControllerWidsProfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerWidsProfile {
 		return vs[0].([]*WirelessControllerWidsProfile)[vs[1].(int)]
@@ -669,6 +722,12 @@ func (o WirelessControllerWidsProfileMapOutput) ToWirelessControllerWidsProfileM
 
 func (o WirelessControllerWidsProfileMapOutput) ToWirelessControllerWidsProfileMapOutputWithContext(ctx context.Context) WirelessControllerWidsProfileMapOutput {
 	return o
+}
+
+func (o WirelessControllerWidsProfileMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerWidsProfile] {
+	return pulumix.Output[map[string]*WirelessControllerWidsProfile]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWidsProfileMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerWidsProfileOutput {

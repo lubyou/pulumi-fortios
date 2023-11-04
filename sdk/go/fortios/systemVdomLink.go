@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemVdomLink struct {
@@ -105,6 +106,12 @@ func (i *SystemVdomLink) ToSystemVdomLinkOutputWithContext(ctx context.Context) 
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomLinkOutput)
 }
 
+func (i *SystemVdomLink) ToOutput(ctx context.Context) pulumix.Output[*SystemVdomLink] {
+	return pulumix.Output[*SystemVdomLink]{
+		OutputState: i.ToSystemVdomLinkOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemVdomLinkArrayInput is an input type that accepts SystemVdomLinkArray and SystemVdomLinkArrayOutput values.
 // You can construct a concrete instance of `SystemVdomLinkArrayInput` via:
 //
@@ -128,6 +135,12 @@ func (i SystemVdomLinkArray) ToSystemVdomLinkArrayOutput() SystemVdomLinkArrayOu
 
 func (i SystemVdomLinkArray) ToSystemVdomLinkArrayOutputWithContext(ctx context.Context) SystemVdomLinkArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomLinkArrayOutput)
+}
+
+func (i SystemVdomLinkArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemVdomLink] {
+	return pulumix.Output[[]*SystemVdomLink]{
+		OutputState: i.ToSystemVdomLinkArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemVdomLinkMapInput is an input type that accepts SystemVdomLinkMap and SystemVdomLinkMapOutput values.
@@ -155,6 +168,12 @@ func (i SystemVdomLinkMap) ToSystemVdomLinkMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomLinkMapOutput)
 }
 
+func (i SystemVdomLinkMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemVdomLink] {
+	return pulumix.Output[map[string]*SystemVdomLink]{
+		OutputState: i.ToSystemVdomLinkMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemVdomLinkOutput struct{ *pulumi.OutputState }
 
 func (SystemVdomLinkOutput) ElementType() reflect.Type {
@@ -167,6 +186,12 @@ func (o SystemVdomLinkOutput) ToSystemVdomLinkOutput() SystemVdomLinkOutput {
 
 func (o SystemVdomLinkOutput) ToSystemVdomLinkOutputWithContext(ctx context.Context) SystemVdomLinkOutput {
 	return o
+}
+
+func (o SystemVdomLinkOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemVdomLink] {
+	return pulumix.Output[*SystemVdomLink]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemVdomLinkOutput) Name() pulumi.StringOutput {
@@ -199,6 +224,12 @@ func (o SystemVdomLinkArrayOutput) ToSystemVdomLinkArrayOutputWithContext(ctx co
 	return o
 }
 
+func (o SystemVdomLinkArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemVdomLink] {
+	return pulumix.Output[[]*SystemVdomLink]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemVdomLinkArrayOutput) Index(i pulumi.IntInput) SystemVdomLinkOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemVdomLink {
 		return vs[0].([]*SystemVdomLink)[vs[1].(int)]
@@ -217,6 +248,12 @@ func (o SystemVdomLinkMapOutput) ToSystemVdomLinkMapOutput() SystemVdomLinkMapOu
 
 func (o SystemVdomLinkMapOutput) ToSystemVdomLinkMapOutputWithContext(ctx context.Context) SystemVdomLinkMapOutput {
 	return o
+}
+
+func (o SystemVdomLinkMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemVdomLink] {
+	return pulumix.Output[map[string]*SystemVdomLink]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemVdomLinkMapOutput) MapIndex(k pulumi.StringInput) SystemVdomLinkOutput {

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupFirewallPolicy(ctx *pulumi.Context, args *LookupFirewallPolicyArgs, opts ...pulumi.InvokeOption) (*LookupFirewallPolicyResult, error) {
@@ -43,6 +44,7 @@ type LookupFirewallPolicyResult struct {
 	BlockNotification      string                            `pulumi:"blockNotification"`
 	CaptivePortalExempt    string                            `pulumi:"captivePortalExempt"`
 	CapturePacket          string                            `pulumi:"capturePacket"`
+	CasbProfile            string                            `pulumi:"casbProfile"`
 	CifsProfile            string                            `pulumi:"cifsProfile"`
 	Comments               string                            `pulumi:"comments"`
 	CustomLogFields        []GetFirewallPolicyCustomLogField `pulumi:"customLogFields"`
@@ -198,6 +200,7 @@ type LookupFirewallPolicyResult struct {
 	Uuid                            string                                            `pulumi:"uuid"`
 	Vdomparam                       *string                                           `pulumi:"vdomparam"`
 	VideofilterProfile              string                                            `pulumi:"videofilterProfile"`
+	VirtualPatchProfile             string                                            `pulumi:"virtualPatchProfile"`
 	VlanCosFwd                      int                                               `pulumi:"vlanCosFwd"`
 	VlanCosRev                      int                                               `pulumi:"vlanCosRev"`
 	VlanFilter                      string                                            `pulumi:"vlanFilter"`
@@ -263,6 +266,12 @@ func (o LookupFirewallPolicyResultOutput) ToLookupFirewallPolicyResultOutputWith
 	return o
 }
 
+func (o LookupFirewallPolicyResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupFirewallPolicyResult] {
+	return pulumix.Output[LookupFirewallPolicyResult]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LookupFirewallPolicyResultOutput) Action() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallPolicyResult) string { return v.Action }).(pulumi.StringOutput)
 }
@@ -317,6 +326,10 @@ func (o LookupFirewallPolicyResultOutput) CaptivePortalExempt() pulumi.StringOut
 
 func (o LookupFirewallPolicyResultOutput) CapturePacket() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallPolicyResult) string { return v.CapturePacket }).(pulumi.StringOutput)
+}
+
+func (o LookupFirewallPolicyResultOutput) CasbProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallPolicyResult) string { return v.CasbProfile }).(pulumi.StringOutput)
 }
 
 func (o LookupFirewallPolicyResultOutput) CifsProfile() pulumi.StringOutput {
@@ -972,6 +985,10 @@ func (o LookupFirewallPolicyResultOutput) Vdomparam() pulumi.StringPtrOutput {
 
 func (o LookupFirewallPolicyResultOutput) VideofilterProfile() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFirewallPolicyResult) string { return v.VideofilterProfile }).(pulumi.StringOutput)
+}
+
+func (o LookupFirewallPolicyResultOutput) VirtualPatchProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallPolicyResult) string { return v.VirtualPatchProfile }).(pulumi.StringOutput)
 }
 
 func (o LookupFirewallPolicyResultOutput) VlanCosFwd() pulumi.IntOutput {

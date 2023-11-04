@@ -106,6 +106,7 @@ export interface GetSystemHaResult {
     readonly unicastStatus: string;
     readonly uninterruptiblePrimaryWait: number;
     readonly uninterruptibleUpgrade: string;
+    readonly upgradeMode: string;
     readonly vcluster2: string;
     readonly vclusterId: number;
     readonly vclusterStatus: string;

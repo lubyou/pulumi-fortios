@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type AntivirusSettings struct {
@@ -125,6 +126,12 @@ func (i *AntivirusSettings) ToAntivirusSettingsOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(AntivirusSettingsOutput)
 }
 
+func (i *AntivirusSettings) ToOutput(ctx context.Context) pulumix.Output[*AntivirusSettings] {
+	return pulumix.Output[*AntivirusSettings]{
+		OutputState: i.ToAntivirusSettingsOutputWithContext(ctx).OutputState,
+	}
+}
+
 // AntivirusSettingsArrayInput is an input type that accepts AntivirusSettingsArray and AntivirusSettingsArrayOutput values.
 // You can construct a concrete instance of `AntivirusSettingsArrayInput` via:
 //
@@ -148,6 +155,12 @@ func (i AntivirusSettingsArray) ToAntivirusSettingsArrayOutput() AntivirusSettin
 
 func (i AntivirusSettingsArray) ToAntivirusSettingsArrayOutputWithContext(ctx context.Context) AntivirusSettingsArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AntivirusSettingsArrayOutput)
+}
+
+func (i AntivirusSettingsArray) ToOutput(ctx context.Context) pulumix.Output[[]*AntivirusSettings] {
+	return pulumix.Output[[]*AntivirusSettings]{
+		OutputState: i.ToAntivirusSettingsArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // AntivirusSettingsMapInput is an input type that accepts AntivirusSettingsMap and AntivirusSettingsMapOutput values.
@@ -175,6 +188,12 @@ func (i AntivirusSettingsMap) ToAntivirusSettingsMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(AntivirusSettingsMapOutput)
 }
 
+func (i AntivirusSettingsMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AntivirusSettings] {
+	return pulumix.Output[map[string]*AntivirusSettings]{
+		OutputState: i.ToAntivirusSettingsMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AntivirusSettingsOutput struct{ *pulumi.OutputState }
 
 func (AntivirusSettingsOutput) ElementType() reflect.Type {
@@ -187,6 +206,12 @@ func (o AntivirusSettingsOutput) ToAntivirusSettingsOutput() AntivirusSettingsOu
 
 func (o AntivirusSettingsOutput) ToAntivirusSettingsOutputWithContext(ctx context.Context) AntivirusSettingsOutput {
 	return o
+}
+
+func (o AntivirusSettingsOutput) ToOutput(ctx context.Context) pulumix.Output[*AntivirusSettings] {
+	return pulumix.Output[*AntivirusSettings]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AntivirusSettingsOutput) CacheCleanResult() pulumi.StringOutput {
@@ -235,6 +260,12 @@ func (o AntivirusSettingsArrayOutput) ToAntivirusSettingsArrayOutputWithContext(
 	return o
 }
 
+func (o AntivirusSettingsArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AntivirusSettings] {
+	return pulumix.Output[[]*AntivirusSettings]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o AntivirusSettingsArrayOutput) Index(i pulumi.IntInput) AntivirusSettingsOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AntivirusSettings {
 		return vs[0].([]*AntivirusSettings)[vs[1].(int)]
@@ -253,6 +284,12 @@ func (o AntivirusSettingsMapOutput) ToAntivirusSettingsMapOutput() AntivirusSett
 
 func (o AntivirusSettingsMapOutput) ToAntivirusSettingsMapOutputWithContext(ctx context.Context) AntivirusSettingsMapOutput {
 	return o
+}
+
+func (o AntivirusSettingsMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AntivirusSettings] {
+	return pulumix.Output[map[string]*AntivirusSettings]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AntivirusSettingsMapOutput) MapIndex(k pulumi.StringInput) AntivirusSettingsOutput {

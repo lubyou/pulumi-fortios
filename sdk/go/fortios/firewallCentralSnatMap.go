@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallCentralSnatMap struct {
@@ -222,6 +223,12 @@ func (i *FirewallCentralSnatMap) ToFirewallCentralSnatMapOutputWithContext(ctx c
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallCentralSnatMapOutput)
 }
 
+func (i *FirewallCentralSnatMap) ToOutput(ctx context.Context) pulumix.Output[*FirewallCentralSnatMap] {
+	return pulumix.Output[*FirewallCentralSnatMap]{
+		OutputState: i.ToFirewallCentralSnatMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallCentralSnatMapArrayInput is an input type that accepts FirewallCentralSnatMapArray and FirewallCentralSnatMapArrayOutput values.
 // You can construct a concrete instance of `FirewallCentralSnatMapArrayInput` via:
 //
@@ -245,6 +252,12 @@ func (i FirewallCentralSnatMapArray) ToFirewallCentralSnatMapArrayOutput() Firew
 
 func (i FirewallCentralSnatMapArray) ToFirewallCentralSnatMapArrayOutputWithContext(ctx context.Context) FirewallCentralSnatMapArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallCentralSnatMapArrayOutput)
+}
+
+func (i FirewallCentralSnatMapArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallCentralSnatMap] {
+	return pulumix.Output[[]*FirewallCentralSnatMap]{
+		OutputState: i.ToFirewallCentralSnatMapArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallCentralSnatMapMapInput is an input type that accepts FirewallCentralSnatMapMap and FirewallCentralSnatMapMapOutput values.
@@ -272,6 +285,12 @@ func (i FirewallCentralSnatMapMap) ToFirewallCentralSnatMapMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallCentralSnatMapMapOutput)
 }
 
+func (i FirewallCentralSnatMapMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallCentralSnatMap] {
+	return pulumix.Output[map[string]*FirewallCentralSnatMap]{
+		OutputState: i.ToFirewallCentralSnatMapMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallCentralSnatMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallCentralSnatMapOutput) ElementType() reflect.Type {
@@ -284,6 +303,12 @@ func (o FirewallCentralSnatMapOutput) ToFirewallCentralSnatMapOutput() FirewallC
 
 func (o FirewallCentralSnatMapOutput) ToFirewallCentralSnatMapOutputWithContext(ctx context.Context) FirewallCentralSnatMapOutput {
 	return o
+}
+
+func (o FirewallCentralSnatMapOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallCentralSnatMap] {
+	return pulumix.Output[*FirewallCentralSnatMap]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallCentralSnatMapOutput) Comments() pulumi.StringPtrOutput {
@@ -392,6 +417,12 @@ func (o FirewallCentralSnatMapArrayOutput) ToFirewallCentralSnatMapArrayOutputWi
 	return o
 }
 
+func (o FirewallCentralSnatMapArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallCentralSnatMap] {
+	return pulumix.Output[[]*FirewallCentralSnatMap]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallCentralSnatMapArrayOutput) Index(i pulumi.IntInput) FirewallCentralSnatMapOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallCentralSnatMap {
 		return vs[0].([]*FirewallCentralSnatMap)[vs[1].(int)]
@@ -410,6 +441,12 @@ func (o FirewallCentralSnatMapMapOutput) ToFirewallCentralSnatMapMapOutput() Fir
 
 func (o FirewallCentralSnatMapMapOutput) ToFirewallCentralSnatMapMapOutputWithContext(ctx context.Context) FirewallCentralSnatMapMapOutput {
 	return o
+}
+
+func (o FirewallCentralSnatMapMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallCentralSnatMap] {
+	return pulumix.Output[map[string]*FirewallCentralSnatMap]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallCentralSnatMapMapOutput) MapIndex(k pulumi.StringInput) FirewallCentralSnatMapOutput {

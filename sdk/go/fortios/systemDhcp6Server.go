@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemDhcp6Server struct {
@@ -220,6 +221,12 @@ func (i *SystemDhcp6Server) ToSystemDhcp6ServerOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDhcp6ServerOutput)
 }
 
+func (i *SystemDhcp6Server) ToOutput(ctx context.Context) pulumix.Output[*SystemDhcp6Server] {
+	return pulumix.Output[*SystemDhcp6Server]{
+		OutputState: i.ToSystemDhcp6ServerOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemDhcp6ServerArrayInput is an input type that accepts SystemDhcp6ServerArray and SystemDhcp6ServerArrayOutput values.
 // You can construct a concrete instance of `SystemDhcp6ServerArrayInput` via:
 //
@@ -243,6 +250,12 @@ func (i SystemDhcp6ServerArray) ToSystemDhcp6ServerArrayOutput() SystemDhcp6Serv
 
 func (i SystemDhcp6ServerArray) ToSystemDhcp6ServerArrayOutputWithContext(ctx context.Context) SystemDhcp6ServerArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDhcp6ServerArrayOutput)
+}
+
+func (i SystemDhcp6ServerArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemDhcp6Server] {
+	return pulumix.Output[[]*SystemDhcp6Server]{
+		OutputState: i.ToSystemDhcp6ServerArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemDhcp6ServerMapInput is an input type that accepts SystemDhcp6ServerMap and SystemDhcp6ServerMapOutput values.
@@ -270,6 +283,12 @@ func (i SystemDhcp6ServerMap) ToSystemDhcp6ServerMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDhcp6ServerMapOutput)
 }
 
+func (i SystemDhcp6ServerMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemDhcp6Server] {
+	return pulumix.Output[map[string]*SystemDhcp6Server]{
+		OutputState: i.ToSystemDhcp6ServerMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemDhcp6ServerOutput struct{ *pulumi.OutputState }
 
 func (SystemDhcp6ServerOutput) ElementType() reflect.Type {
@@ -282,6 +301,12 @@ func (o SystemDhcp6ServerOutput) ToSystemDhcp6ServerOutput() SystemDhcp6ServerOu
 
 func (o SystemDhcp6ServerOutput) ToSystemDhcp6ServerOutputWithContext(ctx context.Context) SystemDhcp6ServerOutput {
 	return o
+}
+
+func (o SystemDhcp6ServerOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemDhcp6Server] {
+	return pulumix.Output[*SystemDhcp6Server]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemDhcp6ServerOutput) DelegatedPrefixIaid() pulumi.IntOutput {
@@ -398,6 +423,12 @@ func (o SystemDhcp6ServerArrayOutput) ToSystemDhcp6ServerArrayOutputWithContext(
 	return o
 }
 
+func (o SystemDhcp6ServerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemDhcp6Server] {
+	return pulumix.Output[[]*SystemDhcp6Server]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemDhcp6ServerArrayOutput) Index(i pulumi.IntInput) SystemDhcp6ServerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemDhcp6Server {
 		return vs[0].([]*SystemDhcp6Server)[vs[1].(int)]
@@ -416,6 +447,12 @@ func (o SystemDhcp6ServerMapOutput) ToSystemDhcp6ServerMapOutput() SystemDhcp6Se
 
 func (o SystemDhcp6ServerMapOutput) ToSystemDhcp6ServerMapOutputWithContext(ctx context.Context) SystemDhcp6ServerMapOutput {
 	return o
+}
+
+func (o SystemDhcp6ServerMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemDhcp6Server] {
+	return pulumix.Output[map[string]*SystemDhcp6Server]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemDhcp6ServerMapOutput) MapIndex(k pulumi.StringInput) SystemDhcp6ServerOutput {

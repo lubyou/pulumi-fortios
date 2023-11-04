@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerStormControlPolicy struct {
@@ -125,6 +126,12 @@ func (i *SwitchControllerStormControlPolicy) ToSwitchControllerStormControlPolic
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerStormControlPolicyOutput)
 }
 
+func (i *SwitchControllerStormControlPolicy) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerStormControlPolicy] {
+	return pulumix.Output[*SwitchControllerStormControlPolicy]{
+		OutputState: i.ToSwitchControllerStormControlPolicyOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SwitchControllerStormControlPolicyArrayInput is an input type that accepts SwitchControllerStormControlPolicyArray and SwitchControllerStormControlPolicyArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerStormControlPolicyArrayInput` via:
 //
@@ -148,6 +155,12 @@ func (i SwitchControllerStormControlPolicyArray) ToSwitchControllerStormControlP
 
 func (i SwitchControllerStormControlPolicyArray) ToSwitchControllerStormControlPolicyArrayOutputWithContext(ctx context.Context) SwitchControllerStormControlPolicyArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerStormControlPolicyArrayOutput)
+}
+
+func (i SwitchControllerStormControlPolicyArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerStormControlPolicy] {
+	return pulumix.Output[[]*SwitchControllerStormControlPolicy]{
+		OutputState: i.ToSwitchControllerStormControlPolicyArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SwitchControllerStormControlPolicyMapInput is an input type that accepts SwitchControllerStormControlPolicyMap and SwitchControllerStormControlPolicyMapOutput values.
@@ -175,6 +188,12 @@ func (i SwitchControllerStormControlPolicyMap) ToSwitchControllerStormControlPol
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerStormControlPolicyMapOutput)
 }
 
+func (i SwitchControllerStormControlPolicyMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerStormControlPolicy] {
+	return pulumix.Output[map[string]*SwitchControllerStormControlPolicy]{
+		OutputState: i.ToSwitchControllerStormControlPolicyMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SwitchControllerStormControlPolicyOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerStormControlPolicyOutput) ElementType() reflect.Type {
@@ -187,6 +206,12 @@ func (o SwitchControllerStormControlPolicyOutput) ToSwitchControllerStormControl
 
 func (o SwitchControllerStormControlPolicyOutput) ToSwitchControllerStormControlPolicyOutputWithContext(ctx context.Context) SwitchControllerStormControlPolicyOutput {
 	return o
+}
+
+func (o SwitchControllerStormControlPolicyOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerStormControlPolicy] {
+	return pulumix.Output[*SwitchControllerStormControlPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerStormControlPolicyOutput) Broadcast() pulumi.StringOutput {
@@ -235,6 +260,12 @@ func (o SwitchControllerStormControlPolicyArrayOutput) ToSwitchControllerStormCo
 	return o
 }
 
+func (o SwitchControllerStormControlPolicyArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerStormControlPolicy] {
+	return pulumix.Output[[]*SwitchControllerStormControlPolicy]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SwitchControllerStormControlPolicyArrayOutput) Index(i pulumi.IntInput) SwitchControllerStormControlPolicyOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerStormControlPolicy {
 		return vs[0].([]*SwitchControllerStormControlPolicy)[vs[1].(int)]
@@ -253,6 +284,12 @@ func (o SwitchControllerStormControlPolicyMapOutput) ToSwitchControllerStormCont
 
 func (o SwitchControllerStormControlPolicyMapOutput) ToSwitchControllerStormControlPolicyMapOutputWithContext(ctx context.Context) SwitchControllerStormControlPolicyMapOutput {
 	return o
+}
+
+func (o SwitchControllerStormControlPolicyMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerStormControlPolicy] {
+	return pulumix.Output[map[string]*SwitchControllerStormControlPolicy]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerStormControlPolicyMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerStormControlPolicyOutput {

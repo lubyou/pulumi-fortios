@@ -18,11 +18,13 @@ class LogFortianalyzerSettingArgs:
     def __init__(__self__, *,
                  __change_ip: Optional[pulumi.Input[int]] = None,
                  access_config: Optional[pulumi.Input[str]] = None,
+                 alt_server: Optional[pulumi.Input[str]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
                  certificate_verification: Optional[pulumi.Input[str]] = None,
                  conn_timeout: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  enc_algorithm: Optional[pulumi.Input[str]] = None,
+                 fallback_to_primary: Optional[pulumi.Input[str]] = None,
                  faz_type: Optional[pulumi.Input[int]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  hmac_algorithm: Optional[pulumi.Input[str]] = None,
@@ -53,6 +55,8 @@ class LogFortianalyzerSettingArgs:
             pulumi.set(__self__, "__change_ip", __change_ip)
         if access_config is not None:
             pulumi.set(__self__, "access_config", access_config)
+        if alt_server is not None:
+            pulumi.set(__self__, "alt_server", alt_server)
         if certificate is not None:
             pulumi.set(__self__, "certificate", certificate)
         if certificate_verification is not None:
@@ -63,6 +67,8 @@ class LogFortianalyzerSettingArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if enc_algorithm is not None:
             pulumi.set(__self__, "enc_algorithm", enc_algorithm)
+        if fallback_to_primary is not None:
+            pulumi.set(__self__, "fallback_to_primary", fallback_to_primary)
         if faz_type is not None:
             pulumi.set(__self__, "faz_type", faz_type)
         if get_all_tables is not None:
@@ -129,6 +135,15 @@ class LogFortianalyzerSettingArgs:
         pulumi.set(self, "access_config", value)
 
     @property
+    @pulumi.getter(name="altServer")
+    def alt_server(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "alt_server")
+
+    @alt_server.setter
+    def alt_server(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "alt_server", value)
+
+    @property
     @pulumi.getter
     def certificate(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "certificate")
@@ -172,6 +187,15 @@ class LogFortianalyzerSettingArgs:
     @enc_algorithm.setter
     def enc_algorithm(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "enc_algorithm", value)
+
+    @property
+    @pulumi.getter(name="fallbackToPrimary")
+    def fallback_to_primary(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "fallback_to_primary")
+
+    @fallback_to_primary.setter
+    def fallback_to_primary(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fallback_to_primary", value)
 
     @property
     @pulumi.getter(name="fazType")
@@ -386,11 +410,13 @@ class _LogFortianalyzerSettingState:
     def __init__(__self__, *,
                  __change_ip: Optional[pulumi.Input[int]] = None,
                  access_config: Optional[pulumi.Input[str]] = None,
+                 alt_server: Optional[pulumi.Input[str]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
                  certificate_verification: Optional[pulumi.Input[str]] = None,
                  conn_timeout: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  enc_algorithm: Optional[pulumi.Input[str]] = None,
+                 fallback_to_primary: Optional[pulumi.Input[str]] = None,
                  faz_type: Optional[pulumi.Input[int]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  hmac_algorithm: Optional[pulumi.Input[str]] = None,
@@ -421,6 +447,8 @@ class _LogFortianalyzerSettingState:
             pulumi.set(__self__, "__change_ip", __change_ip)
         if access_config is not None:
             pulumi.set(__self__, "access_config", access_config)
+        if alt_server is not None:
+            pulumi.set(__self__, "alt_server", alt_server)
         if certificate is not None:
             pulumi.set(__self__, "certificate", certificate)
         if certificate_verification is not None:
@@ -431,6 +459,8 @@ class _LogFortianalyzerSettingState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if enc_algorithm is not None:
             pulumi.set(__self__, "enc_algorithm", enc_algorithm)
+        if fallback_to_primary is not None:
+            pulumi.set(__self__, "fallback_to_primary", fallback_to_primary)
         if faz_type is not None:
             pulumi.set(__self__, "faz_type", faz_type)
         if get_all_tables is not None:
@@ -497,6 +527,15 @@ class _LogFortianalyzerSettingState:
         pulumi.set(self, "access_config", value)
 
     @property
+    @pulumi.getter(name="altServer")
+    def alt_server(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "alt_server")
+
+    @alt_server.setter
+    def alt_server(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "alt_server", value)
+
+    @property
     @pulumi.getter
     def certificate(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "certificate")
@@ -540,6 +579,15 @@ class _LogFortianalyzerSettingState:
     @enc_algorithm.setter
     def enc_algorithm(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "enc_algorithm", value)
+
+    @property
+    @pulumi.getter(name="fallbackToPrimary")
+    def fallback_to_primary(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "fallback_to_primary")
+
+    @fallback_to_primary.setter
+    def fallback_to_primary(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fallback_to_primary", value)
 
     @property
     @pulumi.getter(name="fazType")
@@ -756,11 +804,13 @@ class LogFortianalyzerSetting(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  __change_ip: Optional[pulumi.Input[int]] = None,
                  access_config: Optional[pulumi.Input[str]] = None,
+                 alt_server: Optional[pulumi.Input[str]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
                  certificate_verification: Optional[pulumi.Input[str]] = None,
                  conn_timeout: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  enc_algorithm: Optional[pulumi.Input[str]] = None,
+                 fallback_to_primary: Optional[pulumi.Input[str]] = None,
                  faz_type: Optional[pulumi.Input[int]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  hmac_algorithm: Optional[pulumi.Input[str]] = None,
@@ -815,11 +865,13 @@ class LogFortianalyzerSetting(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  __change_ip: Optional[pulumi.Input[int]] = None,
                  access_config: Optional[pulumi.Input[str]] = None,
+                 alt_server: Optional[pulumi.Input[str]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
                  certificate_verification: Optional[pulumi.Input[str]] = None,
                  conn_timeout: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  enc_algorithm: Optional[pulumi.Input[str]] = None,
+                 fallback_to_primary: Optional[pulumi.Input[str]] = None,
                  faz_type: Optional[pulumi.Input[int]] = None,
                  get_all_tables: Optional[pulumi.Input[str]] = None,
                  hmac_algorithm: Optional[pulumi.Input[str]] = None,
@@ -854,11 +906,13 @@ class LogFortianalyzerSetting(pulumi.CustomResource):
 
             __props__.__dict__["__change_ip"] = __change_ip
             __props__.__dict__["access_config"] = access_config
+            __props__.__dict__["alt_server"] = alt_server
             __props__.__dict__["certificate"] = certificate
             __props__.__dict__["certificate_verification"] = certificate_verification
             __props__.__dict__["conn_timeout"] = conn_timeout
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["enc_algorithm"] = enc_algorithm
+            __props__.__dict__["fallback_to_primary"] = fallback_to_primary
             __props__.__dict__["faz_type"] = faz_type
             __props__.__dict__["get_all_tables"] = get_all_tables
             __props__.__dict__["hmac_algorithm"] = hmac_algorithm
@@ -894,11 +948,13 @@ class LogFortianalyzerSetting(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             __change_ip: Optional[pulumi.Input[int]] = None,
             access_config: Optional[pulumi.Input[str]] = None,
+            alt_server: Optional[pulumi.Input[str]] = None,
             certificate: Optional[pulumi.Input[str]] = None,
             certificate_verification: Optional[pulumi.Input[str]] = None,
             conn_timeout: Optional[pulumi.Input[int]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             enc_algorithm: Optional[pulumi.Input[str]] = None,
+            fallback_to_primary: Optional[pulumi.Input[str]] = None,
             faz_type: Optional[pulumi.Input[int]] = None,
             get_all_tables: Optional[pulumi.Input[str]] = None,
             hmac_algorithm: Optional[pulumi.Input[str]] = None,
@@ -936,11 +992,13 @@ class LogFortianalyzerSetting(pulumi.CustomResource):
 
         __props__.__dict__["__change_ip"] = __change_ip
         __props__.__dict__["access_config"] = access_config
+        __props__.__dict__["alt_server"] = alt_server
         __props__.__dict__["certificate"] = certificate
         __props__.__dict__["certificate_verification"] = certificate_verification
         __props__.__dict__["conn_timeout"] = conn_timeout
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["enc_algorithm"] = enc_algorithm
+        __props__.__dict__["fallback_to_primary"] = fallback_to_primary
         __props__.__dict__["faz_type"] = faz_type
         __props__.__dict__["get_all_tables"] = get_all_tables
         __props__.__dict__["hmac_algorithm"] = hmac_algorithm
@@ -977,6 +1035,11 @@ class LogFortianalyzerSetting(pulumi.CustomResource):
         return pulumi.get(self, "access_config")
 
     @property
+    @pulumi.getter(name="altServer")
+    def alt_server(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "alt_server")
+
+    @property
     @pulumi.getter
     def certificate(self) -> pulumi.Output[str]:
         return pulumi.get(self, "certificate")
@@ -1000,6 +1063,11 @@ class LogFortianalyzerSetting(pulumi.CustomResource):
     @pulumi.getter(name="encAlgorithm")
     def enc_algorithm(self) -> pulumi.Output[str]:
         return pulumi.get(self, "enc_algorithm")
+
+    @property
+    @pulumi.getter(name="fallbackToPrimary")
+    def fallback_to_primary(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "fallback_to_primary")
 
     @property
     @pulumi.getter(name="fazType")

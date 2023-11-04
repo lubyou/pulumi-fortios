@@ -64,6 +64,7 @@ class VpnIpsecPhase1InterfaceArgs:
                  eap: Optional[pulumi.Input[str]] = None,
                  eap_exclude_peergrp: Optional[pulumi.Input[str]] = None,
                  eap_identity: Optional[pulumi.Input[str]] = None,
+                 ems_sn_check: Optional[pulumi.Input[str]] = None,
                  encap_local_gw4: Optional[pulumi.Input[str]] = None,
                  encap_local_gw6: Optional[pulumi.Input[str]] = None,
                  encap_remote_gw4: Optional[pulumi.Input[str]] = None,
@@ -99,6 +100,7 @@ class VpnIpsecPhase1InterfaceArgs:
                  ike_version: Optional[pulumi.Input[str]] = None,
                  inbound_dscp_copy: Optional[pulumi.Input[str]] = None,
                  include_local_lan: Optional[pulumi.Input[str]] = None,
+                 internal_domain_lists: Optional[pulumi.Input[Sequence[pulumi.Input['VpnIpsecPhase1InterfaceInternalDomainListArgs']]]] = None,
                  ip_delay_interval: Optional[pulumi.Input[int]] = None,
                  ip_fragmentation: Optional[pulumi.Input[str]] = None,
                  ip_version: Optional[pulumi.Input[str]] = None,
@@ -142,6 +144,7 @@ class VpnIpsecPhase1InterfaceArgs:
                  monitor_hold_down_time: Optional[pulumi.Input[str]] = None,
                  monitor_hold_down_type: Optional[pulumi.Input[str]] = None,
                  monitor_hold_down_weekday: Optional[pulumi.Input[str]] = None,
+                 monitor_min: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  nattraversal: Optional[pulumi.Input[str]] = None,
                  negotiate_timeout: Optional[pulumi.Input[int]] = None,
@@ -278,6 +281,8 @@ class VpnIpsecPhase1InterfaceArgs:
             pulumi.set(__self__, "eap_exclude_peergrp", eap_exclude_peergrp)
         if eap_identity is not None:
             pulumi.set(__self__, "eap_identity", eap_identity)
+        if ems_sn_check is not None:
+            pulumi.set(__self__, "ems_sn_check", ems_sn_check)
         if encap_local_gw4 is not None:
             pulumi.set(__self__, "encap_local_gw4", encap_local_gw4)
         if encap_local_gw6 is not None:
@@ -348,6 +353,8 @@ class VpnIpsecPhase1InterfaceArgs:
             pulumi.set(__self__, "inbound_dscp_copy", inbound_dscp_copy)
         if include_local_lan is not None:
             pulumi.set(__self__, "include_local_lan", include_local_lan)
+        if internal_domain_lists is not None:
+            pulumi.set(__self__, "internal_domain_lists", internal_domain_lists)
         if ip_delay_interval is not None:
             pulumi.set(__self__, "ip_delay_interval", ip_delay_interval)
         if ip_fragmentation is not None:
@@ -434,6 +441,8 @@ class VpnIpsecPhase1InterfaceArgs:
             pulumi.set(__self__, "monitor_hold_down_type", monitor_hold_down_type)
         if monitor_hold_down_weekday is not None:
             pulumi.set(__self__, "monitor_hold_down_weekday", monitor_hold_down_weekday)
+        if monitor_min is not None:
+            pulumi.set(__self__, "monitor_min", monitor_min)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if nattraversal is not None:
@@ -946,6 +955,15 @@ class VpnIpsecPhase1InterfaceArgs:
         pulumi.set(self, "eap_identity", value)
 
     @property
+    @pulumi.getter(name="emsSnCheck")
+    def ems_sn_check(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ems_sn_check")
+
+    @ems_sn_check.setter
+    def ems_sn_check(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ems_sn_check", value)
+
+    @property
     @pulumi.getter(name="encapLocalGw4")
     def encap_local_gw4(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "encap_local_gw4")
@@ -1259,6 +1277,15 @@ class VpnIpsecPhase1InterfaceArgs:
     @include_local_lan.setter
     def include_local_lan(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "include_local_lan", value)
+
+    @property
+    @pulumi.getter(name="internalDomainLists")
+    def internal_domain_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VpnIpsecPhase1InterfaceInternalDomainListArgs']]]]:
+        return pulumi.get(self, "internal_domain_lists")
+
+    @internal_domain_lists.setter
+    def internal_domain_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VpnIpsecPhase1InterfaceInternalDomainListArgs']]]]):
+        pulumi.set(self, "internal_domain_lists", value)
 
     @property
     @pulumi.getter(name="ipDelayInterval")
@@ -1646,6 +1673,15 @@ class VpnIpsecPhase1InterfaceArgs:
     @monitor_hold_down_weekday.setter
     def monitor_hold_down_weekday(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "monitor_hold_down_weekday", value)
+
+    @property
+    @pulumi.getter(name="monitorMin")
+    def monitor_min(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "monitor_min")
+
+    @monitor_min.setter
+    def monitor_min(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "monitor_min", value)
 
     @property
     @pulumi.getter
@@ -2048,6 +2084,7 @@ class _VpnIpsecPhase1InterfaceState:
                  eap: Optional[pulumi.Input[str]] = None,
                  eap_exclude_peergrp: Optional[pulumi.Input[str]] = None,
                  eap_identity: Optional[pulumi.Input[str]] = None,
+                 ems_sn_check: Optional[pulumi.Input[str]] = None,
                  encap_local_gw4: Optional[pulumi.Input[str]] = None,
                  encap_local_gw6: Optional[pulumi.Input[str]] = None,
                  encap_remote_gw4: Optional[pulumi.Input[str]] = None,
@@ -2084,6 +2121,7 @@ class _VpnIpsecPhase1InterfaceState:
                  inbound_dscp_copy: Optional[pulumi.Input[str]] = None,
                  include_local_lan: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
+                 internal_domain_lists: Optional[pulumi.Input[Sequence[pulumi.Input['VpnIpsecPhase1InterfaceInternalDomainListArgs']]]] = None,
                  ip_delay_interval: Optional[pulumi.Input[int]] = None,
                  ip_fragmentation: Optional[pulumi.Input[str]] = None,
                  ip_version: Optional[pulumi.Input[str]] = None,
@@ -2127,6 +2165,7 @@ class _VpnIpsecPhase1InterfaceState:
                  monitor_hold_down_time: Optional[pulumi.Input[str]] = None,
                  monitor_hold_down_type: Optional[pulumi.Input[str]] = None,
                  monitor_hold_down_weekday: Optional[pulumi.Input[str]] = None,
+                 monitor_min: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  nattraversal: Optional[pulumi.Input[str]] = None,
                  negotiate_timeout: Optional[pulumi.Input[int]] = None,
@@ -2262,6 +2301,8 @@ class _VpnIpsecPhase1InterfaceState:
             pulumi.set(__self__, "eap_exclude_peergrp", eap_exclude_peergrp)
         if eap_identity is not None:
             pulumi.set(__self__, "eap_identity", eap_identity)
+        if ems_sn_check is not None:
+            pulumi.set(__self__, "ems_sn_check", ems_sn_check)
         if encap_local_gw4 is not None:
             pulumi.set(__self__, "encap_local_gw4", encap_local_gw4)
         if encap_local_gw6 is not None:
@@ -2334,6 +2375,8 @@ class _VpnIpsecPhase1InterfaceState:
             pulumi.set(__self__, "include_local_lan", include_local_lan)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
+        if internal_domain_lists is not None:
+            pulumi.set(__self__, "internal_domain_lists", internal_domain_lists)
         if ip_delay_interval is not None:
             pulumi.set(__self__, "ip_delay_interval", ip_delay_interval)
         if ip_fragmentation is not None:
@@ -2420,6 +2463,8 @@ class _VpnIpsecPhase1InterfaceState:
             pulumi.set(__self__, "monitor_hold_down_type", monitor_hold_down_type)
         if monitor_hold_down_weekday is not None:
             pulumi.set(__self__, "monitor_hold_down_weekday", monitor_hold_down_weekday)
+        if monitor_min is not None:
+            pulumi.set(__self__, "monitor_min", monitor_min)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if nattraversal is not None:
@@ -2916,6 +2961,15 @@ class _VpnIpsecPhase1InterfaceState:
         pulumi.set(self, "eap_identity", value)
 
     @property
+    @pulumi.getter(name="emsSnCheck")
+    def ems_sn_check(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "ems_sn_check")
+
+    @ems_sn_check.setter
+    def ems_sn_check(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ems_sn_check", value)
+
+    @property
     @pulumi.getter(name="encapLocalGw4")
     def encap_local_gw4(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "encap_local_gw4")
@@ -3238,6 +3292,15 @@ class _VpnIpsecPhase1InterfaceState:
     @interface.setter
     def interface(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "interface", value)
+
+    @property
+    @pulumi.getter(name="internalDomainLists")
+    def internal_domain_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VpnIpsecPhase1InterfaceInternalDomainListArgs']]]]:
+        return pulumi.get(self, "internal_domain_lists")
+
+    @internal_domain_lists.setter
+    def internal_domain_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VpnIpsecPhase1InterfaceInternalDomainListArgs']]]]):
+        pulumi.set(self, "internal_domain_lists", value)
 
     @property
     @pulumi.getter(name="ipDelayInterval")
@@ -3625,6 +3688,15 @@ class _VpnIpsecPhase1InterfaceState:
     @monitor_hold_down_weekday.setter
     def monitor_hold_down_weekday(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "monitor_hold_down_weekday", value)
+
+    @property
+    @pulumi.getter(name="monitorMin")
+    def monitor_min(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "monitor_min")
+
+    @monitor_min.setter
+    def monitor_min(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "monitor_min", value)
 
     @property
     @pulumi.getter
@@ -4038,6 +4110,7 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
                  eap: Optional[pulumi.Input[str]] = None,
                  eap_exclude_peergrp: Optional[pulumi.Input[str]] = None,
                  eap_identity: Optional[pulumi.Input[str]] = None,
+                 ems_sn_check: Optional[pulumi.Input[str]] = None,
                  encap_local_gw4: Optional[pulumi.Input[str]] = None,
                  encap_local_gw6: Optional[pulumi.Input[str]] = None,
                  encap_remote_gw4: Optional[pulumi.Input[str]] = None,
@@ -4074,6 +4147,7 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
                  inbound_dscp_copy: Optional[pulumi.Input[str]] = None,
                  include_local_lan: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
+                 internal_domain_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnIpsecPhase1InterfaceInternalDomainListArgs']]]]] = None,
                  ip_delay_interval: Optional[pulumi.Input[int]] = None,
                  ip_fragmentation: Optional[pulumi.Input[str]] = None,
                  ip_version: Optional[pulumi.Input[str]] = None,
@@ -4117,6 +4191,7 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
                  monitor_hold_down_time: Optional[pulumi.Input[str]] = None,
                  monitor_hold_down_type: Optional[pulumi.Input[str]] = None,
                  monitor_hold_down_weekday: Optional[pulumi.Input[str]] = None,
+                 monitor_min: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  nattraversal: Optional[pulumi.Input[str]] = None,
                  negotiate_timeout: Optional[pulumi.Input[int]] = None,
@@ -4232,6 +4307,7 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
                  eap: Optional[pulumi.Input[str]] = None,
                  eap_exclude_peergrp: Optional[pulumi.Input[str]] = None,
                  eap_identity: Optional[pulumi.Input[str]] = None,
+                 ems_sn_check: Optional[pulumi.Input[str]] = None,
                  encap_local_gw4: Optional[pulumi.Input[str]] = None,
                  encap_local_gw6: Optional[pulumi.Input[str]] = None,
                  encap_remote_gw4: Optional[pulumi.Input[str]] = None,
@@ -4268,6 +4344,7 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
                  inbound_dscp_copy: Optional[pulumi.Input[str]] = None,
                  include_local_lan: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
+                 internal_domain_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnIpsecPhase1InterfaceInternalDomainListArgs']]]]] = None,
                  ip_delay_interval: Optional[pulumi.Input[int]] = None,
                  ip_fragmentation: Optional[pulumi.Input[str]] = None,
                  ip_version: Optional[pulumi.Input[str]] = None,
@@ -4311,6 +4388,7 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
                  monitor_hold_down_time: Optional[pulumi.Input[str]] = None,
                  monitor_hold_down_type: Optional[pulumi.Input[str]] = None,
                  monitor_hold_down_weekday: Optional[pulumi.Input[str]] = None,
+                 monitor_min: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  nattraversal: Optional[pulumi.Input[str]] = None,
                  negotiate_timeout: Optional[pulumi.Input[int]] = None,
@@ -4406,6 +4484,7 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
             __props__.__dict__["eap"] = eap
             __props__.__dict__["eap_exclude_peergrp"] = eap_exclude_peergrp
             __props__.__dict__["eap_identity"] = eap_identity
+            __props__.__dict__["ems_sn_check"] = ems_sn_check
             __props__.__dict__["encap_local_gw4"] = encap_local_gw4
             __props__.__dict__["encap_local_gw6"] = encap_local_gw6
             __props__.__dict__["encap_remote_gw4"] = encap_remote_gw4
@@ -4444,6 +4523,7 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
             if interface is None and not opts.urn:
                 raise TypeError("Missing required property 'interface'")
             __props__.__dict__["interface"] = interface
+            __props__.__dict__["internal_domain_lists"] = internal_domain_lists
             __props__.__dict__["ip_delay_interval"] = ip_delay_interval
             __props__.__dict__["ip_fragmentation"] = ip_fragmentation
             __props__.__dict__["ip_version"] = ip_version
@@ -4487,6 +4567,7 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
             __props__.__dict__["monitor_hold_down_time"] = monitor_hold_down_time
             __props__.__dict__["monitor_hold_down_type"] = monitor_hold_down_type
             __props__.__dict__["monitor_hold_down_weekday"] = monitor_hold_down_weekday
+            __props__.__dict__["monitor_min"] = monitor_min
             __props__.__dict__["name"] = name
             __props__.__dict__["nattraversal"] = nattraversal
             __props__.__dict__["negotiate_timeout"] = negotiate_timeout
@@ -4587,6 +4668,7 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
             eap: Optional[pulumi.Input[str]] = None,
             eap_exclude_peergrp: Optional[pulumi.Input[str]] = None,
             eap_identity: Optional[pulumi.Input[str]] = None,
+            ems_sn_check: Optional[pulumi.Input[str]] = None,
             encap_local_gw4: Optional[pulumi.Input[str]] = None,
             encap_local_gw6: Optional[pulumi.Input[str]] = None,
             encap_remote_gw4: Optional[pulumi.Input[str]] = None,
@@ -4623,6 +4705,7 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
             inbound_dscp_copy: Optional[pulumi.Input[str]] = None,
             include_local_lan: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
+            internal_domain_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnIpsecPhase1InterfaceInternalDomainListArgs']]]]] = None,
             ip_delay_interval: Optional[pulumi.Input[int]] = None,
             ip_fragmentation: Optional[pulumi.Input[str]] = None,
             ip_version: Optional[pulumi.Input[str]] = None,
@@ -4666,6 +4749,7 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
             monitor_hold_down_time: Optional[pulumi.Input[str]] = None,
             monitor_hold_down_type: Optional[pulumi.Input[str]] = None,
             monitor_hold_down_weekday: Optional[pulumi.Input[str]] = None,
+            monitor_min: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             nattraversal: Optional[pulumi.Input[str]] = None,
             negotiate_timeout: Optional[pulumi.Input[int]] = None,
@@ -4764,6 +4848,7 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
         __props__.__dict__["eap"] = eap
         __props__.__dict__["eap_exclude_peergrp"] = eap_exclude_peergrp
         __props__.__dict__["eap_identity"] = eap_identity
+        __props__.__dict__["ems_sn_check"] = ems_sn_check
         __props__.__dict__["encap_local_gw4"] = encap_local_gw4
         __props__.__dict__["encap_local_gw6"] = encap_local_gw6
         __props__.__dict__["encap_remote_gw4"] = encap_remote_gw4
@@ -4800,6 +4885,7 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
         __props__.__dict__["inbound_dscp_copy"] = inbound_dscp_copy
         __props__.__dict__["include_local_lan"] = include_local_lan
         __props__.__dict__["interface"] = interface
+        __props__.__dict__["internal_domain_lists"] = internal_domain_lists
         __props__.__dict__["ip_delay_interval"] = ip_delay_interval
         __props__.__dict__["ip_fragmentation"] = ip_fragmentation
         __props__.__dict__["ip_version"] = ip_version
@@ -4843,6 +4929,7 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
         __props__.__dict__["monitor_hold_down_time"] = monitor_hold_down_time
         __props__.__dict__["monitor_hold_down_type"] = monitor_hold_down_type
         __props__.__dict__["monitor_hold_down_weekday"] = monitor_hold_down_weekday
+        __props__.__dict__["monitor_min"] = monitor_min
         __props__.__dict__["name"] = name
         __props__.__dict__["nattraversal"] = nattraversal
         __props__.__dict__["negotiate_timeout"] = negotiate_timeout
@@ -5116,6 +5203,11 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
         return pulumi.get(self, "eap_identity")
 
     @property
+    @pulumi.getter(name="emsSnCheck")
+    def ems_sn_check(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "ems_sn_check")
+
+    @property
     @pulumi.getter(name="encapLocalGw4")
     def encap_local_gw4(self) -> pulumi.Output[str]:
         return pulumi.get(self, "encap_local_gw4")
@@ -5294,6 +5386,11 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
     @pulumi.getter
     def interface(self) -> pulumi.Output[str]:
         return pulumi.get(self, "interface")
+
+    @property
+    @pulumi.getter(name="internalDomainLists")
+    def internal_domain_lists(self) -> pulumi.Output[Optional[Sequence['outputs.VpnIpsecPhase1InterfaceInternalDomainList']]]:
+        return pulumi.get(self, "internal_domain_lists")
 
     @property
     @pulumi.getter(name="ipDelayInterval")
@@ -5509,6 +5606,11 @@ class VpnIpsecPhase1Interface(pulumi.CustomResource):
     @pulumi.getter(name="monitorHoldDownWeekday")
     def monitor_hold_down_weekday(self) -> pulumi.Output[str]:
         return pulumi.get(self, "monitor_hold_down_weekday")
+
+    @property
+    @pulumi.getter(name="monitorMin")
+    def monitor_min(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "monitor_min")
 
     @property
     @pulumi.getter

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupSystemNat64(ctx *pulumi.Context, args *LookupSystemNat64Args, opts ...pulumi.InvokeOption) (*LookupSystemNat64Result, error) {
@@ -75,6 +76,12 @@ func (o LookupSystemNat64ResultOutput) ToLookupSystemNat64ResultOutput() LookupS
 
 func (o LookupSystemNat64ResultOutput) ToLookupSystemNat64ResultOutputWithContext(ctx context.Context) LookupSystemNat64ResultOutput {
 	return o
+}
+
+func (o LookupSystemNat64ResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupSystemNat64Result] {
+	return pulumix.Output[LookupSystemNat64Result]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupSystemNat64ResultOutput) AlwaysSynthesizeAaaaRecord() pulumi.StringOutput {

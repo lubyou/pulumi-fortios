@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type UserPeer struct {
@@ -22,6 +23,10 @@ type UserPeer struct {
 	LdapServer         pulumi.StringOutput    `pulumi:"ldapServer"`
 	LdapUsername       pulumi.StringOutput    `pulumi:"ldapUsername"`
 	MandatoryCaVerify  pulumi.StringOutput    `pulumi:"mandatoryCaVerify"`
+	MfaMode            pulumi.StringOutput    `pulumi:"mfaMode"`
+	MfaPassword        pulumi.StringPtrOutput `pulumi:"mfaPassword"`
+	MfaServer          pulumi.StringOutput    `pulumi:"mfaServer"`
+	MfaUsername        pulumi.StringOutput    `pulumi:"mfaUsername"`
 	Name               pulumi.StringOutput    `pulumi:"name"`
 	OcspOverrideServer pulumi.StringOutput    `pulumi:"ocspOverrideServer"`
 	Passwd             pulumi.StringPtrOutput `pulumi:"passwd"`
@@ -79,6 +84,10 @@ type userPeerState struct {
 	LdapServer         *string `pulumi:"ldapServer"`
 	LdapUsername       *string `pulumi:"ldapUsername"`
 	MandatoryCaVerify  *string `pulumi:"mandatoryCaVerify"`
+	MfaMode            *string `pulumi:"mfaMode"`
+	MfaPassword        *string `pulumi:"mfaPassword"`
+	MfaServer          *string `pulumi:"mfaServer"`
+	MfaUsername        *string `pulumi:"mfaUsername"`
 	Name               *string `pulumi:"name"`
 	OcspOverrideServer *string `pulumi:"ocspOverrideServer"`
 	Passwd             *string `pulumi:"passwd"`
@@ -96,6 +105,10 @@ type UserPeerState struct {
 	LdapServer         pulumi.StringPtrInput
 	LdapUsername       pulumi.StringPtrInput
 	MandatoryCaVerify  pulumi.StringPtrInput
+	MfaMode            pulumi.StringPtrInput
+	MfaPassword        pulumi.StringPtrInput
+	MfaServer          pulumi.StringPtrInput
+	MfaUsername        pulumi.StringPtrInput
 	Name               pulumi.StringPtrInput
 	OcspOverrideServer pulumi.StringPtrInput
 	Passwd             pulumi.StringPtrInput
@@ -117,6 +130,10 @@ type userPeerArgs struct {
 	LdapServer         *string `pulumi:"ldapServer"`
 	LdapUsername       *string `pulumi:"ldapUsername"`
 	MandatoryCaVerify  *string `pulumi:"mandatoryCaVerify"`
+	MfaMode            *string `pulumi:"mfaMode"`
+	MfaPassword        *string `pulumi:"mfaPassword"`
+	MfaServer          *string `pulumi:"mfaServer"`
+	MfaUsername        *string `pulumi:"mfaUsername"`
 	Name               *string `pulumi:"name"`
 	OcspOverrideServer *string `pulumi:"ocspOverrideServer"`
 	Passwd             *string `pulumi:"passwd"`
@@ -135,6 +152,10 @@ type UserPeerArgs struct {
 	LdapServer         pulumi.StringPtrInput
 	LdapUsername       pulumi.StringPtrInput
 	MandatoryCaVerify  pulumi.StringPtrInput
+	MfaMode            pulumi.StringPtrInput
+	MfaPassword        pulumi.StringPtrInput
+	MfaServer          pulumi.StringPtrInput
+	MfaUsername        pulumi.StringPtrInput
 	Name               pulumi.StringPtrInput
 	OcspOverrideServer pulumi.StringPtrInput
 	Passwd             pulumi.StringPtrInput
@@ -166,6 +187,12 @@ func (i *UserPeer) ToUserPeerOutputWithContext(ctx context.Context) UserPeerOutp
 	return pulumi.ToOutputWithContext(ctx, i).(UserPeerOutput)
 }
 
+func (i *UserPeer) ToOutput(ctx context.Context) pulumix.Output[*UserPeer] {
+	return pulumix.Output[*UserPeer]{
+		OutputState: i.ToUserPeerOutputWithContext(ctx).OutputState,
+	}
+}
+
 // UserPeerArrayInput is an input type that accepts UserPeerArray and UserPeerArrayOutput values.
 // You can construct a concrete instance of `UserPeerArrayInput` via:
 //
@@ -189,6 +216,12 @@ func (i UserPeerArray) ToUserPeerArrayOutput() UserPeerArrayOutput {
 
 func (i UserPeerArray) ToUserPeerArrayOutputWithContext(ctx context.Context) UserPeerArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserPeerArrayOutput)
+}
+
+func (i UserPeerArray) ToOutput(ctx context.Context) pulumix.Output[[]*UserPeer] {
+	return pulumix.Output[[]*UserPeer]{
+		OutputState: i.ToUserPeerArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // UserPeerMapInput is an input type that accepts UserPeerMap and UserPeerMapOutput values.
@@ -216,6 +249,12 @@ func (i UserPeerMap) ToUserPeerMapOutputWithContext(ctx context.Context) UserPee
 	return pulumi.ToOutputWithContext(ctx, i).(UserPeerMapOutput)
 }
 
+func (i UserPeerMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserPeer] {
+	return pulumix.Output[map[string]*UserPeer]{
+		OutputState: i.ToUserPeerMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type UserPeerOutput struct{ *pulumi.OutputState }
 
 func (UserPeerOutput) ElementType() reflect.Type {
@@ -228,6 +267,12 @@ func (o UserPeerOutput) ToUserPeerOutput() UserPeerOutput {
 
 func (o UserPeerOutput) ToUserPeerOutputWithContext(ctx context.Context) UserPeerOutput {
 	return o
+}
+
+func (o UserPeerOutput) ToOutput(ctx context.Context) pulumix.Output[*UserPeer] {
+	return pulumix.Output[*UserPeer]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserPeerOutput) Ca() pulumi.StringOutput {
@@ -260,6 +305,22 @@ func (o UserPeerOutput) LdapUsername() pulumi.StringOutput {
 
 func (o UserPeerOutput) MandatoryCaVerify() pulumi.StringOutput {
 	return o.ApplyT(func(v *UserPeer) pulumi.StringOutput { return v.MandatoryCaVerify }).(pulumi.StringOutput)
+}
+
+func (o UserPeerOutput) MfaMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserPeer) pulumi.StringOutput { return v.MfaMode }).(pulumi.StringOutput)
+}
+
+func (o UserPeerOutput) MfaPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *UserPeer) pulumi.StringPtrOutput { return v.MfaPassword }).(pulumi.StringPtrOutput)
+}
+
+func (o UserPeerOutput) MfaServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserPeer) pulumi.StringOutput { return v.MfaServer }).(pulumi.StringOutput)
+}
+
+func (o UserPeerOutput) MfaUsername() pulumi.StringOutput {
+	return o.ApplyT(func(v *UserPeer) pulumi.StringOutput { return v.MfaUsername }).(pulumi.StringOutput)
 }
 
 func (o UserPeerOutput) Name() pulumi.StringOutput {
@@ -300,6 +361,12 @@ func (o UserPeerArrayOutput) ToUserPeerArrayOutputWithContext(ctx context.Contex
 	return o
 }
 
+func (o UserPeerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*UserPeer] {
+	return pulumix.Output[[]*UserPeer]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o UserPeerArrayOutput) Index(i pulumi.IntInput) UserPeerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserPeer {
 		return vs[0].([]*UserPeer)[vs[1].(int)]
@@ -318,6 +385,12 @@ func (o UserPeerMapOutput) ToUserPeerMapOutput() UserPeerMapOutput {
 
 func (o UserPeerMapOutput) ToUserPeerMapOutputWithContext(ctx context.Context) UserPeerMapOutput {
 	return o
+}
+
+func (o UserPeerMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*UserPeer] {
+	return pulumix.Output[map[string]*UserPeer]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o UserPeerMapOutput) MapIndex(k pulumi.StringInput) UserPeerOutput {

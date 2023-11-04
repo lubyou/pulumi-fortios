@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemFortisandbox struct {
@@ -140,6 +141,12 @@ func (i *SystemFortisandbox) ToSystemFortisandboxOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFortisandboxOutput)
 }
 
+func (i *SystemFortisandbox) ToOutput(ctx context.Context) pulumix.Output[*SystemFortisandbox] {
+	return pulumix.Output[*SystemFortisandbox]{
+		OutputState: i.ToSystemFortisandboxOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemFortisandboxArrayInput is an input type that accepts SystemFortisandboxArray and SystemFortisandboxArrayOutput values.
 // You can construct a concrete instance of `SystemFortisandboxArrayInput` via:
 //
@@ -163,6 +170,12 @@ func (i SystemFortisandboxArray) ToSystemFortisandboxArrayOutput() SystemFortisa
 
 func (i SystemFortisandboxArray) ToSystemFortisandboxArrayOutputWithContext(ctx context.Context) SystemFortisandboxArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFortisandboxArrayOutput)
+}
+
+func (i SystemFortisandboxArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemFortisandbox] {
+	return pulumix.Output[[]*SystemFortisandbox]{
+		OutputState: i.ToSystemFortisandboxArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemFortisandboxMapInput is an input type that accepts SystemFortisandboxMap and SystemFortisandboxMapOutput values.
@@ -190,6 +203,12 @@ func (i SystemFortisandboxMap) ToSystemFortisandboxMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFortisandboxMapOutput)
 }
 
+func (i SystemFortisandboxMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemFortisandbox] {
+	return pulumix.Output[map[string]*SystemFortisandbox]{
+		OutputState: i.ToSystemFortisandboxMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemFortisandboxOutput struct{ *pulumi.OutputState }
 
 func (SystemFortisandboxOutput) ElementType() reflect.Type {
@@ -202,6 +221,12 @@ func (o SystemFortisandboxOutput) ToSystemFortisandboxOutput() SystemFortisandbo
 
 func (o SystemFortisandboxOutput) ToSystemFortisandboxOutputWithContext(ctx context.Context) SystemFortisandboxOutput {
 	return o
+}
+
+func (o SystemFortisandboxOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemFortisandbox] {
+	return pulumix.Output[*SystemFortisandbox]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemFortisandboxOutput) Email() pulumi.StringOutput {
@@ -262,6 +287,12 @@ func (o SystemFortisandboxArrayOutput) ToSystemFortisandboxArrayOutputWithContex
 	return o
 }
 
+func (o SystemFortisandboxArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemFortisandbox] {
+	return pulumix.Output[[]*SystemFortisandbox]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemFortisandboxArrayOutput) Index(i pulumi.IntInput) SystemFortisandboxOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemFortisandbox {
 		return vs[0].([]*SystemFortisandbox)[vs[1].(int)]
@@ -280,6 +311,12 @@ func (o SystemFortisandboxMapOutput) ToSystemFortisandboxMapOutput() SystemForti
 
 func (o SystemFortisandboxMapOutput) ToSystemFortisandboxMapOutputWithContext(ctx context.Context) SystemFortisandboxMapOutput {
 	return o
+}
+
+func (o SystemFortisandboxMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemFortisandbox] {
+	return pulumix.Output[map[string]*SystemFortisandbox]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemFortisandboxMapOutput) MapIndex(k pulumi.StringInput) SystemFortisandboxOutput {

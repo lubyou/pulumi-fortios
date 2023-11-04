@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemVdomSetting struct {
@@ -100,6 +101,12 @@ func (i *SystemVdomSetting) ToSystemVdomSettingOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomSettingOutput)
 }
 
+func (i *SystemVdomSetting) ToOutput(ctx context.Context) pulumix.Output[*SystemVdomSetting] {
+	return pulumix.Output[*SystemVdomSetting]{
+		OutputState: i.ToSystemVdomSettingOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemVdomSettingArrayInput is an input type that accepts SystemVdomSettingArray and SystemVdomSettingArrayOutput values.
 // You can construct a concrete instance of `SystemVdomSettingArrayInput` via:
 //
@@ -123,6 +130,12 @@ func (i SystemVdomSettingArray) ToSystemVdomSettingArrayOutput() SystemVdomSetti
 
 func (i SystemVdomSettingArray) ToSystemVdomSettingArrayOutputWithContext(ctx context.Context) SystemVdomSettingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomSettingArrayOutput)
+}
+
+func (i SystemVdomSettingArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemVdomSetting] {
+	return pulumix.Output[[]*SystemVdomSetting]{
+		OutputState: i.ToSystemVdomSettingArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemVdomSettingMapInput is an input type that accepts SystemVdomSettingMap and SystemVdomSettingMapOutput values.
@@ -150,6 +163,12 @@ func (i SystemVdomSettingMap) ToSystemVdomSettingMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomSettingMapOutput)
 }
 
+func (i SystemVdomSettingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemVdomSetting] {
+	return pulumix.Output[map[string]*SystemVdomSetting]{
+		OutputState: i.ToSystemVdomSettingMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemVdomSettingOutput struct{ *pulumi.OutputState }
 
 func (SystemVdomSettingOutput) ElementType() reflect.Type {
@@ -162,6 +181,12 @@ func (o SystemVdomSettingOutput) ToSystemVdomSettingOutput() SystemVdomSettingOu
 
 func (o SystemVdomSettingOutput) ToSystemVdomSettingOutputWithContext(ctx context.Context) SystemVdomSettingOutput {
 	return o
+}
+
+func (o SystemVdomSettingOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemVdomSetting] {
+	return pulumix.Output[*SystemVdomSetting]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemVdomSettingOutput) Name() pulumi.StringOutput {
@@ -190,6 +215,12 @@ func (o SystemVdomSettingArrayOutput) ToSystemVdomSettingArrayOutputWithContext(
 	return o
 }
 
+func (o SystemVdomSettingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemVdomSetting] {
+	return pulumix.Output[[]*SystemVdomSetting]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemVdomSettingArrayOutput) Index(i pulumi.IntInput) SystemVdomSettingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemVdomSetting {
 		return vs[0].([]*SystemVdomSetting)[vs[1].(int)]
@@ -208,6 +239,12 @@ func (o SystemVdomSettingMapOutput) ToSystemVdomSettingMapOutput() SystemVdomSet
 
 func (o SystemVdomSettingMapOutput) ToSystemVdomSettingMapOutputWithContext(ctx context.Context) SystemVdomSettingMapOutput {
 	return o
+}
+
+func (o SystemVdomSettingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemVdomSetting] {
+	return pulumix.Output[map[string]*SystemVdomSetting]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemVdomSettingMapOutput) MapIndex(k pulumi.StringInput) SystemVdomSettingOutput {

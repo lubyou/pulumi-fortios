@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type ReportLayout struct {
@@ -189,6 +190,12 @@ func (i *ReportLayout) ToReportLayoutOutputWithContext(ctx context.Context) Repo
 	return pulumi.ToOutputWithContext(ctx, i).(ReportLayoutOutput)
 }
 
+func (i *ReportLayout) ToOutput(ctx context.Context) pulumix.Output[*ReportLayout] {
+	return pulumix.Output[*ReportLayout]{
+		OutputState: i.ToReportLayoutOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ReportLayoutArrayInput is an input type that accepts ReportLayoutArray and ReportLayoutArrayOutput values.
 // You can construct a concrete instance of `ReportLayoutArrayInput` via:
 //
@@ -212,6 +219,12 @@ func (i ReportLayoutArray) ToReportLayoutArrayOutput() ReportLayoutArrayOutput {
 
 func (i ReportLayoutArray) ToReportLayoutArrayOutputWithContext(ctx context.Context) ReportLayoutArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ReportLayoutArrayOutput)
+}
+
+func (i ReportLayoutArray) ToOutput(ctx context.Context) pulumix.Output[[]*ReportLayout] {
+	return pulumix.Output[[]*ReportLayout]{
+		OutputState: i.ToReportLayoutArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ReportLayoutMapInput is an input type that accepts ReportLayoutMap and ReportLayoutMapOutput values.
@@ -239,6 +252,12 @@ func (i ReportLayoutMap) ToReportLayoutMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(ReportLayoutMapOutput)
 }
 
+func (i ReportLayoutMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ReportLayout] {
+	return pulumix.Output[map[string]*ReportLayout]{
+		OutputState: i.ToReportLayoutMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ReportLayoutOutput struct{ *pulumi.OutputState }
 
 func (ReportLayoutOutput) ElementType() reflect.Type {
@@ -251,6 +270,12 @@ func (o ReportLayoutOutput) ToReportLayoutOutput() ReportLayoutOutput {
 
 func (o ReportLayoutOutput) ToReportLayoutOutputWithContext(ctx context.Context) ReportLayoutOutput {
 	return o
+}
+
+func (o ReportLayoutOutput) ToOutput(ctx context.Context) pulumix.Output[*ReportLayout] {
+	return pulumix.Output[*ReportLayout]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ReportLayoutOutput) BodyItems() ReportLayoutBodyItemArrayOutput {
@@ -347,6 +372,12 @@ func (o ReportLayoutArrayOutput) ToReportLayoutArrayOutputWithContext(ctx contex
 	return o
 }
 
+func (o ReportLayoutArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ReportLayout] {
+	return pulumix.Output[[]*ReportLayout]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ReportLayoutArrayOutput) Index(i pulumi.IntInput) ReportLayoutOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ReportLayout {
 		return vs[0].([]*ReportLayout)[vs[1].(int)]
@@ -365,6 +396,12 @@ func (o ReportLayoutMapOutput) ToReportLayoutMapOutput() ReportLayoutMapOutput {
 
 func (o ReportLayoutMapOutput) ToReportLayoutMapOutputWithContext(ctx context.Context) ReportLayoutMapOutput {
 	return o
+}
+
+func (o ReportLayoutMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ReportLayout] {
+	return pulumix.Output[map[string]*ReportLayout]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ReportLayoutMapOutput) MapIndex(k pulumi.StringInput) ReportLayoutOutput {

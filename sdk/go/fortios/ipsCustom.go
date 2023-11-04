@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type IpsCustom struct {
@@ -160,6 +161,12 @@ func (i *IpsCustom) ToIpsCustomOutputWithContext(ctx context.Context) IpsCustomO
 	return pulumi.ToOutputWithContext(ctx, i).(IpsCustomOutput)
 }
 
+func (i *IpsCustom) ToOutput(ctx context.Context) pulumix.Output[*IpsCustom] {
+	return pulumix.Output[*IpsCustom]{
+		OutputState: i.ToIpsCustomOutputWithContext(ctx).OutputState,
+	}
+}
+
 // IpsCustomArrayInput is an input type that accepts IpsCustomArray and IpsCustomArrayOutput values.
 // You can construct a concrete instance of `IpsCustomArrayInput` via:
 //
@@ -183,6 +190,12 @@ func (i IpsCustomArray) ToIpsCustomArrayOutput() IpsCustomArrayOutput {
 
 func (i IpsCustomArray) ToIpsCustomArrayOutputWithContext(ctx context.Context) IpsCustomArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IpsCustomArrayOutput)
+}
+
+func (i IpsCustomArray) ToOutput(ctx context.Context) pulumix.Output[[]*IpsCustom] {
+	return pulumix.Output[[]*IpsCustom]{
+		OutputState: i.ToIpsCustomArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // IpsCustomMapInput is an input type that accepts IpsCustomMap and IpsCustomMapOutput values.
@@ -210,6 +223,12 @@ func (i IpsCustomMap) ToIpsCustomMapOutputWithContext(ctx context.Context) IpsCu
 	return pulumi.ToOutputWithContext(ctx, i).(IpsCustomMapOutput)
 }
 
+func (i IpsCustomMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*IpsCustom] {
+	return pulumix.Output[map[string]*IpsCustom]{
+		OutputState: i.ToIpsCustomMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type IpsCustomOutput struct{ *pulumi.OutputState }
 
 func (IpsCustomOutput) ElementType() reflect.Type {
@@ -222,6 +241,12 @@ func (o IpsCustomOutput) ToIpsCustomOutput() IpsCustomOutput {
 
 func (o IpsCustomOutput) ToIpsCustomOutputWithContext(ctx context.Context) IpsCustomOutput {
 	return o
+}
+
+func (o IpsCustomOutput) ToOutput(ctx context.Context) pulumix.Output[*IpsCustom] {
+	return pulumix.Output[*IpsCustom]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o IpsCustomOutput) Action() pulumi.StringOutput {
@@ -298,6 +323,12 @@ func (o IpsCustomArrayOutput) ToIpsCustomArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
+func (o IpsCustomArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*IpsCustom] {
+	return pulumix.Output[[]*IpsCustom]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o IpsCustomArrayOutput) Index(i pulumi.IntInput) IpsCustomOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IpsCustom {
 		return vs[0].([]*IpsCustom)[vs[1].(int)]
@@ -316,6 +347,12 @@ func (o IpsCustomMapOutput) ToIpsCustomMapOutput() IpsCustomMapOutput {
 
 func (o IpsCustomMapOutput) ToIpsCustomMapOutputWithContext(ctx context.Context) IpsCustomMapOutput {
 	return o
+}
+
+func (o IpsCustomMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*IpsCustom] {
+	return pulumix.Output[map[string]*IpsCustom]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o IpsCustomMapOutput) MapIndex(k pulumi.StringInput) IpsCustomOutput {

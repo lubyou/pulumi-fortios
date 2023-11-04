@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallShaperTrafficShaper struct {
@@ -185,6 +186,12 @@ func (i *FirewallShaperTrafficShaper) ToFirewallShaperTrafficShaperOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallShaperTrafficShaperOutput)
 }
 
+func (i *FirewallShaperTrafficShaper) ToOutput(ctx context.Context) pulumix.Output[*FirewallShaperTrafficShaper] {
+	return pulumix.Output[*FirewallShaperTrafficShaper]{
+		OutputState: i.ToFirewallShaperTrafficShaperOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallShaperTrafficShaperArrayInput is an input type that accepts FirewallShaperTrafficShaperArray and FirewallShaperTrafficShaperArrayOutput values.
 // You can construct a concrete instance of `FirewallShaperTrafficShaperArrayInput` via:
 //
@@ -208,6 +215,12 @@ func (i FirewallShaperTrafficShaperArray) ToFirewallShaperTrafficShaperArrayOutp
 
 func (i FirewallShaperTrafficShaperArray) ToFirewallShaperTrafficShaperArrayOutputWithContext(ctx context.Context) FirewallShaperTrafficShaperArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallShaperTrafficShaperArrayOutput)
+}
+
+func (i FirewallShaperTrafficShaperArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallShaperTrafficShaper] {
+	return pulumix.Output[[]*FirewallShaperTrafficShaper]{
+		OutputState: i.ToFirewallShaperTrafficShaperArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallShaperTrafficShaperMapInput is an input type that accepts FirewallShaperTrafficShaperMap and FirewallShaperTrafficShaperMapOutput values.
@@ -235,6 +248,12 @@ func (i FirewallShaperTrafficShaperMap) ToFirewallShaperTrafficShaperMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallShaperTrafficShaperMapOutput)
 }
 
+func (i FirewallShaperTrafficShaperMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallShaperTrafficShaper] {
+	return pulumix.Output[map[string]*FirewallShaperTrafficShaper]{
+		OutputState: i.ToFirewallShaperTrafficShaperMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallShaperTrafficShaperOutput struct{ *pulumi.OutputState }
 
 func (FirewallShaperTrafficShaperOutput) ElementType() reflect.Type {
@@ -247,6 +266,12 @@ func (o FirewallShaperTrafficShaperOutput) ToFirewallShaperTrafficShaperOutput()
 
 func (o FirewallShaperTrafficShaperOutput) ToFirewallShaperTrafficShaperOutputWithContext(ctx context.Context) FirewallShaperTrafficShaperOutput {
 	return o
+}
+
+func (o FirewallShaperTrafficShaperOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallShaperTrafficShaper] {
+	return pulumix.Output[*FirewallShaperTrafficShaper]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallShaperTrafficShaperOutput) BandwidthUnit() pulumi.StringOutput {
@@ -343,6 +368,12 @@ func (o FirewallShaperTrafficShaperArrayOutput) ToFirewallShaperTrafficShaperArr
 	return o
 }
 
+func (o FirewallShaperTrafficShaperArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallShaperTrafficShaper] {
+	return pulumix.Output[[]*FirewallShaperTrafficShaper]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallShaperTrafficShaperArrayOutput) Index(i pulumi.IntInput) FirewallShaperTrafficShaperOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallShaperTrafficShaper {
 		return vs[0].([]*FirewallShaperTrafficShaper)[vs[1].(int)]
@@ -361,6 +392,12 @@ func (o FirewallShaperTrafficShaperMapOutput) ToFirewallShaperTrafficShaperMapOu
 
 func (o FirewallShaperTrafficShaperMapOutput) ToFirewallShaperTrafficShaperMapOutputWithContext(ctx context.Context) FirewallShaperTrafficShaperMapOutput {
 	return o
+}
+
+func (o FirewallShaperTrafficShaperMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallShaperTrafficShaper] {
+	return pulumix.Output[map[string]*FirewallShaperTrafficShaper]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallShaperTrafficShaperMapOutput) MapIndex(k pulumi.StringInput) FirewallShaperTrafficShaperOutput {

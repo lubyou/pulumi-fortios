@@ -41,6 +41,7 @@ export class VpnSslWebPortal extends pulumi.CustomResource {
     public readonly clipboard!: pulumi.Output<string>;
     public readonly customLang!: pulumi.Output<string>;
     public readonly customizeForticlientDownloadUrl!: pulumi.Output<string>;
+    public readonly defaultProtocol!: pulumi.Output<string>;
     public readonly defaultWindowHeight!: pulumi.Output<number>;
     public readonly defaultWindowWidth!: pulumi.Output<number>;
     public readonly dhcp6RaLinkaddr!: pulumi.Output<string>;
@@ -55,6 +56,7 @@ export class VpnSslWebPortal extends pulumi.CustomResource {
     public readonly dnsSuffix!: pulumi.Output<string | undefined>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly exclusiveRouting!: pulumi.Output<string>;
+    public readonly focusBookmark!: pulumi.Output<string>;
     public readonly forticlientDownload!: pulumi.Output<string>;
     public readonly forticlientDownloadMethod!: pulumi.Output<string>;
     public readonly getAllTables!: pulumi.Output<string | undefined>;
@@ -134,6 +136,7 @@ export class VpnSslWebPortal extends pulumi.CustomResource {
             resourceInputs["clipboard"] = state ? state.clipboard : undefined;
             resourceInputs["customLang"] = state ? state.customLang : undefined;
             resourceInputs["customizeForticlientDownloadUrl"] = state ? state.customizeForticlientDownloadUrl : undefined;
+            resourceInputs["defaultProtocol"] = state ? state.defaultProtocol : undefined;
             resourceInputs["defaultWindowHeight"] = state ? state.defaultWindowHeight : undefined;
             resourceInputs["defaultWindowWidth"] = state ? state.defaultWindowWidth : undefined;
             resourceInputs["dhcp6RaLinkaddr"] = state ? state.dhcp6RaLinkaddr : undefined;
@@ -148,6 +151,7 @@ export class VpnSslWebPortal extends pulumi.CustomResource {
             resourceInputs["dnsSuffix"] = state ? state.dnsSuffix : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["exclusiveRouting"] = state ? state.exclusiveRouting : undefined;
+            resourceInputs["focusBookmark"] = state ? state.focusBookmark : undefined;
             resourceInputs["forticlientDownload"] = state ? state.forticlientDownload : undefined;
             resourceInputs["forticlientDownloadMethod"] = state ? state.forticlientDownloadMethod : undefined;
             resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
@@ -215,6 +219,7 @@ export class VpnSslWebPortal extends pulumi.CustomResource {
             resourceInputs["clipboard"] = args ? args.clipboard : undefined;
             resourceInputs["customLang"] = args ? args.customLang : undefined;
             resourceInputs["customizeForticlientDownloadUrl"] = args ? args.customizeForticlientDownloadUrl : undefined;
+            resourceInputs["defaultProtocol"] = args ? args.defaultProtocol : undefined;
             resourceInputs["defaultWindowHeight"] = args ? args.defaultWindowHeight : undefined;
             resourceInputs["defaultWindowWidth"] = args ? args.defaultWindowWidth : undefined;
             resourceInputs["dhcp6RaLinkaddr"] = args ? args.dhcp6RaLinkaddr : undefined;
@@ -229,6 +234,7 @@ export class VpnSslWebPortal extends pulumi.CustomResource {
             resourceInputs["dnsSuffix"] = args ? args.dnsSuffix : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["exclusiveRouting"] = args ? args.exclusiveRouting : undefined;
+            resourceInputs["focusBookmark"] = args ? args.focusBookmark : undefined;
             resourceInputs["forticlientDownload"] = args ? args.forticlientDownload : undefined;
             resourceInputs["forticlientDownloadMethod"] = args ? args.forticlientDownloadMethod : undefined;
             resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
@@ -304,6 +310,7 @@ export interface VpnSslWebPortalState {
     clipboard?: pulumi.Input<string>;
     customLang?: pulumi.Input<string>;
     customizeForticlientDownloadUrl?: pulumi.Input<string>;
+    defaultProtocol?: pulumi.Input<string>;
     defaultWindowHeight?: pulumi.Input<number>;
     defaultWindowWidth?: pulumi.Input<number>;
     dhcp6RaLinkaddr?: pulumi.Input<string>;
@@ -318,6 +325,7 @@ export interface VpnSslWebPortalState {
     dnsSuffix?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     exclusiveRouting?: pulumi.Input<string>;
+    focusBookmark?: pulumi.Input<string>;
     forticlientDownload?: pulumi.Input<string>;
     forticlientDownloadMethod?: pulumi.Input<string>;
     getAllTables?: pulumi.Input<string>;
@@ -389,6 +397,7 @@ export interface VpnSslWebPortalArgs {
     clipboard?: pulumi.Input<string>;
     customLang?: pulumi.Input<string>;
     customizeForticlientDownloadUrl?: pulumi.Input<string>;
+    defaultProtocol?: pulumi.Input<string>;
     defaultWindowHeight?: pulumi.Input<number>;
     defaultWindowWidth?: pulumi.Input<number>;
     dhcp6RaLinkaddr?: pulumi.Input<string>;
@@ -403,6 +412,7 @@ export interface VpnSslWebPortalArgs {
     dnsSuffix?: pulumi.Input<string>;
     dynamicSortSubtable?: pulumi.Input<string>;
     exclusiveRouting?: pulumi.Input<string>;
+    focusBookmark?: pulumi.Input<string>;
     forticlientDownload?: pulumi.Input<string>;
     forticlientDownloadMethod?: pulumi.Input<string>;
     getAllTables?: pulumi.Input<string>;

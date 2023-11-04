@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupRouterMulticastFlow(ctx *pulumi.Context, args *LookupRouterMulticastFlowArgs, opts ...pulumi.InvokeOption) (*LookupRouterMulticastFlowResult, error) {
@@ -73,6 +74,12 @@ func (o LookupRouterMulticastFlowResultOutput) ToLookupRouterMulticastFlowResult
 
 func (o LookupRouterMulticastFlowResultOutput) ToLookupRouterMulticastFlowResultOutputWithContext(ctx context.Context) LookupRouterMulticastFlowResultOutput {
 	return o
+}
+
+func (o LookupRouterMulticastFlowResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupRouterMulticastFlowResult] {
+	return pulumix.Output[LookupRouterMulticastFlowResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupRouterMulticastFlowResultOutput) Comments() pulumi.StringOutput {

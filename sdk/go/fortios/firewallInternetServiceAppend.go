@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallInternetServiceAppend struct {
@@ -105,6 +106,12 @@ func (i *FirewallInternetServiceAppend) ToFirewallInternetServiceAppendOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceAppendOutput)
 }
 
+func (i *FirewallInternetServiceAppend) ToOutput(ctx context.Context) pulumix.Output[*FirewallInternetServiceAppend] {
+	return pulumix.Output[*FirewallInternetServiceAppend]{
+		OutputState: i.ToFirewallInternetServiceAppendOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallInternetServiceAppendArrayInput is an input type that accepts FirewallInternetServiceAppendArray and FirewallInternetServiceAppendArrayOutput values.
 // You can construct a concrete instance of `FirewallInternetServiceAppendArrayInput` via:
 //
@@ -128,6 +135,12 @@ func (i FirewallInternetServiceAppendArray) ToFirewallInternetServiceAppendArray
 
 func (i FirewallInternetServiceAppendArray) ToFirewallInternetServiceAppendArrayOutputWithContext(ctx context.Context) FirewallInternetServiceAppendArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceAppendArrayOutput)
+}
+
+func (i FirewallInternetServiceAppendArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallInternetServiceAppend] {
+	return pulumix.Output[[]*FirewallInternetServiceAppend]{
+		OutputState: i.ToFirewallInternetServiceAppendArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallInternetServiceAppendMapInput is an input type that accepts FirewallInternetServiceAppendMap and FirewallInternetServiceAppendMapOutput values.
@@ -155,6 +168,12 @@ func (i FirewallInternetServiceAppendMap) ToFirewallInternetServiceAppendMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceAppendMapOutput)
 }
 
+func (i FirewallInternetServiceAppendMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallInternetServiceAppend] {
+	return pulumix.Output[map[string]*FirewallInternetServiceAppend]{
+		OutputState: i.ToFirewallInternetServiceAppendMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallInternetServiceAppendOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceAppendOutput) ElementType() reflect.Type {
@@ -167,6 +186,12 @@ func (o FirewallInternetServiceAppendOutput) ToFirewallInternetServiceAppendOutp
 
 func (o FirewallInternetServiceAppendOutput) ToFirewallInternetServiceAppendOutputWithContext(ctx context.Context) FirewallInternetServiceAppendOutput {
 	return o
+}
+
+func (o FirewallInternetServiceAppendOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallInternetServiceAppend] {
+	return pulumix.Output[*FirewallInternetServiceAppend]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallInternetServiceAppendOutput) AddrMode() pulumi.StringOutput {
@@ -199,6 +224,12 @@ func (o FirewallInternetServiceAppendArrayOutput) ToFirewallInternetServiceAppen
 	return o
 }
 
+func (o FirewallInternetServiceAppendArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallInternetServiceAppend] {
+	return pulumix.Output[[]*FirewallInternetServiceAppend]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallInternetServiceAppendArrayOutput) Index(i pulumi.IntInput) FirewallInternetServiceAppendOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallInternetServiceAppend {
 		return vs[0].([]*FirewallInternetServiceAppend)[vs[1].(int)]
@@ -217,6 +248,12 @@ func (o FirewallInternetServiceAppendMapOutput) ToFirewallInternetServiceAppendM
 
 func (o FirewallInternetServiceAppendMapOutput) ToFirewallInternetServiceAppendMapOutputWithContext(ctx context.Context) FirewallInternetServiceAppendMapOutput {
 	return o
+}
+
+func (o FirewallInternetServiceAppendMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallInternetServiceAppend] {
+	return pulumix.Output[map[string]*FirewallInternetServiceAppend]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallInternetServiceAppendMapOutput) MapIndex(k pulumi.StringInput) FirewallInternetServiceAppendOutput {

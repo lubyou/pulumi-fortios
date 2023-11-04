@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemSaml struct {
@@ -190,6 +191,12 @@ func (i *SystemSaml) ToSystemSamlOutputWithContext(ctx context.Context) SystemSa
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSamlOutput)
 }
 
+func (i *SystemSaml) ToOutput(ctx context.Context) pulumix.Output[*SystemSaml] {
+	return pulumix.Output[*SystemSaml]{
+		OutputState: i.ToSystemSamlOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemSamlArrayInput is an input type that accepts SystemSamlArray and SystemSamlArrayOutput values.
 // You can construct a concrete instance of `SystemSamlArrayInput` via:
 //
@@ -213,6 +220,12 @@ func (i SystemSamlArray) ToSystemSamlArrayOutput() SystemSamlArrayOutput {
 
 func (i SystemSamlArray) ToSystemSamlArrayOutputWithContext(ctx context.Context) SystemSamlArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSamlArrayOutput)
+}
+
+func (i SystemSamlArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSaml] {
+	return pulumix.Output[[]*SystemSaml]{
+		OutputState: i.ToSystemSamlArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemSamlMapInput is an input type that accepts SystemSamlMap and SystemSamlMapOutput values.
@@ -240,6 +253,12 @@ func (i SystemSamlMap) ToSystemSamlMapOutputWithContext(ctx context.Context) Sys
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSamlMapOutput)
 }
 
+func (i SystemSamlMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSaml] {
+	return pulumix.Output[map[string]*SystemSaml]{
+		OutputState: i.ToSystemSamlMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemSamlOutput struct{ *pulumi.OutputState }
 
 func (SystemSamlOutput) ElementType() reflect.Type {
@@ -252,6 +271,12 @@ func (o SystemSamlOutput) ToSystemSamlOutput() SystemSamlOutput {
 
 func (o SystemSamlOutput) ToSystemSamlOutputWithContext(ctx context.Context) SystemSamlOutput {
 	return o
+}
+
+func (o SystemSamlOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemSaml] {
+	return pulumix.Output[*SystemSaml]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemSamlOutput) BindingProtocol() pulumi.StringOutput {
@@ -352,6 +377,12 @@ func (o SystemSamlArrayOutput) ToSystemSamlArrayOutputWithContext(ctx context.Co
 	return o
 }
 
+func (o SystemSamlArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSaml] {
+	return pulumix.Output[[]*SystemSaml]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemSamlArrayOutput) Index(i pulumi.IntInput) SystemSamlOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSaml {
 		return vs[0].([]*SystemSaml)[vs[1].(int)]
@@ -370,6 +401,12 @@ func (o SystemSamlMapOutput) ToSystemSamlMapOutput() SystemSamlMapOutput {
 
 func (o SystemSamlMapOutput) ToSystemSamlMapOutputWithContext(ctx context.Context) SystemSamlMapOutput {
 	return o
+}
+
+func (o SystemSamlMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSaml] {
+	return pulumix.Output[map[string]*SystemSaml]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemSamlMapOutput) MapIndex(k pulumi.StringInput) SystemSamlOutput {

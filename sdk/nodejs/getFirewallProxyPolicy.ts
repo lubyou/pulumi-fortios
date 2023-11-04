@@ -33,9 +33,11 @@ export interface GetFirewallProxyPolicyResult {
     readonly applicationList: string;
     readonly avProfile: string;
     readonly blockNotification: string;
+    readonly casbProfile: string;
     readonly cifsProfile: string;
     readonly comments: string;
     readonly decryptedTrafficMirror: string;
+    readonly detectHttpsInHttpRequest: string;
     readonly deviceOwnership: string;
     readonly disclaimer: string;
     readonly dlpProfile: string;
@@ -102,6 +104,7 @@ export interface GetFirewallProxyPolicyResult {
     readonly uuid: string;
     readonly vdomparam?: string;
     readonly videofilterProfile: string;
+    readonly virtualPatchProfile: string;
     readonly voipProfile: string;
     readonly wafProfile: string;
     readonly webcache: string;

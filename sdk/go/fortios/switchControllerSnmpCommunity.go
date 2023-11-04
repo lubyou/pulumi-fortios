@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerSnmpCommunity struct {
@@ -175,6 +176,12 @@ func (i *SwitchControllerSnmpCommunity) ToSwitchControllerSnmpCommunityOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSnmpCommunityOutput)
 }
 
+func (i *SwitchControllerSnmpCommunity) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerSnmpCommunity] {
+	return pulumix.Output[*SwitchControllerSnmpCommunity]{
+		OutputState: i.ToSwitchControllerSnmpCommunityOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SwitchControllerSnmpCommunityArrayInput is an input type that accepts SwitchControllerSnmpCommunityArray and SwitchControllerSnmpCommunityArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerSnmpCommunityArrayInput` via:
 //
@@ -198,6 +205,12 @@ func (i SwitchControllerSnmpCommunityArray) ToSwitchControllerSnmpCommunityArray
 
 func (i SwitchControllerSnmpCommunityArray) ToSwitchControllerSnmpCommunityArrayOutputWithContext(ctx context.Context) SwitchControllerSnmpCommunityArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSnmpCommunityArrayOutput)
+}
+
+func (i SwitchControllerSnmpCommunityArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerSnmpCommunity] {
+	return pulumix.Output[[]*SwitchControllerSnmpCommunity]{
+		OutputState: i.ToSwitchControllerSnmpCommunityArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SwitchControllerSnmpCommunityMapInput is an input type that accepts SwitchControllerSnmpCommunityMap and SwitchControllerSnmpCommunityMapOutput values.
@@ -225,6 +238,12 @@ func (i SwitchControllerSnmpCommunityMap) ToSwitchControllerSnmpCommunityMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSnmpCommunityMapOutput)
 }
 
+func (i SwitchControllerSnmpCommunityMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerSnmpCommunity] {
+	return pulumix.Output[map[string]*SwitchControllerSnmpCommunity]{
+		OutputState: i.ToSwitchControllerSnmpCommunityMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SwitchControllerSnmpCommunityOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSnmpCommunityOutput) ElementType() reflect.Type {
@@ -237,6 +256,12 @@ func (o SwitchControllerSnmpCommunityOutput) ToSwitchControllerSnmpCommunityOutp
 
 func (o SwitchControllerSnmpCommunityOutput) ToSwitchControllerSnmpCommunityOutputWithContext(ctx context.Context) SwitchControllerSnmpCommunityOutput {
 	return o
+}
+
+func (o SwitchControllerSnmpCommunityOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerSnmpCommunity] {
+	return pulumix.Output[*SwitchControllerSnmpCommunity]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerSnmpCommunityOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -325,6 +350,12 @@ func (o SwitchControllerSnmpCommunityArrayOutput) ToSwitchControllerSnmpCommunit
 	return o
 }
 
+func (o SwitchControllerSnmpCommunityArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerSnmpCommunity] {
+	return pulumix.Output[[]*SwitchControllerSnmpCommunity]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SwitchControllerSnmpCommunityArrayOutput) Index(i pulumi.IntInput) SwitchControllerSnmpCommunityOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerSnmpCommunity {
 		return vs[0].([]*SwitchControllerSnmpCommunity)[vs[1].(int)]
@@ -343,6 +374,12 @@ func (o SwitchControllerSnmpCommunityMapOutput) ToSwitchControllerSnmpCommunityM
 
 func (o SwitchControllerSnmpCommunityMapOutput) ToSwitchControllerSnmpCommunityMapOutputWithContext(ctx context.Context) SwitchControllerSnmpCommunityMapOutput {
 	return o
+}
+
+func (o SwitchControllerSnmpCommunityMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerSnmpCommunity] {
+	return pulumix.Output[map[string]*SwitchControllerSnmpCommunity]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerSnmpCommunityMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerSnmpCommunityOutput {

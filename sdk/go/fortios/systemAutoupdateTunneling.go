@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemAutoupdateTunneling struct {
@@ -122,6 +123,12 @@ func (i *SystemAutoupdateTunneling) ToSystemAutoupdateTunnelingOutputWithContext
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutoupdateTunnelingOutput)
 }
 
+func (i *SystemAutoupdateTunneling) ToOutput(ctx context.Context) pulumix.Output[*SystemAutoupdateTunneling] {
+	return pulumix.Output[*SystemAutoupdateTunneling]{
+		OutputState: i.ToSystemAutoupdateTunnelingOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemAutoupdateTunnelingArrayInput is an input type that accepts SystemAutoupdateTunnelingArray and SystemAutoupdateTunnelingArrayOutput values.
 // You can construct a concrete instance of `SystemAutoupdateTunnelingArrayInput` via:
 //
@@ -145,6 +152,12 @@ func (i SystemAutoupdateTunnelingArray) ToSystemAutoupdateTunnelingArrayOutput()
 
 func (i SystemAutoupdateTunnelingArray) ToSystemAutoupdateTunnelingArrayOutputWithContext(ctx context.Context) SystemAutoupdateTunnelingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutoupdateTunnelingArrayOutput)
+}
+
+func (i SystemAutoupdateTunnelingArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemAutoupdateTunneling] {
+	return pulumix.Output[[]*SystemAutoupdateTunneling]{
+		OutputState: i.ToSystemAutoupdateTunnelingArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemAutoupdateTunnelingMapInput is an input type that accepts SystemAutoupdateTunnelingMap and SystemAutoupdateTunnelingMapOutput values.
@@ -172,6 +185,12 @@ func (i SystemAutoupdateTunnelingMap) ToSystemAutoupdateTunnelingMapOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutoupdateTunnelingMapOutput)
 }
 
+func (i SystemAutoupdateTunnelingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemAutoupdateTunneling] {
+	return pulumix.Output[map[string]*SystemAutoupdateTunneling]{
+		OutputState: i.ToSystemAutoupdateTunnelingMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemAutoupdateTunnelingOutput struct{ *pulumi.OutputState }
 
 func (SystemAutoupdateTunnelingOutput) ElementType() reflect.Type {
@@ -184,6 +203,12 @@ func (o SystemAutoupdateTunnelingOutput) ToSystemAutoupdateTunnelingOutput() Sys
 
 func (o SystemAutoupdateTunnelingOutput) ToSystemAutoupdateTunnelingOutputWithContext(ctx context.Context) SystemAutoupdateTunnelingOutput {
 	return o
+}
+
+func (o SystemAutoupdateTunnelingOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemAutoupdateTunneling] {
+	return pulumix.Output[*SystemAutoupdateTunneling]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemAutoupdateTunnelingOutput) Address() pulumi.StringOutput {
@@ -224,6 +249,12 @@ func (o SystemAutoupdateTunnelingArrayOutput) ToSystemAutoupdateTunnelingArrayOu
 	return o
 }
 
+func (o SystemAutoupdateTunnelingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemAutoupdateTunneling] {
+	return pulumix.Output[[]*SystemAutoupdateTunneling]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemAutoupdateTunnelingArrayOutput) Index(i pulumi.IntInput) SystemAutoupdateTunnelingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemAutoupdateTunneling {
 		return vs[0].([]*SystemAutoupdateTunneling)[vs[1].(int)]
@@ -242,6 +273,12 @@ func (o SystemAutoupdateTunnelingMapOutput) ToSystemAutoupdateTunnelingMapOutput
 
 func (o SystemAutoupdateTunnelingMapOutput) ToSystemAutoupdateTunnelingMapOutputWithContext(ctx context.Context) SystemAutoupdateTunnelingMapOutput {
 	return o
+}
+
+func (o SystemAutoupdateTunnelingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemAutoupdateTunneling] {
+	return pulumix.Output[map[string]*SystemAutoupdateTunneling]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemAutoupdateTunnelingMapOutput) MapIndex(k pulumi.StringInput) SystemAutoupdateTunnelingOutput {

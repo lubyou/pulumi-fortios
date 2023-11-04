@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupRouterIsis(ctx *pulumi.Context, args *LookupRouterIsisArgs, opts ...pulumi.InvokeOption) (*LookupRouterIsisResult, error) {
@@ -109,6 +110,12 @@ func (o LookupRouterIsisResultOutput) ToLookupRouterIsisResultOutput() LookupRou
 
 func (o LookupRouterIsisResultOutput) ToLookupRouterIsisResultOutputWithContext(ctx context.Context) LookupRouterIsisResultOutput {
 	return o
+}
+
+func (o LookupRouterIsisResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupRouterIsisResult] {
+	return pulumix.Output[LookupRouterIsisResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupRouterIsisResultOutput) AdjacencyCheck() pulumi.StringOutput {

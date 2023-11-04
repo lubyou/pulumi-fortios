@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemDedicatedMgmt struct {
@@ -125,6 +126,12 @@ func (i *SystemDedicatedMgmt) ToSystemDedicatedMgmtOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDedicatedMgmtOutput)
 }
 
+func (i *SystemDedicatedMgmt) ToOutput(ctx context.Context) pulumix.Output[*SystemDedicatedMgmt] {
+	return pulumix.Output[*SystemDedicatedMgmt]{
+		OutputState: i.ToSystemDedicatedMgmtOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemDedicatedMgmtArrayInput is an input type that accepts SystemDedicatedMgmtArray and SystemDedicatedMgmtArrayOutput values.
 // You can construct a concrete instance of `SystemDedicatedMgmtArrayInput` via:
 //
@@ -148,6 +155,12 @@ func (i SystemDedicatedMgmtArray) ToSystemDedicatedMgmtArrayOutput() SystemDedic
 
 func (i SystemDedicatedMgmtArray) ToSystemDedicatedMgmtArrayOutputWithContext(ctx context.Context) SystemDedicatedMgmtArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDedicatedMgmtArrayOutput)
+}
+
+func (i SystemDedicatedMgmtArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemDedicatedMgmt] {
+	return pulumix.Output[[]*SystemDedicatedMgmt]{
+		OutputState: i.ToSystemDedicatedMgmtArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemDedicatedMgmtMapInput is an input type that accepts SystemDedicatedMgmtMap and SystemDedicatedMgmtMapOutput values.
@@ -175,6 +188,12 @@ func (i SystemDedicatedMgmtMap) ToSystemDedicatedMgmtMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDedicatedMgmtMapOutput)
 }
 
+func (i SystemDedicatedMgmtMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemDedicatedMgmt] {
+	return pulumix.Output[map[string]*SystemDedicatedMgmt]{
+		OutputState: i.ToSystemDedicatedMgmtMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemDedicatedMgmtOutput struct{ *pulumi.OutputState }
 
 func (SystemDedicatedMgmtOutput) ElementType() reflect.Type {
@@ -187,6 +206,12 @@ func (o SystemDedicatedMgmtOutput) ToSystemDedicatedMgmtOutput() SystemDedicated
 
 func (o SystemDedicatedMgmtOutput) ToSystemDedicatedMgmtOutputWithContext(ctx context.Context) SystemDedicatedMgmtOutput {
 	return o
+}
+
+func (o SystemDedicatedMgmtOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemDedicatedMgmt] {
+	return pulumix.Output[*SystemDedicatedMgmt]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemDedicatedMgmtOutput) DefaultGateway() pulumi.StringOutput {
@@ -235,6 +260,12 @@ func (o SystemDedicatedMgmtArrayOutput) ToSystemDedicatedMgmtArrayOutputWithCont
 	return o
 }
 
+func (o SystemDedicatedMgmtArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemDedicatedMgmt] {
+	return pulumix.Output[[]*SystemDedicatedMgmt]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemDedicatedMgmtArrayOutput) Index(i pulumi.IntInput) SystemDedicatedMgmtOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemDedicatedMgmt {
 		return vs[0].([]*SystemDedicatedMgmt)[vs[1].(int)]
@@ -253,6 +284,12 @@ func (o SystemDedicatedMgmtMapOutput) ToSystemDedicatedMgmtMapOutput() SystemDed
 
 func (o SystemDedicatedMgmtMapOutput) ToSystemDedicatedMgmtMapOutputWithContext(ctx context.Context) SystemDedicatedMgmtMapOutput {
 	return o
+}
+
+func (o SystemDedicatedMgmtMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemDedicatedMgmt] {
+	return pulumix.Output[map[string]*SystemDedicatedMgmt]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemDedicatedMgmtMapOutput) MapIndex(k pulumi.StringInput) SystemDedicatedMgmtOutput {

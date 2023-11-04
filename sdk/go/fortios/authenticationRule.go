@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type AuthenticationRule struct {
@@ -16,6 +17,8 @@ type AuthenticationRule struct {
 
 	ActiveAuthMethod    pulumi.StringOutput                   `pulumi:"activeAuthMethod"`
 	Comments            pulumi.StringPtrOutput                `pulumi:"comments"`
+	CorsDepth           pulumi.IntOutput                      `pulumi:"corsDepth"`
+	CorsStateful        pulumi.StringOutput                   `pulumi:"corsStateful"`
 	Dstaddr6s           AuthenticationRuleDstaddr6ArrayOutput `pulumi:"dstaddr6s"`
 	Dstaddrs            AuthenticationRuleDstaddrArrayOutput  `pulumi:"dstaddrs"`
 	DynamicSortSubtable pulumi.StringPtrOutput                `pulumi:"dynamicSortSubtable"`
@@ -66,6 +69,8 @@ func GetAuthenticationRule(ctx *pulumi.Context,
 type authenticationRuleState struct {
 	ActiveAuthMethod    *string                      `pulumi:"activeAuthMethod"`
 	Comments            *string                      `pulumi:"comments"`
+	CorsDepth           *int                         `pulumi:"corsDepth"`
+	CorsStateful        *string                      `pulumi:"corsStateful"`
 	Dstaddr6s           []AuthenticationRuleDstaddr6 `pulumi:"dstaddr6s"`
 	Dstaddrs            []AuthenticationRuleDstaddr  `pulumi:"dstaddrs"`
 	DynamicSortSubtable *string                      `pulumi:"dynamicSortSubtable"`
@@ -87,6 +92,8 @@ type authenticationRuleState struct {
 type AuthenticationRuleState struct {
 	ActiveAuthMethod    pulumi.StringPtrInput
 	Comments            pulumi.StringPtrInput
+	CorsDepth           pulumi.IntPtrInput
+	CorsStateful        pulumi.StringPtrInput
 	Dstaddr6s           AuthenticationRuleDstaddr6ArrayInput
 	Dstaddrs            AuthenticationRuleDstaddrArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
@@ -112,6 +119,8 @@ func (AuthenticationRuleState) ElementType() reflect.Type {
 type authenticationRuleArgs struct {
 	ActiveAuthMethod    *string                      `pulumi:"activeAuthMethod"`
 	Comments            *string                      `pulumi:"comments"`
+	CorsDepth           *int                         `pulumi:"corsDepth"`
+	CorsStateful        *string                      `pulumi:"corsStateful"`
 	Dstaddr6s           []AuthenticationRuleDstaddr6 `pulumi:"dstaddr6s"`
 	Dstaddrs            []AuthenticationRuleDstaddr  `pulumi:"dstaddrs"`
 	DynamicSortSubtable *string                      `pulumi:"dynamicSortSubtable"`
@@ -134,6 +143,8 @@ type authenticationRuleArgs struct {
 type AuthenticationRuleArgs struct {
 	ActiveAuthMethod    pulumi.StringPtrInput
 	Comments            pulumi.StringPtrInput
+	CorsDepth           pulumi.IntPtrInput
+	CorsStateful        pulumi.StringPtrInput
 	Dstaddr6s           AuthenticationRuleDstaddr6ArrayInput
 	Dstaddrs            AuthenticationRuleDstaddrArrayInput
 	DynamicSortSubtable pulumi.StringPtrInput
@@ -175,6 +186,12 @@ func (i *AuthenticationRule) ToAuthenticationRuleOutputWithContext(ctx context.C
 	return pulumi.ToOutputWithContext(ctx, i).(AuthenticationRuleOutput)
 }
 
+func (i *AuthenticationRule) ToOutput(ctx context.Context) pulumix.Output[*AuthenticationRule] {
+	return pulumix.Output[*AuthenticationRule]{
+		OutputState: i.ToAuthenticationRuleOutputWithContext(ctx).OutputState,
+	}
+}
+
 // AuthenticationRuleArrayInput is an input type that accepts AuthenticationRuleArray and AuthenticationRuleArrayOutput values.
 // You can construct a concrete instance of `AuthenticationRuleArrayInput` via:
 //
@@ -198,6 +215,12 @@ func (i AuthenticationRuleArray) ToAuthenticationRuleArrayOutput() Authenticatio
 
 func (i AuthenticationRuleArray) ToAuthenticationRuleArrayOutputWithContext(ctx context.Context) AuthenticationRuleArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthenticationRuleArrayOutput)
+}
+
+func (i AuthenticationRuleArray) ToOutput(ctx context.Context) pulumix.Output[[]*AuthenticationRule] {
+	return pulumix.Output[[]*AuthenticationRule]{
+		OutputState: i.ToAuthenticationRuleArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // AuthenticationRuleMapInput is an input type that accepts AuthenticationRuleMap and AuthenticationRuleMapOutput values.
@@ -225,6 +248,12 @@ func (i AuthenticationRuleMap) ToAuthenticationRuleMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(AuthenticationRuleMapOutput)
 }
 
+func (i AuthenticationRuleMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthenticationRule] {
+	return pulumix.Output[map[string]*AuthenticationRule]{
+		OutputState: i.ToAuthenticationRuleMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type AuthenticationRuleOutput struct{ *pulumi.OutputState }
 
 func (AuthenticationRuleOutput) ElementType() reflect.Type {
@@ -239,12 +268,26 @@ func (o AuthenticationRuleOutput) ToAuthenticationRuleOutputWithContext(ctx cont
 	return o
 }
 
+func (o AuthenticationRuleOutput) ToOutput(ctx context.Context) pulumix.Output[*AuthenticationRule] {
+	return pulumix.Output[*AuthenticationRule]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o AuthenticationRuleOutput) ActiveAuthMethod() pulumi.StringOutput {
 	return o.ApplyT(func(v *AuthenticationRule) pulumi.StringOutput { return v.ActiveAuthMethod }).(pulumi.StringOutput)
 }
 
 func (o AuthenticationRuleOutput) Comments() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AuthenticationRule) pulumi.StringPtrOutput { return v.Comments }).(pulumi.StringPtrOutput)
+}
+
+func (o AuthenticationRuleOutput) CorsDepth() pulumi.IntOutput {
+	return o.ApplyT(func(v *AuthenticationRule) pulumi.IntOutput { return v.CorsDepth }).(pulumi.IntOutput)
+}
+
+func (o AuthenticationRuleOutput) CorsStateful() pulumi.StringOutput {
+	return o.ApplyT(func(v *AuthenticationRule) pulumi.StringOutput { return v.CorsStateful }).(pulumi.StringOutput)
 }
 
 func (o AuthenticationRuleOutput) Dstaddr6s() AuthenticationRuleDstaddr6ArrayOutput {
@@ -325,6 +368,12 @@ func (o AuthenticationRuleArrayOutput) ToAuthenticationRuleArrayOutputWithContex
 	return o
 }
 
+func (o AuthenticationRuleArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*AuthenticationRule] {
+	return pulumix.Output[[]*AuthenticationRule]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o AuthenticationRuleArrayOutput) Index(i pulumi.IntInput) AuthenticationRuleOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AuthenticationRule {
 		return vs[0].([]*AuthenticationRule)[vs[1].(int)]
@@ -343,6 +392,12 @@ func (o AuthenticationRuleMapOutput) ToAuthenticationRuleMapOutput() Authenticat
 
 func (o AuthenticationRuleMapOutput) ToAuthenticationRuleMapOutputWithContext(ctx context.Context) AuthenticationRuleMapOutput {
 	return o
+}
+
+func (o AuthenticationRuleMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*AuthenticationRule] {
+	return pulumix.Output[map[string]*AuthenticationRule]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o AuthenticationRuleMapOutput) MapIndex(k pulumi.StringInput) AuthenticationRuleOutput {

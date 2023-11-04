@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FortimanagerSystemAdminProfiles struct {
@@ -244,6 +245,12 @@ func (i *FortimanagerSystemAdminProfiles) ToFortimanagerSystemAdminProfilesOutpu
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemAdminProfilesOutput)
 }
 
+func (i *FortimanagerSystemAdminProfiles) ToOutput(ctx context.Context) pulumix.Output[*FortimanagerSystemAdminProfiles] {
+	return pulumix.Output[*FortimanagerSystemAdminProfiles]{
+		OutputState: i.ToFortimanagerSystemAdminProfilesOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FortimanagerSystemAdminProfilesArrayInput is an input type that accepts FortimanagerSystemAdminProfilesArray and FortimanagerSystemAdminProfilesArrayOutput values.
 // You can construct a concrete instance of `FortimanagerSystemAdminProfilesArrayInput` via:
 //
@@ -267,6 +274,12 @@ func (i FortimanagerSystemAdminProfilesArray) ToFortimanagerSystemAdminProfilesA
 
 func (i FortimanagerSystemAdminProfilesArray) ToFortimanagerSystemAdminProfilesArrayOutputWithContext(ctx context.Context) FortimanagerSystemAdminProfilesArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemAdminProfilesArrayOutput)
+}
+
+func (i FortimanagerSystemAdminProfilesArray) ToOutput(ctx context.Context) pulumix.Output[[]*FortimanagerSystemAdminProfiles] {
+	return pulumix.Output[[]*FortimanagerSystemAdminProfiles]{
+		OutputState: i.ToFortimanagerSystemAdminProfilesArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FortimanagerSystemAdminProfilesMapInput is an input type that accepts FortimanagerSystemAdminProfilesMap and FortimanagerSystemAdminProfilesMapOutput values.
@@ -294,6 +307,12 @@ func (i FortimanagerSystemAdminProfilesMap) ToFortimanagerSystemAdminProfilesMap
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemAdminProfilesMapOutput)
 }
 
+func (i FortimanagerSystemAdminProfilesMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FortimanagerSystemAdminProfiles] {
+	return pulumix.Output[map[string]*FortimanagerSystemAdminProfiles]{
+		OutputState: i.ToFortimanagerSystemAdminProfilesMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FortimanagerSystemAdminProfilesOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerSystemAdminProfilesOutput) ElementType() reflect.Type {
@@ -306,6 +325,12 @@ func (o FortimanagerSystemAdminProfilesOutput) ToFortimanagerSystemAdminProfiles
 
 func (o FortimanagerSystemAdminProfilesOutput) ToFortimanagerSystemAdminProfilesOutputWithContext(ctx context.Context) FortimanagerSystemAdminProfilesOutput {
 	return o
+}
+
+func (o FortimanagerSystemAdminProfilesOutput) ToOutput(ctx context.Context) pulumix.Output[*FortimanagerSystemAdminProfiles] {
+	return pulumix.Output[*FortimanagerSystemAdminProfiles]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FortimanagerSystemAdminProfilesOutput) AdomPolicyPackages() pulumi.StringPtrOutput {
@@ -448,6 +473,12 @@ func (o FortimanagerSystemAdminProfilesArrayOutput) ToFortimanagerSystemAdminPro
 	return o
 }
 
+func (o FortimanagerSystemAdminProfilesArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FortimanagerSystemAdminProfiles] {
+	return pulumix.Output[[]*FortimanagerSystemAdminProfiles]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FortimanagerSystemAdminProfilesArrayOutput) Index(i pulumi.IntInput) FortimanagerSystemAdminProfilesOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FortimanagerSystemAdminProfiles {
 		return vs[0].([]*FortimanagerSystemAdminProfiles)[vs[1].(int)]
@@ -466,6 +497,12 @@ func (o FortimanagerSystemAdminProfilesMapOutput) ToFortimanagerSystemAdminProfi
 
 func (o FortimanagerSystemAdminProfilesMapOutput) ToFortimanagerSystemAdminProfilesMapOutputWithContext(ctx context.Context) FortimanagerSystemAdminProfilesMapOutput {
 	return o
+}
+
+func (o FortimanagerSystemAdminProfilesMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FortimanagerSystemAdminProfiles] {
+	return pulumix.Output[map[string]*FortimanagerSystemAdminProfiles]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FortimanagerSystemAdminProfilesMapOutput) MapIndex(k pulumi.StringInput) FortimanagerSystemAdminProfilesOutput {

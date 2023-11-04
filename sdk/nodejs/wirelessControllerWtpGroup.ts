@@ -34,6 +34,7 @@ export class WirelessControllerWtpGroup extends pulumi.CustomResource {
         return obj['__pulumiType'] === WirelessControllerWtpGroup.__pulumiType;
     }
 
+    public readonly bleMajorId!: pulumi.Output<number>;
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     public readonly getAllTables!: pulumi.Output<string | undefined>;
     public readonly name!: pulumi.Output<string>;
@@ -54,6 +55,7 @@ export class WirelessControllerWtpGroup extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WirelessControllerWtpGroupState | undefined;
+            resourceInputs["bleMajorId"] = state ? state.bleMajorId : undefined;
             resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
             resourceInputs["getAllTables"] = state ? state.getAllTables : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -62,6 +64,7 @@ export class WirelessControllerWtpGroup extends pulumi.CustomResource {
             resourceInputs["wtps"] = state ? state.wtps : undefined;
         } else {
             const args = argsOrState as WirelessControllerWtpGroupArgs | undefined;
+            resourceInputs["bleMajorId"] = args ? args.bleMajorId : undefined;
             resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
             resourceInputs["getAllTables"] = args ? args.getAllTables : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -78,6 +81,7 @@ export class WirelessControllerWtpGroup extends pulumi.CustomResource {
  * Input properties used for looking up and filtering WirelessControllerWtpGroup resources.
  */
 export interface WirelessControllerWtpGroupState {
+    bleMajorId?: pulumi.Input<number>;
     dynamicSortSubtable?: pulumi.Input<string>;
     getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
@@ -90,6 +94,7 @@ export interface WirelessControllerWtpGroupState {
  * The set of arguments for constructing a WirelessControllerWtpGroup resource.
  */
 export interface WirelessControllerWtpGroupArgs {
+    bleMajorId?: pulumi.Input<number>;
     dynamicSortSubtable?: pulumi.Input<string>;
     getAllTables?: pulumi.Input<string>;
     name?: pulumi.Input<string>;

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerSnmpTrapThreshold struct {
@@ -105,6 +106,12 @@ func (i *SwitchControllerSnmpTrapThreshold) ToSwitchControllerSnmpTrapThresholdO
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSnmpTrapThresholdOutput)
 }
 
+func (i *SwitchControllerSnmpTrapThreshold) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerSnmpTrapThreshold] {
+	return pulumix.Output[*SwitchControllerSnmpTrapThreshold]{
+		OutputState: i.ToSwitchControllerSnmpTrapThresholdOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SwitchControllerSnmpTrapThresholdArrayInput is an input type that accepts SwitchControllerSnmpTrapThresholdArray and SwitchControllerSnmpTrapThresholdArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerSnmpTrapThresholdArrayInput` via:
 //
@@ -128,6 +135,12 @@ func (i SwitchControllerSnmpTrapThresholdArray) ToSwitchControllerSnmpTrapThresh
 
 func (i SwitchControllerSnmpTrapThresholdArray) ToSwitchControllerSnmpTrapThresholdArrayOutputWithContext(ctx context.Context) SwitchControllerSnmpTrapThresholdArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSnmpTrapThresholdArrayOutput)
+}
+
+func (i SwitchControllerSnmpTrapThresholdArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerSnmpTrapThreshold] {
+	return pulumix.Output[[]*SwitchControllerSnmpTrapThreshold]{
+		OutputState: i.ToSwitchControllerSnmpTrapThresholdArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SwitchControllerSnmpTrapThresholdMapInput is an input type that accepts SwitchControllerSnmpTrapThresholdMap and SwitchControllerSnmpTrapThresholdMapOutput values.
@@ -155,6 +168,12 @@ func (i SwitchControllerSnmpTrapThresholdMap) ToSwitchControllerSnmpTrapThreshol
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSnmpTrapThresholdMapOutput)
 }
 
+func (i SwitchControllerSnmpTrapThresholdMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerSnmpTrapThreshold] {
+	return pulumix.Output[map[string]*SwitchControllerSnmpTrapThreshold]{
+		OutputState: i.ToSwitchControllerSnmpTrapThresholdMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SwitchControllerSnmpTrapThresholdOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSnmpTrapThresholdOutput) ElementType() reflect.Type {
@@ -167,6 +186,12 @@ func (o SwitchControllerSnmpTrapThresholdOutput) ToSwitchControllerSnmpTrapThres
 
 func (o SwitchControllerSnmpTrapThresholdOutput) ToSwitchControllerSnmpTrapThresholdOutputWithContext(ctx context.Context) SwitchControllerSnmpTrapThresholdOutput {
 	return o
+}
+
+func (o SwitchControllerSnmpTrapThresholdOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerSnmpTrapThreshold] {
+	return pulumix.Output[*SwitchControllerSnmpTrapThreshold]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerSnmpTrapThresholdOutput) TrapHighCpuThreshold() pulumi.IntOutput {
@@ -199,6 +224,12 @@ func (o SwitchControllerSnmpTrapThresholdArrayOutput) ToSwitchControllerSnmpTrap
 	return o
 }
 
+func (o SwitchControllerSnmpTrapThresholdArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerSnmpTrapThreshold] {
+	return pulumix.Output[[]*SwitchControllerSnmpTrapThreshold]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SwitchControllerSnmpTrapThresholdArrayOutput) Index(i pulumi.IntInput) SwitchControllerSnmpTrapThresholdOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerSnmpTrapThreshold {
 		return vs[0].([]*SwitchControllerSnmpTrapThreshold)[vs[1].(int)]
@@ -217,6 +248,12 @@ func (o SwitchControllerSnmpTrapThresholdMapOutput) ToSwitchControllerSnmpTrapTh
 
 func (o SwitchControllerSnmpTrapThresholdMapOutput) ToSwitchControllerSnmpTrapThresholdMapOutputWithContext(ctx context.Context) SwitchControllerSnmpTrapThresholdMapOutput {
 	return o
+}
+
+func (o SwitchControllerSnmpTrapThresholdMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerSnmpTrapThreshold] {
+	return pulumix.Output[map[string]*SwitchControllerSnmpTrapThreshold]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerSnmpTrapThresholdMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerSnmpTrapThresholdOutput {

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemNpu struct {
@@ -190,6 +191,12 @@ func (i *SystemNpu) ToSystemNpuOutputWithContext(ctx context.Context) SystemNpuO
 	return pulumi.ToOutputWithContext(ctx, i).(SystemNpuOutput)
 }
 
+func (i *SystemNpu) ToOutput(ctx context.Context) pulumix.Output[*SystemNpu] {
+	return pulumix.Output[*SystemNpu]{
+		OutputState: i.ToSystemNpuOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemNpuArrayInput is an input type that accepts SystemNpuArray and SystemNpuArrayOutput values.
 // You can construct a concrete instance of `SystemNpuArrayInput` via:
 //
@@ -213,6 +220,12 @@ func (i SystemNpuArray) ToSystemNpuArrayOutput() SystemNpuArrayOutput {
 
 func (i SystemNpuArray) ToSystemNpuArrayOutputWithContext(ctx context.Context) SystemNpuArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemNpuArrayOutput)
+}
+
+func (i SystemNpuArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemNpu] {
+	return pulumix.Output[[]*SystemNpu]{
+		OutputState: i.ToSystemNpuArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemNpuMapInput is an input type that accepts SystemNpuMap and SystemNpuMapOutput values.
@@ -240,6 +253,12 @@ func (i SystemNpuMap) ToSystemNpuMapOutputWithContext(ctx context.Context) Syste
 	return pulumi.ToOutputWithContext(ctx, i).(SystemNpuMapOutput)
 }
 
+func (i SystemNpuMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemNpu] {
+	return pulumix.Output[map[string]*SystemNpu]{
+		OutputState: i.ToSystemNpuMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemNpuOutput struct{ *pulumi.OutputState }
 
 func (SystemNpuOutput) ElementType() reflect.Type {
@@ -252,6 +271,12 @@ func (o SystemNpuOutput) ToSystemNpuOutput() SystemNpuOutput {
 
 func (o SystemNpuOutput) ToSystemNpuOutputWithContext(ctx context.Context) SystemNpuOutput {
 	return o
+}
+
+func (o SystemNpuOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemNpu] {
+	return pulumix.Output[*SystemNpu]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemNpuOutput) CapwapOffload() pulumi.StringOutput {
@@ -352,6 +377,12 @@ func (o SystemNpuArrayOutput) ToSystemNpuArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
+func (o SystemNpuArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemNpu] {
+	return pulumix.Output[[]*SystemNpu]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemNpuArrayOutput) Index(i pulumi.IntInput) SystemNpuOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemNpu {
 		return vs[0].([]*SystemNpu)[vs[1].(int)]
@@ -370,6 +401,12 @@ func (o SystemNpuMapOutput) ToSystemNpuMapOutput() SystemNpuMapOutput {
 
 func (o SystemNpuMapOutput) ToSystemNpuMapOutputWithContext(ctx context.Context) SystemNpuMapOutput {
 	return o
+}
+
+func (o SystemNpuMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemNpu] {
+	return pulumix.Output[map[string]*SystemNpu]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemNpuMapOutput) MapIndex(k pulumi.StringInput) SystemNpuOutput {

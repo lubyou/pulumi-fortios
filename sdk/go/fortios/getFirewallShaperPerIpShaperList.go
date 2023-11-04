@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func GetFirewallShaperPerIpShaperList(ctx *pulumi.Context, args *GetFirewallShaperPerIpShaperListArgs, opts ...pulumi.InvokeOption) (*GetFirewallShaperPerIpShaperListResult, error) {
@@ -72,6 +73,12 @@ func (o GetFirewallShaperPerIpShaperListResultOutput) ToGetFirewallShaperPerIpSh
 
 func (o GetFirewallShaperPerIpShaperListResultOutput) ToGetFirewallShaperPerIpShaperListResultOutputWithContext(ctx context.Context) GetFirewallShaperPerIpShaperListResultOutput {
 	return o
+}
+
+func (o GetFirewallShaperPerIpShaperListResultOutput) ToOutput(ctx context.Context) pulumix.Output[GetFirewallShaperPerIpShaperListResult] {
+	return pulumix.Output[GetFirewallShaperPerIpShaperListResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o GetFirewallShaperPerIpShaperListResultOutput) Filter() pulumi.StringPtrOutput {

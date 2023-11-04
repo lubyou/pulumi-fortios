@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type DpdkCpus struct {
@@ -115,6 +116,12 @@ func (i *DpdkCpus) ToDpdkCpusOutputWithContext(ctx context.Context) DpdkCpusOutp
 	return pulumi.ToOutputWithContext(ctx, i).(DpdkCpusOutput)
 }
 
+func (i *DpdkCpus) ToOutput(ctx context.Context) pulumix.Output[*DpdkCpus] {
+	return pulumix.Output[*DpdkCpus]{
+		OutputState: i.ToDpdkCpusOutputWithContext(ctx).OutputState,
+	}
+}
+
 // DpdkCpusArrayInput is an input type that accepts DpdkCpusArray and DpdkCpusArrayOutput values.
 // You can construct a concrete instance of `DpdkCpusArrayInput` via:
 //
@@ -138,6 +145,12 @@ func (i DpdkCpusArray) ToDpdkCpusArrayOutput() DpdkCpusArrayOutput {
 
 func (i DpdkCpusArray) ToDpdkCpusArrayOutputWithContext(ctx context.Context) DpdkCpusArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DpdkCpusArrayOutput)
+}
+
+func (i DpdkCpusArray) ToOutput(ctx context.Context) pulumix.Output[[]*DpdkCpus] {
+	return pulumix.Output[[]*DpdkCpus]{
+		OutputState: i.ToDpdkCpusArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // DpdkCpusMapInput is an input type that accepts DpdkCpusMap and DpdkCpusMapOutput values.
@@ -165,6 +178,12 @@ func (i DpdkCpusMap) ToDpdkCpusMapOutputWithContext(ctx context.Context) DpdkCpu
 	return pulumi.ToOutputWithContext(ctx, i).(DpdkCpusMapOutput)
 }
 
+func (i DpdkCpusMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DpdkCpus] {
+	return pulumix.Output[map[string]*DpdkCpus]{
+		OutputState: i.ToDpdkCpusMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DpdkCpusOutput struct{ *pulumi.OutputState }
 
 func (DpdkCpusOutput) ElementType() reflect.Type {
@@ -177,6 +196,12 @@ func (o DpdkCpusOutput) ToDpdkCpusOutput() DpdkCpusOutput {
 
 func (o DpdkCpusOutput) ToDpdkCpusOutputWithContext(ctx context.Context) DpdkCpusOutput {
 	return o
+}
+
+func (o DpdkCpusOutput) ToOutput(ctx context.Context) pulumix.Output[*DpdkCpus] {
+	return pulumix.Output[*DpdkCpus]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DpdkCpusOutput) IpsCpus() pulumi.StringOutput {
@@ -217,6 +242,12 @@ func (o DpdkCpusArrayOutput) ToDpdkCpusArrayOutputWithContext(ctx context.Contex
 	return o
 }
 
+func (o DpdkCpusArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DpdkCpus] {
+	return pulumix.Output[[]*DpdkCpus]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DpdkCpusArrayOutput) Index(i pulumi.IntInput) DpdkCpusOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DpdkCpus {
 		return vs[0].([]*DpdkCpus)[vs[1].(int)]
@@ -235,6 +266,12 @@ func (o DpdkCpusMapOutput) ToDpdkCpusMapOutput() DpdkCpusMapOutput {
 
 func (o DpdkCpusMapOutput) ToDpdkCpusMapOutputWithContext(ctx context.Context) DpdkCpusMapOutput {
 	return o
+}
+
+func (o DpdkCpusMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DpdkCpus] {
+	return pulumix.Output[map[string]*DpdkCpus]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DpdkCpusMapOutput) MapIndex(k pulumi.StringInput) DpdkCpusOutput {

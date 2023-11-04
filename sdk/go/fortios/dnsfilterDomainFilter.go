@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type DnsfilterDomainFilter struct {
@@ -124,6 +125,12 @@ func (i *DnsfilterDomainFilter) ToDnsfilterDomainFilterOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(DnsfilterDomainFilterOutput)
 }
 
+func (i *DnsfilterDomainFilter) ToOutput(ctx context.Context) pulumix.Output[*DnsfilterDomainFilter] {
+	return pulumix.Output[*DnsfilterDomainFilter]{
+		OutputState: i.ToDnsfilterDomainFilterOutputWithContext(ctx).OutputState,
+	}
+}
+
 // DnsfilterDomainFilterArrayInput is an input type that accepts DnsfilterDomainFilterArray and DnsfilterDomainFilterArrayOutput values.
 // You can construct a concrete instance of `DnsfilterDomainFilterArrayInput` via:
 //
@@ -147,6 +154,12 @@ func (i DnsfilterDomainFilterArray) ToDnsfilterDomainFilterArrayOutput() Dnsfilt
 
 func (i DnsfilterDomainFilterArray) ToDnsfilterDomainFilterArrayOutputWithContext(ctx context.Context) DnsfilterDomainFilterArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DnsfilterDomainFilterArrayOutput)
+}
+
+func (i DnsfilterDomainFilterArray) ToOutput(ctx context.Context) pulumix.Output[[]*DnsfilterDomainFilter] {
+	return pulumix.Output[[]*DnsfilterDomainFilter]{
+		OutputState: i.ToDnsfilterDomainFilterArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // DnsfilterDomainFilterMapInput is an input type that accepts DnsfilterDomainFilterMap and DnsfilterDomainFilterMapOutput values.
@@ -174,6 +187,12 @@ func (i DnsfilterDomainFilterMap) ToDnsfilterDomainFilterMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(DnsfilterDomainFilterMapOutput)
 }
 
+func (i DnsfilterDomainFilterMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*DnsfilterDomainFilter] {
+	return pulumix.Output[map[string]*DnsfilterDomainFilter]{
+		OutputState: i.ToDnsfilterDomainFilterMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type DnsfilterDomainFilterOutput struct{ *pulumi.OutputState }
 
 func (DnsfilterDomainFilterOutput) ElementType() reflect.Type {
@@ -186,6 +205,12 @@ func (o DnsfilterDomainFilterOutput) ToDnsfilterDomainFilterOutput() DnsfilterDo
 
 func (o DnsfilterDomainFilterOutput) ToDnsfilterDomainFilterOutputWithContext(ctx context.Context) DnsfilterDomainFilterOutput {
 	return o
+}
+
+func (o DnsfilterDomainFilterOutput) ToOutput(ctx context.Context) pulumix.Output[*DnsfilterDomainFilter] {
+	return pulumix.Output[*DnsfilterDomainFilter]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DnsfilterDomainFilterOutput) Comment() pulumi.StringPtrOutput {
@@ -230,6 +255,12 @@ func (o DnsfilterDomainFilterArrayOutput) ToDnsfilterDomainFilterArrayOutputWith
 	return o
 }
 
+func (o DnsfilterDomainFilterArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*DnsfilterDomainFilter] {
+	return pulumix.Output[[]*DnsfilterDomainFilter]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o DnsfilterDomainFilterArrayOutput) Index(i pulumi.IntInput) DnsfilterDomainFilterOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DnsfilterDomainFilter {
 		return vs[0].([]*DnsfilterDomainFilter)[vs[1].(int)]
@@ -248,6 +279,12 @@ func (o DnsfilterDomainFilterMapOutput) ToDnsfilterDomainFilterMapOutput() Dnsfi
 
 func (o DnsfilterDomainFilterMapOutput) ToDnsfilterDomainFilterMapOutputWithContext(ctx context.Context) DnsfilterDomainFilterMapOutput {
 	return o
+}
+
+func (o DnsfilterDomainFilterMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*DnsfilterDomainFilter] {
+	return pulumix.Output[map[string]*DnsfilterDomainFilter]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o DnsfilterDomainFilterMapOutput) MapIndex(k pulumi.StringInput) DnsfilterDomainFilterOutput {

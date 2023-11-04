@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemLinkMonitor struct {
@@ -281,6 +282,12 @@ func (i *SystemLinkMonitor) ToSystemLinkMonitorOutputWithContext(ctx context.Con
 	return pulumi.ToOutputWithContext(ctx, i).(SystemLinkMonitorOutput)
 }
 
+func (i *SystemLinkMonitor) ToOutput(ctx context.Context) pulumix.Output[*SystemLinkMonitor] {
+	return pulumix.Output[*SystemLinkMonitor]{
+		OutputState: i.ToSystemLinkMonitorOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemLinkMonitorArrayInput is an input type that accepts SystemLinkMonitorArray and SystemLinkMonitorArrayOutput values.
 // You can construct a concrete instance of `SystemLinkMonitorArrayInput` via:
 //
@@ -304,6 +311,12 @@ func (i SystemLinkMonitorArray) ToSystemLinkMonitorArrayOutput() SystemLinkMonit
 
 func (i SystemLinkMonitorArray) ToSystemLinkMonitorArrayOutputWithContext(ctx context.Context) SystemLinkMonitorArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemLinkMonitorArrayOutput)
+}
+
+func (i SystemLinkMonitorArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemLinkMonitor] {
+	return pulumix.Output[[]*SystemLinkMonitor]{
+		OutputState: i.ToSystemLinkMonitorArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemLinkMonitorMapInput is an input type that accepts SystemLinkMonitorMap and SystemLinkMonitorMapOutput values.
@@ -331,6 +344,12 @@ func (i SystemLinkMonitorMap) ToSystemLinkMonitorMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemLinkMonitorMapOutput)
 }
 
+func (i SystemLinkMonitorMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemLinkMonitor] {
+	return pulumix.Output[map[string]*SystemLinkMonitor]{
+		OutputState: i.ToSystemLinkMonitorMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemLinkMonitorOutput struct{ *pulumi.OutputState }
 
 func (SystemLinkMonitorOutput) ElementType() reflect.Type {
@@ -343,6 +362,12 @@ func (o SystemLinkMonitorOutput) ToSystemLinkMonitorOutput() SystemLinkMonitorOu
 
 func (o SystemLinkMonitorOutput) ToSystemLinkMonitorOutputWithContext(ctx context.Context) SystemLinkMonitorOutput {
 	return o
+}
+
+func (o SystemLinkMonitorOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemLinkMonitor] {
+	return pulumix.Output[*SystemLinkMonitor]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemLinkMonitorOutput) AddrMode() pulumi.StringOutput {
@@ -507,6 +532,12 @@ func (o SystemLinkMonitorArrayOutput) ToSystemLinkMonitorArrayOutputWithContext(
 	return o
 }
 
+func (o SystemLinkMonitorArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemLinkMonitor] {
+	return pulumix.Output[[]*SystemLinkMonitor]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemLinkMonitorArrayOutput) Index(i pulumi.IntInput) SystemLinkMonitorOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemLinkMonitor {
 		return vs[0].([]*SystemLinkMonitor)[vs[1].(int)]
@@ -525,6 +556,12 @@ func (o SystemLinkMonitorMapOutput) ToSystemLinkMonitorMapOutput() SystemLinkMon
 
 func (o SystemLinkMonitorMapOutput) ToSystemLinkMonitorMapOutputWithContext(ctx context.Context) SystemLinkMonitorMapOutput {
 	return o
+}
+
+func (o SystemLinkMonitorMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemLinkMonitor] {
+	return pulumix.Output[map[string]*SystemLinkMonitor]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemLinkMonitorMapOutput) MapIndex(k pulumi.StringInput) SystemLinkMonitorOutput {

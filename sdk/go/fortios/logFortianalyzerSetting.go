@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type LogFortianalyzerSetting struct {
@@ -16,11 +17,13 @@ type LogFortianalyzerSetting struct {
 
 	__changeIp                pulumi.IntOutput                         `pulumi:"__changeIp"`
 	AccessConfig              pulumi.StringOutput                      `pulumi:"accessConfig"`
+	AltServer                 pulumi.StringOutput                      `pulumi:"altServer"`
 	Certificate               pulumi.StringOutput                      `pulumi:"certificate"`
 	CertificateVerification   pulumi.StringOutput                      `pulumi:"certificateVerification"`
 	ConnTimeout               pulumi.IntOutput                         `pulumi:"connTimeout"`
 	DynamicSortSubtable       pulumi.StringPtrOutput                   `pulumi:"dynamicSortSubtable"`
 	EncAlgorithm              pulumi.StringOutput                      `pulumi:"encAlgorithm"`
+	FallbackToPrimary         pulumi.StringOutput                      `pulumi:"fallbackToPrimary"`
 	FazType                   pulumi.IntOutput                         `pulumi:"fazType"`
 	GetAllTables              pulumi.StringPtrOutput                   `pulumi:"getAllTables"`
 	HmacAlgorithm             pulumi.StringOutput                      `pulumi:"hmacAlgorithm"`
@@ -78,11 +81,13 @@ func GetLogFortianalyzerSetting(ctx *pulumi.Context,
 type logFortianalyzerSettingState struct {
 	__changeIp                *int                            `pulumi:"__changeIp"`
 	AccessConfig              *string                         `pulumi:"accessConfig"`
+	AltServer                 *string                         `pulumi:"altServer"`
 	Certificate               *string                         `pulumi:"certificate"`
 	CertificateVerification   *string                         `pulumi:"certificateVerification"`
 	ConnTimeout               *int                            `pulumi:"connTimeout"`
 	DynamicSortSubtable       *string                         `pulumi:"dynamicSortSubtable"`
 	EncAlgorithm              *string                         `pulumi:"encAlgorithm"`
+	FallbackToPrimary         *string                         `pulumi:"fallbackToPrimary"`
 	FazType                   *int                            `pulumi:"fazType"`
 	GetAllTables              *string                         `pulumi:"getAllTables"`
 	HmacAlgorithm             *string                         `pulumi:"hmacAlgorithm"`
@@ -111,11 +116,13 @@ type logFortianalyzerSettingState struct {
 type LogFortianalyzerSettingState struct {
 	__changeIp                pulumi.IntPtrInput
 	AccessConfig              pulumi.StringPtrInput
+	AltServer                 pulumi.StringPtrInput
 	Certificate               pulumi.StringPtrInput
 	CertificateVerification   pulumi.StringPtrInput
 	ConnTimeout               pulumi.IntPtrInput
 	DynamicSortSubtable       pulumi.StringPtrInput
 	EncAlgorithm              pulumi.StringPtrInput
+	FallbackToPrimary         pulumi.StringPtrInput
 	FazType                   pulumi.IntPtrInput
 	GetAllTables              pulumi.StringPtrInput
 	HmacAlgorithm             pulumi.StringPtrInput
@@ -148,11 +155,13 @@ func (LogFortianalyzerSettingState) ElementType() reflect.Type {
 type logFortianalyzerSettingArgs struct {
 	__changeIp                *int                            `pulumi:"__changeIp"`
 	AccessConfig              *string                         `pulumi:"accessConfig"`
+	AltServer                 *string                         `pulumi:"altServer"`
 	Certificate               *string                         `pulumi:"certificate"`
 	CertificateVerification   *string                         `pulumi:"certificateVerification"`
 	ConnTimeout               *int                            `pulumi:"connTimeout"`
 	DynamicSortSubtable       *string                         `pulumi:"dynamicSortSubtable"`
 	EncAlgorithm              *string                         `pulumi:"encAlgorithm"`
+	FallbackToPrimary         *string                         `pulumi:"fallbackToPrimary"`
 	FazType                   *int                            `pulumi:"fazType"`
 	GetAllTables              *string                         `pulumi:"getAllTables"`
 	HmacAlgorithm             *string                         `pulumi:"hmacAlgorithm"`
@@ -182,11 +191,13 @@ type logFortianalyzerSettingArgs struct {
 type LogFortianalyzerSettingArgs struct {
 	__changeIp                pulumi.IntPtrInput
 	AccessConfig              pulumi.StringPtrInput
+	AltServer                 pulumi.StringPtrInput
 	Certificate               pulumi.StringPtrInput
 	CertificateVerification   pulumi.StringPtrInput
 	ConnTimeout               pulumi.IntPtrInput
 	DynamicSortSubtable       pulumi.StringPtrInput
 	EncAlgorithm              pulumi.StringPtrInput
+	FallbackToPrimary         pulumi.StringPtrInput
 	FazType                   pulumi.IntPtrInput
 	GetAllTables              pulumi.StringPtrInput
 	HmacAlgorithm             pulumi.StringPtrInput
@@ -235,6 +246,12 @@ func (i *LogFortianalyzerSetting) ToLogFortianalyzerSettingOutputWithContext(ctx
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerSettingOutput)
 }
 
+func (i *LogFortianalyzerSetting) ToOutput(ctx context.Context) pulumix.Output[*LogFortianalyzerSetting] {
+	return pulumix.Output[*LogFortianalyzerSetting]{
+		OutputState: i.ToLogFortianalyzerSettingOutputWithContext(ctx).OutputState,
+	}
+}
+
 // LogFortianalyzerSettingArrayInput is an input type that accepts LogFortianalyzerSettingArray and LogFortianalyzerSettingArrayOutput values.
 // You can construct a concrete instance of `LogFortianalyzerSettingArrayInput` via:
 //
@@ -258,6 +275,12 @@ func (i LogFortianalyzerSettingArray) ToLogFortianalyzerSettingArrayOutput() Log
 
 func (i LogFortianalyzerSettingArray) ToLogFortianalyzerSettingArrayOutputWithContext(ctx context.Context) LogFortianalyzerSettingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerSettingArrayOutput)
+}
+
+func (i LogFortianalyzerSettingArray) ToOutput(ctx context.Context) pulumix.Output[[]*LogFortianalyzerSetting] {
+	return pulumix.Output[[]*LogFortianalyzerSetting]{
+		OutputState: i.ToLogFortianalyzerSettingArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // LogFortianalyzerSettingMapInput is an input type that accepts LogFortianalyzerSettingMap and LogFortianalyzerSettingMapOutput values.
@@ -285,6 +308,12 @@ func (i LogFortianalyzerSettingMap) ToLogFortianalyzerSettingMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerSettingMapOutput)
 }
 
+func (i LogFortianalyzerSettingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogFortianalyzerSetting] {
+	return pulumix.Output[map[string]*LogFortianalyzerSetting]{
+		OutputState: i.ToLogFortianalyzerSettingMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type LogFortianalyzerSettingOutput struct{ *pulumi.OutputState }
 
 func (LogFortianalyzerSettingOutput) ElementType() reflect.Type {
@@ -299,12 +328,22 @@ func (o LogFortianalyzerSettingOutput) ToLogFortianalyzerSettingOutputWithContex
 	return o
 }
 
+func (o LogFortianalyzerSettingOutput) ToOutput(ctx context.Context) pulumix.Output[*LogFortianalyzerSetting] {
+	return pulumix.Output[*LogFortianalyzerSetting]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LogFortianalyzerSettingOutput) __changeIp() pulumi.IntOutput {
 	return o.ApplyT(func(v *LogFortianalyzerSetting) pulumi.IntOutput { return v.__changeIp }).(pulumi.IntOutput)
 }
 
 func (o LogFortianalyzerSettingOutput) AccessConfig() pulumi.StringOutput {
 	return o.ApplyT(func(v *LogFortianalyzerSetting) pulumi.StringOutput { return v.AccessConfig }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzerSettingOutput) AltServer() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzerSetting) pulumi.StringOutput { return v.AltServer }).(pulumi.StringOutput)
 }
 
 func (o LogFortianalyzerSettingOutput) Certificate() pulumi.StringOutput {
@@ -325,6 +364,10 @@ func (o LogFortianalyzerSettingOutput) DynamicSortSubtable() pulumi.StringPtrOut
 
 func (o LogFortianalyzerSettingOutput) EncAlgorithm() pulumi.StringOutput {
 	return o.ApplyT(func(v *LogFortianalyzerSetting) pulumi.StringOutput { return v.EncAlgorithm }).(pulumi.StringOutput)
+}
+
+func (o LogFortianalyzerSettingOutput) FallbackToPrimary() pulumi.StringOutput {
+	return o.ApplyT(func(v *LogFortianalyzerSetting) pulumi.StringOutput { return v.FallbackToPrimary }).(pulumi.StringOutput)
 }
 
 func (o LogFortianalyzerSettingOutput) FazType() pulumi.IntOutput {
@@ -433,6 +476,12 @@ func (o LogFortianalyzerSettingArrayOutput) ToLogFortianalyzerSettingArrayOutput
 	return o
 }
 
+func (o LogFortianalyzerSettingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*LogFortianalyzerSetting] {
+	return pulumix.Output[[]*LogFortianalyzerSetting]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o LogFortianalyzerSettingArrayOutput) Index(i pulumi.IntInput) LogFortianalyzerSettingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogFortianalyzerSetting {
 		return vs[0].([]*LogFortianalyzerSetting)[vs[1].(int)]
@@ -451,6 +500,12 @@ func (o LogFortianalyzerSettingMapOutput) ToLogFortianalyzerSettingMapOutput() L
 
 func (o LogFortianalyzerSettingMapOutput) ToLogFortianalyzerSettingMapOutputWithContext(ctx context.Context) LogFortianalyzerSettingMapOutput {
 	return o
+}
+
+func (o LogFortianalyzerSettingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*LogFortianalyzerSetting] {
+	return pulumix.Output[map[string]*LogFortianalyzerSetting]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LogFortianalyzerSettingMapOutput) MapIndex(k pulumi.StringInput) LogFortianalyzerSettingOutput {

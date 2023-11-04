@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerLocation struct {
@@ -115,6 +116,12 @@ func (i *SwitchControllerLocation) ToSwitchControllerLocationOutputWithContext(c
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerLocationOutput)
 }
 
+func (i *SwitchControllerLocation) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerLocation] {
+	return pulumix.Output[*SwitchControllerLocation]{
+		OutputState: i.ToSwitchControllerLocationOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SwitchControllerLocationArrayInput is an input type that accepts SwitchControllerLocationArray and SwitchControllerLocationArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerLocationArrayInput` via:
 //
@@ -138,6 +145,12 @@ func (i SwitchControllerLocationArray) ToSwitchControllerLocationArrayOutput() S
 
 func (i SwitchControllerLocationArray) ToSwitchControllerLocationArrayOutputWithContext(ctx context.Context) SwitchControllerLocationArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerLocationArrayOutput)
+}
+
+func (i SwitchControllerLocationArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerLocation] {
+	return pulumix.Output[[]*SwitchControllerLocation]{
+		OutputState: i.ToSwitchControllerLocationArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SwitchControllerLocationMapInput is an input type that accepts SwitchControllerLocationMap and SwitchControllerLocationMapOutput values.
@@ -165,6 +178,12 @@ func (i SwitchControllerLocationMap) ToSwitchControllerLocationMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerLocationMapOutput)
 }
 
+func (i SwitchControllerLocationMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerLocation] {
+	return pulumix.Output[map[string]*SwitchControllerLocation]{
+		OutputState: i.ToSwitchControllerLocationMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SwitchControllerLocationOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerLocationOutput) ElementType() reflect.Type {
@@ -177,6 +196,12 @@ func (o SwitchControllerLocationOutput) ToSwitchControllerLocationOutput() Switc
 
 func (o SwitchControllerLocationOutput) ToSwitchControllerLocationOutputWithContext(ctx context.Context) SwitchControllerLocationOutput {
 	return o
+}
+
+func (o SwitchControllerLocationOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerLocation] {
+	return pulumix.Output[*SwitchControllerLocation]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerLocationOutput) AddressCivic() SwitchControllerLocationAddressCivicOutput {
@@ -217,6 +242,12 @@ func (o SwitchControllerLocationArrayOutput) ToSwitchControllerLocationArrayOutp
 	return o
 }
 
+func (o SwitchControllerLocationArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerLocation] {
+	return pulumix.Output[[]*SwitchControllerLocation]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SwitchControllerLocationArrayOutput) Index(i pulumi.IntInput) SwitchControllerLocationOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerLocation {
 		return vs[0].([]*SwitchControllerLocation)[vs[1].(int)]
@@ -235,6 +266,12 @@ func (o SwitchControllerLocationMapOutput) ToSwitchControllerLocationMapOutput()
 
 func (o SwitchControllerLocationMapOutput) ToSwitchControllerLocationMapOutputWithContext(ctx context.Context) SwitchControllerLocationMapOutput {
 	return o
+}
+
+func (o SwitchControllerLocationMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerLocation] {
+	return pulumix.Output[map[string]*SwitchControllerLocation]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerLocationMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerLocationOutput {

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type System3GModemCustom struct {
@@ -130,6 +131,12 @@ func (i *System3GModemCustom) ToSystem3GModemCustomOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(System3GModemCustomOutput)
 }
 
+func (i *System3GModemCustom) ToOutput(ctx context.Context) pulumix.Output[*System3GModemCustom] {
+	return pulumix.Output[*System3GModemCustom]{
+		OutputState: i.ToSystem3GModemCustomOutputWithContext(ctx).OutputState,
+	}
+}
+
 // System3GModemCustomArrayInput is an input type that accepts System3GModemCustomArray and System3GModemCustomArrayOutput values.
 // You can construct a concrete instance of `System3GModemCustomArrayInput` via:
 //
@@ -153,6 +160,12 @@ func (i System3GModemCustomArray) ToSystem3GModemCustomArrayOutput() System3GMod
 
 func (i System3GModemCustomArray) ToSystem3GModemCustomArrayOutputWithContext(ctx context.Context) System3GModemCustomArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(System3GModemCustomArrayOutput)
+}
+
+func (i System3GModemCustomArray) ToOutput(ctx context.Context) pulumix.Output[[]*System3GModemCustom] {
+	return pulumix.Output[[]*System3GModemCustom]{
+		OutputState: i.ToSystem3GModemCustomArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // System3GModemCustomMapInput is an input type that accepts System3GModemCustomMap and System3GModemCustomMapOutput values.
@@ -180,6 +193,12 @@ func (i System3GModemCustomMap) ToSystem3GModemCustomMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(System3GModemCustomMapOutput)
 }
 
+func (i System3GModemCustomMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*System3GModemCustom] {
+	return pulumix.Output[map[string]*System3GModemCustom]{
+		OutputState: i.ToSystem3GModemCustomMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type System3GModemCustomOutput struct{ *pulumi.OutputState }
 
 func (System3GModemCustomOutput) ElementType() reflect.Type {
@@ -192,6 +211,12 @@ func (o System3GModemCustomOutput) ToSystem3GModemCustomOutput() System3GModemCu
 
 func (o System3GModemCustomOutput) ToSystem3GModemCustomOutputWithContext(ctx context.Context) System3GModemCustomOutput {
 	return o
+}
+
+func (o System3GModemCustomOutput) ToOutput(ctx context.Context) pulumix.Output[*System3GModemCustom] {
+	return pulumix.Output[*System3GModemCustom]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o System3GModemCustomOutput) ClassId() pulumi.StringOutput {
@@ -244,6 +269,12 @@ func (o System3GModemCustomArrayOutput) ToSystem3GModemCustomArrayOutputWithCont
 	return o
 }
 
+func (o System3GModemCustomArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*System3GModemCustom] {
+	return pulumix.Output[[]*System3GModemCustom]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o System3GModemCustomArrayOutput) Index(i pulumi.IntInput) System3GModemCustomOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *System3GModemCustom {
 		return vs[0].([]*System3GModemCustom)[vs[1].(int)]
@@ -262,6 +293,12 @@ func (o System3GModemCustomMapOutput) ToSystem3GModemCustomMapOutput() System3GM
 
 func (o System3GModemCustomMapOutput) ToSystem3GModemCustomMapOutputWithContext(ctx context.Context) System3GModemCustomMapOutput {
 	return o
+}
+
+func (o System3GModemCustomMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*System3GModemCustom] {
+	return pulumix.Output[map[string]*System3GModemCustom]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o System3GModemCustomMapOutput) MapIndex(k pulumi.StringInput) System3GModemCustomOutput {

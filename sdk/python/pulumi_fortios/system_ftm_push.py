@@ -14,6 +14,7 @@ __all__ = ['SystemFtmPushArgs', 'SystemFtmPush']
 @pulumi.input_type
 class SystemFtmPushArgs:
     def __init__(__self__, *,
+                 proxy: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
                  server_cert: Optional[pulumi.Input[str]] = None,
                  server_ip: Optional[pulumi.Input[str]] = None,
@@ -23,6 +24,8 @@ class SystemFtmPushArgs:
         """
         The set of arguments for constructing a SystemFtmPush resource.
         """
+        if proxy is not None:
+            pulumi.set(__self__, "proxy", proxy)
         if server is not None:
             pulumi.set(__self__, "server", server)
         if server_cert is not None:
@@ -35,6 +38,15 @@ class SystemFtmPushArgs:
             pulumi.set(__self__, "status", status)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter
+    def proxy(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "proxy")
+
+    @proxy.setter
+    def proxy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy", value)
 
     @property
     @pulumi.getter
@@ -94,6 +106,7 @@ class SystemFtmPushArgs:
 @pulumi.input_type
 class _SystemFtmPushState:
     def __init__(__self__, *,
+                 proxy: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
                  server_cert: Optional[pulumi.Input[str]] = None,
                  server_ip: Optional[pulumi.Input[str]] = None,
@@ -103,6 +116,8 @@ class _SystemFtmPushState:
         """
         Input properties used for looking up and filtering SystemFtmPush resources.
         """
+        if proxy is not None:
+            pulumi.set(__self__, "proxy", proxy)
         if server is not None:
             pulumi.set(__self__, "server", server)
         if server_cert is not None:
@@ -115,6 +130,15 @@ class _SystemFtmPushState:
             pulumi.set(__self__, "status", status)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter
+    def proxy(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "proxy")
+
+    @proxy.setter
+    def proxy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy", value)
 
     @property
     @pulumi.getter
@@ -176,6 +200,7 @@ class SystemFtmPush(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 proxy: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
                  server_cert: Optional[pulumi.Input[str]] = None,
                  server_ip: Optional[pulumi.Input[str]] = None,
@@ -211,6 +236,7 @@ class SystemFtmPush(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 proxy: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
                  server_cert: Optional[pulumi.Input[str]] = None,
                  server_ip: Optional[pulumi.Input[str]] = None,
@@ -226,6 +252,7 @@ class SystemFtmPush(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SystemFtmPushArgs.__new__(SystemFtmPushArgs)
 
+            __props__.__dict__["proxy"] = proxy
             __props__.__dict__["server"] = server
             __props__.__dict__["server_cert"] = server_cert
             __props__.__dict__["server_ip"] = server_ip
@@ -242,6 +269,7 @@ class SystemFtmPush(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            proxy: Optional[pulumi.Input[str]] = None,
             server: Optional[pulumi.Input[str]] = None,
             server_cert: Optional[pulumi.Input[str]] = None,
             server_ip: Optional[pulumi.Input[str]] = None,
@@ -260,6 +288,7 @@ class SystemFtmPush(pulumi.CustomResource):
 
         __props__ = _SystemFtmPushState.__new__(_SystemFtmPushState)
 
+        __props__.__dict__["proxy"] = proxy
         __props__.__dict__["server"] = server
         __props__.__dict__["server_cert"] = server_cert
         __props__.__dict__["server_ip"] = server_ip
@@ -267,6 +296,11 @@ class SystemFtmPush(pulumi.CustomResource):
         __props__.__dict__["status"] = status
         __props__.__dict__["vdomparam"] = vdomparam
         return SystemFtmPush(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def proxy(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "proxy")
 
     @property
     @pulumi.getter

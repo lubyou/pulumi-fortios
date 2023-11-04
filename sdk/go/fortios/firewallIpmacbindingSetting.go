@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type FirewallIpmacbindingSetting struct {
@@ -105,6 +106,12 @@ func (i *FirewallIpmacbindingSetting) ToFirewallIpmacbindingSettingOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallIpmacbindingSettingOutput)
 }
 
+func (i *FirewallIpmacbindingSetting) ToOutput(ctx context.Context) pulumix.Output[*FirewallIpmacbindingSetting] {
+	return pulumix.Output[*FirewallIpmacbindingSetting]{
+		OutputState: i.ToFirewallIpmacbindingSettingOutputWithContext(ctx).OutputState,
+	}
+}
+
 // FirewallIpmacbindingSettingArrayInput is an input type that accepts FirewallIpmacbindingSettingArray and FirewallIpmacbindingSettingArrayOutput values.
 // You can construct a concrete instance of `FirewallIpmacbindingSettingArrayInput` via:
 //
@@ -128,6 +135,12 @@ func (i FirewallIpmacbindingSettingArray) ToFirewallIpmacbindingSettingArrayOutp
 
 func (i FirewallIpmacbindingSettingArray) ToFirewallIpmacbindingSettingArrayOutputWithContext(ctx context.Context) FirewallIpmacbindingSettingArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallIpmacbindingSettingArrayOutput)
+}
+
+func (i FirewallIpmacbindingSettingArray) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallIpmacbindingSetting] {
+	return pulumix.Output[[]*FirewallIpmacbindingSetting]{
+		OutputState: i.ToFirewallIpmacbindingSettingArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // FirewallIpmacbindingSettingMapInput is an input type that accepts FirewallIpmacbindingSettingMap and FirewallIpmacbindingSettingMapOutput values.
@@ -155,6 +168,12 @@ func (i FirewallIpmacbindingSettingMap) ToFirewallIpmacbindingSettingMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallIpmacbindingSettingMapOutput)
 }
 
+func (i FirewallIpmacbindingSettingMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallIpmacbindingSetting] {
+	return pulumix.Output[map[string]*FirewallIpmacbindingSetting]{
+		OutputState: i.ToFirewallIpmacbindingSettingMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type FirewallIpmacbindingSettingOutput struct{ *pulumi.OutputState }
 
 func (FirewallIpmacbindingSettingOutput) ElementType() reflect.Type {
@@ -167,6 +186,12 @@ func (o FirewallIpmacbindingSettingOutput) ToFirewallIpmacbindingSettingOutput()
 
 func (o FirewallIpmacbindingSettingOutput) ToFirewallIpmacbindingSettingOutputWithContext(ctx context.Context) FirewallIpmacbindingSettingOutput {
 	return o
+}
+
+func (o FirewallIpmacbindingSettingOutput) ToOutput(ctx context.Context) pulumix.Output[*FirewallIpmacbindingSetting] {
+	return pulumix.Output[*FirewallIpmacbindingSetting]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallIpmacbindingSettingOutput) Bindthroughfw() pulumi.StringOutput {
@@ -199,6 +224,12 @@ func (o FirewallIpmacbindingSettingArrayOutput) ToFirewallIpmacbindingSettingArr
 	return o
 }
 
+func (o FirewallIpmacbindingSettingArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*FirewallIpmacbindingSetting] {
+	return pulumix.Output[[]*FirewallIpmacbindingSetting]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o FirewallIpmacbindingSettingArrayOutput) Index(i pulumi.IntInput) FirewallIpmacbindingSettingOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallIpmacbindingSetting {
 		return vs[0].([]*FirewallIpmacbindingSetting)[vs[1].(int)]
@@ -217,6 +248,12 @@ func (o FirewallIpmacbindingSettingMapOutput) ToFirewallIpmacbindingSettingMapOu
 
 func (o FirewallIpmacbindingSettingMapOutput) ToFirewallIpmacbindingSettingMapOutputWithContext(ctx context.Context) FirewallIpmacbindingSettingMapOutput {
 	return o
+}
+
+func (o FirewallIpmacbindingSettingMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*FirewallIpmacbindingSetting] {
+	return pulumix.Output[map[string]*FirewallIpmacbindingSetting]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o FirewallIpmacbindingSettingMapOutput) MapIndex(k pulumi.StringInput) FirewallIpmacbindingSettingOutput {

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type IcapServer struct {
@@ -150,6 +151,12 @@ func (i *IcapServer) ToIcapServerOutputWithContext(ctx context.Context) IcapServ
 	return pulumi.ToOutputWithContext(ctx, i).(IcapServerOutput)
 }
 
+func (i *IcapServer) ToOutput(ctx context.Context) pulumix.Output[*IcapServer] {
+	return pulumix.Output[*IcapServer]{
+		OutputState: i.ToIcapServerOutputWithContext(ctx).OutputState,
+	}
+}
+
 // IcapServerArrayInput is an input type that accepts IcapServerArray and IcapServerArrayOutput values.
 // You can construct a concrete instance of `IcapServerArrayInput` via:
 //
@@ -173,6 +180,12 @@ func (i IcapServerArray) ToIcapServerArrayOutput() IcapServerArrayOutput {
 
 func (i IcapServerArray) ToIcapServerArrayOutputWithContext(ctx context.Context) IcapServerArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IcapServerArrayOutput)
+}
+
+func (i IcapServerArray) ToOutput(ctx context.Context) pulumix.Output[[]*IcapServer] {
+	return pulumix.Output[[]*IcapServer]{
+		OutputState: i.ToIcapServerArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // IcapServerMapInput is an input type that accepts IcapServerMap and IcapServerMapOutput values.
@@ -200,6 +213,12 @@ func (i IcapServerMap) ToIcapServerMapOutputWithContext(ctx context.Context) Ica
 	return pulumi.ToOutputWithContext(ctx, i).(IcapServerMapOutput)
 }
 
+func (i IcapServerMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*IcapServer] {
+	return pulumix.Output[map[string]*IcapServer]{
+		OutputState: i.ToIcapServerMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type IcapServerOutput struct{ *pulumi.OutputState }
 
 func (IcapServerOutput) ElementType() reflect.Type {
@@ -212,6 +231,12 @@ func (o IcapServerOutput) ToIcapServerOutput() IcapServerOutput {
 
 func (o IcapServerOutput) ToIcapServerOutputWithContext(ctx context.Context) IcapServerOutput {
 	return o
+}
+
+func (o IcapServerOutput) ToOutput(ctx context.Context) pulumix.Output[*IcapServer] {
+	return pulumix.Output[*IcapServer]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o IcapServerOutput) AddrType() pulumi.StringOutput {
@@ -280,6 +305,12 @@ func (o IcapServerArrayOutput) ToIcapServerArrayOutputWithContext(ctx context.Co
 	return o
 }
 
+func (o IcapServerArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*IcapServer] {
+	return pulumix.Output[[]*IcapServer]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o IcapServerArrayOutput) Index(i pulumi.IntInput) IcapServerOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IcapServer {
 		return vs[0].([]*IcapServer)[vs[1].(int)]
@@ -298,6 +329,12 @@ func (o IcapServerMapOutput) ToIcapServerMapOutput() IcapServerMapOutput {
 
 func (o IcapServerMapOutput) ToIcapServerMapOutputWithContext(ctx context.Context) IcapServerMapOutput {
 	return o
+}
+
+func (o IcapServerMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*IcapServer] {
+	return pulumix.Output[map[string]*IcapServer]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o IcapServerMapOutput) MapIndex(k pulumi.StringInput) IcapServerOutput {

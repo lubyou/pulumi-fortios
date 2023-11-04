@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type WirelessControllerWtp struct {
@@ -18,6 +19,8 @@ type WirelessControllerWtp struct {
 	Admin                          pulumi.StringOutput                               `pulumi:"admin"`
 	Allowaccess                    pulumi.StringOutput                               `pulumi:"allowaccess"`
 	ApcfgProfile                   pulumi.StringOutput                               `pulumi:"apcfgProfile"`
+	BleMajorId                     pulumi.IntOutput                                  `pulumi:"bleMajorId"`
+	BleMinorId                     pulumi.IntOutput                                  `pulumi:"bleMinorId"`
 	BonjourProfile                 pulumi.StringOutput                               `pulumi:"bonjourProfile"`
 	CoordinateLatitude             pulumi.StringOutput                               `pulumi:"coordinateLatitude"`
 	CoordinateLongitude            pulumi.StringOutput                               `pulumi:"coordinateLongitude"`
@@ -105,6 +108,8 @@ type wirelessControllerWtpState struct {
 	Admin                          *string                                  `pulumi:"admin"`
 	Allowaccess                    *string                                  `pulumi:"allowaccess"`
 	ApcfgProfile                   *string                                  `pulumi:"apcfgProfile"`
+	BleMajorId                     *int                                     `pulumi:"bleMajorId"`
+	BleMinorId                     *int                                     `pulumi:"bleMinorId"`
 	BonjourProfile                 *string                                  `pulumi:"bonjourProfile"`
 	CoordinateLatitude             *string                                  `pulumi:"coordinateLatitude"`
 	CoordinateLongitude            *string                                  `pulumi:"coordinateLongitude"`
@@ -153,6 +158,8 @@ type WirelessControllerWtpState struct {
 	Admin                          pulumi.StringPtrInput
 	Allowaccess                    pulumi.StringPtrInput
 	ApcfgProfile                   pulumi.StringPtrInput
+	BleMajorId                     pulumi.IntPtrInput
+	BleMinorId                     pulumi.IntPtrInput
 	BonjourProfile                 pulumi.StringPtrInput
 	CoordinateLatitude             pulumi.StringPtrInput
 	CoordinateLongitude            pulumi.StringPtrInput
@@ -205,6 +212,8 @@ type wirelessControllerWtpArgs struct {
 	Admin                          *string                                  `pulumi:"admin"`
 	Allowaccess                    *string                                  `pulumi:"allowaccess"`
 	ApcfgProfile                   *string                                  `pulumi:"apcfgProfile"`
+	BleMajorId                     *int                                     `pulumi:"bleMajorId"`
+	BleMinorId                     *int                                     `pulumi:"bleMinorId"`
 	BonjourProfile                 *string                                  `pulumi:"bonjourProfile"`
 	CoordinateLatitude             *string                                  `pulumi:"coordinateLatitude"`
 	CoordinateLongitude            *string                                  `pulumi:"coordinateLongitude"`
@@ -254,6 +263,8 @@ type WirelessControllerWtpArgs struct {
 	Admin                          pulumi.StringPtrInput
 	Allowaccess                    pulumi.StringPtrInput
 	ApcfgProfile                   pulumi.StringPtrInput
+	BleMajorId                     pulumi.IntPtrInput
+	BleMinorId                     pulumi.IntPtrInput
 	BonjourProfile                 pulumi.StringPtrInput
 	CoordinateLatitude             pulumi.StringPtrInput
 	CoordinateLongitude            pulumi.StringPtrInput
@@ -321,6 +332,12 @@ func (i *WirelessControllerWtp) ToWirelessControllerWtpOutputWithContext(ctx con
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpOutput)
 }
 
+func (i *WirelessControllerWtp) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerWtp] {
+	return pulumix.Output[*WirelessControllerWtp]{
+		OutputState: i.ToWirelessControllerWtpOutputWithContext(ctx).OutputState,
+	}
+}
+
 // WirelessControllerWtpArrayInput is an input type that accepts WirelessControllerWtpArray and WirelessControllerWtpArrayOutput values.
 // You can construct a concrete instance of `WirelessControllerWtpArrayInput` via:
 //
@@ -344,6 +361,12 @@ func (i WirelessControllerWtpArray) ToWirelessControllerWtpArrayOutput() Wireles
 
 func (i WirelessControllerWtpArray) ToWirelessControllerWtpArrayOutputWithContext(ctx context.Context) WirelessControllerWtpArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpArrayOutput)
+}
+
+func (i WirelessControllerWtpArray) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerWtp] {
+	return pulumix.Output[[]*WirelessControllerWtp]{
+		OutputState: i.ToWirelessControllerWtpArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // WirelessControllerWtpMapInput is an input type that accepts WirelessControllerWtpMap and WirelessControllerWtpMapOutput values.
@@ -371,6 +394,12 @@ func (i WirelessControllerWtpMap) ToWirelessControllerWtpMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpMapOutput)
 }
 
+func (i WirelessControllerWtpMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerWtp] {
+	return pulumix.Output[map[string]*WirelessControllerWtp]{
+		OutputState: i.ToWirelessControllerWtpMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type WirelessControllerWtpOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpOutput) ElementType() reflect.Type {
@@ -385,6 +414,12 @@ func (o WirelessControllerWtpOutput) ToWirelessControllerWtpOutputWithContext(ct
 	return o
 }
 
+func (o WirelessControllerWtpOutput) ToOutput(ctx context.Context) pulumix.Output[*WirelessControllerWtp] {
+	return pulumix.Output[*WirelessControllerWtp]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o WirelessControllerWtpOutput) Admin() pulumi.StringOutput {
 	return o.ApplyT(func(v *WirelessControllerWtp) pulumi.StringOutput { return v.Admin }).(pulumi.StringOutput)
 }
@@ -395,6 +430,14 @@ func (o WirelessControllerWtpOutput) Allowaccess() pulumi.StringOutput {
 
 func (o WirelessControllerWtpOutput) ApcfgProfile() pulumi.StringOutput {
 	return o.ApplyT(func(v *WirelessControllerWtp) pulumi.StringOutput { return v.ApcfgProfile }).(pulumi.StringOutput)
+}
+
+func (o WirelessControllerWtpOutput) BleMajorId() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerWtp) pulumi.IntOutput { return v.BleMajorId }).(pulumi.IntOutput)
+}
+
+func (o WirelessControllerWtpOutput) BleMinorId() pulumi.IntOutput {
+	return o.ApplyT(func(v *WirelessControllerWtp) pulumi.IntOutput { return v.BleMinorId }).(pulumi.IntOutput)
 }
 
 func (o WirelessControllerWtpOutput) BonjourProfile() pulumi.StringOutput {
@@ -581,6 +624,12 @@ func (o WirelessControllerWtpArrayOutput) ToWirelessControllerWtpArrayOutputWith
 	return o
 }
 
+func (o WirelessControllerWtpArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*WirelessControllerWtp] {
+	return pulumix.Output[[]*WirelessControllerWtp]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o WirelessControllerWtpArrayOutput) Index(i pulumi.IntInput) WirelessControllerWtpOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerWtp {
 		return vs[0].([]*WirelessControllerWtp)[vs[1].(int)]
@@ -599,6 +648,12 @@ func (o WirelessControllerWtpMapOutput) ToWirelessControllerWtpMapOutput() Wirel
 
 func (o WirelessControllerWtpMapOutput) ToWirelessControllerWtpMapOutputWithContext(ctx context.Context) WirelessControllerWtpMapOutput {
 	return o
+}
+
+func (o WirelessControllerWtpMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*WirelessControllerWtp] {
+	return pulumix.Output[map[string]*WirelessControllerWtp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o WirelessControllerWtpMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerWtpOutput {

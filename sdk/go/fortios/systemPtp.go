@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemPtp struct {
@@ -139,6 +140,12 @@ func (i *SystemPtp) ToSystemPtpOutputWithContext(ctx context.Context) SystemPtpO
 	return pulumi.ToOutputWithContext(ctx, i).(SystemPtpOutput)
 }
 
+func (i *SystemPtp) ToOutput(ctx context.Context) pulumix.Output[*SystemPtp] {
+	return pulumix.Output[*SystemPtp]{
+		OutputState: i.ToSystemPtpOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemPtpArrayInput is an input type that accepts SystemPtpArray and SystemPtpArrayOutput values.
 // You can construct a concrete instance of `SystemPtpArrayInput` via:
 //
@@ -162,6 +169,12 @@ func (i SystemPtpArray) ToSystemPtpArrayOutput() SystemPtpArrayOutput {
 
 func (i SystemPtpArray) ToSystemPtpArrayOutputWithContext(ctx context.Context) SystemPtpArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemPtpArrayOutput)
+}
+
+func (i SystemPtpArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemPtp] {
+	return pulumix.Output[[]*SystemPtp]{
+		OutputState: i.ToSystemPtpArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemPtpMapInput is an input type that accepts SystemPtpMap and SystemPtpMapOutput values.
@@ -189,6 +202,12 @@ func (i SystemPtpMap) ToSystemPtpMapOutputWithContext(ctx context.Context) Syste
 	return pulumi.ToOutputWithContext(ctx, i).(SystemPtpMapOutput)
 }
 
+func (i SystemPtpMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemPtp] {
+	return pulumix.Output[map[string]*SystemPtp]{
+		OutputState: i.ToSystemPtpMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemPtpOutput struct{ *pulumi.OutputState }
 
 func (SystemPtpOutput) ElementType() reflect.Type {
@@ -201,6 +220,12 @@ func (o SystemPtpOutput) ToSystemPtpOutput() SystemPtpOutput {
 
 func (o SystemPtpOutput) ToSystemPtpOutputWithContext(ctx context.Context) SystemPtpOutput {
 	return o
+}
+
+func (o SystemPtpOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemPtp] {
+	return pulumix.Output[*SystemPtp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemPtpOutput) DelayMechanism() pulumi.StringOutput {
@@ -257,6 +282,12 @@ func (o SystemPtpArrayOutput) ToSystemPtpArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
+func (o SystemPtpArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemPtp] {
+	return pulumix.Output[[]*SystemPtp]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemPtpArrayOutput) Index(i pulumi.IntInput) SystemPtpOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemPtp {
 		return vs[0].([]*SystemPtp)[vs[1].(int)]
@@ -275,6 +306,12 @@ func (o SystemPtpMapOutput) ToSystemPtpMapOutput() SystemPtpMapOutput {
 
 func (o SystemPtpMapOutput) ToSystemPtpMapOutputWithContext(ctx context.Context) SystemPtpMapOutput {
 	return o
+}
+
+func (o SystemPtpMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemPtp] {
+	return pulumix.Output[map[string]*SystemPtp]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemPtpMapOutput) MapIndex(k pulumi.StringInput) SystemPtpOutput {

@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SwitchControllerSwitchProfile struct {
@@ -127,6 +128,12 @@ func (i *SwitchControllerSwitchProfile) ToSwitchControllerSwitchProfileOutputWit
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSwitchProfileOutput)
 }
 
+func (i *SwitchControllerSwitchProfile) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerSwitchProfile] {
+	return pulumix.Output[*SwitchControllerSwitchProfile]{
+		OutputState: i.ToSwitchControllerSwitchProfileOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SwitchControllerSwitchProfileArrayInput is an input type that accepts SwitchControllerSwitchProfileArray and SwitchControllerSwitchProfileArrayOutput values.
 // You can construct a concrete instance of `SwitchControllerSwitchProfileArrayInput` via:
 //
@@ -150,6 +157,12 @@ func (i SwitchControllerSwitchProfileArray) ToSwitchControllerSwitchProfileArray
 
 func (i SwitchControllerSwitchProfileArray) ToSwitchControllerSwitchProfileArrayOutputWithContext(ctx context.Context) SwitchControllerSwitchProfileArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSwitchProfileArrayOutput)
+}
+
+func (i SwitchControllerSwitchProfileArray) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerSwitchProfile] {
+	return pulumix.Output[[]*SwitchControllerSwitchProfile]{
+		OutputState: i.ToSwitchControllerSwitchProfileArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SwitchControllerSwitchProfileMapInput is an input type that accepts SwitchControllerSwitchProfileMap and SwitchControllerSwitchProfileMapOutput values.
@@ -177,6 +190,12 @@ func (i SwitchControllerSwitchProfileMap) ToSwitchControllerSwitchProfileMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSwitchProfileMapOutput)
 }
 
+func (i SwitchControllerSwitchProfileMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerSwitchProfile] {
+	return pulumix.Output[map[string]*SwitchControllerSwitchProfile]{
+		OutputState: i.ToSwitchControllerSwitchProfileMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SwitchControllerSwitchProfileOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSwitchProfileOutput) ElementType() reflect.Type {
@@ -189,6 +208,12 @@ func (o SwitchControllerSwitchProfileOutput) ToSwitchControllerSwitchProfileOutp
 
 func (o SwitchControllerSwitchProfileOutput) ToSwitchControllerSwitchProfileOutputWithContext(ctx context.Context) SwitchControllerSwitchProfileOutput {
 	return o
+}
+
+func (o SwitchControllerSwitchProfileOutput) ToOutput(ctx context.Context) pulumix.Output[*SwitchControllerSwitchProfile] {
+	return pulumix.Output[*SwitchControllerSwitchProfile]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerSwitchProfileOutput) Login() pulumi.StringOutput {
@@ -233,6 +258,12 @@ func (o SwitchControllerSwitchProfileArrayOutput) ToSwitchControllerSwitchProfil
 	return o
 }
 
+func (o SwitchControllerSwitchProfileArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SwitchControllerSwitchProfile] {
+	return pulumix.Output[[]*SwitchControllerSwitchProfile]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SwitchControllerSwitchProfileArrayOutput) Index(i pulumi.IntInput) SwitchControllerSwitchProfileOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerSwitchProfile {
 		return vs[0].([]*SwitchControllerSwitchProfile)[vs[1].(int)]
@@ -251,6 +282,12 @@ func (o SwitchControllerSwitchProfileMapOutput) ToSwitchControllerSwitchProfileM
 
 func (o SwitchControllerSwitchProfileMapOutput) ToSwitchControllerSwitchProfileMapOutputWithContext(ctx context.Context) SwitchControllerSwitchProfileMapOutput {
 	return o
+}
+
+func (o SwitchControllerSwitchProfileMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SwitchControllerSwitchProfile] {
+	return pulumix.Output[map[string]*SwitchControllerSwitchProfile]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SwitchControllerSwitchProfileMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerSwitchProfileOutput {

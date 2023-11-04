@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type ExtensionControllerDataplan struct {
@@ -185,6 +186,12 @@ func (i *ExtensionControllerDataplan) ToExtensionControllerDataplanOutputWithCon
 	return pulumi.ToOutputWithContext(ctx, i).(ExtensionControllerDataplanOutput)
 }
 
+func (i *ExtensionControllerDataplan) ToOutput(ctx context.Context) pulumix.Output[*ExtensionControllerDataplan] {
+	return pulumix.Output[*ExtensionControllerDataplan]{
+		OutputState: i.ToExtensionControllerDataplanOutputWithContext(ctx).OutputState,
+	}
+}
+
 // ExtensionControllerDataplanArrayInput is an input type that accepts ExtensionControllerDataplanArray and ExtensionControllerDataplanArrayOutput values.
 // You can construct a concrete instance of `ExtensionControllerDataplanArrayInput` via:
 //
@@ -208,6 +215,12 @@ func (i ExtensionControllerDataplanArray) ToExtensionControllerDataplanArrayOutp
 
 func (i ExtensionControllerDataplanArray) ToExtensionControllerDataplanArrayOutputWithContext(ctx context.Context) ExtensionControllerDataplanArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ExtensionControllerDataplanArrayOutput)
+}
+
+func (i ExtensionControllerDataplanArray) ToOutput(ctx context.Context) pulumix.Output[[]*ExtensionControllerDataplan] {
+	return pulumix.Output[[]*ExtensionControllerDataplan]{
+		OutputState: i.ToExtensionControllerDataplanArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // ExtensionControllerDataplanMapInput is an input type that accepts ExtensionControllerDataplanMap and ExtensionControllerDataplanMapOutput values.
@@ -235,6 +248,12 @@ func (i ExtensionControllerDataplanMap) ToExtensionControllerDataplanMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(ExtensionControllerDataplanMapOutput)
 }
 
+func (i ExtensionControllerDataplanMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*ExtensionControllerDataplan] {
+	return pulumix.Output[map[string]*ExtensionControllerDataplan]{
+		OutputState: i.ToExtensionControllerDataplanMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type ExtensionControllerDataplanOutput struct{ *pulumi.OutputState }
 
 func (ExtensionControllerDataplanOutput) ElementType() reflect.Type {
@@ -247,6 +266,12 @@ func (o ExtensionControllerDataplanOutput) ToExtensionControllerDataplanOutput()
 
 func (o ExtensionControllerDataplanOutput) ToExtensionControllerDataplanOutputWithContext(ctx context.Context) ExtensionControllerDataplanOutput {
 	return o
+}
+
+func (o ExtensionControllerDataplanOutput) ToOutput(ctx context.Context) pulumix.Output[*ExtensionControllerDataplan] {
+	return pulumix.Output[*ExtensionControllerDataplan]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ExtensionControllerDataplanOutput) Apn() pulumi.StringOutput {
@@ -343,6 +368,12 @@ func (o ExtensionControllerDataplanArrayOutput) ToExtensionControllerDataplanArr
 	return o
 }
 
+func (o ExtensionControllerDataplanArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*ExtensionControllerDataplan] {
+	return pulumix.Output[[]*ExtensionControllerDataplan]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o ExtensionControllerDataplanArrayOutput) Index(i pulumi.IntInput) ExtensionControllerDataplanOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ExtensionControllerDataplan {
 		return vs[0].([]*ExtensionControllerDataplan)[vs[1].(int)]
@@ -361,6 +392,12 @@ func (o ExtensionControllerDataplanMapOutput) ToExtensionControllerDataplanMapOu
 
 func (o ExtensionControllerDataplanMapOutput) ToExtensionControllerDataplanMapOutputWithContext(ctx context.Context) ExtensionControllerDataplanMapOutput {
 	return o
+}
+
+func (o ExtensionControllerDataplanMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*ExtensionControllerDataplan] {
+	return pulumix.Output[map[string]*ExtensionControllerDataplan]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o ExtensionControllerDataplanMapOutput) MapIndex(k pulumi.StringInput) ExtensionControllerDataplanOutput {

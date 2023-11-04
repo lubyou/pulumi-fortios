@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 func LookupFirewallIpv6EhFilter(ctx *pulumi.Context, args *LookupFirewallIpv6EhFilterArgs, opts ...pulumi.InvokeOption) (*LookupFirewallIpv6EhFilterResult, error) {
@@ -76,6 +77,12 @@ func (o LookupFirewallIpv6EhFilterResultOutput) ToLookupFirewallIpv6EhFilterResu
 
 func (o LookupFirewallIpv6EhFilterResultOutput) ToLookupFirewallIpv6EhFilterResultOutputWithContext(ctx context.Context) LookupFirewallIpv6EhFilterResultOutput {
 	return o
+}
+
+func (o LookupFirewallIpv6EhFilterResultOutput) ToOutput(ctx context.Context) pulumix.Output[LookupFirewallIpv6EhFilterResult] {
+	return pulumix.Output[LookupFirewallIpv6EhFilterResult]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o LookupFirewallIpv6EhFilterResultOutput) Auth() pulumi.StringOutput {

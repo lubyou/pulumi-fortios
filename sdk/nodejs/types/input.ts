@@ -307,6 +307,103 @@ export interface AuthenticationSettingUserCertCa {
     name?: pulumi.Input<string>;
 }
 
+export interface CasbProfileSaasApplication {
+    accessRules?: pulumi.Input<pulumi.Input<inputs.CasbProfileSaasApplicationAccessRule>[]>;
+    customControls?: pulumi.Input<pulumi.Input<inputs.CasbProfileSaasApplicationCustomControl>[]>;
+    domainControl?: pulumi.Input<string>;
+    domainControlDomains?: pulumi.Input<pulumi.Input<inputs.CasbProfileSaasApplicationDomainControlDomain>[]>;
+    log?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
+    safeSearch?: pulumi.Input<string>;
+    safeSearchControls?: pulumi.Input<pulumi.Input<inputs.CasbProfileSaasApplicationSafeSearchControl>[]>;
+    tenantControl?: pulumi.Input<string>;
+    tenantControlTenants?: pulumi.Input<pulumi.Input<inputs.CasbProfileSaasApplicationTenantControlTenant>[]>;
+}
+
+export interface CasbProfileSaasApplicationAccessRule {
+    action?: pulumi.Input<string>;
+    bypass?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
+}
+
+export interface CasbProfileSaasApplicationCustomControl {
+    name?: pulumi.Input<string>;
+    options?: pulumi.Input<pulumi.Input<inputs.CasbProfileSaasApplicationCustomControlOption>[]>;
+}
+
+export interface CasbProfileSaasApplicationCustomControlOption {
+    name?: pulumi.Input<string>;
+    userInputs?: pulumi.Input<pulumi.Input<inputs.CasbProfileSaasApplicationCustomControlOptionUserInput>[]>;
+}
+
+export interface CasbProfileSaasApplicationCustomControlOptionUserInput {
+    value?: pulumi.Input<string>;
+}
+
+export interface CasbProfileSaasApplicationDomainControlDomain {
+    name?: pulumi.Input<string>;
+}
+
+export interface CasbProfileSaasApplicationSafeSearchControl {
+    name?: pulumi.Input<string>;
+}
+
+export interface CasbProfileSaasApplicationTenantControlTenant {
+    name?: pulumi.Input<string>;
+}
+
+export interface CasbSaasApplicationDomain {
+    domain?: pulumi.Input<string>;
+}
+
+export interface CasbUserActivityControlOption {
+    name?: pulumi.Input<string>;
+    operations?: pulumi.Input<pulumi.Input<inputs.CasbUserActivityControlOptionOperation>[]>;
+}
+
+export interface CasbUserActivityControlOptionOperation {
+    action?: pulumi.Input<string>;
+    caseSensitive?: pulumi.Input<string>;
+    direction?: pulumi.Input<string>;
+    headerName?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
+    searchKey?: pulumi.Input<string>;
+    searchPattern?: pulumi.Input<string>;
+    target?: pulumi.Input<string>;
+    valueFromInput?: pulumi.Input<string>;
+    values?: pulumi.Input<pulumi.Input<inputs.CasbUserActivityControlOptionOperationValue>[]>;
+}
+
+export interface CasbUserActivityControlOptionOperationValue {
+    value?: pulumi.Input<string>;
+}
+
+export interface CasbUserActivityMatch {
+    id?: pulumi.Input<number>;
+    rules?: pulumi.Input<pulumi.Input<inputs.CasbUserActivityMatchRule>[]>;
+    strategy?: pulumi.Input<string>;
+}
+
+export interface CasbUserActivityMatchRule {
+    caseSensitive?: pulumi.Input<string>;
+    domains?: pulumi.Input<pulumi.Input<inputs.CasbUserActivityMatchRuleDomain>[]>;
+    headerName?: pulumi.Input<string>;
+    id?: pulumi.Input<number>;
+    matchPattern?: pulumi.Input<string>;
+    matchValue?: pulumi.Input<string>;
+    methods?: pulumi.Input<pulumi.Input<inputs.CasbUserActivityMatchRuleMethod>[]>;
+    negate?: pulumi.Input<string>;
+    type?: pulumi.Input<string>;
+}
+
+export interface CasbUserActivityMatchRuleDomain {
+    domain?: pulumi.Input<string>;
+}
+
+export interface CasbUserActivityMatchRuleMethod {
+    method?: pulumi.Input<string>;
+}
+
 export interface CifsProfileFileFilter {
     entries?: pulumi.Input<pulumi.Input<inputs.CifsProfileFileFilterEntry>[]>;
     log?: pulumi.Input<string>;
@@ -444,6 +541,10 @@ export interface DnsfilterProfileFtgdDnsFilter {
     category?: pulumi.Input<number>;
     id?: pulumi.Input<number>;
     log?: pulumi.Input<string>;
+}
+
+export interface DnsfilterProfileTransparentDnsDatabase {
+    name?: pulumi.Input<string>;
 }
 
 export interface DpdkGlobalInterface {
@@ -1075,6 +1176,8 @@ export interface FileFilterProfileRuleFileType {
 
 export interface FirewallAccessProxy6ApiGateway {
     applications?: pulumi.Input<pulumi.Input<inputs.FirewallAccessProxy6ApiGatewayApplication>[]>;
+    h2Support?: pulumi.Input<string>;
+    h3Support?: pulumi.Input<string>;
     httpCookieAge?: pulumi.Input<number>;
     httpCookieDomain?: pulumi.Input<string>;
     httpCookieDomainFromHost?: pulumi.Input<string>;
@@ -1085,6 +1188,7 @@ export interface FirewallAccessProxy6ApiGateway {
     id?: pulumi.Input<number>;
     ldbMethod?: pulumi.Input<string>;
     persistence?: pulumi.Input<string>;
+    quic?: pulumi.Input<inputs.FirewallAccessProxy6ApiGatewayQuic>;
     realservers?: pulumi.Input<pulumi.Input<inputs.FirewallAccessProxy6ApiGatewayRealserver>[]>;
     samlRedirect?: pulumi.Input<string>;
     samlServer?: pulumi.Input<string>;
@@ -1103,6 +1207,8 @@ export interface FirewallAccessProxy6ApiGateway {
 
 export interface FirewallAccessProxy6ApiGateway6 {
     applications?: pulumi.Input<pulumi.Input<inputs.FirewallAccessProxy6ApiGateway6Application>[]>;
+    h2Support?: pulumi.Input<string>;
+    h3Support?: pulumi.Input<string>;
     httpCookieAge?: pulumi.Input<number>;
     httpCookieDomain?: pulumi.Input<string>;
     httpCookieDomainFromHost?: pulumi.Input<string>;
@@ -1113,6 +1219,7 @@ export interface FirewallAccessProxy6ApiGateway6 {
     id?: pulumi.Input<number>;
     ldbMethod?: pulumi.Input<string>;
     persistence?: pulumi.Input<string>;
+    quic?: pulumi.Input<inputs.FirewallAccessProxy6ApiGateway6Quic>;
     realservers?: pulumi.Input<pulumi.Input<inputs.FirewallAccessProxy6ApiGateway6Realserver>[]>;
     samlRedirect?: pulumi.Input<string>;
     samlServer?: pulumi.Input<string>;
@@ -1131,6 +1238,17 @@ export interface FirewallAccessProxy6ApiGateway6 {
 
 export interface FirewallAccessProxy6ApiGateway6Application {
     name?: pulumi.Input<string>;
+}
+
+export interface FirewallAccessProxy6ApiGateway6Quic {
+    ackDelayExponent?: pulumi.Input<number>;
+    activeConnectionIdLimit?: pulumi.Input<number>;
+    activeMigration?: pulumi.Input<string>;
+    greaseQuicBit?: pulumi.Input<string>;
+    maxAckDelay?: pulumi.Input<number>;
+    maxDatagramFrameSize?: pulumi.Input<number>;
+    maxIdleTimeout?: pulumi.Input<number>;
+    maxUdpPayloadSize?: pulumi.Input<number>;
 }
 
 export interface FirewallAccessProxy6ApiGateway6Realserver {
@@ -1170,6 +1288,17 @@ export interface FirewallAccessProxy6ApiGatewayApplication {
     name?: pulumi.Input<string>;
 }
 
+export interface FirewallAccessProxy6ApiGatewayQuic {
+    ackDelayExponent?: pulumi.Input<number>;
+    activeConnectionIdLimit?: pulumi.Input<number>;
+    activeMigration?: pulumi.Input<string>;
+    greaseQuicBit?: pulumi.Input<string>;
+    maxAckDelay?: pulumi.Input<number>;
+    maxDatagramFrameSize?: pulumi.Input<number>;
+    maxIdleTimeout?: pulumi.Input<number>;
+    maxUdpPayloadSize?: pulumi.Input<number>;
+}
+
 export interface FirewallAccessProxy6ApiGatewayRealserver {
     addrType?: pulumi.Input<string>;
     address?: pulumi.Input<string>;
@@ -1205,6 +1334,8 @@ export interface FirewallAccessProxy6ApiGatewaySslCipherSuite {
 
 export interface FirewallAccessProxyApiGateway {
     applications?: pulumi.Input<pulumi.Input<inputs.FirewallAccessProxyApiGatewayApplication>[]>;
+    h2Support?: pulumi.Input<string>;
+    h3Support?: pulumi.Input<string>;
     httpCookieAge?: pulumi.Input<number>;
     httpCookieDomain?: pulumi.Input<string>;
     httpCookieDomainFromHost?: pulumi.Input<string>;
@@ -1215,6 +1346,7 @@ export interface FirewallAccessProxyApiGateway {
     id?: pulumi.Input<number>;
     ldbMethod?: pulumi.Input<string>;
     persistence?: pulumi.Input<string>;
+    quic?: pulumi.Input<inputs.FirewallAccessProxyApiGatewayQuic>;
     realservers?: pulumi.Input<pulumi.Input<inputs.FirewallAccessProxyApiGatewayRealserver>[]>;
     samlRedirect?: pulumi.Input<string>;
     samlServer?: pulumi.Input<string>;
@@ -1233,6 +1365,8 @@ export interface FirewallAccessProxyApiGateway {
 
 export interface FirewallAccessProxyApiGateway6 {
     applications?: pulumi.Input<pulumi.Input<inputs.FirewallAccessProxyApiGateway6Application>[]>;
+    h2Support?: pulumi.Input<string>;
+    h3Support?: pulumi.Input<string>;
     httpCookieAge?: pulumi.Input<number>;
     httpCookieDomain?: pulumi.Input<string>;
     httpCookieDomainFromHost?: pulumi.Input<string>;
@@ -1243,6 +1377,7 @@ export interface FirewallAccessProxyApiGateway6 {
     id?: pulumi.Input<number>;
     ldbMethod?: pulumi.Input<string>;
     persistence?: pulumi.Input<string>;
+    quic?: pulumi.Input<inputs.FirewallAccessProxyApiGateway6Quic>;
     realservers?: pulumi.Input<pulumi.Input<inputs.FirewallAccessProxyApiGateway6Realserver>[]>;
     samlRedirect?: pulumi.Input<string>;
     samlServer?: pulumi.Input<string>;
@@ -1261,6 +1396,17 @@ export interface FirewallAccessProxyApiGateway6 {
 
 export interface FirewallAccessProxyApiGateway6Application {
     name?: pulumi.Input<string>;
+}
+
+export interface FirewallAccessProxyApiGateway6Quic {
+    ackDelayExponent?: pulumi.Input<number>;
+    activeConnectionIdLimit?: pulumi.Input<number>;
+    activeMigration?: pulumi.Input<string>;
+    greaseQuicBit?: pulumi.Input<string>;
+    maxAckDelay?: pulumi.Input<number>;
+    maxDatagramFrameSize?: pulumi.Input<number>;
+    maxIdleTimeout?: pulumi.Input<number>;
+    maxUdpPayloadSize?: pulumi.Input<number>;
 }
 
 export interface FirewallAccessProxyApiGateway6Realserver {
@@ -1298,6 +1444,17 @@ export interface FirewallAccessProxyApiGateway6SslCipherSuite {
 
 export interface FirewallAccessProxyApiGatewayApplication {
     name?: pulumi.Input<string>;
+}
+
+export interface FirewallAccessProxyApiGatewayQuic {
+    ackDelayExponent?: pulumi.Input<number>;
+    activeConnectionIdLimit?: pulumi.Input<number>;
+    activeMigration?: pulumi.Input<string>;
+    greaseQuicBit?: pulumi.Input<string>;
+    maxAckDelay?: pulumi.Input<number>;
+    maxDatagramFrameSize?: pulumi.Input<number>;
+    maxIdleTimeout?: pulumi.Input<number>;
+    maxUdpPayloadSize?: pulumi.Input<number>;
 }
 
 export interface FirewallAccessProxyApiGatewayRealserver {
@@ -1469,6 +1626,12 @@ export interface FirewallCentralSnatMapOrigAddr6 {
 
 export interface FirewallCentralSnatMapSrcintf {
     name?: pulumi.Input<string>;
+}
+
+export interface FirewallCentralsnatmapSortStatePolicyList {
+    action?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
+    policyid?: pulumi.Input<string>;
 }
 
 export interface FirewallConsolidatedPolicyAppCategory {
@@ -2061,6 +2224,18 @@ export interface FirewallPolicyNtlmEnabledBrowser {
     userAgentString?: pulumi.Input<string>;
 }
 
+export interface FirewallPolicyOldvSeqStatePolicyList {
+    action?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
+    policyid?: pulumi.Input<string>;
+}
+
+export interface FirewallPolicyOldvSortStatePolicyList {
+    action?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
+    policyid?: pulumi.Input<string>;
+}
+
 export interface FirewallPolicyPcpPoolname {
     name?: pulumi.Input<string>;
 }
@@ -2083,6 +2258,12 @@ export interface FirewallPolicyService {
 
 export interface FirewallPolicySgt {
     id?: pulumi.Input<number>;
+}
+
+export interface FirewallPolicySortStatePolicyList {
+    action?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
+    policyid?: pulumi.Input<string>;
 }
 
 export interface FirewallPolicySrcVendorMac {
@@ -2418,6 +2599,12 @@ export interface FirewallProxyPolicyZtnaEmsTag {
     name?: pulumi.Input<string>;
 }
 
+export interface FirewallProxypolicySortStatePolicyList {
+    action?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
+    policyid?: pulumi.Input<string>;
+}
+
 export interface FirewallRegionCity {
     id?: pulumi.Input<number>;
 }
@@ -2534,20 +2721,8 @@ export interface FirewallSecurityPolicyInternetServiceSrcName {
     name?: pulumi.Input<string>;
 }
 
-export interface FirewallSecurityPolicySeqStatePolicyList {
-    action?: pulumi.Input<string>;
-    name?: pulumi.Input<string>;
-    policyid?: pulumi.Input<string>;
-}
-
 export interface FirewallSecurityPolicyService {
     name?: pulumi.Input<string>;
-}
-
-export interface FirewallSecurityPolicySortStatePolicyList {
-    action?: pulumi.Input<string>;
-    name?: pulumi.Input<string>;
-    policyid?: pulumi.Input<string>;
 }
 
 export interface FirewallSecurityPolicySrcaddr {
@@ -2572,6 +2747,12 @@ export interface FirewallSecurityPolicyUrlCategory {
 
 export interface FirewallSecurityPolicyUser {
     name?: pulumi.Input<string>;
+}
+
+export interface FirewallSecuritypolicySortStatePolicyList {
+    action?: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
+    policyid?: pulumi.Input<string>;
 }
 
 export interface FirewallServiceCustomAppCategory {
@@ -2714,6 +2895,7 @@ export interface FirewallSslSshProfileDot {
     clientCertificate?: pulumi.Input<string>;
     expiredServerCert?: pulumi.Input<string>;
     proxyAfterTcpHandshake?: pulumi.Input<string>;
+    quic?: pulumi.Input<string>;
     revokedServerCert?: pulumi.Input<string>;
     sniServerCertCheck?: pulumi.Input<string>;
     status?: pulumi.Input<string>;
@@ -2753,6 +2935,7 @@ export interface FirewallSslSshProfileHttps {
     minAllowedSslVersion?: pulumi.Input<string>;
     ports?: pulumi.Input<string>;
     proxyAfterTcpHandshake?: pulumi.Input<string>;
+    quic?: pulumi.Input<string>;
     revokedServerCert?: pulumi.Input<string>;
     sniServerCertCheck?: pulumi.Input<string>;
     status?: pulumi.Input<string>;
@@ -2976,6 +3159,17 @@ export interface FirewallVipMappedip {
 
 export interface FirewallVipMonitor {
     name?: pulumi.Input<string>;
+}
+
+export interface FirewallVipQuic {
+    ackDelayExponent?: pulumi.Input<number>;
+    activeConnectionIdLimit?: pulumi.Input<number>;
+    activeMigration?: pulumi.Input<string>;
+    greaseQuicBit?: pulumi.Input<string>;
+    maxAckDelay?: pulumi.Input<number>;
+    maxDatagramFrameSize?: pulumi.Input<number>;
+    maxIdleTimeout?: pulumi.Input<number>;
+    maxUdpPayloadSize?: pulumi.Input<number>;
 }
 
 export interface FirewallVipRealserver {
@@ -3750,8 +3944,10 @@ export interface RouterBgpNeighbor {
     ebgpMultihopTtl?: pulumi.Input<number>;
     filterListIn?: pulumi.Input<string>;
     filterListIn6?: pulumi.Input<string>;
+    filterListInVpnv4?: pulumi.Input<string>;
     filterListOut?: pulumi.Input<string>;
     filterListOut6?: pulumi.Input<string>;
+    filterListOutVpnv4?: pulumi.Input<string>;
     holdtimeTimer?: pulumi.Input<number>;
     interface?: pulumi.Input<string>;
     ip?: pulumi.Input<string>;
@@ -3892,8 +4088,10 @@ export interface RouterBgpNeighborGroup {
     ebgpMultihopTtl?: pulumi.Input<number>;
     filterListIn?: pulumi.Input<string>;
     filterListIn6?: pulumi.Input<string>;
+    filterListInVpnv4?: pulumi.Input<string>;
     filterListOut?: pulumi.Input<string>;
     filterListOut6?: pulumi.Input<string>;
+    filterListOutVpnv4?: pulumi.Input<string>;
     holdtimeTimer?: pulumi.Input<number>;
     interface?: pulumi.Input<string>;
     keepAliveTimer?: pulumi.Input<number>;
@@ -4711,6 +4909,7 @@ export interface RouterRouteMapRule {
     setPriority?: pulumi.Input<number>;
     setRouteTag?: pulumi.Input<number>;
     setTag?: pulumi.Input<number>;
+    setVpnv4Nexthop?: pulumi.Input<string>;
     setWeight?: pulumi.Input<number>;
 }
 
@@ -4766,6 +4965,22 @@ export interface Routerospf6Ospf6InterfaceNeighbor {
 export interface RouterospfOspfInterfaceMd5Key {
     id?: pulumi.Input<number>;
     keyString?: pulumi.Input<string>;
+}
+
+export interface RuleOtdtMetadata {
+    id?: pulumi.Input<number>;
+    metaid?: pulumi.Input<number>;
+    valueid?: pulumi.Input<number>;
+}
+
+export interface RuleOtdtParameter {
+    name?: pulumi.Input<string>;
+}
+
+export interface RuleOtvpMetadata {
+    id?: pulumi.Input<number>;
+    metaid?: pulumi.Input<number>;
+    valueid?: pulumi.Input<number>;
 }
 
 export interface SctpFilterProfilePpidFilter {
@@ -5118,6 +5333,7 @@ export interface SwitchControllerManagedSwitchPort {
     allowedVlans?: pulumi.Input<pulumi.Input<inputs.SwitchControllerManagedSwitchPortAllowedVlan>[]>;
     allowedVlansAll?: pulumi.Input<string>;
     arpInspectionTrust?: pulumi.Input<string>;
+    authenticatedPort?: pulumi.Input<number>;
     bundle?: pulumi.Input<string>;
     description?: pulumi.Input<string>;
     dhcpSnoopOption82Overrides?: pulumi.Input<pulumi.Input<inputs.SwitchControllerManagedSwitchPortDhcpSnoopOption82Override>[]>;
@@ -5125,6 +5341,7 @@ export interface SwitchControllerManagedSwitchPort {
     dhcpSnooping?: pulumi.Input<string>;
     discardMode?: pulumi.Input<string>;
     edgePort?: pulumi.Input<string>;
+    encryptedPort?: pulumi.Input<number>;
     exportTags?: pulumi.Input<pulumi.Input<inputs.SwitchControllerManagedSwitchPortExportTag>[]>;
     exportTo?: pulumi.Input<string>;
     exportToPool?: pulumi.Input<string>;
@@ -5193,7 +5410,9 @@ export interface SwitchControllerManagedSwitchPort {
     portSecurityPolicy?: pulumi.Input<string>;
     portSelectionCriteria?: pulumi.Input<string>;
     ptpPolicy?: pulumi.Input<string>;
+    ptpStatus?: pulumi.Input<string>;
     qosPolicy?: pulumi.Input<string>;
+    restrictedAuthPort?: pulumi.Input<number>;
     rpvstPort?: pulumi.Input<string>;
     sampleDirection?: pulumi.Input<string>;
     sflowCounterInterval?: pulumi.Input<number>;
@@ -5258,6 +5477,11 @@ export interface SwitchControllerManagedSwitchRemoteLog {
     server?: pulumi.Input<string>;
     severity?: pulumi.Input<string>;
     status?: pulumi.Input<string>;
+}
+
+export interface SwitchControllerManagedSwitchRouteOffloadRouter {
+    routerIp?: pulumi.Input<string>;
+    vlanName?: pulumi.Input<string>;
 }
 
 export interface SwitchControllerManagedSwitchSnmpCommunity {
@@ -5481,6 +5705,7 @@ export interface SystemAccprofileSysgrpPermission {
 export interface SystemAccprofileUtmgrpPermission {
     antivirus?: pulumi.Input<string>;
     applicationControl?: pulumi.Input<string>;
+    casb?: pulumi.Input<string>;
     dataLeakPrevention?: pulumi.Input<string>;
     dataLossPrevention?: pulumi.Input<string>;
     dnsfilter?: pulumi.Input<string>;
@@ -5491,6 +5716,7 @@ export interface SystemAccprofileUtmgrpPermission {
     ips?: pulumi.Input<string>;
     spamfilter?: pulumi.Input<string>;
     videofilter?: pulumi.Input<string>;
+    virtualPatch?: pulumi.Input<string>;
     voip?: pulumi.Input<string>;
     waf?: pulumi.Input<string>;
     webfilter?: pulumi.Input<string>;
@@ -6069,9 +6295,11 @@ export interface SystemInterfaceIpv6 {
     dhcp6PrefixHint?: pulumi.Input<string>;
     dhcp6PrefixHintPlt?: pulumi.Input<number>;
     dhcp6PrefixHintVlt?: pulumi.Input<number>;
+    dhcp6RelayInterfaceId?: pulumi.Input<string>;
     dhcp6RelayIp?: pulumi.Input<string>;
     dhcp6RelayService?: pulumi.Input<string>;
     dhcp6RelaySourceInterface?: pulumi.Input<string>;
+    dhcp6RelaySourceIp?: pulumi.Input<string>;
     dhcp6RelayType?: pulumi.Input<string>;
     icmp6SendRedirect?: pulumi.Input<string>;
     interfaceIdentifier?: pulumi.Input<string>;
@@ -6769,6 +6997,7 @@ export interface SystemSdwanNeighbor {
     minimumSlaMeetMembers?: pulumi.Input<number>;
     mode?: pulumi.Input<string>;
     role?: pulumi.Input<string>;
+    serviceId?: pulumi.Input<number>;
     slaId?: pulumi.Input<number>;
 }
 
@@ -6789,6 +7018,7 @@ export interface SystemSdwanService {
     dstNegate?: pulumi.Input<string>;
     dsts?: pulumi.Input<pulumi.Input<inputs.SystemSdwanServiceDst>[]>;
     endPort?: pulumi.Input<number>;
+    endSrcPort?: pulumi.Input<number>;
     gateway?: pulumi.Input<string>;
     groups?: pulumi.Input<pulumi.Input<inputs.SystemSdwanServiceGroup>[]>;
     hashMode?: pulumi.Input<string>;
@@ -6810,6 +7040,7 @@ export interface SystemSdwanService {
     latencyWeight?: pulumi.Input<number>;
     linkCostFactor?: pulumi.Input<string>;
     linkCostThreshold?: pulumi.Input<number>;
+    loadBalance?: pulumi.Input<string>;
     minimumSlaMeetMembers?: pulumi.Input<number>;
     mode?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
@@ -6824,18 +7055,21 @@ export interface SystemSdwanService {
     shortcut?: pulumi.Input<string>;
     shortcutStickiness?: pulumi.Input<string>;
     slaCompareMethod?: pulumi.Input<string>;
+    slaStickiness?: pulumi.Input<string>;
     slas?: pulumi.Input<pulumi.Input<inputs.SystemSdwanServiceSla>[]>;
     src6s?: pulumi.Input<pulumi.Input<inputs.SystemSdwanServiceSrc6>[]>;
     srcNegate?: pulumi.Input<string>;
     srcs?: pulumi.Input<pulumi.Input<inputs.SystemSdwanServiceSrc>[]>;
     standaloneAction?: pulumi.Input<string>;
     startPort?: pulumi.Input<number>;
+    startSrcPort?: pulumi.Input<number>;
     status?: pulumi.Input<string>;
     tieBreak?: pulumi.Input<string>;
     tos?: pulumi.Input<string>;
     tosMask?: pulumi.Input<string>;
     useShortcutSla?: pulumi.Input<string>;
     users?: pulumi.Input<pulumi.Input<inputs.SystemSdwanServiceUser>[]>;
+    zoneMode?: pulumi.Input<string>;
 }
 
 export interface SystemSdwanServiceDst {
@@ -6916,6 +7150,7 @@ export interface SystemSdwanServiceUser {
 }
 
 export interface SystemSdwanZone {
+    minimumSlaMeetMembers?: pulumi.Input<number>;
     name?: pulumi.Input<string>;
     serviceSlaTieBreak?: pulumi.Input<string>;
 }
@@ -6924,6 +7159,7 @@ export interface SystemSessionTtlPort {
     endPort?: pulumi.Input<number>;
     id?: pulumi.Input<number>;
     protocol?: pulumi.Input<number>;
+    refreshDirection?: pulumi.Input<string>;
     startPort?: pulumi.Input<number>;
     timeout?: pulumi.Input<string>;
 }
@@ -7438,6 +7674,21 @@ export interface VideofilterYoutubeChannelFilterEntry {
     id?: pulumi.Input<number>;
 }
 
+export interface VirtualPatchProfileExemption {
+    devices?: pulumi.Input<pulumi.Input<inputs.VirtualPatchProfileExemptionDevice>[]>;
+    id?: pulumi.Input<number>;
+    rules?: pulumi.Input<pulumi.Input<inputs.VirtualPatchProfileExemptionRule>[]>;
+    status?: pulumi.Input<string>;
+}
+
+export interface VirtualPatchProfileExemptionDevice {
+    mac?: pulumi.Input<string>;
+}
+
+export interface VirtualPatchProfileExemptionRule {
+    id?: pulumi.Input<number>;
+}
+
 export interface VoipProfileMsrp {
     logViolations?: pulumi.Input<string>;
     maxMsgSize?: pulumi.Input<number>;
@@ -7609,6 +7860,10 @@ export interface VpnIpsecPhase1InterfaceCertificate {
     name?: pulumi.Input<string>;
 }
 
+export interface VpnIpsecPhase1InterfaceInternalDomainList {
+    domainName?: pulumi.Input<string>;
+}
+
 export interface VpnIpsecPhase1InterfaceIpv4ExcludeRange {
     endIp?: pulumi.Input<string>;
     id?: pulumi.Input<number>;
@@ -7619,6 +7874,10 @@ export interface VpnIpsecPhase1InterfaceIpv6ExcludeRange {
     endIp?: pulumi.Input<string>;
     id?: pulumi.Input<number>;
     startIp?: pulumi.Input<string>;
+}
+
+export interface VpnIpsecPhase1InternalDomainList {
+    domainName?: pulumi.Input<string>;
 }
 
 export interface VpnIpsecPhase1Ipv4ExcludeRange {
@@ -8794,6 +9053,14 @@ export interface WirelessControllerWidsProfileApBgscanDisableSchedule {
     name?: pulumi.Input<string>;
 }
 
+export interface WirelessControllerWidsProfileApScanChannelList2g5g {
+    chan?: pulumi.Input<string>;
+}
+
+export interface WirelessControllerWidsProfileApScanChannelList6g {
+    chan?: pulumi.Input<string>;
+}
+
 export interface WirelessControllerWtpGroupWtp {
     wtpId?: pulumi.Input<string>;
 }
@@ -8887,6 +9154,19 @@ export interface WirelessControllerWtpProfileLbs {
     fortipresenceServerAddrType?: pulumi.Input<string>;
     fortipresenceServerFqdn?: pulumi.Input<string>;
     fortipresenceUnassoc?: pulumi.Input<string>;
+    polestar?: pulumi.Input<string>;
+    polestarAccumulationInterval?: pulumi.Input<number>;
+    polestarAssetAddrgrpList?: pulumi.Input<string>;
+    polestarAssetUuidList1?: pulumi.Input<string>;
+    polestarAssetUuidList2?: pulumi.Input<string>;
+    polestarAssetUuidList3?: pulumi.Input<string>;
+    polestarAssetUuidList4?: pulumi.Input<string>;
+    polestarProtocol?: pulumi.Input<string>;
+    polestarReportingInterval?: pulumi.Input<number>;
+    polestarServerFqdn?: pulumi.Input<string>;
+    polestarServerPath?: pulumi.Input<string>;
+    polestarServerPort?: pulumi.Input<number>;
+    polestarServerToken?: pulumi.Input<string>;
     stationLocate?: pulumi.Input<string>;
 }
 
@@ -8940,6 +9220,7 @@ export interface WirelessControllerWtpProfileRadio1 {
     iperfServerPort?: pulumi.Input<number>;
     maxClients?: pulumi.Input<number>;
     maxDistance?: pulumi.Input<number>;
+    mimoMode?: pulumi.Input<string>;
     mode?: pulumi.Input<string>;
     n80211d?: pulumi.Input<string>;
     optionalAntenna?: pulumi.Input<string>;
@@ -9024,6 +9305,7 @@ export interface WirelessControllerWtpProfileRadio2 {
     iperfServerPort?: pulumi.Input<number>;
     maxClients?: pulumi.Input<number>;
     maxDistance?: pulumi.Input<number>;
+    mimoMode?: pulumi.Input<string>;
     mode?: pulumi.Input<string>;
     n80211d?: pulumi.Input<string>;
     optionalAntenna?: pulumi.Input<string>;
@@ -9108,6 +9390,7 @@ export interface WirelessControllerWtpProfileRadio3 {
     iperfServerPort?: pulumi.Input<number>;
     maxClients?: pulumi.Input<number>;
     maxDistance?: pulumi.Input<number>;
+    mimoMode?: pulumi.Input<string>;
     mode?: pulumi.Input<string>;
     n80211d?: pulumi.Input<string>;
     optionalAntenna?: pulumi.Input<string>;
@@ -9191,6 +9474,7 @@ export interface WirelessControllerWtpProfileRadio4 {
     iperfServerPort?: pulumi.Input<number>;
     maxClients?: pulumi.Input<number>;
     maxDistance?: pulumi.Input<number>;
+    mimoMode?: pulumi.Input<string>;
     mode?: pulumi.Input<string>;
     n80211d?: pulumi.Input<string>;
     optionalAntenna?: pulumi.Input<string>;

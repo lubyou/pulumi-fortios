@@ -10,6 +10,7 @@ import (
 	"errors"
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type SystemSnmpCommunity struct {
@@ -194,6 +195,12 @@ func (i *SystemSnmpCommunity) ToSystemSnmpCommunityOutputWithContext(ctx context
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSnmpCommunityOutput)
 }
 
+func (i *SystemSnmpCommunity) ToOutput(ctx context.Context) pulumix.Output[*SystemSnmpCommunity] {
+	return pulumix.Output[*SystemSnmpCommunity]{
+		OutputState: i.ToSystemSnmpCommunityOutputWithContext(ctx).OutputState,
+	}
+}
+
 // SystemSnmpCommunityArrayInput is an input type that accepts SystemSnmpCommunityArray and SystemSnmpCommunityArrayOutput values.
 // You can construct a concrete instance of `SystemSnmpCommunityArrayInput` via:
 //
@@ -217,6 +224,12 @@ func (i SystemSnmpCommunityArray) ToSystemSnmpCommunityArrayOutput() SystemSnmpC
 
 func (i SystemSnmpCommunityArray) ToSystemSnmpCommunityArrayOutputWithContext(ctx context.Context) SystemSnmpCommunityArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSnmpCommunityArrayOutput)
+}
+
+func (i SystemSnmpCommunityArray) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSnmpCommunity] {
+	return pulumix.Output[[]*SystemSnmpCommunity]{
+		OutputState: i.ToSystemSnmpCommunityArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // SystemSnmpCommunityMapInput is an input type that accepts SystemSnmpCommunityMap and SystemSnmpCommunityMapOutput values.
@@ -244,6 +257,12 @@ func (i SystemSnmpCommunityMap) ToSystemSnmpCommunityMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSnmpCommunityMapOutput)
 }
 
+func (i SystemSnmpCommunityMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSnmpCommunity] {
+	return pulumix.Output[map[string]*SystemSnmpCommunity]{
+		OutputState: i.ToSystemSnmpCommunityMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type SystemSnmpCommunityOutput struct{ *pulumi.OutputState }
 
 func (SystemSnmpCommunityOutput) ElementType() reflect.Type {
@@ -256,6 +275,12 @@ func (o SystemSnmpCommunityOutput) ToSystemSnmpCommunityOutput() SystemSnmpCommu
 
 func (o SystemSnmpCommunityOutput) ToSystemSnmpCommunityOutputWithContext(ctx context.Context) SystemSnmpCommunityOutput {
 	return o
+}
+
+func (o SystemSnmpCommunityOutput) ToOutput(ctx context.Context) pulumix.Output[*SystemSnmpCommunity] {
+	return pulumix.Output[*SystemSnmpCommunity]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemSnmpCommunityOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -356,6 +381,12 @@ func (o SystemSnmpCommunityArrayOutput) ToSystemSnmpCommunityArrayOutputWithCont
 	return o
 }
 
+func (o SystemSnmpCommunityArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*SystemSnmpCommunity] {
+	return pulumix.Output[[]*SystemSnmpCommunity]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o SystemSnmpCommunityArrayOutput) Index(i pulumi.IntInput) SystemSnmpCommunityOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSnmpCommunity {
 		return vs[0].([]*SystemSnmpCommunity)[vs[1].(int)]
@@ -374,6 +405,12 @@ func (o SystemSnmpCommunityMapOutput) ToSystemSnmpCommunityMapOutput() SystemSnm
 
 func (o SystemSnmpCommunityMapOutput) ToSystemSnmpCommunityMapOutputWithContext(ctx context.Context) SystemSnmpCommunityMapOutput {
 	return o
+}
+
+func (o SystemSnmpCommunityMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*SystemSnmpCommunity] {
+	return pulumix.Output[map[string]*SystemSnmpCommunity]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o SystemSnmpCommunityMapOutput) MapIndex(k pulumi.StringInput) SystemSnmpCommunityOutput {

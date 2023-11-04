@@ -9,6 +9,7 @@ import (
 
 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+	"github.com/pulumi/pulumi/sdk/v3/go/pulumix"
 )
 
 type RouterBfd struct {
@@ -110,6 +111,12 @@ func (i *RouterBfd) ToRouterBfdOutputWithContext(ctx context.Context) RouterBfdO
 	return pulumi.ToOutputWithContext(ctx, i).(RouterBfdOutput)
 }
 
+func (i *RouterBfd) ToOutput(ctx context.Context) pulumix.Output[*RouterBfd] {
+	return pulumix.Output[*RouterBfd]{
+		OutputState: i.ToRouterBfdOutputWithContext(ctx).OutputState,
+	}
+}
+
 // RouterBfdArrayInput is an input type that accepts RouterBfdArray and RouterBfdArrayOutput values.
 // You can construct a concrete instance of `RouterBfdArrayInput` via:
 //
@@ -133,6 +140,12 @@ func (i RouterBfdArray) ToRouterBfdArrayOutput() RouterBfdArrayOutput {
 
 func (i RouterBfdArray) ToRouterBfdArrayOutputWithContext(ctx context.Context) RouterBfdArrayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterBfdArrayOutput)
+}
+
+func (i RouterBfdArray) ToOutput(ctx context.Context) pulumix.Output[[]*RouterBfd] {
+	return pulumix.Output[[]*RouterBfd]{
+		OutputState: i.ToRouterBfdArrayOutputWithContext(ctx).OutputState,
+	}
 }
 
 // RouterBfdMapInput is an input type that accepts RouterBfdMap and RouterBfdMapOutput values.
@@ -160,6 +173,12 @@ func (i RouterBfdMap) ToRouterBfdMapOutputWithContext(ctx context.Context) Route
 	return pulumi.ToOutputWithContext(ctx, i).(RouterBfdMapOutput)
 }
 
+func (i RouterBfdMap) ToOutput(ctx context.Context) pulumix.Output[map[string]*RouterBfd] {
+	return pulumix.Output[map[string]*RouterBfd]{
+		OutputState: i.ToRouterBfdMapOutputWithContext(ctx).OutputState,
+	}
+}
+
 type RouterBfdOutput struct{ *pulumi.OutputState }
 
 func (RouterBfdOutput) ElementType() reflect.Type {
@@ -172,6 +191,12 @@ func (o RouterBfdOutput) ToRouterBfdOutput() RouterBfdOutput {
 
 func (o RouterBfdOutput) ToRouterBfdOutputWithContext(ctx context.Context) RouterBfdOutput {
 	return o
+}
+
+func (o RouterBfdOutput) ToOutput(ctx context.Context) pulumix.Output[*RouterBfd] {
+	return pulumix.Output[*RouterBfd]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RouterBfdOutput) DynamicSortSubtable() pulumi.StringPtrOutput {
@@ -208,6 +233,12 @@ func (o RouterBfdArrayOutput) ToRouterBfdArrayOutputWithContext(ctx context.Cont
 	return o
 }
 
+func (o RouterBfdArrayOutput) ToOutput(ctx context.Context) pulumix.Output[[]*RouterBfd] {
+	return pulumix.Output[[]*RouterBfd]{
+		OutputState: o.OutputState,
+	}
+}
+
 func (o RouterBfdArrayOutput) Index(i pulumi.IntInput) RouterBfdOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RouterBfd {
 		return vs[0].([]*RouterBfd)[vs[1].(int)]
@@ -226,6 +257,12 @@ func (o RouterBfdMapOutput) ToRouterBfdMapOutput() RouterBfdMapOutput {
 
 func (o RouterBfdMapOutput) ToRouterBfdMapOutputWithContext(ctx context.Context) RouterBfdMapOutput {
 	return o
+}
+
+func (o RouterBfdMapOutput) ToOutput(ctx context.Context) pulumix.Output[map[string]*RouterBfd] {
+	return pulumix.Output[map[string]*RouterBfd]{
+		OutputState: o.OutputState,
+	}
 }
 
 func (o RouterBfdMapOutput) MapIndex(k pulumi.StringInput) RouterBfdOutput {
